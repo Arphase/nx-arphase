@@ -1,16 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { UppercaseDirective } from './uppercase.directive';
 
-const directives = [
-  UppercaseDirective
-];
+import { IvtUppercaseModule } from './uppercase/uppercase.module';
+
+const MODULES = [IvtUppercaseModule];
 
 @NgModule({
-  declarations: [directives],
-  imports: [
-    CommonModule
-  ],
-  exports: [directives]
+  imports: [MODULES],
+  exports: [MODULES],
 })
-export class DirectivesModule { }
+export class IvtDirectivesModule {}
