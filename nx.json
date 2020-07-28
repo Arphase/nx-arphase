@@ -1,0 +1,51 @@
+{
+  "npmScope": "innovatech",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "innovatech-ui": {
+      "tags": []
+    },
+    "innovatech-ui-e2e": {
+      "tags": [],
+      "implicitDependencies": ["innovatech-ui"]
+    },
+    "innovatech-api": {
+      "tags": []
+    },
+    "ui": {
+      "tags": []
+    },
+    "state": {
+      "tags": []
+    },
+    "guarantees": {
+      "tags": []
+    },
+    "data": {
+      "tags": []
+    },
+    "utils": {
+      "tags": []
+    }
+  }
+}

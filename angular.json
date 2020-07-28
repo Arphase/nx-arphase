@@ -1,0 +1,355 @@
+{
+  "version": 1,
+  "projects": {
+    "innovatech-ui": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/innovatech-ui",
+      "sourceRoot": "apps/innovatech-ui/src",
+      "prefix": "innovatech",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/innovatech-ui",
+            "index": "apps/innovatech-ui/src/index.html",
+            "main": "apps/innovatech-ui/src/main.ts",
+            "polyfills": "apps/innovatech-ui/src/polyfills.ts",
+            "tsConfig": "apps/innovatech-ui/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/innovatech-ui/src/favicon.ico",
+              "apps/innovatech-ui/src/assets"
+            ],
+            "styles": ["apps/innovatech-ui/src/styles.scss"],
+            "scripts": [],
+            "allowedCommonJsDependencies": ["file-saver"]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/innovatech-ui/src/environments/environment.ts",
+                  "with": "apps/innovatech-ui/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "innovatech-ui:build",
+            "proxyConfig": "apps/innovatech-ui/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "innovatech-ui:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "innovatech-ui:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/innovatech-ui/tsconfig.app.json",
+              "apps/innovatech-ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/innovatech-ui/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/innovatech-ui/jest.config.js",
+            "tsConfig": "apps/innovatech-ui/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/innovatech-ui/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "innovatech-ui-e2e": {
+      "root": "apps/innovatech-ui-e2e",
+      "sourceRoot": "apps/innovatech-ui-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/innovatech-ui-e2e/cypress.json",
+            "tsConfig": "apps/innovatech-ui-e2e/tsconfig.e2e.json",
+            "devServerTarget": "innovatech-ui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "innovatech-ui:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/innovatech-ui-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/innovatech-ui-e2e/**/*"]
+          }
+        }
+      }
+    },
+    "innovatech-api": {
+      "root": "apps/innovatech-api",
+      "sourceRoot": "apps/innovatech-api/src",
+      "projectType": "application",
+      "prefix": "ivt",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/innovatech-api",
+            "main": "apps/innovatech-api/src/main.ts",
+            "tsConfig": "apps/innovatech-api/tsconfig.app.json",
+            "assets": ["apps/innovatech-api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/innovatech-api/src/environments/environment.ts",
+                  "with": "apps/innovatech-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "innovatech-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/innovatech-api/tsconfig.app.json",
+              "apps/innovatech-api/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/innovatech-api/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/innovatech-api/jest.config.js",
+            "tsConfig": "apps/innovatech-api/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui": {
+      "projectType": "library",
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/tsconfig.lib.json",
+              "libs/ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "tsConfig": "libs/ui/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss",
+          "changeDetection": "OnPush"
+        }
+      }
+    },
+    "state": {
+      "projectType": "library",
+      "root": "libs/state",
+      "sourceRoot": "libs/state/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/state/tsconfig.lib.json",
+              "libs/state/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/state/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/state/jest.config.js",
+            "tsConfig": "libs/state/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/state/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss",
+          "changeDetection": "OnPush"
+        }
+      }
+    },
+    "guarantees": {
+      "projectType": "library",
+      "root": "libs/guarantees",
+      "sourceRoot": "libs/guarantees/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/guarantees/tsconfig.lib.json",
+              "libs/guarantees/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/guarantees/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/guarantees/jest.config.js",
+            "tsConfig": "libs/guarantees/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/guarantees/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss",
+          "changeDetection": "OnPush"
+        }
+      }
+    },
+    "data": {
+      "root": "libs/data",
+      "sourceRoot": "libs/data/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/data/tsconfig.lib.json",
+              "libs/data/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data/jest.config.js",
+            "tsConfig": "libs/data/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "utils": {
+      "projectType": "library",
+      "root": "libs/utils",
+      "sourceRoot": "libs/utils/src",
+      "prefix": "innovatech",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/utils/tsconfig.lib.json",
+              "libs/utils/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/utils/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/utils/jest.config.js",
+            "tsConfig": "libs/utils/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/utils/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "innovatech-ui"
+}

@@ -1,0 +1,456 @@
+<main>
+  <form [formGroup]="form">
+    <div class="row mt-3">
+      <div class="col-6">
+        <form [formGroup]="client">
+          <mat-card>
+            <mat-card-header class="py-3">
+              <mat-card-title>
+                Datos del cliente
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="px-lg-5 pt-3">
+              <div class="row">
+                <div class="col">
+                  <div>
+                    <label>Tipo de persona:</label>
+                  </div>
+                  <mat-radio-group formControlName="personType"
+                                   (change)="personTypeChange($event)">
+                    <mat-radio-button value="1"
+                                      [checked]="true">Física</mat-radio-button>
+                    <mat-radio-button value="2">Moral</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+
+              <div *ngIf="showPhysicalForm"
+                   class="row">
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Nombre(s)</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="name">
+                    <mat-error *ngIf="client.get('name').invalid">{{getErrorMessage(client.get('name'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Apellido Paterno</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="lastName">
+                    <mat-error *ngIf="client.get('lastName').invalid">{{getErrorMessage(client.get('lastName'))}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Apellido Materno</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="secondLastName">
+                    <mat-error *ngIf="client.get('secondLastName').invalid">
+                      {{getErrorMessage(client.get('secondLastName'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div *ngIf="showMoralForm"
+                   class="row">
+                <div class="col-lg-6 col-12">
+                  <mat-form-field>
+                    <mat-label>Razon Social</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="businessName">
+                    <mat-error *ngIf="client.get('businessName').invalid">
+                      {{getErrorMessage(client.get('businessName'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div *ngIf="showPhysicalForm"
+                   class="row">
+                <div class="col-lg-6 col-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Fecha de nacimiento</mat-label>
+                    <input matInput
+                           [matDatepicker]="picker"
+                           formControlName="birthDate">
+                    <mat-datepicker-toggle matSuffix
+                                           [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="client.get('birthDate').invalid">{{getErrorMessage(client.get('birthDate'))}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div *ngIf="showMoralForm"
+                   class="row">
+                <div class="col-lg-6 col-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Fecha de constitución</mat-label>
+                    <input matInput
+                           [matDatepicker]="picker"
+                           formControlName="constitutionDate">
+                    <mat-datepicker-toggle matSuffix
+                                           [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="client.get('constitutionDate').invalid">
+                      {{getErrorMessage(client.get('constitutionDate'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>RFC</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="rfc">
+                    <mat-error *ngIf="client.get('rfc').invalid">{{getErrorMessage(client.get('rfc'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput
+                           formControlName="phone">
+                    <mat-error *ngIf="client.get('phone').invalid">{{getErrorMessage(client.get('phone'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>eMail</mat-label>
+                    <input matInput
+                           type="email"
+                           formControlName="email">
+                    <mat-error *ngIf="client.get('email').invalid">{{getErrorMessage(client.get('email'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Código Postal</mat-label>
+                    <input matInput
+                           formControlName="zipCode">
+                    <mat-error *ngIf="client.get('zipCode').invalid">{{getErrorMessage(client.get('zipCode'))}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Estado</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="state">
+                    <mat-error *ngIf="client.get('state').invalid">{{getErrorMessage(client.get('state'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Municipio</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="city">
+                    <mat-error *ngIf="client.get('city').invalid">{{getErrorMessage(client.get('city'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Colonia</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="suburb">
+                    <mat-error *ngIf="client.get('suburb').invalid">{{getErrorMessage(client.get('suburb'))}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Calle</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="street">
+                    <mat-error *ngIf="client.get('street').invalid">{{getErrorMessage(client.get('street'))}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Número</mat-label>
+                    <input matInput
+                           formControlName="streetNumber">
+                    <mat-error *ngIf="client.get('streetNumber').invalid">
+                      {{getErrorMessage(client.get('streetNumber'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div *ngIf="showMoralForm"
+                     class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Distribuidor</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="distributor">
+                    <mat-error *ngIf="client.get('distributor').invalid">{{getErrorMessage(client.get('distributor'))}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div *ngIf="showMoralForm"
+                     class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Asesor</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="adviser">
+                    <mat-error *ngIf="client.get('adviser').invalid">{{getErrorMessage(client.get('adviser'))}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Punto de Venta</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="salesPlace">
+                    <mat-error *ngIf="client.get('salesPlace').invalid">{{getErrorMessage(client.get('salesPlace'))}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </mat-card-content>
+            <mat-card-actions class="px-lg-5">
+
+            </mat-card-actions>
+          </mat-card>
+        </form>
+      </div>
+
+      <div class="col-6">
+        <form [formGroup]="vehicle">
+          <mat-card>
+            <mat-card-header class="py-3">
+              <mat-card-title>
+                Datos del Vehículo
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="px-lg-5 pt-3">
+              <div class="row">
+                <div class="col">
+                  <mat-form-field>
+                    <mat-label>Tipo de Producto</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="productType">
+                    <mat-error *ngIf="vehicle.get('productType').invalid">
+                      {{getErrorMessage(vehicle.get('productType'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+
+
+              <div class="row">
+                <div class="col-lg-6 col-12">
+                  <mat-form-field>
+                    <mat-label>Marca</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="brand">
+                    <mat-error *ngIf="vehicle.get('brand').invalid">{{getErrorMessage(vehicle.get('brand'))}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Modelo</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="model">
+                    <mat-error *ngIf="vehicle.get('model').invalid">{{getErrorMessage(vehicle.get('model'))}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Versión</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="version">
+                    <mat-error *ngIf="vehicle.get('version').invalid">{{getErrorMessage(vehicle.get('version'))}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <mat-form-field>
+                    <mat-label>Año del Vehículo</mat-label>
+                    <input matInput
+                           formControlName="year">
+                    <mat-error *ngIf="vehicle.get('year').invalid">{{getErrorMessage(vehicle.get('year'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6 col-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Fecha Factura Origen</mat-label>
+                    <input matInput
+                           [matDatepicker]="invoiceDate"
+                           formControlName="invoiceDate">
+                    <mat-datepicker-toggle matSuffix
+                                           [for]="invoiceDate"></mat-datepicker-toggle>
+                    <mat-datepicker #invoiceDate></mat-datepicker>
+                    <mat-error *ngIf="vehicle.get('invoiceDate').invalid">
+                      {{getErrorMessage(vehicle.get('invoiceDate'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6 col-12">
+                  <mat-form-field>
+                    <mat-label>VIN</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="vin">
+                    <mat-error *ngIf="vehicle.get('vin').invalid">{{getErrorMessage(vehicle.get('vin'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-12">
+                  <mat-form-field>
+                    <mat-label>N° de Motor</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="motorNumber">
+                    <mat-error *ngIf="vehicle.get('motorNumber').invalid">
+                      {{getErrorMessage(vehicle.get('motorNumber'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-lg-6 col-12">
+                  <mat-form-field>
+                    <mat-label>HP</mat-label>
+                    <input matInput
+                           formControlName="horsePower">
+                    <mat-error *ngIf="vehicle.get('horsePower').invalid">{{getErrorMessage(vehicle.get('horsePower'))}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-12">
+                  <mat-form-field>
+                    <mat-label>Número de Serie</mat-label>
+                    <input matInput
+                           formControlName="serialNumber">
+                    <mat-error *ngIf="vehicle.get('serialNumber').invalid">
+                      {{getErrorMessage(vehicle.get('serialNumber'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6 col-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Fecha inicio garantía</mat-label>
+                    <input matInput
+                           [matDatepicker]="guaranteeStartDate"
+                           formControlName="guaranteeStartDate">
+                    <mat-datepicker-toggle matSuffix
+                                           [for]="guaranteeStartDate"></mat-datepicker-toggle>
+                    <mat-datepicker #guaranteeStartDate></mat-datepicker>
+                    <mat-error *ngIf="vehicle.get('guaranteeStartDate').invalid">
+                      {{getErrorMessage(vehicle.get('guaranteeStartDate'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Fin garantía por tiempo</mat-label>
+                    <input matInput
+                           [matDatepicker]="guaranteeEndDate"
+                           formControlName="guaranteeEndDate">
+                    <mat-datepicker-toggle matSuffix
+                                           [for]="guaranteeEndDate"></mat-datepicker-toggle>
+                    <mat-datepicker #guaranteeEndDate></mat-datepicker>
+                    <mat-error *ngIf="vehicle.get('guaranteeEndDate').invalid">
+                      {{getErrorMessage(vehicle.get('guaranteeEndDate'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6 col-12">
+                  <mat-form-field>
+                    <mat-label>Kilometraje inicial</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="kilometrage">
+                    <mat-error *ngIf="vehicle.get('kilometrage').invalid">
+                      {{getErrorMessage(vehicle.get('kilometrage'))}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-12">
+                  <mat-form-field>
+                    <mat-label>Fin garantía por kilometraje</mat-label>
+                    <input matInput
+                           ivtUppercase
+                           type="text"
+                           formControlName="kilometrageEnd">
+                    <mat-error *ngIf="vehicle.get('kilometrageEnd').invalid">
+                      {{getErrorMessage(vehicle.get('kilometrageEnd'))}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </form>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="mx-auto">
+        <button mat-raised-button
+                color="primary"
+                (click)="submit()">
+          Crear Garantía
+        </button>
+      </div>
+    </div>
+  </form>
+</main>

@@ -1,0 +1,33 @@
+import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { saveAs } from 'file-saver';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+import {
+  IVT_DATA_CONFIGURATION,
+  IvtDataConfiguration,
+} from '../../data-config';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class GuaranteesService {
+  constructor(
+    private http: HttpClient,
+    @Inject(IVT_DATA_CONFIGURATION) public config: IvtDataConfiguration
+  ) {}
+
+  getGuaranteePdf(payload): Observable<any> {
+    return this.http
+      .post(`${this.config.apiUrl}/guarantees`, payload, {
+        responseType: 'blob',
+      })
+      .pipe(
+        tap((file) => {
+          const blob = new Blob([file], { type: 'application/octet-stream' });
+          saveAs(blob, 'Garantia.pdf');
+        })
+      );
+  }
+}
