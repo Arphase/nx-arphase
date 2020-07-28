@@ -1,7 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import {
-  AfterViewInit,
   Directive,
   ElementRef,
   Inject,
@@ -23,7 +22,7 @@ import { MAT_INPUT_VALUE_ACCESSOR, MatInput } from '@angular/material/input';
   selector: '[ivtInput]',
   providers: [{ provide: MatFormFieldControl, useExisting: IvtInputDirective }],
 })
-export class IvtInputDirective extends MatInput implements AfterViewInit {
+export class IvtInputDirective extends MatInput {
   constructor(
     protected _elementRef: ElementRef<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -54,19 +53,5 @@ export class IvtInputDirective extends MatInput implements AfterViewInit {
       ngZone,
       _formField
     );
-  }
-
-  ngAfterViewInit() {
-    super.ngAfterViewInit();
-    // setTimeout(() => {
-    //   const d2 = this.renderer.createElement('mat-error');
-    //   const text = this.renderer.createText('Error');
-    //   this.renderer.appendChild(d2, text);
-    //   this.renderer.appendChild(
-    //     this._elementRef.nativeElement.parentElement.parentElement
-    //       .parentElement,
-    //     d2
-    //   );
-    // }, 1000);
   }
 }
