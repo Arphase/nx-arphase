@@ -3,10 +3,10 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnDestroy,
   Output,
 } from '@angular/core';
-import { Subject } from 'rxjs';
+
+import { IvtSubscriberComponent } from '../subscriber';
 
 export interface CrudEvents<T> {
   create: EventEmitter<void>;
@@ -21,7 +21,8 @@ export interface CrudEvents<T> {
   selector: 'ivt-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtListComponent<T = any> implements CrudEvents<T>, OnDestroy {
+export class IvtListComponent<T = any> extends IvtSubscriberComponent
+  implements CrudEvents<T> {
   @Input() list: T[] = [];
   @Input() hasMoreItems: boolean;
   @Input() loading: boolean;
@@ -33,12 +34,6 @@ export class IvtListComponent<T = any> implements CrudEvents<T>, OnDestroy {
   @Output() filterItems = new EventEmitter<any>();
   @Output() getMoreItems = new EventEmitter<void>();
   showFilters: boolean;
-  protected destroy$ = new Subject<void>();
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
 
   toggleFilter(): void {
     this.showFilters = !this.showFilters;
