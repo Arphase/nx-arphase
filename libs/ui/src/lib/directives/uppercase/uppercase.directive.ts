@@ -6,7 +6,7 @@ import { filter, takeUntil } from 'rxjs/operators';
 @Directive({
   selector: '[ivtUppercase]',
 })
-export class UppercaseDirective implements AfterViewInit, OnDestroy {
+export class IvtUppercaseDirective implements AfterViewInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   constructor(@Host() private ngControl: NgControl) {}
@@ -15,10 +15,14 @@ export class UppercaseDirective implements AfterViewInit, OnDestroy {
     if (this.ngControl && this.ngControl.valueChanges) {
       this.ngControl.valueChanges
         .pipe(
-          filter(value => typeof value === 'string'),
+          filter((value) => typeof value === 'string'),
           takeUntil(this.destroy$)
         )
-        .subscribe(value => this.ngControl.control.patchValue(value.toUpperCase(), { emitEvent: false }));
+        .subscribe((value) =>
+          this.ngControl.control.patchValue(value.toUpperCase(), {
+            emitEvent: false,
+          })
+        );
     }
   }
 

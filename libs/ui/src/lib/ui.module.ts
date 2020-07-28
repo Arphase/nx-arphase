@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -25,7 +24,9 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { DirectivesModule } from './directives/directives.module';
+
+import { IvtComponentsModule } from './components/components.module';
+import { IvtDirectivesModule } from './directives/directives.module';
 
 const MATERIAL_MODULES = [
   ReactiveFormsModule,
@@ -62,9 +63,11 @@ const MATERIAL_MODULES = [
   MatTooltipModule,
 ];
 
+const MODULES = [IvtComponentsModule, IvtDirectivesModule];
+
 @NgModule({
-  imports: [CommonModule, MATERIAL_MODULES, DirectivesModule],
-  exports: [MATERIAL_MODULES, DirectivesModule],
+  imports: [MATERIAL_MODULES, MODULES],
+  exports: [MATERIAL_MODULES, MODULES],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es' }],
 })
 export class IvtUiModule {}

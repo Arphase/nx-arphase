@@ -20,7 +20,6 @@ import { CustomValidators } from '@innovatech/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeFormComponent implements OnInit {
-  // @Input() loading: boolean;
   @Output() getGuaranteePdf = new EventEmitter<any>();
   form: FormGroup;
   showPhysicalForm = true;
@@ -110,26 +109,6 @@ export class GuaranteeFormComponent implements OnInit {
 
     disableControls.forEach((control) => this.client.get(control).disable());
     enableControls.forEach((control) => this.client.get(control).enable());
-  }
-
-  getErrorMessage(control: FormControl) {
-    if (control.hasError('required')) {
-      return 'Este campo es requerido';
-    }
-
-    if (control.hasError('max')) {
-      return 'El número no debe ser mayor a 400';
-    }
-
-    if (control.hasError('min')) {
-      return 'El año debe ser mayor o igual a 2014';
-    }
-
-    if (control.hasError('rfc')) {
-      return 'Debe tener formato de RFC';
-    }
-
-    return control.hasError('email') ? 'Debe tener formato de correo' : '';
   }
 
   cleanValues() {
