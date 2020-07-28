@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 
+import { IvtInputModule } from './input/input.module';
 import { IvtUppercaseModule } from './uppercase/uppercase.module';
 
-const MODULES = [IvtUppercaseModule];
+const MODULES = [IvtInputModule, IvtUppercaseModule];
 
 @NgModule({
   imports: [MODULES],
