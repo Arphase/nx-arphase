@@ -1,4 +1,4 @@
-import { SignInRequest } from '@innovatech/data';
+import { SignInRequest, User } from '@ivt/data';
 import { createAction, props } from '@ngrx/store';
 
 export const signIn = createAction(
@@ -8,7 +8,7 @@ export const signIn = createAction(
 
 export const signInSuccess = createAction(
   '[Auth] Sign in success',
-  props<{ user: any }>()
+  props<{ user: User }>()
 );
 
 export const signInFailed = createAction('[Auth] Sign in failed');

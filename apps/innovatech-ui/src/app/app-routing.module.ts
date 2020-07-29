@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+// tslint:disable-next-line: nx-enforce-module-boundaries
+import { AuthGuard } from '@ivt/auth';
 
 export const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('@innovatech/auth').then((m) => m.AuthModule),
+    loadChildren: () => import('@ivt/auth').then((m) => m.AuthModule),
   },
-  // {
-  //   path: '',
-  //   loadChildren: () =>
-  //     import('@innovatech/guarantees').then((m) => m.GuaranteesModule),
-  // },
+  {
+    path: 'spa',
+    loadChildren: () => import('@ivt/spa').then((m) => m.SpaModule),
+    canActivate: [AuthGuard],
+  },
   {
     path: '',
     redirectTo: 'auth',

@@ -7,8 +7,6 @@ export const environment: Environment = {
     host: 'localhost',
     port: 5432,
     database: 'ivt_dev',
-    username: 'davidmartinez',
-    password: 'postgres',
     synchronize: true,
   },
   server: {

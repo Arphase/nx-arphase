@@ -1,4 +1,4 @@
-import { Guarantee } from '@innovatech/data';
+import { Guarantee } from '@ivt/data';
 import { Body, Controller, Get, Post, Res } from '@nestjs/common';
 import { GuaranteesService } from '../services/guarantees.service';
 

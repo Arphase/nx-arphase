@@ -6,7 +6,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
-import { User } from '@innovatech/data';
+import { User } from '@ivt/data';
 import { SignUpCredentialsDto } from '@api/auth/dto/auth-credentials.dto';
 
 @EntityRepository(UserEntity)

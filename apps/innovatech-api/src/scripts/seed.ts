@@ -1,5 +1,5 @@
 import { createConnection, ConnectionOptions } from 'typeorm';
-import { userRole } from '@innovatech/data';
+import { userRole } from '@ivt/data';
 import { AuthService } from '@api/auth/services/auth.service';
 import { SignUpCredentialsDto } from '@api/auth/dto/auth-credentials.dto';
 import { typeOrmConfig } from '../config/typeorm.config';

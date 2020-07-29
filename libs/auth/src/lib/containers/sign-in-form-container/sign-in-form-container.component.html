@@ -1,1 +1,3 @@
-<ivt-sign-in-form (submitForm)="submit($event)"></ivt-sign-in-form>
+<ivt-sign-in-form [loading]="loading$ | async"
+                  (submitForm)="submit($event)">
+</ivt-sign-in-form>

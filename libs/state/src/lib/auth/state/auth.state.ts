@@ -1,3 +1,4 @@
+import { User } from '@ivt/data';
 export interface AuthState {
-  user: any;
+  user: User;
 }
