@@ -1,3 +1,3 @@
 export * from './services';
 export * from './state';
-export * from './guarantees-data.module';
+export * from './guarantees-state.module';

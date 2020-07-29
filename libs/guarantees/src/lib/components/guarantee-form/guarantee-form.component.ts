@@ -2,15 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Output,
   OnInit,
+  Output,
 } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from '@innovatech/utils';
 
 @Component({

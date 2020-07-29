@@ -17,11 +17,14 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "paths": {
+      "@api/*": ["apps/innovatech-api/src/app/*"],
+      "@env/*": ["apps/innovatech-api/src/environments/*"],
       "@innovatech/ui": ["libs/ui/src/index.ts"],
       "@innovatech/guarantees": ["libs/guarantees/src/index.ts"],
       "@innovatech/utils": ["libs/utils/src/index.ts"],
       "@innovatech/data": ["libs/data/src/index.ts"],
-      "@innovatech/state": ["libs/state/src/index.ts"]
+      "@innovatech/state": ["libs/state/src/index.ts"],
+      "@innovatech/auth": ["libs/auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

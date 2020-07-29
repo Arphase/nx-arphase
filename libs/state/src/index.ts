@@ -1,3 +1,4 @@
+export * from './lib/auth';
 export * from './lib/guarantees';
-export * from './lib/data.module';
-export * from './lib/data-config';
+export * from './lib/state-config';
+export * from './lib/state.module';
