@@ -7,4 +7,4 @@ import { GuaranteesEffects } from './state';
 @NgModule({
   imports: [CommonModule, EffectsModule.forFeature([GuaranteesEffects])],
 })
-export class GuaranteesDataModule {}
+export class GuaranteesStateModule {}

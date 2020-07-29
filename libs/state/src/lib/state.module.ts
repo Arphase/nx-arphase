@@ -3,6 +3,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { AuthEffects } from './auth/state';
+
 @NgModule({
   imports: [
     StoreModule.forRoot({}),
@@ -10,7 +12,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
       name: 'IVT UI',
       maxAge: 25,
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AuthEffects]),
   ],
 })
-export class IvtDataModule {}
+export class IvtStateModule {}

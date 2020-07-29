@@ -3,9 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'auth',
+    loadChildren: () => import('@innovatech/auth').then((m) => m.AuthModule),
+  },
+  // {
+  //   path: '',
+  //   loadChildren: () =>
+  //     import('@innovatech/guarantees').then((m) => m.GuaranteesModule),
+  // },
+  {
     path: '',
-    loadChildren: () =>
-      import('@innovatech/guarantees').then((m) => m.GuaranteesModule),
+    redirectTo: 'auth',
+    pathMatch: 'full',
   },
 ];
 

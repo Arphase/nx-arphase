@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-6 offset-3">
+    <mat-card>
+      <form [formGroup]="form"
+            (ngSubmit)="submit()">
+        <mat-card-header class="py-3 flex-center">
+          <mat-card-title>
+            Iniciar sesión
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row mx-0">
+            <div class="col">
+              <ivt-form-field label="Correo">
+                <input ivtInput
+                       formControlName="email">
+              </ivt-form-field>
+            </div>
+          </div>
+
+          <div class="row mx-0">
+            <div class="col">
+              <ivt-form-field label="Contraseña">
+                <input ivtInput
+                       formControlName="password">
+              </ivt-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="row mx-0">
+            <div class="col flex-end">
+              <button mat-raised-button
+                      type="submit"
+                      color="primary"
+                      [loading]="loading">
+                Iniciar sesión
+              </button>
+            </div>
+          </div>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+</div>
