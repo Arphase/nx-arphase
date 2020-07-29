@@ -6,7 +6,7 @@ import { User } from '@innovatech/data';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
-  @Post('/signin')
+  @Post('/sign-in')
   signIn(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<User> {
     return this.authService.signIn(authCredentialsDto);
   }
