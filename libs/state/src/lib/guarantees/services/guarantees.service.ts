@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import {
-  IVT_DATA_CONFIGURATION,
-  IvtDataConfiguration,
-} from '../../data-config';
+  IVT_STATE_CONFIGURATION,
+  IvtStateConfiguration,
+} from '../../state-config';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ import {
 export class GuaranteesService {
   constructor(
     private http: HttpClient,
-    @Inject(IVT_DATA_CONFIGURATION) public config: IvtDataConfiguration
+    @Inject(IVT_STATE_CONFIGURATION) public config: IvtStateConfiguration
   ) {}
 
   getGuaranteePdf(payload): Observable<any> {

@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  IVT_DATA_CONFIGURATION,
-  IvtDataConfiguration,
-  IvtDataModule,
+  IVT_STATE_CONFIGURATION,
+  IvtStateConfiguration,
+  IvtStateModule,
 } from '@innovatech/state';
 import { IvtUiModule } from '@innovatech/ui';
 
@@ -13,7 +13,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-const IVT_DATA_CONFIGURATION_VALUE: IvtDataConfiguration = {
+const IVT_STATE_CONFIGURATION_VALUE: IvtStateConfiguration = {
   apiUrl: environment.apiUrl,
 };
 
@@ -24,11 +24,11 @@ const IVT_DATA_CONFIGURATION_VALUE: IvtDataConfiguration = {
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    IvtDataModule,
+    IvtStateModule,
     IvtUiModule,
   ],
   providers: [
-    { provide: IVT_DATA_CONFIGURATION, useValue: IVT_DATA_CONFIGURATION_VALUE },
+    { provide: IVT_STATE_CONFIGURATION, useValue: IVT_STATE_CONFIGURATION_VALUE },
   ],
   bootstrap: [AppComponent],
 })
