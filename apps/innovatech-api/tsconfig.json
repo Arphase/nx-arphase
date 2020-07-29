@@ -3,11 +3,12 @@
   "compilerOptions": {
     "types": ["node", "jest"],
     "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "module": "commonjs",
     "target": "es2017",
     "paths": {
       "@api/*": ["apps/innovatech-api/src/app/*"],
-      "@env/*": ["apps/nuva-api/src/environments/*"],
+      "@env/*": ["apps/innovatech-api/src/environments/*"],
       "@innovatech/ui": ["libs/ui/src/index.ts"],
       "@innovatech/guarantees": ["libs/guarantees/src/index.ts"],
       "@innovatech/utils": ["libs/utils/src/index.ts"],
