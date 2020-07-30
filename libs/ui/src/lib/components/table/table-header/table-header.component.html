@@ -1,0 +1,14 @@
+<div *ngIf="columns"
+     class="ivt-table-header row">
+  <div *ngFor="let column of columns"
+       [ngClass]="column.colSize ? 'col-' + column.colSize : 'col'">
+    <ivt-table-header-column class="d-flex"
+                             [class.justify-content-start]="column.alignment === 'left'"
+                             [class.justify-content-center]="column.alignment === 'center'"
+                             [class.justify-content-end]="column.alignment === 'right'"
+                             [column]="column"
+                             [activeFilter]="activeFilter"
+                             (sortEmitter)="updateSort($event)">
+    </ivt-table-header-column>
+  </div>
+</div>

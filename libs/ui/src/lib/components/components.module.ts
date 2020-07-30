@@ -8,16 +8,18 @@ import { IvtFormFieldModule } from './form-field';
 import { IvtListModule } from './list';
 import { IvtSearchbarModule } from './searchbar';
 import { IvtSubscriberModule } from './subscriber';
+import { IvtTableModule } from './table';
 
 const MODULES = [
+  IvtDateFilterModule,
   IvtEmptyStateModule,
+  IvtFilterModule,
   IvtFormModule,
   IvtFormFieldModule,
   IvtListModule,
   IvtSearchbarModule,
   IvtSubscriberModule,
-  IvtFilterModule,
-  IvtDateFilterModule,
+  IvtTableModule,
 ];
 
 @NgModule({

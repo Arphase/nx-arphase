@@ -5,4 +5,5 @@ export * from './form-field';
 export * from './list';
 export * from './searchbar';
 export * from './subscriber';
+export * from './table';
 export * from './components.module';

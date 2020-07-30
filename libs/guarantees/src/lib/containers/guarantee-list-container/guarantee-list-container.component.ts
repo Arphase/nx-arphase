@@ -7,7 +7,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GuaranteeListContainerComponent implements OnInit {
-
+  list = [{}];
   constructor() { }
 
   ngOnInit(): void {

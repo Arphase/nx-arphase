@@ -23,3 +23,7 @@ $theme-colors: (
 .row {
   margin: 0;
 }
+
+button:focus {
+  outline: none;
+}

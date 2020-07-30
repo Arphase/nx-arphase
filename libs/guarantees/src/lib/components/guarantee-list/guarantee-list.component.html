@@ -35,11 +35,11 @@
   </ivt-empty-state>
 
   <ng-container *ngIf="list.length">
-    <!-- <gdx-table-header class="d-block mt-4"
+    <ivt-table-header class="d-block mt-4"
                       [columns]="columns"
-                      (sortEmitter)="updateSort($event)"></gdx-table-header>
+                      (sort)="updateSort($event)"></ivt-table-header>
 
-    <gdx-virtual-scroll [list]="list"
+    <!-- <gdx-virtual-scroll [list]="list"
                         [ignoreNextBatch]="!hasMoreItems || loading"
                         (nextBatchEmitter)="getMoreItemsEmitter.emit()">
       <ng-template let-item
