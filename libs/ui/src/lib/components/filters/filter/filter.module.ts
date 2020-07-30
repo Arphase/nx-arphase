@@ -1,13 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FilterComponent } from './filter/filter.component';
+import { NgModule } from '@angular/core';
 
-
+import { IvtFilterComponent } from './filter.component';
 
 @NgModule({
-  declarations: [FilterComponent],
-  imports: [
-    CommonModule
-  ]
+  declarations: [IvtFilterComponent],
+  imports: [CommonModule],
+  exports: [IvtFilterComponent],
 })
-export class FilterModule { }
+export class IvtFilterModule {}

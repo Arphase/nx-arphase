@@ -98,7 +98,7 @@ export class IvtFormFieldComponent extends MatFormField
   setErrorMessage(errors: Record<string, any>): void {
     const firstError = Object.keys(errors)[0];
     const errorValue = errors[firstError];
-    const label = this.label.toLowerCase();
+    const label = this.label?.toLowerCase();
     const errorMessages = {
       [ValidatorTypes.required]: `El campo ${label} es requerido`,
       [ValidatorTypes.max]: `El campo ${label} no debe ser mayor a ${errorValue.max}`,

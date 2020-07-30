@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
-import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
@@ -36,7 +37,7 @@ const MATERIAL_MODULES = [
   MatAutocompleteModule,
   MatCheckboxModule,
   MatDatepickerModule,
-  MatNativeDateModule,
+  MatMomentDateModule,
   MatRadioModule,
   MatSelectModule,
   // Navigation

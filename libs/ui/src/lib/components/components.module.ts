@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 
+import { IvtFilterModule } from './filters';
+import { IvtDateFilterModule } from './filters/date-filter';
 import { IvtFormModule } from './form';
 import { IvtFormFieldModule } from './form-field';
 import { IvtListModule } from './list';
@@ -12,6 +14,8 @@ const MODULES = [
   IvtListModule,
   IvtSearchbarModule,
   IvtSubscriberModule,
+  IvtFilterModule,
+  IvtDateFilterModule,
 ];
 
 @NgModule({

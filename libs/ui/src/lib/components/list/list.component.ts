@@ -33,7 +33,7 @@ export class IvtListComponent<T = any> extends IvtSubscriberComponent
   @Output() toggle = new EventEmitter<T>();
   @Output() filterItems = new EventEmitter<any>();
   @Output() getMoreItems = new EventEmitter<void>();
-  showFilters: boolean;
+  showFilters = true;
 
   toggleFilter(): void {
     this.showFilters = !this.showFilters;
