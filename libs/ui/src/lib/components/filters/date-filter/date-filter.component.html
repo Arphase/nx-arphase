@@ -1,0 +1,73 @@
+<button *ngIf="control && control.get('startDate') && control.get('endDate')"
+        class="ivt-filter"
+        [ngClass]="{'active-filter': showActiveStatus}"
+        [matMenuTriggerFor]="menu">
+  <span *ngIf="mappedTitle"
+        class="ivt-button-label">
+    {{ mappedTitle }}
+  </span>
+  <span *ngIf="!mappedTitle"
+        class="ivt-button-label">
+    {{ label }}
+  </span>
+  <i *ngIf="!showActiveStatus"
+     class="material-icons float-right">
+    expand_more
+  </i>
+  <i *ngIf="showActiveStatus"
+     class="material-icons delete-icon right"
+     (click)="deleteFilters(); $event.stopPropagation()">
+    close
+  </i>
+</button>
+<mat-menu #menu="matMenu">
+  <div class="content"
+       (click)="$event.stopPropagation()">
+    <div class="row">
+      <div class="col">
+        <div class="mb-3"
+             *ngIf="dateTypeOptions.length">
+          <mat-radio-group [formControl]="control.get('dateType')">
+            <ng-container *ngFor="let option of dateTypeOptions">
+              <mat-radio-button class="mr-3"
+                                [value]="option.value"
+                                (click)="$event.stopPropagation()">{{ option.label }}</mat-radio-button>
+            </ng-container>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha inicial</mat-label>
+          <input matInput
+                 [formControl]="control.get('startDate')"
+                 [matDatepicker]="startDate">
+          <mat-datepicker-toggle matSuffix
+                                 [for]="startDate"></mat-datepicker-toggle>
+          <mat-datepicker #startDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha inicial</mat-label>
+          <input matInput
+                 [formControl]="control.get('endDate')"
+                 [matDatepicker]="endDate">
+          <mat-datepicker-toggle matSuffix
+                                 [for]="endDate"></mat-datepicker-toggle>
+          <mat-datepicker #endDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div *ngIf="showError"
+         class="row small">
+      <div class="col text-alert">
+        <span>La fecha inicial no puede ser después que la fecha final</span>
+      </div>
+    </div>
+  </div>
+</mat-menu>

@@ -1,0 +1,55 @@
+<mat-card>
+  <div class="row">
+    <div class="col-6">
+      <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
+    </div>
+
+    <div class="col-3 flex-start">
+      <button mat-icon-button
+              [color]="showFilters ? 'primary' : ''"
+              matTooltip="Filtrar"
+              (click)="toggleFilter()">
+        <mat-icon>filter_alt</mat-icon>
+      </button>
+    </div>
+
+    <div class="col-3 flex-end">
+      <button mat-raised-button
+              [routerLink]="['new']"
+              type="button"
+              color="primary">
+        Nueva garantía
+      </button>
+    </div>
+  </div>
+
+  <div [hidden]="!showFilters"
+       class="row mb-4">
+    <div class="col bg-light py-3 rounded">
+      <ivt-date-filter label="Fecha"></ivt-date-filter>
+    </div>
+  </div>
+
+  <ivt-empty-state *ngIf="!list.length"
+                   message="No existen garantías que se cumplan con el criterio de búsqueda">
+  </ivt-empty-state>
+
+  <ng-container *ngIf="list.length">
+    <ivt-table-header class="d-block mt-4"
+                      [columns]="columns"
+                      (sort)="updateSort($event)"></ivt-table-header>
+
+    <!-- <gdx-virtual-scroll [list]="list"
+                        [ignoreNextBatch]="!hasMoreItems || loading"
+                        (nextBatchEmitter)="getMoreItemsEmitter.emit()">
+      <ng-template let-item
+                   let-index="index">
+        <cdp-communication-template-row [index]="index"
+                                        [item]="item"
+                                        (toggle)="toggle.emit($event)"
+                                        (duplicateEmitter)="duplicateEmitter.emit($event)">
+        </cdp-communication-template-row>
+      </ng-template>
+    </gdx-virtual-scroll> -->
+  </ng-container>
+</mat-card>

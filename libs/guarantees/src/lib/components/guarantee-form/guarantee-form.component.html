@@ -1,348 +1,346 @@
-<main>
-  <form [formGroup]="form"
-        (ngSubmit)="submit()">
-    <div class="row mt-3">
-      <div class="col-6">
-        <form [formGroup]="client">
-          <mat-card>
-            <mat-card-header class="py-3">
-              <mat-card-title>
-                Datos del cliente
-              </mat-card-title>
-            </mat-card-header>
-            <mat-card-content class="px-lg-5 pt-3">
-              <div class="row">
-                <div class="col">
-                  <div>
-                    <label>Tipo de persona:</label>
-                  </div>
-                  <mat-radio-group formControlName="personType"
-                                   (change)="personTypeChange($event)">
-                    <mat-radio-button value="1"
-                                      [checked]="true">Física</mat-radio-button>
-                    <mat-radio-button value="2">Moral</mat-radio-button>
-                  </mat-radio-group>
+<form [formGroup]="form"
+      (ngSubmit)="submit()">
+  <div class="row mt-3">
+    <div class="col-6">
+      <form [formGroup]="client">
+        <mat-card>
+          <mat-card-header class="py-3">
+            <mat-card-title>
+              Datos del cliente
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="px-lg-3 pt-3">
+            <div class="row">
+              <div class="col">
+                <div>
+                  <label>Tipo de persona:</label>
                 </div>
+                <mat-radio-group formControlName="personType"
+                                 (change)="personTypeChange($event)">
+                  <mat-radio-button value="1"
+                                    [checked]="true">Física</mat-radio-button>
+                  <mat-radio-button value="2">Moral</mat-radio-button>
+                </mat-radio-group>
               </div>
-              <div *ngIf="showPhysicalForm"
-                   class="row">
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Nombre(s)">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="name">
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Apellido Paterno">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="lastName">
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Apellido Materno">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="secondLastName">
-                  </ivt-form-field>
-                </div>
+            </div>
+            <div *ngIf="showPhysicalForm"
+                 class="row">
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Nombre(s)">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="name">
+                </ivt-form-field>
               </div>
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Apellido Paterno">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="lastName">
+                </ivt-form-field>
+              </div>
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Apellido Materno">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="secondLastName">
+                </ivt-form-field>
+              </div>
+            </div>
 
+            <div *ngIf="showMoralForm"
+                 class="row">
+              <div class="col-lg-6 col-12">
+                <ivt-form-field label="Razón Social">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="businessName">
+                </ivt-form-field>
+              </div>
+            </div>
+
+            <div *ngIf="showPhysicalForm"
+                 class="row">
+              <div class="col-lg-6 col-12">
+                <ivt-form-field label="Fecha de nacimiento"
+                                appearance="fill">
+                  <input ivtInput
+                         [matDatepicker]="picker"
+                         formControlName="birthDate">
+                  <mat-datepicker-toggle matSuffix
+                                         [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </ivt-form-field>
+              </div>
+            </div>
+
+            <div *ngIf="showMoralForm"
+                 class="row">
+              <div class="col-lg-6 col-12">
+                <ivt-form-field label="Fecha de constitución"
+                                appearance="fill">
+                  <input ivtInput
+                         [matDatepicker]="picker"
+                         formControlName="constitutionDate">
+                  <mat-datepicker-toggle matSuffix
+                                         [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </ivt-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="RFC">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="rfc">
+                </ivt-form-field>
+              </div>
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Teléfono">
+                  <input ivtInput
+                         formControlName="phone">
+                </ivt-form-field>
+              </div>
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Correo">
+                  <input ivtInput
+                         type="email"
+                         formControlName="email">
+                </ivt-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Código Postal">
+                  <input ivtInput
+                         formControlName="zipCode">
+                </ivt-form-field>
+              </div>
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Estado">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="state">
+                </ivt-form-field>
+              </div>
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Municipio">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="city">
+                </ivt-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Colonia">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="suburb">
+                </ivt-form-field>
+              </div>
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Calle">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="street">
+                </ivt-form-field>
+              </div>
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Número">
+                  <input ivtInput
+                         formControlName="streetNumber">
+                </ivt-form-field>
+              </div>
+            </div>
+
+            <div class="row">
               <div *ngIf="showMoralForm"
-                   class="row">
-                <div class="col-lg-6 col-12">
-                  <ivt-form-field label="Razón Social">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="businessName">
-                  </ivt-form-field>
-                </div>
+                   class="col-lg-4 col-12">
+                <ivt-form-field label="Distribuidor">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="distributor">
+                </ivt-form-field>
               </div>
-
-              <div *ngIf="showPhysicalForm"
-                   class="row">
-                <div class="col-lg-6 col-12">
-                  <ivt-form-field label="Fecha de nacimiento"
-                                  appearance="fill">
-                    <input ivtInput
-                           [matDatepicker]="picker"
-                           formControlName="birthDate">
-                    <mat-datepicker-toggle matSuffix
-                                           [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </ivt-form-field>
-                </div>
-              </div>
-
               <div *ngIf="showMoralForm"
-                   class="row">
-                <div class="col-lg-6 col-12">
-                  <ivt-form-field label="Fecha de constitución"
-                                  appearance="fill">
-                    <input ivtInput
-                           [matDatepicker]="picker"
-                           formControlName="constitutionDate">
-                    <mat-datepicker-toggle matSuffix
-                                           [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </ivt-form-field>
-                </div>
+                   class="col-lg-4 col-12">
+                <ivt-form-field label="Asesor">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="adviser">
+                </ivt-form-field>
               </div>
-
-              <div class="row">
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="RFC">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="rfc">
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Teléfono">
-                    <input ivtInput
-                           formControlName="phone">
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Correo">
-                    <input ivtInput
-                           type="email"
-                           formControlName="email">
-                  </ivt-form-field>
-                </div>
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Punto de Venta">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="salesPlace">
+                </ivt-form-field>
               </div>
-
-              <div class="row">
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Código Postal">
-                    <input ivtInput
-                           formControlName="zipCode">
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Estado">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="state">
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Municipio">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="city">
-                  </ivt-form-field>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Colonia">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="suburb">
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Calle">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="street">
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Número">
-                    <input ivtInput
-                           formControlName="streetNumber">
-                  </ivt-form-field>
-                </div>
-              </div>
-
-              <div class="row">
-                <div *ngIf="showMoralForm"
-                     class="col-lg-4 col-12">
-                  <ivt-form-field label="Distribuidor">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="distributor">
-                  </ivt-form-field>
-                </div>
-                <div *ngIf="showMoralForm"
-                     class="col-lg-4 col-12">
-                  <ivt-form-field label="Asesor">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="adviser">
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Punto de Venta">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="salesPlace">
-                  </ivt-form-field>
-                </div>
-              </div>
-            </mat-card-content>
-            <mat-card-actions class="px-lg-5">
-            </mat-card-actions>
-          </mat-card>
-        </form>
-      </div>
-
-      <div class="col-6">
-        <form [formGroup]="vehicle">
-          <mat-card>
-            <mat-card-header class="py-3">
-              <mat-card-title>
-                Datos del Vehículo
-              </mat-card-title>
-            </mat-card-header>
-            <mat-card-content class="px-lg-5 pt-3">
-              <div class="row">
-                <div class="col">
-                  <ivt-form-field label="Tipo de producto">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="productType">
-                  </ivt-form-field>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-6 col-12">
-                  <ivt-form-field label="Marca">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="brand">
-                  </ivt-form-field>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Modelo">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="model">
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Versión">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="version">
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-4 col-12">
-                  <ivt-form-field label="Año del vehículo">
-                    <input ivtInput
-                           formControlName="year">
-                  </ivt-form-field>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-6 col-12">
-                  <ivt-form-field appearance="fill"
-                                  label="Fecha factura origen">
-                    <input ivtInput
-                           [matDatepicker]="invoiceDate"
-                           formControlName="invoiceDate">
-                    <mat-datepicker-toggle matSuffix
-                                           [for]="invoiceDate"></mat-datepicker-toggle>
-                    <mat-datepicker #invoiceDate></mat-datepicker>
-                  </ivt-form-field>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-6 col-12">
-                  <ivt-form-field label="VIN">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="vin">
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-6 col-12">
-                  <ivt-form-field label="N° de motor">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="motorNumber">
-                  </ivt-form-field>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-6 col-12">
-                  <ivt-form-field label="HP">
-                    <input ivtInput
-                           formControlName="horsePower">
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-6 col-12">
-                  <ivt-form-field label="Número de Serie">
-                    <input ivtInput
-                           formControlName="serialNumber">
-                  </ivt-form-field>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-6 col-12">
-                  <ivt-form-field appearance="fill"
-                                  label="Fecha inicio garantía">
-                    <input ivtInput
-                           [matDatepicker]="guaranteeStartDate"
-                           formControlName="guaranteeStartDate">
-                    <mat-datepicker-toggle matSuffix
-                                           [for]="guaranteeStartDate"></mat-datepicker-toggle>
-                    <mat-datepicker #guaranteeStartDate></mat-datepicker>
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-6 col-12">
-                  <ivt-form-field appearance="fill"
-                                  label="Fin garantía por tiempo">
-                    <input ivtInput
-                           [matDatepicker]="guaranteeEndDate"
-                           formControlName="guaranteeEndDate">
-                    <mat-datepicker-toggle matSuffix
-                                           [for]="guaranteeEndDate"></mat-datepicker-toggle>
-                    <mat-datepicker #guaranteeEndDate></mat-datepicker>
-                  </ivt-form-field>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-6 col-12">
-                  <ivt-form-field label="Kilometraje inicial">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="kilometrage">
-                  </ivt-form-field>
-                </div>
-                <div class="col-lg-6 col-12">
-                  <ivt-form-field label="Fin garantía por kilometraje">
-                    <input ivtInput
-                           ivtUppercase
-                           formControlName="kilometrageEnd">
-                  </ivt-form-field>
-                </div>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </form>
-      </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions class="px-lg-5">
+          </mat-card-actions>
+        </mat-card>
+      </form>
     </div>
-    <div class="row mt-4">
-      <div class="mx-auto">
-        <button mat-raised-button
-                type="submit"
-                color="primary">
-          Crear Garantía
-        </button>
-      </div>
+
+    <div class="col-6">
+      <form [formGroup]="vehicle">
+        <mat-card>
+          <mat-card-header class="py-3">
+            <mat-card-title>
+              Datos del Vehículo
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="px-lg-3 pt-3">
+            <div class="row">
+              <div class="col">
+                <ivt-form-field label="Tipo de producto">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="productType">
+                </ivt-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <ivt-form-field label="Marca">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="brand">
+                </ivt-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Modelo">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="model">
+                </ivt-form-field>
+              </div>
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Versión">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="version">
+                </ivt-form-field>
+              </div>
+              <div class="col-lg-4 col-12">
+                <ivt-form-field label="Año del vehículo">
+                  <input ivtInput
+                         formControlName="year">
+                </ivt-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <ivt-form-field appearance="fill"
+                                label="Fecha factura origen">
+                  <input ivtInput
+                         [matDatepicker]="invoiceDate"
+                         formControlName="invoiceDate">
+                  <mat-datepicker-toggle matSuffix
+                                         [for]="invoiceDate"></mat-datepicker-toggle>
+                  <mat-datepicker #invoiceDate></mat-datepicker>
+                </ivt-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <ivt-form-field label="VIN">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="vin">
+                </ivt-form-field>
+              </div>
+              <div class="col-lg-6 col-12">
+                <ivt-form-field label="N° de motor">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="motorNumber">
+                </ivt-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <ivt-form-field label="HP">
+                  <input ivtInput
+                         formControlName="horsePower">
+                </ivt-form-field>
+              </div>
+              <div class="col-lg-6 col-12">
+                <ivt-form-field label="Número de Serie">
+                  <input ivtInput
+                         formControlName="serialNumber">
+                </ivt-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <ivt-form-field appearance="fill"
+                                label="Fecha inicio garantía">
+                  <input ivtInput
+                         [matDatepicker]="guaranteeStartDate"
+                         formControlName="guaranteeStartDate">
+                  <mat-datepicker-toggle matSuffix
+                                         [for]="guaranteeStartDate"></mat-datepicker-toggle>
+                  <mat-datepicker #guaranteeStartDate></mat-datepicker>
+                </ivt-form-field>
+              </div>
+              <div class="col-lg-6 col-12">
+                <ivt-form-field appearance="fill"
+                                label="Fin garantía por tiempo">
+                  <input ivtInput
+                         [matDatepicker]="guaranteeEndDate"
+                         formControlName="guaranteeEndDate">
+                  <mat-datepicker-toggle matSuffix
+                                         [for]="guaranteeEndDate"></mat-datepicker-toggle>
+                  <mat-datepicker #guaranteeEndDate></mat-datepicker>
+                </ivt-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <ivt-form-field label="Kilometraje inicial">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="kilometrage">
+                </ivt-form-field>
+              </div>
+              <div class="col-lg-6 col-12">
+                <ivt-form-field label="Fin garantía por kilometraje">
+                  <input ivtInput
+                         ivtUppercase
+                         formControlName="kilometrageEnd">
+                </ivt-form-field>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </form>
     </div>
-  </form>
-</main>
+  </div>
+  <div class="row mt-4">
+    <div class="mx-auto">
+      <button mat-raised-button
+              type="submit"
+              color="primary">
+        Crear Garantía
+      </button>
+    </div>
+  </div>
+</form>
