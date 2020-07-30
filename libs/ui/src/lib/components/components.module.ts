@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 
+import { IvtEmptyStateModule } from './empty-state';
 import { IvtFilterModule } from './filters';
 import { IvtDateFilterModule } from './filters/date-filter';
 import { IvtFormModule } from './form';
@@ -9,6 +10,7 @@ import { IvtSearchbarModule } from './searchbar';
 import { IvtSubscriberModule } from './subscriber';
 
 const MODULES = [
+  IvtEmptyStateModule,
   IvtFormModule,
   IvtFormFieldModule,
   IvtListModule,

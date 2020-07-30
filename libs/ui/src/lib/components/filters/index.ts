@@ -1,1 +1,2 @@
+export * from './date-filter';
 export * from './filter';

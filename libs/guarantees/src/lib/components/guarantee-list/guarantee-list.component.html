@@ -25,16 +25,14 @@
 
   <div [hidden]="!showFilters"
        class="row mb-4">
-    <div class="col">
+    <div class="col bg-light py-3 rounded">
       <ivt-date-filter label="Fecha"></ivt-date-filter>
-      <!-- <cdp-communication-templates-filters (filterItemsEmitter)="filterItemsEmitter.emit($event)">
-      </cdp-communication-templates-filters> -->
     </div>
   </div>
 
-  <!-- <cdp-empty-state *ngIf="!list.length"
-                   [message]="'COMMUNICATION_TEMPLATES.COMMUNICATION_TEMPLATE_LIST.NO_TEMPLATES' | translate"
-                   icon="description"></cdp-empty-state> -->
+  <ivt-empty-state *ngIf="!list.length"
+                   message="No existen garantías que se cumplan con el criterio de búsqueda">
+  </ivt-empty-state>
 
   <ng-container *ngIf="list.length">
     <!-- <gdx-table-header class="d-block mt-4"
