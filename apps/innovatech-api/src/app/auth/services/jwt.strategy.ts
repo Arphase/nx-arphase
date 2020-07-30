@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { User } from '@innovatech/data';
+import { User } from '@ivt/data';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { UserRepository } from '../../users/data/user.repository';
 import { environment } from '@env/environment';

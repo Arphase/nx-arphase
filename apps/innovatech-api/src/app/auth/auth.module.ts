@@ -1,6 +1,6 @@
 import { AuthController } from './controllers/auth.controller';
 import { AuthService } from './services/auth.service';
-import { UsersModule } from '@innovatech/data';
+import { UsersModule } from '@ivt/data';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';

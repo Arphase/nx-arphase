@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { GuaranteesStateModule } from '@innovatech/state';
-import { IvtUiModule } from '@innovatech/ui';
+import { GuaranteesStateModule } from '@ivt/state';
+import { IvtUiModule } from '@ivt/ui';
 
 import { GuaranteeFormComponent } from './components/guarantee-form/guarantee-form.component';
 import { GuaranteeFormContainerComponent } from './containers/guarantee-form-container/guarantee-form-container.component';

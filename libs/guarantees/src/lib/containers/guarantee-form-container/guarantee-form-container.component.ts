@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { fromGuarantees } from '@innovatech/state';
+import { fromGuarantees } from '@ivt/state';
 import { Store } from '@ngrx/store';
 
 @Component({

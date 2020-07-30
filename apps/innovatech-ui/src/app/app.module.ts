@@ -6,8 +6,8 @@ import {
   IVT_STATE_CONFIGURATION,
   IvtStateConfiguration,
   IvtStateModule,
-} from '@innovatech/state';
-import { IvtUiModule } from '@innovatech/ui';
+} from '@ivt/state';
+import { IvtUiModule } from '@ivt/ui';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';

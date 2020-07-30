@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CustomValidators } from '@innovatech/utils';
+import { CustomValidators } from '@ivt/utils';
 
 @Component({
   selector: 'ivt-guarantee-form',

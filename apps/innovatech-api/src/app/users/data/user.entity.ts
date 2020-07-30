@@ -1,4 +1,4 @@
-import { User, userRole } from '@innovatech/data';
+import { User, userRole } from '@ivt/data';
 import {
   BaseEntity,
   Column,

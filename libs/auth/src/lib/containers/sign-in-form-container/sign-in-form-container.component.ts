@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SignInRequest } from '@innovatech/data';
-import { fromAuth } from '@innovatech/state';
+import { SignInRequest } from '@ivt/data';
+import { fromAuth, LoadingService } from '@ivt/state';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -10,7 +10,11 @@ import { Store } from '@ngrx/store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInFormContainerComponent {
-  constructor(private store: Store<any>) {}
+  loading$ = this.loadingService.loading$;
+  constructor(
+    private store: Store<any>,
+    private loadingService: LoadingService
+  ) {}
   submit(payload: SignInRequest): void {
     this.store.dispatch(fromAuth.actions.signIn({ payload }));
   }
