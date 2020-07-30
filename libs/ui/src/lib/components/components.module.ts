@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 
 import { IvtFormModule } from './form';
-import { IvtFormFieldModule } from './form-field/form-field.module';
+import { IvtFormFieldModule } from './form-field';
 import { IvtListModule } from './list';
+import { IvtSearchbarModule } from './searchbar';
 import { IvtSubscriberModule } from './subscriber';
 
 const MODULES = [
   IvtFormModule,
   IvtFormFieldModule,
   IvtListModule,
+  IvtSearchbarModule,
   IvtSubscriberModule,
 ];
 

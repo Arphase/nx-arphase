@@ -1,0 +1,40 @@
+@import '../../../../styles/variables';
+
+.gdx-filter {
+  text-transform: none;
+  box-shadow: none;
+  padding: $spacer-x-x-small $spacer-m-small;
+  padding-right: $spacer-x-small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 32px;
+  outline: 0;
+  border: 1px transparent;
+  cursor: pointer;
+  border: $border;
+  border-radius: $border-radius;
+  background-color: $white-color;
+  color: $text-color;
+  font-size: $font-size;
+}
+
+.delete-icon {
+  font-size: $font-size-large;
+}
+
+.gdx-button-label {
+  margin-right: $spacer-medium;
+}
+
+.active-filter {
+  background-color: $primary-color;
+  color: $white-color;
+}
+
+.content {
+  background-color: $white-color;
+  color: $ui-color;
+  padding: $spacer-small;
+}
