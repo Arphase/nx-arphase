@@ -1,0 +1,9 @@
+.ivt-virtual-scroll {
+  &.cdk-virtual-scroll-viewport {
+    overflow-x: hidden;
+  }
+
+  &.cdk-virtual-scroll-orientation-vertical .cdk-virtual-scroll-content-wrapper {
+    width: 100%;
+  }
+}
