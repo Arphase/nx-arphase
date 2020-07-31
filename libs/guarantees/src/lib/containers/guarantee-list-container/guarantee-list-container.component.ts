@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Guarantee } from '@ivt/data';
+import { GuaranteeCollectionService } from '@ivt/state';
+import { IvtListContainerComponent } from '@ivt/ui';
 
 @Component({
   selector: 'ivt-guarantee-list-container',
@@ -6,9 +9,12 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./guarantee-list-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeListContainerComponent implements OnInit {
-  list = [];
-  constructor() {}
-
-  ngOnInit(): void {}
+export class GuaranteeListContainerComponent extends IvtListContainerComponent<
+  Guarantee
+> {
+  constructor(
+    protected guaranteeCollectionService: GuaranteeCollectionService
+  ) {
+    super(guaranteeCollectionService);
+  }
 }
