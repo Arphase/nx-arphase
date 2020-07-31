@@ -39,17 +39,13 @@
                       [columns]="columns"
                       (sort)="updateSort($event)"></ivt-table-header>
 
-    <!-- <gdx-virtual-scroll [list]="list"
+    <ivt-virtual-scroll [list]="list"
                         [ignoreNextBatch]="!hasMoreItems || loading"
-                        (nextBatchEmitter)="getMoreItemsEmitter.emit()">
+                        (nextBatchEmitter)="getMoreItems.emit()">
       <ng-template let-item
                    let-index="index">
-        <cdp-communication-template-row [index]="index"
-                                        [item]="item"
-                                        (toggle)="toggle.emit($event)"
-                                        (duplicateEmitter)="duplicateEmitter.emit($event)">
-        </cdp-communication-template-row>
+        {{ item | json }}
       </ng-template>
-    </gdx-virtual-scroll> -->
+    </ivt-virtual-scroll>
   </ng-container>
 </mat-card>

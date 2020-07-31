@@ -8,6 +8,7 @@ import {
   IvtStateModule,
 } from '@ivt/state';
 import { IvtUiModule } from '@ivt/ui';
+import { DefaultDataServiceConfig } from '@ngrx/data';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,10 @@ import { AppComponent } from './app.component';
 
 const IVT_STATE_CONFIGURATION_VALUE: IvtStateConfiguration = {
   apiUrl: environment.apiUrl,
+};
+
+const defaultDataServiceConfig: DefaultDataServiceConfig = {
+  root: environment.apiUrl,
 };
 
 @NgModule({
@@ -28,7 +33,11 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtStateConfiguration = {
     IvtUiModule,
   ],
   providers: [
-    { provide: IVT_STATE_CONFIGURATION, useValue: IVT_STATE_CONFIGURATION_VALUE },
+    {
+      provide: IVT_STATE_CONFIGURATION,
+      useValue: IVT_STATE_CONFIGURATION_VALUE,
+    },
+    { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig },
   ],
   bootstrap: [AppComponent],
 })
