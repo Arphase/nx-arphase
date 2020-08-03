@@ -1,13 +1,12 @@
+import { Client, Guarantee, GuaranteeStatus, Vehicle } from '@ivt/data';
 import {
-  Entity,
   BaseEntity,
-  PrimaryGeneratedColumn,
   Column,
-  OneToMany,
+  Entity,
   OneToOne,
-  JoinColumn,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Guarantee, Client, Vehicle, GuaranteeStatus } from '@ivt/data';
+
 import { ClientEntity } from './client.entity';
 import { VehicleEntity } from './vechicle.entity';
 
@@ -20,14 +19,12 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
     eager: true,
     cascade: true,
   })
-  @JoinColumn()
   client: Client;
 
   @OneToOne((type) => VehicleEntity, (vehicle) => vehicle.guarantee, {
     eager: true,
     cascade: true,
   })
-  @JoinColumn()
   vehicle: Vehicle;
 
   @Column({ type: 'date' })

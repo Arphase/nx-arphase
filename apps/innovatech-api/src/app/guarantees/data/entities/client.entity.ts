@@ -24,12 +24,10 @@ export class ClientEntity extends BaseEntity implements Client {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  guaranteeId: number;
-
-  @OneToOne((type) => GuaranteeEntity, (guarantee) => guarantee.vehicle, {
+  @OneToOne((type) => GuaranteeEntity, (guarantee) => guarantee.client, {
     eager: false,
   })
+  @JoinColumn({ name: 'guaranteeId' })
   guarantee: Guarantee;
 
   @Column({ type: 'enum', enum: PersonType })
