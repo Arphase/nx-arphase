@@ -4,7 +4,7 @@ import { PhysicalPerson } from './physical-person.model';
 
 export interface Client {
   id: number;
-  personType: string;
+  personType: PersonType;
   physicalInfo: PhysicalPerson;
   moralInfo: MoralPerson;
   rfc: string;
@@ -13,4 +13,9 @@ export interface Client {
   addressId: number;
   address: Address;
   salesPlace : string;
+}
+
+export enum PersonType {
+  physical = 'physical',
+  moral = 'moral'
 }

@@ -1,5 +1,5 @@
 import { createConnection, ConnectionOptions } from 'typeorm';
-import { userRole } from '@ivt/data';
+import { UserRole } from '@ivt/data';
 import { AuthService } from '@api/auth/services/auth.service';
 import { SignUpCredentialsDto } from '@api/auth/dto/auth-credentials.dto';
 import { typeOrmConfig } from '../config/typeorm.config';
@@ -19,7 +19,7 @@ async function run() {
     secondLastName: 'User',
     email: 'ivtadmin@mailinator.com',
     password: 'Innovatech123@',
-    role: userRole.superAdmin,
+    role: UserRole.superAdmin,
   };
   const work = authService
     .signUp(superAdmin)

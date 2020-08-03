@@ -1,5 +1,19 @@
-import { Client, Address, PhysicalPerson, MoralPerson } from '@ivt/data';
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
+import {
+  Client,
+  Address,
+  PhysicalPerson,
+  MoralPerson,
+  PersonType,
+  Guarantee,
+} from '@ivt/data';
+import {
+  Entity,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
 import { AddressEntity } from './address.entity';
 import { PhysicalPersonEntity } from './physical-person.entity';
 import { MoralPersonEntity } from './moral-person.entity';
@@ -11,12 +25,26 @@ export class ClientEntity extends BaseEntity implements Client {
   id: number;
 
   @Column()
-  personType: string;
+  guaranteeId: number;
 
-  @OneToOne(type => PhysicalPersonEntity)
+  @OneToOne((type) => GuaranteeEntity, (guarantee) => guarantee.vehicle, {
+    eager: false,
+  })
+  guarantee: Guarantee;
+
+  @Column({ type: 'enum', enum: PersonType })
+  personType: PersonType;
+
+  @OneToOne(
+    (type) => PhysicalPersonEntity,
+    (physicalPerson) => physicalPerson.client,
+    { cascade: true }
+  )
   physicalInfo: PhysicalPerson;
 
-  @OneToOne(type => MoralPersonEntity)
+  @OneToOne((type) => MoralPersonEntity, (moralPerson) => moralPerson.client, {
+    cascade: true,
+  })
   moralInfo: MoralPerson;
 
   @Column()
@@ -31,7 +59,7 @@ export class ClientEntity extends BaseEntity implements Client {
   @Column()
   addressId: number;
 
-  @OneToOne(type => AddressEntity)
+  @OneToOne((type) => AddressEntity, { cascade: true })
   @JoinColumn()
   address: Address;
 

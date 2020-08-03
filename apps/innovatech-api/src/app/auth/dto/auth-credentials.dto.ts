@@ -8,7 +8,7 @@ import {
   IsEnum,
   IsOptional
 } from 'class-validator';
-import { userRole } from '@ivt/data';
+import { UserRole } from '@ivt/data';
 
 export class AuthCredentialsDto {
   @IsString()
@@ -52,6 +52,6 @@ export class SignUpCredentialsDto {
   })
   password: string;
 
-  @IsEnum(userRole)
-  role: userRole;
+  @IsEnum(UserRole)
+  role: UserRole;
 }

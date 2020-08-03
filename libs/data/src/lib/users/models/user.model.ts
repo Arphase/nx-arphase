@@ -8,7 +8,7 @@ export interface User {
   password?: string;
   salt?: string;
   token?: string;
-  role: userRole;
+  role: UserRole;
 }
 
 export interface UserCredentials {
@@ -16,7 +16,7 @@ export interface UserCredentials {
   password: string;
 }
 
-export enum userRole {
+export enum UserRole {
   superAdmin = 'superAdmin',
   agencyUser = 'agencyUser',
 }

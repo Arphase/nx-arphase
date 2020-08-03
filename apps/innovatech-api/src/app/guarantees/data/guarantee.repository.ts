@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { Guarantee } from '@ivt/data';
+import { Guarantee, PersonType } from '@ivt/data';
 import { GuaranteeEntity } from './entities/guarantee.entity';
 import { ClientEntity } from './entities/client.entity';
 import { VehicleEntity } from './entities/vechicle.entity';
@@ -24,34 +24,33 @@ export class GuaranteeRepository extends Repository<GuaranteeEntity> {
     newAddress.suburb = guarantee.client.address.suburb;
     newAddress.street = guarantee.client.address.street;
     newAddress.streetNumber = guarantee.client.address.streetNumber;
-    await newAddress.save();
 
+    newClient.guaranteeId = newGuarantee.id;
     newClient.personType = guarantee.client.personType;
     newClient.rfc = guarantee.client.rfc;
     newClient.phone = guarantee.client.phone;
     newClient.email = guarantee.client.email;
+    newClient.addressId = newAddress.id;
     newClient.address = newAddress;
     newClient.salesPlace = guarantee.client.salesPlace;
-    await newClient.save();
 
-    if (guarantee.client.personType === '1') {
+    if (guarantee.client.personType === PersonType.physical) {
       newPhysicalPerson.name = guarantee.client.physicalInfo.name;
       newPhysicalPerson.lastName = guarantee.client.physicalInfo.lastName;
       newPhysicalPerson.secondLastName =
         guarantee.client.physicalInfo.secondLastName;
       newPhysicalPerson.birthDate = guarantee.client.physicalInfo.birthDate;
-      newPhysicalPerson.client = newClient;
-      await newPhysicalPerson.save();
-    } else if (guarantee.client.personType === '2') {
+      newPhysicalPerson.clientId = newClient.id;
+    } else if (guarantee.client.personType === PersonType.moral) {
       newMoralPerson.businessName = guarantee.client.moralInfo.businessName;
       newMoralPerson.constitutionDate =
         guarantee.client.moralInfo.constitutionDate;
       newMoralPerson.distributor = guarantee.client.moralInfo.distributor;
       newMoralPerson.adviser = guarantee.client.moralInfo.adviser;
-      newMoralPerson.client = newClient;
-      await newMoralPerson.save();
+      newMoralPerson.clientId = newClient.id;
     }
 
+    newVehicle.guaranteeId = newGuarantee.id;
     newVehicle.productType = guarantee.vehicle.productType;
     newVehicle.brand = guarantee.vehicle.brand;
     newVehicle.model = guarantee.vehicle.model;
@@ -64,7 +63,6 @@ export class GuaranteeRepository extends Repository<GuaranteeEntity> {
     newVehicle.horsePower = guarantee.vehicle.horsePower;
     newVehicle.kilometrageStart = guarantee.vehicle.kilometrageStart;
     newVehicle.kilometrageEnd = guarantee.vehicle.kilometrageEnd;
-    await newVehicle.save();
 
     newGuarantee.client = newClient;
     newGuarantee.vehicle = newVehicle;
@@ -75,13 +73,14 @@ export class GuaranteeRepository extends Repository<GuaranteeEntity> {
     newGuarantee.startDate = guarantee.startDate;
     newGuarantee.endDate = guarantee.endDate;
     newGuarantee.amount = guarantee.amount;
+    console.log(newGuarantee)
 
     await newGuarantee.save();
 
-    if (newGuarantee.client.personType === '1') {
+    if (newGuarantee.client.personType === PersonType.physical) {
       const { client, clientId, ...physicalInfo } = newPhysicalPerson;
       newGuarantee.client.physicalInfo = physicalInfo;
-    } else if (newGuarantee.client.personType === '2') {
+    } else if (newGuarantee.client.personType === PersonType.moral) {
       const { client, clientId, ...moralInfo } = newMoralPerson;
       newGuarantee.client.moralInfo = moralInfo;
     }

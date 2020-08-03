@@ -16,21 +16,21 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  clientId: number;
-
-  @OneToOne((type) => ClientEntity)
+  @OneToOne((type) => ClientEntity, (client) => client.guarantee, {
+    eager: true,
+    cascade: true,
+  })
   @JoinColumn()
   client: Client;
 
-  @Column()
-  vehicleId: number;
-
-  @OneToOne((type) => VehicleEntity)
+  @OneToOne((type) => VehicleEntity, (vehicle) => vehicle.guarantee, {
+    eager: true,
+    cascade: true,
+  })
   @JoinColumn()
   vehicle: Vehicle;
 
-  @Column({type: 'date'})
+  @Column({ type: 'date' })
   createdAt: Date;
 
   @Column({ type: 'enum', enum: GuaranteeStatus })
@@ -42,10 +42,10 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @Column()
   document: string;
 
-  @Column({type: 'date'})
+  @Column({ type: 'date' })
   startDate: Date;
 
-  @Column({type: 'date'})
+  @Column({ type: 'date' })
   endDate: Date;
 
   @Column()
