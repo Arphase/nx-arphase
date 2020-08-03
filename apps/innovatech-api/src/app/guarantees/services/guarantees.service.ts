@@ -1,12 +1,62 @@
-import { Guarantee } from '@ivt/data';
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Guarantee, User } from '@ivt/data';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import * as htmlPdf from 'html-pdf';
 import moment from 'moment';
 import { v1 as uuidv1 } from 'uuid';
+import { Connection } from 'typeorm';
+import { GuaranteeRepository } from '../data/guarantee.repository';
+import { GuaranteeEntity } from '../data/entities/guarantee.entity';
+import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 
 @Injectable()
 export class GuaranteesService {
-  generatePdf(guarantee: Guarantee, response: Response) {
+  guaranteeRepository: GuaranteeRepository;
+
+  constructor(private readonly connection: Connection) {
+    this.guaranteeRepository = this.connection.getCustomRepository(
+      GuaranteeRepository
+    );
+  }
+
+  async getGuaranteeById(id: number): Promise<GuaranteeEntity> {
+    const found = await this.guaranteeRepository.findOne({ where: { id } });
+    if (!found) {
+      throw new NotFoundException(`Guarantee with id "${id}" not found`);
+    }
+
+    return found;
+  }
+
+  async getGuarantees(
+    filterDto: GetGuaranteesFilterDto
+  ): Promise<GuaranteeEntity[]> {
+    const { startDate, endDate, vin, amount } = filterDto;
+    const query = this.guaranteeRepository.createQueryBuilder('guarantee');
+
+    if (startDate && endDate) {
+    }
+
+    if (vin) {
+      query.where('(guarantee.vin LIKE :vin)', { vin: `%${vin}%` });
+    }
+
+    if (amount) {
+    }
+
+    const guarantees = await query
+      .groupBy('client.id')
+      .addGroupBy('vehicle.id')
+      .getMany();
+
+    return guarantees;
+  }
+
+  async createGuarantee(guarantee: Guarantee): Promise<GuaranteeEntity> {
+    return this.guaranteeRepository.createGuarantee(guarantee);
+  }
+
+  async generatePdf(id: number, response: Response) {
+    const guarantee = await this.getGuaranteeById(id);
     const content = `
     <html>
     <head>
@@ -47,11 +97,13 @@ export class GuaranteesService {
           guarantee.client.salesPlace
         }</p>
         <p><span class="bold">R.F.C.</span> ${guarantee.client.rfc}</p>
-        <p><span class="bold">DIRECCIÓN:</span> ${guarantee.client.street} ${
-      guarantee.client.streetNumber
-    }, ${guarantee.client.suburb}. ${guarantee.client.city}, ${
-      guarantee.client.state
-    }. ${guarantee.client.zipCode} </p>
+        <p><span class="bold">DIRECCIÓN:</span> ${
+          guarantee.client.address.street
+        } ${guarantee.client.address.streetNumber}, ${
+      guarantee.client.address.suburb
+    }. ${guarantee.client.address.city}, ${guarantee.client.address.state}. ${
+      guarantee.client.address.zipCode
+    } </p>
         <p><span class="bold">TELEFONO:</span> ${guarantee.client.phone}</p>
         <p><span class="bold">EMAIL:</span> ${guarantee.client.email}</p>
         <p class="bold">DATOS DEL VEHÍCULO:</p>
@@ -70,19 +122,19 @@ export class GuaranteesService {
         <p><span class="bold">MOTOR:</span> ${guarantee.vehicle.motorNumber}</p>
         <center><p>PERIODO DE VIGENCIA</p></center>
         <p><span class="bold">FECHA INICIO GARANTIA:</span> ${moment(
-          guarantee.vehicle.guaranteeStartDate
+          guarantee.startDate
         )
           .locale('es')
           .format('LL')}</p>
           <p>
           <span class="bold">FIN GARANTIA POR TIEMPO:</span> ${moment(
-            guarantee.vehicle.guaranteeEndDate
+            guarantee.endDate
           )
             .locale('es')
             .format('LL')}
           </p>
         <p><span class="bold">KILOMETRAJE INICIAL: </span> ${
-          guarantee.vehicle.kilometrage
+          guarantee.vehicle.kilometrageStart
         } <span class="bold"> - FIN GARANTIA POR KILOMETRAJE: </span> ${
       guarantee.vehicle.kilometrageEnd
     } </p>
