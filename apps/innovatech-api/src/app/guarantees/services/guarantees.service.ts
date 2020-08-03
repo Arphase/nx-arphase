@@ -1,11 +1,16 @@
-import { Guarantee, User } from '@ivt/data';
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { Guarantee } from '@ivt/data';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import * as htmlPdf from 'html-pdf';
 import moment from 'moment';
-import { v1 as uuidv1 } from 'uuid';
 import { Connection } from 'typeorm';
-import { GuaranteeRepository } from '../data/guarantee.repository';
+import { v1 as uuidv1 } from 'uuid';
+
 import { GuaranteeEntity } from '../data/entities/guarantee.entity';
+import { GuaranteeRepository } from '../data/guarantee.repository';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 
 @Injectable()
@@ -52,7 +57,9 @@ export class GuaranteesService {
   }
 
   async createGuarantee(guarantee: Guarantee): Promise<GuaranteeEntity> {
-    return this.guaranteeRepository.createGuarantee(guarantee);
+    const newGuarantee = await this.guaranteeRepository.create(guarantee);
+    newGuarantee.save();
+    return newGuarantee;
   }
 
   async generatePdf(id: number, response: Response) {
