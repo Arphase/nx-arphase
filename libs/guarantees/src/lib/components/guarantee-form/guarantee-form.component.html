@@ -17,9 +17,9 @@
                 </div>
                 <mat-radio-group formControlName="personType"
                                  (change)="personTypeChange($event)">
-                  <mat-radio-button value="1"
+                  <mat-radio-button value="physical"
                                     [checked]="true">Física</mat-radio-button>
-                  <mat-radio-button value="2">Moral</mat-radio-button>
+                  <mat-radio-button value="moral">Moral</mat-radio-button>
                 </mat-radio-group>
               </div>
             </div>
@@ -318,7 +318,7 @@
                 <ivt-form-field label="Kilometraje inicial">
                   <input ivtInput
                          ivtUppercase
-                         formControlName="kilometrage">
+                         formControlName="kilometrageStart">
                 </ivt-form-field>
               </div>
               <div class="col-lg-6 col-12">

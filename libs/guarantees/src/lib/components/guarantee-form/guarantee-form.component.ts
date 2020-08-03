@@ -75,7 +75,7 @@ export class GuaranteeFormComponent implements OnInit {
         horsePower: [null, [Validators.required, Validators.max(400)]],
         guaranteeStartDate: [null, Validators.required],
         guaranteeEndDate: [null, Validators.required],
-        kilometrage: [null, Validators.required],
+        kilometrageStart: [null, Validators.required],
         kilometrageEnd: [null, Validators.required],
       }),
     });

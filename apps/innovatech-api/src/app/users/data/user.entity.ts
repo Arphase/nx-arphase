@@ -1,4 +1,4 @@
-import { User, userRole } from '@ivt/data';
+import { User, UserRole } from '@ivt/data';
 import {
   BaseEntity,
   Column,
@@ -35,8 +35,8 @@ export class UserEntity extends BaseEntity implements User {
   @Column()
   salt: string;
 
-  @Column({ type: 'enum', enum: userRole })
-  role: userRole;
+  @Column({ type: 'enum', enum: UserRole })
+  role: UserRole;
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

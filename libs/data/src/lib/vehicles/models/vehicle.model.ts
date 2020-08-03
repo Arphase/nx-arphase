@@ -1,16 +1,15 @@
 export interface Vehicle {
+  id: number;
   productType: string;
   brand: string;
   model: string;
   version: string;
-  year: string;
+  year: number;
   invoiceDate: string;
   vin: string;
   motorNumber: string;
   serialNumber: string;
-  horsePower: string;
-  guaranteeStartDate: string;
-  guaranteeEndDate: string;
-  kilometrage: string;
-  kilometrageEnd: string;
+  horsePower: number;
+  kilometrageStart: number;
+  kilometrageEnd: number;
 }

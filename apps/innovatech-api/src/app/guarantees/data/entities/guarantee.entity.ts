@@ -1,0 +1,50 @@
+import { Client, Guarantee, GuaranteeStatus, Vehicle } from '@ivt/data';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+
+import { ClientEntity } from './client.entity';
+import { VehicleEntity } from './vechicle.entity';
+
+@Entity('guarantees')
+export class GuaranteeEntity extends BaseEntity implements Guarantee {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @OneToOne((type) => ClientEntity, (client) => client.guarantee, {
+    eager: true,
+    cascade: true,
+  })
+  client: Client;
+
+  @OneToOne((type) => VehicleEntity, (vehicle) => vehicle.guarantee, {
+    eager: true,
+    cascade: true,
+  })
+  vehicle: Vehicle;
+
+  @Column({ type: 'date' })
+  createdAt: Date;
+
+  @Column({ type: 'enum', enum: GuaranteeStatus })
+  status: GuaranteeStatus;
+
+  @Column()
+  paymentOrder: string;
+
+  @Column()
+  document: string;
+
+  @Column({ type: 'date' })
+  startDate: Date;
+
+  @Column({ type: 'date' })
+  endDate: Date;
+
+  @Column()
+  amount: number;
+}

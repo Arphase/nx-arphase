@@ -1,4 +1,4 @@
-import { userRole } from '@ivt/data';
+import { UserRole } from '@ivt/data';
 import { Action, createReducer, on } from '@ngrx/store';
 
 import * as AuthActions from './auth.actions';
@@ -12,7 +12,7 @@ export const initialState: AuthState = {
     lastName: localStorage.getItem('lastName'),
     secondLastName: localStorage.getItem('secondLastName'),
     email: localStorage.getItem('email'),
-    role: localStorage.getItem('role') as userRole,
+    role: localStorage.getItem('role') as UserRole,
     token: localStorage.getItem('token'),
   },
 };

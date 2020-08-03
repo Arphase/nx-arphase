@@ -6,7 +6,7 @@ import { User } from '@ivt/data';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
-  @Post('/sign-in')
+  @Post('/signIn')
   signIn(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<User> {
     return this.authService.signIn(authCredentialsDto);
   }
