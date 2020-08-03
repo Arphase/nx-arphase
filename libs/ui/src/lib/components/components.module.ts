@@ -9,6 +9,7 @@ import { IvtListModule } from './list';
 import { IvtSearchbarModule } from './searchbar';
 import { IvtSubscriberModule } from './subscriber';
 import { IvtTableModule } from './table';
+import { IvtVirtualScrollModule } from './virtual-scroll';
 
 const MODULES = [
   IvtDateFilterModule,
@@ -20,6 +21,7 @@ const MODULES = [
   IvtSearchbarModule,
   IvtSubscriberModule,
   IvtTableModule,
+  IvtVirtualScrollModule,
 ];
 
 @NgModule({

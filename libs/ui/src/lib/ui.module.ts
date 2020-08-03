@@ -27,6 +27,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { IvtComponentsModule } from './components/components.module';
+import { IvtContainersModule } from './containers/containers.module';
 import { IvtDirectivesModule } from './directives/directives.module';
 
 const MATERIAL_MODULES = [
@@ -64,7 +65,7 @@ const MATERIAL_MODULES = [
   MatTooltipModule,
 ];
 
-const MODULES = [IvtComponentsModule, IvtDirectivesModule];
+const MODULES = [IvtComponentsModule, IvtContainersModule, IvtDirectivesModule];
 
 @NgModule({
   imports: [MATERIAL_MODULES, MODULES],

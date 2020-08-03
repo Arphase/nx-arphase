@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { fromGuarantees } from '@ivt/state';
-import { Store } from '@ngrx/store';
+import { Guarantee } from '@ivt/data';
+import { GuaranteeCollectionService } from '@ivt/state';
+import { IvtFormContainerComponent } from '@ivt/ui';
 
 @Component({
   selector: 'ivt-guarantee-form-container',
@@ -8,10 +9,12 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./guarantee-form-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeFormContainerComponent {
-  constructor(private store: Store<any>) {}
-
-  onGetGuaranteePdf(payload) {
-    this.store.dispatch(fromGuarantees.actions.getGuaranteePdf(payload));
+export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<
+  Guarantee
+> {
+  constructor(
+    protected guaranteeCollectionService: GuaranteeCollectionService
+  ) {
+    super(guaranteeCollectionService);
   }
 }
