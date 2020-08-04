@@ -5,6 +5,7 @@ export * from './form';
 export * from './form-field';
 export * from './go-back-title';
 export * from './list';
+export * from './navbar';
 export * from './row';
 export * from './searchbar';
 export * from './subscriber';

@@ -13,3 +13,13 @@ export const getAuthUserStateState = createSelector(
   getAuthFeatureState,
   (state) => state.user
 );
+
+export const getAuthUserNameState = createSelector(
+  getAuthFeatureState,
+  (state) => `${state.user.firstName} ${state.user.lastName}`
+);
+
+export const getAuthUserEmailState = createSelector(
+  getAuthFeatureState,
+  (state) => state.user.email
+);

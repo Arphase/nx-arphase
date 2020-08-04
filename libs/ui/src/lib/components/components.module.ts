@@ -8,6 +8,7 @@ import { IvtFormModule } from './form';
 import { IvtFormFieldModule } from './form-field';
 import { IvtGoBackTitleModule } from './go-back-title';
 import { IvtListModule } from './list';
+import { IvtNavbarModule } from './navbar';
 import { IvtRowModule } from './row';
 import { IvtSearchbarModule } from './searchbar';
 import { IvtSubscriberModule } from './subscriber';
@@ -23,6 +24,7 @@ const MODULES = [
   IvtFormFieldModule,
   IvtGoBackTitleModule,
   IvtListModule,
+  IvtNavbarModule,
   IvtRowModule,
   IvtSearchbarModule,
   IvtSubscriberModule,

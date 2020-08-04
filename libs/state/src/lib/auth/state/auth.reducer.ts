@@ -22,7 +22,11 @@ const authReducer = createReducer(
   on(AuthActions.signInSuccess, (state, action) => ({
     ...state,
     user: action.user,
-  }))
+  })),
+  on(AuthActions.logout, state => ({
+    ...state,
+    user: null
+  })),
 );
 
 export function reducer(state: AuthState, action: Action) {

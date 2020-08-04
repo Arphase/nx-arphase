@@ -1,0 +1,38 @@
+<div class="profile">
+  <div class="profile__menu"
+       [matMenuTriggerFor]="profileMenu">
+    <div class="profile__avatar mr-2">
+      <span class="profile__avatar-text">{{ avatarText }}</span>
+    </div>
+
+    <div class="profile__info">
+      <div class="info__name d-flex align-items-center">
+        {{ name }}
+        <mat-icon class="profile__arrow ml-1">keyboard_arrow_down</mat-icon>
+      </div>
+
+      <div class="info__email">{{ email }}</div>
+    </div>
+  </div>
+
+  <mat-menu #profileMenu="matMenu">
+    <div class="profile__menu-content">
+      <div class="menu-content__body">
+        <div class="profile__avatar-menu">
+          <div class="profile__avatar-menu-text">{{ avatarText }}</div>
+        </div>
+
+        <div class="menu-content__info">
+          <div class="menu-info__name">{{ name }}</div>
+          <span class="menu-info__email">{{ email }}</span>
+        </div>
+      </div>
+
+      <div class="menu-content__footer">
+        <button mat-raised-button
+                class="text-danger"
+                (click)="logout.emit()">Cerrar sesión</button>
+      </div>
+    </div>
+  </mat-menu>
+</div>

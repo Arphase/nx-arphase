@@ -12,3 +12,5 @@ export const signInSuccess = createAction(
 );
 
 export const signInFailed = createAction('[Auth] Sign in failed');
+
+export const logout = createAction('[Auth] logout');
