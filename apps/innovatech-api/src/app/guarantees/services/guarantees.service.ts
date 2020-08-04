@@ -1,4 +1,4 @@
-import { Guarantee, GuaranteeStatus } from '@ivt/data';
+import { PersonTypes, GuaranteeStatus } from '@ivt/data';
 import {
   Injectable,
   InternalServerErrorException,
@@ -12,6 +12,7 @@ import { v1 as uuidv1 } from 'uuid';
 import { GuaranteeEntity } from '../data/entities/guarantee.entity';
 import { GuaranteeRepository } from '../data/guarantee.repository';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
+import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 
 @Injectable()
 export class GuaranteesService {
@@ -37,6 +38,14 @@ export class GuaranteesService {
   ): Promise<GuaranteeEntity[]> {
     const { startDate, endDate, vin, amount } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
+    let guarantees: GuaranteeEntity[];
+
+    query
+      .leftJoinAndSelect('guarantee.client', 'client')
+      .leftJoinAndSelect('client.physicalInfo', 'physicalPerson')
+      .leftJoinAndSelect('client.moralInfo', 'moralPerson')
+      .leftJoinAndSelect('client.address', 'address')
+      .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
 
     // if (startDate && endDate) {
     // }
@@ -48,19 +57,28 @@ export class GuaranteesService {
     // if (amount) {
     // }
 
-    const guarantees = await query
+    guarantees = await query
+      .groupBy('guarantee.id')
+      .addGroupBy('client.id')
+      .addGroupBy('address.id')
+      .addGroupBy('vehicle.id')
+      .addGroupBy('physicalPerson.id')
+      .addGroupBy('moralPerson.id')
       .getMany();
 
+    guarantees.map((guarantee) => this.omitInfo(guarantee));
     return guarantees;
   }
 
-  async createGuarantee(guarantee: Guarantee): Promise<GuaranteeEntity> {
+  async createGuarantee(
+    createGuaranteeDto: CreateGuaranteeDto
+  ): Promise<GuaranteeEntity> {
+    createGuaranteeDto = this.omitInfo(createGuaranteeDto);
     const newGuarantee = await this.guaranteeRepository.create({
-      ...guarantee,
+      ...createGuaranteeDto,
       createdAt: new Date(),
       status: GuaranteeStatus.outstanding,
       paymentOrder: 'lol',
-      amount: 10
     });
     await newGuarantee.save();
     return newGuarantee;
@@ -285,5 +303,18 @@ export class GuaranteesService {
         throw new InternalServerErrorException(e);
       }
     });
+  }
+
+  omitInfo(
+    guarantee: GuaranteeEntity | CreateGuaranteeDto
+  ): GuaranteeEntity | CreateGuaranteeDto {
+    if (guarantee.client.personType === PersonTypes.physical) {
+      const { moralInfo, ...client } = guarantee.client;
+      guarantee.client = client;
+    } else if (guarantee.client.personType === PersonTypes.moral) {
+      const { physicalInfo, ...client } = guarantee.client;
+      guarantee.client = client;
+    }
+    return guarantee;
   }
 }

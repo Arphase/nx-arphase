@@ -1,4 +1,3 @@
-import { Guarantee } from '@ivt/data';
 import {
   Body,
   Controller,
@@ -15,6 +14,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 
 import { GuaranteeEntity } from '../data/entities/guarantee.entity';
+import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { GuaranteesService } from '../services/guarantees.service';
 
@@ -32,8 +32,8 @@ export class GuaranteesController {
 
   @Post('guarantee')
   @UsePipes(ValidationPipe)
-  async createGuarantee(@Body() guarantee: Guarantee) {
-    return this.guaranteesService.createGuarantee(guarantee);
+  async createGuarantee(@Body() createGuaranteeDto: CreateGuaranteeDto) {
+    return this.guaranteesService.createGuarantee(createGuaranteeDto);
   }
 
   @Get(':id/pdf')

@@ -5,8 +5,8 @@ import { PhysicalPerson } from './physical-person.model';
 export interface Client {
   id: number;
   personType: PersonTypes;
-  physicalInfo: PhysicalPerson;
-  moralInfo: MoralPerson;
+  physicalInfo?: PhysicalPerson;
+  moralInfo?: MoralPerson;
   rfc: string;
   phone: string;
   email: string;
