@@ -13,6 +13,7 @@ import { IvtSubscriberComponent } from '../../components';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtFormContainerComponent<T = any> extends IvtSubscriberComponent {
+  loading$ = this.entityCollectionService.loading$;
   currentItem$ = this.entityCollectionService.currentItem$;
   showSuccess$ = this.entityCollectionService.entityActions$.pipe(
     ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS, EntityOp.SAVE_UPDATE_ONE_SUCCESS),

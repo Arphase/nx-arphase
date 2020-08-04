@@ -1,4 +1,4 @@
-import { Guarantee } from '@ivt/data';
+import { Guarantee, GuaranteeStatus } from '@ivt/data';
 import {
   Injectable,
   InternalServerErrorException,
@@ -38,27 +38,31 @@ export class GuaranteesService {
     const { startDate, endDate, vin, amount } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
 
-    if (startDate && endDate) {
-    }
+    // if (startDate && endDate) {
+    // }
 
-    if (vin) {
-      query.where('(guarantee.vin LIKE :vin)', { vin: `%${vin}%` });
-    }
+    // if (vin) {
+    //   query.where('(guarantee.vin LIKE :vin)', { vin: `%${vin}%` });
+    // }
 
-    if (amount) {
-    }
+    // if (amount) {
+    // }
 
     const guarantees = await query
-      .groupBy('client.id')
-      .addGroupBy('vehicle.id')
       .getMany();
 
     return guarantees;
   }
 
   async createGuarantee(guarantee: Guarantee): Promise<GuaranteeEntity> {
-    const newGuarantee = await this.guaranteeRepository.create(guarantee);
-    newGuarantee.save();
+    const newGuarantee = await this.guaranteeRepository.create({
+      ...guarantee,
+      createdAt: new Date(),
+      status: GuaranteeStatus.outstanding,
+      paymentOrder: 'lol',
+      amount: 10
+    });
+    await newGuarantee.save();
     return newGuarantee;
   }
 
