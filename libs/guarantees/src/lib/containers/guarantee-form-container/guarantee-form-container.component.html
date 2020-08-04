@@ -1,1 +1,3 @@
-<ivt-guarantee-form></ivt-guarantee-form>
+<ivt-guarantee-form [loading]="loading$ | async"
+                    (submitForm)="submit($event)">
+</ivt-guarantee-form>

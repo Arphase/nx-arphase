@@ -1,4 +1,4 @@
-import { Guarantee } from '@ivt/data';
+import { Guarantee, GuaranteeStatus } from '@ivt/data';
 import {
   Injectable,
   InternalServerErrorException,
@@ -57,8 +57,14 @@ export class GuaranteesService {
   }
 
   async createGuarantee(guarantee: Guarantee): Promise<GuaranteeEntity> {
-    const newGuarantee = await this.guaranteeRepository.create(guarantee);
-    newGuarantee.save();
+    const newGuarantee = await this.guaranteeRepository.create({
+      ...guarantee,
+      createdAt: new Date(),
+      status: GuaranteeStatus.outstanding,
+      paymentOrder: 'lol',
+      amount: 10
+    });
+    await newGuarantee.save();
     return newGuarantee;
   }
 

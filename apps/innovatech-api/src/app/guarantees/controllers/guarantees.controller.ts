@@ -17,23 +17,19 @@ import { AuthGuard } from '@nestjs/passport';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { GuaranteeEntity } from '../data/entities/guarantee.entity';
 
-@Controller('guarantees')
+@Controller()
 @UseGuards(AuthGuard())
 export class GuaranteesController {
   constructor(private guaranteesService: GuaranteesService) {}
-  @Get('')
-  async test(): Promise<any> {
-    return 'Test';
-  }
 
-  @Get()
+  @Get('')
   async getGuarantees(
     @Query(ValidationPipe) filterDto: GetGuaranteesFilterDto,
   ): Promise<GuaranteeEntity[]> {
     return this.guaranteesService.getGuarantees(filterDto);
   }
 
-  @Post()
+  @Post('guarantee')
   @UsePipes(ValidationPipe)
   async createGuarantee(
     @Body() guarantee: Guarantee,

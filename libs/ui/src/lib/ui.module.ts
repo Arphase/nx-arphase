@@ -25,6 +25,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { IvtComponentsModule } from './components/components.module';
 import { IvtContainersModule } from './containers/containers.module';
@@ -67,9 +68,11 @@ const MATERIAL_MODULES = [
 
 const MODULES = [IvtComponentsModule, IvtContainersModule, IvtDirectivesModule];
 
+const THIRD_PARTY_MODULES = [NgxMaskModule];
+
 @NgModule({
-  imports: [MATERIAL_MODULES, MODULES],
-  exports: [MATERIAL_MODULES, MODULES],
+  imports: [MATERIAL_MODULES, MODULES, THIRD_PARTY_MODULES],
+  exports: [MATERIAL_MODULES, MODULES, THIRD_PARTY_MODULES],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es' }],
 })
 export class IvtUiModule {}

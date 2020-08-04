@@ -3,7 +3,7 @@ import {
   Address,
   PhysicalPerson,
   MoralPerson,
-  PersonType,
+  PersonTypes,
   Guarantee,
 } from '@ivt/data';
 import {
@@ -30,8 +30,8 @@ export class ClientEntity extends BaseEntity implements Client {
   @JoinColumn({ name: 'guaranteeId' })
   guarantee: Guarantee;
 
-  @Column({ type: 'enum', enum: PersonType })
-  personType: PersonType;
+  @Column({ type: 'enum', enum: PersonTypes })
+  PersonTypes: PersonTypes;
 
   @OneToOne(
     (type) => PhysicalPersonEntity,

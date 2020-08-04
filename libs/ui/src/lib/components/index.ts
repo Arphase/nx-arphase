@@ -1,4 +1,5 @@
 export * from './empty-state';
+export * from './expansion-panel';
 export * from './filters';
 export * from './form';
 export * from './form-field';

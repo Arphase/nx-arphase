@@ -1,11 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MatRadioChange } from '@angular/material/radio';
+import { Guarantee, PersonTypes } from '@ivt/data';
+import { IvtFormComponent } from '@ivt/ui';
 import { CustomValidators } from '@ivt/utils';
 
 @Component({
@@ -14,9 +11,8 @@ import { CustomValidators } from '@ivt/utils';
   styleUrls: ['./guarantee-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeFormComponent implements OnInit {
-  @Output() getGuaranteePdf = new EventEmitter<any>();
-  form: FormGroup;
+export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
+  implements OnInit {
   showPhysicalForm = true;
   showMoralForm = false;
   physicalControls = ['name', 'lastName', 'secondLastName', 'birthDate'];
@@ -26,6 +22,7 @@ export class GuaranteeFormComponent implements OnInit {
     'distributor',
     'adviser',
   ];
+  personTypes = PersonTypes;
 
   get values() {
     return this.form.getRawValue();
@@ -40,9 +37,10 @@ export class GuaranteeFormComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder) {
+    super();
     this.form = this.fb.group({
       client: this.fb.group({
-        personType: [null, Validators.required],
+        personType: [PersonTypes.physical, Validators.required],
         name: [null, Validators.required],
         lastName: [null, Validators.required],
         secondLastName: [null, Validators.required],
@@ -73,23 +71,23 @@ export class GuaranteeFormComponent implements OnInit {
         motorNumber: [null, Validators.required],
         serialNumber: [null, Validators.required],
         horsePower: [null, [Validators.required, Validators.max(400)]],
-        guaranteeStartDate: [null, Validators.required],
-        guaranteeEndDate: [null, Validators.required],
         kilometrageStart: [null, Validators.required],
         kilometrageEnd: [null, Validators.required],
       }),
+      startDate: [null, Validators.required],
+      endDate: [null, Validators.required],
+      amount: [0, Validators.required],
     });
   }
 
   ngOnInit() {
     this.moralControls.forEach((control) => this.client.get(control).disable());
-    this.client.get('personType').patchValue('1');
   }
 
-  personTypeChange(personType) {
+  personTypeChange(personType: MatRadioChange): void {
     const value = personType.value;
-    this.showPhysicalForm = value === '1';
-    this.showMoralForm = value === '2';
+    this.showPhysicalForm = value === PersonTypes.physical;
+    this.showMoralForm = value === PersonTypes.moral;
 
     let disableControls;
     let enableControls;
@@ -104,24 +102,5 @@ export class GuaranteeFormComponent implements OnInit {
 
     disableControls.forEach((control) => this.client.get(control).disable());
     enableControls.forEach((control) => this.client.get(control).enable());
-  }
-
-  cleanValues() {
-    this.showPhysicalForm
-      ? this.moralControls.forEach((control) =>
-          this.client.get(control).patchValue(null)
-        )
-      : this.physicalControls.forEach((control) =>
-          this.client.get(control).patchValue(null)
-        );
-  }
-
-  submit() {
-    if (this.form.valid || this.form.disabled) {
-      this.cleanValues();
-      this.getGuaranteePdf.emit(this.values);
-    } else {
-      this.form.markAllAsTouched();
-    }
   }
 }
