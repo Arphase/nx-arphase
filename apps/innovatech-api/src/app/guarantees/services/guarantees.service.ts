@@ -79,7 +79,6 @@ export class GuaranteesService {
       createdAt: new Date(),
       status: GuaranteeStatus.outstanding,
       paymentOrder: 'lol',
-      // amount: 10
     });
     await newGuarantee.save();
     return newGuarantee;
@@ -306,7 +305,9 @@ export class GuaranteesService {
     });
   }
 
-  omitInfo(guarantee) {
+  omitInfo(
+    guarantee: GuaranteeEntity | CreateGuaranteeDto
+  ): GuaranteeEntity | CreateGuaranteeDto {
     if (guarantee.client.personType === PersonTypes.physical) {
       const { moralInfo, ...client } = guarantee.client;
       guarantee.client = client;

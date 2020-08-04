@@ -19,20 +19,6 @@ export class CreateGuaranteeDto {
   @Type(() => CreateVehicleDto)
   vehicle: Vehicle;
 
-  // @IsNotEmpty()
-  // @IsDateString()
-  // createdAt: Date;
-
-  // @IsNotEmpty()
-  // @IsEnum(GuaranteeStatus)
-  // status: GuaranteeStatus;
-
-  // @IsNotEmpty()
-  // paymentOrder: string;
-
-  // @IsNotEmpty()
-  // document: string;
-
   @IsNotEmpty()
   @IsDateString()
   startDate: Date;

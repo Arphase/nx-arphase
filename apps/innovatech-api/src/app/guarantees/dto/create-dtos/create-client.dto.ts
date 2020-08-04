@@ -85,7 +85,7 @@ export function IsRfc(property: string, validationOptions?: ValidationOptions) {
         validate(value: any, args: ValidationArguments) {
           const [relatedPropertyName] = args.constraints;
           const relatedValue = (args.object as any)[relatedPropertyName];
-          return typeof value === 'string' && validateRfc(relatedValue, value); // you can return a Promise<boolean> here as well, if you want to make async validation
+          return typeof value === 'string' && validateRfc(relatedValue, value);
         },
       },
     });
