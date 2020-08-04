@@ -6,15 +6,8 @@ import {
   Output,
 } from '@angular/core';
 
+import { CrudEvents } from '../../models';
 import { IvtSubscriberComponent } from '../subscriber';
-
-export interface CrudEvents<T> {
-  create: EventEmitter<void>;
-  showDetail: EventEmitter<T>;
-  edit: EventEmitter<T>;
-  delete: EventEmitter<T>;
-  toggle: EventEmitter<T>;
-}
 
 @Component({
   template: '',
