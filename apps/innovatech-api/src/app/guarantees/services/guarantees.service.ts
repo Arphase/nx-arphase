@@ -1,4 +1,4 @@
-import { Guarantee } from '@ivt/data';
+import { Guarantee, PersonType } from '@ivt/data';
 import {
   Injectable,
   InternalServerErrorException,
@@ -37,19 +37,43 @@ export class GuaranteesService {
   ): Promise<GuaranteeEntity[]> {
     const { startDate, endDate, vin, amount } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
+    let guarantees: GuaranteeEntity[];
 
-    if (startDate && endDate) {
-    }
+    query.leftJoinAndSelect('guarantee.client', 'client');
 
-    if (vin) {
-      query.where('(guarantee.vin LIKE :vin)', { vin: `%${vin}%` });
-    }
+    guarantees = await query
+      .groupBy('guarantee.id')
+      .addGroupBy('client.id')
+      .getMany();
 
-    if (amount) {
-    }
+    guarantees.forEach((guarantee) => {
+      if (guarantee.client.personType === PersonType.physical) {
+        query
+          .leftJoinAndSelect('client.physicalInfo', 'physicalPerson')
+          .addGroupBy('physicalPerson.id');
+      } else if (guarantee.client.personType === PersonType.moral) {
+        query
+          .leftJoinAndSelect('client.moralInfo', 'moralPerson')
+          .addGroupBy('moralPerson.id');
+      }
+    });
 
-    const guarantees = await query
-      .groupBy('client.id')
+    query
+      .leftJoinAndSelect('client.address', 'address')
+      .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
+
+    // if (startDate && endDate) {
+    // }
+
+    // if (vin) {
+    //   query.where('(guarantee.vin LIKE :vin)', { vin: `%${vin}%` });
+    // }
+
+    // if (amount) {
+    // }
+
+    guarantees = await query
+      .addGroupBy('address.id')
       .addGroupBy('vehicle.id')
       .getMany();
 

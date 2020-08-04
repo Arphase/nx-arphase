@@ -21,10 +21,10 @@ import { GuaranteeEntity } from '../data/entities/guarantee.entity';
 @UseGuards(AuthGuard())
 export class GuaranteesController {
   constructor(private guaranteesService: GuaranteesService) {}
-  @Get('')
-  async test(): Promise<any> {
-    return 'Test';
-  }
+  // @Get('')
+  // async test(): Promise<any> {
+  //   return 'Test';
+  // }
 
   @Get()
   async getGuarantees(
