@@ -1,0 +1,11 @@
+@import '../../../styles/variables';
+
+.row {
+  border: $border;
+  min-height: 64px;
+  border-radius: $border-radius;
+  position: relative;
+  line-height: $font-size;
+  padding: $spacer-x-small 0;
+  color: $ui-color !important;
+}
