@@ -31,7 +31,7 @@ export class ClientEntity extends BaseEntity implements Client {
   guarantee: Guarantee;
 
   @Column({ type: 'enum', enum: PersonTypes })
-  PersonTypes: PersonTypes;
+  personType: PersonTypes;
 
   @OneToOne(
     (type) => PhysicalPersonEntity,

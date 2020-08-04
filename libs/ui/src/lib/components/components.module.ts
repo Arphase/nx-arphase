@@ -6,6 +6,7 @@ import { IvtFilterModule } from './filters';
 import { IvtDateFilterModule } from './filters/date-filter';
 import { IvtFormModule } from './form';
 import { IvtFormFieldModule } from './form-field';
+import { IvtGoBackTitleModule } from './go-back-title';
 import { IvtListModule } from './list';
 import { IvtSearchbarModule } from './searchbar';
 import { IvtSubscriberModule } from './subscriber';
@@ -19,6 +20,7 @@ const MODULES = [
   IvtFilterModule,
   IvtFormModule,
   IvtFormFieldModule,
+  IvtGoBackTitleModule,
   IvtListModule,
   IvtSearchbarModule,
   IvtSubscriberModule,

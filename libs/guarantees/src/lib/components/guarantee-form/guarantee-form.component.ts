@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
 import { Guarantee, PersonTypes } from '@ivt/data';
 import { IvtFormComponent } from '@ivt/ui';
@@ -15,13 +15,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
   implements OnInit {
   showPhysicalForm = true;
   showMoralForm = false;
-  physicalControls = ['name', 'lastName', 'secondLastName', 'birthDate'];
-  moralControls = [
-    'businessName',
-    'constitutionDate',
-    'distributor',
-    'adviser',
-  ];
   personTypes = PersonTypes;
 
   get values() {
@@ -36,28 +29,47 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
     return this.form.get('vehicle');
   }
 
+  get addressForm(): FormGroup {
+    return this.client.get('address') as FormGroup;
+  }
+
+  get physicalInfoForm(): FormGroup {
+    return this.client.get('physicalInfo') as FormGroup;
+  }
+
+  get moralInfoForm(): FormGroup {
+    return this.client.get('moralInfo') as FormGroup;
+  }
+
   constructor(private fb: FormBuilder) {
     super();
     this.form = this.fb.group({
       client: this.fb.group({
         personType: [PersonTypes.physical, Validators.required],
-        name: [null, Validators.required],
-        lastName: [null, Validators.required],
-        secondLastName: [null, Validators.required],
-        businessName: [null, Validators.required],
-        birthDate: [null, Validators.required],
-        constitutionDate: [null, Validators.required],
+        physicalInfo: this.fb.group({
+          name: [null, Validators.required],
+          lastName: [null, Validators.required],
+          secondLastName: [null, Validators.required],
+          birthDate: [null, Validators.required],
+        }),
+        moralInfo: this.fb.group({
+          businessName: [null, Validators.required],
+          constitutionDate: [null, Validators.required],
+          distributor: [null, Validators.required],
+          adviser: [null, Validators.required],
+        }),
         rfc: [null, [Validators.required, CustomValidators.rfc('any')]],
         phone: [null, Validators.required],
         email: [null, [Validators.required, Validators.email]],
-        zipCode: [null, Validators.required],
-        state: [null, Validators.required],
-        city: [null, Validators.required],
-        suburb: [null, Validators.required],
-        street: [null, Validators.required],
-        streetNumber: [null, Validators.required],
-        distributor: [null, Validators.required],
-        adviser: [null, Validators.required],
+        address: this.fb.group({
+          zipCode: [null, Validators.required],
+          country: [null, Validators.required],
+          state: [null, Validators.required],
+          city: [null, Validators.required],
+          suburb: [null, Validators.required],
+          street: [null, Validators.required],
+          streetNumber: [null, Validators.required],
+        }),
         salesPlace: [null, Validators.required],
       }),
       vehicle: this.fb.group({
@@ -76,12 +88,12 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
       }),
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
-      amount: [0, Validators.required],
+      amount: [null, Validators.required],
     });
   }
 
   ngOnInit() {
-    this.moralControls.forEach((control) => this.client.get(control).disable());
+    this.moralInfoForm.disable();
   }
 
   personTypeChange(personType: MatRadioChange): void {
@@ -89,18 +101,12 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
     this.showPhysicalForm = value === PersonTypes.physical;
     this.showMoralForm = value === PersonTypes.moral;
 
-    let disableControls;
-    let enableControls;
-
     if (this.showPhysicalForm) {
-      disableControls = this.moralControls;
-      enableControls = this.physicalControls;
+      this.moralInfoForm.disable();
+      this.physicalInfoForm.enable();
     } else {
-      disableControls = this.physicalControls;
-      enableControls = this.moralControls;
+      this.moralInfoForm.enable();
+      this.physicalInfoForm.disable();
     }
-
-    disableControls.forEach((control) => this.client.get(control).disable());
-    enableControls.forEach((control) => this.client.get(control).enable());
   }
 }

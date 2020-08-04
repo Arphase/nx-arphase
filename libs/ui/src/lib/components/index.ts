@@ -3,6 +3,7 @@ export * from './expansion-panel';
 export * from './filters';
 export * from './form';
 export * from './form-field';
+export * from './go-back-title';
 export * from './list';
 export * from './searchbar';
 export * from './subscriber';

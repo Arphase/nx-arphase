@@ -1,0 +1,22 @@
+@import '../../../styles/variables';
+
+.ivt-go-back {
+  margin-top: 0;
+
+  &__title {
+    font-size: $font-size-large;
+    line-height: $font-size-large;
+
+    &,
+    &:hover {
+      text-decoration: none;
+      color: $primary-color;
+    }
+  }
+}
+
+.ivt-go-back-icon {
+  font-size: $font-size-large;
+  width: 18px !important;
+  height: 18px !important;
+}

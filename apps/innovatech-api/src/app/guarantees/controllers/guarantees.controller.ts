@@ -1,39 +1,38 @@
-import { Guarantee, User } from '@ivt/data';
+import { Guarantee } from '@ivt/data';
 import {
   Body,
   Controller,
   Get,
-  Post,
-  Res,
-  Query,
-  ValidationPipe,
-  UsePipes,
-  UseGuards,
   Param,
   ParseIntPipe,
+  Post,
+  Query,
+  Res,
+  UseGuards,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
-import { GuaranteesService } from '../services/guarantees.service';
 import { AuthGuard } from '@nestjs/passport';
-import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
+
 import { GuaranteeEntity } from '../data/entities/guarantee.entity';
+import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
+import { GuaranteesService } from '../services/guarantees.service';
 
 @Controller()
 @UseGuards(AuthGuard())
 export class GuaranteesController {
   constructor(private guaranteesService: GuaranteesService) {}
 
-  @Get('')
+  @Get('guarantees')
   async getGuarantees(
-    @Query(ValidationPipe) filterDto: GetGuaranteesFilterDto,
+    @Query(ValidationPipe) filterDto: GetGuaranteesFilterDto
   ): Promise<GuaranteeEntity[]> {
     return this.guaranteesService.getGuarantees(filterDto);
   }
 
   @Post('guarantee')
   @UsePipes(ValidationPipe)
-  async createGuarantee(
-    @Body() guarantee: Guarantee,
-  ) {
+  async createGuarantee(@Body() guarantee: Guarantee) {
     return this.guaranteesService.createGuarantee(guarantee);
   }
 
