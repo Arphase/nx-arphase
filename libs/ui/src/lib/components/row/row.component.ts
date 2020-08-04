@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Input,
   Output,
+  ViewEncapsulation,
 } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
@@ -14,11 +15,15 @@ import { IvtSubscriberComponent } from '../subscriber/subscriber.component';
   selector: 'ivt-row',
   templateUrl: './row.component.html',
   styleUrls: ['./row.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  // tslint:disable-next-line: no-host-metadata-property
+  host: {
+    class: 'ivt-row',
+  },
 })
 export class IvtRowComponent<T = any> extends IvtSubscriberComponent
   implements CrudEvents<T> {
-  @Input() index: number;
   @Input() item: T;
   @Input() className: string;
   @Input() isSelected = false;

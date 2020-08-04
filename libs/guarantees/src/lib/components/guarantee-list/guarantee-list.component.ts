@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Guarantee } from '@ivt/data';
+import { Guarantee, GuaranteeStatus } from '@ivt/data';
 import { IvtColumns, IvtListComponent } from '@ivt/ui';
 
 @Component({
@@ -14,7 +14,7 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> {
       label: 'Folio',
       prop: 'id',
       sortable: true,
-      colSize: 2,
+      colSize: 3,
     },
     {
       label: 'Fecha inicio',
@@ -29,16 +29,10 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> {
       colSize: 3,
     },
     {
-      label: 'Estatus',
-      prop: 'status',
-      sortable: true,
-      colSize: 3,
-    },
-    {
       label: 'Acciones',
       prop: 'actions',
       sortable: false,
-      colSize: 1,
+      colSize: 3,
       alignment: 'right',
     },
   ];

@@ -8,6 +8,7 @@ import { GuaranteeListComponent } from './components/guarantee-list/guarantee-li
 import { GuaranteeFormContainerComponent } from './containers/guarantee-form-container/guarantee-form-container.component';
 import { GuaranteeListContainerComponent } from './containers/guarantee-list-container/guarantee-list-container.component';
 import { GuaranteesRoutingModule } from './guarantees-routing.module';
+import { GuaranteeRowComponent } from './components/guarantee-row/guarantee-row.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { GuaranteesRoutingModule } from './guarantees-routing.module';
     GuaranteeFormContainerComponent,
     GuaranteeListContainerComponent,
     GuaranteeListComponent,
+    GuaranteeRowComponent,
   ],
 })
 export class GuaranteesModule {}

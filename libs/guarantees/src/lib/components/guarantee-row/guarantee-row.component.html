@@ -1,0 +1,22 @@
+<ivt-row>
+  <div class="color-status {{ backgroundClasses[item.status] }}"
+       (mouseenter)="showStatusSubject.next(true)"></div>
+
+  <div [ngClass]="{ collapsed: !(visibleStatus$ | async)}"
+       class="color-status-description {{ backgroundClasses[item.status] }} text-center p-3 flex-center">
+    <div class="mx-2">
+      <p class="text-white mb-0">{{ statusLabels[item.status] }}</p>
+    </div>
+  </div>
+  <div class="col-3">
+    {{ item.id }}
+  </div>
+  <div class="col-3">
+    {{ item.startDate | date: "dd/MM/yyyy" }}
+  </div>
+  <div class="col-3">
+    {{ item.endDate | date: "dd/MM/yyyy" }}
+  </div>
+  <div class="col-3">
+  </div>
+</ivt-row>
