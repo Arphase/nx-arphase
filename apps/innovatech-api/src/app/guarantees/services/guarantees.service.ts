@@ -12,6 +12,7 @@ import { v1 as uuidv1 } from 'uuid';
 import { GuaranteeEntity } from '../data/entities/guarantee.entity';
 import { GuaranteeRepository } from '../data/guarantee.repository';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
+import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 
 @Injectable()
 export class GuaranteesService {
@@ -80,8 +81,8 @@ export class GuaranteesService {
     return guarantees;
   }
 
-  async createGuarantee(guarantee: Guarantee): Promise<GuaranteeEntity> {
-    const newGuarantee = await this.guaranteeRepository.create(guarantee);
+  async createGuarantee(createGuaranteeDto: CreateGuaranteeDto): Promise<GuaranteeEntity> {
+    const newGuarantee = await this.guaranteeRepository.create(createGuaranteeDto);
     newGuarantee.save();
     return newGuarantee;
   }

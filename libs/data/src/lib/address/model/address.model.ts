@@ -6,5 +6,5 @@ export interface Address {
   city: string;
   suburb: string;
   street: string;
-  streetNumber: string;
+  streetNumber: number;
 }
