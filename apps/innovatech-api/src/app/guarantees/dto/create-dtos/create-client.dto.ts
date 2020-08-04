@@ -69,8 +69,8 @@ const validations = {
   physical: isPhysicalRfc,
 };
 
-export function validateRfc(type: 'moral' | 'physical', rfc: string): boolean {
-  return validations[type](rfc);
+export function validateRfc(type: PersonTypes, rfc: string): boolean {
+  return validations[PersonTypes[type]](rfc);
 }
 
 export function IsRfc(property: string, validationOptions?: ValidationOptions) {

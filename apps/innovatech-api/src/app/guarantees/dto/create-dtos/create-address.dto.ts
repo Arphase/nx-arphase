@@ -1,8 +1,8 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumberString, IsString } from 'class-validator';
 
 export class CreateAddressDto {
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumberString()
   zipCode: number;
 
   @IsNotEmpty()

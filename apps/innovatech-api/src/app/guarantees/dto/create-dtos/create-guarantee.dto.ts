@@ -1,9 +1,9 @@
 import { GuaranteeStatus, Client, Vehicle } from '@ivt/data';
 import {
-  IsDate,
+  IsDateString,
   IsNotEmpty,
   IsEnum,
-  IsNumber,
+  IsNumberString,
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
@@ -19,29 +19,29 @@ export class CreateGuaranteeDto {
   @Type(() => CreateVehicleDto)
   vehicle: Vehicle;
 
-  @IsNotEmpty()
-  @IsDate()
-  createdAt: Date;
+  // @IsNotEmpty()
+  // @IsDateString()
+  // createdAt: Date;
+
+  // @IsNotEmpty()
+  // @IsEnum(GuaranteeStatus)
+  // status: GuaranteeStatus;
+
+  // @IsNotEmpty()
+  // paymentOrder: string;
+
+  // @IsNotEmpty()
+  // document: string;
 
   @IsNotEmpty()
-  @IsEnum(GuaranteeStatus)
-  status: GuaranteeStatus;
-
-  @IsNotEmpty()
-  paymentOrder: string;
-
-  @IsNotEmpty()
-  document: string;
-
-  @IsNotEmpty()
-  @IsDate()
+  @IsDateString()
   startDate: Date;
 
   @IsNotEmpty()
-  @IsDate()
+  @IsDateString()
   endDate: Date;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumberString()
   amount: number;
 }

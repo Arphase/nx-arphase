@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumberString } from 'class-validator';
 
 export class CreateVehicleDto {
   @IsNotEmpty()
@@ -18,7 +18,7 @@ export class CreateVehicleDto {
   version: string;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumberString()
   year: number;
 
   @IsNotEmpty()
@@ -38,14 +38,14 @@ export class CreateVehicleDto {
   serialNumber: string;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumberString()
   horsePower: number;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumberString()
   kilometrageStart: number;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumberString()
   kilometrageEnd: number;
 }

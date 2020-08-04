@@ -40,26 +40,10 @@ export class GuaranteesService {
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     let guarantees: GuaranteeEntity[];
 
-    query.leftJoinAndSelect('guarantee.client', 'client');
-
-    guarantees = await query
-      .groupBy('guarantee.id')
-      .addGroupBy('client.id')
-      .getMany();
-
-    guarantees.forEach((guarantee) => {
-      if (guarantee.client.personType === PersonTypes.physical) {
-        query
-          .leftJoinAndSelect('client.physicalInfo', 'physicalPerson')
-          .addGroupBy('physicalPerson.id');
-      } else if (guarantee.client.personType === PersonTypes.moral) {
-        query
-          .leftJoinAndSelect('client.moralInfo', 'moralPerson')
-          .addGroupBy('moralPerson.id');
-      }
-    });
-
     query
+      .leftJoinAndSelect('guarantee.client', 'client')
+      .leftJoinAndSelect('client.physicalInfo', 'physicalPerson')
+      .leftJoinAndSelect('client.moralInfo', 'moralPerson')
       .leftJoinAndSelect('client.address', 'address')
       .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
 
@@ -74,20 +58,28 @@ export class GuaranteesService {
     // }
 
     guarantees = await query
+      .groupBy('guarantee.id')
+      .addGroupBy('client.id')
       .addGroupBy('address.id')
       .addGroupBy('vehicle.id')
+      .addGroupBy('physicalPerson.id')
+      .addGroupBy('moralPerson.id')
       .getMany();
 
+    guarantees.map((guarantee) => this.omitInfo(guarantee));
     return guarantees;
   }
 
-  async createGuarantee(createGuaranteeDto: CreateGuaranteeDto): Promise<GuaranteeEntity> {
+  async createGuarantee(
+    createGuaranteeDto: CreateGuaranteeDto
+  ): Promise<GuaranteeEntity> {
+    createGuaranteeDto = this.omitInfo(createGuaranteeDto);
     const newGuarantee = await this.guaranteeRepository.create({
       ...createGuaranteeDto,
       createdAt: new Date(),
       status: GuaranteeStatus.outstanding,
       paymentOrder: 'lol',
-      amount: 10
+      // amount: 10
     });
     await newGuarantee.save();
     return newGuarantee;
@@ -312,5 +304,16 @@ export class GuaranteesService {
         throw new InternalServerErrorException(e);
       }
     });
+  }
+
+  omitInfo(guarantee) {
+    if (guarantee.client.personType === PersonTypes.physical) {
+      const { moralInfo, ...client } = guarantee.client;
+      guarantee.client = client;
+    } else if (guarantee.client.personType === PersonTypes.moral) {
+      const { physicalInfo, ...client } = guarantee.client;
+      guarantee.client = client;
+    }
+    return guarantee;
   }
 }

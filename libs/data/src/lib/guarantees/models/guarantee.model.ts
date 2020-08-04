@@ -14,9 +14,9 @@ export interface Guarantee {
 }
 
 export enum GuaranteeStatus {
-  outstanding = 'outstanding',
-  paid = 'paid',
-  cancelled = 'cancelled',
-  expired = 'expired',
+  outstanding = 1,
+  paid = 2,
+  cancelled = 3,
+  expired = 4,
 }
 

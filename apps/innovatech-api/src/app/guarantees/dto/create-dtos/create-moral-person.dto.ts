@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsDate } from 'class-validator';
+import { IsNotEmpty, IsString, IsDateString } from 'class-validator';
 
 export class CreateMoralPersonDto {
   @IsNotEmpty()
@@ -6,7 +6,7 @@ export class CreateMoralPersonDto {
   businessName: string;
 
   @IsNotEmpty()
-  @IsDate()
+  @IsDateString()
   constitutionDate: Date;
 
   @IsNotEmpty()
