@@ -1,0 +1,28 @@
+<mat-expansion-panel class="ivt-expansion-panel"
+                     [hideToggle]="true"
+                     [expanded]="isOpen"
+                     (opened)="isOpen = true"
+                     (closed)="isOpen = false">
+  <mat-expansion-panel-header class="ivt-expansion-panel__header">
+    <mat-panel-title>
+      <div class="d-flex align-items-center justify-content-between font-weight-bold w-100 h-64"
+           [ngClass]="{ 'text-primary': isOpen, 'text-muted': !isOpen }">
+        <span class="expansion-panel-title">{{ title }}</span>
+
+        <button class="ml-1 ivt-expansion-panel__arrow-button"
+                mat-icon-button
+                buttonStyle="link"
+                type="button">
+          <mat-icon [ngClass]="{ 'text-primary': isOpen, 'text-muted': !isOpen }"
+                    class="expansion-panel-arrow">
+            {{ isOpen ? 'keyboard_arrow_down' : 'keyboard_arrow_right' }}
+          </mat-icon>
+        </button>
+      </div>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <div class="p-3 expansion-panel-content">
+    <ng-content></ng-content>
+  </div>
+</mat-expansion-panel>

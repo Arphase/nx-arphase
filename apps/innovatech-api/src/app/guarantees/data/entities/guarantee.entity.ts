@@ -36,9 +36,6 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @Column()
   paymentOrder: string;
 
-  @Column()
-  document: string;
-
   @Column({ type: 'date' })
   startDate: Date;
 

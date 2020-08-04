@@ -8,7 +8,6 @@ export interface Guarantee {
   createdAt: Date;
   status: GuaranteeStatus;
   paymentOrder: string;
-  document: string;
   startDate: Date;
   endDate: Date;
   amount: number;

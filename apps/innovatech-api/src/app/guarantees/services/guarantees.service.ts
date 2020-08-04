@@ -1,4 +1,4 @@
-import { Guarantee, PersonType } from '@ivt/data';
+import { PersonTypes, GuaranteeStatus } from '@ivt/data';
 import {
   Injectable,
   InternalServerErrorException,
@@ -48,11 +48,11 @@ export class GuaranteesService {
       .getMany();
 
     guarantees.forEach((guarantee) => {
-      if (guarantee.client.personType === PersonType.physical) {
+      if (guarantee.client.personType === PersonTypes.physical) {
         query
           .leftJoinAndSelect('client.physicalInfo', 'physicalPerson')
           .addGroupBy('physicalPerson.id');
-      } else if (guarantee.client.personType === PersonType.moral) {
+      } else if (guarantee.client.personType === PersonTypes.moral) {
         query
           .leftJoinAndSelect('client.moralInfo', 'moralPerson')
           .addGroupBy('moralPerson.id');
@@ -82,8 +82,14 @@ export class GuaranteesService {
   }
 
   async createGuarantee(createGuaranteeDto: CreateGuaranteeDto): Promise<GuaranteeEntity> {
-    const newGuarantee = await this.guaranteeRepository.create(createGuaranteeDto);
-    newGuarantee.save();
+    const newGuarantee = await this.guaranteeRepository.create({
+      ...createGuaranteeDto,
+      createdAt: new Date(),
+      status: GuaranteeStatus.outstanding,
+      paymentOrder: 'lol',
+      amount: 10
+    });
+    await newGuarantee.save();
     return newGuarantee;
   }
 

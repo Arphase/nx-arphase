@@ -1,4 +1,4 @@
-import { PersonType, PhysicalPerson, MoralPerson } from '@ivt/data';
+import { PersonTypes, PhysicalPerson, MoralPerson } from '@ivt/data';
 import { Address } from 'cluster';
 import {
   IsNotEmpty,
@@ -18,15 +18,15 @@ import { CreateMoralPersonDto } from './create-moral-person.dto';
 
 export class CreateClientDto {
   @IsNotEmpty()
-  @IsEnum(PersonType)
-  personType: PersonType;
+  @IsEnum(PersonTypes)
+  personType: PersonTypes;
 
-  @ValidateIf((client) => client.personType === PersonType.physical)
+  @ValidateIf((client) => client.personType === PersonTypes.physical)
   @ValidateNested()
   @Type(() => CreatePhysicalPersonDto)
   physicalInfo: PhysicalPerson;
 
-  @ValidateIf((client) => client.personType === PersonType.moral)
+  @ValidateIf((client) => client.personType === PersonTypes.moral)
   @ValidateNested()
   @Type(() => CreateMoralPersonDto)
   moralInfo: MoralPerson;

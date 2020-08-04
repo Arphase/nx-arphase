@@ -9,7 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AuthEffects } from './auth/state';
-import { TokenInterceptor } from './core/interceptors/http-interceptor';
+import { TokenInterceptor } from './core/interceptors/token-interceptor';
 import { AdditionalEntityCollectionReducerMethodsFactory } from './entities';
 import { entityConfig } from './entities/entity.metadata';
 import { reducers } from './reducers';

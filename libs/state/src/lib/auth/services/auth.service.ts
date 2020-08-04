@@ -22,7 +22,7 @@ export class AuthService {
   ) {}
 
   signIn(payload: SignInRequest): Observable<User> {
-    return this.http.post<User>(`${this.config.apiUrl}/auth/sign-in`, payload);
+    return this.http.post<User>(`${this.config.apiUrl}/auth/signIn`, payload);
   }
 
   isAuthenticated(): Observable<boolean> {
@@ -30,5 +30,9 @@ export class AuthService {
       select(getAuthUserStateState),
       map((user) => !!user.token)
     );
+  }
+
+  getToken(): string {
+    return localStorage.getItem('token') || '';
   }
 }
