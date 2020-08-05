@@ -5,7 +5,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "commonjs",
-    "target": "es2017",
+    "target": "es2015",
     "paths": {
       "@api/*": ["apps/innovatech-api/src/app/*"],
       "@env/*": ["apps/innovatech-api/src/environments/*"],
