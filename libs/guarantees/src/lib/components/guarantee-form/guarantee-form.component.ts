@@ -94,6 +94,53 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
 
   ngOnInit() {
     this.moralInfoForm.disable();
+    this.form.patchValue({
+      client: {
+        personType: 1,
+        physicalInfo: {
+          name: 'TEST',
+          lastName: 'TEST',
+          secondLastName: 'AA',
+          birthDate: '2020-08-05T05:00:00.000Z',
+        },
+        moralInfo: {
+          businessName: null,
+          constitutionDate: null,
+          distributor: null,
+          adviser: null,
+        },
+        rfc: 'MAVV951102311',
+        phone: '2',
+        email: 'test@test.com',
+        address: {
+          zipCode: '64983',
+          country: 'M',
+          state: 'W',
+          city: 'W',
+          suburb: 'W',
+          street: 'W',
+          streetNumber: '22',
+        },
+        salesPlace: 'LOL',
+      },
+      vehicle: {
+        productType: 'P',
+        brand: 'P',
+        model: 'P',
+        version: 'P',
+        year: '2020',
+        invoiceDate: '2020-08-05T05:00:00.000Z',
+        vin: '22',
+        motorNumber: '2',
+        serialNumber: '22',
+        horsePower: '222',
+        kilometrageStart: '2',
+        kilometrageEnd: '22',
+      },
+      startDate: '2020-08-05T05:00:00.000Z',
+      endDate: '2020-08-05T05:00:00.000Z',
+      amount: '300',
+    });
   }
 
   personTypeChange(personType: MatRadioChange): void {
