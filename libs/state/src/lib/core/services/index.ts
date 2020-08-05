@@ -1,2 +1,3 @@
-export * from './ivt-collection.service';
+export * from './collection.service';
+export * from './data.service';
 export * from './loading.service';

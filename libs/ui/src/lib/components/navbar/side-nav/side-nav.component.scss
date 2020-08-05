@@ -1,0 +1,35 @@
+@import '../../../../styles/variables';
+
+@mixin menu-transition() {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.side-nav {
+  @include menu-transition();
+  width: $sidebar-width;
+  height: 100%;
+  background-color: $border-color;
+  overflow-x: hidden;
+}
+
+.collapsed-side-nav {
+  @include menu-transition();
+  width: $sidebar-width-collapsed;
+}
+
+.closed-side-nav-content {
+  @include menu-transition();
+  margin-left: $sidebar-width-collapsed !important;
+}
+
+.opened-side-nav-content {
+  @include menu-transition();
+  margin-left: $sidebar-width !important;
+}
+
+.menu-items-container {
+  color: $text-color;
+  font-size: $font-size;
+  padding-top: 100px;
+}

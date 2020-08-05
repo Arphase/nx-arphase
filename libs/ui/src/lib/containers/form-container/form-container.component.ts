@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IvtCollectionService } from '@ivt/state';
 import { EntityActionOptions, EntityOp, ofEntityOp } from '@ngrx/data';
 import { get } from 'lodash';
+import { ToastrService } from 'ngx-toastr';
 import { filter, mapTo, takeUntil } from 'rxjs/operators';
 
 import { IvtSubscriberComponent } from '../../components';
@@ -25,7 +26,8 @@ export class IvtFormContainerComponent<T = any> extends IvtSubscriberComponent {
 
   constructor(
     protected entityCollectionService: IvtCollectionService<T>,
-    @Optional() protected router?: Router
+    @Optional() protected router?: Router,
+    @Optional() protected toastr?: ToastrService
   ) {
     super();
     this.entityCollectionService.entityActions$
@@ -38,6 +40,22 @@ export class IvtFormContainerComponent<T = any> extends IvtSubscriberComponent {
         takeUntil(this.destroy$)
       )
       .subscribe(() => this.router.navigateByUrl(this.successUrl));
+
+    this.entityCollectionService.entityActions$
+      .pipe(
+        ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS),
+        filter(() => !!this.createSuccessMessage && !!this.toastr),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(() => this.toastr.success(this.createSuccessMessage));
+
+    this.entityCollectionService.entityActions$
+      .pipe(
+        ofEntityOp(EntityOp.SAVE_UPDATE_ONE_SUCCESS),
+        filter(() => !!this.updateSuccessMessage && !!this.toastr),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(() => this.toastr.success(this.updateSuccessMessage));
   }
 
   submit(item: T, entityActionOptions: EntityActionOptions = {}): void {

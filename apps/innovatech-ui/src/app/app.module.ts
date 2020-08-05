@@ -10,6 +10,7 @@ import {
 import { IvtUiModule } from '@ivt/ui';
 import { DefaultDataServiceConfig } from '@ngrx/data';
 import { NgxMaskModule } from 'ngx-mask';
+import { ToastrModule } from 'ngx-toastr';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,13 +34,13 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     IvtStateModule,
     IvtUiModule,
     NgxMaskModule.forRoot(),
+    ToastrModule.forRoot(),
   ],
   providers: [
     {
       provide: IVT_STATE_CONFIGURATION,
       useValue: IVT_STATE_CONFIGURATION_VALUE,
-    },
-    { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig },
+    }
   ],
   bootstrap: [AppComponent],
 })

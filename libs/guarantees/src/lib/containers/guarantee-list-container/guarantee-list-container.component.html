@@ -1,1 +1,3 @@
-<ivt-guarantee-list [list]="list$ | async"></ivt-guarantee-list>
+<ivt-guarantee-list [list]="list$ | async"
+                    (filterItems)="filterItems($event)">
+</ivt-guarantee-list>

@@ -26,7 +26,9 @@
   <div [hidden]="!showFilters"
        class="row mb-4">
     <div class="col bg-light py-3 rounded">
-      <ivt-date-filter label="Fecha"></ivt-date-filter>
+      <ivt-date-filter label="Fecha"
+                       (filterItems)="updateDateFilter($event)">
+      </ivt-date-filter>
     </div>
   </div>
 

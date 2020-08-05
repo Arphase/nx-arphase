@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Guarantee } from '@ivt/data';
 import { GuaranteeCollectionService } from '@ivt/state';
 import { IvtFormContainerComponent } from '@ivt/ui';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'ivt-guarantee-form-container',
@@ -12,9 +14,14 @@ import { IvtFormContainerComponent } from '@ivt/ui';
 export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<
   Guarantee
 > {
+  successUrl = '/spa/guarantees';
+  createSuccessMessage = 'La garantía se ha creado con éxito';
+
   constructor(
-    protected guaranteeCollectionService: GuaranteeCollectionService
+    protected guaranteeCollectionService: GuaranteeCollectionService,
+    protected router: Router,
+    protected toastr: ToastrService
   ) {
-    super(guaranteeCollectionService);
+    super(guaranteeCollectionService, router, toastr);
   }
 }

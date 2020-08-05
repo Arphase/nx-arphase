@@ -1,12 +1,13 @@
-import { createConnection, ConnectionOptions } from 'typeorm';
-import { UserRole } from '@ivt/data';
-import { AuthService } from '@api/auth/services/auth.service';
 import { SignUpCredentialsDto } from '@api/auth/dto/auth-credentials.dto';
-import { typeOrmConfig } from '../config/typeorm.config';
+import { AuthService } from '@api/auth/services/auth.service';
+import { UserRole } from '@ivt/data';
+import { ConnectionOptions, createConnection } from 'typeorm';
+
+import config from '../ormconfig';
 
 async function run() {
   const opt = {
-    ...typeOrmConfig,
+    ...config,
     debug: true,
   };
 

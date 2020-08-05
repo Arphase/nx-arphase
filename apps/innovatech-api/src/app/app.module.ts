@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-
-import { GuaranteesModule } from './guarantees';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmConfig } from '../config/typeorm.config';
 import { join } from 'path';
-import { AuthModule } from './auth/auth.module';
-import { ServeStaticModule } from '@nestjs/serve-static'; // <- INSERT LINE
+
+import config from '../db/ormconfig';
 import { AppController } from './app.controller';
+import { AuthModule } from './auth/auth.module';
+import { GuaranteesModule } from './guarantees';
 
 @Module({
   imports: [
@@ -14,10 +14,10 @@ import { AppController } from './app.controller';
       rootPath: join(__dirname, '..', 'innovatech-client'),
       exclude: ['/api*'],
     }),
-    TypeOrmModule.forRoot(typeOrmConfig),
+    TypeOrmModule.forRoot(config),
     AuthModule,
     GuaranteesModule,
   ],
-  controllers:[AppController]
+  controllers: [AppController],
 })
 export class AppModule {}
