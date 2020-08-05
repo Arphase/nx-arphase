@@ -1,4 +1,4 @@
-import { PersonTypes, GuaranteeStatus } from '@ivt/data';
+import { GuaranteeStatus, PersonTypes } from '@ivt/data';
 import {
   Injectable,
   InternalServerErrorException,
@@ -7,12 +7,11 @@ import {
 import * as htmlPdf from 'html-pdf';
 import moment from 'moment';
 import { Connection } from 'typeorm';
-import { v1 as uuidv1 } from 'uuid';
 
 import { GuaranteeEntity } from '../data/entities/guarantee.entity';
 import { GuaranteeRepository } from '../data/guarantee.repository';
-import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
+import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 
 @Injectable()
 export class GuaranteesService {
@@ -119,7 +118,7 @@ export class GuaranteesService {
         <p>Le damos la más cordial bienvenida Innovatech. Este programa ha sido diseñado pensando en brindarles protección contra desembolsos excesivos e
         imprevistos en caso de que su vehículo presente alguna avería mecánica de manera fortuita en sistemas eléctricos mecánicos o electrónicos</p>
         <p>Lo invitamos a consultar los términos, condiciones y exclusiones de la cobertura contratada de acuerdo a la carátula y los anexos de la presente.</p>
-        <p>Su número de Certificado de Garantía es: ${uuidv1()}</p>
+        <p>Su número de Certificado de Garantía es: ${guarantee.id}</p>
         <p>Ante cualquier duda, ponerse en contacto con el área de servicio al cliente.</p>
         <p>*Los datos introducidos tendrán que coincidir fehacientemente con los del vehículo objeto de garantía. En caso de error será motivo de rescisión del contrato.</p>
         <p><span class="bold">PUNTO DE VENTA:</span> ${

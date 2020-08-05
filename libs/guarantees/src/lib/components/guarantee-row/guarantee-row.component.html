@@ -17,6 +17,12 @@
   <div class="col-3">
     {{ item.endDate | date: "dd/MM/yyyy" }}
   </div>
-  <div class="col-3">
+  <div class="col flex-end">
+    <button mat-icon-button
+            matTooltip="Descargar PDF"
+            [loading]="loading"
+            (click)="downloadPdf.emit(item.id)">
+      <mat-icon>picture_as_pdf</mat-icon>
+    </button>
   </div>
 </ivt-row>

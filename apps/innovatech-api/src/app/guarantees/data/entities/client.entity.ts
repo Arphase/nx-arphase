@@ -1,23 +1,24 @@
 import {
-  Client,
   Address,
-  PhysicalPerson,
+  Client,
+  Guarantee,
   MoralPerson,
   PersonTypes,
-  Guarantee,
+  PhysicalPerson,
 } from '@ivt/data';
 import {
-  Entity,
   BaseEntity,
-  PrimaryGeneratedColumn,
   Column,
-  OneToOne,
+  Entity,
   JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
+
 import { AddressEntity } from './address.entity';
-import { PhysicalPersonEntity } from './physical-person.entity';
-import { MoralPersonEntity } from './moral-person.entity';
 import { GuaranteeEntity } from './guarantee.entity';
+import { MoralPersonEntity } from './moral-person.entity';
+import { PhysicalPersonEntity } from './physical-person.entity';
 
 @Entity('clients')
 export class ClientEntity extends BaseEntity implements Client {
@@ -57,7 +58,7 @@ export class ClientEntity extends BaseEntity implements Client {
   @Column()
   addressId: number;
 
-  @OneToOne((type) => AddressEntity, { cascade: true })
+  @OneToOne((type) => AddressEntity, { cascade: true, eager: true })
   @JoinColumn()
   address: Address;
 

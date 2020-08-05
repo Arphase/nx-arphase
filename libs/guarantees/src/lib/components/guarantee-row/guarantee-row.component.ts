@@ -1,7 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { Guarantee, GuaranteeStatus } from '@ivt/data';
 import { IvtRowComponent } from '@ivt/ui';
-import { Observable, Subject, timer } from 'rxjs';
+import { Subject, timer } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
 
 @Component({
@@ -10,8 +16,8 @@ import { map, switchMap, take } from 'rxjs/operators';
   styleUrls: ['./guarantee-row.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeRowComponent extends IvtRowComponent<Guarantee>
-  implements OnInit {
+export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> {
+  @Input() loading: boolean;
   statusLabels: Record<GuaranteeStatus, string> = {
     [GuaranteeStatus.cancelled]: 'Cancelada',
     [GuaranteeStatus.expired]: 'Caducada',
@@ -25,18 +31,16 @@ export class GuaranteeRowComponent extends IvtRowComponent<Guarantee>
     [GuaranteeStatus.paid]: 'bg-success',
   };
   guaranteeStatus = GuaranteeStatus;
-  visibleStatus$: Observable<boolean>;
+
   showStatusSubject = new Subject();
   showStatus$ = this.showStatusSubject.asObservable();
-
-  ngOnInit() {
-    this.visibleStatus$ = this.showStatus$.pipe(
-      switchMap(() =>
-        timer(0, 1000).pipe(
-          take(2),
-          map((x) => x % 2 === 0)
-        )
+  visibleStatus$ = this.showStatus$.pipe(
+    switchMap(() =>
+      timer(0, 1000).pipe(
+        take(2),
+        map((x) => x % 2 === 0)
       )
-    );
-  }
+    )
+  );
+  @Output() downloadPdf = new EventEmitter<number>();
 }
