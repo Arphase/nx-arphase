@@ -1,13 +1,12 @@
-<div class="d-flex flex-column min-vh-100 bg-light">
-  <ivt-menu-bar [name]="name$ | async"
-                [email]="email$ | async"
-                (logout)="logout()">
-  </ivt-menu-bar>
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col p-5">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
+<ivt-menu-bar [name]="name$ | async"
+              [email]="email$ | async"
+              (toggleNavbar)="onToggleNavbar()"
+              (logout)="logout()">
+</ivt-menu-bar>
+<ivt-side-nav [opened]="opened"
+              [menuItems]="menuItems"
+              (openMenu)="onOpenMenu()">
+  <div class="spa-content">
+    <router-outlet></router-outlet>
   </div>
-</div>
+</ivt-side-nav>
