@@ -1,2 +1,2 @@
 export * from './guarantee-collection.service';
-export * from './guarantees.service';
+export * from './guarantee-data.service';

@@ -40,8 +40,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     {
       provide: IVT_STATE_CONFIGURATION,
       useValue: IVT_STATE_CONFIGURATION_VALUE,
-    },
-    { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig },
+    }
   ],
   bootstrap: [AppComponent],
 })

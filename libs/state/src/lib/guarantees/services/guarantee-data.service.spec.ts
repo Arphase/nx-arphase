@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GuaranteesService } from './guarantees.service';
+import { GuaranteeDataService } from './guarantee-data.service';
 
-describe('GuaranteesService', () => {
-  let service: GuaranteesService;
+describe('GuaranteeDataService', () => {
+  let service: GuaranteeDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GuaranteesService);
+    service = TestBed.inject(GuaranteeDataService);
   });
 
   it('should be created', () => {

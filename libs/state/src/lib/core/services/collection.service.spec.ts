@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IvtCollectionService } from './ivt-collection.service';
+import { IvtCollectionService } from './collection.service';
 
 describe('IvtCollectionService', () => {
   let service: IvtCollectionService;

@@ -18,19 +18,19 @@ import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { GuaranteesService } from '../services/guarantees.service';
 
-@Controller()
+@Controller('guarantees')
 @UseGuards(AuthGuard())
 export class GuaranteesController {
   constructor(private guaranteesService: GuaranteesService) {}
 
-  @Get('guarantees')
+  @Get()
   async getGuarantees(
     @Query(ValidationPipe) filterDto: GetGuaranteesFilterDto
   ): Promise<GuaranteeEntity[]> {
     return this.guaranteesService.getGuarantees(filterDto);
   }
 
-  @Post('guarantee')
+  @Post()
   @UsePipes(ValidationPipe)
   async createGuarantee(@Body() createGuaranteeDto: CreateGuaranteeDto) {
     return this.guaranteesService.createGuarantee(createGuaranteeDto);
