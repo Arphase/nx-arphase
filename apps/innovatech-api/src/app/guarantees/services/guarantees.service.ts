@@ -24,11 +24,21 @@ export class GuaranteesService {
   }
 
   async getGuaranteeById(id: number): Promise<GuaranteeEntity> {
-    const found = await this.guaranteeRepository.findOne({ where: { id } });
+    const query = this.guaranteeRepository.createQueryBuilder('guarantee');
+    query
+      .leftJoinAndSelect('guarantee.client', 'client')
+      .leftJoinAndSelect('client.physicalInfo', 'physicalPerson')
+      .leftJoinAndSelect('client.moralInfo', 'moralPerson')
+      .leftJoinAndSelect('client.address', 'address')
+      .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
+
+    let found = await query.where('guarantee.id = :id', { id }).getOne();
+
     if (!found) {
       throw new NotFoundException(`Guarantee with id "${id}" not found`);
     }
 
+    found = this.omitInfo(found) as GuaranteeEntity;
     return found;
   }
 
@@ -302,6 +312,16 @@ export class GuaranteesService {
         throw new InternalServerErrorException(e);
       }
     });
+  }
+
+  async updateGuaranteeStatus(
+    id: number,
+    status: string
+  ): Promise<GuaranteeEntity> {
+    const guarantee = await this.getGuaranteeById(id);
+    guarantee.status = GuaranteeStatus[status];
+    await guarantee.save();
+    return guarantee;
   }
 
   omitInfo(
