@@ -10,6 +10,12 @@ import { IvtRowComponent } from '@ivt/ui';
 import { Subject, timer } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
 
+import {
+  backgroundClasses,
+  menuOptions,
+  statusLabels,
+} from './guarantee-row.constants';
+
 @Component({
   selector: 'ivt-guarantee-row',
   templateUrl: './guarantee-row.component.html',
@@ -18,20 +24,11 @@ import { map, switchMap, take } from 'rxjs/operators';
 })
 export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> {
   @Input() loading: boolean;
-  statusLabels: Record<GuaranteeStatus, string> = {
-    [GuaranteeStatus.cancelled]: 'Cancelada',
-    [GuaranteeStatus.expired]: 'Caducada',
-    [GuaranteeStatus.outstanding]: 'Pendiente de pago',
-    [GuaranteeStatus.paid]: 'Pagada',
-  };
-  backgroundClasses: Record<GuaranteeStatus, string> = {
-    [GuaranteeStatus.cancelled]: 'bg-alert',
-    [GuaranteeStatus.expired]: 'bg-info',
-    [GuaranteeStatus.outstanding]: 'bg-warning text-white',
-    [GuaranteeStatus.paid]: 'bg-success',
-  };
+  @Input() loadingStatusChange: boolean;
+  statusLabels = statusLabels;
+  backgroundClasses = backgroundClasses;
   guaranteeStatus = GuaranteeStatus;
-
+  menuOptions = menuOptions;
   showStatusSubject = new Subject();
   showStatus$ = this.showStatusSubject.asObservable();
   visibleStatus$ = this.showStatus$.pipe(
@@ -43,4 +40,9 @@ export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> {
     )
   );
   @Output() downloadPdf = new EventEmitter<number>();
+  @Output() changeStatus = new EventEmitter<Partial<Guarantee>>();
+
+  onChangeStatus(id: number, status: GuaranteeStatus): void {
+    this.changeStatus.emit({ id, status: GuaranteeStatus[status] });
+  }
 }

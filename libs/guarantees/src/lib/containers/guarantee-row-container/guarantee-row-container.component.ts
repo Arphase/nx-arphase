@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Guarantee } from '@ivt/data';
-import { GuaranteeDataService } from '@ivt/state';
+import { GuaranteeCollectionService, GuaranteeDataService } from '@ivt/state';
 import { IvtRowComponent } from '@ivt/ui';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
@@ -14,7 +14,14 @@ import { finalize, take } from 'rxjs/operators';
 export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
-  constructor(private guaranteeDataService: GuaranteeDataService) {
+
+  loadingStatusChangeSubject = new BehaviorSubject<boolean>(false);
+  loadingStatusChange$ = this.loadingStatusChangeSubject.asObservable();
+
+  constructor(
+    private guaranteeCollectiionService: GuaranteeCollectionService,
+    private guaranteeDataService: GuaranteeDataService
+  ) {
     super();
   }
 
@@ -25,6 +32,17 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
       .pipe(
         take(1),
         finalize(() => this.loadingSubject.next(false))
+      )
+      .subscribe();
+  }
+
+  changeStatus(guarantee: Partial<Guarantee>): void {
+    this.loadingStatusChangeSubject.next(true);
+    this.guaranteeCollectiionService
+      .update(guarantee)
+      .pipe(
+        take(1),
+        finalize(() => this.loadingStatusChangeSubject.next(false))
       )
       .subscribe();
   }
