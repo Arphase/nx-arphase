@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  fromAuth,
+  getAuthUserEmailState,
+  getAuthUserNameState,
+} from '@ivt/state';
+import { select, Store } from '@ngrx/store';
 
 @Component({
   selector: 'ivt-spa',
@@ -6,8 +12,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./spa.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SpaComponent implements OnInit {
-  constructor() {}
+export class SpaComponent {
+  name$ = this.store.pipe(select(getAuthUserNameState));
+  email$ = this.store.pipe(select(getAuthUserEmailState));
+  constructor(private store: Store<any>) {}
 
-  ngOnInit(): void {}
+  logout(): void {
+    this.store.dispatch(fromAuth.actions.logout());
+  }
 }

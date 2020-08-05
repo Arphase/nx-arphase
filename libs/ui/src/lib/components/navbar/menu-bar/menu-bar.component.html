@@ -1,0 +1,22 @@
+<div class="menu-bar">
+  <button mat-icon-button
+          class="menu-bar__toggle"
+          aria-label="Menu"
+          (click)="toggleNavbar.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+
+  <img src="assets/img/innovatech_logo.png"
+       class="img-fluid menu-bar__logo"
+       alt="Company Logo">
+
+  <div class="menu-bar__content">
+    <ng-content></ng-content>
+  </div>
+
+  <ivt-profile-menu [name]="name"
+                    [email]="email"
+                    (logout)="logout.emit()">
+  </ivt-profile-menu>
+</div>
