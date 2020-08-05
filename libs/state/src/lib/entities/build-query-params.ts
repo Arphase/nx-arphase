@@ -15,7 +15,7 @@ export function buildQueryParams(queryParams: IvtQueryParams): HttpParams {
   }
 
   if (queryParams.noDates) {
-    params = omit(params, ['start_date', 'end_date', 'noDates', 'date_type']);
+    params = omit(params, ['startDate', 'endDate', 'noDates', 'dateType']);
   }
 
   if (queryParams.noLimit) {
@@ -32,11 +32,11 @@ export function buildQueryParams(queryParams: IvtQueryParams): HttpParams {
     queryParams.dates.startDate &&
     queryParams.dates.endDate
   ) {
-    params.start_date = parseDate(queryParams.dates.startDate);
-    params.end_date = parseDate(queryParams.dates.endDate);
+    params.startDate = parseDate(queryParams.dates.startDate);
+    params.endDate = parseDate(queryParams.dates.endDate);
 
     if (queryParams.dates.dateType) {
-      params.date_type = queryParams.dates.dateType;
+      params.dateType = queryParams.dates.dateType;
     }
   }
 
