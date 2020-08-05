@@ -10,6 +10,7 @@ import {
   UseGuards,
   UsePipes,
   ValidationPipe,
+  Patch,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -17,6 +18,8 @@ import { GuaranteeEntity } from '../data/entities/guarantee.entity';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { GuaranteesService } from '../services/guarantees.service';
+import { GuaranteeStatusValidationPipe } from '../pipes/guarantee-status-validation.pipe';
+import { GuaranteeStatus } from '@ivt/data';
 
 @Controller('guarantees')
 @UseGuards(AuthGuard())
@@ -42,5 +45,13 @@ export class GuaranteesController {
     @Res() response: Response
   ) {
     return this.guaranteesService.generatePdf(id, response);
+  }
+
+  @Patch(':id/status')
+  updateCommentStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('status', GuaranteeStatusValidationPipe) status: string
+  ): Promise<GuaranteeEntity> {
+    return this.guaranteesService.updateGuaranteeStatus(id, status);
   }
 }
