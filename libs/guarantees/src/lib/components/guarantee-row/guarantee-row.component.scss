@@ -16,11 +16,18 @@
   left: 6px;
   transform-origin: left;
   overflow: hidden;
-  transition: transform 0.3s ease-out;
+  transition: transform 0.25s ease-out;
   transform: scaleX(1);
   width: 100px;
 }
 
 .collapsed {
   transform: scaleX(0);
+}
+
+.status-option {
+  height: 24px;
+  span {
+    height: 24px;
+  }
 }

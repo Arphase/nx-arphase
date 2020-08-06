@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
 import { Guarantee, PersonTypes } from '@ivt/data';
-import { IvtFormComponent } from '@ivt/ui';
+import { createAddressForm, IvtFormComponent } from '@ivt/ui';
 import { CustomValidators } from '@ivt/utils';
 
 @Component({
@@ -61,15 +61,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
         rfc: [null, [Validators.required, CustomValidators.rfc('any')]],
         phone: [null, Validators.required],
         email: [null, [Validators.required, Validators.email]],
-        address: this.fb.group({
-          zipCode: [null, Validators.required],
-          country: [null, Validators.required],
-          state: [null, Validators.required],
-          city: [null, Validators.required],
-          suburb: [null, Validators.required],
-          street: [null, Validators.required],
-          streetNumber: [null, Validators.required],
-        }),
+        address: createAddressForm(),
         salesPlace: [null, Validators.required],
       }),
       vehicle: this.fb.group({
@@ -113,13 +105,14 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
         phone: '2',
         email: 'test@test.com',
         address: {
-          zipCode: '64983',
+          zipcode: '64983',
           country: 'M',
           state: 'W',
           city: 'W',
           suburb: 'W',
           street: 'W',
-          streetNumber: '22',
+          externalNumber: '22',
+          internalNumber: '22',
         },
         salesPlace: 'LOL',
       },

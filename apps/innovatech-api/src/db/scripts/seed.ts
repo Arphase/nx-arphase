@@ -1,6 +1,8 @@
 import { SignUpCredentialsDto } from '@api/auth/dto/auth-credentials.dto';
 import { AuthService } from '@api/auth/services/auth.service';
 import { UserRole } from '@ivt/data';
+import fs from 'fs';
+import path from 'path';
 import { ConnectionOptions, createConnection } from 'typeorm';
 
 import config from '../ormconfig';
@@ -22,11 +24,25 @@ async function run() {
     password: 'Innovatech123@',
     role: UserRole.superAdmin,
   };
-  const work = authService
-    .signUp(superAdmin)
-    .then((r) => (console.log('done ->', r.email), r));
 
-  return await work;
+  try {
+    await authService.signUp(superAdmin);
+    console.log('Users seeded!');
+  } catch (e) {
+    console.log('Users seeded!');
+  }
+
+  const queryRunner = connection.createQueryRunner();
+
+  const filePath = path.join(__dirname, 'sepomex-catalog.sql');
+
+  fs.readFile(filePath, 'utf8', async (error, data: string) => {
+    if (!error) {
+      await queryRunner.query(data);
+    } else {
+      console.log(error);
+    }
+  });
 }
 
 run()

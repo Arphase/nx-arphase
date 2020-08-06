@@ -1,6 +1,6 @@
 export interface Address {
   id: number;
-  zipCode: number;
+  zipcode: number;
   country: string;
   state: string;
   city: string;

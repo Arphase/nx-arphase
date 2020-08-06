@@ -174,63 +174,7 @@
               </ivt-form-field>
             </div>
           </div>
-
-          <form [formGroup]="addressForm">
-            <div class="row">
-              <div class="col-lg-4 col-12">
-                <ivt-form-field label="Código Postal">
-                  <input ivtInput
-                         formControlName="zipCode">
-                </ivt-form-field>
-              </div>
-              <div class="col-lg-4 col-12">
-                <ivt-form-field label="País">
-                  <input ivtInput
-                         ivtUppercase
-                         formControlName="country">
-                </ivt-form-field>
-              </div>
-              <div class="col-lg-4 col-12">
-                <ivt-form-field label="Estado">
-                  <input ivtInput
-                         ivtUppercase
-                         formControlName="state">
-                </ivt-form-field>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-lg-4 col-12">
-                <ivt-form-field label="Municipio">
-                  <input ivtInput
-                         ivtUppercase
-                         formControlName="city">
-                </ivt-form-field>
-              </div>
-              <div class="col-lg-4 col-12">
-                <ivt-form-field label="Colonia">
-                  <input ivtInput
-                         ivtUppercase
-                         formControlName="suburb">
-                </ivt-form-field>
-              </div>
-              <div class="col-lg-4 col-12">
-                <ivt-form-field label="Calle">
-                  <input ivtInput
-                         ivtUppercase
-                         formControlName="street">
-                </ivt-form-field>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-4 col-12">
-                <ivt-form-field label="Número">
-                  <input ivtInput
-                         formControlName="streetNumber">
-                </ivt-form-field>
-              </div>
-            </div>
-          </form>
+          <ivt-address-form [form]="addressForm"></ivt-address-form>
         </form>
       </ivt-expansion-panel>
 

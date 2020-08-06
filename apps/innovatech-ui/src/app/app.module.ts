@@ -8,7 +8,6 @@ import {
   IvtStateModule,
 } from '@ivt/state';
 import { IvtUiModule } from '@ivt/ui';
-import { DefaultDataServiceConfig } from '@ngrx/data';
 import { NgxMaskModule } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -18,10 +17,7 @@ import { AppComponent } from './app.component';
 
 const IVT_STATE_CONFIGURATION_VALUE: IvtStateConfiguration = {
   apiUrl: environment.apiUrl,
-};
-
-const defaultDataServiceConfig: DefaultDataServiceConfig = {
-  root: environment.apiUrl,
+  sepomexApi: environment.sepomexApi,
 };
 
 @NgModule({
@@ -40,7 +36,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     {
       provide: IVT_STATE_CONFIGURATION,
       useValue: IVT_STATE_CONFIGURATION_VALUE,
-    }
+    },
   ],
   bootstrap: [AppComponent],
 })

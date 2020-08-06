@@ -28,9 +28,11 @@
               xPosition="before">
       <button *ngFor="let menuOption of menuOptions"
               mat-menu-item
-              class="my-2"
+              class="status-option my-2"
               (click)="onChangeStatus(item.id, menuOption.value)">
-        <span class="{{ menuOption.class }} text-white text-center rounded d-block">{{ menuOption.label }}</span>
+        <span class="{{ menuOption.class }} text-white text-center rounded flex-center">
+          {{ menuOption.label }}
+        </span>
       </button>
     </mat-menu>
     <button mat-icon-button
