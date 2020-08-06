@@ -1,8 +1,8 @@
 @import '../../../../styles/variables';
 
 @mixin menu-transition() {
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
 }
 
 .side-nav {
