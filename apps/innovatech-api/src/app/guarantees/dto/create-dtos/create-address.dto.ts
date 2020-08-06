@@ -3,7 +3,7 @@ import { IsNotEmpty, IsNumberString, IsString } from 'class-validator';
 export class CreateAddressDto {
   @IsNotEmpty()
   @IsNumberString()
-  zipCode: number;
+  zipcode: number;
 
   @IsNotEmpty()
   @IsString()
