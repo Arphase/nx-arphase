@@ -1,0 +1,6 @@
+<ivt-guarantee-row [loading]="loading$ | async"
+                   [loadingStatusChange]="loadingStatusChange$ | async"
+                   [item]="item"
+                   (downloadPdf)="downloadPdf($event)"
+                   (changeStatus)="changeStatus($event)">
+</ivt-guarantee-row>

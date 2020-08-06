@@ -6,7 +6,7 @@ export interface Guarantee {
   client: Client;
   vehicle: Vehicle;
   createdAt: Date;
-  status: GuaranteeStatus;
+  status: GuaranteeStatus | string;
   paymentOrder: string;
   startDate: Date;
   endDate: Date;

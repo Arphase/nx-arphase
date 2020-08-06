@@ -1,5 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Guarantee, GuaranteeStatus } from '@ivt/data';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
+import { Guarantee } from '@ivt/data';
 import { IvtColumns, IvtListComponent } from '@ivt/ui';
 
 @Component({
@@ -36,4 +41,5 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> {
       alignment: 'right',
     },
   ];
+  @Output() downloadPdf = new EventEmitter<number>();
 }

@@ -17,6 +17,27 @@
   <div class="col-3">
     {{ item.endDate | date: "dd/MM/yyyy" }}
   </div>
-  <div class="col-3">
+  <div class="col flex-end">
+    <button mat-icon-button
+            matTooltip="Cambiar estatus"
+            [matMenuTriggerFor]="menu"
+            [loading]="loadingStatusChange">
+      <mat-icon>published_with_changes</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu"
+              xPosition="before">
+      <button *ngFor="let menuOption of menuOptions"
+              mat-menu-item
+              class="my-2"
+              (click)="onChangeStatus(item.id, menuOption.value)">
+        <span class="{{ menuOption.class }} text-white text-center rounded d-block">{{ menuOption.label }}</span>
+      </button>
+    </mat-menu>
+    <button mat-icon-button
+            matTooltip="Descargar PDF"
+            [loading]="loading"
+            (click)="downloadPdf.emit(item.id)">
+      <mat-icon>picture_as_pdf</mat-icon>
+    </button>
   </div>
 </ivt-row>

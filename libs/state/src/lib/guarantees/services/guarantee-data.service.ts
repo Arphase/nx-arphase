@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Guarantee } from '@ivt/data';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { saveAs } from 'file-saver';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { IvtDataService } from '../../core';
@@ -16,6 +16,9 @@ import {
   providedIn: 'root',
 })
 export class GuaranteeDataService extends IvtDataService<Guarantee> {
+  loadingSubject = new BehaviorSubject<boolean>(false);
+  loading$ = this.loadingSubject.asObservable;
+
   constructor(
     protected http: HttpClient,
     protected httpUrlGenerator: HttpUrlGenerator,
@@ -26,15 +29,15 @@ export class GuaranteeDataService extends IvtDataService<Guarantee> {
     this.entitiesUrl = `${this.config.apiUrl}/guarantees/`;
   }
 
-  getGuaranteePdf(payload): Observable<any> {
+  getGuaranteePdf(id: number): Observable<any> {
     return this.http
-      .post(`${this.config.apiUrl}/guarantees`, payload, {
+      .get(`${this.config.apiUrl}/guarantees/${id}/pdf`, {
         responseType: 'blob',
       })
       .pipe(
         tap((file) => {
           const blob = new Blob([file], { type: 'application/octet-stream' });
-          saveAs(blob, 'Garantia.pdf');
+          saveAs(blob, `${id}.pdf`);
         })
       );
   }
