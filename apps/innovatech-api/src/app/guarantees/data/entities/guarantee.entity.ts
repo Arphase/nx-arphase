@@ -18,12 +18,14 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @OneToOne((type) => ClientEntity, (client) => client.guarantee, {
     eager: true,
     cascade: true,
+    onDelete: 'CASCADE',
   })
   client: Client;
 
   @OneToOne((type) => VehicleEntity, (vehicle) => vehicle.guarantee, {
     eager: true,
     cascade: true,
+    onDelete: 'CASCADE',
   })
   vehicle: Vehicle;
 
@@ -31,7 +33,7 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   createdAt: Date;
 
   @Column({ type: 'enum', enum: GuaranteeStatus })
-  status: GuaranteeStatus;
+  status: GuaranteeStatus | string;
 
   @Column()
   paymentOrder: string;

@@ -37,12 +37,13 @@ export class ClientEntity extends BaseEntity implements Client {
   @OneToOne(
     (type) => PhysicalPersonEntity,
     (physicalPerson) => physicalPerson.client,
-    { cascade: true }
+    { cascade: true, onDelete: 'CASCADE' }
   )
   physicalInfo: PhysicalPerson;
 
   @OneToOne((type) => MoralPersonEntity, (moralPerson) => moralPerson.client, {
     cascade: true,
+    onDelete: 'CASCADE',
   })
   moralInfo: MoralPerson;
 

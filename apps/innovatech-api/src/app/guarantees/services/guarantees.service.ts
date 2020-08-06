@@ -12,6 +12,7 @@ import { GuaranteeEntity } from '../data/entities/guarantee.entity';
 import { GuaranteeRepository } from '../data/guarantee.repository';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
+import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 
 @Injectable()
 export class GuaranteesService {
@@ -314,14 +315,21 @@ export class GuaranteesService {
     });
   }
 
-  async updateGuaranteeStatus(
+  async updateGuarantee(
     id: number,
-    status: string
+    updateGuaranteeDto: UpdateGuaranteeDto
   ): Promise<GuaranteeEntity> {
-    const guarantee = await this.getGuaranteeById(id);
-    guarantee.status = GuaranteeStatus[status];
-    await guarantee.save();
-    return guarantee;
+    await this.guaranteeRepository.update(id, updateGuaranteeDto);
+    const updatedGuarantee = await this.getGuaranteeById(id);
+    return updatedGuarantee;
+  }
+
+  async deleteGuarantee(id: number): Promise<void> {
+    const result = await this.guaranteeRepository.delete(id);
+
+    if (!result.affected) {
+      throw new NotFoundException(`Guarantee with ID "${id}" not found`);
+    }
   }
 
   omitInfo(
