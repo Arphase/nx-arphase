@@ -17,6 +17,7 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
 
   @OneToOne((type) => GuaranteeEntity, (guarantee) => guarantee.vehicle, {
     eager: false,
+    onDelete: 'CASCADE'
   })
   @JoinColumn({ name: 'guaranteeId' })
   guarantee: Guarantee;

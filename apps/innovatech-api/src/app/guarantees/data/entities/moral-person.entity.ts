@@ -1,13 +1,13 @@
-import { MoralPerson, Client } from '@ivt/data';
+import { Client, MoralPerson } from '@ivt/data';
 import {
-  Entity,
   BaseEntity,
   Column,
-  OneToOne,
+  Entity,
   JoinColumn,
-  PrimaryColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+
 import { ClientEntity } from './client.entity';
 
 @Entity('moralPersons')
@@ -18,8 +18,10 @@ export class MoralPersonEntity extends BaseEntity implements MoralPerson {
   @Column()
   clientId: number;
 
-  @OneToOne((type) => ClientEntity, (client) => client.moralInfo)
-  @JoinColumn()
+  @OneToOne(() => ClientEntity, (client) => client.moralInfo, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'clientId' })
   client: Client;
 
   @Column()

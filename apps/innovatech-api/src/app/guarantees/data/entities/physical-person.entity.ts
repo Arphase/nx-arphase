@@ -1,13 +1,13 @@
-import { PhysicalPerson, Client } from '@ivt/data';
+import { Client, PhysicalPerson } from '@ivt/data';
 import {
-  Entity,
   BaseEntity,
   Column,
-  OneToOne,
+  Entity,
   JoinColumn,
-  PrimaryColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+
 import { ClientEntity } from './client.entity';
 
 @Entity('physicalPersons')
@@ -15,11 +15,10 @@ export class PhysicalPersonEntity extends BaseEntity implements PhysicalPerson {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  clientId: number;
-
-  @OneToOne((type) => ClientEntity, (client) => client.physicalInfo)
-  @JoinColumn()
+  @OneToOne(() => ClientEntity, (client) => client.physicalInfo, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'clientId' })
   client: Client;
 
   @Column()
