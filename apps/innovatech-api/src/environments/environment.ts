@@ -6,7 +6,7 @@ export const environment: Environment = {
     type: 'postgres',
     host: 'localhost',
     port: 5432,
-    database: 'ivt_dev',
+    database: 'innovatech_dev',
     synchronize: true,
   },
   server: {

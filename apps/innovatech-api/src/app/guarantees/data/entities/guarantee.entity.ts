@@ -17,14 +17,14 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
 
   @OneToOne((type) => ClientEntity, (client) => client.guarantee, {
     eager: true,
-    cascade: true,
+    onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
   })
   client: Client;
 
   @OneToOne((type) => VehicleEntity, (vehicle) => vehicle.guarantee, {
     eager: true,
-    cascade: true,
+    onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
   })
   vehicle: Vehicle;

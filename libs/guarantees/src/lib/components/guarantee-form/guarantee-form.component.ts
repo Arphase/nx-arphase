@@ -105,7 +105,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
         phone: '2',
         email: 'test@test.com',
         address: {
-          zipcode: '64983',
+          zipCode: '64983',
           country: 'M',
           state: 'W',
           city: 'W',

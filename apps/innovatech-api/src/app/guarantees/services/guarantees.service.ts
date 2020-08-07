@@ -141,7 +141,7 @@ export class GuaranteesService {
         } ${guarantee.client.address.streetNumber}, ${
       guarantee.client.address.suburb
     }. ${guarantee.client.address.city}, ${guarantee.client.address.state}. ${
-      guarantee.client.address.zipcode
+      guarantee.client.address.zipCode
     } </p>
         <p><span class="bold">TELEFONO:</span> ${guarantee.client.phone}</p>
         <p><span class="bold">EMAIL:</span> ${guarantee.client.email}</p>

@@ -12,9 +12,9 @@ export class IvtAddressFormService {
     @Inject(IVT_STATE_CONFIGURATION) public config: IvtStateConfiguration
   ) {}
 
-  getZipCodeInfo(zipcode: string): Observable<any> {
+  getZipCodeInfo(zipCode: string): Observable<any> {
     return this.http
-      .get(`${this.config.sepomexApi}/query/info_cp/${zipcode}`, {
+      .get(`${this.config.sepomexApi}/query/info_cp/${zipCode}`, {
         headers: { accept: 'application/json' },
       })
       .pipe(catchError(() => of(true)));
@@ -23,7 +23,7 @@ export class IvtAddressFormService {
 
 export function createAddressForm(): FormGroup {
   return new FormGroup({
-    zipcode: new FormControl('', Validators.required),
+    zipCode: new FormControl('', Validators.required),
     country: new FormControl('', Validators.required),
     state: new FormControl('', Validators.required),
     city: new FormControl('', Validators.required),

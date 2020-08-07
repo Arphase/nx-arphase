@@ -23,7 +23,7 @@ const config: ConnectionOptions = {
   type: 'postgres',
   host: 'localhost',
   port: 5432,
-  database: 'ivt_dev',
+  database: 'innovatech_dev',
   entities: ENTITIES,
 
   // We are using migrations, synchronize should be set to false.
@@ -31,7 +31,7 @@ const config: ConnectionOptions = {
   // Allow both start:prod and start:dev to use migrations
   // __dirname is either dist or src folder, meaning either
   // the compiled js in prod or the ts in dev.
-  migrations: ['apps/innovatech-api/src/db/migrations/**/*{.ts,.js}'],
+  migrations: ['apps/innovatech-api/src/db/migrations/**/*.ts'],
   cli: {
     // Location of migration should be inside src folder
     // to be compiled into dist/ folder.
