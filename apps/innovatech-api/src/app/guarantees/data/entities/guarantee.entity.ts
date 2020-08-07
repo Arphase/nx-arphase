@@ -31,7 +31,7 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   createdAt: Date;
 
   @Column({ type: 'enum', enum: GuaranteeStatus })
-  status: GuaranteeStatus;
+  status: GuaranteeStatus | string;
 
   @Column()
   paymentOrder: string;

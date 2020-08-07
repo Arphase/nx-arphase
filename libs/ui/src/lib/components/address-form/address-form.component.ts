@@ -27,11 +27,11 @@ export class IvtAddressFormComponent extends IvtFormComponent<Address>
 
   ngOnInit(): void {
     this.form
-      .get('zipcode')
+      .get('zipCode')
       .valueChanges.pipe(
         filter((value) => value && value.length === 5),
         takeUntil(this.destroy$),
-        switchMap((zipcode) => this.addressFormService.getZipCodeInfo(zipcode)),
+        switchMap((zipCode) => this.addressFormService.getZipCodeInfo(zipCode)),
         catchError((e) => of(true))
       )
       .subscribe((zipCodeResponse) => console.log(zipCodeResponse));

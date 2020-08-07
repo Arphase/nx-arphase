@@ -11,14 +11,17 @@ import {
   UseGuards,
   UsePipes,
   ValidationPipe,
+  Put,
+  Delete,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { GuaranteeEntity } from '../data/entities/guarantee.entity';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
-import { GuaranteeStatusValidationPipe } from '../pipes/guarantee-status-validation.pipe';
 import { GuaranteesService } from '../services/guarantees.service';
+import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
+import { GuaranteeStatusValidationPipe } from '../pipes/guarantee-status-validation.pipe';
 
 @Controller('guarantees')
 @UseGuards(AuthGuard())
@@ -46,11 +49,18 @@ export class GuaranteesController {
     return this.guaranteesService.generatePdf(id, response);
   }
 
-  @Patch(':id/status')
-  updateCommentStatus(
+  @Put(':id')
+  updateGuarantee(
     @Param('id', ParseIntPipe) id: number,
-    @Body('status', GuaranteeStatusValidationPipe) status: string
+    @Body(GuaranteeStatusValidationPipe) updateGuaranteeDto: UpdateGuaranteeDto
   ): Promise<GuaranteeEntity> {
-    return this.guaranteesService.updateGuaranteeStatus(id, status);
+    return this.guaranteesService.updateGuarantee(id, updateGuaranteeDto);
+  }
+
+  @Delete(':id')
+  deleteGuarantee(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<void> {
+    return this.guaranteesService.deleteGuarantee(id);
   }
 }

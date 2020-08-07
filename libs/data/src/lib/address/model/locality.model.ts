@@ -4,5 +4,5 @@ export interface Locality {
   city: string;
   suburb: string;
   state: string;
-  zipcode: string;
+  zipCode: string;
 }
