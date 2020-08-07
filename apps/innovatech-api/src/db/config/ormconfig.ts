@@ -6,7 +6,7 @@ const config: ConnectionOptions = {
   type: 'postgres',
   host: 'localhost',
   port: 5432,
-  database: 'ivt_dev',
+  database: 'innovatech_dev',
   entities: ENTITIES,
 
   // We are using migrations, synchronize should be set to false.
