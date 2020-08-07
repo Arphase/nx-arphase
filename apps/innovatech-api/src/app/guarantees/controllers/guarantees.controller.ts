@@ -57,10 +57,10 @@ export class GuaranteesController {
     return this.guaranteesService.updateGuarantee(id, updateGuaranteeDto);
   }
 
-  @Delete(':id')
-  deleteGuarantee(
-    @Param('id', ParseIntPipe) id: number,
-  ): Promise<void> {
-    return this.guaranteesService.deleteGuarantee(id);
-  }
+  // @Delete(':id')
+  // deleteGuarantee(
+  //   @Param('id', ParseIntPipe) id: number,
+  // ): Promise<void> {
+  //   return this.guaranteesService.deleteGuarantee(id);
+  // }
 }
