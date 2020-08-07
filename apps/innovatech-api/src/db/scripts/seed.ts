@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import { ConnectionOptions, createConnection } from 'typeorm';
 
-import config from '../ormconfig';
+import config from '../config/ormconfig';
 
 async function run() {
   const opt = {
