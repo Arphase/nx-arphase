@@ -14,6 +14,10 @@ import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 
+const dir = {
+  asc: 'ASC',
+  desc: 'DESC',
+};
 @Injectable()
 export class GuaranteesService {
   guaranteeRepository: GuaranteeRepository;
@@ -46,7 +50,16 @@ export class GuaranteesService {
   async getGuarantees(
     filterDto: GetGuaranteesFilterDto
   ): Promise<GuaranteeEntity[]> {
-    const { limit, offset, startDate, endDate, text, amount } = filterDto;
+    const {
+      limit,
+      offset,
+      sort,
+      direction,
+      startDate,
+      endDate,
+      text,
+      amount,
+    } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     let guarantees: GuaranteeEntity[];
 
@@ -76,7 +89,7 @@ export class GuaranteesService {
     // if (amount) {
     // }
 
-    guarantees = await query
+    query
       .groupBy('guarantee.id')
       .addGroupBy('client.id')
       .addGroupBy('address.id')
@@ -84,9 +97,13 @@ export class GuaranteesService {
       .addGroupBy('physicalPerson.id')
       .addGroupBy('moralPerson.id')
       .take(limit)
-      .skip(offset)
-      .getMany();
+      .skip(offset);
 
+    if (sort && direction) {
+      query.orderBy(`guarantee.${sort}`, dir[direction]);
+    }
+
+    guarantees = await query.getMany();
     guarantees.map((guarantee) => this.omitInfo(guarantee));
     return guarantees;
   }

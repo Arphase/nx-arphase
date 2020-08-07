@@ -13,6 +13,14 @@ export class GetGuaranteesFilterDto {
 
   @IsOptional()
   @IsNotEmpty()
+  sort: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  direction: string;
+
+  @IsOptional()
+  @IsNotEmpty()
   startDate: string;
 
   @IsOptional()
