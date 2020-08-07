@@ -1,45 +1,48 @@
-<div class="row">
+<div class="row py-5">
   <div class="col-6 offset-3">
     <mat-card>
       <form [formGroup]="form"
             (ngSubmit)="submit()">
-        <mat-card-header class="py-3 flex-center">
-          <mat-card-title>
-            Iniciar sesión
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <div class="row">
-            <div class="col">
-              <ivt-form-field label="Correo">
-                <input ivtInput
-                       formControlName="email">
-              </ivt-form-field>
-            </div>
+        <div class="row py-5">
+          <div class="col text-center">
+            <h1 class="text-secondary h2">
+              Bienvenido a Innovatech
+            </h1>
+            <p class="text-muted">
+              Introduce tu correo y contraseña para acceder al portal.
+            </p>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="col">
-              <ivt-form-field label="Contraseña">
-                <input ivtInput
-                       type="password"
-                       formControlName="password">
-              </ivt-form-field>
-            </div>
+        <div class="row">
+          <div class="col">
+            <ivt-form-field label="Correo">
+              <input ivtInput
+                     formControlName="email">
+            </ivt-form-field>
           </div>
-        </mat-card-content>
-        <mat-card-actions>
-          <div class="row">
-            <div class="col flex-end">
-              <button mat-raised-button
-                      type="submit"
-                      color="primary"
-                      [loading]="loading">
-                Iniciar sesión
-              </button>
-            </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <ivt-form-field label="Contraseña">
+              <input ivtInput
+                     type="password"
+                     formControlName="password">
+            </ivt-form-field>
           </div>
-        </mat-card-actions>
+        </div>
+        <div class="row py-3">
+          <div class="col flex-end">
+            <button mat-raised-button
+                    class="w-100 py-2"
+                    type="submit"
+                    color="primary"
+                    [loading]="loading">
+              Iniciar sesión
+            </button>
+          </div>
+        </div>
       </form>
     </mat-card>
   </div>

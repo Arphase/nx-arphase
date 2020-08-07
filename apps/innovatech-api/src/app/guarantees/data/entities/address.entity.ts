@@ -7,7 +7,7 @@ export class AddressEntity extends BaseEntity implements Address {
   id: number;
 
   @Column()
-  zipCode: number;
+  zipcode: number;
 
   @Column()
   country: string;

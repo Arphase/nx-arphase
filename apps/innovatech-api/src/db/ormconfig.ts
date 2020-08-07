@@ -1,6 +1,7 @@
 import { AddressEntity } from '@api/guarantees/data/entities/address.entity';
 import { ClientEntity } from '@api/guarantees/data/entities/client.entity';
 import { GuaranteeEntity } from '@api/guarantees/data/entities/guarantee.entity';
+import { LocalityEntity } from '@api/guarantees/data/entities/locality.entity';
 import { MoralPersonEntity } from '@api/guarantees/data/entities/moral-person.entity';
 import { PhysicalPersonEntity } from '@api/guarantees/data/entities/physical-person.entity';
 import { VehicleEntity } from '@api/guarantees/data/entities/vechicle.entity';
@@ -9,6 +10,7 @@ import { ConnectionOptions } from 'typeorm';
 
 const ENTITIES = [
   AddressEntity,
+  LocalityEntity,
   UserEntity,
   GuaranteeEntity,
   ClientEntity,
@@ -29,7 +31,7 @@ const config: ConnectionOptions = {
   // Allow both start:prod and start:dev to use migrations
   // __dirname is either dist or src folder, meaning either
   // the compiled js in prod or the ts in dev.
-  migrations: ['apps/innovatech-api/src/db/migrations/**/*{.ts}'],
+  migrations: ['apps/innovatech-api/src/db/migrations/**/*{.ts,.js}'],
   cli: {
     // Location of migration should be inside src folder
     // to be compiled into dist/ folder.
