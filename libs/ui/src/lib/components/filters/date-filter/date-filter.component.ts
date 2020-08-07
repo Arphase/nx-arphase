@@ -52,8 +52,8 @@ export class IvtDateFilterComponent extends IvtFilterComponent implements OnInit
     this.control.valueChanges
       .pipe(
         tap(({ startDate, endDate, dateType }) => {
-          this.startDate = moment(startDate).format('DD/MM/YYYY');
-          this.endDate = moment(endDate).format('DD/MM/YYYY');
+          this.startDate = moment(startDate).format('YYYY-MM-DD');
+          this.endDate = moment(endDate).format('YYYY-MM-DD');
           this.dateType = dateType;
           this.setFilter();
         })
@@ -61,8 +61,8 @@ export class IvtDateFilterComponent extends IvtFilterComponent implements OnInit
       .subscribe();
 
     if (this.value) {
-      this.control.get('startDate').patchValue(moment(this.value.startDate, 'DD/MM/YYYY').toDate(), { emitEvent: false });
-      this.control.get('endDate').patchValue(moment(this.value.endDate, 'DD/MM/YYYY').toDate(), { emitEvent: false });
+      this.control.get('startDate').patchValue(moment(this.value.startDate, 'YYYY-MM-DD').toDate(), { emitEvent: false });
+      this.control.get('endDate').patchValue(moment(this.value.endDate, 'YYYY-MM-DD').toDate(), { emitEvent: false });
       this.control.get('dateType').patchValue(this.value.dateType, { emitEvent: false });
       this.startDate = this.value.startDate;
       this.endDate = this.value.endDate;

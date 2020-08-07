@@ -27,5 +27,9 @@ export class UpdateAddressDto {
 
   @IsOptional()
   @IsString()
-  streetNumber: string;
+  externalNumber: string;
+
+  @IsOptional()
+  @IsString()
+  internalNumber: string;
 }

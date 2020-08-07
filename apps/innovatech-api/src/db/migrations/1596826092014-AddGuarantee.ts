@@ -1,10 +1,10 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class AddGuarantee1596818506758 implements MigrationInterface {
-    name = 'AddGuarantee1596818506758'
+export class AddGuarantee1596826092014 implements MigrationInterface {
+    name = 'AddGuarantee1596826092014'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`CREATE TABLE "addresses" ("id" SERIAL NOT NULL, "zipCode" integer NOT NULL, "country" character varying NOT NULL, "state" character varying NOT NULL, "city" character varying NOT NULL, "suburb" character varying NOT NULL, "street" character varying NOT NULL, "streetNumber" character varying NOT NULL, CONSTRAINT "PK_745d8f43d3af10ab8247465e450" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "addresses" ("id" SERIAL NOT NULL, "zipCode" integer NOT NULL, "country" character varying NOT NULL, "state" character varying NOT NULL, "city" character varying NOT NULL, "suburb" character varying NOT NULL, "street" character varying NOT NULL, "externalNumber" character varying NOT NULL, "internalNumber" character varying NOT NULL, CONSTRAINT "PK_745d8f43d3af10ab8247465e450" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "vehicles" ("id" SERIAL NOT NULL, "productType" character varying NOT NULL, "brand" character varying NOT NULL, "model" character varying NOT NULL, "version" character varying NOT NULL, "year" integer NOT NULL, "invoiceDate" character varying NOT NULL, "vin" character varying NOT NULL, "motorNumber" character varying NOT NULL, "serialNumber" character varying NOT NULL, "horsePower" integer NOT NULL, "kilometrageStart" integer NOT NULL, "kilometrageEnd" integer NOT NULL, "guaranteeId" integer, CONSTRAINT "REL_4141bcec54aeebf062c538c70f" UNIQUE ("guaranteeId"), CONSTRAINT "PK_18d8646b59304dce4af3a9e35b6" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "guarantees" ("id" SERIAL NOT NULL, "createdAt" date NOT NULL, "status" "guarantees_status_enum" NOT NULL, "paymentOrder" character varying NOT NULL, "startDate" date NOT NULL, "endDate" date NOT NULL, "amount" integer NOT NULL, CONSTRAINT "PK_0952d3cdbdaa3d2a5d2089ceed3" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "moralPersons" ("id" SERIAL NOT NULL, "clientId" integer NOT NULL, "businessName" character varying NOT NULL, "constitutionDate" TIMESTAMP NOT NULL, "distributor" character varying NOT NULL, "adviser" character varying NOT NULL, CONSTRAINT "REL_e2237cc00059f04255e8da1b93" UNIQUE ("clientId"), CONSTRAINT "PK_29820f8583a7c89163c2bf90b68" PRIMARY KEY ("id"))`);

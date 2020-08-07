@@ -1,18 +1,31 @@
-import { IsOptional, IsNotEmpty } from 'class-validator';
+import { IsOptional, IsNotEmpty, IsNumberString, IsString, isNumberString, IsDateString, IsDate } from 'class-validator';
 
 export class GetGuaranteesFilterDto {
   @IsOptional()
-  startDate: Date;
+  @IsNotEmpty()
+  @IsNumberString()
+  offset;
 
   @IsOptional()
   @IsNotEmpty()
-  endDate: Date;
+  @IsNumberString()
+  limit;
 
   @IsOptional()
   @IsNotEmpty()
-  vin: string;
+  startDate: string;
 
   @IsOptional()
   @IsNotEmpty()
+  endDate: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsString()
+  text: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsNumberString()
   amount: number;
 }

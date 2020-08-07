@@ -46,7 +46,7 @@ export class GuaranteesService {
   async getGuarantees(
     filterDto: GetGuaranteesFilterDto
   ): Promise<GuaranteeEntity[]> {
-    const { startDate, endDate, vin, amount } = filterDto;
+    const { limit, offset, startDate, endDate, text, amount } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     let guarantees: GuaranteeEntity[];
 
@@ -57,12 +57,21 @@ export class GuaranteesService {
       .leftJoinAndSelect('client.address', 'address')
       .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
 
-    // if (startDate && endDate) {
-    // }
+    if (startDate) {
+      query.andWhere('(guarantee.startDate = :startDate)', {
+        startDate,
+      });
+    }
 
-    // if (vin) {
-    //   query.where('(guarantee.vin LIKE :vin)', { vin: `%${vin}%` });
-    // }
+    if (endDate) {
+      query.andWhere('(guarantee.endDate = :endDate)', {
+        endDate,
+      });
+    }
+
+    if (text) {
+      query.andWhere('(guarantee.id = :id)', { id: text });
+    }
 
     // if (amount) {
     // }
@@ -74,6 +83,8 @@ export class GuaranteesService {
       .addGroupBy('vehicle.id')
       .addGroupBy('physicalPerson.id')
       .addGroupBy('moralPerson.id')
+      .take(limit)
+      .skip(offset)
       .getMany();
 
     guarantees.map((guarantee) => this.omitInfo(guarantee));
@@ -138,7 +149,7 @@ export class GuaranteesService {
         <p><span class="bold">R.F.C.</span> ${guarantee.client.rfc}</p>
         <p><span class="bold">DIRECCIÓN:</span> ${
           guarantee.client.address.street
-        } ${guarantee.client.address.streetNumber}, ${
+        } ${guarantee.client.address.externalNumber}, ${
       guarantee.client.address.suburb
     }. ${guarantee.client.address.city}, ${guarantee.client.address.state}. ${
       guarantee.client.address.zipCode

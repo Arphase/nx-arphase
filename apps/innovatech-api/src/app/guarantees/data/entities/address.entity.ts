@@ -25,5 +25,8 @@ export class AddressEntity extends BaseEntity implements Address {
   street: string;
 
   @Column()
-  streetNumber: string;
+  externalNumber: string;
+
+  @Column()
+  internalNumber: string;
 }
