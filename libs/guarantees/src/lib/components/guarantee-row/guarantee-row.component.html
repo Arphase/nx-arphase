@@ -41,5 +41,11 @@
             (click)="downloadPdf.emit(item.id)">
       <mat-icon>picture_as_pdf</mat-icon>
     </button>
+    <button mat-icon-button
+            matTooltip="Eliminar garantía"
+            [loading]="loadingDelete"
+            (click)="delete.emit(item)">
+      <mat-icon>delete</mat-icon>
+    </button>
   </div>
 </ivt-row>

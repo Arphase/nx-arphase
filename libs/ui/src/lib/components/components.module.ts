@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { IvtAddressFormModule } from './address-form';
+import { IvtConfirmationDialogModule } from './confirmation-dialog';
 import { IvtEmptyStateModule } from './empty-state';
 import { IvtExpansionPanelModule } from './expansion-panel';
 import { IvtFilterModule } from './filters';
@@ -18,6 +19,7 @@ import { IvtVirtualScrollModule } from './virtual-scroll';
 
 const MODULES = [
   IvtAddressFormModule,
+  IvtConfirmationDialogModule,
   IvtDateFilterModule,
   IvtEmptyStateModule,
   IvtExpansionPanelModule,

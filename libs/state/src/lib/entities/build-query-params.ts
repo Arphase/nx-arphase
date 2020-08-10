@@ -51,13 +51,7 @@ export function buildQueryParams(queryParams: IvtQueryParams): HttpParams {
   }
 
   return new HttpParams({
-    fromObject: omit(params, [
-      'sort',
-      'dates',
-      'resetList',
-      'noLimit',
-      'noDates',
-    ]),
+    fromObject: omit(params, ['dates', 'resetList', 'noLimit', 'noDates']),
   });
 }
 

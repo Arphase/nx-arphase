@@ -104,6 +104,13 @@ export class AdditionalEntityCollectionReducerMethods<
     return collection;
   }
 
+  protected saveDeleteOneError(
+    collection: IvtEntityCollection<T>,
+    action: IvtEntityAction<T[]>
+  ): IvtEntityCollection<T> {
+    return collection;
+  }
+
   protected removeOne(
     collection: IvtEntityCollection<T>,
     action: IvtEntityAction<T[]>

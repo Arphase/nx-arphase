@@ -1,6 +1,8 @@
 <ivt-guarantee-row [loading]="loading$ | async"
                    [loadingStatusChange]="loadingStatusChange$ | async"
+                   [loadingDelete]="loadingDelete$ | async"
                    [item]="item"
                    (downloadPdf)="downloadPdf($event)"
-                   (changeStatus)="changeStatus($event)">
+                   (changeStatus)="changeStatus($event)"
+                   (delete)="deleteItem($event)">
 </ivt-guarantee-row>

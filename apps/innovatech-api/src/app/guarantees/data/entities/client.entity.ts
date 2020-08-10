@@ -25,8 +25,9 @@ export class ClientEntity extends BaseEntity implements Client {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne((type) => GuaranteeEntity, (guarantee) => guarantee.client, {
+  @OneToOne(() => GuaranteeEntity, (guarantee) => guarantee.client, {
     eager: false,
+    onDelete: 'CASCADE'
   })
   @JoinColumn({ name: 'guaranteeId' })
   guarantee: Guarantee;
@@ -35,13 +36,13 @@ export class ClientEntity extends BaseEntity implements Client {
   personType: PersonTypes;
 
   @OneToOne(
-    (type) => PhysicalPersonEntity,
+    () => PhysicalPersonEntity,
     (physicalPerson) => physicalPerson.client,
     { cascade: true }
   )
   physicalInfo: PhysicalPerson;
 
-  @OneToOne((type) => MoralPersonEntity, (moralPerson) => moralPerson.client, {
+  @OneToOne(() => MoralPersonEntity, (moralPerson) => moralPerson.client, {
     cascade: true,
   })
   moralInfo: MoralPerson;
@@ -58,7 +59,7 @@ export class ClientEntity extends BaseEntity implements Client {
   @Column()
   addressId: number;
 
-  @OneToOne((type) => AddressEntity, { cascade: true, eager: true })
+  @OneToOne(() => AddressEntity, { cascade: true, eager: true })
   @JoinColumn()
   address: Address;
 

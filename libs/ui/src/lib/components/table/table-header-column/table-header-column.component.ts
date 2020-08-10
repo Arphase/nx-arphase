@@ -4,7 +4,6 @@ import {
   EventEmitter,
   Input,
   Output,
-  ViewEncapsulation,
 } from '@angular/core';
 
 import { IvtColumn, SortEvent, SortOrder } from '../table.model';
@@ -13,7 +12,7 @@ import { IvtColumn, SortEvent, SortOrder } from '../table.model';
   selector: 'ivt-table-header-column',
   templateUrl: './table-header-column.component.html',
   styleUrls: ['./table-header-column.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtTableHeaderColumnComponent {
   @Input() column: IvtColumn;
@@ -37,12 +36,12 @@ export class IvtTableHeaderColumnComponent {
 
   status: SortOrder;
 
-  toggleSort() {
+  toggleSort(): void {
     this.status = this.status === 'asc' ? 'desc' : 'asc';
     this.sortEmitter.emit({ order: this.status, value: this.column.prop });
   }
 
-  clearSort() {
+  clearSort(): void {
     this.status = null;
   }
 }

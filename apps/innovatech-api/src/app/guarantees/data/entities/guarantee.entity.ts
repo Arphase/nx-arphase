@@ -15,15 +15,15 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne((type) => ClientEntity, (client) => client.guarantee, {
+  @OneToOne(() => ClientEntity, (client) => client.guarantee, {
     eager: true,
-    cascade: true,
+    cascade: true
   })
   client: Client;
 
-  @OneToOne((type) => VehicleEntity, (vehicle) => vehicle.guarantee, {
+  @OneToOne(() => VehicleEntity, (vehicle) => vehicle.guarantee, {
     eager: true,
-    cascade: true,
+    cascade: true
   })
   vehicle: Vehicle;
 

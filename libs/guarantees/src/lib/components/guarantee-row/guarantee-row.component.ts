@@ -25,6 +25,7 @@ import {
 export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> {
   @Input() loading: boolean;
   @Input() loadingStatusChange: boolean;
+  @Input() loadingDelete: boolean;
   statusLabels = statusLabels;
   backgroundClasses = backgroundClasses;
   guaranteeStatus = GuaranteeStatus;

@@ -1,9 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Guarantee } from '@ivt/data';
+import { MatDialog } from '@angular/material/dialog';
+import { Guarantee, GuaranteeStatus } from '@ivt/data';
 import { GuaranteeCollectionService, GuaranteeDataService } from '@ivt/state';
-import { IvtRowComponent } from '@ivt/ui';
+import { IvtConfirmationDialogComponent, IvtRowComponent } from '@ivt/ui';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
-import { finalize, take } from 'rxjs/operators';
+import { filter, finalize, switchMap, take, tap } from 'rxjs/operators';
+
+import { statusLabels } from '../../components/guarantee-row/guarantee-row.constants';
 
 @Component({
   selector: 'ivt-guarantee-row-container',
@@ -18,9 +22,16 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   loadingStatusChangeSubject = new BehaviorSubject<boolean>(false);
   loadingStatusChange$ = this.loadingStatusChangeSubject.asObservable();
 
+  loadingDeleteSubject = new BehaviorSubject<boolean>(false);
+  loadingDelete$ = this.loadingDeleteSubject.asObservable();
+
+  statusLabels = statusLabels;
+
   constructor(
     private guaranteeCollectiionService: GuaranteeCollectionService,
-    private guaranteeDataService: GuaranteeDataService
+    private guaranteeDataService: GuaranteeDataService,
+    private toastr: ToastrService,
+    private matDialog: MatDialog
   ) {
     super();
   }
@@ -44,6 +55,28 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
         take(1),
         finalize(() => this.loadingStatusChangeSubject.next(false))
       )
-      .subscribe();
+      .subscribe(() =>
+        this.toastr.success(
+          `La garantía con folio ${guarantee.id} ahora está ${statusLabels[
+            GuaranteeStatus[guarantee.status]
+          ].toLowerCase()}`
+        )
+      );
+  }
+
+  deleteItem(item: Guarantee): void {
+    this.matDialog
+      .open(IvtConfirmationDialogComponent, {
+        data: { message: `¿Desea eliminar la garantía con folio ${item.id}?` },
+      })
+      .afterClosed()
+      .pipe(
+        filter((value) => !!value),
+        tap(() => this.loadingDeleteSubject.next(true)),
+        take(1),
+        switchMap(() => this.guaranteeCollectiionService.delete(item)),
+        finalize(() => this.loadingDeleteSubject.next(false))
+      )
+      .subscribe(() => this.toastr.success('La garantía se ha eliminado'));
   }
 }

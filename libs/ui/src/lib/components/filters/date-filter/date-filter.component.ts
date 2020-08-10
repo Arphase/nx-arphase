@@ -1,18 +1,30 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnChanges, Input, Output, EventEmitter, ViewChild, ViewEncapsulation } from '@angular/core';
-import { IvtFilterComponent } from '../filter';
-import { FormBuilder, AbstractControl } from '@angular/forms';
-import { tap } from 'rxjs/operators';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
+import { AbstractControl, FormBuilder } from '@angular/forms';
 import moment from 'moment';
+import { tap } from 'rxjs/operators';
+
+import { Select } from '../../../models';
+import { IvtFilterComponent } from '../filter';
 
 @Component({
   selector: 'ivt-date-filter',
   templateUrl: './date-filter.component.html',
   styleUrls: ['./date-filter.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
-export class IvtDateFilterComponent extends IvtFilterComponent implements OnInit, OnChanges {
-  @Input() dateTypeOptions = [];
+export class IvtDateFilterComponent extends IvtFilterComponent
+  implements OnInit, OnChanges {
+  @Input() dateTypeOptions: Select[] = [];
   @Input() value: any;
   @Output()
   filterItems: EventEmitter<{
@@ -32,7 +44,7 @@ export class IvtDateFilterComponent extends IvtFilterComponent implements OnInit
       {
         dateType: '',
         startDate: '',
-        endDate: ''
+        endDate: '',
       },
       {
         validators: (control: AbstractControl) => {
@@ -43,7 +55,7 @@ export class IvtDateFilterComponent extends IvtFilterComponent implements OnInit
           const selectedDateType = mustSelectDateType ? !!dateType : true;
 
           return selectedBothDates && selectedDateType ? null : true;
-        }
+        },
       }
     );
   }
@@ -61,9 +73,19 @@ export class IvtDateFilterComponent extends IvtFilterComponent implements OnInit
       .subscribe();
 
     if (this.value) {
-      this.control.get('startDate').patchValue(moment(this.value.startDate, 'YYYY-MM-DD').toDate(), { emitEvent: false });
-      this.control.get('endDate').patchValue(moment(this.value.endDate, 'YYYY-MM-DD').toDate(), { emitEvent: false });
-      this.control.get('dateType').patchValue(this.value.dateType, { emitEvent: false });
+      this.control
+        .get('startDate')
+        .patchValue(moment(this.value.startDate, 'YYYY-MM-DD').toDate(), {
+          emitEvent: false,
+        });
+      this.control
+        .get('endDate')
+        .patchValue(moment(this.value.endDate, 'YYYY-MM-DD').toDate(), {
+          emitEvent: false,
+        });
+      this.control
+        .get('dateType')
+        .patchValue(this.value.dateType, { emitEvent: false });
       this.startDate = this.value.startDate;
       this.endDate = this.value.endDate;
       this.dateType = this.value.dateType;
@@ -95,7 +117,7 @@ export class IvtDateFilterComponent extends IvtFilterComponent implements OnInit
       this.filterItems.emit({
         startDate: this.startDate,
         endDate: this.endDate,
-        dateType: this.dateType
+        dateType: this.dateType,
       });
     } else {
       this.mappedTitle = this.label;
@@ -111,7 +133,7 @@ export class IvtDateFilterComponent extends IvtFilterComponent implements OnInit
     this.filterItems.emit({
       startDate: '',
       endDate: '',
-      dateType: ''
+      dateType: '',
     });
   }
 }
