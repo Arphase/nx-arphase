@@ -7,6 +7,7 @@ import config from '../db/config/ormconfig';
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { GuaranteesModule } from './guarantees';
+import { LocalitiesModule } from './localities/localities.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { GuaranteesModule } from './guarantees';
     TypeOrmModule.forRoot(config),
     AuthModule,
     GuaranteesModule,
+    LocalitiesModule,
   ],
   controllers: [AppController],
 })
