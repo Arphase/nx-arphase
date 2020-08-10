@@ -1,7 +1,6 @@
 import {
   Address,
   Client,
-  Guarantee,
   MoralPerson,
   PersonTypes,
   PhysicalPerson,
@@ -16,7 +15,6 @@ import {
 } from 'typeorm';
 
 import { AddressEntity } from './address.entity';
-import { GuaranteeEntity } from './guarantee.entity';
 import { MoralPersonEntity } from './moral-person.entity';
 import { PhysicalPersonEntity } from './physical-person.entity';
 
@@ -25,26 +23,16 @@ export class ClientEntity extends BaseEntity implements Client {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => GuaranteeEntity, (guarantee) => guarantee.client, {
-    eager: false,
-    onDelete: 'CASCADE'
-  })
-  @JoinColumn({ name: 'guaranteeId' })
-  guarantee: Guarantee;
-
   @Column({ type: 'enum', enum: PersonTypes })
   personType: PersonTypes;
 
   @OneToOne(
     () => PhysicalPersonEntity,
-    (physicalPerson) => physicalPerson.client,
-    { cascade: true }
+    (physicalPerson) => physicalPerson.client
   )
   physicalInfo: PhysicalPerson;
 
-  @OneToOne(() => MoralPersonEntity, (moralPerson) => moralPerson.client, {
-    cascade: true,
-  })
+  @OneToOne(() => MoralPersonEntity, (moralPerson) => moralPerson.client)
   moralInfo: MoralPerson;
 
   @Column()
@@ -56,11 +44,12 @@ export class ClientEntity extends BaseEntity implements Client {
   @Column()
   email: string;
 
-  @Column()
-  addressId: number;
-
-  @OneToOne(() => AddressEntity, { cascade: true, eager: true })
-  @JoinColumn()
+  @OneToOne(() => AddressEntity, {
+    cascade: true,
+    eager: true,
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'addressId' })
   address: Address;
 
   @Column()

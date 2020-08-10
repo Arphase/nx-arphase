@@ -56,5 +56,5 @@ export function buildQueryParams(queryParams: IvtQueryParams): HttpParams {
 }
 
 function parseDate(date: string | Date): string {
-  return moment(date, ['YYYY-MM-DD', moment.ISO_8601]).format('YYYY-MM-DD');
+  return moment(date, ['DD/MM/YYYY', moment.ISO_8601]).format('YYYY-MM-DD');
 }

@@ -1,21 +1,17 @@
 import { Address } from '../../address/model/address.model';
+import { PersonTypes } from '../enums/person-types.enum';
 import { MoralPerson } from './moral-person.model';
 import { PhysicalPerson } from './physical-person.model';
 
 export interface Client {
   id: number;
-  personType: PersonTypes;
+  personType: PersonTypes | string;
   physicalInfo?: PhysicalPerson;
   moralInfo?: MoralPerson;
   rfc: string;
   phone: string;
   email: string;
-  addressId: number;
+  addressId?: number;
   address: Address;
   salesPlace: string;
-}
-
-export enum PersonTypes {
-  physical = 1,
-  moral = 2,
 }

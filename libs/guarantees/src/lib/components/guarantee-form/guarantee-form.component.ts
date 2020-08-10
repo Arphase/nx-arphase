@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
 import { Guarantee, PersonTypes } from '@ivt/data';
-import { createAddressForm, IvtFormComponent } from '@ivt/ui';
+import { createAddressForm, IvtFormComponent, Select } from '@ivt/ui';
 import { CustomValidators } from '@ivt/utils';
 
 @Component({
@@ -16,6 +16,10 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
+  personTypeOptions: Select[] = [
+    { label: 'Física', value: PersonTypes[PersonTypes.physical] },
+    { label: 'Moral', value: PersonTypes[PersonTypes.moral] },
+  ];
 
   get values() {
     return this.form.getRawValue();
@@ -45,7 +49,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
     super();
     this.form = this.fb.group({
       client: this.fb.group({
-        personType: [PersonTypes.physical, Validators.required],
+        personType: [PersonTypes[PersonTypes.physical], Validators.required],
         physicalInfo: this.fb.group({
           name: [null, Validators.required],
           lastName: [null, Validators.required],
@@ -88,7 +92,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
     this.moralInfoForm.disable();
     this.form.patchValue({
       client: {
-        personType: 1,
         physicalInfo: {
           name: 'TEST',
           lastName: 'TEST',

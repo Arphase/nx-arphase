@@ -15,12 +15,6 @@ export class PhysicalPersonEntity extends BaseEntity implements PhysicalPerson {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => ClientEntity, (client) => client.physicalInfo, {
-    onDelete: 'CASCADE',
-  })
-  @JoinColumn({ name: 'clientId' })
-  client: Client;
-
   @Column()
   name: string;
 
@@ -32,4 +26,11 @@ export class PhysicalPersonEntity extends BaseEntity implements PhysicalPerson {
 
   @Column()
   birthDate: Date;
+
+  @OneToOne((type) => ClientEntity, (client) => client.physicalInfo, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'clientId' })
+  client: Client;
 }

@@ -42,7 +42,8 @@
                       [columns]="columns"
                       (sort)="updateSort($event)"></ivt-table-header>
 
-    <ivt-virtual-scroll [list]="list"
+    <ivt-virtual-scroll height="60vh"
+                        [list]="list"
                         [ignoreNextBatch]="!hasMoreItems || loading"
                         (nextBatchEmitter)="getMoreItems.emit()">
       <ng-template let-item>

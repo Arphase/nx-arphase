@@ -1,26 +1,10 @@
-import { Guarantee, Vehicle } from '@ivt/data';
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-
-import { GuaranteeEntity } from './guarantee.entity';
+import { Vehicle } from '@ivt/data';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('vehicles')
 export class VehicleEntity extends BaseEntity implements Vehicle {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @OneToOne((type) => GuaranteeEntity, (guarantee) => guarantee.vehicle, {
-    eager: false,
-    onDelete: 'CASCADE'
-  })
-  @JoinColumn({ name: 'guaranteeId' })
-  guarantee: Guarantee;
 
   @Column()
   productType: string;
