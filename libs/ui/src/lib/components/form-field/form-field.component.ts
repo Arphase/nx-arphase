@@ -20,6 +20,7 @@ import {
   MatFormField,
   MatFormFieldDefaultOptions,
 } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { Subject } from 'rxjs';
 import { filter, startWith, takeUntil } from 'rxjs/operators';
@@ -31,7 +32,7 @@ enum ValidatorTypes {
   max = 'max',
   min = 'min',
   email = 'email',
-  rfc = 'rfc'
+  rfc = 'rfc',
 }
 
 @Component({
@@ -45,6 +46,7 @@ export class IvtFormFieldComponent extends MatFormField
   implements AfterContentInit, OnDestroy {
   @Input() label: string;
   @ContentChild(IvtInputDirective) input: IvtInputDirective;
+  @ContentChild(MatSelect) select: MatSelect;
   error: string;
   destroy$ = new Subject<void>();
 
@@ -75,7 +77,7 @@ export class IvtFormFieldComponent extends MatFormField
 
   ngAfterContentInit() {
     super.ngAfterContentInit();
-    const reactiveControl = this.input.ngControl;
+    const reactiveControl = this.input?.ngControl || this.select?.ngControl;
     reactiveControl.statusChanges
       .pipe(
         startWith(true),
@@ -83,6 +85,14 @@ export class IvtFormFieldComponent extends MatFormField
         takeUntil(this.destroy$)
       )
       .subscribe(() => this.setErrorMessage(reactiveControl.errors));
+
+    if (
+      this.select &&
+      this.select.options &&
+      this.select.options.length === 1
+    ) {
+      this.select.ngControl.control.patchValue(this.select.options.first.value);
+    }
   }
 
   ngOnDestroy() {
@@ -104,7 +114,7 @@ export class IvtFormFieldComponent extends MatFormField
       [ValidatorTypes.max]: `El campo ${label} no debe ser mayor a ${errorValue.max}`,
       [ValidatorTypes.min]: `El campo ${label} debe ser mayor o igual a ${errorValue.min}`,
       [ValidatorTypes.email]: `El campo ${label} no tiene formato de correo`,
-      [ValidatorTypes.rfc]: `El campo ${label} no tiene formato de RFC`
+      [ValidatorTypes.rfc]: `El campo ${label} no tiene formato de RFC`,
     };
 
     this.error = errorMessages[firstError];

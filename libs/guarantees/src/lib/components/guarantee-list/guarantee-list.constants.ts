@@ -1,4 +1,5 @@
-import { IvtColumns, Select } from '@ivt/ui';
+import { Select } from '@ivt/data';
+import { IvtColumns } from '@ivt/ui';
 
 export const columns: IvtColumns = [
   {

@@ -1,7 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Address } from '@ivt/data';
-import { of } from 'rxjs';
-import { catchError, filter, switchMap, takeUntil } from 'rxjs/operators';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
+import { Address, Select } from '@ivt/data';
+import { filter, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
 import { IvtFormComponent } from '../form';
 import {
@@ -19,21 +23,50 @@ import {
 export class IvtAddressFormComponent extends IvtFormComponent<Address>
   implements OnInit {
   showAddressSelects: boolean;
+  countryOptions: Select[];
+  stateOptions: Select[];
+  cityOptions: Select[];
+  suburbOptions: Select[];
 
-  constructor(private addressFormService: IvtAddressFormService) {
+  constructor(
+    private addressFormService: IvtAddressFormService,
+    private cdr: ChangeDetectorRef
+  ) {
     super();
     this.form = createAddressForm();
   }
 
   ngOnInit(): void {
-    this.form
-      .get('zipCode')
-      .valueChanges.pipe(
+    const zipCodeControl = this.form.get('zipCode');
+
+    zipCodeControl.valueChanges
+      .pipe(
+        startWith(zipCodeControl.value),
         filter((value) => value && value.length === 5),
         takeUntil(this.destroy$),
-        switchMap((zipCode) => this.addressFormService.getZipCodeInfo(zipCode)),
-        catchError((e) => of(true))
+        switchMap((zipCode) => this.addressFormService.getLocalities(zipCode))
       )
-      .subscribe((zipCodeResponse) => console.log(zipCodeResponse));
+      .subscribe((zipCodeResponse) => {
+        const {
+          showAddressSelects,
+          countryOptions,
+          stateOptions,
+          cityOptions,
+          suburbOptions,
+        } = this.addressFormService.mapLocalities(zipCodeResponse);
+        this.showAddressSelects = showAddressSelects;
+        this.countryOptions = countryOptions;
+        this.stateOptions = stateOptions;
+        this.cityOptions = cityOptions;
+        this.suburbOptions = suburbOptions;
+        if (
+          !this.suburbOptions
+            .map((suburb) => suburb.label)
+            .includes(this.form.get('suburb').value)
+        ) {
+          this.form.get('suburb').patchValue(null);
+        }
+        this.cdr.detectChanges();
+      });
   }
 }
