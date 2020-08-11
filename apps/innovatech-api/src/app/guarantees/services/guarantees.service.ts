@@ -58,7 +58,6 @@ export class GuaranteesService {
       startDate,
       endDate,
       text,
-      amount,
     } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     let guarantees: GuaranteeEntity[];
@@ -85,9 +84,6 @@ export class GuaranteesService {
     if (text) {
       query.andWhere('(guarantee.id = :id)', { id: text });
     }
-
-    // if (amount) {
-    // }
 
     query
       .groupBy('guarantee.id')
@@ -363,10 +359,11 @@ export class GuaranteesService {
   omitInfo(
     guarantee: GuaranteeEntity | CreateGuaranteeDto
   ): GuaranteeEntity | CreateGuaranteeDto {
-    if (guarantee.client.personType === PersonTypes.physical) {
+    const personType = PersonTypes[guarantee.client.personType];
+    if (personType === PersonTypes.physical) {
       const { moralInfo, ...client } = guarantee.client;
       guarantee.client = client;
-    } else if (guarantee.client.personType === PersonTypes.moral) {
+    } else if (personType === PersonTypes.moral) {
       const { physicalInfo, ...client } = guarantee.client;
       guarantee.client = client;
     }

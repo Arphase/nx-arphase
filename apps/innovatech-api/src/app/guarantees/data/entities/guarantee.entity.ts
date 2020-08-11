@@ -3,6 +3,7 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -15,16 +16,18 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => ClientEntity, (client) => client.guarantee, {
-    eager: true,
-    cascade: true
+  @OneToOne((type) => ClientEntity, {
+    cascade: true,
+    onDelete: 'CASCADE',
   })
+  @JoinColumn({ name: 'clientId' })
   client: Client;
 
-  @OneToOne(() => VehicleEntity, (vehicle) => vehicle.guarantee, {
-    eager: true,
-    cascade: true
+  @OneToOne((type) => VehicleEntity, {
+    cascade: true,
+    onDelete: 'CASCADE',
   })
+  @JoinColumn({ name: 'vehicleId' })
   vehicle: Vehicle;
 
   @Column({ type: 'date' })

@@ -1,30 +1,34 @@
-import { PersonTypes, PhysicalPerson, MoralPerson } from '@ivt/data';
-import { Address } from 'cluster';
+import { MoralPerson, PersonTypes, PhysicalPerson } from '@ivt/data';
+import { Transform, Type } from 'class-transformer';
 import {
-  IsNotEmpty,
-  IsEnum,
-  IsString,
   IsEmail,
-  ValidateNested,
+  IsEnum,
+  IsNotEmpty,
+  IsString,
   ValidateIf,
+  ValidateNested,
 } from 'class-validator';
-import { Type } from 'class-transformer';
-import { CreateAddressDto } from './create-address.dto';
-import { CreatePhysicalPersonDto } from './create-physical-person.dto';
-import { CreateMoralPersonDto } from './create-moral-person.dto';
+import { Address } from 'cluster';
+
 import { IsRfc } from '../custom-validators';
+import { CreateAddressDto } from './create-address.dto';
+import { CreateMoralPersonDto } from './create-moral-person.dto';
+import { CreatePhysicalPersonDto } from './create-physical-person.dto';
 
 export class CreateClientDto {
   @IsNotEmpty()
+  @Transform((value) => PersonTypes[value])
   @IsEnum(PersonTypes)
   personType: PersonTypes;
 
-  @ValidateIf((client) => client.personType === PersonTypes.physical)
+  @ValidateIf(
+    (client) => client.personType === PersonTypes[PersonTypes.physical]
+  )
   @ValidateNested()
   @Type(() => CreatePhysicalPersonDto)
   physicalInfo: PhysicalPerson;
 
-  @ValidateIf((client) => client.personType === PersonTypes.moral)
+  @ValidateIf((client) => client.personType === PersonTypes[PersonTypes.moral])
   @ValidateNested()
   @Type(() => CreateMoralPersonDto)
   moralInfo: MoralPerson;

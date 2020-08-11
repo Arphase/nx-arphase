@@ -19,7 +19,6 @@ import { GuaranteeEntity } from '../data/entities/guarantee.entity';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
-import { GuaranteeStatusValidationPipe } from '../pipes/guarantee-status-validation.pipe';
 import { GuaranteesService } from '../services/guarantees.service';
 
 @Controller('guarantees')
@@ -35,7 +34,7 @@ export class GuaranteesController {
   }
 
   @Post()
-  @UsePipes(ValidationPipe)
+  @UsePipes(new ValidationPipe({ transform: true }))
   async createGuarantee(@Body() createGuaranteeDto: CreateGuaranteeDto) {
     return this.guaranteesService.createGuarantee(createGuaranteeDto);
   }
@@ -49,9 +48,10 @@ export class GuaranteesController {
   }
 
   @Put(':id')
+  @UsePipes(new ValidationPipe({ transform: true }))
   updateGuarantee(
     @Param('id', ParseIntPipe) id: number,
-    @Body(GuaranteeStatusValidationPipe) updateGuaranteeDto: UpdateGuaranteeDto
+    @Body() updateGuaranteeDto: UpdateGuaranteeDto
   ): Promise<GuaranteeEntity> {
     return this.guaranteesService.updateGuarantee(id, updateGuaranteeDto);
   }

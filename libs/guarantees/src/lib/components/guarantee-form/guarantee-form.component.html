@@ -14,7 +14,7 @@
                            [isOpen]="true">
         <div class="row">
           <div class="col-lg-6 col-12">
-            <ivt-form-field label="Costo">
+            <ivt-form-field label="Importe">
               <input ivtInput
                      formControlName="amount"
                      prefix="$ "
@@ -58,8 +58,10 @@
               </div>
               <mat-radio-group formControlName="personType"
                                (change)="personTypeChange($event)">
-                <mat-radio-button [value]="personTypes.physical">Física</mat-radio-button>
-                <mat-radio-button [value]="personTypes.moral">Moral</mat-radio-button>
+                <mat-radio-button *ngFor="let option of personTypeOptions"
+                                  [value]="option.value">
+                  {{ option.label }}
+                </mat-radio-button>
               </mat-radio-group>
             </div>
             <div class="col-lg-6 col-12">

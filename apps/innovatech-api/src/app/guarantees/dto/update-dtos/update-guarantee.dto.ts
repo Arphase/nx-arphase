@@ -1,8 +1,15 @@
-import { IsEnum, IsOptional, ValidateNested, IsDateString, IsNumberString } from 'class-validator';
-import { GuaranteeStatus, Client, Vehicle } from '@ivt/data';
-import { Type } from 'class-transformer'
-import { UpdateVehicleDto } from './update-vehicle.dto';
+import { Client, GuaranteeStatus, Vehicle } from '@ivt/data';
+import { Transform, Type } from 'class-transformer';
+import {
+  IsDateString,
+  IsEnum,
+  IsNumberString,
+  IsOptional,
+  ValidateNested,
+} from 'class-validator';
+
 import { UpdateClientDto } from './update-client.dto';
+import { UpdateVehicleDto } from './update-vehicle.dto';
 
 export class UpdateGuaranteeDto {
   @IsOptional()
@@ -16,8 +23,9 @@ export class UpdateGuaranteeDto {
   vehicle: Vehicle;
 
   @IsOptional()
+  @Transform((value) => GuaranteeStatus[value])
   @IsEnum(GuaranteeStatus)
-  status: GuaranteeStatus | string;
+  status: GuaranteeStatus;
 
   @IsOptional()
   @IsDateString()

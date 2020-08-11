@@ -16,15 +16,6 @@ export class MoralPersonEntity extends BaseEntity implements MoralPerson {
   id: number;
 
   @Column()
-  clientId: number;
-
-  @OneToOne(() => ClientEntity, (client) => client.moralInfo, {
-    onDelete: 'CASCADE',
-  })
-  @JoinColumn({ name: 'clientId' })
-  client: Client;
-
-  @Column()
   businessName: string;
 
   @Column()
@@ -35,4 +26,11 @@ export class MoralPersonEntity extends BaseEntity implements MoralPerson {
 
   @Column()
   adviser: string;
+
+  @OneToOne((type) => ClientEntity, (client) => client.moralInfo, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'clientId' })
+  client: Client;
 }

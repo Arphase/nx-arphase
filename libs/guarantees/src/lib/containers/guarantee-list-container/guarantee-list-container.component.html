@@ -1,3 +1,5 @@
 <ivt-guarantee-list [list]="list$ | async"
-                    (filterItems)="filterItems($event)">
+                    [hasMoreItems]="hasMore$ | async"
+                    (filterItems)="filterItems($event)"
+                    (getMoreItems)="getMoreItems()">
 </ivt-guarantee-list>
