@@ -17,7 +17,6 @@ import { AppComponent } from './app.component';
 
 const IVT_STATE_CONFIGURATION_VALUE: IvtStateConfiguration = {
   apiUrl: environment.apiUrl,
-  sepomexApi: environment.sepomexApi,
 };
 
 @NgModule({

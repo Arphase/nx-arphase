@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { IvtInputModule } from '../../directives';
@@ -15,6 +16,7 @@ import { IvtAddressFormComponent } from './address-form.component';
     IvtFormFieldModule,
     IvtInputModule,
     NgxMaskModule,
+    MatSelectModule,
   ],
   exports: [IvtAddressFormComponent],
 })

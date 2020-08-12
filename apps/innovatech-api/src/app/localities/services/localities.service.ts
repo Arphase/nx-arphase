@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { LocalityRepository } from '../data/locality.repository';
 import { Connection } from 'typeorm';
+
 import { LocalityEntity } from '../data/locality.entity';
+import { LocalityRepository } from '../data/locality.repository';
 
 @Injectable()
 export class LocalitiesService {
@@ -13,14 +14,10 @@ export class LocalitiesService {
     );
   }
 
-  async getLocalityByZipCode(zipCode: number): Promise<LocalityEntity>  {
-    const found = await this.localityRepository.findOne({
-      where: { zipCode }
+  async getLocalityByZipCode(zipCode: number): Promise<LocalityEntity[]> {
+    const found = await this.localityRepository.find({
+      where: { zipCode },
     });
-
-    if (!found) {
-      throw new NotFoundException(`Locality with zip code "${zipCode}" not found`);
-    }
 
     return found;
   }

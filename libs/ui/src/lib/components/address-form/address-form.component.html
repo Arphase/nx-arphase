@@ -11,25 +11,38 @@
       </ivt-form-field>
     </div>
 
-    <!-- <ng-container *ngIf="showAddressSelects">
+    <ng-container *ngIf="showAddressSelects">
       <div class="col-3">
-        <gdx-select label="{{ 'ADDRESS_FORM.COUNTRY' | translate }}"
-                    [control]="form.get('country')"
-                    [options]="countryOptions"></gdx-select>
+        <ivt-form-field label="País">
+          <mat-select formControlName="country">
+            <mat-option *ngFor="let option of countryOptions"
+                        [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+        </ivt-form-field>
       </div>
-
       <div class="col-3">
-        <gdx-select label="{{ 'ADDRESS_FORM.STATE' | translate }}"
-                    [control]="form.get('state')"
-                    [options]="stateOptions"></gdx-select>
+        <ivt-form-field label="Estado">
+          <mat-select formControlName="state">
+            <mat-option *ngFor="let option of stateOptions"
+                        [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+        </ivt-form-field>
       </div>
-
       <div class="col-3">
-        <gdx-select label="{{ 'ADDRESS_FORM.CITY' | translate }}"
-                    [control]="form.get('city')"
-                    [options]="cityOptions"></gdx-select>
+        <ivt-form-field label="Ciudad">
+          <mat-select formControlName="city">
+            <mat-option *ngFor="let option of cityOptions"
+                        [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+        </ivt-form-field>
       </div>
-    </ng-container> -->
+    </ng-container>
 
     <ng-container *ngIf="!showAddressSelects">
       <div class="col-3">
@@ -57,10 +70,15 @@
 
   <div class="row d-flex flex-center">
     <div class="col-3">
-      <!-- <gdx-select *ngIf="showAddressSelects"
-                  label="{{ 'ADDRESS_FORM.SUBURB' | translate }}"
-                  [control]="form.get('suburb')"
-                  [options]="suburbOptions"></gdx-select> -->
+      <ivt-form-field *ngIf="showAddressSelects"
+                      label="Colonia">
+        <mat-select formControlName="suburb">
+          <mat-option *ngFor="let option of suburbOptions"
+                      [value]="option.value">
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+      </ivt-form-field>
 
       <ivt-form-field *ngIf="!showAddressSelects"
                       label="Colonia">

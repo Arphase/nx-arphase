@@ -1,9 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Locality, Select } from '@ivt/data';
 import { IVT_STATE_CONFIGURATION, IvtStateConfiguration } from '@ivt/state';
+import { sortSelectOptions } from '@ivt/utils';
+import { uniqBy } from 'lodash';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+
+export interface MappedLocalities {
+  showAddressSelects: boolean;
+  countryOptions: Select[];
+  stateOptions: Select[];
+  cityOptions: Select[];
+  suburbOptions: Select[];
+}
 
 @Injectable()
 export class IvtAddressFormService {
@@ -12,12 +23,50 @@ export class IvtAddressFormService {
     @Inject(IVT_STATE_CONFIGURATION) public config: IvtStateConfiguration
   ) {}
 
-  getZipCodeInfo(zipCode: string): Observable<any> {
+  getLocalities(zipCode: string): Observable<Locality[]> {
     return this.http
-      .get(`${this.config.sepomexApi}/query/info_cp/${zipCode}`, {
-        headers: { accept: 'application/json' },
-      })
-      .pipe(catchError(() => of(true)));
+      .get<Locality[]>(`${this.config.apiUrl}/localities/${zipCode}`)
+      .pipe(catchError(() => of([])));
+  }
+
+  mapLocalities(localities: Locality[]): MappedLocalities {
+    const showAddressSelects = localities.length > 0;
+    const countryOptions = showAddressSelects
+      ? [{ value: 'México', label: 'México' }]
+      : [];
+    const stateOptions = sortSelectOptions(
+      this.mapOptions(localities, (info) => ({
+        label: info.state,
+        value: info.state,
+      }))
+    );
+    const cityOptions = sortSelectOptions(
+      this.mapOptions(localities, (info) => ({
+        label: info.city,
+        value: info.city,
+      }))
+    );
+    const suburbOptions = sortSelectOptions(
+      this.mapOptions(localities, (info) => ({
+        label: info.suburb,
+        value: info.suburb,
+      }))
+    );
+
+    return {
+      showAddressSelects,
+      countryOptions,
+      stateOptions,
+      cityOptions,
+      suburbOptions,
+    };
+  }
+
+  private mapOptions(
+    zipCodeInfo: Locality[],
+    mappingFn: (info: Locality) => Select
+  ) {
+    return uniqBy(zipCodeInfo.map(mappingFn), 'value');
   }
 }
 

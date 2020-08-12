@@ -9,10 +9,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { AbstractControl, FormBuilder } from '@angular/forms';
+import { Select } from '@ivt/data';
 import moment from 'moment';
 import { tap } from 'rxjs/operators';
 
-import { Select } from '../../../models';
 import { IvtFilterComponent } from '../filter';
 
 @Component({

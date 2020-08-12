@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3333',
-  sepomexApi: 'https://api-sepomex.hckdrk.mx'
+  apiUrl: 'http://localhost:3333'
 };
 
 /*

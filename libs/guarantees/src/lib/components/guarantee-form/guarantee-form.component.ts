@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
-import { Guarantee, PersonTypes } from '@ivt/data';
-import { createAddressForm, IvtFormComponent, Select } from '@ivt/ui';
+import { Guarantee, PersonTypes, Select } from '@ivt/data';
+import { createAddressForm, IvtFormComponent } from '@ivt/ui';
 import { CustomValidators } from '@ivt/utils';
 
 @Component({
