@@ -104,6 +104,23 @@ export class GuaranteesService {
     return guarantees;
   }
 
+  async getGuaranteesSummary() {
+    const guarantees = await this.guaranteeRepository.find();
+    const summary = {};
+    Object.keys(GuaranteeStatus).forEach((status) => {
+      const isValueProperty = parseInt(status, 10) >= 0;
+      if (isValueProperty) {
+        summary[GuaranteeStatus[status]] = 0;
+      }
+    });
+
+    guarantees.forEach(
+      (guarantee) =>
+        (summary[GuaranteeStatus[guarantee.status]] += guarantee.amount)
+    );
+    return summary;
+  }
+
   async createGuarantee(
     createGuaranteeDto: CreateGuaranteeDto
   ): Promise<GuaranteeEntity> {
