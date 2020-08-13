@@ -108,9 +108,9 @@ export class GuaranteesService {
     const guarantees = await this.guaranteeRepository.find();
     const summary = {};
     Object.keys(GuaranteeStatus)
-      .filter((x) => parseInt(x, 10) >= 0)
+      .filter((x) => !(parseInt(x, 10) >= 0))
       .forEach((status) => {
-        summary[GuaranteeStatus[status]] = 0;
+        summary[status] = 0;
       });
 
     guarantees.forEach(
