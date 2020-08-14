@@ -30,6 +30,34 @@
             "allowedCommonJsDependencies": ["file-saver"]
           },
           "configurations": {
+            "qa": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/innovatech-ui/src/environments/environment.ts",
+                  "with": "apps/innovatech-ui/src/environments/environment.qa.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {

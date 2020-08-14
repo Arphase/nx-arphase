@@ -6,6 +6,8 @@ export interface Environment {
     port: number;
     database: string;
     synchronize: boolean;
+    username: string;
+    password: string;
   };
   server: {
     port: number;
