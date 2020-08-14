@@ -33,6 +33,11 @@ export class GuaranteesController {
     return this.guaranteesService.getGuarantees(filterDto);
   }
 
+  @Get('summary')
+  async getGuaranteesSummary() {
+    return this.guaranteesService.getGuaranteesSummary();
+  }
+
   @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
   async createGuarantee(@Body() createGuaranteeDto: CreateGuaranteeDto) {
