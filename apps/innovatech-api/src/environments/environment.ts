@@ -7,7 +7,9 @@ export const environment: Environment = {
     host: 'localhost',
     port: 5432,
     database: 'innovatech_dev',
-    synchronize: true,
+    synchronize: false,
+    username: '',
+    password: ''
   },
   server: {
     port: 3333,

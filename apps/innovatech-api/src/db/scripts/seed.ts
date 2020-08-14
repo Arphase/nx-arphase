@@ -10,7 +10,6 @@ import config from '../config/ormconfig';
 async function run() {
   const opt = {
     ...config,
-    debug: true,
   };
 
   const connection = await createConnection(opt as ConnectionOptions);
@@ -20,31 +19,35 @@ async function run() {
     firstName: 'Super',
     lastName: 'Admin',
     secondLastName: 'User',
-    email: 'ivtadmin@mailinator.com',
+    email: 'fernando.jimenez@innovatechcorp.com',
     password: 'Innovatech123@',
     role: UserRole.superAdmin,
   };
-
-  try {
-    await authService.signUp(superAdmin);
-    console.log('Users seeded!');
-  } catch (e) {
-    console.log('Users seeded!');
-  }
 
   const queryRunner = connection.createQueryRunner();
 
   const filePath = path.join(__dirname, 'sepomex-catalog.sql');
 
-  fs.readFile(filePath, 'utf8', async (error, data: string) => {
-    if (!error) {
-      await queryRunner.query(data);
-    } else {
-      console.log(error);
-    }
+  try {
+    await authService.signUp(superAdmin);
+  } catch (e) {}
+
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, 'utf8', async (error, data: string) => {
+      if (!error) {
+        await queryRunner.query(data);
+        resolve();
+      } else {
+        console.log(error);
+        reject();
+      }
+    });
   });
 }
 
 run()
-  .then((_) => console.log('...wait for script to exit'))
+  .then((_) => {
+    console.log('Seeds done');
+    process.exit(0);
+  })
   .catch((error) => console.error('seed error', error));

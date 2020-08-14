@@ -1,12 +1,15 @@
+import { environment } from '@env/environment';
 import { ConnectionOptions } from 'typeorm';
 
 import { ENTITIES } from './entities';
 
 const config: ConnectionOptions = {
   type: 'postgres',
-  host: 'localhost',
+  host: environment.databaseConfig.host,
   port: 5432,
-  database: 'innovatech_dev',
+  database: environment.databaseConfig.database,
+  username: environment.databaseConfig.username,
+  password: environment.databaseConfig.password,
   entities: ENTITIES,
 
   // We are using migrations, synchronize should be set to false.

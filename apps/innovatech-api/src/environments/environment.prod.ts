@@ -4,16 +4,18 @@ export const environment: Environment = {
   production: true,
   databaseConfig: {
     type: 'postgres',
-    host: 'ec2-54-175-117-212.compute-1.amazonaws.com',
+    host: process.env.HOST,
     port: 5432,
-    database: 'drqg21iajeqfe',
-    synchronize: true,
+    database: process.env.DATABASE,
+    synchronize: false,
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD,
   },
   server: {
     port: 3333,
   },
   jwt: {
-    secret: 'pqowieurytlaksjdhf',
+    secret: process.env.JWT_SECRET,
     expiresIn: 86400,
   },
 };
