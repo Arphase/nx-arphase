@@ -25,7 +25,8 @@
       "@ivt/data": ["libs/data/src/index.ts"],
       "@ivt/state": ["libs/state/src/index.ts"],
       "@ivt/auth": ["libs/auth/src/index.ts"],
-      "@ivt/spa": ["libs/spa/src/index.ts"]
+      "@ivt/spa": ["libs/spa/src/index.ts"],
+      "@ivt/dashboard": ["libs/dashboard/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

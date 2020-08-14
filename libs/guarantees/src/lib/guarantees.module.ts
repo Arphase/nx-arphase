@@ -9,6 +9,7 @@ import { GuaranteeFormContainerComponent } from './containers/guarantee-form-con
 import { GuaranteeListContainerComponent } from './containers/guarantee-list-container/guarantee-list-container.component';
 import { GuaranteeRowContainerComponent } from './containers/guarantee-row-container/guarantee-row-container.component';
 import { GuaranteesRoutingModule } from './guarantees-routing.module';
+import { GuaranteesComponent } from './guarantees/guarantees.component';
 
 @NgModule({
   imports: [CommonModule, IvtUiModule, GuaranteesRoutingModule],
@@ -19,6 +20,7 @@ import { GuaranteesRoutingModule } from './guarantees-routing.module';
     GuaranteeListComponent,
     GuaranteeRowComponent,
     GuaranteeRowContainerComponent,
+    GuaranteesComponent,
   ],
 })
 export class GuaranteesModule {}

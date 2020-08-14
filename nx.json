@@ -52,6 +52,9 @@
     },
     "spa": {
       "tags": []
+    },
+    "dashboard": {
+      "tags": []
     }
   }
 }

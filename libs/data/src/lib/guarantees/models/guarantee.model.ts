@@ -1,5 +1,6 @@
 import { Client } from '../../clients/models/client.model';
 import { Vehicle } from '../../vehicles/models/vehicle.model';
+import { GuaranteeStatus } from '../enums/guarantee-status.enum';
 
 export interface Guarantee {
   id: number;
@@ -13,10 +14,4 @@ export interface Guarantee {
   amount: number;
 }
 
-export enum GuaranteeStatus {
-  outstanding = 1,
-  paid = 2,
-  cancelled = 3,
-  expired = 4,
-}
 
