@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { fromDashboard } from '@ivt/state';
-import { Store } from '@ngrx/store';
+import { GuaranteeStatus } from '@ivt/data';
+import { fromDashboard, getDashboardGuaranteeSummaryState } from '@ivt/state';
+import { filterNil } from '@ivt/utils';
+import { select, Store } from '@ngrx/store';
 import { ChartOptions, ChartType } from 'chart.js';
+import { keyBy } from 'lodash';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-dashboard-container',
@@ -20,7 +24,19 @@ export class DashboardContainerComponent implements OnInit {
   ];
   type: ChartType = 'pie';
   legend = false;
-  data = [100, 200, 300, 400];
+  data$ = this.store.pipe(
+    select(getDashboardGuaranteeSummaryState),
+    filterNil(),
+    map((guaranteeSummary) => {
+      const formattedSummary = keyBy(guaranteeSummary, 'status');
+      return [
+        Number(formattedSummary[GuaranteeStatus.paid].amount),
+        Number(formattedSummary[GuaranteeStatus.outstanding].amount),
+        Number(formattedSummary[GuaranteeStatus.cancelled].amount),
+        Number(formattedSummary[GuaranteeStatus.expired].amount),
+      ];
+    })
+  );
   constructor(private store: Store<any>) {}
 
   ngOnInit(): void {

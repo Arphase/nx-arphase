@@ -1,3 +1,3 @@
-import { GuaranteeStatus } from '../enums/guarantee-status.enum';
+import { GuaranteeSummaryRecord } from '../models/guarantee-summary-record.model';
 
-export type GuaranteeSummary = Record<GuaranteeStatus, number>;
+export type GuaranteeSummary = GuaranteeSummaryRecord[];

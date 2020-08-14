@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 
 @Component({
@@ -6,14 +6,11 @@ import { ChartOptions, ChartType } from 'chart.js';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   @Input() data: number[];
   @Input() options: ChartOptions;
   @Input() labels: string[];
   @Input() colors: { backgroundColor: string[] }[];
   @Input() type: ChartType;
   @Input() legend: boolean;
-  constructor() {}
-
-  ngOnInit(): void {}
 }
