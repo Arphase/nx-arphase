@@ -1,4 +1,4 @@
-import { GuaranteeStatus, PersonTypes } from '@ivt/data';
+import { GuaranteeStatus, GuaranteeSummary, PersonTypes } from '@ivt/data';
 import {
   Injectable,
   InternalServerErrorException,
@@ -104,7 +104,7 @@ export class GuaranteesService {
     return guarantees;
   }
 
-  async getGuaranteesSummary() {
+  async getGuaranteesSummary(): Promise<GuaranteeSummary> {
     const summary = await this.guaranteeRepository
       .createQueryBuilder('guarantee')
       .select('guarantee.status', 'status')

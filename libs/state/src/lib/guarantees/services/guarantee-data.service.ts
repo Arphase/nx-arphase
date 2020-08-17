@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Guarantee } from '@ivt/data';
+import { Guarantee, GuaranteeSummary } from '@ivt/data';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { saveAs } from 'file-saver';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -40,5 +40,11 @@ export class GuaranteeDataService extends IvtDataService<Guarantee> {
           saveAs(blob, `${id}.pdf`);
         })
       );
+  }
+
+  getGuaranteeSummary(): Observable<GuaranteeSummary> {
+    return this.http.get<GuaranteeSummary>(
+      `${this.config.apiUrl}/guarantees/summary`
+    );
   }
 }

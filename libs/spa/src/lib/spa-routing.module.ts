@@ -9,13 +9,18 @@ const routes: Routes = [
     component: SpaComponent,
     children: [
       {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('@ivt/dashboard').then((m) => m.DashboardModule),
+      },
+      {
         path: 'guarantees',
         loadChildren: () =>
           import('@ivt/guarantees').then((m) => m.GuaranteesModule),
       },
       {
         path: '',
-        redirectTo: 'guarantees',
+        redirectTo: 'dashboard',
         pathMatch: 'full',
       },
     ],

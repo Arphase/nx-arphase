@@ -20,6 +20,7 @@ import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import { GuaranteesService } from '../services/guarantees.service';
+import { GuaranteeSummary } from '@ivt/data';
 
 @Controller('guarantees')
 @UseGuards(AuthGuard())
@@ -34,7 +35,7 @@ export class GuaranteesController {
   }
 
   @Get('summary')
-  async getGuaranteesSummary() {
+  async getGuaranteesSummary(): Promise<GuaranteeSummary> {
     return this.guaranteesService.getGuaranteesSummary();
   }
 
