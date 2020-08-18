@@ -8,7 +8,12 @@
       <p class="text-white mb-0">{{ statusLabels[item.status] }}</p>
     </div>
   </div>
-  <div class="col-2">
+  <div class="col-1 d-flex justify-content-center">
+    <mat-checkbox [checked]="isSelected"
+                  (change)="selectItem.emit(item)">
+    </mat-checkbox>
+  </div>
+  <div class="col-1">
     {{ item.id }}
   </div>
   <div class="col-2">
@@ -46,6 +51,12 @@
             [loading]="loading"
             (click)="downloadPdf.emit(item.id)">
       <mat-icon>picture_as_pdf</mat-icon>
+    </button>
+    <button mat-icon-button
+            matTooltip="Generar orden de pago"
+            [loading]="loadingPaymentOrder"
+            (click)="generatePaymentOrder.emit([item.id])">
+      <mat-icon>local_atm</mat-icon>
     </button>
     <button mat-icon-button
             matTooltip="Eliminar garantía"

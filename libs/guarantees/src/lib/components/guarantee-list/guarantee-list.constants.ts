@@ -3,10 +3,16 @@ import { IvtColumns } from '@ivt/ui';
 
 export const columns: IvtColumns = [
   {
+    label: '',
+    prop: 'checkbox',
+    sortable: false,
+    colSize: 1,
+  },
+  {
     label: 'Folio',
     prop: 'id',
     sortable: true,
-    colSize: 2,
+    colSize: 1,
   },
   {
     label: 'Placa',

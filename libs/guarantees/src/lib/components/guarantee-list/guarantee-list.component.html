@@ -33,6 +33,19 @@
     </div>
   </div>
 
+  <div *ngIf="selectedIds.hasValue()"
+       class="row mt-4 bg-light py-3 rounded">
+    <div class="col">
+      <button mat-raised-button
+              [loading]="loadingPaymentOrder"
+              type="button"
+              color="primary"
+              (click)="generatePaymentOrder.emit(selectedIds.selected)">
+        Generar orden de pago
+      </button>
+    </div>
+  </div>
+
   <ivt-empty-state *ngIf="!list.length"
                    message="No existen garantías que se cumplan con el criterio de búsqueda">
   </ivt-empty-state>
@@ -47,7 +60,9 @@
                         [ignoreNextBatch]="!hasMoreItems || loading"
                         (nextBatchEmitter)="getMoreItems.emit()">
       <ng-template let-item>
-        <ivt-guarantee-row-container [item]="item">
+        <ivt-guarantee-row-container [item]="item"
+                                     [isSelected]="selectedIds.isSelected(item.id)"
+                                     (selectItem)="onSelectItem(item.id)">
         </ivt-guarantee-row-container>
       </ng-template>
     </ivt-virtual-scroll>
