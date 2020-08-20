@@ -25,6 +25,9 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   loadingDeleteSubject = new BehaviorSubject<boolean>(false);
   loadingDelete$ = this.loadingDeleteSubject.asObservable();
 
+  loadingPaymentOrderSubject = new BehaviorSubject<boolean>(false);
+  loadingPaymentOrder$ = this.loadingPaymentOrderSubject.asObservable();
+
   statusLabels = statusLabels;
 
   constructor(
@@ -78,5 +81,14 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
         finalize(() => this.loadingDeleteSubject.next(false))
       )
       .subscribe(() => this.toastr.success('La garantía se ha eliminado'));
+  }
+
+  generatePaymentOrder(guaranteeIds: number[]): void {
+    this.loadingPaymentOrderSubject.next(true);
+    this.guaranteeDataService.getPaymentOrder(guaranteeIds).pipe(
+      take(1),
+      finalize(() => this.loadingPaymentOrderSubject.next(false))
+    )
+      .subscribe();
   }
 }

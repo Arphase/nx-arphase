@@ -3,14 +3,12 @@ import { Inject, Injectable } from '@angular/core';
 import { Guarantee, GuaranteeSummary } from '@ivt/data';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { saveAs } from 'file-saver';
+import moment from 'moment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { IvtDataService } from '../../core';
-import {
-  IVT_STATE_CONFIGURATION,
-  IvtStateConfiguration,
-} from '../../state-config';
+import { IVT_STATE_CONFIGURATION, IvtStateConfiguration } from '../../state-config';
 
 @Injectable({
   providedIn: 'root',
@@ -38,6 +36,19 @@ export class GuaranteeDataService extends IvtDataService<Guarantee> {
         tap((file) => {
           const blob = new Blob([file], { type: 'application/octet-stream' });
           saveAs(blob, `${id}.pdf`);
+        })
+      );
+  }
+
+  getPaymentOrder(ids: number[]): Observable<any> {
+    return this.http
+      .post(`${this.config.apiUrl}/guarantees/paymentOrder`, { ids }, {
+        responseType: 'blob',
+      })
+      .pipe(
+        tap((file) => {
+          const blob = new Blob([file], { type: 'application/octet-stream' });
+          saveAs(blob, `Orden_de_Pago_${moment().format('DD-MM-YYYY')}.pdf`);
         })
       );
   }

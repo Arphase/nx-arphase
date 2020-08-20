@@ -1,5 +1,7 @@
 <ivt-guarantee-list [list]="list$ | async"
                     [hasMoreItems]="hasMore$ | async"
+                    [loadingPaymentOrder]="loadingPaymentOrder$ | async"
                     (filterItems)="filterItems($event)"
-                    (getMoreItems)="getMoreItems()">
+                    (getMoreItems)="getMoreItems()"
+                    (generatePaymentOrder)="generatePaymentOrder($event)">
 </ivt-guarantee-list>

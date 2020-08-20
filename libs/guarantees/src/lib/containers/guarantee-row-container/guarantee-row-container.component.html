@@ -2,7 +2,11 @@
                    [loadingStatusChange]="loadingStatusChange$ | async"
                    [loadingDelete]="loadingDelete$ | async"
                    [item]="item"
+                   [isSelected]="isSelected"
+                   [loadingPaymentOrder]="loadingPaymentOrder$ | async"
                    (downloadPdf)="downloadPdf($event)"
                    (changeStatus)="changeStatus($event)"
-                   (delete)="deleteItem($event)">
+                   (delete)="deleteItem($event)"
+                   (selectItem)="selectItem.emit($event)"
+                   (generatePaymentOrder)="generatePaymentOrder($event)">
 </ivt-guarantee-row>

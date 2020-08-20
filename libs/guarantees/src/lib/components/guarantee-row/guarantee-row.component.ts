@@ -26,6 +26,7 @@ export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> {
   @Input() loading: boolean;
   @Input() loadingStatusChange: boolean;
   @Input() loadingDelete: boolean;
+  @Input() loadingPaymentOrder: boolean;
   statusLabels = statusLabels;
   backgroundClasses = backgroundClasses;
   guaranteeStatus = GuaranteeStatus;
@@ -42,6 +43,7 @@ export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> {
   );
   @Output() downloadPdf = new EventEmitter<number>();
   @Output() changeStatus = new EventEmitter<Partial<Guarantee>>();
+  @Output() generatePaymentOrder = new EventEmitter<number[]>();
 
   onChangeStatus(id: number, status: GuaranteeStatus): void {
     this.changeStatus.emit({ id, status: GuaranteeStatus[status] });
