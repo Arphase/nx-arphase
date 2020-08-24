@@ -23,7 +23,6 @@ import { GuaranteesService } from '../services/guarantees.service';
 import { GuaranteeSummary } from '@ivt/data';
 
 @Controller('guarantees')
-@UseGuards(AuthGuard())
 export class GuaranteesController {
   constructor(private guaranteesService: GuaranteesService) {}
 
@@ -52,6 +51,15 @@ export class GuaranteesController {
   ) {
     return this.guaranteesService.generatePdf(id, response);
   }
+
+  @Post('paymentOrder')
+  async generatePaymentOrderPdf(
+    @Body('ids') ids: number[],
+    @Res() response: Response
+  ) {
+    return this.guaranteesService.generatePaymentOrderPdf(ids, response);
+  }
+
 
   @Put(':id')
   @UsePipes(new ValidationPipe({ transform: true }))

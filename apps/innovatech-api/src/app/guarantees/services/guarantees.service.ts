@@ -5,7 +5,11 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import * as htmlPdf from 'html-pdf';
+import * as path from 'path';
+import puppeteer from 'puppeteer';
+import fs from 'fs';
 import moment from 'moment';
+import { promisify } from 'util';
 import { Connection } from 'typeorm';
 
 import { GuaranteeEntity } from '../data/entities/guarantee.entity';
@@ -13,11 +17,15 @@ import { GuaranteeRepository } from '../data/guarantee.repository';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
+import { Readable } from 'stream';
 
 const dir = {
   asc: 'ASC',
   desc: 'DESC',
 };
+
+const BASE_PATH = 'file://' + path.resolve(__dirname) + '/assets/img/';
+
 @Injectable()
 export class GuaranteesService {
   guaranteeRepository: GuaranteeRepository;
@@ -130,6 +138,7 @@ export class GuaranteesService {
 
   async generatePdf(id: number, response: Response) {
     const guarantee = await this.getGuaranteeById(id);
+
     const content = `
     <html>
     <head>
@@ -153,6 +162,7 @@ export class GuaranteesService {
         </style>
     <head>
     <body>
+    <div><img src="logo.png"></div>
     <p class="center bold title">Procedimiento de reclamación</p>
     <p>En cuanto tenga conocimiento de la AVERÍA/AS, el BENEFICIARIO comunicará la misma a Innovatech por cualquiera de los siguientes medios: </p>
     <ul>
@@ -334,8 +344,21 @@ export class GuaranteesService {
     </body>
     </html>
 `;
+
+    let assestPath = path.join(__dirname + '/src/assets/img');
+    assestPath = assestPath.replace(new RegExp(/\\/g), '/');
     const options = {
       border: '1in',
+      base: 'file:///' + assestPath,
+      header: {
+        height: '45mm',
+        width: '45mm',
+        contents: '<div><img src="logo.png"></div>',
+      },
+      footer: {
+        height: '28mm',
+        contents: "<span style='color: #444;'></span><span></span>",
+      },
     };
     htmlPdf.create(content, options).toStream((err, stream) => {
       if (err) {
@@ -347,6 +370,192 @@ export class GuaranteesService {
         throw new InternalServerErrorException(e);
       }
     });
+  }
+
+  async generatePaymentOrderPdf(ids: number[], response: Response) {
+    const OUT_FILE = 'myfile.html';
+    const guarantees = await this.guaranteeRepository.findByIds(ids);
+    const createdAt = new Date().toLocaleDateString('es');
+    let total = 0;
+    const guaranteesRowsArray = guarantees.map((guarantee) => {
+      total += guarantee.amount;
+      return `
+    <tr>
+      <td>${guarantee.createdAt}</td>
+      <td>${guarantee.id}</td>
+      <td></td>
+      <td>${guarantee.amount}</td>
+    </tr>`;
+    });
+    const guaranteesRows = guaranteesRowsArray.join(' ');
+
+    const content = `
+      <html>
+      <head>
+          <meta charset=UTF-8>
+          <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+          <style>
+              * {
+                box-sizing: border-box;
+              }
+              html {
+                font-family: 'Open Sans' !important;
+                font-size: 9px;
+                line-height: 1.1;
+              }
+              body {
+                display: flex;
+                flex-direction: column;
+              }
+              .logo {
+                max-width: 50%;
+                height: auto;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+              }
+              .bold {
+                font-weight: 900;
+              }
+              .center {
+                text-align: center;
+              }
+              .title {
+                font-size: 16px;
+              }
+              .subtitle {
+                font-size: 13px;
+              }
+              .row {
+                display: -webkit-flex;
+                flex-direction: row;
+              }
+              .col {
+                min-width: 50%;
+              }
+              table {
+                width: 100%;
+                font-size: 9px;
+                border: 1px solid rgba(0,0,0,0.50);
+                border-collapse: collapse;
+                border-spacing: 0;
+                table-layout: fixed;
+              }
+              td {
+                border: 1px solid rgba(0,0,0,0.50);
+                padding: 2px 3px;
+              }
+              .total{
+                margin-left: auto;
+                width: 50%;
+              }
+              .footer {
+                max-width: 100%;
+                height: auto;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: auto;
+              }
+          </style>
+      <head>
+      <body>
+      <div>
+        <img class="logo" src="${BASE_PATH}logo_innovatech_garantias.jpg"/>
+      </div>
+      <p class="center bold title">ORDEN DE PAGO</p>
+      <div class="row" style="margin-bottom: 3rem;">
+        <div class="col">
+          <p class="bold">Innovatech Garantías S.A. de C.V.</p>
+          <p>RFC: IGA200725A31</p>
+          <p>Carretera Miguel Alemán no.312, Col. La Fe</p>
+          <p>San Nicolás de los Garza, N.L. CP 66477 MEXICO</p>
+        </div>
+        <div class="col">
+          <table>
+            <tr>
+              <td>Fecha de Emisión</td>
+              <td>${createdAt}</td>
+            </tr>
+            <tr>
+              <td>No. de Distribuidor</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>No. de Orden de Pago</td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <table style="margin-bottom: 3rem;">
+        <tr>
+          <td>CLIENTE</td>
+          <td colspan=3></td>
+        </tr>
+      </table>
+
+      <table style="margin-bottom: 2rem;">
+        <tr>
+          <td>FECHA DE FACTURA</td>
+          <td>No. DE CONTRATO</td>
+          <td>No. DE SERIE</td>
+          <td>IMPORTE</td>
+        </tr>
+        ${guaranteesRows}
+      </table>
+      <table class="total">
+        <tr>
+          <td class="bold">TOTAL</td>
+          <td>${total}</td>
+        </tr>
+      </table>
+      <div>
+        <p class="center bold subtitle">DATOS PARA PAGO A PROVEEDOR</p>
+      </div>
+      <table>
+        <tr>
+          <td>TOTAL A PAGAR INCLUYE IMPUESTOS:</td>
+          <td>${total}</td>
+        </tr>
+        <tr>
+          <td>REFERENCIA:</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>BANCOMER CONVENIO CIE:</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>OTROS BANCOS, NUMERO CONTRATO CABLE:</td>
+          <td></td>
+        </tr>
+      </table>
+      </body>
+      <div id="footer-template">
+        <img class="footer" src="${BASE_PATH}Franja_Tringulo.jpg"/>
+      </div>
+      </html>
+  `;
+
+    await promisify(fs.writeFile)(OUT_FILE, content);
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto(`file://${process.cwd()}/${OUT_FILE}`);
+    const buffer = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+      margin: {
+        left: '1in',
+        top: '1in',
+        right: '1in',
+        bottom: '1in',
+      },
+    });
+    promisify(fs.unlink)(OUT_FILE); // cleanup
+    await browser.close();
+    const stream = this.getReadableStream(buffer);
+    stream.pipe(response as any);
   }
 
   async updateGuarantee(
@@ -378,5 +587,14 @@ export class GuaranteesService {
       guarantee.client = client;
     }
     return guarantee;
+  }
+
+  getReadableStream(buffer: Buffer): Readable {
+    const stream = new Readable();
+
+    stream.push(buffer);
+    stream.push(null);
+
+    return stream;
   }
 }
