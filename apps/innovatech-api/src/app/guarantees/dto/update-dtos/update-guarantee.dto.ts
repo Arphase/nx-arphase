@@ -6,12 +6,17 @@ import {
   IsNumberString,
   IsOptional,
   ValidateNested,
+  isNumber,
 } from 'class-validator';
+import { IsInt } from 'class-validator';
 
 import { UpdateClientDto } from './update-client.dto';
 import { UpdateVehicleDto } from './update-vehicle.dto';
 
 export class UpdateGuaranteeDto {
+  @IsInt()
+  id: number;
+
   @IsOptional()
   @ValidateNested()
   @Type(() => UpdateClientDto)
@@ -35,6 +40,7 @@ export class UpdateGuaranteeDto {
   @IsDateString()
   endDate: Date;
 
+  @Type(() => String)
   @IsOptional()
   @IsNumberString()
   amount: number;

@@ -26,13 +26,22 @@ export class ClientEntity extends BaseEntity implements Client {
   @Column({ type: 'enum', enum: PersonTypes })
   personType: PersonTypes;
 
-  @OneToOne(
-    () => PhysicalPersonEntity,
-    (physicalPerson) => physicalPerson.client
-  )
+  @OneToOne(() => PhysicalPersonEntity, {
+    cascade: true,
+    eager: true,
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'physicalPersonId' })
   physicalInfo: PhysicalPerson;
 
-  @OneToOne(() => MoralPersonEntity, (moralPerson) => moralPerson.client)
+  @OneToOne(() => MoralPersonEntity, {
+    cascade: true,
+    eager: true,
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'moralPersonId' })
   moralInfo: MoralPerson;
 
   @Column()
@@ -47,6 +56,7 @@ export class ClientEntity extends BaseEntity implements Client {
   @OneToOne(() => AddressEntity, {
     cascade: true,
     eager: true,
+    onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'addressId' })

@@ -24,7 +24,7 @@ export class GuaranteeDataService extends IvtDataService<Guarantee> {
   ) {
     super('Guarantee', http, httpUrlGenerator, config);
     this.entityUrl = `${this.config.apiUrl}/guarantees/`;
-    this.entitiesUrl = `${this.config.apiUrl}/guarantees/`;
+    this.entitiesUrl = `${this.config.apiUrl}/guarantees`;
   }
 
   getGuaranteePdf(id: number): Observable<any> {

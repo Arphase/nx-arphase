@@ -16,6 +16,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<
 > {
   successUrl = '/spa/guarantees';
   createSuccessMessage = 'La garantía se ha creado con éxito';
+  updateSuccessMessage = 'La garantía se ha actualizado con éxito';
 
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,

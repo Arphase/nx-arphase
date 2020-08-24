@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Guarantee, GuaranteeStatus } from '@ivt/data';
 import { GuaranteeCollectionService, GuaranteeDataService } from '@ivt/state';
-import { IvtConfirmationDialogComponent, IvtRowComponent } from '@ivt/ui';
+import { IvtRowComponent } from '@ivt/ui';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
-import { filter, finalize, switchMap, take, tap } from 'rxjs/operators';
+import { finalize, take } from 'rxjs/operators';
 
 import { statusLabels } from '../../components/guarantee-row/guarantee-row.constants';
 
@@ -22,9 +21,6 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   loadingStatusChangeSubject = new BehaviorSubject<boolean>(false);
   loadingStatusChange$ = this.loadingStatusChangeSubject.asObservable();
 
-  loadingDeleteSubject = new BehaviorSubject<boolean>(false);
-  loadingDelete$ = this.loadingDeleteSubject.asObservable();
-
   loadingPaymentOrderSubject = new BehaviorSubject<boolean>(false);
   loadingPaymentOrder$ = this.loadingPaymentOrderSubject.asObservable();
 
@@ -33,8 +29,7 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   constructor(
     private guaranteeCollectiionService: GuaranteeCollectionService,
     private guaranteeDataService: GuaranteeDataService,
-    private toastr: ToastrService,
-    private matDialog: MatDialog
+    private toastr: ToastrService
   ) {
     super();
   }
@@ -65,22 +60,6 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
           ].toLowerCase()}`
         )
       );
-  }
-
-  deleteItem(item: Guarantee): void {
-    this.matDialog
-      .open(IvtConfirmationDialogComponent, {
-        data: { message: `¿Desea eliminar la garantía con folio ${item.id}?` },
-      })
-      .afterClosed()
-      .pipe(
-        filter((value) => !!value),
-        tap(() => this.loadingDeleteSubject.next(true)),
-        take(1),
-        switchMap(() => this.guaranteeCollectiionService.delete(item)),
-        finalize(() => this.loadingDeleteSubject.next(false))
-      )
-      .subscribe(() => this.toastr.success('La garantía se ha eliminado'));
   }
 
   generatePaymentOrder(guaranteeIds: number[]): void {

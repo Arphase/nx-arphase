@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatRadioChange } from '@angular/material/radio';
 import { Guarantee, PersonTypes, Select } from '@ivt/data';
 import { createAddressForm, IvtFormComponent } from '@ivt/ui';
-import { CustomValidators } from '@ivt/utils';
+import { CustomValidators, filterNil } from '@ivt/utils';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-guarantee-form',
@@ -12,7 +12,7 @@ import { CustomValidators } from '@ivt/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
-  implements OnInit {
+  implements OnInit, OnChanges {
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -48,15 +48,19 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
   constructor(private fb: FormBuilder) {
     super();
     this.form = this.fb.group({
+      id: null,
       client: this.fb.group({
+        id: null,
         personType: [PersonTypes[PersonTypes.physical], Validators.required],
         physicalInfo: this.fb.group({
+          id: null,
           name: [null, Validators.required],
           lastName: [null, Validators.required],
           secondLastName: [null, Validators.required],
           birthDate: [null, Validators.required],
         }),
         moralInfo: this.fb.group({
+          id: null,
           businessName: [null, Validators.required],
           constitutionDate: [null, Validators.required],
           distributor: [null, Validators.required],
@@ -69,6 +73,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
         salesPlace: [null, Validators.required],
       }),
       vehicle: this.fb.group({
+        id: null,
         productType: [null, Validators.required],
         brand: [null, Validators.required],
         model: [null, Validators.required],
@@ -86,63 +91,75 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
       endDate: [null, Validators.required],
       amount: [null, Validators.required],
     });
+
+    this.form.patchValue({
+      "createdAt": "2020-08-24T18:24:35.813Z",
+      "startDate": "2020-08-31T05:00:00.000Z",
+      "endDate": "2020-08-31T05:00:00.000Z",
+      "amount": 5000,
+      "client": {
+        "rfc": "MAVV951102312",
+        "phone": "22222222222",
+        "email": "victor@test.com",
+        "salesPlace": "LOL",
+        "physicalInfo": {
+          name: 'test',
+          lastName: 'test',
+          secondLastName: 'test',
+          "birthDate": "2020-08-24T18:24:35.813Z",
+        },
+        "address": {
+          "zipCode": 64983,
+          "country": "México",
+          "state": "Nuevo León",
+          "city": "Monterrey",
+          "suburb": "El Refugio",
+          "street": "bambu",
+          "externalNumber": "1610",
+          "internalNumber": null
+        }
+      },
+      "vehicle": {
+        "productType": "FORTE",
+        "brand": "222",
+        "model": "22",
+        "version": "22",
+        "year": 2222,
+        "invoiceDate": "2020-08-22T05:00:00.000Z",
+        "vin": "22",
+        "motorNumber": "22",
+        "serialNumber": "22",
+        "horsePower": 222,
+        "kilometrageStart": 22,
+        "kilometrageEnd": 22222
+      }
+    })
   }
 
   ngOnInit() {
     this.moralInfoForm.disable();
-    this.form.patchValue({
-      client: {
-        physicalInfo: {
-          name: 'TEST',
-          lastName: 'TEST',
-          secondLastName: 'AA',
-          birthDate: '2020-08-05T05:00:00.000Z',
-        },
-        moralInfo: {
-          businessName: null,
-          constitutionDate: null,
-          distributor: null,
-          adviser: null,
-        },
-        rfc: 'MAVV951102311',
-        phone: '2',
-        email: 'test@test.com',
-        address: {
-          zipCode: '64983',
-          country: 'M',
-          state: 'W',
-          city: 'W',
-          suburb: 'W',
-          street: 'W',
-          externalNumber: '22',
-          internalNumber: '22',
-        },
-        salesPlace: 'LOL',
-      },
-      vehicle: {
-        productType: 'P',
-        brand: 'P',
-        model: 'P',
-        version: 'P',
-        year: '2020',
-        invoiceDate: '2020-08-05T05:00:00.000Z',
-        vin: '22',
-        motorNumber: '2',
-        serialNumber: '22',
-        horsePower: '222',
-        kilometrageStart: '2',
-        kilometrageEnd: '22',
-      },
-      startDate: '2020-08-05T05:00:00.000Z',
-      endDate: '2020-08-05T05:00:00.000Z',
-      amount: '300',
-    });
+
+    this.client.get('personType').valueChanges.pipe(
+      filterNil(),
+      takeUntil(this.destroy$)
+    ).subscribe(value => this.personTypeChange(value));
   }
 
-  personTypeChange(personType: MatRadioChange): void {
-    const value = personType.value;
-    this.showPhysicalForm = value === PersonTypes.physical;
-    this.showMoralForm = value === PersonTypes.moral;
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.item && this.item) {
+      this.form.patchValue({
+        ...this.item, client: {
+          ...this.item.client,
+          moralInfo: this.item.client.moralInfo || {},
+          physicalInfo: this.item.client.physicalInfo || {}
+        }
+      });
+    }
+  }
+
+  personTypeChange(value: string): void {
+    this.showPhysicalForm = value === PersonTypes[PersonTypes.physical];
+    this.showMoralForm = value === PersonTypes[PersonTypes.moral];
 
     if (this.showPhysicalForm) {
       this.moralInfoForm.disable();

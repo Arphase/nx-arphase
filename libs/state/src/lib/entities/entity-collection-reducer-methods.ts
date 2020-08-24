@@ -80,6 +80,7 @@ export class AdditionalEntityCollectionReducerMethods<
     return {
       ...collection,
       currentItem: action.payload.data,
+      loading: false
     };
   }
 
