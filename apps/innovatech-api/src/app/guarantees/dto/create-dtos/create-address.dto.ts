@@ -1,6 +1,8 @@
 import { IsNotEmpty, IsNumberString, IsString, IsOptional } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateAddressDto {
+  @Type(() => String)
   @IsNotEmpty()
   @IsNumberString()
   zipCode: number;

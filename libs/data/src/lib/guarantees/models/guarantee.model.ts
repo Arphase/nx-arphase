@@ -8,7 +8,6 @@ export interface Guarantee {
   vehicle: Vehicle;
   createdAt: Date;
   status: GuaranteeStatus | string;
-  paymentOrder: string;
   startDate: Date;
   endDate: Date;
   amount: number;

@@ -17,7 +17,7 @@
     {{ item.id }}
   </div>
   <div class="col-2">
-    {{ item.vehicle.vin }}
+    {{ item.vehicle?.vin }}
   </div>
   <div class="col-2">
     {{ item.startDate | date: "dd/MM/yyyy" }}
@@ -29,6 +29,11 @@
     {{ item.amount | currency }}
   </div>
   <div class="col flex-end">
+    <button mat-icon-button
+            matTooltip="Editar garantía"
+            [routerLink]="[item.id]">
+      <mat-icon>border_color</mat-icon>
+    </button>
     <button mat-icon-button
             matTooltip="Cambiar estatus"
             [matMenuTriggerFor]="menu"
@@ -57,12 +62,6 @@
             [loading]="loadingPaymentOrder"
             (click)="generatePaymentOrder.emit([item.id])">
       <mat-icon>local_atm</mat-icon>
-    </button>
-    <button mat-icon-button
-            matTooltip="Eliminar garantía"
-            [loading]="loadingDelete"
-            (click)="delete.emit(item)">
-      <mat-icon>delete</mat-icon>
     </button>
   </div>
 </ivt-row>

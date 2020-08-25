@@ -26,11 +26,4 @@ export class MoralPersonEntity extends BaseEntity implements MoralPerson {
 
   @Column()
   adviser: string;
-
-  @OneToOne((type) => ClientEntity, (client) => client.moralInfo, {
-    cascade: true,
-    onDelete: 'CASCADE',
-  })
-  @JoinColumn({ name: 'clientId' })
-  client: Client;
 }

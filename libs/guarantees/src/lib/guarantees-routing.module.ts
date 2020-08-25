@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { GuaranteeFormContainerComponent } from './containers/guarantee-form-container/guarantee-form-container.component';
 import { GuaranteeListContainerComponent } from './containers/guarantee-list-container/guarantee-list-container.component';
 import { GuaranteesComponent } from './guarantees/guarantees.component';
+import { GuaranteeResolverService } from './resolvers/guarantee-resolver.service';
 import { GuaranteesResolverService } from './resolvers/guarantees-resolver.service';
 
 export const routes: Routes = [
@@ -19,6 +20,12 @@ export const routes: Routes = [
       {
         path: 'new',
         component: GuaranteeFormContainerComponent,
+        resolve: { resolvedGuarantee: GuaranteeResolverService }
+      },
+      {
+        path: ':id',
+        component: GuaranteeFormContainerComponent,
+        resolve: { resolvedGuarantee: GuaranteeResolverService }
       },
     ],
   },
@@ -28,4 +35,4 @@ export const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class GuaranteesRoutingModule {}
+export class GuaranteesRoutingModule { }

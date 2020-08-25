@@ -3,7 +3,7 @@ import { Guarantee } from '@ivt/data';
 import { GuaranteeCollectionService, GuaranteeDataService } from '@ivt/state';
 import { IvtListContainerComponent } from '@ivt/ui';
 import { BehaviorSubject } from 'rxjs';
-import { take, finalize } from 'rxjs/operators';
+import { finalize, take } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-guarantee-list-container',
