@@ -25,6 +25,10 @@ export class SpaComponent {
     this.opened = true;
   }
 
+  onCloseMenu(): void {
+    this.opened = false;
+  }
+
   onToggleNavbar(): void {
     this.opened = !this.opened;
   }
