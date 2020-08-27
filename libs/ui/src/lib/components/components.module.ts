@@ -4,8 +4,11 @@ import { IvtAddressFormModule } from './address-form';
 import { IvtConfirmationDialogModule } from './confirmation-dialog';
 import { IvtEmptyStateModule } from './empty-state';
 import { IvtExpansionPanelModule } from './expansion-panel';
-import { IvtFilterModule } from './filters';
-import { IvtDateFilterModule } from './filters/date-filter';
+import {
+  IvtDateFilterModule,
+  IvtFilterModule,
+  IvtRadioFilterModule,
+} from './filters';
 import { IvtFormModule } from './form';
 import { IvtFormFieldModule } from './form-field';
 import { IvtGoBackTitleModule } from './go-back-title';
@@ -29,6 +32,7 @@ const MODULES = [
   IvtGoBackTitleModule,
   IvtListModule,
   IvtNavbarModule,
+  IvtRadioFilterModule,
   IvtRowModule,
   IvtSearchbarModule,
   IvtSubscriberModule,

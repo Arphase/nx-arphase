@@ -1,5 +1,9 @@
 import { GuaranteeStatus, GuaranteeSummary, PersonTypes } from '@ivt/data';
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import fs from 'fs';
 import * as htmlPdf from 'html-pdf';
 import moment from 'moment';
@@ -62,6 +66,7 @@ export class GuaranteesService {
       startDate,
       endDate,
       text,
+      status,
     } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     let guarantees: GuaranteeEntity[];
@@ -87,6 +92,12 @@ export class GuaranteesService {
 
     if (text) {
       query.andWhere('(guarantee.id = :id)', { id: text });
+    }
+
+    if (status) {
+      query.andWhere('(guarantee.status = :status)', {
+        status: GuaranteeStatus[status],
+      });
     }
 
     query
@@ -124,7 +135,7 @@ export class GuaranteesService {
     createGuaranteeDto = this.omitInfo(createGuaranteeDto);
     const newGuarantee = await this.guaranteeRepository.create({
       ...createGuaranteeDto,
-      status: GuaranteeStatus.outstanding
+      status: GuaranteeStatus.outstanding,
     });
     await newGuarantee.save();
     return newGuarantee;
@@ -171,50 +182,50 @@ export class GuaranteesService {
         <p>Ante cualquier duda, ponerse en contacto con el área de servicio al cliente.</p>
         <p>*Los datos introducidos tendrán que coincidir fehacientemente con los del vehículo objeto de garantía. En caso de error será motivo de rescisión del contrato.</p>
         <p><span class="bold">PUNTO DE VENTA:</span> ${
-      guarantee.client.salesPlace
-      }</p>
+          guarantee.client.salesPlace
+        }</p>
         <p><span class="bold">R.F.C.</span> ${guarantee.client.rfc}</p>
         <p><span class="bold">DIRECCIÓN:</span> ${
-      guarantee.client.address.street
-      } ${guarantee.client.address.externalNumber}, ${
+          guarantee.client.address.street
+        } ${guarantee.client.address.externalNumber}, ${
       guarantee.client.address.suburb
-      }. ${guarantee.client.address.city}, ${guarantee.client.address.state}. ${
+    }. ${guarantee.client.address.city}, ${guarantee.client.address.state}. ${
       guarantee.client.address.zipCode
-      } </p>
+    } </p>
         <p><span class="bold">TELEFONO:</span> ${guarantee.client.phone}</p>
         <p><span class="bold">EMAIL:</span> ${guarantee.client.email}</p>
         <p class="bold">DATOS DEL VEHÍCULO:</p>
         <p><span class="bold">MARCA:</span> ${
-      guarantee.vehicle.brand
-      }       <span class="bold"> - NUMERO DE SERIE:</span> ${
+          guarantee.vehicle.brand
+        }       <span class="bold"> - NUMERO DE SERIE:</span> ${
       guarantee.vehicle.serialNumber
-      }  <span class="bold"> - HP:</span> ${guarantee.vehicle.horsePower} </p>
+    }  <span class="bold"> - HP:</span> ${guarantee.vehicle.horsePower} </p>
         <p><span class="bold">MODELO:</span> ${
-      guarantee.vehicle.model
-      } <span class="bold"> - FECHA 1º FACTURA: </span>${moment(
-        guarantee.vehicle.invoiceDate
-      )
-        .locale('es')
-        .format('LL')}</p>
+          guarantee.vehicle.model
+        } <span class="bold"> - FECHA 1º FACTURA: </span>${moment(
+      guarantee.vehicle.invoiceDate
+    )
+      .locale('es')
+      .format('LL')}</p>
         <p><span class="bold">MOTOR:</span> ${guarantee.vehicle.motorNumber}</p>
         <center><p>PERIODO DE VIGENCIA</p></center>
         <p><span class="bold">FECHA INICIO GARANTIA:</span> ${moment(
           guarantee.startDate
         )
-        .locale('es')
-        .format('LL')}</p>
+          .locale('es')
+          .format('LL')}</p>
           <p>
           <span class="bold">FIN GARANTIA POR TIEMPO:</span> ${moment(
-          guarantee.endDate
-        )
-        .locale('es')
-        .format('LL')}
+            guarantee.endDate
+          )
+            .locale('es')
+            .format('LL')}
           </p>
         <p><span class="bold">KILOMETRAJE INICIAL: </span> ${
-      guarantee.vehicle.kilometrageStart
-      } <span class="bold"> - FIN GARANTIA POR KILOMETRAJE: </span> ${
+          guarantee.vehicle.kilometrageStart
+        } <span class="bold"> - FIN GARANTIA POR KILOMETRAJE: </span> ${
       guarantee.vehicle.kilometrageEnd
-      } </p>
+    } </p>
         <p>Siempre que se hayan realizado en el VEHÍCULO en tiempo y forma los servicios y mantenimientos señalados en el certificado de garantía; el PERIODO DE VIGENCIA podrá comenzar a computarse hasta el momento en que expire la garantía del fabricante o alguna otra garantía de similar naturaleza, ya sea por sobrepasar el kilometraje o cumplirse el tiempo establecido en la misma.</p>
         <p>En caso de rescisión anticipada de esta garantía, Innovatech no estará obligada a la devolución del precio.</p>
         <p>COBERTURAS</p>
