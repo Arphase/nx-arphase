@@ -38,7 +38,7 @@ export class GuaranteesController {
     return this.guaranteesService.getGuaranteeById(id);
   }
 
-  @Get('summary')
+  @Get('report/summary')
   async getGuaranteesSummary(): Promise<GuaranteeSummary> {
     return this.guaranteesService.getGuaranteesSummary();
   }
