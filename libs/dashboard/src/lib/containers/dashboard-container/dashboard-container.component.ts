@@ -30,10 +30,10 @@ export class DashboardContainerComponent implements OnInit {
     map((guaranteeSummary) => {
       const formattedSummary = keyBy(guaranteeSummary, 'status');
       return [
-        Number(formattedSummary[GuaranteeStatus.paid].amount),
-        Number(formattedSummary[GuaranteeStatus.outstanding].amount),
-        Number(formattedSummary[GuaranteeStatus.cancelled].amount),
-        Number(formattedSummary[GuaranteeStatus.expired].amount),
+        Number(formattedSummary[GuaranteeStatus.paid]?.amount || 0),
+        Number(formattedSummary[GuaranteeStatus.outstanding]?.amount || 0),
+        Number(formattedSummary[GuaranteeStatus.cancelled]?.amount) || 0,
+        Number(formattedSummary[GuaranteeStatus.expired]?.amount) || 0,
       ];
     })
   );

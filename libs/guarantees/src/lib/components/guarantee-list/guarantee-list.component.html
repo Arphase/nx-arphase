@@ -24,11 +24,16 @@
 
 <div [hidden]="!showFilters"
      class="row mb-4">
-  <div class="col bg-light py-3 rounded">
-    <ivt-date-filter label="Fecha"
+  <div class="col bg-light py-3 rounded d-flex">
+    <ivt-date-filter class="mr-3"
+                     label="Fecha"
                      [dateTypeOptions]="dateTypeOptions"
                      (filterItems)="updateDateFilter($event)">
     </ivt-date-filter>
+    <ivt-radio-filter label="Estatus"
+                      [options]="statusOptions"
+                      (filterItems)="updateStatusFilter($event)">
+    </ivt-radio-filter>
   </div>
 </div>
 

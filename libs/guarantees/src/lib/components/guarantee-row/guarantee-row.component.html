@@ -30,6 +30,41 @@
   </div>
   <div class="col flex-end">
     <button mat-icon-button
+            matTooltip="Acciones"
+            [loading]="loading"
+            [matMenuTriggerFor]="actionsMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #actionsMenu="matMenu">
+      <button mat-menu-item
+              [routerLink]="[item.id]">
+        Editar garantía
+      </button>
+      <button mat-menu-item
+              [matMenuTriggerFor]="statusMenu">
+        Cambiar estatus
+      </button>
+      <button mat-menu-item
+              (click)="downloadPdf.emit(item.id)">
+        Descargar PDF
+      </button>
+      <button mat-menu-item
+              (click)="generatePaymentOrder.emit([item.id])">
+        Generar orden de pago
+      </button>
+    </mat-menu>
+
+    <mat-menu #statusMenu="matMenu">
+      <button *ngFor="let menuOption of menuOptions"
+              mat-menu-item
+              class="status-option my-2"
+              (click)="onChangeStatus(item.id, menuOption.value)">
+        <span class="{{ menuOption.class }} text-white text-center rounded flex-center">
+          {{ menuOption.label }}
+        </span>
+      </button>
+    </mat-menu>
+    <!-- <button mat-icon-button
             matTooltip="Editar garantía"
             [routerLink]="[item.id]">
       <mat-icon>border_color</mat-icon>
@@ -62,6 +97,6 @@
             [loading]="loadingPaymentOrder"
             (click)="generatePaymentOrder.emit([item.id])">
       <mat-icon>local_atm</mat-icon>
-    </button>
+    </button> -->
   </div>
 </ivt-row>

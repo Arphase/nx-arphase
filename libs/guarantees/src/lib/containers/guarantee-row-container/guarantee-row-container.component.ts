@@ -18,12 +18,6 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
 
-  loadingStatusChangeSubject = new BehaviorSubject<boolean>(false);
-  loadingStatusChange$ = this.loadingStatusChangeSubject.asObservable();
-
-  loadingPaymentOrderSubject = new BehaviorSubject<boolean>(false);
-  loadingPaymentOrder$ = this.loadingPaymentOrderSubject.asObservable();
-
   statusLabels = statusLabels;
 
   constructor(
@@ -46,12 +40,12 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   }
 
   changeStatus(guarantee: Partial<Guarantee>): void {
-    this.loadingStatusChangeSubject.next(true);
+    this.loadingSubject.next(true);
     this.guaranteeCollectiionService
       .update(guarantee)
       .pipe(
         take(1),
-        finalize(() => this.loadingStatusChangeSubject.next(false))
+        finalize(() => this.loadingSubject.next(false))
       )
       .subscribe(() =>
         this.toastr.success(
@@ -63,11 +57,13 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   }
 
   generatePaymentOrder(guaranteeIds: number[]): void {
-    this.loadingPaymentOrderSubject.next(true);
-    this.guaranteeDataService.getPaymentOrder(guaranteeIds).pipe(
-      take(1),
-      finalize(() => this.loadingPaymentOrderSubject.next(false))
-    )
+    this.loadingSubject.next(true);
+    this.guaranteeDataService
+      .getPaymentOrder(guaranteeIds)
+      .pipe(
+        take(1),
+        finalize(() => this.loadingSubject.next(false))
+      )
       .subscribe();
   }
 }
