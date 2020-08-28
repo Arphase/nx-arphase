@@ -30,6 +30,8 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> {
   }
 
   openDialog() {
-    this.dialog.open(PaymentOrderDialogComponent);
+    let dialogRef = this.dialog.open(PaymentOrderDialogComponent);
+    let instance = dialogRef.componentInstance;
+    instance.selectedIds = this.selectedIds.selected;
   }
 }

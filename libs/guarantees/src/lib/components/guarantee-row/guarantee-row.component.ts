@@ -4,6 +4,8 @@ import {
   EventEmitter,
   Input,
   Output,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { Guarantee, GuaranteeStatus } from '@ivt/data';
 import { IvtRowComponent } from '@ivt/ui';
@@ -22,7 +24,7 @@ import {
   styleUrls: ['./guarantee-row.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> {
+export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> implements OnChanges {
   @Input() loading: boolean;
   @Input() loadingStatusChange: boolean;
   @Input() loadingPaymentOrder: boolean;
@@ -32,6 +34,7 @@ export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> {
   menuOptions = menuOptions;
   showStatusSubject = new Subject();
   showStatus$ = this.showStatusSubject.asObservable();
+  disableCheckbox: boolean = false;
   visibleStatus$ = this.showStatus$.pipe(
     switchMap(() =>
       timer(0, 1000).pipe(
@@ -46,5 +49,11 @@ export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> {
 
   onChangeStatus(id: number, status: GuaranteeStatus): void {
     this.changeStatus.emit({ id, status: GuaranteeStatus[status] });
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+    if(changes.item && this.item && this.item.amount){
+      this.disableCheckbox = true;
+    }
   }
 }
