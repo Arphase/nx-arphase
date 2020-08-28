@@ -21,7 +21,7 @@ export class IvtAddressFormService {
   constructor(
     private http: HttpClient,
     @Inject(IVT_STATE_CONFIGURATION) public config: IvtStateConfiguration
-  ) {}
+  ) { }
 
   getLocalities(zipCode: string): Observable<Locality[]> {
     return this.http
@@ -72,6 +72,7 @@ export class IvtAddressFormService {
 
 export function createAddressForm(): FormGroup {
   return new FormGroup({
+    id: new FormControl(null),
     zipCode: new FormControl('', Validators.required),
     country: new FormControl('', Validators.required),
     state: new FormControl('', Validators.required),

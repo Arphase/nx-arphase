@@ -4,21 +4,21 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
+import fs from 'fs';
 import * as htmlPdf from 'html-pdf';
+import moment from 'moment';
 import * as path from 'path';
 import puppeteer from 'puppeteer';
-import fs from 'fs';
 import { promises } from 'fs';
-import moment from 'moment';
 import { promisify } from 'util';
 import { Connection } from 'typeorm';
+import { Readable } from 'stream';
 
 import { GuaranteeEntity } from '../data/entities/guarantee.entity';
 import { GuaranteeRepository } from '../data/guarantee.repository';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
-import { Readable } from 'stream';
 
 const dir = {
   asc: 'ASC',
@@ -68,6 +68,7 @@ export class GuaranteesService {
       startDate,
       endDate,
       text,
+      status,
     } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     let guarantees: GuaranteeEntity[];
@@ -93,6 +94,12 @@ export class GuaranteesService {
 
     if (text) {
       query.andWhere('(guarantee.id = :id)', { id: text });
+    }
+
+    if (status) {
+      query.andWhere('(guarantee.status = :status)', {
+        status: GuaranteeStatus[status],
+      });
     }
 
     query
@@ -130,9 +137,7 @@ export class GuaranteesService {
     createGuaranteeDto = this.omitInfo(createGuaranteeDto);
     const newGuarantee = await this.guaranteeRepository.create({
       ...createGuaranteeDto,
-      createdAt: new Date(),
       status: GuaranteeStatus.outstanding,
-      paymentOrder: 'lol',
     });
     await newGuarantee.save();
     return newGuarantee;
@@ -614,9 +619,9 @@ export class GuaranteesService {
     id: number,
     updateGuaranteeDto: UpdateGuaranteeDto
   ): Promise<GuaranteeEntity> {
-    await this.guaranteeRepository.update(id, updateGuaranteeDto);
-    const updatedGuarantee = await this.getGuaranteeById(id);
-    return updatedGuarantee;
+    const guarantee = this.omitInfo(updateGuaranteeDto);
+    await this.guaranteeRepository.update(id, guarantee);
+    return new GuaranteeEntity(updateGuaranteeDto);
   }
 
   async deleteGuarantee(id: number): Promise<void> {
@@ -628,9 +633,9 @@ export class GuaranteesService {
   }
 
   omitInfo(
-    guarantee: GuaranteeEntity | CreateGuaranteeDto
-  ): GuaranteeEntity | CreateGuaranteeDto {
-    const personType = PersonTypes[guarantee.client.personType];
+    guarantee: GuaranteeEntity | CreateGuaranteeDto | UpdateGuaranteeDto
+  ): GuaranteeEntity | CreateGuaranteeDto | UpdateGuaranteeDto {
+    const personType = guarantee.client?.personType;
     if (personType === PersonTypes.physical) {
       const { moralInfo, ...client } = guarantee.client;
       guarantee.client = client;

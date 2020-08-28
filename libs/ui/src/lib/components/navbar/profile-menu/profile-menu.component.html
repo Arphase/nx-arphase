@@ -1,11 +1,11 @@
 <div class="profile">
-  <div class="profile__menu"
+  <div class="profile__menu flex-end"
        [matMenuTriggerFor]="profileMenu">
     <div class="profile__avatar mr-2">
       <span class="profile__avatar-text">{{ avatarText }}</span>
     </div>
 
-    <div class="profile__info">
+    <div class="profile__info d-none d-sm-block">
       <div class="info__name d-flex align-items-center">
         {{ name }}
         <mat-icon class="profile__arrow ml-1">keyboard_arrow_down</mat-icon>
@@ -18,7 +18,7 @@
   <mat-menu #profileMenu="matMenu">
     <div class="profile__menu-content">
       <div class="menu-content__body">
-        <div class="profile__avatar-menu">
+        <div class="profile__avatar-menu d-none d-sm-flex">
           <div class="profile__avatar-menu-text">{{ avatarText }}</div>
         </div>
 

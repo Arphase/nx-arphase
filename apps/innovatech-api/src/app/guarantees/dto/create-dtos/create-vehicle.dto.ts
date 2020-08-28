@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString, IsNumberString } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateVehicleDto {
   @IsNotEmpty()
@@ -17,6 +18,7 @@ export class CreateVehicleDto {
   @IsString()
   version: string;
 
+  @Type(() => String)
   @IsNotEmpty()
   @IsNumberString()
   year: number;
@@ -37,14 +39,17 @@ export class CreateVehicleDto {
   @IsString()
   serialNumber: string;
 
+  @Type(() => String)
   @IsNotEmpty()
   @IsNumberString()
   horsePower: number;
 
+  @Type(() => String)
   @IsNotEmpty()
   @IsNumberString()
   kilometrageStart: number;
 
+  @Type(() => String)
   @IsNotEmpty()
   @IsNumberString()
   kilometrageEnd: number;

@@ -1,4 +1,4 @@
-import { Select } from '@ivt/data';
+import { GuaranteeStatus, Select } from '@ivt/data';
 import { IvtColumns } from '@ivt/ui';
 
 export const columns: IvtColumns = [
@@ -51,4 +51,23 @@ export const columns: IvtColumns = [
 export const dateTypeOptions: Select[] = [
   { label: 'Fecha inicio', value: 'startDate' },
   { label: 'Fecha fin', value: 'endDate' },
+];
+
+export const statusOptions: Select[] = [
+  {
+    label: 'Pagada',
+    value: GuaranteeStatus[GuaranteeStatus.paid],
+  },
+  {
+    label: 'Pendiente de pago',
+    value: GuaranteeStatus[GuaranteeStatus.outstanding],
+  },
+  {
+    label: 'Cancelada',
+    value: GuaranteeStatus[GuaranteeStatus.cancelled],
+  },
+  {
+    label: 'Caducada',
+    value: GuaranteeStatus[GuaranteeStatus.expired],
+  },
 ];

@@ -18,8 +18,9 @@ import { MenuItem } from '@ivt/data';
 export class IvtMenuItemComponent implements OnChanges {
   @Input() menuItem: MenuItem = {};
   @Input() menuOpened: boolean;
-  @Input() closeMenu: boolean;
-  @Output() openMenuEmitter = new EventEmitter<void>();
+  @Input() isMobile: boolean;
+  @Output() openMenu = new EventEmitter<void>();
+  @Output() closeMenu = new EventEmitter<void>();
   showMenu: boolean;
   lastToggled: boolean;
 
@@ -28,18 +29,20 @@ export class IvtMenuItemComponent implements OnChanges {
       this.showMenu = false;
     }
 
-    if (changes.closeMenu) {
-      if (this.lastToggled) {
-        this.lastToggled = false;
-      } else {
-        this.showMenu = false;
-      }
+    if (this.lastToggled) {
+      this.lastToggled = false;
+    } else {
+      this.showMenu = false;
     }
   }
 
   toggleMenu(): void {
     if (this.menuItem.children) {
-      this.openMenuEmitter.emit();
+      this.openMenu.emit();
+    }
+
+    if (this.isMobile) {
+      this.closeMenu.emit();
     }
 
     this.showMenu = !this.showMenu;

@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Guarantee, GuaranteeStatus } from '@ivt/data';
 import { GuaranteeCollectionService, GuaranteeDataService } from '@ivt/state';
-import { IvtConfirmationDialogComponent, IvtRowComponent } from '@ivt/ui';
+import { IvtRowComponent } from '@ivt/ui';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
-import { filter, finalize, switchMap, take, tap } from 'rxjs/operators';
+import { finalize, take } from 'rxjs/operators';
 
 import { statusLabels } from '../../components/guarantee-row/guarantee-row.constants';
 
@@ -19,22 +18,12 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
 
-  loadingStatusChangeSubject = new BehaviorSubject<boolean>(false);
-  loadingStatusChange$ = this.loadingStatusChangeSubject.asObservable();
-
-  loadingDeleteSubject = new BehaviorSubject<boolean>(false);
-  loadingDelete$ = this.loadingDeleteSubject.asObservable();
-
-  loadingPaymentOrderSubject = new BehaviorSubject<boolean>(false);
-  loadingPaymentOrder$ = this.loadingPaymentOrderSubject.asObservable();
-
   statusLabels = statusLabels;
 
   constructor(
     private guaranteeCollectiionService: GuaranteeCollectionService,
     private guaranteeDataService: GuaranteeDataService,
-    private toastr: ToastrService,
-    private matDialog: MatDialog
+    private toastr: ToastrService
   ) {
     super();
   }
@@ -51,12 +40,12 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   }
 
   changeStatus(guarantee: Partial<Guarantee>): void {
-    this.loadingStatusChangeSubject.next(true);
+    this.loadingSubject.next(true);
     this.guaranteeCollectiionService
       .update(guarantee)
       .pipe(
         take(1),
-        finalize(() => this.loadingStatusChangeSubject.next(false))
+        finalize(() => this.loadingSubject.next(false))
       )
       .subscribe(() =>
         this.toastr.success(
@@ -67,28 +56,14 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
       );
   }
 
-  deleteItem(item: Guarantee): void {
-    this.matDialog
-      .open(IvtConfirmationDialogComponent, {
-        data: { message: `¿Desea eliminar la garantía con folio ${item.id}?` },
-      })
-      .afterClosed()
-      .pipe(
-        filter((value) => !!value),
-        tap(() => this.loadingDeleteSubject.next(true)),
-        take(1),
-        switchMap(() => this.guaranteeCollectiionService.delete(item)),
-        finalize(() => this.loadingDeleteSubject.next(false))
-      )
-      .subscribe(() => this.toastr.success('La garantía se ha eliminado'));
-  }
-
   generatePaymentOrder(guaranteeIds: number[]): void {
-    this.loadingPaymentOrderSubject.next(true);
-    this.guaranteeDataService.getPaymentOrder(guaranteeIds).pipe(
-      take(1),
-      finalize(() => this.loadingPaymentOrderSubject.next(false))
-    )
+    this.loadingSubject.next(true);
+    this.guaranteeDataService
+      .getPaymentOrder(guaranteeIds)
+      .pipe(
+        take(1),
+        finalize(() => this.loadingSubject.next(false))
+      )
       .subscribe();
   }
 }

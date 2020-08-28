@@ -1,24 +1,19 @@
-import { PersonTypes, PhysicalPerson, MoralPerson } from '@ivt/data';
+import { MoralPerson, PersonTypes, PhysicalPerson } from '@ivt/data';
+import { Transform, Type } from 'class-transformer';
+import { IsEmail, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, ValidateIf, ValidateNested } from 'class-validator';
 import { Address } from 'cluster';
-import {
-  IsOptional,
-  IsEnum,
-  IsString,
-  IsEmail,
-  ValidateNested,
-  registerDecorator,
-  ValidationOptions,
-  ValidationArguments,
-  ValidateIf,
-} from 'class-validator';
-import { Type } from 'class-transformer';
-import { UpdateAddressDto } from './update-address.dto';
-import { UpdatePhysicalPersonDto } from './update-physical-person.dto';
-import { UpdateMoralPersonDto } from './update-moral-person.dto';
+
 import { IsRfc } from '../custom-validators';
+import { UpdateAddressDto } from './update-address.dto';
+import { UpdateMoralPersonDto } from './update-moral-person.dto';
+import { UpdatePhysicalPersonDto } from './update-physical-person.dto';
 
 export class UpdateClientDto {
-  @IsOptional()
+  @IsInt()
+  id: number;
+
+  @IsNotEmpty()
+  @Transform((value) => PersonTypes[value])
   @IsEnum(PersonTypes)
   personType: PersonTypes;
 

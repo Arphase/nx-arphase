@@ -1,3 +1,4 @@
+import { GuaranteeSummary } from '@ivt/data';
 import {
   Body,
   Controller,
@@ -9,22 +10,19 @@ import {
   Put,
   Query,
   Res,
-  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 
 import { GuaranteeEntity } from '../data/entities/guarantee.entity';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import { GuaranteesService } from '../services/guarantees.service';
-import { GuaranteeSummary } from '@ivt/data';
 
 @Controller('guarantees')
 export class GuaranteesController {
-  constructor(private guaranteesService: GuaranteesService) {}
+  constructor(private guaranteesService: GuaranteesService) { }
 
   @Get()
   async getGuarantees(
@@ -33,7 +31,14 @@ export class GuaranteesController {
     return this.guaranteesService.getGuarantees(filterDto);
   }
 
-  @Get('summary')
+  @Get(':id')
+  async getGuarantee(
+    @Param('id', ParseIntPipe) id: number
+  ): Promise<GuaranteeEntity> {
+    return this.guaranteesService.getGuaranteeById(id);
+  }
+
+  @Get('report/summary')
   async getGuaranteesSummary(): Promise<GuaranteeSummary> {
     return this.guaranteesService.getGuaranteesSummary();
   }
