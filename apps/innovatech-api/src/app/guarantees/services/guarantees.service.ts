@@ -9,9 +9,10 @@ import * as htmlPdf from 'html-pdf';
 import moment from 'moment';
 import * as path from 'path';
 import puppeteer from 'puppeteer';
-import { Readable } from 'stream';
-import { Connection } from 'typeorm';
+import { promises } from 'fs';
 import { promisify } from 'util';
+import { Connection } from 'typeorm';
+import { Readable } from 'stream';
 
 import { GuaranteeEntity } from '../data/entities/guarantee.entity';
 import { GuaranteeRepository } from '../data/guarantee.repository';
@@ -23,6 +24,7 @@ const dir = {
   asc: 'ASC',
   desc: 'DESC',
 };
+const OUT_FILE = 'myfile.html';
 
 const BASE_PATH = 'file://' + path.resolve(__dirname) + '/assets/img/';
 
@@ -164,10 +166,28 @@ export class GuaranteesService {
             .title {
               font-size: 14px;
             }
+            .logo {
+              max-width: 50%;
+              height: auto;
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+            }
+            span.footer {
+              content: url(${BASE_PATH}Franja_tringulo.jpg)
+              max-width: 100%;
+              height: auto;
+            }
+            footer {
+              content: url(${BASE_PATH}Franja_tringulo.jpg)
+              max-width: 100%;
+              height: auto;
+            }
         </style>
     <head>
     <body>
-    <div><img src="logo.png"></div>
+    <div><img class="logo" src="${BASE_PATH}logo.png"></div>
+    <div><img class ="footer" style="display:none;" src="${BASE_PATH}Franja_tringulo.jpg"></div>
     <p class="center bold title">Procedimiento de reclamación</p>
     <p>En cuanto tenga conocimiento de la AVERÍA/AS, el BENEFICIARIO comunicará la misma a Innovatech por cualquiera de los siguientes medios: </p>
     <ul>
@@ -349,36 +369,66 @@ export class GuaranteesService {
     </body>
     </html>
 `;
+    // const options = {
+    //   border: '1in',
+    //   base: BASE_PATH,
+    //   footer: {
+    //     contents: `
+    //     <div><img class="footer" src="${BASE_PATH}Franja_tringulo.jpg"></div>
+    //     `,
+    //   },
+    // };
+    // htmlPdf.create(content, options).toStream((err, stream) => {
+    //   if (err) {
+    //     throw new InternalServerErrorException(err);
+    //   }
+    //   try {
+    //     stream.pipe(response as any);
+    //   } catch (e) {
+    //     throw new InternalServerErrorException(e);
+    //   }
+    // });
+    const contents = await promises.readFile(`apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg`, {encoding: 'base64'});
 
-    let assestPath = path.join(__dirname + '/src/assets/img');
-    assestPath = assestPath.replace(new RegExp(/\\/g), '/');
-    const options = {
-      border: '1in',
-      base: 'file:///' + assestPath,
-      header: {
-        height: '45mm',
-        width: '45mm',
-        contents: '<div><img src="logo.png"></div>',
+    await promisify(fs.writeFile)(OUT_FILE, content);
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto(`file://${process.cwd()}/${OUT_FILE}`);
+    await page.setContent(content);
+
+    const buffer = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+      margin: {
+        left: '1in',
+        top: '1in',
+        right: '1in',
+        bottom: '1in',
       },
-      footer: {
-        height: '28mm',
-        contents: "<span style='color: #444;'></span><span></span>",
-      },
-    };
-    htmlPdf.create(content, options).toStream((err, stream) => {
-      if (err) {
-        throw new InternalServerErrorException(err);
-      }
-      try {
-        stream.pipe(response as any);
-      } catch (e) {
-        throw new InternalServerErrorException(e);
-      }
+      displayHeaderFooter: true,
+      footerTemplate: `
+      <style>
+        span.footer {
+          content: url(data:${contents};base64,)
+          max-width: 100%;
+          height: auto;
+        }
+        .footer {
+          max-width: 100%;
+          height: auto;
+        }
+      </style>
+      <img class="footer" src="data:${contents};base64,"/>
+         <span class="footer"></span>
+      `,
     });
+    promisify(fs.unlink)(OUT_FILE); // cleanup
+    await browser.close();
+    const stream = this.getReadableStream(buffer);
+    stream.pipe(response as any);
   }
 
   async generatePaymentOrderPdf(ids: number[], response: Response) {
-    const OUT_FILE = 'myfile.html';
     const guarantees = await this.guaranteeRepository.findByIds(ids);
     const createdAt = new Date().toLocaleDateString('es');
     let total = 0;
@@ -556,6 +606,8 @@ export class GuaranteesService {
         right: '1in',
         bottom: '1in',
       },
+      displayHeaderFooter: true,
+      footerTemplate: ``,
     });
     promisify(fs.unlink)(OUT_FILE); // cleanup
     await browser.close();
