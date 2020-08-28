@@ -36,10 +36,9 @@
      class="row mt-4 bg-light py-3 rounded">
   <div class="col">
     <button mat-raised-button
-            [loading]="loadingPaymentOrder"
             type="button"
-            color="primary"
-            (click)="generatePaymentOrder.emit(selectedIds.selected)">
+            color="primary"           
+            (click)="openDialog()">
       Generar orden de pago
     </button>
   </div>

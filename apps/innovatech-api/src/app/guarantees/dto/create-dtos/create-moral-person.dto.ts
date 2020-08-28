@@ -11,9 +11,5 @@ export class CreateMoralPersonDto {
 
   @IsNotEmpty()
   @IsString()
-  distributor: string;
-
-  @IsNotEmpty()
-  @IsString()
   adviser: string;
 }

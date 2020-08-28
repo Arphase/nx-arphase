@@ -472,10 +472,6 @@ export class GuaranteesService {
               <td>${createdAt}</td>
             </tr>
             <tr>
-              <td>No. de Distribuidor</td>
-              <td></td>
-            </tr>
-            <tr>
               <td>No. de Orden de Pago</td>
               <td></td>
             </tr>
@@ -484,7 +480,7 @@ export class GuaranteesService {
       </div>
       <table style="margin-bottom: 3rem;">
         <tr>
-          <td>CLIENTE</td>
+          <td>DISTRIBUIDOR</td>
           <td colspan=3></td>
         </tr>
       </table>

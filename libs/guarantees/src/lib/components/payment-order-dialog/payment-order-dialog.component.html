@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Orden de Pago</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form" class="example-form">
+        <ivt-form-field label="Distribuidor">
+            <input ivtInput
+                    formControlName="distributor">
+        </ivt-form-field>    
+        <ivt-form-field label="Fecha de factura">
+            <input ivtInput
+                    [matDatepicker]="invoiceDate"
+                    formControlName="invoiceDate">
+            <mat-datepicker-toggle matSuffix
+                                    [for]="invoiceDate"></mat-datepicker-toggle>
+            <mat-datepicker #invoiceDate></mat-datepicker>
+        </ivt-form-field>
+        <ivt-form-field label="Importe">
+            <input ivtInput
+                    formControlName="amount"
+                    prefix="$ "
+                    mask="0*.00"
+                    class="text-right px-3">
+        </ivt-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-raised-button [loading]="loadingPaymentOrder" type="button" color="primary"
+        (click)="generatePaymentOrder.emit(selectedIds.selected)">Generar orden de pago</button>
+</div>
+

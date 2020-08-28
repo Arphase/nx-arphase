@@ -25,10 +25,6 @@ export class CreateVehicleDto {
 
   @IsNotEmpty()
   @IsString()
-  invoiceDate: string;
-
-  @IsNotEmpty()
-  @IsString()
   vin: string;
 
   @IsNotEmpty()
