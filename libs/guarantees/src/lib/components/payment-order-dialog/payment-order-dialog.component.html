@@ -1,39 +1,40 @@
-<h1 mat-dialog-title>Orden de Pago</h1>
-<div mat-dialog-content>
-    <form [formGroup]="form" (ngSubmit)="submit()">
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <h1 mat-dialog-title>Orden de Pago</h1>
+    <div mat-dialog-content>
         <ivt-form-field label="Distribuidor">
             <input ivtInput
                     formControlName="distributor">
-        </ivt-form-field>
-        <div *ngFor="let selectedId of selectedIds">
-        <div>Folio: {{selectedId}}</div> 
-            <div class="row">
-                <div class="col-lg-6">
-                    <ivt-form-field label="Fecha de factura">
-                        <input ivtInput
-                                [matDatepicker]="invoiceDate"
-                                formControlName="invoiceDate">
-                        <mat-datepicker-toggle matSuffix
-                                                [for]="invoiceDate"></mat-datepicker-toggle>
-                        <mat-datepicker #invoiceDate></mat-datepicker>
-                    </ivt-form-field>
+        </ivt-form-field> 
+        <div *ngFor="let guarantee of guaranteesFormArray.controls">
+        <div>Folio: {{guarantee.value.id}}</div> 
+            <form [formGroup]="guarantee">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ivt-form-field label="Fecha de factura">
+                            <input ivtInput
+                                    [matDatepicker]="invoiceDate"
+                                    formControlName="invoiceDate">
+                            <mat-datepicker-toggle matSuffix
+                                                    [for]="invoiceDate"></mat-datepicker-toggle>
+                            <mat-datepicker #invoiceDate></mat-datepicker>
+                        </ivt-form-field>
+                    </div>
+                    <div class="col-lg-6">
+                        <ivt-form-field label="Importe">
+                            <input ivtInput
+                                    formControlName="amount"
+                                    prefix="$ "
+                                    mask="0*.00"
+                                    class="text-right px-3">
+                        </ivt-form-field>   
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <ivt-form-field label="Importe">
-                        <input ivtInput
-                                formControlName="amount"
-                                prefix="$ "
-                                mask="0*.00"
-                                class="text-right px-3">
-                    </ivt-form-field>   
-                </div>
-            </div>
+            </form>
         </div>
-    </form>
-</div>  
-<div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cerrar</button>
-    <button mat-raised-button [loading]="loadingPaymentOrder" type="submit" color="primary"
-        (click)="generatePaymentOrder.emit(selectedIds.selected)">Generar orden de pago</button>
-</div>
+    </div>  
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cerrar</button>
+        <button mat-raised-button [loading]="loadingPaymentOrder" type="submit" color="primary" >Generar orden de pago</button>
+    </div>
+</form>
 

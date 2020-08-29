@@ -6,6 +6,7 @@ import { IvtListComponent } from '@ivt/ui';
 import { columns, dateTypeOptions } from './guarantee-list.constants';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentOrderDialogComponent } from '../payment-order-dialog/payment-order-dialog.component';
+import { PaymentOrderDialogContainerComponent } from '../../containers/payment-order-dialog-container/payment-order-dialog-container.component';
 
 @Component({
   selector: 'ivt-guarantee-list',
@@ -21,7 +22,7 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> {
   @Output() downloadPdf = new EventEmitter<number>();
   @Output() generatePaymentOrder = new EventEmitter<number[]>();
 
-  constructor(public dialog: MatDialog){
+  constructor(public dialog: MatDialog) {
     super();
   }
 
@@ -30,8 +31,6 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> {
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(PaymentOrderDialogComponent);
-    let instance = dialogRef.componentInstance;
-    instance.selectedIds = this.selectedIds.selected;
+    this.dialog.open(PaymentOrderDialogContainerComponent, { data: this.selectedIds.selected });
   }
 }
