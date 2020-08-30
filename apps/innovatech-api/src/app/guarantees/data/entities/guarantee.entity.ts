@@ -1,8 +1,26 @@
-import { Client, Guarantee, GuaranteeStatus, Vehicle } from '@ivt/data';
-import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Client,
+  Guarantee,
+  GuaranteeStatus,
+  Vehicle,
+  PersonTypes,
+  PaymentOrder,
+} from '@ivt/data';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+} from 'typeorm';
 
 import { ClientEntity } from './client.entity';
 import { VehicleEntity } from './vechicle.entity';
+import { Transform } from 'class-transformer';
+import { PaymentOrderEntity } from '@api/payment-orders/data/payment-order.entity';
 
 @Entity('guarantees')
 export class GuaranteeEntity extends BaseEntity implements Guarantee {
@@ -28,7 +46,14 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @CreateDateColumn()
   createdAt: Date;
 
-  @Column({ type: 'enum', enum: GuaranteeStatus })
+  @Column({
+    type: 'enum',
+    enum: GuaranteeStatus,
+    transformer: {
+      to: (value) => value,
+      from: (value) => GuaranteeStatus[value],
+    },
+  })
   status: GuaranteeStatus | string;
 
   @Column({ type: 'timestamp' })
@@ -37,8 +62,21 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @Column({ type: 'timestamp' })
   endDate: Date;
 
-  @Column()
+  @Column({ nullable: true })
   amount: number;
+
+  @ManyToOne(
+    (type) => PaymentOrderEntity,
+    (paymentOrder) => paymentOrder.guarantees
+  )
+  @JoinColumn({ name: 'paymentOrderId' })
+  paymentOrder: PaymentOrder;
+
+  @Column({ nullable: true })
+  paymentOrderId: number;
+
+  @Column({ nullable: true, type: 'timestamp' })
+  invoiceDate: Date;
 
   constructor(partial: Partial<GuaranteeEntity>) {
     super();

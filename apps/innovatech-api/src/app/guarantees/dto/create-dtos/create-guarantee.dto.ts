@@ -26,9 +26,4 @@ export class CreateGuaranteeDto {
   @IsNotEmpty()
   @IsDateString()
   endDate: Date;
-
-  @Type(() => String)
-  @IsNotEmpty()
-  @IsNumberString()
-  amount: number;
 }

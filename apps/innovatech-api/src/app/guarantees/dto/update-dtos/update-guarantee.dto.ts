@@ -7,6 +7,7 @@ import {
   IsOptional,
   ValidateNested,
   isNumber,
+  IsNotEmpty,
 } from 'class-validator';
 import { IsInt } from 'class-validator';
 
@@ -14,6 +15,7 @@ import { UpdateClientDto } from './update-client.dto';
 import { UpdateVehicleDto } from './update-vehicle.dto';
 
 export class UpdateGuaranteeDto {
+  @IsNotEmpty()
   @IsInt()
   id: number;
 

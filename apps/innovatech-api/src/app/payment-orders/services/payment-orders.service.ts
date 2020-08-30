@@ -1,0 +1,264 @@
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException,
+} from '@nestjs/common';
+import { PaymentOrderRepository } from '../data/payment-order.repository';
+import { Connection, getManager } from 'typeorm';
+import { promisify } from 'util';
+import { GuaranteeRepository } from '@api/guarantees/data/guarantee.repository';
+import fs from 'fs';
+import * as htmlPdf from 'html-pdf';
+import moment from 'moment';
+import * as path from 'path';
+import puppeteer from 'puppeteer';
+import { Readable } from 'stream';
+import { CreatePaymentOrderDto } from '../dto/create-payment-order.dto';
+import { omit } from 'lodash';
+
+const OUT_FILE = 'myfile.html';
+
+const BASE_PATH = 'file://' + path.resolve(__dirname) + '/assets/img/';
+
+@Injectable()
+export class PaymentOrdersService {
+  paymentOrderRepository: PaymentOrderRepository;
+  guaranteeRepository: GuaranteeRepository;
+
+  constructor(private readonly connection: Connection) {
+    this.paymentOrderRepository = this.connection.getCustomRepository(
+      PaymentOrderRepository
+    );
+    this.guaranteeRepository = this.connection.getCustomRepository(
+      GuaranteeRepository
+    );
+  }
+
+  async createPaymentOrder(paymentOrder: CreatePaymentOrderDto) {
+    const newPaymentOrder = await this.paymentOrderRepository.create(
+      omit(paymentOrder, 'guarantees')
+    );
+    const ids = paymentOrder.guarantees.map((guarantee) => guarantee.id);
+    const guarantees = await this.guaranteeRepository.findByIds(ids);
+    guarantees.forEach((guarantee) => {
+      if (guarantee.paymentOrderId) {
+        throw new ConflictException(
+          `Guarantee with id "${guarantee.id}" has already a payment order`
+        );
+      }
+    });
+    let updatedGuarantees = await this.guaranteeRepository.create(
+      paymentOrder.guarantees
+    );
+    console.log(newPaymentOrder);
+    await getManager().transaction(async (transactionalEntityManager) => {
+      await transactionalEntityManager.save(newPaymentOrder);
+      updatedGuarantees = updatedGuarantees.map((guarantee) => {
+        guarantee.paymentOrderId = newPaymentOrder.id;
+        return guarantee;
+      });
+      await transactionalEntityManager.save(updatedGuarantees);
+    });
+    return newPaymentOrder;
+  }
+
+  async generatePaymentOrderPdf(id: number, response: Response) {
+    const paymentOrder = await this.paymentOrderRepository
+      .createQueryBuilder('paymentOrder')
+      .leftJoinAndSelect('paymentOrder.guarantees', 'guarantees')
+      .where('paymentOrder.id = :id', { id })
+      .getOne();
+
+    if (!paymentOrder) {
+      throw new NotFoundException(`PaymentOrder with id "${id}" not found`);
+    }
+
+    const guarantees = paymentOrder.guarantees;
+    const createdAt = paymentOrder.createdAt;
+    let total = 0;
+    const guaranteesRowsArray = guarantees.map((guarantee) => {
+      total += guarantee.amount;
+      return `
+    <tr>
+      <td>${moment(guarantee.invoiceDate ).format('DD/MM/YYYY')}</td>
+      <td>${guarantee.id}</td>
+      <td>${guarantee.amount}</td>
+    </tr>`;
+    });
+    const guaranteesRows = guaranteesRowsArray.join(' ');
+
+    const content = `
+      <html>
+      <head>
+          <meta charset=UTF-8>
+          <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+          <style>
+              * {
+                box-sizing: border-box;
+              }
+              html {
+                font-family: 'Open Sans' !important;
+                font-size: 9px;
+                line-height: 1.1;
+              }
+              body {
+                display: flex;
+                flex-direction: column;
+              }
+              .logo {
+                max-width: 50%;
+                height: auto;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+              }
+              .bold {
+                font-weight: 900;
+              }
+              .center {
+                text-align: center;
+              }
+              .title {
+                font-size: 16px;
+              }
+              .subtitle {
+                font-size: 13px;
+              }
+              .row {
+                display: -webkit-flex;
+                flex-direction: row;
+              }
+              .col {
+                min-width: 50%;
+              }
+              table {
+                width: 100%;
+                font-size: 9px;
+                border: 1px solid rgba(0,0,0,0.50);
+                border-collapse: collapse;
+                border-spacing: 0;
+                table-layout: fixed;
+              }
+              td {
+                border: 1px solid rgba(0,0,0,0.50);
+                padding: 2px 3px;
+              }
+              .total{
+                margin-left: auto;
+                width: 50%;
+              }
+              .footer {
+                max-width: 100%;
+                height: auto;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: auto;
+              }
+          </style>
+      <head>
+      <body>
+      <div>
+        <img class="logo" src="${BASE_PATH}logo_innovatech_garantias.jpg"/>
+      </div>
+      <p class="center bold title">ORDEN DE PAGO</p>
+      <div class="row" style="margin-bottom: 3rem;">
+        <div class="col">
+          <p class="bold">Innovatech Garantías S.A. de C.V.</p>
+          <p>RFC: IGA200725A31</p>
+          <p>Carretera Miguel Alemán no.312, Col. La Fe</p>
+          <p>San Nicolás de los Garza, N.L. CP 66477 MEXICO</p>
+        </div>
+        <div class="col">
+          <table>
+            <tr>
+              <td>Fecha de Emisión</td>
+              <td>${moment(createdAt).format('DD/MM/YYYY')}</td>
+            </tr>
+            <tr>
+              <td>No. de Orden de Pago</td>
+              <td>${paymentOrder.id}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <table style="margin-bottom: 3rem;">
+        <tr>
+          <td>DISTRIBUIDOR</td>
+          <td colspan=3>${paymentOrder.distributor}</td>
+        </tr>
+      </table>
+
+      <table style="margin-bottom: 2rem;">
+        <tr>
+          <td>FECHA DE FACTURA</td>
+          <td>No. DE CONTRATO</td>
+          <td>IMPORTE</td>
+        </tr>
+        ${guaranteesRows}
+      </table>
+      <table class="total">
+        <tr>
+          <td class="bold">TOTAL</td>
+          <td>${total}</td>
+        </tr>
+      </table>
+      <div>
+        <p class="center bold subtitle">DATOS PARA PAGO A PROVEEDOR</p>
+      </div>
+      <table>
+        <tr>
+          <td>TOTAL A PAGAR INCLUYE IMPUESTOS:</td>
+          <td>${total}</td>
+        </tr>
+        <tr>
+          <td>NUMERO DE CUENTA:</td>
+          <td>65-50821082-2</td>
+        </tr>
+        <tr>
+          <td>CLABE:</td>
+          <td>014580655082108221</td>
+        </tr>
+        <tr>
+          <td>TITULAR:</td>
+          <td>INNOVATECH GARANTIAS SA DE CV</td>
+        </tr>
+      </table>
+      </body>
+      <div id="footer-template">
+        <img class="footer" src="${BASE_PATH}Franja_Tringulo.jpg"/>
+      </div>
+      </html>
+  `;
+
+    await promisify(fs.writeFile)(OUT_FILE, content);
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto(`file://${process.cwd()}/${OUT_FILE}`);
+    const buffer = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+      margin: {
+        left: '1in',
+        top: '1in',
+        right: '1in',
+        bottom: '1in',
+      },
+      displayHeaderFooter: true,
+      footerTemplate: ``,
+    });
+    promisify(fs.unlink)(OUT_FILE); // cleanup
+    await browser.close();
+    const stream = this.getReadableStream(buffer);
+    stream.pipe(response as any);
+  }
+
+  getReadableStream(buffer: Buffer): Readable {
+    const stream = new Readable();
+
+    stream.push(buffer);
+    stream.push(null);
+
+    return stream;
+  }
+}

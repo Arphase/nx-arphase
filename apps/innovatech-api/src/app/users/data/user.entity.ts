@@ -17,7 +17,7 @@ export class UserEntity extends BaseEntity implements User {
   @Column()
   firstName: string;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   secondName: string;
 
   @Column()
@@ -35,7 +35,14 @@ export class UserEntity extends BaseEntity implements User {
   @Column()
   salt: string;
 
-  @Column({ type: 'enum', enum: UserRole })
+  @Column({
+    type: 'enum',
+    enum: UserRole,
+    transformer: {
+      to: (value) => value,
+      from: (value) => UserRole[value],
+    },
+  })
   role: UserRole;
 
   async validatePassword(password: string): Promise<boolean> {
