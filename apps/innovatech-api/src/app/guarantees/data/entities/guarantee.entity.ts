@@ -3,7 +3,6 @@ import {
   Guarantee,
   GuaranteeStatus,
   Vehicle,
-  PersonTypes,
   PaymentOrder,
 } from '@ivt/data';
 import {

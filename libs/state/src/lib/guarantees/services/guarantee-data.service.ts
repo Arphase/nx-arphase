@@ -40,9 +40,9 @@ export class GuaranteeDataService extends IvtDataService<Guarantee> {
       );
   }
 
-  getPaymentOrder(ids: number[]): Observable<any> {
+  getPaymentOrder(paymentOrder): Observable<any> {
     return this.http
-      .post(`${this.config.apiUrl}/guarantees/paymentOrder`, { ids }, {
+      .post(`${this.config.apiUrl}/guarantees/paymentOrder`, { paymentOrder }, {
         responseType: 'blob',
       })
       .pipe(

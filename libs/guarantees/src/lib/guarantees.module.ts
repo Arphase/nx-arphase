@@ -10,6 +10,8 @@ import { GuaranteeListContainerComponent } from './containers/guarantee-list-con
 import { GuaranteeRowContainerComponent } from './containers/guarantee-row-container/guarantee-row-container.component';
 import { GuaranteesRoutingModule } from './guarantees-routing.module';
 import { GuaranteesComponent } from './guarantees/guarantees.component';
+import { PaymentOrderDialogComponent } from './components/payment-order-dialog/payment-order-dialog.component';
+import { PaymentOrderDialogContainerComponent } from './containers/payment-order-dialog-container/payment-order-dialog-container.component';
 
 @NgModule({
   imports: [CommonModule, IvtUiModule, GuaranteesRoutingModule],
@@ -21,6 +23,8 @@ import { GuaranteesComponent } from './guarantees/guarantees.component';
     GuaranteeRowComponent,
     GuaranteeRowContainerComponent,
     GuaranteesComponent,
+    PaymentOrderDialogComponent,
+    PaymentOrderDialogContainerComponent,
   ],
 })
 export class GuaranteesModule {}

@@ -11,9 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./guarantee-form-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<
-  Guarantee
-> {
+export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<Guarantee> {
   successUrl = '/spa/guarantees';
   createSuccessMessage = 'La garantía se ha creado con éxito';
   updateSuccessMessage = 'La garantía se ha actualizado con éxito';
