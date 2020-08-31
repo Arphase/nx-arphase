@@ -21,9 +21,6 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
   @Column()
   year: number;
 
-  @Column({nullable: true})
-  invoiceDate: string;
-
   @Column()
   vin: string;
 

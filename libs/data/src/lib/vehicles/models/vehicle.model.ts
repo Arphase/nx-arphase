@@ -5,7 +5,6 @@ export interface Vehicle {
   model: string;
   version: string;
   year: number;
-  invoiceDate: string;
   vin: string;
   motorNumber: string;
   serialNumber: string;

@@ -40,6 +40,10 @@ export class GetGuaranteesFilterDto {
 
   @IsOptional()
   @IsNotEmpty()
+  dateType: string;
+
+  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   text: string;
 

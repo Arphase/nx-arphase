@@ -3,6 +3,7 @@ export * from './lib/auth';
 export * from './lib/clients';
 export * from './lib/core';
 export * from './lib/guarantees';
+export * from './lib/payment-orders'
 export * from './lib/ui';
 export * from './lib/users';
 export * from './lib/vehicles';

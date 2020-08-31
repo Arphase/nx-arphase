@@ -6,12 +6,14 @@ import { MoralPersonEntity } from '@api/guarantees/data/entities/moral-person.en
 import { PhysicalPersonEntity } from '@api/guarantees/data/entities/physical-person.entity';
 import { VehicleEntity } from '@api/guarantees/data/entities/vechicle.entity';
 import { UserEntity } from '@api/users/data/user.entity';
+import { PaymentOrderEntity } from '@api/payment-orders/data/payment-order.entity';
 
 export const ENTITIES = [
   AddressEntity,
   LocalityEntity,
   UserEntity,
   GuaranteeEntity,
+  PaymentOrderEntity,
   ClientEntity,
   MoralPersonEntity,
   PhysicalPersonEntity,

@@ -8,6 +8,7 @@ import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { GuaranteesModule } from './guarantees';
 import { LocalitiesModule } from './localities/localities.module';
+import { PaymentOrdersModule } from './payment-orders/payment-orders.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { LocalitiesModule } from './localities/localities.module';
     AuthModule,
     GuaranteesModule,
     LocalitiesModule,
+    PaymentOrdersModule
   ],
   controllers: [AppController],
 })

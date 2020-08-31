@@ -28,10 +28,6 @@ export class UpdateVehicleDto {
 
   @IsOptional()
   @IsString()
-  invoiceDate: string;
-
-  @IsOptional()
-  @IsString()
   vin: string;
 
   @IsOptional()

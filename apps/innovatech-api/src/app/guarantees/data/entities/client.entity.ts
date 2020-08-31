@@ -23,7 +23,14 @@ export class ClientEntity extends BaseEntity implements Client {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'enum', enum: PersonTypes })
+  @Column({
+    type: 'enum',
+    enum: PersonTypes,
+    transformer: {
+      to: (value) => value,
+      from: (value) => PersonTypes[value],
+    },
+  })
   personType: PersonTypes;
 
   @OneToOne(() => PhysicalPersonEntity, {

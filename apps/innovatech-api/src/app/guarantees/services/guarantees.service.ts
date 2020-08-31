@@ -67,6 +67,7 @@ export class GuaranteesService {
       direction,
       startDate,
       endDate,
+      dateType,
       text,
       status,
     } = filterDto;
@@ -80,16 +81,13 @@ export class GuaranteesService {
       .leftJoinAndSelect('client.address', 'address')
       .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
 
-    if (startDate) {
-      query.andWhere('(guarantee.startDate = :startDate)', {
-        startDate,
-      });
-    }
-
-    if (endDate) {
-      query.andWhere('(guarantee.endDate = :endDate)', {
-        endDate,
-      });
+    if (startDate && endDate && dateType) {
+      query.andWhere(
+        `guarantee.${dateType}
+        BETWEEN :begin
+        AND :end`,
+        { begin: startDate, end: endDate }
+      );
     }
 
     if (text) {
@@ -223,7 +221,7 @@ export class GuaranteesService {
         <p><span class="bold">MODELO:</span> ${
           guarantee.vehicle.model
         } <span class="bold"> - FECHA 1º FACTURA: </span>${moment(
-      guarantee.vehicle.invoiceDate
+      guarantee.invoiceDate
     )
       .locale('es')
       .format('LL')}</p>
@@ -388,7 +386,10 @@ export class GuaranteesService {
     //     throw new InternalServerErrorException(e);
     //   }
     // });
-    const contents = await promises.readFile(`apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg`, {encoding: 'base64'});
+    const contents = await promises.readFile(
+      `apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg`,
+      { encoding: 'base64' }
+    );
 
     await promisify(fs.writeFile)(OUT_FILE, content);
     const browser = await puppeteer.launch({ headless: true });
@@ -428,196 +429,12 @@ export class GuaranteesService {
     stream.pipe(response as any);
   }
 
-  async generatePaymentOrderPdf(ids: number[], response: Response) {
-    const guarantees = await this.guaranteeRepository.findByIds(ids);
-    const createdAt = new Date().toLocaleDateString('es');
-    let total = 0;
-    const guaranteesRowsArray = guarantees.map((guarantee) => {
-      total += guarantee.amount;
-      return `
-    <tr>
-      <td>${guarantee.createdAt}</td>
-      <td>${guarantee.id}</td>
-      <td></td>
-      <td>${guarantee.amount}</td>
-    </tr>`;
-    });
-    const guaranteesRows = guaranteesRowsArray.join(' ');
-
-    const content = `
-      <html>
-      <head>
-          <meta charset=UTF-8>
-          <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-          <style>
-              * {
-                box-sizing: border-box;
-              }
-              html {
-                font-family: 'Open Sans' !important;
-                font-size: 9px;
-                line-height: 1.1;
-              }
-              body {
-                display: flex;
-                flex-direction: column;
-              }
-              .logo {
-                max-width: 50%;
-                height: auto;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-              }
-              .bold {
-                font-weight: 900;
-              }
-              .center {
-                text-align: center;
-              }
-              .title {
-                font-size: 16px;
-              }
-              .subtitle {
-                font-size: 13px;
-              }
-              .row {
-                display: -webkit-flex;
-                flex-direction: row;
-              }
-              .col {
-                min-width: 50%;
-              }
-              table {
-                width: 100%;
-                font-size: 9px;
-                border: 1px solid rgba(0,0,0,0.50);
-                border-collapse: collapse;
-                border-spacing: 0;
-                table-layout: fixed;
-              }
-              td {
-                border: 1px solid rgba(0,0,0,0.50);
-                padding: 2px 3px;
-              }
-              .total{
-                margin-left: auto;
-                width: 50%;
-              }
-              .footer {
-                max-width: 100%;
-                height: auto;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                margin-top: auto;
-              }
-          </style>
-      <head>
-      <body>
-      <div>
-        <img class="logo" src="${BASE_PATH}logo_innovatech_garantias.jpg"/>
-      </div>
-      <p class="center bold title">ORDEN DE PAGO</p>
-      <div class="row" style="margin-bottom: 3rem;">
-        <div class="col">
-          <p class="bold">Innovatech Garantías S.A. de C.V.</p>
-          <p>RFC: IGA200725A31</p>
-          <p>Carretera Miguel Alemán no.312, Col. La Fe</p>
-          <p>San Nicolás de los Garza, N.L. CP 66477 MEXICO</p>
-        </div>
-        <div class="col">
-          <table>
-            <tr>
-              <td>Fecha de Emisión</td>
-              <td>${createdAt}</td>
-            </tr>
-            <tr>
-              <td>No. de Orden de Pago</td>
-              <td></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <table style="margin-bottom: 3rem;">
-        <tr>
-          <td>DISTRIBUIDOR</td>
-          <td colspan=3></td>
-        </tr>
-      </table>
-
-      <table style="margin-bottom: 2rem;">
-        <tr>
-          <td>FECHA DE FACTURA</td>
-          <td>No. DE CONTRATO</td>
-          <td>No. DE SERIE</td>
-          <td>IMPORTE</td>
-        </tr>
-        ${guaranteesRows}
-      </table>
-      <table class="total">
-        <tr>
-          <td class="bold">TOTAL</td>
-          <td>${total}</td>
-        </tr>
-      </table>
-      <div>
-        <p class="center bold subtitle">DATOS PARA PAGO A PROVEEDOR</p>
-      </div>
-      <table>
-        <tr>
-          <td>TOTAL A PAGAR INCLUYE IMPUESTOS:</td>
-          <td>${total}</td>
-        </tr>
-        <tr>
-          <td>REFERENCIA:</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>BANCOMER CONVENIO CIE:</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>OTROS BANCOS, NUMERO CONTRATO CABLE:</td>
-          <td></td>
-        </tr>
-      </table>
-      </body>
-      <div id="footer-template">
-        <img class="footer" src="${BASE_PATH}Franja_Tringulo.jpg"/>
-      </div>
-      </html>
-  `;
-
-    await promisify(fs.writeFile)(OUT_FILE, content);
-    const browser = await puppeteer.launch({ headless: true });
-    const page = await browser.newPage();
-    await page.goto(`file://${process.cwd()}/${OUT_FILE}`);
-    const buffer = await page.pdf({
-      format: 'A4',
-      printBackground: true,
-      margin: {
-        left: '1in',
-        top: '1in',
-        right: '1in',
-        bottom: '1in',
-      },
-      displayHeaderFooter: true,
-      footerTemplate: ``,
-    });
-    promisify(fs.unlink)(OUT_FILE); // cleanup
-    await browser.close();
-    const stream = this.getReadableStream(buffer);
-    stream.pipe(response as any);
-  }
-
   async updateGuarantee(
-    id: number,
     updateGuaranteeDto: UpdateGuaranteeDto
   ): Promise<GuaranteeEntity> {
     const guarantee = this.omitInfo(updateGuaranteeDto);
-    await this.guaranteeRepository.update(id, guarantee);
-    return new GuaranteeEntity(updateGuaranteeDto);
+    const updatedGuarantee = await this.guaranteeRepository.save(guarantee);
+    return updatedGuarantee;
   }
 
   async deleteGuarantee(id: number): Promise<void> {
