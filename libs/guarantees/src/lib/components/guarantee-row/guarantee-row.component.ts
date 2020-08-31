@@ -1,22 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Guarantee, GuaranteeStatus } from '@ivt/data';
 import { IvtRowComponent } from '@ivt/ui';
 import { Subject, timer } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
 
-import {
-  backgroundClasses,
-  menuOptions,
-  statusLabels,
-} from './guarantee-row.constants';
+import { backgroundClasses, menuOptions, statusLabels } from './guarantee-row.constants';
 
 @Component({
   selector: 'ivt-guarantee-row',
@@ -24,7 +12,7 @@ import {
   styleUrls: ['./guarantee-row.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> implements OnChanges {
+export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> {
   @Input() loading: boolean;
   @Input() loadingStatusChange: boolean;
   @Input() loadingPaymentOrder: boolean;
@@ -34,26 +22,20 @@ export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> implements
   menuOptions = menuOptions;
   showStatusSubject = new Subject();
   showStatus$ = this.showStatusSubject.asObservable();
-  disableCheckbox: boolean = false;
   visibleStatus$ = this.showStatus$.pipe(
     switchMap(() =>
       timer(0, 1000).pipe(
         take(2),
-        map((x) => x % 2 === 0)
+        map(x => x % 2 === 0)
       )
     )
   );
   @Output() downloadPdf = new EventEmitter<number>();
   @Output() changeStatus = new EventEmitter<Partial<Guarantee>>();
-  @Output() generatePaymentOrder = new EventEmitter<number[]>();
+  @Output() downloadPaymentOrder = new EventEmitter<number>();
+  @Output() openPaymentOrderDialog = new EventEmitter<number>();
 
   onChangeStatus(id: number, status: GuaranteeStatus): void {
     this.changeStatus.emit({ id, status: GuaranteeStatus[status] });
-  }
-
-  ngOnChanges(changes: SimpleChanges){
-    if(changes.item && this.item && this.item.amount){
-      this.disableCheckbox = true;
-    }
   }
 }

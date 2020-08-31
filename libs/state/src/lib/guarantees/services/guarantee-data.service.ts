@@ -31,7 +31,7 @@ export class GuaranteeDataService extends IvtDataService<Guarantee> {
       .pipe(
         tap((file) => {
           const blob = new Blob([file], { type: 'application/octet-stream' });
-          saveAs(blob, `${id}.pdf`);
+          saveAs(blob, `Garantía ${id}.pdf`);
         })
       );
   }

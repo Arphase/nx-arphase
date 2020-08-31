@@ -13,6 +13,7 @@ export interface Guarantee {
   endDate: Date;
   invoiceDate: Date;
   amount: number;
+  paymentOrderId?: number;
   paymentOrder?: PaymentOrder;
 }
 

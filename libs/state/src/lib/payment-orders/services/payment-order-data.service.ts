@@ -31,7 +31,7 @@ export class PaymentOrderDataService extends IvtDataService<PaymentOrder> {
       .pipe(
         tap(file => {
           const blob = new Blob([file], { type: 'application/octet-stream' });
-          saveAs(blob, `${id}.pdf`);
+          saveAs(blob, `Orden de pago ${id}.pdf`);
         })
       );
   }

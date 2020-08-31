@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="col-1 d-flex justify-content-center">
-    <mat-checkbox [disabled]="disableCheckbox"
+    <mat-checkbox [disabled]="item?.amount"
                   [checked]="isSelected"
                   (change)="selectItem.emit(item)">
     </mat-checkbox>
@@ -50,8 +50,14 @@
         Descargar PDF
       </button>
       <button mat-menu-item
-              (click)="generatePaymentOrder.emit([item.id])">
+              *ngIf="!item.amount"
+              (click)="openPaymentOrderDialog.emit([item.id])">
         Generar orden de pago
+      </button>
+      <button mat-menu-item
+              *ngIf="item.amount"
+              (click)="downloadPaymentOrder.emit(item.paymentOrderId)">
+        Descargar orden de pago
       </button>
     </mat-menu>
 
