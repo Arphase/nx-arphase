@@ -63,7 +63,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
           id: null,
           businessName: [null, Validators.required],
           constitutionDate: [null, Validators.required],
-          distributor: [null, Validators.required],
           adviser: [null, Validators.required],
         }),
         rfc: [null, [Validators.required, CustomValidators.rfc('any')]],
@@ -79,7 +78,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
         model: [null, Validators.required],
         version: [null, Validators.required],
         year: [null, [Validators.required, Validators.min(2014)]],
-        invoiceDate: [null, Validators.required],
         vin: [null, Validators.required],
         motorNumber: [null, Validators.required],
         serialNumber: [null, Validators.required],
@@ -88,15 +86,13 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
         kilometrageEnd: [null, Validators.required],
       }),
       startDate: [null, Validators.required],
-      endDate: [null, Validators.required],
-      amount: [null, Validators.required],
+      endDate: [null, Validators.required]
     });
 
     this.form.patchValue({
       "createdAt": "2020-08-24T18:24:35.813Z",
       "startDate": "2020-08-31T05:00:00.000Z",
       "endDate": "2020-08-31T05:00:00.000Z",
-      "amount": 5000,
       "client": {
         "rfc": "MAVV951102312",
         "phone": "22222222222",
@@ -125,7 +121,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
         "model": "22",
         "version": "22",
         "year": 2222,
-        "invoiceDate": "2020-08-22T05:00:00.000Z",
         "vin": "22",
         "motorNumber": "22",
         "serialNumber": "22",

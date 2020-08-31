@@ -8,8 +8,8 @@ export const environment: Environment = {
     port: 5432,
     database: 'innovatech_dev',
     synchronize: false,
-    username: '',
-    password: ''
+    username: 'postgres',
+    password: '1403'
   },
   server: {
     port: 3333,

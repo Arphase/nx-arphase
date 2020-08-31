@@ -37,7 +37,7 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @Column({ type: 'timestamp' })
   endDate: Date;
 
-  @Column()
+  @Column({nullable: true})
   amount: number;
 
   constructor(partial: Partial<GuaranteeEntity>) {
