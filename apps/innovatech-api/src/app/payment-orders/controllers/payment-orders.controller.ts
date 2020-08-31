@@ -3,7 +3,7 @@ import { PaymentOrdersService } from '../services/payment-orders.service';
 import { CreatePaymentOrderDto } from '../dto/create-payment-order.dto';
 import { AuthGuard } from '@nestjs/passport';
 
-@Controller('payment-orders')
+@Controller('paymentOrders')
 @UseGuards(AuthGuard())
 export class PaymentOrdersController {
 

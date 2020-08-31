@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Guarantee, GuaranteeSummary } from '@ivt/data';
+import { PaymentOrder } from '@ivt/data';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { saveAs } from 'file-saver';
 import { Observable } from 'rxjs';
@@ -12,33 +12,27 @@ import { IVT_STATE_CONFIGURATION, IvtStateConfiguration } from '../../state-conf
 @Injectable({
   providedIn: 'root',
 })
-export class GuaranteeDataService extends IvtDataService<Guarantee> {
+export class PaymentOrderDataService extends IvtDataService<PaymentOrder> {
   constructor(
     protected http: HttpClient,
     protected httpUrlGenerator: HttpUrlGenerator,
     @Inject(IVT_STATE_CONFIGURATION) public config: IvtStateConfiguration
   ) {
-    super('Guarantee', http, httpUrlGenerator, config);
-    this.entityUrl = `${this.config.apiUrl}/guarantees/`;
-    this.entitiesUrl = `${this.config.apiUrl}/guarantees`;
+    super('PaymentOrder', http, httpUrlGenerator, config);
+    this.entityUrl = `${this.config.apiUrl}/paymentOrders/`;
+    this.entitiesUrl = `${this.config.apiUrl}/paymentOrders`;
   }
 
-  getGuaranteePdf(id: number): Observable<any> {
+  getPaymentOrderPdf(id: number): Observable<any> {
     return this.http
-      .get(`${this.config.apiUrl}/guarantees/${id}/pdf`, {
+      .get(`${this.config.apiUrl}/paymentOrders/${id}/pdf`, {
         responseType: 'blob',
       })
       .pipe(
-        tap((file) => {
+        tap(file => {
           const blob = new Blob([file], { type: 'application/octet-stream' });
           saveAs(blob, `${id}.pdf`);
         })
       );
-  }
-
-  getGuaranteeSummary(): Observable<GuaranteeSummary> {
-    return this.http.get<GuaranteeSummary>(
-      `${this.config.apiUrl}/guarantees/report/summary`
-    );
   }
 }

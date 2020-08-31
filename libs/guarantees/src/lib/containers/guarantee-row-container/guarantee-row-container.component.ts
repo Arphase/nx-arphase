@@ -50,20 +50,13 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
       .subscribe(() =>
         this.toastr.success(
           `La garantía con folio ${guarantee.id} ahora está ${statusLabels[
-            GuaranteeStatus[guarantee.status]
+            GuaranteeStatus[GuaranteeStatus[guarantee.status]]
           ].toLowerCase()}`
         )
       );
   }
 
   generatePaymentOrder(guaranteeIds: number[]): void {
-    this.loadingSubject.next(true);
-    this.guaranteeDataService
-      .getPaymentOrder(guaranteeIds)
-      .pipe(
-        take(1),
-        finalize(() => this.loadingSubject.next(false))
-      )
-      .subscribe();
+
   }
 }

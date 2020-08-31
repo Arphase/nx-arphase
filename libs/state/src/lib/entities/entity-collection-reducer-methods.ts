@@ -22,24 +22,13 @@ export interface IvtActionPayload<T = any> extends EntityActionPayload {
   hasMore: boolean;
 }
 
-export class AdditionalEntityCollectionReducerMethods<
-  T
-> extends EntityCollectionReducerMethods<T> {
-  constructor(
-    public entityName: string,
-    public definition: EntityDefinition<T>
-  ) {
+export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectionReducerMethods<T> {
+  constructor(public entityName: string, public definition: EntityDefinition<T>) {
     super(entityName, definition);
   }
 
-  protected queryMany(
-    collection: IvtEntityCollection<T>,
-    action: IvtEntityAction<T[]>
-  ): IvtEntityCollection<T> {
-    const entityCollection = super.queryMany(
-      collection,
-      action
-    ) as IvtEntityCollection;
+  protected queryMany(collection: IvtEntityCollection<T>, action: IvtEntityAction<T[]>): IvtEntityCollection<T> {
+    const entityCollection = super.queryMany(collection, action) as IvtEntityCollection;
     return {
       ...entityCollection,
       queryParams: {
@@ -49,19 +38,10 @@ export class AdditionalEntityCollectionReducerMethods<
     };
   }
 
-  protected queryManySuccess(
-    collection: IvtEntityCollection<T>,
-    action: IvtEntityAction<T[]>
-  ): IvtEntityCollection<T> {
-    let entityCollection = super.queryManySuccess(
-      collection,
-      action
-    ) as IvtEntityCollection;
+  protected queryManySuccess(collection: IvtEntityCollection<T>, action: IvtEntityAction<T[]>): IvtEntityCollection<T> {
+    let entityCollection = super.queryManySuccess(collection, action) as IvtEntityCollection;
     if (entityCollection.queryParams.resetList) {
-      entityCollection = super.queryManySuccess(
-        super.removeAll(collection, action),
-        action
-      ) as IvtEntityCollection;
+      entityCollection = super.queryManySuccess(super.removeAll(collection, action), action) as IvtEntityCollection;
     }
     return {
       ...entityCollection,
@@ -80,28 +60,29 @@ export class AdditionalEntityCollectionReducerMethods<
     return {
       ...collection,
       currentItem: action.payload.data,
-      loading: false
+      loading: false,
     };
   }
 
-  protected saveAddOne(
-    collection: IvtEntityCollection<T>,
-    action: IvtEntityAction<T[]>
-  ): IvtEntityCollection<T> {
+  protected saveAddOne(collection: IvtEntityCollection<T>, action: IvtEntityAction<T[]>): IvtEntityCollection<T> {
     return collection;
   }
 
-  protected saveUpdateOne(
+  protected saveAddOneSuccess(
     collection: IvtEntityCollection<T>,
     action: IvtEntityAction<T[]>
   ): IvtEntityCollection<T> {
+    return {
+      ...collection,
+      currentItem: action.payload.data,
+    };
+  }
+
+  protected saveUpdateOne(collection: IvtEntityCollection<T>, action: IvtEntityAction<T[]>): IvtEntityCollection<T> {
     return collection;
   }
 
-  protected saveDeleteOne(
-    collection: IvtEntityCollection<T>,
-    action: IvtEntityAction<T[]>
-  ): IvtEntityCollection<T> {
+  protected saveDeleteOne(collection: IvtEntityCollection<T>, action: IvtEntityAction<T[]>): IvtEntityCollection<T> {
     return collection;
   }
 
@@ -112,10 +93,7 @@ export class AdditionalEntityCollectionReducerMethods<
     return collection;
   }
 
-  protected removeOne(
-    collection: IvtEntityCollection<T>,
-    action: IvtEntityAction<T[]>
-  ): IvtEntityCollection<T> {
+  protected removeOne(collection: IvtEntityCollection<T>, action: IvtEntityAction<T[]>): IvtEntityCollection<T> {
     if (!action.payload.data) {
       return {
         ...collection,

@@ -1,0 +1,22 @@
+<h1 class="text-primary font-weight-light h3">Descargar Orden de Pago</h1>
+<ng-container mat-dialog-content>
+  <div class="row">
+    <div class="col text-center">
+      <h5>Tu orden de pago se ha generado con éxito</h5>
+      <p>Podrás descargarla en el siguiente enlace</p>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col flex-center">
+      <button mat-raised-button
+              class="px-4 py-2"
+              [loading]="loading"
+              color="primary"
+              (click)="downloadPdf.emit(item?.id)">
+        Descargar orden de pago
+      </button>
+    </div>
+  </div>
+</ng-container>

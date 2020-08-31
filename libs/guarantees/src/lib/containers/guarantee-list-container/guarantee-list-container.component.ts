@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Guarantee } from '@ivt/data';
-import { GuaranteeCollectionService, GuaranteeDataService } from '@ivt/state';
+import { GuaranteeCollectionService } from '@ivt/state';
 import { IvtListContainerComponent } from '@ivt/ui';
 import { BehaviorSubject } from 'rxjs';
-import { finalize, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
+
+import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
 
 @Component({
   selector: 'ivt-guarantee-list-container',
@@ -11,25 +14,21 @@ import { finalize, take } from 'rxjs/operators';
   styleUrls: ['./guarantee-list-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeListContainerComponent extends IvtListContainerComponent<
-Guarantee
-> {
-  loadingPaymentOrderSubject = new BehaviorSubject<boolean>(false);
-  loadingPaymentOrder$ = this.loadingPaymentOrderSubject.asObservable();
+export class GuaranteeListContainerComponent extends IvtListContainerComponent<Guarantee> {
+  clearSelectedSubject = new BehaviorSubject<boolean>(false);
+  clearSelected$ = this.clearSelectedSubject.asObservable();
 
-  constructor(
-    protected guaranteeCollectionService: GuaranteeCollectionService,
-    private guaranteeDataService: GuaranteeDataService
-  ) {
+  constructor(protected guaranteeCollectionService: GuaranteeCollectionService, private dialog: MatDialog) {
     super(guaranteeCollectionService);
   }
 
-  generatePaymentOrder(guaranteeIds: number[]): void {
-    this.loadingPaymentOrderSubject.next(true);
-    this.guaranteeDataService.getPaymentOrder(guaranteeIds).pipe(
-      take(1),
-      finalize(() => this.loadingPaymentOrderSubject.next(false))
-    )
-      .subscribe();
+  openPaymentOrderDialog(guaranteeIds: number[]): void {
+    this.dialog
+      .open(PaymentOrderDialogContainerComponent, {
+        data: guaranteeIds,
+      })
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe(() => this.clearSelectedSubject.next(true));
   }
 }

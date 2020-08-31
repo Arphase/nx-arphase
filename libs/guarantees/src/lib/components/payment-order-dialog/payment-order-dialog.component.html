@@ -1,40 +1,56 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
-    <h1 mat-dialog-title>Orden de Pago</h1>
-    <div mat-dialog-content>
-        <ivt-form-field label="Distribuidor">
-            <input ivtInput
-                    formControlName="distributor">
-        </ivt-form-field> 
-        <div *ngFor="let guarantee of guaranteesFormArray.controls">
-        <div>Folio: {{guarantee.value.id}}</div> 
-            <form [formGroup]="guarantee">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <ivt-form-field label="Fecha de factura">
-                            <input ivtInput
-                                    [matDatepicker]="invoiceDate"
-                                    formControlName="invoiceDate">
-                            <mat-datepicker-toggle matSuffix
-                                                    [for]="invoiceDate"></mat-datepicker-toggle>
-                            <mat-datepicker #invoiceDate></mat-datepicker>
-                        </ivt-form-field>
-                    </div>
-                    <div class="col-lg-6">
-                        <ivt-form-field label="Importe">
-                            <input ivtInput
-                                    formControlName="amount"
-                                    prefix="$ "
-                                    mask="0*.00"
-                                    class="text-right px-3">
-                        </ivt-form-field>   
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>  
-    <div mat-dialog-actions>
-        <button mat-button mat-dialog-close>Cerrar</button>
-        <button mat-raised-button [loading]="loadingPaymentOrder" type="submit" color="primary" >Generar orden de pago</button>
-    </div>
-</form>
+<form [formGroup]="form"
+      (ngSubmit)="submit()">
+  <h1 class="text-primary font-weight-light h3">Generar Orden de Pago</h1>
 
+  <ng-container mat-dialog-content>
+    <div class="row mt-3 mb-2">
+      <div class="col">
+        <ivt-form-field label="Distribuidor">
+          <input ivtInput
+                 formControlName="distributor">
+        </ivt-form-field>
+      </div>
+    </div>
+
+    <ivt-table-header [columns]="columns"></ivt-table-header>
+
+    <form *ngFor="let guarantee of guaranteesFormArray.controls"
+          [formGroup]="guarantee"
+          class="row mb-3">
+      <div class="col-2 flex-start">
+        <span class="mb-3">
+          {{ guarantee.value.id | folio }}
+        </span>
+      </div>
+      <div class="col-5">
+        <ivt-form-field label="Fecha de factura">
+          <input ivtInput
+                 [matDatepicker]="invoiceDate"
+                 formControlName="invoiceDate">
+          <mat-datepicker-toggle matSuffix
+                                 [for]="invoiceDate"></mat-datepicker-toggle>
+          <mat-datepicker #invoiceDate></mat-datepicker>
+        </ivt-form-field>
+      </div>
+      <div class="col-5">
+        <ivt-form-field label="Importe">
+          <input ivtInput
+                 formControlName="amount"
+                 prefix="$ "
+                 mask="0*.00"
+                 class="text-right px-3">
+        </ivt-form-field>
+      </div>
+    </form>
+  </ng-container>
+
+  <div mat-dialog-actions
+       class="flex-end">
+    <button mat-button
+            mat-dialog-close>Cerrar</button>
+    <button mat-raised-button
+            [loading]="loading"
+            type="submit"
+            color="primary">Generar orden de pago</button>
+  </div>
+</form>
