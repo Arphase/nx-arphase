@@ -65,13 +65,7 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   }
 
   openPaymentOrderDialog(guaranteeId: number): void {
-    this.dialog
-      .open(PaymentOrderDialogContainerComponent, {
-        data: guaranteeId,
-      })
-      .afterClosed()
-      .pipe(take(1))
-      .subscribe();
+    this.dialog.open(PaymentOrderDialogContainerComponent, { data: guaranteeId });
   }
 
   downloadPaymentOrder(id: number): void {
