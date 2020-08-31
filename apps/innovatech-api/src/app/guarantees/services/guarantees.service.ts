@@ -1,13 +1,18 @@
 import { GuaranteeStatus, GuaranteeSummary, PersonTypes } from '@ivt/data';
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import fs from 'fs';
 import * as htmlPdf from 'html-pdf';
 import moment from 'moment';
 import * as path from 'path';
 import puppeteer from 'puppeteer';
-import { Readable } from 'stream';
-import { Connection } from 'typeorm';
+import { promises } from 'fs';
 import { promisify } from 'util';
+import { Connection } from 'typeorm';
+import { Readable } from 'stream';
 
 import { GuaranteeEntity } from '../data/entities/guarantee.entity';
 import { GuaranteeRepository } from '../data/guarantee.repository';
@@ -19,6 +24,7 @@ const dir = {
   asc: 'ASC',
   desc: 'DESC',
 };
+const OUT_FILE = 'myfile.html';
 
 const BASE_PATH = 'file://' + path.resolve(__dirname) + '/assets/img/';
 
@@ -62,6 +68,7 @@ export class GuaranteesService {
       startDate,
       endDate,
       text,
+      status,
     } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     let guarantees: GuaranteeEntity[];
@@ -87,6 +94,12 @@ export class GuaranteesService {
 
     if (text) {
       query.andWhere('(guarantee.id = :id)', { id: text });
+    }
+
+    if (status) {
+      query.andWhere('(guarantee.status = :status)', {
+        status: GuaranteeStatus[status],
+      });
     }
 
     query
@@ -124,7 +137,7 @@ export class GuaranteesService {
     createGuaranteeDto = this.omitInfo(createGuaranteeDto);
     const newGuarantee = await this.guaranteeRepository.create({
       ...createGuaranteeDto,
-      status: GuaranteeStatus.outstanding
+      status: GuaranteeStatus.outstanding,
     });
     await newGuarantee.save();
     return newGuarantee;
@@ -153,10 +166,28 @@ export class GuaranteesService {
             .title {
               font-size: 14px;
             }
+            .logo {
+              max-width: 50%;
+              height: auto;
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+            }
+            span.footer {
+              content: url(${BASE_PATH}Franja_tringulo.jpg)
+              max-width: 100%;
+              height: auto;
+            }
+            footer {
+              content: url(${BASE_PATH}Franja_tringulo.jpg)
+              max-width: 100%;
+              height: auto;
+            }
         </style>
     <head>
     <body>
-    <div><img src="logo.png"></div>
+    <div><img class="logo" src="${BASE_PATH}logo.png"></div>
+    <div><img class ="footer" style="display:none;" src="${BASE_PATH}Franja_tringulo.jpg"></div>
     <p class="center bold title">Procedimiento de reclamación</p>
     <p>En cuanto tenga conocimiento de la AVERÍA/AS, el BENEFICIARIO comunicará la misma a Innovatech por cualquiera de los siguientes medios: </p>
     <ul>
@@ -171,50 +202,50 @@ export class GuaranteesService {
         <p>Ante cualquier duda, ponerse en contacto con el área de servicio al cliente.</p>
         <p>*Los datos introducidos tendrán que coincidir fehacientemente con los del vehículo objeto de garantía. En caso de error será motivo de rescisión del contrato.</p>
         <p><span class="bold">PUNTO DE VENTA:</span> ${
-      guarantee.client.salesPlace
-      }</p>
+          guarantee.client.salesPlace
+        }</p>
         <p><span class="bold">R.F.C.</span> ${guarantee.client.rfc}</p>
         <p><span class="bold">DIRECCIÓN:</span> ${
-      guarantee.client.address.street
-      } ${guarantee.client.address.externalNumber}, ${
+          guarantee.client.address.street
+        } ${guarantee.client.address.externalNumber}, ${
       guarantee.client.address.suburb
-      }. ${guarantee.client.address.city}, ${guarantee.client.address.state}. ${
+    }. ${guarantee.client.address.city}, ${guarantee.client.address.state}. ${
       guarantee.client.address.zipCode
-      } </p>
+    } </p>
         <p><span class="bold">TELEFONO:</span> ${guarantee.client.phone}</p>
         <p><span class="bold">EMAIL:</span> ${guarantee.client.email}</p>
         <p class="bold">DATOS DEL VEHÍCULO:</p>
         <p><span class="bold">MARCA:</span> ${
-      guarantee.vehicle.brand
-      }       <span class="bold"> - NUMERO DE SERIE:</span> ${
+          guarantee.vehicle.brand
+        }       <span class="bold"> - NUMERO DE SERIE:</span> ${
       guarantee.vehicle.serialNumber
-      }  <span class="bold"> - HP:</span> ${guarantee.vehicle.horsePower} </p>
+    }  <span class="bold"> - HP:</span> ${guarantee.vehicle.horsePower} </p>
         <p><span class="bold">MODELO:</span> ${
-      guarantee.vehicle.model
-      } <span class="bold"> - FECHA 1º FACTURA: </span>${moment(
-        guarantee.vehicle.invoiceDate
-      )
-        .locale('es')
-        .format('LL')}</p>
+          guarantee.vehicle.model
+        } <span class="bold"> - FECHA 1º FACTURA: </span>${moment(
+      guarantee.vehicle.invoiceDate
+    )
+      .locale('es')
+      .format('LL')}</p>
         <p><span class="bold">MOTOR:</span> ${guarantee.vehicle.motorNumber}</p>
         <center><p>PERIODO DE VIGENCIA</p></center>
         <p><span class="bold">FECHA INICIO GARANTIA:</span> ${moment(
           guarantee.startDate
         )
-        .locale('es')
-        .format('LL')}</p>
+          .locale('es')
+          .format('LL')}</p>
           <p>
           <span class="bold">FIN GARANTIA POR TIEMPO:</span> ${moment(
-          guarantee.endDate
-        )
-        .locale('es')
-        .format('LL')}
+            guarantee.endDate
+          )
+            .locale('es')
+            .format('LL')}
           </p>
         <p><span class="bold">KILOMETRAJE INICIAL: </span> ${
-      guarantee.vehicle.kilometrageStart
-      } <span class="bold"> - FIN GARANTIA POR KILOMETRAJE: </span> ${
+          guarantee.vehicle.kilometrageStart
+        } <span class="bold"> - FIN GARANTIA POR KILOMETRAJE: </span> ${
       guarantee.vehicle.kilometrageEnd
-      } </p>
+    } </p>
         <p>Siempre que se hayan realizado en el VEHÍCULO en tiempo y forma los servicios y mantenimientos señalados en el certificado de garantía; el PERIODO DE VIGENCIA podrá comenzar a computarse hasta el momento en que expire la garantía del fabricante o alguna otra garantía de similar naturaleza, ya sea por sobrepasar el kilometraje o cumplirse el tiempo establecido en la misma.</p>
         <p>En caso de rescisión anticipada de esta garantía, Innovatech no estará obligada a la devolución del precio.</p>
         <p>COBERTURAS</p>
@@ -338,36 +369,66 @@ export class GuaranteesService {
     </body>
     </html>
 `;
+    // const options = {
+    //   border: '1in',
+    //   base: BASE_PATH,
+    //   footer: {
+    //     contents: `
+    //     <div><img class="footer" src="${BASE_PATH}Franja_tringulo.jpg"></div>
+    //     `,
+    //   },
+    // };
+    // htmlPdf.create(content, options).toStream((err, stream) => {
+    //   if (err) {
+    //     throw new InternalServerErrorException(err);
+    //   }
+    //   try {
+    //     stream.pipe(response as any);
+    //   } catch (e) {
+    //     throw new InternalServerErrorException(e);
+    //   }
+    // });
+    const contents = await promises.readFile(`apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg`, {encoding: 'base64'});
 
-    let assestPath = path.join(__dirname + '/src/assets/img');
-    assestPath = assestPath.replace(new RegExp(/\\/g), '/');
-    const options = {
-      border: '1in',
-      base: 'file:///' + assestPath,
-      header: {
-        height: '45mm',
-        width: '45mm',
-        contents: '<div><img src="logo.png"></div>',
+    await promisify(fs.writeFile)(OUT_FILE, content);
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto(`file://${process.cwd()}/${OUT_FILE}`);
+    await page.setContent(content);
+
+    const buffer = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+      margin: {
+        left: '1in',
+        top: '1in',
+        right: '1in',
+        bottom: '1in',
       },
-      footer: {
-        height: '28mm',
-        contents: "<span style='color: #444;'></span><span></span>",
-      },
-    };
-    htmlPdf.create(content, options).toStream((err, stream) => {
-      if (err) {
-        throw new InternalServerErrorException(err);
-      }
-      try {
-        stream.pipe(response as any);
-      } catch (e) {
-        throw new InternalServerErrorException(e);
-      }
+      displayHeaderFooter: true,
+      footerTemplate: `
+      <style>
+        span.footer {
+          content: url(data:${contents};base64,)
+          max-width: 100%;
+          height: auto;
+        }
+        .footer {
+          max-width: 100%;
+          height: auto;
+        }
+      </style>
+      <img class="footer" src="data:${contents};base64,"/>
+         <span class="footer"></span>
+      `,
     });
+    promisify(fs.unlink)(OUT_FILE); // cleanup
+    await browser.close();
+    const stream = this.getReadableStream(buffer);
+    stream.pipe(response as any);
   }
 
   async generatePaymentOrderPdf(ids: number[], response: Response) {
-    const OUT_FILE = 'myfile.html';
     const guarantees = await this.guaranteeRepository.findByIds(ids);
     const createdAt = new Date().toLocaleDateString('es');
     let total = 0;
@@ -541,6 +602,8 @@ export class GuaranteesService {
         right: '1in',
         bottom: '1in',
       },
+      displayHeaderFooter: true,
+      footerTemplate: ``,
     });
     promisify(fs.unlink)(OUT_FILE); // cleanup
     await browser.close();

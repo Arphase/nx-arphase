@@ -1,4 +1,15 @@
-import { IsOptional, IsNotEmpty, IsNumberString, IsString, isNumberString, IsDateString, IsDate } from 'class-validator';
+import {
+  IsOptional,
+  IsNotEmpty,
+  IsNumberString,
+  IsString,
+  isNumberString,
+  IsDateString,
+  IsDate,
+  IsEnum,
+} from 'class-validator';
+import { GuaranteeStatus } from '@ivt/data';
+import { Transform } from 'class-transformer';
 
 export class GetGuaranteesFilterDto {
   @IsOptional()
@@ -36,4 +47,9 @@ export class GetGuaranteesFilterDto {
   @IsNotEmpty()
   @IsNumberString()
   amount: number;
+
+  @IsOptional()
+  @Transform((value) => GuaranteeStatus[value])
+  @IsEnum(GuaranteeStatus)
+  status: GuaranteeStatus;
 }

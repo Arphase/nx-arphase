@@ -1,6 +1,6 @@
 <form [formGroup]="form">
   <div class="row d-flex flex-center">
-    <div class="col-3">
+    <div class="col-lg-3 col-12">
       <ivt-form-field label="Código postal">
         <input ivtInput
                maxlength="5"
@@ -12,7 +12,7 @@
     </div>
 
     <ng-container *ngIf="showAddressSelects">
-      <div class="col-3">
+      <div class="col-lg-3 col-12">
         <ivt-form-field label="País">
           <mat-select formControlName="country">
             <mat-option *ngFor="let option of countryOptions"
@@ -22,7 +22,7 @@
           </mat-select>
         </ivt-form-field>
       </div>
-      <div class="col-3">
+      <div class="col-lg-3 col-12">
         <ivt-form-field label="Estado">
           <mat-select formControlName="state">
             <mat-option *ngFor="let option of stateOptions"
@@ -32,7 +32,7 @@
           </mat-select>
         </ivt-form-field>
       </div>
-      <div class="col-3">
+      <div class="col-lg-3 col-12">
         <ivt-form-field label="Ciudad">
           <mat-select formControlName="city">
             <mat-option *ngFor="let option of cityOptions"
@@ -45,21 +45,21 @@
     </ng-container>
 
     <ng-container *ngIf="!showAddressSelects">
-      <div class="col-3">
+      <div class="col-lg-3 col-12">
         <ivt-form-field label="País">
           <input ivtInput
                  formControlName="country">
         </ivt-form-field>
       </div>
 
-      <div class="col-3">
+      <div class="col-lg-3 col-12">
         <ivt-form-field label="Estado">
           <input ivtInput
                  formControlName="state">
         </ivt-form-field>
       </div>
 
-      <div class="col-3">
+      <div class="col-lg-3 col-12">
         <ivt-form-field label="Ciudad">
           <input ivtInput
                  formControlName="city">
@@ -69,7 +69,7 @@
   </div>
 
   <div class="row d-flex flex-center">
-    <div class="col-3">
+    <div class="col-lg-3 col-12">
       <ivt-form-field *ngIf="showAddressSelects"
                       label="Colonia">
         <mat-select formControlName="suburb">
@@ -86,7 +86,7 @@
                formControlName="suburb">
       </ivt-form-field>
     </div>
-    <div class="col-3">
+    <div class="col-lg-3 col-12">
       <ivt-form-field label="Calle">
         <input ivtInput
                maxlength="50"
@@ -94,7 +94,7 @@
       </ivt-form-field>
     </div>
 
-    <div class="col-3">
+    <div class="col-lg-3 col-12">
       <ivt-form-field label="Número externo">
         <input ivtInput
                maxlength="10"
@@ -103,7 +103,7 @@
       </ivt-form-field>
     </div>
 
-    <div class="col-3">
+    <div class="col-lg-3 col-12">
       <ivt-form-field label="Número interno">
         <input ivtInput
                maxlength="10"

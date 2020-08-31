@@ -55,7 +55,7 @@ export class GuaranteeDataService extends IvtDataService<Guarantee> {
 
   getGuaranteeSummary(): Observable<GuaranteeSummary> {
     return this.http.get<GuaranteeSummary>(
-      `${this.config.apiUrl}/guarantees/summary`
+      `${this.config.apiUrl}/guarantees/report/summary`
     );
   }
 }

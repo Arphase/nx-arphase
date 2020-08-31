@@ -11,11 +11,16 @@
   height: 100%;
   background-color: $border-color;
   overflow-x: hidden;
+  position: fixed;
+}
+
+.sidenav-is-mobile {
+  position: relative;
 }
 
 .collapsed-side-nav {
   @include menu-transition();
-  width: $sidebar-width-collapsed;
+  width: $sidebar-width-collapsed !important;
 }
 
 .closed-side-nav-content {
@@ -26,6 +31,10 @@
 .opened-side-nav-content {
   @include menu-transition();
   margin-left: $sidebar-width !important;
+}
+
+ .sidenav-content-mobile {
+  margin-left: 0 !important;
 }
 
 .menu-items-container {

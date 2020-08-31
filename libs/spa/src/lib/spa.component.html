@@ -5,7 +5,8 @@
 </ivt-menu-bar>
 <ivt-side-nav [opened]="opened"
               [menuItems]="menuItems"
-              (openMenu)="onOpenMenu()">
+              (openMenu)="onOpenMenu()"
+              (closeMenu)="onCloseMenu()">
   <div class="spa-content">
     <router-outlet></router-outlet>
   </div>
