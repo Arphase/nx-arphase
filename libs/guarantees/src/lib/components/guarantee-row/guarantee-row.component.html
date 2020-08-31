@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="col-1 d-flex justify-content-center">
-    <mat-checkbox [disabled]="disableCheckbox"
+    <mat-checkbox [disabled]="item?.amount"
                   [checked]="isSelected"
                   (change)="selectItem.emit(item)">
     </mat-checkbox>

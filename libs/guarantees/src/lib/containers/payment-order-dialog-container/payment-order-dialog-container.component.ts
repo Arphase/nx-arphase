@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PaymentOrder } from '@ivt/data';
 import { GuaranteeCollectionService, PaymentOrderCollectionService, PaymentOrderDataService } from '@ivt/state';
 import { IvtFormContainerComponent } from '@ivt/ui';
+import { filterNil } from '@ivt/utils';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
@@ -27,10 +28,13 @@ export class PaymentOrderDialogContainerComponent extends IvtFormContainerCompon
   }
 
   generatePaymentOrder(paymentOrder: PaymentOrder): void {
-    this.paymentOrderCollectionService
-      .add(paymentOrder)
-      .pipe(take(1))
-      .subscribe(() => this.guaranteeCollectiionService.updateManyInCache(paymentOrder.guarantees));
+    this.paymentOrderCollectionService.clearCache();
+    this.paymentOrderCollectionService.currentItem$.pipe(filterNil(), take(1)).subscribe(currentPaymentOrder => {
+      this.guaranteeCollectiionService.updateManyInCache(
+        paymentOrder.guarantees.map(guarantee => ({ ...guarantee, paymentOrderId: currentPaymentOrder.id }))
+      );
+    });
+    this.paymentOrderCollectionService.add(paymentOrder);
   }
 
   downloadPaymentOrder(id: number): void {
