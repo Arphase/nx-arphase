@@ -1,12 +1,19 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Guarantee, GuaranteeStatus } from '@ivt/data';
-import { GuaranteeCollectionService, GuaranteeDataService } from '@ivt/state';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { Guarantee, GuaranteeStatus, PaymentOrder } from '@ivt/data';
+import {
+  GuaranteeCollectionService,
+  GuaranteeDataService,
+  PaymentOrderCollectionService,
+  PaymentOrderDataService,
+} from '@ivt/state';
 import { IvtRowComponent } from '@ivt/ui';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
 import { statusLabels } from '../../components/guarantee-row/guarantee-row.constants';
+import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'ivt-guarantee-row-container',
@@ -18,11 +25,12 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
 
-  statusLabels = statusLabels;
-
   constructor(
     private guaranteeCollectiionService: GuaranteeCollectionService,
     private guaranteeDataService: GuaranteeDataService,
+    protected paymentOrderCollectionService: PaymentOrderCollectionService,
+    private paymentOrderDataService: PaymentOrderDataService,
+    private dialog: MatDialog,
     private toastr: ToastrService
   ) {
     super();
@@ -56,7 +64,24 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
       );
   }
 
-  generatePaymentOrder(guaranteeIds: number[]): void {
+  openPaymentOrderDialog(guaranteeId: number): void {
+    this.dialog
+      .open(PaymentOrderDialogContainerComponent, {
+        data: guaranteeId,
+      })
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe();
+  }
 
+  downloadPaymentOrder(id: number): void {
+    this.loadingSubject.next(true);
+    this.paymentOrderDataService
+      .getPaymentOrderPdf(id)
+      .pipe(
+        take(1),
+        finalize(() => this.loadingSubject.next(false))
+      )
+      .subscribe();
   }
 }
