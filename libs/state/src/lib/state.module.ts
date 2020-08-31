@@ -16,11 +16,8 @@ import { TokenInterceptor } from './core/interceptors/token-interceptor';
 import { AdditionalEntityCollectionReducerMethodsFactory } from './entities';
 import { entityConfig } from './entities/entity.metadata';
 import { GuaranteeDataService } from './guarantees/services/guarantee-data.service';
+import { PaymentOrderDataService } from './payment-orders';
 import { reducers } from './reducers';
-
-const defaultDataServiceConfig: DefaultDataServiceConfig = {
-  root: 'http://localhost:3333',
-};
 
 @NgModule({
   imports: [
@@ -41,16 +38,18 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     {
       provide: EntityCollectionReducerMethodsFactory,
       useClass: AdditionalEntityCollectionReducerMethodsFactory,
-    }
+    },
   ],
 })
 export class IvtStateModule {
   constructor(
     entityDataService: EntityDataService,
-    guaranteeDataService: GuaranteeDataService
+    guaranteeDataService: GuaranteeDataService,
+    paymentOrderDataService: PaymentOrderDataService
   ) {
     const services: Record<string, IvtDataService> = {
       Guarantee: guaranteeDataService,
+      PaymentOrder: paymentOrderDataService,
     };
     entityDataService.registerServices(services);
   }

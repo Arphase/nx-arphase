@@ -37,6 +37,11 @@ export class DashboardContainerComponent implements OnInit {
       ];
     })
   );
+  isEmpty$ = this.store.pipe(
+    select(getDashboardGuaranteeSummaryState),
+    filterNil(),
+    map((summary) => !summary.length || !summary.some((value) => value.amount))
+  );
   constructor(private store: Store<any>) {}
 
   ngOnInit(): void {

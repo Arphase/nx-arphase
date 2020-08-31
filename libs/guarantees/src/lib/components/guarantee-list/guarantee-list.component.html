@@ -42,8 +42,8 @@
   <div class="col">
     <button mat-raised-button
             type="button"
-            color="primary"           
-            (click)="openDialog()">
+            color="primary"
+            (click)="openPaymentOrderDialog.emit(selectedIds.selected)">
       Generar orden de pago
     </button>
   </div>

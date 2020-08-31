@@ -4,14 +4,13 @@
   </div>
 </div>
 
-
 <div class="row">
   <div class="col">
     <mat-card>
-      <ivt-empty-state *ngIf="!data"
-                 message="Dashboard no disponible">
+      <ivt-empty-state *ngIf="isEmpty"
+                       message="Dashboard no disponible">
       </ivt-empty-state>
-      <ng-container *ngIf="data">
+      <ng-container *ngIf="!isEmpty && data">
         <div class="row mb-4">
           <div class="col text-center">
             <h3>Resumen de Garantías</h3>

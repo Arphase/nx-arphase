@@ -30,6 +30,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { IvtComponentsModule } from './components/components.module';
 import { IvtContainersModule } from './containers/containers.module';
 import { IvtDirectivesModule } from './directives/directives.module';
+import { IvtPipesModule } from './pipes';
 
 const MATERIAL_MODULES = [
   ReactiveFormsModule,
@@ -66,7 +67,12 @@ const MATERIAL_MODULES = [
   MatTooltipModule,
 ];
 
-const MODULES = [IvtComponentsModule, IvtContainersModule, IvtDirectivesModule];
+const MODULES = [
+  IvtComponentsModule,
+  IvtContainersModule,
+  IvtDirectivesModule,
+  IvtPipesModule,
+];
 
 const THIRD_PARTY_MODULES = [NgxMaskModule];
 

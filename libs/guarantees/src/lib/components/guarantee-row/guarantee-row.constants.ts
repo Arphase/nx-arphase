@@ -1,16 +1,16 @@
 import { GuaranteeStatus } from '@ivt/data';
 
-export const statusLabels: Record<GuaranteeStatus, string> = {
-  [GuaranteeStatus.cancelled]: 'Cancelada',
-  [GuaranteeStatus.expired]: 'Caducada',
-  [GuaranteeStatus.outstanding]: 'Pendiente de pago',
-  [GuaranteeStatus.paid]: 'Pagada',
+export const statusLabels: Record<string, string> = {
+  [GuaranteeStatus[GuaranteeStatus.cancelled]]: 'Cancelada',
+  [GuaranteeStatus[GuaranteeStatus.expired]]: 'Caducada',
+  [GuaranteeStatus[GuaranteeStatus.outstanding]]: 'Pendiente de pago',
+  [GuaranteeStatus[GuaranteeStatus.paid]]: 'Pagada',
 };
-export const backgroundClasses: Record<GuaranteeStatus, string> = {
-  [GuaranteeStatus.cancelled]: 'bg-alert',
-  [GuaranteeStatus.expired]: 'bg-info',
-  [GuaranteeStatus.outstanding]: 'bg-warning',
-  [GuaranteeStatus.paid]: 'bg-success',
+export const backgroundClasses: Record<string, string> = {
+  [GuaranteeStatus[GuaranteeStatus.cancelled]]: 'bg-alert',
+  [GuaranteeStatus[GuaranteeStatus.expired]]: 'bg-info',
+  [GuaranteeStatus[GuaranteeStatus.outstanding]]: 'bg-warning',
+  [GuaranteeStatus[GuaranteeStatus.paid]]: 'bg-success',
 };
 
 export const menuOptions = [

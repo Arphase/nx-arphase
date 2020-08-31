@@ -13,4 +13,5 @@ export class DashboardComponent {
   @Input() colors: { backgroundColor: string[] }[];
   @Input() type: ChartType;
   @Input() legend: boolean;
+  @Input() isEmpty: boolean;
 }
