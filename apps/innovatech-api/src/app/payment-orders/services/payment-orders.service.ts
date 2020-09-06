@@ -1,14 +1,10 @@
-import {
-  Injectable,
-  NotFoundException,
-  ConflictException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
 import { PaymentOrderRepository } from '../data/payment-order.repository';
 import { Connection, getManager } from 'typeorm';
 import { promisify } from 'util';
 import { GuaranteeRepository } from '@api/guarantees/data/guarantee.repository';
 import fs from 'fs';
-import * as htmlPdf from 'html-pdf';
+import { promises } from 'fs';
 import moment from 'moment';
 import * as path from 'path';
 import puppeteer from 'puppeteer';
@@ -26,34 +22,23 @@ export class PaymentOrdersService {
   guaranteeRepository: GuaranteeRepository;
 
   constructor(private readonly connection: Connection) {
-    this.paymentOrderRepository = this.connection.getCustomRepository(
-      PaymentOrderRepository
-    );
-    this.guaranteeRepository = this.connection.getCustomRepository(
-      GuaranteeRepository
-    );
+    this.paymentOrderRepository = this.connection.getCustomRepository(PaymentOrderRepository);
+    this.guaranteeRepository = this.connection.getCustomRepository(GuaranteeRepository);
   }
 
   async createPaymentOrder(paymentOrder: CreatePaymentOrderDto) {
-    const newPaymentOrder = await this.paymentOrderRepository.create(
-      omit(paymentOrder, 'guarantees')
-    );
-    const ids = paymentOrder.guarantees.map((guarantee) => guarantee.id);
+    const newPaymentOrder = await this.paymentOrderRepository.create(omit(paymentOrder, 'guarantees'));
+    const ids = paymentOrder.guarantees.map(guarantee => guarantee.id);
     const guarantees = await this.guaranteeRepository.findByIds(ids);
-    guarantees.forEach((guarantee) => {
+    guarantees.forEach(guarantee => {
       if (guarantee.paymentOrderId) {
-        throw new ConflictException(
-          `Guarantee with id "${guarantee.id}" has already a payment order`
-        );
+        throw new ConflictException(`Guarantee with id "${guarantee.id}" has already a payment order`);
       }
     });
-    let updatedGuarantees = await this.guaranteeRepository.create(
-      paymentOrder.guarantees
-    );
-    console.log(newPaymentOrder);
-    await getManager().transaction(async (transactionalEntityManager) => {
+    let updatedGuarantees = await this.guaranteeRepository.create(paymentOrder.guarantees);
+    await getManager().transaction(async transactionalEntityManager => {
       await transactionalEntityManager.save(newPaymentOrder);
-      updatedGuarantees = updatedGuarantees.map((guarantee) => {
+      updatedGuarantees = updatedGuarantees.map(guarantee => {
         guarantee.paymentOrderId = newPaymentOrder.id;
         return guarantee;
       });
@@ -74,18 +59,22 @@ export class PaymentOrdersService {
     }
 
     const guarantees = paymentOrder.guarantees;
+    const multiple = guarantees.length > 1 ? 'MULTIPLE' : '';
     const createdAt = paymentOrder.createdAt;
     let total = 0;
-    const guaranteesRowsArray = guarantees.map((guarantee) => {
+    const guaranteesRowsArray = guarantees.map(guarantee => {
       total += guarantee.amount;
       return `
     <tr>
-      <td>${moment(guarantee.invoiceDate ).format('DD/MM/YYYY')}</td>
+      <td>${moment(guarantee.invoiceDate).format('DD/MM/YYYY')}</td>
       <td>${guarantee.id}</td>
       <td>${guarantee.amount}</td>
     </tr>`;
     });
     const guaranteesRows = guaranteesRowsArray.join(' ');
+
+    const headerImg = await this.tobase64('apps/innovatech-api/src/assets/img/logo_innovatech_garantias.jpg');
+    const footerImg = await this.tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
 
     const content = `
       <html>
@@ -98,19 +87,12 @@ export class PaymentOrdersService {
               }
               html {
                 font-family: 'Open Sans' !important;
-                font-size: 9px;
+                font-size: 12px;
                 line-height: 1.1;
               }
               body {
                 display: flex;
                 flex-direction: column;
-              }
-              .logo {
-                max-width: 50%;
-                height: auto;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
               }
               .bold {
                 font-weight: 900;
@@ -133,7 +115,7 @@ export class PaymentOrdersService {
               }
               table {
                 width: 100%;
-                font-size: 9px;
+                font-size: 12px;
                 border: 1px solid rgba(0,0,0,0.50);
                 border-collapse: collapse;
                 border-spacing: 0;
@@ -158,10 +140,7 @@ export class PaymentOrdersService {
           </style>
       <head>
       <body>
-      <div>
-        <img class="logo" src="${BASE_PATH}logo_innovatech_garantias.jpg"/>
-      </div>
-      <p class="center bold title">ORDEN DE PAGO</p>
+      <p class="center bold title">ORDEN DE PAGO ${multiple}</p>
       <div class="row" style="margin-bottom: 3rem;">
         <div class="col">
           <p class="bold">Innovatech Garantías S.A. de C.V.</p>
@@ -225,9 +204,6 @@ export class PaymentOrdersService {
         </tr>
       </table>
       </body>
-      <div id="footer-template">
-        <img class="footer" src="${BASE_PATH}Franja_Tringulo.jpg"/>
-      </div>
       </html>
   `;
 
@@ -245,12 +221,39 @@ export class PaymentOrdersService {
         bottom: '1in',
       },
       displayHeaderFooter: true,
-      footerTemplate: ``,
+      headerTemplate: `
+      <style>
+      .logo {
+        width: auto;
+        height: 0.8in;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #header { padding: 0 !important; }
+      </style>
+        <img class="logo"
+        src="data:image/jpg;base64,${headerImg}"/>
+      `,
+      footerTemplate: `
+      <style>
+      .footer {
+        width: 100%;
+        height: 1in;
+      }
+      #footer { padding: 0 !important; }
+      </style>
+      <img class="footer"
+          src="data:image/jpg;base64,${footerImg}"/>
+      `,
     });
     promisify(fs.unlink)(OUT_FILE); // cleanup
     await browser.close();
     const stream = this.getReadableStream(buffer);
     stream.pipe(response as any);
+  }
+
+  async tobase64(imgPath) {
+    return await promises.readFile(imgPath, { encoding: 'base64' });
   }
 
   getReadableStream(buffer: Buffer): Readable {
