@@ -23,6 +23,7 @@ import { GuaranteesService } from '../services/guarantees.service';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('guarantees')
+@UseGuards(AuthGuard())
 export class GuaranteesController {
   constructor(private guaranteesService: GuaranteesService) { }
 
