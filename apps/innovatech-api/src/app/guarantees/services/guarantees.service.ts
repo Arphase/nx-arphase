@@ -1,11 +1,6 @@
 import { GuaranteeStatus, GuaranteeSummary, PersonTypes } from '@ivt/data';
-import {
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import fs from 'fs';
-import * as htmlPdf from 'html-pdf';
 import moment from 'moment';
 import * as path from 'path';
 import puppeteer from 'puppeteer';
@@ -33,9 +28,7 @@ export class GuaranteesService {
   guaranteeRepository: GuaranteeRepository;
 
   constructor(private readonly connection: Connection) {
-    this.guaranteeRepository = this.connection.getCustomRepository(
-      GuaranteeRepository
-    );
+    this.guaranteeRepository = this.connection.getCustomRepository(GuaranteeRepository);
   }
 
   async getGuaranteeById(id: number): Promise<GuaranteeEntity> {
@@ -57,20 +50,8 @@ export class GuaranteesService {
     return found;
   }
 
-  async getGuarantees(
-    filterDto: GetGuaranteesFilterDto
-  ): Promise<GuaranteeEntity[]> {
-    const {
-      limit,
-      offset,
-      sort,
-      direction,
-      startDate,
-      endDate,
-      dateType,
-      text,
-      status,
-    } = filterDto;
+  async getGuarantees(filterDto: GetGuaranteesFilterDto): Promise<GuaranteeEntity[]> {
+    const { limit, offset, sort, direction, startDate, endDate, dateType, text, status } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     let guarantees: GuaranteeEntity[];
 
@@ -115,7 +96,7 @@ export class GuaranteesService {
     }
 
     guarantees = await query.getMany();
-    guarantees.map((guarantee) => this.omitInfo(guarantee));
+    guarantees.map(guarantee => this.omitInfo(guarantee));
     return guarantees;
   }
 
@@ -129,9 +110,7 @@ export class GuaranteesService {
     return summary;
   }
 
-  async createGuarantee(
-    createGuaranteeDto: CreateGuaranteeDto
-  ): Promise<GuaranteeEntity> {
+  async createGuarantee(createGuaranteeDto: CreateGuaranteeDto): Promise<GuaranteeEntity> {
     createGuaranteeDto = this.omitInfo(createGuaranteeDto);
     const newGuarantee = await this.guaranteeRepository.create({
       ...createGuaranteeDto,
@@ -154,6 +133,7 @@ export class GuaranteesService {
               font-family: 'Open Sans' !important;
               font-size: 12px;
               line-height: 1.1;
+              background-color: transparent;
             }
             .bold {
               font-weight: 900;
@@ -172,12 +152,12 @@ export class GuaranteesService {
               margin-right: auto;
             }
             span.footer {
-              content: url(${BASE_PATH}Franja_tringulo.jpg)
+
               max-width: 100%;
-              height: auto;
+              height: 50%;
             }
             footer {
-              content: url(${BASE_PATH}Franja_tringulo.jpg)
+
               max-width: 100%;
               height: auto;
             }
@@ -185,29 +165,18 @@ export class GuaranteesService {
     <head>
     <body>
     <div><img class="logo" src="${BASE_PATH}logo.png"></div>
-    <div><img class ="footer" style="display:none;" src="${BASE_PATH}Franja_tringulo.jpg"></div>
-    <p class="center bold title">Procedimiento de reclamación</p>
-    <p>En cuanto tenga conocimiento de la AVERÍA/AS, el BENEFICIARIO comunicará la misma a Innovatech por cualquiera de los siguientes medios: </p>
-    <ul>
-        <li>Por Teléfono, en el +52 (81) 1090 8605 </li>
-        <li>Por correo electrónico, a la dirección averias@ivtcorp.com </li>
-    </ul>
-        <p class="center">¡MUCHAS FELICIDADES!</p>
+        <p class="center bold">¡MUCHAS FELICIDADES!</p>
         <p>Le damos la más cordial bienvenida Innovatech. Este programa ha sido diseñado pensando en brindarles protección contra desembolsos excesivos e
         imprevistos en caso de que su vehículo presente alguna avería mecánica de manera fortuita en sistemas eléctricos mecánicos o electrónicos</p>
         <p>Lo invitamos a consultar los términos, condiciones y exclusiones de la cobertura contratada de acuerdo a la carátula y los anexos de la presente.</p>
         <p>Su número de Certificado de Garantía es: ${guarantee.id}</p>
         <p>Ante cualquier duda, ponerse en contacto con el área de servicio al cliente.</p>
         <p>*Los datos introducidos tendrán que coincidir fehacientemente con los del vehículo objeto de garantía. En caso de error será motivo de rescisión del contrato.</p>
-        <p><span class="bold">PUNTO DE VENTA:</span> ${
-          guarantee.client.salesPlace
-        }</p>
+        <p><span class="bold">PUNTO DE VENTA:</span> ${guarantee.client.salesPlace}</p>
         <p><span class="bold">R.F.C.</span> ${guarantee.client.rfc}</p>
-        <p><span class="bold">DIRECCIÓN:</span> ${
-          guarantee.client.address.street
-        } ${guarantee.client.address.externalNumber}, ${
-      guarantee.client.address.suburb
-    }. ${guarantee.client.address.city}, ${guarantee.client.address.state}. ${
+        <p><span class="bold">DIRECCIÓN:</span> ${guarantee.client.address.street} ${
+      guarantee.client.address.externalNumber
+    }, ${guarantee.client.address.suburb}. ${guarantee.client.address.city}, ${guarantee.client.address.state}. ${
       guarantee.client.address.zipCode
     } </p>
         <p><span class="bold">TELEFONO:</span> ${guarantee.client.phone}</p>
@@ -220,30 +189,16 @@ export class GuaranteesService {
     }  <span class="bold"> - HP:</span> ${guarantee.vehicle.horsePower} </p>
         <p><span class="bold">MODELO:</span> ${
           guarantee.vehicle.model
-        } <span class="bold"> - FECHA 1º FACTURA: </span>${moment(
-      guarantee.invoiceDate
-    )
-      .locale('es')
-      .format('LL')}</p>
+        } <span class="bold"> - FECHA 1º FACTURA: </span>${moment(guarantee.invoiceDate).locale('es').format('LL')}</p>
         <p><span class="bold">MOTOR:</span> ${guarantee.vehicle.motorNumber}</p>
         <center><p>PERIODO DE VIGENCIA</p></center>
-        <p><span class="bold">FECHA INICIO GARANTIA:</span> ${moment(
-          guarantee.startDate
-        )
-          .locale('es')
-          .format('LL')}</p>
+        <p><span class="bold">FECHA INICIO GARANTIA:</span> ${moment(guarantee.startDate).locale('es').format('LL')}</p>
           <p>
-          <span class="bold">FIN GARANTIA POR TIEMPO:</span> ${moment(
-            guarantee.endDate
-          )
-            .locale('es')
-            .format('LL')}
+          <span class="bold">FIN GARANTIA POR TIEMPO:</span> ${moment(guarantee.endDate).locale('es').format('LL')}
           </p>
         <p><span class="bold">KILOMETRAJE INICIAL: </span> ${
           guarantee.vehicle.kilometrageStart
-        } <span class="bold"> - FIN GARANTIA POR KILOMETRAJE: </span> ${
-      guarantee.vehicle.kilometrageEnd
-    } </p>
+        } <span class="bold"> - FIN GARANTIA POR KILOMETRAJE: </span> ${guarantee.vehicle.kilometrageEnd} </p>
         <p>Siempre que se hayan realizado en el VEHÍCULO en tiempo y forma los servicios y mantenimientos señalados en el certificado de garantía; el PERIODO DE VIGENCIA podrá comenzar a computarse hasta el momento en que expire la garantía del fabricante o alguna otra garantía de similar naturaleza, ya sea por sobrepasar el kilometraje o cumplirse el tiempo establecido en la misma.</p>
         <p>En caso de rescisión anticipada de esta garantía, Innovatech no estará obligada a la devolución del precio.</p>
         <p>COBERTURAS</p>
@@ -366,37 +321,23 @@ export class GuaranteesService {
         </ul>
     </body>
     </html>
-`;
-    // const options = {
-    //   border: '1in',
-    //   base: BASE_PATH,
-    //   footer: {
-    //     contents: `
-    //     <div><img class="footer" src="${BASE_PATH}Franja_tringulo.jpg"></div>
-    //     `,
-    //   },
-    // };
-    // htmlPdf.create(content, options).toStream((err, stream) => {
-    //   if (err) {
-    //     throw new InternalServerErrorException(err);
-    //   }
-    //   try {
-    //     stream.pipe(response as any);
-    //   } catch (e) {
-    //     throw new InternalServerErrorException(e);
-    //   }
-    // });
-    const contents = await promises.readFile(
-      `apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg`,
-      { encoding: 'base64' }
-    );
+  `;
+
+    const headerImg = await this.tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
+    const headerLogo = await this.tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+    const footerImg = await this.tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
 
     await promisify(fs.writeFile)(OUT_FILE, content);
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
-    await page.goto(`file://${process.cwd()}/${OUT_FILE}`);
-    await page.setContent(content);
+    await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
 
+    await page.addStyleTag({
+      content: `
+          body { margin-top: 1cm; }
+          @page:first { margin-top: 0; }
+      `,
+    });
     const buffer = await page.pdf({
       format: 'A4',
       printBackground: true,
@@ -407,20 +348,34 @@ export class GuaranteesService {
         bottom: '1in',
       },
       displayHeaderFooter: true,
+      headerTemplate: `
+      <style>
+        .logo {
+          max-width: 15%;
+          height: auto;
+          margin: 0.3in 0 0 0.8in;
+        }
+        .shield {
+          max-width: 10%;
+          height: auto;
+          margin: 0.1in 0.18in 0 auto;
+        }
+        #header { padding: 0 !important; }
+      </style>
+      <img class="logo"
+      src="data:image/png;base64,${headerImg}"/>
+      <img class="shield"
+          src="data:image/png;base64,${headerLogo}"/>`,
       footerTemplate: `
       <style>
-        span.footer {
-          content: url(data:${contents};base64,)
-          max-width: 100%;
-          height: auto;
-        }
         .footer {
-          max-width: 100%;
-          height: auto;
+          width: 100%;
+          height: 1in;
         }
+        #footer { padding: 0 !important; }
       </style>
-      <img class="footer" src="data:${contents};base64,"/>
-         <span class="footer"></span>
+      <img class="footer"
+          src="data:image/jpg;base64,${footerImg}"/>
       `,
     });
     promisify(fs.unlink)(OUT_FILE); // cleanup
@@ -429,11 +384,11 @@ export class GuaranteesService {
     stream.pipe(response as any);
   }
 
-  async updateGuarantee(
-    updateGuaranteeDto: UpdateGuaranteeDto
-  ): Promise<GuaranteeEntity> {
+  async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto): Promise<GuaranteeEntity> {
     const guarantee = this.omitInfo(updateGuaranteeDto);
     const updatedGuarantee = await this.guaranteeRepository.save(guarantee);
+    this.removeNil(updatedGuarantee);
+    updatedGuarantee.status = GuaranteeStatus[updatedGuarantee.status];
     return updatedGuarantee;
   }
 
@@ -457,6 +412,18 @@ export class GuaranteesService {
       guarantee.client = client;
     }
     return guarantee;
+  }
+
+  removeNil(obj) {
+    for (const propName in obj) {
+      if (obj[propName] === null || obj[propName] === undefined) {
+        delete obj[propName];
+      }
+    }
+  }
+
+  async tobase64(imgPath) {
+    return await promises.readFile(imgPath, { encoding: 'base64' });
   }
 
   getReadableStream(buffer: Buffer): Readable {
