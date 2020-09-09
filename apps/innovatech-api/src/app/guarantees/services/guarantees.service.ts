@@ -168,7 +168,7 @@ export class GuaranteesService {
         <p>Le damos la más cordial bienvenida Innovatech. Este programa ha sido diseñado pensando en brindarles protección contra desembolsos excesivos e
         imprevistos en caso de que su vehículo presente alguna avería mecánica de manera fortuita en sistemas eléctricos mecánicos o electrónicos</p>
         <p>Lo invitamos a consultar los términos, condiciones y exclusiones de la cobertura contratada de acuerdo a la carátula y los anexos de la presente.</p>
-        <p>Su número de Certificado de Garantía es: ${guarantee.id}</p>
+        <p>Su número de Certificado de Garantía es: <span class="bold">${this.transformFolio(guarantee.id)}</span></p>
         <p>Ante cualquier duda, ponerse en contacto con el área de servicio al cliente.</p>
         <p>*Los datos introducidos tendrán que coincidir fehacientemente con los del vehículo objeto de garantía. En caso de error será motivo de rescisión del contrato.</p>
         <p><span class="bold">PUNTO DE VENTA:</span> ${guarantee.client.salesPlace}</p>
@@ -188,7 +188,7 @@ export class GuaranteesService {
     }  <span class="bold"> - HP:</span> ${guarantee.vehicle.horsePower} </p>
         <p><span class="bold">MODELO:</span> ${
           guarantee.vehicle.model
-        } <span class="bold"> - FECHA 1º FACTURA: </span>${moment(guarantee.invoiceDate).locale('es').format('LL')}</p>
+        }</p>
         <p><span class="bold">MOTOR:</span> ${guarantee.vehicle.motorNumber}</p>
         <center><p>PERIODO DE VIGENCIA</p></center>
         <p><span class="bold">FECHA INICIO GARANTIA:</span> ${moment(guarantee.startDate).locale('es').format('LL')}</p>
@@ -432,5 +432,10 @@ export class GuaranteesService {
     stream.push(null);
 
     return stream;
+  }
+
+  transformFolio(value: number): unknown {
+    const zeros = 5 - String(value).length;
+    return `${new Array(zeros).join('0')}${value}`;
   }
 }
