@@ -7,9 +7,9 @@ export const environment: Environment = {
     host: 'localhost',
     port: 5432,
     database: 'innovatech_dev',
-    synchronize: false,
-    username: 'postgres',
-    password: '1403'
+    synchronize: true,
+    username: '',
+    password: ''
   },
   server: {
     port: 3333,

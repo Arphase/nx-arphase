@@ -1,13 +1,12 @@
 import { GuaranteeStatus, GuaranteeSummary, PersonTypes } from '@ivt/data';
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
-import fs from 'fs';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import fs, { promises } from 'fs';
 import moment from 'moment';
 import * as path from 'path';
 import puppeteer from 'puppeteer';
-import { promises } from 'fs';
-import { promisify } from 'util';
-import { Connection } from 'typeorm';
 import { Readable } from 'stream';
+import { Connection } from 'typeorm';
+import { promisify } from 'util';
 
 import { GuaranteeEntity } from '../data/entities/guarantee.entity';
 import { GuaranteeRepository } from '../data/guarantee.repository';
@@ -328,7 +327,7 @@ export class GuaranteesService {
     const footerImg = await this.tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
 
     await promisify(fs.writeFile)(OUT_FILE, content);
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
     const page = await browser.newPage();
     await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
 
@@ -345,7 +344,7 @@ export class GuaranteesService {
         left: '1in',
         top: '1in',
         right: '1in',
-        bottom: '1in',
+        bottom: '2in',
       },
       displayHeaderFooter: true,
       headerTemplate: `

@@ -59,7 +59,6 @@ export class PaymentOrdersService {
     }
 
     const guarantees = paymentOrder.guarantees;
-    const multiple = guarantees.length > 1 ? 'MULTIPLE' : '';
     const createdAt = paymentOrder.createdAt;
     let total = 0;
     const guaranteesRowsArray = guarantees.map(guarantee => {
@@ -140,7 +139,7 @@ export class PaymentOrdersService {
           </style>
       <head>
       <body>
-      <p class="center bold title">ORDEN DE PAGO ${multiple}</p>
+      <p class="center bold title">ORDEN DE PAGO</p>
       <div class="row" style="margin-bottom: 3rem;">
         <div class="col">
           <p class="bold">Innovatech Garantías S.A. de C.V.</p>
@@ -208,7 +207,7 @@ export class PaymentOrdersService {
   `;
 
     await promisify(fs.writeFile)(OUT_FILE, content);
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
     const page = await browser.newPage();
     await page.goto(`file://${process.cwd()}/${OUT_FILE}`);
     const buffer = await page.pdf({
@@ -229,7 +228,9 @@ export class PaymentOrdersService {
         margin-left: auto;
         margin-right: auto;
       }
-      #header { padding: 0 !important; }
+      #header {
+        padding: 0;
+       }
       </style>
         <img class="logo"
         src="data:image/jpg;base64,${headerImg}"/>
