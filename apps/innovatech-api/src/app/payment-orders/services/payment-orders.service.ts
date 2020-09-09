@@ -48,6 +48,11 @@ export class PaymentOrdersService {
   }
 
   async generatePaymentOrderPdf(id: number, response: Response) {
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'MXN',
+    });
+
     const paymentOrder = await this.paymentOrderRepository
       .createQueryBuilder('paymentOrder')
       .leftJoinAndSelect('paymentOrder.guarantees', 'guarantees')
@@ -66,8 +71,8 @@ export class PaymentOrdersService {
       return `
     <tr>
       <td>${moment(guarantee.invoiceDate).format('DD/MM/YYYY')}</td>
-      <td>${guarantee.id}</td>
-      <td>${guarantee.amount}</td>
+      <td>${this.transformFolio(guarantee.id)}</td>
+      <td>${formatter.format(guarantee.amount)}</td>
     </tr>`;
     });
     const guaranteesRows = guaranteesRowsArray.join(' ');
@@ -155,7 +160,7 @@ export class PaymentOrdersService {
             </tr>
             <tr>
               <td>No. de Orden de Pago</td>
-              <td>${paymentOrder.id}</td>
+              <td>${this.transformFolio(paymentOrder.id)}</td>
             </tr>
           </table>
         </div>
@@ -178,7 +183,7 @@ export class PaymentOrdersService {
       <table class="total">
         <tr>
           <td class="bold">TOTAL</td>
-          <td>${total}</td>
+          <td>${formatter.format(total)}</td>
         </tr>
       </table>
       <div>
@@ -187,7 +192,7 @@ export class PaymentOrdersService {
       <table>
         <tr>
           <td>TOTAL A PAGAR INCLUYE IMPUESTOS:</td>
-          <td>${total}</td>
+          <td>${formatter.format(total)}</td>
         </tr>
         <tr>
           <td>NUMERO DE CUENTA:</td>
@@ -264,5 +269,10 @@ export class PaymentOrdersService {
     stream.push(null);
 
     return stream;
+  }
+
+  transformFolio(value: number): unknown {
+    const zeros = 5 - String(value).length;
+    return `${new Array(zeros).join('0')}${value}`;
   }
 }
