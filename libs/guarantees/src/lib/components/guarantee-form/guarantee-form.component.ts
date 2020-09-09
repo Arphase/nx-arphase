@@ -88,47 +88,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
       startDate: [null, Validators.required],
       endDate: [null, Validators.required]
     });
-
-    this.form.patchValue({
-      "createdAt": "2020-08-24T18:24:35.813Z",
-      "startDate": "2020-08-31T05:00:00.000Z",
-      "endDate": "2020-08-31T05:00:00.000Z",
-      "client": {
-        "rfc": "MAVV951102312",
-        "phone": "22222222222",
-        "email": "victor@test.com",
-        "salesPlace": "LOL",
-        "physicalInfo": {
-          name: 'test',
-          lastName: 'test',
-          secondLastName: 'test',
-          "birthDate": "2020-08-24T18:24:35.813Z",
-        },
-        "address": {
-          "zipCode": 64983,
-          "country": "México",
-          "state": "Nuevo León",
-          "city": "Monterrey",
-          "suburb": "El Refugio",
-          "street": "bambu",
-          "externalNumber": "1610",
-          "internalNumber": null
-        }
-      },
-      "vehicle": {
-        "productType": "FORTE",
-        "brand": "222",
-        "model": "22",
-        "version": "22",
-        "year": 2222,
-        "vin": "22",
-        "motorNumber": "22",
-        "serialNumber": "22",
-        "horsePower": 222,
-        "kilometrageStart": 22,
-        "kilometrageEnd": 22222
-      }
-    })
   }
 
   ngOnInit() {
