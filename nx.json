@@ -23,38 +23,38 @@
   },
   "projects": {
     "innovatech-ui": {
-      "tags": []
+      "tags": ["front"]
     },
     "innovatech-ui-e2e": {
-      "tags": [],
+      "tags": ["test"],
       "implicitDependencies": ["innovatech-ui"]
     },
     "innovatech-api": {
-      "tags": []
-    },
-    "ui": {
-      "tags": []
-    },
-    "state": {
-      "tags": []
-    },
-    "guarantees": {
-      "tags": []
+      "tags": ["back"]
     },
     "data": {
-      "tags": []
+      "tags": ["common"]
     },
     "utils": {
-      "tags": []
+      "tags": ["common"]
     },
     "auth": {
-      "tags": []
-    },
-    "spa": {
-      "tags": []
+      "tags": ["front"]
     },
     "dashboard": {
-      "tags": []
+      "tags": ["front"]
+    },
+    "ui": {
+      "tags": ["front"]
+    },
+    "guarantees": {
+      "tags": ["front"]
+    },
+    "spa": {
+      "tags": ["front"]
+    },
+    "state": {
+      "tags": ["front"]
     }
   }
 }
