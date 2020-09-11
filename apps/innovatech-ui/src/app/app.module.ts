@@ -6,8 +6,8 @@ import {
   IVT_STATE_CONFIGURATION,
   IvtStateConfiguration,
   IvtStateModule,
-} from '@ivt/state';
-import { IvtUiModule } from '@ivt/ui';
+} from '@ivt/u-state';
+import { IvtUiModule } from '@ivt/u-ui';
 import { NgxMaskModule } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 

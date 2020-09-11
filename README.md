@@ -2,97 +2,188 @@
 
 This project was generated using [Nx](https://nx.dev).
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+## Common
+### Commit Message Guidelines
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
+We have very precise rules over how our git commit messages can be formatted. This leads to more
+readable messages that are easy to follow when looking through the project history. But also, we use
+the git commit messages to generate the CHANGELOG.
 
-## Quick Start & Documentation
+Each commit message consists of a header, a body and a footer. The header has a special format that
+includes a type, a scope and a subject:
 
-[Nx Documentation](https://nx.dev/angular)
+```
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
 
-[10-minute video showing all Nx features](https://nx.dev/angular/getting-started/what-is-nx)
+The header is mandatory and the scope of the header is optional.
 
-[Interactive Tutorial](https://nx.dev/angular/tutorial/01-create-application)
+Any line of the commit message cannot be longer 100 characters! This allows the message to be easier
+to read on GitHub as well as in various git tools.
 
-## Adding capabilities to your workspace
+The footer should contain a closing reference to an issue if any.
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+#### Revert
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+If the commit reverts a previous commit, it should begin with `revert:`, followed by the header of
+the reverted commit. In the body it should say: `This reverts commit <hash>., where the hash is the
+SHA of the commit being reverted.
 
-Below are our core plugins:
+#### Type
 
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
+Must be one of the following:
 
-There are also many [community plugins](https://nx.dev/nx-community) you could add.
+- **build:** Changes that affect the build system or external dependencies (example scopes: gulp,
+  broccoli, npm)
+- **ci:** Changes to our CI configuration files and scripts (example scopes: Travis, Circle,
+  BrowserStack, SauceLabs)
+- **docs:** Documentation only changes
+- **feat:** A new feature
+- **fix:** A bug fix
+- **perf:** A code change that improves performance
+- **refactor:** A code change that neither fixes a bug nor adds a feature
+- **style:** Changes that do not affect the meaning of the code (white-space, formatting, missing
+  semi-colons, etc)
+- **test:** Adding missing tests or correcting existing tests
 
-## Generate an application
+#### Scope
 
-Run `ng g @nrwl/angular:app my-app` to generate an application.
+The scope should be the name of the npm package affected (as perceived by the person reading the
+changelog generated from commit messages.
 
-> You can use any of the plugins above to generate applications as well.
+The following is the list of supported scopes:
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+- auth
+- companies
+- dashboard
+- data
+- groups
+- guarantees
+- products
+- spa
+- state
+- ui
+- users
+- utils
 
-## Generate a library
+#### Subject
 
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
+The subject contains a succinct description of the change:
 
-> You can also use any of the plugins above to generate libraries as well.
+- use the imperative, present tense: "change" not "changed" nor "changes"
+- don't capitalize the first letter
+- no dot (.) at the end
 
-Libraries are sharable across libraries and applications. They can be imported from `@ivt/mylib`.
+#### Body
 
-## Development server
+Just as in the **subject**, use the imperative, present tense: "change" not "changed" nor "changes".
+The body should include the motivation for the change and contrast this with previous behavior.
 
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+#### Footer
 
-## Code scaffolding
+The footer should contain any information about **Breaking Changes** and is also the place to
+reference Jira issues that this commit **Closes**.
 
-Run `ng g component my-component --project=my-app` to generate a new component.
+**Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines. The
+rest of the commit message is then used for this.
 
-## Build
-
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
+### Understand your workspace
 
 Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
-## Further help
+### Running unit tests
 
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
+Run `nx test` to execute the unit tests via [Jest](https://jestjs.io). 
 
-## ☁ Nx Cloud
+---
 
-### Computation Memoization in the Cloud
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
+## Frontend
+Here is everything you need to know to for getting started with the frontend project of Innovatech
 
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
+### Generate a library
 
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
+Run `ng g @nrwl/angular:lib my-lib --directory=ui` to generate a library.
 
-Visit [Nx Cloud](https://nx.app/) to learn more.
+Libraries are sharable across libraries and applications. They can be imported from `@ivt/mylib`.
+
+### Development server
+
+Run `npm run start:ui` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+
+### Code scaffolding
+#### Application
+- Run `ng g component my-component` to generate a new component.
+- Run `ng g service my-service` to generate a new service.
+- Run `ng g guard my-guard` to generate a new guard.
+- Run `ng g module my-module` to generate a new module.
+#### Library
+- Run `ng g component my-component --project="my-lib"` to generate a new component.
+- Run `ng g service my-service --project="my-lib"` to generate a new service.
+- Run `ng g guard my-guard --project="my-lib"` to generate a new guard.
+- Run `ng g module my-module --project="my-lib"` to generate a new module.
+
+### Build
+These are the commands to build for different environments:
+- Run `nx build innovatech-ui --c=qa` for QA environment
+- Run `nx build innovatech-ui --prod` for PROD environment
+
+The build artifacts will be stored in the `dist/` directory
+
+### Running end-to-end tests
+
+Run `nx e2e` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+
+---
+
+## Backend
+
+### Setup
+Create a new postgres database in order tu start working with the api.
+These is the info you need to set up:
+
+- Host: localhost
+- Database: innovatech_dev
+- username: innovatech
+- password: innovatech
+
+You can now start the api with the development server command, this will synchronize your database with the entities of the backend project.
+
+You'll need to run the following command in order to have a username in the application `npm run seed`
+
+When the command finished you can run the development server again and start using the app
+
+## Generate a library
+
+Run `nx g @nrwl/nest:library my-lib --directory=api --linter=tslint` to generate a library.
+
+Libraries are sharable across libraries and applications. They can be imported from `@ivt/mylib`.
+
+### Development server
+
+Run `npm run start:api` for a dev server. Navigate to http://localhost:3333/. The app will automatically reload if you change any of the source files.
+
+### Code scaffolding
+Unfortunately I haven't found any way to scaffold NestJS code using Nrwl, what I usually do is the following: 
+
+1) Install the nest cli with `npm i -g @nest/cli`
+2) Go the the app project `cd apps/innovatech-api/src/app`
+3) Run the commands
+
+- Run `nest g controller my-controller` to generate a new controller.
+- Run `nest g service my-service` to generate a new service.
+- Run `nest g guard my-guard` to generate a new guard.
+- Run `nest g module my-module` to generate a new module.
+
+### Build
+Run `nx build innovatech-api --prod` for any environment, the environment variables exist in the ElasticBeanstalk environment of the application
+
+The build artifacts will be stored in the `dist/` directory
+
+### Running unit tests
+
+Run `nx test` to execute the unit tests via [Jest](https://jestjs.io).
