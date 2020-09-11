@@ -1,4 +1,4 @@
-import { GuaranteeStatus, Client, Vehicle } from '@ivt/data';
+import { GuaranteeStatus, Client, Vehicle } from '@ivt/c-data';
 import {
   IsDateString,
   IsNotEmpty,

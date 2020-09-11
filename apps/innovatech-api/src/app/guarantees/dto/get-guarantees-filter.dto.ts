@@ -8,7 +8,7 @@ import {
   IsDate,
   IsEnum,
 } from 'class-validator';
-import { GuaranteeStatus } from '@ivt/data';
+import { GuaranteeStatus } from '@ivt/c-data';
 import { Transform } from 'class-transformer';
 
 export class GetGuaranteesFilterDto {

@@ -1,7 +1,7 @@
 import { UsersController } from '@api/users/controllers/users.controller';
 import { UserRepository } from '@api/users/data/user.repository';
 import { UsersService } from '@api/users/services/users.service';
-import { environment } from '@env/environment';
+import { environment } from '@api/env/environment';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';

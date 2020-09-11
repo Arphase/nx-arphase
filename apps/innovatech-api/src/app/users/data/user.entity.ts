@@ -1,4 +1,4 @@
-import { User, UserRole } from '@ivt/data';
+import { User, UserRole } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,

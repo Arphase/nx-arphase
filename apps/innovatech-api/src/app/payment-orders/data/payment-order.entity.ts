@@ -1,4 +1,4 @@
-import { PaymentOrder, Guarantee } from '@ivt/data';
+import { PaymentOrder, Guarantee } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,

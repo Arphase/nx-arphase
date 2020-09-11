@@ -1,4 +1,4 @@
-import { GuaranteeStatus, GuaranteeSummary, PersonTypes } from '@ivt/data';
+import { GuaranteeStatus, GuaranteeSummary, PersonTypes } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import fs, { promises } from 'fs';
 import moment from 'moment';

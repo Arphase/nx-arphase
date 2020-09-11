@@ -4,7 +4,7 @@ import {
   AuthCredentialsDto, SignUpCredentialsDto,
 } from '../dto/auth-credentials.dto';
 import { UserRepository } from '../../users/data/user.repository';
-import { User } from '@ivt/data';
+import { User } from '@ivt/c-data';
 import { Connection } from 'typeorm';
 
 @Injectable()

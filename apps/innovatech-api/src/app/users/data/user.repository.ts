@@ -1,5 +1,5 @@
 import { SignUpCredentialsDto } from '@api/auth/dto/auth-credentials.dto';
-import { User } from '@ivt/data';
+import { User } from '@ivt/c-data';
 import {
   ConflictException,
   InternalServerErrorException,

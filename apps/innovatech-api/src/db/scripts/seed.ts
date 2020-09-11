@@ -1,6 +1,6 @@
 import { SignUpCredentialsDto } from '@api/auth/dto/auth-credentials.dto';
 import { AuthService } from '@api/auth/services/auth.service';
-import { UserRole } from '@ivt/data';
+import { UserRole } from '@ivt/c-data';
 import fs from 'fs';
 import path from 'path';
 import { ConnectionOptions, createConnection } from 'typeorm';

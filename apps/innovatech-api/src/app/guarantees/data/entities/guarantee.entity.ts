@@ -4,7 +4,7 @@ import {
   GuaranteeStatus,
   Vehicle,
   PaymentOrder,
-} from '@ivt/data';
+} from '@ivt/c-data';
 import {
   BaseEntity,
   Column,

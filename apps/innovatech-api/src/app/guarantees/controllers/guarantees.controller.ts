@@ -1,4 +1,4 @@
-import { GuaranteeSummary } from '@ivt/data';
+import { GuaranteeSummary } from '@ivt/c-data';
 import {
   Body,
   Controller,

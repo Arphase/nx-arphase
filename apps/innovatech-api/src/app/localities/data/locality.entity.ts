@@ -1,4 +1,4 @@
-import { Locality } from '@ivt/data';
+import { Locality } from '@ivt/c-data';
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('localities')

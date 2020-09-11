@@ -8,7 +8,7 @@ import {
   IsEnum,
   IsOptional
 } from 'class-validator';
-import { UserRole } from '@ivt/data';
+import { UserRole } from '@ivt/c-data';
 
 export class AuthCredentialsDto {
   @IsString()

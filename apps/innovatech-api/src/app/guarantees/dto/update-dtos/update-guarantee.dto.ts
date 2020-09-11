@@ -1,4 +1,4 @@
-import { Client, GuaranteeStatus, Vehicle } from '@ivt/data';
+import { Client, GuaranteeStatus, Vehicle } from '@ivt/c-data';
 import { Transform, Type } from 'class-transformer';
 import {
   IsDateString,

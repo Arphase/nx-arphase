@@ -1,4 +1,4 @@
-import { Client, MoralPerson } from '@ivt/data';
+import { Client, MoralPerson } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,

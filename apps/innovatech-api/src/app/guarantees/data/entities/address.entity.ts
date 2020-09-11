@@ -1,4 +1,4 @@
-import { Address } from '@ivt/data';
+import { Address } from '@ivt/c-data';
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('addresses')

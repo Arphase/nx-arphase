@@ -1,4 +1,4 @@
-import { MoralPerson, PersonTypes, PhysicalPerson } from '@ivt/data';
+import { MoralPerson, PersonTypes, PhysicalPerson } from '@ivt/c-data';
 import { Transform, Type } from 'class-transformer';
 import { IsEmail, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, ValidateIf, ValidateNested } from 'class-validator';
 import { Address } from 'cluster';
