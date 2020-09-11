@@ -32,29 +32,47 @@
     "innovatech-api": {
       "tags": ["back"]
     },
-    "data": {
+    "c-data": {
       "tags": ["common"]
     },
-    "utils": {
+    "c-utils": {
       "tags": ["common"]
     },
-    "auth": {
+    "u-auth": {
       "tags": ["front"]
     },
-    "dashboard": {
+    "u-dashboard": {
       "tags": ["front"]
     },
-    "ui": {
+    "u-guarantees": {
       "tags": ["front"]
     },
-    "guarantees": {
+    "u-spa": {
       "tags": ["front"]
     },
-    "spa": {
+    "u-state": {
       "tags": ["front"]
     },
-    "state": {
+    "u-ui": {
       "tags": ["front"]
+    },
+    "a-auth": {
+      "tags": ["back"]
+    },
+    "a-guarantees": {
+      "tags": ["back"]
+    },
+    "a-localities": {
+      "tags": ["back"]
+    },
+    "a-payment-orders": {
+      "tags": ["back"]
+    },
+    "a-users": {
+      "tags": ["back"]
+    },
+    "api-a-state": {
+      "tags": []
     }
   }
 }

@@ -107,7 +107,7 @@ Here is everything you need to know to for getting started with the frontend pro
 
 ### Generate a library
 
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
+Run `ng g @nrwl/angular:lib my-lib --directory=ui` to generate a library.
 
 Libraries are sharable across libraries and applications. They can be imported from `@ivt/mylib`.
 
@@ -159,7 +159,7 @@ When the command finished you can run the development server again and start usi
 
 ## Generate a library
 
-Run `nx g @nrwl/nest:library` to generate a library.
+Run `nx g @nrwl/nest:library my-lib --directory=api --linter=tslint` to generate a library.
 
 Libraries are sharable across libraries and applications. They can be imported from `@ivt/mylib`.
 

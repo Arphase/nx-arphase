@@ -13,9 +13,5 @@ export const environment: Environment = {
   },
   server: {
     port: 3333,
-  },
-  jwt: {
-    secret: process.env.JWT_SECRET || 'pqowieurytlaksjdhf',
-    expiresIn: 86400,
-  },
+  }
 };
