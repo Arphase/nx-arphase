@@ -1,3 +1,4 @@
+import { GuaranteeEntity } from '@ivt/a-state';
 import { GuaranteeSummary } from '@ivt/c-data';
 import {
   Body,
@@ -20,7 +21,6 @@ import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import { GuaranteesService } from '../services/guarantees.service';
-import { GuaranteeEntity } from '@ivt/a-state';
 
 @Controller('guarantees')
 @UseGuards(AuthGuard())

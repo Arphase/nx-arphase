@@ -113,7 +113,7 @@ Libraries are sharable across libraries and applications. They can be imported f
 
 ### Development server
 
-Run `nx serve innovatech-ui` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Run `npm run start:ui` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
 ### Code scaffolding
 #### Application
@@ -165,7 +165,7 @@ Libraries are sharable across libraries and applications. They can be imported f
 
 ### Development server
 
-Run `nx serve innovatech-api` for a dev server. Navigate to http://localhost:3333/. The app will automatically reload if you change any of the source files.
+Run `npm run start:api` for a dev server. Navigate to http://localhost:3333/. The app will automatically reload if you change any of the source files.
 
 ### Code scaffolding
 Unfortunately I haven't found any way to scaffold NestJS code using Nrwl, what I usually do is the following: 

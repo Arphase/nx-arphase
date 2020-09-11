@@ -1,7 +1,6 @@
+import { UserRepository } from '@ivt/a-state';
 import { Injectable } from '@nestjs/common';
 import { Connection } from 'typeorm';
-
-import { UserRepository } from '../data/user.repository';
 
 @Injectable()
 export class UsersService {

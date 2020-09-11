@@ -1,6 +1,6 @@
-import { IsOptional, IsString, IsDateString } from 'class-validator';
+import { IsDateString, IsOptional, IsString } from 'class-validator';
 
-export class UpdatePhysicalPersonDto{
+export class UpdatePhysicalPersonDto {
   @IsOptional()
   @IsString()
   name: string;

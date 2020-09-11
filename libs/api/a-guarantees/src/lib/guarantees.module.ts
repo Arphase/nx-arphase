@@ -1,10 +1,10 @@
+import { AuthModule } from '@ivt/a-auth';
+import { GuaranteeRepository } from '@ivt/a-state';
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { GuaranteesController } from './controllers/guarantees.controller';
 import { GuaranteesService } from './services/guarantees.service';
-import { GuaranteeRepository } from './data/guarantee.repository';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from '@ivt/a-auth';
 
 @Module({
   imports: [TypeOrmModule.forFeature([GuaranteeRepository]), AuthModule],

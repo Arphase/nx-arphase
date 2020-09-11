@@ -11,6 +11,8 @@
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
+    "start:ui": "nx serve innovatech-ui",
+    "start:api": "JWT_SECRET=test JWT_EXPIRATION=3600 nx serve innovatech-api",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",

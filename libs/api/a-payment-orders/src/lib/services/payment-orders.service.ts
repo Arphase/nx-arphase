@@ -1,16 +1,15 @@
-import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
-import { PaymentOrderRepository } from '../data/payment-order.repository';
-import { Connection, getManager } from 'typeorm';
-import { promisify } from 'util';
-import { GuaranteeRepository } from '@api/guarantees/data/guarantee.repository';
-import fs from 'fs';
-import { promises } from 'fs';
+import { GuaranteeRepository, PaymentOrderRepository } from '@ivt/a-state';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import fs, { promises } from 'fs';
+import { omit } from 'lodash';
 import moment from 'moment';
 import * as path from 'path';
 import puppeteer from 'puppeteer';
 import { Readable } from 'stream';
+import { Connection, getManager } from 'typeorm';
+import { promisify } from 'util';
+
 import { CreatePaymentOrderDto } from '../dto/create-payment-order.dto';
-import { omit } from 'lodash';
 
 const OUT_FILE = 'myfile.html';
 

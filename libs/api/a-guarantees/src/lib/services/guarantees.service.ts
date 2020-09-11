@@ -1,3 +1,4 @@
+import { GuaranteeEntity, GuaranteeRepository } from '@ivt/a-state';
 import { GuaranteeStatus, GuaranteeSummary, PersonTypes } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import fs, { promises } from 'fs';
@@ -8,11 +9,9 @@ import { Readable } from 'stream';
 import { Connection } from 'typeorm';
 import { promisify } from 'util';
 
-import { GuaranteeRepository } from '../data/guarantee.repository';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
-import { GuaranteeEntity } from '@ivt/a-state';
 
 const dir = {
   asc: 'ASC',
@@ -186,9 +185,7 @@ export class GuaranteesService {
         }       <span class="bold"> - NUMERO DE SERIE:</span> ${
       guarantee.vehicle.serialNumber
     }  <span class="bold"> - HP:</span> ${guarantee.vehicle.horsePower} </p>
-        <p><span class="bold">MODELO:</span> ${
-          guarantee.vehicle.model
-        }</p>
+        <p><span class="bold">MODELO:</span> ${guarantee.vehicle.model}</p>
         <p><span class="bold">MOTOR:</span> ${guarantee.vehicle.motorNumber}</p>
         <center><p>PERIODO DE VIGENCIA</p></center>
         <p><span class="bold">FECHA INICIO GARANTIA:</span> ${moment(guarantee.startDate).locale('es').format('LL')}</p>

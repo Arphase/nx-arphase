@@ -1,8 +1,4 @@
-import {
-  IsNotEmpty,
-  IsString,
-  IsArray,
-} from 'class-validator';
+import { IsArray, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreatePaymentOrderDto {
   @IsNotEmpty()

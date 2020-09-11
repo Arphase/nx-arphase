@@ -71,7 +71,7 @@
     "a-users": {
       "tags": ["back"]
     },
-    "api-a-state": {
+    "a-state": {
       "tags": []
     }
   }

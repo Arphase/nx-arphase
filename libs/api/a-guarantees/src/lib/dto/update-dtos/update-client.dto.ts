@@ -13,18 +13,18 @@ export class UpdateClientDto {
   id: number;
 
   @IsNotEmpty()
-  @Transform((value) => PersonTypes[value])
+  @Transform(value => PersonTypes[value])
   @IsEnum(PersonTypes)
   personType: PersonTypes;
 
   @IsOptional()
-  @ValidateIf((client) => client.personType === PersonTypes.physical)
+  @ValidateIf(client => client.personType === PersonTypes.physical)
   @ValidateNested()
   @Type(() => UpdatePhysicalPersonDto)
   physicalInfo: PhysicalPerson;
 
   @IsOptional()
-  @ValidateIf((client) => client.personType === PersonTypes.moral)
+  @ValidateIf(client => client.personType === PersonTypes.moral)
   @ValidateNested()
   @Type(() => UpdateMoralPersonDto)
   moralInfo: MoralPerson;

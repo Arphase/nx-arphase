@@ -10,7 +10,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { PaymentOrderEntity } from '../payment-orders/payment-order.entity';
+import { PaymentOrderEntity } from '../../payment-orders';
 import { ClientEntity } from './client.entity';
 import { VehicleEntity } from './vechicle.entity';
 

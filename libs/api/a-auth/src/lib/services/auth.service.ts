@@ -1,4 +1,4 @@
-import { UserRepository } from '@ivt/a-users';
+import { UserRepository } from '@ivt/a-state';
 import { User } from '@ivt/c-data';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
