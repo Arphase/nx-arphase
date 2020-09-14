@@ -190,20 +190,24 @@ export class PaymentOrdersService {
       </div>
       <table>
         <tr>
-          <td>TOTAL A PAGAR INCLUYE IMPUESTOS:</td>
-          <td>${formatter.format(total)}</td>
+          <td>BANCO</td>
+          <td>SANTANDER</td>
         </tr>
         <tr>
-          <td>NUMERO DE CUENTA:</td>
+          <td>NUMERO DE CUENTA</td>
           <td>65-50821082-2</td>
         </tr>
         <tr>
-          <td>CLABE:</td>
+          <td>CLABE</td>
           <td>014580655082108221</td>
         </tr>
         <tr>
-          <td>TITULAR:</td>
+          <td>TITULAR</td>
           <td>INNOVATECH GARANTIAS SA DE CV</td>
+        </tr>
+        <tr>
+          <td>TOTAL A PAGAR INCLUYE IMPUESTOS</td>
+          <td>${formatter.format(total)}</td>
         </tr>
       </table>
       </body>

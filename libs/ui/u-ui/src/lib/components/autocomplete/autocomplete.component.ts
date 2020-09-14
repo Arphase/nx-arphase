@@ -7,7 +7,8 @@ import { map, startWith } from 'rxjs/operators';
   selector: 'ivt-autocomplete',
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // Don't use change detection for displaying error messages
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtAutocompleteComponent implements OnInit {
   @Input() label: string;

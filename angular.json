@@ -21,10 +21,17 @@
             "polyfills": "apps/innovatech-ui/src/polyfills.ts",
             "tsConfig": "apps/innovatech-ui/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/innovatech-ui/src/favicon.ico", "apps/innovatech-ui/src/assets"],
-            "styles": ["apps/innovatech-ui/src/styles.scss"],
+            "assets": [
+              "apps/innovatech-ui/src/favicon.ico",
+              "apps/innovatech-ui/src/assets"
+            ],
+            "styles": [
+              "apps/innovatech-ui/src/styles.scss"
+            ],
             "scripts": [],
-            "allowedCommonJsDependencies": ["file-saver"]
+            "allowedCommonJsDependencies": [
+              "file-saver"
+            ]
           },
           "configurations": {
             "qa": {
@@ -45,13 +52,11 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "6kb"
                 }
               ]
             },
@@ -106,8 +111,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/innovatech-ui/tsconfig.app.json", "apps/innovatech-ui/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!apps/innovatech-ui/**/*"]
+            "tsConfig": [
+              "apps/innovatech-ui/tsconfig.app.json",
+              "apps/innovatech-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/innovatech-ui/**/*"
+            ]
           }
         },
         "test": {
@@ -142,8 +153,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/innovatech-ui-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/innovatech-ui-e2e/**/*"]
+            "tsConfig": [
+              "apps/innovatech-ui-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/innovatech-ui-e2e/**/*"
+            ]
           }
         }
       }
@@ -161,7 +177,9 @@
             "outputPath": "dist/apps/innovatech-api",
             "main": "apps/innovatech-api/src/main.ts",
             "tsConfig": "apps/innovatech-api/tsconfig.app.json",
-            "assets": ["apps/innovatech-api/src/assets"],
+            "assets": [
+              "apps/innovatech-api/src/assets"
+            ],
             "showCircularDependencies": false
           },
           "configurations": {
@@ -187,8 +205,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/innovatech-api/tsconfig.app.json", "apps/innovatech-api/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!apps/innovatech-api/**/*"]
+            "tsConfig": [
+              "apps/innovatech-api/tsconfig.app.json",
+              "apps/innovatech-api/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/innovatech-api/**/*"
+            ]
           }
         },
         "test": {
@@ -210,8 +234,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/common/c-data/tsconfig.lib.json", "libs/common/c-data/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/common/c-data/**/*"]
+            "tsConfig": [
+              "libs/common/c-data/tsconfig.lib.json",
+              "libs/common/c-data/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/common/c-data/**/*"
+            ]
           }
         },
         "test": {
@@ -233,8 +263,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/common/c-utils/tsconfig.lib.json", "libs/common/c-utils/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/common/c-utils/**/*"]
+            "tsConfig": [
+              "libs/common/c-utils/tsconfig.lib.json",
+              "libs/common/c-utils/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/common/c-utils/**/*"
+            ]
           }
         },
         "test": {
@@ -262,8 +298,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/ui/u-auth/tsconfig.lib.json", "libs/ui/u-auth/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/ui/u-auth/**/*"]
+            "tsConfig": [
+              "libs/ui/u-auth/tsconfig.lib.json",
+              "libs/ui/u-auth/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/u-auth/**/*"
+            ]
           }
         },
         "test": {
@@ -292,8 +334,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/ui/u-dashboard/tsconfig.lib.json", "libs/ui/u-dashboard/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/ui/u-dashboard/**/*"]
+            "tsConfig": [
+              "libs/ui/u-dashboard/tsconfig.lib.json",
+              "libs/ui/u-dashboard/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/u-dashboard/**/*"
+            ]
           }
         },
         "test": {
@@ -321,8 +369,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/ui/u-guarantees/tsconfig.lib.json", "libs/ui/u-guarantees/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/ui/u-guarantees/**/*"]
+            "tsConfig": [
+              "libs/ui/u-guarantees/tsconfig.lib.json",
+              "libs/ui/u-guarantees/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/u-guarantees/**/*"
+            ]
           }
         },
         "test": {
@@ -351,8 +405,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/ui/u-spa/tsconfig.lib.json", "libs/ui/u-spa/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/ui/u-spa/**/*"]
+            "tsConfig": [
+              "libs/ui/u-spa/tsconfig.lib.json",
+              "libs/ui/u-spa/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/u-spa/**/*"
+            ]
           }
         },
         "test": {
@@ -381,8 +441,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/ui/u-state/tsconfig.lib.json", "libs/ui/u-state/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/ui/u-state/**/*"]
+            "tsConfig": [
+              "libs/ui/u-state/tsconfig.lib.json",
+              "libs/ui/u-state/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/u-state/**/*"
+            ]
           }
         },
         "test": {
@@ -411,8 +477,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/ui/u-ui/tsconfig.lib.json", "libs/ui/u-ui/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/ui/u-ui/**/*"]
+            "tsConfig": [
+              "libs/ui/u-ui/tsconfig.lib.json",
+              "libs/ui/u-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/u-ui/**/*"
+            ]
           }
         },
         "test": {
@@ -441,8 +513,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/api/a-auth/tsconfig.lib.json", "libs/api/a-auth/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/api/a-auth/**/*"]
+            "tsConfig": [
+              "libs/api/a-auth/tsconfig.lib.json",
+              "libs/api/a-auth/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/api/a-auth/**/*"
+            ]
           }
         },
         "test": {
@@ -464,8 +542,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/api/a-guarantees/tsconfig.lib.json", "libs/api/a-guarantees/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/api/a-guarantees/**/*"]
+            "tsConfig": [
+              "libs/api/a-guarantees/tsconfig.lib.json",
+              "libs/api/a-guarantees/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/api/a-guarantees/**/*"
+            ]
           }
         },
         "test": {
@@ -487,8 +571,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/api/a-localities/tsconfig.lib.json", "libs/api/a-localities/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/api/a-localities/**/*"]
+            "tsConfig": [
+              "libs/api/a-localities/tsconfig.lib.json",
+              "libs/api/a-localities/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/api/a-localities/**/*"
+            ]
           }
         },
         "test": {
@@ -510,8 +600,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/api/a-payment-orders/tsconfig.lib.json", "libs/api/a-payment-orders/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/api/a-payment-orders/**/*"]
+            "tsConfig": [
+              "libs/api/a-payment-orders/tsconfig.lib.json",
+              "libs/api/a-payment-orders/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/api/a-payment-orders/**/*"
+            ]
           }
         },
         "test": {
@@ -533,8 +629,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/api/a-users/tsconfig.lib.json", "libs/api/a-users/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/api/a-users/**/*"]
+            "tsConfig": [
+              "libs/api/a-users/tsconfig.lib.json",
+              "libs/api/a-users/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/api/a-users/**/*"
+            ]
           }
         },
         "test": {
@@ -556,8 +658,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/api/a-state/tsconfig.lib.json", "libs/api/a-state/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/api/a-state/**/*"]
+            "tsConfig": [
+              "libs/api/a-state/tsconfig.lib.json",
+              "libs/api/a-state/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/api/a-state/**/*"
+            ]
           }
         },
         "test": {
