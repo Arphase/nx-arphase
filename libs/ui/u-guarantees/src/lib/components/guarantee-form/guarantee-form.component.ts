@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Guarantee, PersonTypes, Select } from '@ivt/c-data';
-import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 import { CustomValidators, filterNil } from '@ivt/c-utils';
+import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -11,8 +11,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./guarantee-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
-  implements OnInit, OnChanges {
+export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnInit, OnChanges {
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -80,33 +79,33 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee>
         year: [null, [Validators.required, Validators.min(2014)]],
         vin: [null, Validators.required],
         motorNumber: [null, Validators.required],
-        serialNumber: [null, Validators.required],
         horsePower: [null, [Validators.required, Validators.max(400)]],
         kilometrageStart: [null, Validators.required],
         kilometrageEnd: [null, Validators.required],
       }),
       startDate: [null, Validators.required],
-      endDate: [null, Validators.required]
+      endDate: [null, Validators.required],
     });
   }
 
   ngOnInit() {
     this.moralInfoForm.disable();
 
-    this.client.get('personType').valueChanges.pipe(
-      filterNil(),
-      takeUntil(this.destroy$)
-    ).subscribe(value => this.personTypeChange(value));
+    this.client
+      .get('personType')
+      .valueChanges.pipe(filterNil(), takeUntil(this.destroy$))
+      .subscribe(value => this.personTypeChange(value));
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.item && this.item) {
       this.form.patchValue({
-        ...this.item, client: {
+        ...this.item,
+        client: {
           ...this.item.client,
           moralInfo: this.item.client.moralInfo || {},
-          physicalInfo: this.item.client.physicalInfo || {}
-        }
+          physicalInfo: this.item.client.physicalInfo || {},
+        },
       });
     }
   }

@@ -5,6 +5,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { IvtInputModule } from '../../directives';
+import { IvtAutocompleteModule } from '../autocomplete';
 import { IvtFormFieldModule } from '../form-field';
 import { IvtAddressFormComponent } from './address-form.component';
 
@@ -15,6 +16,7 @@ import { IvtAddressFormComponent } from './address-form.component';
     ReactiveFormsModule,
     IvtFormFieldModule,
     IvtInputModule,
+    IvtAutocompleteModule,
     NgxMaskModule,
     MatSelectModule,
   ],

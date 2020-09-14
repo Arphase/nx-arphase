@@ -28,9 +28,6 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
   motorNumber: string;
 
   @Column()
-  serialNumber: string;
-
-  @Column()
   horsePower: number;
 
   @Column()

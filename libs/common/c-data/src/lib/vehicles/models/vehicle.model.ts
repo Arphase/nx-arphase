@@ -7,7 +7,6 @@ export interface Vehicle {
   year: number;
   vin: string;
   motorNumber: string;
-  serialNumber: string;
   horsePower: number;
   kilometrageStart: number;
   kilometrageEnd: number;
