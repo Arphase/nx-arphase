@@ -200,12 +200,14 @@
           <div class="col-lg-6 col-12">
             <ivt-form-field label="Año del vehículo">
               <input ivtInput
+                     type="number"
                      formControlName="year">
             </ivt-form-field>
           </div>
           <div class="col-lg-6 col-12">
             <ivt-form-field label="HP">
               <input ivtInput
+                     type="number"
                      formControlName="horsePower">
             </ivt-form-field>
           </div>
@@ -230,25 +232,18 @@
 
         <div class="row">
           <div class="col-lg-6 col-12">
-            <ivt-form-field label="Número de Serie">
-              <input ivtInput
-                     formControlName="serialNumber">
-            </ivt-form-field>
-          </div>
-          <div class="col-lg-6 col-12">
             <ivt-form-field label="Kilometraje inicial">
               <input ivtInput
                      ivtUppercase
+                     type="number"
                      formControlName="kilometrageStart">
             </ivt-form-field>
           </div>
-        </div>
-
-        <div class="row">
           <div class="col-lg-6 col-12">
             <ivt-form-field label="Fin garantía por kilometraje">
               <input ivtInput
                      ivtUppercase
+                     type="number"
                      formControlName="kilometrageEnd">
             </ivt-form-field>
           </div>

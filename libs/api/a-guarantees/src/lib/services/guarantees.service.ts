@@ -183,7 +183,7 @@ export class GuaranteesService {
         <p><span class="bold">MARCA:</span> ${
           guarantee.vehicle.brand
         }       <span class="bold"> - NUMERO DE SERIE:</span> ${
-      guarantee.vehicle.serialNumber
+      guarantee.vehicle.vin
     }  <span class="bold"> - HP:</span> ${guarantee.vehicle.horsePower} </p>
         <p><span class="bold">MODELO:</span> ${guarantee.vehicle.model}</p>
         <p><span class="bold">MOTOR:</span> ${guarantee.vehicle.motorNumber}</p>

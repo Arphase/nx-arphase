@@ -1,0 +1,14 @@
+<ng-container *ngIf="control">
+  <ivt-form-field [label]="label">
+    <input ivtInput
+           [type]="type"
+           [formControl]="control"
+           [matAutocomplete]="auto">
+  </ivt-form-field>
+
+  <mat-autocomplete #auto="matAutocomplete"
+                    autoActiveFirstOption>
+    <mat-option *ngFor="let option of filteredOptions | async"
+                [value]="option">{{ option }}</mat-option>
+  </mat-autocomplete>
+</ng-container>

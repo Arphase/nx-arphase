@@ -1,5 +1,4 @@
-import { Type } from 'class-transformer';
-import { IsInt, IsNumberString, IsOptional, IsString } from 'class-validator';
+import { IsInt, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateVehicleDto {
   @IsInt()
@@ -21,9 +20,8 @@ export class UpdateVehicleDto {
   @IsString()
   version: string;
 
-  @Type(() => String)
   @IsOptional()
-  @IsNumberString()
+  @IsNumber()
   year: number;
 
   @IsOptional()
@@ -35,21 +33,14 @@ export class UpdateVehicleDto {
   motorNumber: string;
 
   @IsOptional()
-  @IsString()
-  serialNumber: string;
-
-  @Type(() => String)
-  @IsOptional()
-  @IsNumberString()
+  @IsNumber()
   horsePower: number;
 
-  @Type(() => String)
   @IsOptional()
-  @IsNumberString()
+  @IsNumber()
   kilometrageStart: number;
 
-  @Type(() => String)
   @IsOptional()
-  @IsNumberString()
+  @IsNumber()
   kilometrageEnd: number;
 }

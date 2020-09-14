@@ -1,10 +1,8 @@
-import { Type } from 'class-transformer';
-import { IsNumberString, IsOptional, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateAddressDto {
-  @Type(() => String)
   @IsOptional()
-  @IsNumberString()
+  @IsNumber()
   zipCode: number;
 
   @IsOptional()

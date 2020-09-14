@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 
 import { IvtAddressFormModule } from './address-form';
+import { IvtAutocompleteModule } from './autocomplete';
 import { IvtConfirmationDialogModule } from './confirmation-dialog';
 import { IvtEmptyStateModule } from './empty-state';
 import { IvtExpansionPanelModule } from './expansion-panel';
-import {
-  IvtDateFilterModule,
-  IvtFilterModule,
-  IvtRadioFilterModule,
-} from './filters';
+import { IvtDateFilterModule, IvtFilterModule, IvtRadioFilterModule } from './filters';
 import { IvtFormModule } from './form';
 import { IvtFormFieldModule } from './form-field';
 import { IvtGoBackTitleModule } from './go-back-title';
@@ -22,6 +19,7 @@ import { IvtVirtualScrollModule } from './virtual-scroll';
 
 const MODULES = [
   IvtAddressFormModule,
+  IvtAutocompleteModule,
   IvtConfirmationDialogModule,
   IvtDateFilterModule,
   IvtEmptyStateModule,

@@ -70,21 +70,10 @@
 
   <div class="row d-flex flex-center">
     <div class="col-lg-3 col-12">
-      <ivt-form-field *ngIf="showAddressSelects"
-                      label="Colonia">
-        <mat-select formControlName="suburb">
-          <mat-option *ngFor="let option of suburbOptions"
-                      [value]="option.value">
-            {{ option.label }}
-          </mat-option>
-        </mat-select>
-      </ivt-form-field>
-
-      <ivt-form-field *ngIf="!showAddressSelects"
-                      label="Colonia">
-        <input ivtInput
-               formControlName="suburb">
-      </ivt-form-field>
+      <ivt-autocomplete label="Colonia"
+                        [control]="form.get('suburb')"
+                        [options]="suburbOptions">
+      </ivt-autocomplete>
     </div>
     <div class="col-lg-3 col-12">
       <ivt-form-field label="Calle">

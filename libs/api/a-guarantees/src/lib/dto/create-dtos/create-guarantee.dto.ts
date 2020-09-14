@@ -1,14 +1,9 @@
-import { GuaranteeStatus, Client, Vehicle } from '@ivt/c-data';
-import {
-  IsDateString,
-  IsNotEmpty,
-  IsEnum,
-  IsNumberString,
-  ValidateNested,
-} from 'class-validator';
+import { Client, Vehicle } from '@ivt/c-data';
 import { Type } from 'class-transformer';
-import { CreateVehicleDto } from './create-vehicle.dto';
+import { IsDateString, IsNotEmpty, ValidateNested } from 'class-validator';
+
 import { CreateClientDto } from './create-client.dto';
+import { CreateVehicleDto } from './create-vehicle.dto';
 
 export class CreateGuaranteeDto {
   @ValidateNested()

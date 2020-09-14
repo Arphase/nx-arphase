@@ -1,17 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Address, Select } from '@ivt/c-data';
 import { filter, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
 import { IvtFormComponent } from '../form';
-import {
-  createAddressForm,
-  IvtAddressFormService,
-} from './address-form.service';
+import { createAddressForm, IvtAddressFormService } from './address-form.service';
 
 @Component({
   selector: 'ivt-address-form',
@@ -20,18 +12,14 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [IvtAddressFormService],
 })
-export class IvtAddressFormComponent extends IvtFormComponent<Address>
-  implements OnInit {
+export class IvtAddressFormComponent extends IvtFormComponent<Address> implements OnInit {
   showAddressSelects: boolean;
-  countryOptions: Select[];
-  stateOptions: Select[];
-  cityOptions: Select[];
-  suburbOptions: Select[];
+  countryOptions: Select[] = [];
+  stateOptions: Select[] = [];
+  cityOptions: Select[] = [];
+  suburbOptions: string[] = [];
 
-  constructor(
-    private addressFormService: IvtAddressFormService,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor(private addressFormService: IvtAddressFormService, private cdr: ChangeDetectorRef) {
     super();
     this.form = createAddressForm();
   }
@@ -42,11 +30,11 @@ export class IvtAddressFormComponent extends IvtFormComponent<Address>
     zipCodeControl.valueChanges
       .pipe(
         startWith(zipCodeControl.value),
-        filter((value) => value && value.length === 5),
+        filter(value => value && String(value).length === 5),
         takeUntil(this.destroy$),
-        switchMap((zipCode) => this.addressFormService.getLocalities(zipCode))
+        switchMap(zipCode => this.addressFormService.getLocalities(zipCode))
       )
-      .subscribe((zipCodeResponse) => {
+      .subscribe(zipCodeResponse => {
         const {
           showAddressSelects,
           countryOptions,
@@ -59,11 +47,7 @@ export class IvtAddressFormComponent extends IvtFormComponent<Address>
         this.stateOptions = stateOptions;
         this.cityOptions = cityOptions;
         this.suburbOptions = suburbOptions;
-        if (
-          !this.suburbOptions
-            .map((suburb) => suburb.label)
-            .includes(this.form.get('suburb').value)
-        ) {
+        if (!this.suburbOptions.includes(this.form.get('suburb').value)) {
           this.form.get('suburb').patchValue(null);
         }
         this.cdr.detectChanges();
