@@ -12,8 +12,4 @@ export interface Environment {
   server: {
     port: number;
   };
-  jwt: {
-    secret: string;
-    expiresIn: number
-  };
 }

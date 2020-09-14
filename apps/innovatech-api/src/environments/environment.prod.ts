@@ -4,18 +4,14 @@ export const environment: Environment = {
   production: true,
   databaseConfig: {
     type: 'postgres',
-    host: process.env.HOST || 'localhost',
+    host: process.env.HOST,
     port: 5432,
-    database: process.env.DATABASE || 'innovatech_dev',
+    database: process.env.DATABASE,
     synchronize: false,
-    username: process.env.USERNAME || '',
-    password: process.env.PASSWORD || '',
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD,
   },
   server: {
     port: 3333,
-  },
-  jwt: {
-    secret: process.env.JWT_SECRET || 'pqowieurytlaksjdhf',
-    expiresIn: 86400,
-  },
+  }
 };

@@ -23,37 +23,55 @@
   },
   "projects": {
     "innovatech-ui": {
-      "tags": []
+      "tags": ["front"]
     },
     "innovatech-ui-e2e": {
-      "tags": [],
+      "tags": ["test"],
       "implicitDependencies": ["innovatech-ui"]
     },
     "innovatech-api": {
-      "tags": []
+      "tags": ["back"]
     },
-    "ui": {
-      "tags": []
+    "c-data": {
+      "tags": ["common"]
     },
-    "state": {
-      "tags": []
+    "c-utils": {
+      "tags": ["common"]
     },
-    "guarantees": {
-      "tags": []
+    "u-auth": {
+      "tags": ["front"]
     },
-    "data": {
-      "tags": []
+    "u-dashboard": {
+      "tags": ["front"]
     },
-    "utils": {
-      "tags": []
+    "u-guarantees": {
+      "tags": ["front"]
     },
-    "auth": {
-      "tags": []
+    "u-spa": {
+      "tags": ["front"]
     },
-    "spa": {
-      "tags": []
+    "u-state": {
+      "tags": ["front"]
     },
-    "dashboard": {
+    "u-ui": {
+      "tags": ["front"]
+    },
+    "a-auth": {
+      "tags": ["back"]
+    },
+    "a-guarantees": {
+      "tags": ["back"]
+    },
+    "a-localities": {
+      "tags": ["back"]
+    },
+    "a-payment-orders": {
+      "tags": ["back"]
+    },
+    "a-users": {
+      "tags": ["back"]
+    },
+    "a-state": {
       "tags": []
     }
   }
