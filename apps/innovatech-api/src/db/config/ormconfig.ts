@@ -1,4 +1,4 @@
-import { environment } from '@env/environment';
+import { environment } from '@api/env/environment';
 import { ConnectionOptions } from 'typeorm';
 
 import { ENTITIES } from './entities';

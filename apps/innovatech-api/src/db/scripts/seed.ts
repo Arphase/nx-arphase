@@ -1,6 +1,5 @@
-import { SignUpCredentialsDto } from '@api/auth/dto/auth-credentials.dto';
-import { AuthService } from '@api/auth/services/auth.service';
-import { UserRole } from '@ivt/data';
+import { AuthService, SignUpCredentialsDto } from '@ivt/a-auth';
+import { UserRole } from '@ivt/c-data';
 import fs from 'fs';
 import path from 'path';
 import { ConnectionOptions, createConnection } from 'typeorm';
@@ -46,8 +45,8 @@ async function run() {
 }
 
 run()
-  .then((_) => {
+  .then(_ => {
     console.log('Seeds done');
     process.exit(0);
   })
-  .catch((error) => console.error('seed error', error));
+  .catch(error => console.error('seed error', error));

@@ -1,0 +1,104 @@
+<form [formGroup]="form">
+  <div class="row d-flex flex-center">
+    <div class="col-lg-3 col-12">
+      <ivt-form-field label="Código postal">
+        <input ivtInput
+               maxlength="5"
+               mask="00000"
+               autocomplete="off"
+               formControlName="zipCode"
+               [clearIfNotMatch]="true">
+      </ivt-form-field>
+    </div>
+
+    <ng-container *ngIf="showAddressSelects">
+      <div class="col-lg-3 col-12">
+        <ivt-form-field label="País">
+          <mat-select formControlName="country">
+            <mat-option *ngFor="let option of countryOptions"
+                        [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+        </ivt-form-field>
+      </div>
+      <div class="col-lg-3 col-12">
+        <ivt-form-field label="Estado">
+          <mat-select formControlName="state">
+            <mat-option *ngFor="let option of stateOptions"
+                        [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+        </ivt-form-field>
+      </div>
+      <div class="col-lg-3 col-12">
+        <ivt-form-field label="Ciudad">
+          <mat-select formControlName="city">
+            <mat-option *ngFor="let option of cityOptions"
+                        [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+        </ivt-form-field>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="!showAddressSelects">
+      <div class="col-lg-3 col-12">
+        <ivt-form-field label="País">
+          <input ivtInput
+                 formControlName="country">
+        </ivt-form-field>
+      </div>
+
+      <div class="col-lg-3 col-12">
+        <ivt-form-field label="Estado">
+          <input ivtInput
+                 formControlName="state">
+        </ivt-form-field>
+      </div>
+
+      <div class="col-lg-3 col-12">
+        <ivt-form-field label="Ciudad">
+          <input ivtInput
+                 formControlName="city">
+        </ivt-form-field>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="row d-flex flex-center">
+    <div class="col-lg-3 col-12">
+      <ivt-autocomplete label="Colonia"
+                        [control]="form.get('suburb')"
+                        [options]="suburbOptions">
+      </ivt-autocomplete>
+    </div>
+    <div class="col-lg-3 col-12">
+      <ivt-form-field label="Calle">
+        <input ivtInput
+               maxlength="50"
+               formControlName="street">
+      </ivt-form-field>
+    </div>
+
+    <div class="col-lg-3 col-12">
+      <ivt-form-field label="Número externo">
+        <input ivtInput
+               maxlength="10"
+               autocomplete="off"
+               formControlName="externalNumber">
+      </ivt-form-field>
+    </div>
+
+    <div class="col-lg-3 col-12">
+      <ivt-form-field label="Número interno">
+        <input ivtInput
+               maxlength="10"
+               autocomplete="off"
+               formControlName="internalNumber">
+      </ivt-form-field>
+    </div>
+  </div>
+</form>

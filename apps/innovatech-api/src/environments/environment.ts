@@ -8,14 +8,10 @@ export const environment: Environment = {
     port: 5432,
     database: 'innovatech_dev',
     synchronize: true,
-    username: '',
-    password: ''
+    username: 'innovatech',
+    password: 'innovatech'
   },
   server: {
     port: 3333,
-  },
-  jwt: {
-    secret: 'pqowieurytlaksjdhf',
-    expiresIn: 3600,
-  },
+  }
 };
