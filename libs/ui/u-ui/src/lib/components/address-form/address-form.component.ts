@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Address, Select } from '@ivt/c-data';
 import { filter, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
@@ -9,7 +9,8 @@ import { createAddressForm, IvtAddressFormService } from './address-form.service
   selector: 'ivt-address-form',
   templateUrl: './address-form.component.html',
   styleUrls: ['./address-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // Don't use change detection for displaying error messages
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [IvtAddressFormService],
 })
 export class IvtAddressFormComponent extends IvtFormComponent<Address> implements OnInit {

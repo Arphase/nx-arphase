@@ -1,12 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { markFormGroupTouched } from '../../functions';
 import { IvtSubscriberComponent } from '../subscriber';
 
 @Component({
@@ -28,7 +23,7 @@ export class IvtFormComponent<T = any> extends IvtSubscriberComponent {
     if (this.form.valid || this.form.disabled) {
       this.submitForm.emit(this.values);
     } else {
-      this.form.markAllAsTouched();
+      markFormGroupTouched(this.form);
     }
   }
 }
