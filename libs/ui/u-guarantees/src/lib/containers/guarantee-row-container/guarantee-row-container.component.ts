@@ -1,19 +1,20 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { Guarantee, GuaranteeStatus, PaymentOrder } from '@ivt/c-data';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Guarantee, GuaranteeStatus, statusLabels } from '@ivt/c-data';
 import {
   GuaranteeCollectionService,
   GuaranteeDataService,
   PaymentOrderCollectionService,
   PaymentOrderDataService,
 } from '@ivt/u-state';
-import { IvtRowComponent } from '@ivt/u-ui';
+import { IvtFolioPipe, IvtRowComponent } from '@ivt/u-ui';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
-import { statusLabels } from '../../components/guarantee-row/guarantee-row.constants';
-import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
-import { MatDialog } from '@angular/material/dialog';
+import {
+  PaymentOrderDialogContainerComponent,
+} from '../payment-order-dialog-container/payment-order-dialog-container.component';
 
 @Component({
   selector: 'ivt-guarantee-row-container',
@@ -31,7 +32,8 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
     protected paymentOrderCollectionService: PaymentOrderCollectionService,
     private paymentOrderDataService: PaymentOrderDataService,
     private dialog: MatDialog,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private folioPipe: IvtFolioPipe
   ) {
     super();
   }
@@ -57,7 +59,7 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
       )
       .subscribe(() =>
         this.toastr.success(
-          `La garantía con folio ${guarantee.id} ahora está ${statusLabels[
+          `La garantía con folio ${this.folioPipe.transform(guarantee.id)} ahora está ${statusLabels[
             GuaranteeStatus[GuaranteeStatus[guarantee.status]]
           ].toLowerCase()}`
         )

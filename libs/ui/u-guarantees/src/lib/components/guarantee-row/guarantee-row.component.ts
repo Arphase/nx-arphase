@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Guarantee, GuaranteeStatus } from '@ivt/c-data';
+import { Guarantee, GuaranteeStatus, statusLabels } from '@ivt/c-data';
 import { IvtRowComponent } from '@ivt/u-ui';
 import { Subject, timer } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
 
-import { backgroundClasses, menuOptions, statusLabels } from './guarantee-row.constants';
+import { backgroundClasses, menuOptions } from './guarantee-row.constants';
 
 @Component({
   selector: 'ivt-guarantee-row',

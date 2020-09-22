@@ -42,6 +42,14 @@ export class GuaranteesController {
     return this.guaranteesService.getGuaranteesSummary();
   }
 
+  @Get('export/excel')
+  async getGuaranteesExcel(
+    @Query(ValidationPipe) filterDto: GetGuaranteesFilterDto,
+    @Res() response: Response
+  ): Promise<void> {
+    return this.guaranteesService.getGuaranteesExcel(filterDto, response);
+  }
+
   @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
   async createGuarantee(@Body() createGuaranteeDto: CreateGuaranteeDto) {
@@ -49,7 +57,7 @@ export class GuaranteesController {
   }
 
   @Get(':id/pdf')
-  async getGuaranteePdf(@Param('id', ParseIntPipe) id: number, @Res() response: Response) {
+  async getGuaranteePdf(@Param('id', ParseIntPipe) id: number, @Res() response: Response): Promise<void> {
     return this.guaranteesService.generatePdf(id, response);
   }
 
