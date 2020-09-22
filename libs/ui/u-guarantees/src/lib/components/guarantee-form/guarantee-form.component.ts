@@ -76,7 +76,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         brand: [null, Validators.required],
         model: [null, Validators.required],
         version: [null, Validators.required],
-        year: [null, [Validators.required, Validators.min(2014)]],
+        year: [null, [Validators.required]],
         vin: [null, Validators.required],
         motorNumber: [null, Validators.required],
         horsePower: [null, [Validators.required, Validators.max(400)]],
