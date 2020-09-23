@@ -1,4 +1,4 @@
-import { GuaranteeEntity, GuaranteeRepository } from '@ivt/a-state';
+import { GuaranteeEntity, GuaranteeRepository, OUT_FILE, transformFolio } from '@ivt/a-state';
 import { GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import fs, { promises } from 'fs';
@@ -13,7 +13,7 @@ import * as XLSX from 'xlsx';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
-import { dir, getGuaranteePdfTemplate, OUT_FILE } from './guarantees.service.constants';
+import { dir, getGuaranteePdfTemplate } from './guarantees.service.constants';
 
 @Injectable()
 export class GuaranteesService {
@@ -107,7 +107,7 @@ export class GuaranteesService {
     const excelColumnConstants: string[] = ['Folio', 'Placa', 'Fecha inicio', 'Fecha fin', 'Importe', 'Estatus'];
     const guaranteesData: any[] = guarantees.map(guarantee => {
       return [
-        this.transformFolio(guarantee.id),
+        transformFolio(guarantee.id),
         guarantee.vehicle.vin,
         moment(guarantee.startDate).format('DD/MM/YYYY'),
         moment(guarantee.endDate).format('DD/MM/YYYY'),
@@ -248,10 +248,5 @@ export class GuaranteesService {
     stream.push(null);
 
     return stream;
-  }
-
-  transformFolio(value: number): unknown {
-    const zeros = 5 - String(value).length;
-    return `${new Array(zeros).join('0')}${value}`;
   }
 }

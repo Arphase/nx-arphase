@@ -6,51 +6,79 @@ export const columns: IvtColumns = [
     label: '',
     prop: 'checkbox',
     sortable: false,
-    colSize: 1,
+    colSizes: {
+      xs: '1',
+    },
   },
   {
     label: 'Folio',
     prop: 'id',
     sortable: true,
-    colSize: 1,
+    colSizes: {
+      xs: '1',
+    },
   },
   {
     label: 'Placa',
     prop: 'vin',
     sortable: false,
-    colSize: 2,
+    colSizes: {
+      xs: '2',
+      lg: '3'
+    },
   },
   {
-    label: 'Fecha inicio',
+    label: 'Inicio',
     prop: 'startDate',
     sortable: true,
-    colSize: 2,
+    colSizes: {
+      xs: '2',
+      lg: '1'
+    },
   },
   {
-    label: 'Fecha fin',
+    label: 'Fin',
     prop: 'endDate',
     sortable: true,
-    colSize: 2,
+    colSizes: {
+      xs: '2',
+      lg: '1'
+    },
+  },
+  {
+    label: 'Captura',
+    prop: 'createdAt',
+    sortable: true,
+    colSizes: {
+      xs: '2',
+      lg: '1'
+    },
+    breakpointShow: {
+      lg: true,
+      xl: true,
+    },
   },
   {
     label: 'Importe',
     prop: 'amount',
     sortable: true,
-    colSize: 2,
+    colSizes: {
+      xs: '2',
+    },
     alignment: 'right',
   },
   {
     label: 'Acciones',
     prop: 'actions',
     sortable: false,
-    colSize: 2,
     alignment: 'right',
   },
 ];
 
 export const dateTypeOptions: Select[] = [
-  { label: 'Fecha inicio', value: 'startDate' },
-  { label: 'Fecha fin', value: 'endDate' },
+  { label: 'Inicio', value: 'startDate' },
+  { label: 'Fin', value: 'endDate' },
+  { label: 'Captura', value: 'createdAt' },
 ];
 
 export const statusOptions: Select[] = [

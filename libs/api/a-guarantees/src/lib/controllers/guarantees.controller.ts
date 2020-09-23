@@ -56,7 +56,7 @@ export class GuaranteesController {
     return this.guaranteesService.createGuarantee(createGuaranteeDto);
   }
 
-  @Get(':id/pdf')
+  @Get('export/pdf/:id')
   async getGuaranteePdf(@Param('id', ParseIntPipe) id: number, @Res() response: Response): Promise<void> {
     return this.guaranteesService.generatePdf(id, response);
   }

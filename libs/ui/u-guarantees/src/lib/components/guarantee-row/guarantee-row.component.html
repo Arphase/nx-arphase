@@ -17,16 +17,19 @@
   <div class="col-1">
     {{ item.id | folio }}
   </div>
-  <div class="col-2">
-    {{ item.vehicle?.vin }}
+  <div class="col-2 col-lg-3">
+    <ivt-text-truncate-tooltip [label]="item.vehicle?.vin"></ivt-text-truncate-tooltip>
   </div>
-  <div class="col-2">
+  <div class="col-2 col-lg-1">
     {{ item.startDate | date: "dd/MM/yyyy" }}
   </div>
-  <div class="col-2">
+  <div class="col-2 col-lg-1">
     {{ item.endDate | date: "dd/MM/yyyy" }}
   </div>
-  <div class="col flex-end">
+  <div class="col-2 col-lg-1 d-none d-lg-block d-xl-block">
+    {{ item.createdAt | date: "dd/MM/yyyy" }}
+  </div>
+  <div class="col-2 flex-end">
     {{ item.amount | currency | empty }}
   </div>
   <div class="col flex-end">

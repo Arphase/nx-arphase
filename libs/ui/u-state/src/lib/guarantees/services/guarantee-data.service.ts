@@ -25,7 +25,7 @@ export class GuaranteeDataService extends IvtDataService<Guarantee> {
 
   getGuaranteePdf(id: number): Observable<any> {
     return this.http
-      .get(`${this.config.apiUrl}/guarantees/${id}/pdf`, {
+      .get(`${this.config.apiUrl}/guarantees/export/pdf/${id}`, {
         responseType: 'blob',
       })
       .pipe(tap((file: Blob) => saveFile(file, `Garantía ${id}.pdf`)));

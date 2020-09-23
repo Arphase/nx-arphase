@@ -16,19 +16,25 @@ export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> 
       label: 'Folio',
       prop: 'id',
       sortable: false,
-      colSize: 2,
+      colSizes: {
+        xs: '2',
+      },
     },
     {
       label: 'Fecha de factura',
       prop: 'invoiceDate',
       sortable: false,
-      colSize: 5,
+      colSizes: {
+        xs: '5',
+      },
     },
     {
       label: 'Importe',
       prop: 'amount',
       sortable: false,
-      colSize: 5,
+      colSizes: {
+        xs: '5',
+      },
     },
   ];
 

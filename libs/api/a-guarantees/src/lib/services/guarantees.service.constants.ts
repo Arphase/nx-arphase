@@ -1,14 +1,11 @@
+import { IMAGE_ASSETS_PATH, transformFolio } from '@ivt/a-state';
 import { Guarantee } from '@ivt/c-data';
 import moment from 'moment';
-import * as path from 'path';
 
 export const dir = {
   asc: 'ASC',
   desc: 'DESC',
 };
-export const OUT_FILE = 'myfile.html';
-
-export const BASE_PATH = 'file://' + path.resolve(__dirname) + '/assets/img/';
 
 export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
   return `
@@ -52,12 +49,12 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
         </style>
     <head>
     <body>
-    <div><img class="logo" src="${BASE_PATH}logo.png"></div>
+    <div><img class="logo" src="${IMAGE_ASSETS_PATH}logo.png"></div>
         <p class="center bold">¡MUCHAS FELICIDADES!</p>
         <p>Le damos la más cordial bienvenida Innovatech. Este programa ha sido diseñado pensando en brindarles protección contra desembolsos excesivos e
         imprevistos en caso de que su vehículo presente alguna avería mecánica de manera fortuita en sistemas eléctricos mecánicos o electrónicos</p>
         <p>Lo invitamos a consultar los términos, condiciones y exclusiones de la cobertura contratada de acuerdo a la carátula y los anexos de la presente.</p>
-        <p>Su número de Certificado de Garantía es: <span class="bold">${this.transformFolio(guarantee.id)}</span></p>
+        <p>Su número de Certificado de Garantía es: <span class="bold">${transformFolio(guarantee.id)}</span></p>
         <p>Ante cualquier duda, ponerse en contacto con el área de servicio al cliente.</p>
         <p>*Los datos introducidos tendrán que coincidir fehacientemente con los del vehículo objeto de garantía. En caso de error será motivo de rescisión del contrato.</p>
         <p><span class="bold">PUNTO DE VENTA:</span> ${guarantee.client.salesPlace}</p>

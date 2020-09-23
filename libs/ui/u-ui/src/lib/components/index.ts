@@ -13,5 +13,6 @@ export * from './row';
 export * from './searchbar';
 export * from './subscriber';
 export * from './table';
+export * from './text-truncate-tooltip';
 export * from './virtual-scroll';
 export * from './components.module';
