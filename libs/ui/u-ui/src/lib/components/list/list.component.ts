@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { CrudEvents } from '../../models';
 import { IvtSubscriberComponent } from '../subscriber';
@@ -14,11 +8,11 @@ import { IvtSubscriberComponent } from '../subscriber';
   selector: 'ivt-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtListComponent<T = any> extends IvtSubscriberComponent
-  implements CrudEvents<T> {
+export class IvtListComponent<T = any> extends IvtSubscriberComponent implements CrudEvents<T> {
   @Input() list: T[] = [];
   @Input() hasMoreItems: boolean;
   @Input() loading: boolean;
+  @Input() loadingExcel: boolean;
   @Output() create = new EventEmitter<void>();
   @Output() showDetail = new EventEmitter<T>();
   @Output() edit = new EventEmitter<T>();
@@ -26,6 +20,7 @@ export class IvtListComponent<T = any> extends IvtSubscriberComponent
   @Output() toggle = new EventEmitter<T>();
   @Output() filterItems = new EventEmitter<any>();
   @Output() getMoreItems = new EventEmitter<void>();
+  @Output() exportExcel = new EventEmitter<void>();
   showFilters: boolean;
 
   toggleFilter(): void {

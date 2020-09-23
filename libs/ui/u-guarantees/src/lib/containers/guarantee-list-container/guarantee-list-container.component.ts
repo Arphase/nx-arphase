@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Guarantee } from '@ivt/c-data';
-import { GuaranteeCollectionService } from '@ivt/u-state';
+import { GuaranteeCollectionService, GuaranteeDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -17,9 +17,14 @@ import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-co
 export class GuaranteeListContainerComponent extends IvtListContainerComponent<Guarantee> {
   clearSelectedSubject = new BehaviorSubject<boolean>(false);
   clearSelected$ = this.clearSelectedSubject.asObservable();
+  excelFileName = 'Garantias';
 
-  constructor(protected guaranteeCollectionService: GuaranteeCollectionService, private dialog: MatDialog) {
-    super(guaranteeCollectionService);
+  constructor(
+    protected guaranteeCollectionService: GuaranteeCollectionService,
+    protected guaranteeDataService: GuaranteeDataService,
+    private dialog: MatDialog
+  ) {
+    super(guaranteeCollectionService, guaranteeDataService);
   }
 
   openPaymentOrderDialog(guaranteeIds: number[]): void {

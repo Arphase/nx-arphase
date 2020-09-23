@@ -1,19 +1,14 @@
-import { GuaranteeRepository, PaymentOrderRepository } from '@ivt/a-state';
+import { GuaranteeRepository, OUT_FILE, PaymentOrderRepository, transformFolio } from '@ivt/a-state';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import fs, { promises } from 'fs';
 import { omit } from 'lodash';
 import moment from 'moment';
-import * as path from 'path';
 import puppeteer from 'puppeteer';
 import { Readable } from 'stream';
 import { Connection, getManager } from 'typeorm';
 import { promisify } from 'util';
 
 import { CreatePaymentOrderDto } from '../dto/create-payment-order.dto';
-
-const OUT_FILE = 'myfile.html';
-
-const BASE_PATH = 'file://' + path.resolve(__dirname) + '/assets/img/';
 
 @Injectable()
 export class PaymentOrdersService {
@@ -70,7 +65,7 @@ export class PaymentOrdersService {
       return `
     <tr>
       <td>${moment(guarantee.invoiceDate).format('DD/MM/YYYY')}</td>
-      <td>${this.transformFolio(guarantee.id)}</td>
+      <td>${transformFolio(guarantee.id)}</td>
       <td>${formatter.format(guarantee.amount)}</td>
     </tr>`;
     });
@@ -159,7 +154,7 @@ export class PaymentOrdersService {
             </tr>
             <tr>
               <td>No. de Orden de Pago</td>
-              <td>${this.transformFolio(paymentOrder.id)}</td>
+              <td>${transformFolio(paymentOrder.id)}</td>
             </tr>
           </table>
         </div>

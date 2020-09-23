@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Guarantee, GuaranteeSummary } from '@ivt/c-data';
+import { saveFile } from '@ivt/c-utils';
 import { HttpUrlGenerator } from '@ngrx/data';
-import { saveAs } from 'file-saver';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -25,20 +25,13 @@ export class GuaranteeDataService extends IvtDataService<Guarantee> {
 
   getGuaranteePdf(id: number): Observable<any> {
     return this.http
-      .get(`${this.config.apiUrl}/guarantees/${id}/pdf`, {
+      .get(`${this.config.apiUrl}/guarantees/export/pdf/${id}`, {
         responseType: 'blob',
       })
-      .pipe(
-        tap((file) => {
-          const blob = new Blob([file], { type: 'application/octet-stream' });
-          saveAs(blob, `Garantía ${id}.pdf`);
-        })
-      );
+      .pipe(tap((file: Blob) => saveFile(file, `Garantía ${id}.pdf`)));
   }
 
   getGuaranteeSummary(): Observable<GuaranteeSummary> {
-    return this.http.get<GuaranteeSummary>(
-      `${this.config.apiUrl}/guarantees/report/summary`
-    );
+    return this.http.get<GuaranteeSummary>(`${this.config.apiUrl}/guarantees/report/summary`);
   }
 }

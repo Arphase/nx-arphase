@@ -15,6 +15,7 @@ import { IvtRowModule } from './row';
 import { IvtSearchbarModule } from './searchbar';
 import { IvtSubscriberModule } from './subscriber';
 import { IvtTableModule } from './table';
+import { IvtTextTruncateTooltipModule } from './text-truncate-tooltip';
 import { IvtVirtualScrollModule } from './virtual-scroll';
 
 const MODULES = [
@@ -35,6 +36,7 @@ const MODULES = [
   IvtSearchbarModule,
   IvtSubscriberModule,
   IvtTableModule,
+  IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 ];
 
