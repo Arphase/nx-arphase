@@ -12,9 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
-import {
-  PaymentOrderDialogContainerComponent,
-} from '../payment-order-dialog-container/payment-order-dialog-container.component';
+import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
 
 @Component({
   selector: 'ivt-guarantee-row-container',
@@ -29,7 +27,7 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   constructor(
     private guaranteeCollectiionService: GuaranteeCollectionService,
     private guaranteeDataService: GuaranteeDataService,
-    protected paymentOrderCollectionService: PaymentOrderCollectionService,
+    private paymentOrderCollectionService: PaymentOrderCollectionService,
     private paymentOrderDataService: PaymentOrderDataService,
     private dialog: MatDialog,
     private toastr: ToastrService,
@@ -66,8 +64,16 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
       );
   }
 
-  openPaymentOrderDialog(guaranteeId: number): void {
-    this.dialog.open(PaymentOrderDialogContainerComponent, { data: guaranteeId });
+  createPaymentOrder(guaranteeId: number): void {
+    this.paymentOrderCollectionService.removeOneFromCache(null);
+    this.dialog.open(PaymentOrderDialogContainerComponent, { data: [guaranteeId] });
+  }
+
+  updatePaymentOrder(paymentOrderId: number): void {
+    this.paymentOrderCollectionService
+      .getByKey(paymentOrderId)
+      .pipe(take(1))
+      .subscribe(() => this.dialog.open(PaymentOrderDialogContainerComponent));
   }
 
   downloadPaymentOrder(id: number): void {
