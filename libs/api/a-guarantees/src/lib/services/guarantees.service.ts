@@ -1,11 +1,17 @@
-import { GuaranteeEntity, GuaranteeRepository, OUT_FILE, transformFolio } from '@ivt/a-state';
+import {
+  getReadableStream,
+  GuaranteeEntity,
+  GuaranteeRepository,
+  OUT_FILE,
+  tobase64,
+  transformFolio,
+} from '@ivt/a-state';
 import { GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import fs, { promises } from 'fs';
-import { omit } from 'lodash';
+import fs from 'fs';
+import { identity, omit, pickBy } from 'lodash';
 import moment from 'moment';
 import puppeteer from 'puppeteer';
-import { Readable } from 'stream';
 import { Connection } from 'typeorm';
 import { promisify } from 'util';
 import * as XLSX from 'xlsx';
@@ -121,7 +127,7 @@ export class GuaranteesService {
     XLSX.utils.book_append_sheet(workbook, workSheet, 'SheetJS');
 
     const buffer: Buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
-    const stream = this.getReadableStream(buffer);
+    const stream = getReadableStream(buffer);
     stream.pipe(response as any);
   }
 
@@ -138,9 +144,9 @@ export class GuaranteesService {
   async generatePdf(id: number, response: Response): Promise<void> {
     const guarantee = await this.getGuaranteeById(id);
     const content = getGuaranteePdfTemplate(guarantee);
-    const headerImg = await this.tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
-    const headerLogo = await this.tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
-    const footerImg = await this.tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
+    const headerImg = await tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
+    const headerLogo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+    const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
 
     await promisify(fs.writeFile)(OUT_FILE, content);
     const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
@@ -195,14 +201,14 @@ export class GuaranteesService {
     });
     promisify(fs.unlink)(OUT_FILE);
     await browser.close();
-    const stream = this.getReadableStream(buffer);
+    const stream = getReadableStream(buffer);
     stream.pipe(response as any);
   }
 
   async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto): Promise<GuaranteeEntity> {
     const guarantee = this.omitInfo(updateGuaranteeDto);
     const updatedGuarantee = await this.guaranteeRepository.save(guarantee);
-    this.removeNil(updatedGuarantee);
+    pickBy(updatedGuarantee, identity);
     updatedGuarantee.status = GuaranteeStatus[updatedGuarantee.status];
     return updatedGuarantee;
   }
@@ -227,26 +233,5 @@ export class GuaranteesService {
       guarantee.client = client;
     }
     return guarantee;
-  }
-
-  removeNil(obj) {
-    for (const propName in obj) {
-      if (obj[propName] === null || obj[propName] === undefined) {
-        delete obj[propName];
-      }
-    }
-  }
-
-  async tobase64(imgPath) {
-    return await promises.readFile(imgPath, { encoding: 'base64' });
-  }
-
-  getReadableStream(buffer: Buffer): Readable {
-    const stream = new Readable();
-
-    stream.push(buffer);
-    stream.push(null);
-
-    return stream;
   }
 }

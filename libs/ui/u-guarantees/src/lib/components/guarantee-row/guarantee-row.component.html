@@ -53,15 +53,20 @@
         Descargar PDF
       </button>
       <button mat-menu-item
-              *ngIf="!item.amount"
-              (click)="openPaymentOrderDialog.emit([item.id])">
+              *ngIf="!item.paymentOrderId"
+              (click)="createPaymentOrder.emit(item.id)">
         Generar orden de pago
       </button>
-      <button mat-menu-item
-              *ngIf="item.amount"
-              (click)="downloadPaymentOrder.emit(item.paymentOrderId)">
-        Descargar orden de pago
-      </button>
+      <ng-container *ngIf="item.paymentOrderId">
+        <button mat-menu-item
+                (click)="downloadPaymentOrder.emit(item.paymentOrderId)">
+          Descargar orden de pago
+        </button>
+        <button mat-menu-item
+                (click)="updatePaymentOrder.emit(item.paymentOrderId)">
+          Editar orden de pago
+        </button>
+      </ng-container>
     </mat-menu>
 
     <mat-menu #statusMenu="matMenu">
@@ -74,39 +79,5 @@
         </span>
       </button>
     </mat-menu>
-    <!-- <button mat-icon-button
-            matTooltip="Editar garantía"
-            [routerLink]="[item.id]">
-      <mat-icon>border_color</mat-icon>
-    </button>
-    <button mat-icon-button
-            matTooltip="Cambiar estatus"
-            [matMenuTriggerFor]="menu"
-            [loading]="loadingStatusChange">
-      <mat-icon>published_with_changes</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu"
-              xPosition="before">
-      <button *ngFor="let menuOption of menuOptions"
-              mat-menu-item
-              class="status-option my-2"
-              (click)="onChangeStatus(item.id, menuOption.value)">
-        <span class="{{ menuOption.class }} text-white text-center rounded flex-center">
-          {{ menuOption.label }}
-        </span>
-      </button>
-    </mat-menu>
-    <button mat-icon-button
-            matTooltip="Descargar PDF"
-            [loading]="loading"
-            (click)="downloadPdf.emit(item.id)">
-      <mat-icon>picture_as_pdf</mat-icon>
-    </button>
-    <button mat-icon-button
-            matTooltip="Generar orden de pago"
-            [loading]="loadingPaymentOrder"
-            (click)="generatePaymentOrder.emit([item.id])">
-      <mat-icon>local_atm</mat-icon>
-    </button> -->
   </div>
 </ivt-row>

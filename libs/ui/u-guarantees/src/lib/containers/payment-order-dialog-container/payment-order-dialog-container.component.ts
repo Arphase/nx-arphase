@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PaymentOrder } from '@ivt/c-data';
+import { filterNil } from '@ivt/c-utils';
 import { GuaranteeCollectionService, PaymentOrderCollectionService, PaymentOrderDataService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
-import { filterNil } from '@ivt/c-utils';
+import { get } from 'lodash';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
@@ -22,7 +23,7 @@ export class PaymentOrderDialogContainerComponent extends IvtFormContainerCompon
     protected paymentOrderCollectionService: PaymentOrderCollectionService,
     private guaranteeCollectiionService: GuaranteeCollectionService,
     private paymentOrderDataService: PaymentOrderDataService,
-    @Inject(MAT_DIALOG_DATA) public data
+    @Inject(MAT_DIALOG_DATA) public data: number[]
   ) {
     super(paymentOrderCollectionService);
   }
@@ -34,7 +35,9 @@ export class PaymentOrderDialogContainerComponent extends IvtFormContainerCompon
         paymentOrder.guarantees.map(guarantee => ({ ...guarantee, paymentOrderId: currentPaymentOrder.id }))
       );
     });
-    this.paymentOrderCollectionService.add(paymentOrder);
+    get(paymentOrder, 'id')
+      ? this.paymentOrderCollectionService.update(paymentOrder)
+      : this.paymentOrderCollectionService.add(paymentOrder);
   }
 
   downloadPaymentOrder(id: number): void {

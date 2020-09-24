@@ -1,14 +1,22 @@
-import { GuaranteeRepository, OUT_FILE, PaymentOrderRepository, transformFolio } from '@ivt/a-state';
+import {
+  getReadableStream,
+  GuaranteeRepository,
+  OUT_FILE,
+  PaymentOrderRepository,
+  tobase64,
+  transformFolio,
+} from '@ivt/a-state';
+import { PaymentOrder } from '@ivt/c-data';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
-import fs, { promises } from 'fs';
+import fs from 'fs';
 import { omit } from 'lodash';
 import moment from 'moment';
 import puppeteer from 'puppeteer';
-import { Readable } from 'stream';
 import { Connection, getManager } from 'typeorm';
 import { promisify } from 'util';
 
 import { CreatePaymentOrderDto } from '../dto/create-payment-order.dto';
+import { UpdatePaymentOrderDto } from '../dto/update-payment-order.dto';
 
 @Injectable()
 export class PaymentOrdersService {
@@ -20,7 +28,21 @@ export class PaymentOrdersService {
     this.guaranteeRepository = this.connection.getCustomRepository(GuaranteeRepository);
   }
 
-  async createPaymentOrder(paymentOrder: CreatePaymentOrderDto) {
+  async getPaymentOrder(id: number): Promise<PaymentOrder> {
+    const paymentOrder = await this.paymentOrderRepository
+      .createQueryBuilder('paymentOrder')
+      .leftJoinAndSelect('paymentOrder.guarantees', 'guarantees')
+      .where('paymentOrder.id = :id', { id })
+      .getOne();
+
+    if (!paymentOrder) {
+      throw new NotFoundException(`PaymentOrder with id "${id}" not found`);
+    }
+
+    return paymentOrder;
+  }
+
+  async createPaymentOrder(paymentOrder: CreatePaymentOrderDto): Promise<PaymentOrder> {
     const newPaymentOrder = await this.paymentOrderRepository.create(omit(paymentOrder, 'guarantees'));
     const ids = paymentOrder.guarantees.map(guarantee => guarantee.id);
     const guarantees = await this.guaranteeRepository.findByIds(ids);
@@ -41,7 +63,27 @@ export class PaymentOrdersService {
     return newPaymentOrder;
   }
 
-  async generatePaymentOrderPdf(id: number, response: Response) {
+  async updatePaymentOrder(paymentOrder: UpdatePaymentOrderDto): Promise<PaymentOrder> {
+    const updatedPaymentOrder = this.paymentOrderRepository.create(paymentOrder);
+    const updatedGuarantees = await this.guaranteeRepository.create(paymentOrder.guarantees);
+
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
+      await queryRunner.manager.save(updatedGuarantees);
+      await queryRunner.manager.save(updatedPaymentOrder);
+      await queryRunner.commitTransaction();
+    } catch (error) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
+    return updatedPaymentOrder;
+  }
+
+  async generatePaymentOrderPdf(id: number, response: Response): Promise<void> {
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'MXN',
@@ -71,8 +113,8 @@ export class PaymentOrdersService {
     });
     const guaranteesRows = guaranteesRowsArray.join(' ');
 
-    const headerImg = await this.tobase64('apps/innovatech-api/src/assets/img/logo_innovatech_garantias.jpg');
-    const footerImg = await this.tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
+    const headerImg = await tobase64('apps/innovatech-api/src/assets/img/logo_innovatech_garantias.jpg');
+    const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
 
     const content = `
       <html>
@@ -252,25 +294,7 @@ export class PaymentOrdersService {
     });
     promisify(fs.unlink)(OUT_FILE); // cleanup
     await browser.close();
-    const stream = this.getReadableStream(buffer);
+    const stream = getReadableStream(buffer);
     stream.pipe(response as any);
-  }
-
-  async tobase64(imgPath) {
-    return await promises.readFile(imgPath, { encoding: 'base64' });
-  }
-
-  getReadableStream(buffer: Buffer): Readable {
-    const stream = new Readable();
-
-    stream.push(buffer);
-    stream.push(null);
-
-    return stream;
-  }
-
-  transformFolio(value: number): unknown {
-    const zeros = 5 - String(value).length;
-    return `${new Array(zeros).join('0')}${value}`;
   }
 }

@@ -1,7 +1,9 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Res, UseGuards } from '@nestjs/common';
+import { PaymentOrder } from '@ivt/c-data';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { CreatePaymentOrderDto } from '../dto/create-payment-order.dto';
+import { UpdatePaymentOrderDto } from '../dto/update-payment-order.dto';
 import { PaymentOrdersService } from '../services/payment-orders.service';
 
 @Controller('paymentOrders')
@@ -9,13 +11,23 @@ import { PaymentOrdersService } from '../services/payment-orders.service';
 export class PaymentOrdersController {
   constructor(private paymentOrdersService: PaymentOrdersService) {}
 
+  @Get(':id')
+  async getPaymentOrder(@Param('id', ParseIntPipe) id: number): Promise<PaymentOrder> {
+    return this.paymentOrdersService.getPaymentOrder(id);
+  }
+
   @Post('')
-  async createPaymentOrder(@Body() paymentOrder: CreatePaymentOrderDto) {
+  async createPaymentOrder(@Body() paymentOrder: CreatePaymentOrderDto): Promise<PaymentOrder> {
     return this.paymentOrdersService.createPaymentOrder(paymentOrder);
   }
 
+  @Put(':id')
+  async updatePaymentOrder(@Body() paymentOrder: UpdatePaymentOrderDto): Promise<PaymentOrder> {
+    return this.paymentOrdersService.updatePaymentOrder(paymentOrder);
+  }
+
   @Get(':id/pdf')
-  async generatePaymentOrderPdf(@Param('id', ParseIntPipe) id: number, @Res() response: Response) {
+  async generatePaymentOrderPdf(@Param('id', ParseIntPipe) id: number, @Res() response: Response): Promise<void> {
     return this.paymentOrdersService.generatePaymentOrderPdf(id, response);
   }
 }

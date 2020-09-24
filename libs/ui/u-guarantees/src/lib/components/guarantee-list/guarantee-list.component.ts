@@ -27,7 +27,7 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   statusOptions = statusOptions;
   selectedIds = new SelectionModel<number>(true, []);
   @Output() downloadPdf = new EventEmitter<number>();
-  @Output() openPaymentOrderDialog = new EventEmitter<number[]>();
+  @Output() createPaymentOrder = new EventEmitter<number[]>();
 
   constructor(public dialog: MatDialog) {
     super();
