@@ -1,4 +1,4 @@
-import { UserRole } from '@ivt/c-data';
+import { UserRoles } from '@ivt/c-data';
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, Matches, MaxLength, MinLength } from 'class-validator';
 
 export class AuthCredentialsDto {
@@ -43,6 +43,6 @@ export class SignUpCredentialsDto {
   })
   password: string;
 
-  @IsEnum(UserRole)
-  role: UserRole;
+  @IsEnum(UserRoles)
+  role: UserRoles;
 }

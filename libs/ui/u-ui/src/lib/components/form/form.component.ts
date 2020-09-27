@@ -13,6 +13,7 @@ export class IvtFormComponent<T = any> extends IvtSubscriberComponent {
   @Input() form: FormGroup;
   @Input() item: Partial<T>;
   @Input() loading: boolean;
+  @Input() isEditable = true;
   @Output() submitForm = new EventEmitter<T>();
 
   get values(): T {

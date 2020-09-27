@@ -1,4 +1,3 @@
-import { UserRole } from '@ivt/c-data';
 import { Action, createReducer, on } from '@ngrx/store';
 
 import * as AuthActions from './auth.actions';
@@ -12,7 +11,7 @@ export const initialState: AuthState = {
     lastName: localStorage.getItem('lastName'),
     secondLastName: localStorage.getItem('secondLastName'),
     email: localStorage.getItem('email'),
-    role: localStorage.getItem('role') as UserRole,
+    role: localStorage.getItem('role'),
     token: localStorage.getItem('token'),
   },
 };
@@ -25,8 +24,8 @@ const authReducer = createReducer(
   })),
   on(AuthActions.logout, state => ({
     ...state,
-    user: null
-  })),
+    user: null,
+  }))
 );
 
 export function reducer(state: AuthState, action: Action) {
