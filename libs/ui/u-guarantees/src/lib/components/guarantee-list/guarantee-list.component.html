@@ -3,7 +3,7 @@
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
 
-  <div class="col-3 flex-start">
+  <div class="col-2 flex-start">
     <button mat-icon-button
             [ngClass]="{ 'bg-primary text-white': showFilters }"
             matTooltip="Filtrar"
@@ -18,8 +18,11 @@
       <mat-icon class="rotate-y-180">reply</mat-icon>
     </button> -->
   </div>
+  <div class="col-2 flex-center">
+    <h6 class="m-0"> Resultado(s): {{ list.length }} </h6>
+  </div>
 
-  <div class="col-3 flex-end pr-0">
+  <div class="col flex-end pr-0">
     <button mat-raised-button
             [routerLink]="['new']"
             type="button"

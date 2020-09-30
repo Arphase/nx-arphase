@@ -12,7 +12,7 @@ export const columns: IvtColumns = [
   },
   {
     label: 'Folio',
-    prop: 'id',
+    prop: 'guarantee.id',
     sortable: true,
     colSizes: {
       xs: '1',
@@ -20,38 +20,46 @@ export const columns: IvtColumns = [
   },
   {
     label: 'Placa',
-    prop: 'vin',
+    prop: 'guarantee.vin',
     sortable: false,
+  },
+  {
+    label: 'Distribuidor',
+    prop: 'paymentOrder.distributor',
+    sortable: true,
     colSizes: {
       xs: '2',
-      lg: '3'
+    },
+    breakpointShow: {
+      lg: true,
+      xl: true,
     },
   },
   {
     label: 'Inicio',
-    prop: 'startDate',
+    prop: 'guarantee.startDate',
     sortable: true,
     colSizes: {
       xs: '2',
-      lg: '1'
+      lg: '1',
     },
   },
   {
     label: 'Fin',
-    prop: 'endDate',
+    prop: 'guarantee.endDate',
     sortable: true,
     colSizes: {
       xs: '2',
-      lg: '1'
+      lg: '1',
     },
   },
   {
     label: 'Captura',
-    prop: 'createdAt',
+    prop: 'guarantee.createdAt',
     sortable: true,
     colSizes: {
       xs: '2',
-      lg: '1'
+      lg: '1',
     },
     breakpointShow: {
       lg: true,
@@ -60,7 +68,7 @@ export const columns: IvtColumns = [
   },
   {
     label: 'Importe',
-    prop: 'amount',
+    prop: 'guarantee.amount',
     sortable: true,
     colSizes: {
       xs: '2',
@@ -72,6 +80,9 @@ export const columns: IvtColumns = [
     prop: 'actions',
     sortable: false,
     alignment: 'right',
+    colSizes: {
+      xs: 'auto',
+    },
   },
 ];
 
