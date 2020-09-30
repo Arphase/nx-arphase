@@ -7,11 +7,12 @@
   .ivt-row-content {
     display: flex;
     align-items: center;
-    min-height: 64px;
+    min-height: 48px;
     border-radius: $border-radius;
     border: $border;
     line-height: $font-size;
     color: $ui-color;
+    font-size: $font-small;
   }
 
   &:nth-child(even) .ivt-row-content {

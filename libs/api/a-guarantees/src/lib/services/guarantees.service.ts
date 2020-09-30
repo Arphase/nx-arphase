@@ -58,7 +58,12 @@ export class GuaranteesService {
       .leftJoinAndSelect('client.physicalInfo', 'physicalPerson')
       .leftJoinAndSelect('client.moralInfo', 'moralPerson')
       .leftJoinAndSelect('client.address', 'address')
+      .leftJoinAndSelect('guarantee.paymentOrder', 'paymentOrder')
       .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
+
+    if (sort && direction) {
+      query.orderBy(`${sort}`, dir[direction]);
+    }
 
     if (startDate && endDate && dateType) {
       query.andWhere(
@@ -86,12 +91,9 @@ export class GuaranteesService {
       .addGroupBy('vehicle.id')
       .addGroupBy('physicalPerson.id')
       .addGroupBy('moralPerson.id')
+      .addGroupBy('paymentOrder.id')
       .take(limit)
       .skip(offset);
-
-    if (sort && direction) {
-      query.orderBy(`guarantee.${sort}`, dir[direction]);
-    }
 
     guarantees = await query.getMany();
     guarantees.map(guarantee => this.omitInfo(guarantee));

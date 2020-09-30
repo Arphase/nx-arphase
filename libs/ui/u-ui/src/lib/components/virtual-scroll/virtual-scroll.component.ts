@@ -23,9 +23,9 @@ export class IvtVirtualScrollComponent<T = any> {
 
   @Input() rowTemplate: TemplateRef<any>;
   @Input() height = '50vh';
-  @Input() itemSize = 64;
-  @Input() maxBufferPx = 128;
-  @Input() minBufferPx = 64;
+  @Input() itemSize = 48;
+  @Input() maxBufferPx = 96;
+  @Input() minBufferPx = 48;
   @Input() ignoreNextBatch: boolean;
   @Input() list: T[] = [];
   @Input() templateCacheSize = 20;

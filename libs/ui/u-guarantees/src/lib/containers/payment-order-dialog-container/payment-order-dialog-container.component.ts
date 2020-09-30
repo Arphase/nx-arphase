@@ -32,7 +32,11 @@ export class PaymentOrderDialogContainerComponent extends IvtFormContainerCompon
     this.paymentOrderCollectionService.clearCache();
     this.paymentOrderCollectionService.currentItem$.pipe(filterNil(), take(1)).subscribe(currentPaymentOrder => {
       this.guaranteeCollectiionService.updateManyInCache(
-        paymentOrder.guarantees.map(guarantee => ({ ...guarantee, paymentOrderId: currentPaymentOrder.id }))
+        paymentOrder.guarantees.map(guarantee => ({
+          ...guarantee,
+          paymentOrderId: currentPaymentOrder.id,
+          paymentOrder: currentPaymentOrder,
+        }))
       );
     });
     get(paymentOrder, 'id')

@@ -17,8 +17,11 @@
   <div class="col-1">
     {{ item.id | folio }}
   </div>
-  <div class="col-2 col-lg-3">
+  <div class="col">
     <ivt-text-truncate-tooltip [label]="item.vehicle?.vin"></ivt-text-truncate-tooltip>
+  </div>
+  <div class="col-2 d-none d-lg-block d-xl-block">
+    <ivt-text-truncate-tooltip [label]="item.paymentOrder?.distributor | empty"></ivt-text-truncate-tooltip>
   </div>
   <div class="col-2 col-lg-1">
     {{ item.startDate | date: "dd/MM/yyyy" }}
@@ -29,10 +32,10 @@
   <div class="col-2 col-lg-1 d-none d-lg-block d-xl-block">
     {{ item.createdAt | date: "dd/MM/yyyy" }}
   </div>
-  <div class="col-2 flex-end">
-    {{ item.amount | currency | empty }}
+  <div class="col-2 text-right">
+    <ivt-text-truncate-tooltip [label]="item.amount | currency | empty"></ivt-text-truncate-tooltip>
   </div>
-  <div class="col flex-end">
+  <div class="col-auto ml-auto">
     <button mat-icon-button
             matTooltip="Acciones"
             [loading]="loading"
@@ -62,10 +65,11 @@
                 (click)="downloadPaymentOrder.emit(item.paymentOrderId)">
           Descargar orden de pago
         </button>
-        <button mat-menu-item
+        <!-- TODO: Uncomment on next release -->
+        <!-- <button mat-menu-item
                 (click)="updatePaymentOrder.emit(item.paymentOrderId)">
           Editar orden de pago
-        </button>
+        </button> -->
       </ng-container>
     </mat-menu>
 
