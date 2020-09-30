@@ -1,4 +1,4 @@
-import { UserEntity } from '@ivt/a-users';
+import { UserEntity } from '@ivt/a-state';
 import { createParamDecorator } from '@nestjs/common';
 
 export const GetUser = createParamDecorator(

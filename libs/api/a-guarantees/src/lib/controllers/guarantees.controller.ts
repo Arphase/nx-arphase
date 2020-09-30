@@ -1,5 +1,6 @@
+import { Roles, RolesGuard } from '@ivt/a-auth';
 import { GuaranteeEntity } from '@ivt/a-state';
-import { GuaranteeSummary } from '@ivt/c-data';
+import { GuaranteeSummary, UserRoles } from '@ivt/c-data';
 import {
   Body,
   Controller,
@@ -23,7 +24,7 @@ import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import { GuaranteesService } from '../services/guarantees.service';
 
 @Controller('guarantees')
-@UseGuards(AuthGuard())
+@UseGuards(AuthGuard(), RolesGuard)
 export class GuaranteesController {
   constructor(private guaranteesService: GuaranteesService) {}
 
@@ -62,6 +63,7 @@ export class GuaranteesController {
   }
 
   @Put(':id')
+  @Roles(UserRoles.superAdmin)
   @UsePipes(new ValidationPipe({ transform: true }))
   updateGuarantee(@Body() updateGuaranteeDto: UpdateGuaranteeDto): Promise<GuaranteeEntity> {
     return this.guaranteesService.updateGuarantee(updateGuaranteeDto);

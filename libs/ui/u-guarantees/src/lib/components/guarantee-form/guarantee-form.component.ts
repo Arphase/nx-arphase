@@ -108,6 +108,10 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         },
       });
     }
+
+    if (changes.isEditable) {
+      this.isEditable ? this.form.enable() : this.form.disable();
+    }
   }
 
   personTypeChange(value: string): void {

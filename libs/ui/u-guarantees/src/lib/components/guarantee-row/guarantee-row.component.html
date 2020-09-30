@@ -42,7 +42,7 @@
     <mat-menu #actionsMenu="matMenu">
       <button mat-menu-item
               [routerLink]="[item.id]">
-        Editar garantía
+        {{ isEditable ? 'Editar' : 'Ver' }} garantía
       </button>
       <button mat-menu-item
               [matMenuTriggerFor]="statusMenu">

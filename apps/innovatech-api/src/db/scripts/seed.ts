@@ -1,5 +1,5 @@
 import { AuthService, SignUpCredentialsDto } from '@ivt/a-auth';
-import { UserRole } from '@ivt/c-data';
+import { UserRoles } from '@ivt/c-data';
 import fs from 'fs';
 import path from 'path';
 import { ConnectionOptions, createConnection } from 'typeorm';
@@ -14,22 +14,44 @@ async function run() {
   const connection = await createConnection(opt as ConnectionOptions);
   const authService = new AuthService(null, connection);
 
-  const superAdmin: SignUpCredentialsDto = {
-    firstName: 'Super',
-    lastName: 'Admin',
-    secondLastName: 'User',
-    email: 'fernando.jimenez@innovatechcorp.com',
-    password: 'Innovatech123@',
-    role: UserRole.superAdmin,
-  };
+  const users: SignUpCredentialsDto[] = [
+    {
+      firstName: 'Fernando',
+      lastName: 'Jimenez',
+      secondLastName: '',
+      email: 'fernando.jimenez@innovatechcorp.com',
+      password: 'Innovatech123@',
+      role: UserRoles.superAdmin,
+    },
+    {
+      firstName: 'Shari',
+      lastName: 'Daniel',
+      secondLastName: '',
+      email: 'shari.daniel@innovatechcorp.com',
+      password: 'Innovatech123@',
+      role: UserRoles.admin,
+    },
+    {
+      firstName: 'Alma',
+      lastName: 'Treviño',
+      secondLastName: '',
+      email: 'alma.trevino@innovatechcorp.com',
+      password: 'Innovatech123@',
+      role: UserRoles.admin,
+    },
+  ];
 
   const queryRunner = connection.createQueryRunner();
 
   const filePath = path.join(__dirname, 'sepomex-catalog.sql');
 
-  try {
-    await authService.signUp(superAdmin);
-  } catch (e) {}
+  users.forEach(async user => {
+    try {
+      await authService.signUp(user);
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
   return new Promise((resolve, reject) => {
     fs.readFile(filePath, 'utf8', async (error, data: string) => {

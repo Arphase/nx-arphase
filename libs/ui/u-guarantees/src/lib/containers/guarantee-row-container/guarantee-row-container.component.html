@@ -1,6 +1,7 @@
 <ivt-guarantee-row [loading]="loading$ | async"
                    [item]="item"
                    [isSelected]="isSelected"
+                   [isEditable]="isEditable$ | async"
                    (downloadPdf)="downloadPdf($event)"
                    (changeStatus)="changeStatus($event)"
                    (selectItem)="selectItem.emit($event)"
