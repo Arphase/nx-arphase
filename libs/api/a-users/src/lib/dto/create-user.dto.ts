@@ -1,0 +1,41 @@
+import { Transform } from 'class-transformer';
+import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { UserRoles } from '@ivt/c-data';
+import { IsRfc } from '@ivt/c-utils'
+
+export class CreateUserDto {
+  @IsNotEmpty()
+  @IsString()
+  firstName: string;
+
+  @IsOptional()
+  @IsString()
+  secondName?: string;
+
+  @IsNotEmpty()
+  @IsString()
+  lastName: string;
+
+  @IsNotEmpty()
+  @IsString()
+  secondLastName: string;
+
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
+
+  @IsNotEmpty()
+  @IsString()
+  phone: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @IsRfc('any', {
+    message: 'rfc must have rfc format',
+  })
+  rfc: string;
+
+  @Transform(value => UserRoles[value])
+  @IsEnum(UserRoles)
+  role: UserRoles | string;
+}

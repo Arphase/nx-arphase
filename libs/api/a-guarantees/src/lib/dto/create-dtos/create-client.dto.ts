@@ -10,7 +10,7 @@ import {
 } from 'class-validator';
 import { Address } from 'cluster';
 
-import { IsRfc } from '../custom-validators';
+import { IsRfc } from '@ivt/c-utils';
 import { CreateAddressDto } from './create-address.dto';
 import { CreateMoralPersonDto } from './create-moral-person.dto';
 import { CreatePhysicalPersonDto } from './create-physical-person.dto';
