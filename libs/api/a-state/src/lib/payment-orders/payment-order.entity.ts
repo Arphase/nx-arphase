@@ -1,5 +1,5 @@
 import { Guarantee, PaymentOrder } from '@ivt/c-data';
-import { BaseEntity, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { GuaranteeEntity } from '../guarantees';
 
@@ -10,6 +10,9 @@ export class PaymentOrderEntity extends BaseEntity implements PaymentOrder {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @Column()
   distributor: string;

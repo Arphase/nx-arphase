@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { GroupEntity, GroupRepository } from '@ivt/a-state';
 import { Connection } from 'typeorm';
 import { CreateGroupDto } from '../dto/create-group.dto';
+import { GetGroupsFilterDto } from '../dto/get-groups-filter.dto';
+import { dir } from '@ivt/c-utils';
 
 @Injectable()
 export class GroupsService {
@@ -15,5 +17,23 @@ export class GroupsService {
     const newGroup = await this.groupRepository.create(createGroupDto);
     await newGroup.save();
     return newGroup;
+  }
+
+  async getGroups(filterDto: Partial<GetGroupsFilterDto>): Promise<GroupEntity[]> {
+    const { limit, offset, sort, direction, groupName } = filterDto;
+    const query = this.groupRepository.createQueryBuilder('group');
+
+    if (sort && direction) {
+      query.orderBy(`${sort}`, dir[direction]);
+    }
+
+    if (groupName) {
+      query.andWhere('LOWER(group.groupName) like :groupName', { groupName: `%${groupName.toLowerCase()}%` });
+    }
+
+    query.groupBy('group.id').take(limit).skip(offset);
+
+    const groups = await query.getMany();
+    return groups;
   }
 }

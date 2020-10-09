@@ -2,11 +2,13 @@ import { Company, User, UserRoles } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   Unique,
+  UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import { CompanyEntity } from '../companies/company.entity';
@@ -16,6 +18,12 @@ import { CompanyEntity } from '../companies/company.entity';
 export class UserEntity extends BaseEntity implements User {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @Column({ nullable: true })
   rfc: string;

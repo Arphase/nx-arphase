@@ -1,6 +1,18 @@
 import { AddressEntity, UserEntity } from '@ivt/a-state';
 import { Address, Company, Group, User } from '@ivt/c-data';
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  Unique,
+  UpdateDateColumn,
+} from 'typeorm';
 import { GroupEntity } from '../groups/group.entity';
 
 @Entity('companies')
@@ -8,6 +20,12 @@ import { GroupEntity } from '../groups/group.entity';
 export class CompanyEntity extends BaseEntity implements Company {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @Column({ unique: true })
   email: string;

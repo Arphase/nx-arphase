@@ -2,11 +2,6 @@ import { IMAGE_ASSETS_PATH, transformFolio } from '@ivt/a-state';
 import { Guarantee } from '@ivt/c-data';
 import moment from 'moment';
 
-export const dir = {
-  asc: 'ASC',
-  desc: 'DESC',
-};
-
 export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
   return `
   <html>
