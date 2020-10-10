@@ -6,7 +6,6 @@ import {
   MoralPersonEntity,
   PaymentOrderEntity,
   PhysicalPersonEntity,
-  ProductEntity,
   UserEntity,
   VehicleEntity,
 } from '@ivt/a-state';
@@ -21,5 +20,4 @@ export const ENTITIES = [
   MoralPersonEntity,
   PhysicalPersonEntity,
   VehicleEntity,
-  ProductEntity
 ];
