@@ -1,3 +1,4 @@
+import { Guarantee } from '@ivt/c-data';
 import { IsArray, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreatePaymentOrderDto {
@@ -7,5 +8,5 @@ export class CreatePaymentOrderDto {
 
   @IsNotEmpty()
   @IsArray()
-  guarantees: [{ id: number; amount: number; invoiceDate: Date }];
+  guarantees: Partial<Guarantee>[];
 }

@@ -1,17 +1,12 @@
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IvtHttpErrorResponse } from '@ivt/c-data';
+import { HttpStatusCodes, IvtHttpErrorResponse } from '@ivt/c-data';
+import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 
-import { AuthService } from '../../auth';
+import { AuthService, fromAuth } from '../../auth';
 import { LoadingService } from '../services/loading.service';
 
 @Injectable()
@@ -19,12 +14,10 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(
     private loadingService: LoadingService,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private store: Store<any>
   ) {}
-  intercept(
-    request: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.loadingService.show();
     request = request.clone({
       setHeaders: {
@@ -33,14 +26,17 @@ export class TokenInterceptor implements HttpInterceptor {
     });
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        this.handleError(error.error, error.status);
+        this.handleError(error.error);
         return throwError(error);
       }),
       finalize(() => this.loadingService.hide())
     );
   }
 
-  handleError(error: IvtHttpErrorResponse, status: number): void {
+  handleError(error: IvtHttpErrorResponse): void {
+    if (error.statusCode === HttpStatusCodes.Unauthorized) {
+      this.store.dispatch(fromAuth.actions.logout());
+    }
     this.toastr.error(`${error.message}`);
   }
 }

@@ -45,6 +45,7 @@ enum ValidatorTypes {
 export class IvtFormFieldComponent extends MatFormField
   implements AfterContentInit, OnDestroy {
   @Input() label: string;
+  @Input() hideLabel: boolean;
   @ContentChild(IvtInputDirective) input: IvtInputDirective;
   @ContentChild(MatSelect) select: MatSelect;
   error: string;

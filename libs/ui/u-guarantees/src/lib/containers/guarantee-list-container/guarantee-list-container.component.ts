@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Guarantee } from '@ivt/c-data';
-import { GuaranteeCollectionService } from '@ivt/u-state';
+import { GuaranteeCollectionService, GuaranteeDataService, PaymentOrderCollectionService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -17,16 +17,21 @@ import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-co
 export class GuaranteeListContainerComponent extends IvtListContainerComponent<Guarantee> {
   clearSelectedSubject = new BehaviorSubject<boolean>(false);
   clearSelected$ = this.clearSelectedSubject.asObservable();
+  excelFileName = 'Garantias';
 
-  constructor(protected guaranteeCollectionService: GuaranteeCollectionService, private dialog: MatDialog) {
-    super(guaranteeCollectionService);
+  constructor(
+    protected guaranteeCollectionService: GuaranteeCollectionService,
+    protected guaranteeDataService: GuaranteeDataService,
+    private paymentOrderCollectionService: PaymentOrderCollectionService,
+    private dialog: MatDialog
+  ) {
+    super(guaranteeCollectionService, guaranteeDataService);
   }
 
-  openPaymentOrderDialog(guaranteeIds: number[]): void {
+  createPaymentOrder(guaranteeIds: number[]): void {
+    this.paymentOrderCollectionService.removeOneFromCache(null);
     this.dialog
-      .open(PaymentOrderDialogContainerComponent, {
-        data: guaranteeIds,
-      })
+      .open(PaymentOrderDialogContainerComponent, { data: guaranteeIds })
       .afterClosed()
       .pipe(take(1))
       .subscribe(() => this.clearSelectedSubject.next(true));

@@ -1,0 +1,18 @@
+<div #container
+     class="text-truncate"
+     tabindex="-1"
+     cdkMonitorSubtreeFocus
+     [matTooltip]="label"
+     [matTooltipDisabled]="disabled || disabledTooltip"
+     (window:resize)="onResize()">
+  <span #labelElement
+        [ngClass]="className"
+        (click)="onResize()">
+    <ng-container [ngTemplateOutlet]="template || defaultTemplate"></ng-container>
+  </span>
+</div>
+
+
+<ng-template #defaultTemplate>
+  {{ label }}
+</ng-template>

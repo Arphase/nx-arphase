@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
-import { PaymentOrder } from '@ivt/c-data';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Guarantee, PaymentOrder } from '@ivt/c-data';
 import { IvtColumns, IvtFormComponent } from '@ivt/u-ui';
 
 @Component({
@@ -16,25 +16,32 @@ export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> 
       label: 'Folio',
       prop: 'id',
       sortable: false,
-      colSize: 2,
+      colSizes: {
+        xs: '2',
+      },
     },
     {
       label: 'Fecha de factura',
       prop: 'invoiceDate',
       sortable: false,
-      colSize: 5,
+      colSizes: {
+        xs: '5',
+      },
     },
     {
       label: 'Importe',
       prop: 'amount',
       sortable: false,
-      colSize: 5,
+      colSizes: {
+        xs: '5',
+      },
     },
   ];
 
   constructor(private fb: FormBuilder) {
     super();
     this.form = this.fb.group({
+      id: null,
       distributor: [null, Validators.required],
       guarantees: this.fb.array([]),
     });
@@ -46,16 +53,25 @@ export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> 
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.selectedIds && !!this.selectedIds) {
-      this.selectedIds.forEach(id => this.guaranteesFormArray.push(this.createGuaranteeForm(id)));
+      this.selectedIds.forEach(id => this.guaranteesFormArray.push(this.createGuaranteeForm({ id })));
+    }
+
+    if (changes.item && this.item) {
+      this.form.patchValue(this.item);
+      this.item.guarantees.forEach(guarantee => this.guaranteesFormArray.push(this.createGuaranteeForm(guarantee)));
     }
   }
 
-  createGuaranteeForm(id: number) {
-    const guarantee = this.fb.group({
-      id,
+  createGuaranteeForm(guarantee: Partial<Guarantee>): FormGroup {
+    const formControl = this.fb.group({
+      id: guarantee.id,
       invoiceDate: [null, Validators.required],
       amount: [0, Validators.required],
     });
-    return guarantee;
+
+    if (guarantee.amount) {
+      formControl.patchValue(guarantee);
+    }
+    return formControl;
   }
 }

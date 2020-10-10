@@ -1,11 +1,6 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import {
-  DefaultDataServiceConfig,
-  EntityCollectionReducerMethodsFactory,
-  EntityDataModule,
-  EntityDataService,
-} from '@ngrx/data';
+import { EntityCollectionReducerMethodsFactory, EntityDataModule, EntityDataService } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';

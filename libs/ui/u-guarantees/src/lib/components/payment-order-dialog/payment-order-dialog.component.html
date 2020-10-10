@@ -1,6 +1,8 @@
 <form [formGroup]="form"
       (ngSubmit)="submit()">
-  <h1 class="text-primary font-weight-light h3">Generar Orden de Pago</h1>
+  <h1 class="text-primary font-weight-light h3">
+    {{ item?.id ? 'Editar' : 'Generar' }} Orden de Pago
+  </h1>
 
   <ng-container mat-dialog-content>
     <div class="row mt-3 mb-2">
@@ -23,7 +25,8 @@
         </span>
       </div>
       <div class="col-5">
-        <ivt-form-field label="Fecha de factura">
+        <ivt-form-field label="Fecha de factura"
+                        [hideLabel]="true">
           <input ivtInput
                  [matDatepicker]="invoiceDate"
                  formControlName="invoiceDate">
@@ -33,7 +36,8 @@
         </ivt-form-field>
       </div>
       <div class="col-5">
-        <ivt-form-field label="Importe">
+        <ivt-form-field label="Importe"
+                        [hideLabel]="true">
           <input ivtInput
                  formControlName="amount"
                  prefix="$ "
@@ -51,6 +55,6 @@
     <button mat-raised-button
             [loading]="loading"
             type="submit"
-            color="primary">Generar orden de pago</button>
+            color="primary">Guardar</button>
   </div>
 </form>

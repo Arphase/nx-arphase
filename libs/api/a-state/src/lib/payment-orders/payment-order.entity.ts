@@ -16,6 +16,7 @@ export class PaymentOrderEntity extends BaseEntity implements PaymentOrder {
 
   @OneToMany(type => GuaranteeEntity, guarantee => guarantee.paymentOrder, {
     cascade: true,
+    eager: true
   })
   guarantees: Guarantee[];
 }
