@@ -22,5 +22,5 @@ export class GetGroupsFilterDto {
   @IsOptional()
   @IsNotEmpty()
   @IsString()
-  groupName: string;
+  name: string;
 }

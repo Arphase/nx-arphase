@@ -16,7 +16,6 @@ import {
 import { GroupEntity } from '../groups/group.entity';
 
 @Entity('companies')
-@Unique(['email'])
 export class CompanyEntity extends BaseEntity implements Company {
   @PrimaryGeneratedColumn()
   id: number;
@@ -27,7 +26,7 @@ export class CompanyEntity extends BaseEntity implements Company {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column({ unique: true })
+  @Column()
   email: string;
 
   @Column()

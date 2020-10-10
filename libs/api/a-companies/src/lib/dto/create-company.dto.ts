@@ -4,7 +4,7 @@ import { Address } from 'cluster';
 import { User } from '@ivt/c-data';
 import { CreateAddressDto } from '@ivt/a-guarantees';
 import { CreateUserDto } from '@ivt/a-users';
-import { IsRfc } from '@ivt/c-utils'
+import { IsRfc, rfcValidator } from '@ivt/c-utils'
 
 export class CreateCompanyDto {
   @IsNotEmpty()
@@ -13,7 +13,7 @@ export class CreateCompanyDto {
 
   @IsNotEmpty()
   @IsString()
-  @IsRfc('any', {
+  @IsRfc(rfcValidator.any , {
     message: 'rfc must have rfc format',
   })
   rfc: string;

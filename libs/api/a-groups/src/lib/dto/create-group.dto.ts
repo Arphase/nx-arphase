@@ -6,7 +6,7 @@ import { Type } from 'class-transformer';
 export class CreateGroupDto {
   @IsNotEmpty()
   @IsString()
-  groupName: string;
+  name: string;
 
   @IsNotEmpty()
   @IsString()

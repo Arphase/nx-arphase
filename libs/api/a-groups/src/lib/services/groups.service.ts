@@ -20,15 +20,15 @@ export class GroupsService {
   }
 
   async getGroups(filterDto: Partial<GetGroupsFilterDto>): Promise<GroupEntity[]> {
-    const { limit, offset, sort, direction, groupName } = filterDto;
+    const { limit, offset, sort, direction, name } = filterDto;
     const query = this.groupRepository.createQueryBuilder('group');
 
     if (sort && direction) {
       query.orderBy(`${sort}`, dir[direction]);
     }
 
-    if (groupName) {
-      query.andWhere('LOWER(group.groupName) like :groupName', { groupName: `%${groupName.toLowerCase()}%` });
+    if (name) {
+      query.andWhere('LOWER(group.name) like :name', { name: `%${name.toLowerCase()}%` });
     }
 
     query.groupBy('group.id').take(limit).skip(offset);
