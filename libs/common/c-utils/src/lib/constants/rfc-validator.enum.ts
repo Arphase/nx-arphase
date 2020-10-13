@@ -1,4 +1,6 @@
-export enum rfcValidator {
-  personType = 1,
-  any = 2,
+export enum RfcValidatorTypes {
+  moral = 1,
+  physical = 2,
+  personType = 3,
+  any = 4,
 }

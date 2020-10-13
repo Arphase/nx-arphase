@@ -1,7 +1,7 @@
 import { Transform } from 'class-transformer';
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { UserRoles } from '@ivt/c-data';
-import { IsRfc, rfcValidator } from '@ivt/c-utils'
+import { IsRfc, RfcValidatorTypes } from '@ivt/c-utils'
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -31,7 +31,7 @@ export class CreateUserDto {
   @IsOptional()
   @IsNotEmpty()
   @IsString()
-  @IsRfc(rfcValidator.any, {
+  @IsRfc(RfcValidatorTypes.any, {
     message: 'rfc must have rfc format',
   })
   rfc: string;

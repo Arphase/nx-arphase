@@ -1,13 +1,13 @@
 import { PersonTypes } from '@ivt/c-data';
 import { ValidationOptions, registerDecorator, ValidationArguments } from 'class-validator';
-import { rfcValidator } from '../constants';
+import { RfcValidatorTypes } from '../constants';
 import { isRfc, validations } from '../constants/validators.constants';
 
-export function validatePersonTypeRfc(type: rfcValidator | string, rfc: string): boolean {
-  return type === rfcValidator.any ? isRfc(rfc) : validations[PersonTypes[type]](rfc);
+export function validatePersonTypeRfc(type: RfcValidatorTypes | string, rfc: string): boolean {
+  return type === RfcValidatorTypes.any ? isRfc(rfc) : validations[PersonTypes[type]](rfc);
 }
 
-export function IsRfc(property: rfcValidator, validationOptions?: ValidationOptions) {
+export function IsRfc(property: RfcValidatorTypes, validationOptions?: ValidationOptions) {
   return function (object: Object, propertyName: string) {
     registerDecorator({
       name: 'IsRfc',
@@ -19,9 +19,9 @@ export function IsRfc(property: rfcValidator, validationOptions?: ValidationOpti
         validate(value: any, args: ValidationArguments) {
           const [relatedPropertyName] = args.constraints;
           const relatedValue =
-            relatedPropertyName !== rfcValidator.any
-              ? (args.object as any)[rfcValidator[relatedPropertyName]]
-              : rfcValidator.any;
+            relatedPropertyName === RfcValidatorTypes.personType
+              ? (args.object as any)[RfcValidatorTypes[relatedPropertyName]]
+              : relatedPropertyName;
           return typeof value === 'string' && validatePersonTypeRfc(relatedValue, value);
         },
       },

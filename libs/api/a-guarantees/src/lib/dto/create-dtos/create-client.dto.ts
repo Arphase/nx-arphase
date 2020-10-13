@@ -10,7 +10,7 @@ import {
 } from 'class-validator';
 import { Address } from 'cluster';
 
-import { IsRfc, rfcValidator } from '@ivt/c-utils';
+import { IsRfc, RfcValidatorTypes } from '@ivt/c-utils';
 import { CreateAddressDto } from './create-address.dto';
 import { CreateMoralPersonDto } from './create-moral-person.dto';
 import { CreatePhysicalPersonDto } from './create-physical-person.dto';
@@ -35,7 +35,7 @@ export class CreateClientDto {
 
   @IsNotEmpty()
   @IsString()
-  @IsRfc(rfcValidator.personType, {
+  @IsRfc(RfcValidatorTypes.personType, {
     message: 'rfc must have the format of the person type',
   })
   rfc: string;
