@@ -19,7 +19,8 @@ import * as XLSX from 'xlsx';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
-import { dir, getGuaranteePdfTemplate } from './guarantees.service.constants';
+import { getGuaranteePdfTemplate } from './guarantees.service.constants';
+import { dir } from '@ivt/c-utils';
 
 @Injectable()
 export class GuaranteesService {

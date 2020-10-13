@@ -8,6 +8,7 @@ export interface Guarantee {
   client: Client;
   vehicle: Vehicle;
   createdAt: Date;
+  updatedAt: Date;
   status: GuaranteeStatus | string;
   startDate: Date;
   endDate: Date;

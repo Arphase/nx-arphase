@@ -1,18 +1,32 @@
-import { User, UserRoles } from '@ivt/c-data';
+import { Company, User, UserRoles } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   Unique,
+  UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
+import { CompanyEntity } from '../companies/company.entity';
 
 @Entity('users')
 @Unique(['email'])
 export class UserEntity extends BaseEntity implements User {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @Column({ nullable: true })
+  rfc: string;
 
   @Column()
   firstName: string;
@@ -29,10 +43,13 @@ export class UserEntity extends BaseEntity implements User {
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   password: string;
 
-  @Column()
+  @Column({ nullable: true })
+  phone: string;
+
+  @Column({ nullable: true })
   salt: string;
 
   @Column({
@@ -44,6 +61,13 @@ export class UserEntity extends BaseEntity implements User {
     },
   })
   role: UserRoles;
+
+  @ManyToOne(type => CompanyEntity, company => company.users)
+  @JoinColumn({ name: 'companyId' })
+  company: Company;
+
+  @Column({ nullable: true })
+  companyId: number;
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

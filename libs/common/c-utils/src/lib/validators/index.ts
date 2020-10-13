@@ -1,1 +1,2 @@
-export * from './custom.validators';
+export * from './angular.validators';
+export * from './dto.validators';

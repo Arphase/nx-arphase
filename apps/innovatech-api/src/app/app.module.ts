@@ -1,4 +1,5 @@
 import { AuthModule } from '@ivt/a-auth';
+import { GroupsModule } from '@ivt/a-groups';
 import { GuaranteesModule } from '@ivt/a-guarantees';
 import { LocalitiesModule } from '@ivt/a-localities';
 import { PaymentOrdersModule } from '@ivt/a-payment-orders';
@@ -9,7 +10,14 @@ import config from '../db/config/ormconfig';
 import { AppController } from './app.controller';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), AuthModule, GuaranteesModule, LocalitiesModule, PaymentOrdersModule],
+  imports: [
+    TypeOrmModule.forRoot(config),
+    AuthModule,
+    GroupsModule,
+    GuaranteesModule,
+    LocalitiesModule,
+    PaymentOrdersModule,
+  ],
   controllers: [AppController],
 })
 export class AppModule {}
