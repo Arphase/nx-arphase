@@ -22,6 +22,8 @@
       "@api/*": ["apps/innovatech-api/src/app/*"],
       "@api/env/*": ["apps/innovatech-api/src/environments/*"],
       "@ivt/a-auth": ["libs/api/a-auth/src/index.ts"],
+      "@ivt/a-groups": ["libs/api/a-groups/src/index.ts"],
+      "@ivt/a-companies": ["libs/api/a-companies/src/index.ts"],
       "@ivt/a-guarantees": ["libs/api/a-guarantees/src/index.ts"],
       "@ivt/a-localities": ["libs/api/a-localities/src/index.ts"],
       "@ivt/a-payment-orders": ["libs/api/a-payment-orders/src/index.ts"],

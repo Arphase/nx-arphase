@@ -170,7 +170,7 @@ Run `npm run start:api` for a dev server. Navigate to http://localhost:3333/. Th
 ### Code scaffolding
 Unfortunately I haven't found any way to scaffold NestJS code using Nrwl, what I usually do is the following: 
 
-1) Install the nest cli with `npm i -g @nest/cli`
+1) Install the nest cli with `npm i -g @nestjs/cli`
 2) Go the the app project `cd apps/innovatech-api/src/app`
 3) Run the commands
 

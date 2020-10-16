@@ -1,6 +1,8 @@
 import {
   AddressEntity,
   ClientEntity,
+  CompanyEntity,
+  GroupEntity,
   GuaranteeEntity,
   LocalityEntity,
   MoralPersonEntity,
@@ -21,5 +23,7 @@ export const ENTITIES = [
   MoralPersonEntity,
   PhysicalPersonEntity,
   VehicleEntity,
-  ProductEntity
+  ProductEntity,
+  GroupEntity,
+  CompanyEntity,
 ];
