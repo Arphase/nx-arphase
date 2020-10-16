@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Connection } from 'typeorm';
 
 import { CreateProductDto } from '../dto/create-products.dto';
+import { Product } from '@ivt/c-data';
 
 @Injectable()
 export class ProductService {
@@ -12,7 +13,7 @@ export class ProductService {
     this.productRepository = this.connection.getCustomRepository(ProductRepository);
   }
 
-  async createProduct(createProductDto: CreateProductDto): Promise<ProductEntity> {
+  async createProduct(createProductDto: CreateProductDto): Promise<Product> {
     const newProduct = await this.productRepository.create({
       ...createProductDto,
     });

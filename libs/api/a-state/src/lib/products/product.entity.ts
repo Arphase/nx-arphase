@@ -1,5 +1,5 @@
 import { Product } from '@ivt/c-data';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity('products')
 export class ProductEntity extends BaseEntity implements Product {
@@ -8,6 +8,12 @@ export class ProductEntity extends BaseEntity implements Product {
 
   @Column()
   price: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @Column()
   template: string;
