@@ -1,3 +1,5 @@
+import { UserRoles } from '../enums/user-roles.enum';
+
 export interface User {
   id?: number;
   firstName: string;
@@ -8,15 +10,6 @@ export interface User {
   password?: string;
   salt?: string;
   token?: string;
-  role: UserRole;
+  role: UserRoles | string;
 }
 
-export interface UserCredentials {
-  email: string;
-  password: string;
-}
-
-export enum UserRole {
-  superAdmin = 'superAdmin',
-  agencyUser = 'agencyUser',
-}

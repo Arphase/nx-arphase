@@ -1,19 +1,20 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { Guarantee, GuaranteeStatus, PaymentOrder } from '@ivt/c-data';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Guarantee, GuaranteeStatus, statusLabels } from '@ivt/c-data';
 import {
   GuaranteeCollectionService,
   GuaranteeDataService,
   PaymentOrderCollectionService,
   PaymentOrderDataService,
+  PermissionService,
+  PermissionTypes,
 } from '@ivt/u-state';
-import { IvtRowComponent } from '@ivt/u-ui';
+import { IvtFolioPipe, IvtRowComponent } from '@ivt/u-ui';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
-import { statusLabels } from '../../components/guarantee-row/guarantee-row.constants';
 import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'ivt-guarantee-row-container',
@@ -24,14 +25,17 @@ import { MatDialog } from '@angular/material/dialog';
 export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
+  isEditable$ = this.permissionService.hasUpdatePermission(...[PermissionTypes.Guarantees]);
 
   constructor(
     private guaranteeCollectiionService: GuaranteeCollectionService,
     private guaranteeDataService: GuaranteeDataService,
-    protected paymentOrderCollectionService: PaymentOrderCollectionService,
+    private paymentOrderCollectionService: PaymentOrderCollectionService,
     private paymentOrderDataService: PaymentOrderDataService,
     private dialog: MatDialog,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private folioPipe: IvtFolioPipe,
+    private permissionService: PermissionService
   ) {
     super();
   }
@@ -57,15 +61,23 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
       )
       .subscribe(() =>
         this.toastr.success(
-          `La garantía con folio ${guarantee.id} ahora está ${statusLabels[
+          `La garantía con folio ${this.folioPipe.transform(guarantee.id)} ahora está ${statusLabels[
             GuaranteeStatus[GuaranteeStatus[guarantee.status]]
           ].toLowerCase()}`
         )
       );
   }
 
-  openPaymentOrderDialog(guaranteeId: number): void {
-    this.dialog.open(PaymentOrderDialogContainerComponent, { data: guaranteeId });
+  createPaymentOrder(guaranteeId: number): void {
+    this.paymentOrderCollectionService.removeOneFromCache(null);
+    this.dialog.open(PaymentOrderDialogContainerComponent, { data: [guaranteeId] });
+  }
+
+  updatePaymentOrder(paymentOrderId: number): void {
+    this.paymentOrderCollectionService
+      .getByKey(paymentOrderId)
+      .pipe(take(1))
+      .subscribe(() => this.dialog.open(PaymentOrderDialogContainerComponent));
   }
 
   downloadPaymentOrder(id: number): void {

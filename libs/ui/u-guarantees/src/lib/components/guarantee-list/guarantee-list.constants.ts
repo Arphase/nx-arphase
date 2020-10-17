@@ -6,51 +6,90 @@ export const columns: IvtColumns = [
     label: '',
     prop: 'checkbox',
     sortable: false,
-    colSize: 1,
+    colSizes: {
+      xs: '1',
+    },
   },
   {
     label: 'Folio',
-    prop: 'id',
+    prop: 'guarantee.id',
     sortable: true,
-    colSize: 1,
+    colSizes: {
+      xs: '1',
+    },
   },
   {
     label: 'Placa',
-    prop: 'vin',
+    prop: 'guarantee.vin',
     sortable: false,
-    colSize: 2,
   },
   {
-    label: 'Fecha inicio',
-    prop: 'startDate',
+    label: 'Distribuidor',
+    prop: 'paymentOrder.distributor',
     sortable: true,
-    colSize: 2,
+    colSizes: {
+      xs: '2',
+    },
+    breakpointShow: {
+      lg: true,
+      xl: true,
+    },
   },
   {
-    label: 'Fecha fin',
-    prop: 'endDate',
+    label: 'Inicio',
+    prop: 'guarantee.startDate',
     sortable: true,
-    colSize: 2,
+    colSizes: {
+      xs: '2',
+      lg: '1',
+    },
+  },
+  {
+    label: 'Fin',
+    prop: 'guarantee.endDate',
+    sortable: true,
+    colSizes: {
+      xs: '2',
+      lg: '1',
+    },
+  },
+  {
+    label: 'Captura',
+    prop: 'guarantee.createdAt',
+    sortable: true,
+    colSizes: {
+      xs: '2',
+      lg: '1',
+    },
+    breakpointShow: {
+      lg: true,
+      xl: true,
+    },
   },
   {
     label: 'Importe',
-    prop: 'amount',
+    prop: 'guarantee.amount',
     sortable: true,
-    colSize: 2,
+    colSizes: {
+      xs: '2',
+    },
     alignment: 'right',
   },
   {
     label: 'Acciones',
     prop: 'actions',
     sortable: false,
-    colSize: 2,
     alignment: 'right',
+    colSizes: {
+      xs: 'auto',
+    },
   },
 ];
 
 export const dateTypeOptions: Select[] = [
-  { label: 'Fecha inicio', value: 'startDate' },
-  { label: 'Fecha fin', value: 'endDate' },
+  { label: 'Inicio', value: 'startDate' },
+  { label: 'Fin', value: 'endDate' },
+  { label: 'Captura', value: 'createdAt' },
 ];
 
 export const statusOptions: Select[] = [

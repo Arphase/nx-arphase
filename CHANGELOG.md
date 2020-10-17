@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://bitbucket.org/arphase/innovatech/compare/v1.0.0...v1.1.0) (2020-10-10)
+
+
+### Features
+
+* **auth:** create new user role ([cfc1a20](https://bitbucket.org/arphase/innovatech/commit/cfc1a206110222564121daa7ebc7b7a5cfcde346))
+* **guarantees:** display distributor column ([d5e2881](https://bitbucket.org/arphase/innovatech/commit/d5e2881f4ed3320510d0eff8250ce01391ed76a4))
+* **guarantees:** export to Excel ([7e02c18](https://bitbucket.org/arphase/innovatech/commit/7e02c189339d9459474ce679763d2639c3b54623))
+* **payment-orders:** edit ([320a8e1](https://bitbucket.org/arphase/innovatech/commit/320a8e137c630bdd4ddb25a2c972c04478ac4155))
+* **state:** logout on unauthorized API response ([8a5b670](https://bitbucket.org/arphase/innovatech/commit/8a5b6700540299d2408cd9c3c1dcd0a977526abf))
+* **ui:** create autocomplete component ([bcb864a](https://bitbucket.org/arphase/innovatech/commit/bcb864a5c98bce2734c984ac7ef88323b85c9be0))
+* **users:** add migration for roles ([52b0d8b](https://bitbucket.org/arphase/innovatech/commit/52b0d8b0b29b097c44e8652c42ad33810f18a3fb))
+
 ## 1.0.0 (2020-09-09)
 
 
