@@ -27,6 +27,7 @@
       "@ivt/a-guarantees": ["libs/api/a-guarantees/src/index.ts"],
       "@ivt/a-localities": ["libs/api/a-localities/src/index.ts"],
       "@ivt/a-payment-orders": ["libs/api/a-payment-orders/src/index.ts"],
+      "@ivt/a-products":["libs/api/a-products/src/index.ts"],
       "@ivt/a-state": ["libs/api/a-state/src/index.ts"],
       "@ivt/a-users": ["libs/api/a-users/src/index.ts"],
       "@ivt/c-utils": ["libs/common/c-utils/src/index.ts"],
