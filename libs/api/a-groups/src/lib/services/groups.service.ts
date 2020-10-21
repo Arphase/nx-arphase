@@ -4,6 +4,7 @@ import { Connection } from 'typeorm';
 import { CreateGroupDto } from '../dto/create-group.dto';
 import { GetGroupsFilterDto } from '../dto/get-groups-filter.dto';
 import { dir } from '@ivt/c-utils';
+import { UpdateGroupDto } from '../dto/update-group.dto';
 
 @Injectable()
 export class GroupsService {
@@ -35,5 +36,10 @@ export class GroupsService {
 
     const groups = await query.getMany();
     return groups;
+  }
+
+  async updateGroup(updateGroupDto: UpdateGroupDto): Promise<GroupEntity> {
+    const updatedGroup = await this.groupRepository.save(updateGroupDto);
+    return updatedGroup;
   }
 }

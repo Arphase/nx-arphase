@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put, Query, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CreateGroupDto } from '../dto/create-group.dto';
 import { GroupsService } from '../services/groups.service';
 import { Group } from '@ivt/c-data';
@@ -6,6 +6,7 @@ import { RolesGuard } from '@ivt/a-auth';
 import { AuthGuard } from '@nestjs/passport';
 import { GroupEntity } from '@ivt/a-state';
 import { GetGroupsFilterDto } from '../dto/get-groups-filter.dto';
+import { UpdateGroupDto } from '../dto/update-group.dto';
 
 @Controller('groups')
 @UseGuards(AuthGuard(), RolesGuard)
@@ -19,7 +20,13 @@ export class GroupsController {
   }
 
   @Get()
-  async getGuarantees(@Query(ValidationPipe) filterDto: GetGroupsFilterDto): Promise<GroupEntity[]> {
+  async getGroups(@Query(ValidationPipe) filterDto: GetGroupsFilterDto): Promise<GroupEntity[]> {
     return this.groupsService.getGroups(filterDto);
+  }
+
+  @Put(':id')
+  @UsePipes(new ValidationPipe({ transform: true }))
+  updateGroup(@Body() updateGroupDto: UpdateGroupDto): Promise<GroupEntity> {
+    return this.groupsService.updateGroup(updateGroupDto);
   }
 }
