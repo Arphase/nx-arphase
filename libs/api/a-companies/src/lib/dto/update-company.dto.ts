@@ -1,10 +1,9 @@
 import { UpdateAddressDto } from '@ivt/a-guarantees';
 import { UpdateUserDto } from '@ivt/a-users';
-import { User } from '@ivt/c-data';
+import { Address, User } from '@ivt/c-data';
 import { IsRfc, RfcValidatorTypes } from '@ivt/c-utils';
 import { Type } from 'class-transformer';
 import { IsArray, IsEmail, IsOptional, IsString, ValidateNested } from 'class-validator';
-import { Address } from 'cluster';
 
 export class UpdateCompanyDto {
   @IsOptional()
