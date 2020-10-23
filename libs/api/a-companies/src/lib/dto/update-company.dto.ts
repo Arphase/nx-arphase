@@ -3,9 +3,13 @@ import { UpdateUserDto } from '@ivt/a-users';
 import { Address, User } from '@ivt/c-data';
 import { IsRfc, RfcValidatorTypes } from '@ivt/c-utils';
 import { Type } from 'class-transformer';
-import { IsArray, IsEmail, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsArray, IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
 
 export class UpdateCompanyDto {
+  @IsNotEmpty()
+  @IsInt()
+  id: number;
+
   @IsOptional()
   @IsString()
   businessName: string;

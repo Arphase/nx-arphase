@@ -1,9 +1,13 @@
-import { IsArray, IsEmail, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsArray, IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { Company } from '@ivt/c-data';
 import { Type } from 'class-transformer';
 import { UpdateCompanyDto } from '@ivt/a-companies';
 
 export class UpdateGroupDto {
+  @IsNotEmpty()
+  @IsInt()
+  id: number;
+
   @IsOptional()
   @IsString()
   name: string;

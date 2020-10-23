@@ -1,9 +1,9 @@
 import { Guarantee } from '@ivt/c-data';
-import { IsArray, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsArray, IsNotEmpty, IsInt, IsString } from 'class-validator';
 
 export class UpdatePaymentOrderDto {
   @IsNotEmpty()
-  @IsNumber()
+  @IsInt()
   id: number;
 
   @IsNotEmpty()

@@ -1,9 +1,13 @@
 import { Transform } from 'class-transformer';
-import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, IsInt } from 'class-validator';
 import { UserRoles } from '@ivt/c-data';
 import { IsRfc, RfcValidatorTypes } from '@ivt/c-utils';
 
 export class UpdateUserDto {
+  @IsNotEmpty()
+  @IsInt()
+  id: number;
+
   @IsOptional()
   @IsNotEmpty()
   @IsString()
