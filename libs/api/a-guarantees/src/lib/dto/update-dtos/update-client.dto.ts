@@ -9,6 +9,7 @@ import { UpdateMoralPersonDto } from './update-moral-person.dto';
 import { UpdatePhysicalPersonDto } from './update-physical-person.dto';
 
 export class UpdateClientDto {
+  @IsNotEmpty()
   @IsInt()
   id: number;
 
