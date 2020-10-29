@@ -39,7 +39,7 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @CreateDateColumn()
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ select: false })
   updatedAt: Date;
 
   @Column({

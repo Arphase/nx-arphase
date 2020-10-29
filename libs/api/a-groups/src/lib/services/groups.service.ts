@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { GroupRepository } from '@ivt/a-state';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { GroupEntity, GroupRepository } from '@ivt/a-state';
 import { Connection } from 'typeorm';
 import { CreateGroupDto } from '../dto/create-group.dto';
 import { GetGroupsFilterDto } from '../dto/get-groups-filter.dto';
@@ -19,6 +19,22 @@ export class GroupsService {
     const newGroup = await this.groupRepository.create(createGroupDto);
     await newGroup.save();
     return newGroup;
+  }
+
+  async getGroupById(id: number): Promise<Group> {
+    const query = this.groupRepository.createQueryBuilder('group');
+    query
+      .leftJoinAndSelect('group.companies', 'company')
+      .leftJoinAndSelect('company.address', 'adress')
+      .leftJoinAndSelect('company.users', 'user');
+
+    const found = await query.where('group.id = :id', { id }).getOne();
+
+    if (!found) {
+      throw new NotFoundException(`Group with id "${id}" not found`);
+    }
+
+    return found;
   }
 
   async getGroups(filterDto: Partial<GetGroupsFilterDto>): Promise<Group[]> {

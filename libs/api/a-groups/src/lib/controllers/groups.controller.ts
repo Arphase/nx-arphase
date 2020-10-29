@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Put, Query, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CreateGroupDto } from '../dto/create-group.dto';
 import { GroupsService } from '../services/groups.service';
 import { Group } from '@ivt/c-data';
@@ -21,6 +21,11 @@ export class GroupsController {
   @Get()
   async getGroups(@Query(ValidationPipe) filterDto: GetGroupsFilterDto): Promise<Group[]> {
     return this.groupsService.getGroups(filterDto);
+  }
+
+  @Get(':id')
+  async getGuarantee(@Param('id', ParseIntPipe) id: number): Promise<Group> {
+    return this.groupsService.getGroupById(id);
   }
 
   @Put(':id')
