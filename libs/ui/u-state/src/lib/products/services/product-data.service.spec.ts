@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ProductDataService } from './product-data.service';
 
-describe('GuaranteeDataService', () => {
+describe('ProductDataService', () => {
   let service: ProductDataService;
 
   beforeEach(() => {

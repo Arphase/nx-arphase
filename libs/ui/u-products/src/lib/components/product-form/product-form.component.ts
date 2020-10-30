@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { Guarantee, PersonTypes, Select } from '@ivt/c-data';
-import { CustomValidators, filterNil } from '@ivt/c-utils';
-import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
-import { takeUntil } from 'rxjs/operators';
+import { Product } from '@ivt/c-data';
+import { IvtFormComponent } from '@ivt/u-ui';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'ivt-product-form',
@@ -12,14 +11,32 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class Product extends IvtFormComponent<Product> {
-
-  constructor() { 
+export class ProductFormComponent extends IvtFormComponent<Product> {
+  selectedFile: File = null;
+  constructor(private fb: FormBuilder, private http: HttpClient) { 
     super();
+    this.form = this.fb.group({
+      id: null,
+      name: [null,Validators.required],
+      price: [null, Validators.required],
+      logo: [null, Validators.required],
+      template: [null, Validators.required]
+    })
   }
 
-  
+  onFileSelected(event) {
+    this.selectedFile = <File>event.target.files[0];
+  }
 
+  onUpload() {
+    const fd = new FormData();
+    fd.append('image', this.selectedFile, this.selectedFile.name)
+    //endpoint
+    this.http.post('url', fd)
+      .subscribe(res => {
+        console.log(res);
+      });
+  }
 }
 
 //select de las opciones del glosario

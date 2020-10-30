@@ -1,4 +1,5 @@
-<form>
+<form [formGroup]="form"
+      (ngSubmit)="submit()">
   <div class="row">
     <div class="col">
       <ivt-go-back-title title="Nuevo Producto"></ivt-go-back-title>
@@ -12,21 +13,37 @@
         <ivt-form-field>
           <input ivtInput 
                 ivtUppercase 
-                formControlName="salesPlace" />
+                formControlName="name" />
         </ivt-form-field>
       </div>
     </div>
 
     <div class="row mt-4 mb-3">
+
+      <div class="col-lg-2 col-2">
+        <h6>Precio</h6>
+        <ivt-form-field>
+          <input ivtInput 
+                ivtUppercase 
+                formControlName="price" />
+        </ivt-form-field>
+      </div>
+
+
       <div class="col px-0 flex-end">
         <div>
           <h6>Imagen de logo</h6>
+            
+            <input style="display: none"
+                   type="file" 
+                   (change)="onFileSelected($event)"
+                   #fileInput
+                   formControlName="logo">
             <button mat-raised-button 
                     class="mr-4 mb-4"
-                    type="submit" 
-                    color="primary" 
-              
-                    >
+                    type="button" 
+                    color="primary"
+                    (click)="fileInput.click()">
               Seleccionar archivo
             </button>
         </div>
@@ -49,7 +66,9 @@
         <h6>Cuerpo del producto</h6>
         <mat-form-field appearance="fill">
           <mat-label></mat-label>
-          <textarea matInput></textarea>
+          <textarea matInput
+                    formControlName="template">
+          </textarea>
         </mat-form-field>
       </div>
     </div>
@@ -60,9 +79,8 @@
       <div class="col text-center">
         <button mat-raised-button 
                 type="submit" 
-                color="primary" 
-             
-                >
+                color="primary"
+                (click)="onUpload()">
           Guardar
         </button>
       </div>
