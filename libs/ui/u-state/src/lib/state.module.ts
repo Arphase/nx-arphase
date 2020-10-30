@@ -47,14 +47,6 @@ export class IvtStateModule {
     const services: Record<string, IvtDataService> = {
       Guarantee: guaranteeDataService,
       PaymentOrder: paymentOrderDataService,
-      //esta pendiente
-      /*
-      -crear data y el collection service para product
-      -logica al template toda la logica de typescript
-      -agregar la logica al typescript basandome en el del guarante
-      -> logica en container y component, cambiar el html 
-      del container y component
-      */
       Product: productDataService
     };
     entityDataService.registerServices(services);

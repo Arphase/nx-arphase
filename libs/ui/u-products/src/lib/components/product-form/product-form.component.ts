@@ -38,5 +38,3 @@ export class ProductFormComponent extends IvtFormComponent<Product> {
       });
   }
 }
-
-//select de las opciones del glosario

@@ -12,18 +12,11 @@ export const routes: Routes = [
       {
         path: '',
         component: ProductFormContainerComponent,
-      //  resolve: { resolvedGuarantees: GuaranteesResolverService },
       },
       {
         path: 'new',
         component: ProductFormContainerComponent,
-      //  resolve: { resolvedGuarantee: GuaranteeResolverService }
       },
-    //   {
-    //     path: ':id',
-    //     component: GuaranteeFormContainerComponent,
-    //     resolve: { resolvedGuarantee: GuaranteeResolverService }
-    //   },
     ],
   },
 ];
