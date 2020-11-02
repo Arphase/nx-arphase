@@ -12,4 +12,15 @@ export interface Environment {
   server: {
     port: number;
   };
+  host: {
+    url: string;
+    port: string;
+  };
+  mail: {
+    host: string;
+    port: string;
+    secure: false;
+    user: string;
+    pass: string;
+  };
 }
