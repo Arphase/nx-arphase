@@ -35,14 +35,12 @@
             
             <input [hidden]="true"
                    type="file" 
-                   (change)="onFileSelected()"
                    #fileInput
                    formControlName="logo">
             <button mat-raised-button 
                     class="mr-4 mb-4"
                     type="button" 
-                    color="primary"
-                    (click)="fileInput.click()">
+                    color="primary">
               Seleccionar archivo
             </button>
         </div>
@@ -79,8 +77,7 @@
         </button>
         <button mat-raised-button
                 type="submit"
-                color="primary"
-                (click)="onUpload()">
+                color="primary">
           Guardar
         </button>
       </div>
