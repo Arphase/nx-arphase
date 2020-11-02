@@ -43,13 +43,13 @@ export class UserEntity extends BaseEntity implements User {
   @Column({ unique: true })
   email: string;
 
-  @Column({ nullable: true, select: false })
+  @Column({ nullable: true })
   password: string;
 
   @Column({ nullable: true })
   phone: string;
 
-  @Column({ nullable: true, select: false })
+  @Column({ nullable: true })
   salt: string;
 
   @Column({

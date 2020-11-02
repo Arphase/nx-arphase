@@ -89,6 +89,7 @@
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "ng2-charts": "^2.4.2",
+    "ng2-file-upload": "^1.4.0",
     "ngx-mask": "^10.0.4",
     "ngx-toastr": "^13.1.0",
     "passport": "^0.4.1",
