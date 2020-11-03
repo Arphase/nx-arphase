@@ -12,6 +12,7 @@ import { AdditionalEntityCollectionReducerMethodsFactory } from './entities';
 import { entityConfig } from './entities/entity.metadata';
 import { GuaranteeDataService } from './guarantees/services/guarantee-data.service';
 import { PaymentOrderDataService } from './payment-orders';
+import { ProductDataService } from './products';
 import { reducers } from './reducers';
 
 @NgModule({
@@ -40,11 +41,13 @@ export class IvtStateModule {
   constructor(
     entityDataService: EntityDataService,
     guaranteeDataService: GuaranteeDataService,
-    paymentOrderDataService: PaymentOrderDataService
+    paymentOrderDataService: PaymentOrderDataService,
+    productDataService: ProductDataService
   ) {
     const services: Record<string, IvtDataService> = {
       Guarantee: guaranteeDataService,
       PaymentOrder: paymentOrderDataService,
+      Product: productDataService
     };
     entityDataService.registerServices(services);
   }
