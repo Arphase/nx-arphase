@@ -1,0 +1,9 @@
+<ivt-group-list
+    [list]="list$ | async"
+    [hasMoreItems]="hasMore$ | async"
+    [clearSelected]="clearSelected$ | async"
+    [loadingExcel]="loadingExcel$ | async"
+    (filterItems)="filterItems($event)"
+    (getMoreItems)="getMoreItems()"
+    (exportExcel)="exportExcel()">
+</ivt-group-list>

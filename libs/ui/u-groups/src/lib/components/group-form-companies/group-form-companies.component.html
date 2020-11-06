@@ -1,0 +1,80 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row">
+        <div class="col">
+            <ivt-go-back-title title="Nueva Compañía"></ivt-go-back-title>
+        </div>
+    </div>
+    <div class="pt-3">
+        <ivt-expansion-panel class="primary-panel mb-3 d-block"
+                         title="Información General"
+                         [isOpen]="true">
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <ivt-form-field label="Razón Social">
+                        <input ivtInput
+                                ivtUppercase
+                                formControlName="businessName">
+                        </ivt-form-field>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <ivt-form-field label="RFC">
+                        <input ivtInput
+                                ivtUppercase
+                                formControlName="rfc">
+                        </ivt-form-field>
+                </div>
+            </div> 
+        </ivt-expansion-panel>
+        <ivt-expansion-panel class="primary-panel mb-3 d-block"
+                         title="Dirección"
+                         [isOpen]="true">
+            <ivt-address-form [form]="addressForm"></ivt-address-form>
+        </ivt-expansion-panel>
+
+
+        <ivt-expansion-panel class="primary-panel mb-3 d-block"
+                         title="Contacto"
+                         [isOpen]="true">
+            <div class="row">
+                <div class="col-lg-4 col-12">
+                    <ivt-form-field label="Nombre del contacto">
+                        <input ivtInput
+                            ivtUppercase
+                            formControlName="contact">
+                    </ivt-form-field>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <ivt-form-field label="Correo">
+                        <input ivtInput
+                            ivtUppercase
+                            formControlName="email">
+                    </ivt-form-field>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <ivt-form-field label="Telefono">
+                        <input ivtInput
+                            ivtUppercase
+                            formControlName="phone">
+                    </ivt-form-field>
+                </div>
+            </div>
+        </ivt-expansion-panel>
+    </div>
+    <div class="row mt-4 mb-3">
+        <div class="col px-0 flex-end">
+          <button mat-raised-button
+                  class="mr-3"
+                  type="button"
+                  [routerLink]="['..']">
+            Cancelar
+          </button>
+          <button mat-raised-button
+                  type="submit"
+                  color="primary"
+                  [loading]="loading"
+                  [disabled]="!isEditable">
+            Guardar
+          </button>
+        </div>
+      </div>
+</form>

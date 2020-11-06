@@ -36,7 +36,8 @@
       "@ivt/u-auth": ["libs/ui/u-auth/src/index.ts"],
       "@ivt/u-dashboard": ["libs/ui/u-dashboard/src/index.ts"],
       "@ivt/u-spa": ["libs/ui/u-spa/src/index.ts"],
-      "@ivt/u-state": ["libs/ui/u-state/src/index.ts"]
+      "@ivt/u-state": ["libs/ui/u-state/src/index.ts"],
+      "@ivt/u-groups": ["libs/ui/u-groups/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

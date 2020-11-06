@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col">
+        <ivt-go-back-title title="Nuevo Grupo"></ivt-go-back-title>
+    </div>
+</div>
+
+<ivt-expansion-panel class="primary-panel mb-3 d-block"
+                         title="Información General"
+                         [isOpen]="true">
+    <ivt-group-forms 
+        [item]="currentItem$ | async"
+        (submitEmitter)="submit($event)">
+    </ivt-group-forms>
+</ivt-expansion-panel>
+
+<ivt-expansion-panel class="primary-panel mb-3 d-block mt-3"
+                         title="Compañías"
+                         [isOpen]="true">
+    <ivt-group-company-list>
+
+    </ivt-group-company-list>
+</ivt-expansion-panel>
+
+<ivt-expansion-panel class="primary-panel mb-3 d-block mt-3"
+                         title="Usuarios"
+                         [isOpen]="true">
+    <ivt-group-form-users>
+
+    </ivt-group-form-users>
+</ivt-expansion-panel>
+
+
+

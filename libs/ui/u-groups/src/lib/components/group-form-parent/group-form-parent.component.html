@@ -1,0 +1,55 @@
+<!--
+<form [formGroup]="form"
+      (ngSubmit)="submit()">
+  <div class="d-flex justify-content-between">
+    <ivt-go-back-title [title]="title | translate"></ivt-go-back-title>
+  </div>
+
+  <ivt-navigation-tabs>
+    <ivt-navigation-tab [routerPath]="['general']">
+      <span matBadge="!"
+            matBadgeColor="warn"
+            matBadgeOverlap="false"
+            [matBadgeHidden]="!submitted || form.get('general_data').valid">{{ 'GROUPS.FORM.TABS.GENERAL_DATA' | translate }}</span>
+    </ivt-navigation-tab>
+
+    <ivt-navigation-tab [routerPath]="['companies']">
+      <span matBadge="!"
+            matBadgeColor="warn"
+            matBadgeOverlap="false"
+            [matBadgeHidden]="!submitted || form.get('companies').valid">{{ 'GROUPS.FORM.TABS.COMPANIES' | translate }}</span>
+    </ivt-navigation-tab>
+
+    <ivt-navigation-tab [routerPath]="['users']">
+      <span matBadge="!"
+            matBadgeColor="warn"
+            matBadgeOverlap="false"
+            [matBadgeHidden]="!submitted || form.get('admins').valid">{{ 'GROUPS.FORM.TABS.ADMINS' | translate }}</span>
+    </ivt-navigation-tab>
+
+    <ivt-navigation-tab [routerPath]="['personalization']">
+      <span matBadge="!"
+            matBadgeColor="warn"
+            matBadgeOverlap="false"
+            [matBadgeHidden]="!submitted || form.get('personalization').valid">{{ 'GROUPS.FORM.TABS.PERSONALIZATION' | translate }}</span>
+    </ivt-navigation-tab>
+  </ivt-navigation-tabs>
+
+  <hr style="margin-top: 0;">
+
+  <router-outlet></router-outlet>
+
+  <div class="row">
+    <div class="col flex-end">
+      <button ivt-button
+              type="submit"
+              class="order-1"
+              buttonStyle="primary">{{ 'GROUPS.GROUP_FORM.SAVE' | translate }}</button>
+
+      <button ivt-button
+              buttonStyle="link"
+              [routerLink]="['..']">{{ 'GROUPS.GROUP_FORM.CANCEL' | translate }}</button>
+    </div>
+  </div>
+</form>
+-->

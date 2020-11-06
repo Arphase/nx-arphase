@@ -11,4 +11,9 @@ export const menuItems: MenuItem[] = [
     header: 'Garantías',
     path: ['guarantees'],
   },
+  {
+    icon: 'description',
+    header: 'Grupos',
+    path: ['groups'],
+  },
 ];

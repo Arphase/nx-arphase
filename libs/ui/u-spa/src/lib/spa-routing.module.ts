@@ -19,6 +19,11 @@ const routes: Routes = [
           import('@ivt/u-guarantees').then((m) => m.GuaranteesModule),
       },
       {
+        path: 'groups',
+        loadChildren: () =>
+          import('@ivt/u-groups').then((m) => m.GroupsModule),
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
