@@ -398,6 +398,62 @@
         }
       }
     },
+    "u-groups": {
+      "projectType": "library",
+      "root": "libs/ui/u-groups",
+      "sourceRoot": "libs/ui/u-groups/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ui/u-groups/tsconfig.lib.json", "libs/ui/u-groups/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ui/u-groups/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui/u-groups/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "schematics": {
+          "@schematics/angular:component": {
+            "style": "scss",
+            "changeDetection": "OnPush"
+          }
+        }
+      }
+    },
+    "u-products": {
+      "projectType": "library",
+      "root": "libs/ui/u-products",
+      "sourceRoot": "libs/ui/u-products/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ui/u-products/tsconfig.lib.json", "libs/ui/u-products/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ui/u-products/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui/u-products/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "schematics": {
+          "@schematics/angular:component": {
+            "style": "scss",
+            "changeDetection": "OnPush"
+          }
+        }
+      }
+    },
     "u-ui": {
       "projectType": "library",
       "root": "libs/ui/u-ui",
@@ -563,39 +619,6 @@
             "tsConfig": "libs/api/a-state/tsconfig.spec.json",
             "passWithNoTests": true
           }
-        }
-      }
-    },
-    "u-groups": {
-      "projectType": "library",
-      "root": "libs/ui/u-groups",
-      "sourceRoot": "libs/ui/u-groups/src",
-    "u-products": {
-      "projectType": "library",
-      "root": "libs/ui/u-products",
-      "sourceRoot": "libs/ui/u-products/src",
-      "prefix": "ivt",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["libs/ui/u-groups/tsconfig.lib.json", "libs/ui/u-groups/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/ui/u-groups/**/*"]
-          }
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/ui/u-groups/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush"
         }
       }
     }
