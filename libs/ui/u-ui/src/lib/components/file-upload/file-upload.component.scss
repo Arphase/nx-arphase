@@ -1,0 +1,68 @@
+@import '../../../styles/variables';
+
+.ivt-file-upload {
+  display: block;
+  padding: 0 $spacer-small;
+  color: $ui-color;
+  font-size: $font-size;
+
+  .error {
+    display: flex;
+    align-items: center;
+    color: $alert-color;
+    margin-top: $spacer-x-small;
+  }
+
+  .file-drop-container {
+    border: $border;
+    background-color: $background-color;
+  }
+
+  .file-drop-row {
+    min-height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .container-error {
+    border-color: $alert-color;
+  }
+
+  .file-over {
+    border: $kicker-color 1px solid;
+    border-radius: $border-radius;
+  }
+
+  .float-right {
+    float: right;
+  }
+
+  .file-item {
+    word-break: break-all;
+  }
+
+  .file-ivt-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 40px;
+    margin-bottom: $spacer-x-small;
+    background-color: $white-color;
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+    }
+
+    .file-name {
+      flex: 1;
+    }
+
+    &__action {
+      flex: 0 0 40px;
+    }
+  }
+}

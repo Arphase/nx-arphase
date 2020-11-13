@@ -9,3 +9,4 @@ export * from './lib/payment-orders';
 export * from './lib/ui';
 export * from './lib/users';
 export * from './lib/vehicles';
+export * from './lib/product';

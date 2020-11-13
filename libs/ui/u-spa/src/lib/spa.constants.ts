@@ -16,4 +16,9 @@ export const menuItems: MenuItem[] = [
     header: 'Grupos',
     path: ['groups'],
   },
+  {
+    icon: 'folder_open',
+    header: 'Productos',
+    path: ['products'],
+  },
 ];

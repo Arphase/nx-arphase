@@ -19,10 +19,10 @@ export class UserEntity extends BaseEntity implements User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ select: false })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ select: false })
   updatedAt: Date;
 
   @Column({ nullable: true })
@@ -56,8 +56,8 @@ export class UserEntity extends BaseEntity implements User {
     type: 'enum',
     enum: UserRoles,
     transformer: {
-      to: (value) => value,
-      from: (value) => UserRoles[value],
+      to: value => value,
+      from: value => UserRoles[value],
     },
   })
   role: UserRoles;

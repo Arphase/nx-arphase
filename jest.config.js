@@ -7,4 +7,5 @@ module.exports = {
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageReporters: ['html'],
   projects: '<rootDir>/libs/ui/u-groups',
+  projects: '<rootDir>/libs/ui/u-products',
 };

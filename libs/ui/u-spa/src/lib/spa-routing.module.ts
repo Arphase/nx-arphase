@@ -24,10 +24,16 @@ const routes: Routes = [
           import('@ivt/u-groups').then((m) => m.GroupsModule),
       },
       {
+        path: 'products',
+        loadChildren: () =>
+          import('@ivt/u-products').then((m) => m.ProductsModule),
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
       },
+      
     ],
   },
 ];

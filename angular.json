@@ -570,6 +570,10 @@
       "projectType": "library",
       "root": "libs/ui/u-groups",
       "sourceRoot": "libs/ui/u-groups/src",
+    "u-products": {
+      "projectType": "library",
+      "root": "libs/ui/u-products",
+      "sourceRoot": "libs/ui/u-products/src",
       "prefix": "ivt",
       "architect": {
         "lint": {
@@ -577,6 +581,7 @@
           "options": {
             "tsConfig": ["libs/ui/u-groups/tsconfig.lib.json", "libs/ui/u-groups/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "!libs/ui/u-groups/**/*"]
+          }
           }
         },
         "test": {
@@ -589,7 +594,8 @@
       },
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush"
         }
       }
     }
