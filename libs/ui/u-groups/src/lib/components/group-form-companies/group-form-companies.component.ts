@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Group, PersonTypes, Select } from '@ivt/c-data';
 import { CustomValidators, filterNil } from '@ivt/c-utils';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 import { takeUntil } from 'rxjs/operators';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ivt-group-form-companies',
@@ -11,21 +12,52 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./group-form-companies.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GroupFormCompaniesComponent extends IvtFormComponent<Group> implements OnInit {
-
-  get values() {
-    return this.form.getRawValue();
-  }
-
-  get client() {
-    return this.form.get('client');
-  }
+export class CompanyFormDialogComponent extends IvtFormComponent<Group> implements OnInit {
 
   get addressForm(): FormGroup {
     return this.form.get('address') as FormGroup;
   }
 
-  constructor(private fb: FormBuilder) {
+  get usersFormArray() {
+    return (<FormArray>this.form.get('users'));
+  }
+
+  createUserGroup() {
+    return this.fb.group({
+      businessName: [],
+      name: [],
+      lastName: [],
+      secondLastName: [],
+      email: [],
+      phone: [],
+      businessRole: [],
+      rfc: [],
+    });
+  }
+
+  addUserToUsersFormArray() {
+    this.usersFormArray.push(this.createUserGroup());
+  }
+
+  removeUserFromUsersFormArray(index) {
+    this.usersFormArray.removeAt(index);
+  }
+
+  getUserGroupAtIndex(index) {
+    return (<FormGroup>this.usersFormArray.at(index));
+  }
+
+  getUserControl() {
+    return this.fb.control(null);
+  }
+
+  save() {
+    console.log(this.form.value);
+  }
+
+
+
+  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal) {
     super();
     this.form = this.fb.group({
       businessName: null,
@@ -34,10 +66,11 @@ export class GroupFormCompaniesComponent extends IvtFormComponent<Group> impleme
       email: null,
       phone: null,
       address: createAddressForm(),
-    })
+      users: this.fb.array([]),
+    });
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }

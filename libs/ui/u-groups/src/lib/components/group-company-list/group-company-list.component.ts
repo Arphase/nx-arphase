@@ -11,6 +11,8 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { Company} from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CompanyFormDialogComponent } from '../group-form-companies/group-form-companies.component';
 
 import { columns, dateTypeOptions, statusOptions } from './group-company-list.constants';
 
@@ -20,7 +22,7 @@ import { columns, dateTypeOptions, statusOptions } from './group-company-list.co
   styleUrls: ['./group-company-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GroupCompanyListComponent extends IvtListComponent<Company> implements OnChanges {
+export class GroupCompanyListComponent extends IvtListComponent<Company> {
   @Input() clearSelected: boolean;
   columns = columns;
   dateTypeOptions = dateTypeOptions;
@@ -29,23 +31,11 @@ export class GroupCompanyListComponent extends IvtListComponent<Company> impleme
   @Output() downloadPdf = new EventEmitter<number>();
   @Output() createPaymentOrder = new EventEmitter<number[]>();
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private modalService: NgbModal) {
     super();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.clearSelected && this.clearSelected) {
-      this.selectedIds.clear();
-    }
+  open() {
+    const modalRef = this.modalService.open(CompanyFormDialogComponent)
   }
-
-  onSelectItem(id: number): void {
-    this.selectedIds.toggle(id);
-  }
-
-  /*
-  updateStatusFilter(status: GroupStatus): void {
-    this.filterItems.emit({ status });
-  }
-  */
 }

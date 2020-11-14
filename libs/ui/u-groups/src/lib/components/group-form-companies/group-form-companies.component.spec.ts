@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GroupFormCompaniesComponent } from './group-form-companies.component';
+import { CompanyFormDialogComponent } from './group-form-companies.component';
 
-describe('GroupFormCompaniesComponent', () => {
-  let component: GroupFormCompaniesComponent;
-  let fixture: ComponentFixture<GroupFormCompaniesComponent>;
+describe('CompanyFormDialogComponent', () => {
+  let component: CompanyFormDialogComponent;
+  let fixture: ComponentFixture<CompanyFormDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GroupFormCompaniesComponent ]
+      declarations: [ CompanyFormDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GroupFormCompaniesComponent);
+    fixture = TestBed.createComponent(CompanyFormDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

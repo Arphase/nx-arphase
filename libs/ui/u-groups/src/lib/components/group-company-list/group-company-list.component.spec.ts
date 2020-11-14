@@ -1,21 +1,20 @@
-/*
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GroupCompanyListComponent } from './group-company-list.component';
 
 describe('GroupCompanyListComponent', () => {
-  let component: GuaranteeListComponent;
-  let fixture: ComponentFixture<GuaranteeListComponent>;
+  let component: GroupCompanyListComponent;
+  let fixture: ComponentFixture<GroupCompanyListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GuaranteeListComponent ]
+      declarations: [ GroupCompanyListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GuaranteeListComponent);
+    fixture = TestBed.createComponent(GroupCompanyListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -24,4 +23,3 @@ describe('GroupCompanyListComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-*/

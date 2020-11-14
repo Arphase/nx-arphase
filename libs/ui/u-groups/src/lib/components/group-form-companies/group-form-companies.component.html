@@ -1,10 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="row">
-        <div class="col">
-            <ivt-go-back-title title="Nueva Compañía"></ivt-go-back-title>
-        </div>
-    </div>
-    <div class="pt-3">
+    <div>
         <ivt-expansion-panel class="primary-panel mb-3 d-block"
                          title="Información General"
                          [isOpen]="true">
@@ -59,13 +54,100 @@
                 </div>
             </div>
         </ivt-expansion-panel>
+
+        <ivt-expansion-panel class="primary-panel mb-3 d-block"
+                         title="Usuarios"
+                         [isOpen]="true">
+            <div formArrayName="users">
+                <div *ngFor="let user of usersFormArray.controls; let i = index;">
+                    <div [formGroupName]="i" class="border mb-1">
+                        <div>
+                            <div class="row">
+                                <div class="col-lg-12 col-12">
+                                    <ivt-form-field label="Compañía del usuario">
+                                        <input ivtInput
+                                               formControlName="businessName">
+                                    </ivt-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-12">
+                                    <ivt-form-field label="Nombre(s)">
+                                        <input ivtInput
+                                               formControlName="name">
+                                    </ivt-form-field>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <ivt-form-field label="Apellido Paterno">
+                                        <input ivtInput
+                                               formControlName="lastName">
+                                    </ivt-form-field>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <ivt-form-field label="Apellido Materno">
+                                        <input ivtInput
+                                               formControlName="secondLastName">
+                                    </ivt-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-12">
+                                    <ivt-form-field label="Correo">
+                                        <input ivtInput
+                                            type="email"
+                                             formControlName="email">
+                                    </ivt-form-field>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <ivt-form-field label="Teléfono">
+                                        <input ivtInput
+                                             formControlName="phone">
+                                    </ivt-form-field>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8 col-12">
+                                    <ivt-form-field label="Rol dentro de compañía">
+                                        <input ivtInput
+                                               formControlName="businessRole">
+                                    </ivt-form-field>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <ivt-form-field label="RFC">
+                                        <input ivtInput
+                                               formControlName="rfc">
+                                    </ivt-form-field>
+                                </div>
+                            </div>
+                            <mat-icon
+                                class="pl-3"
+                                (click)="removeUserFromUsersFormArray(i)">
+                                delete
+                            </mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button 
+                mat-raised-button 
+                color="primary" 
+                type="button" 
+                (click)="addUserToUsersFormArray()">
+                Add Filter
+            </button>
+        </ivt-expansion-panel>
+
+
+        
     </div>
     <div class="row mt-4 mb-3">
         <div class="col px-0 flex-end">
           <button mat-raised-button
                   class="mr-3"
                   type="button"
-                  [routerLink]="['..']">
+                  aria-label="Close"
+                  (click)="activeModal.dismiss('Cross click')">
             Cancelar
           </button>
           <button mat-raised-button

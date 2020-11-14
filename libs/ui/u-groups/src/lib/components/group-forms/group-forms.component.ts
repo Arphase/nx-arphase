@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Group, PersonTypes, Select } from '@ivt/c-data';
 import { CustomValidators, filterNil } from '@ivt/c-utils';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
@@ -17,25 +17,6 @@ export class GroupFormsComponent extends IvtFormComponent<Group> implements OnIn
     return this.form.getRawValue();
   }
 
-  /*
-  get name() {
-    return this.form.get('name');
-  }
-
-  get contact() {
-    return this.form.get('contact');
-  }
-
-  get email() {
-    return this.form.get('email');
-  }
-
-  get phone() {
-    return this.form.get('phone');
-  }
-  */
-
-
   constructor(private fb: FormBuilder) {
     super();
     this.form = this.fb.group({
@@ -43,6 +24,7 @@ export class GroupFormsComponent extends IvtFormComponent<Group> implements OnIn
       contact: null,
       email: null,
       phone: null,
+      companies: this.fb.array([]),
     });
   }
 

@@ -5,7 +5,7 @@ import { GroupListContainerComponent } from './containers/group-list-container/g
 
 
 import { GroupsComponent } from './groups/groups.component';
-import { GroupFormCompaniesComponent } from './components/group-form-companies/group-form-companies.component';
+import { CompanyFormDialogComponent } from './components/group-form-companies/group-form-companies.component';
 import { GroupsResolverService } from './resolvers/groups-resolver.service';
 
 export const routes: Routes = [
@@ -28,11 +28,6 @@ export const routes: Routes = [
             component: GroupFormsContainerComponent,
             resolve: { resolvedGroup: GroupsResolverService },
           },
-          {
-            path: 'company',
-            component: GroupFormCompaniesComponent,
-            resolve: { resolvedGroup: GroupsResolverService },
-          }
         ]
       },
     ],
