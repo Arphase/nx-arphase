@@ -8,6 +8,7 @@ import {
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 import { PaymentOrderEntity } from '../../payment-orders';
@@ -37,6 +38,9 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn({ select: false })
+  updatedAt: Date;
 
   @Column({
     type: 'enum',

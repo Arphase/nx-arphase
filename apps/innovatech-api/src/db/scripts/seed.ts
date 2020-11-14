@@ -18,7 +18,7 @@ async function run() {
     {
       firstName: 'Fernando',
       lastName: 'Jimenez',
-      secondLastName: '',
+      secondLastName: 'test',
       email: 'fernando.jimenez@innovatechcorp.com',
       password: 'Innovatech123@',
       role: UserRoles.superAdmin,
@@ -26,16 +26,8 @@ async function run() {
     {
       firstName: 'Shari',
       lastName: 'Daniel',
-      secondLastName: '',
+      secondLastName: 'test',
       email: 'shari.daniel@innovatechcorp.com',
-      password: 'Innovatech123@',
-      role: UserRoles.admin,
-    },
-    {
-      firstName: 'Alma',
-      lastName: 'Treviño',
-      secondLastName: '',
-      email: 'alma.trevino@innovatechcorp.com',
       password: 'Innovatech123@',
       role: UserRoles.admin,
     },

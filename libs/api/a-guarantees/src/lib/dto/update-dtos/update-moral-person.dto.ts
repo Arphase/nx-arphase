@@ -1,6 +1,10 @@
-import { IsDateString, IsOptional, IsString } from 'class-validator';
+import { IsDateString, IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class UpdateMoralPersonDto {
+  @IsNotEmpty()
+  @IsInt()
+  id: number;
+
   @IsOptional()
   @IsString()
   businessName: string;

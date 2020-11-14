@@ -22,6 +22,8 @@
       "@api/*": ["apps/innovatech-api/src/app/*"],
       "@api/env/*": ["apps/innovatech-api/src/environments/*"],
       "@ivt/a-auth": ["libs/api/a-auth/src/index.ts"],
+      "@ivt/a-groups": ["libs/api/a-groups/src/index.ts"],
+      "@ivt/a-companies": ["libs/api/a-companies/src/index.ts"],
       "@ivt/a-guarantees": ["libs/api/a-guarantees/src/index.ts"],
       "@ivt/a-localities": ["libs/api/a-localities/src/index.ts"],
       "@ivt/a-payment-orders": ["libs/api/a-payment-orders/src/index.ts"],
@@ -35,7 +37,8 @@
       "@ivt/u-auth": ["libs/ui/u-auth/src/index.ts"],
       "@ivt/u-dashboard": ["libs/ui/u-dashboard/src/index.ts"],
       "@ivt/u-spa": ["libs/ui/u-spa/src/index.ts"],
-      "@ivt/u-state": ["libs/ui/u-state/src/index.ts"]
+      "@ivt/u-state": ["libs/ui/u-state/src/index.ts"],
+      "@ivt/u-products": ["libs/ui/u-products/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

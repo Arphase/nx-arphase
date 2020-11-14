@@ -19,7 +19,8 @@ import * as XLSX from 'xlsx';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
-import { dir, getGuaranteePdfTemplate } from './guarantees.service.constants';
+import { getGuaranteePdfTemplate } from './guarantees.service.constants';
+import { dir } from '@ivt/c-utils';
 
 @Injectable()
 export class GuaranteesService {
@@ -112,13 +113,24 @@ export class GuaranteesService {
 
   async getGuaranteesExcel(filterDto: GetGuaranteesFilterDto, response: Response): Promise<void> {
     const guarantees = await this.getGuarantees(omit(filterDto, ['offset', 'limit']));
-    const excelColumnConstants: string[] = ['Folio', 'Placa', 'Fecha inicio', 'Fecha fin', 'Importe', 'Estatus'];
+    const excelColumnConstants: string[] = [
+      'Folio',
+      'Placa',
+      'Distribuidor',
+      'Fecha inicio',
+      'Fecha fin',
+      'Fecha captura',
+      'Importe',
+      'Estatus',
+    ];
     const guaranteesData: any[] = guarantees.map(guarantee => {
       return [
         transformFolio(guarantee.id),
         guarantee.vehicle.vin,
+        guarantee.paymentOrder?.distributor || 'N/A',
         moment(guarantee.startDate).format('DD/MM/YYYY'),
         moment(guarantee.endDate).format('DD/MM/YYYY'),
+        moment(guarantee.createdAt).format('DD/MM/YYYY'),
         guarantee.amount || 'N/A',
         statusLabels[guarantee.status],
       ];

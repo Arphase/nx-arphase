@@ -5,6 +5,7 @@ import { IvtAutocompleteModule } from './autocomplete';
 import { IvtConfirmationDialogModule } from './confirmation-dialog';
 import { IvtEmptyStateModule } from './empty-state';
 import { IvtExpansionPanelModule } from './expansion-panel';
+import { IvtFileUploadModule } from './file-upload';
 import { IvtDateFilterModule, IvtFilterModule, IvtRadioFilterModule } from './filters';
 import { IvtFormModule } from './form';
 import { IvtFormFieldModule } from './form-field';
@@ -25,6 +26,7 @@ const MODULES = [
   IvtDateFilterModule,
   IvtEmptyStateModule,
   IvtExpansionPanelModule,
+  IvtFileUploadModule,
   IvtFilterModule,
   IvtFormModule,
   IvtFormFieldModule,

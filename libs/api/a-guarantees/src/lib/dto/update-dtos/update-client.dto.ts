@@ -3,12 +3,13 @@ import { Transform, Type } from 'class-transformer';
 import { IsEmail, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, ValidateIf, ValidateNested } from 'class-validator';
 import { Address } from 'cluster';
 
-import { IsRfc } from '../custom-validators';
+import { IsRfc, RfcValidatorTypes } from '@ivt/c-utils';
 import { UpdateAddressDto } from './update-address.dto';
 import { UpdateMoralPersonDto } from './update-moral-person.dto';
 import { UpdatePhysicalPersonDto } from './update-physical-person.dto';
 
 export class UpdateClientDto {
+  @IsNotEmpty()
   @IsInt()
   id: number;
 
@@ -31,7 +32,7 @@ export class UpdateClientDto {
 
   @IsOptional()
   @IsString()
-  @IsRfc('personType', {
+  @IsRfc(RfcValidatorTypes.personType, {
     message: 'rfc must have the format of the person type',
   })
   rfc: string;
