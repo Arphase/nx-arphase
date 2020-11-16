@@ -104,7 +104,7 @@ export class AuthService {
       });
 
       const mailOptions = {
-        from: `Company <${process.env.MAIL_ACCOUNT}>`,
+        from: `Company <${process.env.MAIL_ACCOUNT_SENDER}>`,
         to: email,
         subject: 'Asignar Contraseña',
         text: 'Asignar contraseña',
