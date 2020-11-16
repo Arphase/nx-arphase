@@ -13,7 +13,12 @@ export class AuthController {
     return this.authService.signIn(authCredentialsDto);
   }
 
-  @Get('/resetPassword/:email')
+  /**
+   * Sends the user an email to set his password
+   * @param email User email
+   * @returns response data about email status
+   */
+  @Post('/emailPassword/:email')
   public async sendEmailResetPassword(@Param('email') email): Promise<IResponse> {
     try {
       const isEmailSent = await this.authService.sendEmailResetPassword(email);
@@ -27,24 +32,18 @@ export class AuthController {
     }
   }
 
-  @Post('/resetPassword')
+  /**
+   * Sets the usser password with a password token sent by email
+   * @param resetPassword contains email, password, and token
+   * @returns new passord
+   */
+  @Post('/setPassword')
   public async setNewPassord(@Body() resetPassword: ResetPasswordDto): Promise<IResponse> {
     try {
       let isNewPasswordChanged = false;
-      // if (resetPassword.email && resetPassword.currentPassword) {
-      //   const isValidPassword = await this.authService.checkPassword(resetPassword.email, resetPassword.currentPassword);
-      //   if (isValidPassword) {
-      //     isNewPasswordChanged = await this.userService.setPassword(resetPassword.email, resetPassword.newPassword);
-      //   } else {
-      //     return new ResponseError('RESET_PASSWORD.WRONG_CURRENT_PASSWORD');
-      //   }
-      // } else
       if (resetPassword.passwordToken) {
         const resetPasswordEntity = await this.authService.getResetPasswordEntity(resetPassword.passwordToken);
-        isNewPasswordChanged = await this.authService.setPassword(
-          resetPasswordEntity.email,
-          resetPassword.password
-        );
+        isNewPasswordChanged = await this.authService.setPassword(resetPasswordEntity.email, resetPassword.password);
         if (isNewPasswordChanged) await this.authService.removeResetPassword(resetPasswordEntity);
       } else {
         return new ResponseError('Error al cambiar contraseña');
@@ -54,4 +53,25 @@ export class AuthController {
       return new ResponseError('Error al cambiar la contraseña', error);
     }
   }
+
+  // @Post('/resetPassword')
+  // public async resetPassword(@Body() resetPassword: ResetPasswordDto): Promise<IResponse> {
+  //   try {
+  //     let isNewPasswordChanged = false;
+  //     if (resetPassword.email && resetPassword.currentPassword) {
+  //       const isValidPassword = await this.authService.checkPassword(
+  //         resetPassword.email,
+  //         resetPassword.currentPassword
+  //       );
+  //       if (isValidPassword) {
+  //         isNewPasswordChanged = await this.userService.setPassword(resetPassword.email, resetPassword.newPassword);
+  //       } else {
+  //         return new ResponseError('RESET_PASSWORD.WRONG_CURRENT_PASSWORD');
+  //       }
+  //     }
+  //     return new ResponseSuccess('Se ha cambiado la contraseña', isNewPasswordChanged);
+  //   } catch (error) {
+  //     return new ResponseError('Error al cambiar la contraseña', error);
+  //   }
+  // }
 }

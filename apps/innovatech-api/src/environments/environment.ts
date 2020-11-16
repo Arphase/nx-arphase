@@ -13,16 +13,5 @@ export const environment: Environment = {
   },
   server: {
     port: 3333,
-  },
-  host: {
-    url: 'http://localhost:4200/set-password',
-    port: '3000',
-  },
-  mail: {
-    host: 'smtp.ethereal.email',
-    port: '587',
-    secure: false,
-    user: '<username>',
-    pass: '<password>',
-  },
+  }
 };

@@ -14,15 +14,4 @@ export const environment: Environment = {
   server: {
     port: 3333,
   },
-  host: {
-    url: '<server-url>',
-    port: '3000',
-  },
-  mail: {
-    host: '<smtp-host>',
-    port: '<port>',
-    secure: false,
-    user: '<username>',
-    pass: '<password>',
-  },
 };

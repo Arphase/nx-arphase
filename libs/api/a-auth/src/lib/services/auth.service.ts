@@ -2,17 +2,14 @@ import { ResetPasswordEntity, ResetPasswordRepository, UserRepository } from '@i
 import { ResetPassword, User } from '@ivt/c-data';
 import {
   ForbiddenException,
-  HttpException,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Connection } from 'typeorm';
-import { environment } from '@api/env/environment';
-
 import * as nodemailer from 'nodemailer';
+import { Connection } from 'typeorm';
 
 import { AuthCredentialsDto, SignUpCredentialsDto } from '../dto/auth-credentials.dto';
 
@@ -66,12 +63,14 @@ export class AuthService {
 
   async createResetPasswordToken(email: string): Promise<ResetPassword> {
     const resetPassword = await this.resetPasswordRepository.findOne({ email });
-    if (resetPassword && (new Date().getTime() - resetPassword.timestamp.getTime()) / 60000 < 15) {
+    const time = new Date().getTime();
+    if (resetPassword && (time - resetPassword.timestamp.getTime()) / 60000 < 15) {
       throw new InternalServerErrorException();
     } else {
       const resetPasswordEntity = {
+        ...resetPassword,
         email,
-        passwordToken: (Math.floor(Math.random() * 9000000) + 1000000).toString(), //Generate 7 digits number,
+        passwordToken: (Math.floor(Math.random() * 9000000) + 1000000).toString(),
         timestamp: new Date(),
       };
       const updatedResetPassword = await this.resetPasswordRepository.save(resetPasswordEntity);
@@ -93,43 +92,25 @@ export class AuthService {
 
     const tokenEntity = await this.createResetPasswordToken(email);
 
-    const testAccount = await nodemailer.createTestAccount();
-
     if (tokenEntity && tokenEntity.passwordToken) {
-      // const transporter = nodemailer.createTransport({
-      //   host: environment.mail.host,
-      //   port: environment.mail.port,
-      //   secure: environment.mail.secure, // true for 465, false for other ports
-      //   auth: {
-      //     user: environment.mail.user,
-      //     pass: environment.mail.pass,
-      //   },
-      // });
-      // create reusable transporter object using the default SMTP transport
       const transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
-        secure: false, // true for 465, false for other ports
+        host: process.env.SMTP,
+        port: Number(process.env.MAIL_PORT),
+        secure: false,
         auth: {
-          user: testAccount.user, // generated ethereal user
-          pass: testAccount.pass, // generated ethereal password
+          user: process.env.MAIL_ACCOUNT,
+          pass: process.env.MAIL_PASS,
         },
       });
 
       const mailOptions = {
-        from: '"Company" <' + environment.mail.user + '>',
-        to: email, // list of receivers (separated by ,)
+        from: `Company <${process.env.MAIL_ACCOUNT}>`,
+        to: email,
         subject: 'Asignar Contraseña',
         text: 'Asignar contraseña',
-        html:
-          'Hola! <br><br> En el siguiente link podrás asignar tu contraseña<br><br>' +
-          '<a href=' +
-          environment.host.url +
-          ':' +
-          environment.host.port +
-          '/auth/email/reset-password/' +
-          tokenEntity.passwordToken +
-          '>Asignar Contraseña</a>', // html body
+        html: `Hola! <br><br> En el siguiente link podrás asignar tu contraseña<br><br>' +
+          '<a href="${process.env.MAIL_HOST_URL}/auth/email/reset-password/${tokenEntity.passwordToken}/${email}">
+          Asignar Contraseña</a>`,
       };
 
       const sended = await new Promise<boolean>(async function (resolve, reject) {
