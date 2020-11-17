@@ -5,7 +5,9 @@ import { IvtFormComponent } from '@ivt/u-ui';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { FileItem } from 'ng2-file-upload';
-import { take } from 'rxjs/operators';
+import { finalize, take } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { ProductDataService } from '@ivt/u-state';
 
 @Component({
   selector: 'ivt-product-form',
@@ -15,8 +17,10 @@ import { take } from 'rxjs/operators';
 })
 
 export class ProductFormComponent extends IvtFormComponent<Product> {
-  
-  constructor(private fb: FormBuilder, private http: HttpClient) { 
+  loadingSubject = new BehaviorSubject<boolean>(false);
+  loading$ = this.loadingSubject.asObservable();
+
+  constructor(private fb: FormBuilder, private http: HttpClient, private productDataService: ProductDataService) { 
     super();
     this.form = this.fb.group({
       id: null,
@@ -36,6 +40,19 @@ export class ProductFormComponent extends IvtFormComponent<Product> {
     readFileAsDataUrl(files[0]._file)
       .pipe(take(1))
       .subscribe(convertedFile => this.form.get('logo').patchValue(convertedFile));
+  }
+
+  downloadTemplatePreview(): void {
+    const text = this.form.get('template').value;
+    console.log("text: " + text)
+    this.loadingSubject.next(true);
+    this.productDataService
+      .getTemplatePreview(text)
+      .pipe(
+        take(1),
+        finalize(() => this.loadingSubject.next(false))
+      )
+      .subscribe();
   }
 }
 

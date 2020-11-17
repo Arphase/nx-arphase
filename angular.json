@@ -24,7 +24,7 @@
             "assets": ["apps/innovatech-ui/src/favicon.ico", "apps/innovatech-ui/src/assets"],
             "styles": ["apps/innovatech-ui/src/styles.scss"],
             "scripts": [],
-            "allowedCommonJsDependencies": ["file-saver"]
+            "allowedCommonJsDependencies": ["file-saver", "showdown"]
           },
           "configurations": {
             "qa": {

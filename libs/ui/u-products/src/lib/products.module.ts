@@ -5,9 +5,10 @@ import { ProductFormContainerComponent } from './containers/product-form-contain
 import { ProductsComponent } from './products/products.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { IvtUiModule } from '@ivt/u-ui';
+import { ShowdownModule } from 'ngx-showdown';
 
 @NgModule({
-  imports: [CommonModule, ProductsRoutingModule, IvtUiModule],
+  imports: [CommonModule, ProductsRoutingModule, IvtUiModule, ShowdownModule],
   declarations: [ProductFormComponent, ProductFormContainerComponent, ProductsComponent],
 })
 export class ProductsModule {}
