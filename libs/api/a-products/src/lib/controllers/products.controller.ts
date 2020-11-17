@@ -28,7 +28,7 @@ export class ProductController {
     return this.productService.getProducts(filterDto);
   }
 
-  @Get('preview/pdf')
+  @Post('preview/pdf')
   async getGuaranteePdf(@Body() generateProductPdfDto: GenerateProductPdfDto, @Res() response: Response): Promise<void> {
     return this.productService.generateProductPdf(generateProductPdfDto, response);
   }

@@ -28,10 +28,8 @@ export class ProductDataService extends IvtDataService<Product> {
     var converter = new showdown.Converter()
     var html = converter.makeHtml(text)
   
-    return this.http
-      .get(`${this.config.apiUrl}/products/preview/pdf/${html}`, {
-        responseType: 'blob',
-      })
-      .pipe(tap((file: Blob) => saveFile(file, `Product ${html}.pdf`)));
+    // return this.http.get(`${this.config.apiUrl}/products/preview/pdf/${html}`, { responseType: 'blob', })
+    return this.http.post<any>(`${this.config.apiUrl}/products/preview/pdf`, {template: html}, { responseType: 'blob' as "json" })
+      .pipe(tap((file: Blob) => saveFile(file, `ProductPreview.pdf`)));
   }
 }
