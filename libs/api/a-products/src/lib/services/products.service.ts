@@ -19,6 +19,7 @@ import { GenerateProductPdfDto } from '../dto/generate-product-pdf.dto';
 import { getProductPdfTemplate } from './products.service.constants';
 import { Product } from '@ivt/c-data';
 import { GetProductsFilterDto } from '../dto/get-products-filter.dto';
+import { DummyGlossary } from '@ivt/a-products'
 
 @Injectable()
 export class ProductService {
@@ -62,9 +63,17 @@ export class ProductService {
 
   async generateProductPdf(generateProductPdfDto: GenerateProductPdfDto, response: Response): Promise<void> {
     const template = generateProductPdfDto.template;
+
+    if (generateProductPdfDto.logo != null){
+      var logo = generateProductPdfDto.logo;
+    } else {
+      var logo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+      logo = "data:image/png;base64," + logo;
+    }
+    
     const content = getProductPdfTemplate(template);
     const headerImg = await tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
-    const headerLogo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+    const headerLogo = logo;
     const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
 
     await promisify(fs.writeFile)(OUT_FILE, content);
@@ -105,7 +114,7 @@ export class ProductService {
       <img class="logo"
       src="data:image/png;base64,${headerImg}"/>
       <img class="shield"
-          src="data:image/png;base64,${headerLogo}"/>`,
+          src="${headerLogo}"/>`,
       footerTemplate: `
       <style>
         .footer {
