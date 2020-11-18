@@ -1,6 +1,5 @@
-import { Roles, RolesGuard } from '@ivt/a-auth';
 import { GuaranteeEntity } from '@ivt/a-state';
-import { GuaranteeSummary, UserRoles } from '@ivt/c-data';
+import { GuaranteeSummary, User, UserRoles } from '@ivt/c-data';
 import {
   Body,
   Controller,
@@ -22,15 +21,18 @@ import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import { GuaranteesService } from '../services/guarantees.service';
-
+import { Roles, RolesGuard, GetUser } from '@ivt/a-auth';
 @Controller('guarantees')
 @UseGuards(AuthGuard(), RolesGuard)
 export class GuaranteesController {
   constructor(private guaranteesService: GuaranteesService) {}
 
   @Get()
-  async getGuarantees(@Query(ValidationPipe) filterDto: GetGuaranteesFilterDto): Promise<GuaranteeEntity[]> {
-    return this.guaranteesService.getGuarantees(filterDto);
+  async getGuarantees(
+    @Query(ValidationPipe) filterDto: GetGuaranteesFilterDto,
+    @GetUser() user: Partial<User>
+  ): Promise<GuaranteeEntity[]> {
+    return this.guaranteesService.getGuarantees(filterDto, user);
   }
 
   @Get(':id')
@@ -39,22 +41,23 @@ export class GuaranteesController {
   }
 
   @Get('report/summary')
-  async getGuaranteesSummary(): Promise<GuaranteeSummary> {
+  async getGuaranteesSummary(@GetUser() user: Partial<User>): Promise<GuaranteeSummary> {
     return this.guaranteesService.getGuaranteesSummary();
   }
 
   @Get('export/excel')
   async getGuaranteesExcel(
     @Query(ValidationPipe) filterDto: GetGuaranteesFilterDto,
+    @GetUser() user: Partial<User>,
     @Res() response: Response
   ): Promise<void> {
-    return this.guaranteesService.getGuaranteesExcel(filterDto, response);
+    return this.guaranteesService.getGuaranteesExcel(filterDto, user, response);
   }
 
   @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
-  async createGuarantee(@Body() createGuaranteeDto: CreateGuaranteeDto) {
-    return this.guaranteesService.createGuarantee(createGuaranteeDto);
+  async createGuarantee(@Body() createGuaranteeDto: CreateGuaranteeDto, @GetUser() user: Partial<User>) {
+    return this.guaranteesService.createGuarantee(createGuaranteeDto, user);
   }
 
   @Get('export/pdf/:id')

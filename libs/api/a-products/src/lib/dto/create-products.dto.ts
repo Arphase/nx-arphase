@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsNumber, IsNumberString } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
 import { Transform } from 'class-transformer';
 
 export class CreateProductDto {
