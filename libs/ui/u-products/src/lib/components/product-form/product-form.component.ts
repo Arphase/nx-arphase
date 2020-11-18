@@ -54,10 +54,11 @@ export class ProductFormComponent extends IvtFormComponent<Product> implements O
 
   downloadTemplatePreview(): void {
     const text = this.form.get('template').value;
-    console.log("text: " + text)
+    const logo = this.form.get('logo').value;
+
     this.loadingSubject.next(true);
     this.productDataService
-      .getTemplatePreview(text)
+      .getTemplatePreview(text, logo)
       .pipe(
         take(1),
         finalize(() => this.loadingSubject.next(false))

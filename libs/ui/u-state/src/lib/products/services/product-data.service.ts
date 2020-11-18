@@ -24,12 +24,11 @@ export class ProductDataService extends IvtDataService<Product> {
     this.entitiesUrl = `${this.config.apiUrl}/products`;
   }
 
-  getTemplatePreview(text: string): Observable<any> {
+  getTemplatePreview(text: string, logo: string): Observable<any> {
     var converter = new showdown.Converter()
     var html = converter.makeHtml(text)
   
-    // return this.http.get(`${this.config.apiUrl}/products/preview/pdf/${html}`, { responseType: 'blob', })
-    return this.http.post<any>(`${this.config.apiUrl}/products/preview/pdf`, {template: html}, { responseType: 'blob' as "json" })
+    return this.http.post<any>(`${this.config.apiUrl}/products/preview/pdf`, {template: html, logo: logo}, { responseType: 'blob' as "json" })
       .pipe(tap((file: Blob) => saveFile(file, `ProductPreview.pdf`)));
   }
 }
