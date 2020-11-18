@@ -5,7 +5,7 @@ export const columns: IvtColumns = [
   {
     label: 'Razón Social',
     prop: 'company.businessName',
-    sortable: true,
+    sortable: false,
   },
   {
     label: 'Contacto',
@@ -15,12 +15,21 @@ export const columns: IvtColumns = [
   {
     label: 'Email',
     prop: 'company.email',
-    sortable: true,
+    sortable: false,
   },
   {
     label: 'RFC',
     prop: 'company.rfc',
-    sortable: true,
+    sortable: false,
+  },
+  {
+    label: 'Acciones',
+    prop: 'actions',
+    sortable: false,
+    alignment: 'right',
+    colSizes: {
+      xs: 'auto',
+    },
   },
 ];
 

@@ -14,7 +14,7 @@ export class CompanyRowComponent extends IvtRowComponent<Company> {
   @Input() loading: boolean;
   @Input() loadingStatusChange: boolean;
   @Input() loadingPaymentOrder: boolean;
-  @Input() isEditable: boolean;
+  @Input() isEditableCompany: boolean;
   statusLabels = statusLabels;
   showStatusSubject = new Subject();
   showStatus$ = this.showStatusSubject.asObservable();

@@ -6,8 +6,7 @@ import { Type } from 'class-transformer';
 import { IsArray, IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
 
 export class UpdateCompanyDto {
-  @IsNotEmpty()
-  @IsInt()
+  @IsOptional()
   id: number;
 
   @IsOptional()
@@ -38,6 +37,7 @@ export class UpdateCompanyDto {
   address: Address;
 
   @IsArray()
+  @IsOptional()
   @ValidateNested()
   @Type(() => UpdateUserDto)
   users: User[];

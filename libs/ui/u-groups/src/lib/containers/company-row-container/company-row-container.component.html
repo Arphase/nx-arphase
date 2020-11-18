@@ -1,7 +1,6 @@
 <ivt-company-row [loading]="loading$ | async"
                    [item]="item"
                    [isSelected]="isSelected"
-                   [isEditable]="isEditable$ | async"
-                   (changeStatus)="changeStatus($event)"
+                   [isEditableCompany]="isEditableCompany$ | async"
                    (selectItem)="selectItem.emit($event)">
 </ivt-company-row>

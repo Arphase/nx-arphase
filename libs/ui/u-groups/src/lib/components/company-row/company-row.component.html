@@ -11,6 +11,20 @@
     <div class="col">
         {{ item.rfc }}
     </div>
+    <div class="col-auto">
+      <button mat-icon-button
+              matTooltip="Acciones"
+              [loading]="loading"
+              [matMenuTriggerFor]="actionsMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #actionsMenu="matMenu">
+        <button mat-menu-item
+                [routerLink]="[item.id]">
+          {{ isEditableCompany ? 'Editar' : 'Ver' }} compañía
+        </button>
+      </mat-menu>
+    </div>
     <!--
     <div class="col-2 text-right">
       <ivt-text-truncate-tooltip [label]="item.amount | currency | empty"></ivt-text-truncate-tooltip>

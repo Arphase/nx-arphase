@@ -14,7 +14,7 @@ import { BehaviorSubject } from 'rxjs';
 export class CompanyRowContainerComponent extends IvtRowComponent<Group> {
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
-  isEditable$ = this.permissionService.hasUpdatePermission(...[PermissionTypes.Groups]);
+  isEditableCompany$ = this.permissionService.hasUpdatePermission(...[PermissionTypes.Groups]);
 
   constructor(
     private groupCollectiionService: GroupCollectionService,
