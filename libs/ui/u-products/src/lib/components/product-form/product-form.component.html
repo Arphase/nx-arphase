@@ -11,39 +11,27 @@
       <div class="col-lg-6 col-12">
         <h6>Nombre del producto</h6>
         <ivt-form-field>
-          <input ivtInput 
-                ivtUppercase 
-                formControlName="name"/>
+          <input ivtInput
+                 ivtUppercase
+                 formControlName="name" />
         </ivt-form-field>
       </div>
-   </div>
+    </div>
 
     <div class="row mt-4 mb-3">
       <div class="col-lg-4 col-4">
         <h6>Precio</h6>
         <ivt-form-field>
-          <input ivtInput 
+          <input ivtInput
                  prefix="$ "
-                 mask="0*.00" 
-                 formControlName="price"/>
+                 mask="0*.00"
+                 formControlName="price" />
         </ivt-form-field>
       </div>
 
       <div class="col px-0 flex-end">
-        <div>
-          <h6>Imagen de logo</h6>
-            
-            <input [hidden]="true"
-                   type="file" 
-                   #fileInput
-                   formControlName="logo">
-            <button mat-raised-button 
-                    class="mr-4 mb-4"
-                    type="button" 
-                    color="primary">
-              Seleccionar archivo
-            </button>
-        </div>
+        <ivt-file-upload label="Imagen de logo"
+                         (fileQueueChanges)="saveFile($event)"> </ivt-file-upload>
 
         <div>
           <mat-form-field>
@@ -61,8 +49,7 @@
         <h6>Cuerpo del producto</h6>
         <ivt-form-field appearance="fill">
           <textarea matInput
-                    formControlName="template">
-          </textarea>
+                    formControlName="template"> </textarea>
         </ivt-form-field>
       </div>
     </div>
@@ -72,14 +59,10 @@
         <button mat-raised-button
                 class="mr-3"
                 type="button"
-                [routerLink]="['..']">
-          Cancelar
-        </button>
+                [routerLink]="['..']">Cancelar</button>
         <button mat-raised-button
                 type="submit"
-                color="primary">
-          Guardar
-        </button>
+                color="primary">Guardar</button>
       </div>
     </div>
   </div>

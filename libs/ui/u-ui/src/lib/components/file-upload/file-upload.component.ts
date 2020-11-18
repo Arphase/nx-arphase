@@ -26,7 +26,7 @@ export type IvtFileUploadState = 'idle' | 'loading' | 'success' | 'error' | 'pre
   encapsulation: ViewEncapsulation.None,
   // tslint:disable-next-line: no-host-metadata-property
   host: {
-    class: 'gdx-file-upload',
+    class: 'ivt-file-upload',
   },
 })
 export class IvtFileUploadComponent implements OnChanges {

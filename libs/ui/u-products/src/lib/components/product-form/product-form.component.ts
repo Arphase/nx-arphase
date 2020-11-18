@@ -3,7 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Product } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
 import { HttpClient } from '@angular/common/http';
-
+import { Observable, Subject } from 'rxjs';
+import { FileItem } from 'ng2-file-upload';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-product-form',
@@ -24,4 +26,25 @@ export class ProductFormComponent extends IvtFormComponent<Product> {
       template: [null, Validators.required]
     })
   }
+
+  saveFile(files: FileItem[]): void {
+    if (files.length === 0) {
+      this.form.get('logo').patchValue('');
+      return;
+    }
+
+    readFileAsDataUrl(files[0]._file)
+      .pipe(take(1))
+      .subscribe(convertedFile => this.form.get('logo').patchValue(convertedFile));
+  }
+}
+
+export function readFileAsDataUrl(file: File): Observable<string> {
+  const subject = new Subject<string>();
+  const reader = new FileReader();
+  reader.onload = () => subject.next(reader.result as string);
+  reader.onerror = error => subject.error(error);
+  reader.onloadend = () => subject.complete();
+  reader.readAsDataURL(file);
+  return subject.asObservable();
 }
