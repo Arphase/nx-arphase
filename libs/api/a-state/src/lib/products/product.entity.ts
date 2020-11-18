@@ -1,5 +1,7 @@
-import { Product } from '@ivt/c-data';
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Product, Guarantee } from '@ivt/c-data';
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+
+import { GuaranteeEntity } from '../guarantees';
 
 @Entity('products')
 export class ProductEntity extends BaseEntity implements Product {
@@ -23,4 +25,10 @@ export class ProductEntity extends BaseEntity implements Product {
 
   @Column()
   logo: string;
+
+  @OneToMany(type => GuaranteeEntity, guarantee => guarantee.product, {
+    cascade: true,
+    eager: true
+  })
+  guarantees: Guarantee[];
 }

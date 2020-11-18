@@ -1,5 +1,6 @@
 <ivt-guarantee-form [item]="currentItem$ | async"
                     [loading]="loading$ | async"
                     [isEditable]="isEditable$ | async"
+                    [productOptions]="productOptions$ | async"
                     (submitForm)="submit($event)">
 </ivt-guarantee-form>

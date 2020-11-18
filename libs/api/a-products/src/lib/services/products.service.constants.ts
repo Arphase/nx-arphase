@@ -1,7 +1,93 @@
 import { IMAGE_ASSETS_PATH, transformFolio } from '@ivt/a-state';
+import { Guarantee } from '@ivt/c-data';
+
+export var DummyGlossary = {
+  "guarantee.client.id" : "(ID del cliente)",
+  "guarantee.client.personType" : "(Tipo de persona del cliente)", 
+  "guarantee.client.rfc" : "(RFC del cliente)", 
+  "guarantee.client.phone" : "(Telefono del cliente)", 
+  "guarantee.client.email" : "(Email del cliente)", 
+  "guarantee.client.address" : "(Dirección del cliente)", 
+  "guarantee.client.salesPlace" : "(Lugar de ventas del cliente)", 
+
+  "guarantee.vehicle.productType" : "(Tipo de producto del vehículo)", 
+  "guarantee.vehicle.brand" : "(Marca del vehículo)", 
+  "guarantee.vehicle.model" : "(Modelo del vehículo)", 
+  "guarantee.vehicle.version" : "(Versión del vehículo)", 
+  "guarantee.vehicle.year" : "(Año del vehículo)", 
+  "guarantee.vehicle.vin" : "(Vin del vehículo)", 
+  "guarantee.vehicle.motorNumber" : "(Número de motor del vehículo)", 
+  "guarantee.vehicle.kilometrageStart" : "(Kilometraje inicial del vehículo)", 
+  "guarantee.vehicle.kilometrageEnd" : "(Kilometraje final del vehículo)", 
+
+  "guarantee.status" : "(Status de la garantía)", 
+  "guarantee.startDate" : "(Fecha inicial de la garantía)", 
+  "guarantee.endDate" : "(Fecha final de la garantía)", 
+  "guarantee.invoiceDate" : "(Fecha de la factura de la garantía)", 
+  "guarantee.amount" : "(Precio de la garantía)", 
+  "guarantee.paymentOrder.createdAt" : "(Fecha de la creación orden de compra)", 
+  "guarantee.paymentOrder.updatedAt" : "(Fecha de la actualización orden de compra)", 
+  "guarantee.paymentOrder.distributor" : "(Distribuidor de la orden de compra)", 
+  "guarantee.paymentOrder.Guarantee" : "(Garantías de la orden de compra)"
+}
+
+export function getProductPdfTemplate(template: string, guarantee?: Guarantee): string {
+  
+  if (!guarantee) {
+    function replace(source : string, replacements : { [name:string]: string }) {
+      return template.replace(  new RegExp("\\{([A-z]|\.)*?}", "g"), (m) => {
+        if ((m.substring(1, m.length -1)) in DummyGlossary)
+          return replacements[m.substring(1, m.length -1)];
+        else
+          return m;
+      });
+    }
+  
+    template = replace(template, DummyGlossary);
+  } else {
+    var RealGlossary = {
+      "guarantee.client.id" : guarantee.client.id,
+      "guarantee.client.personType" : guarantee.client.personType, 
+      "guarantee.client.rfc" : guarantee.client.rfc, 
+      "guarantee.client.phone" : guarantee.client.phone, 
+      "guarantee.client.email" : guarantee.client.email,
+      "guarantee.client.address" : guarantee.client.address,
+      "guarantee.client.salesPlace" : guarantee.client.salesPlace,
+  
+      "guarantee.vehicle.productType" : guarantee.vehicle.productType,
+      "guarantee.vehicle.brand" : guarantee.vehicle.brand,
+      "guarantee.vehicle.model" : guarantee.vehicle.model,
+      "guarantee.vehicle.version" : guarantee.vehicle.version,
+      "guarantee.vehicle.year" : guarantee.vehicle.year,
+      "guarantee.vehicle.vin" : guarantee.vehicle.vin,
+      "guarantee.vehicle.motorNumber" : guarantee.vehicle.motorNumber,
+      "guarantee.vehicle.kilometrageStart" : guarantee.vehicle.kilometrageStart,
+      "guarantee.vehicle.kilometrageEnd" : guarantee.vehicle.kilometrageEnd,
+  
+      "guarantee.status" : guarantee.status,
+      "guarantee.startDate" : guarantee.startDate,
+      "guarantee.endDate" : guarantee.endDate,
+      "guarantee.invoiceDate" : guarantee.invoiceDate,
+      "guarantee.amount" : guarantee.amount
+    }
+    
+    function replace(source : string, replacements : { [name:string]: any }) {
+      return template.replace(  new RegExp("\\{([A-z]|\.)*?}", "g"), (m) => {
+        if ((m.substring(1, m.length -1)) in RealGlossary)
+          return replacements[m.substring(1, m.length -1)];
+        else
+          return m;
+      });
+    }
+  
+    template = replace(template, RealGlossary);
+  }
+  
 
 
-export function getProductPdfTemplate(template: string): string {
+  var logoImage = IMAGE_ASSETS_PATH + "logo.png";
+
+  
   return `
   <html>
     <head>
@@ -43,7 +129,7 @@ export function getProductPdfTemplate(template: string): string {
         </style>
     <head>
     <body>
-    <div><img class="logo" src="${IMAGE_ASSETS_PATH}logo.png"></div>
+    <div><img class="logo" src="${logoImage}"></div>
         ${template}
     </body>
     </html>
