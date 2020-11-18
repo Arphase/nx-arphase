@@ -32,32 +32,6 @@ export var DummyGlossary = {
 }
 
 export function getProductPdfTemplate(template: string, guarantee?: Guarantee): string {
-
-  var RealGlossary = {
-    "guarantee.client.id" : guarantee.client.id,
-    "guarantee.client.personType" : guarantee.client.personType, 
-    "guarantee.client.rfc" : guarantee.client.rfc, 
-    "guarantee.client.phone" : guarantee.client.phone, 
-    "guarantee.client.email" : guarantee.client.email,
-    "guarantee.client.address" : guarantee.client.address,
-    "guarantee.client.salesPlace" : guarantee.client.salesPlace,
-
-    "guarantee.vehicle.productType" : guarantee.vehicle.productType,
-    "guarantee.vehicle.brand" : guarantee.vehicle.brand,
-    "guarantee.vehicle.model" : guarantee.vehicle.model,
-    "guarantee.vehicle.version" : guarantee.vehicle.version,
-    "guarantee.vehicle.year" : guarantee.vehicle.year,
-    "guarantee.vehicle.vin" : guarantee.vehicle.vin,
-    "guarantee.vehicle.motorNumber" : guarantee.vehicle.motorNumber,
-    "guarantee.vehicle.kilometrageStart" : guarantee.vehicle.kilometrageStart,
-    "guarantee.vehicle.kilometrageEnd" : guarantee.vehicle.kilometrageEnd,
-
-    "guarantee.status" : guarantee.status,
-    "guarantee.startDate" : guarantee.startDate,
-    "guarantee.endDate" : guarantee.endDate,
-    "guarantee.invoiceDate" : guarantee.invoiceDate,
-    "guarantee.amount" : guarantee.amount
-  }
   
   if (!guarantee) {
     function replace(source : string, replacements : { [name:string]: string }) {
@@ -71,6 +45,32 @@ export function getProductPdfTemplate(template: string, guarantee?: Guarantee): 
   
     template = replace(template, DummyGlossary);
   } else {
+    var RealGlossary = {
+      "guarantee.client.id" : guarantee.client.id,
+      "guarantee.client.personType" : guarantee.client.personType, 
+      "guarantee.client.rfc" : guarantee.client.rfc, 
+      "guarantee.client.phone" : guarantee.client.phone, 
+      "guarantee.client.email" : guarantee.client.email,
+      "guarantee.client.address" : guarantee.client.address,
+      "guarantee.client.salesPlace" : guarantee.client.salesPlace,
+  
+      "guarantee.vehicle.productType" : guarantee.vehicle.productType,
+      "guarantee.vehicle.brand" : guarantee.vehicle.brand,
+      "guarantee.vehicle.model" : guarantee.vehicle.model,
+      "guarantee.vehicle.version" : guarantee.vehicle.version,
+      "guarantee.vehicle.year" : guarantee.vehicle.year,
+      "guarantee.vehicle.vin" : guarantee.vehicle.vin,
+      "guarantee.vehicle.motorNumber" : guarantee.vehicle.motorNumber,
+      "guarantee.vehicle.kilometrageStart" : guarantee.vehicle.kilometrageStart,
+      "guarantee.vehicle.kilometrageEnd" : guarantee.vehicle.kilometrageEnd,
+  
+      "guarantee.status" : guarantee.status,
+      "guarantee.startDate" : guarantee.startDate,
+      "guarantee.endDate" : guarantee.endDate,
+      "guarantee.invoiceDate" : guarantee.invoiceDate,
+      "guarantee.amount" : guarantee.amount
+    }
+    
     function replace(source : string, replacements : { [name:string]: any }) {
       return template.replace(  new RegExp("\\{([A-z]|\.)*?}", "g"), (m) => {
         if ((m.substring(1, m.length -1)) in RealGlossary)
