@@ -9,7 +9,7 @@ export const environment: Environment = {
     database: 'innovatech_dev',
     synchronize: true,
     username: 'innovatech',
-    password: 'innovatech'
+    password: 'innovatech',
   },
   server: {
     port: 3333,

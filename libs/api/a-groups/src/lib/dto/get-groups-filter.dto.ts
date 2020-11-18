@@ -1,14 +1,14 @@
-import { IsOptional, IsNotEmpty, IsNumberString, IsString } from 'class-validator';
+import { IsOptional, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class GetGroupsFilterDto {
   @IsOptional()
   @IsNotEmpty()
-  @IsNumberString()
+  @IsNumber()
   offset;
 
   @IsOptional()
   @IsNotEmpty()
-  @IsNumberString()
+  @IsNumber()
   limit;
 
   @IsOptional()

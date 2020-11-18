@@ -1,15 +1,15 @@
 import { Guarantee } from '@ivt/c-data'
-import { IsOptional, IsNotEmpty, IsNumberString, IsString ,IsArray} from 'class-validator';
+import { IsOptional, IsNotEmpty, IsNumber, IsString ,IsArray} from 'class-validator';
 
 export class GetProductsFilterDto {
   @IsOptional()
   @IsNotEmpty()
-  @IsNumberString()
+  @IsNumber()
   offset;
 
   @IsOptional()
   @IsNotEmpty()
-  @IsNumberString()
+  @IsNumber()
   limit;
 
   @IsOptional()
@@ -18,7 +18,7 @@ export class GetProductsFilterDto {
 
   @IsOptional()
   @IsNotEmpty()
-  @IsNumberString()
+  @IsNumber()
   price;
 
   @IsOptional()
