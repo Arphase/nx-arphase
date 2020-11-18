@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
-import { Guarantee, IvtQueryParams } from '@ivt/c-data';
-import { GuaranteeCollectionService } from '@ivt/u-state';
+import { Group, IvtQueryParams } from '@ivt/c-data';
+import { GroupCollectionService } from '@ivt/u-state';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GroupsResolverService implements Resolve<Guarantee[]> {
-  constructor(private guaranteeCollectionService: GuaranteeCollectionService) {}
+export class GroupsResolverService implements Resolve<Group[]> {
+  constructor(private groupCollectionService: GroupCollectionService) {}
 
-  resolve(): Observable<Guarantee[]> {
+  resolve(): Observable<Group[]> {
     const queryParams: IvtQueryParams = { resetList: true };
-    return this.guaranteeCollectionService.getWithQuery(queryParams as any);
+    return this.groupCollectionService.getWithQuery(queryParams as any);
   }
 }

@@ -7,6 +7,7 @@ import { GroupListContainerComponent } from './containers/group-list-container/g
 import { GroupsComponent } from './groups/groups.component';
 import { CompanyFormDialogComponent } from './components/group-form-companies/group-form-companies.component';
 import { GroupsResolverService } from './resolvers/groups-resolver.service';
+import { GroupResolverService } from './resolvers/group-resolver.service';
 
 export const routes: Routes = [
   {
@@ -21,14 +22,12 @@ export const routes: Routes = [
       {
         path: 'new',
         component: GroupFormsContainerComponent,
-        resolve: { resolvedGroup: GroupsResolverService },
-        children: [
-          {
-            path: '',
-            component: GroupFormsContainerComponent,
-            resolve: { resolvedGroup: GroupsResolverService },
-          },
-        ]
+        resolve: { resolvedGroup: GroupResolverService },
+      },
+      {
+        path: ':id',
+        component: GroupFormsContainerComponent,
+        resolve: { resolvedGroup: GroupResolverService }
       },
     ],
     

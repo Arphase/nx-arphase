@@ -9,38 +9,8 @@
   </div>
 </div>
 
-<div [hidden]="!showFilters"
-     class="row mb-4">
-  <div class="col bg-light py-3 rounded d-flex">
-    <ivt-date-filter class="mr-3"
-                     label="Fecha"
-                     [dateTypeOptions]="dateTypeOptions"
-                     (filterItems)="updateDateFilter($event)">
-    </ivt-date-filter>
-    <!--
-    <ivt-radio-filter label="Estatus"
-                      [options]="statusOptions"
-                      (filterItems)="updateStatusFilter($event)">
-    </ivt-radio-filter>
-    -->
-  </div>
-</div>
-
-<div *ngIf="selectedIds.hasValue()"
-     class="row mt-4 bg-light py-3 rounded">
-  <div class="col">
-    <button mat-raised-button
-            type="button"
-            color="primary"
-            (click)="createPaymentOrder.emit(selectedIds.selected)">
-      Generar orden de pago
-    </button>
-  </div>
-</div>
-
 <ivt-empty-state *ngIf="!list.length"
                  message="No existen compañías que cumplan con el criterio de búsqueda">
-                 
 </ivt-empty-state>
 
 <ng-container *ngIf="list.length">
@@ -53,10 +23,8 @@
                       [ignoreNextBatch]="!hasMoreItems || loading"
                       (nextBatchEmitter)="getMoreItems.emit()">
     <ng-template let-item>
-      <ivt-guarantee-row-container [item]="item"
-                                   [isSelected]="selectedIds.isSelected(item.id)"
-                                   (selectItem)="onSelectItem(item.id)">
-      </ivt-guarantee-row-container>
+      <ivt-company-row-container [item]="item">
+      </ivt-company-row-container>
     </ng-template>
   </ivt-virtual-scroll>
 </ng-container>

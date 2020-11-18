@@ -3,77 +3,24 @@ import { IvtColumns } from '@ivt/u-ui';
 
 export const columns: IvtColumns = [
   {
-    label: '',
-    prop: 'checkbox',
-    sortable: false,
-    colSizes: {
-      xs: '1',
-    },
-  },
-  {
-    label: 'Folio',
-    prop: 'guarantee.id',
-    sortable: true,
-    colSizes: {
-      xs: '1',
-    },
-  },
-  {
-    label: 'Placa',
-    prop: 'guarantee.vin',
+    label: 'Nombre',
+    prop: 'group.name',
     sortable: false,
   },
   {
-    label: 'Distribuidor',
-    prop: 'paymentOrder.distributor',
-    sortable: true,
-    colSizes: {
-      xs: '2',
-    },
-    breakpointShow: {
-      lg: true,
-      xl: true,
-    },
+    label: 'Contacto',
+    prop: 'group.contact',
+    sortable: false,
   },
   {
-    label: 'Inicio',
-    prop: 'guarantee.startDate',
-    sortable: true,
-    colSizes: {
-      xs: '2',
-      lg: '1',
-    },
+    label: 'Email',
+    prop: 'group.email',
+    sortable: false,
   },
   {
-    label: 'Fin',
-    prop: 'guarantee.endDate',
-    sortable: true,
-    colSizes: {
-      xs: '2',
-      lg: '1',
-    },
-  },
-  {
-    label: 'Captura',
-    prop: 'guarantee.createdAt',
-    sortable: true,
-    colSizes: {
-      xs: '2',
-      lg: '1',
-    },
-    breakpointShow: {
-      lg: true,
-      xl: true,
-    },
-  },
-  {
-    label: 'Importe',
-    prop: 'guarantee.amount',
-    sortable: true,
-    colSizes: {
-      xs: '2',
-    },
-    alignment: 'right',
+    label: 'Teléfono',
+    prop: 'group.phone',
+    sortable: false,
   },
   {
     label: 'Acciones',

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -63,6 +64,7 @@ const MATERIAL_MODULES = [
   MatProgressSpinnerModule,
   MatProgressBarModule,
   // Popups and modals
+  NgbModule,
   MatDialogModule,
   MatTooltipModule,
 ];

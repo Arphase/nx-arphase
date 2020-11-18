@@ -44,8 +44,9 @@
     <ivt-expansion-panel class="primary-panel mb-3 d-block mt-3"
                          title="Compañías"
                          [isOpen]="true">
-        <ivt-group-company-list>
-
+        <ivt-group-company-list
+            (companyList)="onAddCompanyList($event)"
+            >
         </ivt-group-company-list>
     </ivt-expansion-panel>
     <div class="row mt-4 mb-3">

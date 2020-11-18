@@ -5,6 +5,7 @@ import { CustomValidators, filterNil } from '@ivt/c-utils';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 import { takeUntil } from 'rxjs/operators';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'ivt-group-form-companies',
@@ -55,9 +56,7 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
     console.log(this.form.value);
   }
 
-
-
-  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal) {
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<CompanyFormDialogComponent>) {
     super();
     this.form = this.fb.group({
       businessName: null,
@@ -71,6 +70,10 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
   }
 
   ngOnInit() {
+  }
+
+  submit() {
+    this.dialogRef.close(this.form);
   }
 
 }
