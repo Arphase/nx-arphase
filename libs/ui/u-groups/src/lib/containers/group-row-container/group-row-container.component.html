@@ -1,0 +1,7 @@
+<ivt-group-row [loading]="loading$ | async"
+                   [item]="item"
+                   [isSelected]="isSelected"
+                   [isEditable]="isEditable$ | async"
+                   (changeStatus)="changeStatus($event)"
+                   (selectItem)="selectItem.emit($event)">
+</ivt-group-row>
