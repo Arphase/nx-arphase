@@ -31,7 +31,7 @@ export class ProductFormComponent extends IvtFormComponent<Product> implements O
       name: [null,Validators.required],
       price: [null, Validators.required],
       logo: [null, Validators.required],
-      template: [null, Validators.required]
+      template: ["", Validators.required]
     })
   }
 
