@@ -73,7 +73,6 @@ export class ProductFormComponent extends IvtFormComponent<Product> implements O
       text: event.source.triggerValue
     };
     text += event.value
-    console.log(text);
     this.form.get('template').patchValue(text)
   }
 }

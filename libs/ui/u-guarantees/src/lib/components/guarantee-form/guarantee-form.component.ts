@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Guarantee, PersonTypes, Select } from '@ivt/c-data';
 import { CustomValidators, filterNil } from '@ivt/c-utils';
@@ -12,6 +12,7 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnInit, OnChanges {
+  @Input() productOptions : Select[] = [];
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
