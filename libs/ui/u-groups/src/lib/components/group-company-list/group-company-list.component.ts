@@ -30,6 +30,7 @@ import { columns, dateTypeOptions, statusOptions } from './group-company-list.co
 export class GroupCompanyListComponent extends IvtListComponent<Company> implements OnInit {
   @Output() companyList = new EventEmitter<any>();
   @Input() clearSelected: boolean;
+  @Input('retCompanyList') retCompanyList;
   columns = columns;
   dateTypeOptions = dateTypeOptions;
   statusOptions = statusOptions;
@@ -44,6 +45,19 @@ export class GroupCompanyListComponent extends IvtListComponent<Company> impleme
     super();
   }
 
+  /*
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes.retCompanyList) {
+      console.log(this.retCompanyList);
+      console.log('Changed list with retCompany')
+      this.companiesSubject.next(this.retCompanyList.companies);
+      this.list = this.retCompanyList.companies;
+      console.log(this.list);
+    }
+    
+  }
+  */
+
   ngOnInit() {
     this.companies$.pipe(tap(companies => (this.list = companies))).subscribe();
   }
@@ -52,8 +66,9 @@ export class GroupCompanyListComponent extends IvtListComponent<Company> impleme
     let dialogRef = this.dialog.open(CompanyFormDialogComponent, {});
 
     dialogRef.afterClosed().subscribe(result => {
-      this.list.push(result.value);
-      this.companiesSubject.next(this.list);
+      //this.list = Object.assign([], this.list);
+      //this.list.push(result.value);
+      //this.companiesSubject.next(this.list);
       this.companyList.emit(result);
 
     })

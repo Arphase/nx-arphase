@@ -46,6 +46,7 @@
                          [isOpen]="true">
         <ivt-group-company-list
             (companyList)="onAddCompanyList($event)"
+            [list]="companiesFormArray.value"
             >
         </ivt-group-company-list>
     </ivt-expansion-panel>

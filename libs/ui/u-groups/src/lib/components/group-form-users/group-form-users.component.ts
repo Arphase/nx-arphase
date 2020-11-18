@@ -20,6 +20,7 @@ export class GroupFormUsersComponent extends IvtFormComponent<Group> implements 
   constructor(private fb: FormBuilder) {
     super();
     this.form = this.fb.group({
+      id: null,
       businessName: null,
       name: null,
       lastName: null,

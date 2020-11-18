@@ -27,7 +27,7 @@ export class CompanyRowComponent extends IvtRowComponent<Company> {
     )
   );
   @Output() downloadPdf = new EventEmitter<number>();
-  @Output() changeStatus = new EventEmitter<Partial<Group>>();
+  @Output() changeStatus = new EventEmitter<Partial<Company>>();
   @Output() downloadPaymentOrder = new EventEmitter<number>();
   @Output() createPaymentOrder = new EventEmitter<number>();
   @Output() updatePaymentOrder = new EventEmitter<number>();

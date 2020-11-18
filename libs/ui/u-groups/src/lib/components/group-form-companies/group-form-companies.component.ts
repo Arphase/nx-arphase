@@ -25,13 +25,14 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
 
   createUserGroup() {
     return this.fb.group({
+      id: [],
       businessName: [],
-      name: [],
+      firstName: [],
       lastName: [],
       secondLastName: [],
       email: [],
       phone: [],
-      businessRole: [],
+      role: [],
       rfc: [],
     });
   }
@@ -59,6 +60,7 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<CompanyFormDialogComponent>) {
     super();
     this.form = this.fb.group({
+      id: null,
       businessName: null,
       rfc: null,
       contact: null,
