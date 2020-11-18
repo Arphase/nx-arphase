@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsString, IsNumber, IsNumberString } from 'class-validator';
+import { Guarantee } from '@ivt/c-data';
+import { IsNotEmpty, IsString, IsNumber, IsArray, IsOptional} from 'class-validator';
 import { Transform } from 'class-transformer';
 
 export class CreateProductDto {
@@ -19,4 +20,8 @@ export class CreateProductDto {
   @IsNotEmpty()
   @IsString()
   logo: string;
+
+  @IsOptional()
+  @IsArray()
+  guarantees: Partial<Guarantee>[];
 }
