@@ -1,6 +1,6 @@
-import { Guarantee } from '@ivt/c-data';
-import { IsNotEmpty, IsString, IsNumber, IsArray, IsOptional} from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber, IsOptional, IsArray } from 'class-validator';
 import { Transform } from 'class-transformer';
+import { Guarantee } from '@ivt/c-data';
 
 export class CreateProductDto {
 

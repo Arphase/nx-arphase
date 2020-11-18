@@ -6,7 +6,7 @@ import {
   tobase64,
   transformFolio,
 } from '@ivt/a-state';
-import { GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels } from '@ivt/c-data';
+import { GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels, User } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import fs from 'fs';
 import { identity, omit, pickBy } from 'lodash';
@@ -22,6 +22,7 @@ import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import { getGuaranteePdfTemplate } from './guarantees.service.constants';
 import { getProductPdfTemplate } from '@ivt/a-products';
 import { dir } from '@ivt/c-utils';
+import { UserRoles } from '@ivt/c-data';
 
 @Injectable()
 export class GuaranteesService {
@@ -51,7 +52,7 @@ export class GuaranteesService {
     return found;
   }
 
-  async getGuarantees(filterDto: Partial<GetGuaranteesFilterDto>): Promise<GuaranteeEntity[]> {
+  async getGuarantees(filterDto: Partial<GetGuaranteesFilterDto>, user: Partial<User>): Promise<GuaranteeEntity[]> {
     const { limit, offset, sort, direction, startDate, endDate, dateType, text, status } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     let guarantees: GuaranteeEntity[];
@@ -65,6 +66,10 @@ export class GuaranteesService {
       .leftJoinAndSelect('guarantee.product', 'product')
       .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
       
+
+    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+      query.andWhere('(guarantee.userId = :id)', { id: user.id });
+    }
 
     if (sort && direction) {
       query.orderBy(`${sort}`, dir[direction]);
@@ -116,8 +121,8 @@ export class GuaranteesService {
     return summary;
   }
 
-  async getGuaranteesExcel(filterDto: GetGuaranteesFilterDto, response: Response): Promise<void> {
-    const guarantees = await this.getGuarantees(omit(filterDto, ['offset', 'limit']));
+  async getGuaranteesExcel(filterDto: GetGuaranteesFilterDto, user: Partial<User>, response: Response): Promise<void> {
+    const guarantees = await this.getGuarantees(omit(filterDto, ['offset', 'limit']), user);
     const excelColumnConstants: string[] = [
       'Folio',
       'Placa',
@@ -150,11 +155,12 @@ export class GuaranteesService {
     stream.pipe(response as any);
   }
 
-  async createGuarantee(createGuaranteeDto: CreateGuaranteeDto): Promise<GuaranteeEntity> {
+  async createGuarantee(createGuaranteeDto: CreateGuaranteeDto, user: Partial<User>): Promise<GuaranteeEntity> {
     createGuaranteeDto = this.omitInfo(createGuaranteeDto);
     const newGuarantee = await this.guaranteeRepository.create({
       ...createGuaranteeDto,
       status: GuaranteeStatus.outstanding,
+      userId: user.id
     });
     await newGuarantee.save();
     return newGuarantee;

@@ -6,18 +6,24 @@ import { GetGroupsFilterDto } from '../dto/get-groups-filter.dto';
 import { dir } from '@ivt/c-utils';
 import { UpdateGroupDto } from '../dto/update-group.dto';
 import { Group } from '@ivt/c-data';
+import { AuthService } from '@ivt/a-auth';
 
 @Injectable()
 export class GroupsService {
   groupRepository: GroupRepository;
 
-  constructor(private readonly connection: Connection) {
+  constructor(private readonly connection: Connection, private authService: AuthService) {
     this.groupRepository = this.connection.getCustomRepository(GroupRepository);
   }
 
   async createGroup(createGroupDto: CreateGroupDto): Promise<Group> {
     const newGroup = await this.groupRepository.create(createGroupDto);
     await newGroup.save();
+    newGroup.companies?.forEach(company => {
+      company.users?.forEach(user => {
+        this.authService.sendEmailResetPassword(user.email);
+      });
+    });
     return newGroup;
   }
 

@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import {
-  IVT_STATE_CONFIGURATION,
-  IvtStateConfiguration,
-} from '../../state-config';
+  IVT_UI_STATE_CONFIGURATION,
+  IvtUiStateConfiguration,
+} from '../../ui-state-config';
 import { getAuthUserStateState } from '../state/auth.selectors';
 
 @Injectable({
@@ -18,7 +18,7 @@ export class AuthService {
   constructor(
     private store: Store<any>,
     private http: HttpClient,
-    @Inject(IVT_STATE_CONFIGURATION) public config: IvtStateConfiguration
+    @Inject(IVT_UI_STATE_CONFIGURATION) public config: IvtUiStateConfiguration
   ) {}
 
   signIn(payload: SignInRequest): Observable<User> {
