@@ -169,8 +169,8 @@ export class GuaranteesService {
   async generatePdf(id: number, response: Response): Promise<void> {
     const guarantee = await this.getGuaranteeById(id);
     
-    var  content = getGuaranteePdfTemplate(guarantee);
-    var headerLogo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+    let content = getGuaranteePdfTemplate(guarantee);
+    let headerLogo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
     const product = guarantee.product;
 
     if(product){

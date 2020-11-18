@@ -85,7 +85,7 @@ export function getProductPdfTemplate(template: string, guarantee?: Guarantee): 
   
 
 
-  var logoImage = IMAGE_ASSETS_PATH + "logo.png";
+  const logoImage = IMAGE_ASSETS_PATH + "logo.png";
 
   
   return `
