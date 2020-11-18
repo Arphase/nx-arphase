@@ -21,14 +21,14 @@ export class GroupFormUsersComponent extends IvtFormComponent<Group> implements 
     super();
     this.form = this.fb.group({
       id: null,
-      businessName: null,
-      name: null,
-      lastName: null,
+      businessName: [null, Validators.required],
+      name: [null, Validators.required],
+      lastName: [null, Validators.required],
       secondLastName: null,
-      email: null,
-      phone: null,
+      email: [null, Validators.required],
+      phone: [null, Validators.required],
       businessRole: null,
-      rfc: null,
+      rfc: [null, [Validators.required, CustomValidators.rfc('any')]],
     })
   }
 

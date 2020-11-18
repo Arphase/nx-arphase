@@ -28,10 +28,10 @@ export class GroupFormsComponent extends IvtFormComponent<Group> implements OnIn
     super();
     this.form = this.fb.group({
       id: null,
-      name: null,
-      contact: null,
-      email: null,
-      phone: null,
+      name: [null, Validators.required],
+      contact: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      phone: [null, Validators.required],
       companies: this.fb.array([]),
     });
   }
