@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Product } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
@@ -8,6 +8,8 @@ import { FileItem } from 'ng2-file-upload';
 import { finalize, take } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { ProductDataService } from '@ivt/u-state';
+import { glossary } from '@ivt/c-data'
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'ivt-product-form',
@@ -16,9 +18,11 @@ import { ProductDataService } from '@ivt/u-state';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class ProductFormComponent extends IvtFormComponent<Product> {
+export class ProductFormComponent extends IvtFormComponent<Product> implements OnChanges {
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
+  glossaryOptions = glossary;
+  selectedData: { value: any; text: string; };
 
   constructor(private fb: FormBuilder, private http: HttpClient, private productDataService: ProductDataService) { 
     super();
@@ -29,6 +33,12 @@ export class ProductFormComponent extends IvtFormComponent<Product> {
       logo: [null, Validators.required],
       template: [null, Validators.required]
     })
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.item && this.item) {
+      this.form.patchValue(this.item)
+    }
   }
 
   saveFile(files: FileItem[]): void {
@@ -53,6 +63,17 @@ export class ProductFormComponent extends IvtFormComponent<Product> {
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe();
+  }
+
+  selectedValue(event: MatSelectChange) {
+    var text = this.form.get('template').value;
+    this.selectedData = {
+      value: event.value,
+      text: event.source.triggerValue
+    };
+    text += event.value
+    console.log(text);
+    this.form.get('template').patchValue(text)
   }
 }
 

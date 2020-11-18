@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductFormContainerComponent extends IvtFormContainerComponent<Product> {
+  successUrl = '/spa/products';
   createSuccessMessage = 'El producto se ha creado con éxito';
 
   constructor( 

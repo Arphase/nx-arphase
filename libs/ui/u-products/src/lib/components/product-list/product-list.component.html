@@ -1,0 +1,31 @@
+<div class="row">
+
+    <div class="col flex-end pr-0">
+        <button mat-raised-button
+                [routerLink]="['new']"
+                type="button"
+                color="primary">
+            Nuevo producto
+        </button>
+    </div>
+</div>
+
+<ivt-empty-state *ngIf="!list.length"
+                 message="No existen productos.">
+</ivt-empty-state>
+
+<ng-container *ngIf="list.length">
+    <ivt-table-header class="d-block mt-4"
+                      [columns]="columns"
+                      (sort)="updateSort($event)"></ivt-table-header>
+
+    <ivt-virtual-scroll height="60vh"
+                        [list]="list"
+                        [ignoreNextBatch]="!hasMoreItems || loading"
+                        (nextBatchEmitter)="getMoreItems.emit()">
+        <ng-template let-item>
+            <ivt-product-row-container [item]="item">
+            </ivt-product-row-container>
+        </ng-template>
+    </ivt-virtual-scroll>
+</ng-container>

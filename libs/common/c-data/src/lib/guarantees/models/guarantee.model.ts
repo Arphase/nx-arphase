@@ -18,4 +18,3 @@ export interface Guarantee {
   paymentOrder?: PaymentOrder;
 }
 
-
