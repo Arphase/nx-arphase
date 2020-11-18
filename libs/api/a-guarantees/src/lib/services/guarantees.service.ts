@@ -20,6 +20,7 @@ import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import { getGuaranteePdfTemplate } from './guarantees.service.constants';
+import { getProductPdfTemplate } from '@ivt/a-products';
 import { dir } from '@ivt/c-utils';
 
 @Injectable()
@@ -34,6 +35,7 @@ export class GuaranteesService {
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     query
       .leftJoinAndSelect('guarantee.client', 'client')
+      .leftJoinAndSelect('guarantee.product', 'product')
       .leftJoinAndSelect('client.physicalInfo', 'physicalPerson')
       .leftJoinAndSelect('client.moralInfo', 'moralPerson')
       .leftJoinAndSelect('client.address', 'address')
@@ -160,9 +162,24 @@ export class GuaranteesService {
 
   async generatePdf(id: number, response: Response): Promise<void> {
     const guarantee = await this.getGuaranteeById(id);
-    const content = getGuaranteePdfTemplate(guarantee);
+    
+    var  content = getGuaranteePdfTemplate(guarantee);
+    var headerLogo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+    const product = guarantee.product;
+
+    if(product){
+      const template = product.template;
+      var logo = product.logo;
+
+      if (!logo){
+        logo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+        logo = "data:image/png;base64," + logo;
+      }
+      content = getProductPdfTemplate(template, guarantee);
+      headerLogo = logo;
+    }
+    
     const headerImg = await tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
-    const headerLogo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
     const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
 
     await promisify(fs.writeFile)(OUT_FILE, content);
@@ -203,7 +220,7 @@ export class GuaranteesService {
       <img class="logo"
       src="data:image/png;base64,${headerImg}"/>
       <img class="shield"
-          src="data:image/png;base64,${headerLogo}"/>`,
+          src="${headerLogo}"/>`,
       footerTemplate: `
       <style>
         .footer {
