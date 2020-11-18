@@ -85,7 +85,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         kilometrageEnd: [null, Validators.required],
       }),
       startDate: [null, Validators.required],
-      endDate: [null, Validators.required],
+      endDate: [null, Validators.required]
     });
   }
 

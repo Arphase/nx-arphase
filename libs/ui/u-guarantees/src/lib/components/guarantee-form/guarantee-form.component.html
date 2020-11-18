@@ -257,7 +257,7 @@
 
       <mat-form-field class="col-lg-4 col-4 mb-3">
         <mat-label>Glosario</mat-label>
-        <mat-select forControlName="productId">
+        <mat-select formControlName="productId">
           <mat-option *ngFor="let option of productOptions"
                       [value]="option.value">
             {{ option.label }}
