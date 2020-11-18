@@ -1,4 +1,4 @@
-import { Client, GuaranteeStatus, Vehicle } from '@ivt/c-data';
+import { Client, GuaranteeStatus, Vehicle, Product } from '@ivt/c-data';
 import { Transform, Type } from 'class-transformer';
 import { IsDateString, IsEnum, IsInt, IsNotEmpty, IsNumber, IsOptional, ValidateNested } from 'class-validator';
 
@@ -36,4 +36,7 @@ export class UpdateGuaranteeDto {
   @IsOptional()
   @IsNumber()
   amount: number;
+
+  @IsOptional()
+  product: Product;
 }

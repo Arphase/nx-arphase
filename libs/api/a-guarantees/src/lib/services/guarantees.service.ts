@@ -60,7 +60,9 @@ export class GuaranteesService {
       .leftJoinAndSelect('client.moralInfo', 'moralPerson')
       .leftJoinAndSelect('client.address', 'address')
       .leftJoinAndSelect('guarantee.paymentOrder', 'paymentOrder')
+      .leftJoinAndSelect('guarantee.product', 'product')
       .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
+      
 
     if (sort && direction) {
       query.orderBy(`${sort}`, dir[direction]);
@@ -93,6 +95,7 @@ export class GuaranteesService {
       .addGroupBy('physicalPerson.id')
       .addGroupBy('moralPerson.id')
       .addGroupBy('paymentOrder.id')
+      .addGroupBy('product.id')
       .take(limit)
       .skip(offset);
 
