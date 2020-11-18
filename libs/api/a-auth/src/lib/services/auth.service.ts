@@ -108,8 +108,8 @@ export class AuthService {
         to: email,
         subject: 'Asignar Contraseña',
         text: 'Asignar contraseña',
-        html: `Hola! <br><br> En el siguiente link podrás asignar tu contraseña<br><br>' +
-          '<a href="${process.env.MAIL_HOST_URL}/auth/email/reset-password/${tokenEntity.passwordToken}/${email}">
+        html: `Hola! <br><br> En el siguiente link podrás asignar tu contraseña<br><br>
+          <a href="${process.env.MAIL_HOST_URL}/${tokenEntity.passwordToken}/${email}">
           Asignar Contraseña</a>`,
       };
 
