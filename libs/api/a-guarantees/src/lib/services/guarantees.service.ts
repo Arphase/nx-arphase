@@ -175,7 +175,7 @@ export class GuaranteesService {
 
     if(product){
       const template = product.template;
-      var logo = product.logo;
+      let logo = product.logo;
 
       if (!logo){
         logo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');

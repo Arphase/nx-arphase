@@ -1,7 +1,7 @@
 import { IMAGE_ASSETS_PATH, transformFolio } from '@ivt/a-state';
 import { Guarantee } from '@ivt/c-data';
 
-export var DummyGlossary = {
+export const DummyGlossary = {
   "guarantee.client.id" : "(ID del cliente)",
   "guarantee.client.personType" : "(Tipo de persona del cliente)", 
   "guarantee.client.rfc" : "(RFC del cliente)", 
@@ -45,7 +45,7 @@ export function getProductPdfTemplate(template: string, guarantee?: Guarantee): 
   
     template = replace(template, DummyGlossary);
   } else {
-    var RealGlossary = {
+    const RealGlossary = {
       "guarantee.client.id" : guarantee.client.id,
       "guarantee.client.personType" : guarantee.client.personType, 
       "guarantee.client.rfc" : guarantee.client.rfc, 
