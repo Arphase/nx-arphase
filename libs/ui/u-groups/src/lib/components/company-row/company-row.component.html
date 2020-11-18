@@ -1,0 +1,68 @@
+<ivt-row>
+    <div class="col">
+        {{ item.businessName }}
+    </div>
+    <div class="col">
+        {{ item.contact }}
+    </div>
+    <div class="col">
+        {{ item.email }}
+    </div>
+    <div class="col">
+        {{ item.rfc }}
+    </div>
+    <!--
+    <div class="col-2 text-right">
+      <ivt-text-truncate-tooltip [label]="item.amount | currency | empty"></ivt-text-truncate-tooltip>
+    </div>
+    <div class="col-auto ml-auto">
+      <button mat-icon-button
+              matTooltip="Acciones"
+              [loading]="loading"
+              [matMenuTriggerFor]="actionsMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #actionsMenu="matMenu">
+        <button mat-menu-item
+                [routerLink]="[item.id]">
+          {{ isEditable ? 'Editar' : 'Ver' }} garantía
+        </button>
+        <button mat-menu-item
+                [matMenuTriggerFor]="statusMenu">
+          Cambiar estatus
+        </button>
+        <button mat-menu-item
+                (click)="downloadPdf.emit(item.id)">
+          Descargar PDF
+        </button>
+        <button mat-menu-item
+                *ngIf="!item.paymentOrderId"
+                (click)="createPaymentOrder.emit(item.id)">
+          Generar orden de pago
+        </button>
+        <ng-container *ngIf="item.paymentOrderId">
+          <button mat-menu-item
+                  (click)="downloadPaymentOrder.emit(item.paymentOrderId)">
+            Descargar orden de pago
+          </button>
+          <button mat-menu-item
+                  (click)="updatePaymentOrder.emit(item.paymentOrderId)">
+            Editar orden de pago
+          </button>
+        </ng-container>
+      </mat-menu>
+  
+      <mat-menu #statusMenu="matMenu">
+        <button *ngFor="let menuOption of menuOptions"
+                mat-menu-item
+                class="status-option my-2"
+                (click)="onChangeStatus(item.id, menuOption.value)">
+          <span class="{{ menuOption.class }} text-white text-center rounded flex-center">
+            {{ menuOption.label }}
+          </span>
+        </button>
+      </mat-menu>
+    </div>
+    -->
+  </ivt-row>
+  
