@@ -1,15 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges} from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Product } from '@ivt/c-data';
-import { IvtFormComponent } from '@ivt/u-ui';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
-import { FileItem } from 'ng2-file-upload';
-import { finalize, take } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
-import { ProductDataService } from '@ivt/u-state';
-import { glossary } from '@ivt/c-data'
+import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
+import { glossary, Product } from '@ivt/c-data';
+import { ProductDataService } from '@ivt/u-state';
+import { IvtFormComponent } from '@ivt/u-ui';
+import { FileItem } from 'ng2-file-upload';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { finalize, take } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-product-form',
@@ -17,27 +15,26 @@ import { MatSelectChange } from '@angular/material/select';
   styleUrls: ['./product-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class ProductFormComponent extends IvtFormComponent<Product> implements OnChanges {
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
   glossaryOptions = glossary;
-  selectedData: { value: any; text: string; };
+  selectedData: { value: any; text: string };
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private productDataService: ProductDataService) { 
+  constructor(private fb: FormBuilder, private http: HttpClient, private productDataService: ProductDataService) {
     super();
     this.form = this.fb.group({
       id: null,
-      name: [null,Validators.required],
+      name: [null, Validators.required],
       price: [null, Validators.required],
       logo: [null, Validators.required],
-      template: ["", Validators.required]
-    })
+      template: ['', Validators.required],
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.item && this.item) {
-      this.form.patchValue(this.item)
+      this.form.patchValue(this.item);
     }
   }
 
@@ -67,13 +64,13 @@ export class ProductFormComponent extends IvtFormComponent<Product> implements O
   }
 
   selectedValue(event: MatSelectChange) {
-    var text = this.form.get('template').value;
+    let text = this.form.get('template').value;
     this.selectedData = {
       value: event.value,
-      text: event.source.triggerValue
+      text: event.source.triggerValue,
     };
-    text += event.value
-    this.form.get('template').patchValue(text)
+    text += event.value;
+    this.form.get('template').patchValue(text);
   }
 }
 

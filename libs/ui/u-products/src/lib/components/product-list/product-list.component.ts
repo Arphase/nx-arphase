@@ -32,8 +32,12 @@ export class ProductListComponent extends IvtListComponent<Product> {
       label: 'Precio',
       prop: 'product.price',
       sortable: true,
+      alignment: 'right',
       colSizes: {
         xs: '1',
+        sm: '9',
+        md: '9',
+        lg: '9'
       },
     },
     {
@@ -43,6 +47,9 @@ export class ProductListComponent extends IvtListComponent<Product> {
       alignment: 'right',
       colSizes: {
         xs: 'auto',
+        sm: '1',
+        md: '1',
+        lg: '1'
       },
     },
   ];
