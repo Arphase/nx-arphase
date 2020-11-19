@@ -1,5 +1,5 @@
 import { User } from '@ivt/c-data';
-import { ConflictException, InternalServerErrorException } from '@nestjs/common';
+import { ConflictException, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 import { EntityRepository, Repository } from 'typeorm';
 
@@ -30,6 +30,17 @@ export class UserRepository extends Repository<UserEntity> {
       }
     }
     return user;
+  }
+
+  async setPassword(email: string, newPassword: string): Promise<boolean> {
+    const userFromDb = await this.findOne({ email });
+    if (!userFromDb) throw new NotFoundException(`Usuario con el correo ${email} no encontrado`)
+
+    userFromDb.salt = await bcrypt.genSalt();
+    userFromDb.password = await bcrypt.hash(newPassword, userFromDb.salt);
+
+    await userFromDb.save();
+    return true;
   }
 
   private async hashPassword(password: string, salt: string): Promise<string> {

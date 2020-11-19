@@ -13,5 +13,5 @@ export const environment: Environment = {
   },
   server: {
     port: 3333,
-  }
+  },
 };

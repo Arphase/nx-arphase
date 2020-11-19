@@ -9,14 +9,13 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Company} from '@ivt/c-data';
+import { Company } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { CompanyFormDialogComponent } from '../group-form-companies/group-form-companies.component';
 
+import { CompanyFormDialogComponent } from '../group-form-companies/group-form-companies.component';
 import { columns, dateTypeOptions, statusOptions } from './group-company-list.constants';
 
 @Component({
@@ -24,13 +23,11 @@ import { columns, dateTypeOptions, statusOptions } from './group-company-list.co
   templateUrl: './group-company-list.component.html',
   styleUrls: ['./group-company-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: []
 })
-export class GroupCompanyListComponent extends IvtListComponent<Company> implements OnInit {
-  @Output() companyList = new EventEmitter<any>();
+export class GroupCompanyListComponent extends IvtListComponent<Company> implements OnInit, OnChanges {
   @Input() clearSelected: boolean;
-  @Input('retCompanyList') retCompanyList;
-  @Input('retList') retList = [];
+  @Input() retCompanyList;
+  @Input() retList = [];
   columns = columns;
   dateTypeOptions = dateTypeOptions;
   statusOptions = statusOptions;
@@ -39,38 +36,34 @@ export class GroupCompanyListComponent extends IvtListComponent<Company> impleme
   selectedIds = new SelectionModel<number>(true, []);
   @Output() downloadPdf = new EventEmitter<number>();
   @Output() createPaymentOrder = new EventEmitter<number[]>();
+  @Output() companyList = new EventEmitter<any>();
 
   constructor(public dialog: MatDialog) {
-    
     super();
   }
 
-  
-  ngOnChanges(changes: SimpleChanges) {
-    if(changes.list) {
-      this.companiesSubject.next(this.list);
-    }
-  }
-  
-
   ngOnInit() {
     this.companies$.pipe(tap(companies => (this.list = companies))).subscribe();
-    
-    if(this.retList.length > 0) {
+    if (this.retList.length > 0) {
+      console.log(this.retList.length);
       this.list = this.retList;
     }
   }
 
-  open() {
-    let dialogRef = this.dialog.open(CompanyFormDialogComponent, {});
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.list) {
+      console.log('List changed');
+      this.companiesSubject.next(this.list);
+    }
+  }
 
+  open() {
+    const dialogRef = this.dialog.open(CompanyFormDialogComponent, {});
     dialogRef.afterClosed().subscribe(result => {
       this.list.push(result.value);
       this.list = Object.assign([], this.list);
       this.companiesSubject.next(this.list);
       this.companyList.emit(result);
-
-    })
-
+    });
   }
 }

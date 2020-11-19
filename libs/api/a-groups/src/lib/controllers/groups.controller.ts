@@ -24,7 +24,7 @@ export class GroupsController {
   }
 
   @Get(':id')
-  async getGuarantee(@Param('id', ParseIntPipe) id: number): Promise<Group> {
+  async getGroupById(@Param('id', ParseIntPipe) id: number): Promise<Group> {
     return this.groupsService.getGroupById(id);
   }
 

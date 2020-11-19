@@ -1,4 +1,5 @@
-import { IsOptional, IsNotEmpty, IsNumberString, IsString } from 'class-validator';
+import { Guarantee } from '@ivt/c-data'
+import { IsOptional, IsNotEmpty, IsNumber, IsString , IsArray, IsNumberString} from 'class-validator';
 
 export class GetProductsFilterDto {
   @IsOptional()
@@ -17,11 +18,16 @@ export class GetProductsFilterDto {
 
   @IsOptional()
   @IsNotEmpty()
-  @IsNumberString()
+  @IsNumber()
   price;
 
   @IsOptional()
   @IsNotEmpty()
   @IsString()
   name: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsArray()
+  guarantees: Partial<Guarantee>[];
 }
