@@ -5,7 +5,6 @@ import { saveFile } from '@ivt/c-utils';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import showdown from 'showdown';
 
 import { IvtDataService } from '../../core';
 import { IVT_UI_STATE_CONFIGURATION, IvtUiStateConfiguration } from '../../ui-state-config';
@@ -25,13 +24,10 @@ export class ProductDataService extends IvtDataService<Product> {
   }
 
   getTemplatePreview(text: string, logo: string): Observable<any> {
-    const converter = new showdown.Converter();
-    const html = converter.makeHtml(text);
-
     return this.http
       .post<any>(
         `${this.config.apiUrl}/products/preview/pdf`,
-        { template: html, logo: logo },
+        { template: text, logo: logo },
         { responseType: 'blob' as 'json' }
       )
       .pipe(tap((file: Blob) => saveFile(file, `ProductPreview.pdf`)));

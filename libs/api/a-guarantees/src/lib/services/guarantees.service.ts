@@ -1,3 +1,4 @@
+import { getProductPdfTemplate } from '@ivt/a-products';
 import {
   getReadableStream,
   GuaranteeEntity,
@@ -6,7 +7,8 @@ import {
   tobase64,
   transformFolio,
 } from '@ivt/a-state';
-import { GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels, User } from '@ivt/c-data';
+import { GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
+import { dir } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import fs from 'fs';
 import { identity, omit, pickBy } from 'lodash';
@@ -20,9 +22,6 @@ import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import { getGuaranteePdfTemplate } from './guarantees.service.constants';
-import { getProductPdfTemplate } from '@ivt/a-products';
-import { dir } from '@ivt/c-utils';
-import { UserRoles } from '@ivt/c-data';
 
 @Injectable()
 export class GuaranteesService {
@@ -65,7 +64,6 @@ export class GuaranteesService {
       .leftJoinAndSelect('guarantee.paymentOrder', 'paymentOrder')
       .leftJoinAndSelect('guarantee.product', 'product')
       .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
-
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
       query.andWhere('(guarantee.userId = :id)', { id: user.id });
@@ -160,7 +158,7 @@ export class GuaranteesService {
     const newGuarantee = await this.guaranteeRepository.create({
       ...createGuaranteeDto,
       status: GuaranteeStatus.outstanding,
-      userId: user.id
+      userId: user.id,
     });
     await newGuarantee.save();
     return newGuarantee;
@@ -173,13 +171,13 @@ export class GuaranteesService {
     let headerLogo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
     const product = guarantee.product;
 
-    if(product){
+    if (product) {
       const template = product.template;
       let logo = product.logo;
 
-      if (!logo){
+      if (!logo) {
         logo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
-        logo = "data:image/png;base64," + logo;
+        logo = 'data:image/png;base64,' + logo;
       }
       content = getProductPdfTemplate(template, guarantee);
       headerLogo = logo;
