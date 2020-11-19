@@ -79,8 +79,17 @@ export class GroupFormsComponent extends IvtFormComponent<Group> implements OnIn
     this.companiesFormArray.push(companyL);
   }
 
+  onModifyCompanyList(companyL: FormGroup) {
+    var i;
+    for (i = 0; i < this.companiesFormArray.length; i++) {
+      if(this.companiesFormArray.value[i].id == companyL.value.id) {
+        this.companiesFormArray.removeAt(i);
+      }
+    }
+    this.companiesFormArray.push(companyL);
+  }
+
   submit() {
-    //this.form.get('companies').patchValue(this.companiesFormArray);
     super.submit();
   }
 

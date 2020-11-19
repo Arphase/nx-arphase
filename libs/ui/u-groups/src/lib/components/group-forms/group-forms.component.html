@@ -44,6 +44,7 @@
                          [isOpen]="true">
         <ivt-group-company-list
             (companyList)="onAddCompanyList($event)"
+            (companyListModify)="onModifyCompanyList($event)"
             [retList]="companiesFormArray.value"
             >
         </ivt-group-company-list>

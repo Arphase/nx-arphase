@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Group } from '@ivt/c-data';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 
@@ -33,6 +34,24 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
     });
   }
 
+  createUserGroupWithData(element) {
+    return this.fb.group({
+      id: element.id,
+      firstName: element.firstName,
+      lastName: element.lastName,
+      secondLastName: element.secondLastName,
+      email: element.email,
+      phone: element.phone,
+      role: "agencyUser",
+      rfc: element.rfc,
+    });
+  }
+
+  addUserToUsersFormArrayWithData(element) {
+    this.usersFormArray.push(this.createUserGroupWithData(element));
+  }
+
+
   addUserToUsersFormArray() {
     this.usersFormArray.push(this.createUserGroup());
   }
@@ -49,7 +68,7 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
     return this.fb.control(null);
   }
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<CompanyFormDialogComponent>) {
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<CompanyFormDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     super();
     this.form = this.fb.group({
       id: null,
@@ -64,6 +83,12 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
   }
 
   ngOnInit() {
+    if(this.data) {
+      this.form.patchValue(this.data);
+      this.data.users.forEach(element => {
+        this.addUserToUsersFormArrayWithData(element);
+      });
+    }
   }
 
   submit() {

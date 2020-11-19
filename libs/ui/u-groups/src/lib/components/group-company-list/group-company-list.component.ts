@@ -37,6 +37,7 @@ export class GroupCompanyListComponent extends IvtListComponent<Company> impleme
   @Output() downloadPdf = new EventEmitter<number>();
   @Output() createPaymentOrder = new EventEmitter<number[]>();
   @Output() companyList = new EventEmitter<any>();
+  @Output() companyListModify = new EventEmitter<any>();
 
   constructor(public dialog: MatDialog) {
     super();
@@ -45,14 +46,12 @@ export class GroupCompanyListComponent extends IvtListComponent<Company> impleme
   ngOnInit() {
     this.companies$.pipe(tap(companies => (this.list = companies))).subscribe();
     if (this.retList.length > 0) {
-      console.log(this.retList.length);
       this.list = this.retList;
     }
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.list) {
-      console.log('List changed');
       this.companiesSubject.next(this.list);
     }
   }
@@ -66,4 +65,21 @@ export class GroupCompanyListComponent extends IvtListComponent<Company> impleme
       this.companyList.emit(result);
     });
   }
+
+  openWithData(item) {
+    var i;
+    const dialogRef = this.dialog.open(CompanyFormDialogComponent, {data: item});
+    dialogRef.afterClosed().subscribe(result => {
+      for (i = 0; i < this.list.length; i++) {
+        if(this.list[i].id == item.id) {
+          this.list.splice(i, 1)
+        }
+      }
+      this.list.push(result.value);
+      this.list = Object.assign([], this.list);
+      //this.companiesSubject.next(this.list);
+      this.companyListModify.emit(result);
+    });
+  }
+
 }

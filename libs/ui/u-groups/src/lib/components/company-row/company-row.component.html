@@ -14,6 +14,7 @@
     <div class="col-auto">
       <button mat-icon-button
               matTooltip="Acciones"
+              type="button"
               [loading]="loading"
               [matMenuTriggerFor]="actionsMenu">
         <mat-icon>more_vert</mat-icon>
@@ -21,8 +22,8 @@
       <mat-menu #actionsMenu="matMenu">
         <button mat-menu-item
                 type="button"
-                [routerLink]="[item.id]">
-          {{ isEditableCompany ? 'Editar' : 'Ver' }} compañía
+                (click)="editCompany()">
+          Editar compañía
         </button>
       </mat-menu>
     </div>
