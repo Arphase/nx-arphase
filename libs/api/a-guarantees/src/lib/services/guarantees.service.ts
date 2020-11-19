@@ -65,7 +65,7 @@ export class GuaranteesService {
       .leftJoinAndSelect('guarantee.paymentOrder', 'paymentOrder')
       .leftJoinAndSelect('guarantee.product', 'product')
       .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
-      
+
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
       query.andWhere('(guarantee.userId = :id)', { id: user.id });
@@ -168,7 +168,7 @@ export class GuaranteesService {
 
   async generatePdf(id: number, response: Response): Promise<void> {
     const guarantee = await this.getGuaranteeById(id);
-    
+
     let content = getGuaranteePdfTemplate(guarantee);
     let headerLogo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
     const product = guarantee.product;
@@ -184,7 +184,7 @@ export class GuaranteesService {
       content = getProductPdfTemplate(template, guarantee);
       headerLogo = logo;
     }
-    
+
     const headerImg = await tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
     const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
 

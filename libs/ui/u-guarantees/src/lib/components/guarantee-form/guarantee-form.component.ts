@@ -12,7 +12,7 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnInit, OnChanges {
-  @Input() productOptions : Select[] = [];
+  @Input() productOptions: Select[] = [];
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -49,6 +49,9 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     super();
     this.form = this.fb.group({
       id: null,
+      productId: [null, Validators.required],
+      startDate: [null, Validators.required],
+      endDate: [null, Validators.required],
       client: this.fb.group({
         id: null,
         personType: [PersonTypes[PersonTypes.physical], Validators.required],
@@ -84,8 +87,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         kilometrageStart: [null, Validators.required],
         kilometrageEnd: [null, Validators.required],
       }),
-      startDate: [null, Validators.required],
-      endDate: [null, Validators.required]
     });
   }
 
