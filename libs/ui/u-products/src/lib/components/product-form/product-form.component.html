@@ -12,9 +12,12 @@
         <h6>Nombre del producto</h6>
         <ivt-form-field>
           <input ivtInput
-                 ivtUppercase
                  formControlName="name" />
         </ivt-form-field>
+      </div>
+      <div class="col-lg-6 col-12">
+        <ivt-file-upload label="Imagen de logo"
+                         (fileQueueChanges)="saveFile($event)"> </ivt-file-upload>
       </div>
     </div>
 
@@ -29,11 +32,7 @@
         </ivt-form-field>
       </div>
 
-      <div class="col px-0 flex-end">
-        <ivt-file-upload label="Imagen de logo"
-                         (fileQueueChanges)="saveFile($event)"> </ivt-file-upload>
-
-        <div>
+      <div class="col-4 px-0 ml-auto">
           <mat-form-field>
             <mat-label>Glosario</mat-label>
             <mat-select (selectionChange)="selectedValue($event)">
@@ -44,7 +43,6 @@
 
             </mat-select>
           </mat-form-field>
-        </div>
       </div>
     </div>
 
