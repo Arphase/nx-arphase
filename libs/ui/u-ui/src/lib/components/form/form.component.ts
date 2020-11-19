@@ -21,7 +21,6 @@ export class IvtFormComponent<T = any> extends IvtSubscriberComponent {
   }
 
   submit(): void {
-    console.log(this.form.valid);
     if (this.form.valid || this.form.disabled) {
       this.submitForm.emit(this.values);
     } else {

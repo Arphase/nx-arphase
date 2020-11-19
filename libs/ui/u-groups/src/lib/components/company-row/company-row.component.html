@@ -20,6 +20,7 @@
       </button>
       <mat-menu #actionsMenu="matMenu">
         <button mat-menu-item
+                type="button"
                 [routerLink]="[item.id]">
           {{ isEditableCompany ? 'Editar' : 'Ver' }} compañía
         </button>

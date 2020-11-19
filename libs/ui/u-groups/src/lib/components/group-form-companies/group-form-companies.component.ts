@@ -51,10 +51,6 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
     return this.fb.control(null);
   }
 
-  save() {
-    console.log(this.form.value);
-  }
-
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<CompanyFormDialogComponent>) {
     super();
     this.form = this.fb.group({

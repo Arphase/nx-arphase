@@ -48,19 +48,15 @@ export class GroupCompanyListComponent extends IvtListComponent<Company> impleme
   
   ngOnChanges(changes: SimpleChanges) {
     if(changes.list) {
-      console.log('List changed')
       this.companiesSubject.next(this.list);
-      console.log(this.list);
     }
   }
   
 
   ngOnInit() {
     this.companies$.pipe(tap(companies => (this.list = companies))).subscribe();
-    console.log(this.retList);
     
     if(this.retList.length > 0) {
-      console.log(this.retList.length);
       this.list = this.retList;
     }
   }
@@ -69,16 +65,12 @@ export class GroupCompanyListComponent extends IvtListComponent<Company> impleme
     let dialogRef = this.dialog.open(CompanyFormDialogComponent, {});
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result.value);
       this.list.push(result.value);
-      console.log(this.list);
       this.list = Object.assign([], this.list);
       this.companiesSubject.next(this.list);
       this.companyList.emit(result);
 
     })
-    
-    console.log(this.list);
 
   }
 }

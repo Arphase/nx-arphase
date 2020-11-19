@@ -50,38 +50,19 @@ export class GroupFormsComponent extends IvtFormComponent<Group> implements OnIn
   }
 
   addCompanyToCompanyFormArray(el) {
-    console.log('addCompanyToCompanyFormArray for 1 company');
-    console.log(this.companiesFormArray);
     this.companiesFormArray.push(this.createCompanyGroup(el));
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.form);
-    console.log(this.form.value.id);
     if (changes.item && this.item && !this.form.value.id) {
-      console.log(this.form)
-      console.log('ngOnChanges and changes.item = true');
-      console.log(this.form);
-      console.log(this.item);
       
       this.form.patchValue(
         this.item
       );
-      console.log(this.form);
       this.item.companies.forEach(el => {
         this.addCompanyToCompanyFormArray(el);
       })
       
-
-      console.log(this.companiesFormArray.value);
-      console.log(this.item);
-      console.log(this.form);
-      
-
-
-      
-
-      //console.log(this.form);
       //this.retCompanyList = this.item;
       //this.companyList.push(this.item.companies);
     }
@@ -95,16 +76,11 @@ export class GroupFormsComponent extends IvtFormComponent<Group> implements OnIn
   }
 
   onAddCompanyList(companyL: FormGroup) {
-    console.log('onAddCompanyList');
     this.companiesFormArray.push(companyL);
-    
-    console.log(this.form);
   }
 
   submit() {
-    console.log('submit');
     //this.form.get('companies').patchValue(this.companiesFormArray);
-    console.log(this.form);
     super.submit();
   }
 

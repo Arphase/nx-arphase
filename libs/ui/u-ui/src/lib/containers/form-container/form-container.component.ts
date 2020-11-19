@@ -59,7 +59,6 @@ export class IvtFormContainerComponent<T = any> extends IvtSubscriberComponent {
   }
 
   submit(item: T, entityActionOptions: EntityActionOptions = {}): void {
-    console.log('submit container')
     get(item, 'id')
       ? this.entityCollectionService.update(item, entityActionOptions)
       : this.entityCollectionService.add(item, entityActionOptions);
