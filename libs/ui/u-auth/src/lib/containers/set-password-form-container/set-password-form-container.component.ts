@@ -1,10 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { SignInRequest } from '@ivt/c-data';
-import { fromAuth, LoadingService } from '@ivt/u-state';
+import { LoadingService } from '@ivt/u-state';
 import { Store } from '@ngrx/store';
-import { AuthComponent } from '../../auth.component';
-import { AuthModule } from '../../auth.module';
 
 @Component({
   selector: 'ivt-set-password-form-container',
@@ -14,12 +10,9 @@ import { AuthModule } from '../../auth.module';
 })
 export class SetPasswordFormContainerComponent {
   loading$ = this.loadingService.loading$;
-  constructor(
-    private store: Store<any>,
-    private loadingService: LoadingService,
-  ) {}
-  submit(): void {
-    
-   //this.store.dispatch(   .actions.({ }));
+  constructor(private store: Store<any>, private loadingService: LoadingService) {}
+
+  submit(formValue): void {
+    //this.store.dispatch(   .actions.({ }));
   }
 }

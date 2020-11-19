@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { IvtFormComponent } from '@ivt/u-ui';
 
@@ -6,10 +6,9 @@ import { IvtFormComponent } from '@ivt/u-ui';
   selector: 'ivt-set-password-form',
   templateUrl: './set-password-form.component.html',
   styleUrls: ['./set-password-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SetPasswordFormComponent extends IvtFormComponent {
-
   constructor(private fb: FormBuilder) {
     super();
     this.form = this.fb.group({
@@ -17,6 +16,4 @@ export class SetPasswordFormComponent extends IvtFormComponent {
       passwordConfirm: [null, Validators.required],
     });
   }
-
-
 }
