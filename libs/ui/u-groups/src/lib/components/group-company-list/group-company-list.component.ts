@@ -1,4 +1,3 @@
-import { SelectionModel } from '@angular/cdk/collections';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +15,7 @@ import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { CompanyFormDialogComponent } from '../group-form-companies/group-form-companies.component';
-import { columns, dateTypeOptions, statusOptions } from './group-company-list.constants';
+import { columns } from './group-company-list.constants';
 
 @Component({
   selector: 'ivt-group-company-list',
@@ -25,18 +24,13 @@ import { columns, dateTypeOptions, statusOptions } from './group-company-list.co
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupCompanyListComponent extends IvtListComponent<Company> implements OnInit, OnChanges {
-  @Input() clearSelected: boolean;
   @Input() retCompanyList;
   @Input() retList = [];
   columns = columns;
-  dateTypeOptions = dateTypeOptions;
-  statusOptions = statusOptions;
   private companiesSubject = new BehaviorSubject<Company[]>([]);
   companies$ = this.companiesSubject.asObservable();
-  selectedIds = new SelectionModel<number>(true, []);
-  @Output() downloadPdf = new EventEmitter<number>();
-  @Output() createPaymentOrder = new EventEmitter<number[]>();
   @Output() companyList = new EventEmitter<any>();
+  @Output() companyListModify = new EventEmitter<any>();
 
   constructor(public dialog: MatDialog) {
     super();
@@ -45,14 +39,12 @@ export class GroupCompanyListComponent extends IvtListComponent<Company> impleme
   ngOnInit() {
     this.companies$.pipe(tap(companies => (this.list = companies))).subscribe();
     if (this.retList.length > 0) {
-      console.log(this.retList.length);
       this.list = this.retList;
     }
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.list) {
-      console.log('List changed');
       this.companiesSubject.next(this.list);
     }
   }
@@ -64,6 +56,21 @@ export class GroupCompanyListComponent extends IvtListComponent<Company> impleme
       this.list = Object.assign([], this.list);
       this.companiesSubject.next(this.list);
       this.companyList.emit(result);
+    });
+  }
+
+  openWithData(item) {
+    let i;
+    const dialogRef = this.dialog.open(CompanyFormDialogComponent, { data: item });
+    dialogRef.afterClosed().subscribe(result => {
+      for (i = 0; i < this.list.length; i++) {
+        if (this.list[i].id === item.id) {
+          this.list.splice(i, 1);
+        }
+      }
+      this.list.push(result.value);
+      this.list = Object.assign([], this.list);
+      this.companyListModify.emit(result);
     });
   }
 }

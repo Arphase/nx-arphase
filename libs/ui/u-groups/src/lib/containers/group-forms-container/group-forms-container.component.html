@@ -1,11 +1,3 @@
-<div class="row">
-    <div class="col">
-        <ivt-go-back-title title="Nuevo Grupo"></ivt-go-back-title>
-    </div>
-</div>
-
-<ivt-group-forms 
-    [item]="currentItem$ | async"
-    (submitForm)="submit($event)">
+<ivt-group-forms [item]="currentItem$ | async"
+                 (submitForm)="submit($event)">
 </ivt-group-forms>
-

@@ -2,7 +2,7 @@
       (ngSubmit)="submit()">
   <div class="row">
     <div class="col">
-      <ivt-go-back-title title="Nueva Garantía"></ivt-go-back-title>
+      <ivt-go-back-title [title]="item?.id ? 'Editar Garantía' : 'Nueva Garantía'"></ivt-go-back-title>
     </div>
   </div>
   <div class="pt-3">

@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Group, Company, PersonTypes, Select } from '@ivt/c-data';
-import { CustomValidators, filterNil } from '@ivt/c-utils';
-import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
-import { takeUntil } from 'rxjs/operators';
+import { Group } from '@ivt/c-data';
+import { IvtFormComponent } from '@ivt/u-ui';
 
 @Component({
   selector: 'ivt-group-forms',
@@ -11,17 +9,12 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./group-forms.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GroupFormsComponent extends IvtFormComponent<Group> implements OnInit, OnChanges{
+export class GroupFormsComponent extends IvtFormComponent<Group> implements OnChanges {
   retCompanyList;
   companyList = new FormArray([]);
 
   get companiesFormArray() {
-    return (<FormArray>this.form.get('companies'));
-  }
-
-
-  get values() {
-    return this.form.getRawValue();
+    return <FormArray>this.form.get('companies');
   }
 
   constructor(private fb: FormBuilder) {
@@ -36,6 +29,19 @@ export class GroupFormsComponent extends IvtFormComponent<Group> implements OnIn
     });
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.item && this.item && !this.form.value.id) {
+      this.form.patchValue(this.item);
+      this.item.companies.forEach(el => {
+        this.addCompanyToCompanyFormArray(el);
+      });
+    }
+
+    if (changes.isEditable) {
+      this.isEditable ? this.form.enable() : this.form.disable();
+    }
+  }
+
   createCompanyGroup(el) {
     return this.fb.group({
       id: el.id,
@@ -43,7 +49,7 @@ export class GroupFormsComponent extends IvtFormComponent<Group> implements OnIn
       email: el.email,
       phone: el.phone,
       address: el.address,
-      users: el.users? [el.users] : [],
+      users: el.users ? [el.users] : [],
       rfc: el.rfc,
       contact: el.contact,
     });
@@ -53,35 +59,17 @@ export class GroupFormsComponent extends IvtFormComponent<Group> implements OnIn
     this.companiesFormArray.push(this.createCompanyGroup(el));
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.item && this.item && !this.form.value.id) {
-      
-      this.form.patchValue(
-        this.item
-      );
-      this.item.companies.forEach(el => {
-        this.addCompanyToCompanyFormArray(el);
-      })
-      
-      //this.retCompanyList = this.item;
-      //this.companyList.push(this.item.companies);
-    }
-
-    if (changes.isEditable) {
-      this.isEditable ? this.form.enable() : this.form.disable();
-    }
-  }
-
-  ngOnInit(): void {
-  }
-
   onAddCompanyList(companyL: FormGroup) {
     this.companiesFormArray.push(companyL);
   }
 
-  submit() {
-    //this.form.get('companies').patchValue(this.companiesFormArray);
-    super.submit();
+  onModifyCompanyList(companyL: FormGroup) {
+    let i;
+    for (i = 0; i < this.companiesFormArray.length; i++) {
+      if (this.companiesFormArray.value[i].id === companyL.value.id) {
+        this.companiesFormArray.removeAt(i);
+      }
+    }
+    this.companiesFormArray.push(companyL);
   }
-
 }

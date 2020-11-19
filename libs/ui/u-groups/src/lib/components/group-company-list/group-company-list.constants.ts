@@ -33,27 +33,3 @@ export const columns: IvtColumns = [
   },
 ];
 
-export const dateTypeOptions: Select[] = [
-  { label: 'Inicio', value: 'startDate' },
-  { label: 'Fin', value: 'endDate' },
-  { label: 'Captura', value: 'createdAt' },
-];
-
-export const statusOptions: Select[] = [
-  {
-    label: 'Pagada',
-    value: GuaranteeStatus[GuaranteeStatus.paid],
-  },
-  {
-    label: 'Pendiente de pago',
-    value: GuaranteeStatus[GuaranteeStatus.outstanding],
-  },
-  {
-    label: 'Cancelada',
-    value: GuaranteeStatus[GuaranteeStatus.cancelled],
-  },
-  {
-    label: 'Caducada',
-    value: GuaranteeStatus[GuaranteeStatus.expired],
-  },
-];

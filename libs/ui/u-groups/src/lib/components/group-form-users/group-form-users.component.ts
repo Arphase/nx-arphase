@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Group, PersonTypes, Select } from '@ivt/c-data';
-import { CustomValidators, filterNil } from '@ivt/c-utils';
-import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
-import { takeUntil } from 'rxjs/operators';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Group, UserRoles } from '@ivt/c-data';
+import { CustomValidators } from '@ivt/c-utils';
+import { IvtFormComponent } from '@ivt/u-ui';
 
 @Component({
   selector: 'ivt-group-form-users',
@@ -11,12 +10,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./group-form-users.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GroupFormUsersComponent extends IvtFormComponent<Group> implements OnInit {
-
-  get values() {
-    return this.form.getRawValue();
-  }
-
+export class GroupFormUsersComponent extends IvtFormComponent<Group> {
   constructor(private fb: FormBuilder) {
     super();
     this.form = this.fb.group({
@@ -26,16 +20,8 @@ export class GroupFormUsersComponent extends IvtFormComponent<Group> implements 
       secondLastName: null,
       email: [null, Validators.required],
       phone: [null, Validators.required],
-      businessRole: "agencyUser",
+      businessRole: UserRoles[UserRoles.agencyUser],
       rfc: [null, [Validators.required, CustomValidators.rfc('any')]],
-    })
+    });
   }
-
-  ngOnInit(): void {
-  }
-
 }
-
-
-
-  

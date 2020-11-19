@@ -31,9 +31,8 @@
                       [ignoreNextBatch]="!hasMoreItems || loading"
                       (nextBatchEmitter)="getMoreItems.emit()">
     <ng-template let-item>
-      <ivt-group-row-container [item]="item"
-                                   >
-      </ivt-group-row-container>
+      <ivt-group-row [item]="item">
+      </ivt-group-row>
     </ng-template>
   </ivt-virtual-scroll>
 </ng-container>

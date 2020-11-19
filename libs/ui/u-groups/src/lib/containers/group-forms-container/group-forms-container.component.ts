@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Group } from '@ivt/c-data';
-import { GroupCollectionService, PermissionService, PermissionTypes } from '@ivt/u-state';
+import { GroupCollectionService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { ToastrService } from 'ngx-toastr';
-import { select, Store } from '@ngrx/store';
 
 @Component({
   selector: 'ivt-group-forms-container',
@@ -13,22 +12,15 @@ import { select, Store } from '@ngrx/store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupFormsContainerComponent extends IvtFormContainerComponent<Group> {
-
-  isEditable$ = this.permissionService.hasUpdatePermission(...[PermissionTypes.Groups]);
-  //groupCompanies$ = this.store.pipe(select(getGroupsCurrentGroupCompanies));
   successUrl = '/spa/groups';
-  createSuccessMessage = 'GROUPS.GROUP_FORM_CONTAINER.SUCCESS';
-  updateSuccessMessage = 'GROUPS.GROUP_FORM_CONTAINER.SUCCESS';
+  createSuccessMessage = 'El grupo se ha creado con éxito';
+  updateSuccessMessage = 'El grupo se ha actualizado con éxito';
 
   constructor(
     protected groupCollectionService: GroupCollectionService,
     protected router: Router,
-    protected toastr: ToastrService,
-    private store: Store<any>,
-    private permissionService: PermissionService,
-  ) 
-  {
-    super(groupCollectionService, router, toastr)
+    protected toastr: ToastrService
+  ) {
+    super(groupCollectionService, router, toastr);
   }
-
 }
