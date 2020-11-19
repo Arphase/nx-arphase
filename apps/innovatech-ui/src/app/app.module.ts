@@ -2,11 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  IVT_UI_STATE_CONFIGURATION,
-  IvtUiStateConfiguration,
-  IvtStateModule,
-} from '@ivt/u-state';
+import { IVT_UI_STATE_CONFIGURATION, IvtStateModule, IvtUiStateConfiguration } from '@ivt/u-state';
 import { IvtUiModule } from '@ivt/u-ui';
 import { NgxMaskModule } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';

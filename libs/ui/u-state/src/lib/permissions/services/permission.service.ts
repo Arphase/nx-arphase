@@ -20,6 +20,13 @@ export class PermissionService {
 
   constructor(private store: Store<any>) {}
 
+  hasReadPermission(...requiredPermmissionTypes: PermissionTypes[]): Observable<boolean> {
+    return this.userRole$.pipe(
+      filterNil(),
+      map(role => role === UserRoles[UserRoles.superAdmin] || role === UserRoles[UserRoles.admin])
+    );
+  }
+
   hasUpdatePermission(...requiredPermmissionTypes: PermissionTypes[]): Observable<boolean> {
     return this.userRole$.pipe(
       filterNil(),

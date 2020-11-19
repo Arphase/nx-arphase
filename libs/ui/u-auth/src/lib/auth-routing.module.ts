@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthComponent } from './auth.component';
+import { SetPasswordFormContainerComponent } from './containers/set-password-form-container/set-password-form-container.component';
 import { SignInFormContainerComponent } from './containers/sign-in-form-container/sign-in-form-container.component';
+import { SetPasswordResolverService } from './resolvers/set-password-resolver.service';
 
 export const routes: Routes = [
   {
@@ -12,6 +14,11 @@ export const routes: Routes = [
       {
         path: 'sign-in',
         component: SignInFormContainerComponent,
+      },
+      {
+        path: 'set-password/:passwordToken/:email',
+        component: SetPasswordFormContainerComponent,
+        resolve: { resolvedRoute: SetPasswordResolverService },
       },
       {
         path: '',

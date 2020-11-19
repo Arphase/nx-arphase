@@ -1,0 +1,5 @@
+<ivt-group-list [list]="list$ | async"
+                [hasMoreItems]="hasMore$ | async"
+                (filterItems)="filterItems($event)"
+                (getMoreItems)="getMoreItems()">
+</ivt-group-list>

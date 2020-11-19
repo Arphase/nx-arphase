@@ -4,8 +4,7 @@ import { UserRoles } from '@ivt/c-data';
 import { IsRfc, RfcValidatorTypes } from '@ivt/c-utils';
 
 export class UpdateUserDto {
-  @IsNotEmpty()
-  @IsInt()
+  @IsOptional()
   id: number;
 
   @IsOptional()

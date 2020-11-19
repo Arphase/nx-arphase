@@ -1,4 +1,4 @@
-export interface ResetPassword{
+export interface ResetPassword {
   email: string;
   passwordToken: string;
   timestamp: Date;

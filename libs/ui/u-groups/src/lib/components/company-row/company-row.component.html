@@ -1,0 +1,29 @@
+<ivt-row>
+  <div class="col">
+    {{ item.businessName }}
+  </div>
+  <div class="col">
+    {{ item.contact }}
+  </div>
+  <div class="col">
+    {{ item.email }}
+  </div>
+  <div class="col">
+    {{ item.rfc }}
+  </div>
+  <div class="col-auto">
+    <button mat-icon-button
+            matTooltip="Acciones"
+            type="button"
+            [matMenuTriggerFor]="actionsMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #actionsMenu="matMenu">
+      <button mat-menu-item
+              type="button"
+              (click)="editCompany()">
+        Editar compañía
+      </button>
+    </mat-menu>
+  </div>
+</ivt-row>
