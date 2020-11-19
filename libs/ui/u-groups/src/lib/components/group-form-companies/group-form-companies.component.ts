@@ -4,7 +4,6 @@ import { Group, PersonTypes, Select } from '@ivt/c-data';
 import { CustomValidators, filterNil } from '@ivt/c-utils';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 import { takeUntil } from 'rxjs/operators';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
