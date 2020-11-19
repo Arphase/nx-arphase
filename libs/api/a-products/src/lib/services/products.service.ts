@@ -74,11 +74,12 @@ export class ProductService {
 
   async generateProductPdf(generateProductPdfDto: GenerateProductPdfDto, response: Response): Promise<void> {
     const template = generateProductPdfDto.template;
+    let logo;
 
     if (generateProductPdfDto.logo != null){
-      var logo = generateProductPdfDto.logo;
+      logo = generateProductPdfDto.logo;
     } else {
-      var logo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+      logo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
       logo = "data:image/png;base64," + logo;
     }
     

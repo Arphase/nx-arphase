@@ -1,4 +1,4 @@
-import { Client, Guarantee, GuaranteeStatus, PaymentOrder, Product, User, Vehicle } from '@ivt/c-data';
+import { Client, Guarantee, GuaranteeStatus, PaymentOrder, Vehicle, User, Product } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
