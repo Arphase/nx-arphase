@@ -1,11 +1,15 @@
 import {
   AddressEntity,
   ClientEntity,
+  CompanyEntity,
+  GroupEntity,
   GuaranteeEntity,
   LocalityEntity,
   MoralPersonEntity,
   PaymentOrderEntity,
   PhysicalPersonEntity,
+  ProductEntity,
+  ResetPasswordEntity,
   UserEntity,
   VehicleEntity,
 } from '@ivt/a-state';
@@ -20,4 +24,8 @@ export const ENTITIES = [
   MoralPersonEntity,
   PhysicalPersonEntity,
   VehicleEntity,
+  ProductEntity,
+  GroupEntity,
+  CompanyEntity,
+  ResetPasswordEntity
 ];

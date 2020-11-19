@@ -1,3 +1,4 @@
+import { getProductPdfTemplate } from '@ivt/a-products';
 import {
   getReadableStream,
   GuaranteeEntity,
@@ -6,7 +7,8 @@ import {
   tobase64,
   transformFolio,
 } from '@ivt/a-state';
-import { GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels } from '@ivt/c-data';
+import { GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
+import { dir } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import fs from 'fs';
 import { identity, omit, pickBy } from 'lodash';
@@ -19,7 +21,7 @@ import * as XLSX from 'xlsx';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
-import { dir, getGuaranteePdfTemplate } from './guarantees.service.constants';
+import { getGuaranteePdfTemplate } from './guarantees.service.constants';
 
 @Injectable()
 export class GuaranteesService {
@@ -33,6 +35,7 @@ export class GuaranteesService {
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     query
       .leftJoinAndSelect('guarantee.client', 'client')
+      .leftJoinAndSelect('guarantee.product', 'product')
       .leftJoinAndSelect('client.physicalInfo', 'physicalPerson')
       .leftJoinAndSelect('client.moralInfo', 'moralPerson')
       .leftJoinAndSelect('client.address', 'address')
@@ -48,7 +51,7 @@ export class GuaranteesService {
     return found;
   }
 
-  async getGuarantees(filterDto: Partial<GetGuaranteesFilterDto>): Promise<GuaranteeEntity[]> {
+  async getGuarantees(filterDto: Partial<GetGuaranteesFilterDto>, user: Partial<User>): Promise<GuaranteeEntity[]> {
     const { limit, offset, sort, direction, startDate, endDate, dateType, text, status } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     let guarantees: GuaranteeEntity[];
@@ -59,7 +62,12 @@ export class GuaranteesService {
       .leftJoinAndSelect('client.moralInfo', 'moralPerson')
       .leftJoinAndSelect('client.address', 'address')
       .leftJoinAndSelect('guarantee.paymentOrder', 'paymentOrder')
+      .leftJoinAndSelect('guarantee.product', 'product')
       .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
+
+    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+      query.andWhere('(guarantee.userId = :id)', { id: user.id });
+    }
 
     if (sort && direction) {
       query.orderBy(`${sort}`, dir[direction]);
@@ -92,6 +100,7 @@ export class GuaranteesService {
       .addGroupBy('physicalPerson.id')
       .addGroupBy('moralPerson.id')
       .addGroupBy('paymentOrder.id')
+      .addGroupBy('product.id')
       .take(limit)
       .skip(offset);
 
@@ -110,8 +119,8 @@ export class GuaranteesService {
     return summary;
   }
 
-  async getGuaranteesExcel(filterDto: GetGuaranteesFilterDto, response: Response): Promise<void> {
-    const guarantees = await this.getGuarantees(omit(filterDto, ['offset', 'limit']));
+  async getGuaranteesExcel(filterDto: GetGuaranteesFilterDto, user: Partial<User>, response: Response): Promise<void> {
+    const guarantees = await this.getGuarantees(omit(filterDto, ['offset', 'limit']), user);
     const excelColumnConstants: string[] = [
       'Folio',
       'Placa',
@@ -144,11 +153,12 @@ export class GuaranteesService {
     stream.pipe(response as any);
   }
 
-  async createGuarantee(createGuaranteeDto: CreateGuaranteeDto): Promise<GuaranteeEntity> {
+  async createGuarantee(createGuaranteeDto: CreateGuaranteeDto, user: Partial<User>): Promise<GuaranteeEntity> {
     createGuaranteeDto = this.omitInfo(createGuaranteeDto);
     const newGuarantee = await this.guaranteeRepository.create({
       ...createGuaranteeDto,
       status: GuaranteeStatus.outstanding,
+      userId: user.id,
     });
     await newGuarantee.save();
     return newGuarantee;
@@ -156,9 +166,24 @@ export class GuaranteesService {
 
   async generatePdf(id: number, response: Response): Promise<void> {
     const guarantee = await this.getGuaranteeById(id);
-    const content = getGuaranteePdfTemplate(guarantee);
+
+    let content = getGuaranteePdfTemplate(guarantee);
+    let headerLogo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+    const product = guarantee.product;
+
+    if (product) {
+      const template = product.template;
+      let logo = product.logo;
+
+      if (!logo) {
+        logo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+        logo = 'data:image/png;base64,' + logo;
+      }
+      content = getProductPdfTemplate(template, guarantee);
+      headerLogo = logo;
+    }
+
     const headerImg = await tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
-    const headerLogo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
     const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
 
     await promisify(fs.writeFile)(OUT_FILE, content);
@@ -199,7 +224,7 @@ export class GuaranteesService {
       <img class="logo"
       src="data:image/png;base64,${headerImg}"/>
       <img class="shield"
-          src="data:image/png;base64,${headerLogo}"/>`,
+          src="${headerLogo}"/>`,
       footerTemplate: `
       <style>
         .footer {

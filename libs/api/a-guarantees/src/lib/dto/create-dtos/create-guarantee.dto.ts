@@ -21,4 +21,7 @@ export class CreateGuaranteeDto {
   @IsNotEmpty()
   @IsDateString()
   endDate: Date;
+
+  @IsNotEmpty()
+  productId: number;
 }

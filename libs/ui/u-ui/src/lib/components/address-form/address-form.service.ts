@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Locality, Select } from '@ivt/c-data';
 import { sortSelectOptions, sortStringOptions } from '@ivt/c-utils';
-import { IVT_STATE_CONFIGURATION, IvtStateConfiguration } from '@ivt/u-state';
+import { IVT_UI_STATE_CONFIGURATION, IvtUiStateConfiguration } from '@ivt/u-state';
 import { uniq, uniqBy } from 'lodash';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -18,7 +18,7 @@ export interface MappedLocalities {
 
 @Injectable()
 export class IvtAddressFormService {
-  constructor(private http: HttpClient, @Inject(IVT_STATE_CONFIGURATION) public config: IvtStateConfiguration) {}
+  constructor(private http: HttpClient, @Inject(IVT_UI_STATE_CONFIGURATION) public config: IvtUiStateConfiguration) {}
 
   getLocalities(zipCode: string): Observable<Locality[]> {
     return this.http.get<Locality[]>(`${this.config.apiUrl}/localities/${zipCode}`).pipe(catchError(() => of([])));

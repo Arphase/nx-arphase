@@ -2,7 +2,7 @@
       (ngSubmit)="submit()">
   <div class="row">
     <div class="col">
-      <ivt-go-back-title title="Nueva Garantía"></ivt-go-back-title>
+      <ivt-go-back-title [title]="item?.id ? 'Editar Garantía' : 'Nueva Garantía'"></ivt-go-back-title>
     </div>
   </div>
   <div class="pt-3">
@@ -29,6 +29,20 @@
                                    [for]="endDate"></mat-datepicker-toggle>
             <mat-datepicker #endDate></mat-datepicker>
           </ivt-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Producto</mat-label>
+            <mat-select formControlName="productId">
+              <mat-option *ngFor="let option of productOptions"
+                          [value]="option.value">
+                {{ option.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
     </ivt-expansion-panel>
@@ -264,7 +278,7 @@
               type="submit"
               color="primary"
               [loading]="loading"
-              [disabled]="!isEditable">
+              [disabled]="!isEditable && this.item">
         Guardar
       </button>
     </div>

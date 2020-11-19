@@ -1,0 +1,28 @@
+<ivt-row>
+  <div class="col">
+    {{ item.name }}
+  </div>
+  <div class="col">
+    {{ item.contact }}
+  </div>
+  <div class="col">
+    {{ item.email }}
+  </div>
+  <div class="col">
+    {{ item.phone }}
+  </div>
+
+  <div class="col-auto">
+    <button mat-icon-button
+            matTooltip="Acciones"
+            [matMenuTriggerFor]="actionsMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #actionsMenu="matMenu">
+      <button mat-menu-item
+              [routerLink]="[item.id]">
+        Editar grupo
+      </button>
+    </mat-menu>
+  </div>
+</ivt-row>

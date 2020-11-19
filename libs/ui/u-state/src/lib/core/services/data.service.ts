@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 
 import { buildQueryParams } from '../../entities/build-query-params';
-import { IVT_STATE_CONFIGURATION, IvtStateConfiguration } from '../../state-config';
+import { IVT_UI_STATE_CONFIGURATION, IvtUiStateConfiguration } from '../../ui-state-config';
 
 export class IvtDataService<T = any> extends DefaultDataService<T> {
   private loadingExcelSubject = new BehaviorSubject<boolean>(false);
@@ -18,7 +18,7 @@ export class IvtDataService<T = any> extends DefaultDataService<T> {
     protected entityName: string,
     protected http: HttpClient,
     protected httpUrlGenerator: HttpUrlGenerator,
-    @Inject(IVT_STATE_CONFIGURATION) public config: IvtStateConfiguration
+    @Inject(IVT_UI_STATE_CONFIGURATION) public config: IvtUiStateConfiguration
   ) {
     super(entityName, http, httpUrlGenerator);
   }

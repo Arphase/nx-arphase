@@ -73,6 +73,12 @@
     },
     "a-state": {
       "tags": []
+    },
+    "u-groups": {
+      "tags": ["front"]
+    },
+    "u-products": {
+      "tags": []
     }
   }
 }

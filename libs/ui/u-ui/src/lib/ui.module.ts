@@ -67,12 +67,7 @@ const MATERIAL_MODULES = [
   MatTooltipModule,
 ];
 
-const MODULES = [
-  IvtComponentsModule,
-  IvtContainersModule,
-  IvtDirectivesModule,
-  IvtPipesModule,
-];
+const MODULES = [IvtComponentsModule, IvtContainersModule, IvtDirectivesModule, IvtPipesModule];
 
 const THIRD_PARTY_MODULES = [NgxMaskModule];
 

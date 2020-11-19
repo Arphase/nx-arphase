@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Guarantee, PersonTypes, Select } from '@ivt/c-data';
 import { CustomValidators, filterNil } from '@ivt/c-utils';
@@ -12,6 +12,7 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnInit, OnChanges {
+  @Input() productOptions: Select[] = [];
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -48,6 +49,9 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     super();
     this.form = this.fb.group({
       id: null,
+      productId: [null, Validators.required],
+      startDate: [null, Validators.required],
+      endDate: [null, Validators.required],
       client: this.fb.group({
         id: null,
         personType: [PersonTypes[PersonTypes.physical], Validators.required],
@@ -83,8 +87,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         kilometrageStart: [null, Validators.required],
         kilometrageEnd: [null, Validators.required],
       }),
-      startDate: [null, Validators.required],
-      endDate: [null, Validators.required],
     });
   }
 
@@ -109,7 +111,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       });
     }
 
-    if (changes.isEditable) {
+    if (changes.isEditable && this.item) {
       this.isEditable ? this.form.enable() : this.form.disable();
     }
   }

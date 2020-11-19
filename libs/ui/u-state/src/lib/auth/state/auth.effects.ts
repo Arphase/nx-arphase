@@ -14,7 +14,7 @@ export class AuthEffects {
       ofType(AuthActions.signIn),
       mergeMap(({ payload }) =>
         this.authService.signIn(payload).pipe(
-          map((user) => AuthActions.signInSuccess({ user })),
+          map(user => AuthActions.signInSuccess({ user })),
           catchError(() => of(AuthActions.signInFailed()))
         )
       )
@@ -26,9 +26,7 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(AuthActions.signInSuccess),
         tap(({ user }) => {
-          Object.keys(user).forEach((key) =>
-            localStorage.setItem(key, String(user[key]))
-          );
+          Object.keys(user).forEach(key => localStorage.setItem(key, String(user[key])));
           this.router.navigateByUrl('/spa');
         })
       ),
@@ -47,9 +45,24 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-  constructor(
-    private actions$: Actions,
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  setPassword$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.setPassword),
+      mergeMap(({ payload }) =>
+        this.authService.setPassword(payload).pipe(
+          map(() => AuthActions.setPasswordSuccess({ payload })),
+          catchError(() => of(AuthActions.setPasswordFailed()))
+        )
+      )
+    )
+  );
+
+  setPasswordSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.setPasswordSuccess),
+      map(({ payload }) => AuthActions.signIn({ payload: { email: payload.email, password: payload.password } }))
+    )
+  );
+
+  constructor(private actions$: Actions, private authService: AuthService, private router: Router) {}
 }
