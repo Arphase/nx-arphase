@@ -1,11 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Group, PersonTypes, Select } from '@ivt/c-data';
-import { CustomValidators, filterNil } from '@ivt/c-utils';
-import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
-import { takeUntil } from 'rxjs/operators';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Group } from '@ivt/c-data';
+import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 
 @Component({
   selector: 'ivt-group-form-companies',

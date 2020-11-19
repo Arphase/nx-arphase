@@ -2,13 +2,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  IVT_STATE_CONFIGURATION,
-  IvtStateConfiguration,
-  IvtStateModule,
-} from '@ivt/u-state';
+import { IVT_STATE_CONFIGURATION, IvtStateConfiguration, IvtStateModule } from '@ivt/u-state';
 import { IvtUiModule } from '@ivt/u-ui';
-import { NgbModule, NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgxMaskModule } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -31,7 +26,6 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtStateConfiguration = {
     IvtUiModule,
     NgxMaskModule.forRoot(),
     ToastrModule.forRoot(),
-    NgbModule,
   ],
   providers: [
     {
