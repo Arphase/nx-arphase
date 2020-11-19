@@ -1,4 +1,4 @@
-import { Company, User, UserRoles } from '@ivt/c-data';
+import { Company, Guarantee, User, UserRoles } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
@@ -6,12 +6,14 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   Unique,
   UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import { CompanyEntity } from '../companies/company.entity';
+import { GuaranteeEntity } from '../guarantees';
 
 @Entity('users')
 @Unique(['email'])
@@ -68,6 +70,11 @@ export class UserEntity extends BaseEntity implements User {
 
   @Column({ nullable: true })
   companyId: number;
+
+  @OneToMany(type => GuaranteeEntity, guarantee => guarantee.user, {
+    cascade: true,
+  })
+  guarantees: Guarantee[];
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

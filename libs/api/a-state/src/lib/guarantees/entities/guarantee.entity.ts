@@ -1,4 +1,4 @@
-import { Client, Guarantee, GuaranteeStatus, PaymentOrder, Vehicle } from '@ivt/c-data';
+import { Client, Guarantee, GuaranteeStatus, PaymentOrder, Vehicle, User, Product } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
@@ -12,6 +12,8 @@ import {
 } from 'typeorm';
 
 import { PaymentOrderEntity } from '../../payment-orders';
+import { ProductEntity } from '../../products';
+import { UserEntity } from '../../users';
 import { ClientEntity } from './client.entity';
 import { VehicleEntity } from './vechicle.entity';
 
@@ -65,11 +67,22 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @JoinColumn({ name: 'paymentOrderId' })
   paymentOrder: PaymentOrder;
 
+  @ManyToOne(type => ProductEntity, product => product.guarantees)
+  @JoinColumn({ name: 'productId' })
+  product: Product;
+
   @Column({ nullable: true })
   paymentOrderId: number;
 
   @Column({ nullable: true, type: 'timestamp' })
   invoiceDate: Date;
+
+  @ManyToOne(type => UserEntity, user => user.guarantees)
+  @JoinColumn({ name: 'userId' })
+  user: User;
+
+  @Column({ nullable: true })
+  userId: number;
 
   constructor(partial: Partial<GuaranteeEntity>) {
     super();

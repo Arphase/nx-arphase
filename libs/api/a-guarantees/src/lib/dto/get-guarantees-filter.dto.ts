@@ -1,6 +1,6 @@
 import { GuaranteeStatus } from '@ivt/c-data';
 import { Transform } from 'class-transformer';
-import { IsEnum, IsNotEmpty, IsNumberString, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, IsNumberString, IsOptional, IsString } from 'class-validator';
 
 export class GetGuaranteesFilterDto {
   @IsOptional()
@@ -40,7 +40,7 @@ export class GetGuaranteesFilterDto {
 
   @IsOptional()
   @IsNotEmpty()
-  @IsNumberString()
+  @IsNumber()
   amount: number;
 
   @IsOptional()

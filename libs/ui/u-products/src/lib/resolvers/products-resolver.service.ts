@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
-import { Guarantee, IvtQueryParams } from '@ivt/c-data';
-import { GuaranteeCollectionService } from '@ivt/u-state';
+import { IvtQueryParams, Product } from '@ivt/c-data';
+import { ProductCollectionService } from '@ivt/u-state';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsResolverService {
+export class ProductsResolverService implements Resolve<Product[]>  {
+  constructor(private productCollectionService: ProductCollectionService) {}
 
-  constructor() { }
+  resolve(): Observable<Product[]> {
+    const queryParams: IvtQueryParams = { resetList: true };
+    return this.productCollectionService.getWithQuery(queryParams as any);
+  }
 }

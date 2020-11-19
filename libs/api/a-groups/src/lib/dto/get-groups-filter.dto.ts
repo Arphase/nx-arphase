@@ -1,4 +1,4 @@
-import { IsOptional, IsNotEmpty, IsNumberString, IsString } from 'class-validator';
+import { IsOptional, IsNotEmpty, IsNumber, IsString, IsNumberString } from 'class-validator';
 
 export class GetGroupsFilterDto {
   @IsOptional()

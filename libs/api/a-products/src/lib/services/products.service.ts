@@ -10,7 +10,7 @@ import { promisify } from 'util';
 import puppeteer from 'puppeteer';
 import fs from 'fs';
 import { ProductRepository, ProductEntity } from '@ivt/a-state';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Connection } from 'typeorm';
 
 import { CreateProductDto } from '../dto/create-products.dto';
@@ -19,6 +19,7 @@ import { GenerateProductPdfDto } from '../dto/generate-product-pdf.dto';
 import { getProductPdfTemplate } from './products.service.constants';
 import { Product } from '@ivt/c-data';
 import { GetProductsFilterDto } from '../dto/get-products-filter.dto';
+import { DummyGlossary } from '@ivt/a-products'
 
 @Injectable()
 export class ProductService {
@@ -26,6 +27,17 @@ export class ProductService {
 
   constructor(private readonly connection: Connection) {
     this.productRepository = this.connection.getCustomRepository(ProductRepository);
+  }
+
+  async getProductById(id: number): Promise<Product> {
+    const query = this.productRepository.createQueryBuilder('product');
+    const found = await query.where('product.id = :id', { id }).getOne();
+
+    if (!found) {
+      throw new NotFoundException(`Product with id "${id}" not found`);
+    }
+
+    return found;
   }
 
   async createProduct(createProductDto: CreateProductDto): Promise<Product> {
@@ -62,9 +74,18 @@ export class ProductService {
 
   async generateProductPdf(generateProductPdfDto: GenerateProductPdfDto, response: Response): Promise<void> {
     const template = generateProductPdfDto.template;
+    let logo;
+
+    if (generateProductPdfDto.logo != null){
+      logo = generateProductPdfDto.logo;
+    } else {
+      logo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+      logo = "data:image/png;base64," + logo;
+    }
+    
     const content = getProductPdfTemplate(template);
     const headerImg = await tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
-    const headerLogo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+    const headerLogo = logo;
     const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
 
     await promisify(fs.writeFile)(OUT_FILE, content);
@@ -105,7 +126,7 @@ export class ProductService {
       <img class="logo"
       src="data:image/png;base64,${headerImg}"/>
       <img class="shield"
-          src="data:image/png;base64,${headerLogo}"/>`,
+          src="${headerLogo}"/>`,
       footerTemplate: `
       <style>
         .footer {
