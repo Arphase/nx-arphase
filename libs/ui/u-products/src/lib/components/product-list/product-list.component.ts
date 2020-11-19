@@ -50,7 +50,6 @@ export class ProductListComponent extends IvtListComponent<Product> {
         sm: '1',
         md: '1',
         lg: '1'
-        
       },
     },
   ];
