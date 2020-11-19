@@ -31,6 +31,20 @@
           </ivt-form-field>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Producto</mat-label>
+            <mat-select formControlName="productId">
+              <mat-option *ngFor="let option of productOptions"
+                          [value]="option.value">
+                {{ option.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
     </ivt-expansion-panel>
 
     <ivt-expansion-panel class="primary-panel mb-3 d-block"
@@ -254,17 +268,6 @@
 
   <div class="row mt-4 mb-3">
     <div class="col px-0 flex-end">
-
-      <mat-form-field class="col-lg-4 col-4 mb-3">
-        <mat-label>Glosario</mat-label>
-        <mat-select formControlName="productId">
-          <mat-option *ngFor="let option of productOptions"
-                      [value]="option.value">
-            {{ option.label }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
       <button mat-raised-button
               class="mr-3"
               type="button"

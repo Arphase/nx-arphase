@@ -1,4 +1,4 @@
-import { Client, Guarantee, GuaranteeStatus, PaymentOrder, Vehicle, User, Product } from '@ivt/c-data';
+import { Client, Guarantee, GuaranteeStatus, PaymentOrder, Product, User, Vehicle } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
@@ -67,12 +67,15 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @JoinColumn({ name: 'paymentOrderId' })
   paymentOrder: PaymentOrder;
 
+  @Column({ nullable: true })
+  paymentOrderId: number;
+
   @ManyToOne(type => ProductEntity, product => product.guarantees)
   @JoinColumn({ name: 'productId' })
   product: Product;
 
   @Column({ nullable: true })
-  paymentOrderId: number;
+  productId: number;
 
   @Column({ nullable: true, type: 'timestamp' })
   invoiceDate: Date;
