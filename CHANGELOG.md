@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://bitbucket.org/arphase/innovatech/compare/v1.1.0...v1.2.0) (2020-11-19)
+
+
+### Features
+
+* **api:** add Amazon SES settings ([e8e306b](https://bitbucket.org/arphase/innovatech/commit/e8e306bbf8dcf603c182d0fea833c372ecab4564))
+* **api:** add gruops and products database migration ([b9bc046](https://bitbucket.org/arphase/innovatech/commit/b9bc046379cf7b30ce7973d3bc057bf93c07c46c))
+* **auth:** add email environment variables ([e3c4b69](https://bitbucket.org/arphase/innovatech/commit/e3c4b695f04b4bf2f13672dbf0e3fb2cf501fffd))
+* **auth:** set password flow ([17c4763](https://bitbucket.org/arphase/innovatech/commit/17c47638f8da8bd51cd8a05539374aad4c4ecd38))
+* **groups:** Create post group endpoint ([a72d7b5](https://bitbucket.org/arphase/innovatech/commit/a72d7b5638ee6001e7de058458396df6476a3075))
+* **groups:** Create Put endpoint ([8d2dfbd](https://bitbucket.org/arphase/innovatech/commit/8d2dfbd23bcd161eceb565a833c75f763a04e98a))
+* **groups:** Get by id endpoint. Add select false to entity columns ([879a313](https://bitbucket.org/arphase/innovatech/commit/879a31345d4d8caa0c0ce74551214e6b31ba1d48))
+* **groups:** Get endpoint. Lazy loading & filters. Add created & updated at to entities ([d4569a9](https://bitbucket.org/arphase/innovatech/commit/d4569a9548e52f151dd6b0ff84c66b90f5e7fa2b))
+* **groups:** Send email to each user on create group ([7d27676](https://bitbucket.org/arphase/innovatech/commit/7d2767652e2f5236c5e047284d7f2d4617301238))
+* **guarantees:** add user decorator to segment guarantees by user ([3bc477d](https://bitbucket.org/arphase/innovatech/commit/3bc477de29433c2fd9d056b1eef11cf726a92709))
+* **ui:** add file-upload component ([349bfd0](https://bitbucket.org/arphase/innovatech/commit/349bfd0d7ca022a9a46fe5e3bb143d5eb9b8a2d6))
+
+
+### Bug Fixes
+
+* **auth:** make password and salt selectable in order to login ([48074e6](https://bitbucket.org/arphase/innovatech/commit/48074e64ae3f435913d555cb9c27e6c5e1d522e5))
+* **guarantees:** save productId ([cd67a5f](https://bitbucket.org/arphase/innovatech/commit/cd67a5f32d44f5cecff4956c60ad530bd5b8ef3a))
+* **product:** transform to html in backend ([5f73eb9](https://bitbucket.org/arphase/innovatech/commit/5f73eb95464bf775bd8b34d6156f1aa28739b7af))
+
 ## [1.1.0](https://bitbucket.org/arphase/innovatech/compare/v1.0.0...v1.1.0) (2020-10-10)
 
 
