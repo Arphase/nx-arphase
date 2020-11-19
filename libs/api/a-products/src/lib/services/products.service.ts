@@ -1,25 +1,17 @@
-import {
-  getReadableStream,
-  GuaranteeEntity,
-  GuaranteeRepository,
-  OUT_FILE,
-  tobase64,
-  transformFolio,
-} from '@ivt/a-state';
-import { promisify } from 'util';
-import puppeteer from 'puppeteer';
-import fs from 'fs';
-import { ProductRepository, ProductEntity } from '@ivt/a-state';
+import { getReadableStream, OUT_FILE, ProductRepository, tobase64 } from '@ivt/a-state';
+import { Product } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import fs from 'fs';
+import puppeteer from 'puppeteer';
+import showdown from 'showdown';
 import { Connection } from 'typeorm';
+import { promisify } from 'util';
 
 import { CreateProductDto } from '../dto/create-products.dto';
-import { UpdateProductDto } from '../dto/update-product.dto';
 import { GenerateProductPdfDto } from '../dto/generate-product-pdf.dto';
-import { getProductPdfTemplate } from './products.service.constants';
-import { Product } from '@ivt/c-data';
 import { GetProductsFilterDto } from '../dto/get-products-filter.dto';
-import { DummyGlossary } from '@ivt/a-products'
+import { UpdateProductDto } from '../dto/update-product.dto';
+import { getProductPdfTemplate } from './products.service.constants';
 
 @Injectable()
 export class ProductService {
@@ -49,7 +41,7 @@ export class ProductService {
   }
 
   async updateProduct(updateProductDto: UpdateProductDto): Promise<Product> {
-    const  updatedProduct = await this.productRepository.save(updateProductDto);
+    const updatedProduct = await this.productRepository.save(updateProductDto);
     return updatedProduct;
   }
 
@@ -57,7 +49,7 @@ export class ProductService {
     const { limit, offset, sort, price, name } = filterDto;
     const query = this.productRepository.createQueryBuilder('products');
 
-    if(sort && price) {
+    if (sort && price) {
       query.orderBy(`${sort}`, price);
     }
 
@@ -74,15 +66,16 @@ export class ProductService {
 
   async generateProductPdf(generateProductPdfDto: GenerateProductPdfDto, response: Response): Promise<void> {
     const template = generateProductPdfDto.template;
+
     let logo;
 
-    if (generateProductPdfDto.logo != null){
+    if (generateProductPdfDto.logo != null) {
       logo = generateProductPdfDto.logo;
     } else {
       logo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
-      logo = "data:image/png;base64," + logo;
+      logo = 'data:image/png;base64,' + logo;
     }
-    
+
     const content = getProductPdfTemplate(template);
     const headerImg = await tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
     const headerLogo = logo;
@@ -144,5 +137,4 @@ export class ProductService {
     const stream = getReadableStream(buffer);
     stream.pipe(response as any);
   }
-
 }

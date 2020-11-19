@@ -6,7 +6,7 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: true })
   productType: string;
 
   @Column()
