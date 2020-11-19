@@ -8,12 +8,14 @@
            'sidenav-is-mobile': mobileQuery.matches
           }">
       <div class="menu-items-container">
-        <ivt-menu-item *ngFor="let menuItem of menuItems"
-                       [menuItem]="menuItem"
-                       [menuOpened]="opened"
-                       [isMobile]="mobileQuery.matches"
-                       (openMenu)="onOpenMenu()"
-                       (closeMenu)="onCloseMenu()"></ivt-menu-item>
+        <ng-container *ngFor="let menuItem of menuItems">
+          <ivt-menu-item *ngIf="menuItem.display"
+                         [menuItem]="menuItem"
+                         [menuOpened]="opened"
+                         [isMobile]="mobileQuery.matches"
+                         (openMenu)="onOpenMenu()"
+                         (closeMenu)="onCloseMenu()"></ivt-menu-item>
+        </ng-container>
       </div>
     </div>
   </mat-sidenav>
