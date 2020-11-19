@@ -25,13 +25,12 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
   createUserGroup() {
     return this.fb.group({
       id: [],
-      businessName: [],
       firstName: [],
       lastName: [],
       secondLastName: [],
       email: [],
       phone: [],
-      role: [],
+      role: "agencyUser",
       rfc: [],
     });
   }

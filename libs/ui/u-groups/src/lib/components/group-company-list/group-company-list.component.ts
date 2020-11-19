@@ -13,7 +13,6 @@ import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Company} from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
-import { NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { CompanyFormDialogComponent } from '../group-form-companies/group-form-companies.component';
@@ -25,7 +24,7 @@ import { columns, dateTypeOptions, statusOptions } from './group-company-list.co
   templateUrl: './group-company-list.component.html',
   styleUrls: ['./group-company-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [NgbModal]
+  providers: []
 })
 export class GroupCompanyListComponent extends IvtListComponent<Company> implements OnInit {
   @Output() companyList = new EventEmitter<any>();
@@ -41,7 +40,7 @@ export class GroupCompanyListComponent extends IvtListComponent<Company> impleme
   @Output() downloadPdf = new EventEmitter<number>();
   @Output() createPaymentOrder = new EventEmitter<number[]>();
 
-  constructor(public dialog: MatDialog, private modalService: NgbModal) {
+  constructor(public dialog: MatDialog) {
     
     super();
   }
