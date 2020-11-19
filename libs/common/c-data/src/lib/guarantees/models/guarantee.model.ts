@@ -20,4 +20,3 @@ export interface Guarantee {
   product?: Product;
 }
 
-

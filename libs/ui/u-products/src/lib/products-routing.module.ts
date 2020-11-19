@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ProductFormContainerComponent } from './containers/product-form-container/product-form-container.component';
+import { ProductListContainerComponent } from './containers/product-list-container/product-list-container.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductResolverService } from './resolvers/product-resolver.service';
+import { ProductsResolverService } from './resolvers/products-resolver.service';
 
 export const routes: Routes = [
   {
@@ -11,11 +14,18 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: ProductFormContainerComponent,
+        component: ProductListContainerComponent,
+        resolve: { resolvedProducts: ProductsResolverService }
       },
       {
         path: 'new',
         component: ProductFormContainerComponent,
+        resolve: { resolvedProduct: ProductResolverService }
+      },
+      {
+        path: ':id',
+        component: ProductFormContainerComponent,
+        resolve: { resolvedProduct: ProductResolverService }
       },
     ],
   },

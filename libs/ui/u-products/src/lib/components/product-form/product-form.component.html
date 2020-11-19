@@ -36,8 +36,12 @@
         <div>
           <mat-form-field>
             <mat-label>Glosario</mat-label>
-            <mat-select>
-              <mat-option value="option"></mat-option>
+            <mat-select (selectionChange)="selectedValue($event)">
+              <mat-option *ngFor="let option of glossaryOptions"
+                                [value]="option.value">
+                {{ option.label }}
+              </mat-option>
+
             </mat-select>
           </mat-form-field>
         </div>
@@ -60,6 +64,10 @@
                 class="mr-3"
                 type="button"
                 [routerLink]="['..']">Cancelar</button>
+        <button mat-raised-button
+                class="mr-3"
+                color="primary"
+                (click)="downloadTemplatePreview()">Vista previa</button>
         <button mat-raised-button
                 type="submit"
                 color="primary">Guardar</button>

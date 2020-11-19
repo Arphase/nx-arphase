@@ -32,4 +32,9 @@ export class ProductController {
   async getGuaranteePdf(@Body() generateProductPdfDto: GenerateProductPdfDto, @Res() response: Response): Promise<void> {
     return this.productService.generateProductPdf(generateProductPdfDto, response);
   }
+
+  @Get(':id')
+  async getProductById(@Param('id', ParseIntPipe) id: number): Promise<Product> {
+    return this.productService.getProductById(id);
+  }
 }

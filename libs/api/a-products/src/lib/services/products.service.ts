@@ -10,7 +10,7 @@ import { promisify } from 'util';
 import puppeteer from 'puppeteer';
 import fs from 'fs';
 import { ProductRepository, ProductEntity } from '@ivt/a-state';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Connection } from 'typeorm';
 
 import { CreateProductDto } from '../dto/create-products.dto';
@@ -27,6 +27,17 @@ export class ProductService {
 
   constructor(private readonly connection: Connection) {
     this.productRepository = this.connection.getCustomRepository(ProductRepository);
+  }
+
+  async getProductById(id: number): Promise<Product> {
+    const query = this.productRepository.createQueryBuilder('product');
+    const found = await query.where('product.id = :id', { id }).getOne();
+
+    if (!found) {
+      throw new NotFoundException(`Product with id "${id}" not found`);
+    }
+
+    return found;
   }
 
   async createProduct(createProductDto: CreateProductDto): Promise<Product> {
