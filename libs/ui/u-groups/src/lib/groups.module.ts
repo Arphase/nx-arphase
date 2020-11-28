@@ -7,10 +7,10 @@ import { CompanyRowComponent } from './components/company-row/company-row.compon
 import { GroupCompanyListComponent } from './components/group-company-list/group-company-list.component';
 import { CompanyFormDialogComponent } from './components/group-form-companies/group-form-companies.component';
 import { GroupFormUsersComponent } from './components/group-form-users/group-form-users.component';
-import { GroupFormsComponent } from './components/group-forms/group-forms.component';
+import { GroupFormComponent } from './components/group-form/group-form.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
 import { GroupRowComponent } from './components/group-row/group-row.component';
-import { GroupFormsContainerComponent } from './containers/group-forms-container/group-forms-container.component';
+import { GroupFormContainerComponent } from './containers/group-form-container/group-form-container.component';
 import { GroupListContainerComponent } from './containers/group-list-container/group-list-container.component';
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsComponent } from './groups.component';
@@ -22,8 +22,8 @@ import { GroupsComponent } from './groups.component';
     GroupCompanyListComponent,
     GroupListComponent,
     GroupListContainerComponent,
-    GroupFormsContainerComponent,
-    GroupFormsComponent,
+    GroupFormContainerComponent,
+    GroupFormComponent,
     CompanyFormDialogComponent,
     GroupFormUsersComponent,
     CompanyRowComponent,

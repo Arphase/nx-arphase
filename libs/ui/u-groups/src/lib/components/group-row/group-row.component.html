@@ -11,18 +11,11 @@
   <div class="col">
     {{ item.phone }}
   </div>
-
-  <div class="col-auto">
+  <div class="col-auto flex-end">
     <button mat-icon-button
-            matTooltip="Acciones"
-            [matMenuTriggerFor]="actionsMenu">
-      <mat-icon>more_vert</mat-icon>
+            matTooltip="Editar grupo"
+            [routerLink]="[item.id]">
+      <mat-icon>border_color</mat-icon>
     </button>
-    <mat-menu #actionsMenu="matMenu">
-      <button mat-menu-item
-              [routerLink]="[item.id]">
-        Editar grupo
-      </button>
-    </mat-menu>
   </div>
 </ivt-row>

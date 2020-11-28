@@ -4,14 +4,12 @@ import { Group } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
 
 @Component({
-  selector: 'ivt-group-forms',
-  templateUrl: './group-forms.component.html',
-  styleUrls: ['./group-forms.component.scss'],
+  selector: 'ivt-group-form',
+  templateUrl: './group-form.component.html',
+  styleUrls: ['./group-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GroupFormsComponent extends IvtFormComponent<Group> implements OnChanges {
-  retCompanyList;
-  companyList = new FormArray([]);
+export class GroupFormComponent extends IvtFormComponent<Group> implements OnChanges {
 
   get companiesFormArray() {
     return <FormArray>this.form.get('companies');

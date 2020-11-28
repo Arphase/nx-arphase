@@ -6,12 +6,12 @@ import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'ivt-group-forms-container',
-  templateUrl: './group-forms-container.component.html',
-  styleUrls: ['./group-forms-container.component.scss'],
+  selector: 'ivt-group-form-container',
+  templateUrl: './group-form-container.component.html',
+  styleUrls: ['./group-form-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GroupFormsContainerComponent extends IvtFormContainerComponent<Group> {
+export class GroupFormContainerComponent extends IvtFormContainerComponent<Group> {
   successUrl = '/spa/groups';
   createSuccessMessage = 'El grupo se ha creado con éxito';
   updateSuccessMessage = 'El grupo se ha actualizado con éxito';

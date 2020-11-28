@@ -39,12 +39,13 @@ export class SpaComponent {
           path: ['groups'],
           display: hasPermission,
         },
-        {
-          icon: 'folder_open',
-          header: 'Productos',
-          path: ['products'],
-          display: hasPermission,
-        },
+        // TODO: uncomment when feature is ready
+        // {
+        //   icon: 'folder_open',
+        //   header: 'Productos',
+        //   path: ['products'],
+        //   display: hasPermission,
+        // },
       ])
     );
   }

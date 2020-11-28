@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 
 export function markFormGroupTouched(formGroup: FormGroup) {
   traverseFormGroup(formGroup, control => control.markAsTouched());
@@ -26,4 +26,18 @@ function traverseFormGroup(formGroup: FormGroup, fn: (control: AbstractControl) 
       }
     }
   });
+}
+
+type ControlFactory<T> = (values: T) => AbstractControl;
+const toFormControl = <T>(values: T) => new FormControl(values);
+
+export function setFormArrayValue<T>(
+  formArray: FormArray,
+  values: T[],
+  toSubControl: ControlFactory<T> = toFormControl
+) {
+  formArray.clear();
+  values.map(toSubControl).forEach(control => formArray.push(control));
+
+  return formArray;
 }
