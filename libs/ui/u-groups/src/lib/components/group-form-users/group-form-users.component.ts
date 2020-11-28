@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Group, UserRoles } from '@ivt/c-data';
-import { CustomValidators } from '@ivt/c-utils';
-import { IvtFormComponent } from '@ivt/u-ui';
+import { IvtFormComponent, IvtValidators } from '@ivt/u-ui';
 
 @Component({
   selector: 'ivt-group-form-users',
@@ -21,7 +20,7 @@ export class GroupFormUsersComponent extends IvtFormComponent<Group> {
       email: [null, Validators.required],
       phone: [null, Validators.required],
       businessRole: UserRoles[UserRoles.agencyUser],
-      rfc: [null, [Validators.required, CustomValidators.rfc('any')]],
+      rfc: [null, [Validators.required, IvtValidators.rfc('any')]],
     });
   }
 }

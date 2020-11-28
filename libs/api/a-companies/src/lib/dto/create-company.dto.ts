@@ -1,10 +1,11 @@
-import { Type } from 'class-transformer';
-import { IsEmail, IsNotEmpty, IsString, ValidateNested, IsArray } from 'class-validator';
-import { Address } from 'cluster';
-import { User } from '@ivt/c-data';
 import { CreateAddressDto } from '@ivt/a-guarantees';
+import { IsRfc } from '@ivt/a-state';
 import { CreateUserDto } from '@ivt/a-users';
-import { IsRfc, RfcValidatorTypes } from '@ivt/c-utils'
+import { User } from '@ivt/c-data';
+import { RfcValidatorTypes } from '@ivt/c-utils';
+import { Type } from 'class-transformer';
+import { IsArray, IsEmail, IsNotEmpty, IsString, ValidateNested } from 'class-validator';
+import { Address } from 'cluster';
 
 export class CreateCompanyDto {
   @IsNotEmpty()
@@ -13,7 +14,7 @@ export class CreateCompanyDto {
 
   @IsNotEmpty()
   @IsString()
-  @IsRfc(RfcValidatorTypes.any , {
+  @IsRfc(RfcValidatorTypes.any, {
     message: 'rfc must have rfc format',
   })
   rfc: string;

@@ -13,7 +13,6 @@ import {
   OnDestroy,
   Optional,
 } from '@angular/core';
-import { LabelOptions, MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
 import {
   MAT_FORM_FIELD,
   MAT_FORM_FIELD_DEFAULT_OPTIONS,
@@ -42,8 +41,7 @@ enum ValidatorTypes {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: MAT_FORM_FIELD, useExisting: IvtFormFieldComponent }],
 })
-export class IvtFormFieldComponent extends MatFormField
-  implements AfterContentInit, OnDestroy {
+export class IvtFormFieldComponent extends MatFormField implements AfterContentInit, OnDestroy {
   @Input() label: string;
   @Input() hideLabel: boolean;
   @ContentChild(IvtInputDirective) input: IvtInputDirective;
@@ -52,28 +50,16 @@ export class IvtFormFieldComponent extends MatFormField
   destroy$ = new Subject<void>();
 
   constructor(
-    public _elementRef: ElementRef,
+    _elementRef: ElementRef,
     _changeDetectorRef: ChangeDetectorRef,
-    // tslint:disable-next-line: deprecation
-    @Optional() @Inject(MAT_LABEL_GLOBAL_OPTIONS) labelOptions: LabelOptions,
+    @Inject(ElementRef) _labelOptions: any,
     @Optional() _dir: Directionality,
-    @Optional()
-    @Inject(MAT_FORM_FIELD_DEFAULT_OPTIONS)
-    _defaults: MatFormFieldDefaultOptions,
+    @Optional() @Inject(MAT_FORM_FIELD_DEFAULT_OPTIONS) _defaults: MatFormFieldDefaultOptions,
     _platform: Platform,
     _ngZone: NgZone,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) _animationMode: string
   ) {
-    super(
-      _elementRef,
-      _changeDetectorRef,
-      labelOptions,
-      _dir,
-      _defaults,
-      _platform,
-      _ngZone,
-      _animationMode
-    );
+    super(_elementRef, _changeDetectorRef, _labelOptions, _dir, _defaults, _platform, _ngZone, _animationMode);
   }
 
   ngAfterContentInit() {
@@ -87,11 +73,7 @@ export class IvtFormFieldComponent extends MatFormField
       )
       .subscribe(() => this.setErrorMessage(reactiveControl.errors));
 
-    if (
-      this.select &&
-      this.select.options &&
-      this.select.options.length === 1
-    ) {
+    if (this.select && this.select.options && this.select.options.length === 1) {
       this.select.ngControl.control.patchValue(this.select.options.first.value);
     }
   }

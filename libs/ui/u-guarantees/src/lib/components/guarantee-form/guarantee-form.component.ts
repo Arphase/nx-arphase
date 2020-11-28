@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Guarantee, PersonTypes, Select } from '@ivt/c-data';
-import { CustomValidators, filterNil } from '@ivt/c-utils';
-import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
+import { filterNil } from '@ivt/c-utils';
+import { createAddressForm, IvtFormComponent, IvtValidators } from '@ivt/u-ui';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -68,7 +68,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
           constitutionDate: [null, Validators.required],
           adviser: [null, Validators.required],
         }),
-        rfc: [null, [Validators.required, CustomValidators.rfc('any')]],
+        rfc: [null, [Validators.required, IvtValidators.rfc('any')]],
         phone: [null, Validators.required],
         email: [null, [Validators.required, Validators.email]],
         address: createAddressForm(),

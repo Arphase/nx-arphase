@@ -1,7 +1,8 @@
+import { IsRfc } from '@ivt/a-state';
+import { UserRoles } from '@ivt/c-data';
+import { RfcValidatorTypes } from '@ivt/c-utils';
 import { Transform } from 'class-transformer';
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { UserRoles } from '@ivt/c-data';
-import { IsRfc, RfcValidatorTypes } from '@ivt/c-utils'
 
 export class CreateUserDto {
   @IsNotEmpty()
