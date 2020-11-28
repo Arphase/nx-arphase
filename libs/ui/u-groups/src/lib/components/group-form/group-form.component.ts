@@ -42,14 +42,7 @@ export class GroupFormComponent extends IvtFormComponent<Group> implements OnCha
 
   createCompanyGroup(el) {
     return this.fb.group({
-      id: el.id,
-      businessName: el.businessName,
-      email: el.email,
-      phone: el.phone,
-      address: el.address,
-      users: el.users ? [el.users] : [],
-      rfc: el.rfc,
-      contact: el.contact,
+
     });
   }
 

@@ -14,7 +14,7 @@ import { IvtListComponent } from '@ivt/u-ui';
 import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { CompanyFormDialogComponent } from '../group-form-companies/group-form-companies.component';
+import { CompanyFormDialogComponent } from '../company-form-dialog/company-form-dialog.component';
 import { columns } from './group-company-list.constants';
 
 @Component({

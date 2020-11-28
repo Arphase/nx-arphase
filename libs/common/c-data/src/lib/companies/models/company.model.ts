@@ -13,4 +13,3 @@ export interface Company {
   group: Group;
   users: User[];
 }
-

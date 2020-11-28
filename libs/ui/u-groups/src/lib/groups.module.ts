@@ -5,8 +5,8 @@ import { IvtUiModule } from '@ivt/u-ui';
 
 import { CompanyRowComponent } from './components/company-row/company-row.component';
 import { GroupCompanyListComponent } from './components/group-company-list/group-company-list.component';
-import { CompanyFormDialogComponent } from './components/group-form-companies/group-form-companies.component';
-import { GroupFormUsersComponent } from './components/group-form-users/group-form-users.component';
+import { CompanyFormDialogComponent } from './components/company-form-dialog/company-form-dialog.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
 import { GroupFormComponent } from './components/group-form/group-form.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
 import { GroupRowComponent } from './components/group-row/group-row.component';
@@ -25,7 +25,7 @@ import { GroupsComponent } from './groups.component';
     GroupFormContainerComponent,
     GroupFormComponent,
     CompanyFormDialogComponent,
-    GroupFormUsersComponent,
+    UserFormComponent,
     CompanyRowComponent,
     GroupRowComponent,
   ],

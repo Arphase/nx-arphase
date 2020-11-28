@@ -1,0 +1,44 @@
+<form [formGroup]="form">
+  <div class="row">
+    <div class="col-lg-4 col-12">
+      <ivt-form-field label="Nombre(s)">
+        <input ivtInput
+               formControlName="firstName">
+      </ivt-form-field>
+    </div>
+    <div class="col-lg-4 col-12">
+      <ivt-form-field label="Apellido Paterno">
+        <input ivtInput
+               formControlName="lastName">
+      </ivt-form-field>
+    </div>
+    <div class="col-lg-4 col-12">
+      <ivt-form-field label="Apellido Materno">
+        <input ivtInput
+               formControlName="secondLastName">
+      </ivt-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-12">
+      <ivt-form-field label="Correo">
+        <input ivtInput
+               type="email"
+               formControlName="email">
+      </ivt-form-field>
+    </div>
+    <div class="col-lg-4 col-12">
+      <ivt-form-field label="Teléfono">
+        <input ivtInput
+               formControlName="phone">
+      </ivt-form-field>
+    </div>
+    <div class="col-lg-4 col-12">
+      <ivt-form-field label="RFC">
+        <input ivtInput
+               ivtUppercase
+               formControlName="rfc">
+      </ivt-form-field>
+    </div>
+  </div>
+</form>
