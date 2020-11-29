@@ -4,6 +4,7 @@ import { User } from '../../users/models/user.model';
 
 export interface Company {
   id?: number;
+  tempId?: number;
   businessName: string;
   rfc: string;
   contact: string;

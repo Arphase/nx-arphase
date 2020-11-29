@@ -1,6 +1,5 @@
 <form [formGroup]="form"
       (ngSubmit)="submit()">
-
   <div class="row mb-3">
     <div class="col">
       <ivt-go-back-title [title]="item?.id ? 'Editar Grupo' : 'Nuevo Grupo'"></ivt-go-back-title>
@@ -51,10 +50,8 @@
   <ivt-expansion-panel class="primary-panel mb-3 d-block mt-3"
                        title="Compañías"
                        [isOpen]="true">
-    <ivt-group-company-list (companyList)="onAddCompanyList($event)"
-                            (companyListModify)="onModifyCompanyList($event)"
-                            [retList]="companiesFormArray.value">
-    </ivt-group-company-list>
+    <ivt-group-company-list-container [item]="item">
+    </ivt-group-company-list-container>
   </ivt-expansion-panel>
 
   <div class="row mt-4 mb-3">

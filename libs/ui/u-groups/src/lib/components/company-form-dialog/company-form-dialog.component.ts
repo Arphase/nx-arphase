@@ -4,8 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Company, Group } from '@ivt/c-data';
 import { IvtFormComponent, markFormGroupTouched } from '@ivt/u-ui';
 
-import { createUserForm } from '../user-form/user-form.constants';
-import { createCompanyForm, patchCompanyForm } from './company-form-dialog.constants';
+import { createCompanyForm, createUserForm, patchCompanyForm } from '../../functions/group-form.functions';
 
 @Component({
   selector: 'ivt-company-form-dialog',

@@ -35,9 +35,14 @@ export function setFormArrayValue<T>(
   formArray: FormArray,
   values: T[],
   toSubControl: ControlFactory<T> = toFormControl
-) {
+): FormArray {
   formArray.clear();
   values.map(toSubControl).forEach(control => formArray.push(control));
 
   return formArray;
+}
+
+export function findFormArrayIndex<T>(formArray: FormArray, findFn: (value: T) => boolean): number {
+  const value: T[] = formArray.value;
+  return value.findIndex(findFn);
 }

@@ -17,17 +17,6 @@ export class GroupsService {
     this.groupRepository = this.connection.getCustomRepository(GroupRepository);
   }
 
-  async createGroup(createGroupDto: CreateGroupDto): Promise<Group> {
-    const newGroup = await this.groupRepository.create(createGroupDto);
-    await newGroup.save();
-    newGroup.companies?.forEach(company => {
-      company.users?.forEach(user => {
-        this.authService.sendEmailResetPassword(user.email);
-      });
-    });
-    return newGroup;
-  }
-
   async getGroupById(id: number): Promise<Group> {
     const query = this.groupRepository.createQueryBuilder('group');
     query
@@ -66,6 +55,17 @@ export class GroupsService {
 
     const groups = await query.getMany();
     return groups;
+  }
+
+  async createGroup(createGroupDto: CreateGroupDto): Promise<Group> {
+    const newGroup = await this.groupRepository.create(createGroupDto);
+    await newGroup.save();
+    newGroup.companies?.forEach(company => {
+      company.users?.forEach(user => {
+        this.authService.sendEmailResetPassword(user.email);
+      });
+    });
+    return newGroup;
   }
 
   async updateGroup(updateGroupDto: UpdateGroupDto): Promise<Group> {

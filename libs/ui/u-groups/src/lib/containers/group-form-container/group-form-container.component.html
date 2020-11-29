@@ -1,3 +1,4 @@
-<ivt-group-form [item]="currentItem$ | async"
-                 (submitForm)="submit($event)">
+<ivt-group-form [form]="form"
+                [item]="currentItem$ | async"
+                (submitForm)="submit($event)">
 </ivt-group-form>

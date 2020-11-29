@@ -14,6 +14,7 @@ import { GroupFormContainerComponent } from './containers/group-form-container/g
 import { GroupListContainerComponent } from './containers/group-list-container/group-list-container.component';
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsComponent } from './groups.component';
+import { GroupCompanyListContainerComponent } from './containers/group-company-list-container/group-company-list-container.component';
 
 @NgModule({
   imports: [CommonModule, IvtUiModule, GroupsRoutingModule, PermissionsModule],
@@ -28,6 +29,7 @@ import { GroupsComponent } from './groups.component';
     UserFormComponent,
     CompanyRowComponent,
     GroupRowComponent,
+    GroupCompanyListContainerComponent,
   ],
   entryComponents: [CompanyFormDialogComponent],
 })

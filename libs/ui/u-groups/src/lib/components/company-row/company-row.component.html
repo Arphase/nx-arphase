@@ -13,17 +13,10 @@
   </div>
   <div class="col-auto">
     <button mat-icon-button
-            matTooltip="Acciones"
             type="button"
-            [matMenuTriggerFor]="actionsMenu">
-      <mat-icon>more_vert</mat-icon>
+            matTooltip="Editar compañía"
+            (click)="edit.emit(item)">
+      <mat-icon>border_color</mat-icon>
     </button>
-    <mat-menu #actionsMenu="matMenu">
-      <button mat-menu-item
-              type="button"
-              (click)="editCompany()">
-        Editar compañía
-      </button>
-    </mat-menu>
   </div>
 </ivt-row>
