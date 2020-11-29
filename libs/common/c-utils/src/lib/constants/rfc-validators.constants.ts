@@ -25,7 +25,6 @@ const RFC_EXPRESSION_PHYSICAL = /^([A-ZÑ&a-z&]{4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0
 
 export const rfcValidations: Record<RfcValidatorTypes, (rfc: string) => any> = {
   [RfcValidatorTypes.any]: isRfc,
-  [RfcValidatorTypes.personType]: isRfc,
   [RfcValidatorTypes.moral]: isMoralRfc,
   [RfcValidatorTypes.physical]: isPhysicalRfc,
 };

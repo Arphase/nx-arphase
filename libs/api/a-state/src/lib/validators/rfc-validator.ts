@@ -17,11 +17,7 @@ export function IsRfc(property: RfcValidatorTypes, validationOptions?: Validatio
       validator: {
         validate(value: any, args: ValidationArguments) {
           const [relatedPropertyName] = args.constraints;
-          const relatedValue =
-            relatedPropertyName === RfcValidatorTypes.personType
-              ? (args.object as any)[RfcValidatorTypes[relatedPropertyName]]
-              : relatedPropertyName;
-          return typeof value === 'string' && validatePersonTypeRfc(relatedValue, value);
+          return typeof value === 'string' && validatePersonTypeRfc(relatedPropertyName, value);
         },
       },
     });

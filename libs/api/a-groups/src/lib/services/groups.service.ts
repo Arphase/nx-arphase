@@ -3,6 +3,7 @@ import { GroupRepository } from '@ivt/a-state';
 import { Group } from '@ivt/c-data';
 import { dir } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { flatten } from 'lodash';
 import { Connection } from 'typeorm';
 
 import { CreateGroupDto } from '../dto/create-group.dto';
@@ -60,16 +61,16 @@ export class GroupsService {
   async createGroup(createGroupDto: CreateGroupDto): Promise<Group> {
     const newGroup = await this.groupRepository.create(createGroupDto);
     await newGroup.save();
-    newGroup.companies?.forEach(company => {
-      company.users?.forEach(user => {
-        this.authService.sendEmailResetPassword(user.email);
-      });
-    });
+    newGroup.companies?.forEach(company =>
+      company.users?.forEach(user => this.authService.sendEmailResetPassword(user.email))
+    );
     return newGroup;
   }
 
   async updateGroup(updateGroupDto: UpdateGroupDto): Promise<Group> {
     const updatedGroup = await this.groupRepository.save(updateGroupDto);
+    const emails: string[] = flatten(updatedGroup.companies.map(company => company.users.map(user => user.email)));
+    this.authService.sendEmailToPendingUsers(emails);
     return updatedGroup;
   }
 }

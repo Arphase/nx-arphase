@@ -33,8 +33,8 @@ export class UpdateClientDto {
 
   @IsOptional()
   @IsString()
-  @IsRfc(RfcValidatorTypes.personType, {
-    message: 'rfc must have the format of the person type',
+  @IsRfc(RfcValidatorTypes.any, {
+    message: 'RFC has incorrect format',
   })
   rfc: string;
 

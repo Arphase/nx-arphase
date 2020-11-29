@@ -1,4 +1,5 @@
 import { Company, Guarantee, User, UserRoles } from '@ivt/c-data';
+import * as bcrypt from 'bcryptjs';
 import {
   BaseEntity,
   Column,
@@ -11,7 +12,7 @@ import {
   Unique,
   UpdateDateColumn,
 } from 'typeorm';
-import * as bcrypt from 'bcryptjs';
+
 import { CompanyEntity } from '../companies/company.entity';
 import { GuaranteeEntity } from '../guarantees';
 
@@ -61,6 +62,7 @@ export class UserEntity extends BaseEntity implements User {
       to: value => value,
       from: value => UserRoles[value],
     },
+    default: UserRoles.agencyUser,
   })
   role: UserRoles;
 
