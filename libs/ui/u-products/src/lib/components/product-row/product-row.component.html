@@ -1,28 +1,18 @@
 <ivt-row>
-
-    <div class="col-1">
-        {{ item.id | folio }}
-    </div>
-    <div class="col">
-        <ivt-text-truncate-tooltip [label]="item.name"></ivt-text-truncate-tooltip>
-    </div>
-
-    <div class="col-1">
-        <ivt-text-truncate-tooltip [label]="item.price | currency | empty"></ivt-text-truncate-tooltip>
-    </div>
-    <div class="col-auto ml-auto">
-        <button mat-icon-button
-                matTooltip="Acciones"
-                [loading]="loading"
-                [matMenuTriggerFor]="actionsMenu">
-            <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #actionsMenu="matMenu">
-            <button mat-menu-item
-                    [routerLink]="[item.id]">
-                Editar producto
-            </button>
-
-        </mat-menu>
-    </div>
+  <div class="col-1">
+    {{ item.id | folio }}
+  </div>
+  <div class="col">
+    <ivt-text-truncate-tooltip [label]="item.name"></ivt-text-truncate-tooltip>
+  </div>
+  <div class="col-1">
+    <ivt-text-truncate-tooltip [label]="item.price | currency | empty"></ivt-text-truncate-tooltip>
+  </div>
+  <div class="col-auto ml-auto">
+    <button mat-icon-button
+            matTooltip="Editar producto"
+            [routerLink]="[item.id]">
+      <mat-icon>border_color</mat-icon>
+    </button>
+  </div>
 </ivt-row>

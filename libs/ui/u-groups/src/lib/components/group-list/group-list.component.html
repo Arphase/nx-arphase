@@ -3,10 +3,6 @@
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
 
-  <div class="col-2 flex-center">
-    <h6 class="m-0"> Resultado(s): {{ list.length }} </h6>
-  </div>
-
   <div class="col flex-end pr-0">
     <button mat-raised-button
             [routerLink]="['new']"

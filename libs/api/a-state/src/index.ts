@@ -7,3 +7,4 @@ export * from './lib/payment-orders';
 export * from './lib/pdf';
 export * from './lib/products';
 export * from './lib/users';
+export * from './lib/validators';

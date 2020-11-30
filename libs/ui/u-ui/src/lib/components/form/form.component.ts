@@ -11,7 +11,7 @@ import { IvtSubscriberComponent } from '../subscriber';
 })
 export class IvtFormComponent<T = any> extends IvtSubscriberComponent {
   @Input() form: FormGroup;
-  @Input() item: Partial<T>;
+  @Input() item: T;
   @Input() loading: boolean;
   @Input() isEditable = true;
   @Output() submitForm = new EventEmitter<T>();

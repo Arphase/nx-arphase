@@ -129,4 +129,11 @@ export class AuthService {
       throw new ForbiddenException('Usuario no registrado');
     }
   }
+
+  async sendEmailToPendingUsers(emails: string[]): Promise<boolean> {
+    const query = this.resetPasswordRepository.createQueryBuilder('resetPassword');
+    const resetPasswords = await query.where(`resetPassword.email IN (:...emails)`, { emails }).getMany();
+    resetPasswords.forEach(password => this.sendEmailResetPassword(password.email));
+    return true;
+  }
 }

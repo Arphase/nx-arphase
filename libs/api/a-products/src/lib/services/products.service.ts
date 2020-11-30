@@ -54,7 +54,7 @@ export class ProductService {
     }
 
     if (name) {
-      query.andWhere('LOWER(products.name) like :name', { name: `%${name.toLowerCase()}%` });
+      query.andWhere('LOWER(products.name) LIKE :name', { name: `%${name.toLowerCase()}%` });
     }
 
     query.groupBy('products.id').take(limit).skip(offset);
