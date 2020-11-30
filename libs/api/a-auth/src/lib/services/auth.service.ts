@@ -1,10 +1,4 @@
-import {
-  IMAGE_ASSETS_PATH,
-  ResetPasswordEntity,
-  ResetPasswordRepository,
-  tobase64,
-  UserRepository,
-} from '@ivt/a-state';
+import { ResetPasswordEntity, ResetPasswordRepository, UserRepository } from '@ivt/a-state';
 import { ResetPassword, User } from '@ivt/c-data';
 import {
   ForbiddenException,
@@ -108,7 +102,6 @@ export class AuthService {
           pass: process.env.MAIL_PASS,
         },
       });
-      console.log(__dirname + '/src/assets/img/logo.png');
 
       const mailOptions = {
         from: `Company <${process.env.MAIL_ACCOUNT_SENDER}>`,
@@ -218,13 +211,6 @@ export class AuthService {
 
         </html>
         `,
-        // attachments: [
-        //   {
-        //     filename: 'logo.png',
-        //     path: __dirname + '${IMAGE_ASSETS_PATH}logo.png',
-        //     cid: 'logo',
-        //   },
-        // ],
       };
 
       const sended = await new Promise<boolean>(async function (resolve, reject) {
