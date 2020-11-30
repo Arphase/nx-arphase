@@ -15,7 +15,7 @@ export class CreateCompanyDto {
   @IsNotEmpty()
   @IsString()
   @IsRfc(RfcValidatorTypes.any, {
-    message: 'rfc must have rfc format',
+    message: 'RFC has incorrect format',
   })
   rfc: string;
 
