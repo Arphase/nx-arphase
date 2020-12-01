@@ -50,7 +50,7 @@ export class AuthEffects {
       ofType(AuthActions.setPassword),
       mergeMap(({ payload }) =>
         this.authService.setPassword(payload).pipe(
-          map(() => AuthActions.setPasswordSuccess({ payload })),
+          map(user => AuthActions.setPasswordSuccess({ payload: { email: user.email, password: payload.password } })),
           catchError(() => of(AuthActions.setPasswordFailed()))
         )
       )
@@ -61,6 +61,18 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(AuthActions.setPasswordSuccess),
       map(({ payload }) => AuthActions.signIn({ payload: { email: payload.email, password: payload.password } }))
+    )
+  );
+
+  validateToken$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.validateToken),
+      mergeMap(({ payload }) =>
+        this.authService.validateToken(payload).pipe(
+          map(user => AuthActions.validateTokenSuccess()),
+          catchError(() => of(AuthActions.validateTokenFailed()))
+        )
+      )
     )
   );
 

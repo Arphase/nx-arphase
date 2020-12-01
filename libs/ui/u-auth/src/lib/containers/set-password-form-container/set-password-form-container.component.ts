@@ -16,7 +16,7 @@ export class SetPasswordFormContainerComponent {
 
   submit(formValue: { password: string }): void {
     const payload: SetPasswordPayload = {
-      email: this.route.snapshot.params.email,
+      userId: Number(this.route.snapshot.params.userId),
       passwordToken: this.route.snapshot.params.passwordToken,
       password: formValue.password,
     };

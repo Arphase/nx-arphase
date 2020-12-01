@@ -62,15 +62,15 @@ export class GroupsService {
     const newGroup = await this.groupRepository.create(createGroupDto);
     await newGroup.save();
     newGroup.companies?.forEach(company =>
-      company.users?.forEach(user => this.authService.sendEmailResetPassword(user.email))
+      company.users?.forEach(user => this.authService.sendEmailResetPassword(user.id))
     );
     return newGroup;
   }
 
   async updateGroup(updateGroupDto: UpdateGroupDto): Promise<Group> {
     const updatedGroup = await this.groupRepository.save(updateGroupDto);
-    const emails: string[] = flatten(updatedGroup.companies.map(company => company.users.map(user => user.email)));
-    this.authService.sendEmailToPendingUsers(emails);
+    const userIds: number[] = flatten(updatedGroup.companies.map(company => company.users.map(user => user.id)));
+    this.authService.sendEmailToPendingUsers(userIds);
     return updatedGroup;
   }
 }

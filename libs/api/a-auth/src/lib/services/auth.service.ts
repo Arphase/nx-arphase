@@ -1,17 +1,20 @@
-import { ResetPasswordEntity, ResetPasswordRepository, UserRepository } from '@ivt/a-state';
+import { ResetPasswordEntity, ResetPasswordRepository, UserEntity, UserRepository } from '@ivt/a-state';
 import { ResetPassword, User } from '@ivt/c-data';
 import {
-  ForbiddenException,
+  ConflictException,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import * as nodemailer from 'nodemailer';
-import { Connection } from 'typeorm';
+import * as bcrypt from 'bcryptjs';
+import { createTransport } from 'nodemailer';
+import Mail from 'nodemailer/lib/mailer';
+import { Connection, getManager } from 'typeorm';
 
 import { AuthCredentialsDto, SignUpCredentialsDto } from '../dto/auth-credentials.dto';
+import { ResetPasswordDto } from '../dto/reset-password.dto';
 
 @Injectable()
 export class AuthService {
@@ -24,7 +27,27 @@ export class AuthService {
   }
 
   async signUp(signUpCredentialsDto: SignUpCredentialsDto): Promise<User> {
-    return this.userRepository.signUp(signUpCredentialsDto);
+    const { password, email, firstName, secondName, lastName, secondLastName, role } = signUpCredentialsDto;
+    const user = new UserEntity();
+    user.email = email;
+    user.firstName = firstName;
+    user.secondName = secondName;
+    user.lastName = lastName;
+    user.secondLastName = secondLastName;
+    user.role = role;
+    user.salt = await bcrypt.genSalt();
+    user.password = await bcrypt.hash(password, user.salt);
+
+    try {
+      await user.save();
+    } catch (error) {
+      if (error.code === '23505') {
+        throw new ConflictException('Email already exists');
+      } else {
+        throw new InternalServerErrorException();
+      }
+    }
+    return user;
   }
 
   async signIn(authCredentialsDto: AuthCredentialsDto): Promise<User> {
@@ -40,12 +63,25 @@ export class AuthService {
     return { ...payload, token };
   }
 
-  async setPassword(email: string, newPassword: string): Promise<boolean> {
-    return this.userRepository.setPassword(email, newPassword);
-  }
+  async setPassword(resetPassword: ResetPasswordDto): Promise<User> {
+    const { userId, password, passwordToken } = resetPassword;
+    const resetPasswordEntity = await this.resetPasswordRepository.findOne({ passwordToken });
+    if (!resetPasswordEntity) {
+      throw new NotFoundException(`Password token not found`);
+    }
 
-  async removeResetPassword(resetPasswordEntity: ResetPasswordEntity) {
-    return this.resetPasswordRepository.remove(resetPasswordEntity);
+    const userFromDb = await this.userRepository.findOne({ id: userId });
+    if (!userFromDb) {
+      throw new NotFoundException(`User not found`);
+    }
+
+    await getManager().transaction(async transactionalEntityManager => {
+      userFromDb.salt = await bcrypt.genSalt();
+      userFromDb.password = await bcrypt.hash(password, userFromDb.salt);
+      await transactionalEntityManager.save(userFromDb);
+      await transactionalEntityManager.remove(resetPasswordEntity);
+    });
+    return userFromDb;
   }
 
   async validateUserPassword(authCredentialsDto: AuthCredentialsDto): Promise<User> {
@@ -61,15 +97,15 @@ export class AuthService {
     }
   }
 
-  async createResetPasswordToken(email: string): Promise<ResetPassword> {
-    const resetPassword = await this.resetPasswordRepository.findOne({ email });
+  async createResetPasswordToken(userId: number): Promise<ResetPassword> {
+    const resetPassword = await this.resetPasswordRepository.findOne({ userId });
     const time = new Date().getTime();
     if (resetPassword && (time - resetPassword.timestamp.getTime()) / 60000 < 15) {
       throw new InternalServerErrorException();
     } else {
       const resetPasswordEntity = {
         ...resetPassword,
-        email,
+        userId,
         passwordToken: (Math.floor(Math.random() * 9000000) + 1000000).toString(),
         timestamp: new Date(),
       };
@@ -82,18 +118,14 @@ export class AuthService {
     }
   }
 
-  async getResetPasswordEntity(passwordToken: string): Promise<ResetPasswordEntity> {
-    return await this.resetPasswordRepository.findOne({ passwordToken });
-  }
+  async sendEmailResetPassword(userId: number): Promise<string> {
+    const userFromDb = await this.userRepository.findOne({ id: userId });
+    if (!userFromDb) throw new NotFoundException(`User not found`);
 
-  async sendEmailResetPassword(email: string): Promise<boolean> {
-    const userFromDb = await this.userRepository.findOne({ email });
-    if (!userFromDb) throw new NotFoundException(`User with email "${email}" not found`);
-
-    const tokenEntity = await this.createResetPasswordToken(email);
+    const tokenEntity = await this.createResetPasswordToken(userId);
 
     if (tokenEntity && tokenEntity.passwordToken) {
-      const transporter = nodemailer.createTransport({
+      const transporter = createTransport({
         host: process.env.SMTP,
         port: Number(process.env.MAIL_PORT),
         secure: false,
@@ -103,11 +135,18 @@ export class AuthService {
         },
       });
 
-      const mailOptions = {
-        from: `Company <${process.env.MAIL_ACCOUNT_SENDER}>`,
-        to: email,
-        subject: 'Asignar Contraseña',
+      const mailOptions: Mail.Options = {
+        from: `Innovatech Garantías <${process.env.MAIL_ACCOUNT_SENDER}>`,
+        to: userFromDb.email,
+        subject: 'Bienvenido a Innovatech',
         text: 'Asignar contraseña',
+        attachments: [
+          {
+            filename: 'logo.png',
+            path: __dirname + '/assets/img/logo.png',
+            cid: 'unique@kreata.ee',
+          },
+        ],
         html: `
         <!doctype html>
         <html lang="en-US">
@@ -122,6 +161,9 @@ export class AuthService {
             a:hover {
               text-decoration: underline !important;
             }
+            img {
+              max-width: 350px;
+            }
           </style>
         </head>
 
@@ -130,7 +172,7 @@ export class AuthService {
               marginwidth="0"
               style="margin: 0px; background-color: #f2f3f8;"
               leftmargin="0">
-          <!--100% body table-->
+            <!--100% body table-->
           <table cellspacing="0"
                 border="0"
                 cellpadding="0"
@@ -164,6 +206,7 @@ export class AuthService {
                         </tr>
                         <tr>
                           <td style="padding:0 35px;">
+                          <img src="cid:unique@kreata.ee"/>
                             <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;">
                               ¡Bienvenido a Innovatech!
                             </h1>
@@ -173,12 +216,12 @@ export class AuthService {
                               Has recibido una invitación para entrar a la plataforma de Innovatech. Para crear la contraseña
                               para tu cuenta has click en el siguiente link.
                             </p>
-                            <a href="${process.env.MAIL_HOST_URL}/${tokenEntity.passwordToken}/${email}"
+                            <a href="${process.env.MAIL_HOST_URL}/${tokenEntity.passwordToken}/${userId}"
                               style="background:#3f5378;text-decoration:none !important; font-weight:500; margin-top:35px; margin-bottom:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
                               Crear contrseña
                             </a>
                             <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
-                              Si el link no funciona copia y pega lo siguiente en tu navegador: ${process.env.MAIL_HOST_URL}/${tokenEntity.passwordToken}/${email}
+                              Si el link no funciona copia y pega lo siguiente en tu navegador: ${process.env.MAIL_HOST_URL}/${tokenEntity.passwordToken}/${userId}
                             </p>
                             <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
                               Si no eres parte de uno de los grupos de Innovatech ignora este correo.
@@ -224,16 +267,25 @@ export class AuthService {
         });
       });
 
-      return sended;
+      return 'Email sent!';
     } else {
-      throw new ForbiddenException('Usuario no registrado');
+      throw new NotFoundException('User not found');
     }
   }
 
-  async sendEmailToPendingUsers(emails: string[]): Promise<boolean> {
+  async sendEmailToPendingUsers(userIds: number[]): Promise<boolean> {
     const query = this.resetPasswordRepository.createQueryBuilder('resetPassword');
-    const resetPasswords = await query.where(`resetPassword.email IN (:...emails)`, { emails }).getMany();
-    resetPasswords.forEach(password => this.sendEmailResetPassword(password.email));
+    const resetPasswords = await query.where(`resetPassword.userId IN (:...userIds)`, { userIds }).getMany();
+    resetPasswords.forEach(password => this.sendEmailResetPassword(password.userId));
     return true;
+  }
+
+  async validateToken(passwordToken: string): Promise<ResetPasswordEntity> {
+    const resetToken = await this.resetPasswordRepository.findOne({ passwordToken });
+    if (!resetToken) {
+      throw new NotFoundException('Token not found');
+    } else {
+      return resetToken;
+    }
   }
 }

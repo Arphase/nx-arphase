@@ -8,6 +8,7 @@ import { SetPasswordFormComponent } from './components/set-password-form/set-pas
 import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
 import { SetPasswordFormContainerComponent } from './containers/set-password-form-container/set-password-form-container.component';
 import { SignInFormContainerComponent } from './containers/sign-in-form-container/sign-in-form-container.component';
+import { ExpiredTokenComponent } from './components/expired-token/expired-token.component';
 
 @NgModule({
   imports: [CommonModule, IvtUiModule, AuthRoutingModule],
@@ -17,6 +18,7 @@ import { SignInFormContainerComponent } from './containers/sign-in-form-containe
     SignInFormComponent,
     SetPasswordFormContainerComponent,
     SetPasswordFormComponent,
+    ExpiredTokenComponent,
   ],
 })
 export class AuthModule {}

@@ -79,7 +79,7 @@ export function getProductPdfTemplate(body: string, guarantee?: Guarantee): stri
     template = replace(template, RealGlossary);
   }
 
-  const logoImage = IMAGE_ASSETS_PATH + 'logo.png';
+  const logoImage = `${IMAGE_ASSETS_PATH}/logo.png`;
 
   return `
   <html>

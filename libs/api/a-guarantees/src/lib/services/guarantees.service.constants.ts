@@ -44,7 +44,7 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
         </style>
     <head>
     <body>
-    <div><img class="logo" src="${IMAGE_ASSETS_PATH}logo.png"></div>
+    <div><img class="logo" src="${IMAGE_ASSETS_PATH}/logo.png"></div>
         <p class="center bold">¡MUCHAS FELICIDADES!</p>
         <p>Le damos la más cordial bienvenida Innovatech. Este programa ha sido diseñado pensando en brindarles protección contra desembolsos excesivos e
         imprevistos en caso de que su vehículo presente alguna avería mecánica de manera fortuita en sistemas eléctricos mecánicos o electrónicos</p>

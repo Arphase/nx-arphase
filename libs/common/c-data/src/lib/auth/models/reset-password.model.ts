@@ -1,5 +1,7 @@
+import { User } from '../../users';
+
 export interface ResetPassword {
-  email: string;
+  user: User;
   passwordToken: string;
   timestamp: Date;
 }
