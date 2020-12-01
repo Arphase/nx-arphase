@@ -3,7 +3,6 @@ import { Body, Controller, Get, Param, Post, ValidationPipe } from '@nestjs/comm
 
 import { AuthCredentialsDto } from '../dto/auth-credentials.dto';
 import { ResetPasswordDto } from '../dto/reset-password.dto';
-import { ValidateTokenDto } from '../dto/validate-token-dto';
 import { AuthService } from '../services/auth.service';
 
 @Controller('auth')
@@ -19,9 +18,9 @@ export class AuthController {
    * @param email User email
    * @returns response data about email status
    */
-  @Post('/emailPassword/:userId')
-  sendEmailResetPassword(@Param('userId') userId: number): Promise<string> {
-    return this.authService.sendEmailResetPassword(userId);
+  @Post('/emailPassword')
+  sendEmailResetPassword(@Body() user: Partial<User>): Promise<any> {
+    return this.authService.sendResetPasswordEmail(user.email);
   }
 
   /**

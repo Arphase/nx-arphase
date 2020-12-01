@@ -68,7 +68,7 @@
           <button mat-icon-button
                   matTooltip="Eliminar usuario"
                   type="button"
-                  [disabled]="usersFormArray.controls.length === 1"
+                  [disabled]="usersFormArray.controls.length === 1 || userForm.value.id"
                   (click)="removeUser(index)">
             <mat-icon>delete</mat-icon>
           </button>

@@ -20,3 +20,9 @@ export const setPassword = createAction('[Auth] Set password', props<{ payload: 
 export const setPasswordSuccess = createAction('[Auth] Set password success', props<{ payload: SignInRequest }>());
 
 export const setPasswordFailed = createAction('[Auth] Set password failed');
+
+export const sendPasswordEmail = createAction('[Auth] Send password email', props<{ payload: Partial<User> }>());
+
+export const sendPasswordEmailSuccess = createAction('[Auth] Send password email success');
+
+export const sendPasswordEmailFailed = createAction('[Auth] Send password email failed');

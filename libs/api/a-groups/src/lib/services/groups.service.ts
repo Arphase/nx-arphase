@@ -62,7 +62,7 @@ export class GroupsService {
     const newGroup = await this.groupRepository.create(createGroupDto);
     await newGroup.save();
     newGroup.companies?.forEach(company =>
-      company.users?.forEach(user => this.authService.sendEmailResetPassword(user.id))
+      company.users?.forEach(user => this.authService.sendSetPasswordEmail(user.id))
     );
     return newGroup;
   }

@@ -69,12 +69,24 @@ export class AuthEffects {
       ofType(AuthActions.validateToken),
       mergeMap(({ payload }) =>
         this.authService.validateToken(payload).pipe(
-          map(user => AuthActions.validateTokenSuccess()),
+          map(() => AuthActions.validateTokenSuccess()),
           catchError(() => of(AuthActions.validateTokenFailed()))
         )
       )
     )
   );
+
+  sendPasswordEmail$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(AuthActions.sendPasswordEmail),
+    mergeMap(({ payload }) =>
+      this.authService.sendPasswordEmail(payload).pipe(
+        map(() => AuthActions.sendPasswordEmailSuccess()),
+        catchError(() => of(AuthActions.sendPasswordEmailFailed()))
+      )
+    )
+  )
+);
 
   constructor(private actions$: Actions, private authService: AuthService, private router: Router) {}
 }

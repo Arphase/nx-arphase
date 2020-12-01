@@ -49,7 +49,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     super();
     this.form = this.fb.group({
       id: null,
-      productId: [null, Validators.required],
+      productId: null,
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
       client: this.fb.group({

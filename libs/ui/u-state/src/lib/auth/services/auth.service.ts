@@ -40,4 +40,8 @@ export class AuthService {
   validateToken(payload: Partial<SetPasswordPayload>): Observable<ResetPassword> {
     return this.http.get<ResetPassword>(`${this.config.apiUrl}/auth/validateToken/${payload.passwordToken}`);
   }
+
+  sendPasswordEmail(payload: Partial<User>): Observable<any> {
+    return this.http.post(`${this.config.apiUrl}/auth/emailPassword`, payload);
+  }
 }
