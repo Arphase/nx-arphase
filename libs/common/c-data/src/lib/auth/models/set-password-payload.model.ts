@@ -1,5 +1,5 @@
 export interface SetPasswordPayload {
-  email: string;
+  userId: number;
   password: string;
   passwordToken: string;
 }

@@ -14,6 +14,7 @@ import { IvtListModule } from './list';
 import { IvtNavbarModule } from './navbar';
 import { IvtRowModule } from './row';
 import { IvtSearchbarModule } from './searchbar';
+import { IvtStatusMessageModule } from './status-message';
 import { IvtSubscriberModule } from './subscriber';
 import { IvtTableModule } from './table';
 import { IvtTextTruncateTooltipModule } from './text-truncate-tooltip';
@@ -36,6 +37,7 @@ const MODULES = [
   IvtRadioFilterModule,
   IvtRowModule,
   IvtSearchbarModule,
+  IvtStatusMessageModule,
   IvtSubscriberModule,
   IvtTableModule,
   IvtTextTruncateTooltipModule,

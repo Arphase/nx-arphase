@@ -1,19 +1,19 @@
-import { IsEmail, IsNotEmpty, IsString, Matches, MaxLength, MinLength } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, Matches, MinLength } from 'class-validator';
 
 export class ResetPasswordDto {
   @IsNotEmpty()
-  @IsEmail()
-  email: string;
+  @IsNumber()
+  userId: number;
 
   @IsNotEmpty()
   @IsString()
   @MinLength(8)
-  @MaxLength(20)
   @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
     message: 'password too weak',
   })
   password: string;
 
   @IsNotEmpty()
-  passwordToken;
+  @IsString()
+  passwordToken: string;
 }

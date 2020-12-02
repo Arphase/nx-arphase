@@ -38,5 +38,6 @@ export class UpdateGuaranteeDto {
   amount: number;
 
   @IsOptional()
+  @IsNumber()
   productId: number;
 }

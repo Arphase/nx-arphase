@@ -1,9 +1,9 @@
 import { environment } from '@api/env/environment';
-import { ConnectionOptions } from 'typeorm';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 import { ENTITIES } from './entities';
 
-const config: ConnectionOptions = {
+const config: TypeOrmModuleOptions = {
   type: 'postgres',
   host: environment.databaseConfig.host,
   port: 5432,
@@ -23,6 +23,7 @@ const config: ConnectionOptions = {
     // to be compiled into dist/ folder.
     migrationsDir: 'apps/innovatech-api/src/db/migrations',
   },
+  logging: true
 };
 
 export = config;

@@ -66,7 +66,6 @@ export class GuaranteesController {
   }
 
   @Put(':id')
-  @Roles(UserRoles.superAdmin)
   @UsePipes(new ValidationPipe({ transform: true }))
   updateGuarantee(@Body() updateGuaranteeDto: UpdateGuaranteeDto): Promise<GuaranteeEntity> {
     return this.guaranteesService.updateGuarantee(updateGuaranteeDto);
