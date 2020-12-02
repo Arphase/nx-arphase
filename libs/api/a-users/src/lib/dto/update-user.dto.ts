@@ -1,7 +1,8 @@
-import { Transform } from 'class-transformer';
-import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, IsInt } from 'class-validator';
+import { IsRfc } from '@ivt/a-state';
 import { UserRoles } from '@ivt/c-data';
-import { IsRfc, RfcValidatorTypes } from '@ivt/c-utils';
+import { RfcValidatorTypes } from '@ivt/c-utils';
+import { Transform } from 'class-transformer';
+import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class UpdateUserDto {
   @IsOptional()
@@ -44,6 +45,7 @@ export class UpdateUserDto {
   })
   rfc: string;
 
+  @IsOptional()
   @Transform(value => UserRoles[value])
   @IsEnum(UserRoles)
   role: UserRoles | string;

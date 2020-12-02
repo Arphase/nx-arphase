@@ -1,70 +1,41 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Group } from '@ivt/c-data';
-import { IvtFormComponent } from '@ivt/u-ui';
-import { Store } from '@ngrx/store';
+import { FormArray, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Company } from '@ivt/c-data';
+import { filterExisting } from '@ivt/c-utils';
+import { findFormArrayIndex } from '@ivt/u-ui';
+import { take } from 'rxjs/operators';
 
-export interface GroupForm {
-  general_data: Pick<Group, 'name' | 'contact' | 'email' | 'phone'>;
-  //companies: CompanyForm[];
-  //admins: UserForm[];
-}
+import { CompanyFormDialogComponent } from '../components/company-form-dialog/company-form-dialog.component';
+import { createCompanyForm, createGroupForm, patchCompanyForm } from '../functions/group-form.functions';
 
 @Injectable()
 export class GroupFormService {
-  /*
-  readonly form = this.createForm();
+  form = createGroupForm();
 
-  get generalDataForm() {
-    return this.form.get('general_data') as FormGroup;
-  }
-
-  get companiesForms() {
+  get companiesFormArray(): FormArray {
     return this.form.get('companies') as FormArray;
   }
 
-  get usersForms() {
-    return this.form.get('companies') as FormArray;
-  }
-  */
+  constructor(private dialog: MatDialog) {}
 
-  constructor(
-    private fb: FormBuilder,
-    private store: Store<any>,
-    //private companyFormService:
-  ) { }
-
-  loadGroup(group: Partial<Group>): void {
-
+  createCompany(): void {
+    this.dialog
+      .open(CompanyFormDialogComponent)
+      .afterClosed()
+      .pipe(filterExisting(), take(1))
+      .subscribe(company => this.companiesFormArray.push(createCompanyForm(company)));
   }
 
-  /*
-  createForm(group?: Group): FormGroup {
-    const form = this.fb.group({
-      general_data: this.fb.group({
-        name: ['', Validators.required],
-        contact: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        phone: ['', [Validators.required]],
-      } as FormProps<GroupForm['general_data']>),
-
-      companies: this.fb.array([]),
-      
-      users: this.fb.array([]),
-      ,
-    } as FormProps<GroupForm>);
-
-    if (group) {
-      const values = this.transformToForm(group);
-      form.patchValue(values);
-    }
-
-    return form;
+  editCoompany(company: Company): void {
+    this.dialog
+      .open(CompanyFormDialogComponent, { data: company })
+      .afterClosed()
+      .pipe(filterExisting(), take(1))
+      .subscribe(editedCompany => {
+        const index = findFormArrayIndex<Company>(this.companiesFormArray, value => value.tempId === company.tempId);
+        const form = this.companiesFormArray.at(index) as FormGroup;
+        patchCompanyForm(form, editedCompany);
+      });
   }
-  */
-  
-
-
-
 }
-

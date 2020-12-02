@@ -1,0 +1,74 @@
+<form [formGroup]="form"
+      (ngSubmit)="submit()">
+  <div class="row mb-3">
+    <div class="col">
+      <ivt-go-back-title [title]="item?.id ? 'Editar Grupo' : 'Nuevo Grupo'"></ivt-go-back-title>
+    </div>
+  </div>
+
+  <ivt-expansion-panel class="primary-panel mb-3 d-block"
+                       title="Información General"
+                       [isOpen]="true">
+    <div class="pt-3">
+      <div class="row">
+        <div class="col-lg-12 col-12">
+          <ivt-form-field label="Nombre del grupo">
+            <input ivtInput
+                   formControlName="name">
+          </ivt-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-12">
+          <ivt-form-field label="Nombre del contacto">
+            <input ivtInput
+                   formControlName="contact">
+          </ivt-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-12">
+          <ivt-form-field label="Correo">
+            <input ivtInput
+                   type="email"
+                   formControlName="email">
+          </ivt-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-12">
+          <ivt-form-field label="Teléfono">
+            <input ivtInput
+                   formControlName="phone">
+          </ivt-form-field>
+        </div>
+      </div>
+
+    </div>
+  </ivt-expansion-panel>
+
+  <ivt-expansion-panel class="primary-panel mb-3 d-block mt-3"
+                       title="Compañías"
+                       [isOpen]="true">
+    <ivt-group-company-list-container [item]="item">
+    </ivt-group-company-list-container>
+  </ivt-expansion-panel>
+
+  <div class="row mt-4 mb-3">
+    <div class="col px-0 flex-end">
+      <button mat-raised-button
+              class="mr-3"
+              type="button"
+              [routerLink]="['..']">
+        Cancelar
+      </button>
+      <button mat-raised-button
+              type="submit"
+              color="primary"
+              [loading]="loading"
+              [disabled]="!isEditable">
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>

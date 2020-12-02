@@ -1,4 +1,5 @@
-import { Company, Guarantee, User, UserRoles } from '@ivt/c-data';
+import { Company, Guarantee, ResetPassword, User, UserRoles } from '@ivt/c-data';
+import * as bcrypt from 'bcryptjs';
 import {
   BaseEntity,
   Column,
@@ -11,7 +12,8 @@ import {
   Unique,
   UpdateDateColumn,
 } from 'typeorm';
-import * as bcrypt from 'bcryptjs';
+
+import { ResetPasswordEntity } from '../auth';
 import { CompanyEntity } from '../companies/company.entity';
 import { GuaranteeEntity } from '../guarantees';
 
@@ -61,6 +63,7 @@ export class UserEntity extends BaseEntity implements User {
       to: value => value,
       from: value => UserRoles[value],
     },
+    default: UserRoles.agencyUser,
   })
   role: UserRoles;
 
@@ -75,6 +78,11 @@ export class UserEntity extends BaseEntity implements User {
     cascade: true,
   })
   guarantees: Guarantee[];
+
+  @OneToMany(type => ResetPasswordEntity, resetPassword => resetPassword.user, {
+    cascade: true,
+  })
+  resetPassword: ResetPassword[];
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

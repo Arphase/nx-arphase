@@ -8,14 +8,12 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class GroupResolverService implements Resolve<Group> {
-  constructor(private GroupCollectionService: GroupCollectionService) { }
+  constructor(private groupCollectionService: GroupCollectionService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Group> {
-    const id = route.paramMap.get('id');
-    let Group$ = of(null);
-    id
-      ? (Group$ = this.GroupCollectionService.getByKey(+id))
-      : this.GroupCollectionService.removeOneFromCache(null);
-    return Group$;
+    const id = Number(route.paramMap.get('id'));
+    let group$ = of(null);
+    id ? (group$ = this.groupCollectionService.getByKey(id)) : this.groupCollectionService.removeOneFromCache(null);
+    return group$;
   }
 }

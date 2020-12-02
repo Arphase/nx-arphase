@@ -16,16 +16,16 @@ import {
 
 export const ENTITIES = [
   AddressEntity,
-  LocalityEntity,
-  UserEntity,
-  GuaranteeEntity,
-  PaymentOrderEntity,
   ClientEntity,
-  MoralPersonEntity,
-  PhysicalPersonEntity,
-  VehicleEntity,
-  ProductEntity,
-  GroupEntity,
   CompanyEntity,
-  ResetPasswordEntity
+  GroupEntity,
+  GuaranteeEntity,
+  LocalityEntity,
+  MoralPersonEntity,
+  PaymentOrderEntity,
+  PhysicalPersonEntity,
+  ProductEntity,
+  ResetPasswordEntity,
+  UserEntity,
+  VehicleEntity,
 ];

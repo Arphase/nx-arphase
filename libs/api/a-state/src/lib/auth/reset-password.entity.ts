@@ -1,13 +1,19 @@
-import { ResetPassword } from '@ivt/c-data';
-import { Column, UpdateDateColumn, PrimaryGeneratedColumn, Entity, BaseEntity } from 'typeorm';
+import { ResetPassword, User } from '@ivt/c-data';
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+
+import { UserEntity } from '../users';
 
 @Entity('resetPassword')
 export class ResetPasswordEntity extends BaseEntity implements ResetPassword {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @ManyToOne(type => UserEntity, user => user.guarantees)
+  @JoinColumn({ name: 'userId' })
+  user: User;
+
   @Column()
-  email: string;
+  userId: number;
 
   @Column()
   passwordToken: string;

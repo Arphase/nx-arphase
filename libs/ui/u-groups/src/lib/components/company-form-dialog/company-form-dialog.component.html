@@ -1,0 +1,101 @@
+<form [formGroup]="form"
+      (ngSubmit)="submit()">
+  <h1 class="text-primary font-weight-light h3 mb-3">
+    {{ company?.id ? 'Editar' : 'Nueva' }} Compañía
+  </h1>
+
+  <div mat-dialog-content>
+    <ivt-expansion-panel class="primary-panel mb-3 d-block"
+                         title="Información General"
+                         [isOpen]="true">
+      <div class="row">
+        <div class="col-lg-6 col-12">
+          <ivt-form-field label="Razón Social">
+            <input ivtInput
+                   formControlName="businessName">
+          </ivt-form-field>
+        </div>
+        <div class="col-lg-6 col-12">
+          <ivt-form-field label="RFC">
+            <input ivtInput
+                   ivtUppercase
+                   formControlName="rfc">
+          </ivt-form-field>
+        </div>
+      </div>
+    </ivt-expansion-panel>
+    <ivt-expansion-panel class="primary-panel mb-3 d-block"
+                         title="Dirección"
+                         [isOpen]="true">
+      <ivt-address-form [form]="addressForm"></ivt-address-form>
+    </ivt-expansion-panel>
+
+
+    <ivt-expansion-panel class="primary-panel mb-3 d-block"
+                         title="Contacto"
+                         [isOpen]="true">
+      <div class="row">
+        <div class="col-lg-4 col-12">
+          <ivt-form-field label="Nombre del contacto">
+            <input ivtInput
+                   formControlName="contact">
+          </ivt-form-field>
+        </div>
+        <div class="col-lg-4 col-12">
+          <ivt-form-field label="Correo">
+            <input ivtInput
+                   formControlName="email">
+          </ivt-form-field>
+        </div>
+        <div class="col-lg-4 col-12">
+          <ivt-form-field label="Telefono">
+            <input ivtInput
+                   formControlName="phone">
+          </ivt-form-field>
+        </div>
+      </div>
+    </ivt-expansion-panel>
+
+    <ivt-expansion-panel class="primary-panel mb-3 d-block"
+                         title="Usuarios"
+                         [isOpen]="true">
+      <ivt-row *ngFor="let userForm of usersFormArray.controls; let index = index;"
+               class="row">
+        <div class="col-11">
+          <ivt-user-form [form]="userForm"></ivt-user-form>
+        </div>
+        <div class="col-1 flex-center">
+          <button mat-icon-button
+                  matTooltip="Eliminar usuario"
+                  type="button"
+                  [disabled]="usersFormArray.controls.length === 1 || userForm.value.id"
+                  (click)="removeUser(index)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </ivt-row>
+
+      <div class="row">
+        <div class="col">
+          <button mat-raised-button
+                  color="primary"
+                  type="button"
+                  [disabled]="usersFormArray.invalid"
+                  (click)="addUser()">
+            Agregar nuevo usuario
+          </button>
+        </div>
+      </div>
+    </ivt-expansion-panel>
+  </div>
+
+  <div mat-dialog-actions
+       class="flex-end">
+    <button mat-button
+            mat-dialog-close>Cancelar</button>
+    <button mat-raised-button
+            [loading]="loading"
+            type="submit"
+            color="primary">Guardar</button>
+  </div>
+</form>

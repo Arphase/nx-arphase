@@ -12,6 +12,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
 import { GroupEntity } from '../groups/group.entity';
 
 @Entity('companies')
@@ -52,6 +53,9 @@ export class CompanyEntity extends BaseEntity implements Company {
   @ManyToOne(type => GroupEntity, group => group.companies)
   @JoinColumn({ name: 'groupId' })
   group: Group;
+
+  @Column()
+  groupId: number;
 
   @OneToMany(type => UserEntity, user => user.company, {
     cascade: true,

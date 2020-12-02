@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { SetPasswordPayload, SignInRequest, User } from '@ivt/c-data';
+import { ResetPassword, SetPasswordPayload, SignInRequest, User } from '@ivt/c-data';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -33,7 +33,15 @@ export class AuthService {
     return localStorage.getItem('token') || '';
   }
 
-  setPassword(payload: SetPasswordPayload): Observable<any> {
-    return this.http.post(`${this.config.apiUrl}/auth/setPassword`, payload);
+  setPassword(payload: SetPasswordPayload): Observable<User> {
+    return this.http.post<User>(`${this.config.apiUrl}/auth/setPassword`, payload);
+  }
+
+  validateToken(payload: Partial<SetPasswordPayload>): Observable<ResetPassword> {
+    return this.http.get<ResetPassword>(`${this.config.apiUrl}/auth/validateToken/${payload.passwordToken}`);
+  }
+
+  sendPasswordEmail(payload: Partial<User>): Observable<any> {
+    return this.http.post(`${this.config.apiUrl}/auth/emailPassword`, payload);
   }
 }
