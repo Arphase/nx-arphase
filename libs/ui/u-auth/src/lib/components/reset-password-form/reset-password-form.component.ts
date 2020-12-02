@@ -15,7 +15,7 @@ export class ResetPasswordFormComponent extends IvtFormComponent<Partial<User>> 
   constructor(private fb: FormBuilder) {
     super();
     this.form = this.fb.group({
-      email: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
     });
   }
 }
