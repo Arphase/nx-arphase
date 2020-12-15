@@ -10,7 +10,7 @@ import { IvtSubscriberComponent } from '../subscriber/subscriber.component';
   styleUrls: ['./row.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-    // tslint:disable-next-line: no-host-metadata-property
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
       class: 'ivt-row',
     },

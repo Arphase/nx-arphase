@@ -24,7 +24,7 @@ export type IvtFileUploadState = 'idle' | 'loading' | 'success' | 'error' | 'pre
   styleUrls: ['./file-upload.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  // tslint:disable-next-line: no-host-metadata-property
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     class: 'ivt-file-upload',
   },

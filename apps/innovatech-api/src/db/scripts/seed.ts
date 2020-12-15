@@ -48,7 +48,10 @@ async function run() {
   return new Promise((resolve, reject) => {
     fs.readFile(filePath, 'utf8', async (error, data: string) => {
       if (!error) {
+        console.log('Inserting localities...');
         await queryRunner.query(data);
+        queryRunner.
+        console.log('Inserting localities done!');
         resolve();
       } else {
         console.log(error);
