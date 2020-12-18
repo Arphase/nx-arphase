@@ -22,7 +22,7 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(type => ClientEntity, {
+  @OneToOne(() => ClientEntity, {
     cascade: true,
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
@@ -30,7 +30,7 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @JoinColumn({ name: 'clientId' })
   client: Client;
 
-  @OneToOne(type => VehicleEntity, {
+  @OneToOne(() => VehicleEntity, {
     cascade: true,
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
@@ -63,14 +63,14 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @Column({ nullable: true })
   amount: number;
 
-  @ManyToOne(type => PaymentOrderEntity, paymentOrder => paymentOrder.guarantees)
+  @ManyToOne(() => PaymentOrderEntity, paymentOrder => paymentOrder.guarantees)
   @JoinColumn({ name: 'paymentOrderId' })
   paymentOrder: PaymentOrder;
 
   @Column({ nullable: true })
   paymentOrderId: number;
 
-  @ManyToOne(type => ProductEntity, product => product.guarantees)
+  @ManyToOne(() => ProductEntity, product => product.guarantees)
   @JoinColumn({ name: 'productId' })
   product: Product;
 
@@ -80,15 +80,10 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @Column({ nullable: true, type: 'timestamp' })
   invoiceDate: Date;
 
-  @ManyToOne(type => UserEntity, user => user.guarantees)
+  @ManyToOne(() => UserEntity, user => user.guarantees)
   @JoinColumn({ name: 'userId' })
   user: User;
 
   @Column({ nullable: true })
   userId: number;
-
-  constructor(partial: Partial<GuaranteeEntity>) {
-    super();
-    Object.assign(this, partial);
-  }
 }

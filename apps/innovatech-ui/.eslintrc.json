@@ -11,8 +11,7 @@
       "parserOptions": {
         "project": [
           "apps/innovatech-ui/tsconfig.app.json",
-          "apps/innovatech-ui/tsconfig.spec.json",
-          "apps/innovatech-ui/e2e/tsconfig.json"
+          "apps/innovatech-ui/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
       },
@@ -21,7 +20,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "ivt",
+            "prefix": "app",
             "style": "kebab-case"
           }
         ],
@@ -29,7 +28,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "ivt",
+            "prefix": "app",
             "style": "camelCase"
           }
         ],
@@ -45,12 +44,6 @@
         "id-match": "off",
         "no-underscore-dangle": "off"
       }
-    },
-    {
-      "files": [
-        "*.html"
-      ],
-      "rules": {}
     }
   ]
 }

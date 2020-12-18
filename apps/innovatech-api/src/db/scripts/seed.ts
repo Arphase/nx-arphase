@@ -50,7 +50,6 @@ async function run() {
       if (!error) {
         console.log('Inserting localities...');
         await queryRunner.query(data);
-        queryRunner.
         console.log('Inserting localities done!');
         resolve();
       } else {
@@ -62,7 +61,7 @@ async function run() {
 }
 
 run()
-  .then(_ => {
+  .then(() => {
     console.log('Seeds done');
     process.exit(0);
   })

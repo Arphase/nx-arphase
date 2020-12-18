@@ -32,7 +32,6 @@ export class IvtSideNavComponent implements OnChanges, OnDestroy {
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 769px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    // eslint-disable-next-line import/no-deprecated
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
@@ -51,7 +50,6 @@ export class IvtSideNavComponent implements OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // eslint-disable-next-line import/no-deprecated
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 }

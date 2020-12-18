@@ -159,7 +159,7 @@ When the command finished you can run the development server again and start usi
 
 ## Generate a library
 
-Run `nx g @nrwl/nest:library my-lib --directory=api --linter=tslint` to generate a library.
+Run `nx g @nrwl/nest:library my-lib --directory=api` to generate a library.
 
 Libraries are sharable across libraries and applications. They can be imported from `@ivt/mylib`.
 

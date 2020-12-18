@@ -52,7 +52,7 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
   constructor(
     _elementRef: ElementRef,
     _changeDetectorRef: ChangeDetectorRef,
-    @Inject(ElementRef) _labelOptions: any,
+    @Inject(ElementRef) _labelOptions,
     @Optional() _dir: Directionality,
     @Optional() @Inject(MAT_FORM_FIELD_DEFAULT_OPTIONS) _defaults: MatFormFieldDefaultOptions,
     _platform: Platform,
@@ -88,7 +88,7 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
     return this._errorChildren && this._control.errorState ? 'error' : 'hint';
   }
 
-  setErrorMessage(errors: Record<string, any>): void {
+  setErrorMessage(errors: Record<string, Record<string, string>>): void {
     const firstError = Object.keys(errors)[0];
     const errorValue = errors[firstError];
     const label = this.label?.toLowerCase();

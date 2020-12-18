@@ -15,6 +15,12 @@ import { tap } from 'rxjs/operators';
 
 import { IvtFilterComponent } from '../filter';
 
+interface DateFilter {
+  startDate: string;
+  endDate: string;
+  dateType: string;
+}
+
 @Component({
   selector: 'ivt-date-filter',
   templateUrl: './date-filter.component.html',
@@ -22,16 +28,11 @@ import { IvtFilterComponent } from '../filter';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class IvtDateFilterComponent extends IvtFilterComponent
-  implements OnInit, OnChanges {
+export class IvtDateFilterComponent extends IvtFilterComponent<DateFilter> implements OnInit, OnChanges {
   @Input() dateTypeOptions: Select[] = [];
-  @Input() value: any;
+  @Input() value;
   @Output()
-  filterItems: EventEmitter<{
-    startDate: string;
-    endDate: string;
-    dateType: string;
-  }> = new EventEmitter();
+  filterItems = new EventEmitter<DateFilter>();
   startDate = '';
   endDate = '';
   dateType = '';
@@ -73,19 +74,13 @@ export class IvtDateFilterComponent extends IvtFilterComponent
       .subscribe();
 
     if (this.value) {
-      this.control
-        .get('startDate')
-        .patchValue(moment(this.value.startDate, 'DD/MM/YYYY').toDate(), {
-          emitEvent: false,
-        });
-      this.control
-        .get('endDate')
-        .patchValue(moment(this.value.endDate, 'DD/MM/YYYY').toDate(), {
-          emitEvent: false,
-        });
-      this.control
-        .get('dateType')
-        .patchValue(this.value.dateType, { emitEvent: false });
+      this.control.get('startDate').patchValue(moment(this.value.startDate, 'DD/MM/YYYY').toDate(), {
+        emitEvent: false,
+      });
+      this.control.get('endDate').patchValue(moment(this.value.endDate, 'DD/MM/YYYY').toDate(), {
+        emitEvent: false,
+      });
+      this.control.get('dateType').patchValue(this.value.dateType, { emitEvent: false });
       this.startDate = this.value.startDate;
       this.endDate = this.value.endDate;
       this.dateType = this.value.dateType;

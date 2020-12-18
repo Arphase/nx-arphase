@@ -111,11 +111,10 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/innovatech-ui/**/*.ts",
-              "apps/innovatech-ui/**/*.html"
+              "apps/innovatech-ui/**/*.ts"
             ]
           }
         },
@@ -149,11 +148,10 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/innovatech-ui-e2e/**/*.ts",
-              "apps/innovatech-ui-e2e/**/*.html"
+              "apps/innovatech-ui-e2e/**/*.ts"
             ]
           }
         }
@@ -198,11 +196,10 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/innovatech-api/**/*.ts",
-              "apps/innovatech-api/**/*.html"
+              "apps/innovatech-api/**/*.ts"
             ]
           }
         },
@@ -223,11 +220,10 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/common/c-data/**/*.ts",
-              "libs/common/c-data/**/*.html"
+              "libs/common/c-data/**/*.ts"
             ]
           }
         },
@@ -248,11 +244,10 @@
       "prefix": "innovatech",
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/common/c-utils/**/*.ts",
-              "libs/common/c-utils/**/*.html"
+              "libs/common/c-utils/**/*.ts"
             ]
           }
         },
@@ -280,11 +275,10 @@
       "prefix": "ivt",
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/ui/u-auth/**/*.ts",
-              "libs/ui/u-auth/**/*.html"
+              "libs/ui/u-auth/**/*.ts"
             ]
           }
         },
@@ -312,11 +306,10 @@
       "prefix": "ivt",
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/ui/u-dashboard/**/*.ts",
-              "libs/ui/u-dashboard/**/*.html"
+              "libs/ui/u-dashboard/**/*.ts"
             ]
           }
         },
@@ -344,11 +337,10 @@
       "prefix": "ivt",
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/ui/u-guarantees/**/*.ts",
-              "libs/ui/u-guarantees/**/*.html"
+              "libs/ui/u-guarantees/**/*.ts"
             ]
           }
         },
@@ -376,11 +368,10 @@
       "prefix": "ivt",
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/ui/u-spa/**/*.ts",
-              "libs/ui/u-spa/**/*.html"
+              "libs/ui/u-spa/**/*.ts"
             ]
           }
         },
@@ -408,11 +399,10 @@
       "prefix": "ivt",
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/ui/u-state/**/*.ts",
-              "libs/ui/u-state/**/*.html"
+              "libs/ui/u-state/**/*.ts"
             ]
           }
         },
@@ -440,11 +430,10 @@
       "prefix": "ivt",
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/ui/u-groups/**/*.ts",
-              "libs/ui/u-groups/**/*.html"
+              "libs/ui/u-groups/**/*.ts"
             ]
           }
         },
@@ -470,11 +459,10 @@
       "prefix": "ivt",
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/ui/u-products/**/*.ts",
-              "libs/ui/u-products/**/*.html"
+              "libs/ui/u-products/**/*.ts"
             ]
           }
         },
@@ -500,11 +488,10 @@
       "prefix": "ivt",
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/ui/u-ui/**/*.ts",
-              "libs/ui/u-ui/**/*.html"
+              "libs/ui/u-ui/**/*.ts"
             ]
           }
         },
@@ -532,11 +519,10 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/api/a-auth/**/*.ts",
-              "libs/api/a-auth/**/*.html"
+              "libs/api/a-auth/**/*.ts"
             ]
           }
         },
@@ -557,11 +543,10 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/api/a-guarantees/**/*.ts",
-              "libs/api/a-guarantees/**/*.html"
+              "libs/api/a-guarantees/**/*.ts"
             ]
           }
         },
@@ -582,11 +567,10 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/api/a-localities/**/*.ts",
-              "libs/api/a-localities/**/*.html"
+              "libs/api/a-localities/**/*.ts"
             ]
           }
         },
@@ -607,11 +591,10 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/api/a-payment-orders/**/*.ts",
-              "libs/api/a-payment-orders/**/*.html"
+              "libs/api/a-payment-orders/**/*.ts"
             ]
           }
         },
@@ -632,11 +615,10 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/api/a-users/**/*.ts",
-              "libs/api/a-users/**/*.html"
+              "libs/api/a-users/**/*.ts"
             ]
           }
         },
@@ -657,11 +639,10 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/api/a-state/**/*.ts",
-              "libs/api/a-state/**/*.html"
+              "libs/api/a-state/**/*.ts"
             ]
           }
         },
@@ -670,6 +651,78 @@
           "options": {
             "jestConfig": "libs/api/a-state/jest.config.js",
             "tsConfig": "libs/api/a-state/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "a-groups": {
+      "root": "libs/api/a-groups",
+      "sourceRoot": "libs/api/a-groups/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/a-groups/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/a-groups/jest.config.js",
+            "tsConfig": "libs/api/a-groups/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "a-companies": {
+      "root": "libs/api/a-companies",
+      "sourceRoot": "libs/api/a-companies/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/a-companies/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/a-companies/jest.config.js",
+            "tsConfig": "libs/api/a-companies/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "a-products": {
+      "root": "libs/api/a-products",
+      "sourceRoot": "libs/api/a-products/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/a-products/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/a-products/jest.config.js",
+            "tsConfig": "libs/api/a-products/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -683,10 +736,12 @@
   "schematics": {
     "@nrwl/angular:application": {
       "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "e2eTestRunner": "cypress",
+      "linter": "eslint"
     },
     "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "linter": "eslint"
     }
   },
   "defaultProject": "innovatech-ui"

@@ -60,10 +60,9 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const { password, salt, ...payload } = user;
-    const token = await this.jwtService.sign(payload);
+    const token = await this.jwtService.sign(user);
 
-    return { ...payload, token };
+    return { ...user, token };
   }
 
   async setPassword(resetPassword: ResetPasswordDto): Promise<User> {
@@ -112,7 +111,7 @@ export class AuthService {
     return updatedResetPassword;
   }
 
-  async sendSetPasswordEmail(userId): Promise<any> {
+  async sendSetPasswordEmail(userId): Promise<Record<string, boolean>> {
     const userFromDb = await this.userRepository.findOne({ id: userId });
     if (!userFromDb) {
       throw new NotFoundException(`User not found`);
@@ -166,7 +165,7 @@ export class AuthService {
     }
   }
 
-  async sendResetPasswordEmail(email: string): Promise<any> {
+  async sendResetPasswordEmail(email: string): Promise<Record<string, boolean>> {
     const userFromDb = await this.userRepository.findOne({ email });
     if (!userFromDb) {
       throw new NotFoundException(`User not found`);

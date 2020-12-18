@@ -7,17 +7,17 @@ import {
   EntityDefinition,
 } from '@ngrx/data';
 
-export interface IvtEntityCollection<T = any> extends EntityCollection {
+export interface IvtEntityCollection<T> extends EntityCollection {
   queryParams: IvtQueryParams;
   hasMore: boolean;
   currentItem: T;
 }
 
-export interface IvtEntityAction<T = any> extends EntityAction {
-  payload: IvtActionPayload<T>;
+export interface IvtEntityAction extends EntityAction {
+  payload: IvtActionPayload;
 }
 
-export interface IvtActionPayload<T = any> extends EntityActionPayload {
+export interface IvtActionPayload extends EntityActionPayload {
   queryParams: IvtQueryParams;
   hasMore: boolean;
 }
@@ -27,8 +27,8 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
     super(entityName, definition);
   }
 
-  protected queryMany(collection: IvtEntityCollection<T>, action: IvtEntityAction<T[]>): IvtEntityCollection<T> {
-    const entityCollection = super.queryMany(collection, action) as IvtEntityCollection;
+  protected queryMany(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    const entityCollection = super.queryMany(collection, action) as IvtEntityCollection<T>;
     return {
       ...entityCollection,
       queryParams: {
@@ -38,25 +38,22 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
     };
   }
 
-  protected queryManySuccess(collection: IvtEntityCollection<T>, action: IvtEntityAction<T[]>): IvtEntityCollection<T> {
-    let entityCollection = super.queryManySuccess(collection, action) as IvtEntityCollection;
+  protected queryManySuccess(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    let entityCollection = super.queryManySuccess(collection, action) as IvtEntityCollection<T>;
     if (entityCollection.queryParams.resetList) {
-      entityCollection = super.queryManySuccess(super.removeAll(collection, action), action) as IvtEntityCollection;
+      entityCollection = super.queryManySuccess(super.removeAll(collection, action), action) as IvtEntityCollection<T>;
     }
     return {
       ...entityCollection,
       hasMore: action.payload.data.length >= DEFAULT_LIMIT_SIZE,
       queryParams: {
         ...entityCollection.queryParams,
-        offset: entityCollection.ids.length,
+        offset: String(entityCollection.ids.length),
       },
     };
   }
 
-  protected queryByKeySuccess(
-    collection: IvtEntityCollection<T>,
-    action: IvtEntityAction<T[]>
-  ): IvtEntityCollection<T> {
+  protected queryByKeySuccess(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
     return {
       ...collection,
       currentItem: action.payload.data,
@@ -64,43 +61,37 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
     };
   }
 
-  protected saveAddOne(collection: IvtEntityCollection<T>, action: IvtEntityAction<T[]>): IvtEntityCollection<T> {
+  protected saveAddOne(collection: IvtEntityCollection<T>): IvtEntityCollection<T> {
     return collection;
   }
 
-  protected saveAddOneSuccess(
-    collection: IvtEntityCollection<T>,
-    action: IvtEntityAction<T[]>
-  ): IvtEntityCollection<T> {
+  protected saveAddOneSuccess(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
     return {
       ...collection,
       currentItem: action.payload.data,
     };
   }
 
-  protected saveUpdateOne(collection: IvtEntityCollection<T>, action: IvtEntityAction<T[]>): IvtEntityCollection<T> {
+  protected saveUpdateOne(collection: IvtEntityCollection<T>): IvtEntityCollection<T> {
     return collection;
   }
 
-  protected saveDeleteOne(collection: IvtEntityCollection<T>, action: IvtEntityAction<T[]>): IvtEntityCollection<T> {
+  protected saveDeleteOne(collection: IvtEntityCollection<T>): IvtEntityCollection<T> {
     return collection;
   }
 
-  protected saveDeleteOneError(
-    collection: IvtEntityCollection<T>,
-    action: IvtEntityAction<T[]>
-  ): IvtEntityCollection<T> {
+  protected saveDeleteOneError(collection: IvtEntityCollection<T>): IvtEntityCollection<T> {
     return collection;
   }
 
-  protected removeOne(collection: IvtEntityCollection<T>, action: IvtEntityAction<T[]>): IvtEntityCollection<T> {
+  protected removeOne(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
     if (!action.payload.data) {
       return {
         ...collection,
         currentItem: null,
       };
     } else {
-      return super.removeOne(collection, action) as IvtEntityCollection;
+      return super.removeOne(collection, action) as IvtEntityCollection<T>;
     }
   }
 }

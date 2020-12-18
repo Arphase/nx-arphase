@@ -8,7 +8,7 @@ import { IvtSubscriberComponent } from '../subscriber';
   selector: 'ivt-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtListComponent<T = any> extends IvtSubscriberComponent implements CrudEvents<T> {
+export class IvtListComponent<T> extends IvtSubscriberComponent implements CrudEvents<T> {
   @Input() list: T[] = [];
   @Input() hasMoreItems: boolean;
   @Input() loading: boolean;
@@ -18,7 +18,7 @@ export class IvtListComponent<T = any> extends IvtSubscriberComponent implements
   @Output() edit = new EventEmitter<T>();
   @Output() delete = new EventEmitter<T>();
   @Output() toggle = new EventEmitter<T>();
-  @Output() filterItems = new EventEmitter<any>();
+  @Output() filterItems = new EventEmitter<unknown>();
   @Output() getMoreItems = new EventEmitter<void>();
   @Output() exportExcel = new EventEmitter<void>();
   showFilters: boolean;
@@ -31,11 +31,11 @@ export class IvtListComponent<T = any> extends IvtSubscriberComponent implements
     this.filterItems.emit({ text });
   }
 
-  updateSort(sort: any): void {
+  updateSort(sort): void {
     this.filterItems.emit({ sort });
   }
 
-  updateDateFilter(dates: any): void {
+  updateDateFilter(dates): void {
     this.filterItems.emit({ dates });
   }
 }

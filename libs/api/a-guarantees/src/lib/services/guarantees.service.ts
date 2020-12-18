@@ -7,11 +7,12 @@ import {
   tobase64,
   transformFolio,
 } from '@ivt/a-state';
-import { GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
+import { GuaranteeStatus, GuaranteeSummary, statusLabels, User, UserRoles } from '@ivt/c-data';
 import { dir } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { Response } from 'express';
 import fs from 'fs';
-import { identity, omit, pickBy } from 'lodash';
+import { omit } from 'lodash';
 import moment from 'moment';
 import puppeteer from 'puppeteer';
 import { Connection } from 'typeorm';
@@ -41,20 +42,18 @@ export class GuaranteesService {
       .leftJoinAndSelect('client.address', 'address')
       .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
 
-    let found = await query.where('guarantee.id = :id', { id }).getOne();
+    const found = await query.where('guarantee.id = :id', { id }).getOne();
 
     if (!found) {
       throw new NotFoundException(`Guarantee with id "${id}" not found`);
     }
 
-    found = this.omitInfo(found) as GuaranteeEntity;
     return found;
   }
 
   async getGuarantees(filterDto: Partial<GetGuaranteesFilterDto>, user: Partial<User>): Promise<GuaranteeEntity[]> {
     const { limit, offset, sort, direction, startDate, endDate, dateType, text, status } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
-    let guarantees: GuaranteeEntity[];
 
     query
       .leftJoinAndSelect('guarantee.client', 'client')
@@ -104,19 +103,22 @@ export class GuaranteesService {
       .take(limit)
       .skip(offset);
 
-    guarantees = await query.getMany();
-    guarantees.map(guarantee => this.omitInfo(guarantee));
+    const guarantees = await query.getMany();
     return guarantees;
   }
 
-  async getGuaranteesSummary(): Promise<GuaranteeSummary> {
-    const summary = await this.guaranteeRepository
+  async getGuaranteesSummary(user: Partial<User>): Promise<GuaranteeSummary> {
+    const query = this.guaranteeRepository
       .createQueryBuilder('guarantee')
       .select('guarantee.status', 'status')
       .addSelect('SUM(guarantee.amount)', 'amount')
-      .groupBy('guarantee.status')
-      .getRawMany();
-    return summary;
+      .groupBy('guarantee.status');
+
+    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+      query.andWhere('(guarantee.userId = :id)', { id: user.id });
+    }
+
+    return query.getRawMany();
   }
 
   async getGuaranteesExcel(filterDto: GetGuaranteesFilterDto, user: Partial<User>, response: Response): Promise<void> {
@@ -131,16 +133,16 @@ export class GuaranteesService {
       'Importe',
       'Estatus',
     ];
-    const guaranteesData: any[] = guarantees.map(guarantee => {
+    const guaranteesData: string[][] = guarantees.map(guarantee => {
       return [
-        transformFolio(guarantee.id),
-        guarantee.vehicle.vin,
-        guarantee.paymentOrder?.distributor || 'N/A',
-        moment(guarantee.startDate).format('DD/MM/YYYY'),
-        moment(guarantee.endDate).format('DD/MM/YYYY'),
-        moment(guarantee.createdAt).format('DD/MM/YYYY'),
-        guarantee.amount || 'N/A',
-        statusLabels[guarantee.status],
+        String(transformFolio(guarantee.id)),
+        String(guarantee.vehicle.vin),
+        String(guarantee.paymentOrder?.distributor || 'N/A'),
+        String(moment(guarantee.startDate).format('DD/MM/YYYY')),
+        String(moment(guarantee.endDate).format('DD/MM/YYYY')),
+        String(moment(guarantee.createdAt).format('DD/MM/YYYY')),
+        String(guarantee.amount || 'N/A'),
+        String(statusLabels[guarantee.status]),
       ];
     });
     const data = [[...excelColumnConstants], ...guaranteesData];
@@ -150,12 +152,11 @@ export class GuaranteesService {
 
     const buffer: Buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
     const stream = getReadableStream(buffer);
-    stream.pipe(response as any);
+    stream.pipe(response);
   }
 
   async createGuarantee(createGuaranteeDto: CreateGuaranteeDto, user: Partial<User>): Promise<GuaranteeEntity> {
-    createGuaranteeDto = this.omitInfo(createGuaranteeDto);
-    const newGuarantee = await this.guaranteeRepository.create({
+    const newGuarantee = this.guaranteeRepository.create({
       ...createGuaranteeDto,
       status: GuaranteeStatus.outstanding,
       userId: user.id,
@@ -240,14 +241,11 @@ export class GuaranteesService {
     promisify(fs.unlink)(OUT_FILE);
     await browser.close();
     const stream = getReadableStream(buffer);
-    stream.pipe(response as any);
+    stream.pipe(response);
   }
 
   async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto): Promise<GuaranteeEntity> {
-    const guarantee = this.omitInfo(updateGuaranteeDto);
-    const updatedGuarantee = await this.guaranteeRepository.save(guarantee);
-    pickBy(updatedGuarantee, identity);
-    updatedGuarantee.status = GuaranteeStatus[updatedGuarantee.status];
+    const updatedGuarantee = await this.guaranteeRepository.save(updateGuaranteeDto);
     return updatedGuarantee;
   }
 
@@ -257,19 +255,5 @@ export class GuaranteesService {
     if (!result.affected) {
       throw new NotFoundException(`Guarantee with ID "${id}" not found`);
     }
-  }
-
-  omitInfo(
-    guarantee: GuaranteeEntity | CreateGuaranteeDto | UpdateGuaranteeDto
-  ): GuaranteeEntity | CreateGuaranteeDto | UpdateGuaranteeDto {
-    const personType = guarantee.client?.personType;
-    if (personType === PersonTypes.physical) {
-      const { moralInfo, ...client } = guarantee.client;
-      guarantee.client = client;
-    } else if (personType === PersonTypes.moral) {
-      const { physicalInfo, ...client } = guarantee.client;
-      guarantee.client = client;
-    }
-    return guarantee;
   }
 }

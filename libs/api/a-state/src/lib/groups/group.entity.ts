@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
 import { CompanyEntity } from '../companies/company.entity';
 
 @Entity('groups')
@@ -33,7 +34,7 @@ export class GroupEntity extends BaseEntity implements Group {
   @Column()
   phone: string;
 
-  @OneToMany(type => CompanyEntity, company => company.group, {
+  @OneToMany(() => CompanyEntity, company => company.group, {
     cascade: true,
   })
   companies: Company[];

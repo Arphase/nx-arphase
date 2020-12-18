@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -14,7 +14,7 @@ export class IvtAutocompleteComponent implements OnInit {
   @Input() label: string;
   @Input() type: string;
   @Input() control: FormControl;
-  @Input() errors: {};
+  @Input() errors;
   @Input() options: string[] = [];
   filteredOptions: Observable<string[]>;
 

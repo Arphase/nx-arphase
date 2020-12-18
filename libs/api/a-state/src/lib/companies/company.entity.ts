@@ -50,14 +50,14 @@ export class CompanyEntity extends BaseEntity implements Company {
   @JoinColumn({ name: 'addressId' })
   address: Address;
 
-  @ManyToOne(type => GroupEntity, group => group.companies)
+  @ManyToOne(() => GroupEntity, group => group.companies)
   @JoinColumn({ name: 'groupId' })
   group: Group;
 
   @Column()
   groupId: number;
 
-  @OneToMany(type => UserEntity, user => user.company, {
+  @OneToMany(() => UserEntity, user => user.company, {
     cascade: true,
   })
   users: User[];

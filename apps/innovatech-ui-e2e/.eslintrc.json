@@ -10,9 +10,7 @@
       ],
       "parserOptions": {
         "project": [
-          "apps/innovatech-ui-e2e/tsconfig.app.json",
-          "apps/innovatech-ui-e2e/tsconfig.spec.json",
-          "apps/innovatech-ui-e2e/e2e/tsconfig.json"
+          "apps/innovatech-ui-e2e/tsconfig.e2e.json"
         ],
         "createDefaultProgram": true
       },
@@ -45,12 +43,6 @@
         "id-match": "off",
         "no-underscore-dangle": "off"
       }
-    },
-    {
-      "files": [
-        "*.html"
-      ],
-      "rules": {}
     }
   ]
 }

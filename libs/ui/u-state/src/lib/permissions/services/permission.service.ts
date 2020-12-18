@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { getAuthUserRoleState } from '../../auth';
+import { IvtState } from '../../state';
 import { PermissionTypes } from '../enums/permission-types.enum';
 
 export const REQUIRED_PERMISSIONS = new InjectionToken<PermissionTypes[]>(
@@ -18,16 +19,16 @@ export const REQUIRED_PERMISSIONS = new InjectionToken<PermissionTypes[]>(
 export class PermissionService {
   userRole$ = this.store.pipe(select(getAuthUserRoleState));
 
-  constructor(private store: Store<any>) {}
+  constructor(private store: Store<IvtState>) {}
 
-  hasReadPermission(...requiredPermmissionTypes: PermissionTypes[]): Observable<boolean> {
+  hasReadPermission(): Observable<boolean> {
     return this.userRole$.pipe(
       filterNil(),
       map(role => role === UserRoles[UserRoles.superAdmin] || role === UserRoles[UserRoles.admin])
     );
   }
 
-  hasUpdatePermission(...requiredPermmissionTypes: PermissionTypes[]): Observable<boolean> {
+  hasUpdatePermission(): Observable<boolean> {
     return this.userRole$.pipe(
       filterNil(),
       map(role => role === UserRoles[UserRoles.superAdmin])

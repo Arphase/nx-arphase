@@ -17,11 +17,10 @@ import {
   styleUrls: ['./virtual-scroll.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtVirtualScrollComponent<T = any> {
+export class IvtVirtualScrollComponent<T> {
   @ViewChild(CdkVirtualScrollViewport) viewport: CdkVirtualScrollViewport;
-  @ContentChild(TemplateRef) _rowTemplate: TemplateRef<any>;
-
-  @Input() rowTemplate: TemplateRef<any>;
+  @ContentChild(TemplateRef) _rowTemplate: TemplateRef<null>;
+  @Input() rowTemplate: TemplateRef<null>;
   @Input() height = '50vh';
   @Input() itemSize = 48;
   @Input() maxBufferPx = 96;

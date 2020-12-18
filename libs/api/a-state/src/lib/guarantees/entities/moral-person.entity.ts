@@ -1,14 +1,5 @@
-import { Client, MoralPerson } from '@ivt/c-data';
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-
-import { ClientEntity } from './client.entity';
+import { MoralPerson } from '@ivt/c-data';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('moralPersons')
 export class MoralPersonEntity extends BaseEntity implements MoralPerson {
@@ -21,7 +12,7 @@ export class MoralPersonEntity extends BaseEntity implements MoralPerson {
   @Column()
   constitutionDate: Date;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   distributor: string;
 
   @Column()

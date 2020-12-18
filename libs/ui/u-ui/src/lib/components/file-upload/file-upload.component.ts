@@ -88,7 +88,7 @@ export class IvtFileUploadComponent implements OnChanges {
   }
 
   assignUploaderMethods(): void {
-    this.uploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any) => {
+    this.uploader.onWhenAddingFileFailed = (item: FileLikeObject, filter) => {
       if (!this.disabled) {
         this.uploadElRef.nativeElement.value = '';
 

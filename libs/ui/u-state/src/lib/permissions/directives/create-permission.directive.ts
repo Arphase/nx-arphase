@@ -1,10 +1,6 @@
 import { Directive } from '@angular/core';
 
 @Directive({
-  selector: '[ivtCreatePermission]'
+  selector: '[ivtCreatePermission]',
 })
-export class CreatePermissionDirective {
-
-  constructor() { }
-
-}
+export class CreatePermissionDirective {}

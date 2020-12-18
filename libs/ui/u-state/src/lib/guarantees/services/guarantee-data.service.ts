@@ -23,7 +23,7 @@ export class GuaranteeDataService extends IvtDataService<Guarantee> {
     this.entitiesUrl = `${this.config.apiUrl}/guarantees`;
   }
 
-  getGuaranteePdf(id: number): Observable<any> {
+  getGuaranteePdf(id: number): Observable<Blob> {
     return this.http
       .get(`${this.config.apiUrl}/guarantees/export/pdf/${id}`, {
         responseType: 'blob',

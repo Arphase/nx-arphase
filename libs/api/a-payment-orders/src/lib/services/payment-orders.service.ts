@@ -8,6 +8,7 @@ import {
 } from '@ivt/a-state';
 import { PaymentOrder } from '@ivt/c-data';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { Response } from 'express';
 import fs from 'fs';
 import { omit } from 'lodash';
 import moment from 'moment';
@@ -292,9 +293,9 @@ export class PaymentOrdersService {
           src="data:image/jpg;base64,${footerImg}"/>
       `,
     });
-    promisify(fs.unlink)(OUT_FILE); // cleanup
+    promisify(fs.unlink)(OUT_FILE);
     await browser.close();
     const stream = getReadableStream(buffer);
-    stream.pipe(response as any);
+    stream.pipe(response);
   }
 }

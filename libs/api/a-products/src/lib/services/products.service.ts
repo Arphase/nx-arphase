@@ -1,9 +1,9 @@
 import { getReadableStream, OUT_FILE, ProductRepository, tobase64 } from '@ivt/a-state';
 import { Product } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { Response } from 'express';
 import fs from 'fs';
 import puppeteer from 'puppeteer';
-import showdown from 'showdown';
 import { Connection } from 'typeorm';
 import { promisify } from 'util';
 
@@ -135,6 +135,6 @@ export class ProductService {
     promisify(fs.unlink)(OUT_FILE);
     await browser.close();
     const stream = getReadableStream(buffer);
-    stream.pipe(response as any);
+    stream.pipe(response);
   }
 }

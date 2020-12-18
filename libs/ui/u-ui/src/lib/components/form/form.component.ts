@@ -9,7 +9,7 @@ import { IvtSubscriberComponent } from '../subscriber';
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtFormComponent<T = any> extends IvtSubscriberComponent {
+export class IvtFormComponent<T> extends IvtSubscriberComponent {
   @Input() form: FormGroup;
   @Input() item: T;
   @Input() loading: boolean;
