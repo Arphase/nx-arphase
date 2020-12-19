@@ -7,10 +7,7 @@ export class LocalityEntity extends BaseEntity implements Locality {
   id: number;
 
   @Column()
-  version: number;
-
-  @Column()
-  zipCode: string;
+  zipcode: string;
 
   @Column()
   suburb: string;

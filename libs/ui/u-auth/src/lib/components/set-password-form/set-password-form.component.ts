@@ -9,7 +9,7 @@ import { IvtFormComponent, IvtValidators, MessageStatus } from '@ivt/u-ui';
   styleUrls: ['./set-password-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SetPasswordFormComponent extends IvtFormComponent {
+export class SetPasswordFormComponent extends IvtFormComponent<{ password: string }> {
   messageStatus = MessageStatus;
   specialCharacters = specialCharactersForPassword.join(' ');
 

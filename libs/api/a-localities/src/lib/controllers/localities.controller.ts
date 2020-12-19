@@ -9,8 +9,8 @@ import { LocalitiesService } from '../services/localities.service';
 export class LocalitiesController {
   constructor(private localitiesService: LocalitiesService) {}
 
-  @Get(':zipCode')
-  getLocality(@Param('zipCode') zipCode: string): Promise<LocalityEntity[]> {
-    return this.localitiesService.getLocalityByZipCode(zipCode);
+  @Get(':zipcode')
+  getLocality(@Param('zipcode') zipcode: string): Promise<LocalityEntity[]> {
+    return this.localitiesService.getLocalityByZipCode(zipcode);
   }
 }

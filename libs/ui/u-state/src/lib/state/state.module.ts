@@ -55,7 +55,7 @@ export class IvtStateModule {
     groupDataService: GroupDataService,
     productDataService: ProductDataService
   ) {
-    const services: Record<string, IvtDataService> = {
+    const services: Record<string, IvtDataService<unknown>> = {
       Guarantee: guaranteeDataService,
       PaymentOrder: paymentOrderDataService,
       Group: groupDataService,

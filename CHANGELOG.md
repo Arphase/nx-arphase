@@ -80,7 +80,7 @@ All notable changes to this project will be documented in this file. See [standa
 * **guarantees:** Summary endpoint ([c5aac35](https://bitbucket.org/arphase/innovatech/commit/c5aac35ed582390a9c1a6083558df64440a55372))
 * **guarantees:** text filter ([713a2bb](https://bitbucket.org/arphase/innovatech/commit/713a2bb16d68a7d1c40e863f374666be3b5fab0a))
 * **guarantees:** update ([bcda72b](https://bitbucket.org/arphase/innovatech/commit/bcda72b647941ee7765428d3c26b287f4156c656))
-* **localites:** Add get by zipCode ([38e1e45](https://bitbucket.org/arphase/innovatech/commit/38e1e452cae3fce8747ab1e647acc556cd4697bb))
+* **localites:** Add get by zipcode ([38e1e45](https://bitbucket.org/arphase/innovatech/commit/38e1e452cae3fce8747ab1e647acc556cd4697bb))
 * **localities:** address form component and sepomex catalog seeds ([7bff311](https://bitbucket.org/arphase/innovatech/commit/7bff311333cd2d38dd2686502c4ec796ef71f9c1))
 * **payment-orders:** Add images to footer and header pdfs. ([b8f8074](https://bitbucket.org/arphase/innovatech/commit/b8f8074725f51b0929d4216fe1124827b299113e))
 * **payment-orders:** Create controller and service ([98f56df](https://bitbucket.org/arphase/innovatech/commit/98f56dfa87706298426851836cac9c9b897c9c79))

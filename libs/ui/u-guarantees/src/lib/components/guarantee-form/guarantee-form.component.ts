@@ -21,10 +21,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     { label: 'Moral', value: PersonTypes[PersonTypes.moral] },
   ];
 
-  get values() {
-    return this.form.getRawValue();
-  }
-
   get client() {
     return this.form.get('client');
   }
@@ -47,6 +43,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
 
   constructor(private fb: FormBuilder) {
     super();
+    const todayYear = new Date().getFullYear();
     this.form = this.fb.group({
       id: null,
       productId: null,
@@ -80,7 +77,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         brand: [null, Validators.required],
         model: [null, Validators.required],
         version: [null, Validators.required],
-        year: [null, [Validators.required]],
+        year: [null, [Validators.required, Validators.min(todayYear - 20), Validators.max(todayYear)]],
         vin: [null, Validators.required],
         motorNumber: [null, Validators.required],
         horsePower: [null, [Validators.required, Validators.max(400)]],
@@ -92,7 +89,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
 
   ngOnInit() {
     this.moralInfoForm.disable();
-
     this.client
       .get('personType')
       .valueChanges.pipe(filterNil(), takeUntil(this.destroy$))
@@ -123,6 +119,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     if (this.showPhysicalForm) {
       this.moralInfoForm.disable();
       this.physicalInfoForm.enable();
+      this.physicalInfoForm.updateValueAndValidity();
     } else {
       this.moralInfoForm.enable();
       this.physicalInfoForm.disable();

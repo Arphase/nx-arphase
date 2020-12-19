@@ -7,7 +7,7 @@ import {
   tobase64,
   transformFolio,
 } from '@ivt/a-state';
-import { GuaranteeStatus, GuaranteeSummary, statusLabels, User, UserRoles } from '@ivt/c-data';
+import { Client, GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
 import { dir } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Response } from 'express';
@@ -42,12 +42,13 @@ export class GuaranteesService {
       .leftJoinAndSelect('client.address', 'address')
       .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
 
-    const found = await query.where('guarantee.id = :id', { id }).getOne();
+    let found = await query.where('guarantee.id = :id', { id }).getOne();
 
     if (!found) {
       throw new NotFoundException(`Guarantee with id "${id}" not found`);
     }
 
+    found = this.omitInfo(found) as GuaranteeEntity;
     return found;
   }
 
@@ -104,7 +105,7 @@ export class GuaranteesService {
       .skip(offset);
 
     const guarantees = await query.getMany();
-    return guarantees;
+    return guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity);
   }
 
   async getGuaranteesSummary(user: Partial<User>): Promise<GuaranteeSummary> {
@@ -156,9 +157,9 @@ export class GuaranteesService {
   }
 
   async createGuarantee(createGuaranteeDto: CreateGuaranteeDto, user: Partial<User>): Promise<GuaranteeEntity> {
+    createGuaranteeDto = this.omitInfo(createGuaranteeDto);
     const newGuarantee = this.guaranteeRepository.create({
       ...createGuaranteeDto,
-      status: GuaranteeStatus.outstanding,
       userId: user.id,
     });
     await newGuarantee.save();
@@ -245,7 +246,8 @@ export class GuaranteesService {
   }
 
   async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto): Promise<GuaranteeEntity> {
-    const updatedGuarantee = await this.guaranteeRepository.save(updateGuaranteeDto);
+    const guarantee = this.omitInfo(updateGuaranteeDto);
+    const updatedGuarantee = await this.guaranteeRepository.save(guarantee);
     return updatedGuarantee;
   }
 
@@ -255,5 +257,17 @@ export class GuaranteesService {
     if (!result.affected) {
       throw new NotFoundException(`Guarantee with ID "${id}" not found`);
     }
+  }
+
+  omitInfo(
+    guarantee: GuaranteeEntity | CreateGuaranteeDto | UpdateGuaranteeDto
+  ): GuaranteeEntity | CreateGuaranteeDto | UpdateGuaranteeDto {
+    const personType = guarantee.client?.personType;
+    if (personType === PersonTypes.physical) {
+      guarantee.client = omit(guarantee.client, 'moralInfo') as Client;
+    } else if (personType === PersonTypes.moral) {
+      guarantee.client = omit(guarantee.client, 'physicalInfo') as Client;
+    }
+    return guarantee;
   }
 }

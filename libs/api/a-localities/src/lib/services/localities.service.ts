@@ -10,9 +10,9 @@ export class LocalitiesService {
     this.localityRepository = this.connection.getCustomRepository(LocalityRepository);
   }
 
-  async getLocalityByZipCode(zipCode: string): Promise<LocalityEntity[]> {
+  async getLocalityByZipCode(zipcode: string): Promise<LocalityEntity[]> {
     const found = await this.localityRepository.find({
-      where: { zipCode },
+      where: { zipcode },
     });
 
     return found;

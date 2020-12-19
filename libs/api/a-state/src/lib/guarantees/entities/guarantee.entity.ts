@@ -51,6 +51,7 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
       to: value => value,
       from: value => GuaranteeStatus[value],
     },
+    default: GuaranteeStatus.outstanding,
   })
   status: GuaranteeStatus | string;
 

@@ -15,7 +15,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   successUrl = '/spa/guarantees';
   createSuccessMessage = 'La garantía se ha creado con éxito';
   updateSuccessMessage = 'La garantía se ha actualizado con éxito';
-  isEditable$ = this.permissionService.hasUpdatePermission(...[PermissionTypes.Guarantees]);
+  isEditable$ = this.permissionService.hasUpdatePermission();
   productOptions$ = this.productCollectionService.options$;
 
   constructor(

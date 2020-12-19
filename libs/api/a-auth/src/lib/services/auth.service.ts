@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
+import { omit } from 'lodash';
 import { createTransport } from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import { Connection, getManager } from 'typeorm';
@@ -60,9 +61,10 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const token = await this.jwtService.sign(user);
+    const payload = omit(user, ['password', 'salt']);
+    const token = await this.jwtService.sign(payload);
 
-    return { ...user, token };
+    return { ...payload, token };
   }
 
   async setPassword(resetPassword: ResetPasswordDto): Promise<User> {

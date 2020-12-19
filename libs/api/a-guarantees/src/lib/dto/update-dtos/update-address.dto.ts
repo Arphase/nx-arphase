@@ -6,7 +6,7 @@ export class UpdateAddressDto {
 
   @IsOptional()
   @IsNumberString()
-  zipCode: string;
+  zipcode: string;
 
   @IsOptional()
   @IsString()
