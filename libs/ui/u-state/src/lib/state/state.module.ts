@@ -18,16 +18,7 @@ import { reducers } from './reducers';
 
 @NgModule({
   imports: [
-    StoreModule.forRoot(reducers, {
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-        strictStateSerializability: true,
-        strictActionSerializability: true,
-        strictActionWithinNgZone: true,
-        strictActionTypeUniqueness: true,
-      },
-    }),
+    StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       name: 'IVT UI',
       maxAge: 25,

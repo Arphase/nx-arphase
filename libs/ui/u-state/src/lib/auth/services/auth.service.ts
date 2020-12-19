@@ -26,7 +26,7 @@ export class AuthService {
   isAuthenticated(): Observable<boolean> {
     return this.store.pipe(
       select(getAuthUserStateState),
-      map(user => !!user.token)
+      map(user => !!user?.token)
     );
   }
 

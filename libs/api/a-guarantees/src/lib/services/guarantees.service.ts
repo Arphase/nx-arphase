@@ -8,12 +8,11 @@ import {
   transformFolio,
 } from '@ivt/a-state';
 import { Client, GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
-import { dir } from '@ivt/c-utils';
+import { dir, formatDate } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Response } from 'express';
 import fs from 'fs';
 import { omit } from 'lodash';
-import moment from 'moment';
 import puppeteer from 'puppeteer';
 import { Connection } from 'typeorm';
 import { promisify } from 'util';
@@ -126,25 +125,91 @@ export class GuaranteesService {
     const guarantees = await this.getGuarantees(omit(filterDto, ['offset', 'limit']), user);
     const excelColumnConstants: string[] = [
       'Folio',
-      'Placa',
-      'Distribuidor',
+      'Fecha de carga',
+      'Fecha de actualización',
+      'Estatus',
       'Fecha inicio',
       'Fecha fin',
-      'Fecha captura',
       'Importe',
-      'Estatus',
+      'Fecha de factura',
+      'Tipo de persona',
+      'Nombre',
+      'Apellido Paterno',
+      'Apellido Materno',
+      'Fecha de nacimiento',
+      'Razón social',
+      'Fecha de constitución',
+      'Asesor',
+      'RFC',
+      'Teléfono',
+      'Correo',
+      'Código Postal',
+      'País',
+      'Estado',
+      'Ciudad',
+      'Colonia',
+      'Calle',
+      'Número Externo',
+      'Número Interno',
+      'Punto de Venta',
+      'Tipo de Producto',
+      'Marca',
+      'Modelo',
+      'Versión',
+      'Año del vehículo',
+      'HP',
+      'VIN',
+      'Nº de Motor',
+      'Kilometraje inicial',
+      'Fin garantía por kilometraje',
+      'Creación orden de compra',
+      'Actualización orden de compra',
+      'Distribuidor',
     ];
     const guaranteesData: string[][] = guarantees.map(guarantee => {
       return [
-        String(transformFolio(guarantee.id)),
-        String(guarantee.vehicle.vin),
-        String(guarantee.paymentOrder?.distributor || 'N/A'),
-        String(moment(guarantee.startDate).format('DD/MM/YYYY')),
-        String(moment(guarantee.endDate).format('DD/MM/YYYY')),
-        String(moment(guarantee.createdAt).format('DD/MM/YYYY')),
-        String(guarantee.amount || 'N/A'),
-        String(statusLabels[guarantee.status]),
-      ];
+        transformFolio(guarantee.id),
+        formatDate(guarantee.createdAt),
+        formatDate(guarantee.updatedAt),
+        statusLabels[guarantee.status],
+        formatDate(guarantee.startDate),
+        formatDate(guarantee.endDate),
+        guarantee.amount,
+        formatDate(guarantee.invoiceDate),
+        guarantee.client?.personType,
+        guarantee.client?.physicalInfo?.name,
+        guarantee.client?.physicalInfo?.lastName,
+        guarantee.client?.physicalInfo?.secondLastName,
+        formatDate(guarantee.client?.physicalInfo?.birthDate),
+        guarantee.client?.moralInfo?.businessName,
+        formatDate(guarantee.client?.moralInfo?.constitutionDate),
+        guarantee.client?.moralInfo?.adviser,
+        guarantee.client?.rfc,
+        guarantee.client?.phone,
+        guarantee.client?.email,
+        guarantee.client?.address?.zipcode,
+        guarantee.client?.address?.country,
+        guarantee.client?.address?.state,
+        guarantee.client?.address?.city,
+        guarantee.client?.address?.suburb,
+        guarantee.client?.address?.street,
+        guarantee.client?.address?.externalNumber,
+        guarantee.client?.address?.internalNumber,
+        guarantee.client?.salesPlace,
+        guarantee.vehicle?.productType,
+        guarantee.vehicle?.brand,
+        guarantee.vehicle?.model,
+        guarantee.vehicle?.version,
+        guarantee.vehicle?.year,
+        guarantee.vehicle?.horsePower,
+        guarantee.vehicle?.vin,
+        guarantee.vehicle?.motorNumber,
+        guarantee.vehicle?.kilometrageStart,
+        guarantee.vehicle?.kilometrageEnd,
+        guarantee.paymentOrder?.createdAt,
+        guarantee.paymentOrder?.updatedAt,
+        guarantee.paymentOrder?.distributor,
+      ].map(field => (field ? String(field) : ''));
     });
     const data = [[...excelColumnConstants], ...guaranteesData];
     const workSheet = XLSX.utils.aoa_to_sheet(data);

@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class IvtEmptyPipe implements PipeTransform {
   transform(value: string): string {
-    return value ? value : 'N/A';
+    return value || 'N/A';
   }
 }

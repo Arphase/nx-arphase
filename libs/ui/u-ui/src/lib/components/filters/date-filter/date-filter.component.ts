@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { AbstractControl, FormBuilder } from '@angular/forms';
 import { Select } from '@ivt/c-data';
+import { formatDate } from '@ivt/c-utils';
 import moment from 'moment';
 import { tap } from 'rxjs/operators';
 
@@ -65,8 +66,8 @@ export class IvtDateFilterComponent extends IvtFilterComponent<DateFilter> imple
     this.control.valueChanges
       .pipe(
         tap(({ startDate, endDate, dateType }) => {
-          this.startDate = moment(startDate).format('DD/MM/YYYY');
-          this.endDate = moment(endDate).format('DD/MM/YYYY');
+          this.startDate = formatDate(startDate);
+          this.endDate = formatDate(endDate);
           this.dateType = dateType;
           this.setFilter();
         })

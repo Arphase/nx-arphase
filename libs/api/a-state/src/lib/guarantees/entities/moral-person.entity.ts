@@ -12,9 +12,6 @@ export class MoralPersonEntity extends BaseEntity implements MoralPerson {
   @Column()
   constitutionDate: Date;
 
-  @Column({ nullable: true })
-  distributor: string;
-
   @Column()
   adviser: string;
 }
