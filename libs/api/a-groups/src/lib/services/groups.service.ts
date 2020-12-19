@@ -1,7 +1,7 @@
 import { AuthService } from '@ivt/a-auth';
 import { GroupRepository } from '@ivt/a-state';
 import { Group } from '@ivt/c-data';
-import { dir } from '@ivt/c-utils';
+import { sortDirection } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { flatten } from 'lodash';
 import { Connection } from 'typeorm';
@@ -39,7 +39,7 @@ export class GroupsService {
     const query = this.groupRepository.createQueryBuilder('group');
 
     if (sort && direction) {
-      query.orderBy(`${sort}`, dir[direction]);
+      query.orderBy(`${sort}`, sortDirection[direction]);
     }
 
     if (text) {

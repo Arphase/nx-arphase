@@ -8,7 +8,7 @@ import {
   transformFolio,
 } from '@ivt/a-state';
 import { Client, GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
-import { dir, formatDate } from '@ivt/c-utils';
+import { formatDate, sortDirection } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Response } from 'express';
 import fs from 'fs';
@@ -62,14 +62,23 @@ export class GuaranteesService {
       .leftJoinAndSelect('client.address', 'address')
       .leftJoinAndSelect('guarantee.paymentOrder', 'paymentOrder')
       .leftJoinAndSelect('guarantee.product', 'product')
-      .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
+      .leftJoinAndSelect('guarantee.vehicle', 'vehicle')
+      .groupBy('guarantee.id')
+      .addGroupBy('client.id')
+      .addGroupBy('address.id')
+      .addGroupBy('vehicle.id')
+      .addGroupBy('physicalPerson.id')
+      .addGroupBy('moralPerson.id')
+      .addGroupBy('paymentOrder.id')
+      .addGroupBy('product.id')
+      .orderBy('guarantee.createdAt', sortDirection.desc);
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
       query.andWhere('(guarantee.userId = :id)', { id: user.id });
     }
 
     if (sort && direction) {
-      query.orderBy(`${sort}`, dir[direction]);
+      query.orderBy(`${sort}`, sortDirection[direction]);
     }
 
     if (startDate && endDate && dateType) {
@@ -82,7 +91,21 @@ export class GuaranteesService {
     }
 
     if (text) {
-      query.andWhere('(guarantee.id = :id)', { id: text });
+      if (text.length < 5) {
+        query.andWhere(
+          `guarantee.id = :number OR
+           LOWER(vehicle.motorNumber) like :text OR
+           LOWER(physicalPerson.name) like :text`,
+          { text: `%${text.toLowerCase()}%`, number: text }
+        );
+      } else {
+        console.log('here');
+        query.andWhere(
+          `LOWER(vehicle.motorNumber) like :text OR
+           LOWER(CONCAT(physicalPerson.name, ' ', physicalPerson.lastName, ' ', physicalPerson.secondLastName)) like :text`,
+          { text: `%${text.toLowerCase()}%` }
+        );
+      }
     }
 
     if (status) {
@@ -91,17 +114,7 @@ export class GuaranteesService {
       });
     }
 
-    query
-      .groupBy('guarantee.id')
-      .addGroupBy('client.id')
-      .addGroupBy('address.id')
-      .addGroupBy('vehicle.id')
-      .addGroupBy('physicalPerson.id')
-      .addGroupBy('moralPerson.id')
-      .addGroupBy('paymentOrder.id')
-      .addGroupBy('product.id')
-      .take(limit)
-      .skip(offset);
+    query.take(limit).skip(offset);
 
     const guarantees = await query.getMany();
     return guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity);
