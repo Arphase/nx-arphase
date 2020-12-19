@@ -21,7 +21,7 @@ export class IvtRowComponent<T> extends IvtSubscriberComponent implements CrudEv
   @Input() isSelected = false;
   @Output() create = new EventEmitter<void>();
   @Output() showDetail = new EventEmitter<T>();
-  @Output() edit = new EventEmitter<T>();
+  @Output() edit = new EventEmitter<Partial<T>>();
   @Output() delete = new EventEmitter<T>();
   @Output() toggle = new EventEmitter<T>();
   @Output() selectItem = new EventEmitter<T>();

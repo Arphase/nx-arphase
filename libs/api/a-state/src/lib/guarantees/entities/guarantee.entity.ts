@@ -81,6 +81,9 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @Column({ nullable: true, type: 'timestamp' })
   invoiceDate: Date;
 
+  @Column({ nullable: true })
+  invoiceNumber: string;
+
   @ManyToOne(() => UserEntity, user => user.guarantees)
   @JoinColumn({ name: 'userId' })
   user: User;

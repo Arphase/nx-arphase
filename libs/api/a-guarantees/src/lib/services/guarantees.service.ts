@@ -325,7 +325,8 @@ export class GuaranteesService {
 
   async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto): Promise<GuaranteeEntity> {
     const guarantee = this.omitInfo(updateGuaranteeDto);
-    const updatedGuarantee = await this.guaranteeRepository.save(guarantee);
+    const preloadedGuarantee = await this.guaranteeRepository.preload(updateGuaranteeDto);
+    const updatedGuarantee = await this.guaranteeRepository.save({ ...preloadedGuarantee, ...guarantee });
     return updatedGuarantee;
   }
 

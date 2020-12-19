@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
+import { GuaranteeInvoiceNumberDialogContainerComponent } from '../guarantee-invoice-number-dialog-container/guarantee-invoice-number-dialog-container.component';
 import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
 
 @Component({
@@ -88,5 +89,9 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe();
+  }
+
+  editInvoiceNumber(data: Guarantee): void {
+    this.dialog.open(GuaranteeInvoiceNumberDialogContainerComponent, { data });
   }
 }
