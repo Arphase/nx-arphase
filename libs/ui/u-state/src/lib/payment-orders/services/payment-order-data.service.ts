@@ -23,7 +23,7 @@ export class PaymentOrderDataService extends IvtDataService<PaymentOrder> {
     this.entitiesUrl = `${this.config.apiUrl}/paymentOrders`;
   }
 
-  getPaymentOrderPdf(id: number): Observable<any> {
+  getPaymentOrderPdf(id: number): Observable<Blob> {
     return this.http
       .get(`${this.config.apiUrl}/paymentOrders/${id}/pdf`, {
         responseType: 'blob',

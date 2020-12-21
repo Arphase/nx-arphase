@@ -8,7 +8,7 @@ export class ResetPasswordEntity extends BaseEntity implements ResetPassword {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(type => UserEntity, user => user.guarantees)
+  @ManyToOne(() => UserEntity, user => user.guarantees)
   @JoinColumn({ name: 'userId' })
   user: User;
 

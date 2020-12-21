@@ -57,7 +57,7 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
         <p><span class="bold">DIRECCIÓN:</span> ${guarantee.client.address.street} ${
     guarantee.client.address.externalNumber
   }, ${guarantee.client.address.suburb}. ${guarantee.client.address.city}, ${guarantee.client.address.state}. ${
-    guarantee.client.address.zipCode
+    guarantee.client.address.zipcode
   } </p>
         <p><span class="bold">TELEFONO:</span> ${guarantee.client.phone}</p>
         <p><span class="bold">EMAIL:</span> ${guarantee.client.email}</p>

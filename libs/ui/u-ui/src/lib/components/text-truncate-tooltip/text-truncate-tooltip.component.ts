@@ -18,7 +18,7 @@ import {
 export class IvtTextTruncateTooltipComponent implements AfterViewInit {
   @ViewChild('container') container: ElementRef;
   @ViewChild('labelElement') labelElement: ElementRef;
-  @ContentChild(TemplateRef) template: TemplateRef<any>;
+  @ContentChild(TemplateRef) template: TemplateRef<null>;
   @Input() label: string;
   @Input() className: string;
   @Input() disabled = false;

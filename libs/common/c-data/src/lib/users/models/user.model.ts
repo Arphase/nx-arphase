@@ -15,4 +15,5 @@ export interface User {
   token?: string;
   role: UserRoles | string;
   company?: Company;
+  companyId?: number;
 }

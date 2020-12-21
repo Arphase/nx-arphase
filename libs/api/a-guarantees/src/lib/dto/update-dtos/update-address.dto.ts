@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsNumberString, IsOptional, IsString } from 'class-validator';
+import { IsNumberString, IsOptional, IsString } from 'class-validator';
 
 export class UpdateAddressDto {
   @IsOptional()
@@ -6,7 +6,7 @@ export class UpdateAddressDto {
 
   @IsOptional()
   @IsNumberString()
-  zipCode: string;
+  zipcode: string;
 
   @IsOptional()
   @IsString()

@@ -2,7 +2,17 @@ import { IMAGE_ASSETS_PATH } from '@ivt/a-state';
 import { Guarantee } from '@ivt/c-data';
 import showdown from 'showdown';
 
-export const DummyGlossary = {
+function replace(source: string, replacements: Record<string, string>) {
+  return source.replace(new RegExp('\\{([A-z]|.)*?}', 'g'), value => {
+    if (value.substring(1, value.length - 1) in replacements) {
+      return replacements[value.substring(1, value.length - 1)];
+    } else {
+      return value;
+    }
+  });
+}
+
+export const dummyGlossary: Record<string, string> = {
   'guarantee.client.id': '(ID del cliente)',
   'guarantee.client.personType': '(Tipo de persona del cliente)',
   'guarantee.client.rfc': '(RFC del cliente)',
@@ -31,56 +41,43 @@ export const DummyGlossary = {
   'guarantee.paymentOrder.Guarantee': '(Garantías de la orden de compra)',
 };
 
+function getRealGlossary(guarantee: Guarantee): Record<string, string> {
+  return {
+    'guarantee.client.id': String(guarantee.client.id),
+    'guarantee.client.personType': String(guarantee.client.personType),
+    'guarantee.client.rfc': guarantee.client.rfc,
+    'guarantee.client.phone': guarantee.client.phone,
+    'guarantee.client.email': guarantee.client.email,
+    'guarantee.client.address': String(guarantee.client.address),
+    'guarantee.client.salesPlace': guarantee.client.salesPlace,
+
+    'guarantee.vehicle.brand': guarantee.vehicle.brand,
+    'guarantee.vehicle.model': guarantee.vehicle.model,
+    'guarantee.vehicle.version': guarantee.vehicle.version,
+    'guarantee.vehicle.year': String(guarantee.vehicle.year),
+    'guarantee.vehicle.vin': guarantee.vehicle.vin,
+    'guarantee.vehicle.motorNumber': guarantee.vehicle.motorNumber,
+    'guarantee.vehicle.kilometrageStart': String(guarantee.vehicle.kilometrageStart),
+    'guarantee.vehicle.kilometrageEnd': String(guarantee.vehicle.kilometrageEnd),
+
+    'guarantee.status': String(guarantee.status),
+    'guarantee.startDate': String(guarantee.startDate),
+    'guarantee.endDate': String(guarantee.endDate),
+    'guarantee.invoiceDate': String(guarantee.invoiceDate),
+    'guarantee.amount': String(guarantee.amount),
+  };
+}
+
 export function getProductPdfTemplate(body: string, guarantee?: Guarantee): string {
   const converter = new showdown.Converter();
   let template = converter.makeHtml(body);
   if (!guarantee) {
-    function replace(source: string, replacements: { [name: string]: string }) {
-      return template.replace(new RegExp('\\{([A-z]|.)*?}', 'g'), m => {
-        if (m.substring(1, m.length - 1) in DummyGlossary) return replacements[m.substring(1, m.length - 1)];
-        else return m;
-      });
-    }
-
-    template = replace(template, DummyGlossary);
+    template = replace(template, dummyGlossary);
   } else {
-    const RealGlossary = {
-      'guarantee.client.id': guarantee.client.id,
-      'guarantee.client.personType': guarantee.client.personType,
-      'guarantee.client.rfc': guarantee.client.rfc,
-      'guarantee.client.phone': guarantee.client.phone,
-      'guarantee.client.email': guarantee.client.email,
-      'guarantee.client.address': guarantee.client.address,
-      'guarantee.client.salesPlace': guarantee.client.salesPlace,
-
-      'guarantee.vehicle.brand': guarantee.vehicle.brand,
-      'guarantee.vehicle.model': guarantee.vehicle.model,
-      'guarantee.vehicle.version': guarantee.vehicle.version,
-      'guarantee.vehicle.year': guarantee.vehicle.year,
-      'guarantee.vehicle.vin': guarantee.vehicle.vin,
-      'guarantee.vehicle.motorNumber': guarantee.vehicle.motorNumber,
-      'guarantee.vehicle.kilometrageStart': guarantee.vehicle.kilometrageStart,
-      'guarantee.vehicle.kilometrageEnd': guarantee.vehicle.kilometrageEnd,
-
-      'guarantee.status': guarantee.status,
-      'guarantee.startDate': guarantee.startDate,
-      'guarantee.endDate': guarantee.endDate,
-      'guarantee.invoiceDate': guarantee.invoiceDate,
-      'guarantee.amount': guarantee.amount,
-    };
-
-    function replace(source: string, replacements: { [name: string]: any }) {
-      return template.replace(new RegExp('\\{([A-z]|.)*?}', 'g'), m => {
-        if (m.substring(1, m.length - 1) in RealGlossary) return replacements[m.substring(1, m.length - 1)];
-        else return m;
-      });
-    }
-
-    template = replace(template, RealGlossary);
+    const realGlossary = getRealGlossary(guarantee);
+    template = replace(template, realGlossary);
   }
-
   const logoImage = `${IMAGE_ASSETS_PATH}/logo.png`;
-
   return `
   <html>
     <head>

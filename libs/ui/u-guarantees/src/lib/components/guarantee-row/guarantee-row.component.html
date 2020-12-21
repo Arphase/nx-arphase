@@ -70,6 +70,10 @@
           Editar orden de pago
         </button>
       </ng-container>
+      <button mat-menu-item
+              (click)="editInvoiceNumber.emit(item)">
+        Editar número de factura
+      </button>
     </mat-menu>
 
     <mat-menu #statusMenu="matMenu">

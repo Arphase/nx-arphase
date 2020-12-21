@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
+import { omit } from 'lodash';
 import { createTransport } from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import { Connection, getManager } from 'typeorm';
@@ -60,7 +61,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const { password, salt, ...payload } = user;
+    const payload = omit(user, ['password', 'salt']);
     const token = await this.jwtService.sign(payload);
 
     return { ...payload, token };
@@ -112,7 +113,7 @@ export class AuthService {
     return updatedResetPassword;
   }
 
-  async sendSetPasswordEmail(userId): Promise<any> {
+  async sendSetPasswordEmail(userId): Promise<Record<string, boolean>> {
     const userFromDb = await this.userRepository.findOne({ id: userId });
     if (!userFromDb) {
       throw new NotFoundException(`User not found`);
@@ -166,7 +167,7 @@ export class AuthService {
     }
   }
 
-  async sendResetPasswordEmail(email: string): Promise<any> {
+  async sendResetPasswordEmail(email: string): Promise<Record<string, boolean>> {
     const userFromDb = await this.userRepository.findOne({ email });
     if (!userFromDb) {
       throw new NotFoundException(`User not found`);

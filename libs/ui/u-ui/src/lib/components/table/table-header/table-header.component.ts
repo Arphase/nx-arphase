@@ -18,7 +18,7 @@ export class IvtTableHeaderComponent {
     this.sort.emit(sortEvent);
   }
 
-  getClasses(columnSizes: IvtColumnSizes, show: IvtBreakpointShow): any {
+  getClasses(columnSizes: IvtColumnSizes, show: IvtBreakpointShow): Record<string, boolean> {
     return {
       col: !columnSizes?.xs && !columnSizes?.sm && !columnSizes?.md && !columnSizes?.lg && !columnSizes?.xl,
       [`col-${columnSizes?.xs}`]: !!columnSizes?.xs,

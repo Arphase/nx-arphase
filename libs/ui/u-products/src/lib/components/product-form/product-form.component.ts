@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
@@ -19,9 +18,9 @@ export class ProductFormComponent extends IvtFormComponent<Product> implements O
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
   glossaryOptions = glossary;
-  selectedData: { value: any; text: string };
+  selectedData: { value: string; text: string };
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private productDataService: ProductDataService) {
+  constructor(private fb: FormBuilder, private productDataService: ProductDataService) {
     super();
     this.form = this.fb.group({
       id: null,

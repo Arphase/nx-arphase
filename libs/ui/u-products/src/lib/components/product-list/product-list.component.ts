@@ -1,16 +1,14 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Product } from '@ivt/c-data';
-import { IvtListComponent } from '@ivt/u-ui';
-import { IvtColumns } from '@ivt/u-ui';
+import { IvtColumns, IvtListComponent } from '@ivt/u-ui';
 
 @Component({
   selector: 'ivt-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListComponent extends IvtListComponent<Product> {
-
   columns: IvtColumns = [
     {
       label: 'Folio',
@@ -37,7 +35,7 @@ export class ProductListComponent extends IvtListComponent<Product> {
         xs: '1',
         sm: '9',
         md: '9',
-        lg: '9'
+        lg: '9',
       },
     },
     {
@@ -49,9 +47,8 @@ export class ProductListComponent extends IvtListComponent<Product> {
         xs: 'auto',
         sm: '1',
         md: '1',
-        lg: '1'
+        lg: '1',
       },
     },
   ];
 }
-

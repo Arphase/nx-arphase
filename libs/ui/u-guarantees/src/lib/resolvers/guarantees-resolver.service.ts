@@ -11,7 +11,7 @@ export class GuaranteesResolverService implements Resolve<Guarantee[]> {
   constructor(private guaranteeCollectionService: GuaranteeCollectionService) {}
 
   resolve(): Observable<Guarantee[]> {
-    const queryParams: IvtQueryParams = { resetList: true };
-    return this.guaranteeCollectionService.getWithQuery(queryParams as any);
+    const queryParams: IvtQueryParams = { resetList: String(true) };
+    return this.guaranteeCollectionService.getWithQuery(queryParams);
   }
 }

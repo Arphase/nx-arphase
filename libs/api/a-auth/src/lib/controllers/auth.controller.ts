@@ -19,7 +19,7 @@ export class AuthController {
    * @returns response data about email status
    */
   @Post('/emailPassword')
-  sendEmailResetPassword(@Body() user: Partial<User>): Promise<any> {
+  sendEmailResetPassword(@Body() user: Partial<User>): Promise<Record<string, boolean>> {
     return this.authService.sendResetPasswordEmail(user.email);
   }
 

@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -13,7 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./filter.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtFilterComponent<T = any> {
+export class IvtFilterComponent<T> {
   @Input() label: string;
   @Output() filterItems = new EventEmitter<T>();
   control: FormControl | FormGroup;

@@ -20,8 +20,8 @@ export interface MappedLocalities {
 export class IvtAddressFormService {
   constructor(private http: HttpClient, @Inject(IVT_UI_STATE_CONFIGURATION) public config: IvtUiStateConfiguration) {}
 
-  getLocalities(zipCode: string): Observable<Locality[]> {
-    return this.http.get<Locality[]>(`${this.config.apiUrl}/localities/${zipCode}`).pipe(catchError(() => of([])));
+  getLocalities(zipcode: string): Observable<Locality[]> {
+    return this.http.get<Locality[]>(`${this.config.apiUrl}/localities/${zipcode}`).pipe(catchError(() => of([])));
   }
 
   mapLocalities(localities: Locality[]): MappedLocalities {
@@ -62,7 +62,7 @@ export class IvtAddressFormService {
 export function createAddressForm(): FormGroup {
   return new FormGroup({
     id: new FormControl(null),
-    zipCode: new FormControl('', Validators.required),
+    zipcode: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
     country: new FormControl('', Validators.required),
     state: new FormControl('', Validators.required),
     city: new FormControl('', Validators.required),

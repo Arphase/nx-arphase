@@ -13,9 +13,9 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { ResetPasswordEntity } from '../auth';
+import { ResetPasswordEntity } from '../auth/reset-password.entity';
 import { CompanyEntity } from '../companies/company.entity';
-import { GuaranteeEntity } from '../guarantees';
+import { GuaranteeEntity } from '../guarantees/entities/guarantee.entity';
 
 @Entity('users')
 @Unique(['email'])
@@ -67,19 +67,19 @@ export class UserEntity extends BaseEntity implements User {
   })
   role: UserRoles;
 
-  @ManyToOne(type => CompanyEntity, company => company.users)
+  @ManyToOne(() => CompanyEntity, company => company.users)
   @JoinColumn({ name: 'companyId' })
   company: Company;
 
   @Column({ nullable: true })
   companyId: number;
 
-  @OneToMany(type => GuaranteeEntity, guarantee => guarantee.user, {
+  @OneToMany(() => GuaranteeEntity, guarantee => guarantee.user, {
     cascade: true,
   })
   guarantees: Guarantee[];
 
-  @OneToMany(type => ResetPasswordEntity, resetPassword => resetPassword.user, {
+  @OneToMany(() => ResetPasswordEntity, resetPassword => resetPassword.user, {
     cascade: true,
   })
   resetPassword: ResetPassword[];

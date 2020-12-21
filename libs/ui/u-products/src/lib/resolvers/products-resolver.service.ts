@@ -5,13 +5,13 @@ import { ProductCollectionService } from '@ivt/u-state';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class ProductsResolverService implements Resolve<Product[]>  {
+export class ProductsResolverService implements Resolve<Product[]> {
   constructor(private productCollectionService: ProductCollectionService) {}
 
   resolve(): Observable<Product[]> {
-    const queryParams: IvtQueryParams = { resetList: true };
-    return this.productCollectionService.getWithQuery(queryParams as any);
+    const queryParams: IvtQueryParams = { resetList: String(true) };
+    return this.productCollectionService.getWithQuery(queryParams);
   }
 }

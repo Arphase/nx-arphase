@@ -10,18 +10,18 @@ import { IvtSubscriberComponent } from '../subscriber/subscriber.component';
   styleUrls: ['./row.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-    // tslint:disable-next-line: no-host-metadata-property
-    host: {
-      class: 'ivt-row',
-    },
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+  host: {
+    class: 'ivt-row',
+  },
 })
-export class IvtRowComponent<T = any> extends IvtSubscriberComponent implements CrudEvents<T> {
+export class IvtRowComponent<T> extends IvtSubscriberComponent implements CrudEvents<T> {
   @Input() item: T;
   @Input() className: string;
   @Input() isSelected = false;
   @Output() create = new EventEmitter<void>();
   @Output() showDetail = new EventEmitter<T>();
-  @Output() edit = new EventEmitter<T>();
+  @Output() edit = new EventEmitter<Partial<T>>();
   @Output() delete = new EventEmitter<T>();
   @Output() toggle = new EventEmitter<T>();
   @Output() selectItem = new EventEmitter<T>();

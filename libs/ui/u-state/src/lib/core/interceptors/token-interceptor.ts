@@ -7,6 +7,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 
 import { AuthService, fromAuth } from '../../auth';
+import { IvtState } from '../../state';
 import { LoadingService } from '../services/loading.service';
 
 @Injectable()
@@ -15,9 +16,9 @@ export class TokenInterceptor implements HttpInterceptor {
     private loadingService: LoadingService,
     private authService: AuthService,
     private toastr: ToastrService,
-    private store: Store<any>
+    private store: Store<IvtState>
   ) {}
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<null>, next: HttpHandler): Observable<HttpEvent<null>> {
     this.loadingService.show();
     request = request.clone({
       setHeaders: {

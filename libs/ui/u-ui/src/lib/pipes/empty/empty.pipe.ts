@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'empty',
 })
 export class IvtEmptyPipe implements PipeTransform {
-  transform(value: any): unknown {
-    return value ? value : 'N/A';
+  transform(value: string): string {
+    return value || 'N/A';
   }
 }

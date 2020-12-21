@@ -1,4 +1,5 @@
 export * from './lib/auth';
+export * from './lib/companies';
 export * from './lib/core';
 export * from './lib/dashboard';
 export * from './lib/entities';
@@ -7,5 +8,5 @@ export * from './lib/groups';
 export * from './lib/payment-orders';
 export * from './lib/permissions';
 export * from './lib/products';
+export * from './lib/state/';
 export * from './lib/ui-state-config';
-export * from './lib/state.module';

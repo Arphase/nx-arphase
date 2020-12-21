@@ -32,6 +32,9 @@ enum ValidatorTypes {
   min = 'min',
   email = 'email',
   rfc = 'rfc',
+  minlength = 'minlength',
+  maxlength = 'maxlength',
+  matDatepickerParse = 'matDatepickerParse',
 }
 
 @Component({
@@ -52,7 +55,7 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
   constructor(
     _elementRef: ElementRef,
     _changeDetectorRef: ChangeDetectorRef,
-    @Inject(ElementRef) _labelOptions: any,
+    @Inject(ElementRef) _labelOptions,
     @Optional() _dir: Directionality,
     @Optional() @Inject(MAT_FORM_FIELD_DEFAULT_OPTIONS) _defaults: MatFormFieldDefaultOptions,
     _platform: Platform,
@@ -88,8 +91,9 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
     return this._errorChildren && this._control.errorState ? 'error' : 'hint';
   }
 
-  setErrorMessage(errors: Record<string, any>): void {
-    const firstError = Object.keys(errors)[0];
+  setErrorMessage(errors: Record<string, Record<string, string>>): void {
+    const errorKeys = Object.keys(errors);
+    const firstError = errorKeys.find(errorKey => errorKey === ValidatorTypes.matDatepickerParse) || errorKeys[0];
     const errorValue = errors[firstError];
     const label = this.label?.toLowerCase();
     const errorMessages = {
@@ -98,6 +102,9 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
       [ValidatorTypes.min]: `El campo ${label} debe ser mayor o igual a ${errorValue.min}`,
       [ValidatorTypes.email]: `El campo ${label} no tiene formato de correo`,
       [ValidatorTypes.rfc]: `El campo ${label} no tiene formato de RFC`,
+      [ValidatorTypes.minlength]: `El campo ${label} debe tener al menos ${errorValue.requiredLength} caracteres`,
+      [ValidatorTypes.maxlength]: `El campo ${label} debe tener menos de ${errorValue.requiredLength + 1} caracteres`,
+      [ValidatorTypes.matDatepickerParse]: `El campo ${label} tiene un formato de fecha incorrecto`,
     };
 
     this.error = errorMessages[firstError];

@@ -23,9 +23,9 @@ export class ProductDataService extends IvtDataService<Product> {
     this.entitiesUrl = `${this.config.apiUrl}/products`;
   }
 
-  getTemplatePreview(text: string, logo: string): Observable<any> {
+  getTemplatePreview(text: string, logo: string): Observable<Blob> {
     return this.http
-      .post<any>(
+      .post(
         `${this.config.apiUrl}/products/preview/pdf`,
         { template: text, logo: logo },
         { responseType: 'blob' as 'json' }

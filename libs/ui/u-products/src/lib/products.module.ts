@@ -8,7 +8,6 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductRowComponent } from './components/product-row/product-row.component';
 import { ProductFormContainerComponent } from './containers/product-form-container/product-form-container.component';
 import { ProductListContainerComponent } from './containers/product-list-container/product-list-container.component';
-import { ProductRowContainerComponent } from './containers/product-row-container/product-row-container.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products/products.component';
 
@@ -21,7 +20,6 @@ import { ProductsComponent } from './products/products.component';
     ProductListComponent,
     ProductListContainerComponent,
     ProductRowComponent,
-    ProductRowContainerComponent,
   ],
 })
 export class ProductsModule {}

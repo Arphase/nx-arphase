@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GuaranteeStatus } from '@ivt/c-data';
-import { fromDashboard, getDashboardGuaranteeSummaryState } from '@ivt/u-state';
 import { filterNil } from '@ivt/c-utils';
+import { fromDashboard, getDashboardGuaranteeSummaryState, IvtState } from '@ivt/u-state';
 import { select, Store } from '@ngrx/store';
 import { ChartOptions, ChartType } from 'chart.js';
 import { keyBy } from 'lodash';
@@ -27,7 +27,7 @@ export class DashboardContainerComponent implements OnInit {
   data$ = this.store.pipe(
     select(getDashboardGuaranteeSummaryState),
     filterNil(),
-    map((guaranteeSummary) => {
+    map(guaranteeSummary => {
       const formattedSummary = keyBy(guaranteeSummary, 'status');
       return [
         Number(formattedSummary[GuaranteeStatus.paid]?.amount || 0),
@@ -40,9 +40,10 @@ export class DashboardContainerComponent implements OnInit {
   isEmpty$ = this.store.pipe(
     select(getDashboardGuaranteeSummaryState),
     filterNil(),
-    map((summary) => !summary.length || !summary.some((value) => value.amount))
+    map(summary => !summary.length || !summary.some(value => value.amount))
   );
-  constructor(private store: Store<any>) {}
+
+  constructor(private store: Store<IvtState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(fromDashboard.actions.getGuaranteeSummary());

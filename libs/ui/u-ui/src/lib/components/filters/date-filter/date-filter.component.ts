@@ -10,10 +10,17 @@ import {
 } from '@angular/core';
 import { AbstractControl, FormBuilder } from '@angular/forms';
 import { Select } from '@ivt/c-data';
+import { formatDate } from '@ivt/c-utils';
 import moment from 'moment';
 import { tap } from 'rxjs/operators';
 
 import { IvtFilterComponent } from '../filter';
+
+interface DateFilter {
+  startDate: string;
+  endDate: string;
+  dateType: string;
+}
 
 @Component({
   selector: 'ivt-date-filter',
@@ -22,16 +29,10 @@ import { IvtFilterComponent } from '../filter';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class IvtDateFilterComponent extends IvtFilterComponent
-  implements OnInit, OnChanges {
+export class IvtDateFilterComponent extends IvtFilterComponent<DateFilter> implements OnInit, OnChanges {
   @Input() dateTypeOptions: Select[] = [];
-  @Input() value: any;
-  @Output()
-  filterItems: EventEmitter<{
-    startDate: string;
-    endDate: string;
-    dateType: string;
-  }> = new EventEmitter();
+  @Input() value;
+  @Output() filterItems = new EventEmitter<DateFilter>();
   startDate = '';
   endDate = '';
   dateType = '';
@@ -64,8 +65,8 @@ export class IvtDateFilterComponent extends IvtFilterComponent
     this.control.valueChanges
       .pipe(
         tap(({ startDate, endDate, dateType }) => {
-          this.startDate = moment(startDate).format('DD/MM/YYYY');
-          this.endDate = moment(endDate).format('DD/MM/YYYY');
+          this.startDate = formatDate(startDate);
+          this.endDate = formatDate(endDate);
           this.dateType = dateType;
           this.setFilter();
         })
@@ -73,19 +74,13 @@ export class IvtDateFilterComponent extends IvtFilterComponent
       .subscribe();
 
     if (this.value) {
-      this.control
-        .get('startDate')
-        .patchValue(moment(this.value.startDate, 'DD/MM/YYYY').toDate(), {
-          emitEvent: false,
-        });
-      this.control
-        .get('endDate')
-        .patchValue(moment(this.value.endDate, 'DD/MM/YYYY').toDate(), {
-          emitEvent: false,
-        });
-      this.control
-        .get('dateType')
-        .patchValue(this.value.dateType, { emitEvent: false });
+      this.control.get('startDate').patchValue(moment(this.value.startDate, 'DD/MM/YYYY').toDate(), {
+        emitEvent: false,
+      });
+      this.control.get('endDate').patchValue(moment(this.value.endDate, 'DD/MM/YYYY').toDate(), {
+        emitEvent: false,
+      });
+      this.control.get('dateType').patchValue(this.value.dateType, { emitEvent: false });
       this.startDate = this.value.startDate;
       this.endDate = this.value.endDate;
       this.dateType = this.value.dateType;

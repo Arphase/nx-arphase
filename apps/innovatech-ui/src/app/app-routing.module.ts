@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// tslint:disable-next-line: nx-enforce-module-boundaries
+// eslint-disable-next-line
 import { AuthGuard } from '@ivt/u-auth';
 
 export const routes: Routes = [

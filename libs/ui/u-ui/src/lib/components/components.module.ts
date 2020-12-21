@@ -16,6 +16,7 @@ import { IvtRowModule } from './row';
 import { IvtSearchbarModule } from './searchbar';
 import { IvtStatusMessageModule } from './status-message';
 import { IvtSubscriberModule } from './subscriber';
+import { IvtSuccessDialogModule } from './success-dialog';
 import { IvtTableModule } from './table';
 import { IvtTextTruncateTooltipModule } from './text-truncate-tooltip';
 import { IvtVirtualScrollModule } from './virtual-scroll';
@@ -39,6 +40,7 @@ const MODULES = [
   IvtSearchbarModule,
   IvtStatusMessageModule,
   IvtSubscriberModule,
+  IvtSuccessDialogModule,
   IvtTableModule,
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
