@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://bitbucket.org/arphase/innovatech/compare/v1.2.0...v1.2.1) (2020-12-21)
+
+
+### Features
+
+* **api:** add migration for companyId in guarantee ([5dc9080](https://bitbucket.org/arphase/innovatech/commit/5dc9080d228e52eb41de497479f6240884876975))
+* **app:** add eslint ([21be20a](https://bitbucket.org/arphase/innovatech/commit/21be20a52cb5af92a87c1d67b788ce25d608d83b))
+* **app:** add phone pipe and mask ([a8e71d0](https://bitbucket.org/arphase/innovatech/commit/a8e71d0453d78794ba5ed7c272e59d7a7da11bb3))
+* **auth:** reset password flow ([6540997](https://bitbucket.org/arphase/innovatech/commit/6540997cf56efda467d908c315b17e3459a37574))
+* **auth:** validate password token ([8c9a8a1](https://bitbucket.org/arphase/innovatech/commit/8c9a8a102edf2bb668ed0982a7c73e4b07769ea1))
+* **groups:** add filtering to group list ([d3e13f2](https://bitbucket.org/arphase/innovatech/commit/d3e13f21c60f066c4a69edb6e7f67a8f11727396))
+* **groups:** add validations to company form ([1de5a85](https://bitbucket.org/arphase/innovatech/commit/1de5a8528c1af90b2919491bd1cc4360510404b7))
+* **groups:** companies list in form ([0bafbf7](https://bitbucket.org/arphase/innovatech/commit/0bafbf70165c4a251869571243b058504f65b1bd))
+* **groups:** send pending users email when updating the group ([fec13bc](https://bitbucket.org/arphase/innovatech/commit/fec13bcc53463d82b4db95d2576a72c8f66f84f2))
+* **guarantees:** add all guarantee properties to Excel export ([7053d99](https://bitbucket.org/arphase/innovatech/commit/7053d997d17721f7d2269697e990a400a18747b8))
+* **guarantees:** add motorNumber and client name to text filter ([ce1a6d5](https://bitbucket.org/arphase/innovatech/commit/ce1a6d5c722ce17ae0461ad6109cb6b3e18d637a))
+* **guarantees:** lock company field for agency users ([0b0ecf3](https://bitbucket.org/arphase/innovatech/commit/0b0ecf3e369b756cae344d820a2f3ae01ce62f41))
+* **guarantees:** make super user able to select company when creating new guarantee ([452470b](https://bitbucket.org/arphase/innovatech/commit/452470b4e5d22cbafdaf48952b21b2d4ab2d0c53))
+* **guarantees:** update invoice number ([91ef07b](https://bitbucket.org/arphase/innovatech/commit/91ef07b8aa452d8dc2791e8c4f3546a8d96abb38))
+
+
+### Bug Fixes
+
+* **app:** bugs from Daniel's Word ([7efabdc](https://bitbucket.org/arphase/innovatech/commit/7efabdc4abf8997ebbc3a1e9abcb781a0870cc62))
+
 ## [1.2.0](https://bitbucket.org/arphase/innovatech/compare/v1.1.0...v1.2.0) (2020-11-19)
 
 
