@@ -6,7 +6,7 @@ export class LocalityEntity extends BaseEntity implements Locality {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: true })
   zipcode: string;
 
   @Column()
