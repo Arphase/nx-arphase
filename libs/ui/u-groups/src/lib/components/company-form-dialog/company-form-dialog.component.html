@@ -50,6 +50,8 @@
         <div class="col-lg-4 col-12">
           <ivt-form-field label="Telefono">
             <input ivtInput
+                   type="tel"
+                   mask="(00) 0000 0000"
                    formControlName="phone">
           </ivt-form-field>
         </div>
@@ -68,7 +70,7 @@
           <button mat-icon-button
                   matTooltip="Eliminar usuario"
                   type="button"
-                  [disabled]="usersFormArray.controls.length === 1 || userForm.value.id"
+                  [disabled]="userForm.value.id"
                   (click)="removeUser(index)">
             <mat-icon>delete</mat-icon>
           </button>
