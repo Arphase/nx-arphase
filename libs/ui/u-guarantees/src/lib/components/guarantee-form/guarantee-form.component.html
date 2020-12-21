@@ -32,6 +32,20 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field>
+            <mat-label>Compañía</mat-label>
+            <mat-select formControlName="companyId">
+              <mat-option *ngFor="let option of companyOptions"
+                          [value]="option.value">
+                {{ option.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
       <!-- TODO: Uncomment when products is ready
       <div class="row">
         <div class="col">

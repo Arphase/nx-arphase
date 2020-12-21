@@ -74,7 +74,7 @@ export class GuaranteesService {
       .orderBy('guarantee.createdAt', sortDirection.desc);
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-      query.andWhere('(guarantee.userId = :id)', { id: user.id });
+      query.andWhere('(guarantee.companyId = :id)', { id: user.company });
     }
 
     if (sort && direction) {
@@ -128,7 +128,7 @@ export class GuaranteesService {
       .groupBy('guarantee.status');
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-      query.andWhere('(guarantee.userId = :id)', { id: user.id });
+      query.andWhere('(guarantee.companyId = :id)', { id: user.company });
     }
 
     return query.getRawMany();

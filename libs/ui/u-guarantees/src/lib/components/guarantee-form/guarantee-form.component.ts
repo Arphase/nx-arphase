@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Guarantee, PersonTypes, Select } from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
@@ -13,6 +22,8 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnInit, OnChanges {
   @Input() productOptions: Select[] = [];
+  @Input() companyOptions: Select[] = [];
+  @Input() canSelectCompany: boolean;
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -20,6 +31,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     { label: 'Física', value: PersonTypes[PersonTypes.physical] },
     { label: 'Moral', value: PersonTypes[PersonTypes.moral] },
   ];
+  @Output() getCompanies = new EventEmitter<void>();
 
   get client() {
     return this.form.get('client');
@@ -49,6 +61,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       productId: null,
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
+      companyId: [null, Validators.required],
       client: this.fb.group({
         id: null,
         personType: [PersonTypes[PersonTypes.physical], Validators.required],
@@ -109,6 +122,10 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
 
     if (changes.isEditable && this.item) {
       this.isEditable ? this.form.enable() : this.form.disable();
+    }
+
+    if (changes.canSelectCompany) {
+      this.getCompanies.emit();
     }
   }
 

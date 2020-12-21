@@ -1,4 +1,5 @@
 import { AuthModule } from '@ivt/a-auth';
+import { CompaniesModule } from '@ivt/a-companies';
 import { GroupsModule } from '@ivt/a-groups';
 import { GuaranteesModule } from '@ivt/a-guarantees';
 import { LocalitiesModule } from '@ivt/a-localities';
@@ -14,6 +15,7 @@ import { AppController } from './app.controller';
   imports: [
     TypeOrmModule.forRoot(config),
     AuthModule,
+    CompaniesModule,
     GroupsModule,
     GuaranteesModule,
     LocalitiesModule,

@@ -1,4 +1,4 @@
-import { Client, Guarantee, GuaranteeStatus, PaymentOrder, Product, User, Vehicle } from '@ivt/c-data';
+import { Client, Company, Guarantee, GuaranteeStatus, PaymentOrder, Product, User, Vehicle } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
@@ -11,9 +11,10 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { PaymentOrderEntity } from '../../payment-orders';
-import { ProductEntity } from '../../products';
-import { UserEntity } from '../../users';
+import { CompanyEntity } from '../../companies/company.entity';
+import { PaymentOrderEntity } from '../../payment-orders/payment-order.entity';
+import { ProductEntity } from '../../products/product.entity';
+import { UserEntity } from '../../users/user.entity';
 import { ClientEntity } from './client.entity';
 import { VehicleEntity } from './vechicle.entity';
 
@@ -83,6 +84,13 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
 
   @Column({ nullable: true })
   invoiceNumber: string;
+
+  @ManyToOne(() => CompanyEntity, company => company.guarantees)
+  @JoinColumn({ name: 'companyId' })
+  company: Company;
+
+  @Column({ nullable: true })
+  companyId: number;
 
   @ManyToOne(() => UserEntity, user => user.guarantees)
   @JoinColumn({ name: 'userId' })

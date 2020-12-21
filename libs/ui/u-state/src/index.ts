@@ -1,4 +1,5 @@
 export * from './lib/auth';
+export * from './lib/companies';
 export * from './lib/core';
 export * from './lib/dashboard';
 export * from './lib/entities';

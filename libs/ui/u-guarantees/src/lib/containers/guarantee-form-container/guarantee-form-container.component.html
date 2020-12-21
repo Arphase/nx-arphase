@@ -2,5 +2,8 @@
                     [loading]="loading$ | async"
                     [isEditable]="isEditable$ | async"
                     [productOptions]="productOptions$ | async"
+                    [canSelectCompany]="canSelectCompany$ | async"
+                    [companyOptions]="companyOptions$ | async"
+                    (getCompanies)="getCompanies()"
                     (submitForm)="submit($event)">
 </ivt-guarantee-form>

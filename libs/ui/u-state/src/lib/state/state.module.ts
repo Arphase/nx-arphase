@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AuthEffects } from '../auth/state';
+import { CompanyDataService } from '../companies';
 import { IvtDataService } from '../core';
 import { TokenInterceptor } from '../core/interceptors/token-interceptor';
 import { AdditionalEntityCollectionReducerMethodsFactory } from '../entities';
@@ -41,15 +42,17 @@ import { reducers } from './reducers';
 export class IvtStateModule {
   constructor(
     entityDataService: EntityDataService,
+    companyDataService: CompanyDataService,
+    groupDataService: GroupDataService,
     guaranteeDataService: GuaranteeDataService,
     paymentOrderDataService: PaymentOrderDataService,
-    groupDataService: GroupDataService,
     productDataService: ProductDataService
   ) {
     const services: Record<string, IvtDataService<unknown>> = {
+      Company: companyDataService,
+      Group: groupDataService,
       Guarantee: guaranteeDataService,
       PaymentOrder: paymentOrderDataService,
-      Group: groupDataService,
       Product: productDataService,
     };
     entityDataService.registerServices(services);

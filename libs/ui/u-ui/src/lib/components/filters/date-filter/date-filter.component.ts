@@ -32,8 +32,7 @@ interface DateFilter {
 export class IvtDateFilterComponent extends IvtFilterComponent<DateFilter> implements OnInit, OnChanges {
   @Input() dateTypeOptions: Select[] = [];
   @Input() value;
-  @Output()
-  filterItems = new EventEmitter<DateFilter>();
+  @Output() filterItems = new EventEmitter<DateFilter>();
   startDate = '';
   endDate = '';
   dateType = '';

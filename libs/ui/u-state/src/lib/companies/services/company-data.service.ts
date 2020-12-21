@@ -16,7 +16,7 @@ export class CompanyDataService extends IvtDataService<Company> {
     @Inject(IVT_UI_STATE_CONFIGURATION) public config: IvtUiStateConfiguration
   ) {
     super('Company', http, httpUrlGenerator, config);
-    this.entityUrl = `${this.config.apiUrl}/groups/`;
-    this.entitiesUrl = `${this.config.apiUrl}/groups`;
+    this.entityUrl = `${this.config.apiUrl}/companies/`;
+    this.entitiesUrl = `${this.config.apiUrl}/companies`;
   }
 }

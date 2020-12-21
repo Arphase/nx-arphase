@@ -1,5 +1,6 @@
 import { Address } from '../../address/model/address.model';
 import { Group } from '../../groups/models/group.model';
+import { Guarantee } from '../../guarantees';
 import { User } from '../../users/models/user.model';
 
 export interface Company {
@@ -13,4 +14,5 @@ export interface Company {
   address: Address;
   group: Group;
   users: User[];
+  guarantees: Guarantee[];
 }

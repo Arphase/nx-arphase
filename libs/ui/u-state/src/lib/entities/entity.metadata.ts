@@ -1,10 +1,11 @@
 import { EntityMetadataMap } from '@ngrx/data';
 
 const entityMetadata: EntityMetadataMap = {
+  Company: {},
+  Group: {},
   Guarantee: {},
   PaymentOrder: {},
-  Group: {},
-  Product: {}
+  Product: {},
 };
 
 export const entityConfig = {

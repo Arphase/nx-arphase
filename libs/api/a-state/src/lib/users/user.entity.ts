@@ -13,9 +13,9 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { ResetPasswordEntity } from '../auth';
+import { ResetPasswordEntity } from '../auth/reset-password.entity';
 import { CompanyEntity } from '../companies/company.entity';
-import { GuaranteeEntity } from '../guarantees';
+import { GuaranteeEntity } from '../guarantees/entities/guarantee.entity';
 
 @Entity('users')
 @Unique(['email'])

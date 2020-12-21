@@ -1,6 +1,8 @@
 import { Client } from '../../clients/models/client.model';
+import { Company } from '../../companies';
 import { PaymentOrder } from '../../payment-orders';
 import { Product } from '../../product';
+import { User } from '../../users';
 import { Vehicle } from '../../vehicles/models/vehicle.model';
 import { GuaranteeStatus } from '../enums/guarantee-status.enum';
 
@@ -19,4 +21,8 @@ export interface Guarantee {
   paymentOrderId?: number;
   paymentOrder?: PaymentOrder;
   product?: Product;
+  companyId?: number;
+  company?: Company;
+  userId?: number;
+  user?: User;
 }

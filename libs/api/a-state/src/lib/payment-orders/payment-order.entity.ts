@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { GuaranteeEntity } from '../guarantees';
+import { GuaranteeEntity } from '../guarantees/entities/guarantee.entity';
 
 @Entity('paymentOrders')
 export class PaymentOrderEntity extends BaseEntity implements PaymentOrder {
