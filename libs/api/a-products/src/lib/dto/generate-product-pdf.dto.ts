@@ -1,8 +1,6 @@
-import { IsNotEmpty, IsString, IsOptional } from 'class-validator';
-import { Transform } from 'class-transformer';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class GenerateProductPdfDto {
-
   @IsNotEmpty()
   @IsString()
   template: string;
@@ -10,5 +8,4 @@ export class GenerateProductPdfDto {
   @IsOptional()
   @IsString()
   logo: string;
-
 }

@@ -14,7 +14,7 @@ export class BasePermissionDirective implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   constructor(
-    protected templateRef: TemplateRef<any>,
+    protected templateRef: TemplateRef<null>,
     public viewContainer: ViewContainerRef,
     protected permissionService: PermissionService,
     @Inject(REQUIRED_PERMISSIONS)

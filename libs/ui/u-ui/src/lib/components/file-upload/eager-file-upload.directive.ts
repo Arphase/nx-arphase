@@ -67,10 +67,10 @@ export class EagerFileUploadDirective implements OnChanges {
         switchMap(file => this.fileUploadService.upload({ ...this.params, file }))
       )
       .subscribe({
-        next: response => {
+        next: () => {
           this.host.setState('success');
         },
-        error: error => {
+        error: () => {
           this.host.setState('error');
           this.file = null;
         },

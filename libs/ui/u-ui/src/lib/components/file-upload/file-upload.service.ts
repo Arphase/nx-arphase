@@ -17,6 +17,6 @@ export class IvtFileUploadService {
   constructor(private http: HttpClient, @Inject(IVT_UI_STATE_CONFIGURATION) public config: IvtUiStateConfiguration) {}
 
   upload(payload: FileUploadPayload) {
-    return this.http.post<any>(`${this.config.apiUrl}/file_uploads`, payload);
+    return this.http.post(`${this.config.apiUrl}/file_uploads`, payload);
   }
 }

@@ -7,12 +7,12 @@ import {
   tobase64,
   transformFolio,
 } from '@ivt/a-state';
-import { GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
-import { dir } from '@ivt/c-utils';
+import { Client, GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
+import { formatDate, sortDirection } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { Response } from 'express';
 import fs from 'fs';
-import { identity, omit, pickBy } from 'lodash';
-import moment from 'moment';
+import { omit } from 'lodash';
 import puppeteer from 'puppeteer';
 import { Connection } from 'typeorm';
 import { promisify } from 'util';
@@ -54,7 +54,6 @@ export class GuaranteesService {
   async getGuarantees(filterDto: Partial<GetGuaranteesFilterDto>, user: Partial<User>): Promise<GuaranteeEntity[]> {
     const { limit, offset, sort, direction, startDate, endDate, dateType, text, status } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
-    let guarantees: GuaranteeEntity[];
 
     query
       .leftJoinAndSelect('guarantee.client', 'client')
@@ -63,14 +62,23 @@ export class GuaranteesService {
       .leftJoinAndSelect('client.address', 'address')
       .leftJoinAndSelect('guarantee.paymentOrder', 'paymentOrder')
       .leftJoinAndSelect('guarantee.product', 'product')
-      .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
+      .leftJoinAndSelect('guarantee.vehicle', 'vehicle')
+      .groupBy('guarantee.id')
+      .addGroupBy('client.id')
+      .addGroupBy('address.id')
+      .addGroupBy('vehicle.id')
+      .addGroupBy('physicalPerson.id')
+      .addGroupBy('moralPerson.id')
+      .addGroupBy('paymentOrder.id')
+      .addGroupBy('product.id')
+      .orderBy('guarantee.createdAt', sortDirection.desc);
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-      query.andWhere('(guarantee.userId = :id)', { id: user.id });
+      query.andWhere('(guarantee.companyId = :id)', { id: user.companyId });
     }
 
     if (sort && direction) {
-      query.orderBy(`${sort}`, dir[direction]);
+      query.orderBy(`${sort}`, sortDirection[direction]);
     }
 
     if (startDate && endDate && dateType) {
@@ -83,7 +91,20 @@ export class GuaranteesService {
     }
 
     if (text) {
-      query.andWhere('(guarantee.id = :id)', { id: text });
+      if (text.length < 5) {
+        query.andWhere(
+          `guarantee.id = :number OR
+           LOWER(vehicle.motorNumber) like :text OR
+           LOWER(physicalPerson.name) like :text`,
+          { text: `%${text.toLowerCase()}%`, number: text }
+        );
+      } else {
+        query.andWhere(
+          `LOWER(vehicle.motorNumber) like :text OR
+           LOWER(CONCAT(physicalPerson.name, ' ', physicalPerson.lastName, ' ', physicalPerson.secondLastName)) like :text`,
+          { text: `%${text.toLowerCase()}%` }
+        );
+      }
     }
 
     if (status) {
@@ -92,56 +113,115 @@ export class GuaranteesService {
       });
     }
 
-    query
-      .groupBy('guarantee.id')
-      .addGroupBy('client.id')
-      .addGroupBy('address.id')
-      .addGroupBy('vehicle.id')
-      .addGroupBy('physicalPerson.id')
-      .addGroupBy('moralPerson.id')
-      .addGroupBy('paymentOrder.id')
-      .addGroupBy('product.id')
-      .take(limit)
-      .skip(offset);
+    query.take(limit).skip(offset);
 
-    guarantees = await query.getMany();
-    guarantees.map(guarantee => this.omitInfo(guarantee));
-    return guarantees;
+    const guarantees = await query.getMany();
+    return guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity);
   }
 
-  async getGuaranteesSummary(): Promise<GuaranteeSummary> {
-    const summary = await this.guaranteeRepository
+  async getGuaranteesSummary(user: Partial<User>): Promise<GuaranteeSummary> {
+    const query = this.guaranteeRepository
       .createQueryBuilder('guarantee')
       .select('guarantee.status', 'status')
       .addSelect('SUM(guarantee.amount)', 'amount')
-      .groupBy('guarantee.status')
-      .getRawMany();
-    return summary;
+      .groupBy('guarantee.status');
+
+    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+      query.andWhere('(guarantee.companyId = :id)', { id: user.companyId });
+    }
+
+    return query.getRawMany();
   }
 
   async getGuaranteesExcel(filterDto: GetGuaranteesFilterDto, user: Partial<User>, response: Response): Promise<void> {
     const guarantees = await this.getGuarantees(omit(filterDto, ['offset', 'limit']), user);
     const excelColumnConstants: string[] = [
       'Folio',
-      'Placa',
-      'Distribuidor',
+      'Fecha de carga',
+      'Fecha de actualización',
+      'Estatus',
       'Fecha inicio',
       'Fecha fin',
-      'Fecha captura',
       'Importe',
-      'Estatus',
+      'Fecha de factura',
+      'Tipo de persona',
+      'Nombre',
+      'Apellido Paterno',
+      'Apellido Materno',
+      'Fecha de nacimiento',
+      'Razón social',
+      'Fecha de constitución',
+      'Asesor',
+      'RFC',
+      'Teléfono',
+      'Correo',
+      'Código Postal',
+      'País',
+      'Estado',
+      'Ciudad',
+      'Colonia',
+      'Calle',
+      'Número Externo',
+      'Número Interno',
+      'Punto de Venta',
+      'Tipo de Producto',
+      'Marca',
+      'Modelo',
+      'Versión',
+      'Año del vehículo',
+      'HP',
+      'VIN',
+      'Nº de Motor',
+      'Kilometraje inicial',
+      'Fin garantía por kilometraje',
+      'Creación orden de compra',
+      'Actualización orden de compra',
+      'Distribuidor',
     ];
-    const guaranteesData: any[] = guarantees.map(guarantee => {
+    const guaranteesData: string[][] = guarantees.map(guarantee => {
       return [
         transformFolio(guarantee.id),
-        guarantee.vehicle.vin,
-        guarantee.paymentOrder?.distributor || 'N/A',
-        moment(guarantee.startDate).format('DD/MM/YYYY'),
-        moment(guarantee.endDate).format('DD/MM/YYYY'),
-        moment(guarantee.createdAt).format('DD/MM/YYYY'),
-        guarantee.amount || 'N/A',
+        formatDate(guarantee.createdAt),
+        formatDate(guarantee.updatedAt),
         statusLabels[guarantee.status],
-      ];
+        formatDate(guarantee.startDate),
+        formatDate(guarantee.endDate),
+        guarantee.amount,
+        formatDate(guarantee.invoiceDate),
+        guarantee.client?.personType,
+        guarantee.client?.physicalInfo?.name,
+        guarantee.client?.physicalInfo?.lastName,
+        guarantee.client?.physicalInfo?.secondLastName,
+        formatDate(guarantee.client?.physicalInfo?.birthDate),
+        guarantee.client?.moralInfo?.businessName,
+        formatDate(guarantee.client?.moralInfo?.constitutionDate),
+        guarantee.client?.moralInfo?.adviser,
+        guarantee.client?.rfc,
+        guarantee.client?.phone,
+        guarantee.client?.email,
+        guarantee.client?.address?.zipcode,
+        guarantee.client?.address?.country,
+        guarantee.client?.address?.state,
+        guarantee.client?.address?.city,
+        guarantee.client?.address?.suburb,
+        guarantee.client?.address?.street,
+        guarantee.client?.address?.externalNumber,
+        guarantee.client?.address?.internalNumber,
+        guarantee.client?.salesPlace,
+        guarantee.vehicle?.productType,
+        guarantee.vehicle?.brand,
+        guarantee.vehicle?.model,
+        guarantee.vehicle?.version,
+        guarantee.vehicle?.year,
+        guarantee.vehicle?.horsePower,
+        guarantee.vehicle?.vin,
+        guarantee.vehicle?.motorNumber,
+        guarantee.vehicle?.kilometrageStart,
+        guarantee.vehicle?.kilometrageEnd,
+        guarantee.paymentOrder?.createdAt,
+        guarantee.paymentOrder?.updatedAt,
+        guarantee.paymentOrder?.distributor,
+      ].map(field => (field ? String(field) : ''));
     });
     const data = [[...excelColumnConstants], ...guaranteesData];
     const workSheet = XLSX.utils.aoa_to_sheet(data);
@@ -150,14 +230,13 @@ export class GuaranteesService {
 
     const buffer: Buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
     const stream = getReadableStream(buffer);
-    stream.pipe(response as any);
+    stream.pipe(response);
   }
 
   async createGuarantee(createGuaranteeDto: CreateGuaranteeDto, user: Partial<User>): Promise<GuaranteeEntity> {
     createGuaranteeDto = this.omitInfo(createGuaranteeDto);
-    const newGuarantee = await this.guaranteeRepository.create({
+    const newGuarantee = this.guaranteeRepository.create({
       ...createGuaranteeDto,
-      status: GuaranteeStatus.outstanding,
       userId: user.id,
     });
     await newGuarantee.save();
@@ -240,14 +319,13 @@ export class GuaranteesService {
     promisify(fs.unlink)(OUT_FILE);
     await browser.close();
     const stream = getReadableStream(buffer);
-    stream.pipe(response as any);
+    stream.pipe(response);
   }
 
   async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto): Promise<GuaranteeEntity> {
     const guarantee = this.omitInfo(updateGuaranteeDto);
-    const updatedGuarantee = await this.guaranteeRepository.save(guarantee);
-    pickBy(updatedGuarantee, identity);
-    updatedGuarantee.status = GuaranteeStatus[updatedGuarantee.status];
+    const preloadedGuarantee = await this.guaranteeRepository.preload(updateGuaranteeDto);
+    const updatedGuarantee = await this.guaranteeRepository.save({ ...preloadedGuarantee, ...guarantee });
     return updatedGuarantee;
   }
 
@@ -264,11 +342,9 @@ export class GuaranteesService {
   ): GuaranteeEntity | CreateGuaranteeDto | UpdateGuaranteeDto {
     const personType = guarantee.client?.personType;
     if (personType === PersonTypes.physical) {
-      const { moralInfo, ...client } = guarantee.client;
-      guarantee.client = client;
+      guarantee.client = omit(guarantee.client, 'moralInfo') as Client;
     } else if (personType === PersonTypes.moral) {
-      const { physicalInfo, ...client } = guarantee.client;
-      guarantee.client = client;
+      guarantee.client = omit(guarantee.client, 'physicalInfo') as Client;
     }
     return guarantee;
   }

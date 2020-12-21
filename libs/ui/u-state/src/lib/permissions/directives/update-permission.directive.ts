@@ -8,10 +8,10 @@ import { BasePermissionDirective } from './base-permission.directive';
   selector: '[ivtUpdatePermission]',
 })
 export class UpdatePermissionDirective extends BasePermissionDirective {
-  hasPermission$ = this.permissionService.hasUpdatePermission(...this.requiredPermissionTypes);
+  hasPermission$ = this.permissionService.hasUpdatePermission();
 
   constructor(
-    protected templateRef: TemplateRef<any>,
+    protected templateRef: TemplateRef<null>,
     public viewContainer: ViewContainerRef,
     protected permissionService: PermissionService,
     @Inject(REQUIRED_PERMISSIONS)

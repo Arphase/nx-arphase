@@ -7,13 +7,13 @@ import {
   PaymentOrderCollectionService,
   PaymentOrderDataService,
   PermissionService,
-  PermissionTypes,
 } from '@ivt/u-state';
 import { IvtFolioPipe, IvtRowComponent } from '@ivt/u-ui';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
+import { GuaranteeInvoiceNumberDialogContainerComponent } from '../guarantee-invoice-number-dialog-container/guarantee-invoice-number-dialog-container.component';
 import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
 
 @Component({
@@ -25,7 +25,7 @@ import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-co
 export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
-  isEditable$ = this.permissionService.hasUpdatePermission(...[PermissionTypes.Guarantees]);
+  isEditable$ = this.permissionService.hasUpdatePermission();
 
   constructor(
     private guaranteeCollectiionService: GuaranteeCollectionService,
@@ -89,5 +89,9 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe();
+  }
+
+  editInvoiceNumber(data: Guarantee): void {
+    this.dialog.open(GuaranteeInvoiceNumberDialogContainerComponent, { data });
   }
 }

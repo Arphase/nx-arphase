@@ -7,7 +7,7 @@ import { IvtEntityCollection } from '../../entities';
 @Injectable({
   providedIn: 'root',
 })
-export class IvtCollectionService<T = any> extends EntityCollectionServiceBase<T> {
+export class IvtCollectionService<T> extends EntityCollectionServiceBase<T> {
   currentItem$ = this.selectors$.collection$.pipe(map((collection: IvtEntityCollection<T>) => collection.currentItem));
 
   constructor(public entityName: string, protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {

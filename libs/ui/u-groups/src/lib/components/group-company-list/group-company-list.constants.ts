@@ -1,4 +1,3 @@
-import { GuaranteeStatus, Select } from '@ivt/c-data';
 import { IvtColumns } from '@ivt/u-ui';
 
 export const columns: IvtColumns = [
@@ -32,4 +31,3 @@ export const columns: IvtColumns = [
     },
   },
 ];
-

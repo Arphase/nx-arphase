@@ -1,5 +1,6 @@
+import { GetUser, RolesGuard } from '@ivt/a-auth';
 import { GuaranteeEntity } from '@ivt/a-state';
-import { GuaranteeSummary, User, UserRoles } from '@ivt/c-data';
+import { GuaranteeSummary, User } from '@ivt/c-data';
 import {
   Body,
   Controller,
@@ -16,12 +17,13 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { Response } from 'express';
 
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import { GuaranteesService } from '../services/guarantees.service';
-import { Roles, RolesGuard, GetUser } from '@ivt/a-auth';
+
 @Controller('guarantees')
 @UseGuards(AuthGuard(), RolesGuard)
 export class GuaranteesController {
@@ -42,7 +44,7 @@ export class GuaranteesController {
 
   @Get('report/summary')
   async getGuaranteesSummary(@GetUser() user: Partial<User>): Promise<GuaranteeSummary> {
-    return this.guaranteesService.getGuaranteesSummary();
+    return this.guaranteesService.getGuaranteesSummary(user);
   }
 
   @Get('export/excel')
@@ -72,7 +74,7 @@ export class GuaranteesController {
   }
 
   @Delete(':id')
-  deleteGuarantee(@Param('id', ParseIntPipe) id: number): Promise<any> {
+  deleteGuarantee(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return this.guaranteesService.deleteGuarantee(id);
   }
 }

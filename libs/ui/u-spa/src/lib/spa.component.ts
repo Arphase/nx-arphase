@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MenuItem } from '@ivt/c-data';
-import { fromAuth, getAuthUserEmailState, getAuthUserNameState, PermissionService } from '@ivt/u-state';
+import { fromAuth, getAuthUserEmailState, getAuthUserNameState, IvtState, PermissionService } from '@ivt/u-state';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -16,7 +16,7 @@ export class SpaComponent {
   menuItems$ = this.getMenuItems();
   name$ = this.store.pipe(select(getAuthUserNameState));
   email$ = this.store.pipe(select(getAuthUserEmailState));
-  constructor(private store: Store<any>, private permissionService: PermissionService) {}
+  constructor(private store: Store<IvtState>, private permissionService: PermissionService) {}
 
   getMenuItems(): Observable<MenuItem[]> {
     return this.permissionService.hasReadPermission().pipe(

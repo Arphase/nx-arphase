@@ -7,7 +7,7 @@ export function validatePersonTypeRfc(type: RfcValidatorTypes | string, rfc: str
 }
 
 export function IsRfc(property: RfcValidatorTypes, validationOptions?: ValidationOptions) {
-  return function (object: Object, propertyName: string) {
+  return function (object, propertyName: string) {
     registerDecorator({
       name: 'IsRfc',
       target: object.constructor,
@@ -15,7 +15,7 @@ export function IsRfc(property: RfcValidatorTypes, validationOptions?: Validatio
       constraints: [property],
       options: validationOptions,
       validator: {
-        validate(value: any, args: ValidationArguments) {
+        validate(value, args: ValidationArguments) {
           const [relatedPropertyName] = args.constraints;
           return typeof value === 'string' && validatePersonTypeRfc(relatedPropertyName, value);
         },

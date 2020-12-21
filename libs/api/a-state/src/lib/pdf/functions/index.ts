@@ -1,4 +1,4 @@
-import fs, { promises } from 'fs';
+import { promises } from 'fs';
 import { Readable } from 'stream';
 
 export function transformFolio(value: number): unknown {
