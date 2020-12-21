@@ -16,3 +16,5 @@ export const getAuthUserNameState = createSelector(
 export const getAuthUserEmailState = createSelector(getAuthFeatureState, state => state.user?.email);
 
 export const getAuthUserRoleState = createSelector(getAuthFeatureState, state => state.user?.role);
+
+export const getAuthUserCompanyIdState = createSelector(getAuthFeatureState, state => state.user?.companyId);

@@ -23,7 +23,9 @@ import { takeUntil } from 'rxjs/operators';
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnInit, OnChanges {
   @Input() productOptions: Select[] = [];
   @Input() companyOptions: Select[] = [];
+  @Input() restrictedCompanyOptions: Select[] = [];
   @Input() canSelectCompany: boolean;
+  @Input() companyId: number;
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -31,7 +33,9 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     { label: 'Física', value: PersonTypes[PersonTypes.physical] },
     { label: 'Moral', value: PersonTypes[PersonTypes.moral] },
   ];
+  currentCompanyOptions: Select[] = [];
   @Output() getCompanies = new EventEmitter<void>();
+  @Output() getCompany = new EventEmitter<number>();
 
   get client() {
     return this.form.get('client');
@@ -125,7 +129,14 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     }
 
     if (changes.canSelectCompany) {
-      this.getCompanies.emit();
+      this.canSelectCompany ? this.getCompanies.emit() : this.getCompany.emit(this.companyId);
+    }
+
+    if (changes.companyOptions || changes.restrictedCompanyOptions) {
+      this.currentCompanyOptions = this.canSelectCompany ? this.companyOptions : this.restrictedCompanyOptions;
+      if (!this.canSelectCompany && this.restrictedCompanyOptions[0]?.value) {
+        this.form.get('companyId').patchValue(this.restrictedCompanyOptions[0].value);
+      }
     }
   }
 

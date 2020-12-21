@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Guarantee, UserRoles } from '@ivt/c-data';
+import { filterNil } from '@ivt/c-utils';
 import {
   CompanyCollectionService,
+  getAuthUserCompanyIdState,
   getAuthUserRoleState,
   GuaranteeCollectionService,
   IvtState,
@@ -29,7 +31,12 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   companyOptions$ = this.companyCollectionService.options$;
   canSelectCompany$ = this.store.pipe(
     select(getAuthUserRoleState),
-    map(role => role === UserRoles.agencyUser)
+    map(role => role === UserRoles[UserRoles.superAdmin])
+  );
+  companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
+  restrictedCompanyOptions$ = this.companyCollectionService.currentItem$.pipe(
+    filterNil(),
+    map(company => [{ label: company.businessName, value: company.id }])
   );
 
   constructor(
@@ -46,5 +53,9 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
 
   getCompanies(): void {
     this.companyCollectionService.getAll();
+  }
+
+  getCompany(id: number): void {
+    this.companyCollectionService.getByKey(id);
   }
 }

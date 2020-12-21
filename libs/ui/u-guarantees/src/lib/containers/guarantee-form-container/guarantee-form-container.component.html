@@ -4,6 +4,9 @@
                     [productOptions]="productOptions$ | async"
                     [canSelectCompany]="canSelectCompany$ | async"
                     [companyOptions]="companyOptions$ | async"
+                    [companyId]="companyId$ | async"
+                    [restrictedCompanyOptions]="restrictedCompanyOptions$ | async"
                     (getCompanies)="getCompanies()"
+                    (getCompany)="getCompany($event)"
                     (submitForm)="submit($event)">
 </ivt-guarantee-form>

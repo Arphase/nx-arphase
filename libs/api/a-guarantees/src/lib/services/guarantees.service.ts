@@ -74,7 +74,7 @@ export class GuaranteesService {
       .orderBy('guarantee.createdAt', sortDirection.desc);
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-      query.andWhere('(guarantee.companyId = :id)', { id: user.company });
+      query.andWhere('(guarantee.companyId = :id)', { id: user.companyId });
     }
 
     if (sort && direction) {
@@ -99,7 +99,6 @@ export class GuaranteesService {
           { text: `%${text.toLowerCase()}%`, number: text }
         );
       } else {
-        console.log('here');
         query.andWhere(
           `LOWER(vehicle.motorNumber) like :text OR
            LOWER(CONCAT(physicalPerson.name, ' ', physicalPerson.lastName, ' ', physicalPerson.secondLastName)) like :text`,
@@ -128,7 +127,7 @@ export class GuaranteesService {
       .groupBy('guarantee.status');
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-      query.andWhere('(guarantee.companyId = :id)', { id: user.company });
+      query.andWhere('(guarantee.companyId = :id)', { id: user.companyId });
     }
 
     return query.getRawMany();

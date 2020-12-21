@@ -36,8 +36,9 @@
         <div class="col-6">
           <mat-form-field>
             <mat-label>Compañía</mat-label>
-            <mat-select formControlName="companyId">
-              <mat-option *ngFor="let option of companyOptions"
+            <mat-select formControlName="companyId"
+                        [disabled]="!canSelectCompany">
+              <mat-option *ngFor="let option of currentCompanyOptions"
                           [value]="option.value">
                 {{ option.label }}
               </mat-option>
