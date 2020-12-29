@@ -2,11 +2,6 @@ import { IMAGE_ASSETS_PATH, transformFolio } from '@ivt/a-state';
 import { Guarantee } from '@ivt/c-data';
 import moment from 'moment';
 
-export const dir = {
-  asc: 'ASC',
-  desc: 'DESC',
-};
-
 export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
   return `
   <html>
@@ -49,7 +44,7 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
         </style>
     <head>
     <body>
-    <div><img class="logo" src="${IMAGE_ASSETS_PATH}logo.png"></div>
+    <div><img class="logo" src="${IMAGE_ASSETS_PATH}/logo.png"></div>
         <p class="center bold">¡MUCHAS FELICIDADES!</p>
         <p>Le damos la más cordial bienvenida Innovatech. Este programa ha sido diseñado pensando en brindarles protección contra desembolsos excesivos e
         imprevistos en caso de que su vehículo presente alguna avería mecánica de manera fortuita en sistemas eléctricos mecánicos o electrónicos</p>
@@ -62,7 +57,7 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
         <p><span class="bold">DIRECCIÓN:</span> ${guarantee.client.address.street} ${
     guarantee.client.address.externalNumber
   }, ${guarantee.client.address.suburb}. ${guarantee.client.address.city}, ${guarantee.client.address.state}. ${
-    guarantee.client.address.zipCode
+    guarantee.client.address.zipcode
   } </p>
         <p><span class="bold">TELEFONO:</span> ${guarantee.client.phone}</p>
         <p><span class="bold">EMAIL:</span> ${guarantee.client.email}</p>

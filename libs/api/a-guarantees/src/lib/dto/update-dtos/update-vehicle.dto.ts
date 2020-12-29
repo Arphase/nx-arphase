@@ -1,6 +1,7 @@
-import { IsInt, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateVehicleDto {
+  @IsNotEmpty()
   @IsInt()
   id: number;
 

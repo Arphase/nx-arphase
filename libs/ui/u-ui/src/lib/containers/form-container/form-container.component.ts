@@ -13,7 +13,7 @@ import { IvtSubscriberComponent } from '../../components';
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtFormContainerComponent<T = any> extends IvtSubscriberComponent {
+export class IvtFormContainerComponent<T> extends IvtSubscriberComponent {
   loading$ = this.entityCollectionService.loading$;
   currentItem$ = this.entityCollectionService.currentItem$;
   showSuccess$ = this.entityCollectionService.entityActions$.pipe(
@@ -32,10 +32,7 @@ export class IvtFormContainerComponent<T = any> extends IvtSubscriberComponent {
     super();
     this.entityCollectionService.entityActions$
       .pipe(
-        ofEntityOp(
-          EntityOp.SAVE_ADD_ONE_SUCCESS,
-          EntityOp.SAVE_UPDATE_ONE_SUCCESS
-        ),
+        ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS, EntityOp.SAVE_UPDATE_ONE_SUCCESS),
         filter(() => !!this.successUrl && !!this.router),
         takeUntil(this.destroy$)
       )

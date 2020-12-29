@@ -1,8 +1,17 @@
-import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Guarantee, PersonTypes, Select } from '@ivt/c-data';
-import { CustomValidators, filterNil } from '@ivt/c-utils';
-import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
+import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
+import { createAddressForm, IvtFormComponent, IvtValidators } from '@ivt/u-ui';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -12,6 +21,11 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnInit, OnChanges {
+  @Input() productOptions: Select[] = [];
+  @Input() companyOptions: Select[] = [];
+  @Input() restrictedCompanyOptions: Select[] = [];
+  @Input() canSelectCompany: boolean;
+  @Input() companyId: number;
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -19,10 +33,9 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     { label: 'Física', value: PersonTypes[PersonTypes.physical] },
     { label: 'Moral', value: PersonTypes[PersonTypes.moral] },
   ];
-
-  get values() {
-    return this.form.getRawValue();
-  }
+  currentCompanyOptions: Select[] = [];
+  @Output() getCompanies = new EventEmitter<void>();
+  @Output() getCompany = new EventEmitter<number>();
 
   get client() {
     return this.form.get('client');
@@ -46,8 +59,13 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
 
   constructor(private fb: FormBuilder) {
     super();
+    const todayYear = new Date().getFullYear();
     this.form = this.fb.group({
       id: null,
+      productId: null,
+      startDate: [null, Validators.required],
+      endDate: [null, Validators.required],
+      companyId: [null, Validators.required],
       client: this.fb.group({
         id: null,
         personType: [PersonTypes[PersonTypes.physical], Validators.required],
@@ -64,7 +82,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
           constitutionDate: [null, Validators.required],
           adviser: [null, Validators.required],
         }),
-        rfc: [null, [Validators.required, CustomValidators.rfc('any')]],
+        rfc: [null, [Validators.required, IvtValidators.rfc(RfcValidatorTypes.any)]],
         phone: [null, Validators.required],
         email: [null, [Validators.required, Validators.email]],
         address: createAddressForm(),
@@ -76,21 +94,18 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         brand: [null, Validators.required],
         model: [null, Validators.required],
         version: [null, Validators.required],
-        year: [null, [Validators.required]],
+        year: [null, [Validators.required, Validators.min(todayYear - 20), Validators.max(todayYear)]],
         vin: [null, Validators.required],
         motorNumber: [null, Validators.required],
         horsePower: [null, [Validators.required, Validators.max(400)]],
         kilometrageStart: [null, Validators.required],
         kilometrageEnd: [null, Validators.required],
       }),
-      startDate: [null, Validators.required],
-      endDate: [null, Validators.required],
     });
   }
 
   ngOnInit() {
     this.moralInfoForm.disable();
-
     this.client
       .get('personType')
       .valueChanges.pipe(filterNil(), takeUntil(this.destroy$))
@@ -109,8 +124,19 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       });
     }
 
-    if (changes.isEditable) {
+    if (changes.isEditable && this.item) {
       this.isEditable ? this.form.enable() : this.form.disable();
+    }
+
+    if (changes.canSelectCompany) {
+      this.canSelectCompany ? this.getCompanies.emit() : this.getCompany.emit(this.companyId);
+    }
+
+    if (changes.companyOptions || changes.restrictedCompanyOptions) {
+      this.currentCompanyOptions = this.canSelectCompany ? this.companyOptions : this.restrictedCompanyOptions;
+      if (!this.canSelectCompany && this.restrictedCompanyOptions[0]?.value) {
+        this.form.get('companyId').patchValue(this.restrictedCompanyOptions[0].value);
+      }
     }
   }
 
@@ -121,6 +147,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     if (this.showPhysicalForm) {
       this.moralInfoForm.disable();
       this.physicalInfoForm.enable();
+      this.physicalInfoForm.updateValueAndValidity();
     } else {
       this.moralInfoForm.enable();
       this.physicalInfoForm.disable();

@@ -11,6 +11,7 @@ export * from './list';
 export * from './navbar';
 export * from './row';
 export * from './searchbar';
+export * from './status-message';
 export * from './subscriber';
 export * from './table';
 export * from './text-truncate-tooltip';

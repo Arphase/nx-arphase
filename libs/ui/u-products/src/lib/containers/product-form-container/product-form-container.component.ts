@@ -1,0 +1,25 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Product } from '@ivt/c-data';
+import { ProductCollectionService } from '@ivt/u-state';
+import { IvtFormContainerComponent } from '@ivt/u-ui';
+import { ToastrService } from 'ngx-toastr';
+
+@Component({
+  selector: 'ivt-product-form-container',
+  templateUrl: './product-form-container.component.html',
+  styleUrls: ['./product-form-container.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ProductFormContainerComponent extends IvtFormContainerComponent<Product> {
+  successUrl = '/spa/products';
+  createSuccessMessage = 'El producto se ha creado con éxito';
+
+  constructor(
+    protected productCollectionService: ProductCollectionService,
+    protected router: Router,
+    protected toastr: ToastrService
+  ) {
+    super(productCollectionService, router, toastr);
+  }
+}

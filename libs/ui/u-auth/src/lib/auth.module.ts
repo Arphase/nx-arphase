@@ -4,7 +4,12 @@ import { IvtUiModule } from '@ivt/u-ui';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
+import { ExpiredTokenComponent } from './components/expired-token/expired-token.component';
+import { ResetPasswordFormComponent } from './components/reset-password-form/reset-password-form.component';
+import { SetPasswordFormComponent } from './components/set-password-form/set-password-form.component';
 import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
+import { ResetPasswordFormContainerComponent } from './containers/reset-password-form-container/reset-password-form-container.component';
+import { SetPasswordFormContainerComponent } from './containers/set-password-form-container/set-password-form-container.component';
 import { SignInFormContainerComponent } from './containers/sign-in-form-container/sign-in-form-container.component';
 
 @NgModule({
@@ -13,6 +18,11 @@ import { SignInFormContainerComponent } from './containers/sign-in-form-containe
     AuthComponent,
     SignInFormContainerComponent,
     SignInFormComponent,
+    SetPasswordFormContainerComponent,
+    SetPasswordFormComponent,
+    ExpiredTokenComponent,
+    ResetPasswordFormContainerComponent,
+    ResetPasswordFormComponent,
   ],
 })
 export class AuthModule {}

@@ -9,9 +9,9 @@ import { IvtSubscriberComponent } from '../subscriber';
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtFormComponent<T = any> extends IvtSubscriberComponent {
+export class IvtFormComponent<T> extends IvtSubscriberComponent {
   @Input() form: FormGroup;
-  @Input() item: Partial<T>;
+  @Input() item: T;
   @Input() loading: boolean;
   @Input() isEditable = true;
   @Output() submitForm = new EventEmitter<T>();

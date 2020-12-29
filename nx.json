@@ -17,62 +17,128 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
       }
     }
   },
   "projects": {
     "innovatech-ui": {
-      "tags": ["front"]
+      "tags": [
+        "front"
+      ]
     },
     "innovatech-ui-e2e": {
-      "tags": ["test"],
-      "implicitDependencies": ["innovatech-ui"]
+      "tags": [
+        "test"
+      ],
+      "implicitDependencies": [
+        "innovatech-ui"
+      ]
     },
     "innovatech-api": {
-      "tags": ["back"]
-    },
-    "c-data": {
-      "tags": ["common"]
-    },
-    "c-utils": {
-      "tags": ["common"]
-    },
-    "u-auth": {
-      "tags": ["front"]
-    },
-    "u-dashboard": {
-      "tags": ["front"]
-    },
-    "u-guarantees": {
-      "tags": ["front"]
-    },
-    "u-spa": {
-      "tags": ["front"]
-    },
-    "u-state": {
-      "tags": ["front"]
-    },
-    "u-ui": {
-      "tags": ["front"]
+      "tags": [
+        "back"
+      ]
     },
     "a-auth": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
+    },
+    "a-companies": {
+      "tags": [
+        "back"
+      ]
+    },
+    "a-groups": {
+      "tags": [
+        "back"
+      ]
     },
     "a-guarantees": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "a-localities": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "a-payment-orders": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
-    "a-users": {
-      "tags": ["back"]
+    "a-products": {
+      "tags": [
+        "back"
+      ]
     },
     "a-state": {
-      "tags": []
+      "tags": [
+        "back"
+      ]
+    },
+    "a-users": {
+      "tags": [
+        "back"
+      ]
+    },
+    "c-utils": {
+      "tags": [
+        "common"
+      ]
+    },
+    "c-data": {
+      "tags": [
+        "common"
+      ]
+    },
+    "u-auth": {
+      "tags": [
+        "front"
+      ]
+    },
+    "u-dashboard": {
+      "tags": [
+        "front"
+      ]
+    },
+    "u-guarantees": {
+      "tags": [
+        "front"
+      ]
+    },
+    "u-spa": {
+      "tags": [
+        "front"
+      ]
+    },
+    "u-state": {
+      "tags": [
+        "front"
+      ]
+    },
+    "u-ui": {
+      "tags": [
+        "front"
+      ]
+    },
+    "u-groups": {
+      "tags": [
+        "front"
+      ]
+    },
+    "u-products": {
+      "tags": [
+        "front"
+      ]
     }
   }
 }

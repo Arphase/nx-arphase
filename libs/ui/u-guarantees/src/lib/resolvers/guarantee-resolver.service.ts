@@ -1,21 +1,26 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { Guarantee } from '@ivt/c-data';
-import { GuaranteeCollectionService } from '@ivt/u-state';
-import { Observable, of } from 'rxjs';
+import { Guarantee, Product } from '@ivt/c-data';
+import { GuaranteeCollectionService, ProductCollectionService } from '@ivt/u-state';
+import { forkJoin, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GuaranteeResolverService implements Resolve<Guarantee> {
-  constructor(private guaranteeCollectionService: GuaranteeCollectionService) { }
+export class GuaranteeResolverService implements Resolve<[Guarantee, Product[]]> {
+  constructor(
+    private guaranteeCollectionService: GuaranteeCollectionService,
+    private productCollectionService: ProductCollectionService
+  ) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<Guarantee> {
+  resolve(route: ActivatedRouteSnapshot): Observable<[Guarantee, Product[]]> {
     const id = route.paramMap.get('id');
-    let guarantee$ = of(null);
+    let guarantee$: Observable<Guarantee> = of(null);
     id
-      ? (guarantee$ = this.guaranteeCollectionService.getByKey(+id))
+      ? (guarantee$ = this.guaranteeCollectionService.getByKey(Number(id)))
       : this.guaranteeCollectionService.removeOneFromCache(null);
-    return guarantee$;
+    const products$ = this.productCollectionService.getAll();
+
+    return forkJoin([guarantee$, products$]);
   }
 }

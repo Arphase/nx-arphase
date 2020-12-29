@@ -1,0 +1,22 @@
+<ivt-row>
+  <div class="col">
+    {{ item.businessName }}
+  </div>
+  <div class="col">
+    {{ item.contact }}
+  </div>
+  <div class="col">
+    {{ item.email }}
+  </div>
+  <div class="col">
+    {{ item.rfc }}
+  </div>
+  <div class="col-auto">
+    <button mat-icon-button
+            type="button"
+            matTooltip="Editar compañía"
+            (click)="edit.emit(item)">
+      <mat-icon>border_color</mat-icon>
+    </button>
+  </div>
+</ivt-row>

@@ -32,12 +32,12 @@ export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> {
     )
   );
   @Output() downloadPdf = new EventEmitter<number>();
-  @Output() changeStatus = new EventEmitter<Partial<Guarantee>>();
   @Output() downloadPaymentOrder = new EventEmitter<number>();
   @Output() createPaymentOrder = new EventEmitter<number>();
   @Output() updatePaymentOrder = new EventEmitter<number>();
+  @Output() editInvoiceNumber = new EventEmitter<Guarantee>();
 
   onChangeStatus(id: number, status: GuaranteeStatus): void {
-    this.changeStatus.emit({ id, status: GuaranteeStatus[status] });
+    this.edit.emit({ id, status: GuaranteeStatus[status] });
   }
 }

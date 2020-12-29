@@ -1,21 +1,9 @@
 import { Platform } from '@angular/cdk/platform';
 import { AutofillMonitor } from '@angular/cdk/text-field';
-import {
-  Directive,
-  ElementRef,
-  Inject,
-  NgZone,
-  Optional,
-  Renderer2,
-  Self,
-} from '@angular/core';
+import { Directive, ElementRef, Inject, NgZone, Optional, Renderer2, Self } from '@angular/core';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import {
-  MAT_FORM_FIELD,
-  MatFormField,
-  MatFormFieldControl,
-} from '@angular/material/form-field';
+import { MAT_FORM_FIELD, MatFormField, MatFormFieldControl } from '@angular/material/form-field';
 import { MAT_INPUT_VALUE_ACCESSOR, MatInput } from '@angular/material/input';
 
 @Directive({
@@ -24,9 +12,7 @@ import { MAT_INPUT_VALUE_ACCESSOR, MatInput } from '@angular/material/input';
 })
 export class IvtInputDirective extends MatInput {
   constructor(
-    protected _elementRef: ElementRef<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
+    protected _elementRef: ElementRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
     protected _platform: Platform,
     @Optional() @Self() public ngControl: NgControl,
     @Optional() _parentForm: NgForm,
@@ -35,7 +21,7 @@ export class IvtInputDirective extends MatInput {
     @Optional()
     @Self()
     @Inject(MAT_INPUT_VALUE_ACCESSOR)
-    inputValueAccessor: any,
+    inputValueAccessor,
     _autofillMonitor: AutofillMonitor,
     ngZone: NgZone,
     private renderer: Renderer2,

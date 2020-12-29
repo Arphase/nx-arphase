@@ -1,14 +1,13 @@
 import { HttpParams } from '@angular/common/http';
-import { DEFAULT_LIMIT_SIZE, IvtQueryParams, SortEvent } from '@ivt/c-data';
+import { DEFAULT_LIMIT_SIZE, SortEvent } from '@ivt/c-data';
 import { omit } from 'lodash';
 import moment from 'moment';
 
-export function buildQueryParams(queryParams: IvtQueryParams): HttpParams {
-  // Default params
-  let params = {
+export function buildQueryParams(queryParams): HttpParams {
+  let params: Record<string, string | string[]> = {
     offset: '0',
-    limit: DEFAULT_LIMIT_SIZE,
-  } as any;
+    limit: String(DEFAULT_LIMIT_SIZE),
+  };
 
   if (queryParams == null) {
     return new HttpParams({ fromObject: params });
@@ -24,14 +23,10 @@ export function buildQueryParams(queryParams: IvtQueryParams): HttpParams {
   }
 
   Object.keys(queryParams)
-    .filter((key) => queryParams[key] != null && queryParams[key] !== '')
-    .forEach((key) => (params[key] = queryParams[key]));
+    .filter(key => queryParams[key] != null && queryParams[key] !== '')
+    .forEach(key => (params[key] = queryParams[key]));
 
-  if (
-    queryParams.dates &&
-    queryParams.dates.startDate &&
-    queryParams.dates.endDate
-  ) {
+  if (queryParams.dates && queryParams.dates.startDate && queryParams.dates.endDate) {
     params.startDate = parseDate(queryParams.dates.startDate);
     params.endDate = parseDate(queryParams.dates.endDate);
 

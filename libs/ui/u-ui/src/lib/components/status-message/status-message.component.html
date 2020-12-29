@@ -1,0 +1,11 @@
+<span class="flex-start"
+      [ngClass]="{
+  'text-success': success,
+  'text-danger': error,
+  'text-warning': warning
+}">
+  <mat-icon *ngIf="error">cancel</mat-icon>
+  <mat-icon *ngIf="success">check_circle</mat-icon>
+  <mat-icon *ngIf="normal">stop_circle</mat-icon>
+  <ng-content></ng-content>
+</span>

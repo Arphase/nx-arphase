@@ -1,4 +1,4 @@
-import { Client, Guarantee, GuaranteeStatus, PaymentOrder, Vehicle } from '@ivt/c-data';
+import { Client, Company, Guarantee, GuaranteeStatus, PaymentOrder, Product, User, Vehicle } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
@@ -8,9 +8,13 @@ import {
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
-import { PaymentOrderEntity } from '../../payment-orders';
+import { CompanyEntity } from '../../companies/company.entity';
+import { PaymentOrderEntity } from '../../payment-orders/payment-order.entity';
+import { ProductEntity } from '../../products/product.entity';
+import { UserEntity } from '../../users/user.entity';
 import { ClientEntity } from './client.entity';
 import { VehicleEntity } from './vechicle.entity';
 
@@ -19,7 +23,7 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(type => ClientEntity, {
+  @OneToOne(() => ClientEntity, {
     cascade: true,
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
@@ -27,7 +31,7 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @JoinColumn({ name: 'clientId' })
   client: Client;
 
-  @OneToOne(type => VehicleEntity, {
+  @OneToOne(() => VehicleEntity, {
     cascade: true,
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
@@ -38,6 +42,9 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @CreateDateColumn()
   createdAt: Date;
 
+  @UpdateDateColumn()
+  updatedAt: Date;
+
   @Column({
     type: 'enum',
     enum: GuaranteeStatus,
@@ -45,6 +52,7 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
       to: value => value,
       from: value => GuaranteeStatus[value],
     },
+    default: GuaranteeStatus.outstanding,
   })
   status: GuaranteeStatus | string;
 
@@ -57,18 +65,37 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @Column({ nullable: true })
   amount: number;
 
-  @ManyToOne(type => PaymentOrderEntity, paymentOrder => paymentOrder.guarantees)
+  @ManyToOne(() => PaymentOrderEntity, paymentOrder => paymentOrder.guarantees)
   @JoinColumn({ name: 'paymentOrderId' })
   paymentOrder: PaymentOrder;
 
   @Column({ nullable: true })
   paymentOrderId: number;
 
+  @ManyToOne(() => ProductEntity, product => product.guarantees)
+  @JoinColumn({ name: 'productId' })
+  product: Product;
+
+  @Column({ nullable: true })
+  productId: number;
+
   @Column({ nullable: true, type: 'timestamp' })
   invoiceDate: Date;
 
-  constructor(partial: Partial<GuaranteeEntity>) {
-    super();
-    Object.assign(this, partial);
-  }
+  @Column({ nullable: true })
+  invoiceNumber: string;
+
+  @ManyToOne(() => CompanyEntity, company => company.guarantees)
+  @JoinColumn({ name: 'companyId' })
+  company: Company;
+
+  @Column({ nullable: true })
+  companyId: number;
+
+  @ManyToOne(() => UserEntity, user => user.guarantees)
+  @JoinColumn({ name: 'userId' })
+  user: User;
+
+  @Column({ nullable: true })
+  userId: number;
 }

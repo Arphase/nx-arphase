@@ -13,6 +13,7 @@ export const initialState: AuthState = {
     email: localStorage.getItem('email'),
     role: localStorage.getItem('role'),
     token: localStorage.getItem('token'),
+    companyId: Number(localStorage.getItem('companyId')),
   },
 };
 

@@ -26,14 +26,14 @@ export class IvtAddressFormComponent extends IvtFormComponent<Address> implement
   }
 
   ngOnInit(): void {
-    const zipCodeControl = this.form.get('zipCode');
+    const zipCodeControl = this.form.get('zipcode');
 
     zipCodeControl.valueChanges
       .pipe(
         startWith(zipCodeControl.value),
         filter(value => value && String(value).length === 5),
         takeUntil(this.destroy$),
-        switchMap(zipCode => this.addressFormService.getLocalities(zipCode))
+        switchMap(zipcode => this.addressFormService.getLocalities(zipcode))
       )
       .subscribe(zipCodeResponse => {
         const {
@@ -48,9 +48,6 @@ export class IvtAddressFormComponent extends IvtFormComponent<Address> implement
         this.stateOptions = stateOptions;
         this.cityOptions = cityOptions;
         this.suburbOptions = suburbOptions;
-        if (!this.suburbOptions.includes(this.form.get('suburb').value)) {
-          this.form.get('suburb').patchValue(null);
-        }
         this.cdr.detectChanges();
       });
   }

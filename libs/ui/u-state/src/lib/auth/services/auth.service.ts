@@ -1,14 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { SignInRequest, User } from '@ivt/c-data';
+import { ResetPassword, SetPasswordPayload, SignInRequest, User } from '@ivt/c-data';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import {
-  IVT_STATE_CONFIGURATION,
-  IvtStateConfiguration,
-} from '../../state-config';
+import { IvtState } from '../../state';
+import { IVT_UI_STATE_CONFIGURATION, IvtUiStateConfiguration } from '../../ui-state-config';
 import { getAuthUserStateState } from '../state/auth.selectors';
 
 @Injectable({
@@ -16,9 +14,9 @@ import { getAuthUserStateState } from '../state/auth.selectors';
 })
 export class AuthService {
   constructor(
-    private store: Store<any>,
+    private store: Store<IvtState>,
     private http: HttpClient,
-    @Inject(IVT_STATE_CONFIGURATION) public config: IvtStateConfiguration
+    @Inject(IVT_UI_STATE_CONFIGURATION) public config: IvtUiStateConfiguration
   ) {}
 
   signIn(payload: SignInRequest): Observable<User> {
@@ -28,11 +26,23 @@ export class AuthService {
   isAuthenticated(): Observable<boolean> {
     return this.store.pipe(
       select(getAuthUserStateState),
-      map((user) => !!user.token)
+      map(user => !!user?.token)
     );
   }
 
   getToken(): string {
     return localStorage.getItem('token') || '';
+  }
+
+  setPassword(payload: SetPasswordPayload): Observable<User> {
+    return this.http.post<User>(`${this.config.apiUrl}/auth/setPassword`, payload);
+  }
+
+  validateToken(payload: Partial<SetPasswordPayload>): Observable<ResetPassword> {
+    return this.http.get<ResetPassword>(`${this.config.apiUrl}/auth/validateToken/${payload.passwordToken}`);
+  }
+
+  sendPasswordEmail(payload: Partial<User>): Observable<void> {
+    return this.http.post<void>(`${this.config.apiUrl}/auth/emailPassword`, payload);
   }
 }

@@ -1,14 +1,5 @@
-import { Client, PhysicalPerson } from '@ivt/c-data';
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-
-import { ClientEntity } from './client.entity';
+import { PhysicalPerson } from '@ivt/c-data';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('physicalPersons')
 export class PhysicalPersonEntity extends BaseEntity implements PhysicalPerson {

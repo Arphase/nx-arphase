@@ -1,0 +1,18 @@
+import { Address } from '../../address/model/address.model';
+import { Group } from '../../groups/models/group.model';
+import { Guarantee } from '../../guarantees';
+import { User } from '../../users/models/user.model';
+
+export interface Company {
+  id?: number;
+  tempId?: number;
+  businessName: string;
+  rfc: string;
+  contact: string;
+  email: string;
+  phone: string;
+  address: Address;
+  group: Group;
+  users: User[];
+  guarantees: Guarantee[];
+}

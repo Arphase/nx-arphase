@@ -2,7 +2,7 @@
       (ngSubmit)="submit()">
   <div class="row">
     <div class="col">
-      <ivt-go-back-title title="Nueva Garantía"></ivt-go-back-title>
+      <ivt-go-back-title [title]="item?.id ? 'Editar Garantía' : 'Nueva Garantía'"></ivt-go-back-title>
     </div>
   </div>
   <div class="pt-3">
@@ -31,6 +31,36 @@
           </ivt-form-field>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field>
+            <mat-label>Compañía</mat-label>
+            <mat-select formControlName="companyId"
+                        [disabled]="!canSelectCompany">
+              <mat-option *ngFor="let option of currentCompanyOptions"
+                          [value]="option.value">
+                {{ option.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- TODO: Uncomment when products is ready
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Producto</mat-label>
+            <mat-select formControlName="productId">
+              <mat-option *ngFor="let option of productOptions"
+                          [value]="option.value">
+                {{ option.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div> -->
     </ivt-expansion-panel>
 
     <ivt-expansion-panel class="primary-panel mb-3 d-block"
@@ -57,80 +87,79 @@
             </ivt-form-field>
           </div>
         </div>
-        <ng-container *ngIf="showPhysicalForm">
-          <form [formGroup]="physicalInfoForm">
-            <div class="row">
-              <div class="col-lg-6 col-12">
-                <ivt-form-field label="Nombre(s)">
-                  <input ivtInput
-                         ivtUppercase
-                         formControlName="name">
-                </ivt-form-field>
-              </div>
-              <div class="col-lg-6 col-12">
-                <ivt-form-field label="Apellido Paterno">
-                  <input ivtInput
-                         ivtUppercase
-                         formControlName="lastName">
-                </ivt-form-field>
-              </div>
-            </div>
 
-            <div class="row">
-              <div class="col-lg-6 col-12">
-                <ivt-form-field label="Apellido Materno">
-                  <input ivtInput
-                         ivtUppercase
-                         formControlName="secondLastName">
-                </ivt-form-field>
-              </div>
-              <div class="col-lg-6 col-12">
-                <ivt-form-field label="Fecha de nacimiento">
-                  <input ivtInput
-                         [matDatepicker]="picker"
-                         formControlName="birthDate">
-                  <mat-datepicker-toggle matSuffix
-                                         [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </ivt-form-field>
-              </div>
+        <form [hidden]="!showPhysicalForm"
+              [formGroup]="physicalInfoForm">
+          <div class="row">
+            <div class="col-lg-6 col-12">
+              <ivt-form-field label="Nombre(s)">
+                <input ivtInput
+                       ivtUppercase
+                       formControlName="name">
+              </ivt-form-field>
             </div>
-          </form>
-        </ng-container>
+            <div class="col-lg-6 col-12">
+              <ivt-form-field label="Apellido Paterno">
+                <input ivtInput
+                       ivtUppercase
+                       formControlName="lastName">
+              </ivt-form-field>
+            </div>
+          </div>
 
-        <ng-container *ngIf="showMoralForm">
-          <form [formGroup]="moralInfoForm">
-            <div class="row">
-              <div class="col-lg-6 col-12">
-                <ivt-form-field label="Razón Social">
-                  <input ivtInput
-                         ivtUppercase
-                         formControlName="businessName">
-                </ivt-form-field>
-              </div>
-              <div class="col-lg-6 col-12">
-                <ivt-form-field label="Fecha de constitución">
-                  <input ivtInput
-                         [matDatepicker]="picker"
-                         formControlName="constitutionDate">
-                  <mat-datepicker-toggle matSuffix
-                                         [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </ivt-form-field>
-              </div>
+          <div class="row">
+            <div class="col-lg-6 col-12">
+              <ivt-form-field label="Apellido Materno">
+                <input ivtInput
+                       ivtUppercase
+                       formControlName="secondLastName">
+              </ivt-form-field>
             </div>
+            <div class="col-lg-6 col-12">
+              <ivt-form-field label="Fecha de nacimiento">
+                <input ivtInput
+                       [matDatepicker]="birthDatePicker"
+                       formControlName="birthDate">
+                <mat-datepicker-toggle matSuffix
+                                       [for]="birthDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #birthDatePicker></mat-datepicker>
+              </ivt-form-field>
+            </div>
+          </div>
+        </form>
 
-            <div class="row">
-              <div class="col-lg-6 col-12">
-                <ivt-form-field label="Asesor">
-                  <input ivtInput
-                         ivtUppercase
-                         formControlName="adviser">
-                </ivt-form-field>
-              </div>
+        <form [hidden]="!showMoralForm"
+              [formGroup]="moralInfoForm">
+          <div class="row">
+            <div class="col-lg-6 col-12">
+              <ivt-form-field label="Razón Social">
+                <input ivtInput
+                       ivtUppercase
+                       formControlName="businessName">
+              </ivt-form-field>
             </div>
-          </form>
-        </ng-container>
+            <div class="col-lg-6 col-12">
+              <ivt-form-field label="Fecha de constitución">
+                <input ivtInput
+                       [matDatepicker]="constitutionDatePicker"
+                       formControlName="constitutionDate">
+                <mat-datepicker-toggle matSuffix
+                                       [for]="constitutionDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #constitutionDatePicker></mat-datepicker>
+              </ivt-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6 col-12">
+              <ivt-form-field label="Asesor">
+                <input ivtInput
+                       ivtUppercase
+                       formControlName="adviser">
+              </ivt-form-field>
+            </div>
+          </div>
+        </form>
 
         <div class="row">
           <div class="col-lg-4 col-12">
@@ -143,6 +172,8 @@
           <div class="col-lg-4 col-12">
             <ivt-form-field label="Teléfono">
               <input ivtInput
+                     type="tel"
+                     mask="(00) 0000 0000"
                      formControlName="phone">
             </ivt-form-field>
           </div>
@@ -264,7 +295,7 @@
               type="submit"
               color="primary"
               [loading]="loading"
-              [disabled]="!isEditable">
+              [disabled]="!isEditable && this.item">
         Guardar
       </button>
     </div>

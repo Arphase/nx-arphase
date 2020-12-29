@@ -2,8 +2,11 @@ import { IsNumberString, IsOptional, IsString } from 'class-validator';
 
 export class UpdateAddressDto {
   @IsOptional()
+  id: number;
+
+  @IsOptional()
   @IsNumberString()
-  zipCode: string;
+  zipcode: string;
 
   @IsOptional()
   @IsString()

@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject } from '@angular/core';
-import { IvtQueryParams } from '@ivt/c-data';
 import { saveFile } from '@ivt/c-utils';
 import { DefaultDataService, HttpUrlGenerator, QueryParams } from '@ngrx/data';
 import moment from 'moment';
@@ -8,9 +7,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 
 import { buildQueryParams } from '../../entities/build-query-params';
-import { IVT_STATE_CONFIGURATION, IvtStateConfiguration } from '../../state-config';
+import { IVT_UI_STATE_CONFIGURATION, IvtUiStateConfiguration } from '../../ui-state-config';
 
-export class IvtDataService<T = any> extends DefaultDataService<T> {
+export class IvtDataService<T> extends DefaultDataService<T> {
   private loadingExcelSubject = new BehaviorSubject<boolean>(false);
   loadingExcel$ = this.loadingExcelSubject.asObservable();
 
@@ -18,16 +17,16 @@ export class IvtDataService<T = any> extends DefaultDataService<T> {
     protected entityName: string,
     protected http: HttpClient,
     protected httpUrlGenerator: HttpUrlGenerator,
-    @Inject(IVT_STATE_CONFIGURATION) public config: IvtStateConfiguration
+    @Inject(IVT_UI_STATE_CONFIGURATION) public config: IvtUiStateConfiguration
   ) {
     super(entityName, http, httpUrlGenerator);
   }
 
-  getWithQuery(queryParams: string | QueryParams): Observable<T[]> {
-    return super.getWithQuery(buildQueryParams(queryParams as any).toString());
+  getWithQuery(queryParams: QueryParams): Observable<T[]> {
+    return super.getWithQuery(buildQueryParams(queryParams).toString());
   }
 
-  exportExcel(payload: { params: IvtQueryParams; fileName: string; url: string }): Observable<Blob> {
+  exportExcel(payload: { params: HttpParams; fileName: string; url: string }): Observable<Blob> {
     const { url, params, fileName } = payload;
     this.loadingExcelSubject.next(true);
     return this.http

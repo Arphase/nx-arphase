@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { IvtDataService } from '../../core';
-import { IVT_STATE_CONFIGURATION, IvtStateConfiguration } from '../../state-config';
+import { IVT_UI_STATE_CONFIGURATION, IvtUiStateConfiguration } from '../../ui-state-config';
 
 @Injectable({
   providedIn: 'root',
@@ -16,14 +16,14 @@ export class GuaranteeDataService extends IvtDataService<Guarantee> {
   constructor(
     protected http: HttpClient,
     protected httpUrlGenerator: HttpUrlGenerator,
-    @Inject(IVT_STATE_CONFIGURATION) public config: IvtStateConfiguration
+    @Inject(IVT_UI_STATE_CONFIGURATION) public config: IvtUiStateConfiguration
   ) {
     super('Guarantee', http, httpUrlGenerator, config);
     this.entityUrl = `${this.config.apiUrl}/guarantees/`;
     this.entitiesUrl = `${this.config.apiUrl}/guarantees`;
   }
 
-  getGuaranteePdf(id: number): Observable<any> {
+  getGuaranteePdf(id: number): Observable<Blob> {
     return this.http
       .get(`${this.config.apiUrl}/guarantees/export/pdf/${id}`, {
         responseType: 'blob',

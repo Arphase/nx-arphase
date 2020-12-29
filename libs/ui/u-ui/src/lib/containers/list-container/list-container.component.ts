@@ -12,42 +12,45 @@ import { IvtSubscriberComponent } from '../../components';
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtListContainerComponent<T = any> extends IvtSubscriberComponent {
+export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
   list$ = this.entityCollectionService.entities$;
   loading$ = this.entityCollectionService.loading$;
   hasMore$ = this.entityCollectionService.store.pipe(
     select(this.entityCollectionService.selectors.selectCollection),
     filterNil(),
-    map((collection: IvtEntityCollection) => collection.hasMore)
+    map((collection: IvtEntityCollection<T>) => collection.hasMore)
   );
   loadingExcel$ = this.entityDataService.loadingExcel$;
   queryParams: IvtQueryParams;
   excelFileName: string;
   excelUrl: string;
 
-  constructor(protected entityCollectionService: IvtCollectionService<T>, protected entityDataService: IvtDataService) {
+  constructor(
+    protected entityCollectionService: IvtCollectionService<T>,
+    protected entityDataService: IvtDataService<T>
+  ) {
     super();
     this.entityCollectionService.store
       .pipe(select(this.entityCollectionService.selectors.selectCollection), filterNil(), takeUntil(this.destroy$))
-      .subscribe((collection: IvtEntityCollection) => (this.queryParams = collection.queryParams));
+      .subscribe((collection: IvtEntityCollection<T>) => (this.queryParams = collection.queryParams));
     this.excelUrl = `${this.entityDataService.getEntitiesUrl()}/export/excel`;
   }
 
   getMoreItems(): void {
     const queryParams: IvtQueryParams = {
       ...this.queryParams,
-      resetList: false,
+      resetList: String(false),
     };
-    this.entityCollectionService.getWithQuery(queryParams as any);
+    this.entityCollectionService.getWithQuery(queryParams);
   }
 
-  filterItems<TQueryParams = any>(payload: IvtQueryParams & Partial<TQueryParams>): void {
+  filterItems(payload: IvtQueryParams): void {
     const queryParams: IvtQueryParams = {
       ...this.queryParams,
       ...payload,
-      resetList: true,
+      resetList: String(true),
     };
-    this.entityCollectionService.getWithQuery(queryParams as any);
+    this.entityCollectionService.getWithQuery(queryParams);
   }
 
   exportExcel(queryParams?: IvtQueryParams): void {

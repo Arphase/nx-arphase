@@ -2,23 +2,26 @@ import { AuthService, SignUpCredentialsDto } from '@ivt/a-auth';
 import { UserRoles } from '@ivt/c-data';
 import fs from 'fs';
 import path from 'path';
-import { ConnectionOptions, createConnection } from 'typeorm';
+import { ConnectionOptions, createConnection, getManager } from 'typeorm';
 
 import config from '../config/ormconfig';
 
 async function run() {
   const opt = {
     ...config,
+    synchonize: false,
+    logging: false,
   };
 
   const connection = await createConnection(opt as ConnectionOptions);
   const authService = new AuthService(null, connection);
+  const entityManager = getManager();
 
   const users: SignUpCredentialsDto[] = [
     {
       firstName: 'Fernando',
       lastName: 'Jimenez',
-      secondLastName: '',
+      secondLastName: 'test',
       email: 'fernando.jimenez@innovatechcorp.com',
       password: 'Innovatech123@',
       role: UserRoles.superAdmin,
@@ -26,22 +29,12 @@ async function run() {
     {
       firstName: 'Shari',
       lastName: 'Daniel',
-      secondLastName: '',
+      secondLastName: 'test',
       email: 'shari.daniel@innovatechcorp.com',
       password: 'Innovatech123@',
       role: UserRoles.admin,
     },
-    {
-      firstName: 'Alma',
-      lastName: 'Treviño',
-      secondLastName: '',
-      email: 'alma.trevino@innovatechcorp.com',
-      password: 'Innovatech123@',
-      role: UserRoles.admin,
-    },
   ];
-
-  const queryRunner = connection.createQueryRunner();
 
   const filePath = path.join(__dirname, 'sepomex-catalog.sql');
 
@@ -53,22 +46,16 @@ async function run() {
     }
   });
 
-  return new Promise((resolve, reject) => {
-    fs.readFile(filePath, 'utf8', async (error, data: string) => {
-      if (!error) {
-        await queryRunner.query(data);
-        resolve();
-      } else {
-        console.log(error);
-        reject();
-      }
-    });
-  });
+  console.log('Inserting localities...');
+  try {
+    const data = fs.readFileSync(filePath, 'utf8');
+    await entityManager.query(data);
+    console.log('Inserting localities done!');
+    process.exit(0);
+  } catch (error) {
+    console.log(error);
+    process.exit(0);
+  }
 }
 
-run()
-  .then(_ => {
-    console.log('Seeds done');
-    process.exit(0);
-  })
-  .catch(error => console.error('seed error', error));
+run();

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { SignInRequest } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
 
 @Component({
@@ -8,7 +9,7 @@ import { IvtFormComponent } from '@ivt/u-ui';
   styleUrls: ['./sign-in-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignInFormComponent extends IvtFormComponent {
+export class SignInFormComponent extends IvtFormComponent<SignInRequest> {
   constructor(private fb: FormBuilder) {
     super();
     this.form = this.fb.group({

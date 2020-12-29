@@ -2,6 +2,55 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://bitbucket.org/arphase/innovatech/compare/v1.2.0...v1.2.1) (2020-12-21)
+
+
+### Features
+
+* **api:** add migration for companyId in guarantee ([5dc9080](https://bitbucket.org/arphase/innovatech/commit/5dc9080d228e52eb41de497479f6240884876975))
+* **app:** add eslint ([21be20a](https://bitbucket.org/arphase/innovatech/commit/21be20a52cb5af92a87c1d67b788ce25d608d83b))
+* **app:** add phone pipe and mask ([a8e71d0](https://bitbucket.org/arphase/innovatech/commit/a8e71d0453d78794ba5ed7c272e59d7a7da11bb3))
+* **auth:** reset password flow ([6540997](https://bitbucket.org/arphase/innovatech/commit/6540997cf56efda467d908c315b17e3459a37574))
+* **auth:** validate password token ([8c9a8a1](https://bitbucket.org/arphase/innovatech/commit/8c9a8a102edf2bb668ed0982a7c73e4b07769ea1))
+* **groups:** add filtering to group list ([d3e13f2](https://bitbucket.org/arphase/innovatech/commit/d3e13f21c60f066c4a69edb6e7f67a8f11727396))
+* **groups:** add validations to company form ([1de5a85](https://bitbucket.org/arphase/innovatech/commit/1de5a8528c1af90b2919491bd1cc4360510404b7))
+* **groups:** companies list in form ([0bafbf7](https://bitbucket.org/arphase/innovatech/commit/0bafbf70165c4a251869571243b058504f65b1bd))
+* **groups:** send pending users email when updating the group ([fec13bc](https://bitbucket.org/arphase/innovatech/commit/fec13bcc53463d82b4db95d2576a72c8f66f84f2))
+* **guarantees:** add all guarantee properties to Excel export ([7053d99](https://bitbucket.org/arphase/innovatech/commit/7053d997d17721f7d2269697e990a400a18747b8))
+* **guarantees:** add motorNumber and client name to text filter ([ce1a6d5](https://bitbucket.org/arphase/innovatech/commit/ce1a6d5c722ce17ae0461ad6109cb6b3e18d637a))
+* **guarantees:** lock company field for agency users ([0b0ecf3](https://bitbucket.org/arphase/innovatech/commit/0b0ecf3e369b756cae344d820a2f3ae01ce62f41))
+* **guarantees:** make super user able to select company when creating new guarantee ([452470b](https://bitbucket.org/arphase/innovatech/commit/452470b4e5d22cbafdaf48952b21b2d4ab2d0c53))
+* **guarantees:** update invoice number ([91ef07b](https://bitbucket.org/arphase/innovatech/commit/91ef07b8aa452d8dc2791e8c4f3546a8d96abb38))
+
+
+### Bug Fixes
+
+* **app:** bugs from Daniel's Word ([7efabdc](https://bitbucket.org/arphase/innovatech/commit/7efabdc4abf8997ebbc3a1e9abcb781a0870cc62))
+
+## [1.2.0](https://bitbucket.org/arphase/innovatech/compare/v1.1.0...v1.2.0) (2020-11-19)
+
+
+### Features
+
+* **api:** add Amazon SES settings ([e8e306b](https://bitbucket.org/arphase/innovatech/commit/e8e306bbf8dcf603c182d0fea833c372ecab4564))
+* **api:** add gruops and products database migration ([b9bc046](https://bitbucket.org/arphase/innovatech/commit/b9bc046379cf7b30ce7973d3bc057bf93c07c46c))
+* **auth:** add email environment variables ([e3c4b69](https://bitbucket.org/arphase/innovatech/commit/e3c4b695f04b4bf2f13672dbf0e3fb2cf501fffd))
+* **auth:** set password flow ([17c4763](https://bitbucket.org/arphase/innovatech/commit/17c47638f8da8bd51cd8a05539374aad4c4ecd38))
+* **groups:** Create post group endpoint ([a72d7b5](https://bitbucket.org/arphase/innovatech/commit/a72d7b5638ee6001e7de058458396df6476a3075))
+* **groups:** Create Put endpoint ([8d2dfbd](https://bitbucket.org/arphase/innovatech/commit/8d2dfbd23bcd161eceb565a833c75f763a04e98a))
+* **groups:** Get by id endpoint. Add select false to entity columns ([879a313](https://bitbucket.org/arphase/innovatech/commit/879a31345d4d8caa0c0ce74551214e6b31ba1d48))
+* **groups:** Get endpoint. Lazy loading & filters. Add created & updated at to entities ([d4569a9](https://bitbucket.org/arphase/innovatech/commit/d4569a9548e52f151dd6b0ff84c66b90f5e7fa2b))
+* **groups:** Send email to each user on create group ([7d27676](https://bitbucket.org/arphase/innovatech/commit/7d2767652e2f5236c5e047284d7f2d4617301238))
+* **guarantees:** add user decorator to segment guarantees by user ([3bc477d](https://bitbucket.org/arphase/innovatech/commit/3bc477de29433c2fd9d056b1eef11cf726a92709))
+* **ui:** add file-upload component ([349bfd0](https://bitbucket.org/arphase/innovatech/commit/349bfd0d7ca022a9a46fe5e3bb143d5eb9b8a2d6))
+
+
+### Bug Fixes
+
+* **auth:** make password and salt selectable in order to login ([48074e6](https://bitbucket.org/arphase/innovatech/commit/48074e64ae3f435913d555cb9c27e6c5e1d522e5))
+* **guarantees:** save productId ([cd67a5f](https://bitbucket.org/arphase/innovatech/commit/cd67a5f32d44f5cecff4956c60ad530bd5b8ef3a))
+* **product:** transform to html in backend ([5f73eb9](https://bitbucket.org/arphase/innovatech/commit/5f73eb95464bf775bd8b34d6156f1aa28739b7af))
+
 ## [1.1.0](https://bitbucket.org/arphase/innovatech/compare/v1.0.0...v1.1.0) (2020-10-10)
 
 
@@ -56,7 +105,7 @@ All notable changes to this project will be documented in this file. See [standa
 * **guarantees:** Summary endpoint ([c5aac35](https://bitbucket.org/arphase/innovatech/commit/c5aac35ed582390a9c1a6083558df64440a55372))
 * **guarantees:** text filter ([713a2bb](https://bitbucket.org/arphase/innovatech/commit/713a2bb16d68a7d1c40e863f374666be3b5fab0a))
 * **guarantees:** update ([bcda72b](https://bitbucket.org/arphase/innovatech/commit/bcda72b647941ee7765428d3c26b287f4156c656))
-* **localites:** Add get by zipCode ([38e1e45](https://bitbucket.org/arphase/innovatech/commit/38e1e452cae3fce8747ab1e647acc556cd4697bb))
+* **localites:** Add get by zipcode ([38e1e45](https://bitbucket.org/arphase/innovatech/commit/38e1e452cae3fce8747ab1e647acc556cd4697bb))
 * **localities:** address form component and sepomex catalog seeds ([7bff311](https://bitbucket.org/arphase/innovatech/commit/7bff311333cd2d38dd2686502c4ec796ef71f9c1))
 * **payment-orders:** Add images to footer and header pdfs. ([b8f8074](https://bitbucket.org/arphase/innovatech/commit/b8f8074725f51b0929d4216fe1124827b299113e))
 * **payment-orders:** Create controller and service ([98f56df](https://bitbucket.org/arphase/innovatech/commit/98f56dfa87706298426851836cac9c9b897c9c79))

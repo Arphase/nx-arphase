@@ -2,7 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthComponent } from './auth.component';
+import { ExpiredTokenComponent } from './components/expired-token/expired-token.component';
+import { ResetPasswordFormContainerComponent } from './containers/reset-password-form-container/reset-password-form-container.component';
+import { SetPasswordFormContainerComponent } from './containers/set-password-form-container/set-password-form-container.component';
 import { SignInFormContainerComponent } from './containers/sign-in-form-container/sign-in-form-container.component';
+import { SetPasswordGuard } from './guards/set-password.guard';
+import { SetPasswordResolverService } from './resolvers/set-password-resolver.service';
 
 export const routes: Routes = [
   {
@@ -12,6 +17,20 @@ export const routes: Routes = [
       {
         path: 'sign-in',
         component: SignInFormContainerComponent,
+      },
+      {
+        path: 'reset-password',
+        component: ResetPasswordFormContainerComponent,
+      },
+      {
+        path: 'set-password/:passwordToken/:userId',
+        component: SetPasswordFormContainerComponent,
+        canActivate: [SetPasswordGuard],
+        resolve: { resolvedRoute: SetPasswordResolverService },
+      },
+      {
+        path: 'expired-token',
+        component: ExpiredTokenComponent,
       },
       {
         path: '',

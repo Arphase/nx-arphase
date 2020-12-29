@@ -7,10 +7,11 @@ import {
   transformFolio,
 } from '@ivt/a-state';
 import { PaymentOrder } from '@ivt/c-data';
+import { formatDate } from '@ivt/c-utils';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { Response } from 'express';
 import fs from 'fs';
 import { omit } from 'lodash';
-import moment from 'moment';
 import puppeteer from 'puppeteer';
 import { Connection, getManager } from 'typeorm';
 import { promisify } from 'util';
@@ -106,7 +107,7 @@ export class PaymentOrdersService {
       total += guarantee.amount;
       return `
     <tr>
-      <td>${moment(guarantee.invoiceDate).format('DD/MM/YYYY')}</td>
+      <td>${formatDate(guarantee.invoiceDate)}</td>
       <td>${transformFolio(guarantee.id)}</td>
       <td>${formatter.format(guarantee.amount)}</td>
     </tr>`;
@@ -192,7 +193,7 @@ export class PaymentOrdersService {
           <table>
             <tr>
               <td>Fecha de Emisión</td>
-              <td>${moment(createdAt).format('DD/MM/YYYY')}</td>
+              <td>${formatDate(createdAt)}</td>
             </tr>
             <tr>
               <td>No. de Orden de Pago</td>
@@ -292,9 +293,9 @@ export class PaymentOrdersService {
           src="data:image/jpg;base64,${footerImg}"/>
       `,
     });
-    promisify(fs.unlink)(OUT_FILE); // cleanup
+    promisify(fs.unlink)(OUT_FILE);
     await browser.close();
     const stream = getReadableStream(buffer);
-    stream.pipe(response as any);
+    stream.pipe(response);
   }
 }

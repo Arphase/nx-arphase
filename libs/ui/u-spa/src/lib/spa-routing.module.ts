@@ -19,10 +19,22 @@ const routes: Routes = [
           import('@ivt/u-guarantees').then((m) => m.GuaranteesModule),
       },
       {
+        path: 'groups',
+        loadChildren: () =>
+          import('@ivt/u-groups').then((m) => m.GroupsModule),
+      },
+      // TODO: uncomment when feature is ready
+      // {
+      //   path: 'products',
+      //   loadChildren: () =>
+      //     import('@ivt/u-products').then((m) => m.ProductsModule),
+      // },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
       },
+
     ],
   },
 ];

@@ -13,7 +13,6 @@ import {
   OnDestroy,
   Optional,
 } from '@angular/core';
-import { LabelOptions, MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
 import {
   MAT_FORM_FIELD,
   MAT_FORM_FIELD_DEFAULT_OPTIONS,
@@ -33,6 +32,9 @@ enum ValidatorTypes {
   min = 'min',
   email = 'email',
   rfc = 'rfc',
+  minlength = 'minlength',
+  maxlength = 'maxlength',
+  matDatepickerParse = 'matDatepickerParse',
 }
 
 @Component({
@@ -42,8 +44,7 @@ enum ValidatorTypes {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: MAT_FORM_FIELD, useExisting: IvtFormFieldComponent }],
 })
-export class IvtFormFieldComponent extends MatFormField
-  implements AfterContentInit, OnDestroy {
+export class IvtFormFieldComponent extends MatFormField implements AfterContentInit, OnDestroy {
   @Input() label: string;
   @Input() hideLabel: boolean;
   @ContentChild(IvtInputDirective) input: IvtInputDirective;
@@ -52,28 +53,16 @@ export class IvtFormFieldComponent extends MatFormField
   destroy$ = new Subject<void>();
 
   constructor(
-    public _elementRef: ElementRef,
+    _elementRef: ElementRef,
     _changeDetectorRef: ChangeDetectorRef,
-    // tslint:disable-next-line: deprecation
-    @Optional() @Inject(MAT_LABEL_GLOBAL_OPTIONS) labelOptions: LabelOptions,
+    @Inject(ElementRef) _labelOptions,
     @Optional() _dir: Directionality,
-    @Optional()
-    @Inject(MAT_FORM_FIELD_DEFAULT_OPTIONS)
-    _defaults: MatFormFieldDefaultOptions,
+    @Optional() @Inject(MAT_FORM_FIELD_DEFAULT_OPTIONS) _defaults: MatFormFieldDefaultOptions,
     _platform: Platform,
     _ngZone: NgZone,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) _animationMode: string
   ) {
-    super(
-      _elementRef,
-      _changeDetectorRef,
-      labelOptions,
-      _dir,
-      _defaults,
-      _platform,
-      _ngZone,
-      _animationMode
-    );
+    super(_elementRef, _changeDetectorRef, _labelOptions, _dir, _defaults, _platform, _ngZone, _animationMode);
   }
 
   ngAfterContentInit() {
@@ -87,11 +76,7 @@ export class IvtFormFieldComponent extends MatFormField
       )
       .subscribe(() => this.setErrorMessage(reactiveControl.errors));
 
-    if (
-      this.select &&
-      this.select.options &&
-      this.select.options.length === 1
-    ) {
+    if (this.select && this.select.options && this.select.options.length === 1) {
       this.select.ngControl.control.patchValue(this.select.options.first.value);
     }
   }
@@ -106,8 +91,9 @@ export class IvtFormFieldComponent extends MatFormField
     return this._errorChildren && this._control.errorState ? 'error' : 'hint';
   }
 
-  setErrorMessage(errors: Record<string, any>): void {
-    const firstError = Object.keys(errors)[0];
+  setErrorMessage(errors: Record<string, Record<string, string>>): void {
+    const errorKeys = Object.keys(errors);
+    const firstError = errorKeys.find(errorKey => errorKey === ValidatorTypes.matDatepickerParse) || errorKeys[0];
     const errorValue = errors[firstError];
     const label = this.label?.toLowerCase();
     const errorMessages = {
@@ -116,6 +102,9 @@ export class IvtFormFieldComponent extends MatFormField
       [ValidatorTypes.min]: `El campo ${label} debe ser mayor o igual a ${errorValue.min}`,
       [ValidatorTypes.email]: `El campo ${label} no tiene formato de correo`,
       [ValidatorTypes.rfc]: `El campo ${label} no tiene formato de RFC`,
+      [ValidatorTypes.minlength]: `El campo ${label} debe tener al menos ${errorValue.requiredLength} caracteres`,
+      [ValidatorTypes.maxlength]: `El campo ${label} debe tener menos de ${errorValue.requiredLength + 1} caracteres`,
+      [ValidatorTypes.matDatepickerParse]: `El campo ${label} tiene un formato de fecha incorrecto`,
     };
 
     this.error = errorMessages[firstError];

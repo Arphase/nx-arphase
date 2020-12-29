@@ -1,0 +1,29 @@
+<form [formGroup]="form"
+      (ngSubmit)="submit()">
+  <h1 class="text-primary font-weight-light h3">
+    Actualizar número de factura - Garantía {{ item.id | folio }}
+  </h1>
+
+  <mat-dialog-content>
+    <div class="row mt-3 mb-2">
+      <div class="col">
+        <ivt-form-field label="Número de factura">
+          <input ivtInput
+                 formControlName="invoiceNumber">
+        </ivt-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+
+  <div mat-dialog-actions
+       class="flex-end">
+    <button mat-button
+            type="button"
+            mat-dialog-close>Cancelar</button>
+    <button mat-raised-button
+            [loading]="loading"
+            type="submit"
+            color="primary">Guardar</button>
+  </div>
+</form>

@@ -4,7 +4,7 @@
               (logout)="logout()">
 </ivt-menu-bar>
 <ivt-side-nav [opened]="opened"
-              [menuItems]="menuItems"
+              [menuItems]="menuItems$ | async"
               (openMenu)="onOpenMenu()"
               (closeMenu)="onCloseMenu()">
   <div class="spa-content">
