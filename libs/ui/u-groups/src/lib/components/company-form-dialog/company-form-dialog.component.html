@@ -4,7 +4,7 @@
     {{ company?.id ? 'Editar' : 'Nueva' }} Compañía
   </h1>
 
-  <div mat-dialog-content>
+  <mat-dialog-content>
     <ivt-expansion-panel class="primary-panel mb-3 d-block"
                          title="Información General"
                          [isOpen]="true">
@@ -29,7 +29,6 @@
                          [isOpen]="true">
       <ivt-address-form [form]="addressForm"></ivt-address-form>
     </ivt-expansion-panel>
-
 
     <ivt-expansion-panel class="primary-panel mb-3 d-block"
                          title="Contacto"
@@ -89,7 +88,7 @@
         </div>
       </div>
     </ivt-expansion-panel>
-  </div>
+  </mat-dialog-content>
 
   <div mat-dialog-actions
        class="flex-end">
