@@ -1,4 +1,4 @@
-import { GetUser, RolesGuard } from '@ivt/a-auth';
+import { GetUser } from '@ivt/a-auth';
 import { GuaranteeEntity } from '@ivt/a-state';
 import { GuaranteeSummary, User } from '@ivt/c-data';
 import {
@@ -25,7 +25,7 @@ import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import { GuaranteesService } from '../services/guarantees.service';
 
 @Controller('guarantees')
-@UseGuards(AuthGuard(), RolesGuard)
+@UseGuards(AuthGuard())
 export class GuaranteesController {
   constructor(private guaranteesService: GuaranteesService) {}
 

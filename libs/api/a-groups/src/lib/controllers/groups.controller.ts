@@ -1,24 +1,40 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
-import { CreateGroupDto } from '../dto/create-group.dto';
-import { GroupsService } from '../services/groups.service';
-import { Group } from '@ivt/c-data';
-import { RolesGuard } from '@ivt/a-auth';
+import { Roles, RolesGuard } from '@ivt/a-auth';
+import { Group, UserRoles } from '@ivt/c-data';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  Query,
+  UseGuards,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+
+import { CreateGroupDto } from '../dto/create-group.dto';
 import { GetGroupsFilterDto } from '../dto/get-groups-filter.dto';
 import { UpdateGroupDto } from '../dto/update-group.dto';
+import { GroupsService } from '../services/groups.service';
 
 @Controller('groups')
 @UseGuards(AuthGuard(), RolesGuard)
+@Roles(UserRoles.superAdmin)
 export class GroupsController {
   constructor(private groupsService: GroupsService) {}
 
   @Post()
+  @Roles(UserRoles.superAdmin)
   @UsePipes(new ValidationPipe({ transform: true }))
   createGroup(@Body() createGroupDto: CreateGroupDto): Promise<Group> {
     return this.groupsService.createGroup(createGroupDto);
   }
 
   @Get()
+  @Roles(UserRoles.superAdmin)
   async getGroups(@Query(ValidationPipe) filterDto: GetGroupsFilterDto): Promise<Group[]> {
     return this.groupsService.getGroups(filterDto);
   }

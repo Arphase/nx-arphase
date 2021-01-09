@@ -1,4 +1,5 @@
-import { Company } from '@ivt/c-data';
+import { GetUser } from '@ivt/a-auth';
+import { Company, User } from '@ivt/c-data';
 import { Controller, Get, Param, ParseIntPipe, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -10,8 +11,8 @@ export class CompaniesController {
   constructor(private companiesService: CompaniesService) {}
 
   @Get()
-  async getCompanies(): Promise<Company[]> {
-    return this.companiesService.getCompanies();
+  async getCompanies(@GetUser() user: Partial<User>): Promise<Company[]> {
+    return this.companiesService.getCompanies(user);
   }
 
   @Get(':id')
