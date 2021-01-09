@@ -1,4 +1,4 @@
-<ivt-group-company-list [list]="companies"
+<ivt-group-company-list [list]="companies$ | async"
                         (create)="createCompany()"
                         (edit)="editCompany($event)">
 </ivt-group-company-list>
