@@ -4,7 +4,6 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -20,7 +19,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./guarantee-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnInit, OnChanges {
+export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnChanges {
   @Input() productOptions: Select[] = [];
   @Input() companyOptions: Select[] = [];
   @Input() restrictedCompanyOptions: Select[] = [];
@@ -102,9 +101,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         kilometrageEnd: [null, Validators.required],
       }),
     });
-  }
-
-  ngOnInit() {
     this.moralInfoForm.disable();
     this.client
       .get('personType')
