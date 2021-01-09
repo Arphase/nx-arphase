@@ -58,7 +58,19 @@ export class GuaranteesService {
   }
 
   async getGuarantees(filterDto: Partial<GetGuaranteesFilterDto>, user: Partial<User>): Promise<GuaranteeEntity[]> {
-    const { limit, offset, sort, direction, startDate, endDate, dateType, text, status, groupIds } = filterDto;
+    const {
+      limit,
+      offset,
+      sort,
+      direction,
+      startDate,
+      endDate,
+      dateType,
+      text,
+      status,
+      groupIds,
+      companyIds,
+    } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
 
     query
@@ -69,6 +81,7 @@ export class GuaranteesService {
       .leftJoinAndSelect('guarantee.paymentOrder', 'paymentOrder')
       .leftJoinAndSelect('guarantee.product', 'product')
       .leftJoinAndSelect('guarantee.vehicle', 'vehicle')
+      .leftJoin('guarantee.company', 'company')
       .groupBy('guarantee.id')
       .addGroupBy('client.id')
       .addGroupBy('address.id')
@@ -77,6 +90,7 @@ export class GuaranteesService {
       .addGroupBy('moralPerson.id')
       .addGroupBy('paymentOrder.id')
       .addGroupBy('product.id')
+      .addGroupBy('company.id')
 
       .orderBy('guarantee.createdAt', sortDirection.desc);
 
@@ -122,11 +136,13 @@ export class GuaranteesService {
 
     if (groupIds) {
       query
-        .innerJoin('guarantee.company', 'company')
-        .addGroupBy('company.id')
         .innerJoin('company.group', 'group')
         .addGroupBy('group.id')
-        .andWhere('(group.id IN (:...ids))', { ids: convertStringToNumberArray(filterDto.groupIds) });
+        .andWhere('(group.id IN (:...ids))', { ids: convertStringToNumberArray(groupIds) });
+    }
+
+    if (companyIds) {
+      query.andWhere('(company.id IN (:...ids))', { ids: convertStringToNumberArray(companyIds) });
     }
 
     query.take(limit).skip(offset);

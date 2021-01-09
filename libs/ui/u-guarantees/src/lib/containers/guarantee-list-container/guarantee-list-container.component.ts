@@ -29,6 +29,7 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   clearSelected$ = this.clearSelectedSubject.asObservable();
   excelFileName = 'Garantias';
   groupOptions$ = this.groupCollectionService.options$;
+  companiesOptions$ = this.companyCollectionService.options$;
 
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,
@@ -62,5 +63,9 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
 
   filterCompanies(groupIds: number[]): void {
     this.companyCollectionService.getWithQuery({ groupIds: groupIds.toString() });
+  }
+
+  filterUsers(companyIds: number[]): void {
+    this.userCollectionService.getWithQuery({ companyIds: companyIds.toString() });
   }
 }

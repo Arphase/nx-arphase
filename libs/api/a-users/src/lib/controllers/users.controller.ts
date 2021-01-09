@@ -1,8 +1,9 @@
 import { GetUser } from '@ivt/a-auth';
 import { User } from '@ivt/c-data';
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards, ValidationPipe } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
+import { FilterUsersDto } from '../dto/filter-users.dto';
 import { UsersService } from '../services/users.service';
 
 @Controller('users')
@@ -11,7 +12,7 @@ export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get()
-  async getUsers(@GetUser() user: Partial<User>): Promise<User[]> {
-    return this.usersService.getUsers(user);
+  async getUsers(@Query(ValidationPipe) filterDto: FilterUsersDto, @GetUser() user: Partial<User>): Promise<User[]> {
+    return this.usersService.getUsers(filterDto, user);
   }
 }

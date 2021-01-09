@@ -3,9 +3,11 @@
                     [clearSelected]="clearSelected$ | async"
                     [loadingExcel]="loadingExcel$ | async"
                     [groupOptions]="groupOptions$ | async"
+                    [companiesOptions]="companiesOptions$ | async"
                     (filterItems)="filterItems($event)"
                     (getMoreItems)="getMoreItems()"
                     (exportExcel)="exportExcel()"
                     (createPaymentOrder)="createPaymentOrder($event)"
-                    (filterCompanies)="filterCompanies($event)">
+                    (filterCompanies)="filterCompanies($event)"
+                    (filterUsers)="filterUsers($event)">
 </ivt-guarantee-list>

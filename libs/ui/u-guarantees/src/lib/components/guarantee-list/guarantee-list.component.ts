@@ -23,6 +23,7 @@ import { columns, dateTypeOptions, statusOptions } from './guarantee-list.consta
 export class GuaranteeListComponent extends IvtListComponent<Guarantee> implements OnChanges {
   @Input() clearSelected: boolean;
   @Input() groupOptions: Select[] = [];
+  @Input() companiesOptions: Select[] = [];
   columns = columns;
   dateTypeOptions = dateTypeOptions;
   statusOptions = statusOptions;
@@ -30,6 +31,7 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   @Output() downloadPdf = new EventEmitter<number>();
   @Output() createPaymentOrder = new EventEmitter<number[]>();
   @Output() filterCompanies = new EventEmitter<number[]>();
+  @Output() filterUsers = new EventEmitter<number[]>();
 
   constructor(public dialog: MatDialog) {
     super();
@@ -52,5 +54,10 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   updateGroupsFilters(groupIds: number[]): void {
     this.filterItems.emit({ groupIds });
     this.filterCompanies.emit(groupIds);
+  }
+
+  updateCompaniesFilters(companyIds: number[]): void {
+    this.filterItems.emit({ companyIds });
+    this.filterUsers.emit(companyIds);
   }
 }

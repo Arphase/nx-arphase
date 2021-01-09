@@ -52,4 +52,9 @@ export class GetGuaranteesFilterDto {
   @IsNotEmpty()
   @IsString()
   groupIds: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsString()
+  companyIds: string;
 }
