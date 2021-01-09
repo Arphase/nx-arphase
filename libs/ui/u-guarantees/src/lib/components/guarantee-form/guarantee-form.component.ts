@@ -11,7 +11,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Guarantee, PersonTypes, Select } from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
-import { createAddressForm, IvtFormComponent, IvtValidators } from '@ivt/u-ui';
+import { createAddressForm, IvtFormComponent, IvtValidators, markFormGroupTouched } from '@ivt/u-ui';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -65,7 +65,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       productId: null,
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
-      companyId: [null, Validators.required],
+      companyId: [null],
       client: this.fb.group({
         id: null,
         personType: [PersonTypes[PersonTypes.physical], Validators.required],
@@ -94,7 +94,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         brand: [null, Validators.required],
         model: [null, Validators.required],
         version: [null, Validators.required],
-        year: [null, [Validators.required, Validators.min(todayYear - 20), Validators.max(todayYear)]],
+        year: [null, [Validators.required, Validators.min(todayYear - 20), Validators.max(todayYear + 1)]],
         vin: [null, Validators.required],
         motorNumber: [null, Validators.required],
         horsePower: [null, [Validators.required, Validators.max(400)]],
@@ -152,5 +152,13 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       this.moralInfoForm.enable();
       this.physicalInfoForm.disable();
     }
+  }
+
+  /**
+   * TODO: Check wtf is happening with moral persons on submit
+   */
+  submit(): void {
+    markFormGroupTouched(this.form);
+    this.submitForm.emit(this.values);
   }
 }
