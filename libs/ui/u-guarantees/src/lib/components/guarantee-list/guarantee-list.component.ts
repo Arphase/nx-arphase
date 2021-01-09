@@ -29,6 +29,7 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   selectedIds = new SelectionModel<number>(true, []);
   @Output() downloadPdf = new EventEmitter<number>();
   @Output() createPaymentOrder = new EventEmitter<number[]>();
+  @Output() filterCompanies = new EventEmitter<number[]>();
 
   constructor(public dialog: MatDialog) {
     super();
@@ -46,5 +47,10 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
 
   updateStatusFilter(status: GuaranteeStatus): void {
     this.filterItems.emit({ status });
+  }
+
+  updateGroupsFilters(groupIds: number[]): void {
+    this.filterItems.emit({ groupIds });
+    this.filterCompanies.emit(groupIds);
   }
 }

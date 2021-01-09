@@ -10,7 +10,7 @@ import {
   transformFolio,
 } from '@ivt/a-state';
 import { Client, GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
-import { formatDate, sortDirection } from '@ivt/c-utils';
+import { convertStringToNumberArray, formatDate, sortDirection } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Response } from 'express';
 import fs from 'fs';
@@ -58,7 +58,7 @@ export class GuaranteesService {
   }
 
   async getGuarantees(filterDto: Partial<GetGuaranteesFilterDto>, user: Partial<User>): Promise<GuaranteeEntity[]> {
-    const { limit, offset, sort, direction, startDate, endDate, dateType, text, status } = filterDto;
+    const { limit, offset, sort, direction, startDate, endDate, dateType, text, status, groupIds } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
 
     query
@@ -77,6 +77,7 @@ export class GuaranteesService {
       .addGroupBy('moralPerson.id')
       .addGroupBy('paymentOrder.id')
       .addGroupBy('product.id')
+
       .orderBy('guarantee.createdAt', sortDirection.desc);
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
@@ -117,6 +118,15 @@ export class GuaranteesService {
       query.andWhere('(guarantee.status = :status)', {
         status: GuaranteeStatus[status],
       });
+    }
+
+    if (groupIds) {
+      query
+        .innerJoin('guarantee.company', 'company')
+        .addGroupBy('company.id')
+        .innerJoin('company.group', 'group')
+        .addGroupBy('group.id')
+        .andWhere('(group.id IN (:...ids))', { ids: convertStringToNumberArray(filterDto.groupIds) });
     }
 
     query.take(limit).skip(offset);

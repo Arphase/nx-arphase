@@ -59,4 +59,8 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
       .pipe(take(1))
       .subscribe(() => this.clearSelectedSubject.next(true));
   }
+
+  filterCompanies(groupIds: number[]): void {
+    this.companyCollectionService.getWithQuery({ groupIds: groupIds.toString() });
+  }
 }

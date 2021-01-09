@@ -47,4 +47,9 @@ export class GetGuaranteesFilterDto {
   @Transform(value => GuaranteeStatus[value])
   @IsEnum(GuaranteeStatus)
   status: GuaranteeStatus;
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsString()
+  groupIds: string;
 }

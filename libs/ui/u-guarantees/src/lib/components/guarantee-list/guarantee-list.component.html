@@ -39,10 +39,17 @@
                      [dateTypeOptions]="dateTypeOptions"
                      (filterItems)="updateDateFilter($event)">
     </ivt-date-filter>
-    <ivt-radio-filter label="Estatus"
+    <ivt-radio-filter class="mr-3"
+                      label="Estatus"
                       [options]="statusOptions"
                       (filterItems)="updateStatusFilter($event)">
     </ivt-radio-filter>
+    <ivt-checkbox-filter *ngIf="groupOptions?.length"
+                         class="mr-3"
+                         label="Grupos"
+                         [options]="groupOptions"
+                         (filterItems)="updateGroupsFilters($event)">
+    </ivt-checkbox-filter>
   </div>
 </div>
 

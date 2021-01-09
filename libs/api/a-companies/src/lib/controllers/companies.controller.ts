@@ -1,8 +1,9 @@
 import { GetUser } from '@ivt/a-auth';
 import { Company, User } from '@ivt/c-data';
-import { Controller, Get, Param, ParseIntPipe, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, Query, UseGuards, ValidationPipe } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
+import { FilterCompaniesDto } from '../dto/filter-companies.dto';
 import { CompaniesService } from '../services/companies.service';
 
 @Controller('companies')
@@ -11,8 +12,11 @@ export class CompaniesController {
   constructor(private companiesService: CompaniesService) {}
 
   @Get()
-  async getCompanies(@GetUser() user: Partial<User>): Promise<Company[]> {
-    return this.companiesService.getCompanies(user);
+  async getCompanies(
+    @Query(ValidationPipe) filterDto: FilterCompaniesDto,
+    @GetUser() user: Partial<User>
+  ): Promise<Company[]> {
+    return this.companiesService.getCompanies(filterDto, user);
   }
 
   @Get(':id')
