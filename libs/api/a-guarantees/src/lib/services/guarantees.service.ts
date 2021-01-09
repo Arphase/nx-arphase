@@ -3,7 +3,9 @@ import {
   getReadableStream,
   GuaranteeEntity,
   GuaranteeRepository,
+  MoralPersonRepository,
   OUT_FILE,
+  PhysicalPersonRepository,
   tobase64,
   transformFolio,
 } from '@ivt/a-state';
@@ -26,9 +28,13 @@ import { getGuaranteePdfTemplate } from './guarantees.service.constants';
 @Injectable()
 export class GuaranteesService {
   guaranteeRepository: GuaranteeRepository;
+  physicalPersonRepository: PhysicalPersonRepository;
+  moralPersonRepository: MoralPersonRepository;
 
   constructor(private readonly connection: Connection) {
     this.guaranteeRepository = this.connection.getCustomRepository(GuaranteeRepository);
+    this.physicalPersonRepository = this.connection.getCustomRepository(PhysicalPersonRepository);
+    this.moralPersonRepository = this.connection.getCustomRepository(MoralPersonRepository);
   }
 
   async getGuaranteeById(id: number): Promise<GuaranteeEntity> {
@@ -323,10 +329,26 @@ export class GuaranteesService {
   }
 
   async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto): Promise<GuaranteeEntity> {
-    const guarantee = this.omitInfo(updateGuaranteeDto);
-    const preloadedGuarantee = await this.guaranteeRepository.preload(updateGuaranteeDto);
-    const updatedGuarantee = await this.guaranteeRepository.save({ ...preloadedGuarantee, ...guarantee });
-    return updatedGuarantee;
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    try {
+      if (updateGuaranteeDto.client?.personType === PersonTypes.moral && updateGuaranteeDto.client?.physicalInfo?.id) {
+        await this.physicalPersonRepository.delete(updateGuaranteeDto.client.physicalInfo.id);
+      }
+      if (updateGuaranteeDto.client?.personType === PersonTypes.physical && updateGuaranteeDto.client?.moralInfo?.id) {
+        await this.moralPersonRepository.delete(updateGuaranteeDto.client.moralInfo.id);
+      }
+      const preloadedGuarantee = await this.guaranteeRepository.preload(updateGuaranteeDto);
+      const guarantee = this.omitInfo(updateGuaranteeDto);
+      const updatedGuarantee = await this.guaranteeRepository.save({ ...preloadedGuarantee, ...guarantee });
+      await queryRunner.commitTransaction();
+      return updatedGuarantee;
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   async deleteGuarantee(id: number): Promise<void> {

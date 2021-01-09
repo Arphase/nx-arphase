@@ -101,7 +101,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         kilometrageEnd: [null, Validators.required],
       }),
     });
-    this.moralInfoForm.disable();
     this.client
       .get('personType')
       .valueChanges.pipe(filterNil(), takeUntil(this.destroy$))

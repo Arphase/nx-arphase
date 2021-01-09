@@ -1,7 +1,7 @@
-import { IsDateString, IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsDateString, IsInt, IsOptional, IsString } from 'class-validator';
 
 export class UpdatePhysicalPersonDto {
-  @IsNotEmpty()
+  @IsOptional()
   @IsInt()
   id: number;
 
