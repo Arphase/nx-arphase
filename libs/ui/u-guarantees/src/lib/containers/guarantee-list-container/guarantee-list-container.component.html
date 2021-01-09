@@ -2,6 +2,7 @@
                     [hasMoreItems]="hasMore$ | async"
                     [clearSelected]="clearSelected$ | async"
                     [loadingExcel]="loadingExcel$ | async"
+                    [groupOptions]="groupOptions$ | async"
                     (filterItems)="filterItems($event)"
                     (getMoreItems)="getMoreItems()"
                     (exportExcel)="exportExcel()"

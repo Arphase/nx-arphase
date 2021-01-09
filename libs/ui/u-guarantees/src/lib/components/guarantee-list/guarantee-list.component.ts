@@ -9,7 +9,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Guarantee, GuaranteeStatus } from '@ivt/c-data';
+import { Guarantee, GuaranteeStatus, Select } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
 
 import { columns, dateTypeOptions, statusOptions } from './guarantee-list.constants';
@@ -22,6 +22,7 @@ import { columns, dateTypeOptions, statusOptions } from './guarantee-list.consta
 })
 export class GuaranteeListComponent extends IvtListComponent<Guarantee> implements OnChanges {
   @Input() clearSelected: boolean;
+  @Input() groupOptions: Select[] = [];
   columns = columns;
   dateTypeOptions = dateTypeOptions;
   statusOptions = statusOptions;

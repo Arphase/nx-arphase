@@ -6,7 +6,7 @@ import { IvtConfirmationDialogModule } from './confirmation-dialog';
 import { IvtEmptyStateModule } from './empty-state';
 import { IvtExpansionPanelModule } from './expansion-panel';
 import { IvtFileUploadModule } from './file-upload';
-import { IvtDateFilterModule, IvtFilterModule, IvtRadioFilterModule } from './filters';
+import { IvtCheckboxFilterModule, IvtDateFilterModule, IvtFilterModule, IvtRadioFilterModule } from './filters';
 import { IvtFormModule } from './form';
 import { IvtFormFieldModule } from './form-field';
 import { IvtGoBackTitleModule } from './go-back-title';
@@ -24,6 +24,7 @@ import { IvtVirtualScrollModule } from './virtual-scroll';
 const MODULES = [
   IvtAddressFormModule,
   IvtAutocompleteModule,
+  IvtCheckboxFilterModule,
   IvtConfirmationDialogModule,
   IvtDateFilterModule,
   IvtEmptyStateModule,

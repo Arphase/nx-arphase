@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Group } from '@ivt/c-data';
+import { User } from '@ivt/c-data';
 import { filterNilArray, mapToSelectOptions } from '@ivt/c-utils';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
@@ -8,15 +8,15 @@ import { IvtCollectionService } from '../../core';
 @Injectable({
   providedIn: 'root',
 })
-export class GroupCollectionService extends IvtCollectionService<Group> {
+export class UserCollectionService extends IvtCollectionService<User> {
   options$ = this.entities$.pipe(
     filterNilArray(),
-    mapToSelectOptions(group => ({
-      label: `${group.name}`,
-      value: group.id,
+    mapToSelectOptions(user => ({
+      label: `${user.firstName} ${user.lastName}`,
+      value: user.id,
     }))
   );
   constructor(protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {
-    super('Group', serviceElementsFactory);
+    super('User', serviceElementsFactory);
   }
 }

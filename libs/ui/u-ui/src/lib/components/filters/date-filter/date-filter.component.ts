@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder } from '@angular/forms';
 import { Select } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
@@ -32,7 +23,6 @@ interface DateFilter {
 export class IvtDateFilterComponent extends IvtFilterComponent<DateFilter> implements OnInit, OnChanges {
   @Input() dateTypeOptions: Select[] = [];
   @Input() value;
-  @Output() filterItems = new EventEmitter<DateFilter>();
   startDate = '';
   endDate = '';
   dateType = '';
