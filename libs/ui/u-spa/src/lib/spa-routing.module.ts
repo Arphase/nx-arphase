@@ -10,18 +10,19 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadChildren: () =>
-          import('@ivt/u-dashboard').then((m) => m.DashboardModule),
+        loadChildren: () => import('@ivt/u-dashboard').then(m => m.DashboardModule),
       },
       {
         path: 'guarantees',
-        loadChildren: () =>
-          import('@ivt/u-guarantees').then((m) => m.GuaranteesModule),
+        loadChildren: () => import('@ivt/u-guarantees').then(m => m.GuaranteesModule),
       },
       {
         path: 'groups',
-        loadChildren: () =>
-          import('@ivt/u-groups').then((m) => m.GroupsModule),
+        loadChildren: () => import('@ivt/u-groups').then(m => m.GroupsModule),
+      },
+      {
+        path: 'users',
+        loadChildren: () => import('@ivt/u-users').then(m => m.UsersModule),
       },
       // TODO: uncomment when feature is ready
       // {
@@ -34,7 +35,6 @@ const routes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full',
       },
-
     ],
   },
 ];

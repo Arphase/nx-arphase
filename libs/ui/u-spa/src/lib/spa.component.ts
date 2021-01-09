@@ -46,6 +46,12 @@ export class SpaComponent {
         //   path: ['products'],
         //   display: hasPermission,
         // },
+        {
+          icon: 'face',
+          header: 'Usuarios',
+          path: ['users'],
+          display: true,
+        },
       ])
     );
   }
