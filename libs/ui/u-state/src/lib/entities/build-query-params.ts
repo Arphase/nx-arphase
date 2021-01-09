@@ -41,7 +41,7 @@ export function buildQueryParams(queryParams): HttpParams {
     params.direction = order;
   }
 
-  if (queryParams.resetList) {
+  if (queryParams.resetList === String(true)) {
     params.offset = '0';
   }
 
