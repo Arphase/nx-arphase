@@ -1,6 +1,5 @@
 import { CompanyRepository } from '@ivt/a-state';
 import { Company, User, UserRoles } from '@ivt/c-data';
-import { convertStringToNumberArray } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { FilterCompaniesDto } from '../dto/filter-companies.dto';
@@ -16,7 +15,7 @@ export class CompaniesService {
     }
 
     if (filterDto?.groupIds) {
-      query.andWhere('(company.groupId IN (:...ids))', { ids: convertStringToNumberArray(filterDto.groupIds) });
+      query.andWhere('(company.groupId IN (:...ids))', { ids: filterDto.groupIds });
     }
 
     return await query.getMany();

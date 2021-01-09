@@ -56,6 +56,12 @@
                          [options]="companiesOptions"
                          (filterItems)="updateCompaniesFilters($event)">
     </ivt-checkbox-filter>
+    <ivt-checkbox-filter *ngIf="userOptions?.length"
+                         class="mr-3"
+                         label="Vendedores"
+                         [options]="userOptions"
+                         (filterItems)="updateUsersFilters($event)">
+    </ivt-checkbox-filter>
   </div>
 </div>
 

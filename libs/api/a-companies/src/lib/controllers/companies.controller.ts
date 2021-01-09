@@ -13,7 +13,7 @@ export class CompaniesController {
 
   @Get()
   async getCompanies(
-    @Query(ValidationPipe) filterDto: FilterCompaniesDto,
+    @Query(new ValidationPipe({ transform: true })) filterDto: FilterCompaniesDto,
     @GetUser() user: Partial<User>
   ): Promise<Company[]> {
     return this.companiesService.getCompanies(filterDto, user);

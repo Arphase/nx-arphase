@@ -12,7 +12,10 @@ export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get()
-  async getUsers(@Query(ValidationPipe) filterDto: FilterUsersDto, @GetUser() user: Partial<User>): Promise<User[]> {
+  async getUsers(
+    @Query(new ValidationPipe({ transform: true })) filterDto: FilterUsersDto,
+    @GetUser() user: Partial<User>
+  ): Promise<User[]> {
     return this.usersService.getUsers(filterDto, user);
   }
 }

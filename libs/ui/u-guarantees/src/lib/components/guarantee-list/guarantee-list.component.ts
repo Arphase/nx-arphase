@@ -24,6 +24,7 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   @Input() clearSelected: boolean;
   @Input() groupOptions: Select[] = [];
   @Input() companiesOptions: Select[] = [];
+  @Input() userOptions: Select[] = [];
   columns = columns;
   dateTypeOptions = dateTypeOptions;
   statusOptions = statusOptions;
@@ -59,5 +60,9 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   updateCompaniesFilters(companyIds: number[]): void {
     this.filterItems.emit({ companyIds });
     this.filterUsers.emit(companyIds);
+  }
+
+  updateUsersFilters(userIds: number[]): void {
+    this.filterItems.emit({ userIds });
   }
 }

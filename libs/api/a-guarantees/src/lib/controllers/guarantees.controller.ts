@@ -31,7 +31,7 @@ export class GuaranteesController {
 
   @Get()
   async getGuarantees(
-    @Query(ValidationPipe) filterDto: GetGuaranteesFilterDto,
+    @Query(new ValidationPipe({ transform: true })) filterDto: GetGuaranteesFilterDto,
     @GetUser() user: Partial<User>
   ): Promise<GuaranteeEntity[]> {
     return this.guaranteesService.getGuarantees(filterDto, user);
@@ -49,7 +49,7 @@ export class GuaranteesController {
 
   @Get('export/excel')
   async getGuaranteesExcel(
-    @Query(ValidationPipe) filterDto: GetGuaranteesFilterDto,
+    @Query(new ValidationPipe({ transform: true })) filterDto: GetGuaranteesFilterDto,
     @GetUser() user: Partial<User>,
     @Res() response: Response
   ): Promise<void> {

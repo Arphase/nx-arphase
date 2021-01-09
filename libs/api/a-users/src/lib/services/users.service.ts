@@ -1,6 +1,5 @@
 import { UserRepository } from '@ivt/a-state';
 import { User, UserRoles } from '@ivt/c-data';
-import { convertStringToNumberArray } from '@ivt/c-utils';
 import { Injectable } from '@nestjs/common';
 import { Connection } from 'typeorm';
 
@@ -21,7 +20,7 @@ export class UsersService {
     }
 
     if (filterDto?.companyIds) {
-      query.andWhere('(user.companyId IN (:...ids))', { ids: convertStringToNumberArray(filterDto.companyIds) });
+      query.andWhere('(user.companyId IN (:...ids))', { ids: filterDto.companyIds });
     }
 
     return await query.getMany();
