@@ -1,6 +1,7 @@
 import { GuaranteeStatus } from '@ivt/c-data';
+import { convertStringToNumberArray } from '@ivt/c-utils';
 import { Transform } from 'class-transformer';
-import { IsEnum, IsNotEmpty, IsNumber, IsNumberString, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsEnum, IsNotEmpty, IsNumber, IsNumberString, IsOptional, IsString } from 'class-validator';
 
 export class GetGuaranteesFilterDto {
   @IsOptional()
@@ -47,4 +48,22 @@ export class GetGuaranteesFilterDto {
   @Transform(value => GuaranteeStatus[value])
   @IsEnum(GuaranteeStatus)
   status: GuaranteeStatus;
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsArray()
+  @Transform((value: string) => convertStringToNumberArray(value))
+  groupIds: number[];
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsArray()
+  @Transform((value: string) => convertStringToNumberArray(value))
+  companyIds: number[];
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsArray()
+  @Transform((value: string) => convertStringToNumberArray(value))
+  userIds: number[];
 }

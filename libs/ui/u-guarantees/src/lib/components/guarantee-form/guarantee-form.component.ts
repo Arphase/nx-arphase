@@ -1,10 +1,10 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -20,7 +20,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./guarantee-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnInit, OnChanges {
+export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnChanges, AfterViewInit {
   @Input() productOptions: Select[] = [];
   @Input() companyOptions: Select[] = [];
   @Input() restrictedCompanyOptions: Select[] = [];
@@ -65,10 +65,10 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       productId: null,
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
-      companyId: [null, Validators.required],
+      companyId: [null],
       client: this.fb.group({
         id: null,
-        personType: [PersonTypes[PersonTypes.physical], Validators.required],
+        personType: [null, Validators.required],
         physicalInfo: this.fb.group({
           id: null,
           name: [null, Validators.required],
@@ -94,7 +94,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         brand: [null, Validators.required],
         model: [null, Validators.required],
         version: [null, Validators.required],
-        year: [null, [Validators.required, Validators.min(todayYear - 20), Validators.max(todayYear)]],
+        year: [null, [Validators.required, Validators.min(todayYear - 20), Validators.max(todayYear + 1)]],
         vin: [null, Validators.required],
         motorNumber: [null, Validators.required],
         horsePower: [null, [Validators.required, Validators.max(400)]],
@@ -102,10 +102,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         kilometrageEnd: [null, Validators.required],
       }),
     });
-  }
-
-  ngOnInit() {
-    this.moralInfoForm.disable();
     this.client
       .get('personType')
       .valueChanges.pipe(filterNil(), takeUntil(this.destroy$))
@@ -113,23 +109,13 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.item && this.item) {
-      this.form.patchValue({
-        ...this.item,
-        client: {
-          ...this.item.client,
-          moralInfo: this.item.client.moralInfo || {},
-          physicalInfo: this.item.client.physicalInfo || {},
-        },
-      });
-    }
-
     if (changes.isEditable && this.item) {
       this.isEditable ? this.form.enable() : this.form.disable();
     }
 
     if (changes.canSelectCompany) {
       this.canSelectCompany ? this.getCompanies.emit() : this.getCompany.emit(this.companyId);
+      this.canSelectCompany ? this.form.get('companyId').enable() : this.form.get('companyId').disable();
     }
 
     if (changes.companyOptions || changes.restrictedCompanyOptions) {
@@ -140,6 +126,19 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     }
   }
 
+  ngAfterViewInit() {
+    if (this.item) {
+      this.form.patchValue({
+        ...this.item,
+        client: {
+          ...this.item.client,
+          moralInfo: this.item.client.moralInfo || {},
+          physicalInfo: this.item.client.physicalInfo || {},
+        },
+      });
+    }
+  }
+
   personTypeChange(value: string): void {
     this.showPhysicalForm = value === PersonTypes[PersonTypes.physical];
     this.showMoralForm = value === PersonTypes[PersonTypes.moral];
@@ -147,7 +146,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     if (this.showPhysicalForm) {
       this.moralInfoForm.disable();
       this.physicalInfoForm.enable();
-      this.physicalInfoForm.updateValueAndValidity();
     } else {
       this.moralInfoForm.enable();
       this.physicalInfoForm.disable();

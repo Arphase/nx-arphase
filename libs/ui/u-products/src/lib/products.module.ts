@@ -9,7 +9,7 @@ import { ProductRowComponent } from './components/product-row/product-row.compon
 import { ProductFormContainerComponent } from './containers/product-form-container/product-form-container.component';
 import { ProductListContainerComponent } from './containers/product-list-container/product-list-container.component';
 import { ProductsRoutingModule } from './products-routing.module';
-import { ProductsComponent } from './products/products.component';
+import { ProductsComponent } from './products.component';
 
 @NgModule({
   imports: [CommonModule, ProductsRoutingModule, IvtUiModule, ShowdownModule],

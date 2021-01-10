@@ -5,14 +5,23 @@ import { DashboardState } from './dashboard.state';
 
 export const initialState: DashboardState = {
   guaranteeSummary: null,
+  queryParams: {},
 };
 
 const dashboardReducer = createReducer(
   initialState,
+  on(DashboardActions.getGuaranteeSummary, (state, action) => ({
+    ...state,
+    queryParams: {
+      ...state.queryParams,
+      ...action.payload,
+    },
+  })),
   on(DashboardActions.getGuaranteeSummarySuccess, (state, action) => ({
     ...state,
     guaranteeSummary: action.payload,
-  }))
+  })),
+  on(DashboardActions.clearDashboardState, () => initialState)
 );
 
 export function reducer(state: DashboardState, action: Action) {

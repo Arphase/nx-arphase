@@ -66,10 +66,10 @@
           <ivt-user-form [form]="userForm"></ivt-user-form>
         </div>
         <div class="col-1 flex-center">
-          <button mat-icon-button
+          <button *ngIf="!userForm.value.id"
+                  mat-icon-button
                   matTooltip="Eliminar usuario"
                   type="button"
-                  [disabled]="userForm.value.id"
                   (click)="removeUser(index)">
             <mat-icon>delete</mat-icon>
           </button>

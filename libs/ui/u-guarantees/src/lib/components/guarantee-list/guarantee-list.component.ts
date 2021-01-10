@@ -9,10 +9,10 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Guarantee, GuaranteeStatus } from '@ivt/c-data';
+import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, Select } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
 
-import { columns, dateTypeOptions, statusOptions } from './guarantee-list.constants';
+import { columns, statusOptions } from './guarantee-list.constants';
 
 @Component({
   selector: 'ivt-guarantee-list',
@@ -22,12 +22,17 @@ import { columns, dateTypeOptions, statusOptions } from './guarantee-list.consta
 })
 export class GuaranteeListComponent extends IvtListComponent<Guarantee> implements OnChanges {
   @Input() clearSelected: boolean;
+  @Input() groupOptions: Select[] = [];
+  @Input() companyOptions: Select[] = [];
+  @Input() userOptions: Select[] = [];
   columns = columns;
-  dateTypeOptions = dateTypeOptions;
+  dateTypeOptions = guaranteeDateTypeOptions;
   statusOptions = statusOptions;
   selectedIds = new SelectionModel<number>(true, []);
   @Output() downloadPdf = new EventEmitter<number>();
   @Output() createPaymentOrder = new EventEmitter<number[]>();
+  @Output() filterCompanies = new EventEmitter<number[]>();
+  @Output() filterUsers = new EventEmitter<number[]>();
 
   constructor(public dialog: MatDialog) {
     super();

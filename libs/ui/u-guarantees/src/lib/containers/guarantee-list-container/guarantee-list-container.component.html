@@ -2,8 +2,13 @@
                     [hasMoreItems]="hasMore$ | async"
                     [clearSelected]="clearSelected$ | async"
                     [loadingExcel]="loadingExcel$ | async"
+                    [groupOptions]="groupOptions$ | async"
+                    [companyOptions]="companyOptions$ | async"
+                    [userOptions]="userOptions$ | async"
                     (filterItems)="filterItems($event)"
                     (getMoreItems)="getMoreItems()"
                     (exportExcel)="exportExcel()"
-                    (createPaymentOrder)="createPaymentOrder($event)">
+                    (createPaymentOrder)="createPaymentOrder($event)"
+                    (filterCompanies)="filterCompanies($event)"
+                    (filterUsers)="filterUsers($event)">
 </ivt-guarantee-list>

@@ -22,6 +22,9 @@ export const columns: IvtColumns = [
     label: 'Placa',
     prop: 'guarantee.vin',
     sortable: false,
+    colSizes: {
+      xs: '2',
+    },
   },
   {
     label: 'Distribuidor',
@@ -84,12 +87,6 @@ export const columns: IvtColumns = [
       xs: 'auto',
     },
   },
-];
-
-export const dateTypeOptions: Select[] = [
-  { label: 'Inicio', value: 'startDate' },
-  { label: 'Fin', value: 'endDate' },
-  { label: 'Captura', value: 'createdAt' },
 ];
 
 export const statusOptions: Select[] = [

@@ -1,15 +1,24 @@
 import { CompanyRepository } from '@ivt/a-state';
-import { Company } from '@ivt/c-data';
+import { Company, User, UserRoles } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
+
+import { FilterCompaniesDto } from '../dto/filter-companies.dto';
 
 @Injectable()
 export class CompaniesService {
   constructor(private companyRepository: CompanyRepository) {}
 
-  async getCompanies(): Promise<Company[]> {
-    const query = this.companyRepository.createQueryBuilder();
-    const companies = await query.getMany();
-    return companies;
+  async getCompanies(filterDto: FilterCompaniesDto, user: Partial<User>): Promise<Company[]> {
+    const query = this.companyRepository.createQueryBuilder('company');
+    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+      query.andWhere('(company.id = :id)', { id: user.companyId });
+    }
+
+    if (filterDto?.groupIds) {
+      query.andWhere('(company.groupId IN (:...ids))', { ids: filterDto.groupIds });
+    }
+
+    return await query.getMany();
   }
 
   async getCompany(id: number): Promise<Company> {

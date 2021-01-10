@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Guarantee, GuaranteeSummary } from '@ivt/c-data';
+import { Guarantee, GuaranteeSummary, IvtQueryParams } from '@ivt/c-data';
 import { saveFile } from '@ivt/c-utils';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { IvtDataService } from '../../core';
+import { buildQueryParams } from '../../entities';
 import { IVT_UI_STATE_CONFIGURATION, IvtUiStateConfiguration } from '../../ui-state-config';
 
 @Injectable({
@@ -31,7 +32,8 @@ export class GuaranteeDataService extends IvtDataService<Guarantee> {
       .pipe(tap((file: Blob) => saveFile(file, `Garantía ${id}.pdf`)));
   }
 
-  getGuaranteeSummary(): Observable<GuaranteeSummary> {
-    return this.http.get<GuaranteeSummary>(`${this.config.apiUrl}/guarantees/report/summary`);
+  getGuaranteeSummary(queryParams?: IvtQueryParams): Observable<GuaranteeSummary> {
+    const params = buildQueryParams(queryParams);
+    return this.http.get<GuaranteeSummary>(`${this.config.apiUrl}/guarantees/report/summary`, { params });
   }
 }
