@@ -211,20 +211,7 @@ export function applyGuaranteeFilter(
   filterDto: Partial<GetGuaranteesFilterDto>,
   user: Partial<User>
 ): SelectQueryBuilder<GuaranteeEntity> {
-  const {
-    limit,
-    offset,
-    sort,
-    direction,
-    startDate,
-    endDate,
-    dateType,
-    text,
-    status,
-    groupIds,
-    companyIds,
-    userIds,
-  } = filterDto;
+  const { limit, offset, sort, direction, text, status } = filterDto;
 
   query
     .leftJoinAndSelect('guarantee.client', 'client')
@@ -256,15 +243,6 @@ export function applyGuaranteeFilter(
     query.orderBy(`${sort}`, sortDirection[direction]);
   }
 
-  if (startDate && endDate && dateType) {
-    query.andWhere(
-      `guarantee.${dateType}
-      BETWEEN :begin
-      AND :end`,
-      { begin: startDate, end: endDate }
-    );
-  }
-
   if (text) {
     if (text.length < 5) {
       query.andWhere(
@@ -286,11 +264,30 @@ export function applyGuaranteeFilter(
     query.andWhere('(guarantee.status = :status)', { status: GuaranteeStatus[status] });
   }
 
+  applyGuaranteeSharedFilters(query, filterDto);
+
+  query.take(limit).skip(offset);
+
+  return query;
+}
+
+export function applyGuaranteeSharedFilters(
+  query: SelectQueryBuilder<GuaranteeEntity>,
+  filterDto: Partial<GetGuaranteesFilterDto>
+): SelectQueryBuilder<GuaranteeEntity> {
+  const { startDate, endDate, dateType, groupIds, companyIds, userIds } = filterDto;
+
+  if (startDate && endDate && dateType) {
+    query.andWhere(
+      `guarantee.${dateType}
+      BETWEEN :begin
+      AND :end`,
+      { begin: startDate, end: endDate }
+    );
+  }
+
   if (groupIds) {
-    query
-      .innerJoin('company.group', 'group')
-      .addGroupBy('group.id')
-      .andWhere('(group.id IN (:...groupIds))', { groupIds });
+    query.innerJoin('company.group', 'group').andWhere('(group.id IN (:...groupIds))', { groupIds });
   }
 
   if (companyIds) {
@@ -300,8 +297,6 @@ export function applyGuaranteeFilter(
   if (userIds) {
     query.andWhere('(user.id IN (:...userIds))', { userIds });
   }
-
-  query.take(limit).skip(offset);
 
   return query;
 }

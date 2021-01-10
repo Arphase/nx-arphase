@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
 
 import { IvtFilterComponent } from '../filter';
 
-interface DateFilter {
+export interface Dates {
   startDate: string;
   endDate: string;
   dateType: string;
@@ -20,7 +20,7 @@ interface DateFilter {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class IvtDateFilterComponent extends IvtFilterComponent<DateFilter> implements OnInit, OnChanges {
+export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements OnInit, OnChanges {
   @Input() dateTypeOptions: Select[] = [];
   @Input() value;
   startDate = '';
@@ -64,10 +64,10 @@ export class IvtDateFilterComponent extends IvtFilterComponent<DateFilter> imple
       .subscribe();
 
     if (this.value) {
-      this.control.get('startDate').patchValue(moment(this.value.startDate, 'DD/MM/YYYY').toDate(), {
+      this.control.get('startDate').patchValue(moment(this.value.startDate, 'DD/MM/YY').toDate(), {
         emitEvent: false,
       });
-      this.control.get('endDate').patchValue(moment(this.value.endDate, 'DD/MM/YYYY').toDate(), {
+      this.control.get('endDate').patchValue(moment(this.value.endDate, 'DD/MM/YY').toDate(), {
         emitEvent: false,
       });
       this.control.get('dateType').patchValue(this.value.dateType, { emitEvent: false });

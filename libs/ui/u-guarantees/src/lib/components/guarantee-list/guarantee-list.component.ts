@@ -9,10 +9,10 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Guarantee, GuaranteeStatus, Select } from '@ivt/c-data';
+import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, Select } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
 
-import { columns, dateTypeOptions, statusOptions } from './guarantee-list.constants';
+import { columns, statusOptions } from './guarantee-list.constants';
 
 @Component({
   selector: 'ivt-guarantee-list',
@@ -23,10 +23,10 @@ import { columns, dateTypeOptions, statusOptions } from './guarantee-list.consta
 export class GuaranteeListComponent extends IvtListComponent<Guarantee> implements OnChanges {
   @Input() clearSelected: boolean;
   @Input() groupOptions: Select[] = [];
-  @Input() companiesOptions: Select[] = [];
+  @Input() companyOptions: Select[] = [];
   @Input() userOptions: Select[] = [];
   columns = columns;
-  dateTypeOptions = dateTypeOptions;
+  dateTypeOptions = guaranteeDateTypeOptions;
   statusOptions = statusOptions;
   selectedIds = new SelectionModel<number>(true, []);
   @Output() downloadPdf = new EventEmitter<number>();
@@ -50,19 +50,5 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
 
   updateStatusFilter(status: GuaranteeStatus): void {
     this.filterItems.emit({ status });
-  }
-
-  updateGroupsFilters(groupIds: number[]): void {
-    this.filterItems.emit({ groupIds });
-    this.filterCompanies.emit(groupIds);
-  }
-
-  updateCompaniesFilters(companyIds: number[]): void {
-    this.filterItems.emit({ companyIds });
-    this.filterUsers.emit(companyIds);
-  }
-
-  updateUsersFilters(userIds: number[]): void {
-    this.filterItems.emit({ userIds });
   }
 }

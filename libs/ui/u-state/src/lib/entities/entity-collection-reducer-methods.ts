@@ -94,4 +94,12 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
       return super.removeOne(collection, action) as IvtEntityCollection<T>;
     }
   }
+
+  protected removeAll(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    return {
+      ...collection,
+      ...super.removeAll(collection, action),
+      queryParams: null,
+    };
+  }
 }

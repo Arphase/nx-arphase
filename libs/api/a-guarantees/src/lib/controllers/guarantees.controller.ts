@@ -43,8 +43,11 @@ export class GuaranteesController {
   }
 
   @Get('report/summary')
-  async getGuaranteesSummary(@GetUser() user: Partial<User>): Promise<GuaranteeSummary> {
-    return this.guaranteesService.getGuaranteesSummary(user);
+  async getGuaranteesSummary(
+    @Query(new ValidationPipe({ transform: true })) filterDto: GetGuaranteesFilterDto,
+    @GetUser() user: Partial<User>
+  ): Promise<GuaranteeSummary> {
+    return this.guaranteesService.getGuaranteesSummary(filterDto, user);
   }
 
   @Get('export/excel')

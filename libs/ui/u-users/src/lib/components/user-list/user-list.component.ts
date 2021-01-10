@@ -10,7 +10,7 @@ import { IvtColumns, IvtListComponent } from '@ivt/u-ui';
 })
 export class UserListComponent extends IvtListComponent<Product> {
   @Input() groupOptions: Select[] = [];
-  @Input() companiesOptions: Select[] = [];
+  @Input() companyOptions: Select[] = [];
   @Output() filterCompanies = new EventEmitter<number[]>();
   columns: IvtColumns = [
     {

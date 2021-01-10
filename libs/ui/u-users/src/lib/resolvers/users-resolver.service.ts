@@ -11,6 +11,7 @@ export class UsersResolverService implements Resolve<User[]> {
   constructor(private userCollectionService: UserCollectionService) {}
 
   resolve(): Observable<User[]> {
+    this.userCollectionService.clearCache();
     const queryParams: IvtQueryParams = { resetList: String(true) };
     return this.userCollectionService.getWithQuery(queryParams);
   }

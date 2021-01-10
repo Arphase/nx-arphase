@@ -1,6 +1,7 @@
 <ivt-row>
   <div class="color-status {{ backgroundClasses[item.status] }}"
-       (mouseenter)="showStatusSubject.next(true)"></div>
+       (mouseenter)="showStatusSubject.next(true)"
+       (click)="showStatusSubject.next(true)"></div>
 
   <div [ngClass]="{ collapsed: !(visibleStatus$ | async)}"
        class="color-status-description {{ backgroundClasses[item.status] }} text-center p-3 flex-center">
@@ -17,20 +18,20 @@
   <div class="col-1">
     {{ item.id | folio }}
   </div>
-  <div class="col">
+  <div class="col-2">
     <ivt-text-truncate-tooltip [label]="item.vehicle?.vin"></ivt-text-truncate-tooltip>
   </div>
   <div class="col-2 d-none d-lg-block d-xl-block">
     <ivt-text-truncate-tooltip [label]="item.paymentOrder?.distributor | empty"></ivt-text-truncate-tooltip>
   </div>
   <div class="col-2 col-lg-1">
-    {{ item.startDate | date: "dd/MM/yyyy" }}
+    {{ item.startDate | date: "dd/MM/yy" }}
   </div>
   <div class="col-2 col-lg-1">
-    {{ item.endDate | date: "dd/MM/yyyy" }}
+    {{ item.endDate | date: "dd/MM/yy" }}
   </div>
   <div class="col-2 col-lg-1 d-none d-lg-block d-xl-block">
-    {{ item.createdAt | date: "dd/MM/yyyy" }}
+    {{ item.createdAt | date: "dd/MM/yy" }}
   </div>
   <div class="col-2 text-right">
     <ivt-text-truncate-tooltip [label]="item.amount | currency | empty"></ivt-text-truncate-tooltip>

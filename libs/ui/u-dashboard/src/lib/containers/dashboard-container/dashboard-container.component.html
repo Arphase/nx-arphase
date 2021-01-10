@@ -4,5 +4,11 @@
                [labels]="labels"
                [colors]="colors"
                [type]="type"
-               [legend]="legend">
+               [legend]="legend"
+               [groupOptions]="groupOptions$ | async"
+               [companyOptions]="companyOptions$ | async"
+               [userOptions]="userOptions$ | async"
+               (filterItems)="filterItems($event)"
+               (filterCompanies)="filterCompanies($event)"
+               (filterUsers)="filterUsers($event)">
 </ivt-dashboard>

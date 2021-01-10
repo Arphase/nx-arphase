@@ -29,7 +29,7 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   clearSelected$ = this.clearSelectedSubject.asObservable();
   excelFileName = 'Garantias';
   groupOptions$ = this.groupCollectionService.options$;
-  companiesOptions$ = this.companyCollectionService.options$;
+  companyOptions$ = this.companyCollectionService.options$;
   userOptions$ = this.userCollectionService.options$;
 
   constructor(
@@ -46,6 +46,9 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   }
 
   ngOnInit(): void {
+    this.groupCollectionService.clearCache();
+    this.companyCollectionService.clearCache();
+    this.userCollectionService.clearCache();
     this.store.pipe(select(getAuthUserRoleState), takeUntil(this.destroy$)).subscribe(role => {
       if (role === UserRoles[UserRoles.superAdmin]) {
         this.groupCollectionService.getAll();
@@ -63,10 +66,14 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   }
 
   filterCompanies(groupIds: number[]): void {
-    this.companyCollectionService.getWithQuery({ groupIds: groupIds.toString(), resetList: String(true) });
+    if (groupIds.length) {
+      this.companyCollectionService.getWithQuery({ groupIds: groupIds.toString(), resetList: String(true) });
+    }
   }
 
   filterUsers(companyIds: number[]): void {
-    this.userCollectionService.getWithQuery({ companyIds: companyIds.toString(), resetList: String(true) });
+    if (companyIds.length) {
+      this.userCollectionService.getWithQuery({ companyIds: companyIds.toString(), resetList: String(true) });
+    }
   }
 }

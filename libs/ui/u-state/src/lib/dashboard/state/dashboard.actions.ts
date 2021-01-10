@@ -1,8 +1,9 @@
-import { GuaranteeSummary } from '@ivt/c-data';
+import { GuaranteeSummary, IvtQueryParams } from '@ivt/c-data';
 import { createAction, props } from '@ngrx/store';
 
 export const getGuaranteeSummary = createAction(
-  '[Dashboard] Get guarantee summary'
+  '[Dashboard] Get guarantee summary',
+  props<{ payload?: IvtQueryParams }>()
 );
 
 export const getGuaranteeSummarySuccess = createAction(
@@ -10,6 +11,6 @@ export const getGuaranteeSummarySuccess = createAction(
   props<{ payload: GuaranteeSummary }>()
 );
 
-export const getGuaranteeSummaryFailed = createAction(
-  '[Dashboard] Get guarantee summary failed'
-);
+export const getGuaranteeSummaryFailed = createAction('[Dashboard] Get guarantee summary failed');
+
+export const clearDashboardState = createAction('[Dashboard] Clear dashboard state');

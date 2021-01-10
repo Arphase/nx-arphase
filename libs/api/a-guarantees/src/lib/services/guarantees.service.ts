@@ -10,7 +10,7 @@ import {
   transformFolio,
 } from '@ivt/a-state';
 import { Client, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
-import { formatDate, sortDirection } from '@ivt/c-utils';
+import { formatDate } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Response } from 'express';
 import fs from 'fs';
@@ -23,7 +23,11 @@ import * as XLSX from 'xlsx';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
-import { applyGuaranteeFilter, getGuaranteePdfTemplate } from './guarantees.service.constants';
+import {
+  applyGuaranteeFilter,
+  applyGuaranteeSharedFilters,
+  getGuaranteePdfTemplate,
+} from './guarantees.service.constants';
 
 @Injectable()
 export class GuaranteesService {
@@ -65,16 +69,23 @@ export class GuaranteesService {
     return guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity);
   }
 
-  async getGuaranteesSummary(user: Partial<User>): Promise<GuaranteeSummary> {
+  async getGuaranteesSummary(
+    filterDto: Partial<GetGuaranteesFilterDto>,
+    user: Partial<User>
+  ): Promise<GuaranteeSummary> {
     const query = this.guaranteeRepository
       .createQueryBuilder('guarantee')
       .select('guarantee.status', 'status')
       .addSelect('SUM(guarantee.amount)', 'amount')
+      .leftJoin('guarantee.company', 'company')
+      .leftJoin('guarantee.user', 'user')
       .groupBy('guarantee.status');
 
-    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+    if (UserRoles[user.role] !== UserRoles.superAdmin) {
       query.andWhere('(guarantee.companyId = :id)', { id: user.companyId });
     }
+
+    applyGuaranteeSharedFilters(query, filterDto);
 
     return query.getRawMany();
   }
@@ -282,6 +293,7 @@ export class GuaranteesService {
       const preloadedGuarantee = await this.guaranteeRepository.preload(updateGuaranteeDto);
       const guarantee = this.omitInfo(updateGuaranteeDto);
       const updatedGuarantee = await this.guaranteeRepository.save({ ...preloadedGuarantee, ...guarantee });
+      await updatedGuarantee.reload();
       await queryRunner.commitTransaction();
       return updatedGuarantee;
     } catch (err) {

@@ -20,7 +20,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class UserListContainerComponent extends IvtListContainerComponent<User> implements OnInit {
   groupOptions$ = this.groupCollectionService.options$;
-  companiesOptions$ = this.companyCollectionService.options$;
+  companyOptions$ = this.companyCollectionService.options$;
 
   constructor(
     protected userCollectionService: UserCollectionService,
@@ -33,6 +33,8 @@ export class UserListContainerComponent extends IvtListContainerComponent<User> 
   }
 
   ngOnInit(): void {
+    this.groupCollectionService.clearCache();
+    this.companyCollectionService.clearCache();
     this.store.pipe(select(getAuthUserRoleState), takeUntil(this.destroy$)).subscribe(role => {
       if (role === UserRoles[UserRoles.superAdmin]) {
         this.groupCollectionService.getAll();
@@ -41,6 +43,8 @@ export class UserListContainerComponent extends IvtListContainerComponent<User> 
   }
 
   filterCompanies(groupIds: number[]): void {
-    this.companyCollectionService.getWithQuery({ groupIds: groupIds.toString(), resetList: String(true) });
+    if (groupIds.length) {
+      this.companyCollectionService.getWithQuery({ groupIds: groupIds.toString(), resetList: String(true) });
+    }
   }
 }
