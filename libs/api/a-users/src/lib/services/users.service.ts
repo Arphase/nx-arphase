@@ -32,11 +32,9 @@ export class UsersService {
       query.andWhere('(user.companyId = :id)', { id: user.companyId });
     }
 
-
     if (text) {
       query.andWhere(
-        `LOWER(vehicle.motorNumber) like :text OR
-         LOWER(CONCAT(physicalPerson.name, ' ', physicalPerson.lastName, ' ', physicalPerson.secondLastName)) like :text`,
+        `LOWER(user.email) like :text OR LOWER(CONCAT(user.firstName, ' ', user.lastName, ' ', user.secondLastName)) like :text`,
         { text: `%${text.toLowerCase()}%` }
       );
     }
