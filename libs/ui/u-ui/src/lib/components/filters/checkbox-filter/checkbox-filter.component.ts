@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewEncapsulation,
+} from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
 import { IvtFilterComponent } from '../filter';
@@ -24,7 +32,12 @@ export class IvtCheckboxFilterComponent extends IvtFilterComponent<number[]> imp
   @Input() width = '275px';
   selectedOptions: CheckboxOption[] = [];
   visibleOptions: CheckboxOption[] = [];
+  displayContent = true;
   private optionsFirstChange = true;
+
+  constructor(private cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.options || changes.label) {
@@ -79,11 +92,15 @@ export class IvtCheckboxFilterComponent extends IvtFilterComponent<number[]> imp
   }
 
   deleteFilters(): void {
+    this.displayContent = false;
+    this.cdr.detectChanges();
     this.options = this.options.map(option => ({ ...option, checked: false }));
     this.visibleOptions = this.visibleOptions.map(option => ({ ...option, checked: false }));
     this.selectedOptions = [];
     this.mappedTitle = this.label;
     this.filterItems.emit([]);
+    this.displayContent = true;
+    this.cdr.detectChanges();
   }
 
   setVisibleOptions(value: string): void {
