@@ -1,5 +1,5 @@
 import { GuaranteeEntity, IMAGE_ASSETS_PATH, transformFolio } from '@ivt/a-state';
-import { Guarantee, GuaranteeStatus, User, UserRoles } from '@ivt/c-data';
+import { Guarantee, User, UserRoles } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import moment from 'moment';
 import { SelectQueryBuilder } from 'typeorm';
@@ -261,7 +261,7 @@ export function applyGuaranteeFilter(
   }
 
   if (status) {
-    query.andWhere('(guarantee.status = :status)', { status: GuaranteeStatus[status] });
+    query.andWhere('(guarantee.status = :status)', { status });
   }
 
   applyGuaranteeSharedFilters(query, filterDto);

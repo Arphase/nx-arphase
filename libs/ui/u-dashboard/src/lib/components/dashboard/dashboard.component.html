@@ -25,13 +25,13 @@
                                  class="mr-3"
                                  label="Grupos"
                                  [options]="groupOptions"
-                                 (filterItems)="updateGroupsFilters($event); filterCompanies.emit($event)">
+                                 (filterItems)="updateGroupsFilters($event)">
             </ivt-checkbox-filter>
             <ivt-checkbox-filter *ngIf="companyOptions?.length"
                                  class="mr-3"
                                  label="Compañías"
                                  [options]="companyOptions"
-                                 (filterItems)="updateCompaniesFilters($event); filterUsers.emit($event)">
+                                 (filterItems)="updateCompaniesFilters($event)">
             </ivt-checkbox-filter>
             <ivt-checkbox-filter *ngIf="userOptions?.length"
                                  class="mr-3"

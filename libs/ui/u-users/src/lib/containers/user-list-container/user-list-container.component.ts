@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { User, UserRoles } from '@ivt/c-data';
+import { filterNil } from '@ivt/c-utils';
 import {
   CompanyCollectionService,
   getAuthUserRoleState,
@@ -35,16 +36,11 @@ export class UserListContainerComponent extends IvtListContainerComponent<User> 
   ngOnInit(): void {
     this.groupCollectionService.clearCache();
     this.companyCollectionService.clearCache();
-    this.store.pipe(select(getAuthUserRoleState), takeUntil(this.destroy$)).subscribe(role => {
+    this.store.pipe(select(getAuthUserRoleState), filterNil(), takeUntil(this.destroy$)).subscribe(role => {
       if (role === UserRoles[UserRoles.superAdmin]) {
         this.groupCollectionService.getAll();
+        this.companyCollectionService.getAll();
       }
     });
-  }
-
-  filterCompanies(groupIds: number[]): void {
-    if (groupIds.length) {
-      this.companyCollectionService.getWithQuery({ groupIds: groupIds.toString(), resetList: String(true) });
-    }
   }
 }

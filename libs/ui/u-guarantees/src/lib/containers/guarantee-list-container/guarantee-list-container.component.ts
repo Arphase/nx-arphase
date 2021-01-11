@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Guarantee, UserRoles } from '@ivt/c-data';
+import { filterNil } from '@ivt/c-utils';
 import {
   CompanyCollectionService,
   getAuthUserRoleState,
@@ -49,9 +50,11 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
     this.groupCollectionService.clearCache();
     this.companyCollectionService.clearCache();
     this.userCollectionService.clearCache();
-    this.store.pipe(select(getAuthUserRoleState), takeUntil(this.destroy$)).subscribe(role => {
+    this.store.pipe(select(getAuthUserRoleState), filterNil(), takeUntil(this.destroy$)).subscribe(role => {
       if (role === UserRoles[UserRoles.superAdmin]) {
+        this.companyCollectionService.getAll();
         this.groupCollectionService.getAll();
+        this.userCollectionService.getAll();
       }
     });
   }
@@ -63,17 +66,5 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
       .afterClosed()
       .pipe(take(1))
       .subscribe(() => this.clearSelectedSubject.next(true));
-  }
-
-  filterCompanies(groupIds: number[]): void {
-    if (groupIds.length) {
-      this.companyCollectionService.getWithQuery({ groupIds: groupIds.toString(), resetList: String(true) });
-    }
-  }
-
-  filterUsers(companyIds: number[]): void {
-    if (companyIds.length) {
-      this.userCollectionService.getWithQuery({ companyIds: companyIds.toString(), resetList: String(true) });
-    }
   }
 }
