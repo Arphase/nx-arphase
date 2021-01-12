@@ -76,15 +76,10 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
       )
       .subscribe(() => this.setErrorMessage(reactiveControl.errors));
 
-    if (this.select && this.select.options && this.select.options.length === 1) {
+    if (this.select?.options?.length === 1) {
       this.select.ngControl.control.patchValue(this.select.options.first.value);
     }
-  }
 
-  ngOnDestroy() {
-    super.ngOnDestroy();
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   _getDisplayedMessages(): 'error' | 'hint' {
@@ -108,5 +103,11 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
     };
 
     this.error = errorMessages[firstError];
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

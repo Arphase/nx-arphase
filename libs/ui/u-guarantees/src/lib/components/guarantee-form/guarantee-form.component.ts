@@ -7,11 +7,12 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Guarantee, PersonTypes, Select } from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
-import { createAddressForm, IvtFormComponent, IvtValidators } from '@ivt/u-ui';
+import { createAddressForm, IvtAddressFormComponent, IvtFormComponent, IvtValidators } from '@ivt/u-ui';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -21,6 +22,7 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnChanges, AfterViewInit {
+  @ViewChild(IvtAddressFormComponent) addressFormComponent: IvtAddressFormComponent;
   @Input() productOptions: Select[] = [];
   @Input() companyOptions: Select[] = [];
   @Input() restrictedCompanyOptions: Select[] = [];
@@ -137,6 +139,8 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         },
       });
     }
+
+    this.stateChanged.pipe(takeUntil(this.destroy$)).subscribe(() => this.addressFormComponent.markForCheck());
   }
 
   personTypeChange(value: string): void {
