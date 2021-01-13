@@ -62,10 +62,10 @@
                          [isOpen]="true">
       <ivt-row *ngFor="let userForm of usersFormArray.controls; let index = index;"
                class="row">
-        <div class="col-11">
+        <div class="col-10 col-md-11">
           <ivt-user-form [form]="userForm"></ivt-user-form>
         </div>
-        <div class="col-1 flex-center">
+        <div class="col-2 col-md-1 flex-center">
           <button *ngIf="!userForm.value.id"
                   mat-icon-button
                   matTooltip="Eliminar usuario"

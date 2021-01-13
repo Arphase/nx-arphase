@@ -1,17 +1,17 @@
 <ivt-row>
-  <div class="col">
-    {{ item.name }}
+  <div class="col-3">
+    <ivt-text-truncate-tooltip [label]="item.name | empty"></ivt-text-truncate-tooltip>
   </div>
-  <div class="col">
-    {{ item.contact }}
+  <div class="col-3 d-none d-sm-block d-md-block d-lg-block d-xl-block">
+    <ivt-text-truncate-tooltip [label]="item.contact | empty"></ivt-text-truncate-tooltip>
   </div>
-  <div class="col">
-    {{ item.email }}
+  <div class="col-3 col-md-2">
+    <ivt-text-truncate-tooltip [label]="item.email | empty"></ivt-text-truncate-tooltip>
   </div>
-  <div class="col">
-    {{ item.phone | phone }}
+  <div class="col-3 col-md-2">
+    <ivt-text-truncate-tooltip [label]="item.phone | empty"></ivt-text-truncate-tooltip>
   </div>
-  <div class="col-auto flex-end">
+  <div class="col flex-end">
     <button mat-icon-button
             matTooltip="Editar grupo"
             [routerLink]="[item.id]">
