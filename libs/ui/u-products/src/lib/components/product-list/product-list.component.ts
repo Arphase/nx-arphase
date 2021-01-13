@@ -38,17 +38,5 @@ export class ProductListComponent extends IvtListComponent<Product> {
         lg: '9',
       },
     },
-    {
-      label: 'Acciones',
-      prop: 'actions',
-      sortable: false,
-      alignment: 'right',
-      colSizes: {
-        xs: 'auto',
-        sm: '1',
-        md: '1',
-        lg: '1',
-      },
-    },
   ];
 }

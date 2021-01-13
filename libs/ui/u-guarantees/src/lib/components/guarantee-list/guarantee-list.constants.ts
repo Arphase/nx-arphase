@@ -93,14 +93,7 @@ export const columns: IvtColumns = [
       lg: true,
       xl: true,
     },
-  },
-  {
-    label: 'Acciones',
-    prop: 'actions',
-    sortable: false,
-    alignment: 'right',
-    className: 'pl-0',
-  },
+  }
 ];
 
 export const statusOptions: Select[] = [
