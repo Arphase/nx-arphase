@@ -99,7 +99,7 @@ export class GroupsService {
   async updateGroup(updateGroupDto: UpdateGroupDto): Promise<Group> {
     const updatedGroup = await this.groupRepository.save(updateGroupDto);
     const userIds: number[] = flatten(updatedGroup.companies.map(company => company.users.map(user => user.id)));
-    this.authService.sendEmailToPendingUsers(userIds);
+    await this.authService.sendEmailToPendingUsers(userIds);
     return updatedGroup;
   }
 }
