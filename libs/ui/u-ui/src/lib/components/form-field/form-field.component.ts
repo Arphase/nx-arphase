@@ -82,7 +82,7 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
     }
 
     setTimeout(() => {
-      this._control.empty === !!this.input.ngControl.value;
+      this._control.empty === !!this.input?.ngControl?.value;
       this.cdr.markForCheck();
     }, 100);
   }

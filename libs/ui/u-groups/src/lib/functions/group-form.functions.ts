@@ -10,7 +10,7 @@ export function createGroupForm(group?: Group): FormGroup {
     contact: new FormControl(null, Validators.required),
     email: new FormControl(null, [Validators.required, Validators.email]),
     phone: new FormControl(null, Validators.required),
-    companies: new FormArray([], IvtValidators.minInArray(1)),
+    companies: new FormArray([]),
   });
 
   if (group) {
@@ -33,7 +33,7 @@ export function createCompanyForm(company?: Company): FormGroup {
     email: new FormControl(null, [Validators.required, Validators.email]),
     phone: new FormControl(null, Validators.required),
     address: createAddressForm(),
-    users: new FormArray([createUserForm()]),
+    users: new FormArray([]),
     rfc: new FormControl(null, [Validators.required, IvtValidators.rfc(RfcValidatorTypes.any)]),
     contact: new FormControl(null, Validators.required),
   });
