@@ -16,6 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "paths": {
       "@app/*": ["apps/innovatech-ui/src/app/*"],
       "@app/env/*": ["apps/innovatech-ui/src/environments/*"],
