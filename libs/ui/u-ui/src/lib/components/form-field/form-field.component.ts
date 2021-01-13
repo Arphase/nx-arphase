@@ -56,6 +56,7 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
     _elementRef: ElementRef,
     _changeDetectorRef: ChangeDetectorRef,
     @Inject(ElementRef) _labelOptions,
+    private cdr: ChangeDetectorRef,
     @Optional() _dir: Directionality,
     @Optional() @Inject(MAT_FORM_FIELD_DEFAULT_OPTIONS) _defaults: MatFormFieldDefaultOptions,
     _platform: Platform,
@@ -80,6 +81,10 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
       this.select.ngControl.control.patchValue(this.select.options.first.value);
     }
 
+    setTimeout(() => {
+      this._control.empty === !!this.input.ngControl.value;
+      this.cdr.markForCheck();
+    }, 100);
   }
 
   _getDisplayedMessages(): 'error' | 'hint' {
