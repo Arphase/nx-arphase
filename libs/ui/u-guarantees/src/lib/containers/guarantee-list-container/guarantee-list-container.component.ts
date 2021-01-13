@@ -62,7 +62,7 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   createPaymentOrder(guaranteeIds: number[]): void {
     this.paymentOrderCollectionService.removeOneFromCache(null);
     this.dialog
-      .open(PaymentOrderDialogContainerComponent, { data: guaranteeIds })
+      .open(PaymentOrderDialogContainerComponent, { data: guaranteeIds, maxWidth: '90w' })
       .afterClosed()
       .pipe(take(1))
       .subscribe(() => this.clearSelectedSubject.next(true));

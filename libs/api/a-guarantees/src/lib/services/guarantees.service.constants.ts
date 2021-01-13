@@ -134,7 +134,7 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
         <p>En cuanto tenga conocimiento de la AVERÍA/AS, el BENEFICIARIO comunicará la misma a Innovatech por cualquiera de los siguientes medios: </p>
         <ul>
             <li>Por Teléfono, en el +52 (81) 1090 8605 </li>
-            <li>Por correo electrónico, a la dirección averias@ivtcorp.com </li>
+            <li>Por correo electrónico, a la dirección averias@innovatechcorp.com </li>
         </ul>
         <p>El BENEFICIARIO deberá facilitar el Nº de certificado de garantía, la declaración de la AVERÍA/AS y Lugar en el que se ha producido la AVERÍA/AS , de esa forma Innovatech le indicara un taller en el que dejar el VEHÍCULO.</p>
         <p>Una vez el VEHÍCULO esté en un taller, el responsable del mismo volverá a contactar a Innovatech para describir la AVERÍA/AS, por los mismos medios descritos en la letra anterior, debiendo aportar igualmente la siguiente documentación: </p>
