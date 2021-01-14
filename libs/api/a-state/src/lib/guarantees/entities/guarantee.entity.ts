@@ -31,7 +31,9 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @JoinColumn({ name: 'clientId' })
   client: Client;
 
-  @OneToOne(() => VehicleEntity)
+  @OneToOne(() => VehicleEntity, {
+    cascade: ['insert', 'update'],
+  })
   @JoinColumn({ name: 'vehicleId' })
   vehicle: Vehicle;
 

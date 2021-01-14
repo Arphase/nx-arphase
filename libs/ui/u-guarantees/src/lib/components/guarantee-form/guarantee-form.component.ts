@@ -68,6 +68,9 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
       companyId: [null],
+      kilometrageStart: [null, Validators.required],
+      kilometrageEnd: [null, Validators.required],
+      productType: [null, Validators.required],
       client: this.fb.group({
         id: null,
         personType: [null, Validators.required],
@@ -92,16 +95,13 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       }),
       vehicle: this.fb.group({
         id: null,
-        productType: [null, Validators.required],
         brand: [null, Validators.required],
         model: [null, Validators.required],
         version: [null, Validators.required],
         year: [null, [Validators.required, Validators.min(todayYear - 20), Validators.max(todayYear + 1)]],
         vin: [null, Validators.required],
         motorNumber: [null, Validators.required],
-        horsePower: [null, [Validators.required, Validators.max(400)]],
-        kilometrageStart: [null, Validators.required],
-        kilometrageEnd: [null, Validators.required],
+        horsePower: [null, [Validators.required, Validators.max(400)]]
       }),
     });
     this.client

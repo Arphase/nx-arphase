@@ -1,9 +1,8 @@
 import { IsRfc } from '@ivt/a-state';
-import { MoralPerson, PersonTypes, PhysicalPerson } from '@ivt/c-data';
+import { Address, MoralPerson, PersonTypes, PhysicalPerson } from '@ivt/c-data';
 import { RfcValidatorTypes } from '@ivt/c-utils';
 import { Transform, Type } from 'class-transformer';
 import { IsEmail, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, ValidateIf, ValidateNested } from 'class-validator';
-import { Address } from 'cluster';
 
 import { UpdateAddressDto } from './update-address.dto';
 import { UpdateMoralPersonDto } from './update-moral-person.dto';

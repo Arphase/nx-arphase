@@ -31,6 +31,7 @@
       "@ivt/a-products": ["libs/api/a-products/src/index.ts"],
       "@ivt/a-state": ["libs/api/a-state/src/index.ts"],
       "@ivt/a-users": ["libs/api/a-users/src/index.ts"],
+      "@ivt/a-vehicles": ["libs/api/a-vehicles/src/index.ts"],
       "@ivt/c-utils": ["libs/common/c-utils/src/index.ts"],
       "@ivt/c-data": ["libs/common/c-data/src/index.ts"],
       "@ivt/u-ui": ["libs/ui/u-ui/src/index.ts"],
@@ -41,8 +42,7 @@
       "@ivt/u-state": ["libs/ui/u-state/src/index.ts"],
       "@ivt/u-groups": ["libs/ui/u-groups/src/index.ts"],
       "@ivt/u-products": ["libs/ui/u-products/src/index.ts"],
-      "@ivt/u-users": ["libs/ui/u-users/src/index.ts"],
-      "@ivt/api/a-vehicles": ["libs/api/a-vehicles/src/index.ts"]
+      "@ivt/u-users": ["libs/ui/u-users/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

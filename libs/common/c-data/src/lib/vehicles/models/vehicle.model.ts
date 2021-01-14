@@ -11,4 +11,7 @@ export interface Vehicle {
   horsePower: number;
   companyId?: number;
   company?: Company;
+  kilometrageStart?: number;
+  kilometrageEnd?: number;
+  productType?: string;
 }

@@ -1,1 +1,2 @@
-export * from './lib/api-a-vehicles.module';
+export * from './lib/dto';
+export * from './lib/vehicles.module';
