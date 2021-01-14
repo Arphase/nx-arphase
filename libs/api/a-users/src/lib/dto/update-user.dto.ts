@@ -46,7 +46,7 @@ export class UpdateUserDto {
   rfc: string;
 
   @IsOptional()
-  @Transform(value => UserRoles[value])
+  @Transform((value: any) => UserRoles[value])
   @IsEnum(UserRoles)
   role: UserRoles | string;
 }

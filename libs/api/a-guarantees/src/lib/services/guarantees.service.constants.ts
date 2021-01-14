@@ -79,8 +79,8 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
           <span class="bold">FIN GARANTIA POR TIEMPO:</span> ${moment(guarantee.endDate).locale('es').format('LL')}
           </p>
         <p><span class="bold">KILOMETRAJE INICIAL: </span> ${
-          guarantee.vehicle.kilometrageStart
-        } <span class="bold"> - FIN GARANTIA POR KILOMETRAJE: </span> ${guarantee.vehicle.kilometrageEnd} </p>
+          guarantee.kilometrageStart
+        } <span class="bold"> - FIN GARANTIA POR KILOMETRAJE: </span> ${guarantee.kilometrageEnd} </p>
         <p>Siempre que se hayan realizado en el VEHÍCULO en tiempo y forma los servicios y mantenimientos señalados en el certificado de garantía; el PERIODO DE VIGENCIA podrá comenzar a computarse hasta el momento en que expire la garantía del fabricante o alguna otra garantía de similar naturaleza, ya sea por sobrepasar el kilometraje o cumplirse el tiempo establecido en la misma.</p>
         <p>En caso de rescisión anticipada de esta garantía, Innovatech no estará obligada a la devolución del precio.</p>
         <p>COBERTURAS</p>

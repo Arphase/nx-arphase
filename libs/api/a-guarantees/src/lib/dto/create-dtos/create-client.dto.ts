@@ -11,7 +11,7 @@ import { CreatePhysicalPersonDto } from './create-physical-person.dto';
 
 export class CreateClientDto {
   @IsNotEmpty()
-  @Transform(value => PersonTypes[value])
+  @Transform((value: any) => PersonTypes[value])
   @IsEnum(PersonTypes)
   personType: PersonTypes;
 

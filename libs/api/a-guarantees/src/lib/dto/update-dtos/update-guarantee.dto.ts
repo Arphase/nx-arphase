@@ -21,7 +21,7 @@ export class UpdateGuaranteeDto {
   vehicle: Vehicle;
 
   @IsOptional()
-  @Transform(value => GuaranteeStatus[value])
+  @Transform((value: any) => GuaranteeStatus[value])
   @IsEnum(GuaranteeStatus)
   status: GuaranteeStatus;
 

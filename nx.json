@@ -1,14 +1,9 @@
 {
   "npmScope": "ivt",
-  "affected": {
-    "defaultBase": "master"
-  },
+  "affected": { "defaultBase": "master" },
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     "tsconfig.json": "*",
     "tslint.json": "*",
     "nx.json": "*"
@@ -16,135 +11,33 @@
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
-        "cacheDirectory": ".cache/nx"
-      }
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"], "cacheDirectory": ".cache/nx" }
     }
   },
   "projects": {
-    "innovatech-ui": {
-      "tags": [
-        "front"
-      ]
-    },
-    "innovatech-ui-e2e": {
-      "tags": [
-        "test"
-      ],
-      "implicitDependencies": [
-        "innovatech-ui"
-      ]
-    },
-    "innovatech-api": {
-      "tags": [
-        "back"
-      ]
-    },
-    "a-auth": {
-      "tags": [
-        "back"
-      ]
-    },
-    "a-companies": {
-      "tags": [
-        "back"
-      ]
-    },
-    "a-groups": {
-      "tags": [
-        "back"
-      ]
-    },
-    "a-guarantees": {
-      "tags": [
-        "back"
-      ]
-    },
-    "a-localities": {
-      "tags": [
-        "back"
-      ]
-    },
-    "a-payment-orders": {
-      "tags": [
-        "back"
-      ]
-    },
-    "a-products": {
-      "tags": [
-        "back"
-      ]
-    },
-    "a-state": {
-      "tags": [
-        "back"
-      ]
-    },
-    "a-users": {
-      "tags": [
-        "back"
-      ]
-    },
-    "c-utils": {
-      "tags": [
-        "common"
-      ]
-    },
-    "c-data": {
-      "tags": [
-        "common"
-      ]
-    },
-    "u-auth": {
-      "tags": [
-        "front"
-      ]
-    },
-    "u-dashboard": {
-      "tags": [
-        "front"
-      ]
-    },
-    "u-guarantees": {
-      "tags": [
-        "front"
-      ]
-    },
-    "u-spa": {
-      "tags": [
-        "front"
-      ]
-    },
-    "u-state": {
-      "tags": [
-        "front"
-      ]
-    },
-    "u-ui": {
-      "tags": [
-        "front"
-      ]
-    },
-    "u-groups": {
-      "tags": [
-        "front"
-      ]
-    },
-    "u-products": {
-      "tags": [
-        "front"
-      ]
-    },
-    "u-users": {
-      "tags": [
-        "front"
-      ]
-    }
+    "innovatech-ui": { "tags": ["front"] },
+    "innovatech-ui-e2e": { "tags": ["test"], "implicitDependencies": ["innovatech-ui"] },
+    "innovatech-api": { "tags": ["back"] },
+    "a-auth": { "tags": ["back"] },
+    "a-companies": { "tags": ["back"] },
+    "a-groups": { "tags": ["back"] },
+    "a-guarantees": { "tags": ["back"] },
+    "a-localities": { "tags": ["back"] },
+    "a-payment-orders": { "tags": ["back"] },
+    "a-products": { "tags": ["back"] },
+    "a-state": { "tags": ["back"] },
+    "a-users": { "tags": ["back"] },
+    "c-utils": { "tags": ["common"] },
+    "c-data": { "tags": ["common"] },
+    "u-auth": { "tags": ["front"] },
+    "u-dashboard": { "tags": ["front"] },
+    "u-guarantees": { "tags": ["front"] },
+    "u-spa": { "tags": ["front"] },
+    "u-state": { "tags": ["front"] },
+    "u-ui": { "tags": ["front"] },
+    "u-groups": { "tags": ["front"] },
+    "u-products": { "tags": ["front"] },
+    "u-users": { "tags": ["front"] },
+    "api-a-vehicles": { "tags": [] }
   }
 }

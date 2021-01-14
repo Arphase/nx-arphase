@@ -6,6 +6,6 @@ export class FilterCompaniesDto {
   @IsOptional()
   @IsNotEmpty()
   @IsArray()
-  @Transform((value: string) => convertStringToNumberArray(value))
+  @Transform((value: any) => convertStringToNumberArray(value))
   groupIds: number[];
 }

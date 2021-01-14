@@ -41,7 +41,8 @@
       "@ivt/u-state": ["libs/ui/u-state/src/index.ts"],
       "@ivt/u-groups": ["libs/ui/u-groups/src/index.ts"],
       "@ivt/u-products": ["libs/ui/u-products/src/index.ts"],
-      "@ivt/u-users": ["libs/ui/u-users/src/index.ts"]
+      "@ivt/u-users": ["libs/ui/u-users/src/index.ts"],
+      "@ivt/api/a-vehicles": ["libs/api/a-vehicles/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

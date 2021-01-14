@@ -5,7 +5,7 @@ import { Transform } from 'class-transformer';
 export class CreateProductDto {
 
   @IsNotEmpty()
-  @Transform(value => Number(value))
+  @Transform((value: any) => Number(value))
   @IsNumber()
   price: number;
 

@@ -15,7 +15,7 @@ export class UpdateClientDto {
   id: number;
 
   @IsNotEmpty()
-  @Transform(value => PersonTypes[value])
+  @Transform((value: any) => PersonTypes[value])
   @IsEnum(PersonTypes)
   personType: PersonTypes;
 

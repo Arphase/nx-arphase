@@ -16,20 +16,10 @@
             "polyfills": "apps/innovatech-ui/src/polyfills.ts",
             "tsConfig": "apps/innovatech-ui/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/innovatech-ui/src/favicon.ico",
-              "apps/innovatech-ui/src/assets"
-            ],
-            "styles": [
-              "apps/innovatech-ui/src/styles.scss"
-            ],
+            "assets": ["apps/innovatech-ui/src/favicon.ico", "apps/innovatech-ui/src/assets"],
+            "styles": ["apps/innovatech-ui/src/styles.scss"],
             "scripts": [],
-            "allowedCommonJsDependencies": [
-              "chart.js",
-              "lodash",
-              "file-saver",
-              "showdown"
-            ]
+            "allowedCommonJsDependencies": ["chart.js", "lodash", "file-saver", "showdown"]
           },
           "configurations": {
             "qa": {
@@ -107,9 +97,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/innovatech-ui/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/innovatech-ui/**/*.ts"]
           }
         },
         "test": {
@@ -144,9 +132,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/innovatech-ui-e2e/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/innovatech-ui-e2e/**/*.ts"]
           }
         }
       }
@@ -164,9 +150,7 @@
             "outputPath": "dist/apps/innovatech-api",
             "main": "apps/innovatech-api/src/main.ts",
             "tsConfig": "apps/innovatech-api/tsconfig.app.json",
-            "assets": [
-              "apps/innovatech-api/src/assets"
-            ],
+            "assets": ["apps/innovatech-api/src/assets"],
             "showCircularDependencies": false
           },
           "configurations": {
@@ -192,9 +176,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/innovatech-api/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/innovatech-api/**/*.ts"]
           }
         },
         "test": {
@@ -216,9 +198,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/common/c-data/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/common/c-data/**/*.ts"]
           }
         },
         "test": {
@@ -240,9 +220,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/common/c-utils/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/common/c-utils/**/*.ts"]
           }
         },
         "test": {
@@ -265,9 +243,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/ui/u-auth/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/ui/u-auth/**/*.ts"]
           }
         },
         "test": {
@@ -290,9 +266,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/ui/u-dashboard/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/ui/u-dashboard/**/*.ts"]
           }
         },
         "test": {
@@ -315,9 +289,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/ui/u-guarantees/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/ui/u-guarantees/**/*.ts"]
           }
         },
         "test": {
@@ -340,9 +312,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/ui/u-spa/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/ui/u-spa/**/*.ts"]
           }
         },
         "test": {
@@ -365,9 +335,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/ui/u-state/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/ui/u-state/**/*.ts"]
           }
         },
         "test": {
@@ -390,9 +358,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/ui/u-groups/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/ui/u-groups/**/*.ts"]
           }
         },
         "test": {
@@ -413,9 +379,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/ui/u-products/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/ui/u-products/**/*.ts"]
           }
         },
         "test": {
@@ -436,9 +400,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/ui/u-ui/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/ui/u-ui/**/*.ts"]
           }
         },
         "test": {
@@ -461,9 +423,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api/a-auth/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api/a-auth/**/*.ts"]
           }
         },
         "test": {
@@ -485,9 +445,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api/a-guarantees/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api/a-guarantees/**/*.ts"]
           }
         },
         "test": {
@@ -509,9 +467,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api/a-localities/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api/a-localities/**/*.ts"]
           }
         },
         "test": {
@@ -533,9 +489,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api/a-payment-orders/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api/a-payment-orders/**/*.ts"]
           }
         },
         "test": {
@@ -557,9 +511,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api/a-users/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api/a-users/**/*.ts"]
           }
         },
         "test": {
@@ -581,9 +533,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api/a-state/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api/a-state/**/*.ts"]
           }
         },
         "test": {
@@ -605,9 +555,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api/a-groups/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api/a-groups/**/*.ts"]
           }
         },
         "test": {
@@ -629,9 +577,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api/a-companies/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api/a-companies/**/*.ts"]
           }
         },
         "test": {
@@ -653,9 +599,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api/a-products/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api/a-products/**/*.ts"]
           }
         },
         "test": {
@@ -677,19 +621,35 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/ui/u-users/src/**/*.ts",
-              "libs/ui/u-users/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/ui/u-users/src/**/*.ts", "libs/ui/u-users/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/ui/u-users"
-          ],
+          "outputs": ["coverage/libs/ui/u-users"],
           "options": {
             "jestConfig": "libs/ui/u-users/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-a-vehicles": {
+      "root": "libs/api/a-vehicles",
+      "sourceRoot": "libs/api/a-vehicles/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/a-vehicles/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/a-vehicles"],
+          "options": {
+            "jestConfig": "libs/api/a-vehicles/jest.config.js",
             "passWithNoTests": true
           }
         }

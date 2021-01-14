@@ -45,25 +45,25 @@ export class GetGuaranteesFilterDto {
   amount: number;
 
   @IsOptional()
-  @Transform(value => GuaranteeStatus[value])
+  @Transform((value: any) => GuaranteeStatus[value])
   @IsEnum(GuaranteeStatus)
   status: GuaranteeStatus;
 
   @IsOptional()
   @IsNotEmpty()
   @IsArray()
-  @Transform((value: string) => convertStringToNumberArray(value))
+  @Transform((value: any) => convertStringToNumberArray(value))
   groupIds: number[];
 
   @IsOptional()
   @IsNotEmpty()
   @IsArray()
-  @Transform((value: string) => convertStringToNumberArray(value))
+  @Transform((value: any) => convertStringToNumberArray(value))
   companyIds: number[];
 
   @IsOptional()
   @IsNotEmpty()
   @IsArray()
-  @Transform((value: string) => convertStringToNumberArray(value))
+  @Transform((value: any) => convertStringToNumberArray(value))
   userIds: number[];
 }

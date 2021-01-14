@@ -57,8 +57,8 @@ function getRealGlossary(guarantee: Guarantee): Record<string, string> {
     'guarantee.vehicle.year': String(guarantee.vehicle.year),
     'guarantee.vehicle.vin': guarantee.vehicle.vin,
     'guarantee.vehicle.motorNumber': guarantee.vehicle.motorNumber,
-    'guarantee.vehicle.kilometrageStart': String(guarantee.vehicle.kilometrageStart),
-    'guarantee.vehicle.kilometrageEnd': String(guarantee.vehicle.kilometrageEnd),
+    'guarantee.vehicle.kilometrageStart': String(guarantee.kilometrageStart),
+    'guarantee.vehicle.kilometrageEnd': String(guarantee.kilometrageEnd),
 
     'guarantee.status': String(guarantee.status),
     'guarantee.startDate': String(guarantee.startDate),
