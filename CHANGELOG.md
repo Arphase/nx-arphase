@@ -2,6 +2,52 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://bitbucket.org/arphase/innovatech/compare/v1.3.0...v1.3.1) (2021-01-13)
+
+
+### Features
+
+* **app:** add application version ([fe0d19a](https://bitbucket.org/arphase/innovatech/commit/fe0d19adc4b4075ff17eaf409eecdbdef373d401))
+* **dashboard:** mobile responsiveness ([9f86810](https://bitbucket.org/arphase/innovatech/commit/9f868106b52a296c0f3d86c41296cd30f57075b2))
+* **groups:** mobile responsiveness ([e523210](https://bitbucket.org/arphase/innovatech/commit/e523210aec29f77fee6c2e879921e607fd02e223))
+* **guarantees:** mobile responsiveness ([d0ae334](https://bitbucket.org/arphase/innovatech/commit/d0ae334e23f47aa587736e12fe9375a1612556b6))
+* **state:** filter options by alphabetical order ([c41041b](https://bitbucket.org/arphase/innovatech/commit/c41041b40e544e67d1ec87b3a939a6428a9148af))
+* **users:** filter by text ([6be2288](https://bitbucket.org/arphase/innovatech/commit/6be2288c4f143ebd13c5154c42689b1df453e087))
+
+
+### Bug Fixes
+
+* **forms:** markForCheck for child forms ([543341a](https://bitbucket.org/arphase/innovatech/commit/543341a56e1f0b9810724d7a1084a9ef8436fd4d))
+* **groups:** can create groups without users or companies ([91cb079](https://bitbucket.org/arphase/innovatech/commit/91cb079fd1ae3e14a304052c2f1bfd5189584995))
+* **groups:** create all companies and users array ([254991e](https://bitbucket.org/arphase/innovatech/commit/254991ef5f378300ff57ee4c16208404fa8b8ee5))
+* **groups:** send email to users with no password on edit ([41c0f4d](https://bitbucket.org/arphase/innovatech/commit/41c0f4db4107bcf7b2154dcf539e92db888c75a4))
+* **guarantees:** filter by status ([5b2b6c9](https://bitbucket.org/arphase/innovatech/commit/5b2b6c96d3534714707d809788c9974bfc420821))
+* **ui:** clear checkbox filter correctly ([a4a93bd](https://bitbucket.org/arphase/innovatech/commit/a4a93bd67bb667f088eb73b03dbd0789e8dc4d18))
+* **ui:** display label correctly for inputs with mask ([5c40fe1](https://bitbucket.org/arphase/innovatech/commit/5c40fe1224f4f25a198d3b4a15a18ffacff26678))
+
+## [1.3.0](https://bitbucket.org/arphase/innovatech/compare/v1.2.1...v1.3.0) (2021-01-10)
+
+
+### Features
+
+* **dashboard:** add date, group, company, and user filters ([da7c004](https://bitbucket.org/arphase/innovatech/commit/da7c004fab8f355046c74bcdbe9902c8749cf1fc))
+* **groups:** secure endpoints ([24f6aad](https://bitbucket.org/arphase/innovatech/commit/24f6aad90a494ab84a096c81d33154c33fef441d))
+* **guarantees:** filter by company ([98b7ba5](https://bitbucket.org/arphase/innovatech/commit/98b7ba595fb925662f1f87488f2d144669d2297d))
+* **guarantees:** filter by group id ([be83678](https://bitbucket.org/arphase/innovatech/commit/be836783eba2881c8aceae9ce007e750fc91afd6))
+* **guarantees:** filter by users ([09ca07c](https://bitbucket.org/arphase/innovatech/commit/09ca07ca3a2ab800c301ca7fa7ad08525a087ea6))
+* **ui:** checkbox filter component ([e1bb16e](https://bitbucket.org/arphase/innovatech/commit/e1bb16e5662a7eeab4b2ab4440536ea7b2498315))
+* **users:** get with query endpoint ([90fe31b](https://bitbucket.org/arphase/innovatech/commit/90fe31b940bbbfabcc43f454d2744a35f53d3230))
+* **users:** list ([026ca8f](https://bitbucket.org/arphase/innovatech/commit/026ca8f95cc18c62771fcd8716e07103364c49f1))
+
+
+### Bug Fixes
+
+* **core:** lazy load lists ([c2337fe](https://bitbucket.org/arphase/innovatech/commit/c2337fe3e96ef381d5dc617ba6b01810dd4c0af6))
+* **guarantees:** display moral info in edit ([da7ed89](https://bitbucket.org/arphase/innovatech/commit/da7ed89de78ee86265ee4c31d93116d944b0b066))
+* **guarantees:** make user able to update guarantee switching between physical and moral person ([de93af5](https://bitbucket.org/arphase/innovatech/commit/de93af58d8b7565ca5e1054ece80f3b9bb107e16))
+* **guarantees:** patch value after view init due disabled form errors ([60d9dde](https://bitbucket.org/arphase/innovatech/commit/60d9dde418dc28b3e5fc76cb3d4427596c15b560))
+* **ui:** use mat-dialog-content correctly ([498cb27](https://bitbucket.org/arphase/innovatech/commit/498cb272aedd2622020fc1ccc0f6e6ef2e0ae45b))
+
 ### [1.2.1](https://bitbucket.org/arphase/innovatech/compare/v1.2.0...v1.2.1) (2020-12-21)
 
 

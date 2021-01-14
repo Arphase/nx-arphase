@@ -2,8 +2,7 @@ import { InjectionToken } from '@angular/core';
 
 export interface IvtUiStateConfiguration {
   apiUrl: string;
+  version: string;
 }
 
-export const IVT_UI_STATE_CONFIGURATION = new InjectionToken<
-  IvtUiStateConfiguration
->('Ivt Ui State configurations');
+export const IVT_UI_STATE_CONFIGURATION = new InjectionToken<IvtUiStateConfiguration>('Ivt Ui State configurations');

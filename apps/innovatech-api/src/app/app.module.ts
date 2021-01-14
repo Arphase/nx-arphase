@@ -5,6 +5,7 @@ import { GuaranteesModule } from '@ivt/a-guarantees';
 import { LocalitiesModule } from '@ivt/a-localities';
 import { PaymentOrdersModule } from '@ivt/a-payment-orders';
 import { ProductModule } from '@ivt/a-products';
+import { UsersModule } from '@ivt/a-users';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -21,6 +22,7 @@ import { AppController } from './app.controller';
     LocalitiesModule,
     PaymentOrdersModule,
     ProductModule,
+    UsersModule,
   ],
   controllers: [AppController],
 })

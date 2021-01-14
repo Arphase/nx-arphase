@@ -1,0 +1,10 @@
+@import '../filter/filter.component';
+
+.mat-checkbox-label {
+  max-width: 200px;
+}
+
+.ivt-filter--disabled {
+  background: $ui-color-2;
+  cursor: default;
+}

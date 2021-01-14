@@ -16,4 +16,6 @@ export interface User {
   role: UserRoles | string;
   company?: Company;
   companyId?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

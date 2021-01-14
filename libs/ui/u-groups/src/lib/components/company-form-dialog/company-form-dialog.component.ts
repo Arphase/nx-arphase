@@ -1,10 +1,22 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit, Optional } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnInit,
+  Optional,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Company, Group } from '@ivt/c-data';
-import { IvtFormComponent, markFormGroupTouched } from '@ivt/u-ui';
+import { IvtAddressFormComponent, IvtFormComponent } from '@ivt/u-ui';
+import { takeUntil } from 'rxjs/operators';
 
 import { createCompanyForm, createUserForm, patchCompanyForm } from '../../functions/group-form.functions';
+import { UserFormComponent } from '../user-form/user-form.component';
 
 @Component({
   selector: 'ivt-company-form-dialog',
@@ -12,7 +24,10 @@ import { createCompanyForm, createUserForm, patchCompanyForm } from '../../funct
   styleUrls: ['./company-form-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CompanyFormDialogComponent extends IvtFormComponent<Group> implements OnInit {
+export class CompanyFormDialogComponent extends IvtFormComponent<Group> implements OnInit, AfterViewInit {
+  @ViewChild(IvtAddressFormComponent) addressFormComponent: IvtAddressFormComponent;
+  @ViewChildren(UserFormComponent) userFormComponents: QueryList<UserFormComponent>;
+
   get addressForm(): FormGroup {
     return this.form.get('address') as FormGroup;
   }
@@ -35,6 +50,13 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
     }
   }
 
+  ngAfterViewInit() {
+    this.stateChanged.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.addressFormComponent.markForCheck();
+      this.userFormComponents.forEach(userFormComponent => userFormComponent.markForCheck());
+    });
+  }
+
   addUser(): void {
     this.usersFormArray.push(createUserForm());
   }
@@ -47,7 +69,8 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
     if (this.form.valid || this.form.disabled) {
       this.dialogRef.close(this.values);
     } else {
-      markFormGroupTouched(this.form);
+      this.form.markAllAsTouched();
     }
+    this.stateChanged.next();
   }
 }

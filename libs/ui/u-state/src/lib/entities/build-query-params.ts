@@ -41,7 +41,7 @@ export function buildQueryParams(queryParams): HttpParams {
     params.direction = order;
   }
 
-  if (queryParams.resetList) {
+  if (queryParams.resetList === String(true)) {
     params.offset = '0';
   }
 
@@ -51,5 +51,5 @@ export function buildQueryParams(queryParams): HttpParams {
 }
 
 function parseDate(date: string | Date): string {
-  return moment(date, ['DD/MM/YYYY', moment.ISO_8601]).format('YYYY-MM-DD');
+  return moment(date, ['DD/MM/YY', moment.ISO_8601]).format('YYYY-MM-DD');
 }

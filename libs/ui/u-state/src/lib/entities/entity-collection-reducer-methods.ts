@@ -40,7 +40,7 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
 
   protected queryManySuccess(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
     let entityCollection = super.queryManySuccess(collection, action) as IvtEntityCollection<T>;
-    if (entityCollection.queryParams.resetList) {
+    if (entityCollection.queryParams.resetList === String(true)) {
       entityCollection = super.queryManySuccess(super.removeAll(collection, action), action) as IvtEntityCollection<T>;
     }
     return {
@@ -93,5 +93,13 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
     } else {
       return super.removeOne(collection, action) as IvtEntityCollection<T>;
     }
+  }
+
+  protected removeAll(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    return {
+      ...collection,
+      ...super.removeAll(collection, action),
+      queryParams: null,
+    };
   }
 }

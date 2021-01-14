@@ -1,0 +1,7 @@
+<ivt-user-list [list]="list$ | async"
+               [hasMoreItems]="hasMore$ | async"
+               [groupOptions]="groupOptions$ | async"
+               [companyOptions]="companyOptions$ | async"
+               (getMoreItems)="getMoreItems()"
+               (filterItems)="filterItems($event)">
+</ivt-user-list>

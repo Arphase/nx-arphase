@@ -3,12 +3,6 @@
   "projects": {
     "innovatech-ui": {
       "projectType": "application",
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush"
-        }
-      },
       "root": "apps/innovatech-ui",
       "sourceRoot": "apps/innovatech-ui/src",
       "prefix": "innovatech",
@@ -260,12 +254,6 @@
             "setupFile": "libs/common/c-utils/src/test-setup.ts"
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush"
-        }
       }
     },
     "u-auth": {
@@ -290,12 +278,6 @@
             "passWithNoTests": true,
             "setupFile": "libs/ui/u-auth/src/test-setup.ts"
           }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush"
         }
       }
     },
@@ -322,12 +304,6 @@
             "setupFile": "libs/ui/u-dashboard/src/test-setup.ts"
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush"
-        }
       }
     },
     "u-guarantees": {
@@ -352,12 +328,6 @@
             "passWithNoTests": true,
             "setupFile": "libs/ui/u-guarantees/src/test-setup.ts"
           }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush"
         }
       }
     },
@@ -384,12 +354,6 @@
             "setupFile": "libs/ui/u-spa/src/test-setup.ts"
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush"
-        }
       }
     },
     "u-state": {
@@ -415,12 +379,6 @@
             "setupFile": "libs/ui/u-state/src/test-setup.ts"
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush"
-        }
       }
     },
     "u-groups": {
@@ -444,12 +402,6 @@
             "passWithNoTests": true
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush"
-        }
       }
     },
     "u-products": {
@@ -472,12 +424,6 @@
             "jestConfig": "libs/ui/u-products/jest.config.js",
             "passWithNoTests": true
           }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush"
         }
       }
     },
@@ -503,12 +449,6 @@
             "passWithNoTests": true,
             "setupFile": "libs/ui/u-ui/src/test-setup.ts"
           }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush"
         }
       }
     },
@@ -727,6 +667,33 @@
           }
         }
       }
+    },
+    "u-users": {
+      "projectType": "library",
+      "root": "libs/ui/u-users",
+      "sourceRoot": "libs/ui/u-users/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui/u-users/src/**/*.ts",
+              "libs/ui/u-users/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/ui/u-users"
+          ],
+          "options": {
+            "jestConfig": "libs/ui/u-users/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
@@ -742,6 +709,10 @@
     "@nrwl/angular:library": {
       "unitTestRunner": "jest",
       "linter": "eslint"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss",
+      "changeDetection": "OnPush"
     }
   },
   "defaultProject": "innovatech-ui"

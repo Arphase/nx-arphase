@@ -16,36 +16,36 @@
 
     <ivt-table-header [columns]="columns"></ivt-table-header>
 
-    <form *ngFor="let guarantee of guaranteesFormArray.controls"
-          [formGroup]="guarantee"
-          class="row mb-3">
-      <div class="col-2 flex-start">
-        <span class="mb-3">
-          {{ guarantee.value.id | folio }}
-        </span>
-      </div>
-      <div class="col-5">
-        <ivt-form-field label="Fecha de factura"
-                        [hideLabel]="true">
-          <input ivtInput
-                 [matDatepicker]="invoiceDate"
-                 formControlName="invoiceDate">
-          <mat-datepicker-toggle matSuffix
-                                 [for]="invoiceDate"></mat-datepicker-toggle>
-          <mat-datepicker #invoiceDate></mat-datepicker>
-        </ivt-form-field>
-      </div>
-      <div class="col-5">
-        <ivt-form-field label="Importe"
-                        [hideLabel]="true">
-          <input ivtInput
-                 formControlName="amount"
-                 prefix="$ "
-                 mask="0*.00"
-                 class="text-right px-3">
-        </ivt-form-field>
-      </div>
-    </form>
+    <ivt-row *ngFor="let guarantee of guaranteesFormArray.controls">
+      <form [formGroup]="guarantee"
+            class="row">
+        <div class="col-2 flex-start">
+          <span>{{ guarantee.value.id | folio }}</span>
+        </div>
+        <div class="col-5">
+          <ivt-form-field label="Fecha de factura"
+                          [hideLabel]="true">
+            <input ivtInput
+                   [matDatepicker]="invoiceDate"
+                   formControlName="invoiceDate">
+            <mat-datepicker-toggle matSuffix
+                                   [for]="invoiceDate"></mat-datepicker-toggle>
+            <mat-datepicker #invoiceDate></mat-datepicker>
+          </ivt-form-field>
+        </div>
+        <div class="col-5">
+          <ivt-form-field label="Importe"
+                          [hideLabel]="true">
+            <input ivtInput
+                   formControlName="amount"
+                   prefix="$ "
+                   mask="0*.00"
+                   class="text-right px-3">
+          </ivt-form-field>
+        </div>
+      </form>
+    </ivt-row>
+
   </mat-dialog-content>
 
   <div mat-dialog-actions

@@ -16,6 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "paths": {
       "@app/*": ["apps/innovatech-ui/src/app/*"],
       "@app/env/*": ["apps/innovatech-ui/src/environments/*"],
@@ -27,7 +28,7 @@
       "@ivt/a-guarantees": ["libs/api/a-guarantees/src/index.ts"],
       "@ivt/a-localities": ["libs/api/a-localities/src/index.ts"],
       "@ivt/a-payment-orders": ["libs/api/a-payment-orders/src/index.ts"],
-      "@ivt/a-products":["libs/api/a-products/src/index.ts"],
+      "@ivt/a-products": ["libs/api/a-products/src/index.ts"],
       "@ivt/a-state": ["libs/api/a-state/src/index.ts"],
       "@ivt/a-users": ["libs/api/a-users/src/index.ts"],
       "@ivt/c-utils": ["libs/common/c-utils/src/index.ts"],
@@ -39,7 +40,8 @@
       "@ivt/u-spa": ["libs/ui/u-spa/src/index.ts"],
       "@ivt/u-state": ["libs/ui/u-state/src/index.ts"],
       "@ivt/u-groups": ["libs/ui/u-groups/src/index.ts"],
-      "@ivt/u-products": ["libs/ui/u-products/src/index.ts"]
+      "@ivt/u-products": ["libs/ui/u-products/src/index.ts"],
+      "@ivt/u-users": ["libs/ui/u-users/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

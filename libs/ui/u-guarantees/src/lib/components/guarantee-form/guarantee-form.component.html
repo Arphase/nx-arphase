@@ -33,11 +33,10 @@
       </div>
 
       <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-lg-6">
           <mat-form-field>
             <mat-label>Compañía</mat-label>
-            <mat-select formControlName="companyId"
-                        [disabled]="!canSelectCompany">
+            <mat-select formControlName="companyId">
               <mat-option *ngFor="let option of currentCompanyOptions"
                           [value]="option.value">
                 {{ option.label }}
@@ -74,7 +73,8 @@
             </div>
             <mat-radio-group formControlName="personType">
               <mat-radio-button *ngFor="let option of personTypeOptions"
-                                [value]="option.value">
+                                [value]="option.value"
+                                class="mr-3">
                 {{ option.label }}
               </mat-radio-button>
             </mat-radio-group>

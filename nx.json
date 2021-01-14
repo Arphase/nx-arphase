@@ -22,7 +22,8 @@
           "lint",
           "test",
           "e2e"
-        ]
+        ],
+        "cacheDirectory": ".cache/nx"
       }
     }
   },
@@ -136,6 +137,11 @@
       ]
     },
     "u-products": {
+      "tags": [
+        "front"
+      ]
+    },
+    "u-users": {
       "tags": [
         "front"
       ]

@@ -1,5 +1,5 @@
 import { AuthModule } from '@ivt/a-auth';
-import { GuaranteeRepository } from '@ivt/a-state';
+import { GuaranteeRepository, MoralPersonRepository, PhysicalPersonRepository } from '@ivt/a-state';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -7,7 +7,10 @@ import { GuaranteesController } from './controllers/guarantees.controller';
 import { GuaranteesService } from './services/guarantees.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([GuaranteeRepository]), AuthModule],
+  imports: [
+    TypeOrmModule.forFeature([GuaranteeRepository, MoralPersonRepository, PhysicalPersonRepository]),
+    AuthModule,
+  ],
   controllers: [GuaranteesController],
   providers: [GuaranteesService],
 })

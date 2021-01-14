@@ -1,6 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MenuItem } from '@ivt/c-data';
-import { fromAuth, getAuthUserEmailState, getAuthUserNameState, IvtState, PermissionService } from '@ivt/u-state';
+import {
+  fromAuth,
+  getAuthUserEmailState,
+  getAuthUserNameState,
+  IVT_UI_STATE_CONFIGURATION,
+  IvtState,
+  IvtUiStateConfiguration,
+  PermissionService,
+} from '@ivt/u-state';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -16,7 +24,12 @@ export class SpaComponent {
   menuItems$ = this.getMenuItems();
   name$ = this.store.pipe(select(getAuthUserNameState));
   email$ = this.store.pipe(select(getAuthUserEmailState));
-  constructor(private store: Store<IvtState>, private permissionService: PermissionService) {}
+  version = this.config.version;
+  constructor(
+    private store: Store<IvtState>,
+    private permissionService: PermissionService,
+    @Inject(IVT_UI_STATE_CONFIGURATION) private config: IvtUiStateConfiguration
+  ) {}
 
   getMenuItems(): Observable<MenuItem[]> {
     return this.permissionService.hasReadPermission().pipe(
@@ -46,6 +59,12 @@ export class SpaComponent {
         //   path: ['products'],
         //   display: hasPermission,
         // },
+        {
+          icon: 'face',
+          header: 'Usuarios',
+          path: ['users'],
+          display: true,
+        },
       ])
     );
   }

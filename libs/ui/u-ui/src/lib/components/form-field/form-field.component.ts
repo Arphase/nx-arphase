@@ -56,6 +56,7 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
     _elementRef: ElementRef,
     _changeDetectorRef: ChangeDetectorRef,
     @Inject(ElementRef) _labelOptions,
+    private cdr: ChangeDetectorRef,
     @Optional() _dir: Directionality,
     @Optional() @Inject(MAT_FORM_FIELD_DEFAULT_OPTIONS) _defaults: MatFormFieldDefaultOptions,
     _platform: Platform,
@@ -76,15 +77,14 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
       )
       .subscribe(() => this.setErrorMessage(reactiveControl.errors));
 
-    if (this.select && this.select.options && this.select.options.length === 1) {
+    if (this.select?.options?.length === 1) {
       this.select.ngControl.control.patchValue(this.select.options.first.value);
     }
-  }
 
-  ngOnDestroy() {
-    super.ngOnDestroy();
-    this.destroy$.next();
-    this.destroy$.complete();
+    setTimeout(() => {
+      this._control.empty === !!this.input?.ngControl?.value;
+      this.cdr.markForCheck();
+    }, 100);
   }
 
   _getDisplayedMessages(): 'error' | 'hint' {
@@ -108,5 +108,11 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
     };
 
     this.error = errorMessages[firstError];
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

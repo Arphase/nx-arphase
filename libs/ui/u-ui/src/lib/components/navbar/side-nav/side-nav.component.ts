@@ -24,6 +24,7 @@ export class IvtSideNavComponent implements OnChanges, OnDestroy {
   @ViewChild('snav') sidenav: MatSidenav;
   @Input() opened = true;
   @Input() menuItems: MenuItem[] = [];
+  @Input() version: string;
   @Output() openMenu = new EventEmitter<void>();
   @Output() closeMenu = new EventEmitter<void>();
   mobileQuery: MediaQueryList;
