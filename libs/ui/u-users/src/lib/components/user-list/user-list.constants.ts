@@ -3,16 +3,25 @@ import { IvtColumns } from '@ivt/u-ui';
 export const columns: IvtColumns = [
   {
     label: 'Nombre',
-    prop: 'group.name',
+    prop: 'user.firstName',
     sortable: true,
     colSizes: {
-      xs: '9',
-      sm: '3'
+      xs: '6',
+      sm: '3',
     },
   },
   {
-    label: 'Contacto',
-    prop: 'group.contact',
+    label: 'Correo',
+    prop: 'user.email',
+    sortable: true,
+    colSizes: {
+      xs: '6',
+      sm: '3',
+    },
+  },
+  {
+    label: 'Fecha de alta',
+    prop: 'user.createdAt',
     sortable: true,
     colSizes: {
       xs: '3',
@@ -24,11 +33,11 @@ export const columns: IvtColumns = [
     },
   },
   {
-    label: 'Email',
-    prop: 'group.email',
+    label: 'Compañía',
+    prop: 'company.businessName',
     sortable: true,
     colSizes: {
-      xs: '2',
+      xs: '3',
     },
     breakpointShow: {
       md: true,
@@ -36,17 +45,4 @@ export const columns: IvtColumns = [
       xl: true,
     },
   },
-  {
-    label: 'Teléfono',
-    prop: 'group.phone',
-    sortable: true,
-    colSizes: {
-      xs: '2'
-    },
-    breakpointShow: {
-      md: true,
-      lg: true,
-      xl: true,
-    },
-  }
 ];

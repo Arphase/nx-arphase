@@ -5,6 +5,10 @@ import { IsArray, IsNotEmpty, IsOptional } from 'class-validator';
 export class FilterUsersDto {
   @IsOptional()
   @IsNotEmpty()
+  text: string;
+
+  @IsOptional()
+  @IsNotEmpty()
   sort: string;
 
   @IsOptional()

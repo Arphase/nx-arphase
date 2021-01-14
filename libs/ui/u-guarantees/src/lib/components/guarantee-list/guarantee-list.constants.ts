@@ -15,15 +15,21 @@ export const columns: IvtColumns = [
     prop: 'guarantee.id',
     sortable: true,
     colSizes: {
-      xs: '1',
+      md: '1',
+      xs: '2',
+      sm: '2',
     },
   },
   {
-    label: 'Placa',
+    label: 'VIN',
     prop: 'guarantee.vin',
     sortable: false,
     colSizes: {
       xs: '2',
+    },
+    breakpointShow: {
+      lg: true,
+      xl: true,
     },
   },
   {
@@ -34,6 +40,8 @@ export const columns: IvtColumns = [
       xs: '2',
     },
     breakpointShow: {
+      sm: true,
+      md: true,
       lg: true,
       xl: true,
     },
@@ -43,7 +51,8 @@ export const columns: IvtColumns = [
     prop: 'guarantee.startDate',
     sortable: true,
     colSizes: {
-      xs: '2',
+      xs: '3',
+      sm: '2',
       lg: '1',
     },
   },
@@ -52,7 +61,8 @@ export const columns: IvtColumns = [
     prop: 'guarantee.endDate',
     sortable: true,
     colSizes: {
-      xs: '2',
+      xs: '3',
+      sm: '2',
       lg: '1',
     },
   },
@@ -77,16 +87,13 @@ export const columns: IvtColumns = [
       xs: '2',
     },
     alignment: 'right',
-  },
-  {
-    label: 'Acciones',
-    prop: 'actions',
-    sortable: false,
-    alignment: 'right',
-    colSizes: {
-      xs: 'auto',
+    breakpointShow: {
+      sm: true,
+      md: true,
+      lg: true,
+      xl: true,
     },
-  },
+  }
 ];
 
 export const statusOptions: Select[] = [
@@ -107,4 +114,3 @@ export const statusOptions: Select[] = [
     value: GuaranteeStatus[GuaranteeStatus.expired],
   },
 ];
-

@@ -152,9 +152,12 @@ export class AuthService {
   }
 
   async sendEmailToPendingUsers(userIds: number[]): Promise<boolean> {
-    const query = this.resetPasswordRepository.createQueryBuilder('resetPassword');
-    const resetPasswords = await query.where(`resetPassword.userId IN (:...userIds)`, { userIds }).getMany();
-    resetPasswords.forEach(password => this.sendSetPasswordEmail(password.userId));
+    const query = this.userRepository.createQueryBuilder('user');
+    const users = await query
+      .where(`user.id IN (:...userIds)`, { userIds })
+      .andWhere(`user.password IS NULL`)
+      .getMany();
+    users.forEach(async user => await this.sendSetPasswordEmail(user.id));
     return true;
   }
 

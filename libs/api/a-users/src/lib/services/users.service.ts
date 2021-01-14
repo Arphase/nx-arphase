@@ -15,7 +15,7 @@ export class UsersService {
   }
 
   async getUsers(filterDto: FilterUsersDto, user: Partial<User>): Promise<User[]> {
-    const { sort, direction, companyIds, groupIds } = filterDto;
+    const { sort, direction, companyIds, groupIds, text } = filterDto;
     const query = this.userRepository.createQueryBuilder('user');
 
     query
@@ -30,6 +30,13 @@ export class UsersService {
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
       query.andWhere('(user.companyId = :id)', { id: user.companyId });
+    }
+
+    if (text) {
+      query.andWhere(
+        `LOWER(user.email) like :text OR LOWER(CONCAT(user.firstName, ' ', user.lastName, ' ', user.secondLastName)) like :text`,
+        { text: `%${text.toLowerCase()}%` }
+      );
     }
 
     if (groupIds) {

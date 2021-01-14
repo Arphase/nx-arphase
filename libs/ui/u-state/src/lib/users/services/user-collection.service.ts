@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '@ivt/c-data';
-import { filterNilArray, mapToSelectOptions } from '@ivt/c-utils';
+import { filterNilArray, mapToSelectOptions, sortSelectOptionsAlphabetical } from '@ivt/c-utils';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
 import { IvtCollectionService } from '../../core';
@@ -14,7 +14,8 @@ export class UserCollectionService extends IvtCollectionService<User> {
     mapToSelectOptions(user => ({
       label: `${user.firstName} ${user.lastName}`,
       value: user.id,
-    }))
+    })),
+    sortSelectOptionsAlphabetical()
   );
   constructor(protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('User', serviceElementsFactory);

@@ -1,10 +1,10 @@
 <button class="ivt-filter"
         [class.ivt-filter--disabled]="disabled"
         [disabled]="disabled"
-        [ngClass]="{'active-filter': active || selectedOptions.length}"
+        [ngClass]="{ 'active-filter': active || selectedOptions.length }"
         [matMenuTriggerFor]="menu">
-  <span class="ivt-button-label">{{ mappedTitle || label}}</span>
 
+  <span class="ivt-button-label">{{ mappedTitle || label }}</span>
   <i *ngIf="!selectedOptions.length"
      class="material-icons right">expand_more</i>
 
@@ -14,13 +14,14 @@
 </button>
 
 <mat-menu #menu="matMenu">
-  <div class="content">
-    <cdk-virtual-scroll-viewport itemSize="24"
+  <div *ngIf="displayContent"
+       class="content">
+    <cdk-virtual-scroll-viewport itemSize="22"
                                  [style.width]="width"
                                  [style.height]="height">
       <div *cdkVirtualFor="let option of visibleOptions"
            class="row m-0">
-        <div class="col-12">
+        <div class="col">
           <mat-checkbox [checked]="option.checked"
                         (change)="onFilterChange($event, option.value)"
                         (click)="$event.stopPropagation()">

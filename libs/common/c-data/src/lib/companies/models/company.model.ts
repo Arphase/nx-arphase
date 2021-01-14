@@ -13,6 +13,7 @@ export interface Company {
   phone: string;
   address: Address;
   group: Group;
+  groupId: number;
   users: User[];
   guarantees: Guarantee[];
 }

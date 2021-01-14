@@ -70,10 +70,10 @@ export class DashboardContainerComponent extends IvtSubscriberComponent implemen
     this.companyCollectionService.clearCache();
     this.userCollectionService.clearCache();
     this.store.dispatch(fromDashboard.actions.getGuaranteeSummary({}));
-    this.store.pipe(select(getAuthUserRoleState), takeUntil(this.destroy$)).subscribe(role => {
+    this.store.pipe(select(getAuthUserRoleState), filterNil(), takeUntil(this.destroy$)).subscribe(role => {
       if (role === UserRoles[UserRoles.superAdmin]) {
         this.groupCollectionService.getAll();
-      } else {
+        this.companyCollectionService.getAll();
         this.userCollectionService.getAll();
       }
     });
@@ -81,18 +81,6 @@ export class DashboardContainerComponent extends IvtSubscriberComponent implemen
 
   filterItems(payload: QueryParams): void {
     this.store.dispatch(fromDashboard.actions.getGuaranteeSummary({ payload }));
-  }
-
-  filterCompanies(groupIds: number[]): void {
-    if (groupIds.length) {
-      this.companyCollectionService.getWithQuery({ groupIds: groupIds.toString(), resetList: String(true) });
-    }
-  }
-
-  filterUsers(companyIds: number[]): void {
-    if (companyIds.length) {
-      this.userCollectionService.getWithQuery({ groupIds: companyIds.toString(), resetList: String(true) });
-    }
   }
 
   ngOnDestroy() {

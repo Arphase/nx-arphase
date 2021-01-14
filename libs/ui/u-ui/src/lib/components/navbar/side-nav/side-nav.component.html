@@ -17,6 +17,13 @@
                          (closeMenu)="onCloseMenu()"></ivt-menu-item>
         </ng-container>
       </div>
+
+      <div [hidden]="!opened"
+           class="row mt-auto mb-5">
+        <div class="col flex-center">
+          <span class="text-primary">Versión {{ version }}</span>
+        </div>
+      </div>
     </div>
   </mat-sidenav>
 

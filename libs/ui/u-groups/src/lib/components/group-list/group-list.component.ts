@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Group } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
 
@@ -13,8 +12,4 @@ import { columns } from './group-list.constants';
 })
 export class GroupListComponent extends IvtListComponent<Group> {
   columns = columns;
-
-  constructor(public dialog: MatDialog) {
-    super();
-  }
 }
