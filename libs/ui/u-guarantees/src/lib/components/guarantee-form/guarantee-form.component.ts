@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Guarantee, PersonTypes, Select } from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
 import { createAddressForm, IvtAddressFormComponent, IvtFormComponent, IvtValidators } from '@ivt/u-ui';
+import { createVehicleForm } from '@ivt/u-vehicles';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -61,7 +62,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
 
   constructor(private fb: FormBuilder) {
     super();
-    const todayYear = new Date().getFullYear();
     this.form = this.fb.group({
       id: null,
       productId: null,
@@ -93,16 +93,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         address: createAddressForm(),
         salesPlace: [null, Validators.required],
       }),
-      vehicle: this.fb.group({
-        id: null,
-        brand: [null, Validators.required],
-        model: [null, Validators.required],
-        version: [null, Validators.required],
-        year: [null, [Validators.required, Validators.min(todayYear - 20), Validators.max(todayYear + 1)]],
-        vin: [null, Validators.required],
-        motorNumber: [null, Validators.required],
-        horsePower: [null, [Validators.required, Validators.max(400)]]
-      }),
+      vehicle: createVehicleForm(),
     });
     this.client
       .get('personType')

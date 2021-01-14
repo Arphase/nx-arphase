@@ -219,65 +219,7 @@
     <ivt-expansion-panel class="primary-panel mb-3 d-block"
                          title="Vehículo"
                          [isOpen]="true">
-      <form [formGroup]="vehicle">
-        <div class="row">
-          <div class="col-12 col-lg-6">
-            <ivt-form-field label="VIN">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="vin">
-            </ivt-form-field>
-          </div>
-          <div class="col-12 col-lg-6">
-            <ivt-form-field label="N° de motor">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="motorNumber">
-            </ivt-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12 col-lg-4">
-            <ivt-form-field label="Marca">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="brand">
-            </ivt-form-field>
-          </div>
-          <div class="col-12 col-lg-4">
-            <ivt-form-field label="Modelo">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="model">
-            </ivt-form-field>
-          </div>
-          <div class="col-12 col-lg-4">
-            <ivt-form-field label="Versión">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="version">
-            </ivt-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12 col-lg-6">
-            <ivt-form-field label="Año del vehículo">
-              <input ivtInput
-                     type="number"
-                     formControlName="year">
-            </ivt-form-field>
-          </div>
-          <div class="col-12 col-lg-6">
-            <ivt-form-field label="HP">
-              <input ivtInput
-                     type="number"
-                     formControlName="horsePower">
-            </ivt-form-field>
-          </div>
-        </div>
-      </form>
+      <ivt-vehicle-form [form]="vehicle"></ivt-vehicle-form>
     </ivt-expansion-panel>
   </div>
 

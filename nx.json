@@ -91,6 +91,11 @@
         "back"
       ]
     },
+    "a-vehicles": {
+      "tags": [
+        "back"
+      ]
+    },
     "c-utils": {
       "tags": [
         "common"
@@ -146,8 +151,10 @@
         "front"
       ]
     },
-    "api-a-vehicles": {
-      "tags": []
+    "u-vehicles": {
+      "tags": [
+        "front"
+      ]
     }
   }
 }
