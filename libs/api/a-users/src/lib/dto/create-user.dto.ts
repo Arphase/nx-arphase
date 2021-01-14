@@ -38,7 +38,7 @@ export class CreateUserDto {
   rfc: string;
 
   @IsOptional()
-  @Transform((value: any) => UserRoles[value])
+  @Transform(({ obj, key }) => UserRoles[obj[key]])
   @IsEnum(UserRoles)
   role: UserRoles | string;
 }

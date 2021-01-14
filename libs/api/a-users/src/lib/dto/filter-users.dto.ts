@@ -18,12 +18,12 @@ export class FilterUsersDto {
   @IsOptional()
   @IsNotEmpty()
   @IsArray()
-  @Transform((value: any) => convertStringToNumberArray(value))
+  @Transform(({ obj, key }) => convertStringToNumberArray(obj[key]))
   companyIds: number[];
 
   @IsOptional()
   @IsNotEmpty()
   @IsArray()
-  @Transform((value: any) => convertStringToNumberArray(value))
+  @Transform(({ obj, key }) => convertStringToNumberArray(obj[key]))
   groupIds: number[];
 }
