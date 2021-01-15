@@ -2,7 +2,7 @@ import { convertStringToNumberArray } from '@ivt/c-utils';
 import { Transform } from 'class-transformer';
 import { IsArray, IsNotEmpty, IsNumberString, IsOptional } from 'class-validator';
 
-export class FilterUsersDto {
+export class GetVehiclesDto {
   @IsOptional()
   @IsNotEmpty()
   @IsNumberString()
