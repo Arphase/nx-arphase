@@ -1,1 +1,35 @@
-<p>vehicle-list works!</p>
+<div class="row">
+  <div class="col-9 col-md-6">
+    <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
+  </div>
+
+  <div class="col-3 col-md-6 flex-end pr-0">
+    <button mat-raised-button
+            [routerLink]="['new']"
+            type="button"
+            color="primary">
+      Nuevo vehículo
+    </button>
+  </div>
+</div>
+
+
+
+<ivt-empty-state *ngIf="!list.length"
+                 message="No existen vehículos.">
+</ivt-empty-state>
+
+<ng-container *ngIf="list.length">
+  <ivt-table-header class="d-block mt-4"
+                    [columns]="columns"
+                    (sort)="updateSort($event)"></ivt-table-header>
+
+  <ivt-virtual-scroll height="60vh"
+                      [list]="list"
+                      [ignoreNextBatch]="!hasMoreItems || loading"
+                      (nextBatchEmitter)="getMoreItems.emit()">
+    <ng-template let-item>
+      <ivt-vehicle-row [item]="item"></ivt-vehicle-row>
+    </ng-template>
+  </ivt-virtual-scroll>
+</ng-container>

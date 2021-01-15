@@ -24,6 +24,10 @@ const routes: Routes = [
         path: 'users',
         loadChildren: () => import('@ivt/u-users').then(m => m.UsersModule),
       },
+      {
+        path: 'vehicles',
+        loadChildren: () => import('@ivt/u-vehicles').then(m => m.VehiclesModule),
+      },
       // TODO: uncomment when feature is ready
       // {
       //   path: 'products',

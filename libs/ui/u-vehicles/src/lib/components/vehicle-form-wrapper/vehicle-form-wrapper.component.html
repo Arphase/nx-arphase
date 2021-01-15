@@ -1,1 +1,29 @@
-<p>vehicle-form-wrapper works!</p>
+<form [formGroup]="form"
+      (ngSubmit)="submit()">
+  <div class="row mb-3">
+    <div class="col">
+      <ivt-go-back-title [title]="item?.id ? 'Editar Vehículo' : 'Nuevo Vehículo'"></ivt-go-back-title>
+    </div>
+  </div>
+
+  <ivt-vehicle-form [form]="form"
+                    [showCompanyInput]="true"
+                    [companyOptions]="companyOptions"></ivt-vehicle-form>
+
+  <div class="row mt-4 mb-3">
+    <div class="col px-0 flex-end">
+      <button mat-raised-button
+              class="mr-3"
+              type="button"
+              [routerLink]="['..']">
+        Cancelar
+      </button>
+      <button mat-raised-button
+              type="submit"
+              color="primary"
+              [loading]="loading">
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>

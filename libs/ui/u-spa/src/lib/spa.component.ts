@@ -65,6 +65,12 @@ export class SpaComponent {
           path: ['users'],
           display: true,
         },
+        {
+          icon: 'directions_car',
+          header: 'Vehículos',
+          path: ['vehicles'],
+          display: true,
+        },
       ])
     );
   }

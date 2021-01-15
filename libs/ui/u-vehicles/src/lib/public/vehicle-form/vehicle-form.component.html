@@ -1,13 +1,32 @@
 <form [formGroup]="form">
   <div class="row">
-    <div class="col-12 col-lg-6">
+    <div *ngIf="showCompanyInput"
+         class="col-12 col-lg-4">
+      <ivt-form-field label="Compañía">
+        <mat-select formControlName="companyId">
+          <mat-option *ngFor="let option of companyOptions"
+                      [value]="option.value">
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+      </ivt-form-field>
+    </div>
+    <div class="col-12"
+         [ngClass]="{
+           'col-lg-6': !showCompanyInput,
+           'col-lg-4': showCompanyInput
+          }">
       <ivt-form-field label="VIN">
         <input ivtInput
                ivtUppercase
                formControlName="vin">
       </ivt-form-field>
     </div>
-    <div class="col-12 col-lg-6">
+    <div class="col-12"
+         [ngClass]="{
+      'col-lg-6': !showCompanyInput,
+      'col-lg-4': showCompanyInput
+     }">
       <ivt-form-field label="N° de motor">
         <input ivtInput
                ivtUppercase

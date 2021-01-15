@@ -1,1 +1,3 @@
-<p>vehicle-form-container works!</p>
+<ivt-vehicle-form-wrapper [companyOptions]="companyOptions$ | async"
+                          [loading]="loading$ | async"
+                          (submitForm)="submit($event)"></ivt-vehicle-form-wrapper>

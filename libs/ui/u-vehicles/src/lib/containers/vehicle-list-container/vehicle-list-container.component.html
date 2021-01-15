@@ -1,1 +1,5 @@
-<p>vehicle-list-container works!</p>
+<ivt-vehicle-list [list]="list$ | async"
+                  [hasMoreItems]="hasMore$ | async"
+                  (getMoreItems)="getMoreItems()"
+                  (filterItems)="filterItems($event)">
+</ivt-vehicle-list>

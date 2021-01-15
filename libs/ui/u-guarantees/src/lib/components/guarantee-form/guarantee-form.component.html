@@ -34,15 +34,14 @@
 
       <div class="row">
         <div class="col-12 col-lg-6">
-          <mat-form-field>
-            <mat-label>Compañía</mat-label>
+          <ivt-form-field label="Compañía">
             <mat-select formControlName="companyId">
-              <mat-option *ngFor="let option of currentCompanyOptions"
+              <mat-option *ngFor="let option of companyOptions"
                           [value]="option.value">
                 {{ option.label }}
               </mat-option>
             </mat-select>
-          </mat-form-field>
+          </ivt-form-field>
         </div>
 
         <div class="col-12 col-lg-6">
@@ -76,15 +75,14 @@
       <!-- TODO: Uncomment when products is ready
       <div class="row">
         <div class="col">
-          <mat-form-field>
-            <mat-label>Producto</mat-label>
+          <ivt-form-field label-"Producto">
             <mat-select formControlName="productId">
               <mat-option *ngFor="let option of productOptions"
                           [value]="option.value">
                 {{ option.label }}
               </mat-option>
             </mat-select>
-          </mat-form-field>
+          </ivt-form-field>
         </div>
       </div> -->
     </ivt-expansion-panel>
@@ -219,7 +217,8 @@
     <ivt-expansion-panel class="primary-panel mb-3 d-block"
                          title="Vehículo"
                          [isOpen]="true">
-      <ivt-vehicle-form [form]="vehicle"></ivt-vehicle-form>
+      <ivt-vehicle-form [form]="vehicle"
+                        [companyId]="companyId$ | async"></ivt-vehicle-form>
     </ivt-expansion-panel>
   </div>
 

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Vehicle } from '@ivt/c-data';
+import { Select, Vehicle } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
 
 export function createVehicleForm(vehicle?: Vehicle) {
@@ -15,6 +15,7 @@ export function createVehicleForm(vehicle?: Vehicle) {
     vin: new FormControl('', Validators.required),
     motorNumber: new FormControl('', Validators.required),
     horsePower: new FormControl('', [Validators.required, Validators.max(400)]),
+    companyId: new FormControl(null),
   });
 
   if (vehicle) {
@@ -30,4 +31,22 @@ export function createVehicleForm(vehicle?: Vehicle) {
   styleUrls: ['./vehicle-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VehicleFormComponent extends IvtFormComponent<Vehicle> {}
+export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements OnChanges {
+  @Input() companyId: number;
+  @Input() showCompanyInput: boolean;
+  @Input() companyOptions: Select[] = [];
+
+  constructor(private cdr: ChangeDetectorRef) {
+    super();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.companyId) {
+      this.form.get('companyId').patchValue(this.companyId || '');
+    }
+  }
+
+  markForCheck(): void {
+    this.cdr.markForCheck();
+  }
+}
