@@ -1,7 +1,7 @@
 import { VehicleRepository } from '@ivt/a-state';
 import { User, UserRoles, Vehicle } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Connection } from 'typeorm';
 
 import { CreateVehicleDto } from '../../dto';
@@ -32,6 +32,15 @@ export class VehiclesService {
     query.take(limit).skip(offset);
 
     return await query.getMany();
+  }
+
+  async getVehicle(id: number): Promise<Vehicle> {
+    const query = this.vehicleRepository.createQueryBuilder('vehicle');
+    const found = await query.where('vehicle.id = :id', { id }).getOne();
+    if (!found) {
+      throw new NotFoundException(`Vehicle with id "${id}" not found`);
+    }
+    return found;
   }
 
   async createVehicle(createVehicleDto: CreateVehicleDto, user: Partial<User>): Promise<Vehicle> {
