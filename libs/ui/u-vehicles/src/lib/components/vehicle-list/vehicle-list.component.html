@@ -15,8 +15,6 @@
   </div>
 </div>
 
-
-
 <ivt-empty-state *ngIf="!list.length"
                  message="No existen vehículos.">
 </ivt-empty-state>
@@ -31,7 +29,8 @@
                       [ignoreNextBatch]="!hasMoreItems || loading"
                       (nextBatchEmitter)="getMoreItems.emit()">
     <ng-template let-item>
-      <ivt-vehicle-row [item]="item"></ivt-vehicle-row>
+      <ivt-vehicle-row [item]="item"
+                       (delete)="delete.emit($event)"></ivt-vehicle-row>
     </ng-template>
   </ivt-virtual-scroll>
 </ng-container>

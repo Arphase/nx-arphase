@@ -36,14 +36,14 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,
     protected guaranteeDataService: GuaranteeDataService,
+    protected dialog: MatDialog,
     private paymentOrderCollectionService: PaymentOrderCollectionService,
-    private dialog: MatDialog,
     private store: Store<IvtState>,
     private groupCollectionService: GroupCollectionService,
     private companyCollectionService: CompanyCollectionService,
     private userCollectionService: UserCollectionService
   ) {
-    super(guaranteeCollectionService, guaranteeDataService);
+    super(guaranteeCollectionService, guaranteeDataService, dialog);
   }
 
   ngOnInit(): void {

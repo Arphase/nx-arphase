@@ -19,9 +19,20 @@
   </div>
   <div class="col flex-end">
     <button mat-icon-button
-            matTooltip="Editar grupo"
-            [routerLink]="[item.id]">
-      <mat-icon>border_color</mat-icon>
+            matTooltip="Acciones"
+            [matMenuTriggerFor]="actionsMenu">
+      <mat-icon>more_vert</mat-icon>
     </button>
+    <mat-menu #actionsMenu="matMenu">
+      <button mat-menu-item
+              [routerLink]="[item.id]">
+        Editar vehículo
+      </button>
+      <button mat-menu-item
+              class="text-danger"
+              (click)="delete.emit(item)">
+        Eliminar vehículo
+      </button>
+    </mat-menu>
   </div>
 </ivt-row>

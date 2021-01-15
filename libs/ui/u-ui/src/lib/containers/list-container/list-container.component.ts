@@ -1,11 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Optional } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { IvtQueryParams } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import { buildQueryParams, IvtCollectionService, IvtDataService, IvtEntityCollection } from '@ivt/u-state';
 import { select } from '@ngrx/store';
 import { map, take, takeUntil } from 'rxjs/operators';
 
-import { IvtSubscriberComponent } from '../../components';
+import { IvtConfirmationDialogComponent, IvtSubscriberComponent } from '../../components';
 
 @Component({
   selector: 'ivt-list-container',
@@ -24,10 +25,12 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
   queryParams: IvtQueryParams;
   excelFileName: string;
   excelUrl: string;
+  deleteConfirmMessage: string;
 
   constructor(
     protected entityCollectionService: IvtCollectionService<T>,
-    protected entityDataService: IvtDataService<T>
+    protected entityDataService: IvtDataService<T>,
+    @Optional() protected dialog?: MatDialog
   ) {
     super();
     this.entityCollectionService.store
@@ -64,6 +67,10 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
   }
 
   deleteItem(item: T): void {
-    this.entityCollectionService.delete(item);
+    this.dialog
+      .open(IvtConfirmationDialogComponent, { data: { message: this.deleteConfirmMessage } })
+      .afterClosed()
+      .pipe(take(1), filterNil())
+      .subscribe(() => this.entityCollectionService.delete(item));
   }
 }
