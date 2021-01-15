@@ -15,7 +15,7 @@ export class UsersService {
   }
 
   async getUsers(filterDto: FilterUsersDto, user: Partial<User>): Promise<User[]> {
-    const { sort, direction, companyIds, groupIds, text } = filterDto;
+    const { sort, direction, companyIds, groupIds, text, offset, limit } = filterDto;
     const query = this.userRepository.createQueryBuilder('user');
 
     query
@@ -49,6 +49,9 @@ export class UsersService {
     if (companyIds) {
       query.andWhere('(company.id IN (:...companyIds))', { companyIds });
     }
+
+    query.take(limit).skip(offset);
+
     return await query.getMany();
   }
 }

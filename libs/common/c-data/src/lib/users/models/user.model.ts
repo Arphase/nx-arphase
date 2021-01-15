@@ -1,4 +1,6 @@
 import { Company } from '../../companies';
+import { Guarantee } from '../../guarantees';
+import { Vehicle } from '../../vehicles';
 import { UserRoles } from '../enums/user-roles.enum';
 
 export interface User {
@@ -18,4 +20,6 @@ export interface User {
   companyId?: number;
   createdAt?: Date;
   updatedAt?: Date;
+  guarantees?: Guarantee[];
+  vehicles?: Vehicle[];
 }

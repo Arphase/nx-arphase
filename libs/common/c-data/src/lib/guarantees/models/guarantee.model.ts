@@ -16,6 +16,8 @@ export interface Guarantee {
   startDate: Date;
   endDate: Date;
   invoiceDate: Date;
+  kilometrageStart: number;
+  kilometrageEnd: number;
   invoiceNumber?: string;
   amount: number;
   paymentOrderId?: number;
@@ -25,4 +27,5 @@ export interface Guarantee {
   company?: Company;
   userId?: number;
   user?: User;
+  productType?: string;
 }

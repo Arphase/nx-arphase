@@ -1,9 +1,18 @@
+import { UpdateVehicleDto } from '@ivt/a-vehicles';
 import { Client, GuaranteeStatus, Vehicle } from '@ivt/c-data';
 import { Transform, Type } from 'class-transformer';
-import { IsDateString, IsEnum, IsInt, IsNotEmpty, IsNumber, IsOptional, ValidateNested } from 'class-validator';
+import {
+  IsDateString,
+  IsEnum,
+  IsInt,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 
 import { UpdateClientDto } from './update-client.dto';
-import { UpdateVehicleDto } from './update-vehicle.dto';
 
 export class UpdateGuaranteeDto {
   @IsNotEmpty()
@@ -21,7 +30,7 @@ export class UpdateGuaranteeDto {
   vehicle: Vehicle;
 
   @IsOptional()
-  @Transform(value => GuaranteeStatus[value])
+  @Transform(({ obj, key }) => GuaranteeStatus[obj[key]])
   @IsEnum(GuaranteeStatus)
   status: GuaranteeStatus;
 
@@ -40,4 +49,16 @@ export class UpdateGuaranteeDto {
   @IsOptional()
   @IsNumber()
   productId: number;
+
+  @IsOptional()
+  @IsString()
+  productType: string;
+
+  @IsOptional()
+  @IsNumber()
+  kilometrageStart: number;
+
+  @IsOptional()
+  @IsNumber()
+  kilometrageEnd: number;
 }

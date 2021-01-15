@@ -33,16 +33,15 @@
       </div>
 
       <div class="col-4 px-0 ml-auto">
-          <mat-form-field>
-            <mat-label>Glosario</mat-label>
-            <mat-select (selectionChange)="selectedValue($event)">
-              <mat-option *ngFor="let option of glossaryOptions"
-                                [value]="option.value">
-                {{ option.label }}
-              </mat-option>
+        <ivt-form-field label="Glosario">
+          <mat-select (selectionChange)="selectedValue($event)">
+            <mat-option *ngFor="let option of glossaryOptions"
+                        [value]="option.value">
+              {{ option.label }}
+            </mat-option>
 
-            </mat-select>
-          </mat-form-field>
+          </mat-select>
+        </ivt-form-field>
       </div>
     </div>
 

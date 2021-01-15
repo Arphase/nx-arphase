@@ -1,9 +1,9 @@
+import { CreateVehicleDto } from '@ivt/a-vehicles';
 import { Client, Vehicle } from '@ivt/c-data';
 import { Type } from 'class-transformer';
-import { IsDateString, IsNotEmpty, IsNumber, IsOptional, ValidateNested } from 'class-validator';
+import { IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 
 import { CreateClientDto } from './create-client.dto';
-import { CreateVehicleDto } from './create-vehicle.dto';
 
 export class CreateGuaranteeDto {
   @ValidateNested()
@@ -25,4 +25,16 @@ export class CreateGuaranteeDto {
   @IsOptional()
   @IsNumber()
   productId: number;
+
+  @IsNotEmpty()
+  @IsString()
+  productType: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  kilometrageStart: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  kilometrageEnd: number;
 }

@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Guarantee, UserRoles } from '@ivt/c-data';
-import { filterNil } from '@ivt/c-utils';
 import {
   CompanyCollectionService,
   getAuthUserCompanyIdState,
@@ -14,7 +13,8 @@ import {
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
-import { map } from 'rxjs/operators';
+import { combineLatest } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-guarantee-form-container',
@@ -22,21 +22,29 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./guarantee-form-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<Guarantee> {
+export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<Guarantee> implements OnInit {
   successUrl = '/spa/guarantees';
   createSuccessMessage = 'La garantía se ha creado con éxito';
   updateSuccessMessage = 'La garantía se ha actualizado con éxito';
   isEditable$ = this.permissionService.hasUpdatePermission();
   productOptions$ = this.productCollectionService.options$;
-  companyOptions$ = this.companyCollectionService.options$;
-  canSelectCompany$ = this.store.pipe(
-    select(getAuthUserRoleState),
-    map(role => role === UserRoles[UserRoles.superAdmin])
-  );
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
-  restrictedCompanyOptions$ = this.companyCollectionService.currentItem$.pipe(
-    filterNil(),
-    map(company => [{ label: company.businessName, value: company.id }])
+  disabledCompanyInput$ = this.store.pipe(
+    select(getAuthUserRoleState),
+    map(role => role !== UserRoles[UserRoles.superAdmin])
+  );
+  companyOptions$ = combineLatest([
+    this.disabledCompanyInput$,
+    this.companyCollectionService.currentItem$,
+    this.companyCollectionService.options$,
+  ]).pipe(
+    map(([disabledCompanyInput, currentItem, options]) => {
+      if (disabledCompanyInput) {
+        return currentItem ? [{ label: currentItem.businessName, value: currentItem.id }] : [];
+      } else {
+        return options;
+      }
+    })
   );
 
   constructor(
@@ -51,11 +59,15 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     super(guaranteeCollectionService, router, toastr);
   }
 
-  getCompanies(): void {
-    this.companyCollectionService.getAll();
-  }
-
-  getCompany(id: number): void {
-    this.companyCollectionService.getByKey(id);
+  ngOnInit() {
+    combineLatest([this.disabledCompanyInput$, this.companyId$])
+      .pipe(take(1))
+      .subscribe(([disabledCompanyInput, companyId]) => {
+        if (disabledCompanyInput) {
+          this.companyCollectionService.getByKey(companyId);
+        } else {
+          this.companyCollectionService.getAll();
+        }
+      });
   }
 }
