@@ -1,4 +1,5 @@
 import { Company } from '../../companies/models/company.model';
+import { User } from '../../users';
 
 export interface Vehicle {
   id: number;
@@ -14,4 +15,8 @@ export interface Vehicle {
   kilometrageStart?: number;
   kilometrageEnd?: number;
   productType?: string;
+  userId?: number;
+  user?: User;
+  createdAt: Date;
+  updatedAt: Date;
 }

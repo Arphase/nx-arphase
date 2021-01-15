@@ -1,7 +1,17 @@
-import { Company, Vehicle } from '@ivt/c-data';
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Company, User, Vehicle } from '@ivt/c-data';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 import { CompanyEntity } from '../companies/company.entity';
+import { UserEntity } from '../users/user.entity';
 
 @Entity('vehicles')
 export class VehicleEntity extends BaseEntity implements Vehicle {
@@ -29,7 +39,7 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
   @Column()
   horsePower: number;
 
-  @ManyToOne(() => CompanyEntity, company => company.guarantees)
+  @ManyToOne(() => CompanyEntity, company => company.vehicles)
   @JoinColumn({ name: 'companyId' })
   company: Company;
 
@@ -44,4 +54,17 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
 
   @Column({ nullable: true })
   kilometrageEnd: number;
+
+  @ManyToOne(() => UserEntity, user => user.vehicles)
+  @JoinColumn({ name: 'userId' })
+  user: User;
+
+  @Column({ nullable: true })
+  userId: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

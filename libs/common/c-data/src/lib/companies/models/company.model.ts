@@ -18,4 +18,6 @@ export interface Company {
   users: User[];
   guarantees: Guarantee[];
   vehicles: Vehicle[];
+  createdAt: Date;
+  updatedAt: Date;
 }
