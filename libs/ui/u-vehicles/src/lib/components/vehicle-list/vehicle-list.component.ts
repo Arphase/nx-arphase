@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Vehicle } from '@ivt/c-data';
-import { IvtColumns, IvtListComponent } from '@ivt/u-ui';
+import { IvtListComponent } from '@ivt/u-ui';
+
+import { columns } from './vehicle-list.constants';
 
 @Component({
   selector: 'ivt-vehicle-list',
@@ -9,5 +11,5 @@ import { IvtColumns, IvtListComponent } from '@ivt/u-ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VehicleListComponent extends IvtListComponent<Vehicle> {
-  columns: IvtColumns = [];
+  columns = columns;
 }
