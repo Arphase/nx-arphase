@@ -7,6 +7,7 @@ import {
   Param,
   ParseIntPipe,
   Post,
+  Put,
   Query,
   UseGuards,
   UsePipes,
@@ -14,7 +15,7 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import { CreateVehicleDto } from '../../dto';
+import { CreateVehicleDto, UpdateVehicleDto } from '../../dto';
 import { GetVehiclesDto } from '../../dto/get-vehicles.dto';
 import { VehiclesService } from '../../services/vehicles/vehicles.service';
 
@@ -24,7 +25,7 @@ export class VehiclesController {
   constructor(private vehiclesService: VehiclesService) {}
 
   @Get()
-  async getUsers(
+  async getVehicles(
     @Query(new ValidationPipe({ transform: true })) filterDto: GetVehiclesDto,
     @GetUser() user: Partial<User>
   ): Promise<Vehicle[]> {
@@ -32,13 +33,19 @@ export class VehiclesController {
   }
 
   @Get(':id')
-  async getGuarantee(@Param('id', ParseIntPipe) id: number): Promise<Vehicle> {
+  async getVehicle(@Param('id', ParseIntPipe) id: number): Promise<Vehicle> {
     return this.vehiclesService.getVehicle(id);
   }
 
   @Post()
   @UsePipes(ValidationPipe)
-  async createGuarantee(@Body() createVehicleDto: CreateVehicleDto, @GetUser() user: Partial<User>) {
+  async createVehicle(@Body() createVehicleDto: CreateVehicleDto, @GetUser() user: Partial<User>) {
     return this.vehiclesService.createVehicle(createVehicleDto, user);
+  }
+
+  @Put(':id')
+  @UsePipes(new ValidationPipe({ transform: true }))
+  updateVehicle(@Body() updateVehicleDto: UpdateVehicleDto): Promise<Vehicle> {
+    return this.vehiclesService.updateVehicle(updateVehicleDto);
   }
 }

@@ -4,7 +4,7 @@ import { sortDirection } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Connection } from 'typeorm';
 
-import { CreateVehicleDto } from '../../dto';
+import { CreateVehicleDto, UpdateVehicleDto } from '../../dto';
 import { GetVehiclesDto } from '../../dto/get-vehicles.dto';
 
 @Injectable()
@@ -50,5 +50,10 @@ export class VehiclesService {
     });
     await newVehicle.save();
     return newVehicle;
+  }
+
+  async updateVehicle(updateVehcleDto: UpdateVehicleDto): Promise<Vehicle> {
+    const updatedVehicle = await this.vehicleRepository.save(updateVehcleDto);
+    return updatedVehicle;
   }
 }

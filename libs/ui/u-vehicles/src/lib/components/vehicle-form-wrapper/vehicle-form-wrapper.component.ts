@@ -25,5 +25,9 @@ export class VehicleFormWrapperComponent extends IvtFormComponent<Vehicle> imple
     if (changes.disabledCompanyInput) {
       this.disabledCompanyInput ? this.form.get('companyId').disable() : this.form.get('companyId').enable();
     }
+
+    if (changes.item && this.item) {
+      this.form.patchValue(this.item);
+    }
   }
 }
