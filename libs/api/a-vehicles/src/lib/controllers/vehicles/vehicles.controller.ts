@@ -3,6 +3,7 @@ import { User, Vehicle } from '@ivt/c-data';
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
@@ -47,5 +48,10 @@ export class VehiclesController {
   @UsePipes(new ValidationPipe({ transform: true }))
   updateVehicle(@Body() updateVehicleDto: UpdateVehicleDto): Promise<Vehicle> {
     return this.vehiclesService.updateVehicle(updateVehicleDto);
+  }
+
+  @Delete(':id')
+  async deleteVehicle(@Param('id', ParseIntPipe) id: number): Promise<Vehicle> {
+    return this.vehiclesService.deleteVehicle(id);
   }
 }

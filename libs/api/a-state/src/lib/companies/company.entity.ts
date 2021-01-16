@@ -15,7 +15,7 @@ import {
 
 import { GroupEntity } from '../groups/group.entity';
 import { GuaranteeEntity } from '../guarantees/entities/guarantee.entity';
-import { VehicleEntity } from '../vehicles';
+import { VehicleEntity } from '../vehicles/vechicle.entity';
 
 @Entity('companies')
 export class CompanyEntity extends BaseEntity implements Company {

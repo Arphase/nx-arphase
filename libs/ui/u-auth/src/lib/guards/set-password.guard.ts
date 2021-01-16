@@ -15,6 +15,7 @@ export class SetPasswordGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    localStorage.clear();
     const passwordToken = route.paramMap.get('passwordToken');
     this.store.dispatch(fromAuth.actions.validateToken({ payload: { passwordToken } }));
 

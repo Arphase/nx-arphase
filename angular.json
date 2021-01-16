@@ -16,7 +16,11 @@
             "polyfills": "apps/innovatech-ui/src/polyfills.ts",
             "tsConfig": "apps/innovatech-ui/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/innovatech-ui/src/favicon.ico", "apps/innovatech-ui/src/assets"],
+            "assets": [
+              "apps/innovatech-ui/src/favicon.ico",
+              "apps/innovatech-ui/src/assets",
+              "apps/innovatech-ui/src/manifest.webmanifest"
+            ],
             "styles": ["apps/innovatech-ui/src/styles.scss"],
             "scripts": [],
             "allowedCommonJsDependencies": ["chart.js", "lodash", "file-saver", "showdown"]
@@ -32,7 +36,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -58,7 +61,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -72,7 +74,9 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/innovatech-ui/ngsw-config.json"
             }
           }
         },
@@ -103,10 +107,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/innovatech-ui/jest.config.js",
-            "tsConfig": "apps/innovatech-ui/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "apps/innovatech-ui/src/test-setup.ts"
+            "jestConfig": "apps/innovatech-ui/jest.config.js"
           }
         }
       }
@@ -672,6 +673,28 @@
           "outputs": ["coverage/libs/ui/u-vehicles"],
           "options": {
             "jestConfig": "libs/ui/u-vehicles/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "u-tests": {
+      "projectType": "library",
+      "root": "libs/ui/u-tests",
+      "sourceRoot": "libs/ui/u-tests/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ui/u-tests/src/**/*.ts", "libs/ui/u-tests/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui/u-tests"],
+          "options": {
+            "jestConfig": "libs/ui/u-tests/jest.config.js",
             "passWithNoTests": true
           }
         }

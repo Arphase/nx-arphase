@@ -1,11 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Optional } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { IvtQueryParams } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import { buildQueryParams, IvtCollectionService, IvtDataService, IvtEntityCollection } from '@ivt/u-state';
+import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { select } from '@ngrx/store';
-import { map, take, takeUntil } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+import { filter, map, take, takeUntil } from 'rxjs/operators';
 
-import { IvtSubscriberComponent } from '../../components';
+import { IvtConfirmationDialogComponent, IvtSubscriberComponent } from '../../components';
 
 @Component({
   selector: 'ivt-list-container',
@@ -24,16 +27,28 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
   queryParams: IvtQueryParams;
   excelFileName: string;
   excelUrl: string;
+  deleteConfirmMessage: string;
+  deleteSuccessMessage: string;
 
   constructor(
     protected entityCollectionService: IvtCollectionService<T>,
-    protected entityDataService: IvtDataService<T>
+    protected entityDataService: IvtDataService<T>,
+    @Optional() protected dialog?: MatDialog,
+    @Optional() protected toastr?: ToastrService
   ) {
     super();
     this.entityCollectionService.store
       .pipe(select(this.entityCollectionService.selectors.selectCollection), filterNil(), takeUntil(this.destroy$))
       .subscribe((collection: IvtEntityCollection<T>) => (this.queryParams = collection.queryParams));
     this.excelUrl = `${this.entityDataService.getEntitiesUrl()}/export/excel`;
+
+    this.entityCollectionService.entityActions$
+      .pipe(
+        ofEntityOp(EntityOp.SAVE_DELETE_ONE_SUCCESS),
+        filter(() => !!this.deleteSuccessMessage && !!this.toastr),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(() => this.toastr.success(this.deleteSuccessMessage));
   }
 
   getMoreItems(): void {
@@ -64,6 +79,10 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
   }
 
   deleteItem(item: T): void {
-    this.entityCollectionService.delete(item);
+    this.dialog
+      .open(IvtConfirmationDialogComponent, { data: { message: this.deleteConfirmMessage } })
+      .afterClosed()
+      .pipe(take(1), filterNil())
+      .subscribe(() => this.entityCollectionService.delete(item));
   }
 }

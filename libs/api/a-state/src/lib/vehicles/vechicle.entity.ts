@@ -1,4 +1,4 @@
-import { Company, User, Vehicle } from '@ivt/c-data';
+import { Company, Guarantee, User, Vehicle } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
@@ -6,11 +6,13 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 import { CompanyEntity } from '../companies/company.entity';
+import { GuaranteeEntity } from '../guarantees/entities/guarantee.entity';
 import { UserEntity } from '../users/user.entity';
 
 @Entity('vehicles')
@@ -67,4 +69,10 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToMany(() => GuaranteeEntity, guarantee => guarantee.vehicle, {
+    cascade: true,
+    eager: true
+  })
+  guarantees: Guarantee[];
 }

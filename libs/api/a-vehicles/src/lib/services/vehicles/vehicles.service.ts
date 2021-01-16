@@ -1,7 +1,7 @@
-import { VehicleRepository } from '@ivt/a-state';
+import { transformFolio, VehicleRepository } from '@ivt/a-state';
 import { User, UserRoles, Vehicle } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { Connection } from 'typeorm';
 
 import { CreateVehicleDto, UpdateVehicleDto } from '../../dto';
@@ -55,5 +55,24 @@ export class VehiclesService {
   async updateVehicle(updateVehcleDto: UpdateVehicleDto): Promise<Vehicle> {
     const updatedVehicle = await this.vehicleRepository.save(updateVehcleDto);
     return updatedVehicle;
+  }
+
+  async deleteVehicle(id: number): Promise<Vehicle> {
+    const vehicle = await this.vehicleRepository.findOne({ id });
+
+    if (!vehicle) {
+      throw new NotFoundException(`Vehicle with id "${id}" not found`);
+    }
+
+    if (vehicle?.guarantees?.length) {
+      const folios = vehicle.guarantees.map(guarantee => transformFolio(guarantee.id)).toString();
+      throw new BadRequestException(
+        `This vehicle can't be deleted because it has guarantees with the following folios: ${folios}`
+      );
+    }
+
+    await this.vehicleRepository.delete({ id });
+
+    return vehicle;
   }
 }

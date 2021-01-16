@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 interface IvtConfirmationDialogComponentData {
   message: string;
@@ -12,8 +12,5 @@ interface IvtConfirmationDialogComponentData {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtConfirmationDialogComponent {
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: IvtConfirmationDialogComponentData,
-    public matDialogRef: MatDialogRef<IvtConfirmationDialogComponent>
-  ) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: IvtConfirmationDialogComponentData) {}
 }
