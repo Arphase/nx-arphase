@@ -1,10 +1,10 @@
 module.exports = {
-  name: 'innovatech-ui',
-  preset: '../../jest.preset.js',
+  displayName: 'ui-u-tests',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.spec.json',
+      tsConfig: '<rootDir>/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.(html|svg)$',
       astTransformers: {
         before: [
@@ -14,10 +14,10 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../coverage/apps/innovatech-ui',
+  coverageDirectory: '../../../coverage/libs/ui/u-tests',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',
     'jest-preset-angular/build/HTMLCommentSerializer.js',
-  ]
+  ],
 };

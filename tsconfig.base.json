@@ -95,6 +95,9 @@
       "@ivt/u-products": [
         "libs/ui/u-products/src/index.ts"
       ],
+      "@ivt/u-tests": [
+        "libs/ui/u-tests/src/index.ts"
+      ],
       "@ivt/u-users": [
         "libs/ui/u-users/src/index.ts"
       ],
