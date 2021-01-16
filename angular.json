@@ -16,7 +16,7 @@
             "polyfills": "apps/innovatech-ui/src/polyfills.ts",
             "tsConfig": "apps/innovatech-ui/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/innovatech-ui/src/favicon.ico", "apps/innovatech-ui/src/assets"],
+            "assets": ["apps/innovatech-ui/src/favicon.ico", "apps/innovatech-ui/src/assets", "apps/innovatech-ui/src/manifest.webmanifest"],
             "styles": ["apps/innovatech-ui/src/styles.scss"],
             "scripts": [],
             "allowedCommonJsDependencies": ["chart.js", "lodash", "file-saver", "showdown"]
@@ -72,7 +72,9 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/innovatech-ui/ngsw-config.json"
             }
           }
         },
