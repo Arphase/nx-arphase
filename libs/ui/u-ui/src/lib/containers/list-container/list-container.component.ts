@@ -3,8 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { IvtQueryParams } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import { buildQueryParams, IvtCollectionService, IvtDataService, IvtEntityCollection } from '@ivt/u-state';
+import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { select } from '@ngrx/store';
-import { map, take, takeUntil } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+import { filter, map, take, takeUntil } from 'rxjs/operators';
 
 import { IvtConfirmationDialogComponent, IvtSubscriberComponent } from '../../components';
 
@@ -26,17 +28,27 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
   excelFileName: string;
   excelUrl: string;
   deleteConfirmMessage: string;
+  deleteSuccessMessage: string;
 
   constructor(
     protected entityCollectionService: IvtCollectionService<T>,
     protected entityDataService: IvtDataService<T>,
-    @Optional() protected dialog?: MatDialog
+    @Optional() protected dialog?: MatDialog,
+    @Optional() protected toastr?: ToastrService
   ) {
     super();
     this.entityCollectionService.store
       .pipe(select(this.entityCollectionService.selectors.selectCollection), filterNil(), takeUntil(this.destroy$))
       .subscribe((collection: IvtEntityCollection<T>) => (this.queryParams = collection.queryParams));
     this.excelUrl = `${this.entityDataService.getEntitiesUrl()}/export/excel`;
+
+    this.entityCollectionService.entityActions$
+      .pipe(
+        ofEntityOp(EntityOp.SAVE_DELETE_ONE_SUCCESS),
+        filter(() => !!this.deleteSuccessMessage && !!this.toastr),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(() => this.toastr.success(this.deleteSuccessMessage));
   }
 
   getMoreItems(): void {

@@ -31,12 +31,6 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @JoinColumn({ name: 'clientId' })
   client: Client;
 
-  @OneToOne(() => VehicleEntity, {
-    cascade: ['insert', 'update'],
-  })
-  @JoinColumn({ name: 'vehicleId' })
-  vehicle: Vehicle;
-
   @CreateDateColumn()
   createdAt: Date;
 
@@ -96,6 +90,13 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
 
   @Column({ nullable: true })
   userId: number;
+
+  @ManyToOne(() => VehicleEntity, vehicle => vehicle.guarantees)
+  @JoinColumn({ name: 'vehicleId' })
+  vehicle: Vehicle;
+
+  @Column({ nullable: true })
+  vehicleId: number;
 
   @Column({ nullable: true })
   productType: string;

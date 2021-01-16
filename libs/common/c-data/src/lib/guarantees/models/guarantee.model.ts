@@ -10,6 +10,7 @@ export interface Guarantee {
   id: number;
   client: Client;
   vehicle: Vehicle;
+  vehicleId: number;
   createdAt: Date;
   updatedAt: Date;
   status: GuaranteeStatus | string;
