@@ -11,6 +11,7 @@ export class GroupsResolverService implements Resolve<Group[]> {
   constructor(private groupCollectionService: GroupCollectionService) {}
 
   resolve(): Observable<Group[]> {
+    this.groupCollectionService.clearCache();
     const queryParams: IvtQueryParams = { resetList: String(true) };
     return this.groupCollectionService.getWithQuery(queryParams);
   }

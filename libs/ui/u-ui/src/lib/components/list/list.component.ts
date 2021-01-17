@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { SortEvent } from '@ivt/c-data';
 
 import { CrudEvents } from '../../models';
+import { Dates } from '../filters/date-filter/date-filter.component';
 import { IvtSubscriberComponent } from '../subscriber';
 
 @Component({
@@ -31,11 +33,23 @@ export class IvtListComponent<T> extends IvtSubscriberComponent implements CrudE
     this.filterItems.emit({ text });
   }
 
-  updateSort(sort): void {
+  updateSort(sort: SortEvent): void {
     this.filterItems.emit({ sort });
   }
 
-  updateDateFilter(dates): void {
+  updateDateFilter(dates: Dates): void {
     this.filterItems.emit({ dates });
+  }
+
+  updateGroupsFilters(groupIds: number[]): void {
+    this.filterItems.emit({ groupIds: groupIds.toString() });
+  }
+
+  updateCompaniesFilters(companyIds: number[]): void {
+    this.filterItems.emit({ companyIds: companyIds.toString() });
+  }
+
+  updateUsersFilters(userIds: number[]): void {
+    this.filterItems.emit({ userIds: userIds.toString() });
   }
 }

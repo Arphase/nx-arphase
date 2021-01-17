@@ -21,7 +21,7 @@ export class GroupFormService {
 
   createCompany(): void {
     this.dialog
-      .open(CompanyFormDialogComponent)
+      .open(CompanyFormDialogComponent, { maxWidth: '90w' })
       .afterClosed()
       .pipe(filterExisting(), take(1))
       .subscribe(company => this.companiesFormArray.push(createCompanyForm(company)));
@@ -29,7 +29,7 @@ export class GroupFormService {
 
   editCoompany(company: Company): void {
     this.dialog
-      .open(CompanyFormDialogComponent, { data: company })
+      .open(CompanyFormDialogComponent, { data: company, maxWidth: '90w' })
       .afterClosed()
       .pipe(filterExisting(), take(1))
       .subscribe(editedCompany => {

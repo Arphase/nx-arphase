@@ -5,6 +5,7 @@
 </ivt-menu-bar>
 <ivt-side-nav [opened]="opened"
               [menuItems]="menuItems$ | async"
+              [version]="version"
               (openMenu)="onOpenMenu()"
               (closeMenu)="onCloseMenu()">
   <div class="spa-content">

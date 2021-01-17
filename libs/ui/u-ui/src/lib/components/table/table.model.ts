@@ -24,6 +24,7 @@ export interface IvtColumn {
   label?: string;
   sortable?: boolean;
   breakpointShow?: IvtBreakpointShow;
+  className?: string;
 }
 
 /**

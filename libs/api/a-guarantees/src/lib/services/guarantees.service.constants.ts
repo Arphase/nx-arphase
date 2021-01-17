@@ -1,6 +1,10 @@
-import { IMAGE_ASSETS_PATH, transformFolio } from '@ivt/a-state';
-import { Guarantee } from '@ivt/c-data';
+import { GuaranteeEntity, IMAGE_ASSETS_PATH, transformFolio } from '@ivt/a-state';
+import { Guarantee, User, UserRoles } from '@ivt/c-data';
+import { sortDirection } from '@ivt/c-utils';
 import moment from 'moment';
+import { SelectQueryBuilder } from 'typeorm';
+
+import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 
 export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
   return `
@@ -130,7 +134,7 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
         <p>En cuanto tenga conocimiento de la AVERÍA/AS, el BENEFICIARIO comunicará la misma a Innovatech por cualquiera de los siguientes medios: </p>
         <ul>
             <li>Por Teléfono, en el +52 (81) 1090 8605 </li>
-            <li>Por correo electrónico, a la dirección averias@ivtcorp.com </li>
+            <li>Por correo electrónico, a la dirección averias@innovatechcorp.com </li>
         </ul>
         <p>El BENEFICIARIO deberá facilitar el Nº de certificado de garantía, la declaración de la AVERÍA/AS y Lugar en el que se ha producido la AVERÍA/AS , de esa forma Innovatech le indicara un taller en el que dejar el VEHÍCULO.</p>
         <p>Una vez el VEHÍCULO esté en un taller, el responsable del mismo volverá a contactar a Innovatech para describir la AVERÍA/AS, por los mismos medios descritos en la letra anterior, debiendo aportar igualmente la siguiente documentación: </p>
@@ -200,4 +204,99 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
     </body>
     </html>
   `;
+}
+
+export function applyGuaranteeFilter(
+  query: SelectQueryBuilder<GuaranteeEntity>,
+  filterDto: Partial<GetGuaranteesFilterDto>,
+  user: Partial<User>
+): SelectQueryBuilder<GuaranteeEntity> {
+  const { limit, offset, sort, direction, text, status } = filterDto;
+
+  query
+    .leftJoinAndSelect('guarantee.client', 'client')
+    .leftJoinAndSelect('client.physicalInfo', 'physicalPerson')
+    .leftJoinAndSelect('client.moralInfo', 'moralPerson')
+    .leftJoinAndSelect('client.address', 'address')
+    .leftJoinAndSelect('guarantee.paymentOrder', 'paymentOrder')
+    .leftJoinAndSelect('guarantee.product', 'product')
+    .leftJoinAndSelect('guarantee.vehicle', 'vehicle')
+    .leftJoin('guarantee.company', 'company')
+    .leftJoin('guarantee.user', 'user')
+    .groupBy('guarantee.id')
+    .addGroupBy('client.id')
+    .addGroupBy('address.id')
+    .addGroupBy('vehicle.id')
+    .addGroupBy('physicalPerson.id')
+    .addGroupBy('moralPerson.id')
+    .addGroupBy('paymentOrder.id')
+    .addGroupBy('product.id')
+    .addGroupBy('company.id')
+    .addGroupBy('user.id')
+    .orderBy('guarantee.createdAt', sortDirection.desc);
+
+  if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+    query.andWhere('(guarantee.companyId = :id)', { id: user.companyId });
+  }
+
+  if (sort && direction) {
+    query.orderBy(`${sort}`, sortDirection[direction]);
+  }
+
+  if (text) {
+    if (text.length < 5) {
+      query.andWhere(
+        `guarantee.id = :number OR
+         LOWER(vehicle.motorNumber) like :text OR
+         LOWER(physicalPerson.name) like :text`,
+        { text: `%${text.toLowerCase()}%`, number: text }
+      );
+    } else {
+      query.andWhere(
+        `LOWER(vehicle.motorNumber) like :text OR
+         LOWER(CONCAT(physicalPerson.name, ' ', physicalPerson.lastName, ' ', physicalPerson.secondLastName)) like :text`,
+        { text: `%${text.toLowerCase()}%` }
+      );
+    }
+  }
+
+  if (status) {
+    query.andWhere('(guarantee.status = :status)', { status });
+  }
+
+  applyGuaranteeSharedFilters(query, filterDto);
+
+  query.take(limit).skip(offset);
+
+  return query;
+}
+
+export function applyGuaranteeSharedFilters(
+  query: SelectQueryBuilder<GuaranteeEntity>,
+  filterDto: Partial<GetGuaranteesFilterDto>
+): SelectQueryBuilder<GuaranteeEntity> {
+  const { startDate, endDate, dateType, groupIds, companyIds, userIds } = filterDto;
+
+  if (startDate && endDate && dateType) {
+    query.andWhere(
+      `guarantee.${dateType}
+      BETWEEN :begin
+      AND :end`,
+      { begin: startDate, end: endDate }
+    );
+  }
+
+  if (groupIds) {
+    query.innerJoin('company.group', 'group').andWhere('(group.id IN (:...groupIds))', { groupIds });
+  }
+
+  if (companyIds) {
+    query.andWhere('(company.id IN (:...companyIds))', { companyIds });
+  }
+
+  if (userIds) {
+    query.andWhere('(user.id IN (:...userIds))', { userIds });
+  }
+
+  return query;
 }

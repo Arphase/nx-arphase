@@ -70,14 +70,14 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
 
   createPaymentOrder(guaranteeId: number): void {
     this.paymentOrderCollectionService.removeOneFromCache(null);
-    this.dialog.open(PaymentOrderDialogContainerComponent, { data: [guaranteeId] });
+    this.dialog.open(PaymentOrderDialogContainerComponent, { data: [guaranteeId], maxWidth: '90w' });
   }
 
   updatePaymentOrder(paymentOrderId: number): void {
     this.paymentOrderCollectionService
       .getByKey(paymentOrderId)
       .pipe(take(1))
-      .subscribe(() => this.dialog.open(PaymentOrderDialogContainerComponent));
+      .subscribe(() => this.dialog.open(PaymentOrderDialogContainerComponent, { maxWidth: '90w' }));
   }
 
   downloadPaymentOrder(id: number): void {

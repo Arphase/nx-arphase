@@ -30,9 +30,9 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
   @Column()
   horsePower: number;
 
-  @Column()
+  @Column({ nullable: true })
   kilometrageStart: number;
 
-  @Column()
+  @Column({ nullable: true })
   kilometrageEnd: number;
 }

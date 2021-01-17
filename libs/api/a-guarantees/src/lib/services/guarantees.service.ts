@@ -3,12 +3,14 @@ import {
   getReadableStream,
   GuaranteeEntity,
   GuaranteeRepository,
+  MoralPersonRepository,
   OUT_FILE,
+  PhysicalPersonRepository,
   tobase64,
   transformFolio,
 } from '@ivt/a-state';
-import { Client, GuaranteeStatus, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
-import { formatDate, sortDirection } from '@ivt/c-utils';
+import { Client, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
+import { formatDate } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Response } from 'express';
 import fs from 'fs';
@@ -21,14 +23,22 @@ import * as XLSX from 'xlsx';
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
-import { getGuaranteePdfTemplate } from './guarantees.service.constants';
+import {
+  applyGuaranteeFilter,
+  applyGuaranteeSharedFilters,
+  getGuaranteePdfTemplate,
+} from './guarantees.service.constants';
 
 @Injectable()
 export class GuaranteesService {
   guaranteeRepository: GuaranteeRepository;
+  physicalPersonRepository: PhysicalPersonRepository;
+  moralPersonRepository: MoralPersonRepository;
 
   constructor(private readonly connection: Connection) {
     this.guaranteeRepository = this.connection.getCustomRepository(GuaranteeRepository);
+    this.physicalPersonRepository = this.connection.getCustomRepository(PhysicalPersonRepository);
+    this.moralPersonRepository = this.connection.getCustomRepository(MoralPersonRepository);
   }
 
   async getGuaranteeById(id: number): Promise<GuaranteeEntity> {
@@ -52,83 +62,30 @@ export class GuaranteesService {
   }
 
   async getGuarantees(filterDto: Partial<GetGuaranteesFilterDto>, user: Partial<User>): Promise<GuaranteeEntity[]> {
-    const { limit, offset, sort, direction, startDate, endDate, dateType, text, status } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
-
-    query
-      .leftJoinAndSelect('guarantee.client', 'client')
-      .leftJoinAndSelect('client.physicalInfo', 'physicalPerson')
-      .leftJoinAndSelect('client.moralInfo', 'moralPerson')
-      .leftJoinAndSelect('client.address', 'address')
-      .leftJoinAndSelect('guarantee.paymentOrder', 'paymentOrder')
-      .leftJoinAndSelect('guarantee.product', 'product')
-      .leftJoinAndSelect('guarantee.vehicle', 'vehicle')
-      .groupBy('guarantee.id')
-      .addGroupBy('client.id')
-      .addGroupBy('address.id')
-      .addGroupBy('vehicle.id')
-      .addGroupBy('physicalPerson.id')
-      .addGroupBy('moralPerson.id')
-      .addGroupBy('paymentOrder.id')
-      .addGroupBy('product.id')
-      .orderBy('guarantee.createdAt', sortDirection.desc);
-
-    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-      query.andWhere('(guarantee.companyId = :id)', { id: user.companyId });
-    }
-
-    if (sort && direction) {
-      query.orderBy(`${sort}`, sortDirection[direction]);
-    }
-
-    if (startDate && endDate && dateType) {
-      query.andWhere(
-        `guarantee.${dateType}
-        BETWEEN :begin
-        AND :end`,
-        { begin: startDate, end: endDate }
-      );
-    }
-
-    if (text) {
-      if (text.length < 5) {
-        query.andWhere(
-          `guarantee.id = :number OR
-           LOWER(vehicle.motorNumber) like :text OR
-           LOWER(physicalPerson.name) like :text`,
-          { text: `%${text.toLowerCase()}%`, number: text }
-        );
-      } else {
-        query.andWhere(
-          `LOWER(vehicle.motorNumber) like :text OR
-           LOWER(CONCAT(physicalPerson.name, ' ', physicalPerson.lastName, ' ', physicalPerson.secondLastName)) like :text`,
-          { text: `%${text.toLowerCase()}%` }
-        );
-      }
-    }
-
-    if (status) {
-      query.andWhere('(guarantee.status = :status)', {
-        status: GuaranteeStatus[status],
-      });
-    }
-
-    query.take(limit).skip(offset);
+    applyGuaranteeFilter(query, filterDto, user);
 
     const guarantees = await query.getMany();
     return guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity);
   }
 
-  async getGuaranteesSummary(user: Partial<User>): Promise<GuaranteeSummary> {
+  async getGuaranteesSummary(
+    filterDto: Partial<GetGuaranteesFilterDto>,
+    user: Partial<User>
+  ): Promise<GuaranteeSummary> {
     const query = this.guaranteeRepository
       .createQueryBuilder('guarantee')
       .select('guarantee.status', 'status')
       .addSelect('SUM(guarantee.amount)', 'amount')
+      .leftJoin('guarantee.company', 'company')
+      .leftJoin('guarantee.user', 'user')
       .groupBy('guarantee.status');
 
-    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+    if (UserRoles[user.role] !== UserRoles.superAdmin) {
       query.andWhere('(guarantee.companyId = :id)', { id: user.companyId });
     }
+
+    applyGuaranteeSharedFilters(query, filterDto);
 
     return query.getRawMany();
   }
@@ -323,10 +280,27 @@ export class GuaranteesService {
   }
 
   async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto): Promise<GuaranteeEntity> {
-    const guarantee = this.omitInfo(updateGuaranteeDto);
-    const preloadedGuarantee = await this.guaranteeRepository.preload(updateGuaranteeDto);
-    const updatedGuarantee = await this.guaranteeRepository.save({ ...preloadedGuarantee, ...guarantee });
-    return updatedGuarantee;
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    try {
+      if (updateGuaranteeDto.client?.personType === PersonTypes.moral && updateGuaranteeDto.client?.physicalInfo?.id) {
+        await this.physicalPersonRepository.delete(updateGuaranteeDto.client.physicalInfo.id);
+      }
+      if (updateGuaranteeDto.client?.personType === PersonTypes.physical && updateGuaranteeDto.client?.moralInfo?.id) {
+        await this.moralPersonRepository.delete(updateGuaranteeDto.client.moralInfo.id);
+      }
+      const preloadedGuarantee = await this.guaranteeRepository.preload(updateGuaranteeDto);
+      const guarantee = this.omitInfo(updateGuaranteeDto);
+      const updatedGuarantee = await this.guaranteeRepository.save({ ...preloadedGuarantee, ...guarantee });
+      await updatedGuarantee.reload();
+      await queryRunner.commitTransaction();
+      return updatedGuarantee;
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   async deleteGuarantee(id: number): Promise<void> {

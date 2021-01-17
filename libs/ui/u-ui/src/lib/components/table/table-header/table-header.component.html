@@ -1,7 +1,8 @@
 <div *ngIf="columns"
      class="ivt-table-header row">
   <div *ngFor="let column of columns"
-       [ngClass]="getClasses(column.colSizes, column.breakpointShow)">
+       [ngClass]="getClasses(column.colSizes, column.breakpointShow)"
+       class="{{ column.className }}">
     <ivt-table-header-column class="d-flex"
                              [class.justify-content-start]="column.alignment === 'left'"
                              [class.justify-content-center]="column.alignment === 'center'"

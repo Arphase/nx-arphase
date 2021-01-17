@@ -1,9 +1,9 @@
 import { AuthService } from '@ivt/a-auth';
-import { GroupRepository } from '@ivt/a-state';
-import { Group } from '@ivt/c-data';
+import { CompanyRepository, GroupRepository, UserEntity, UserRepository } from '@ivt/a-state';
+import { Company, Group, User } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { flatten } from 'lodash';
+import { flatten, omit } from 'lodash';
 import { Connection } from 'typeorm';
 
 import { CreateGroupDto } from '../dto/create-group.dto';
@@ -13,9 +13,13 @@ import { UpdateGroupDto } from '../dto/update-group.dto';
 @Injectable()
 export class GroupsService {
   groupRepository: GroupRepository;
+  companyRepository: CompanyRepository;
+  userRepository: UserRepository;
 
   constructor(private readonly connection: Connection, private authService: AuthService) {
     this.groupRepository = this.connection.getCustomRepository(GroupRepository);
+    this.companyRepository = this.connection.getCustomRepository(CompanyRepository);
+    this.userRepository = this.connection.getCustomRepository(UserRepository);
   }
 
   async getGroupById(id: number): Promise<Group> {
@@ -59,18 +63,43 @@ export class GroupsService {
   }
 
   async createGroup(createGroupDto: CreateGroupDto): Promise<Group> {
-    const newGroup = await this.groupRepository.create(createGroupDto);
-    await newGroup.save();
-    newGroup.companies?.forEach(company =>
-      company.users?.forEach(user => this.authService.sendSetPasswordEmail(user.id))
-    );
-    return newGroup;
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
+      const companies: Company[] = [...createGroupDto.companies];
+      const group = omit(createGroupDto, 'companies');
+      const newGroup = await this.groupRepository.create(group);
+      await newGroup.save();
+      const groupId = newGroup.id;
+
+      await companies.forEach(async company => {
+        const users: User[] = [...company.users];
+        const newCompany = await this.companyRepository.create(omit({ ...company, groupId }, 'users'));
+        await newCompany.save();
+        const companyId = newCompany.id;
+
+        await users.forEach(async user => {
+          const newUser = await this.userRepository.create({ ...user, companyId } as UserEntity);
+          await newUser.save();
+          await this.authService.sendSetPasswordEmail(newUser.id);
+        });
+      });
+
+      await queryRunner.commitTransaction();
+      return newGroup;
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   async updateGroup(updateGroupDto: UpdateGroupDto): Promise<Group> {
     const updatedGroup = await this.groupRepository.save(updateGroupDto);
     const userIds: number[] = flatten(updatedGroup.companies.map(company => company.users.map(user => user.id)));
-    this.authService.sendEmailToPendingUsers(userIds);
+    await this.authService.sendEmailToPendingUsers(userIds);
     return updatedGroup;
   }
 }
