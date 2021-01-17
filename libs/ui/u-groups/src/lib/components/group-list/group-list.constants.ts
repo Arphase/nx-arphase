@@ -15,7 +15,7 @@ export const columns: IvtColumns = [
     prop: 'group.contact',
     sortable: true,
     colSizes: {
-      xs: '3',
+      xs: '2',
     },
     breakpointShow: {
       md: true,
@@ -28,7 +28,7 @@ export const columns: IvtColumns = [
     prop: 'group.email',
     sortable: true,
     colSizes: {
-      xs: '2',
+      xs: '3',
     },
     breakpointShow: {
       md: true,

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { User } from '@ivt/c-data';
-import { IvtFormComponent } from '@ivt/u-ui';
+import { IvtFormComponent, IvtValidators } from '@ivt/u-ui';
 
 @Component({
   selector: 'ivt-reset-password-form',
@@ -15,7 +15,7 @@ export class ResetPasswordFormComponent extends IvtFormComponent<Partial<User>> 
   constructor(private fb: FormBuilder) {
     super();
     this.form = this.fb.group({
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, [Validators.required, IvtValidators.email]],
     });
   }
 }
