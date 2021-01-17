@@ -67,7 +67,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       productId: null,
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
-      companyId: [null],
+      companyId: null,
       client: this.fb.group({
         id: null,
         personType: [null, Validators.required],

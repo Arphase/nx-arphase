@@ -29,7 +29,6 @@ export function collectFormErrors(form: FormGroup | FormArray): ValidationErrors
 
     const result = Object.keys(_form.controls).reduce((acc, key) => {
       const control = _form.get(key);
-
       const errors = hasControls(control) ? _collectFormErrors(control) : control.errors;
 
       if (errors) {
