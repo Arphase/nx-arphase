@@ -35,6 +35,7 @@ enum ValidatorTypes {
   minlength = 'minlength',
   maxlength = 'maxlength',
   matDatepickerParse = 'matDatepickerParse',
+  phone = 'phone',
 }
 
 @Component({
@@ -101,11 +102,12 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
       [ValidatorTypes.required]: `El campo ${label} es requerido`,
       [ValidatorTypes.max]: `El campo ${label} no debe ser mayor a ${errorValue.max}`,
       [ValidatorTypes.min]: `El campo ${label} debe ser mayor o igual a ${errorValue.min}`,
-      [ValidatorTypes.email]: `El campo ${label} no tiene formato de correo`,
+      [ValidatorTypes.email]: `El campo ${label} no tiene un formato incorrecto`,
       [ValidatorTypes.rfc]: `El campo ${label} no tiene formato de RFC`,
       [ValidatorTypes.minlength]: `El campo ${label} debe tener al menos ${errorValue.requiredLength} caracteres`,
       [ValidatorTypes.maxlength]: `El campo ${label} debe tener menos de ${errorValue.requiredLength + 1} caracteres`,
       [ValidatorTypes.matDatepickerParse]: `El campo ${label} tiene un formato de fecha incorrecto`,
+      [ValidatorTypes.phone]: `El campo ${label} tiene un formato incorrecto`,
     };
 
     this.error = errorMessages[firstError];

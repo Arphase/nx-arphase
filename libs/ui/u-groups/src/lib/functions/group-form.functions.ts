@@ -8,8 +8,8 @@ export function createGroupForm(group?: Group): FormGroup {
     id: new FormControl(null),
     name: new FormControl(null, Validators.required),
     contact: new FormControl(null, Validators.required),
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    phone: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.required, IvtValidators.email]),
+    phone: new FormControl(null, [Validators.required, IvtValidators.phone]),
     companies: new FormArray([]),
   });
 
@@ -30,8 +30,8 @@ export function createCompanyForm(company?: Company): FormGroup {
     id: new FormControl(null),
     tempId: new FormControl(generateId()),
     businessName: new FormControl(null, Validators.required),
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    phone: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.required, IvtValidators.email]),
+    phone: new FormControl(null, [Validators.required, IvtValidators.phone]),
     address: createAddressForm(),
     users: new FormArray([]),
     rfc: new FormControl(null, [Validators.required, IvtValidators.rfc(RfcValidatorTypes.any)]),
@@ -57,8 +57,8 @@ export function createUserForm(user?: User): FormGroup {
     firstName: new FormControl(null, Validators.required),
     lastName: new FormControl(null, Validators.required),
     secondLastName: new FormControl(null, Validators.required),
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    phone: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.required, IvtValidators.email]),
+    phone: new FormControl(null, [Validators.required, IvtValidators.phone]),
     rfc: new FormControl(null, [Validators.required, IvtValidators.rfc(RfcValidatorTypes.any)]),
   });
 
