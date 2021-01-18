@@ -2,10 +2,8 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   Input,
   OnChanges,
-  Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -13,6 +11,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Guarantee, PersonTypes, Select } from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
 import { createAddressForm, IvtAddressFormComponent, IvtFormComponent, IvtValidators } from '@ivt/u-ui';
+import { createVehicleForm, VehicleFormComponent } from '@ivt/u-vehicles';
+import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -23,11 +23,10 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnChanges, AfterViewInit {
   @ViewChild(IvtAddressFormComponent) addressFormComponent: IvtAddressFormComponent;
+  @ViewChild(VehicleFormComponent) vehicleFormComponent: VehicleFormComponent;
   @Input() productOptions: Select[] = [];
   @Input() companyOptions: Select[] = [];
-  @Input() restrictedCompanyOptions: Select[] = [];
-  @Input() canSelectCompany: boolean;
-  @Input() companyId: number;
+  @Input() disabledCompanyInput: boolean;
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -35,9 +34,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     { label: 'Física', value: PersonTypes[PersonTypes.physical] },
     { label: 'Moral', value: PersonTypes[PersonTypes.moral] },
   ];
-  currentCompanyOptions: Select[] = [];
-  @Output() getCompanies = new EventEmitter<void>();
-  @Output() getCompany = new EventEmitter<number>();
+  companyId$: Observable<number>;
 
   get client() {
     return this.form.get('client');
@@ -61,13 +58,15 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
 
   constructor(private fb: FormBuilder) {
     super();
-    const todayYear = new Date().getFullYear();
     this.form = this.fb.group({
       id: null,
       productId: null,
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
       companyId: null,
+      kilometrageStart: [null, Validators.required],
+      kilometrageEnd: [null, Validators.required],
+      productType: [null, Validators.required],
       client: this.fb.group({
         id: null,
         personType: [null, Validators.required],
@@ -90,24 +89,14 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         address: createAddressForm(),
         salesPlace: [null, Validators.required],
       }),
-      vehicle: this.fb.group({
-        id: null,
-        productType: [null, Validators.required],
-        brand: [null, Validators.required],
-        model: [null, Validators.required],
-        version: [null, Validators.required],
-        year: [null, [Validators.required, Validators.min(todayYear - 20), Validators.max(todayYear + 1)]],
-        vin: [null, Validators.required],
-        motorNumber: [null, Validators.required],
-        horsePower: [null, [Validators.required, Validators.max(400)]],
-        kilometrageStart: [null, Validators.required],
-        kilometrageEnd: [null, Validators.required],
-      }),
+      vehicle: createVehicleForm(),
     });
     this.client
       .get('personType')
       .valueChanges.pipe(filterNil(), takeUntil(this.destroy$))
       .subscribe(value => this.personTypeChange(value));
+
+    this.companyId$ = this.form.get('companyId').valueChanges;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -115,16 +104,8 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       this.isEditable ? this.form.enable() : this.form.disable();
     }
 
-    if (changes.canSelectCompany) {
-      this.canSelectCompany ? this.getCompanies.emit() : this.getCompany.emit(this.companyId);
-      this.canSelectCompany ? this.form.get('companyId').enable() : this.form.get('companyId').disable();
-    }
-
-    if (changes.companyOptions || changes.restrictedCompanyOptions) {
-      this.currentCompanyOptions = this.canSelectCompany ? this.companyOptions : this.restrictedCompanyOptions;
-      if (!this.canSelectCompany && this.restrictedCompanyOptions[0]?.value) {
-        this.form.get('companyId').patchValue(this.restrictedCompanyOptions[0].value);
-      }
+    if (changes.disabledCompanyInput) {
+      this.disabledCompanyInput ? this.form.get('companyId').disable() : this.form.get('companyId').enable();
     }
   }
 
@@ -140,7 +121,10 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       });
     }
 
-    this.stateChanged.pipe(takeUntil(this.destroy$)).subscribe(() => this.addressFormComponent.markForCheck());
+    this.stateChanged.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.addressFormComponent.markForCheck();
+      this.vehicleFormComponent.markForCheck();
+    });
   }
 
   personTypeChange(value: string): void {

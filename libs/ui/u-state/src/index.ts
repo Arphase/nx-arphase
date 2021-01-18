@@ -10,4 +10,5 @@ export * from './lib/permissions';
 export * from './lib/products';
 export * from './lib/state/';
 export * from './lib/users';
+export * from './lib/vehicles';
 export * from './lib/ui-state-config';

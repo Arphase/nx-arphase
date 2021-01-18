@@ -91,6 +91,11 @@
         "back"
       ]
     },
+    "a-vehicles": {
+      "tags": [
+        "back"
+      ]
+    },
     "c-utils": {
       "tags": [
         "common"
@@ -141,7 +146,17 @@
         "front"
       ]
     },
+    "u-tests": {
+      "tags": [
+        "front"
+      ]
+    },
     "u-users": {
+      "tags": [
+        "front"
+      ]
+    },
+    "u-vehicles": {
       "tags": [
         "front"
       ]

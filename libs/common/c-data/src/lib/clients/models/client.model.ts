@@ -14,4 +14,6 @@ export interface Client {
   addressId?: number;
   address: Address;
   salesPlace: string;
+  createdAt: Date;
+  updatedAt: Date;
 }

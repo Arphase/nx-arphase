@@ -10,39 +10,104 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "commonjs",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom"],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "paths": {
-      "@app/*": ["apps/innovatech-ui/src/app/*"],
-      "@app/env/*": ["apps/innovatech-ui/src/environments/*"],
-      "@api/*": ["apps/innovatech-api/src/app/*"],
-      "@api/env/*": ["apps/innovatech-api/src/environments/*"],
-      "@ivt/a-auth": ["libs/api/a-auth/src/index.ts"],
-      "@ivt/a-groups": ["libs/api/a-groups/src/index.ts"],
-      "@ivt/a-companies": ["libs/api/a-companies/src/index.ts"],
-      "@ivt/a-guarantees": ["libs/api/a-guarantees/src/index.ts"],
-      "@ivt/a-localities": ["libs/api/a-localities/src/index.ts"],
-      "@ivt/a-payment-orders": ["libs/api/a-payment-orders/src/index.ts"],
-      "@ivt/a-products": ["libs/api/a-products/src/index.ts"],
-      "@ivt/a-state": ["libs/api/a-state/src/index.ts"],
-      "@ivt/a-users": ["libs/api/a-users/src/index.ts"],
-      "@ivt/c-utils": ["libs/common/c-utils/src/index.ts"],
-      "@ivt/c-data": ["libs/common/c-data/src/index.ts"],
-      "@ivt/u-ui": ["libs/ui/u-ui/src/index.ts"],
-      "@ivt/u-guarantees": ["libs/ui/u-guarantees/src/index.ts"],
-      "@ivt/u-auth": ["libs/ui/u-auth/src/index.ts"],
-      "@ivt/u-dashboard": ["libs/ui/u-dashboard/src/index.ts"],
-      "@ivt/u-spa": ["libs/ui/u-spa/src/index.ts"],
-      "@ivt/u-state": ["libs/ui/u-state/src/index.ts"],
-      "@ivt/u-groups": ["libs/ui/u-groups/src/index.ts"],
-      "@ivt/u-products": ["libs/ui/u-products/src/index.ts"],
-      "@ivt/u-users": ["libs/ui/u-users/src/index.ts"]
+      "@app/*": [
+        "apps/innovatech-ui/src/app/*"
+      ],
+      "@app/env/*": [
+        "apps/innovatech-ui/src/environments/*"
+      ],
+      "@api/*": [
+        "apps/innovatech-api/src/app/*"
+      ],
+      "@api/env/*": [
+        "apps/innovatech-api/src/environments/*"
+      ],
+      "@ivt/a-auth": [
+        "libs/api/a-auth/src/index.ts"
+      ],
+      "@ivt/a-groups": [
+        "libs/api/a-groups/src/index.ts"
+      ],
+      "@ivt/a-companies": [
+        "libs/api/a-companies/src/index.ts"
+      ],
+      "@ivt/a-guarantees": [
+        "libs/api/a-guarantees/src/index.ts"
+      ],
+      "@ivt/a-localities": [
+        "libs/api/a-localities/src/index.ts"
+      ],
+      "@ivt/a-payment-orders": [
+        "libs/api/a-payment-orders/src/index.ts"
+      ],
+      "@ivt/a-products": [
+        "libs/api/a-products/src/index.ts"
+      ],
+      "@ivt/a-state": [
+        "libs/api/a-state/src/index.ts"
+      ],
+      "@ivt/a-users": [
+        "libs/api/a-users/src/index.ts"
+      ],
+      "@ivt/a-vehicles": [
+        "libs/api/a-vehicles/src/index.ts"
+      ],
+      "@ivt/c-utils": [
+        "libs/common/c-utils/src/index.ts"
+      ],
+      "@ivt/c-data": [
+        "libs/common/c-data/src/index.ts"
+      ],
+      "@ivt/u-ui": [
+        "libs/ui/u-ui/src/index.ts"
+      ],
+      "@ivt/u-guarantees": [
+        "libs/ui/u-guarantees/src/index.ts"
+      ],
+      "@ivt/u-auth": [
+        "libs/ui/u-auth/src/index.ts"
+      ],
+      "@ivt/u-dashboard": [
+        "libs/ui/u-dashboard/src/index.ts"
+      ],
+      "@ivt/u-spa": [
+        "libs/ui/u-spa/src/index.ts"
+      ],
+      "@ivt/u-state": [
+        "libs/ui/u-state/src/index.ts"
+      ],
+      "@ivt/u-groups": [
+        "libs/ui/u-groups/src/index.ts"
+      ],
+      "@ivt/u-products": [
+        "libs/ui/u-products/src/index.ts"
+      ],
+      "@ivt/u-tests": [
+        "libs/ui/u-tests/src/index.ts"
+      ],
+      "@ivt/u-users": [
+        "libs/ui/u-users/src/index.ts"
+      ],
+      "@ivt/u-vehicles": [
+        "libs/ui/u-vehicles/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

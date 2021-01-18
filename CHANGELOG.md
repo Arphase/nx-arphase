@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://bitbucket.org/arphase/innovatech/compare/v1.3.1...v1.4.0) (2021-01-16)
+
+
+### Features
+
+* **api:** update class-transformer syntax ([7a3b07e](https://bitbucket.org/arphase/innovatech/commit/7a3b07ee65dae72aad50663b9395d595dc242610))
+* **app:** add PWA support ([cefe1db](https://bitbucket.org/arphase/innovatech/commit/cefe1db3c08955ab88d979bfbab26a216491ac6a))
+* **guarantees:** use new vehicle model ([005747a](https://bitbucket.org/arphase/innovatech/commit/005747a5c84368fe06d8038150421d841d717c41))
+* **vehicles:** create shareable form component ([bc95c74](https://bitbucket.org/arphase/innovatech/commit/bc95c74883a2b4d58931d85c67104e09f60f8a71))
+* **vehicles:** delete confirmation dialog ([a5c1194](https://bitbucket.org/arphase/innovatech/commit/a5c11942eccb2e21e91aa770a0883bb5a4b738fc))
+* **vehicles:** delete endpoint ([b872c51](https://bitbucket.org/arphase/innovatech/commit/b872c5112744de5b66d7082fb89e9a8cd71eccfc))
+* **vehicles:** endpoint for create item ([73e58f1](https://bitbucket.org/arphase/innovatech/commit/73e58f19db27f70c83a00c85eebe905fe40fdfb6))
+* **vehicles:** form ([6ce447d](https://bitbucket.org/arphase/innovatech/commit/6ce447d37bf1282afbb66b965e374cd7c0d0f05c))
+* **vehicles:** get item endpoint ([2f10872](https://bitbucket.org/arphase/innovatech/commit/2f10872c4325d2edcb522ae13122348a397dfd0b))
+* **vehicles:** get items endpoint ([2ed6259](https://bitbucket.org/arphase/innovatech/commit/2ed6259376eacaa76395b6038829c7936176147c))
+* **vehicles:** list ([12431f2](https://bitbucket.org/arphase/innovatech/commit/12431f24febb73ef632a3a65921ae970e93a7d6b))
+* **vehicles:** update item ([7675a43](https://bitbucket.org/arphase/innovatech/commit/7675a43d61381a589eab1832d3f9af1c9bc0e926))
+* **vehicles:** update model ([c40d615](https://bitbucket.org/arphase/innovatech/commit/c40d615c39bebdf6448763b6522bbd6eb80f41ee))
+
 ### [1.3.1](https://bitbucket.org/arphase/innovatech/compare/v1.3.0...v1.3.1) (2021-01-13)
 
 

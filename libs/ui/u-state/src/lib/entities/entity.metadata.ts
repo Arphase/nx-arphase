@@ -7,6 +7,7 @@ const entityMetadata: EntityMetadataMap = {
   PaymentOrder: {},
   Product: {},
   User: {},
+  Vehicle: {},
 };
 
 export const entityConfig = {

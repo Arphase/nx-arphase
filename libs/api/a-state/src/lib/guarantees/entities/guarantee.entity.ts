@@ -15,8 +15,8 @@ import { CompanyEntity } from '../../companies/company.entity';
 import { PaymentOrderEntity } from '../../payment-orders/payment-order.entity';
 import { ProductEntity } from '../../products/product.entity';
 import { UserEntity } from '../../users/user.entity';
+import { VehicleEntity } from '../../vehicles/vechicle.entity';
 import { ClientEntity } from './client.entity';
-import { VehicleEntity } from './vechicle.entity';
 
 @Entity('guarantees')
 export class GuaranteeEntity extends BaseEntity implements Guarantee {
@@ -30,14 +30,6 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   })
   @JoinColumn({ name: 'clientId' })
   client: Client;
-
-  @OneToOne(() => VehicleEntity, {
-    cascade: true,
-    onUpdate: 'CASCADE',
-    onDelete: 'CASCADE',
-  })
-  @JoinColumn({ name: 'vehicleId' })
-  vehicle: Vehicle;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -98,4 +90,20 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
 
   @Column({ nullable: true })
   userId: number;
+
+  @ManyToOne(() => VehicleEntity, vehicle => vehicle.guarantees)
+  @JoinColumn({ name: 'vehicleId' })
+  vehicle: Vehicle;
+
+  @Column({ nullable: true })
+  vehicleId: number;
+
+  @Column({ nullable: true })
+  productType: string;
+
+  @Column({ nullable: true })
+  kilometrageStart: number;
+
+  @Column({ nullable: true })
+  kilometrageEnd: number;
 }
