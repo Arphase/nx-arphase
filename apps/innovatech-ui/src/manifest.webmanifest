@@ -1,7 +1,7 @@
 {
-  "name": "innovatech-ui",
-  "short_name": "innovatech-ui",
-  "theme_color": "#1976d2",
+  "name": "Innovatech",
+  "short_name": "Innovatech",
+  "theme_color": "#3f5378",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",

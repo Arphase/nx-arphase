@@ -1,4 +1,4 @@
-import { Company, Guarantee, User, Vehicle } from '@ivt/c-data';
+import { Company, Guarantee, Revision, User, Vehicle } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
@@ -13,6 +13,7 @@ import {
 
 import { CompanyEntity } from '../companies/company.entity';
 import { GuaranteeEntity } from '../guarantees/entities/guarantee.entity';
+import { RevisionEntity } from '../revisions/revision.entity';
 import { UserEntity } from '../users/user.entity';
 
 @Entity('vehicles')
@@ -72,7 +73,12 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
 
   @OneToMany(() => GuaranteeEntity, guarantee => guarantee.vehicle, {
     cascade: true,
-    eager: true
+    eager: true,
   })
   guarantees: Guarantee[];
+
+  @OneToMany(() => RevisionEntity, revision => revision.vehicle, {
+    cascade: true,
+  })
+  revisions: Revision[];
 }
