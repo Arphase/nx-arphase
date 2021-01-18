@@ -10,12 +10,15 @@ export interface Guarantee {
   id: number;
   client: Client;
   vehicle: Vehicle;
+  vehicleId: number;
   createdAt: Date;
   updatedAt: Date;
   status: GuaranteeStatus | string;
   startDate: Date;
   endDate: Date;
   invoiceDate: Date;
+  kilometrageStart: number;
+  kilometrageEnd: number;
   invoiceNumber?: string;
   amount: number;
   paymentOrderId?: number;
@@ -25,4 +28,5 @@ export interface Guarantee {
   company?: Company;
   userId?: number;
   user?: User;
+  productType?: string;
 }

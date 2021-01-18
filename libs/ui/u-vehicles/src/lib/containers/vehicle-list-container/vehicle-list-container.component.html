@@ -1,0 +1,6 @@
+<ivt-vehicle-list [list]="list$ | async"
+                  [hasMoreItems]="hasMore$ | async"
+                  (getMoreItems)="getMoreItems()"
+                  (filterItems)="filterItems($event)"
+                  (delete)="deleteItem($event)">
+</ivt-vehicle-list>

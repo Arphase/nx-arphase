@@ -1,6 +1,5 @@
 <h1 mat-dialog-title>Confirmar</h1>
 <mat-dialog-content>
-  class="mb-3">
   <p>{{ data.message }}</p>
 </mat-dialog-content>
 <div mat-dialog-actions
@@ -8,12 +7,12 @@
   <button class="order-1 ml-2"
           mat-raised-button
           color="primary"
-          (click)="matDialogRef.close(true)">
+          [mat-dialog-close]="true">
     Aceptar
   </button>
 
   <button mat-raised-button
-          (click)="matDialogRef.close()">
+          [mat-dialog-close]="null">
     Cancelar
   </button>
 </div>

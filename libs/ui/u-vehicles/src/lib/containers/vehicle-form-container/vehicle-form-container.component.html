@@ -1,0 +1,4 @@
+<ivt-vehicle-form-wrapper [item]="currentItem$ | async"
+                          [companyOptions]="companyOptions$ | async"
+                          [loading]="loading$ | async"
+                          (submitForm)="submit($event)"></ivt-vehicle-form-wrapper>

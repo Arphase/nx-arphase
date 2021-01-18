@@ -34,30 +34,55 @@
 
       <div class="row">
         <div class="col-12 col-lg-6">
-          <mat-form-field>
-            <mat-label>Compañía</mat-label>
+          <ivt-form-field label="Compañía">
             <mat-select formControlName="companyId">
-              <mat-option *ngFor="let option of currentCompanyOptions"
+              <mat-option *ngFor="let option of companyOptions"
                           [value]="option.value">
                 {{ option.label }}
               </mat-option>
             </mat-select>
-          </mat-form-field>
+          </ivt-form-field>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <ivt-form-field label="Tipo de producto">
+            <input ivtInput
+                   ivtUppercase
+                   formControlName="productType">
+          </ivt-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6 col-12">
+          <ivt-form-field label="Kilometraje inicial">
+            <input ivtInput
+                   ivtUppercase
+                   type="number"
+                   formControlName="kilometrageStart">
+          </ivt-form-field>
+        </div>
+        <div class="col-lg-6 col-12">
+          <ivt-form-field label="Fin garantía por kilometraje">
+            <input ivtInput
+                   ivtUppercase
+                   type="number"
+                   formControlName="kilometrageEnd">
+          </ivt-form-field>
         </div>
       </div>
 
       <!-- TODO: Uncomment when products is ready
       <div class="row">
         <div class="col">
-          <mat-form-field>
-            <mat-label>Producto</mat-label>
+          <ivt-form-field label-"Producto">
             <mat-select formControlName="productId">
               <mat-option *ngFor="let option of productOptions"
                           [value]="option.value">
                 {{ option.label }}
               </mat-option>
             </mat-select>
-          </mat-form-field>
+          </ivt-form-field>
         </div>
       </div> -->
     </ivt-expansion-panel>
@@ -151,7 +176,7 @@
           </div>
 
           <div class="row">
-            <div class="col-lg-6 col-12">
+            <div class="col-12">
               <ivt-form-field label="Asesor">
                 <input ivtInput
                        ivtUppercase
@@ -192,94 +217,8 @@
     <ivt-expansion-panel class="primary-panel mb-3 d-block"
                          title="Vehículo"
                          [isOpen]="true">
-      <form [formGroup]="vehicle">
-        <div class="row">
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Tipo de producto">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="productType">
-            </ivt-form-field>
-          </div>
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Marca">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="brand">
-            </ivt-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Modelo">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="model">
-            </ivt-form-field>
-          </div>
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Versión">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="version">
-            </ivt-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Año del vehículo">
-              <input ivtInput
-                     type="number"
-                     formControlName="year">
-            </ivt-form-field>
-          </div>
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="HP">
-              <input ivtInput
-                     type="number"
-                     formControlName="horsePower">
-            </ivt-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="VIN">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="vin">
-            </ivt-form-field>
-          </div>
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="N° de motor">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="motorNumber">
-            </ivt-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Kilometraje inicial">
-              <input ivtInput
-                     ivtUppercase
-                     type="number"
-                     formControlName="kilometrageStart">
-            </ivt-form-field>
-          </div>
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Fin garantía por kilometraje">
-              <input ivtInput
-                     ivtUppercase
-                     type="number"
-                     formControlName="kilometrageEnd">
-            </ivt-form-field>
-          </div>
-        </div>
-      </form>
+      <ivt-vehicle-form [form]="vehicle"
+                        [companyId]="companyId$ | async"></ivt-vehicle-form>
     </ivt-expansion-panel>
   </div>
 

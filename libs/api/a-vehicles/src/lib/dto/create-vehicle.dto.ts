@@ -3,10 +3,6 @@ import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 export class CreateVehicleDto {
   @IsNotEmpty()
   @IsString()
-  productType: string;
-
-  @IsNotEmpty()
-  @IsString()
   brand: string;
 
   @IsNotEmpty()
@@ -32,12 +28,4 @@ export class CreateVehicleDto {
   @IsNotEmpty()
   @IsNumber()
   horsePower: number;
-
-  @IsNotEmpty()
-  @IsNumber()
-  kilometrageStart: number;
-
-  @IsNotEmpty()
-  @IsNumber()
-  kilometrageEnd: number;
 }

@@ -1,9 +1,8 @@
 import { IsRfc } from '@ivt/a-state';
-import { MoralPerson, PersonTypes, PhysicalPerson } from '@ivt/c-data';
+import { Address, MoralPerson, PersonTypes, PhysicalPerson } from '@ivt/c-data';
 import { RfcValidatorTypes } from '@ivt/c-utils';
 import { Transform, Type } from 'class-transformer';
 import { IsEmail, IsEnum, IsNotEmpty, IsString, ValidateIf, ValidateNested } from 'class-validator';
-import { Address } from 'cluster';
 
 import { CreateAddressDto } from './create-address.dto';
 import { CreateMoralPersonDto } from './create-moral-person.dto';
@@ -11,7 +10,7 @@ import { CreatePhysicalPersonDto } from './create-physical-person.dto';
 
 export class CreateClientDto {
   @IsNotEmpty()
-  @Transform(value => PersonTypes[value])
+  @Transform(({ obj, key }) => PersonTypes[obj[key]])
   @IsEnum(PersonTypes)
   personType: PersonTypes;
 

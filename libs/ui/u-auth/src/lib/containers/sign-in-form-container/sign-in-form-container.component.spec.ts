@@ -1,4 +1,8 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { LoadingService } from '@ivt/u-state';
+import { LoadingServiceMock } from '@ivt/u-tests';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { SignInFormContainerComponent } from './sign-in-form-container.component';
 
@@ -8,9 +12,10 @@ describe('SignInFormContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignInFormContainerComponent ]
-    })
-    .compileComponents();
+      declarations: [SignInFormContainerComponent],
+      providers: [provideMockStore(), { provide: LoadingService, useClass: LoadingServiceMock }],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

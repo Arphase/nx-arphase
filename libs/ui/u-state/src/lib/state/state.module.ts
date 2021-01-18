@@ -16,6 +16,7 @@ import { GuaranteeDataService } from '../guarantees/services/guarantee-data.serv
 import { PaymentOrderDataService } from '../payment-orders';
 import { ProductDataService } from '../products';
 import { UserDataService } from '../users';
+import { VehicleDataService } from '../vehicles/services/vehicle-data.service';
 import { reducers } from './reducers';
 
 @NgModule({
@@ -48,7 +49,8 @@ export class IvtStateModule {
     guaranteeDataService: GuaranteeDataService,
     paymentOrderDataService: PaymentOrderDataService,
     productDataService: ProductDataService,
-    userDataService: UserDataService
+    userDataService: UserDataService,
+    vehicleDataService: VehicleDataService
   ) {
     const services: Record<string, IvtDataService<unknown>> = {
       Company: companyDataService,
@@ -57,6 +59,7 @@ export class IvtStateModule {
       PaymentOrder: paymentOrderDataService,
       Product: productDataService,
       User: userDataService,
+      Vehicle: vehicleDataService,
     };
     entityDataService.registerServices(services);
   }

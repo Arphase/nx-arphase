@@ -8,3 +8,4 @@ export * from './lib/pdf';
 export * from './lib/products';
 export * from './lib/users';
 export * from './lib/validators';
+export * from './lib/vehicles';

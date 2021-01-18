@@ -1,11 +1,10 @@
 import { Guarantee } from '@ivt/c-data';
-import { IsNotEmpty, IsString, IsNumber, IsArray, IsOptional} from 'class-validator';
 import { Transform } from 'class-transformer';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateProductDto {
-
   @IsNotEmpty()
-  @Transform(value => Number(value))
+  @Transform(({ obj, key }) => Number(obj[key]))
   @IsNumber()
   price: number;
 

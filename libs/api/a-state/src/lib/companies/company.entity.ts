@@ -1,5 +1,5 @@
 import { AddressEntity, UserEntity } from '@ivt/a-state';
-import { Address, Company, Group, Guarantee, User } from '@ivt/c-data';
+import { Address, Company, Group, Guarantee, User, Vehicle } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
@@ -15,6 +15,7 @@ import {
 
 import { GroupEntity } from '../groups/group.entity';
 import { GuaranteeEntity } from '../guarantees/entities/guarantee.entity';
+import { VehicleEntity } from '../vehicles/vechicle.entity';
 
 @Entity('companies')
 export class CompanyEntity extends BaseEntity implements Company {
@@ -67,4 +68,9 @@ export class CompanyEntity extends BaseEntity implements Company {
     cascade: true,
   })
   guarantees: Guarantee[];
+
+  @OneToMany(() => VehicleEntity, vehicle => vehicle.company, {
+    cascade: true,
+  })
+  vehicles: Vehicle[];
 }

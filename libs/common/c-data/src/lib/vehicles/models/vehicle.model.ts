@@ -1,6 +1,9 @@
+import { Company } from '../../companies/models/company.model';
+import { Guarantee } from '../../guarantees';
+import { User } from '../../users';
+
 export interface Vehicle {
   id: number;
-  productType: string;
   brand: string;
   model: string;
   version: string;
@@ -8,6 +11,14 @@ export interface Vehicle {
   vin: string;
   motorNumber: string;
   horsePower: number;
-  kilometrageStart: number;
-  kilometrageEnd: number;
+  companyId?: number;
+  company?: Company;
+  kilometrageStart?: number;
+  kilometrageEnd?: number;
+  productType?: string;
+  userId?: number;
+  user?: User;
+  createdAt: Date;
+  updatedAt: Date;
+  guarantees?: Guarantee[];
 }
