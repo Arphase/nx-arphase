@@ -56,6 +56,9 @@
       "@ivt/a-products": [
         "libs/api/a-products/src/index.ts"
       ],
+      "@ivt/a-revisions": [
+        "libs/api/a-revisions/src/index.ts"
+      ],
       "@ivt/a-state": [
         "libs/api/a-state/src/index.ts"
       ],

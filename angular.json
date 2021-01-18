@@ -701,6 +701,27 @@
           }
         }
       }
+    },
+    "api-a-revisions": {
+      "root": "libs/api/a-revisions",
+      "sourceRoot": "libs/api/a-revisions/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/a-revisions/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/a-revisions"],
+          "options": {
+            "jestConfig": "libs/api/a-revisions/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
