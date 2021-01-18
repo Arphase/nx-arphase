@@ -40,8 +40,8 @@ export class DashboardContainerComponent extends IvtSubscriberComponent implemen
     map(guaranteeSummary => {
       const formattedSummary = keyBy(guaranteeSummary, 'status');
       return [
-        Number(formattedSummary[GuaranteeStatus.paid]?.amount || 0),
-        Number(formattedSummary[GuaranteeStatus.outstanding]?.amount || 0),
+        Number(formattedSummary[GuaranteeStatus.paid]?.amount) || 0,
+        Number(formattedSummary[GuaranteeStatus.outstanding]?.amount) || 0,
         Number(formattedSummary[GuaranteeStatus.cancelled]?.amount) || 0,
         Number(formattedSummary[GuaranteeStatus.expired]?.amount) || 0,
       ];

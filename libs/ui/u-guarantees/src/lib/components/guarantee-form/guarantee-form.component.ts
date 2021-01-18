@@ -63,7 +63,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       productId: null,
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
-      companyId: [null],
+      companyId: null,
       kilometrageStart: [null, Validators.required],
       kilometrageEnd: [null, Validators.required],
       productType: [null, Validators.required],
