@@ -31,20 +31,25 @@ export class RevisionsController {
     return this.revisionsService.getRevisions(filterDto);
   }
 
+  @Get(':id')
+  async getRevision(@Param('id', ParseIntPipe) id: number): Promise<Revision> {
+    return this.revisionsService.getRevision(id);
+  }
+
   @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
-  async createVehicle(@Body() createRevisionDto: CreateRevisionDto) {
+  async createRevision(@Body() createRevisionDto: CreateRevisionDto) {
     return this.revisionsService.createRevision(createRevisionDto);
   }
 
   @Put(':id')
   @UsePipes(new ValidationPipe({ transform: true }))
-  updateVehicle(@Body() updateRevisionDto: UpdateRevisionDto): Promise<Revision> {
+  updateRevision(@Body() updateRevisionDto: UpdateRevisionDto): Promise<Revision> {
     return this.revisionsService.updateRevision(updateRevisionDto);
   }
 
   @Delete(':id')
-  async deleteVehicle(@Param('id', ParseIntPipe) id: number): Promise<Revision> {
+  async deleteRevision(@Param('id', ParseIntPipe) id: number): Promise<Revision> {
     return this.revisionsService.deleteRevision(id);
   }
 }

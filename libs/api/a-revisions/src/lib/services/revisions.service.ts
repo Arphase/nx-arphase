@@ -29,6 +29,15 @@ export class RevisionsService {
     return await query.getMany();
   }
 
+  async getRevision(id: number): Promise<Revision> {
+    const query = this.revisionRepository.createQueryBuilder('revision');
+    const found = await query.where('revision.id = :id', { id }).getOne();
+    if (!found) {
+      throw new NotFoundException(`Revision with id "${id}" not found`);
+    }
+    return found;
+  }
+
   async createRevision(createRevisionDto: CreateRevisionDto): Promise<Revision> {
     const newRevision = this.revisionRepository.create(createRevisionDto);
     await newRevision.save();
