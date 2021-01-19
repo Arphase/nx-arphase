@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Revision, RevisionStatus, Select } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
@@ -9,7 +9,7 @@ import { IvtFormComponent } from '@ivt/u-ui';
   styleUrls: ['./revision-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RevisionFormComponent extends IvtFormComponent<Revision> {
+export class RevisionFormComponent extends IvtFormComponent<Revision> implements OnChanges {
   statusOptions: Select[] = [
     {
       label: 'En buenas condiciones',
@@ -27,8 +27,15 @@ export class RevisionFormComponent extends IvtFormComponent<Revision> {
   constructor(private fb: FormBuilder) {
     super();
     this.form = this.fb.group({
+      id: null,
       observations: [null, Validators.required],
       status: [null, Validators.required],
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.item && this.item) {
+      this.form.patchValue(this.item);
+    }
   }
 }
