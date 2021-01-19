@@ -13,4 +13,5 @@ import { columns } from './vehicle-list.constants';
 export class VehicleListComponent extends IvtListComponent<Vehicle> {
   columns = columns;
   @Output() goToRevisions = new EventEmitter<Vehicle>();
+  @Output() createGuarantee = new EventEmitter<Vehicle>();
 }

@@ -10,4 +10,5 @@ import { IvtRowComponent } from '@ivt/u-ui';
 })
 export class VehicleRowComponent extends IvtRowComponent<Vehicle> {
   @Output() goToRevisions = new EventEmitter<Vehicle>();
+  @Output() createGuarantee = new EventEmitter<Vehicle>();
 }

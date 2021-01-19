@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Guarantee, UserRoles } from '@ivt/c-data';
+import { filterNil } from '@ivt/c-utils';
 import {
   CompanyCollectionService,
   getAuthUserCompanyIdState,
@@ -9,12 +10,14 @@ import {
   IvtState,
   PermissionService,
   ProductCollectionService,
+  selectQueryParam,
+  VehicleCollectionService,
 } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { combineLatest } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { map, take, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-guarantee-form-container',
@@ -29,6 +32,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   isEditable$ = this.permissionService.hasUpdatePermission();
   productOptions$ = this.productCollectionService.options$;
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
+  vehicle$ = this.vehicleCollectionService.currentItem$;
   disabledCompanyInput$ = this.store.pipe(
     select(getAuthUserRoleState),
     map(role => role !== UserRoles[UserRoles.superAdmin])
@@ -54,7 +58,8 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     private productCollectionService: ProductCollectionService,
     private permissionService: PermissionService,
     private store: Store<IvtState>,
-    private companyCollectionService: CompanyCollectionService
+    private companyCollectionService: CompanyCollectionService,
+    private vehicleCollectionService: VehicleCollectionService
   ) {
     super(guaranteeCollectionService, router, toastr);
   }
@@ -69,5 +74,9 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
           this.companyCollectionService.getAll();
         }
       });
+
+    this.store
+      .pipe(select(selectQueryParam('vehicleId')), takeUntil(this.destroy$), filterNil())
+      .subscribe(id => this.vehicleCollectionService.getByKey(Number(id)));
   }
 }
