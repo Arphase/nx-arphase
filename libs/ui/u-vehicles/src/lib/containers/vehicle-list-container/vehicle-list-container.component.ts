@@ -35,4 +35,8 @@ export class VehicleListContainerComponent extends IvtListContainerComponent<Veh
     localStorage.setItem('currentVehicleName', `${model} ${year}`);
     this.router.navigateByUrl(`spa/vehicles/${id}/revisions`);
   }
+
+  createGuarantee(item: Vehicle): void {
+    this.router.navigateByUrl(`/spa/guarantees/new?vehicleId=${item.id}`);
+  }
 }

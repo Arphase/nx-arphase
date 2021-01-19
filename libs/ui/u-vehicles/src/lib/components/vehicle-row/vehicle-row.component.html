@@ -25,6 +25,10 @@
     </button>
     <mat-menu #actionsMenu="matMenu">
       <button mat-menu-item
+              (click)="createGuarantee.emit(item)">
+        Generar garantía
+      </button>
+      <button mat-menu-item
               (click)="goToRevisions.emit(item)">
         Manejar revisiones
       </button>

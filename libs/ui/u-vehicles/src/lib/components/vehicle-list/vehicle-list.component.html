@@ -31,7 +31,8 @@
     <ng-template let-item>
       <ivt-vehicle-row [item]="item"
                        (delete)="delete.emit($event)"
-                       (goToRevisions)="goToRevisions.emit($event)"></ivt-vehicle-row>
+                       (goToRevisions)="goToRevisions.emit($event)"
+                       (createGuarantee)="createGuarantee.emit($event)"></ivt-vehicle-row>
     </ng-template>
   </ivt-virtual-scroll>
 </ng-container>

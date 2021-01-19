@@ -8,7 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Guarantee, PersonTypes, Select } from '@ivt/c-data';
+import { Guarantee, PersonTypes, Select, Vehicle } from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
 import { createAddressForm, IvtAddressFormComponent, IvtFormComponent, IvtValidators } from '@ivt/u-ui';
 import { createVehicleForm, VehicleFormComponent } from '@ivt/u-vehicles';
@@ -27,6 +27,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
   @Input() productOptions: Select[] = [];
   @Input() companyOptions: Select[] = [];
   @Input() disabledCompanyInput: boolean;
+  @Input() vehicle: Vehicle;
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -40,7 +41,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     return this.form.get('client');
   }
 
-  get vehicle() {
+  get vehicleForm() {
     return this.form.get('vehicle');
   }
 
@@ -106,6 +107,11 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
 
     if (changes.disabledCompanyInput) {
       this.disabledCompanyInput ? this.form.get('companyId').disable() : this.form.get('companyId').enable();
+    }
+
+    if (changes.vehicle && this.vehicle) {
+      this.vehicleForm.patchValue(this.vehicle);
+      this.vehicleForm.disable();
     }
   }
 
