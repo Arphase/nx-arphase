@@ -17,13 +17,17 @@ export class RevisionsService {
   }
 
   async getRevisions(getRevisionsDto: GetRevisionsDto): Promise<Revision[]> {
-    const { vehicleId } = getRevisionsDto;
+    const { vehicleId, sort, direction } = getRevisionsDto;
     const query = this.revisionRepository.createQueryBuilder('revision');
 
     query.orderBy('revision.createdAt', sortDirection.desc);
 
     if (vehicleId) {
       query.andWhere('(revision.vehicleId = :id)', { id: vehicleId });
+    }
+
+    if (sort && direction) {
+      query.orderBy(`${sort}`, sortDirection[direction]);
     }
 
     return await query.getMany();

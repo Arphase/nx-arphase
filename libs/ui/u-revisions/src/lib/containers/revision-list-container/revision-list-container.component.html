@@ -1,5 +1,6 @@
 <ivt-revision-list [list]="list$ | async"
                    [hasMoreItems]="hasMore$ | async"
                    [title]="title"
-                   (getMoreItems)="getMoreItems()">
+                   (getMoreItems)="getMoreItems()"
+                   (filterItems)="filterItems($event)">
 </ivt-revision-list>

@@ -5,4 +5,12 @@ export class GetRevisionsDto {
   @IsNotEmpty()
   @IsNumberString()
   vehicleId;
+
+  @IsOptional()
+  @IsNotEmpty()
+  sort: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  direction: string;
 }

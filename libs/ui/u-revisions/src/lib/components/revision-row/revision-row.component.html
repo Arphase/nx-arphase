@@ -1,1 +1,31 @@
-<p>revision-row works!</p>
+<ivt-row>
+  <div class="color-status {{ backgroundClasses[item.status] }}"></div>
+  <div class="col-3">
+    <ivt-text-truncate-tooltip [label]="statusLabels[revisionStatus[item.status]] | empty">
+    </ivt-text-truncate-tooltip>
+  </div>
+  <div class="col-5">
+    <ivt-text-truncate-tooltip [label]="item.observations | empty"></ivt-text-truncate-tooltip>
+  </div>
+  <div class="col-3">
+    <ivt-text-truncate-tooltip [label]="item.createdAt | date: 'dd/mm/yy'"></ivt-text-truncate-tooltip>
+  </div>
+  <div class="col flex-end">
+    <button mat-icon-button
+            matTooltip="Acciones"
+            [matMenuTriggerFor]="actionsMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #actionsMenu="matMenu">
+      <button mat-menu-item
+              [routerLink]="[item.id]">
+        Editar revisión
+      </button>
+      <button mat-menu-item
+              class="text-danger"
+              (click)="delete.emit(item)">
+        Eliminar revisión
+      </button>
+    </mat-menu>
+  </div>
+</ivt-row>

@@ -30,6 +30,7 @@
                       [ignoreNextBatch]="!hasMoreItems || loading"
                       (nextBatchEmitter)="getMoreItems.emit()">
     <ng-template let-item>
+      <ivt-revision-row [item]="item"></ivt-revision-row>
     </ng-template>
   </ivt-virtual-scroll>
 </ng-container>
