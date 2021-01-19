@@ -30,7 +30,8 @@
                       [ignoreNextBatch]="!hasMoreItems || loading"
                       (nextBatchEmitter)="getMoreItems.emit()">
     <ng-template let-item>
-      <ivt-revision-row [item]="item"></ivt-revision-row>
+      <ivt-revision-row [item]="item"
+                        (delete)="delete.emit($event)"></ivt-revision-row>
     </ng-template>
   </ivt-virtual-scroll>
 </ng-container>

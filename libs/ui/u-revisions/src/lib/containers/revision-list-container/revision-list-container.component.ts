@@ -1,7 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Revision } from '@ivt/c-data';
 import { RevisionCollectionService, RevisionDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
+import moment from 'moment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'ivt-revision-list-container',
@@ -10,11 +13,20 @@ import { IvtListContainerComponent } from '@ivt/u-ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionListContainerComponent extends IvtListContainerComponent<Revision> {
-  title = `Revisiones ${localStorage.getItem('currentVehicleName')}`
+  title = `Revisiones ${localStorage.getItem('currentVehicleName')}`;
   constructor(
     protected revisionCollectionService: RevisionCollectionService,
-    protected revisionDataService: RevisionDataService
+    protected revisionDataService: RevisionDataService,
+    protected dialog: MatDialog,
+    protected toastrService: ToastrService
   ) {
-    super(revisionCollectionService, revisionDataService);
+    super(revisionCollectionService, revisionDataService, dialog, toastrService);
+  }
+
+  deleteItem(item: Revision): void {
+    const date = moment(item.createdAt).format('DD/mm/yy');
+    this.deleteConfirmMessage = `¿Desea eliminar la revisión con fecha ${date}?`;
+    this.deleteSuccessMessage = `La revisión con fecha ${date} se ha eliminado`;
+    super.deleteItem(item);
   }
 }

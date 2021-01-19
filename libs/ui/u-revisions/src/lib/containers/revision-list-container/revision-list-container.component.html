@@ -2,5 +2,6 @@
                    [hasMoreItems]="hasMore$ | async"
                    [title]="title"
                    (getMoreItems)="getMoreItems()"
-                   (filterItems)="filterItems($event)">
+                   (filterItems)="filterItems($event)"
+                   (delete)="deleteItem($event)">
 </ivt-revision-list>
