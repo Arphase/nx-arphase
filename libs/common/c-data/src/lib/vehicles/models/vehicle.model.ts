@@ -1,5 +1,6 @@
 import { Company } from '../../companies/models/company.model';
 import { Guarantee } from '../../guarantees';
+import { Revision } from '../../revisions';
 import { User } from '../../users';
 
 export interface Vehicle {
@@ -21,4 +22,5 @@ export interface Vehicle {
   createdAt: Date;
   updatedAt: Date;
   guarantees?: Guarantee[];
+  revisions?: Revision[];
 }

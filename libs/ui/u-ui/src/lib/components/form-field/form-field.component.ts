@@ -70,6 +70,8 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
   ngAfterContentInit() {
     super.ngAfterContentInit();
     const reactiveControl = this.input?.ngControl || this.select?.ngControl;
+
+
     reactiveControl.statusChanges
       .pipe(
         startWith(true),
@@ -79,7 +81,6 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
       .subscribe(() => this.setErrorMessage(reactiveControl.errors));
 
     if (this.select?.options?.toArray()?.length === 1) {
-      console.log('lol');
       this.select.ngControl.control.patchValue(this.select.options.first.value);
     }
 
