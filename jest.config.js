@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/libs/ui/u-auth',
     '<rootDir>/libs/ui/u-tests',
     '<rootDir>/libs/api/a-revisions',
+    '<rootDir>/libs/ui/u-revisions',
   ],
 };

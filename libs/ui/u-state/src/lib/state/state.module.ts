@@ -15,6 +15,7 @@ import { GroupDataService } from '../groups/services/group-data.service';
 import { GuaranteeDataService } from '../guarantees/services/guarantee-data.service';
 import { PaymentOrderDataService } from '../payment-orders';
 import { ProductDataService } from '../products';
+import { RevisionDataService } from '../revisions';
 import { UserDataService } from '../users';
 import { VehicleDataService } from '../vehicles/services/vehicle-data.service';
 import { reducers } from './reducers';
@@ -49,6 +50,7 @@ export class IvtStateModule {
     guaranteeDataService: GuaranteeDataService,
     paymentOrderDataService: PaymentOrderDataService,
     productDataService: ProductDataService,
+    revisionDataService: RevisionDataService,
     userDataService: UserDataService,
     vehicleDataService: VehicleDataService
   ) {
@@ -58,6 +60,7 @@ export class IvtStateModule {
       Guarantee: guaranteeDataService,
       PaymentOrder: paymentOrderDataService,
       Product: productDataService,
+      Revision: revisionDataService,
       User: userDataService,
       Vehicle: vehicleDataService,
     };
