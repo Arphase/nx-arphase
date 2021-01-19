@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://bitbucket.org/arphase/innovatech/compare/v1.4.0...v1.5.0) (2021-01-19)
+
+
+### Features
+
+* **revisions:** create form ([eabb782](https://bitbucket.org/arphase/innovatech/commit/eabb782922a885fe9b62923bf3c0de6483c117de))
+* **revisions:** create model ([dfb6d49](https://bitbucket.org/arphase/innovatech/commit/dfb6d49348eaf7a9113ea243bdd56973ddb5728e))
+* **revisions:** delete ([1966953](https://bitbucket.org/arphase/innovatech/commit/1966953fa20f479f42f5cd86568a43d9e381aa47))
+* **revisions:** delete endpoint ([36da58b](https://bitbucket.org/arphase/innovatech/commit/36da58bfb4aa5d4337f666d31a0cfc51465abe14))
+* **revisions:** edit ([30f3f3f](https://bitbucket.org/arphase/innovatech/commit/30f3f3f2d56dfb9617ad03793ee226f46e41d2a6))
+* **revisions:** get by id endpoint ([7517182](https://bitbucket.org/arphase/innovatech/commit/7517182548ea8438065f9cab9547dacf4d2eeaa0))
+* **revisions:** list ([a1cce22](https://bitbucket.org/arphase/innovatech/commit/a1cce221376c5a1ac26426c415419881f95abb82))
+* **revisions:** list endpoint ([b6fdd51](https://bitbucket.org/arphase/innovatech/commit/b6fdd51b6c630a41bf46f81675982c0f0a1d35a1))
+* **revisions:** post endpoint ([d8da707](https://bitbucket.org/arphase/innovatech/commit/d8da70754cd017c9c3b4a649136b51c30a931aeb))
+* **revisions:** setup ui module ([abe3f26](https://bitbucket.org/arphase/innovatech/commit/abe3f269947c21f7b6a0208c91ca60d2d97ee42a))
+* **vehicles:** create guarantee from list ([e5c8571](https://bitbucket.org/arphase/innovatech/commit/e5c8571da1a9cd4bf08c145d1c77d56c331fe794))
+
+
+### Bug Fixes
+
+* **core:** lazy load lists ([eeef985](https://bitbucket.org/arphase/innovatech/commit/eeef9855c6c9b70dd6661832ddcb1c2c468cc0b0))
+* **dashboard:** calculate status amounts correctly ([02f28bc](https://bitbucket.org/arphase/innovatech/commit/02f28bcea35504c104f092d9b674c321311c33c9))
+* **ui:** email and phone input validation ([1bbfe1d](https://bitbucket.org/arphase/innovatech/commit/1bbfe1da11502ac399245f327cd58ddf177e1c5c))
+
 ## [1.4.0](https://bitbucket.org/arphase/innovatech/compare/v1.3.1...v1.4.0) (2021-01-16)
 
 
