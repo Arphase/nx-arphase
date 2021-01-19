@@ -2,6 +2,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { EntityCollectionReducerMethodsFactory, EntityDataModule, EntityDataService } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -29,6 +30,7 @@ import { reducers } from './reducers';
     }),
     EffectsModule.forRoot([AuthEffects]),
     EntityDataModule.forRoot(entityConfig),
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
   ],
   providers: [
     {

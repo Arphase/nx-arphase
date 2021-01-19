@@ -1,1 +1,5 @@
-<p>revision-list-container works!</p>
+<ivt-revision-list [list]="list$ | async"
+                   [hasMoreItems]="hasMore$ | async"
+                   [title]="title"
+                   (getMoreItems)="getMoreItems()">
+</ivt-revision-list>

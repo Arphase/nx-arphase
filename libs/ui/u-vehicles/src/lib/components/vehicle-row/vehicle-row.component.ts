@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { Vehicle } from '@ivt/c-data';
 import { IvtRowComponent } from '@ivt/u-ui';
 
@@ -8,4 +8,6 @@ import { IvtRowComponent } from '@ivt/u-ui';
   styleUrls: ['./vehicle-row.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VehicleRowComponent extends IvtRowComponent<Vehicle> {}
+export class VehicleRowComponent extends IvtRowComponent<Vehicle> {
+  @Output() goToRevisions = new EventEmitter<Vehicle>();
+}

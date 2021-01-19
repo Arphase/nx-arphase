@@ -27,6 +27,10 @@ export const routes: Routes = [
         component: VehicleFormContainerComponent,
         resolve: { resolvedVehicle: VehicleResolverService },
       },
+      {
+        path: ':id/revisions',
+        loadChildren: () => import('@ivt/u-revisions').then(m => m.RevisionsModule),
+      },
     ],
   },
 ];
