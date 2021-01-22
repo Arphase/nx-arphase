@@ -8,7 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AuthEffects } from '../auth/state';
 import { CompanyDataService } from '../companies';
-import { IvtDataService } from '../core';
+import { HttpProxyService, IvtDataService } from '../core';
 import { TokenInterceptor } from '../core/interceptors/token-interceptor';
 import { AdditionalEntityCollectionReducerMethodsFactory } from '../entities';
 import { entityConfig } from '../entities/entity.metadata';
@@ -38,6 +38,7 @@ import { reducers } from './reducers';
       useClass: TokenInterceptor,
       multi: true,
     },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpProxyService, multi: true },
     {
       provide: EntityCollectionReducerMethodsFactory,
       useClass: AdditionalEntityCollectionReducerMethodsFactory,

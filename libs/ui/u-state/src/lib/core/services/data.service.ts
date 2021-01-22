@@ -1,5 +1,4 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Inject } from '@angular/core';
 import { saveFile } from '@ivt/c-utils';
 import { DefaultDataService, HttpUrlGenerator, QueryParams } from '@ngrx/data';
 import moment from 'moment';
@@ -7,18 +6,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 
 import { buildQueryParams } from '../../entities/build-query-params';
-import { IVT_UI_STATE_CONFIGURATION, IvtUiStateConfiguration } from '../../ui-state-config';
 
 export class IvtDataService<T> extends DefaultDataService<T> {
   private loadingExcelSubject = new BehaviorSubject<boolean>(false);
   loadingExcel$ = this.loadingExcelSubject.asObservable();
 
-  constructor(
-    protected entityName: string,
-    protected http: HttpClient,
-    protected httpUrlGenerator: HttpUrlGenerator,
-    @Inject(IVT_UI_STATE_CONFIGURATION) public config: IvtUiStateConfiguration
-  ) {
+  constructor(protected entityName: string, protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super(entityName, http, httpUrlGenerator);
   }
 
