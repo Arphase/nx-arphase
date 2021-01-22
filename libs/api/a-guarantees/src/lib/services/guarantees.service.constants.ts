@@ -22,6 +22,23 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
             .bold {
               font-weight: 900;
             }
+            .row {
+              display: flex;
+              flex-wrap: wrap;
+            }
+            .col {
+              flex-basis: 0;
+              flex-grow: 1;
+              max-width: 100%;
+              display: flex;
+              align-items: center
+            }
+            .guarantee-info {
+              max-width: 80%;
+            }
+            .folio {
+              font-size: 18px;
+            }
             .center {
               text-align: center;
             }
@@ -29,20 +46,15 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
               font-size: 14px;
             }
             .logo {
-              max-width: 50%;
+              max-width: 20%;
               height: auto;
-              display: block;
-              margin-left: auto;
-              margin-right: auto;
             }
             span.footer {
-
               max-width: 100%;
               height: 50%;
             }
             footer {
-
-              max-width: 100%;
+            max-width: 100%;
               height: auto;
             }
         </style>
@@ -53,7 +65,14 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
         <p>Le damos la más cordial bienvenida Innovatech. Este programa ha sido diseñado pensando en brindarles protección contra desembolsos excesivos e
         imprevistos en caso de que su vehículo presente alguna avería mecánica de manera fortuita en sistemas eléctricos mecánicos o electrónicos</p>
         <p>Lo invitamos a consultar los términos, condiciones y exclusiones de la cobertura contratada de acuerdo a la carátula y los anexos de la presente.</p>
-        <p>Su número de Certificado de Garantía es: <span class="bold">${transformFolio(guarantee.id)}</span></p>
+        <div class="row">
+            <div class="col">
+              <p>Su número de Certificado de Garantía es: <span class="bold folio">${transformFolio(guarantee.id)}</span></p>
+            </div>
+            <div class="col">
+              <img class="guarantee-info" src="${IMAGE_ASSETS_PATH}/guarantee-info.png">
+            </div>
+        </div>
         <p>Ante cualquier duda, ponerse en contacto con el área de servicio al cliente.</p>
         <p>*Los datos introducidos tendrán que coincidir fehacientemente con los del vehículo objeto de garantía. En caso de error será motivo de rescisión del contrato.</p>
         <p><span class="bold">PUNTO DE VENTA:</span> ${guarantee.client.salesPlace}</p>

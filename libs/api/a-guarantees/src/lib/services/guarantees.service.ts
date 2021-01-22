@@ -204,7 +204,7 @@ export class GuaranteesService {
     const guarantee = await this.getGuaranteeById(id);
 
     let content = getGuaranteePdfTemplate(guarantee);
-    let headerLogo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+    let headerLogo = await tobase64('apps/innovatech-api/src/assets/img/forte-shield.png');
     const product = guarantee.product;
 
     if (product) {
@@ -212,12 +212,13 @@ export class GuaranteesService {
       let logo = product.logo;
 
       if (!logo) {
-        logo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+        logo = await tobase64('apps/innovatech-api/src/assets/img/forte-shield.png');
         logo = 'data:image/png;base64,' + logo;
       }
       content = getProductPdfTemplate(template, guarantee);
       headerLogo = logo;
     }
+
 
     const headerImg = await tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
     const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
@@ -235,7 +236,6 @@ export class GuaranteesService {
     });
     const buffer = await page.pdf({
       format: 'A4',
-      printBackground: true,
       margin: {
         left: '1in',
         top: '1in',
@@ -243,9 +243,10 @@ export class GuaranteesService {
         bottom: '2in',
       },
       displayHeaderFooter: true,
+      pageRanges: '1-',
       headerTemplate: `
       <style>
-        .logo {
+        .innovatech-logo {
           max-width: 15%;
           height: auto;
           margin: 0.3in 0 0 0.8in;
@@ -257,10 +258,8 @@ export class GuaranteesService {
         }
         #header { padding: 0 !important; }
       </style>
-      <img class="logo"
-      src="data:image/png;base64,${headerImg}"/>
-      <img class="shield"
-          src="${headerLogo}"/>`,
+      <img class="innovatech-logo" src="data:image/png;base64,${headerImg}"/>
+      <img class="shield" src="data:image/png;base64,${headerLogo}"/>`,
       footerTemplate: `
       <style>
         .footer {
@@ -269,8 +268,7 @@ export class GuaranteesService {
         }
         #footer { padding: 0 !important; }
       </style>
-      <img class="footer"
-          src="data:image/jpg;base64,${footerImg}"/>
+      <img class="footer" src="data:image/jpg;base64,${footerImg}"/>
       `,
     });
     promisify(fs.unlink)(OUT_FILE);
