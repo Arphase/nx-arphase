@@ -45,6 +45,17 @@ All notable changes to this project will be documented in this file. See [standa
 * **vehicles:** update item ([7675a43](https://bitbucket.org/arphase/innovatech/commit/7675a43d61381a589eab1832d3f9af1c9bc0e926))
 * **vehicles:** update model ([c40d615](https://bitbucket.org/arphase/innovatech/commit/c40d615c39bebdf6448763b6522bbd6eb80f41ee))
 
+### [1.3.2](https://bitbucket.org/arphase/innovatech/compare/v1.3.1...v1.3.2) (2021-01-22)
+
+
+### Bug Fixes
+
+* **core:** lazy load lists ([eeef985](https://bitbucket.org/arphase/innovatech/commit/eeef9855c6c9b70dd6661832ddcb1c2c468cc0b0))
+* **dashboard:** calculate status amounts correctly ([02f28bc](https://bitbucket.org/arphase/innovatech/commit/02f28bcea35504c104f092d9b674c321311c33c9))
+* **dashboard:** display empty state when having ceros ([839f9fa](https://bitbucket.org/arphase/innovatech/commit/839f9fa35265a8a3a51244a53495c936e2d88c9c))
+* **guarantees:** display product logo in PDF ([5c83bb4](https://bitbucket.org/arphase/innovatech/commit/5c83bb40396e9660481b3a86ca318197ba19b923))
+* **ui:** email and phone input validation ([1bbfe1d](https://bitbucket.org/arphase/innovatech/commit/1bbfe1da11502ac399245f327cd58ddf177e1c5c))
+
 ### [1.3.1](https://bitbucket.org/arphase/innovatech/compare/v1.3.0...v1.3.1) (2021-01-13)
 
 

@@ -50,7 +50,7 @@ export class DashboardContainerComponent extends IvtSubscriberComponent implemen
   isEmpty$ = this.store.pipe(
     select(getDashboardGuaranteeSummaryState),
     filterNil(),
-    map(summary => !summary.length || !summary.some(value => value.amount))
+    map(summary => !summary.length || !summary.some(value => Number(value.amount)))
   );
   groupOptions$ = this.groupCollectionService.options$;
   companyOptions$ = this.companyCollectionService.options$;
