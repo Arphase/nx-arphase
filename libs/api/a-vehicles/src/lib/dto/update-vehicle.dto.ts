@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
 
 export class UpdateVehicleDto {
   @IsNotEmpty()
@@ -27,6 +27,7 @@ export class UpdateVehicleDto {
 
   @IsOptional()
   @IsString()
+  @Length(17, 17)
   vin: string;
 
   @IsOptional()

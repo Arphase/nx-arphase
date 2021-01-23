@@ -12,7 +12,7 @@ export function createVehicleForm(vehicle?: Vehicle) {
     model: new FormControl('', Validators.required),
     version: new FormControl('', Validators.required),
     year: new FormControl('', [Validators.required, Validators.min(todayYear - 20), Validators.max(todayYear + 1)]),
-    vin: new FormControl('', Validators.required),
+    vin: new FormControl('', [Validators.required, Validators.minLength(17), Validators.maxLength(17)]),
     motorNumber: new FormControl('', Validators.required),
     horsePower: new FormControl('', [Validators.required, Validators.max(400)]),
     companyId: new FormControl(null),

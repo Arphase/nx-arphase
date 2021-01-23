@@ -33,7 +33,7 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
   @Column()
   year: number;
 
-  @Column({ unique: true })
+  @Column({ length: 17, unique: true })
   vin: string;
 
   @Column()
