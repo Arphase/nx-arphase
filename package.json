@@ -73,6 +73,7 @@
     "@nrwl/nest": "11.1.5",
     "@nrwl/node": "11.1.5",
     "@nrwl/workspace": "11.1.5",
+    "@sentry/angular": "^6.0.1",
     "@sentry/node": "^6.0.1",
     "@types/chart.js": "^2.9.29",
     "@types/cron": "^1.7.2",

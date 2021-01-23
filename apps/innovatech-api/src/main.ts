@@ -3,13 +3,13 @@
  * This is only a minimal backend to get started.
  */
 import { environment } from '@api/env/environment';
-import { SentryInterceptor } from '@ivt/a-state';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as Sentry from '@sentry/node';
 import * as bodyParser from 'body-parser';
 
 import { AppModule } from './app/app.module';
+import { SentryInterceptor } from './sentry.inerceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
