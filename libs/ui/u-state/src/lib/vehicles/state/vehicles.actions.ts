@@ -9,3 +9,5 @@ export const getVehicleByVinSuccess = createAction(
 );
 
 export const getVehicleByVinFailed = createAction('[Vehicles] Get vehicle by vin failed');
+
+export const clearVehiclesState = createAction('[Vehicles] Clear vehicles state');

@@ -12,7 +12,8 @@ const vehiclesReducer = createReducer(
   on(VehiclesActions.getVehicleByVinSuccess, (state, action) => ({
     ...state,
     vehicle: action.payload,
-  }))
+  })),
+  on(VehiclesActions.clearVehiclesState, (state, action) => initialState)
 );
 
 export function reducer(state: VehiclesState, action: Action) {

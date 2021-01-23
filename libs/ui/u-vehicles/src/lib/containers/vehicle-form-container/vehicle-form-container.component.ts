@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRoles, Vehicle } from '@ivt/c-data';
 import {
@@ -22,7 +22,7 @@ import { map, take } from 'rxjs/operators';
   styleUrls: ['./vehicle-form-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VehicleFormContainerComponent extends IvtFormContainerComponent<Vehicle> implements OnInit {
+export class VehicleFormContainerComponent extends IvtFormContainerComponent<Vehicle> implements OnInit, OnDestroy {
   successUrl = '/spa/vehicles';
   createSuccessMessage = 'El vehículo se ha creado con éxito';
   updateSuccessMessage = 'El vehículo se ha actualizado con éxito';
@@ -74,5 +74,10 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
 
   verifyVin(vin: string): void {
     this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin }));
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    this.store.dispatch(fromVehicles.actions.clearVehiclesState());
   }
 }

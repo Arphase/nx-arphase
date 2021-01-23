@@ -1,11 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Guarantee, UserRoles } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import {
   CompanyCollectionService,
+  fromVehicles,
   getAuthUserCompanyIdState,
   getAuthUserRoleState,
+  getVehiclesVehicleState,
   GuaranteeCollectionService,
   IvtState,
   PermissionService,
@@ -25,7 +27,7 @@ import { map, take, takeUntil } from 'rxjs/operators';
   styleUrls: ['./guarantee-form-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<Guarantee> implements OnInit {
+export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<Guarantee> implements OnInit, OnDestroy {
   successUrl = '/spa/guarantees';
   createSuccessMessage = 'La garantía se ha creado con éxito';
   updateSuccessMessage = 'La garantía se ha actualizado con éxito';
@@ -50,6 +52,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
       }
     })
   );
+  currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
 
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,
@@ -78,5 +81,14 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     this.store
       .pipe(select(selectQueryParam('vehicleId')), takeUntil(this.destroy$), filterNil())
       .subscribe(id => this.vehicleCollectionService.getByKey(Number(id)));
+  }
+
+  verifyVin(vin: string): void {
+    this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin }));
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    this.store.dispatch(fromVehicles.actions.clearVehiclesState());
   }
 }

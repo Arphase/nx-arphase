@@ -2,8 +2,10 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnChanges,
+  Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -12,6 +14,7 @@ import { Guarantee, PersonTypes, Select, Vehicle } from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
 import { createAddressForm, IvtAddressFormComponent, IvtFormComponent, IvtValidators } from '@ivt/u-ui';
 import { createVehicleForm, VehicleFormComponent } from '@ivt/u-vehicles';
+import { omit } from 'lodash';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -28,6 +31,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
   @Input() companyOptions: Select[] = [];
   @Input() disabledCompanyInput: boolean;
   @Input() vehicle: Vehicle;
+  @Input() currentVehicle: Vehicle;
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -36,6 +40,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     { label: 'Moral', value: PersonTypes[PersonTypes.moral] },
   ];
   companyId$: Observable<number>;
+  @Output() verifyVin = new EventEmitter<string>();
 
   get client() {
     return this.form.get('client');
@@ -112,6 +117,16 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     if (changes.vehicle && this.vehicle) {
       this.vehicleForm.patchValue(this.vehicle);
       this.vehicleForm.disable();
+    }
+
+    if (changes.currentVehicle) {
+      if (this.currentVehicle) {
+        this.vehicleForm.patchValue(omit(this.currentVehicle, 'vin'));
+        this.vehicleForm.disable({ emitEvent: false });
+        this.vehicleForm.get('vin').enable({ emitEvent: false });
+      } else {
+        this.vehicleForm.enable({ emitEvent: false });
+      }
     }
   }
 

@@ -5,5 +5,7 @@
                     [disabledCompanyInput]="disabledCompanyInput$ | async"
                     [companyOptions]="companyOptions$ | async"
                     [vehicle]="vehicle$ | async"
+                    [currentVehicle]="currentVehicle$ | async"
+                    (verifyVin)="verifyVin($event)"
                     (submitForm)="submit($event)">
 </ivt-guarantee-form>

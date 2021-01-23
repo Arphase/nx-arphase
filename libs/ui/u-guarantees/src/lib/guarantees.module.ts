@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { PermissionsModule } from '@ivt/u-state';
+import { PermissionsModule, VehiclesDataModule } from '@ivt/u-state';
 import { IvtUiModule } from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
 
@@ -19,7 +19,14 @@ import { GuaranteesRoutingModule } from './guarantees-routing.module';
 import { GuaranteesComponent } from './guarantees.component';
 
 @NgModule({
-  imports: [CommonModule, IvtUiModule, GuaranteesRoutingModule, PermissionsModule, VehicleFormModule],
+  imports: [
+    CommonModule,
+    IvtUiModule,
+    GuaranteesRoutingModule,
+    PermissionsModule,
+    VehicleFormModule,
+    VehiclesDataModule,
+  ],
   declarations: [
     GuaranteeFormComponent,
     GuaranteeFormContainerComponent,
