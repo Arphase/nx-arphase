@@ -3,15 +3,11 @@ import { User, UserRoles, Vehicle, VehicleStatus } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { Connection } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class VehiclesService {
-  vehicleRepository: VehicleRepository;
-
-  constructor(private readonly connection: Connection) {
-    this.vehicleRepository = this.connection.getCustomRepository(VehicleRepository);
-  }
+  constructor(@InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository) {}
 
   async getVehicles(filterDto: GetVehiclesDto, user: Partial<User>): Promise<Vehicle[]> {
     const { sort, direction, offset, limit } = filterDto;

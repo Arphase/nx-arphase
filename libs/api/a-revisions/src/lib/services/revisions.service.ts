@@ -2,15 +2,11 @@ import { CreateRevisionDto, GetRevisionsDto, RevisionRepository, UpdateRevisionD
 import { Revision } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Connection } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class RevisionsService {
-  revisionRepository: RevisionRepository;
-
-  constructor(private readonly connection: Connection) {
-    this.revisionRepository = this.connection.getCustomRepository(RevisionRepository);
-  }
+  constructor(@InjectRepository(RevisionRepository) private revisionRepository: RevisionRepository) {}
 
   async getRevisions(getRevisionsDto: GetRevisionsDto): Promise<Revision[]> {
     const { vehicleId, sort, direction } = getRevisionsDto;

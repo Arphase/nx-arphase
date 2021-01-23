@@ -11,6 +11,7 @@ import {
 import { PaymentOrder } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import fs from 'fs';
 import { omit } from 'lodash';
@@ -20,13 +21,11 @@ import { promisify } from 'util';
 
 @Injectable()
 export class PaymentOrdersService {
-  paymentOrderRepository: PaymentOrderRepository;
-  guaranteeRepository: GuaranteeRepository;
-
-  constructor(private readonly connection: Connection) {
-    this.paymentOrderRepository = this.connection.getCustomRepository(PaymentOrderRepository);
-    this.guaranteeRepository = this.connection.getCustomRepository(GuaranteeRepository);
-  }
+  constructor(
+    @InjectRepository(PaymentOrderRepository) private paymentOrderRepository: PaymentOrderRepository,
+    @InjectRepository(GuaranteeRepository) private guaranteeRepository: GuaranteeRepository,
+    private connection: Connection
+  ) {}
 
   async getPaymentOrder(id: number): Promise<PaymentOrder> {
     const paymentOrder = await this.paymentOrderRepository

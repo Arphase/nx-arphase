@@ -2,15 +2,11 @@ import { FilterUsersDto, UserRepository } from '@ivt/a-state';
 import { User, UserRoles } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { Injectable } from '@nestjs/common';
-import { Connection } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UsersService {
-  private userRepository: UserRepository;
-
-  constructor(private readonly connection: Connection) {
-    this.userRepository = this.connection.getCustomRepository(UserRepository);
-  }
+  constructor(@InjectRepository(UserRepository) private userRepository: UserRepository) {}
 
   async getUsers(filterDto: FilterUsersDto, user: Partial<User>): Promise<User[]> {
     const { sort, direction, companyIds, groupIds, text, offset, limit } = filterDto;

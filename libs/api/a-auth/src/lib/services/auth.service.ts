@@ -17,24 +17,23 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcryptjs';
 import { omit } from 'lodash';
 import { createTransport } from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
-import { Connection, getManager } from 'typeorm';
+import { getManager } from 'typeorm';
 
 import { getNewUserEmailTemplate } from '../constants';
 import { getResetPasswordEmailTemplate } from '../constants/reset-password-email-template';
 
 @Injectable()
 export class AuthService {
-  private userRepository: UserRepository;
-  private resetPasswordRepository: ResetPasswordRepository;
-
-  constructor(private jwtService: JwtService, private readonly connection: Connection) {
-    this.userRepository = this.connection.getCustomRepository(UserRepository);
-    this.resetPasswordRepository = this.connection.getCustomRepository(ResetPasswordRepository);
-  }
+  constructor(
+    @InjectRepository(UserRepository) private userRepository: UserRepository,
+    @InjectRepository(ResetPasswordRepository) private resetPasswordRepository: ResetPasswordRepository,
+    private jwtService: JwtService
+  ) {}
 
   async signUp(signUpCredentialsDto: SignUpCredentialsDto): Promise<User> {
     const { password, email, firstName, secondName, lastName, secondLastName, role } = signUpCredentialsDto;

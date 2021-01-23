@@ -15,6 +15,7 @@ import {
 import { Client, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import fs from 'fs';
 import { omit } from 'lodash';
@@ -31,15 +32,12 @@ import {
 
 @Injectable()
 export class GuaranteesService {
-  guaranteeRepository: GuaranteeRepository;
-  physicalPersonRepository: PhysicalPersonRepository;
-  moralPersonRepository: MoralPersonRepository;
-
-  constructor(private readonly connection: Connection) {
-    this.guaranteeRepository = this.connection.getCustomRepository(GuaranteeRepository);
-    this.physicalPersonRepository = this.connection.getCustomRepository(PhysicalPersonRepository);
-    this.moralPersonRepository = this.connection.getCustomRepository(MoralPersonRepository);
-  }
+  constructor(
+    @InjectRepository(GuaranteeRepository) private guaranteeRepository: GuaranteeRepository,
+    @InjectRepository(PhysicalPersonRepository) private physicalPersonRepository: PhysicalPersonRepository,
+    @InjectRepository(MoralPersonRepository) private moralPersonRepository: MoralPersonRepository,
+    private readonly connection: Connection
+  ) {}
 
   async getGuaranteeById(id: number): Promise<GuaranteeEntity> {
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
