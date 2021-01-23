@@ -1,4 +1,4 @@
-import { Company, Guarantee, Revision, User, Vehicle, VEHICLE_VIN_LENGTH } from '@ivt/c-data';
+import { Company, Guarantee, Revision, User, Vehicle, VEHICLE_VIN_LENGTH, VehicleStatus } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
@@ -41,6 +41,17 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
 
   @Column()
   horsePower: number;
+
+  @Column({
+    type: 'enum',
+    enum: VehicleStatus,
+    transformer: {
+      to: value => value,
+      from: value => VehicleStatus[value],
+    },
+    default: VehicleStatus.needsRevision,
+  })
+  status: VehicleStatus | string;
 
   @ManyToOne(() => CompanyEntity, company => company.vehicles)
   @JoinColumn({ name: 'companyId' })
