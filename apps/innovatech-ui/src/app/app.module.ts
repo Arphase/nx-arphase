@@ -39,9 +39,7 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
     },
     {
       provide: ErrorHandler,
-      useValue: Sentry.createErrorHandler({
-        showDialog: true,
-      }),
+      useValue: Sentry.createErrorHandler({}),
     },
     {
       provide: Sentry.TraceService,
