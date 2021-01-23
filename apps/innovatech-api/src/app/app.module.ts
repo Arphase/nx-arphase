@@ -10,6 +10,7 @@ import { RevisionsModule } from '@ivt/a-revisions';
 import { UsersModule } from '@ivt/a-users';
 import { VehiclesModule } from '@ivt/a-vehicles';
 import { Module } from '@nestjs/common';
+import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import config from '../db/config/ormconfig';
@@ -17,6 +18,7 @@ import { AppController } from './app.controller';
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     TypeOrmModule.forRoot(config),
     AuthModule,
     CompaniesModule,

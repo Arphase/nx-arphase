@@ -1,7 +1,8 @@
 import { CreateVehicleDto, GetVehiclesDto, transformFolio, UpdateVehicleDto, VehicleRepository } from '@ivt/a-state';
-import { User, UserRoles, Vehicle } from '@ivt/c-data';
+import { User, UserRoles, Vehicle, VehicleStatus } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { Connection } from 'typeorm';
 
 @Injectable()
@@ -77,5 +78,24 @@ export class VehiclesService {
     await this.vehicleRepository.delete({ id });
 
     return vehicle;
+  }
+
+  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  async updateVehicleStatus() {
+    const query = this.vehicleRepository.createQueryBuilder('vehicle');
+    await query
+      .update()
+      .set({
+        status: VehicleStatus.needsRevision,
+      })
+      .where(
+        `NOT EXISTS (
+        SELECT NULL
+        FROM revisions
+        WHERE revisions."vehicleId" = vehicles.id
+          AND revisions."createdAt" > CURRENT_DATE - INTERVAL '3 months'
+      )`
+      )
+      .execute();
   }
 }
