@@ -1,14 +1,18 @@
 import { AuthService } from '@ivt/a-auth';
-import { CompanyRepository, GroupRepository, UserEntity, UserRepository } from '@ivt/a-state';
+import {
+  CompanyRepository,
+  CreateGroupDto,
+  GetGroupsFilterDto,
+  GroupRepository,
+  UpdateGroupDto,
+  UserEntity,
+  UserRepository,
+} from '@ivt/a-state';
 import { Company, Group, User } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { flatten, omit } from 'lodash';
 import { Connection } from 'typeorm';
-
-import { CreateGroupDto } from '../dto/create-group.dto';
-import { GetGroupsFilterDto } from '../dto/get-groups-filter.dto';
-import { UpdateGroupDto } from '../dto/update-group.dto';
 
 @Injectable()
 export class GroupsService {

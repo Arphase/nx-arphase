@@ -5,6 +5,7 @@ import { GuaranteesModule } from '@ivt/a-guarantees';
 import { LocalitiesModule } from '@ivt/a-localities';
 import { PaymentOrdersModule } from '@ivt/a-payment-orders';
 import { ProductModule } from '@ivt/a-products';
+import { RevisionRequestsModule } from '@ivt/a-revision-requests';
 import { RevisionsModule } from '@ivt/a-revisions';
 import { UsersModule } from '@ivt/a-users';
 import { VehiclesModule } from '@ivt/a-vehicles';
@@ -24,6 +25,7 @@ import { AppController } from './app.controller';
     LocalitiesModule,
     PaymentOrdersModule,
     ProductModule,
+    RevisionRequestsModule,
     RevisionsModule,
     UsersModule,
     VehiclesModule,

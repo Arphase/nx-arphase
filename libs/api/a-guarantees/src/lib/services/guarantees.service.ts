@@ -1,5 +1,7 @@
 import { getProductPdfTemplate } from '@ivt/a-products';
 import {
+  CreateGuaranteeDto,
+  GetGuaranteesFilterDto,
   getReadableStream,
   GuaranteeEntity,
   GuaranteeRepository,
@@ -8,6 +10,7 @@ import {
   PhysicalPersonRepository,
   tobase64,
   transformFolio,
+  UpdateGuaranteeDto,
 } from '@ivt/a-state';
 import { Client, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
@@ -20,9 +23,6 @@ import { Connection } from 'typeorm';
 import { promisify } from 'util';
 import * as XLSX from 'xlsx';
 
-import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
-import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
-import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import {
   applyGuaranteeFilter,
   applyGuaranteeSharedFilters,
@@ -218,7 +218,6 @@ export class GuaranteesService {
       content = getProductPdfTemplate(template, guarantee);
       headerLogo = logo;
     }
-
 
     const headerImg = await tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
     const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');

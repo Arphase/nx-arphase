@@ -1,11 +1,8 @@
-import { transformFolio, VehicleRepository } from '@ivt/a-state';
+import { CreateVehicleDto, GetVehiclesDto, transformFolio, UpdateVehicleDto, VehicleRepository } from '@ivt/a-state';
 import { User, UserRoles, Vehicle } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { Connection } from 'typeorm';
-
-import { CreateVehicleDto, UpdateVehicleDto } from '../dto';
-import { GetVehiclesDto } from '../dto/get-vehicles.dto';
 
 @Injectable()
 export class VehiclesService {

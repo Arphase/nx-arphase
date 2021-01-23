@@ -1,4 +1,12 @@
-import { ResetPasswordEntity, ResetPasswordRepository, UserEntity, UserRepository } from '@ivt/a-state';
+import {
+  AuthCredentialsDto,
+  ResetPasswordDto,
+  ResetPasswordEntity,
+  ResetPasswordRepository,
+  SignUpCredentialsDto,
+  UserEntity,
+  UserRepository,
+} from '@ivt/a-state';
 import { ResetPassword, User } from '@ivt/c-data';
 import { generateId } from '@ivt/c-utils';
 import {
@@ -17,8 +25,6 @@ import { Connection, getManager } from 'typeorm';
 
 import { getNewUserEmailTemplate } from '../constants';
 import { getResetPasswordEmailTemplate } from '../constants/reset-password-email-template';
-import { AuthCredentialsDto, SignUpCredentialsDto } from '../dto/auth-credentials.dto';
-import { ResetPasswordDto } from '../dto/reset-password.dto';
 
 @Injectable()
 export class AuthService {

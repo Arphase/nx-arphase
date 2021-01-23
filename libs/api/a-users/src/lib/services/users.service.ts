@@ -1,10 +1,8 @@
-import { UserRepository } from '@ivt/a-state';
+import { FilterUsersDto, UserRepository } from '@ivt/a-state';
 import { User, UserRoles } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { Injectable } from '@nestjs/common';
 import { Connection } from 'typeorm';
-
-import { FilterUsersDto } from '../dto/filter-users.dto';
 
 @Injectable()
 export class UsersService {

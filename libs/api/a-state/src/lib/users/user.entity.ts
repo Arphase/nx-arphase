@@ -13,7 +13,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { ResetPasswordEntity } from '../auth/reset-password.entity';
+import { ResetPasswordEntity } from '../auth';
 import { CompanyEntity } from '../companies/company.entity';
 import { GuaranteeEntity } from '../guarantees/entities/guarantee.entity';
 import { VehicleEntity } from '../vehicles';

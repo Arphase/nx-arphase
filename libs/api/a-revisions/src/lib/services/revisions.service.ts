@@ -1,12 +1,8 @@
-import { RevisionRepository } from '@ivt/a-state';
+import { CreateRevisionDto, GetRevisionsDto, RevisionRepository, UpdateRevisionDto } from '@ivt/a-state';
 import { Revision } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Connection } from 'typeorm';
-
-import { CreateRevisionDto } from '../dto/create-revision.dto';
-import { GetRevisionsDto } from '../dto/get-revisions.dto';
-import { UpdateRevisionDto } from '../dto/update-revision.dto';
 
 @Injectable()
 export class RevisionsService {

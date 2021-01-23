@@ -1,4 +1,3 @@
-import { AddressEntity, UserEntity } from '@ivt/a-state';
 import { Address, Company, Group, Guarantee, User, Vehicle } from '@ivt/c-data';
 import {
   BaseEntity,
@@ -13,8 +12,10 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import { AddressEntity } from '../addresses';
 import { GroupEntity } from '../groups/group.entity';
 import { GuaranteeEntity } from '../guarantees/entities/guarantee.entity';
+import { UserEntity } from '../users';
 import { VehicleEntity } from '../vehicles/vechicle.entity';
 
 @Entity('companies')

@@ -1,4 +1,13 @@
-import { getReadableStream, OUT_FILE, ProductRepository, tobase64 } from '@ivt/a-state';
+import {
+  CreateProductDto,
+  GenerateProductPdfDto,
+  GetProductsFilterDto,
+  getReadableStream,
+  OUT_FILE,
+  ProductRepository,
+  tobase64,
+  UpdateProductDto,
+} from '@ivt/a-state';
 import { Product } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Response } from 'express';
@@ -7,10 +16,6 @@ import puppeteer from 'puppeteer';
 import { Connection } from 'typeorm';
 import { promisify } from 'util';
 
-import { CreateProductDto } from '../dto/create-products.dto';
-import { GenerateProductPdfDto } from '../dto/generate-product-pdf.dto';
-import { GetProductsFilterDto } from '../dto/get-products-filter.dto';
-import { UpdateProductDto } from '../dto/update-product.dto';
 import { getProductPdfTemplate } from './products.service.constants';
 
 @Injectable()

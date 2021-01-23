@@ -1,4 +1,5 @@
 import { Roles, RolesGuard } from '@ivt/a-auth';
+import { CreateRevisionDto, GetRevisionsDto, UpdateRevisionDto } from '@ivt/a-state';
 import { Revision, UserRoles } from '@ivt/c-data';
 import {
   Body,
@@ -14,14 +15,12 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
-import { CreateRevisionDto } from '../dto/create-revision.dto';
-import { GetRevisionsDto } from '../dto/get-revisions.dto';
-import { UpdateRevisionDto } from '../dto/update-revision.dto';
 import { RevisionsService } from '../services/revisions.service';
 
 @Controller('revisions')
-@UseGuards(RolesGuard)
+@UseGuards(AuthGuard(), RolesGuard)
 @Roles(UserRoles.superAdmin)
 export class RevisionsController {
   constructor(private revisionsService: RevisionsService) {}

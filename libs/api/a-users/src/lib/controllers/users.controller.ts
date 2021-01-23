@@ -1,9 +1,9 @@
 import { GetUser } from '@ivt/a-auth';
+import { FilterUsersDto } from '@ivt/a-state';
 import { User } from '@ivt/c-data';
 import { Controller, Get, Query, UseGuards, ValidationPipe } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import { FilterUsersDto } from '../dto/filter-users.dto';
 import { UsersService } from '../services/users.service';
 
 @Controller('users')

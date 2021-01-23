@@ -1,5 +1,5 @@
 import { GetUser } from '@ivt/a-auth';
-import { GuaranteeEntity } from '@ivt/a-state';
+import { CreateGuaranteeDto, GetGuaranteesFilterDto, GuaranteeEntity, UpdateGuaranteeDto } from '@ivt/a-state';
 import { GuaranteeSummary, User } from '@ivt/c-data';
 import {
   Body,
@@ -19,9 +19,6 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 
-import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
-import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
-import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import { GuaranteesService } from '../services/guarantees.service';
 
 @Controller('guarantees')

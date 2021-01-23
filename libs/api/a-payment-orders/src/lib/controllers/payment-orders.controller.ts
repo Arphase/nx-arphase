@@ -1,10 +1,9 @@
+import { CreatePaymentOrderDto, UpdatePaymentOrderDto } from '@ivt/a-state';
 import { PaymentOrder } from '@ivt/c-data';
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 
-import { CreatePaymentOrderDto } from '../dto/create-payment-order.dto';
-import { UpdatePaymentOrderDto } from '../dto/update-payment-order.dto';
 import { PaymentOrdersService } from '../services/payment-orders.service';
 
 @Controller('paymentOrders')

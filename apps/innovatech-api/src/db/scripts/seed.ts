@@ -1,4 +1,5 @@
-import { AuthService, SignUpCredentialsDto } from '@ivt/a-auth';
+import { AuthService } from '@ivt/a-auth';
+import { SignUpCredentialsDto } from '@ivt/a-state';
 import { UserRoles } from '@ivt/c-data';
 import fs from 'fs';
 import path from 'path';

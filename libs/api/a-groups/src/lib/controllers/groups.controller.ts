@@ -1,4 +1,5 @@
 import { Roles, RolesGuard } from '@ivt/a-auth';
+import { CreateGroupDto, GetGroupsFilterDto, UpdateGroupDto } from '@ivt/a-state';
 import { Group, UserRoles } from '@ivt/c-data';
 import {
   Body,
@@ -15,9 +16,6 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import { CreateGroupDto } from '../dto/create-group.dto';
-import { GetGroupsFilterDto } from '../dto/get-groups-filter.dto';
-import { UpdateGroupDto } from '../dto/update-group.dto';
 import { GroupsService } from '../services/groups.service';
 
 @Controller('groups')

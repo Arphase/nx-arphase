@@ -1,8 +1,6 @@
-import { CompanyRepository } from '@ivt/a-state';
+import { CompanyRepository, FilterCompaniesDto } from '@ivt/a-state';
 import { Company, User, UserRoles } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
-
-import { FilterCompaniesDto } from '../dto/filter-companies.dto';
 
 @Injectable()
 export class CompaniesService {

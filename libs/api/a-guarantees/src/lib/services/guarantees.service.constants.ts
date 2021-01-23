@@ -1,10 +1,8 @@
-import { GuaranteeEntity, IMAGE_ASSETS_PATH, transformFolio } from '@ivt/a-state';
+import { GetGuaranteesFilterDto, GuaranteeEntity, IMAGE_ASSETS_PATH, transformFolio } from '@ivt/a-state';
 import { Guarantee, User, UserRoles } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import moment from 'moment';
 import { SelectQueryBuilder } from 'typeorm';
-
-import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 
 export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
   return `
@@ -67,7 +65,9 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
         <p>Lo invitamos a consultar los términos, condiciones y exclusiones de la cobertura contratada de acuerdo a la carátula y los anexos de la presente.</p>
         <div class="row">
             <div class="col">
-              <p>Su número de Certificado de Garantía es: <span class="bold folio">${transformFolio(guarantee.id)}</span></p>
+              <p>Su número de Certificado de Garantía es: <span class="bold folio">${transformFolio(
+                guarantee.id
+              )}</span></p>
             </div>
             <div class="col">
               <img class="guarantee-info" src="${IMAGE_ASSETS_PATH}/guarantee-info.png">

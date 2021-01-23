@@ -1,4 +1,5 @@
 import { GetUser } from '@ivt/a-auth';
+import { CreateVehicleDto, GetVehiclesDto, UpdateVehicleDto } from '@ivt/a-state';
 import { User, Vehicle } from '@ivt/c-data';
 import {
   Body,
@@ -16,8 +17,6 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import { CreateVehicleDto, UpdateVehicleDto } from '../dto';
-import { GetVehiclesDto } from '../dto/get-vehicles.dto';
 import { VehiclesService } from '../services/vehicles.service';
 
 @Controller('vehicles')
