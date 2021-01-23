@@ -1,9 +1,11 @@
-import { Address, RevisionRequest, RevisionRequestStatus } from '@ivt/c-data';
-import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Address, Company, RevisionRequest, RevisionRequestStatus, User } from '@ivt/c-data';
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { AddressEntity } from '../addresses';
+import { AddressEntity } from '../addresses/entities/address.entity';
+import { CompanyEntity } from '../companies/company.entity';
+import { UserEntity } from '../users/user.entity';
 
-@Entity('revisionRequest')
+@Entity('revisionRequests')
 export class RevisionRequestEntity extends BaseEntity implements RevisionRequest {
   @PrimaryGeneratedColumn()
   id: number;
@@ -39,4 +41,18 @@ export class RevisionRequestEntity extends BaseEntity implements RevisionRequest
     default: RevisionRequestStatus.new,
   })
   status: RevisionRequestStatus | string;
+
+  @ManyToOne(() => CompanyEntity, company => company.revisionRequests)
+  @JoinColumn({ name: 'companyId' })
+  company: Company;
+
+  @Column({ nullable: true })
+  companyId: number;
+
+  @ManyToOne(() => UserEntity, user => user.revisionRequests)
+  @JoinColumn({ name: 'userId' })
+  user: User;
+
+  @Column({ nullable: true })
+  userId: number;
 }

@@ -20,7 +20,6 @@ import { GroupsService } from '../services/groups.service';
 
 @Controller('groups')
 @UseGuards(AuthGuard(), RolesGuard)
-@Roles(UserRoles.superAdmin)
 export class GroupsController {
   constructor(private groupsService: GroupsService) {}
 
@@ -38,11 +37,13 @@ export class GroupsController {
   }
 
   @Get(':id')
+  @Roles(UserRoles.superAdmin)
   async getGroupById(@Param('id', ParseIntPipe) id: number): Promise<Group> {
     return this.groupsService.getGroupById(id);
   }
 
   @Put(':id')
+  @Roles(UserRoles.superAdmin)
   @UsePipes(new ValidationPipe({ transform: true }))
   updateGroup(@Body() updateGroupDto: UpdateGroupDto): Promise<Group> {
     return this.groupsService.updateGroup(updateGroupDto);

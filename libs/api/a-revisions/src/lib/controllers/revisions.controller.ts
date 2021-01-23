@@ -21,7 +21,6 @@ import { RevisionsService } from '../services/revisions.service';
 
 @Controller('revisions')
 @UseGuards(AuthGuard(), RolesGuard)
-@Roles(UserRoles.superAdmin)
 export class RevisionsController {
   constructor(private revisionsService: RevisionsService) {}
 
@@ -36,18 +35,21 @@ export class RevisionsController {
   }
 
   @Post()
+  @Roles(UserRoles.superAdmin)
   @UsePipes(new ValidationPipe({ transform: true }))
   async createRevision(@Body() createRevisionDto: CreateRevisionDto) {
     return this.revisionsService.createRevision(createRevisionDto);
   }
 
   @Put(':id')
+  @Roles(UserRoles.superAdmin)
   @UsePipes(new ValidationPipe({ transform: true }))
   updateRevision(@Body() updateRevisionDto: UpdateRevisionDto): Promise<Revision> {
     return this.revisionsService.updateRevision(updateRevisionDto);
   }
 
   @Delete(':id')
+  @Roles(UserRoles.superAdmin)
   async deleteRevision(@Param('id', ParseIntPipe) id: number): Promise<Revision> {
     return this.revisionsService.deleteRevision(id);
   }

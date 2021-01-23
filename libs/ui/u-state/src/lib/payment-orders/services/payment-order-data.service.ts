@@ -14,13 +14,13 @@ import { IvtDataService } from '../../core';
 export class PaymentOrderDataService extends IvtDataService<PaymentOrder> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('PaymentOrder', http, httpUrlGenerator);
-    this.entityUrl = `/ivtApi/paymentOrders/`;
-    this.entitiesUrl = `/ivtApi/paymentOrders`;
+    this.entityUrl = `/ivtApi/payment-orders/`;
+    this.entitiesUrl = `/ivtApi/payment-orders`;
   }
 
   getPaymentOrderPdf(id: number): Observable<Blob> {
     return this.http
-      .get(`/ivtApi/paymentOrders/${id}/pdf`, {
+      .get(`/ivtApi/payment-orders/${id}/pdf`, {
         responseType: 'blob',
       })
       .pipe(

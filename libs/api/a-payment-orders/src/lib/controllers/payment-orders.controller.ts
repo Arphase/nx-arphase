@@ -6,7 +6,7 @@ import { Response } from 'express';
 
 import { PaymentOrdersService } from '../services/payment-orders.service';
 
-@Controller('paymentOrders')
+@Controller('payment-orders')
 @UseGuards(AuthGuard())
 export class PaymentOrdersController {
   constructor(private paymentOrdersService: PaymentOrdersService) {}
