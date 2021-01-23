@@ -90,6 +90,7 @@ export class VehiclesService {
         FROM revisions
         WHERE revisions."vehicleId" = vehicles.id
           AND revisions."createdAt" > CURRENT_DATE - INTERVAL '3 months'
+          AND revisions.status = 1
       )`
       )
       .execute();
