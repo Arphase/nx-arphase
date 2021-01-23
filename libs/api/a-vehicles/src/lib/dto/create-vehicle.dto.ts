@@ -1,3 +1,4 @@
+import { VEHICLE_VIN_LENGTH } from '@ivt/c-data';
 import { IsNotEmpty, IsNumber, IsString, Length } from 'class-validator';
 
 export class CreateVehicleDto {
@@ -19,7 +20,7 @@ export class CreateVehicleDto {
 
   @IsNotEmpty()
   @IsString()
-  @Length(17, 17)
+  @Length(VEHICLE_VIN_LENGTH, VEHICLE_VIN_LENGTH)
   vin: string;
 
   @IsNotEmpty()

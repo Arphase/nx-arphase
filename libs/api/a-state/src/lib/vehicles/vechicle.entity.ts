@@ -1,4 +1,4 @@
-import { Company, Guarantee, Revision, User, Vehicle } from '@ivt/c-data';
+import { Company, Guarantee, Revision, User, Vehicle, VEHICLE_VIN_LENGTH } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
@@ -33,7 +33,7 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
   @Column()
   year: number;
 
-  @Column({ length: 17, unique: true })
+  @Column({ length: VEHICLE_VIN_LENGTH, unique: true })
   vin: string;
 
   @Column()

@@ -4,8 +4,8 @@ import { sortDirection } from '@ivt/c-utils';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { Connection } from 'typeorm';
 
-import { CreateVehicleDto, UpdateVehicleDto } from '../../dto';
-import { GetVehiclesDto } from '../../dto/get-vehicles.dto';
+import { CreateVehicleDto, UpdateVehicleDto } from '../dto';
+import { GetVehiclesDto } from '../dto/get-vehicles.dto';
 
 @Injectable()
 export class VehiclesService {
@@ -40,6 +40,12 @@ export class VehiclesService {
     if (!found) {
       throw new NotFoundException(`Vehicle with id "${id}" not found`);
     }
+    return found;
+  }
+
+  async getVehicleFromVin(vin: string): Promise<Vehicle | null> {
+    const query = this.vehicleRepository.createQueryBuilder('vehicle');
+    const found = await query.where('vehicle.vin = :vin', { vin }).getOne();
     return found;
   }
 

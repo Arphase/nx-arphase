@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 import { UserRoles, Vehicle } from '@ivt/c-data';
 import {
   CompanyCollectionService,
+  fromVehicles,
   getAuthUserCompanyIdState,
   getAuthUserRoleState,
+  getVehiclesVehicleState,
   IvtState,
   VehicleCollectionService,
 } from '@ivt/u-state';
@@ -43,6 +45,10 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
       }
     })
   );
+  invalidVin$ = this.store.pipe(
+    select(getVehiclesVehicleState),
+    map(vehicle => !!vehicle)
+  );
 
   constructor(
     protected vehicleCollectionService: VehicleCollectionService,
@@ -64,5 +70,9 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
           this.companyCollectionService.getAll();
         }
       });
+  }
+
+  verifyVin(vin: string): void {
+    this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin }));
   }
 }

@@ -16,9 +16,9 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import { CreateVehicleDto, UpdateVehicleDto } from '../../dto';
-import { GetVehiclesDto } from '../../dto/get-vehicles.dto';
-import { VehiclesService } from '../../services/vehicles/vehicles.service';
+import { CreateVehicleDto, UpdateVehicleDto } from '../dto';
+import { GetVehiclesDto } from '../dto/get-vehicles.dto';
+import { VehiclesService } from '../services/vehicles.service';
 
 @Controller('vehicles')
 @UseGuards(AuthGuard())
@@ -36,6 +36,11 @@ export class VehiclesController {
   @Get(':id')
   async getVehicle(@Param('id', ParseIntPipe) id: number): Promise<Vehicle> {
     return this.vehiclesService.getVehicle(id);
+  }
+
+  @Get('vin/:vin')
+  async getVehicleFromVin(@Param('vin') vin: string): Promise<Vehicle | null> {
+    return this.vehiclesService.getVehicleFromVin(vin);
   }
 
   @Post()

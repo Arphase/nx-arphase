@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { Select, Vehicle } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
 import { takeUntil } from 'rxjs/operators';
@@ -15,7 +25,9 @@ export class VehicleFormWrapperComponent extends IvtFormComponent<Vehicle> imple
   @ViewChild(VehicleFormComponent) vehicleFormComponent: VehicleFormComponent;
   @Input() disabledCompanyInput: boolean;
   @Input() companyOptions: Select[] = [];
+  @Input() invalidVin: boolean;
   form = createVehicleForm();
+  @Output() verifyVin = new EventEmitter<string>();
 
   ngOnInit() {
     this.stateChanged.pipe(takeUntil(this.destroy$)).subscribe(() => this.vehicleFormComponent.markForCheck());

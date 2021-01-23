@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Vehicle } from '@ivt/c-data';
 import { HttpUrlGenerator } from '@ngrx/data';
+import { Observable } from 'rxjs';
 
 import { IvtDataService } from '../../core';
 
@@ -13,5 +14,9 @@ export class VehicleDataService extends IvtDataService<Vehicle> {
     super('Vehicle', http, httpUrlGenerator);
     this.entityUrl = `/ivtApi/vehicles/`;
     this.entitiesUrl = `/ivtApi/vehicles`;
+  }
+
+  getVehicleByVin(vin: string): Observable<Vehicle | null> {
+    return this.http.get<Vehicle | null>(`/ivtApi/vehicles/vin/${vin}`);
   }
 }
