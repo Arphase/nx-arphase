@@ -12,4 +12,5 @@ export interface Environment {
   server: {
     port: number;
   };
+  environmentName: string;
 }
