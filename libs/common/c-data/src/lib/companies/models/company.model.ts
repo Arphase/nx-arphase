@@ -1,4 +1,4 @@
-import { Address } from '../../address/model/address.model';
+import { Address } from '../../address/models/address.model';
 import { Group } from '../../groups/models/group.model';
 import { Guarantee } from '../../guarantees/models/guarantee.model';
 import { User } from '../../users/models/user.model';

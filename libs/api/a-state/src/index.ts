@@ -1,3 +1,4 @@
+export * from './lib/addresses';
 export * from './lib/auth';
 export * from './lib/companies';
 export * from './lib/guarantees';
@@ -6,6 +7,7 @@ export * from './lib/localities';
 export * from './lib/payment-orders';
 export * from './lib/pdf';
 export * from './lib/products';
+export * from './lib/revision-requests';
 export * from './lib/revisions';
 export * from './lib/users';
 export * from './lib/validators';

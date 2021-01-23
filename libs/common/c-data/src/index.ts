@@ -7,6 +7,7 @@ export * from './lib/groups';
 export * from './lib/guarantees';
 export * from './lib/payment-orders';
 export * from './lib/product';
+export * from './lib/revision-requests';
 export * from './lib/revisions';
 export * from './lib/ui';
 export * from './lib/users';

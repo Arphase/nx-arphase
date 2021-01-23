@@ -1,4 +1,4 @@
-import { Address } from '../../address/model/address.model';
+import { Address } from '../../address/models/address.model';
 import { PersonTypes } from '../enums/person-types.enum';
 import { MoralPerson } from './moral-person.model';
 import { PhysicalPerson } from './physical-person.model';
