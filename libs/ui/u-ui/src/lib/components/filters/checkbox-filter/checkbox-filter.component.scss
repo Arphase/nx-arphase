@@ -1,3 +1,5 @@
+@use 'variables' as v;
+@use 'variables' as ivt-variables;
 @import '../filter/filter.component';
 
 .mat-checkbox-label {
@@ -5,6 +7,6 @@
 }
 
 .ivt-filter--disabled {
-  background: $ui-color-2;
+  background: ivt-variables.$ui-color-2;
   cursor: default;
 }

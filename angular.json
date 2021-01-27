@@ -27,10 +27,14 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "chart.js",
-              "lodash",
               "file-saver",
               "showdown"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/ui/u-ui/src/styles"
+              ]
+            }
           },
           "configurations": {
             "qa": {
@@ -92,8 +96,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "innovatech-ui:build",
-            "proxyConfig": "apps/innovatech-ui/proxy.conf.json"
+            "browserTarget": "innovatech-ui:build"
           },
           "configurations": {
             "production": {
