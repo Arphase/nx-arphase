@@ -3,6 +3,7 @@ export * from './autocomplete';
 export * from './confirmation-dialog';
 export * from './empty-state';
 export * from './expansion-panel';
+export * from './file-upload';
 export * from './filters';
 export * from './form';
 export * from './form-field';

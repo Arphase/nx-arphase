@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IvtUiModule } from '@ivt/u-ui';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { IvtFormFieldModule, IvtInputModule, IvtLoadingModule, IvtStatusMessageModule } from '@ivt/u-ui';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
@@ -13,7 +16,17 @@ import { SetPasswordFormContainerComponent } from './containers/set-password-for
 import { SignInFormContainerComponent } from './containers/sign-in-form-container/sign-in-form-container.component';
 
 @NgModule({
-  imports: [CommonModule, IvtUiModule, AuthRoutingModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    AuthRoutingModule,
+    MatCardModule,
+    MatButtonModule,
+    IvtFormFieldModule,
+    IvtInputModule,
+    IvtLoadingModule,
+    IvtStatusMessageModule
+  ],
   declarations: [
     AuthComponent,
     SignInFormContainerComponent,

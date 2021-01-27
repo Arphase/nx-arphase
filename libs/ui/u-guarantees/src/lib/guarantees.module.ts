@@ -1,7 +1,34 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { PermissionsModule, VehiclesDataModule } from '@ivt/u-state';
-import { IvtUiModule } from '@ivt/u-ui';
+import {
+  IvtAddressFormModule,
+  IvtCheckboxFilterModule,
+  IvtDateFilterModule,
+  IvtEmptyModule,
+  IvtEmptyStateModule,
+  IvtExpansionPanelModule,
+  IvtFolioModule,
+  IvtFormFieldModule,
+  IvtGoBackTitleModule,
+  IvtInputModule,
+  IvtLoadingModule,
+  IvtRadioFilterModule,
+  IvtRowModule,
+  IvtSearchbarModule,
+  IvtTableModule,
+  IvtTextTruncateTooltipModule,
+  IvtVirtualScrollModule,
+} from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
 
 import { GuaranteeFormComponent } from './components/guarantee-form/guarantee-form.component';
@@ -21,11 +48,36 @@ import { GuaranteesComponent } from './guarantees.component';
 @NgModule({
   imports: [
     CommonModule,
-    IvtUiModule,
     GuaranteesRoutingModule,
     PermissionsModule,
     VehicleFormModule,
     VehiclesDataModule,
+    ReactiveFormsModule,
+    IvtGoBackTitleModule,
+    IvtExpansionPanelModule,
+    IvtFormFieldModule,
+    IvtInputModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    MatRadioModule,
+    IvtAddressFormModule,
+    IvtLoadingModule,
+    MatDialogModule,
+    IvtFolioModule,
+    IvtSearchbarModule,
+    IvtDateFilterModule,
+    IvtCheckboxFilterModule,
+    IvtRadioFilterModule,
+    IvtEmptyStateModule,
+    IvtTableModule,
+    IvtVirtualScrollModule,
+    MatIconModule,
+    IvtRowModule,
+    MatCheckboxModule,
+    MatMenuModule,
+    IvtTextTruncateTooltipModule,
+    IvtEmptyModule,
+    MatCardModule,
   ],
   declarations: [
     GuaranteeFormComponent,
