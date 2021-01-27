@@ -197,17 +197,17 @@ export class GuaranteesService {
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
-      const newVehicle = this.vehicleRepository.create({
+      const vehicle = this.vehicleRepository.create({
         ...createGuaranteeDto.vehicle,
         userId: user.id,
       });
-      await newVehicle.save();
+      await vehicle.save();
 
       createGuaranteeDto = this.omitInfo(createGuaranteeDto);
       const newGuarantee = this.guaranteeRepository.create({
         ...omit(createGuaranteeDto, 'vehicle'),
         userId: user.id,
-        vehicle: newVehicle,
+        vehicle,
       });
       await newGuarantee.save();
       await newGuarantee.reload();
@@ -298,11 +298,17 @@ export class GuaranteesService {
     stream.pipe(response);
   }
 
-  async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto): Promise<GuaranteeEntity> {
+  async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto, user: Partial<User>): Promise<GuaranteeEntity> {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
+      const vehicle = this.vehicleRepository.create({
+        ...updateGuaranteeDto.vehicle,
+        userId: user.id,
+      });
+      await vehicle.save();
+
       if (updateGuaranteeDto.client?.personType === PersonTypes.moral && updateGuaranteeDto.client?.physicalInfo?.id) {
         await this.physicalPersonRepository.delete(updateGuaranteeDto.client.physicalInfo.id);
       }
@@ -311,7 +317,11 @@ export class GuaranteesService {
       }
       const preloadedGuarantee = await this.guaranteeRepository.preload(updateGuaranteeDto);
       const guarantee = this.omitInfo(updateGuaranteeDto);
-      const updatedGuarantee = await this.guaranteeRepository.save({ ...preloadedGuarantee, ...guarantee });
+      const updatedGuarantee = await this.guaranteeRepository.save({
+        ...preloadedGuarantee,
+        ...guarantee,
+        vehicle,
+      });
       await updatedGuarantee.reload();
       await queryRunner.commitTransaction();
       return updatedGuarantee;

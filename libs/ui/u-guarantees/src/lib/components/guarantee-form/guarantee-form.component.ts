@@ -126,6 +126,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         this.vehicleForm.get('vin').enable({ emitEvent: false });
       } else {
         this.vehicleForm.enable({ emitEvent: false });
+        this.vehicleForm.get('id').patchValue(null);
       }
     }
   }

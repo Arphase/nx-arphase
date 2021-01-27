@@ -11,7 +11,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 
-import { UpdateVehicleDto } from '../../../vehicles';
+import { CreateVehicleDto, UpdateVehicleDto } from '../../../vehicles';
 import { UpdateClientDto } from './update-client.dto';
 
 export class UpdateGuaranteeDto {
@@ -26,7 +26,7 @@ export class UpdateGuaranteeDto {
 
   @IsOptional()
   @ValidateNested()
-  @Type(() => UpdateVehicleDto)
+  @Type(() => CreateVehicleDto)
   vehicle: Vehicle;
 
   @IsOptional()

@@ -69,8 +69,11 @@ export class GuaranteesController {
 
   @Put(':id')
   @UsePipes(new ValidationPipe({ transform: true }))
-  updateGuarantee(@Body() updateGuaranteeDto: UpdateGuaranteeDto): Promise<GuaranteeEntity> {
-    return this.guaranteesService.updateGuarantee(updateGuaranteeDto);
+  updateGuarantee(
+    @Body() updateGuaranteeDto: UpdateGuaranteeDto,
+    @GetUser() user: Partial<User>
+  ): Promise<GuaranteeEntity> {
+    return this.guaranteesService.updateGuarantee(updateGuaranteeDto, user);
   }
 
   @Delete(':id')

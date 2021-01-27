@@ -1,7 +1,11 @@
 import { VEHICLE_VIN_LENGTH } from '@ivt/c-data';
-import { IsNotEmpty, IsNumber, IsString, Length } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
 
 export class CreateVehicleDto {
+  @IsOptional()
+  @IsNumber()
+  id: number;
+
   @IsNotEmpty()
   @IsString()
   brand: string;
