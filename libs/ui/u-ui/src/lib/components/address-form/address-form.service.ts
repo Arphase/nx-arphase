@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Locality, Select } from '@ivt/c-data';
 import { sortSelectOptions, sortStringOptions } from '@ivt/c-utils';
-import { uniq, uniqBy } from 'lodash';
+import { uniq, uniqBy } from 'lodash-es';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 

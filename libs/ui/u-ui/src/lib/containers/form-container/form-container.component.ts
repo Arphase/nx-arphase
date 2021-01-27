@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Optional } from '@angular/core';
 import { Router } from '@angular/router';
 import { IvtCollectionService } from '@ivt/u-state';
 import { EntityActionOptions, EntityOp, ofEntityOp } from '@ngrx/data';
-import { get } from 'lodash';
+import { get } from 'lodash-es';
 import { ToastrService } from 'ngx-toastr';
 import { filter, mapTo, takeUntil } from 'rxjs/operators';
 

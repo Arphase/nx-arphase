@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { IVT_UI_STATE_CONFIGURATION, IvtStateModule, IvtUiStateConfiguration } from '@ivt/u-state';
-import { IvtUiModule } from '@ivt/u-ui';
 import * as Sentry from '@sentry/angular';
 import { NgxMaskModule } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
@@ -27,7 +26,6 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
     BrowserAnimationsModule,
     HttpClientModule,
     IvtStateModule,
-    IvtUiModule,
     NgxMaskModule.forRoot(),
     ToastrModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),

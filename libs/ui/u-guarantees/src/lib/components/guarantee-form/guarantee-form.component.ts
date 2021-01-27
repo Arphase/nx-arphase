@@ -14,7 +14,7 @@ import { Guarantee, PersonTypes, Select, Vehicle } from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
 import { createAddressForm, IvtAddressFormComponent, IvtFormComponent, IvtValidators } from '@ivt/u-ui';
 import { createVehicleForm, VehicleFormComponent } from '@ivt/u-vehicles';
-import { omit } from 'lodash';
+import { omit } from 'lodash-es';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 

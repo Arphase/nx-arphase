@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { DEFAULT_LIMIT_SIZE, SortEvent } from '@ivt/c-data';
-import { omit } from 'lodash';
+import { omit } from 'lodash-es';
 import moment from 'moment';
 
 export function buildQueryParams(queryParams): HttpParams {
