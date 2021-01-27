@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { saveFile } from '@ivt/c-utils';
 import { DefaultDataService, HttpUrlGenerator, QueryParams } from '@ngrx/data';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 
@@ -28,7 +28,7 @@ export class IvtDataService<T> extends DefaultDataService<T> {
         params,
       })
       .pipe(
-        tap((file: Blob) => saveFile(file, `${fileName}${moment(new Date()).format('DD-MM-YYYY')}.xlsx`)),
+        tap((file: Blob) => saveFile(file, `${fileName}${dayjs(new Date()).format('DD-MM-YYYY')}.xlsx`)),
         finalize(() => this.loadingExcelSubject.next(false))
       );
   }

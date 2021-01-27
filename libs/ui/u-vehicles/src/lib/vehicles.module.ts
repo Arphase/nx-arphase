@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { VehiclesDataModule } from '@ivt/u-state';
@@ -45,6 +47,8 @@ import { VehiclesComponent } from './vehicles.component';
     MatMenuModule,
     MatIconModule,
     MatCardModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   declarations: [
     VehicleListComponent,

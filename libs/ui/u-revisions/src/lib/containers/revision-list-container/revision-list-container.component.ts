@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Revision } from '@ivt/c-data';
 import { RevisionCollectionService, RevisionDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -24,7 +24,7 @@ export class RevisionListContainerComponent extends IvtListContainerComponent<Re
   }
 
   deleteItem(item: Revision): void {
-    const date = moment(item.createdAt).format('DD/mm/yy');
+    const date = dayjs(item.createdAt).format('DD/mm/yy');
     this.deleteConfirmMessage = `¿Desea eliminar la revisión con fecha ${date}?`;
     this.deleteSuccessMessage = `La revisión con fecha ${date} se ha eliminado`;
     super.deleteItem(item);

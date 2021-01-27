@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -78,6 +79,8 @@ import { GuaranteesComponent } from './guarantees.component';
     IvtTextTruncateTooltipModule,
     IvtEmptyModule,
     MatCardModule,
+    MatButtonModule,
+
   ],
   declarations: [
     GuaranteeFormComponent,
