@@ -29,6 +29,7 @@ import {
   IvtTableModule,
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
+  IvtSuccessDialogModule
 } from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
 
@@ -80,6 +81,7 @@ import { GuaranteesComponent } from './guarantees.component';
     IvtEmptyModule,
     MatCardModule,
     MatButtonModule,
+    IvtSuccessDialogModule
 
   ],
   declarations: [

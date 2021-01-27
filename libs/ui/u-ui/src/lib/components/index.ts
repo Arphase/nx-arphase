@@ -14,6 +14,7 @@ export * from './row';
 export * from './searchbar';
 export * from './status-message';
 export * from './subscriber';
+export * from './success-dialog';
 export * from './table';
 export * from './text-truncate-tooltip';
 export * from './virtual-scroll';

@@ -277,7 +277,8 @@ export function applyGuaranteeFilter(
       );
     } else {
       query.andWhere(
-        `LOWER(vehicle.motorNumber) like :text OR
+        `LOWER(vehicle.vin) like :text OR
+         LOWER(guarantee.invoiceNumber) like :text OR
          LOWER(CONCAT(physicalPerson.name, ' ', physicalPerson.lastName, ' ', physicalPerson.secondLastName)) like :text`,
         { text: `%${text.toLowerCase()}%` }
       );

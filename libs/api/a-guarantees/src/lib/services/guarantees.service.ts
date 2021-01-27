@@ -132,6 +132,7 @@ export class GuaranteesService {
       'Creación orden de compra',
       'Actualización orden de compra',
       'Distribuidor',
+      'Factura'
     ];
     const guaranteesData: string[][] = guarantees.map(guarantee => {
       return [
@@ -176,6 +177,7 @@ export class GuaranteesService {
         guarantee.paymentOrder?.createdAt,
         guarantee.paymentOrder?.updatedAt,
         guarantee.paymentOrder?.distributor,
+        guarantee?.invoiceNumber,
       ].map(field => (field ? String(field) : ''));
     });
     const data = [[...excelColumnConstants], ...guaranteesData];

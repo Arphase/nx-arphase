@@ -67,8 +67,8 @@ export const columns: IvtColumns = [
     },
   },
   {
-    label: 'Captura',
-    prop: 'guarantee.createdAt',
+    label: 'Factura',
+    prop: 'guarantee.invoiceNumber',
     sortable: true,
     colSizes: {
       xs: '2',
