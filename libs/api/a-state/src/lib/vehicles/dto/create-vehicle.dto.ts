@@ -30,4 +30,8 @@ export class CreateVehicleDto {
   @IsNotEmpty()
   @IsNumber()
   horsePower: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  companyId: number;
 }

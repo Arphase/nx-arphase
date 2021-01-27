@@ -1,5 +1,6 @@
 import { Company } from '../../companies/models/company.model';
 import { Guarantee } from '../../guarantees';
+import { RevisionRequest } from '../../revision-requests';
 import { Revision } from '../../revisions';
 import { User } from '../../users';
 import { VehicleStatus } from '../enusm';
@@ -25,4 +26,5 @@ export interface Vehicle {
   updatedAt: Date;
   guarantees?: Guarantee[];
   revisions?: Revision[];
+  revisionRequests?: RevisionRequest[];
 }

@@ -29,7 +29,7 @@ export function createVehicleForm(vehicle?: Vehicle) {
     ]),
     motorNumber: new FormControl('', Validators.required),
     horsePower: new FormControl('', [Validators.required, Validators.max(400)]),
-    companyId: new FormControl(null),
+    companyId: new FormControl(null, Validators.required),
   });
 
   if (vehicle) {

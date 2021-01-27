@@ -1,9 +1,10 @@
-import { Address, Company, RevisionRequest, RevisionRequestStatus, User } from '@ivt/c-data';
+import { Address, Company, RevisionRequest, RevisionRequestStatus, User, Vehicle } from '@ivt/c-data';
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { AddressEntity } from '../addresses/entities/address.entity';
 import { CompanyEntity } from '../companies/company.entity';
 import { UserEntity } from '../users/user.entity';
+import { VehicleEntity } from '../vehicles/vechicle.entity';
 
 @Entity('revisionRequests')
 export class RevisionRequestEntity extends BaseEntity implements RevisionRequest {
@@ -55,4 +56,11 @@ export class RevisionRequestEntity extends BaseEntity implements RevisionRequest
 
   @Column({ nullable: true })
   userId: number;
+
+  @ManyToOne(() => VehicleEntity, vehicle => vehicle.revisionRequests)
+  @JoinColumn({ name: 'vehicleId' })
+  vehicle: Vehicle;
+
+  @Column()
+  vehicleId: number;
 }

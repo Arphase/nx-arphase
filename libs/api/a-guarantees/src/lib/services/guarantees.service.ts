@@ -11,10 +11,11 @@ import {
   tobase64,
   transformFolio,
   UpdateGuaranteeDto,
+  VehicleRepository,
 } from '@ivt/a-state';
 import { Client, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import fs from 'fs';
@@ -36,6 +37,7 @@ export class GuaranteesService {
     @InjectRepository(GuaranteeRepository) private guaranteeRepository: GuaranteeRepository,
     @InjectRepository(PhysicalPersonRepository) private physicalPersonRepository: PhysicalPersonRepository,
     @InjectRepository(MoralPersonRepository) private moralPersonRepository: MoralPersonRepository,
+    @InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository,
     private readonly connection: Connection
   ) {}
 
@@ -132,7 +134,7 @@ export class GuaranteesService {
       'Creación orden de compra',
       'Actualización orden de compra',
       'Distribuidor',
-      'Factura'
+      'Factura',
     ];
     const guaranteesData: string[][] = guarantees.map(guarantee => {
       return [
@@ -191,13 +193,33 @@ export class GuaranteesService {
   }
 
   async createGuarantee(createGuaranteeDto: CreateGuaranteeDto, user: Partial<User>): Promise<GuaranteeEntity> {
-    createGuaranteeDto = this.omitInfo(createGuaranteeDto);
-    const newGuarantee = this.guaranteeRepository.create({
-      ...createGuaranteeDto,
-      userId: user.id,
-    });
-    await newGuarantee.save();
-    return newGuarantee;
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    try {
+      const newVehicle = this.vehicleRepository.create({
+        ...createGuaranteeDto.vehicle,
+        userId: user.id,
+      });
+      await newVehicle.save();
+
+      createGuaranteeDto = this.omitInfo(createGuaranteeDto);
+      const newGuarantee = this.guaranteeRepository.create({
+        ...omit(createGuaranteeDto, 'vehicle'),
+        userId: user.id,
+        vehicle: newVehicle,
+      });
+      await newGuarantee.save();
+      await newGuarantee.reload();
+
+      await queryRunner.commitTransaction();
+      return newGuarantee;
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+      throw new BadRequestException(err.message);
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   async generatePdf(id: number, response: Response): Promise<void> {
