@@ -30,7 +30,6 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
   createSuccessMessage = 'El vehículo se ha creado con éxito';
   updateSuccessMessage = 'El vehículo se ha actualizado con éxito';
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
-  loading$ = this.vehicleCollectionService.loading$;
   disabledCompanyInput$ = this.store.pipe(
     select(getAuthUserRoleState),
     map(role => role !== UserRoles[UserRoles.superAdmin])
