@@ -10,11 +10,22 @@ export class VehiclesService {
   constructor(@InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository) {}
 
   async getVehicles(filterDto: GetVehiclesDto, user: Partial<User>): Promise<Vehicle[]> {
-    const { sort, direction, offset, limit } = filterDto;
+    const { sort, direction, offset, limit, text } = filterDto;
     const query = this.vehicleRepository.createQueryBuilder('vehicle');
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
       query.andWhere('(vehicle.companyId = :id)', { id: user.companyId });
+    }
+
+    if (text) {
+      query.andWhere(
+        `LOWER(vehicle.vin) like :text OR
+           LOWER(vehicle.brand) like :text OR
+           LOWER(vehicle.model) like :text OR
+           LOWER(vehicle.version) like :text
+          `,
+        { text: `%${text.toLowerCase()}%` }
+      );
     }
 
     query.orderBy('vehicle.createdAt', sortDirection.desc);
