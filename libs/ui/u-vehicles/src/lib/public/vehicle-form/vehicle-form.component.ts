@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Select, Vehicle, VEHICLE_VIN_LENGTH } from '@ivt/c-data';
-import { IvtFormComponent } from '@ivt/u-ui';
+import { IvtFormComponent, IvtValidators } from '@ivt/u-ui';
 import { filter, takeUntil } from 'rxjs/operators';
 
 export function createVehicleForm(vehicle?: Vehicle) {
@@ -21,14 +21,18 @@ export function createVehicleForm(vehicle?: Vehicle) {
     brand: new FormControl('', Validators.required),
     model: new FormControl('', Validators.required),
     version: new FormControl('', Validators.required),
-    year: new FormControl('', [Validators.required, Validators.min(todayYear - 20), Validators.max(todayYear + 1)]),
+    year: new FormControl('', [
+      IvtValidators.requiredNumber,
+      Validators.min(todayYear - 20),
+      Validators.max(todayYear + 1),
+    ]),
     vin: new FormControl('', [
       Validators.required,
       Validators.minLength(VEHICLE_VIN_LENGTH),
       Validators.maxLength(VEHICLE_VIN_LENGTH),
     ]),
     motorNumber: new FormControl('', Validators.required),
-    horsePower: new FormControl('', [Validators.required, Validators.min(1), Validators.max(400)]),
+    horsePower: new FormControl('', [IvtValidators.requiredNumber, Validators.min(1), Validators.max(400)]),
     companyId: new FormControl(null, Validators.required),
   });
 

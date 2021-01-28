@@ -25,8 +25,8 @@ export function createGuaranteeForm(): FormGroup {
     startDate: new FormControl(null, Validators.required),
     endDate: new FormControl(null, Validators.required),
     companyId: new FormControl(null, Validators.required),
-    kilometrageStart: new FormControl(null, Validators.required),
-    kilometrageEnd: new FormControl(null, Validators.required),
+    kilometrageStart: new FormControl(null, IvtValidators.requiredNumber),
+    kilometrageEnd: new FormControl(null, IvtValidators.requiredNumber),
     productType: new FormControl(null, Validators.required),
     client: new FormGroup({
       id: new FormControl(null),

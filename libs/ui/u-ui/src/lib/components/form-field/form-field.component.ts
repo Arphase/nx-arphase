@@ -36,6 +36,7 @@ enum ValidatorTypes {
   maxlength = 'maxlength',
   matDatepickerParse = 'matDatepickerParse',
   phone = 'phone',
+  requiredNumber = 'requiredNumber',
 }
 
 @Component({
@@ -70,7 +71,6 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
   ngAfterContentInit() {
     super.ngAfterContentInit();
     const reactiveControl = this.input?.ngControl || this.select?.ngControl;
-
 
     reactiveControl.statusChanges
       .pipe(
@@ -109,6 +109,7 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
       [ValidatorTypes.maxlength]: `El campo ${label} debe tener menos de ${errorValue.requiredLength + 1} caracteres`,
       [ValidatorTypes.matDatepickerParse]: `El campo ${label} tiene un formato de fecha incorrecto`,
       [ValidatorTypes.phone]: `El campo ${label} tiene un formato incorrecto`,
+      [ValidatorTypes.requiredNumber]: `El campo ${label} no se ha llenado o tiene un formato de número incorrecto`,
     };
 
     this.error = errorMessages[firstError];
