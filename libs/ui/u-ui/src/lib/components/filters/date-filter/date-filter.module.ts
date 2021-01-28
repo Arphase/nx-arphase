@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -24,7 +24,7 @@ import { IvtDateFilterComponent } from './date-filter.component';
     IvtInputModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatMomentDateModule,
+    MatNativeDateModule,
     MatMenuModule,
     MatFormFieldModule,
     MatInputModule,

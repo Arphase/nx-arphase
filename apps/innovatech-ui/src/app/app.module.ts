@@ -1,10 +1,12 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { IVT_UI_STATE_CONFIGURATION, IvtStateModule, IvtUiStateConfiguration } from '@ivt/u-state';
-import { IvtUiModule } from '@ivt/u-ui';
+import * as Sentry from '@sentry/angular';
 import { NgxMaskModule } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -25,7 +27,7 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
     BrowserAnimationsModule,
     HttpClientModule,
     IvtStateModule,
-    IvtUiModule,
+    MatDialogModule,
     NgxMaskModule.forRoot(),
     ToastrModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
@@ -34,6 +36,21 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
     {
       provide: IVT_UI_STATE_CONFIGURATION,
       useValue: IVT_STATE_CONFIGURATION_VALUE,
+    },
+    {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler({}),
+    },
+    {
+      provide: Sentry.TraceService,
+      deps: [Router],
+    },
+    {
+      provide: APP_INITIALIZER,
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      useFactory: () => () => {},
+      deps: [Sentry.TraceService],
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

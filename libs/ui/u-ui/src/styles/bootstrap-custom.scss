@@ -7,15 +7,15 @@
 // Variable Reference: https://github.com/twbs/bootstrap/blob/master/scss/_variables.scss
 
 // Import  function from bootstrap to be able to call them
+@use 'variables' as ivt-variables;
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
-@import 'variables';
 
 $theme-colors: (
-  'primary': $primary-color,
-  'alert': $alert-color,
-  'light': $background-color,
+  'primary': ivt-variables.$primary-color,
+  'alert': ivt-variables.$alert-color,
+  'light': ivt-variables.$background-color,
 );
 
 // Import Bootstrap

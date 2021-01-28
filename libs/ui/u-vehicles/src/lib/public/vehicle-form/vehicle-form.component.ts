@@ -1,7 +1,17 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Select, Vehicle } from '@ivt/c-data';
-import { IvtFormComponent } from '@ivt/u-ui';
+import { Select, Vehicle, VEHICLE_VIN_LENGTH } from '@ivt/c-data';
+import { IvtFormComponent, IvtValidators } from '@ivt/u-ui';
+import { filter, takeUntil } from 'rxjs/operators';
 
 export function createVehicleForm(vehicle?: Vehicle) {
   const todayYear = new Date().getFullYear();
@@ -11,11 +21,19 @@ export function createVehicleForm(vehicle?: Vehicle) {
     brand: new FormControl('', Validators.required),
     model: new FormControl('', Validators.required),
     version: new FormControl('', Validators.required),
-    year: new FormControl('', [Validators.required, Validators.min(todayYear - 20), Validators.max(todayYear + 1)]),
-    vin: new FormControl('', Validators.required),
+    year: new FormControl('', [
+      IvtValidators.requiredNumber,
+      Validators.min(todayYear - 20),
+      Validators.max(todayYear + 1),
+    ]),
+    vin: new FormControl('', [
+      Validators.required,
+      Validators.minLength(VEHICLE_VIN_LENGTH),
+      Validators.maxLength(VEHICLE_VIN_LENGTH),
+    ]),
     motorNumber: new FormControl('', Validators.required),
-    horsePower: new FormControl('', [Validators.required, Validators.max(400)]),
-    companyId: new FormControl(null),
+    horsePower: new FormControl('', [IvtValidators.requiredNumber, Validators.min(1), Validators.max(400)]),
+    companyId: new FormControl(null, Validators.required),
   });
 
   if (vehicle) {
@@ -35,6 +53,7 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
   @Input() companyId: number;
   @Input() showCompanyInput: boolean;
   @Input() companyOptions: Select[] = [];
+  @Output() verifyVin = new EventEmitter<string>();
 
   constructor(private cdr: ChangeDetectorRef) {
     super();
@@ -43,6 +62,16 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
   ngOnChanges(changes: SimpleChanges) {
     if (changes.companyId) {
       this.form.get('companyId').patchValue(this.companyId || '');
+    }
+
+    if (changes.form && this.form) {
+      this.form
+        .get('vin')
+        .valueChanges.pipe(
+          filter((vin: string) => vin.length === VEHICLE_VIN_LENGTH),
+          takeUntil(this.destroy$)
+        )
+        .subscribe(vin => this.verifyVin.emit(vin));
     }
   }
 

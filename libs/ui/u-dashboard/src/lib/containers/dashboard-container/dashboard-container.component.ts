@@ -14,7 +14,7 @@ import { IvtSubscriberComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
 import { ChartOptions, ChartType } from 'chart.js';
-import { keyBy } from 'lodash';
+import { keyBy } from 'lodash-es';
 import { map, takeUntil } from 'rxjs/operators';
 
 @Component({

@@ -1,5 +1,6 @@
 import { Company } from '../../companies';
 import { Guarantee } from '../../guarantees';
+import { RevisionRequest } from '../../revision-requests';
 import { Vehicle } from '../../vehicles';
 import { UserRoles } from '../enums/user-roles.enum';
 
@@ -22,4 +23,5 @@ export interface User {
   updatedAt?: Date;
   guarantees?: Guarantee[];
   vehicles?: Vehicle[];
+  revisionRequests?: RevisionRequest[];
 }

@@ -27,10 +27,14 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "chart.js",
-              "lodash",
               "file-saver",
               "showdown"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/ui/u-ui/src/styles"
+              ]
+            }
           },
           "configurations": {
             "qa": {
@@ -92,8 +96,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "innovatech-ui:build",
-            "proxyConfig": "apps/innovatech-ui/proxy.conf.json"
+            "browserTarget": "innovatech-ui:build"
           },
           "configurations": {
             "production": {
@@ -821,6 +824,31 @@
           ],
           "options": {
             "jestConfig": "libs/ui/u-revisions/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "a-revision-requests": {
+      "root": "libs/api/a-revision-requests",
+      "sourceRoot": "libs/api/a-revision-requests/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/a-revision-requests/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/api/a-revision-requests"
+          ],
+          "options": {
+            "jestConfig": "libs/api/a-revision-requests/jest.config.js",
             "passWithNoTests": true
           }
         }

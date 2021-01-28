@@ -1,25 +1,26 @@
-import { getReadableStream, OUT_FILE, ProductRepository, tobase64 } from '@ivt/a-state';
+import {
+  CreateProductDto,
+  GenerateProductPdfDto,
+  GetProductsFilterDto,
+  getReadableStream,
+  OUT_FILE,
+  ProductRepository,
+  tobase64,
+  UpdateProductDto,
+} from '@ivt/a-state';
 import { Product } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import fs from 'fs';
 import puppeteer from 'puppeteer';
-import { Connection } from 'typeorm';
 import { promisify } from 'util';
 
-import { CreateProductDto } from '../dto/create-products.dto';
-import { GenerateProductPdfDto } from '../dto/generate-product-pdf.dto';
-import { GetProductsFilterDto } from '../dto/get-products-filter.dto';
-import { UpdateProductDto } from '../dto/update-product.dto';
 import { getProductPdfTemplate } from './products.service.constants';
 
 @Injectable()
 export class ProductService {
-  productRepository: ProductRepository;
-
-  constructor(private readonly connection: Connection) {
-    this.productRepository = this.connection.getCustomRepository(ProductRepository);
-  }
+  constructor(@InjectRepository(ProductRepository) private productRepository: ProductRepository) {}
 
   async getProductById(id: number): Promise<Product> {
     const query = this.productRepository.createQueryBuilder('product');

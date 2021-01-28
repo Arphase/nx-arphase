@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
-import { IVT_UI_STATE_CONFIGURATION, IvtUiStateConfiguration } from '@ivt/u-state';
+import { Injectable } from '@angular/core';
 
 export interface FileUploadPayload {
   model: string;
@@ -14,9 +13,9 @@ export interface FileUploadPayload {
   providedIn: 'root',
 })
 export class IvtFileUploadService {
-  constructor(private http: HttpClient, @Inject(IVT_UI_STATE_CONFIGURATION) public config: IvtUiStateConfiguration) {}
+  constructor(private http: HttpClient) {}
 
   upload(payload: FileUploadPayload) {
-    return this.http.post(`${this.config.apiUrl}/file_uploads`, payload);
+    return this.http.post(`/ivtApi/file_uploads`, payload);
   }
 }

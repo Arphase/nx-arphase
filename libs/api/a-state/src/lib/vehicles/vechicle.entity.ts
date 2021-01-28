@@ -1,4 +1,4 @@
-import { Company, Guarantee, Revision, User, Vehicle } from '@ivt/c-data';
+import { Company, Guarantee, Revision, User, Vehicle, VEHICLE_VIN_LENGTH, VehicleStatus, RevisionRequest } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
@@ -13,6 +13,7 @@ import {
 
 import { CompanyEntity } from '../companies/company.entity';
 import { GuaranteeEntity } from '../guarantees/entities/guarantee.entity';
+import { RevisionRequestEntity } from '../revision-requests';
 import { RevisionEntity } from '../revisions/revision.entity';
 import { UserEntity } from '../users/user.entity';
 
@@ -33,7 +34,7 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
   @Column()
   year: number;
 
-  @Column({ unique: true })
+  @Column({ length: VEHICLE_VIN_LENGTH, unique: true })
   vin: string;
 
   @Column()
@@ -41,6 +42,17 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
 
   @Column()
   horsePower: number;
+
+  @Column({
+    type: 'enum',
+    enum: VehicleStatus,
+    transformer: {
+      to: value => value,
+      from: value => VehicleStatus[value],
+    },
+    default: VehicleStatus.needsRevision,
+  })
+  status: VehicleStatus | string;
 
   @ManyToOne(() => CompanyEntity, company => company.vehicles)
   @JoinColumn({ name: 'companyId' })
@@ -81,4 +93,9 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
     cascade: true,
   })
   revisions: Revision[];
+
+  @OneToMany(() => RevisionRequestEntity, revisionRequest => revisionRequest.vehicle, {
+    cascade: true,
+  })
+  revisionRequests: RevisionRequest[];
 }

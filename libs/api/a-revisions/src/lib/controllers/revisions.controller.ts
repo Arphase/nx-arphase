@@ -1,4 +1,5 @@
 import { Roles, RolesGuard } from '@ivt/a-auth';
+import { CreateRevisionDto, GetRevisionsDto, UpdateRevisionDto } from '@ivt/a-state';
 import { Revision, UserRoles } from '@ivt/c-data';
 import {
   Body,
@@ -14,15 +15,12 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
-import { CreateRevisionDto } from '../dto/create-revision.dto';
-import { GetRevisionsDto } from '../dto/get-revisions.dto';
-import { UpdateRevisionDto } from '../dto/update-revision.dto';
 import { RevisionsService } from '../services/revisions.service';
 
 @Controller('revisions')
-@UseGuards(RolesGuard)
-@Roles(UserRoles.superAdmin)
+@UseGuards(AuthGuard(), RolesGuard)
 export class RevisionsController {
   constructor(private revisionsService: RevisionsService) {}
 
@@ -37,18 +35,21 @@ export class RevisionsController {
   }
 
   @Post()
+  @Roles(UserRoles.superAdmin)
   @UsePipes(new ValidationPipe({ transform: true }))
   async createRevision(@Body() createRevisionDto: CreateRevisionDto) {
     return this.revisionsService.createRevision(createRevisionDto);
   }
 
   @Put(':id')
+  @Roles(UserRoles.superAdmin)
   @UsePipes(new ValidationPipe({ transform: true }))
   updateRevision(@Body() updateRevisionDto: UpdateRevisionDto): Promise<Revision> {
     return this.revisionsService.updateRevision(updateRevisionDto);
   }
 
   @Delete(':id')
+  @Roles(UserRoles.superAdmin)
   async deleteRevision(@Param('id', ParseIntPipe) id: number): Promise<Revision> {
     return this.revisionsService.deleteRevision(id);
   }

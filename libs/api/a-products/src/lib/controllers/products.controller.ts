@@ -1,3 +1,4 @@
+import { CreateProductDto, GenerateProductPdfDto, GetProductsFilterDto, UpdateProductDto } from '@ivt/a-state';
 import { Product } from '@ivt/c-data';
 import {
   Body,
@@ -15,10 +16,6 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 
-import { CreateProductDto } from '../dto/create-products.dto';
-import { GenerateProductPdfDto } from '../dto/generate-product-pdf.dto';
-import { GetProductsFilterDto } from '../dto/get-products-filter.dto';
-import { UpdateProductDto } from '../dto/update-product.dto';
 import { ProductService } from '../services/products.service';
 
 @Controller('products')

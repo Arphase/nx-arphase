@@ -1,4 +1,14 @@
 <ivt-row>
+  <div class="color-status {{ backgroundClasses[item.status] }}"
+       (mouseenter)="showStatusSubject.next(true)"
+       (click)="showStatusSubject.next(true)"></div>
+
+  <div [ngClass]="{ collapsed: !(visibleStatus$ | async)}"
+       class="color-status-description {{ backgroundClasses[item.status] }} text-center p-3 flex-center">
+    <div class="mx-2">
+      <p class="text-white mb-0">{{ statusLabels[item.status] }}</p>
+    </div>
+  </div>
   <div class="col-2 d-none d-lg-block d-xl-block">
     <ivt-text-truncate-tooltip [label]="item.vin | empty"></ivt-text-truncate-tooltip>
   </div>
@@ -17,7 +27,7 @@
   <div class="col-2 d-none d-sm-block d-md-block d-lg-block d-xl-block">
     <ivt-text-truncate-tooltip [label]="item.createdAt | date: 'dd/MM/yy'"></ivt-text-truncate-tooltip>
   </div>
-  <div class="col flex-end">
+  <div class="col flex-end pl-0">
     <button mat-icon-button
             matTooltip="Acciones"
             [matMenuTriggerFor]="actionsMenu">

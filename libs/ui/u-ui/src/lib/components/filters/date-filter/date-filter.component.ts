@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, ViewEncap
 import { AbstractControl, FormBuilder } from '@angular/forms';
 import { Select } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { tap } from 'rxjs/operators';
 
 import { IvtFilterComponent } from '../filter';
@@ -64,10 +64,10 @@ export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements
       .subscribe();
 
     if (this.value) {
-      this.control.get('startDate').patchValue(moment(this.value.startDate, 'DD/MM/YY').toDate(), {
+      this.control.get('startDate').patchValue(dayjs(this.value.startDate, 'DD/MM/YY').toDate(), {
         emitEvent: false,
       });
-      this.control.get('endDate').patchValue(moment(this.value.endDate, 'DD/MM/YY').toDate(), {
+      this.control.get('endDate').patchValue(dayjs(this.value.endDate, 'DD/MM/YY').toDate(), {
         emitEvent: false,
       });
       this.control.get('dateType').patchValue(this.value.dateType, { emitEvent: false });
@@ -90,7 +90,7 @@ export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements
     const startDateValue = this.control.get('startDate').value;
     const endDateValue = this.control.get('endDate').value;
 
-    this.showError = moment(startDateValue).isAfter(endDateValue);
+    this.showError = dayjs(startDateValue).isAfter(endDateValue);
 
     if (this.showError) {
       return;

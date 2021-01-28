@@ -1,5 +1,4 @@
-import { AddressEntity, UserEntity } from '@ivt/a-state';
-import { Address, Company, Group, Guarantee, User, Vehicle } from '@ivt/c-data';
+import { Address, Company, Group, Guarantee, RevisionRequest, User, Vehicle } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
@@ -13,8 +12,11 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import { AddressEntity } from '../addresses/entities/address.entity';
 import { GroupEntity } from '../groups/group.entity';
 import { GuaranteeEntity } from '../guarantees/entities/guarantee.entity';
+import { RevisionRequestEntity } from '../revision-requests/revision-request.entity';
+import { UserEntity } from '../users/user.entity';
 import { VehicleEntity } from '../vehicles/vechicle.entity';
 
 @Entity('companies')
@@ -73,4 +75,9 @@ export class CompanyEntity extends BaseEntity implements Company {
     cascade: true,
   })
   vehicles: Vehicle[];
+
+  @OneToMany(() => RevisionRequestEntity, revisionRequest => revisionRequest.company, {
+    cascade: true,
+  })
+  revisionRequests: RevisionRequest[];
 }

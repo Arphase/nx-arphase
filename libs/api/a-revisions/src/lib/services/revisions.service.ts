@@ -1,20 +1,23 @@
-import { RevisionRepository } from '@ivt/a-state';
-import { Revision } from '@ivt/c-data';
+import {
+  CreateRevisionDto,
+  GetRevisionsDto,
+  RevisionRepository,
+  UpdateRevisionDto,
+  VehicleRepository,
+} from '@ivt/a-state';
+import { Revision, RevisionStatus, VehicleStatus } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
-
-import { CreateRevisionDto } from '../dto/create-revision.dto';
-import { GetRevisionsDto } from '../dto/get-revisions.dto';
-import { UpdateRevisionDto } from '../dto/update-revision.dto';
 
 @Injectable()
 export class RevisionsService {
-  revisionRepository: RevisionRepository;
-
-  constructor(private readonly connection: Connection) {
-    this.revisionRepository = this.connection.getCustomRepository(RevisionRepository);
-  }
+  constructor(
+    @InjectRepository(RevisionRepository) private revisionRepository: RevisionRepository,
+    @InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository,
+    private connection: Connection
+  ) {}
 
   async getRevisions(getRevisionsDto: GetRevisionsDto): Promise<Revision[]> {
     const { vehicleId, sort, direction } = getRevisionsDto;
@@ -43,10 +46,31 @@ export class RevisionsService {
   }
 
   async createRevision(createRevisionDto: CreateRevisionDto): Promise<Revision> {
-    const newRevision = this.revisionRepository.create(createRevisionDto);
-    await newRevision.save();
-    await newRevision.reload();
-    return newRevision;
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
+      const newRevision = this.revisionRepository.create(createRevisionDto);
+      await newRevision.save();
+      await newRevision.reload();
+
+      if (createRevisionDto.status === RevisionStatus.elegible) {
+        const query = this.vehicleRepository.createQueryBuilder('vehicle');
+        await query
+          .update()
+          .set({ status: VehicleStatus.elegible })
+          .where('id = :id', { id: newRevision.vehicleId })
+          .execute();
+      }
+
+      await queryRunner.commitTransaction();
+      return newRevision;
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   async updateRevision(updateRevisionDto: UpdateRevisionDto): Promise<Revision> {

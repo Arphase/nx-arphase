@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRoles, Vehicle } from '@ivt/c-data';
 import {
   CompanyCollectionService,
+  fromVehicles,
   getAuthUserCompanyIdState,
   getAuthUserRoleState,
+  getVehiclesVehicleState,
   IvtState,
   VehicleCollectionService,
 } from '@ivt/u-state';
@@ -14,18 +16,20 @@ import { ToastrService } from 'ngx-toastr';
 import { combineLatest } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
+import { createVehicleForm } from '../../public';
+
 @Component({
   selector: 'ivt-vehicle-form-container',
   templateUrl: './vehicle-form-container.component.html',
   styleUrls: ['./vehicle-form-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VehicleFormContainerComponent extends IvtFormContainerComponent<Vehicle> implements OnInit {
+export class VehicleFormContainerComponent extends IvtFormContainerComponent<Vehicle> implements OnInit, OnDestroy {
+  form = createVehicleForm();
   successUrl = '/spa/vehicles';
   createSuccessMessage = 'El vehículo se ha creado con éxito';
   updateSuccessMessage = 'El vehículo se ha actualizado con éxito';
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
-  loading$ = this.vehicleCollectionService.loading$;
   disabledCompanyInput$ = this.store.pipe(
     select(getAuthUserRoleState),
     map(role => role !== UserRoles[UserRoles.superAdmin])
@@ -42,6 +46,10 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
         return options;
       }
     })
+  );
+  invalidVin$ = this.store.pipe(
+    select(getVehiclesVehicleState),
+    map(vehicle => !!vehicle)
   );
 
   constructor(
@@ -64,5 +72,14 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
           this.companyCollectionService.getAll();
         }
       });
+  }
+
+  verifyVin(vin: string): void {
+    this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin }));
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    this.store.dispatch(fromVehicles.actions.clearVehiclesState());
   }
 }
