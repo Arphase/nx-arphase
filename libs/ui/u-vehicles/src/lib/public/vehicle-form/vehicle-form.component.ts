@@ -28,7 +28,7 @@ export function createVehicleForm(vehicle?: Vehicle) {
       Validators.maxLength(VEHICLE_VIN_LENGTH),
     ]),
     motorNumber: new FormControl('', Validators.required),
-    horsePower: new FormControl('', [Validators.required, Validators.max(400)]),
+    horsePower: new FormControl('', [Validators.required, Validators.min(1), Validators.max(400)]),
     companyId: new FormControl(null, Validators.required),
   });
 
