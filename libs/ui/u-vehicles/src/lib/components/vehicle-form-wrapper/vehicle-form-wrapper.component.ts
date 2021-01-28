@@ -13,7 +13,7 @@ import { Select, Vehicle } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
 import { takeUntil } from 'rxjs/operators';
 
-import { createVehicleForm, VehicleFormComponent } from '../../public';
+import { VehicleFormComponent } from '../../public';
 
 @Component({
   selector: 'ivt-vehicle-form-wrapper',
@@ -26,7 +26,6 @@ export class VehicleFormWrapperComponent extends IvtFormComponent<Vehicle> imple
   @Input() disabledCompanyInput: boolean;
   @Input() companyOptions: Select[] = [];
   @Input() invalidVin: boolean;
-  form = createVehicleForm();
   @Output() verifyVin = new EventEmitter<string>();
 
   ngOnInit() {

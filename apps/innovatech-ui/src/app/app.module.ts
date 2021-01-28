@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
@@ -26,6 +27,7 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
     BrowserAnimationsModule,
     HttpClientModule,
     IvtStateModule,
+    MatDialogModule,
     NgxMaskModule.forRoot(),
     ToastrModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),

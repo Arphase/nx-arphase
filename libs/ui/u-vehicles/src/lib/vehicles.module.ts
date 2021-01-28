@@ -48,7 +48,7 @@ import { VehiclesComponent } from './vehicles.component';
     MatIconModule,
     MatCardModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   declarations: [
     VehicleListComponent,
