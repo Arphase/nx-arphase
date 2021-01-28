@@ -10,7 +10,7 @@ import {
   IvtState,
   VehicleCollectionService,
 } from '@ivt/u-state';
-import { ComponentCanDeactivate, IvtFormContainerComponent } from '@ivt/u-ui';
+import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { combineLatest } from 'rxjs';
@@ -24,9 +24,7 @@ import { createVehicleForm } from '../../public';
   styleUrls: ['./vehicle-form-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VehicleFormContainerComponent
-  extends IvtFormContainerComponent<Vehicle>
-  implements OnInit, OnDestroy, ComponentCanDeactivate {
+export class VehicleFormContainerComponent extends IvtFormContainerComponent<Vehicle> implements OnInit, OnDestroy {
   form = createVehicleForm();
   successUrl = '/spa/vehicles';
   createSuccessMessage = 'El vehículo se ha creado con éxito';
@@ -75,10 +73,6 @@ export class VehicleFormContainerComponent
           this.companyCollectionService.getAll();
         }
       });
-  }
-
-  canDeactivate(): boolean {
-    return !this.form.dirty;
   }
 
   verifyVin(vin: string): void {

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IvtDirtyFormGuard } from '@ivt/u-ui';
 
 import { GroupFormContainerComponent } from './containers/group-form-container/group-form-container.component';
 import { GroupListContainerComponent } from './containers/group-list-container/group-list-container.component';
@@ -20,11 +21,13 @@ export const routes: Routes = [
       {
         path: 'new',
         component: GroupFormContainerComponent,
+        canDeactivate: [IvtDirtyFormGuard],
         resolve: { resolvedGroup: GroupResolverService },
       },
       {
         path: ':id',
         component: GroupFormContainerComponent,
+        canDeactivate: [IvtDirtyFormGuard],
         resolve: { resolvedGroup: GroupResolverService },
       },
     ],

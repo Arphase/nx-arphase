@@ -21,6 +21,8 @@ import { ToastrService } from 'ngx-toastr';
 import { combineLatest } from 'rxjs';
 import { map, take, takeUntil } from 'rxjs/operators';
 
+import { createGuaranteeForm } from '../../components/guarantee-form/guarantee-form.component';
+
 @Component({
   selector: 'ivt-guarantee-form-container',
   templateUrl: './guarantee-form-container.component.html',
@@ -28,6 +30,7 @@ import { map, take, takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<Guarantee> implements OnInit, OnDestroy {
+  form = createGuaranteeForm();
   successUrl = '/spa/guarantees';
   createSuccessMessage = 'La garantía se ha creado con éxito';
   updateSuccessMessage = 'La garantía se ha actualizado con éxito';

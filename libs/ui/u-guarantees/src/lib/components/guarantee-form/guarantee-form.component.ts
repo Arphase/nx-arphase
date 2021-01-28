@@ -9,7 +9,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Guarantee, PersonTypes, Select, Vehicle } from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
 import { createAddressForm, IvtAddressFormComponent, IvtFormComponent, IvtValidators } from '@ivt/u-ui';
@@ -17,6 +17,42 @@ import { createVehicleForm, VehicleFormComponent } from '@ivt/u-vehicles';
 import { omit } from 'lodash-es';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+
+export function createGuaranteeForm(): FormGroup {
+  return new FormGroup({
+    id: new FormControl(null),
+    productId: new FormControl(null),
+    startDate: new FormControl(null, Validators.required),
+    endDate: new FormControl(null, Validators.required),
+    companyId: new FormControl(null, Validators.required),
+    kilometrageStart: new FormControl(null, Validators.required),
+    kilometrageEnd: new FormControl(null, Validators.required),
+    productType: new FormControl(null, Validators.required),
+    client: new FormGroup({
+      id: new FormControl(null),
+      personType: new FormControl(null, Validators.required),
+      rfc: new FormControl(null, [Validators.required, IvtValidators.rfc(RfcValidatorTypes.any)]),
+      phone: new FormControl(null, [Validators.required, IvtValidators.phone]),
+      email: new FormControl(null, [Validators.required, IvtValidators.email]),
+      salesPlace: new FormControl(null, Validators.required),
+      physicalInfo: new FormGroup({
+        id: new FormControl(null),
+        name: new FormControl(null, Validators.required),
+        lastName: new FormControl(null, Validators.required),
+        secondLastName: new FormControl(null, Validators.required),
+        birthDate: new FormControl(null, Validators.required),
+      }),
+      moralInfo: new FormGroup({
+        id: new FormControl(null),
+        businessName: new FormControl(null, Validators.required),
+        constitutionDate: new FormControl(null, Validators.required),
+        adviser: new FormControl(null, Validators.required),
+      }),
+      address: createAddressForm(),
+    }),
+    vehicle: createVehicleForm(),
+  });
+}
 
 @Component({
   selector: 'ivt-guarantee-form',
@@ -62,50 +98,16 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     return this.client.get('moralInfo') as FormGroup;
   }
 
-  constructor(private fb: FormBuilder) {
-    super();
-    this.form = this.fb.group({
-      id: null,
-      productId: null,
-      startDate: [null, Validators.required],
-      endDate: [null, Validators.required],
-      companyId: null,
-      kilometrageStart: [null, Validators.required],
-      kilometrageEnd: [null, Validators.required],
-      productType: [null, Validators.required],
-      client: this.fb.group({
-        id: null,
-        personType: [null, Validators.required],
-        physicalInfo: this.fb.group({
-          id: null,
-          name: [null, Validators.required],
-          lastName: [null, Validators.required],
-          secondLastName: [null, Validators.required],
-          birthDate: [null, Validators.required],
-        }),
-        moralInfo: this.fb.group({
-          id: null,
-          businessName: [null, Validators.required],
-          constitutionDate: [null, Validators.required],
-          adviser: [null, Validators.required],
-        }),
-        rfc: [null, [Validators.required, IvtValidators.rfc(RfcValidatorTypes.any)]],
-        phone: [null, [Validators.required, IvtValidators.phone]],
-        email: [null, [Validators.required, IvtValidators.email]],
-        address: createAddressForm(),
-        salesPlace: [null, Validators.required],
-      }),
-      vehicle: createVehicleForm(),
-    });
-    this.client
-      .get('personType')
-      .valueChanges.pipe(filterNil(), takeUntil(this.destroy$))
-      .subscribe(value => this.personTypeChange(value));
-
-    this.companyId$ = this.form.get('companyId').valueChanges;
-  }
-
   ngOnChanges(changes: SimpleChanges) {
+    if (changes.form && this.form) {
+      this.client
+        .get('personType')
+        .valueChanges.pipe(filterNil(), takeUntil(this.destroy$))
+        .subscribe(value => this.personTypeChange(value));
+
+      this.companyId$ = this.form.get('companyId').valueChanges;
+    }
+
     if (changes.isEditable && this.item) {
       this.isEditable ? this.form.enable() : this.form.disable();
     }
