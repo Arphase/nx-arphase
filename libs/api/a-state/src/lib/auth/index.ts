@@ -1,2 +1,3 @@
-export * from './reset-password.entity';
-export * from './reset-password.repository';
+export * from './dto';
+export * from './entities';
+export * from './repositories';

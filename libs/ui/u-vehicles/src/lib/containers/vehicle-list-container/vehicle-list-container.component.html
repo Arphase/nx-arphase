@@ -2,5 +2,7 @@
                   [hasMoreItems]="hasMore$ | async"
                   (getMoreItems)="getMoreItems()"
                   (filterItems)="filterItems($event)"
-                  (delete)="deleteItem($event)">
+                  (delete)="deleteItem($event)"
+                  (goToRevisions)="goToRevisions($event)"
+                  (createGuarantee)="createGuarantee($event)">
 </ivt-vehicle-list>

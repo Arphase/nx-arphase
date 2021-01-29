@@ -1,4 +1,12 @@
-import { ResetPasswordEntity, ResetPasswordRepository, UserEntity, UserRepository } from '@ivt/a-state';
+import {
+  AuthCredentialsDto,
+  ResetPasswordDto,
+  ResetPasswordEntity,
+  ResetPasswordRepository,
+  SignUpCredentialsDto,
+  UserEntity,
+  UserRepository,
+} from '@ivt/a-state';
 import { ResetPassword, User } from '@ivt/c-data';
 import { generateId } from '@ivt/c-utils';
 import {
@@ -9,26 +17,23 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcryptjs';
 import { omit } from 'lodash';
 import { createTransport } from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
-import { Connection, getManager } from 'typeorm';
+import { getManager } from 'typeorm';
 
 import { getNewUserEmailTemplate } from '../constants';
 import { getResetPasswordEmailTemplate } from '../constants/reset-password-email-template';
-import { AuthCredentialsDto, SignUpCredentialsDto } from '../dto/auth-credentials.dto';
-import { ResetPasswordDto } from '../dto/reset-password.dto';
 
 @Injectable()
 export class AuthService {
-  private userRepository: UserRepository;
-  private resetPasswordRepository: ResetPasswordRepository;
-
-  constructor(private jwtService: JwtService, private readonly connection: Connection) {
-    this.userRepository = this.connection.getCustomRepository(UserRepository);
-    this.resetPasswordRepository = this.connection.getCustomRepository(ResetPasswordRepository);
-  }
+  constructor(
+    @InjectRepository(UserRepository) private userRepository: UserRepository,
+    @InjectRepository(ResetPasswordRepository) private resetPasswordRepository: ResetPasswordRepository,
+    private jwtService: JwtService
+  ) {}
 
   async signUp(signUpCredentialsDto: SignUpCredentialsDto): Promise<User> {
     const { password, email, firstName, secondName, lastName, secondLastName, role } = signUpCredentialsDto;

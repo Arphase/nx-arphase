@@ -6,9 +6,18 @@
     </div>
   </div>
 
+  <div *ngIf="invalidVin"
+       class="row my-3">
+    <div class="col bg-alert text-white py-3 rounded flex-start">
+      <mat-icon class="mr-3">error</mat-icon>
+      <span> Un vehículo con este VIN ya está dado de alta en la plataforma. Intente con otro VIN. </span>
+    </div>
+  </div>
+
   <ivt-vehicle-form [form]="form"
                     [showCompanyInput]="true"
-                    [companyOptions]="companyOptions"></ivt-vehicle-form>
+                    [companyOptions]="companyOptions"
+                    (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
 
   <div class="row mt-4 mb-3">
     <div class="col px-0 flex-end">
@@ -21,7 +30,8 @@
       <button mat-raised-button
               type="submit"
               color="primary"
-              [loading]="loading">
+              [loading]="loading"
+              [disabled]="invalidVin">
         Guardar
       </button>
     </div>

@@ -1,0 +1,44 @@
+<form [formGroup]="form"
+      (ngSubmit)="submit()">
+  <div class="row mb-3">
+    <div class="col">
+      <ivt-go-back-title [title]="item?.id ? 'Editar Revisión' : 'Nueva Revisión'"></ivt-go-back-title>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <ivt-form-field label="Estatus">
+        <mat-select formControlName="status">
+          <mat-option *ngFor="let option of statusOptions"
+                      [value]="option.value">
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+      </ivt-form-field>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <ivt-form-field label="Observaciones">
+        <textarea ivtInput
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  formControlName="observations"> </textarea>
+      </ivt-form-field>
+    </div>
+  </div>
+
+  <div class="row mt-4 mb-3">
+    <div class="col px-0 flex-end">
+      <button mat-raised-button
+              class="mr-3"
+              type="button"
+              [routerLink]="['..']">Cancelar</button>
+      <button mat-raised-button
+              type="submit"
+              color="primary">Guardar</button>
+    </div>
+  </div>
+</form>

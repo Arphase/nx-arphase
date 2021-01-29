@@ -1,5 +1,7 @@
 import { getProductPdfTemplate } from '@ivt/a-products';
 import {
+  CreateGuaranteeDto,
+  GetGuaranteesFilterDto,
   getReadableStream,
   GuaranteeEntity,
   GuaranteeRepository,
@@ -8,10 +10,13 @@ import {
   PhysicalPersonRepository,
   tobase64,
   transformFolio,
+  UpdateGuaranteeDto,
+  VehicleRepository,
 } from '@ivt/a-state';
 import { Client, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import fs from 'fs';
 import { omit } from 'lodash';
@@ -20,9 +25,6 @@ import { Connection } from 'typeorm';
 import { promisify } from 'util';
 import * as XLSX from 'xlsx';
 
-import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
-import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
-import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import {
   applyGuaranteeFilter,
   applyGuaranteeSharedFilters,
@@ -31,15 +33,13 @@ import {
 
 @Injectable()
 export class GuaranteesService {
-  guaranteeRepository: GuaranteeRepository;
-  physicalPersonRepository: PhysicalPersonRepository;
-  moralPersonRepository: MoralPersonRepository;
-
-  constructor(private readonly connection: Connection) {
-    this.guaranteeRepository = this.connection.getCustomRepository(GuaranteeRepository);
-    this.physicalPersonRepository = this.connection.getCustomRepository(PhysicalPersonRepository);
-    this.moralPersonRepository = this.connection.getCustomRepository(MoralPersonRepository);
-  }
+  constructor(
+    @InjectRepository(GuaranteeRepository) private guaranteeRepository: GuaranteeRepository,
+    @InjectRepository(PhysicalPersonRepository) private physicalPersonRepository: PhysicalPersonRepository,
+    @InjectRepository(MoralPersonRepository) private moralPersonRepository: MoralPersonRepository,
+    @InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository,
+    private readonly connection: Connection
+  ) {}
 
   async getGuaranteeById(id: number): Promise<GuaranteeEntity> {
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
@@ -134,6 +134,7 @@ export class GuaranteesService {
       'Creación orden de compra',
       'Actualización orden de compra',
       'Distribuidor',
+      'Factura',
     ];
     const guaranteesData: string[][] = guarantees.map(guarantee => {
       return [
@@ -178,6 +179,7 @@ export class GuaranteesService {
         guarantee.paymentOrder?.createdAt,
         guarantee.paymentOrder?.updatedAt,
         guarantee.paymentOrder?.distributor,
+        guarantee?.invoiceNumber,
       ].map(field => (field ? String(field) : ''));
     });
     const data = [[...excelColumnConstants], ...guaranteesData];
@@ -191,13 +193,33 @@ export class GuaranteesService {
   }
 
   async createGuarantee(createGuaranteeDto: CreateGuaranteeDto, user: Partial<User>): Promise<GuaranteeEntity> {
-    createGuaranteeDto = this.omitInfo(createGuaranteeDto);
-    const newGuarantee = this.guaranteeRepository.create({
-      ...createGuaranteeDto,
-      userId: user.id,
-    });
-    await newGuarantee.save();
-    return newGuarantee;
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    try {
+      const vehicle = this.vehicleRepository.create({
+        ...createGuaranteeDto.vehicle,
+        userId: user.id,
+      });
+      await vehicle.save();
+
+      createGuaranteeDto = this.omitInfo(createGuaranteeDto);
+      const newGuarantee = this.guaranteeRepository.create({
+        ...omit(createGuaranteeDto, 'vehicle'),
+        userId: user.id,
+        vehicle,
+      });
+      await newGuarantee.save();
+      await newGuarantee.reload();
+
+      await queryRunner.commitTransaction();
+      return newGuarantee;
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+      throw new BadRequestException(err.message);
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   async generatePdf(id: number, response: Response): Promise<void> {
@@ -218,7 +240,6 @@ export class GuaranteesService {
       content = getProductPdfTemplate(template, guarantee);
       headerLogo = logo;
     }
-
 
     const headerImg = await tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
     const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
@@ -277,11 +298,17 @@ export class GuaranteesService {
     stream.pipe(response);
   }
 
-  async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto): Promise<GuaranteeEntity> {
+  async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto, user: Partial<User>): Promise<GuaranteeEntity> {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
+      const vehicle = this.vehicleRepository.create({
+        ...updateGuaranteeDto.vehicle,
+        userId: user.id,
+      });
+      await vehicle.save();
+
       if (updateGuaranteeDto.client?.personType === PersonTypes.moral && updateGuaranteeDto.client?.physicalInfo?.id) {
         await this.physicalPersonRepository.delete(updateGuaranteeDto.client.physicalInfo.id);
       }
@@ -290,7 +317,11 @@ export class GuaranteesService {
       }
       const preloadedGuarantee = await this.guaranteeRepository.preload(updateGuaranteeDto);
       const guarantee = this.omitInfo(updateGuaranteeDto);
-      const updatedGuarantee = await this.guaranteeRepository.save({ ...preloadedGuarantee, ...guarantee });
+      const updatedGuarantee = await this.guaranteeRepository.save({
+        ...preloadedGuarantee,
+        ...guarantee,
+        vehicle,
+      });
       await updatedGuarantee.reload();
       await queryRunner.commitTransaction();
       return updatedGuarantee;

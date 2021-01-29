@@ -1,7 +1,10 @@
 import { HttpParams } from '@angular/common/http';
 import { DEFAULT_LIMIT_SIZE, SortEvent } from '@ivt/c-data';
-import { omit } from 'lodash';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+import { omit } from 'lodash-es';
+
+dayjs.extend(customParseFormat);
 
 export function buildQueryParams(queryParams): HttpParams {
   let params: Record<string, string | string[]> = {
@@ -51,5 +54,5 @@ export function buildQueryParams(queryParams): HttpParams {
 }
 
 function parseDate(date: string | Date): string {
-  return moment(date, ['DD/MM/YY', moment.ISO_8601]).format('YYYY-MM-DD');
+  return dayjs(date, 'DD/MM/YY').format('YYYY-MM-DD');
 }

@@ -81,6 +81,16 @@
         "back"
       ]
     },
+    "a-revision-requests": {
+      "tags": [
+        "back"
+      ]
+    },
+    "a-revisions": {
+      "tags": [
+        "back"
+      ]
+    },
     "a-state": {
       "tags": [
         "back"
@@ -142,6 +152,11 @@
       ]
     },
     "u-products": {
+      "tags": [
+        "front"
+      ]
+    },
+    "u-revisions": {
       "tags": [
         "front"
       ]

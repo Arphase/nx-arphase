@@ -1,14 +1,10 @@
 import { LocalityEntity, LocalityRepository } from '@ivt/a-state';
 import { Injectable } from '@nestjs/common';
-import { Connection } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class LocalitiesService {
-  localityRepository: LocalityRepository;
-
-  constructor(private readonly connection: Connection) {
-    this.localityRepository = this.connection.getCustomRepository(LocalityRepository);
-  }
+  constructor(@InjectRepository(LocalityRepository) private localityRepository: LocalityRepository) {}
 
   async getLocalityByZipCode(zipcode: string): Promise<LocalityEntity[]> {
     const found = await this.localityRepository.find({

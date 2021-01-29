@@ -7,5 +7,4 @@ export * from './dashboard.effects';
 export const fromDashboard = {
   actions,
   reducer: reducer.reducer,
-  initialState: reducer.initialState,
 };

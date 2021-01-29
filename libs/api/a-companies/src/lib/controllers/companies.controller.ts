@@ -1,9 +1,9 @@
 import { GetUser } from '@ivt/a-auth';
+import { FilterCompaniesDto } from '@ivt/a-state';
 import { Company, User } from '@ivt/c-data';
 import { Controller, Get, Param, ParseIntPipe, Query, UseGuards, ValidationPipe } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import { FilterCompaniesDto } from '../dto/filter-companies.dto';
 import { CompaniesService } from '../services/companies.service';
 
 @Controller('companies')

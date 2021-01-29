@@ -1,26 +1,29 @@
 import { AuthService } from '@ivt/a-auth';
-import { CompanyRepository, GroupRepository, UserEntity, UserRepository } from '@ivt/a-state';
+import {
+  CompanyRepository,
+  CreateGroupDto,
+  GetGroupsFilterDto,
+  GroupRepository,
+  UpdateGroupDto,
+  UserEntity,
+  UserRepository,
+} from '@ivt/a-state';
 import { Company, Group, User } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { flatten, omit } from 'lodash';
 import { Connection } from 'typeorm';
 
-import { CreateGroupDto } from '../dto/create-group.dto';
-import { GetGroupsFilterDto } from '../dto/get-groups-filter.dto';
-import { UpdateGroupDto } from '../dto/update-group.dto';
-
 @Injectable()
 export class GroupsService {
-  groupRepository: GroupRepository;
-  companyRepository: CompanyRepository;
-  userRepository: UserRepository;
-
-  constructor(private readonly connection: Connection, private authService: AuthService) {
-    this.groupRepository = this.connection.getCustomRepository(GroupRepository);
-    this.companyRepository = this.connection.getCustomRepository(CompanyRepository);
-    this.userRepository = this.connection.getCustomRepository(UserRepository);
-  }
+  constructor(
+    @InjectRepository(GroupRepository) private groupRepository: GroupRepository,
+    @InjectRepository(CompanyRepository) private companyRepository: CompanyRepository,
+    @InjectRepository(UserRepository) private userRepository: UserRepository,
+    private connection: Connection,
+    private authService: AuthService
+  ) {}
 
   async getGroupById(id: number): Promise<Group> {
     const query = this.groupRepository.createQueryBuilder('group');

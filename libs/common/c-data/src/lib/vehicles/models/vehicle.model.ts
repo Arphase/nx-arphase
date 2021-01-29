@@ -1,6 +1,9 @@
 import { Company } from '../../companies/models/company.model';
 import { Guarantee } from '../../guarantees';
+import { RevisionRequest } from '../../revision-requests';
+import { Revision } from '../../revisions';
 import { User } from '../../users';
+import { VehicleStatus } from '../enusm';
 
 export interface Vehicle {
   id: number;
@@ -11,6 +14,7 @@ export interface Vehicle {
   vin: string;
   motorNumber: string;
   horsePower: number;
+  status: VehicleStatus | string;
   companyId?: number;
   company?: Company;
   kilometrageStart?: number;
@@ -21,4 +25,6 @@ export interface Vehicle {
   createdAt: Date;
   updatedAt: Date;
   guarantees?: Guarantee[];
+  revisions?: Revision[];
+  revisionRequests?: RevisionRequest[];
 }

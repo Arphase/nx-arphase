@@ -95,7 +95,7 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @JoinColumn({ name: 'vehicleId' })
   vehicle: Vehicle;
 
-  @Column({ nullable: true })
+  @Column()
   vehicleId: number;
 
   @Column({ nullable: true })

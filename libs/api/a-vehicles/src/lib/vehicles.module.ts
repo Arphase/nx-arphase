@@ -3,8 +3,8 @@ import { VehicleRepository } from '@ivt/a-state';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { VehiclesController } from './controllers/vehicles/vehicles.controller';
-import { VehiclesService } from './services/vehicles/vehicles.service';
+import { VehiclesController } from './controllers/vehicles.controller';
+import { VehiclesService } from './services/vehicles.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([VehicleRepository]), AuthModule],

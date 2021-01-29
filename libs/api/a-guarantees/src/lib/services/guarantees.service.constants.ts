@@ -1,10 +1,13 @@
-import { GuaranteeEntity, IMAGE_ASSETS_PATH, transformFolio } from '@ivt/a-state';
+import 'dayjs/locale/es';
+
+import { GetGuaranteesFilterDto, GuaranteeEntity, IMAGE_ASSETS_PATH, transformFolio } from '@ivt/a-state';
 import { Guarantee, User, UserRoles } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import { SelectQueryBuilder } from 'typeorm';
 
-import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
+dayjs.extend(LocalizedFormat);
 
 export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
   return `
@@ -67,7 +70,9 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
         <p>Lo invitamos a consultar los términos, condiciones y exclusiones de la cobertura contratada de acuerdo a la carátula y los anexos de la presente.</p>
         <div class="row">
             <div class="col">
-              <p>Su número de Certificado de Garantía es: <span class="bold folio">${transformFolio(guarantee.id)}</span></p>
+              <p>Su número de Certificado de Garantía es: <span class="bold folio">${transformFolio(
+                guarantee.id
+              )}</span></p>
             </div>
             <div class="col">
               <img class="guarantee-info" src="${IMAGE_ASSETS_PATH}/guarantee-info.png">
@@ -93,14 +98,14 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
         <p><span class="bold">MODELO:</span> ${guarantee.vehicle.model}</p>
         <p><span class="bold">MOTOR:</span> ${guarantee.vehicle.motorNumber}</p>
         <center><p>PERIODO DE VIGENCIA</p></center>
-        <p><span class="bold">FECHA INICIO GARANTIA:</span> ${moment(guarantee.startDate).locale('es').format('LL')}</p>
+        <p><span class="bold">FECHA INICIO GARANTIA:</span> ${dayjs(guarantee.startDate).locale('es').format('LL')}</p>
           <p>
-          <span class="bold">FIN GARANTIA POR TIEMPO:</span> ${moment(guarantee.endDate).locale('es').format('LL')}
+          <span class="bold">FIN GARANTIA POR TIEMPO:</span> ${dayjs(guarantee.endDate).locale('es').format('LL')}
           </p>
         <p><span class="bold">KILOMETRAJE INICIAL: </span> ${
           guarantee.kilometrageStart
         } <span class="bold"> - FIN GARANTIA POR KILOMETRAJE: </span> ${guarantee.kilometrageEnd} </p>
-        <p>Siempre que se hayan realizado en el VEHÍCULO en tiempo y forma los servicios y mantenimientos señalados en el certificado de garantía; el PERIODO DE VIGENCIA podrá comenzar a computarse hasta el momento en que expire la garantía del fabricante o alguna otra garantía de similar naturaleza, ya sea por sobrepasar el kilometraje o cumplirse el tiempo establecido en la misma.</p>
+        <p>Siempre que se hayan realizado en el VEHÍCULO en tiempo y forma los servicios y mantenimientos señalados en el certificado de garantía; el PERIODO DE VIGENCIA podrá comenzar a computarse hasta el dayjso en que expire la garantía del fabricante o alguna otra garantía de similar naturaleza, ya sea por sobrepasar el kilometraje o cumplirse el tiempo establecido en la misma.</p>
         <p>En caso de rescisión anticipada de esta garantía, Innovatech no estará obligada a la devolución del precio.</p>
         <p>COBERTURAS</p>
         <p>MOTOR Cabezas de motor, block de motor, pistones, anillos, pernos, cigüeñal, metales de biela y bancada, árboles de levas y metales de árboles, válvulas, sus guías y capuchones, bomba de aceite, cadenas de tiempo y sus tensores, guías de cadena de tiempo, banda de tiempo, engranes de cadena de tiempo, tapas de distribución, bombas de vacío, botadores y punterías, : Árbol de levas, Balancines, Bielas, Bloque, Bomba de aceite, Pernos, Camisas de pistón, Cigüeñal, Cilindros, Cojinetes/Metales, Culata, Junta de culata, Muelles válvulas, Pistones, Anillos, Válvulas admisión/escape, Buzos</p>
@@ -186,7 +191,7 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
         <p class="bold">Esta Garantía NO estará obligada a reparar ni a realizar el pago de las siguientes:</p>
         <ul>
             <li>AVERÍA/AS y/o defectos previsibles y/o preexistentes a la contratación de la garantía.
-            <li>AVERÍA/AS cuya causa era evidente en el momento en que estaba en vigor la garantía del fabricante, independientemente del momento en que ésta se hubiere ocasionado.</li>
+            <li>AVERÍA/AS cuya causa era evidente en el dayjso en que estaba en vigor la garantía del fabricante, independientemente del dayjso en que ésta se hubiere ocasionado.</li>
             <li>AVERÍA/AS que sean consecuencia de una mala reparación anterior.</li>
             <li>La sustitución, reparación, ajustes o reglajes sobre piezas que hayan llegado al final de su vida útil como consecuencia de su función y usabilidad natural.</li>
             <li>Los daños ocasionados por erosión, corrosión, deformación, oxidación, descomposición, herrumbre e incrustaciones, así como elementos que hayan perdido su morfología inicial (bujes, gomas, soportes, juntas, mangueras, retenes) </li>
@@ -204,7 +209,7 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
             <li>Las AVERÍA/AS ocasionadas por sobrecarga. </li>
             <li>Las AVERÍA/AS ocasionadas por el uso de agentes abrasivos. </li>
             <li>Las AVERÍA/AS ocasionadas por un accidente, robo, tentativa de robo, incendio, explosión, vandalismo o catástrofes naturales.</li>
-            <li>Las piezas que sean cambiadas en el momento de la reparación sin que hayan fallado. </li>
+            <li>Las piezas que sean cambiadas en el dayjso de la reparación sin que hayan fallado. </li>
             <li>Cualquier intervención efectuada “in situ” por cualquier servicio de asistencia en carretera. </li>
             <li>Los servicios de grúa, remolque y gastos de transporte sobre el VEHÍCULO y ocupantes.</li>
             <li>Averías producidas por combustibles o lubricantes no conformes con las indicaciones del fabricante o con alto grado de agua o contaminación de otros elementos químicos. Sustitución, mantenimiento o reparación de accesorios o piezas no montados de origen, aun siendo elementos garantizados. </li>
@@ -272,7 +277,8 @@ export function applyGuaranteeFilter(
       );
     } else {
       query.andWhere(
-        `LOWER(vehicle.motorNumber) like :text OR
+        `LOWER(vehicle.vin) like :text OR
+         LOWER(guarantee.invoiceNumber) like :text OR
          LOWER(CONCAT(physicalPerson.name, ' ', physicalPerson.lastName, ' ', physicalPerson.secondLastName)) like :text`,
         { text: `%${text.toLowerCase()}%` }
       );

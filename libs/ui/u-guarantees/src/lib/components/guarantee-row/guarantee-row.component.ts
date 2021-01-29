@@ -21,16 +21,6 @@ export class GuaranteeRowComponent extends IvtRowComponent<Guarantee> {
   backgroundClasses = backgroundClasses;
   guaranteeStatus = GuaranteeStatus;
   menuOptions = menuOptions;
-  showStatusSubject = new Subject();
-  showStatus$ = this.showStatusSubject.asObservable();
-  visibleStatus$ = this.showStatus$.pipe(
-    switchMap(() =>
-      timer(0, 1000).pipe(
-        take(2),
-        map(x => x % 2 === 0)
-      )
-    )
-  );
   @Output() downloadPdf = new EventEmitter<number>();
   @Output() downloadPaymentOrder = new EventEmitter<number>();
   @Output() createPaymentOrder = new EventEmitter<number>();

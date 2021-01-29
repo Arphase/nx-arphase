@@ -4,7 +4,7 @@ import { PaymentOrder } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import { GuaranteeCollectionService, PaymentOrderCollectionService, PaymentOrderDataService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
-import { get } from 'lodash';
+import { get } from 'lodash-es';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 

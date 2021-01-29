@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IvtDirtyFormGuard } from '@ivt/u-ui';
 
 import { VehicleFormContainerComponent } from './containers/vehicle-form-container/vehicle-form-container.component';
 import { VehicleListContainerComponent } from './containers/vehicle-list-container/vehicle-list-container.component';
@@ -20,12 +21,18 @@ export const routes: Routes = [
       {
         path: 'new',
         component: VehicleFormContainerComponent,
+        canDeactivate: [IvtDirtyFormGuard],
         resolve: { resolvedVehicle: VehicleResolverService },
       },
       {
         path: ':id',
         component: VehicleFormContainerComponent,
+        canDeactivate: [IvtDirtyFormGuard],
         resolve: { resolvedVehicle: VehicleResolverService },
+      },
+      {
+        path: ':id/revisions',
+        loadChildren: () => import('@ivt/u-revisions').then(m => m.RevisionsModule),
       },
     ],
   },
