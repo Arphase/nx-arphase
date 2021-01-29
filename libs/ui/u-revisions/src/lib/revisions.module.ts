@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
@@ -22,6 +24,7 @@ import { RevisionRowComponent } from './components/revision-row/revision-row.com
 import { RevisionFormContainerComponent } from './containers/revision-form-container/revision-form-container.component';
 import { RevisionListContainerComponent } from './containers/revision-list-container/revision-list-container.component';
 import { RevisionsRoutingModule } from './revisions-routing.module';
+import { RevisionsComponent } from './revisions.component';
 
 @NgModule({
   imports: [
@@ -40,6 +43,8 @@ import { RevisionsRoutingModule } from './revisions-routing.module';
     MatMenuModule,
     IvtEmptyModule,
     MatIconModule,
+    MatButtonModule,
+    MatCardModule
   ],
   declarations: [
     RevisionFormComponent,
@@ -47,6 +52,7 @@ import { RevisionsRoutingModule } from './revisions-routing.module';
     RevisionRowComponent,
     RevisionListContainerComponent,
     RevisionFormContainerComponent,
+    RevisionsComponent,
   ],
 })
 export class RevisionsModule {}

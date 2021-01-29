@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionListContainerComponent extends IvtListContainerComponent<Revision> {
-  title = `Revisiones ${localStorage.getItem('currentVehicleName')}`;
+  title = localStorage.getItem('currentVehicleName') ? `${localStorage.getItem('currentVehicleName')}` : '';
   constructor(
     protected revisionCollectionService: RevisionCollectionService,
     protected revisionDataService: RevisionDataService,

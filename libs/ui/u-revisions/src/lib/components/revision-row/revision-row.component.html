@@ -1,13 +1,31 @@
 <ivt-row>
-  <div class="color-status {{ backgroundClasses[item.status] }}"></div>
-  <div class="col-3">
-    <ivt-text-truncate-tooltip [label]="statusLabels[revisionStatus[item.status]] | empty">
-    </ivt-text-truncate-tooltip>
+  <div class="color-status {{ backgroundClasses[item.status] }}"
+       (mouseenter)="showStatusSubject.next(true)"
+       (click)="showStatusSubject.next(true)"></div>
+
+  <div [ngClass]="{ collapsed: !(visibleStatus$ | async)}"
+       class="color-status-description {{ backgroundClasses[item.status] }} text-center p-3 flex-center">
+    <div class="mx-2">
+      <p class="text-white mb-0">{{ statusLabels[revisionStatus[item.status]] }}</p>
+    </div>
   </div>
-  <div class="col-5">
+
+  <div class="col-2">
     <ivt-text-truncate-tooltip [label]="item.observations | empty"></ivt-text-truncate-tooltip>
   </div>
-  <div class="col-3">
+  <div class="col-2">
+    <ivt-text-truncate-tooltip [label]="item.vehicle?.vin"></ivt-text-truncate-tooltip>
+  </div>
+  <div class="col-2">
+    <ivt-text-truncate-tooltip [label]="item.vehicle?.brand"></ivt-text-truncate-tooltip>
+  </div>
+  <div class="col-2">
+    <ivt-text-truncate-tooltip [label]="item.vehicle?.model"></ivt-text-truncate-tooltip>
+  </div>
+  <div class="col-2">
+    <ivt-text-truncate-tooltip [label]="item.vehicle?.year"></ivt-text-truncate-tooltip>
+  </div>
+  <div class="col-1">
     <ivt-text-truncate-tooltip [label]="item.createdAt | date: 'dd/mm/yy'"></ivt-text-truncate-tooltip>
   </div>
   <div class="col flex-end">

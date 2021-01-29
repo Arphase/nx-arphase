@@ -23,7 +23,7 @@ export class RevisionsService {
     const { vehicleId, sort, direction } = getRevisionsDto;
     const query = this.revisionRepository.createQueryBuilder('revision');
 
-    query.orderBy('revision.createdAt', sortDirection.desc);
+    query.leftJoinAndSelect('revision.vehicle', 'vehicle').orderBy('revision.createdAt', sortDirection.desc);
 
     if (vehicleId) {
       query.andWhere('(revision.vehicleId = :id)', { id: vehicleId });
