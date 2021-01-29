@@ -1,9 +1,9 @@
 import { Directive, Inject, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { UserRoles } from '@ivt/c-data';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { PermissionTypes } from '../enums/permission-types.enum';
-import { PermissionService, REQUIRED_PERMISSIONS } from '../services/permission.service';
+import { PermissionService, REQUIRED_ROLES } from '../services/permission.service';
 
 @Directive({
   selector: '[ivtBasePermission]',
@@ -17,8 +17,8 @@ export class BasePermissionDirective implements OnInit, OnDestroy {
     protected templateRef: TemplateRef<null>,
     public viewContainer: ViewContainerRef,
     protected permissionService: PermissionService,
-    @Inject(REQUIRED_PERMISSIONS)
-    protected requiredPermissionTypes: PermissionTypes[]
+    @Inject(REQUIRED_ROLES)
+    protected requiredRoles: UserRoles[]
   ) {}
 
   ngOnInit() {

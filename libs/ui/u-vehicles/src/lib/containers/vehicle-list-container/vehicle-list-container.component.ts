@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Vehicle } from '@ivt/c-data';
-import { VehicleCollectionService, VehicleDataService } from '@ivt/u-state';
+import { UserRoles, Vehicle } from '@ivt/c-data';
+import { PermissionService, VehicleCollectionService, VehicleDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { ToastrService } from 'ngx-toastr';
 
@@ -13,12 +13,16 @@ import { ToastrService } from 'ngx-toastr';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VehicleListContainerComponent extends IvtListContainerComponent<Vehicle> {
+  canCreateReviewRequest$ = this.permissionsService.hasUpdatePermission([UserRoles.agencyUser]);
+  canManageRevisions$ = this.permissionsService.hasUpdatePermission([UserRoles.superAdmin]);
+
   constructor(
     protected vehicleCollectionService: VehicleCollectionService,
     protected vehicleDataService: VehicleDataService,
     protected dialog: MatDialog,
     protected toastr: ToastrService,
-    protected router: Router
+    protected router: Router,
+    protected permissionsService: PermissionService
   ) {
     super(vehicleCollectionService, vehicleDataService, dialog, toastr);
   }
@@ -38,5 +42,9 @@ export class VehicleListContainerComponent extends IvtListContainerComponent<Veh
 
   createGuarantee(item: Vehicle): void {
     this.router.navigateByUrl(`/spa/guarantees/new?vehicleId=${item.id}`);
+  }
+
+  createRevisionRequest(item: Vehicle): void {
+    console.log('Implement create revision request');
   }
 }

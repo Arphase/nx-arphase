@@ -38,9 +38,15 @@
               (click)="createGuarantee.emit(item)">
         Generar garantía
       </button>
-      <button mat-menu-item
+      <button *ngIf="canManageRevisions"
+              mat-menu-item
               (click)="goToRevisions.emit(item)">
         Manejar revisiones
+      </button>
+      <button *ngIf="canCreateReviewRequest"
+              mat-menu-item
+              (click)="createRevisionRequest.emit(item)">
+        Solicitar revisión
       </button>
       <button mat-menu-item
               [routerLink]="[item.id]">
