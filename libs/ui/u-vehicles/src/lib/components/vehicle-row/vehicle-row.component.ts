@@ -12,7 +12,7 @@ export class VehicleRowComponent extends IvtRowComponent<Vehicle> {
   @Input() canCreateReviewRequest: boolean;
   @Input() canManageRevisions: boolean;
   backgroundClasses: Record<string, string> = {
-    [VehicleStatus[VehicleStatus.notElegible]]: 'bg-error',
+    [VehicleStatus[VehicleStatus.notElegible]]: 'bg-alert',
     [VehicleStatus[VehicleStatus.hasActiveGuarantee]]: 'bg-info',
     [VehicleStatus[VehicleStatus.needsRevision]]: 'bg-warning',
     [VehicleStatus[VehicleStatus.elegible]]: 'bg-success',

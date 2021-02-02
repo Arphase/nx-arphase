@@ -55,14 +55,7 @@ export class RevisionsService {
       await newRevision.save();
       await newRevision.reload();
 
-      if (createRevisionDto.status === RevisionStatus.elegible) {
-        const query = this.vehicleRepository.createQueryBuilder('vehicle');
-        await query
-          .update()
-          .set({ status: VehicleStatus.elegible })
-          .where('id = :id', { id: newRevision.vehicleId })
-          .execute();
-      }
+      await this.updateVehicleStatus(createRevisionDto, newRevision.vehicleId);
 
       await queryRunner.commitTransaction();
       return newRevision;
@@ -74,10 +67,25 @@ export class RevisionsService {
   }
 
   async updateRevision(updateRevisionDto: UpdateRevisionDto): Promise<Revision> {
-    const preloadedRevision = await this.revisionRepository.preload(updateRevisionDto);
-    await preloadedRevision.save();
-    await preloadedRevision.reload();
-    return preloadedRevision;
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
+      const preloadedRevision = await this.revisionRepository.preload(updateRevisionDto);
+
+      await preloadedRevision.save();
+      await preloadedRevision.reload();
+
+      await this.updateVehicleStatus(updateRevisionDto, preloadedRevision.vehicleId);
+
+      await queryRunner.commitTransaction();
+      return preloadedRevision;
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   async deleteRevision(id: number): Promise<Revision> {
@@ -90,5 +98,20 @@ export class RevisionsService {
     await this.revisionRepository.delete({ id });
 
     return revision;
+  }
+
+  async updateVehicleStatus(revision: CreateRevisionDto | UpdateRevisionDto, vehicleId: number): Promise<void> {
+    const statusMap: Record<RevisionStatus, VehicleStatus> = {
+      [RevisionStatus.elegible]: VehicleStatus.elegible,
+      [RevisionStatus.needsRepairs]: VehicleStatus.needsRevision,
+      [RevisionStatus.notElegible]: VehicleStatus.notElegible,
+    };
+
+    const query = this.vehicleRepository.createQueryBuilder('vehicle');
+    await query
+      .update()
+      .set({ status: statusMap[revision.status] })
+      .where('id = :id AND status != :status', { id: vehicleId, status: VehicleStatus.hasActiveGuarantee })
+      .execute();
   }
 }

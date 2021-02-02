@@ -3,7 +3,7 @@ import { RevisionStatus, Select } from '@ivt/c-data';
 export const revisionStatusLabels: Record<RevisionStatus, string> = {
   [RevisionStatus.elegible]: 'En buenas condiciones',
   [RevisionStatus.needsRepairs]: 'Necesita reparaciones',
-  [RevisionStatus.notElegible]: 'No apto para garantizar',
+  [RevisionStatus.notElegible]: 'No garantizable',
 };
 
 export const statusOptions: Select[] = [
