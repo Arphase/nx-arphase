@@ -88,7 +88,7 @@ export class VehiclesService {
   }
 
   @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
-  async updateVehicleStatus() {
+  async updateVehicleStatusFromRevisions() {
     const query = this.vehicleRepository.createQueryBuilder('vehicle');
     await query
       .update()
@@ -96,12 +96,15 @@ export class VehiclesService {
         status: VehicleStatus.needsRevision,
       })
       .where(
-        `NOT EXISTS (
-        SELECT NULL
-        FROM revisions
-        WHERE revisions."vehicleId" = vehicles.id
-          AND revisions."createdAt" > CURRENT_DATE - INTERVAL '3 months'
-          AND revisions.status = 1
+        `NOT EXISTS(
+          SELECT NULL
+          FROM guarantees,
+               revisions
+          WHERE (guarantees."vehicleId" = vehicles.id
+              AND guarantees."endDate" > CURRENT_DATE - INTERVAL '0 days')
+             OR (revisions."vehicleId" = vehicles.id
+              AND revisions."createdAt" > CURRENT_DATE - INTERVAL '3 months'
+              AND revisions.status = '1')
       )`
       )
       .execute();

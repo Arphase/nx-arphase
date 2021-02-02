@@ -13,7 +13,7 @@ import {
   UpdateGuaranteeDto,
   VehicleRepository,
 } from '@ivt/a-state';
-import { Client, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
+import { Client, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles, VehicleStatus } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -200,6 +200,7 @@ export class GuaranteesService {
       const vehicle = this.vehicleRepository.create({
         ...createGuaranteeDto.vehicle,
         userId: user.id,
+        status: VehicleStatus.hasActiveGuarantee
       });
       await vehicle.save();
 
