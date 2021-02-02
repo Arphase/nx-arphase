@@ -9,7 +9,7 @@ import { Revision, RevisionStatus, VehicleStatus } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Connection } from 'typeorm';
+import { Connection, FindOneOptions } from 'typeorm';
 
 @Injectable()
 export class RevisionsService {
@@ -55,7 +55,7 @@ export class RevisionsService {
       await newRevision.save();
       await newRevision.reload();
 
-      await this.updateVehicleStatus(createRevisionDto, newRevision.vehicleId);
+      await this.updateVehicleStatus(createRevisionDto.status, newRevision.vehicleId);
 
       await queryRunner.commitTransaction();
       return newRevision;
@@ -77,7 +77,7 @@ export class RevisionsService {
       await preloadedRevision.save();
       await preloadedRevision.reload();
 
-      await this.updateVehicleStatus(updateRevisionDto, preloadedRevision.vehicleId);
+      await this.updateVehicleStatus(updateRevisionDto.status, preloadedRevision.vehicleId);
 
       await queryRunner.commitTransaction();
       return preloadedRevision;
@@ -89,18 +89,38 @@ export class RevisionsService {
   }
 
   async deleteRevision(id: number): Promise<Revision> {
-    const revision = await this.revisionRepository.findOne({ id });
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
 
-    if (!revision) {
-      throw new NotFoundException(`Revision with id "${id}" not found`);
+    try {
+      const revision = await this.revisionRepository.findOne({ id });
+
+      if (!revision) {
+        throw new NotFoundException(`Revision with id "${id}" not found`);
+      }
+
+      await this.revisionRepository.delete({ id });
+
+      const mostRecentRevision = await this.revisionRepository.findOne({
+        vehicleId: revision.vehicleId,
+        order: { createdAt: sortDirection.desc },
+      } as FindOneOptions);
+
+      if (mostRecentRevision) {
+        await this.updateVehicleStatus(RevisionStatus[mostRecentRevision.status], mostRecentRevision.vehicleId);
+      }
+
+      await queryRunner.commitTransaction();
+      return revision;
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
     }
-
-    await this.revisionRepository.delete({ id });
-
-    return revision;
   }
 
-  async updateVehicleStatus(revision: CreateRevisionDto | UpdateRevisionDto, vehicleId: number): Promise<void> {
+  async updateVehicleStatus(status: RevisionStatus, vehicleId: number): Promise<void> {
     const statusMap: Record<RevisionStatus, VehicleStatus> = {
       [RevisionStatus.elegible]: VehicleStatus.elegible,
       [RevisionStatus.needsRepairs]: VehicleStatus.needsRevision,
@@ -110,7 +130,7 @@ export class RevisionsService {
     const query = this.vehicleRepository.createQueryBuilder('vehicle');
     await query
       .update()
-      .set({ status: statusMap[revision.status] })
+      .set({ status: statusMap[status] })
       .where('id = :id AND status != :status', { id: vehicleId, status: VehicleStatus.hasActiveGuarantee })
       .execute();
   }
