@@ -2,7 +2,7 @@ import { AuthService } from '@ivt/a-auth';
 import { CompanyRepository, GroupRepository, UserEntity, UserRepository } from '@ivt/a-state';
 import { Company, Group, User } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { flatten, omit } from 'lodash';
 import { Connection } from 'typeorm';
 
@@ -63,43 +63,57 @@ export class GroupsService {
   }
 
   async createGroup(createGroupDto: CreateGroupDto): Promise<Group> {
+    return await this.saveGroup(createGroupDto);
+  }
+
+  async updateGroup(updateGroupDto: UpdateGroupDto): Promise<Group> {
+    const updatedGroup = await this.saveGroup(updateGroupDto);
+    console.log(updatedGroup);
+    const userIds: number[] = flatten(updatedGroup.companies.map(company => company.users.map(user => user.id)));
+    if (userIds.length) {
+      await this.authService.sendEmailToPendingUsers(userIds);
+    }
+    return updatedGroup;
+  }
+
+  async saveGroup(groupDto: CreateGroupDto | UpdateGroupDto): Promise<Group> {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
 
     try {
-      const companies: Company[] = [...createGroupDto.companies];
-      const group = omit(createGroupDto, 'companies');
-      const newGroup = await this.groupRepository.create(group);
-      await newGroup.save();
+      const companies: Company[] = [...groupDto.companies];
+      const group = omit(groupDto, 'companies');
+      const newGroup = this.groupRepository.create(group);
+      await queryRunner.manager.save(newGroup);
       const groupId = newGroup.id;
 
-      await companies.forEach(async company => {
-        const users: User[] = [...company.users];
-        const newCompany = await this.companyRepository.create(omit({ ...company, groupId }, 'users'));
-        await newCompany.save();
-        const companyId = newCompany.id;
+      newGroup.companies = await Promise.all(
+        companies.map(async company => {
+          const users: User[] = [...company.users];
+          const newCompany = this.companyRepository.create(omit({ ...company, groupId }, 'users'));
+          await queryRunner.manager.save(newCompany);
+          const companyId = newCompany.id;
 
-        await users.forEach(async user => {
-          const newUser = await this.userRepository.create({ ...user, companyId } as UserEntity);
-          await newUser.save();
-          await this.authService.sendSetPasswordEmail(newUser.id);
-        });
-      });
+          newCompany.users = await Promise.all(
+            users.map(async user => {
+              const newUser = this.userRepository.create({ ...user, companyId } as UserEntity);
+              await queryRunner.manager.save(newUser);
+              await this.authService.sendSetPasswordEmail(newUser.id);
+              return newUser;
+            })
+          );
+          return newCompany;
+        })
+      );
 
       await queryRunner.commitTransaction();
       return newGroup;
     } catch (err) {
       await queryRunner.rollbackTransaction();
+      throw new InternalServerErrorException({ ...err, message: err.detail });
     } finally {
       await queryRunner.release();
     }
-  }
-
-  async updateGroup(updateGroupDto: UpdateGroupDto): Promise<Group> {
-    const updatedGroup = await this.groupRepository.save(updateGroupDto);
-    const userIds: number[] = flatten(updatedGroup.companies.map(company => company.users.map(user => user.id)));
-    await this.authService.sendEmailToPendingUsers(userIds);
-    return updatedGroup;
   }
 }
