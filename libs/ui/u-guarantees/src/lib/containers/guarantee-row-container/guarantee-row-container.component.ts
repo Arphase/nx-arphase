@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Guarantee, GuaranteeStatus, statusLabels } from '@ivt/c-data';
+import { Guarantee, GuaranteeStatus, statusLabels, UserRoles } from '@ivt/c-data';
 import {
   GuaranteeCollectionService,
   GuaranteeDataService,
@@ -25,7 +25,7 @@ import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-co
 export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
-  isEditable$ = this.permissionService.hasUpdatePermission();
+  isEditable$ = this.permissionService.hasUpdatePermission([UserRoles.agencyUser, UserRoles.superAdmin]);
 
   constructor(
     private guaranteeCollectiionService: GuaranteeCollectionService,

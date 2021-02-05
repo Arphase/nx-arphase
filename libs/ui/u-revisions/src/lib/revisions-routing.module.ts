@@ -6,24 +6,31 @@ import { RevisionFormContainerComponent } from './containers/revision-form-conta
 import { RevisionListContainerComponent } from './containers/revision-list-container/revision-list-container.component';
 import { RevisionResolverService } from './resolvers/revision-resolver.service';
 import { RevisionsResolverService } from './resolvers/revisions-resolver.service';
+import { RevisionsComponent } from './revisions.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: RevisionListContainerComponent,
-    resolve: { resolvedProducts: RevisionsResolverService },
-  },
-  {
-    path: 'new',
-    component: RevisionFormContainerComponent,
-    canDeactivate: [IvtDirtyFormGuard],
-    resolve: { resolvedProduct: RevisionResolverService },
-  },
-  {
-    path: ':revisionId',
-    component: RevisionFormContainerComponent,
-    canDeactivate: [IvtDirtyFormGuard],
-    resolve: { resolvedProduct: RevisionResolverService },
+    component: RevisionsComponent,
+    children: [
+      {
+        path: '',
+        component: RevisionListContainerComponent,
+        resolve: { resolvedRevisions: RevisionsResolverService },
+      },
+      {
+        path: 'new',
+        component: RevisionFormContainerComponent,
+        canDeactivate: [IvtDirtyFormGuard],
+        resolve: { resolvedRevision: RevisionResolverService },
+      },
+      {
+        path: ':revisionId',
+        component: RevisionFormContainerComponent,
+        canDeactivate: [IvtDirtyFormGuard],
+        resolve: { resolvedRevision: RevisionResolverService },
+      },
+    ],
   },
 ];
 

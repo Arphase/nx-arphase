@@ -1,8 +1,11 @@
 <ivt-vehicle-list [list]="list$ | async"
                   [hasMoreItems]="hasMore$ | async"
+                  [canCreateReviewRequest]="canCreateReviewRequest$ | async"
+                  [canManageRevisions]="canManageRevisions$ | async"
                   (getMoreItems)="getMoreItems()"
                   (filterItems)="filterItems($event)"
                   (delete)="deleteItem($event)"
                   (goToRevisions)="goToRevisions($event)"
-                  (createGuarantee)="createGuarantee($event)">
+                  (createGuarantee)="createGuarantee($event)"
+                  (createRevisionRequest)="createRevisionRequest($event)">
 </ivt-vehicle-list>

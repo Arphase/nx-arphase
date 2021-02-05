@@ -7,6 +7,8 @@ import { select, Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { take, takeUntil } from 'rxjs/operators';
 
+import { createRevisionForm } from '../../components/revision-form/revision-form.component';
+
 @Component({
   selector: 'ivt-revision-form-container',
   templateUrl: './revision-form-container.component.html',
@@ -14,6 +16,7 @@ import { take, takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionFormContainerComponent extends IvtFormContainerComponent<Revision> implements OnInit {
+  form = createRevisionForm();
   createSuccessMessage = 'Se ha creado la revisión';
   updateSuccessMessage = 'Se ha actualizado la revisión';
 

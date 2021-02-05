@@ -59,10 +59,11 @@ export class IvtFormContainerComponent<T> extends IvtSubscriberComponent impleme
   }
 
   canDeactivate(): boolean {
-    return !this.form.dirty;
+    return !this.form.touched;
   }
 
   submit(item: T, entityActionOptions: EntityActionOptions = {}): void {
+    this.form.markAsUntouched();
     get(item, 'id')
       ? this.entityCollectionService.update(item, entityActionOptions)
       : this.entityCollectionService.add(item, entityActionOptions);
