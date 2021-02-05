@@ -27,13 +27,6 @@ All notable changes to this project will be documented in this file. See [standa
 * **vehicles:** validate in form not submitting vehicles with repeated vin ([70ccc41](https://bitbucket.org/arphase/innovatech/commit/70ccc4182315d8c4246b34b2682dd836b2364e20))
 
 
-### Bug Fixes
-
-* **guarantees:** add vehicle creation in a transaction when creating guarantee ([5c70ce6](https://bitbucket.org/arphase/innovatech/commit/5c70ce662a5141b622cbd0deaf8f186be2b2970f))
-* **ui:** display correct error message for number inputs ([b7a3fe5](https://bitbucket.org/arphase/innovatech/commit/b7a3fe5750ba12d70b5b1be6e9f643a88bec60f0))
-* **vehicles:** add min validator to HP field ([05bddbb](https://bitbucket.org/arphase/innovatech/commit/05bddbb76e656d254727f224b5566653e23522f5))
-* **vehicles:** use correct loading variable on form ([d644482](https://bitbucket.org/arphase/innovatech/commit/d644482b1cf500c0f70bf4d31cc7ab3e95852c31))
-
 ## [1.5.0](https://bitbucket.org/arphase/innovatech/compare/v1.4.0...v1.5.0) (2021-01-19)
 
 
@@ -112,6 +105,17 @@ All notable changes to this project will be documented in this file. See [standa
 * **vehicles:** list ([12431f2](https://bitbucket.org/arphase/innovatech/commit/12431f24febb73ef632a3a65921ae970e93a7d6b))
 * **vehicles:** update item ([7675a43](https://bitbucket.org/arphase/innovatech/commit/7675a43d61381a589eab1832d3f9af1c9bc0e926))
 * **vehicles:** update model ([c40d615](https://bitbucket.org/arphase/innovatech/commit/c40d615c39bebdf6448763b6522bbd6eb80f41ee))
+* **groups:** handle transactions correcly on create/update ([6d84946](https://bitbucket.org/arphase/innovatech/commit/6d849466bd3e9430c9d4b114a27aff39dac961ca))
+
+### [1.3.3](https://bitbucket.org/arphase/innovatech/compare/v1.3.2...v1.3.3) (2021-02-05)
+
+
+### Bug Fixes
+
+* **guarantees:** add vehicle creation in a transaction when creating guarantee ([5c70ce6](https://bitbucket.org/arphase/innovatech/commit/5c70ce662a5141b622cbd0deaf8f186be2b2970f))
+* **ui:** display correct error message for number inputs ([b7a3fe5](https://bitbucket.org/arphase/innovatech/commit/b7a3fe5750ba12d70b5b1be6e9f643a88bec60f0))
+* **vehicles:** add min validator to HP field ([05bddbb](https://bitbucket.org/arphase/innovatech/commit/05bddbb76e656d254727f224b5566653e23522f5))
+* **vehicles:** use correct loading variable on form ([d644482](https://bitbucket.org/arphase/innovatech/commit/d644482b1cf500c0f70bf4d31cc7ab3e95852c31))
 
 ### [1.3.2](https://bitbucket.org/arphase/innovatech/compare/v1.3.1...v1.3.2) (2021-01-22)
 
