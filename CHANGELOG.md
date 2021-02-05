@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.3](https://bitbucket.org/arphase/innovatech/compare/v1.3.2...v1.3.3) (2021-02-05)
+
+
+### Bug Fixes
+
+* **groups:** handle transactions correcly on create/update ([6d84946](https://bitbucket.org/arphase/innovatech/commit/6d849466bd3e9430c9d4b114a27aff39dac961ca))
+
 ### [1.3.2](https://bitbucket.org/arphase/innovatech/compare/v1.3.1...v1.3.2) (2021-01-22)
 
 
