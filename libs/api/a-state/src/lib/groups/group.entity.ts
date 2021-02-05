@@ -25,7 +25,7 @@ export class GroupEntity extends BaseEntity implements Group {
   @Column()
   email: string;
 
-  @Column()
+  @Column({ unique: true })
   name: string;
 
   @Column()
