@@ -35,10 +35,15 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #actionsMenu="matMenu">
-      <button mat-menu-item
-              [routerLink]="[item.id]">
-        Editar revisión
-      </button>
+      <div matTooltip="La revisión no se puede editar porque ya pasaron más de tres meses"
+           [matTooltipDisabled]="isEditable">
+        <button mat-menu-item
+                [routerLink]="[item.id]"
+                [disabled]="!isEditable">
+          Editar revisión
+        </button>
+      </div>
+
       <button mat-menu-item
               class="text-danger"
               (click)="delete.emit(item)">
