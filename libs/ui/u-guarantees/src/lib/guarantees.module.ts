@@ -26,12 +26,13 @@ import {
   IvtRadioFilterModule,
   IvtRowModule,
   IvtSearchbarModule,
+  IvtSuccessDialogModule,
   IvtTableModule,
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
-  IvtSuccessDialogModule
 } from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { GuaranteeFormComponent } from './components/guarantee-form/guarantee-form.component';
 import { GuaranteeInvoiceNumberDialogComponent } from './components/guarantee-invoice-number-dialog/guarantee-invoice-number-dialog.component';
@@ -81,8 +82,8 @@ import { GuaranteesComponent } from './guarantees.component';
     IvtEmptyModule,
     MatCardModule,
     MatButtonModule,
-    IvtSuccessDialogModule
-
+    IvtSuccessDialogModule,
+    NgxMaskModule,
   ],
   declarations: [
     GuaranteeFormComponent,

@@ -7,10 +7,9 @@ import { map } from 'rxjs/operators';
 
 import { getAuthUserRoleState } from '../../auth';
 import { IvtState } from '../../state';
-import { PermissionTypes } from '../enums/permission-types.enum';
 
-export const REQUIRED_PERMISSIONS = new InjectionToken<PermissionTypes[]>(
-  'Required Permission Types which the user must have to complete an action (CRUD privileges)'
+export const REQUIRED_ROLES = new InjectionToken<UserRoles[]>(
+  'Required Roles which the user must have to complete an action (CRUD privileges)'
 );
 
 @Injectable({
@@ -28,10 +27,10 @@ export class PermissionService {
     );
   }
 
-  hasUpdatePermission(): Observable<boolean> {
+  hasUpdatePermission(roles: UserRoles[]): Observable<boolean> {
     return this.userRole$.pipe(
       filterNil(),
-      map(role => role === UserRoles[UserRoles.superAdmin])
+      map(role => roles.includes(UserRoles[role]))
     );
   }
 }

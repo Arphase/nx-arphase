@@ -7,9 +7,10 @@ import {
 } from '@ivt/a-state';
 import { Revision, RevisionStatus, VehicleStatus } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Connection } from 'typeorm';
+import dayjs from 'dayjs';
+import { Connection, FindOneOptions } from 'typeorm';
 
 @Injectable()
 export class RevisionsService {
@@ -23,7 +24,7 @@ export class RevisionsService {
     const { vehicleId, sort, direction } = getRevisionsDto;
     const query = this.revisionRepository.createQueryBuilder('revision');
 
-    query.orderBy('revision.createdAt', sortDirection.desc);
+    query.leftJoinAndSelect('revision.vehicle', 'vehicle').orderBy('revision.createdAt', sortDirection.desc);
 
     if (vehicleId) {
       query.andWhere('(revision.vehicleId = :id)', { id: vehicleId });
@@ -55,14 +56,7 @@ export class RevisionsService {
       await newRevision.save();
       await newRevision.reload();
 
-      if (createRevisionDto.status === RevisionStatus.elegible) {
-        const query = this.vehicleRepository.createQueryBuilder('vehicle');
-        await query
-          .update()
-          .set({ status: VehicleStatus.elegible })
-          .where('id = :id', { id: newRevision.vehicleId })
-          .execute();
-      }
+      await this.updateVehicleStatus(createRevisionDto.status, newRevision.vehicleId);
 
       await queryRunner.commitTransaction();
       return newRevision;
@@ -74,21 +68,81 @@ export class RevisionsService {
   }
 
   async updateRevision(updateRevisionDto: UpdateRevisionDto): Promise<Revision> {
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
     const preloadedRevision = await this.revisionRepository.preload(updateRevisionDto);
-    await preloadedRevision.save();
-    await preloadedRevision.reload();
-    return preloadedRevision;
+
+    await this.validateRevisionExpiration(preloadedRevision);
+
+    try {
+      await preloadedRevision.save();
+      await preloadedRevision.reload();
+
+      await this.updateVehicleStatus(updateRevisionDto.status, preloadedRevision.vehicleId);
+
+      await queryRunner.commitTransaction();
+
+      return preloadedRevision;
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   async deleteRevision(id: number): Promise<Revision> {
-    const revision = await this.revisionRepository.findOne({ id });
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
 
+    const revision = await this.revisionRepository.findOne({ id });
     if (!revision) {
       throw new NotFoundException(`Revision with id "${id}" not found`);
     }
 
-    await this.revisionRepository.delete({ id });
+    await this.validateRevisionExpiration(revision);
 
-    return revision;
+    try {
+      await this.revisionRepository.delete({ id });
+
+      const mostRecentRevision = await this.revisionRepository.findOne({
+        vehicleId: revision.vehicleId,
+        order: { createdAt: sortDirection.desc },
+      } as FindOneOptions);
+
+      if (mostRecentRevision) {
+        await this.updateVehicleStatus(RevisionStatus[mostRecentRevision.status], mostRecentRevision.vehicleId);
+      }
+
+      await queryRunner.commitTransaction();
+      return revision;
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
+  }
+
+  async updateVehicleStatus(status: RevisionStatus, vehicleId: number): Promise<void> {
+    const statusMap: Record<RevisionStatus, VehicleStatus> = {
+      [RevisionStatus.elegible]: VehicleStatus.elegible,
+      [RevisionStatus.needsRepairs]: VehicleStatus.needsRevision,
+      [RevisionStatus.notElegible]: VehicleStatus.notElegible,
+    };
+
+    const query = this.vehicleRepository.createQueryBuilder('vehicle');
+    await query
+      .update()
+      .set({ status: statusMap[status] })
+      .where('id = :id AND status != :status', { id: vehicleId, status: VehicleStatus.hasActiveGuarantee })
+      .execute();
+  }
+
+  async validateRevisionExpiration(revision: Revision): Promise<void> {
+    if (dayjs(revision.createdAt).isBefore(dayjs().subtract(3, 'months'))) {
+      throw new ConflictException(`Revision with id ${revision.id} can't be edited because is expired`);
+    }
   }
 }

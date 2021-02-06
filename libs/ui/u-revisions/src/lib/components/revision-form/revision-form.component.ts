@@ -1,7 +1,15 @@
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Revision, RevisionStatus, Select } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
+
+export function createRevisionForm(): FormGroup {
+  return new FormGroup({
+    id: new FormControl(null),
+    observations: new FormControl(null, Validators.required),
+    status: new FormControl(null, Validators.required),
+  });
+}
 
 @Component({
   selector: 'ivt-revision-form',
@@ -24,14 +32,6 @@ export class RevisionFormComponent extends IvtFormComponent<Revision> implements
       value: RevisionStatus[RevisionStatus.notElegible],
     },
   ];
-  constructor(private fb: FormBuilder) {
-    super();
-    this.form = this.fb.group({
-      id: null,
-      observations: [null, Validators.required],
-      status: [null, Validators.required],
-    });
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.item && this.item) {

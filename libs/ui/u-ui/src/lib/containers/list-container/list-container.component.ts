@@ -83,6 +83,6 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
       .open(IvtConfirmationDialogComponent, { data: { message: this.deleteConfirmMessage } })
       .afterClosed()
       .pipe(take(1), filterNil())
-      .subscribe(() => this.entityCollectionService.delete(item));
+      .subscribe(() => this.entityCollectionService.delete(item, { isOptimistic: false }));
   }
 }

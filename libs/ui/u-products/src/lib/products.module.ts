@@ -16,6 +16,7 @@ import {
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
+import { NgxMaskModule } from 'ngx-mask';
 import { ShowdownModule } from 'ngx-showdown';
 
 import { ProductFormComponent } from './components/product-form/product-form.component';
@@ -46,6 +47,7 @@ import { ProductsComponent } from './products.component';
     IvtFolioModule,
     IvtEmptyModule,
     MatIconModule,
+    NgxMaskModule,
   ],
   declarations: [
     ProductFormComponent,

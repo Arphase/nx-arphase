@@ -33,7 +33,7 @@ export class CompanyEntity extends BaseEntity implements Company {
   @Column()
   email: string;
 
-  @Column()
+  @Column({ unique: true })
   businessName: string;
 
   @Column({ unique: true })

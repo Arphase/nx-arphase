@@ -13,9 +13,18 @@ import {
   UpdateGuaranteeDto,
   VehicleRepository,
 } from '@ivt/a-state';
-import { Client, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
+import {
+  Client,
+  GuaranteeSummary,
+  isVehicleElegible,
+  PersonTypes,
+  statusLabels,
+  User,
+  UserRoles,
+  VehicleStatus,
+} from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import fs from 'fs';
@@ -25,11 +34,7 @@ import { Connection } from 'typeorm';
 import { promisify } from 'util';
 import * as XLSX from 'xlsx';
 
-import {
-  applyGuaranteeFilter,
-  applyGuaranteeSharedFilters,
-  getGuaranteePdfTemplate,
-} from './guarantees.service.constants';
+import { applyGuaranteeFilter, applyGuaranteeSharedFilters, getGuaranteePdfTemplate } from './guarantees.service.constants';
 
 @Injectable()
 export class GuaranteesService {
@@ -196,11 +201,17 @@ export class GuaranteesService {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
+    const vehicle = this.vehicleRepository.create({
+      ...createGuaranteeDto.vehicle,
+      userId: user.id,
+    });
+    await vehicle.reload();
+    if (!isVehicleElegible(vehicle)) {
+      throw new ConflictException(`Vehicle with id ${vehicle.id} isn't elegible for a guarantee`);
+    }
+
     try {
-      const vehicle = this.vehicleRepository.create({
-        ...createGuaranteeDto.vehicle,
-        userId: user.id,
-      });
+      vehicle.status = VehicleStatus.hasActiveGuarantee;
       await vehicle.save();
 
       createGuaranteeDto = this.omitInfo(createGuaranteeDto);
@@ -256,7 +267,7 @@ export class GuaranteesService {
       `,
     });
     const buffer = await page.pdf({
-      format: 'A4',
+      format: 'a4',
       margin: {
         left: '1in',
         top: '1in',

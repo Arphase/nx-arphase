@@ -71,6 +71,12 @@ export class SpaComponent {
           path: ['vehicles'],
           display: true,
         },
+        {
+          icon: 'construction',
+          header: 'Revisiones',
+          path: ['revisions'],
+          display: true,
+        },
       ])
     );
   }

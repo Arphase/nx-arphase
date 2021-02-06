@@ -30,9 +30,12 @@
                       (nextBatchEmitter)="getMoreItems.emit()">
     <ng-template let-item>
       <ivt-vehicle-row [item]="item"
+                       [canManageRevisions]="canManageRevisions"
+                       [canCreateReviewRequest]="canCreateReviewRequest"
                        (delete)="delete.emit($event)"
                        (goToRevisions)="goToRevisions.emit($event)"
-                       (createGuarantee)="createGuarantee.emit($event)"></ivt-vehicle-row>
+                       (createGuarantee)="createGuarantee.emit($event)"
+                       (createRevisionRequest)="createRevisionRequest.emit($event)"></ivt-vehicle-row>
     </ng-template>
   </ivt-virtual-scroll>
 </ng-container>
