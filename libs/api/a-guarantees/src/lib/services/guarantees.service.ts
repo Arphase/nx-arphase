@@ -34,11 +34,7 @@ import { Connection } from 'typeorm';
 import { promisify } from 'util';
 import * as XLSX from 'xlsx';
 
-import {
-  applyGuaranteeFilter,
-  applyGuaranteeSharedFilters,
-  getGuaranteePdfTemplate,
-} from './guarantees.service.constants';
+import { applyGuaranteeFilter, applyGuaranteeSharedFilters, getGuaranteePdfTemplate } from './guarantees.service.constants';
 
 @Injectable()
 export class GuaranteesService {
@@ -271,7 +267,7 @@ export class GuaranteesService {
       `,
     });
     const buffer = await page.pdf({
-      format: 'A4',
+      format: 'a4',
       margin: {
         left: '1in',
         top: '1in',
