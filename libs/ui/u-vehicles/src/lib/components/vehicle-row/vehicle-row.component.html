@@ -34,10 +34,16 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #actionsMenu="matMenu">
-      <button mat-menu-item
-              (click)="createGuarantee.emit(item)">
-        Generar garantía
-      </button>
+
+      <div matTooltip="Solo se pueden generar garantías a los vehículos aptos para garantizar"
+           [matTooltipDisabled]="isElegible">
+        <button mat-menu-item
+                [disabled]="!isElegible"
+                (click)="createGuarantee.emit(item)">
+          Generar garantía
+        </button>
+      </div>
+
       <button *ngIf="canManageRevisions"
               mat-menu-item
               (click)="goToRevisions.emit(item)">

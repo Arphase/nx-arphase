@@ -7,8 +7,9 @@ import {
 } from '@ivt/a-state';
 import { Revision, RevisionStatus, VehicleStatus } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import dayjs from 'dayjs';
 import { Connection, FindOneOptions } from 'typeorm';
 
 @Injectable()
@@ -71,15 +72,18 @@ export class RevisionsService {
     await queryRunner.connect();
     await queryRunner.startTransaction();
 
-    try {
-      const preloadedRevision = await this.revisionRepository.preload(updateRevisionDto);
+    const preloadedRevision = await this.revisionRepository.preload(updateRevisionDto);
 
+    await this.validateRevisionExpiration(preloadedRevision);
+
+    try {
       await preloadedRevision.save();
       await preloadedRevision.reload();
 
       await this.updateVehicleStatus(updateRevisionDto.status, preloadedRevision.vehicleId);
 
       await queryRunner.commitTransaction();
+
       return preloadedRevision;
     } catch (err) {
       await queryRunner.rollbackTransaction();
@@ -93,13 +97,14 @@ export class RevisionsService {
     await queryRunner.connect();
     await queryRunner.startTransaction();
 
+    const revision = await this.revisionRepository.findOne({ id });
+    if (!revision) {
+      throw new NotFoundException(`Revision with id "${id}" not found`);
+    }
+
+    await this.validateRevisionExpiration(revision);
+
     try {
-      const revision = await this.revisionRepository.findOne({ id });
-
-      if (!revision) {
-        throw new NotFoundException(`Revision with id "${id}" not found`);
-      }
-
       await this.revisionRepository.delete({ id });
 
       const mostRecentRevision = await this.revisionRepository.findOne({
@@ -133,5 +138,11 @@ export class RevisionsService {
       .set({ status: statusMap[status] })
       .where('id = :id AND status != :status', { id: vehicleId, status: VehicleStatus.hasActiveGuarantee })
       .execute();
+  }
+
+  async validateRevisionExpiration(revision: Revision): Promise<void> {
+    if (dayjs(revision.createdAt).isBefore(dayjs().subtract(3, 'months'))) {
+      throw new ConflictException(`Revision with id ${revision.id} can't be edited because is expired`);
+    }
   }
 }

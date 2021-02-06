@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { VehiclesDataModule } from '@ivt/u-state';
 import {
   IvtEmptyModule,
@@ -49,6 +50,7 @@ import { VehiclesComponent } from './vehicles.component';
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
+    MatTooltipModule,
   ],
   declarations: [
     VehicleListComponent,

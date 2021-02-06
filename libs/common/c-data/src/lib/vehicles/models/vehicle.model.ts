@@ -3,7 +3,7 @@ import { Guarantee } from '../../guarantees';
 import { RevisionRequest } from '../../revision-requests';
 import { Revision } from '../../revisions';
 import { User } from '../../users';
-import { VehicleStatus } from '../enusm';
+import { VehicleStatus } from '../enums';
 
 export interface Vehicle {
   id: number;

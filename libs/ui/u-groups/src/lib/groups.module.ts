@@ -22,6 +22,7 @@ import {
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { CompanyFormDialogComponent } from './components/company-form-dialog/company-form-dialog.component';
 import { CompanyRowComponent } from './components/company-row/company-row.component';
@@ -60,6 +61,7 @@ import { GroupsComponent } from './groups.component';
     IvtPhoneModule,
     MatCardModule,
     MatButtonModule,
+    NgxMaskModule
   ],
   declarations: [
     GroupsComponent,

@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import {
   IvtEmptyModule,
   IvtEmptyStateModule,
@@ -44,7 +45,8 @@ import { RevisionsComponent } from './revisions.component';
     IvtEmptyModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatTooltipModule,
   ],
   declarations: [
     RevisionFormComponent,

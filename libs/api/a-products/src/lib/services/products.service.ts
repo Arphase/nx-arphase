@@ -94,7 +94,7 @@ export class ProductService {
       `,
     });
     const buffer = await page.pdf({
-      format: 'A4',
+      format: 'a4',
       printBackground: true,
       margin: {
         left: '1in',

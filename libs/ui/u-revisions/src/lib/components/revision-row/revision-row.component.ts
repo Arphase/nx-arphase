@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Revision, RevisionStatus } from '@ivt/c-data';
 import { IvtRowComponent } from '@ivt/u-ui';
+import dayjs from 'dayjs';
 
 import { revisionStatusLabels } from '../revision-form/revision-form.constants';
 
@@ -16,6 +17,10 @@ export class RevisionRowComponent extends IvtRowComponent<Revision> {
   backgroundClasses: Record<string, string> = {
     [RevisionStatus[RevisionStatus.notElegible]]: 'bg-alert',
     [RevisionStatus[RevisionStatus.needsRepairs]]: 'bg-warning',
-    [RevisionStatus[RevisionStatus.elegible]]: 'bg-success'
+    [RevisionStatus[RevisionStatus.elegible]]: 'bg-success',
   };
+
+  get isEditable(): boolean {
+    return dayjs(this.item.createdAt).isAfter(dayjs().subtract(3, 'months'));
+  }
 }
