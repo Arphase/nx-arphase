@@ -74,9 +74,7 @@ export class RevisionsService {
 
     const preloadedRevision = await this.revisionRepository.preload(updateRevisionDto);
 
-    if (dayjs(preloadedRevision.createdAt).isBefore(dayjs().subtract(3, 'months'))) {
-      throw new ConflictException(`Revision with id ${preloadedRevision.id} can't be edited because is expired`);
-    }
+    await this.validateRevisionExpiration(preloadedRevision);
 
     try {
       await preloadedRevision.save();
@@ -103,6 +101,8 @@ export class RevisionsService {
     if (!revision) {
       throw new NotFoundException(`Revision with id "${id}" not found`);
     }
+
+    await this.validateRevisionExpiration(revision);
 
     try {
       await this.revisionRepository.delete({ id });
@@ -138,5 +138,11 @@ export class RevisionsService {
       .set({ status: statusMap[status] })
       .where('id = :id AND status != :status', { id: vehicleId, status: VehicleStatus.hasActiveGuarantee })
       .execute();
+  }
+
+  async validateRevisionExpiration(revision: Revision): Promise<void> {
+    if (dayjs(revision.createdAt).isBefore(dayjs().subtract(3, 'months'))) {
+      throw new ConflictException(`Revision with id ${revision.id} can't be edited because is expired`);
+    }
   }
 }

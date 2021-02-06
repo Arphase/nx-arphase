@@ -44,11 +44,17 @@
         </button>
       </div>
 
-      <button mat-menu-item
-              class="text-danger"
-              (click)="delete.emit(item)">
-        Eliminar revisión
-      </button>
+      <div matTooltip="La revisión no se puede eliminar porque ya pasaron más de tres meses"
+           [matTooltipDisabled]="isEditable">
+        <button mat-menu-item
+                class="text-danger"
+                [disabled]="!isEditable"
+                (click)="delete.emit(item)">
+          Eliminar revisión
+        </button>
+      </div>
+
+
     </mat-menu>
   </div>
 </ivt-row>
