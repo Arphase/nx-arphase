@@ -10,7 +10,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Guarantee, PersonTypes, Select, Vehicle } from '@ivt/c-data';
+import { Guarantee, isVehicleElegible, PersonTypes, Select, Vehicle } from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
 import { createAddressForm, IvtAddressFormComponent, IvtFormComponent, IvtValidators } from '@ivt/u-ui';
 import { createVehicleForm, VehicleFormComponent } from '@ivt/u-vehicles';
@@ -96,6 +96,10 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
 
   get moralInfoForm(): FormGroup {
     return this.client.get('moralInfo') as FormGroup;
+  }
+
+  get isElegible(): boolean {
+    return this.currentVehicle && isVehicleElegible(this.currentVehicle);
   }
 
   ngOnChanges(changes: SimpleChanges) {

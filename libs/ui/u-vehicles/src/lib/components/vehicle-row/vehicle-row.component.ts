@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Vehicle, VehicleStatus } from '@ivt/c-data';
+import { isVehicleElegible, Vehicle, VehicleStatus } from '@ivt/c-data';
 import { IvtRowComponent } from '@ivt/u-ui';
 
 @Component({
@@ -27,4 +27,8 @@ export class VehicleRowComponent extends IvtRowComponent<Vehicle> {
   @Output() goToRevisions = new EventEmitter<Vehicle>();
   @Output() createGuarantee = new EventEmitter<Vehicle>();
   @Output() createRevisionRequest = new EventEmitter<Vehicle>();
+
+  get isElegible(): boolean {
+    return isVehicleElegible(this.item);
+  }
 }

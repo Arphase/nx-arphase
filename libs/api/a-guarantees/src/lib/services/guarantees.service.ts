@@ -13,9 +13,18 @@ import {
   UpdateGuaranteeDto,
   VehicleRepository,
 } from '@ivt/a-state';
-import { Client, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles, VehicleStatus } from '@ivt/c-data';
+import {
+  Client,
+  GuaranteeSummary,
+  isVehicleElegible,
+  PersonTypes,
+  statusLabels,
+  User,
+  UserRoles,
+  VehicleStatus,
+} from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import fs from 'fs';
@@ -196,12 +205,17 @@ export class GuaranteesService {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
+    const vehicle = this.vehicleRepository.create({
+      ...createGuaranteeDto.vehicle,
+      userId: user.id,
+    });
+    await vehicle.reload();
+    if (!isVehicleElegible(vehicle)) {
+      throw new ConflictException(`Vehicle with id ${vehicle.id} isn't elegible for a guarantee`);
+    }
+
     try {
-      const vehicle = this.vehicleRepository.create({
-        ...createGuaranteeDto.vehicle,
-        userId: user.id,
-        status: VehicleStatus.hasActiveGuarantee
-      });
+      vehicle.status = VehicleStatus.hasActiveGuarantee;
       await vehicle.save();
 
       createGuaranteeDto = this.omitInfo(createGuaranteeDto);
