@@ -1,4 +1,4 @@
-<div nz-row [nzGutter]="[24, 8]"
+<div nz-row
      class="mb-3">
   <div nz-col
        nzSpan="24">
@@ -6,12 +6,13 @@
   </div>
 </div>
 
-<div nz-row [nzGutter]="[24, 8]">
+<div nz-row>
   <div nz-col
        nzSpan="24">
     <mat-card>
       <ng-container *ngIf="data">
-        <div nz-row [nzGutter]="[24, 8]"
+        <div nz-row
+             [nzGutter]="[24, 8]"
              class="mb-3">
           <div nz-col
                nzSpan="24"
@@ -20,8 +21,9 @@
           </div>
         </div>
 
-        <div nz-row [nzGutter]="[24, 8]"
-             class="bg-light mx-0 mb-4 rounded mt-3 py-3 px-2">
+        <div nz-row
+             [nzGutter]="[24, 8]"
+             class="mx-0 mb-4 rounded mt-3 py-3 px-2">
           <div nz-col
                class=" px-1 my-2 filter-column">
             <ivt-date-filter class="mr-3"
@@ -64,7 +66,7 @@
         </ivt-empty-state>
 
         <div *ngIf="!isEmpty"
-             nz-row [nzGutter]="[24, 8]">
+             nz-row>
           <div nz-col
                nzMd="16"
                nzLg="24"
@@ -83,7 +85,7 @@
           <div nz-col
                nzMd="8"
                nzLg="24">
-            <div nz-row [nzGutter]="[24, 8]"
+            <div nz-row
                  class="my-3"
                  *ngFor="let item of labels; let i = index">
               <div nz-col

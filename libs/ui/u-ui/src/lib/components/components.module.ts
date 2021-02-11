@@ -11,7 +11,6 @@ import { IvtFormModule } from './form';
 import { IvtFormFieldModule } from './form-field';
 import { IvtGoBackTitleModule } from './go-back-title';
 import { IvtListModule } from './list';
-import { IvtNavbarModule } from './navbar';
 import { IvtRowModule } from './row';
 import { IvtSearchbarModule } from './searchbar';
 import { IvtStatusMessageModule } from './status-message';
@@ -35,7 +34,6 @@ const MODULES = [
   IvtFormFieldModule,
   IvtGoBackTitleModule,
   IvtListModule,
-  IvtNavbarModule,
   IvtRadioFilterModule,
   IvtRowModule,
   IvtSearchbarModule,

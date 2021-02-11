@@ -6,39 +6,6 @@
   height: 64px;
   margin-left: auto;
 
-  &__avatar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 32px;
-    width: 32px;
-    border-radius: 50%;
-    background-color: #ebf0fc;
-
-    .profile__avatar-text {
-      font-size: 10.7px;
-      line-height: 10.7px;
-      color: $text-color;
-    }
-  }
-
-  &__avatar-menu {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 86px;
-    width: 86px;
-    border-radius: 50%;
-    background-color: #ebf0fc;
-    margin-right: 25px;
-
-    .profile__avatar-menu-text {
-      font-size: $font-size-xlarge;
-      font-weight: $bold-font-weight;
-      color: $text-color;
-    }
-  }
-
   .info__name {
     font-size: $font-small;
     line-height: $font-size-medium;
@@ -72,11 +39,6 @@
       padding: 24px 32px;
     }
 
-    .menu-content__info {
-      display: flex;
-      flex-flow: column;
-    }
-
     .menu-info__name {
       font-weight: 500;
       font-size: $font-size-large;
@@ -97,9 +59,4 @@
       border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
   }
-}
-
-.btn.menu-bar-link {
-  font-size: $font-size;
-  background-color: $primary-color;
 }

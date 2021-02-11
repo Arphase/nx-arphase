@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { MenuItem } from '@ivt/c-data';
 import {
   fromAuth,
@@ -20,34 +21,43 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpaComponent {
-  opened: boolean;
+  isCollapsed = true;
   menuItems$ = this.getMenuItems();
   name$ = this.store.pipe(select(getAuthUserNameState));
   email$ = this.store.pipe(select(getAuthUserEmailState));
   version = this.config.version;
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+
   constructor(
     private store: Store<IvtState>,
     private permissionService: PermissionService,
-    @Inject(IVT_UI_STATE_CONFIGURATION) private config: IvtUiStateConfiguration
-  ) {}
+    @Inject(IVT_UI_STATE_CONFIGURATION) private config: IvtUiStateConfiguration,
+    private cdr: ChangeDetectorRef,
+    private media: MediaMatcher
+  ) {
+    this.mobileQuery = this.media.matchMedia('(max-width: 769px)');
+    this._mobileQueryListener = () => this.cdr.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
 
   getMenuItems(): Observable<MenuItem[]> {
     return this.permissionService.hasReadPermission().pipe(
       map(hasPermission => [
         {
-          icon: 'insert_chart_outlined',
+          icon: 'pie-chart',
           header: 'Dashboard',
           path: ['dashboard'],
           display: true,
         },
         {
-          icon: 'description',
+          icon: 'file-text',
           header: 'Garantías',
           path: ['guarantees'],
           display: true,
         },
         {
-          icon: 'groups',
+          icon: 'usergroup-add',
           header: 'Grupos',
           path: ['groups'],
           display: hasPermission,
@@ -60,37 +70,25 @@ export class SpaComponent {
         //   display: hasPermission,
         // },
         {
-          icon: 'face',
+          icon: 'user',
           header: 'Usuarios',
           path: ['users'],
           display: true,
         },
         {
-          icon: 'directions_car',
+          icon: 'car',
           header: 'Vehículos',
           path: ['vehicles'],
           display: true,
         },
         {
-          icon: 'construction',
+          icon: 'tool',
           header: 'Revisiones',
           path: ['revisions'],
           display: true,
         },
       ])
     );
-  }
-
-  onOpenMenu(): void {
-    this.opened = true;
-  }
-
-  onCloseMenu(): void {
-    this.opened = false;
-  }
-
-  onToggleNavbar(): void {
-    this.opened = !this.opened;
   }
 
   logout(): void {

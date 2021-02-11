@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IvtMenuBarComponent } from './menu-bar.component';
+import { ProfileMenuComponent } from './profile-menu.component';
 
-describe('IvtMenuBarComponent', () => {
-  let component: IvtMenuBarComponent;
-  let fixture: ComponentFixture<IvtMenuBarComponent>;
+describe('ProfileMenuComponent', () => {
+  let component: ProfileMenuComponent;
+  let fixture: ComponentFixture<ProfileMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [IvtMenuBarComponent],
+      declarations: [ProfileMenuComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IvtMenuBarComponent);
+    fixture = TestBed.createComponent(ProfileMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

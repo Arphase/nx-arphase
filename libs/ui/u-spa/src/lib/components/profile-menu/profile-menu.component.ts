@@ -16,7 +16,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class IvtProfileMenuComponent implements OnChanges {
+export class ProfileMenuComponent implements OnChanges {
   @Input() name: string;
   @Input() email: string;
   avatarText: string;
