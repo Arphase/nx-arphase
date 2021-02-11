@@ -1,4 +1,6 @@
-<form [formGroup]="form">
+<form nz-form
+      nzLayout="vertical"
+      [formGroup]="form">
   <div nz-row
        [nzGutter]="[24, 8]">
     <div *ngIf="showCompanyInput"
@@ -14,14 +16,15 @@
         </mat-select>
       </ivt-form-field>
     </div>
-    <div nz-col
-         [nzSpan]="showCompanyInput ? 8 : 12">
-      <ivt-form-field label="VIN">
-        <input ivtInput
-               maxlength="17"
-               formControlName="vin">
-      </ivt-form-field>
-    </div>
+    <nz-form-item>
+      <nz-form-label>VIN</nz-form-label>
+      <nz-form-control apsAutoError
+                       [nzSpan]="showCompanyInput ? 8 : 12">
+        <input nz-input
+               formControlName="vin"
+               maxlength="17" />
+      </nz-form-control>
+    </nz-form-item>
     <div nz-col
          [nzSpan]="showCompanyInput ? 8 : 12">
       <ivt-form-field label="N° de motor">

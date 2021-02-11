@@ -1,6 +1,6 @@
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import en from '@angular/common/locales/en';
+import es from '@angular/common/locales/es-MX';
 import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -12,7 +12,7 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { IVT_UI_STATE_CONFIGURATION, IvtStateModule, IvtUiStateConfiguration } from '@ivt/u-state';
 import * as Sentry from '@sentry/angular';
-import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
+import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NgxMaskModule } from 'ngx-mask';
 
@@ -25,7 +25,7 @@ const antDesignIcons = AllIcons as {
 };
 const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key]);
 
-registerLocaleData(en);
+registerLocaleData(es);
 
 const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
   apiUrl: environment.apiUrl,
@@ -66,7 +66,7 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
       deps: [Sentry.TraceService],
       multi: true,
     },
-    { provide: NZ_I18N, useValue: en_US },
+    { provide: NZ_I18N, useValue: es_ES },
   ],
   bootstrap: [AppComponent],
 })

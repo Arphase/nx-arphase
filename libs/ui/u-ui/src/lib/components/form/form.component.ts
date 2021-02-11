@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 
-import { collectFormErrors } from '../../functions';
+import { collectFormErrors, updateFormControlsValueAndValidity } from '../../functions';
 import { IvtSubscriberComponent } from '../subscriber';
 
 @Component({
@@ -27,6 +27,8 @@ export class IvtFormComponent<T> extends IvtSubscriberComponent {
       this.submitForm.emit(this.values);
     } else {
       this.form.markAllAsTouched();
+      setTimeout(() => updateFormControlsValueAndValidity(this.form));
+
       console.info('Tried to submit form with errors:', {
         form: this.form.errors,
 

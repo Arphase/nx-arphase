@@ -9,6 +9,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApsValidators } from '@arphase/ui';
 import { Select, Vehicle, VEHICLE_VIN_LENGTH } from '@ivt/c-data';
 import { IvtFormComponent, IvtValidators } from '@ivt/u-ui';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -27,7 +28,7 @@ export function createVehicleForm(vehicle?: Vehicle) {
       Validators.max(todayYear + 1),
     ]),
     vin: new FormControl('', [
-      Validators.required,
+      ApsValidators.required,
       Validators.minLength(VEHICLE_VIN_LENGTH),
       Validators.maxLength(VEHICLE_VIN_LENGTH),
     ]),

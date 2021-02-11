@@ -26,18 +26,18 @@ import { filter, startWith, takeUntil } from 'rxjs/operators';
 
 import { IvtInputDirective } from '../../directives/input/input.directive';
 
-enum ValidatorTypes {
-  required = 'required',
-  max = 'max',
-  min = 'min',
-  email = 'email',
-  rfc = 'rfc',
-  minlength = 'minlength',
-  maxlength = 'maxlength',
-  matDatepickerParse = 'matDatepickerParse',
-  phone = 'phone',
-  requiredNumber = 'requiredNumber',
-}
+// enum ValidatorTypes {
+//   required = 'required',
+//   max = 'max',
+//   min = 'min',
+//   email = 'email',
+//   rfc = 'rfc',
+//   minlength = 'minlength',
+//   maxlength = 'maxlength',
+//   matDatepickerParse = 'matDatepickerParse',
+//   phone = 'phone',
+//   requiredNumber = 'requiredNumber',
+// }
 
 @Component({
   selector: 'ivt-form-field',
@@ -95,24 +95,24 @@ export class IvtFormFieldComponent extends MatFormField implements AfterContentI
   }
 
   setErrorMessage(errors: Record<string, Record<string, string>>): void {
-    const errorKeys = Object.keys(errors);
-    const firstError = errorKeys.find(errorKey => errorKey === ValidatorTypes.matDatepickerParse) || errorKeys[0];
-    const errorValue = errors[firstError];
-    const label = this.label?.toLowerCase();
+    // const errorKeys = Object.keys(errors);
+    // const firstError = errorKeys.find(errorKey => errorKey === ValidatorTypes.matDatepickerParse) || errorKeys[0];
+    // const errorValue = errors[firstError];
+    // const label = this.label?.toLowerCase();
     const errorMessages = {
-      [ValidatorTypes.required]: `El campo ${label} es requerido`,
-      [ValidatorTypes.max]: `El campo ${label} no debe ser mayor a ${errorValue.max}`,
-      [ValidatorTypes.min]: `El campo ${label} debe ser mayor o igual a ${errorValue.min}`,
-      [ValidatorTypes.email]: `El campo ${label} no tiene un formato incorrecto`,
-      [ValidatorTypes.rfc]: `El campo ${label} no tiene formato de RFC`,
-      [ValidatorTypes.minlength]: `El campo ${label} debe tener al menos ${errorValue.requiredLength} caracteres`,
-      [ValidatorTypes.maxlength]: `El campo ${label} debe tener menos de ${errorValue.requiredLength + 1} caracteres`,
-      [ValidatorTypes.matDatepickerParse]: `El campo ${label} tiene un formato de fecha incorrecto`,
-      [ValidatorTypes.phone]: `El campo ${label} tiene un formato incorrecto`,
-      [ValidatorTypes.requiredNumber]: `El campo ${label} no se ha llenado o tiene un formato de número incorrecto`,
+      // [ValidatorTypes.required]: `El campo ${label} es requerido`,
+      // [ValidatorTypes.max]: `El campo ${label} no debe ser mayor a ${errorValue.max}`,
+      // [ValidatorTypes.min]: `El campo ${label} debe ser mayor o igual a ${errorValue.min}`,
+      // [ValidatorTypes.email]: `El campo ${label} no tiene un formato incorrecto`,
+      // [ValidatorTypes.rfc]: `El campo ${label} no tiene formato de RFC`,
+      // [ValidatorTypes.minlength]: `El campo ${label} debe tener al menos ${errorValue.requiredLength} caracteres`,
+      // [ValidatorTypes.maxlength]: `El campo ${label} debe tener menos de ${errorValue.requiredLength + 1} caracteres`,
+      // [ValidatorTypes.matDatepickerParse]: `El campo ${label} tiene un formato de fecha incorrecto`,
+      // [ValidatorTypes.phone]: `El campo ${label} tiene un formato incorrecto`,
+      // [ValidatorTypes.requiredNumber]: `El campo ${label} no se ha llenado o tiene un formato de número incorrecto`,
     };
 
-    this.error = errorMessages[firstError];
+    this.error = '';
   }
 
   ngOnDestroy() {
