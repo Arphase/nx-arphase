@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { DasboardStateModule } from '@ivt/u-state';
-import { IvtCheckboxFilterModule, IvtDateFilterModule, IvtEmptyStateModule } from '@ivt/u-ui';
+import { IvtCheckboxFilterModule, IvtDateFilterModule } from '@ivt/u-ui';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { ChartsModule } from 'ng2-charts';
 
@@ -19,7 +20,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     ChartsModule,
     MatCardModule,
     MatIconModule,
-    IvtEmptyStateModule,
+    NzEmptyModule,
     IvtDateFilterModule,
     IvtCheckboxFilterModule,
     NzGridModule,

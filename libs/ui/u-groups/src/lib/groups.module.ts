@@ -8,7 +8,6 @@ import { PermissionsModule } from '@ivt/u-state';
 import {
   IvtAddressFormModule,
   IvtEmptyModule,
-  IvtEmptyStateModule,
   IvtExpansionPanelModule,
   IvtFormFieldModule,
   IvtGoBackTitleModule,
@@ -21,6 +20,7 @@ import {
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NgxMaskModule } from 'ngx-mask';
@@ -53,7 +53,7 @@ import { GroupsComponent } from './groups.component';
     IvtRowModule,
     IvtTextTruncateTooltipModule,
     IvtEmptyModule,
-    IvtEmptyStateModule,
+    NzEmptyModule,
     IvtTableHeaderModule,
     IvtVirtualScrollModule,
     IvtGoBackTitleModule,

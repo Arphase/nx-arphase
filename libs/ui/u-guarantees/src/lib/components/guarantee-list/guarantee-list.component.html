@@ -109,9 +109,9 @@
   </div>
 </div>
 
-<ivt-empty-state *ngIf="!list.length"
-                 message="No existen garantías que se cumplan con el criterio de búsqueda">
-</ivt-empty-state>
+<nz-empty *ngIf="!list.length"
+          nzNotFoundContent="No existen garantías que se cumplan con el criterio de búsqueda">
+</nz-empty>
 
 <ng-container *ngIf="list.length">
   <ivt-table-header class="d-block mt-4"

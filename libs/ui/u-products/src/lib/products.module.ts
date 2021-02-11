@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import {
   IvtEmptyModule,
-  IvtEmptyStateModule,
   IvtFileUploadModule,
   IvtFolioModule,
   IvtFormFieldModule,
@@ -16,6 +15,7 @@ import {
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NgxMaskModule } from 'ngx-mask';
@@ -40,7 +40,7 @@ import { ProductsComponent } from './products.component';
     IvtInputModule,
     IvtFileUploadModule,
     MatSelectModule,
-    IvtEmptyStateModule,
+    NzEmptyModule,
     IvtTableModule,
     IvtVirtualScrollModule,
     IvtFileUploadModule,

@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NzButtonModule } from 'ng-zorro-antd/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import {
   IvtCheckboxFilterModule,
   IvtEmptyModule,
-  IvtEmptyStateModule,
   IvtRowModule,
   IvtSearchbarModule,
   IvtTableModule,
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 
 import { UserListComponent } from './components/user-list/user-list.component';
@@ -28,7 +28,7 @@ import { UsersComponent } from './users.component';
     IvtSearchbarModule,
     MatIconModule,
     IvtCheckboxFilterModule,
-    IvtEmptyStateModule,
+    NzEmptyModule,
     IvtTableModule,
     IvtVirtualScrollModule,
     IvtRowModule,

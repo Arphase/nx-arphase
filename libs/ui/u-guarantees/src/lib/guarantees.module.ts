@@ -15,7 +15,6 @@ import {
   IvtCheckboxFilterModule,
   IvtDateFilterModule,
   IvtEmptyModule,
-  IvtEmptyStateModule,
   IvtExpansionPanelModule,
   IvtFolioModule,
   IvtFormFieldModule,
@@ -31,6 +30,7 @@ import {
 } from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NgxMaskModule } from 'ngx-mask';
@@ -71,7 +71,7 @@ import { GuaranteesComponent } from './guarantees.component';
     IvtDateFilterModule,
     IvtCheckboxFilterModule,
     IvtRadioFilterModule,
-    IvtEmptyStateModule,
+    NzEmptyModule,
     IvtTableModule,
     IvtVirtualScrollModule,
     MatIconModule,

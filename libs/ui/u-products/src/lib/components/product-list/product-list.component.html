@@ -1,5 +1,8 @@
-<div nz-row [nzGutter]="[24, 8]" class="mb-3">
-  <div nz-col class="flex-end pr-0">
+<div nz-row
+     [nzGutter]="[24, 8]"
+     class="mb-3">
+  <div nz-col
+       class="flex-end pr-0">
     <button nz-button
             [routerLink]="['new']"
             type="button"
@@ -9,9 +12,9 @@
   </div>
 </div>
 
-<ivt-empty-state *ngIf="!list.length"
-                 message="No existen productos.">
-</ivt-empty-state>
+<nz-empty *ngIf="!list.length"
+          nzNotFoundContent="No existen productos.">
+</nz-empty>
 
 <ng-container *ngIf="list.length">
   <ivt-table-header class="d-block mt-4"

@@ -61,9 +61,9 @@
           </div>
         </div>
 
-        <ivt-empty-state *ngIf="isEmpty"
-                         message="No hay datos">
-        </ivt-empty-state>
+        <nz-empty *ngIf="isEmpty"
+                  nzNotFoundContent="No hay datos">
+        </nz-empty>
 
         <div *ngIf="!isEmpty"
              nz-row>

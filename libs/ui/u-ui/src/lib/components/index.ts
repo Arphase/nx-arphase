@@ -1,7 +1,6 @@
 export * from './address-form';
 export * from './autocomplete';
 export * from './confirmation-dialog';
-export * from './empty-state';
 export * from './expansion-panel';
 export * from './file-upload';
 export * from './filters';

@@ -12,9 +12,9 @@
   </div>
 </div>
 
-<ivt-empty-state *ngIf="!list?.length"
-                 message="No hay compañías">
-</ivt-empty-state>
+<nz-empty *ngIf="!list?.length"
+          nzNotFoundContent="No hay compañías">
+</nz-empty>
 
 <ng-container *ngIf="list?.length">
   <ivt-table-header class="d-block mt-4"

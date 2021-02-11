@@ -1,11 +1,15 @@
-<div nz-row [nzGutter]="[24, 8]">
-  <div nz-col class="-12 col-md-6">
+<div nz-row
+     [nzGutter]="[24, 8]">
+  <div nz-col
+       class="-12 col-md-6">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
 
-  <div nz-col class="-6 col-md-2"></div>
+  <div nz-col
+       class="-6 col-md-2"></div>
 
-  <div nz-col class="-6 col-md-4 flex-end pr-0">
+  <div nz-col
+       class="-6 col-md-4 flex-end pr-0">
     <button nz-button
             [routerLink]="['new']"
             type="button"
@@ -15,9 +19,9 @@
   </div>
 </div>
 
-<ivt-empty-state *ngIf="!list.length"
-                 message="No existen vehículos.">
-</ivt-empty-state>
+<nz-empty *ngIf="!list.length"
+          nzNotFoundContent="No existen vehículos.">
+</nz-empty>
 
 <ng-container *ngIf="list.length">
   <ivt-table-header class="d-block mt-4"

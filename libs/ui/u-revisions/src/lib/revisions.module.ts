@@ -8,7 +8,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {
   IvtEmptyModule,
-  IvtEmptyStateModule,
   IvtFormFieldModule,
   IvtGoBackTitleModule,
   IvtInputModule,
@@ -18,6 +17,7 @@ import {
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 
@@ -38,7 +38,7 @@ import { RevisionsComponent } from './revisions.component';
     IvtFormFieldModule,
     IvtInputModule,
     MatSelectModule,
-    IvtEmptyStateModule,
+    NzEmptyModule,
     IvtTableModule,
     IvtVirtualScrollModule,
     IvtRowModule,
