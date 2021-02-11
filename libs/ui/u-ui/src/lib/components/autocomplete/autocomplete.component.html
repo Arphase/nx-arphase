@@ -1,14 +1,10 @@
-<ng-container *ngIf="control">
-  <ivt-form-field [label]="label">
-    <input ivtInput
-           [type]="type"
+<nz-form-item *ngIf="control">
+  <nz-form-label [nzRequired]="required">{{ label }}</nz-form-label>
+  <nz-form-control apsAutoError>
+    <input nz-input
            [formControl]="control"
-           [matAutocomplete]="auto">
-  </ivt-form-field>
-
-  <mat-autocomplete #auto="matAutocomplete"
-                    autoActiveFirstOption>
-    <mat-option *ngFor="let option of filteredOptions | async"
-                [value]="option">{{ option }}</mat-option>
-  </mat-autocomplete>
-</ng-container>
+           [nzAutocomplete]="auto" />
+    <nz-autocomplete #auto
+                     [nzDataSource]="filteredOptions$ | async"></nz-autocomplete>
+  </nz-form-control>
+</nz-form-item>

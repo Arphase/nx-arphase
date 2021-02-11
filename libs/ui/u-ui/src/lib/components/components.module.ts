@@ -6,7 +6,6 @@ import { IvtConfirmationDialogModule } from './confirmation-dialog';
 import { IvtFileUploadModule } from './file-upload';
 import { IvtCheckboxFilterModule, IvtDateFilterModule, IvtFilterModule, IvtRadioFilterModule } from './filters';
 import { IvtFormModule } from './form';
-import { IvtFormFieldModule } from './form-field';
 import { IvtListModule } from './list';
 import { IvtRowModule } from './row';
 import { IvtSearchbarModule } from './searchbar';
@@ -26,7 +25,6 @@ const MODULES = [
   IvtFileUploadModule,
   IvtFilterModule,
   IvtFormModule,
-  IvtFormFieldModule,
   IvtListModule,
   IvtRadioFilterModule,
   IvtRowModule,

@@ -10,8 +10,6 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-import { IvtInputModule } from '../../../directives';
-import { IvtFormFieldModule } from '../../form-field';
 import { IvtFilterModule } from '../filter';
 import { IvtDateFilterComponent } from './date-filter.component';
 
@@ -22,8 +20,6 @@ import { IvtDateFilterComponent } from './date-filter.component';
     FormsModule,
     ReactiveFormsModule,
     IvtFilterModule,
-    IvtFormFieldModule,
-    IvtInputModule,
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -31,7 +27,7 @@ import { IvtDateFilterComponent } from './date-filter.component';
     MatFormFieldModule,
     MatInputModule,
     NzGridModule,
-    NzIconModule
+    NzIconModule,
   ],
   exports: [IvtDateFilterComponent],
 })

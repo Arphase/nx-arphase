@@ -1,4 +1,6 @@
-<form [formGroup]="form"
+<form nz-form
+      nzLayout="vertical"
+      [formGroup]="form"
       (ngSubmit)="submit()">
   <div nz-row
        class="mb-3">
@@ -19,43 +21,54 @@
              [nzGutter]="[24, 8]">
           <div nz-col
                nzSpan="24">
-            <ivt-form-field label="Nombre del grupo">
-              <input ivtInput
-                     formControlName="name">
-            </ivt-form-field>
+            <nz-form-item>
+              <nz-form-label nzRequired>Nombre del grupo</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="name" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
         </div>
         <div nz-row
              [nzGutter]="[24, 8]">
           <div nz-col
                nzSpan="24">
-            <ivt-form-field label="Nombre del contacto">
-              <input ivtInput
-                     formControlName="contact">
-            </ivt-form-field>
+            <nz-form-item>
+              <nz-form-label nzRequired>Nombre del contacto</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="contact" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
         </div>
         <div nz-row
              [nzGutter]="[24, 8]">
           <div nz-col
                nzSpan="24">
-            <ivt-form-field label="Correo">
-              <input ivtInput
-                     type="email"
-                     formControlName="email">
-            </ivt-form-field>
+            <nz-form-item>
+              <nz-form-label nzRequired>Correo</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="email" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
         </div>
         <div nz-row
              [nzGutter]="[24, 8]">
           <div nz-col
                nzSpan="24">
-            <ivt-form-field label="Teléfono">
-              <input ivtInput
-                     type="tel"
-                     mask="(00) 0000 0000"
-                     formControlName="phone">
-            </ivt-form-field>
+            <nz-form-item>
+              <nz-form-label nzRequired>Teléfono</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="tel"
+                       mask="(00) 0000 0000"
+                       formControlName="phone" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
         </div>
 

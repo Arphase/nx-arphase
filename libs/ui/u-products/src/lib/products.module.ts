@@ -1,25 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { MatSelectModule } from '@angular/material/select';
 import {
   IvtEmptyModule,
   IvtFileUploadModule,
   IvtFolioModule,
-  IvtFormFieldModule,
-  IvtInputModule,
   IvtRowModule,
   IvtTableModule,
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NgxMaskModule } from 'ngx-mask';
 import { ShowdownModule } from 'ngx-showdown';
-import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
@@ -36,10 +36,7 @@ import { ProductsComponent } from './products.component';
     ShowdownModule,
     ReactiveFormsModule,
     NzPageHeaderModule,
-    IvtFormFieldModule,
-    IvtInputModule,
     IvtFileUploadModule,
-    MatSelectModule,
     NzEmptyModule,
     IvtTableModule,
     IvtVirtualScrollModule,
@@ -52,6 +49,9 @@ import { ProductsComponent } from './products.component';
     NgxMaskModule,
     NzGridModule,
     NzMessageModule,
+    NzFormModule,
+    NzInputModule,
+    NzSelectModule,
   ],
   declarations: [
     ProductFormComponent,

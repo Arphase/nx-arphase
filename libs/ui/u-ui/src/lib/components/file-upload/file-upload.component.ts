@@ -11,7 +11,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { FileItem, FileLikeObject, FileUploader } from 'ng2-file-upload';
 
 const fileUploaderInputOptions = ['maxFiles', 'maxFileSize', 'allowedMimeTypes', 'allowedFileTypes'];
@@ -55,10 +55,10 @@ export class IvtFileUploadComponent implements OnChanges {
     this.assignUploaderMethods();
 
     this.form = this.fb.group({
-      invalid: [true, Validators.requiredTrue],
-      fileSize: [true, Validators.requiredTrue],
-      minFiles: [true, Validators.requiredTrue],
-      maxFiles: [true, Validators.requiredTrue],
+      // invalid: [true, ApsValidators.requiredTrue],
+      // fileSize: [true, ApsValidators.requiredTrue],
+      // minFiles: [true, ApsValidators.requiredTrue],
+      // maxFiles: [true, ApsValidators.requiredTrue],
     });
   }
 

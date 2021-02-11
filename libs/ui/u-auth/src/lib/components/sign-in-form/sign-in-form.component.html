@@ -1,12 +1,16 @@
-<div nz-row [nzGutter]="[24, 8]"
+<div nz-row
+     [nzGutter]="[24, 8]"
      class="py-5">
   <div nz-col
        nzSm="24"
        [nzLg]="{ span: 12, offset: 6 }">
     <nz-card>
-      <form [formGroup]="form"
+      <form nz-form
+            nzLayout="vertical"
+            [formGroup]="form"
             (ngSubmit)="submit()">
-        <div nz-row [nzGutter]="[24, 8]"
+        <div nz-row
+             [nzGutter]="[24, 8]"
              class="py-5">
           <div nz-col
                nzSpan="24"
@@ -20,35 +24,46 @@
           </div>
         </div>
 
-        <div nz-row [nzGutter]="[24, 8]">
+        <div nz-row
+             [nzGutter]="[24, 8]">
           <div nz-col
                nzSpan="24">
-            <ivt-form-field label="Correo">
-              <input ivtInput
-                     formControlName="email">
-            </ivt-form-field>
+            <nz-form-item>
+              <nz-form-label nzRequired>Correo</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="email"
+                       formControlName="email" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
         </div>
 
-        <div nz-row [nzGutter]="[24, 8]">
+        <div nz-row
+             [nzGutter]="[24, 8]">
           <div nz-col
                nzSpan="24">
-            <ivt-form-field label="Contraseña">
-              <input ivtInput
-                     type="password"
-                     formControlName="password">
-            </ivt-form-field>
+            <nz-form-item>
+              <nz-form-label nzRequired>Correo</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="password"
+                       formControlName="password" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
         </div>
 
-        <div nz-row [nzGutter]="[24, 8]">
+        <div nz-row
+             [nzGutter]="[24, 8]">
           <div nz-col
                nzSpan="24">
             <a [routerLink]="['..', 'reset-password']">¿Olvidaste tu contraseña?</a>
           </div>
         </div>
 
-        <div nz-row [nzGutter]="[24, 8]"
+        <div nz-row
+             [nzGutter]="[24, 8]"
              class="py-3">
           <div nz-col
                nzSpan="24"

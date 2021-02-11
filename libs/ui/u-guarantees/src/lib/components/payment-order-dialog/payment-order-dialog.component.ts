@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { ApsValidators } from '@arphase/ui';
 import { Guarantee, PaymentOrder } from '@ivt/c-data';
 import { IvtColumns, IvtFormComponent } from '@ivt/u-ui';
 
@@ -42,7 +43,7 @@ export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> 
     super();
     this.form = this.fb.group({
       id: null,
-      distributor: [null, Validators.required],
+      distributor: [null, ApsValidators.required],
       guarantees: this.fb.array([]),
     });
   }
@@ -65,8 +66,8 @@ export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> 
   createGuaranteeForm(guarantee: Partial<Guarantee>): FormGroup {
     const formControl = this.fb.group({
       id: guarantee.id,
-      invoiceDate: [null, Validators.required],
-      amount: [0, Validators.required],
+      invoiceDate: [null, ApsValidators.required],
+      amount: [0, ApsValidators.required],
     });
 
     if (guarantee.amount) {

@@ -1,4 +1,6 @@
-<form [formGroup]="form"
+<form nz-form
+      nzLayout="vertical"
+      [formGroup]="form"
       (ngSubmit)="submit()">
   <h1 class="text-primary font-weight-light h3 mb-3">
     {{ company?.id ? 'Editar' : 'Nueva' }} Compañía
@@ -13,19 +15,25 @@
           <div nz-col
                nzMd="24"
                nzLg="12">
-            <ivt-form-field label="Razón Social">
-              <input ivtInput
-                     formControlName="businessName">
-            </ivt-form-field>
+            <nz-form-item>
+              <nz-form-label nzRequired>Razón Social</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="businessName" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
           <div nz-col
                nzMd="24"
                nzLg="12">
-            <ivt-form-field label="RFC">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="rfc">
-            </ivt-form-field>
+            <nz-form-item>
+              <nz-form-label nzRequired>RFC</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       ivtUppercase
+                       formControlName="rfc" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
         </div>
       </nz-collapse-panel>
@@ -47,28 +55,45 @@
           <div nz-col
                nzMd="24"
                nzLg="8">
-            <ivt-form-field label="Nombre del contacto">
-              <input ivtInput
-                     formControlName="contact">
-            </ivt-form-field>
+            <nz-form-item>
+              <nz-form-label nzRequired>Razón Social</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="businessName" />
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-label nzRequired>Nombre del contacto</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="contact" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
           <div nz-col
                nzMd="24"
                nzLg="8">
-            <ivt-form-field label="Correo">
-              <input ivtInput
-                     formControlName="email">
-            </ivt-form-field>
+            <nz-form-item>
+              <nz-form-label nzRequired>Corrreo</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="email" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
           <div nz-col
                nzMd="24"
                nzLg="8">
-            <ivt-form-field label="Telefono">
-              <input ivtInput
-                     type="tel"
-                     mask="(00) 0000 0000"
-                     formControlName="phone">
-            </ivt-form-field>
+            <nz-form-item>
+              <nz-form-label nzRequired>Teléfono</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="tel"
+                       mask="(00) 0000 0000"
+                       formControlName="phone" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
         </div>
       </nz-collapse-panel>

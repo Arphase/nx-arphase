@@ -1,4 +1,6 @@
-<form [formGroup]="form"
+<form nz-form
+      nzLayout="vertical"
+      [formGroup]="form"
       (ngSubmit)="submit()">
   <h1 class="text-primary font-weight-light h3">
     Actualizar número de factura - Garantía {{ item.id | folio }}
@@ -10,10 +12,13 @@
          class="mt-3 mb-2">
       <div nz-col
            nzSpan="24">
-        <ivt-form-field label="Número de factura">
-          <input ivtInput
-                 formControlName="invoiceNumber">
-        </ivt-form-field>
+        <nz-form-item>
+          <nz-form-label nzRequired>Número de factura</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   formControlName="invoiceNumber" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
   </mat-dialog-content>

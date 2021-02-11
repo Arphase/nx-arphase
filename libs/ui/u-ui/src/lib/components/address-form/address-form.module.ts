@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
+import { ApsAutoErrorModule } from '@arphase/ui';
+import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NgxMaskModule } from 'ngx-mask';
 
-import { IvtInputModule } from '../../directives';
 import { IvtAutocompleteModule } from '../autocomplete';
-import { IvtFormFieldModule } from '../form-field';
 import { IvtAddressFormComponent } from './address-form.component';
 
 @NgModule({
@@ -15,12 +16,13 @@ import { IvtAddressFormComponent } from './address-form.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    IvtFormFieldModule,
-    IvtInputModule,
     IvtAutocompleteModule,
     NgxMaskModule,
-    MatSelectModule,
     NzGridModule,
+    NzFormModule,
+    NzInputModule,
+    NzSelectModule,
+    ApsAutoErrorModule,
   ],
   exports: [IvtAddressFormComponent],
 })

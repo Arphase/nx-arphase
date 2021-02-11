@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Subject } from 'rxjs';
 
 import { collectFormErrors, updateFormControlsValueAndValidity } from '../../functions';
 import { IvtSubscriberComponent } from '../subscriber';
@@ -15,7 +14,6 @@ export class IvtFormComponent<T> extends IvtSubscriberComponent {
   @Input() item: T;
   @Input() loading: boolean;
   @Input() isEditable = true;
-  protected stateChanged = new Subject<void>();
   @Output() submitForm = new EventEmitter<T>();
 
   get values(): T {
@@ -35,6 +33,5 @@ export class IvtFormComponent<T> extends IvtSubscriberComponent {
         controls: collectFormErrors(this.form),
       });
     }
-    this.stateChanged.next();
   }
 }

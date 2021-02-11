@@ -2,12 +2,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ApsAutoErrorModule } from '@arphase/ui';
 import { PermissionsModule } from '@ivt/u-state';
 import {
   IvtAddressFormModule,
   IvtEmptyModule,
-  IvtFormFieldModule,
-  IvtInputModule,
   IvtPhoneModule,
   IvtRowModule,
   IvtSearchbarModule,
@@ -19,8 +18,10 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NgxMaskModule } from 'ngx-mask';
@@ -46,8 +47,6 @@ import { GroupsComponent } from './groups.component';
     ReactiveFormsModule,
     MatDialogModule,
     NzIconModule,
-    IvtFormFieldModule,
-    IvtInputModule,
     IvtAddressFormModule,
     IvtRowModule,
     IvtTextTruncateTooltipModule,
@@ -64,6 +63,9 @@ import { GroupsComponent } from './groups.component';
     NzGridModule,
     NzMessageModule,
     NzCollapseModule,
+    NzFormModule,
+    NzInputModule,
+    ApsAutoErrorModule,
   ],
   declarations: [
     GroupsComponent,

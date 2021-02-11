@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ApsValidators } from '@arphase/ui';
 import { Locality, Select } from '@ivt/c-data';
 import { sortSelectOptions, sortStringOptions } from '@ivt/c-utils';
 import { uniq, uniqBy } from 'lodash-es';
@@ -61,13 +62,13 @@ export class IvtAddressFormService {
 export function createAddressForm(): FormGroup {
   return new FormGroup({
     id: new FormControl(null),
-    zipcode: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
-    country: new FormControl('', Validators.required),
-    state: new FormControl('', Validators.required),
-    city: new FormControl('', Validators.required),
-    suburb: new FormControl('', Validators.required),
-    street: new FormControl('', Validators.required),
-    externalNumber: new FormControl('', Validators.required),
+    zipcode: new FormControl('', [ApsValidators.required, ApsValidators.minLength(5), ApsValidators.maxLength(5)]),
+    country: new FormControl('', ApsValidators.required),
+    state: new FormControl('', ApsValidators.required),
+    city: new FormControl('', ApsValidators.required),
+    suburb: new FormControl('', ApsValidators.required),
+    street: new FormControl('', ApsValidators.required),
+    externalNumber: new FormControl('', ApsValidators.required),
     internalNumber: new FormControl(),
   });
 }

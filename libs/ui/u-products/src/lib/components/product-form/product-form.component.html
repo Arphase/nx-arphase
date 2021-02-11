@@ -16,11 +16,13 @@
       <div nz-col
            nzMd="24"
            nzLg="12">
-        <h6>Nombre del producto</h6>
-        <ivt-form-field>
-          <input ivtInput
-                 formControlName="name" />
-        </ivt-form-field>
+        <nz-form-item>
+          <nz-form-label nzRequired>Nombre del producto</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   formControlName="name" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
       <div nz-col
            nzMd="24"
@@ -34,27 +36,32 @@
          [nzGutter]="[24, 8]"
          class="mt-4 mb-3">
       <div nz-col
+           nzSpan="8"
            class="-lg-4 col-4">
-        <h6>Precio</h6>
-        <ivt-form-field>
-          <input ivtInput
-                 prefix="$ "
-                 mask="0*.00"
-                 formControlName="price" />
-        </ivt-form-field>
+        <nz-form-item>
+          <nz-form-label nzRequired>Precio</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   prefix="$ "
+                   mask="0*.00"
+                   formControlName="price" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
 
       <div nz-col
-           class="-4 px-0 ml-auto">
-        <ivt-form-field label="Glosario">
-          <mat-select (selectionChange)="selectedValue($event)">
-            <mat-option *ngFor="let option of glossaryOptions"
-                        [value]="option.value">
-              {{ option.label }}
-            </mat-option>
-
-          </mat-select>
-        </ivt-form-field>
+           nzSpan="8"
+           class="px-0 ml-auto">
+        <nz-form-item>
+          <nz-form-label nzRequired>Glosario</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-select formControlName="glosary">
+              <nz-option *ngFor="let option of glossaryOptions"
+                         [nzValue]="option.value"
+                         [nzLabel]="option.label"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
 
@@ -62,12 +69,14 @@
          [nzGutter]="[24, 8]"
          class="mb-3">
       <div nz-col
-           class="-lg-12 col-12">
-        <h6>Cuerpo del producto</h6>
-        <ivt-form-field appearance="fill">
-          <textarea matInput
-                    formControlName="template"> </textarea>
-        </ivt-form-field>
+           nzSpan="24">
+        <nz-form-item>
+          <nz-form-label nzRequired>Cuerpo del producto</nz-form-label>
+          <nz-form-control apsAutoError>
+            <textarea nz-input
+                      formControlName="template"></textarea>
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
 
