@@ -36,35 +36,40 @@
        class="-1">
     <ivt-text-truncate-tooltip [label]="item.createdAt | date: 'dd/mm/yy'"></ivt-text-truncate-tooltip>
   </div>
+
   <div nz-col
-       class="flex-end">
+       class="ml-auto pl-0">
     <button nz-button
+            nz-dropdown
+            [nzDropdownMenu]="menu"
             nzType="text"
             matTooltip="Acciones"
-            [matMenuTriggerFor]="actionsMenu">
-      <i nz-icon nzType="more" nzTheme="outline"></i>
+            nzTrigger="click">
+      <i nz-icon
+         nzType="more"
+         nzTheme="outline"></i>
     </button>
-    <mat-menu #actionsMenu="matMenu">
-      <div matTooltip="La revisión no se puede editar porque ya pasaron más de tres meses"
-           [matTooltipDisabled]="isEditable">
-        <button mat-menu-item
-                [routerLink]="[item.id]"
-                [disabled]="!isEditable">
-          Editar revisión
-        </button>
-      </div>
 
-      <div matTooltip="La revisión no se puede eliminar porque ya pasaron más de tres meses"
-           [matTooltipDisabled]="isEditable">
-        <button mat-menu-item
-                class="text-danger"
-                [disabled]="!isEditable"
-                (click)="delete.emit(item)">
-          Eliminar revisión
-        </button>
-      </div>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu>
+        <div matTooltip="La revisión no se puede editar porque ya pasaron más de tres meses"
+             [matTooltipDisabled]="isEditable">
+          <li nz-menu-item
+              [routerLink]="isEditable ? [item.id] : null"
+              [nzDisabled]="!isEditable">
+            Editar revisión
+          </li>
+        </div>
 
-
-    </mat-menu>
+        <div matTooltip="La revisión no se puede eliminar porque ya pasaron más de tres meses"
+             [matTooltipDisabled]="isEditable">
+          <li nz-menu-item
+              [nzDisabled]="!isEditable"
+              (click)="isEditable && delete.emit(item)">
+            Eliminar revisión
+          </li>
+        </div>
+      </ul>
+    </nz-dropdown-menu>
   </div>
 </ivt-row>

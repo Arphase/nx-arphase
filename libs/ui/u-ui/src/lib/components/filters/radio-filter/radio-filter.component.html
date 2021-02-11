@@ -1,19 +1,29 @@
 <button *ngIf="control"
         class="ivt-filter"
         [ngClass]="{'active-filter': active || control.value !== ''}"
-        [matMenuTriggerFor]="menu">
+        nz-dropdown
+        [nzDropdownMenu]="menu"
+        nzTrigger="click">
   <span class="ivt-button-label">{{ mappedTitle || label }}</span>
 
   <i *ngIf="control.value === '' || control.value == null; else removeFilter"
-     class="material-icons right">expand_more</i>
+     nz-icon
+     nzType="down"
+     nzTheme="outline"
+     class="right"></i>
+
   <ng-template #removeFilter>
-    <i class="material-icons delete-icon right"
-       (click)="deleteFilters(); $event.stopPropagation()">close</i>
+    <i nz-icon
+       nzType="close"
+       nzTheme="outline"
+       class="delete-icon right"
+       (click)="deleteFilters(); $event.stopPropagation()"></i>
   </ng-template>
 </button>
 
-<mat-menu #menu="matMenu">
-  <div class="content">
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <div nz-menu
+       class="content">
     <mat-radio-group [formControl]="control">
       <div *ngFor="let option of options"
            nz-row
@@ -30,4 +40,4 @@
       </div>
     </mat-radio-group>
   </div>
-</mat-menu>
+</nz-dropdown-menu>

@@ -1,6 +1,8 @@
 <div class="profile">
   <div class="profile__menu flex-end"
-       [matMenuTriggerFor]="profileMenu">
+       nz-dropdown
+       [nzDropdownMenu]="menu"
+       nzTrigger="click">
 
     <nz-avatar [nzText]="avatarText"></nz-avatar>
 
@@ -13,8 +15,9 @@
     </div>
   </div>
 
-  <mat-menu #profileMenu="matMenu">
-    <div class="profile__menu-content">
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <div nz-menu
+         class="profile__menu-content">
       <div class="menu-content__body">
 
         <nz-avatar [nzText]="avatarText"
@@ -32,5 +35,5 @@
                 (click)="logout.emit()">Cerrar sesión</button>
       </div>
     </div>
-  </mat-menu>
+  </nz-dropdown-menu>
 </div>

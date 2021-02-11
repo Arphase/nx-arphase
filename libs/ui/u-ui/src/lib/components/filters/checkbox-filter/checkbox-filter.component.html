@@ -2,19 +2,30 @@
         [class.ivt-filter--disabled]="disabled"
         [disabled]="disabled"
         [ngClass]="{ 'active-filter': active || selectedOptions.length }"
-        [matMenuTriggerFor]="menu">
+        nz-dropdown
+        [nzDropdownMenu]="menu"
+        nzTrigger="click">
 
   <span class="ivt-button-label">{{ mappedTitle || label }}</span>
-  <i *ngIf="!selectedOptions.length"
-     class="material-icons right">expand_more</i>
 
-  <i *ngIf="!disabled && selectedOptions.length"
-     class="material-icons delete-icon right"
-     (click)="deleteFilters(); $event.stopPropagation()">close</i>
+  <i *ngIf="!selectedOptions.length"
+     nz-icon
+     nzType="down"
+     nzTheme="outline"
+     class="right"></i>
+
+  <i nz-icon
+     *ngIf="!disabled && selectedOptions.length"
+     nzType="close"
+     nzTheme="outline"
+     class="delete-icon right"
+     (click)="deleteFilters(); $event.stopPropagation()"></i>
+
 </button>
 
-<mat-menu #menu="matMenu">
+<nz-dropdown-menu #menu="nzDropdownMenu">
   <div *ngIf="displayContent"
+       nz-menu
        class="content">
     <cdk-virtual-scroll-viewport itemSize="22"
                                  [style.width]="width"
@@ -34,4 +45,4 @@
       </div>
     </cdk-virtual-scroll-viewport>
   </div>
-</mat-menu>
+</nz-dropdown-menu>

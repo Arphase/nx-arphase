@@ -58,55 +58,61 @@
   <div nz-col
        class="ml-auto pl-0">
     <button nz-button
+            nz-dropdown
+            [nzDropdownMenu]="menu"
             nzType="text"
             matTooltip="Acciones"
             [nzLoading]="loading"
-            [matMenuTriggerFor]="actionsMenu">
-      <i nz-icon nzType="more" nzTheme="outline"></i>
+            nzTrigger="click">
+      <i nz-icon
+         nzType="more"
+         nzTheme="outline"></i>
     </button>
-    <mat-menu #actionsMenu="matMenu">
-      <button mat-menu-item
-              [routerLink]="[item.id]">
-        {{ isEditable ? 'Editar' : 'Ver' }} garantía
-      </button>
-      <button mat-menu-item
-              [matMenuTriggerFor]="statusMenu">
-        Cambiar estatus
-      </button>
-      <button mat-menu-item
-              (click)="downloadPdf.emit(item.id)">
-        Descargar PDF
-      </button>
-      <button mat-menu-item
-              *ngIf="!item.paymentOrderId"
-              (click)="createPaymentOrder.emit(item.id)">
-        Generar orden de pago
-      </button>
-      <ng-container *ngIf="item.paymentOrderId">
-        <button mat-menu-item
-                (click)="downloadPaymentOrder.emit(item.paymentOrderId)">
-          Descargar orden de pago
-        </button>
-        <button mat-menu-item
-                (click)="updatePaymentOrder.emit(item.paymentOrderId)">
-          Editar orden de pago
-        </button>
-      </ng-container>
-      <button mat-menu-item
-              (click)="editInvoiceNumber.emit(item)">
-        Editar número de factura
-      </button>
-    </mat-menu>
 
-    <mat-menu #statusMenu="matMenu">
-      <button *ngFor="let menuOption of menuOptions"
-              mat-menu-item
-              class="status-option my-2"
-              (click)="onChangeStatus(item.id, menuOption.value)">
-        <span class="{{ menuOption.class }} text-white text-center rounded flex-center">
-          {{ menuOption.label }}
-        </span>
-      </button>
-    </mat-menu>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item
+            [routerLink]="[item.id]">
+          {{ isEditable ? 'Editar' : 'Ver' }} garantía
+        </li>
+        <li nz-submenu
+            nzTitle="Cambiar estatus">
+          <ul>
+            <li *ngFor="let menuOption of menuOptions"
+                nz-menu-item
+                class="status-option my-2"
+                (click)="onChangeStatus(item.id, menuOption.value)">
+              <span class="{{ menuOption.class }} text-white text-center rounded flex-center">
+                {{ menuOption.label }}
+              </span>
+            </li>
+          </ul>
+        </li>
+        <li nz-menu-item
+            (click)="downloadPdf.emit(item.id)">
+          Descargar PDF
+        </li>
+        <li *ngIf="!item.paymentOrderId"
+            nz-menu-item
+            (click)="createPaymentOrder.emit(item.id)">
+          Generar orden de pago
+        </li>
+        <ng-container *ngIf="item.paymentOrderId">
+          <li nz-menu-item
+              (click)="downloadPaymentOrder.emit(item.paymentOrderId)">
+            Descargar orden de pago
+          </li>
+
+          <li nz-menu-item
+              (click)="updatePaymentOrder.emit(item.paymentOrderId)">
+            Editar orden de pago
+          </li>
+        </ng-container>
+        <li nz-menu-item
+            (click)="editInvoiceNumber.emit(item)">
+          Editar número de factura
+        </li>
+      </ul>
+    </nz-dropdown-menu>
   </div>
 </ivt-row>

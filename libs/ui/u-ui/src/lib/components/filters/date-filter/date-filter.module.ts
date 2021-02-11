@@ -5,9 +5,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 import { IvtInputModule } from '../../../directives';
 import { IvtFormFieldModule } from '../../form-field';
@@ -26,10 +27,11 @@ import { IvtDateFilterComponent } from './date-filter.component';
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMenuModule,
+    NzDropDownModule,
     MatFormFieldModule,
     MatInputModule,
-    NzGridModule
+    NzGridModule,
+    NzIconModule
   ],
   exports: [IvtDateFilterComponent],
 })

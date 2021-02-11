@@ -38,41 +38,46 @@
   <div nz-col
        class="flex-end pl-0">
     <button nz-button
+            nz-dropdown
+            [nzDropdownMenu]="menu"
             nzType="text"
             matTooltip="Acciones"
-            [matMenuTriggerFor]="actionsMenu">
-      <i nz-icon nzType="more" nzTheme="outline"></i>
+            nzTrigger="click">
+      <i nz-icon
+         nzType="more"
+         nzTheme="outline"></i>
     </button>
-    <mat-menu #actionsMenu="matMenu">
 
-      <div matTooltip="Solo se pueden generar garantías a los vehículos aptos para garantizar"
-           [matTooltipDisabled]="isElegible">
-        <button mat-menu-item
-                [disabled]="!isElegible"
-                (click)="createGuarantee.emit(item)">
-          Generar garantía
-        </button>
-      </div>
-
-      <button *ngIf="canManageRevisions"
-              mat-menu-item
-              (click)="goToRevisions.emit(item)">
-        Manejar revisiones
-      </button>
-      <button *ngIf="canCreateReviewRequest"
-              mat-menu-item
-              (click)="createRevisionRequest.emit(item)">
-        Solicitar revisión
-      </button>
-      <button mat-menu-item
-              [routerLink]="[item.id]">
-        Editar vehículo
-      </button>
-      <button mat-menu-item
-              class="text-danger"
-              (click)="delete.emit(item)">
-        Eliminar vehículo
-      </button>
-    </mat-menu>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu>
+        <div matTooltip="Solo se pueden generar garantías a los vehículos aptos para garantizar"
+             [matTooltipDisabled]="isElegible">
+          <li nz-menu-item
+              [nzDisabled]="!isElegible"
+              (click)="isElegible && createGuarantee.emit(item)">
+            Generar garantía
+          </li>
+        </div>
+        <li nz-menu-item
+            *ngIf="canManageRevisions"
+            (click)="goToRevisions.emit(item)">
+          Manejar revisiones
+        </li>
+        <li nz-menu-item
+            *ngIf="canCreateReviewRequest"
+            (click)="createRevisionRequest.emit(item)">
+          Solicitar revisión
+        </li>
+        <li nz-menu-item
+            [routerLink]="[item.id]">
+          Editar vehículo
+        </li>
+        <li nz-menu-item
+            class="text-danger"
+            (click)="delete.emit(item)">
+          Eliminar vehículo
+        </li>
+      </ul>
+    </nz-dropdown-menu>
   </div>
 </ivt-row>
