@@ -5,7 +5,7 @@ import { filterNil } from '@ivt/c-utils';
 import { buildQueryParams, IvtCollectionService, IvtDataService, IvtEntityCollection } from '@ivt/u-state';
 import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { select } from '@ngrx/store';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 
 import { IvtConfirmationDialogComponent, IvtSubscriberComponent } from '../../components';
@@ -34,7 +34,7 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
     protected entityCollectionService: IvtCollectionService<T>,
     protected entityDataService: IvtDataService<T>,
     @Optional() protected dialog?: MatDialog,
-    @Optional() protected toastr?: ToastrService
+    @Optional() protected messageService?: NzMessageService
   ) {
     super();
     this.entityCollectionService.store
@@ -45,10 +45,10 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
     this.entityCollectionService.entityActions$
       .pipe(
         ofEntityOp(EntityOp.SAVE_DELETE_ONE_SUCCESS),
-        filter(() => !!this.deleteSuccessMessage && !!this.toastr),
+        filter(() => !!this.deleteSuccessMessage && !!this.messageService),
         takeUntil(this.destroy$)
       )
-      .subscribe(() => this.toastr.success(this.deleteSuccessMessage));
+      .subscribe(() => this.messageService.success(this.deleteSuccessMessage));
   }
 
   getMoreItems(): void {

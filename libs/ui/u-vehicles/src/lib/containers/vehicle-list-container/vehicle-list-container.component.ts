@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { UserRoles, Vehicle } from '@ivt/c-data';
 import { PermissionService, VehicleCollectionService, VehicleDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'ivt-vehicle-list-container',
@@ -20,11 +20,11 @@ export class VehicleListContainerComponent extends IvtListContainerComponent<Veh
     protected vehicleCollectionService: VehicleCollectionService,
     protected vehicleDataService: VehicleDataService,
     protected dialog: MatDialog,
-    protected toastr: ToastrService,
+    protected messageService: NzMessageService,
     protected router: Router,
     protected permissionsService: PermissionService
   ) {
-    super(vehicleCollectionService, vehicleDataService, dialog, toastr);
+    super(vehicleCollectionService, vehicleDataService, dialog, messageService);
   }
 
   deleteItem(item: Vehicle): void {

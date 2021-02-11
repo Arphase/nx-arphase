@@ -12,7 +12,6 @@ import { IVT_UI_STATE_CONFIGURATION, IvtStateModule, IvtUiStateConfiguration } f
 import * as Sentry from '@sentry/angular';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NgxMaskModule } from 'ngx-mask';
-import { ToastrModule } from 'ngx-toastr';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,7 +34,6 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
     IvtStateModule,
     MatDialogModule,
     NgxMaskModule.forRoot(),
-    ToastrModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
   ],

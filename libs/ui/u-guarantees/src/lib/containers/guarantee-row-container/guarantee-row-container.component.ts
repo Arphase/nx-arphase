@@ -9,7 +9,7 @@ import {
   PermissionService,
 } from '@ivt/u-state';
 import { IvtFolioPipe, IvtRowComponent } from '@ivt/u-ui';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
@@ -33,7 +33,7 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
     private paymentOrderCollectionService: PaymentOrderCollectionService,
     private paymentOrderDataService: PaymentOrderDataService,
     private dialog: MatDialog,
-    private toastr: ToastrService,
+    private messageService: NzMessageService,
     private folioPipe: IvtFolioPipe,
     private permissionService: PermissionService
   ) {
@@ -60,7 +60,7 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe(() =>
-        this.toastr.success(
+        this.messageService.success(
           `La garantía con folio ${this.folioPipe.transform(guarantee.id)} ahora está ${statusLabels[
             GuaranteeStatus[GuaranteeStatus[guarantee.status]]
           ].toLowerCase()}`

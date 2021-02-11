@@ -17,6 +17,7 @@ import {
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NgxMaskModule } from 'ngx-mask';
 import { ShowdownModule } from 'ngx-showdown';
 
@@ -50,6 +51,7 @@ import { ProductsComponent } from './products.component';
     MatIconModule,
     NgxMaskModule,
     NzGridModule,
+    NzMessageModule,
   ],
   declarations: [
     ProductFormComponent,

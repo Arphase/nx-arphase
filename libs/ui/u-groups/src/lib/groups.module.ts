@@ -22,6 +22,7 @@ import {
 } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { CompanyFormDialogComponent } from './components/company-form-dialog/company-form-dialog.component';
@@ -62,6 +63,7 @@ import { GroupsComponent } from './groups.component';
     NzButtonModule,
     NgxMaskModule,
     NzGridModule,
+    NzMessageModule,
   ],
   declarations: [
     GroupsComponent,

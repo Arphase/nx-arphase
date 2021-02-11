@@ -19,6 +19,7 @@ import {
 } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 import { VehicleFormWrapperComponent } from './components/vehicle-form-wrapper/vehicle-form-wrapper.component';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
@@ -51,6 +52,7 @@ import { VehiclesComponent } from './vehicles.component';
     MatDialogModule,
     MatTooltipModule,
     NzGridModule,
+    NzMessageModule,
   ],
   declarations: [
     VehicleListComponent,

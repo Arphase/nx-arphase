@@ -4,7 +4,7 @@ import { Revision } from '@ivt/c-data';
 import { RevisionCollectionService, RevisionDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import dayjs from 'dayjs';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'ivt-revision-list-container',
@@ -18,7 +18,7 @@ export class RevisionListContainerComponent extends IvtListContainerComponent<Re
     protected revisionCollectionService: RevisionCollectionService,
     protected revisionDataService: RevisionDataService,
     protected dialog: MatDialog,
-    protected toastrService: ToastrService
+    protected toastrService: NzMessageService
   ) {
     super(revisionCollectionService, revisionDataService, dialog, toastrService);
   }

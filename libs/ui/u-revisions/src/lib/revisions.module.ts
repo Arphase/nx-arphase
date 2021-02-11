@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NzButtonModule } from 'ng-zorro-antd/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -18,7 +17,9 @@ import {
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 import { RevisionFormComponent } from './components/revision-form/revision-form.component';
 import { RevisionListComponent } from './components/revision-list/revision-list.component';
@@ -49,6 +50,7 @@ import { RevisionsComponent } from './revisions.component';
     MatCardModule,
     MatTooltipModule,
     NzGridModule,
+    NzMessageModule,
   ],
   declarations: [
     RevisionFormComponent,

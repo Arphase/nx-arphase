@@ -12,7 +12,7 @@ import {
 } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { combineLatest } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
@@ -55,11 +55,11 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
   constructor(
     protected vehicleCollectionService: VehicleCollectionService,
     protected router: Router,
-    protected toastr: ToastrService,
+    protected messageService: NzMessageService,
     private store: Store<IvtState>,
     private companyCollectionService: CompanyCollectionService
   ) {
-    super(vehicleCollectionService, router, toastr);
+    super(vehicleCollectionService, router, messageService);
   }
 
   ngOnInit() {

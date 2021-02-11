@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Group } from '@ivt/c-data';
 import { GroupCollectionService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { GroupFormService } from '../../services/group-form.service';
 
@@ -23,9 +23,9 @@ export class GroupFormContainerComponent extends IvtFormContainerComponent<Group
   constructor(
     protected groupCollectionService: GroupCollectionService,
     protected router: Router,
-    protected toastr: ToastrService,
+    protected messageService: NzMessageService,
     private groupFormService: GroupFormService
   ) {
-    super(groupCollectionService, router, toastr);
+    super(groupCollectionService, router, messageService);
   }
 }

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { IvtCollectionService } from '@ivt/u-state';
 import { EntityActionOptions, EntityOp, ofEntityOp } from '@ngrx/data';
 import { get } from 'lodash-es';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { filter, mapTo, takeUntil } from 'rxjs/operators';
 
 import { IvtSubscriberComponent } from '../../components';
@@ -30,7 +30,7 @@ export class IvtFormContainerComponent<T> extends IvtSubscriberComponent impleme
   constructor(
     protected entityCollectionService: IvtCollectionService<T>,
     @Optional() protected router?: Router,
-    @Optional() protected toastr?: ToastrService
+    @Optional() protected messageService?: NzMessageService
   ) {
     super();
     this.entityCollectionService.entityActions$
@@ -44,18 +44,18 @@ export class IvtFormContainerComponent<T> extends IvtSubscriberComponent impleme
     this.entityCollectionService.entityActions$
       .pipe(
         ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS),
-        filter(() => !!this.createSuccessMessage && !!this.toastr),
+        filter(() => !!this.createSuccessMessage && !!this.messageService),
         takeUntil(this.destroy$)
       )
-      .subscribe(() => this.toastr.success(this.createSuccessMessage));
+      .subscribe(() => this.messageService.success(this.createSuccessMessage));
 
     this.entityCollectionService.entityActions$
       .pipe(
         ofEntityOp(EntityOp.SAVE_UPDATE_ONE_SUCCESS),
-        filter(() => !!this.updateSuccessMessage && !!this.toastr),
+        filter(() => !!this.updateSuccessMessage && !!this.messageService),
         takeUntil(this.destroy$)
       )
-      .subscribe(() => this.toastr.success(this.updateSuccessMessage));
+      .subscribe(() => this.messageService.success(this.updateSuccessMessage));
   }
 
   canDeactivate(): boolean {
