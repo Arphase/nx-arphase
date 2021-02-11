@@ -107,6 +107,7 @@ export class VehiclesService {
               AND revisions.status = '1')
       )`
       )
+      .andWhere('vehicle.status != :status', { status: VehicleStatus.notElegible })
       .execute();
   }
 }
