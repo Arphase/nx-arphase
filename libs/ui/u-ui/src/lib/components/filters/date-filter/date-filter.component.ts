@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
-import { AbstractControl, FormBuilder } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Select } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
 import dayjs from 'dayjs';
@@ -23,6 +23,7 @@ export interface Dates {
 export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements OnInit, OnChanges {
   @Input() dateTypeOptions: Select[] = [];
   @Input() value;
+  form: FormGroup;
   startDate = '';
   endDate = '';
   dateType = '';
@@ -31,7 +32,7 @@ export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements
   constructor(private fb: FormBuilder) {
     super();
 
-    this.control = this.fb.group(
+    this.form = this.fb.group(
       {
         dateType: '',
         startDate: '',
@@ -52,7 +53,7 @@ export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements
   }
 
   ngOnInit() {
-    this.control.valueChanges
+    this.form.valueChanges
       .pipe(
         tap(({ startDate, endDate, dateType }) => {
           this.startDate = formatDate(startDate);
@@ -64,13 +65,13 @@ export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements
       .subscribe();
 
     if (this.value) {
-      this.control.get('startDate').patchValue(dayjs(this.value.startDate, 'DD/MM/YY').toDate(), {
+      this.form.get('startDate').patchValue(dayjs(this.value.startDate, 'DD/MM/YY').toDate(), {
         emitEvent: false,
       });
-      this.control.get('endDate').patchValue(dayjs(this.value.endDate, 'DD/MM/YY').toDate(), {
+      this.form.get('endDate').patchValue(dayjs(this.value.endDate, 'DD/MM/YY').toDate(), {
         emitEvent: false,
       });
-      this.control.get('dateType').patchValue(this.value.dateType, { emitEvent: false });
+      this.form.get('dateType').patchValue(this.value.dateType, { emitEvent: false });
       this.startDate = this.value.startDate;
       this.endDate = this.value.endDate;
       this.dateType = this.value.dateType;
@@ -83,12 +84,12 @@ export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements
   }
 
   get showActiveStatus(): boolean {
-    return this.control.valid;
+    return this.form.valid;
   }
 
   setFilter(): void {
-    const startDateValue = this.control.get('startDate').value;
-    const endDateValue = this.control.get('endDate').value;
+    const startDateValue = this.form.get('startDate').value;
+    const endDateValue = this.form.get('endDate').value;
 
     this.showError = dayjs(startDateValue).isAfter(endDateValue);
 
@@ -96,7 +97,7 @@ export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements
       return;
     }
 
-    if (this.control.valid) {
+    if (this.form.valid) {
       this.mappedTitle = `${this.startDate} - ${this.endDate}`;
 
       this.filterItems.emit({
@@ -110,7 +111,7 @@ export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements
   }
 
   deleteFilters(): void {
-    this.control.reset();
+    this.form.reset();
     this.startDate = '';
     this.endDate = '';
     this.dateType = '';
