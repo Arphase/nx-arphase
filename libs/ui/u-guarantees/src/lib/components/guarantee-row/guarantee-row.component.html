@@ -12,10 +12,10 @@
   <div nz-col
        nzSpan="2"
        class="d-flex justify-content-center">
-    <mat-checkbox [disabled]="item?.amount"
-                  [checked]="isSelected"
-                  (change)="selectItem.emit(item)">
-    </mat-checkbox>
+    <label nz-checkbox
+           [nzDisabled]="item?.amount"
+           [(ngModel)]="isSelected"
+           (ngModelChange)="selectItem.emit(item)"></label>
   </div>
   <div nz-col
        nzMd="4"

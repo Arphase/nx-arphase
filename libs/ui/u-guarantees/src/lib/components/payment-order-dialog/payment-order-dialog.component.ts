@@ -67,7 +67,7 @@ export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> 
     const formControl = this.fb.group({
       id: guarantee.id,
       invoiceDate: [null, ApsValidators.required],
-      amount: [0, ApsValidators.required],
+      amount: [null, ApsValidators.required],
     });
 
     if (guarantee.amount) {

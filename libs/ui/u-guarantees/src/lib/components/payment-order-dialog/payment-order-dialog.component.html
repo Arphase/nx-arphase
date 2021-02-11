@@ -25,7 +25,9 @@
     <ivt-table-header [columns]="columns"></ivt-table-header>
 
     <ivt-row *ngFor="let guarantee of guaranteesFormArray.controls">
-      <form [formGroup]="guarantee"
+      <form nz-form
+            nzLayout="vertical"
+            [formGroup]="guarantee"
             nz-row
             [nzGutter]="[24, 8]">
         <div nz-col
@@ -35,7 +37,7 @@
         </div>
         <div nz-col
              nzSpan="10">
-          <nz-form-item>
+          <nz-form-item class="m-0">
             <nz-form-control apsAutoError>
               <nz-date-picker class="w-100"
                               formControlName="invoiceDate"></nz-date-picker>
@@ -44,7 +46,7 @@
         </div>
         <div nz-col
              nzSpan="10">
-          <nz-form-item>
+          <nz-form-item class="m-0">
             <nz-form-control apsAutoError>
               <input nz-input
                      prefix="$ "

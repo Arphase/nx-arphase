@@ -37,6 +37,7 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
   imports: [
     AppRoutingModule,
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     IvtStateModule,
@@ -44,7 +45,6 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
     NgxMaskModule.forRoot(),
     NzIconModule.forRoot(icons),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    FormsModule,
   ],
   providers: [
     {

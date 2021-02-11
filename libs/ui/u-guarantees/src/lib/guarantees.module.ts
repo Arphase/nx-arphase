@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ApsAutoErrorModule } from '@arphase/ui';
 import { PermissionsModule, VehiclesDataModule } from '@ivt/u-state';
@@ -22,6 +21,7 @@ import {
 import { VehicleFormModule } from '@ivt/u-vehicles';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
@@ -72,7 +72,6 @@ import { GuaranteesComponent } from './guarantees.component';
     IvtVirtualScrollModule,
     NzIconModule,
     IvtRowModule,
-    MatCheckboxModule,
     IvtTextTruncateTooltipModule,
     IvtEmptyModule,
     NzCardModule,
@@ -87,7 +86,9 @@ import { GuaranteesComponent } from './guarantees.component';
     NzInputModule,
     NzDatePickerModule,
     NzRadioModule,
-    ApsAutoErrorModule
+    ApsAutoErrorModule,
+    NzCheckboxModule,
+    FormsModule,
   ],
   declarations: [
     GuaranteeFormComponent,

@@ -1,12 +1,1 @@
-@use 'variables' as v;
-@use 'variables' as ivt-variables;
 @import '../filter/filter.component';
-
-.mat-checkbox-label {
-  max-width: 200px;
-}
-
-.ivt-filter--disabled {
-  background: ivt-variables.$ui-color-2;
-  cursor: default;
-}

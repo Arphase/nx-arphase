@@ -30,19 +30,18 @@
     <cdk-virtual-scroll-viewport itemSize="22"
                                  [style.width]="width"
                                  [style.height]="height">
-      <div *cdkVirtualFor="let option of visibleOptions"
-           nz-row
-           [nzGutter]="[24, 8]"
-           class="m-0">
-        <div nz-col
-             nzSpan="24">
-          <mat-checkbox [checked]="option.checked"
-                        (change)="onFilterChange($event, option.value)"
-                        (click)="$event.stopPropagation()">
-            <ivt-text-truncate-tooltip [label]="option.label"></ivt-text-truncate-tooltip>
-          </mat-checkbox>
+      <nz-checkbox-wrapper (nzOnChange)="onFilterChange($event)">
+        <div *ngFor="let option of visibleOptions"
+             nz-row
+             [nzGutter]="[24, 8]"
+             class="m-0">
+          <div nz-col
+               nzSpan="24">
+            <label nz-checkbox
+                   [nzValue]="option">{{ option.label }}</label>
+          </div>
         </div>
-      </div>
+      </nz-checkbox-wrapper>
     </cdk-virtual-scroll-viewport>
   </div>
 </nz-dropdown-menu>

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -36,7 +35,6 @@ const MATERIAL_MODULES = [
   // Form controls
   MatInputModule,
   MatAutocompleteModule,
-  MatCheckboxModule,
   MatDatepickerModule,
   MatNativeDateModule,
   MatSelectModule,
