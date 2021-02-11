@@ -93,6 +93,7 @@
     "file-saver": "^2.0.5",
     "lodash": "^4.17.20",
     "lodash-es": "^4.17.20",
+    "ng-zorro-antd": "^11.1.0",
     "ng2-charts": "^2.4.2",
     "ng2-file-upload": "^1.4.0",
     "ngx-mask": "^11.1.4",
@@ -115,10 +116,13 @@
     "zone.js": "^0.11.3"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "~0.1100.1",
+    "@angular/compiler-cli": "^11.0.0",
     "@angular/language-service": "^11.1.2",
     "@nrwl/cypress": "11.2.10",
     "@nrwl/eslint-plugin-nx": "^11.2.10",
     "@nrwl/jest": "11.2.10",
+    "@types/jest": "26.0.8",
     "@typescript-eslint/eslint-plugin": "4.14.2",
     "@typescript-eslint/parser": "4.14.2",
     "codelyzer": "^6.0.1",
