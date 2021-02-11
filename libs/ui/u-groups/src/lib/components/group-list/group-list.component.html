@@ -1,13 +1,17 @@
-<div nz-row [nzGutter]="[24, 8]">
-  <div nz-col class="-12 col-md-6">
+<div nz-row
+     [nzGutter]="[24, 8]">
+  <div nz-col
+       class="-12 col-md-6">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
 
-  <div nz-col class="flex-end pr-0">
-    <button mat-raised-button
+  <div nz-col
+       nzFlex="auto"
+       class="flex-end pr-0">
+    <button nz-button
             [routerLink]="['new']"
             type="button"
-            color="primary">
+            nzType="primary">
       Nuevo grupo
     </button>
   </div>

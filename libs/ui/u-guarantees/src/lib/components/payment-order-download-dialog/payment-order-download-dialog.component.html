@@ -13,10 +13,10 @@
     <div nz-col
          nzSpan="24"
          class="flex-center">
-      <button mat-raised-button
+      <button nz-button
               class="px-4 py-2"
-              [loading]="loading"
-              color="primary"
+              [nzLoading]="loading"
+              nzType="primary"
               (click)="downloadPdf.emit(item?.id)">
         Descargar orden de pago
       </button>

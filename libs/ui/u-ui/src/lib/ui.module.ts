@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatButtonModule } from '@angular/material/button';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
@@ -55,7 +55,7 @@ const MATERIAL_MODULES = [
   MatStepperModule,
   MatTabsModule,
   // Buttons and Indicators
-  MatButtonModule,
+  NzButtonModule,
   MatChipsModule,
   MatSlideToggleModule,
   MatIconModule,

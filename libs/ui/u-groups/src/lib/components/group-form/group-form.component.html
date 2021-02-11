@@ -73,16 +73,16 @@
     <div nz-col
          nzSpan="24"
          class="px-0 flex-end">
-      <button mat-raised-button
+      <button nz-button
               class="mr-3"
               type="button"
               [routerLink]="['..']">
         Cancelar
       </button>
-      <button mat-raised-button
+      <button nz-button
               type="submit"
-              color="primary"
-              [loading]="loading">
+              nzType="primary"
+              [nzLoading]="loading">
         Guardar
       </button>
     </div>

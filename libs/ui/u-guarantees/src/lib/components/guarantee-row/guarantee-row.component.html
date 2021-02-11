@@ -57,9 +57,10 @@
   </div>
   <div nz-col
        class="ml-auto pl-0">
-    <button mat-icon-button
+    <button nz-button
+            nzType="text"
             matTooltip="Acciones"
-            [loading]="loading"
+            [nzLoading]="loading"
             [matMenuTriggerFor]="actionsMenu">
       <mat-icon>more_vert</mat-icon>
     </button>

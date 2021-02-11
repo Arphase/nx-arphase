@@ -1,9 +1,12 @@
-<div nz-row [nzGutter]="[24, 8]">
-  <div nz-col class="flex-end pr-0 pb-3">
-    <button mat-raised-button
+<div nz-row
+     [nzGutter]="[24, 8]">
+  <div nz-col
+       nzSpan="24"
+       class="flex-end pr-0 pb-3">
+    <button nz-button
             (click)="create.emit()"
             type="button"
-            color="primary">
+            nzType="primary">
       Nueva compañía
     </button>
   </div>

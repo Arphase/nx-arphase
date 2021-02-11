@@ -8,7 +8,7 @@
 
 <ng-template #successDialog>
   <ivt-payment-order-download-dialog [item]="currentItem$ | async"
-                                     [loading]="loadingDownload$ | async"
+                                     [nzLoading]="loadingDownload$ | async"
                                      (downloadPdf)="downloadPaymentOrder($event)">
   </ivt-payment-order-download-dialog>
 </ng-template>

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -22,7 +21,6 @@ import {
   IvtFormFieldModule,
   IvtGoBackTitleModule,
   IvtInputModule,
-  IvtLoadingModule,
   IvtRadioFilterModule,
   IvtRowModule,
   IvtSearchbarModule,
@@ -32,6 +30,7 @@ import {
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NgxMaskModule } from 'ngx-mask';
 
@@ -65,7 +64,6 @@ import { GuaranteesComponent } from './guarantees.component';
     MatSelectModule,
     MatRadioModule,
     IvtAddressFormModule,
-    IvtLoadingModule,
     MatDialogModule,
     IvtFolioModule,
     IvtSearchbarModule,
@@ -82,7 +80,7 @@ import { GuaranteesComponent } from './guarantees.component';
     IvtTextTruncateTooltipModule,
     IvtEmptyModule,
     MatCardModule,
-    MatButtonModule,
+    NzButtonModule,
     IvtSuccessDialogModule,
     NgxMaskModule,
     NzGridModule,

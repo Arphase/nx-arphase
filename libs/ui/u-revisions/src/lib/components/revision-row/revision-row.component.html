@@ -1,35 +1,45 @@
 <ivt-row>
-  <div nz-col class="or-status {{ backgroundClasses[item.status] }}"
+  <div nz-col
+       class="or-status {{ backgroundClasses[item.status] }}"
        (mouseenter)="showStatusSubject.next(true)"
        (click)="showStatusSubject.next(true)"></div>
 
   <div [ngClass]="{ collapsed: !(visibleStatus$ | async)}"
-       nz-col class="or-status-description {{ backgroundClasses[item.status] }} text-center p-3 flex-center">
+       nz-col
+       class="or-status-description {{ backgroundClasses[item.status] }} text-center p-3 flex-center">
     <div class="mx-2">
       <p class="text-white mb-0">{{ statusLabels[revisionStatus[item.status]] }}</p>
     </div>
   </div>
 
-  <div nz-col class="-2">
+  <div nz-col
+       class="-2">
     <ivt-text-truncate-tooltip [label]="item.observations | empty"></ivt-text-truncate-tooltip>
   </div>
-  <div nz-col class="-2">
+  <div nz-col
+       class="-2">
     <ivt-text-truncate-tooltip [label]="item.vehicle?.vin"></ivt-text-truncate-tooltip>
   </div>
-  <div nz-col class="-2">
+  <div nz-col
+       class="-2">
     <ivt-text-truncate-tooltip [label]="item.vehicle?.brand"></ivt-text-truncate-tooltip>
   </div>
-  <div nz-col class="-2">
+  <div nz-col
+       class="-2">
     <ivt-text-truncate-tooltip [label]="item.vehicle?.model"></ivt-text-truncate-tooltip>
   </div>
-  <div nz-col class="-2">
+  <div nz-col
+       class="-2">
     <ivt-text-truncate-tooltip [label]="item.vehicle?.year"></ivt-text-truncate-tooltip>
   </div>
-  <div nz-col class="-1">
+  <div nz-col
+       class="-1">
     <ivt-text-truncate-tooltip [label]="item.createdAt | date: 'dd/mm/yy'"></ivt-text-truncate-tooltip>
   </div>
-  <div nz-col class="flex-end">
-    <button mat-icon-button
+  <div nz-col
+       class="flex-end">
+    <button nz-button
+            nzType="text"
             matTooltip="Acciones"
             [matMenuTriggerFor]="actionsMenu">
       <mat-icon>more_vert</mat-icon>

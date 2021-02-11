@@ -11,8 +11,8 @@
   <div nz-col>
     <div class="file-drop-row">
       <div>
-        <button mat-raised-button
-                color="primary"
+        <button nz-button
+                nzType="primary"
                 class="btn-blue"
                 type="button"
                 [disabled]="disabled"
@@ -58,7 +58,7 @@
                 [title]="item?.file?.name">{{ item?.file?.name }}</span>
 
           <button class="file-ivt-row__action"
-                  mat-icon-button
+                  nz-button
                   (click)="removeItem(item)">
             <mat-icon>delete</mat-icon>
           </button>

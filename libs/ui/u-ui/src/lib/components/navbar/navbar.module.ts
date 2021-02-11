@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -19,7 +19,7 @@ import { IvtSideNavComponent } from './side-nav/side-nav.component';
     CommonModule,
     RouterModule,
     MatIconModule,
-    MatButtonModule,
+    NzButtonModule,
     MatMenuModule,
     MatTooltipModule,
     MatSidenavModule,

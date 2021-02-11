@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { IvtFormFieldModule, IvtInputModule, IvtLoadingModule, IvtStatusMessageModule } from '@ivt/u-ui';
+import { IvtFormFieldModule, IvtInputModule, IvtStatusMessageModule } from '@ivt/u-ui';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 
 import { AuthRoutingModule } from './auth-routing.module';
@@ -22,12 +22,11 @@ import { SignInFormContainerComponent } from './containers/sign-in-form-containe
     ReactiveFormsModule,
     AuthRoutingModule,
     MatCardModule,
-    MatButtonModule,
     IvtFormFieldModule,
     IvtInputModule,
-    IvtLoadingModule,
     IvtStatusMessageModule,
     NzGridModule,
+    NzButtonModule,
   ],
   declarations: [
     AuthComponent,

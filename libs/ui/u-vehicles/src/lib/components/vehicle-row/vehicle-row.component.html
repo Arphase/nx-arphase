@@ -1,34 +1,44 @@
 <ivt-row>
-  <div nz-col class="or-status {{ backgroundClasses[item.status] }}"
+  <div nz-col
+       class="or-status {{ backgroundClasses[item.status] }}"
        (mouseenter)="showStatusSubject.next(true)"
        (click)="showStatusSubject.next(true)"></div>
 
   <div [ngClass]="{ collapsed: !(visibleStatus$ | async)}"
-       nz-col class="or-status-description {{ backgroundClasses[item.status] }} text-center p-3 flex-center">
+       nz-col
+       class="or-status-description {{ backgroundClasses[item.status] }} text-center p-3 flex-center">
     <div class="mx-2">
       <p class="text-white mb-0">{{ statusLabels[item.status] }}</p>
     </div>
   </div>
-  <div nz-col class="-2 d-none d-lg-block d-xl-block">
+  <div nz-col
+       class="-2 d-none d-lg-block d-xl-block">
     <ivt-text-truncate-tooltip [label]="item.vin | empty"></ivt-text-truncate-tooltip>
   </div>
-  <div nz-col class="-6 col-md-2 d-none d-sm-block d-md-block d-lg-block d-xl-block">
+  <div nz-col
+       class="-6 col-md-2 d-none d-sm-block d-md-block d-lg-block d-xl-block">
     <ivt-text-truncate-tooltip [label]="item.brand | empty"></ivt-text-truncate-tooltip>
   </div>
-  <div nz-col class="-5 col-md-2">
+  <div nz-col
+       class="-5 col-md-2">
     <ivt-text-truncate-tooltip [label]="item.model | empty"></ivt-text-truncate-tooltip>
   </div>
-  <div nz-col class="-2 d-none d-sm-block d-md-block d-lg-block d-xl-block">
+  <div nz-col
+       class="-2 d-none d-sm-block d-md-block d-lg-block d-xl-block">
     <ivt-text-truncate-tooltip [label]="item.version | empty"></ivt-text-truncate-tooltip>
   </div>
-  <div nz-col class="-4 col-md-2 col-lg-1">
+  <div nz-col
+       class="-4 col-md-2 col-lg-1">
     <ivt-text-truncate-tooltip [label]="item.year | empty"></ivt-text-truncate-tooltip>
   </div>
-  <div nz-col class="-2 d-none d-sm-block d-md-block d-lg-block d-xl-block">
+  <div nz-col
+       class="-2 d-none d-sm-block d-md-block d-lg-block d-xl-block">
     <ivt-text-truncate-tooltip [label]="item.createdAt | date: 'dd/MM/yy'"></ivt-text-truncate-tooltip>
   </div>
-  <div nz-col class="flex-end pl-0">
-    <button mat-icon-button
+  <div nz-col
+       class="flex-end pl-0">
+    <button nz-button
+            nzType="text"
             matTooltip="Acciones"
             [matMenuTriggerFor]="actionsMenu">
       <mat-icon>more_vert</mat-icon>

@@ -11,15 +11,17 @@
        nzSm="8"
        nzMd="4"
        class="flex-start">
-    <button mat-icon-button
+    <button nz-button
+            nzType="text"
             [ngClass]="{ 'bg-primary text-white': showFilters }"
             matTooltip="Filtrar"
             (click)="toggleFilter()">
       <mat-icon>filter_alt</mat-icon>
     </button>
-    <button mat-icon-button
+    <button nz-button
+            nzType="text"
             matTooltip="Exportar a Excel"
-            [loading]="loadingExcel"
+            [nzLoading]="loadingExcel"
             (click)="exportExcel.emit()">
       <mat-icon class="rotate-y-180">reply</mat-icon>
     </button>
@@ -32,11 +34,12 @@
   </div>
 
   <div nz-col
+       nzFlex="auto"
        class="flex-end pr-0">
-    <button mat-raised-button
+    <button nz-button
             [routerLink]="['new']"
             type="button"
-            color="primary">
+            nzType="primary">
       Nueva garantía
     </button>
   </div>
@@ -97,9 +100,9 @@
      class="mt-4 bg-light py-3 rounded">
   <div nz-col
        nzSpan="24">
-    <button mat-raised-button
+    <button nz-button
             type="button"
-            color="primary"
+            nzType="primary"
             (click)="createPaymentOrder.emit(selectedIds.selected)">
       Generar orden de pago
     </button>

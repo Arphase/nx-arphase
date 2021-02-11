@@ -10,8 +10,8 @@
         <span class="expansion-panel-title">{{ title }}</span>
 
         <button class="ml-1 ivt-expansion-panel__arrow-button"
-                mat-icon-button
-                buttonStyle="link"
+                nz-button
+                nzType="text"
                 type="button">
           <mat-icon [ngClass]="{ 'text-primary': isOpen, 'text-muted': !isOpen }"
                     class="expansion-panel-arrow">

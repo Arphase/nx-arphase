@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import {
@@ -34,7 +34,7 @@ import { UsersComponent } from './users.component';
     IvtRowModule,
     IvtTextTruncateTooltipModule,
     IvtEmptyModule,
-    MatButtonModule,
+    NzButtonModule,
     MatCardModule,
     NzGridModule,
   ],

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,13 +11,13 @@ import {
   IvtEmptyModule,
   IvtEmptyStateModule,
   IvtGoBackTitleModule,
-  IvtLoadingModule,
   IvtRowModule,
   IvtSearchbarModule,
   IvtTableHeaderModule,
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 
 import { VehicleFormWrapperComponent } from './components/vehicle-form-wrapper/vehicle-form-wrapper.component';
@@ -38,7 +37,6 @@ import { VehiclesComponent } from './vehicles.component';
     VehiclesDataModule,
     ReactiveFormsModule,
     IvtGoBackTitleModule,
-    IvtLoadingModule,
     IvtSearchbarModule,
     IvtEmptyStateModule,
     IvtTableHeaderModule,
@@ -49,7 +47,7 @@ import { VehiclesComponent } from './vehicles.component';
     MatMenuModule,
     MatIconModule,
     MatCardModule,
-    MatButtonModule,
+    NzButtonModule,
     MatDialogModule,
     MatTooltipModule,
     NzGridModule,

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,7 +13,6 @@ import {
   IvtFormFieldModule,
   IvtGoBackTitleModule,
   IvtInputModule,
-  IvtLoadingModule,
   IvtPhoneModule,
   IvtRowModule,
   IvtSearchbarModule,
@@ -22,6 +20,7 @@ import {
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NgxMaskModule } from 'ngx-mask';
 
@@ -51,7 +50,6 @@ import { GroupsComponent } from './groups.component';
     IvtInputModule,
     IvtAddressFormModule,
     IvtRowModule,
-    IvtLoadingModule,
     IvtTextTruncateTooltipModule,
     IvtEmptyModule,
     IvtEmptyStateModule,
@@ -61,7 +59,7 @@ import { GroupsComponent } from './groups.component';
     IvtSearchbarModule,
     IvtPhoneModule,
     MatCardModule,
-    MatButtonModule,
+    NzButtonModule,
     NgxMaskModule,
     NzGridModule,
   ],

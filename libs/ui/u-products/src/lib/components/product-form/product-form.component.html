@@ -59,18 +59,18 @@ nzLg="12">
 
     <div nz-row [nzGutter]="[24, 8]" class="mt-4 mb-3">
       <div nz-col class="px-0 flex-end">
-        <button mat-raised-button
+        <button nz-button
                 class="mr-3"
                 type="button"
                 [routerLink]="['..']">Cancelar</button>
-        <button mat-raised-button
+        <button nz-button
                 class="mr-3"
-                color="primary"
+                nzType="primary"
                 type="button"
                 (click)="downloadTemplatePreview()">Vista previa</button>
-        <button mat-raised-button
+        <button nz-button
                 type="submit"
-                color="primary">Guardar</button>
+                nzType="primary">Guardar</button>
       </div>
     </div>
   </div>
