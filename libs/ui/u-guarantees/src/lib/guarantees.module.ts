@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NzCardModule } from 'ng-zorro-antd/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
@@ -15,7 +13,6 @@ import {
   IvtCheckboxFilterModule,
   IvtDateFilterModule,
   IvtEmptyModule,
-  IvtExpansionPanelModule,
   IvtFolioModule,
   IvtFormFieldModule,
   IvtInputModule,
@@ -29,12 +26,14 @@ import {
 } from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageModule } from 'ng-zorro-antd/message';
-import { NgxMaskModule } from 'ngx-mask';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
-
+import { NgxMaskModule } from 'ngx-mask';
 
 import { GuaranteeFormComponent } from './components/guarantee-form/guarantee-form.component';
 import { GuaranteeInvoiceNumberDialogComponent } from './components/guarantee-invoice-number-dialog/guarantee-invoice-number-dialog.component';
@@ -59,7 +58,7 @@ import { GuaranteesComponent } from './guarantees.component';
     VehiclesDataModule,
     ReactiveFormsModule,
     NzPageHeaderModule,
-    IvtExpansionPanelModule,
+    NzCollapseModule,
     IvtFormFieldModule,
     IvtInputModule,
     MatDatepickerModule,

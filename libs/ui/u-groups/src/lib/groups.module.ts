@@ -6,7 +6,6 @@ import { PermissionsModule } from '@ivt/u-state';
 import {
   IvtAddressFormModule,
   IvtEmptyModule,
-  IvtExpansionPanelModule,
   IvtFormFieldModule,
   IvtInputModule,
   IvtPhoneModule,
@@ -18,6 +17,7 @@ import {
 } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -46,7 +46,6 @@ import { GroupsComponent } from './groups.component';
     ReactiveFormsModule,
     MatDialogModule,
     NzIconModule,
-    IvtExpansionPanelModule,
     IvtFormFieldModule,
     IvtInputModule,
     IvtAddressFormModule,
@@ -64,6 +63,7 @@ import { GroupsComponent } from './groups.component';
     NgxMaskModule,
     NzGridModule,
     NzMessageModule,
+    NzCollapseModule,
   ],
   declarations: [
     GroupsComponent,

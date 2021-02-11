@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { IvtAddressFormModule } from './address-form';
 import { IvtAutocompleteModule } from './autocomplete';
 import { IvtConfirmationDialogModule } from './confirmation-dialog';
-import { IvtExpansionPanelModule } from './expansion-panel';
 import { IvtFileUploadModule } from './file-upload';
 import { IvtCheckboxFilterModule, IvtDateFilterModule, IvtFilterModule, IvtRadioFilterModule } from './filters';
 import { IvtFormModule } from './form';
@@ -24,7 +23,6 @@ const MODULES = [
   IvtCheckboxFilterModule,
   IvtConfirmationDialogModule,
   IvtDateFilterModule,
-  IvtExpansionPanelModule,
   IvtFileUploadModule,
   IvtFilterModule,
   IvtFormModule,

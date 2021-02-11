@@ -5,110 +5,118 @@
   </h1>
 
   <mat-dialog-content>
-    <ivt-expansion-panel class="primary-panel mb-3 d-block"
-                         title="Información General"
-                         [isOpen]="true">
-      <div nz-row
-           [nzGutter]="[24, 8]">
-        <div nz-col
-             nzMd="24"
-             nzLg="12">
-          <ivt-form-field label="Razón Social">
-            <input ivtInput
-                   formControlName="businessName">
-          </ivt-form-field>
+    <nz-collapse>
+      <nz-collapse-panel nzHeader="Información General"
+                         [nzActive]="true">
+        <div nz-row
+             [nzGutter]="[24, 8]">
+          <div nz-col
+               nzMd="24"
+               nzLg="12">
+            <ivt-form-field label="Razón Social">
+              <input ivtInput
+                     formControlName="businessName">
+            </ivt-form-field>
+          </div>
+          <div nz-col
+               nzMd="24"
+               nzLg="12">
+            <ivt-form-field label="RFC">
+              <input ivtInput
+                     ivtUppercase
+                     formControlName="rfc">
+            </ivt-form-field>
+          </div>
         </div>
-        <div nz-col
-             nzMd="24"
-             nzLg="12">
-          <ivt-form-field label="RFC">
-            <input ivtInput
-                   ivtUppercase
-                   formControlName="rfc">
-          </ivt-form-field>
-        </div>
-      </div>
-    </ivt-expansion-panel>
-    <ivt-expansion-panel class="primary-panel mb-3 d-block"
-                         title="Dirección"
-                         [isOpen]="true">
-      <ivt-address-form [form]="addressForm"></ivt-address-form>
-    </ivt-expansion-panel>
+      </nz-collapse-panel>
+    </nz-collapse>
 
-    <ivt-expansion-panel class="primary-panel mb-3 d-block"
-                         title="Contacto"
-                         [isOpen]="true">
-      <div nz-row
-           [nzGutter]="[24, 8]">
-        <div nz-col
-             nzMd="24"
-             nzLg="8">
-          <ivt-form-field label="Nombre del contacto">
-            <input ivtInput
-                   formControlName="contact">
-          </ivt-form-field>
-        </div>
-        <div nz-col
-             nzMd="24"
-             nzLg="8">
-          <ivt-form-field label="Correo">
-            <input ivtInput
-                   formControlName="email">
-          </ivt-form-field>
-        </div>
-        <div nz-col
-             nzMd="24"
-             nzLg="8">
-          <ivt-form-field label="Telefono">
-            <input ivtInput
-                   type="tel"
-                   mask="(00) 0000 0000"
-                   formControlName="phone">
-          </ivt-form-field>
-        </div>
-      </div>
-    </ivt-expansion-panel>
 
-    <ivt-expansion-panel class="primary-panel mb-3 d-block"
-                         title="Usuarios"
-                         [isOpen]="true">
-      <ivt-row *ngFor="let userForm of usersFormArray.controls; let index = index;"
-               nz-row
-               [nzGutter]="[24, 8]">
-        <div nz-col
-             nzXs="20"
-             nzMd="22">
-          <ivt-user-form [form]="userForm"></ivt-user-form>
-        </div>
-        <div nz-col
-             nzXs="4"
-             nzMd="2"
-             class="center">
-          <button *ngIf="!userForm.value.id"
-                  nz-button
-                  nzType="text"
-                  matTooltip="Eliminar usuario"
-                  type="button"
-                  (click)="removeUser(index)">
-            <i nz-icon nzType="delete" nzTheme="outline"></i>
-          </button>
-        </div>
-      </ivt-row>
+    <nz-collapse>
+      <nz-collapse-panel nzHeader="Dirección"
+                         [nzActive]="true">
+        <ivt-address-form [form]="addressForm"></ivt-address-form>
+      </nz-collapse-panel>
+    </nz-collapse>
 
-      <div nz-row
-           [nzGutter]="[24, 8]">
-        <div nz-col
-             nzSpan="24">
-          <button nz-button
-                  nzType="primary"
-                  type="button"
-                  [disabled]="usersFormArray.invalid"
-                  (click)="addUser()">
-            Agregar nuevo usuario
-          </button>
+    <nz-collapse>
+      <nz-collapse-panel nzHeader="Contacto"
+                         [nzActive]="true">
+        <div nz-row
+             [nzGutter]="[24, 8]">
+          <div nz-col
+               nzMd="24"
+               nzLg="8">
+            <ivt-form-field label="Nombre del contacto">
+              <input ivtInput
+                     formControlName="contact">
+            </ivt-form-field>
+          </div>
+          <div nz-col
+               nzMd="24"
+               nzLg="8">
+            <ivt-form-field label="Correo">
+              <input ivtInput
+                     formControlName="email">
+            </ivt-form-field>
+          </div>
+          <div nz-col
+               nzMd="24"
+               nzLg="8">
+            <ivt-form-field label="Telefono">
+              <input ivtInput
+                     type="tel"
+                     mask="(00) 0000 0000"
+                     formControlName="phone">
+            </ivt-form-field>
+          </div>
         </div>
-      </div>
-    </ivt-expansion-panel>
+      </nz-collapse-panel>
+    </nz-collapse>
+
+    <nz-collapse>
+      <nz-collapse-panel nzHeader="Usuarios"
+                         [nzActive]="true">
+        <ivt-row *ngFor="let userForm of usersFormArray.controls; let index = index;"
+                 nz-row
+                 [nzGutter]="[24, 8]">
+          <div nz-col
+               nzXs="20"
+               nzMd="22">
+            <ivt-user-form [form]="userForm"></ivt-user-form>
+          </div>
+          <div nz-col
+               nzXs="4"
+               nzMd="2"
+               class="center">
+            <button *ngIf="!userForm.value.id"
+                    nz-button
+                    nzType="text"
+                    matTooltip="Eliminar usuario"
+                    type="button"
+                    (click)="removeUser(index)">
+              <i nz-icon
+                 nzType="delete"
+                 nzTheme="outline"></i>
+            </button>
+          </div>
+        </ivt-row>
+
+        <div nz-row
+             [nzGutter]="[24, 8]">
+          <div nz-col
+               nzSpan="24">
+            <button nz-button
+                    nzType="primary"
+                    type="button"
+                    [disabled]="usersFormArray.invalid"
+                    (click)="addUser()">
+              Agregar nuevo usuario
+            </button>
+          </div>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
   </mat-dialog-content>
 
   <div mat-dialog-actions
