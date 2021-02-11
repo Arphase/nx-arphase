@@ -18,7 +18,6 @@ import {
   IvtExpansionPanelModule,
   IvtFolioModule,
   IvtFormFieldModule,
-  IvtGoBackTitleModule,
   IvtInputModule,
   IvtRadioFilterModule,
   IvtRowModule,
@@ -34,6 +33,8 @@ import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NgxMaskModule } from 'ngx-mask';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+
 
 import { GuaranteeFormComponent } from './components/guarantee-form/guarantee-form.component';
 import { GuaranteeInvoiceNumberDialogComponent } from './components/guarantee-invoice-number-dialog/guarantee-invoice-number-dialog.component';
@@ -57,7 +58,7 @@ import { GuaranteesComponent } from './guarantees.component';
     VehicleFormModule,
     VehiclesDataModule,
     ReactiveFormsModule,
-    IvtGoBackTitleModule,
+    NzPageHeaderModule,
     IvtExpansionPanelModule,
     IvtFormFieldModule,
     IvtInputModule,

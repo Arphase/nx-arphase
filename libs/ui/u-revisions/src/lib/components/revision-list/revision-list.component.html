@@ -1,10 +1,11 @@
 <div *ngIf="title"
-     nz-row
-     [nzGutter]="[24, 8]">
+     nz-row>
   <div nz-col
        nzSpan="24">
-    <ivt-go-back-title [title]="title"
-                       [link]="['/spa/vehicles']"></ivt-go-back-title>
+    <nz-page-header nzBackIcon
+                    [nzTitle]="title"
+                    [routerLink]="['/spa/vehicles']">
+    </nz-page-header>
   </div>
 </div>
 

@@ -1,10 +1,12 @@
 <form [formGroup]="form"
       (ngSubmit)="submit()">
-  <div nz-row
-       [nzGutter]="[24, 8]">
+  <div nz-row>
     <div nz-col
          nzSpan="24">
-      <ivt-go-back-title [title]="item?.id ? 'Editar Garantía' : 'Nueva Garantía'"></ivt-go-back-title>
+      <nz-page-header nzBackIcon
+                      [nzTitle]="item?.id ? 'Editar Garantía' : 'Nueva Garantía'"
+                      [routerLink]="['..']">
+      </nz-page-header>
     </div>
   </div>
   <div class="pt-3">

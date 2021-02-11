@@ -41,7 +41,8 @@
     </nz-sider>
     <nz-content>
       <div *ngIf="mobileQuery.matches && !isCollapsed"
-           class="backdrop">
+           class="backdrop"
+           (click)="isCollapsed = true">
       </div>
       <router-outlet></router-outlet>
     </nz-content>

@@ -8,7 +8,6 @@ import { IvtFileUploadModule } from './file-upload';
 import { IvtCheckboxFilterModule, IvtDateFilterModule, IvtFilterModule, IvtRadioFilterModule } from './filters';
 import { IvtFormModule } from './form';
 import { IvtFormFieldModule } from './form-field';
-import { IvtGoBackTitleModule } from './go-back-title';
 import { IvtListModule } from './list';
 import { IvtRowModule } from './row';
 import { IvtSearchbarModule } from './searchbar';
@@ -30,7 +29,6 @@ const MODULES = [
   IvtFilterModule,
   IvtFormModule,
   IvtFormFieldModule,
-  IvtGoBackTitleModule,
   IvtListModule,
   IvtRadioFilterModule,
   IvtRowModule,

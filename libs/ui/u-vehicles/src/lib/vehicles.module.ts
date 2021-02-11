@@ -9,7 +9,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { VehiclesDataModule } from '@ivt/u-state';
 import {
   IvtEmptyModule,
-  IvtGoBackTitleModule,
   IvtRowModule,
   IvtSearchbarModule,
   IvtTableHeaderModule,
@@ -20,6 +19,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 
 import { VehicleFormWrapperComponent } from './components/vehicle-form-wrapper/vehicle-form-wrapper.component';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
@@ -37,7 +37,7 @@ import { VehiclesComponent } from './vehicles.component';
     VehicleFormModule,
     VehiclesDataModule,
     ReactiveFormsModule,
-    IvtGoBackTitleModule,
+    NzPageHeaderModule,
     IvtSearchbarModule,
     NzEmptyModule,
     IvtTableHeaderModule,

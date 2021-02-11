@@ -6,7 +6,6 @@ export * from './file-upload';
 export * from './filters';
 export * from './form';
 export * from './form-field';
-export * from './go-back-title';
 export * from './list';
 export * from './row';
 export * from './searchbar';

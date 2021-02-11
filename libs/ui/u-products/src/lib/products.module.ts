@@ -8,7 +8,6 @@ import {
   IvtFileUploadModule,
   IvtFolioModule,
   IvtFormFieldModule,
-  IvtGoBackTitleModule,
   IvtInputModule,
   IvtRowModule,
   IvtTableModule,
@@ -20,6 +19,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NgxMaskModule } from 'ngx-mask';
 import { ShowdownModule } from 'ngx-showdown';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
@@ -35,7 +35,7 @@ import { ProductsComponent } from './products.component';
     ProductsRoutingModule,
     ShowdownModule,
     ReactiveFormsModule,
-    IvtGoBackTitleModule,
+    NzPageHeaderModule,
     IvtFormFieldModule,
     IvtInputModule,
     IvtFileUploadModule,

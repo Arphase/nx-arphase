@@ -1,16 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NzCardModule } from 'ng-zorro-antd/card';
 import { MatDialogModule } from '@angular/material/dialog';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { PermissionsModule } from '@ivt/u-state';
 import {
   IvtAddressFormModule,
   IvtEmptyModule,
   IvtExpansionPanelModule,
   IvtFormFieldModule,
-  IvtGoBackTitleModule,
   IvtInputModule,
   IvtPhoneModule,
   IvtRowModule,
@@ -20,9 +17,12 @@ import {
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { CompanyFormDialogComponent } from './components/company-form-dialog/company-form-dialog.component';
@@ -56,7 +56,7 @@ import { GroupsComponent } from './groups.component';
     NzEmptyModule,
     IvtTableHeaderModule,
     IvtVirtualScrollModule,
-    IvtGoBackTitleModule,
+    NzPageHeaderModule,
     IvtSearchbarModule,
     IvtPhoneModule,
     NzCardModule,
