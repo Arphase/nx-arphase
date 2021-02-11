@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 import { FileUploadModule } from 'ng2-file-upload';
 
 import { EagerFileUploadDirective } from './eager-file-upload.directive';
@@ -18,6 +19,7 @@ import { IvtFileUploadComponent } from './file-upload.component';
     MatIconModule,
     MatProgressSpinnerModule,
     MatButtonModule,
+    NzGridModule,
   ],
   exports: [IvtFileUploadComponent, EagerFileUploadDirective],
 })

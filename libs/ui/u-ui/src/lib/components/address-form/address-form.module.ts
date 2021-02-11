@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { IvtInputModule } from '../../directives';
@@ -19,6 +20,7 @@ import { IvtAddressFormComponent } from './address-form.component';
     IvtAutocompleteModule,
     NgxMaskModule,
     MatSelectModule,
+    NzGridModule,
   ],
   exports: [IvtAddressFormComponent],
 })

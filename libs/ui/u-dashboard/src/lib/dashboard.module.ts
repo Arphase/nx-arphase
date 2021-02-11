@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { DasboardStateModule } from '@ivt/u-state';
 import { IvtCheckboxFilterModule, IvtDateFilterModule, IvtEmptyStateModule } from '@ivt/u-ui';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 import { ChartsModule } from 'ng2-charts';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -21,6 +22,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     IvtEmptyStateModule,
     IvtDateFilterModule,
     IvtCheckboxFilterModule,
+    NzGridModule,
   ],
   declarations: [DashboardContainerComponent, DashboardComponent],
 })

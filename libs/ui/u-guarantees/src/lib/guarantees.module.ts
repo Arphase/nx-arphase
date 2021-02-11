@@ -32,6 +32,7 @@ import {
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { GuaranteeFormComponent } from './components/guarantee-form/guarantee-form.component';
@@ -84,6 +85,7 @@ import { GuaranteesComponent } from './guarantees.component';
     MatButtonModule,
     IvtSuccessDialogModule,
     NgxMaskModule,
+    NzGridModule,
   ],
   declarations: [
     GuaranteeFormComponent,

@@ -1,32 +1,48 @@
 <form class="py-2"
       [formGroup]="form">
-  <div class="row">
-    <div class="col-12 col-md-6 col-lg-4">
+  <div nz-row
+       [nzGutter]="[24, 8]">
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="8">
       <ivt-form-field label="Nombre(s)">
         <input ivtInput
                formControlName="firstName">
       </ivt-form-field>
     </div>
-    <div class="col-12 col-md-6 col-lg-4">
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="8">
       <ivt-form-field label="Apellido Paterno">
         <input ivtInput
                formControlName="lastName">
       </ivt-form-field>
     </div>
-    <div class="col-12 col-md-6 col-lg-4">
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="8">
       <ivt-form-field label="Apellido Materno">
         <input ivtInput
                formControlName="secondLastName">
       </ivt-form-field>
     </div>
-    <div class="col-12 col-md-6 col-lg-4">
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="8">
       <ivt-form-field label="Correo">
         <input ivtInput
                type="email"
                formControlName="email">
       </ivt-form-field>
     </div>
-    <div class="col-12 col-md-6 col-lg-4">
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="8">
       <ivt-form-field label="Teléfono">
         <input ivtInput
                type="tel"
@@ -34,7 +50,10 @@
                formControlName="phone">
       </ivt-form-field>
     </div>
-    <div class="col-12 col-md-6 col-lg-4">
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="8">
       <ivt-form-field label="RFC">
         <input ivtInput
                ivtUppercase

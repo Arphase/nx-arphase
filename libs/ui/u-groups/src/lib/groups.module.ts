@@ -22,6 +22,7 @@ import {
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { CompanyFormDialogComponent } from './components/company-form-dialog/company-form-dialog.component';
@@ -61,7 +62,8 @@ import { GroupsComponent } from './groups.component';
     IvtPhoneModule,
     MatCardModule,
     MatButtonModule,
-    NgxMaskModule
+    NgxMaskModule,
+    NzGridModule,
   ],
   declarations: [
     GroupsComponent,

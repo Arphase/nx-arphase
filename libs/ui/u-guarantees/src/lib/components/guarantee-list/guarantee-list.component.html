@@ -1,9 +1,16 @@
-<div class="row">
-  <div class="col-8 col-md-10 col-lg-6">
+<div nz-row
+     [nzGutter]="[24, 8]">
+  <div nz-col
+       nzSm="16"
+       nzMd="20"
+       nzLg="12">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
 
-  <div class="col-4 col-md-2 flex-start">
+  <div nz-col
+       nzSm="8"
+       nzMd="4"
+       class="flex-start">
     <button mat-icon-button
             [ngClass]="{ 'bg-primary text-white': showFilters }"
             matTooltip="Filtrar"
@@ -17,11 +24,15 @@
       <mat-icon class="rotate-y-180">reply</mat-icon>
     </button>
   </div>
-  <div class="col-6 col-lg-2 flex-start">
+  <div nz-col
+       nzMd="12"
+       nzLg="4"
+       class="flex-start">
     <h6 class="m-0"> Resultado(s): {{ list.length }} </h6>
   </div>
 
-  <div class="col flex-end pr-0">
+  <div nz-col
+       class="flex-end pr-0">
     <button mat-raised-button
             [routerLink]="['new']"
             type="button"
@@ -32,22 +43,27 @@
 </div>
 
 <div [hidden]="!showFilters"
-     class="row bg-light mx-0 mb-4 rounded mt-3 py-3 px-2">
-  <div class="col-auto px-1 my-2 filter-column">
+     nz-row
+     [nzGutter]="[24, 8]"
+     class="bg-light mx-0 mb-4 rounded mt-3 py-3 px-2">
+  <div nz-col
+       class="px-1 my-2 filter-column">
     <ivt-date-filter class="mr-3"
                      label="Fecha"
                      [dateTypeOptions]="dateTypeOptions"
                      (filterItems)="updateDateFilter($event)">
     </ivt-date-filter>
   </div>
-  <div class="col-auto px-1 my-2 filter-column">
+  <div nz-col
+       class="px-1 my-2 filter-column">
     <ivt-radio-filter class="mr-3"
                       label="Estatus"
                       [options]="statusOptions"
                       (filterItems)="updateStatusFilter($event)">
     </ivt-radio-filter>
   </div>
-  <div class="col-auto px-1 my-2 filter-column">
+  <div nz-col
+       class="px-1 my-2 filter-column">
     <ivt-checkbox-filter *ngIf="groupOptions?.length"
                          class="mr-3"
                          label="Grupos"
@@ -55,7 +71,8 @@
                          (filterItems)="updateGroupsFilters($event)">
     </ivt-checkbox-filter>
   </div>
-  <div class="col-auto px-1 my-2 filter-column">
+  <div nz-col
+       class="px-1 my-2 filter-column">
     <ivt-checkbox-filter *ngIf="companyOptions?.length"
                          class="mr-3"
                          label="Compañías"
@@ -63,7 +80,8 @@
                          (filterItems)="updateCompaniesFilters($event)">
     </ivt-checkbox-filter>
   </div>
-  <div class="col-auto px-1 my-2 filter-column">
+  <div nz-col
+       class="px-1 my-2 filter-column">
     <ivt-checkbox-filter *ngIf="userOptions?.length"
                          class="mr-3"
                          label="Vendedores"
@@ -74,8 +92,11 @@
 </div>
 
 <div *ngIf="selectedIds.hasValue()"
-     class="row mt-4 bg-light py-3 rounded">
-  <div class="col">
+     nz-row
+     [nzGutter]="[24, 8]"
+     class="mt-4 bg-light py-3 rounded">
+  <div nz-col
+       nzSpan="24">
     <button mat-raised-button
             type="button"
             color="primary"

@@ -1,28 +1,37 @@
-<div class="row mb-3">
-  <div class="col">
+<div nz-row [nzGutter]="[24, 8]"
+     class="mb-3">
+  <div nz-col
+       nzSpan="24">
     <h1 class="font-weight-light h2 text-primary">Dashboard</h1>
   </div>
 </div>
 
-<div class="row">
-  <div class="col">
+<div nz-row [nzGutter]="[24, 8]">
+  <div nz-col
+       nzSpan="24">
     <mat-card>
       <ng-container *ngIf="data">
-        <div class="row mb-3">
-          <div class="col text-center">
+        <div nz-row [nzGutter]="[24, 8]"
+             class="mb-3">
+          <div nz-col
+               nzSpan="24"
+               class="text-center">
             <h3>Resumen de Garantías</h3>
           </div>
         </div>
 
-        <div class="row bg-light mx-0 mb-4 rounded mt-3 py-3 px-2">
-          <div class="col-auto px-1 my-2 filter-column">
+        <div nz-row [nzGutter]="[24, 8]"
+             class="bg-light mx-0 mb-4 rounded mt-3 py-3 px-2">
+          <div nz-col
+               class=" px-1 my-2 filter-column">
             <ivt-date-filter class="mr-3"
                              label="Fecha"
                              [dateTypeOptions]="dateTypeOptions"
                              (filterItems)="updateDateFilter($event)">
             </ivt-date-filter>
           </div>
-          <div class="col-auto px-1 my-2 filter-column">
+          <div nz-col
+               class="px-1 my-2 filter-column">
             <ivt-checkbox-filter *ngIf="groupOptions?.length"
                                  class="mr-3"
                                  label="Grupos"
@@ -30,7 +39,8 @@
                                  (filterItems)="updateGroupsFilters($event)">
             </ivt-checkbox-filter>
           </div>
-          <div class="col-auto px-1 my-2 filter-column">
+          <div nz-col
+               class="px-1 my-2 filter-column">
             <ivt-checkbox-filter *ngIf="companyOptions?.length"
                                  class="mr-3"
                                  label="Compañías"
@@ -38,7 +48,8 @@
                                  (filterItems)="updateCompaniesFilters($event)">
             </ivt-checkbox-filter>
           </div>
-          <div class="col-auto px-1 my-2 filter-column">
+          <div nz-col
+               class="px-1 my-2 filter-column">
             <ivt-checkbox-filter *ngIf="userOptions?.length"
                                  class="mr-3"
                                  label="Vendedores"
@@ -53,8 +64,11 @@
         </ivt-empty-state>
 
         <div *ngIf="!isEmpty"
-             class="row">
-          <div class="col-12 col-md-8 mb-3">
+             nz-row [nzGutter]="[24, 8]">
+          <div nz-col
+               nzMd="16"
+               nzLg="24"
+               class="mb-3">
             <div style="display: block;">
               <canvas baseChart
                       [data]="data"
@@ -66,10 +80,14 @@
               </canvas>
             </div>
           </div>
-          <div class="col-12 col-md-4">
-            <div class="row my-3"
+          <div nz-col
+               nzMd="8"
+               nzLg="24">
+            <div nz-row [nzGutter]="[24, 8]"
+                 class="my-3"
                  *ngFor="let item of labels; let i = index">
-              <div class="col">
+              <div nz-col
+                   nzSpan="24">
                 <h6 class="flex-start">
                   <mat-icon class="mr-2"
                             [style.color]="colors[0]?.backgroundColor[i]">

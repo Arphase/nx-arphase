@@ -19,8 +19,12 @@
       </div>
 
       <div [hidden]="!opened"
-           class="row mt-auto mb-5">
-        <div class="col flex-center">
+           nz-row
+           [nzGutter]="[24, 8]"
+           class="mt-auto mb-5">
+        <div nz-col
+             nzSpan="24"
+             class="flex-center">
           <span class="text-primary">Versión {{ version }}</span>
         </div>
       </div>

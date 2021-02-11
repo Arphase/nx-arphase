@@ -16,6 +16,7 @@ import {
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NgxMaskModule } from 'ngx-mask';
 import { ShowdownModule } from 'ngx-showdown';
 
@@ -48,6 +49,7 @@ import { ProductsComponent } from './products.component';
     IvtEmptyModule,
     MatIconModule,
     NgxMaskModule,
+    NzGridModule,
   ],
   declarations: [
     ProductFormComponent,

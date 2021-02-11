@@ -1,6 +1,10 @@
 <mat-dialog-content>
-  <div class="row my-5 mx-5">
-    <div class="col flex-center">
+  <div nz-row
+       [nzGutter]="[24, 8]"
+       class="my-5 mx-5">
+    <div nz-col
+         nzSpan="24"
+         class="flex-center">
       <h2>{{ successMessage }}</h2>
     </div>
   </div>

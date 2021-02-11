@@ -1,13 +1,19 @@
 <div *ngIf="title"
-     class="row">
-  <div class="col">
+     nz-row
+     [nzGutter]="[24, 8]">
+  <div nz-col
+       nzSpan="24">
     <ivt-go-back-title [title]="title"
                        [link]="['/spa/vehicles']"></ivt-go-back-title>
   </div>
 </div>
 
-<div class="row mb-3">
-  <div class="col flex-end pr-0">
+<div nz-row
+     [nzGutter]="[24, 8]"
+     class="mb-3">
+  <div nz-col
+       nzSpan="24"
+       class="flex-end pr-0">
     <button mat-raised-button
             [routerLink]="['new']"
             type="button"

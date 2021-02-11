@@ -1,5 +1,8 @@
-<div class="row text-muted text-center p-5 bg-light">
-  <div class="col">
+<div nz-row
+     [nzGutter]="[24, 8]"
+     class="text-muted text-center p-5 bg-light">
+  <div nz-col
+       nzSpan="24">
     <mat-icon class="mb-2"> {{ icon }} </mat-icon>
     <p>{{ message }}</p>
     <ng-content></ng-content>

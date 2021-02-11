@@ -1,7 +1,9 @@
 <form [formGroup]="form"
       (ngSubmit)="submit()">
-  <div class="row">
-    <div class="col">
+  <div nz-row
+       [nzGutter]="[24, 8]">
+    <div nz-col
+         nzSpan="24">
       <ivt-go-back-title [title]="item?.id ? 'Editar Garantía' : 'Nueva Garantía'"></ivt-go-back-title>
     </div>
   </div>
@@ -9,8 +11,11 @@
     <ivt-expansion-panel class="primary-panel mb-3 d-block"
                          title="Información General"
                          [isOpen]="true">
-      <div class="row">
-        <div class="col-lg-6 col-12">
+      <div nz-row
+           [nzGutter]="[24, 8]">
+        <div nz-col
+             nzMd="24"
+             nzLg="12">
           <ivt-form-field label="Fecha inicio garantía">
             <input ivtInput
                    [matDatepicker]="startDate"
@@ -20,7 +25,9 @@
             <mat-datepicker #startDate></mat-datepicker>
           </ivt-form-field>
         </div>
-        <div class="col-lg-6 col-12">
+        <div nz-col
+             nzMd="24"
+             nzLg="12">
           <ivt-form-field label="Fin garantía por tiempo">
             <input ivtInput
                    [matDatepicker]="endDate"
@@ -32,8 +39,11 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-12 col-lg-6">
+      <div nz-row
+           [nzGutter]="[24, 8]">
+        <div nz-col
+             nzMd="24"
+             nzLg="12">
           <ivt-form-field label="Compañía">
             <mat-select formControlName="companyId">
               <mat-option *ngFor="let option of companyOptions"
@@ -44,7 +54,9 @@
           </ivt-form-field>
         </div>
 
-        <div class="col-12 col-lg-6">
+        <div nz-col
+             nzMd="24"
+             nzLg="12">
           <ivt-form-field label="Tipo de producto">
             <input ivtInput
                    ivtUppercase
@@ -53,8 +65,11 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-lg-6 col-12">
+      <div nz-row
+           [nzGutter]="[24, 8]">
+        <div nz-col
+             nzMd="24"
+             nzLg="12">
           <ivt-form-field label="Kilometraje inicial">
             <input ivtInput
                    ivtUppercase
@@ -62,7 +77,9 @@
                    formControlName="kilometrageStart">
           </ivt-form-field>
         </div>
-        <div class="col-lg-6 col-12">
+        <div nz-col
+             nzMd="24"
+             nzLg="12">
           <ivt-form-field label="Fin garantía por kilometraje">
             <input ivtInput
                    ivtUppercase
@@ -73,8 +90,8 @@
       </div>
 
       <!-- TODO: Uncomment when products is ready
-      <div class="row">
-        <div class="col">
+      <div nz-row [nzGutter]="[24, 8]">
+        <div nz-col nzSpan="24">
           <ivt-form-field label-"Producto">
             <mat-select formControlName="productId">
               <mat-option *ngFor="let option of productOptions"
@@ -91,8 +108,11 @@
                          title="Cliente"
                          [isOpen]="true">
       <form [formGroup]="client">
-        <div class="row">
-          <div class="col-lg-6 col-12">
+        <div nz-row
+             [nzGutter]="[24, 8]">
+          <div nz-col
+               nzMd="24"
+               nzLg="12">
             <div>
               <label>Tipo de persona:</label>
             </div>
@@ -104,7 +124,9 @@
               </mat-radio-button>
             </mat-radio-group>
           </div>
-          <div class="col-lg-6 col-12">
+          <div nz-col
+               nzMd="24"
+               nzLg="12">
             <ivt-form-field label="Punto de Venta">
               <input ivtInput
                      ivtUppercase
@@ -115,15 +137,20 @@
 
         <form [hidden]="!showPhysicalForm"
               [formGroup]="physicalInfoForm">
-          <div class="row">
-            <div class="col-lg-6 col-12">
+          <div nz-row
+               [nzGutter]="[24, 8]">
+            <div nz-col
+                 nzMd="24"
+                 nzLg="12">
               <ivt-form-field label="Nombre(s)">
                 <input ivtInput
                        ivtUppercase
                        formControlName="name">
               </ivt-form-field>
             </div>
-            <div class="col-lg-6 col-12">
+            <div nz-col
+                 nzMd="24"
+                 nzLg="12">
               <ivt-form-field label="Apellido Paterno">
                 <input ivtInput
                        ivtUppercase
@@ -132,15 +159,20 @@
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-lg-6 col-12">
+          <div nz-row
+               [nzGutter]="[24, 8]">
+            <div nz-col
+                 nzMd="24"
+                 nzLg="12">
               <ivt-form-field label="Apellido Materno">
                 <input ivtInput
                        ivtUppercase
                        formControlName="secondLastName">
               </ivt-form-field>
             </div>
-            <div class="col-lg-6 col-12">
+            <div nz-col
+                 nzMd="24"
+                 nzLg="12">
               <ivt-form-field label="Fecha de nacimiento">
                 <input ivtInput
                        [matDatepicker]="birthDatePicker"
@@ -155,15 +187,20 @@
 
         <form [hidden]="!showMoralForm"
               [formGroup]="moralInfoForm">
-          <div class="row">
-            <div class="col-lg-6 col-12">
+          <div nz-row
+               [nzGutter]="[24, 8]">
+            <div nz-col
+                 nzMd="24"
+                 nzLg="12">
               <ivt-form-field label="Razón Social">
                 <input ivtInput
                        ivtUppercase
                        formControlName="businessName">
               </ivt-form-field>
             </div>
-            <div class="col-lg-6 col-12">
+            <div nz-col
+                 nzMd="24"
+                 nzLg="12">
               <ivt-form-field label="Fecha de constitución">
                 <input ivtInput
                        [matDatepicker]="constitutionDatePicker"
@@ -175,8 +212,9 @@
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-12">
+          <div nz-row
+               [nzGutter]="[24, 8]">
+            <div nz-col>
               <ivt-form-field label="Asesor">
                 <input ivtInput
                        ivtUppercase
@@ -186,15 +224,20 @@
           </div>
         </form>
 
-        <div class="row">
-          <div class="col-lg-4 col-12">
+        <div nz-row
+             [nzGutter]="[24, 8]">
+          <div nz-col
+               nzMd="24"
+               nzLg="8">
             <ivt-form-field label="RFC">
               <input ivtInput
                      ivtUppercase
                      formControlName="rfc">
             </ivt-form-field>
           </div>
-          <div class="col-lg-4 col-12">
+          <div nz-col
+               nzMd="24"
+               nzLg="8">
             <ivt-form-field label="Teléfono">
               <input ivtInput
                      type="tel"
@@ -202,7 +245,9 @@
                      formControlName="phone">
             </ivt-form-field>
           </div>
-          <div class="col-lg-4 col-12">
+          <div nz-col
+               nzMd="24"
+               nzLg="8">
             <ivt-form-field label="Correo">
               <input ivtInput
                      type="email"
@@ -218,8 +263,12 @@
                          title="Vehículo"
                          [isOpen]="true">
       <div *ngIf="!isElegible"
-           class="row my-3">
-        <div class="col bg-alert text-white py-3 rounded flex-start">
+           nz-row
+           [nzGutter]="[24, 8]"
+           class="my-3">
+        <div nz-col
+             nzSpan="24"
+             class="bg-alert text-white py-3 rounded flex-start">
           <mat-icon class="mr-3">error</mat-icon>
           <span>Este vehículo no es elegible para garantizar.
             Consultar las revisiones del vehículo para confirmar.
@@ -232,8 +281,12 @@
     </ivt-expansion-panel>
   </div>
 
-  <div class="row mt-4 mb-3">
-    <div class="col px-0 flex-end">
+  <div nz-row
+       [nzGutter]="[24, 8]"
+       class="mt-4 mb-3">
+    <div nz-col
+         nzSpan="24"
+         class="px-0 flex-end">
       <button mat-raised-button
               class="mr-3"
               type="button"

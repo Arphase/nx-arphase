@@ -1,14 +1,14 @@
 <ivt-row>
-  <div class="col-1">
+  <div nz-col class="-1">
     {{ item.id | folio }}
   </div>
-  <div class="col">
+  <div nz-col nzSpan="24">
     <ivt-text-truncate-tooltip [label]="item.name"></ivt-text-truncate-tooltip>
   </div>
-  <div class="col-1">
+  <div nz-col class="-1">
     <ivt-text-truncate-tooltip [label]="item.price | currency | empty"></ivt-text-truncate-tooltip>
   </div>
-  <div class="col-auto ml-auto">
+  <div nz-col class="-auto ml-auto">
     <button mat-icon-button
             matTooltip="Editar producto"
             [routerLink]="[item.id]">

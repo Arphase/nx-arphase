@@ -1,28 +1,30 @@
 <form [formGroup]="form"
       (ngSubmit)="submit()">
-  <div class="row">
-    <div class="col">
+  <div nz-row [nzGutter]="[24, 8]">
+    <div nz-col nzSpan="24">
       <ivt-go-back-title title="Nuevo Producto"></ivt-go-back-title>
     </div>
   </div>
 
   <div class="pt-3">
-    <div class="row">
-      <div class="col-lg-6 col-12">
+    <div nz-row [nzGutter]="[24, 8]">
+      <div nz-col nzMd="24"
+nzLg="12">
         <h6>Nombre del producto</h6>
         <ivt-form-field>
           <input ivtInput
                  formControlName="name" />
         </ivt-form-field>
       </div>
-      <div class="col-lg-6 col-12">
+      <div nz-col nzMd="24"
+nzLg="12">
         <ivt-file-upload label="Imagen de logo"
                          (fileQueueChanges)="saveFile($event)"> </ivt-file-upload>
       </div>
     </div>
 
-    <div class="row mt-4 mb-3">
-      <div class="col-lg-4 col-4">
+    <div nz-row [nzGutter]="[24, 8]" class="mt-4 mb-3">
+      <div nz-col class="-lg-4 col-4">
         <h6>Precio</h6>
         <ivt-form-field>
           <input ivtInput
@@ -32,7 +34,7 @@
         </ivt-form-field>
       </div>
 
-      <div class="col-4 px-0 ml-auto">
+      <div nz-col class="-4 px-0 ml-auto">
         <ivt-form-field label="Glosario">
           <mat-select (selectionChange)="selectedValue($event)">
             <mat-option *ngFor="let option of glossaryOptions"
@@ -45,8 +47,8 @@
       </div>
     </div>
 
-    <div class="row mb-3">
-      <div class="col-lg-12 col-12">
+    <div nz-row [nzGutter]="[24, 8]" class="mb-3">
+      <div nz-col class="-lg-12 col-12">
         <h6>Cuerpo del producto</h6>
         <ivt-form-field appearance="fill">
           <textarea matInput
@@ -55,8 +57,8 @@
       </div>
     </div>
 
-    <div class="row mt-4 mb-3">
-      <div class="col px-0 flex-end">
+    <div nz-row [nzGutter]="[24, 8]" class="mt-4 mb-3">
+      <div nz-col class="px-0 flex-end">
         <button mat-raised-button
                 class="mr-3"
                 type="button"

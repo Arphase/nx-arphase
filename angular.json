@@ -855,7 +855,7 @@
         }
       }
     },
-    "arphase-ui-aps-u-ui": {
+    "aps-u-ui": {
       "projectType": "library",
       "root": "libs/arphase/ui/aps-u-ui",
       "sourceRoot": "libs/arphase/ui/aps-u-ui/src",

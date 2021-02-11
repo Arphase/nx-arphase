@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 import { IvtInputModule } from '../../../directives';
 import { IvtFormFieldModule } from '../../form-field';
@@ -28,6 +29,7 @@ import { IvtDateFilterComponent } from './date-filter.component';
     MatMenuModule,
     MatFormFieldModule,
     MatInputModule,
+    NzGridModule
   ],
   exports: [IvtDateFilterComponent],
 })

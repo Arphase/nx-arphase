@@ -1,12 +1,14 @@
 <label *ngIf="label">{{ label }}</label>
 
-<div class="row file-drop-container"
+<div nz-row
+     [nzGutter]="[24, 8]"
+     class="file-drop-container"
      ng2FileDrop
      [uploader]="uploader"
      [class.file-over]="hasBaseDropZoneOver"
      [class.container-error]="showErrors && !form.valid"
      (fileOver)="fileOverBase($event)">
-  <div class="col-12">
+  <div nz-col>
     <div class="file-drop-row">
       <div>
         <button mat-raised-button
@@ -33,11 +35,14 @@
     </div>
   </div>
 
-  <div class="col file-queue"
+  <div nz-col
+       class="file-queue"
        *ngIf="!disabled">
-    <div class="row"
+    <div nz-row
+         [nzGutter]="[24, 8]"
          *ngFor="let item of uploader.queue">
-      <div class="col">
+      <div nz-col
+           nzSpan="24">
         <div class="file-ivt-row file-item">
           <mat-spinner class="mx-2"
                        [diameter]="38"

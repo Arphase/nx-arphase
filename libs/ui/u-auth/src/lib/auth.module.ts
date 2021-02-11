@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { IvtFormFieldModule, IvtInputModule, IvtLoadingModule, IvtStatusMessageModule } from '@ivt/u-ui';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
@@ -25,7 +26,8 @@ import { SignInFormContainerComponent } from './containers/sign-in-form-containe
     IvtFormFieldModule,
     IvtInputModule,
     IvtLoadingModule,
-    IvtStatusMessageModule
+    IvtStatusMessageModule,
+    NzGridModule,
   ],
   declarations: [
     AuthComponent,

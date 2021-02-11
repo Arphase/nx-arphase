@@ -1,9 +1,9 @@
-<div class="row">
-  <div class="col-9 col-md-6">
+<div nz-row [nzGutter]="[24, 8]">
+  <div nz-col class="-9 col-md-6">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
 
-  <div class="col-2 flex-start">
+  <div nz-col class="-2 flex-start">
     <button mat-icon-button
             [ngClass]="{ 'bg-primary text-white': showFilters }"
             matTooltip="Filtrar"
@@ -14,8 +14,8 @@
 </div>
 
 <div [hidden]="!showFilters"
-     class="row bg-light mx-0 mb-4 rounded mt-3 py-3 px-2">
-  <div class="col-auto px-1 my-2 filter-column">
+     nz-row [nzGutter]="[24, 8]" class="bg-light mx-0 mb-4 rounded mt-3 py-3 px-2">
+  <div nz-col class="-auto px-1 my-2 filter-column">
     <ivt-checkbox-filter *ngIf="groupOptions?.length"
                          class="mr-3"
                          label="Grupos"
@@ -23,7 +23,7 @@
                          (filterItems)="updateGroupsFilters($event)">
     </ivt-checkbox-filter>
   </div>
-  <div class="col-auto px-1 my-2 filter-column">
+  <div nz-col class="-auto px-1 my-2 filter-column">
     <ivt-checkbox-filter *ngIf="companyOptions?.length"
                          class="mr-3"
                          label="Compañías"

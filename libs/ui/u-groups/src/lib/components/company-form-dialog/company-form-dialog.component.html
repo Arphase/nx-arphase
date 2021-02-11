@@ -8,14 +8,19 @@
     <ivt-expansion-panel class="primary-panel mb-3 d-block"
                          title="Información General"
                          [isOpen]="true">
-      <div class="row">
-        <div class="col-lg-6 col-12">
+      <div nz-row
+           [nzGutter]="[24, 8]">
+        <div nz-col
+             nzMd="24"
+             nzLg="12">
           <ivt-form-field label="Razón Social">
             <input ivtInput
                    formControlName="businessName">
           </ivt-form-field>
         </div>
-        <div class="col-lg-6 col-12">
+        <div nz-col
+             nzMd="24"
+             nzLg="12">
           <ivt-form-field label="RFC">
             <input ivtInput
                    ivtUppercase
@@ -33,20 +38,27 @@
     <ivt-expansion-panel class="primary-panel mb-3 d-block"
                          title="Contacto"
                          [isOpen]="true">
-      <div class="row">
-        <div class="col-lg-4 col-12">
+      <div nz-row
+           [nzGutter]="[24, 8]">
+        <div nz-col
+             nzMd="24"
+             nzLg="8">
           <ivt-form-field label="Nombre del contacto">
             <input ivtInput
                    formControlName="contact">
           </ivt-form-field>
         </div>
-        <div class="col-lg-4 col-12">
+        <div nz-col
+             nzMd="24"
+             nzLg="8">
           <ivt-form-field label="Correo">
             <input ivtInput
                    formControlName="email">
           </ivt-form-field>
         </div>
-        <div class="col-lg-4 col-12">
+        <div nz-col
+             nzMd="24"
+             nzLg="8">
           <ivt-form-field label="Telefono">
             <input ivtInput
                    type="tel"
@@ -61,11 +73,17 @@
                          title="Usuarios"
                          [isOpen]="true">
       <ivt-row *ngFor="let userForm of usersFormArray.controls; let index = index;"
-               class="row">
-        <div class="col-10 col-md-11">
+               nz-row
+               [nzGutter]="[24, 8]">
+        <div nz-col
+             nzXs="20"
+             nzMd="22">
           <ivt-user-form [form]="userForm"></ivt-user-form>
         </div>
-        <div class="col-2 col-md-1 flex-center">
+        <div nz-col
+             nzXs="4"
+             nzMd="2"
+             class="center">
           <button *ngIf="!userForm.value.id"
                   mat-icon-button
                   matTooltip="Eliminar usuario"
@@ -76,8 +94,10 @@
         </div>
       </ivt-row>
 
-      <div class="row">
-        <div class="col">
+      <div nz-row
+           [nzGutter]="[24, 8]">
+        <div nz-col
+             nzSpan="24">
           <button mat-raised-button
                   color="primary"
                   type="button"

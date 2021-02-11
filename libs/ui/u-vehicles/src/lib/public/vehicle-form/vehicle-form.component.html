@@ -1,7 +1,10 @@
 <form [formGroup]="form">
-  <div class="row">
+  <div nz-row
+       [nzGutter]="[24, 8]">
     <div *ngIf="showCompanyInput"
-         class="col-12 col-lg-4">
+         nz-col
+         nzMd="24"
+         nzLg="8">
       <ivt-form-field label="Compañía">
         <mat-select formControlName="companyId">
           <mat-option *ngFor="let option of companyOptions"
@@ -11,42 +14,43 @@
         </mat-select>
       </ivt-form-field>
     </div>
-    <div class="col-12"
-         [ngClass]="{
-           'col-lg-6': !showCompanyInput,
-           'col-lg-4': showCompanyInput
-          }">
+    <div nz-col
+         [nzSpan]="showCompanyInput ? 8 : 12">
       <ivt-form-field label="VIN">
         <input ivtInput
                maxlength="17"
                formControlName="vin">
       </ivt-form-field>
     </div>
-    <div class="col-12"
-         [ngClass]="{
-      'col-lg-6': !showCompanyInput,
-      'col-lg-4': showCompanyInput
-     }">
+    <div nz-col
+         [nzSpan]="showCompanyInput ? 8 : 12">
       <ivt-form-field label="N° de motor">
         <input ivtInput
                formControlName="motorNumber">
       </ivt-form-field>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 col-lg-4">
+  <div nz-row
+       [nzGutter]="[24, 8]">
+    <div nz-col
+         nzXs="24"
+         nzLg="8">
       <ivt-form-field label="Marca">
         <input ivtInput
                formControlName="brand">
       </ivt-form-field>
     </div>
-    <div class="col-12 col-lg-4">
+    <div nz-col
+         nzXs="24"
+         nzLg="8">
       <ivt-form-field label="Modelo">
         <input ivtInput
                formControlName="model">
       </ivt-form-field>
     </div>
-    <div class="col-12 col-lg-4">
+    <div nz-col
+         nzXs="24"
+         nzLg="8">
       <ivt-form-field label="Versión">
         <input ivtInput
                formControlName="version">
@@ -54,15 +58,20 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-12 col-lg-6">
+  <div nz-row
+       [nzGutter]="[24, 8]">
+    <div nz-col
+         nzMd="24"
+         nzLg="12">
       <ivt-form-field label="Año del vehículo">
         <input ivtInput
                type="number"
                formControlName="year">
       </ivt-form-field>
     </div>
-    <div class="col-12 col-lg-6">
+    <div nz-col
+         nzMd="24"
+         nzLg="12">
       <ivt-form-field label="HP">
         <input ivtInput
                type="number"

@@ -16,8 +16,12 @@
   <div class="content">
     <mat-radio-group [formControl]="control">
       <div *ngFor="let option of options"
-           class="row my-1">
-        <div class="col d-flex">
+           nz-row
+           [nzGutter]="[24, 8]"
+           class="my-1">
+        <div nz-col
+             nzSpan="24"
+             class="d-flex">
           <mat-radio-button [value]="option.value"
                             (click)="$event.stopPropagation(); filterChanged.emit(option.value)">
             {{ option.label }}

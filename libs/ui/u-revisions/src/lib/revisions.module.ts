@@ -18,6 +18,7 @@ import {
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 import { RevisionFormComponent } from './components/revision-form/revision-form.component';
 import { RevisionListComponent } from './components/revision-list/revision-list.component';
@@ -47,6 +48,7 @@ import { RevisionsComponent } from './revisions.component';
     MatButtonModule,
     MatCardModule,
     MatTooltipModule,
+    NzGridModule,
   ],
   declarations: [
     RevisionFormComponent,

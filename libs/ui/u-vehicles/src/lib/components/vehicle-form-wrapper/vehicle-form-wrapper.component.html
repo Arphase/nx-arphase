@@ -1,14 +1,21 @@
 <form [formGroup]="form"
       (ngSubmit)="submit()">
-  <div class="row mb-3">
-    <div class="col">
+  <div nz-row
+       [nzGutter]="[24, 8]"
+       class="mb-3">
+    <div nz-col
+         nzSpan="24">
       <ivt-go-back-title [title]="item?.id ? 'Editar Vehículo' : 'Nuevo Vehículo'"></ivt-go-back-title>
     </div>
   </div>
 
   <div *ngIf="invalidVin"
-       class="row my-3">
-    <div class="col bg-alert text-white py-3 rounded flex-start">
+       nz-row
+       [nzGutter]="[24, 8]"
+       class="my-3">
+    <div nz-col
+         nzSpan="24"
+         class="bg-alert text-white py-3 rounded flex-start">
       <mat-icon class="mr-3">error</mat-icon>
       <span> Un vehículo con este VIN ya está dado de alta en la plataforma. Intente con otro VIN. </span>
     </div>
@@ -19,8 +26,12 @@
                     [companyOptions]="companyOptions"
                     (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
 
-  <div class="row mt-4 mb-3">
-    <div class="col px-0 flex-end">
+  <div nz-row
+       [nzGutter]="[24, 8]"
+       class="mt-4 mb-3">
+    <div nz-col
+         nzSpan="24"
+         class="px-0 flex-end">
       <button mat-raised-button
               class="mr-3"
               type="button"

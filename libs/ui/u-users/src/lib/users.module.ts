@@ -13,6 +13,7 @@ import {
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserRowComponent } from './components/user-row/user-row.component';
@@ -35,6 +36,7 @@ import { UsersComponent } from './users.component';
     IvtEmptyModule,
     MatButtonModule,
     MatCardModule,
+    NzGridModule,
   ],
   declarations: [UserListContainerComponent, UsersComponent, UserListComponent, UserRowComponent],
 })
