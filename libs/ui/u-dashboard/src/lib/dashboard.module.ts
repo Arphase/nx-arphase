@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { MatIconModule } from '@angular/material/icon';
 import { DasboardStateModule } from '@ivt/u-state';
 import { IvtCheckboxFilterModule, IvtDateFilterModule } from '@ivt/u-ui';
@@ -18,7 +18,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     DashboardRoutingModule,
     DasboardStateModule,
     ChartsModule,
-    MatCardModule,
+    NzCardModule,
     MatIconModule,
     NzEmptyModule,
     IvtDateFilterModule,

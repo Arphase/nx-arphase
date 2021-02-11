@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { PermissionsModule } from '@ivt/u-state';
@@ -59,7 +59,7 @@ import { GroupsComponent } from './groups.component';
     IvtGoBackTitleModule,
     IvtSearchbarModule,
     IvtPhoneModule,
-    MatCardModule,
+    NzCardModule,
     NzButtonModule,
     NgxMaskModule,
     NzGridModule,

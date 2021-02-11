@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -80,7 +80,7 @@ import { GuaranteesComponent } from './guarantees.component';
     MatMenuModule,
     IvtTextTruncateTooltipModule,
     IvtEmptyModule,
-    MatCardModule,
+    NzCardModule,
     NzButtonModule,
     IvtSuccessDialogModule,
     NgxMaskModule,

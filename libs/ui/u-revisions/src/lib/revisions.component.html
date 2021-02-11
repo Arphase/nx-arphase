@@ -10,8 +10,8 @@
   <div nz-col
        nzSpan="24"
        [ngClass]="{ 'p-0': isInVehicles$ | async }">
-    <mat-card [ngClass]="{ 'no-shadow p-0': isInVehicles$ | async }">
+    <nz-card [ngClass]="{ 'no-shadow p-0': isInVehicles$ | async }">
       <router-outlet></router-outlet>
-    </mat-card>
+    </nz-card>
   </div>
 </div>

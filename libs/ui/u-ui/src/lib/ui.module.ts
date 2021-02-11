@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { MatCardModule } from '@angular/material/card';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
@@ -48,7 +48,7 @@ const MATERIAL_MODULES = [
   MatToolbarModule,
   MatTabsModule,
   // Layout
-  MatCardModule,
+  NzCardModule,
   MatDividerModule,
   MatExpansionModule,
   MatListModule,

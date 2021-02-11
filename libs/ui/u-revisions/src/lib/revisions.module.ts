@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
@@ -47,7 +47,7 @@ import { RevisionsComponent } from './revisions.component';
     IvtEmptyModule,
     MatIconModule,
     NzButtonModule,
-    MatCardModule,
+    NzCardModule,
     MatTooltipModule,
     NzGridModule,
     NzMessageModule,

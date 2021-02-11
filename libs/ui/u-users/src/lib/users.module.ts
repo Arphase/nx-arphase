@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { MatIconModule } from '@angular/material/icon';
 import {
   IvtCheckboxFilterModule,
@@ -35,7 +35,7 @@ import { UsersComponent } from './users.component';
     IvtTextTruncateTooltipModule,
     IvtEmptyModule,
     NzButtonModule,
-    MatCardModule,
+    NzCardModule,
     NzGridModule,
   ],
   declarations: [UserListContainerComponent, UsersComponent, UserListComponent, UserRowComponent],
