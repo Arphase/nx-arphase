@@ -854,6 +854,33 @@
           }
         }
       }
+    },
+    "arphase-ui-aps-u-ui": {
+      "projectType": "library",
+      "root": "libs/arphase/ui/aps-u-ui",
+      "sourceRoot": "libs/arphase/ui/aps-u-ui/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/arphase/ui/aps-u-ui/src/**/*.ts",
+              "libs/arphase/ui/aps-u-ui/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/arphase/ui/aps-u-ui"
+          ],
+          "options": {
+            "jestConfig": "libs/arphase/ui/aps-u-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
