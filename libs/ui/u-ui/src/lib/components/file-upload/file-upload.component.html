@@ -28,7 +28,7 @@
 
       <div>
         <span class="float-right d-flex align-items-center">
-          <mat-icon>save_alt</mat-icon>
+          <!-- <mat-icon>save_alt</mat-icon> -->
           <span>Arrastra y suelta los archivos aquí</span>
         </span>
       </div>
@@ -48,11 +48,11 @@
                        [diameter]="38"
                        *ngIf="state === 'loading'"></mat-spinner>
 
-          <mat-icon class="mx-2"
+          <!-- <mat-icon class="mx-2"
                     *ngIf="state === 'success' || state === 'preloaded'">check_circle</mat-icon>
 
           <mat-icon class="mx-2"
-                    *ngIf="state === 'error'">error</mat-icon>
+                    *ngIf="state === 'error'">error</mat-icon> -->
 
           <span class="file-name text-truncate"
                 [title]="item?.file?.name">{{ item?.file?.name }}</span>
@@ -60,14 +60,14 @@
           <button class="file-ivt-row__action"
                   nz-button
                   (click)="removeItem(item)">
-            <mat-icon>delete</mat-icon>
+            <i nz-icon nzType="delete" nzTheme="outline"></i>
           </button>
         </div>
       </div>
     </div>
   </div>
 </div>
-
+<!--
 <div *ngIf="form.get('invalid').errors"
      class="error">
   <mat-icon>cancel</mat-icon>
@@ -91,4 +91,4 @@
      class="error">
   <mat-icon>cancel</mat-icon>
   Es necesario subir mínimo {{ minFiles }} archivo(s) en esta sección
-</div>
+</div> -->

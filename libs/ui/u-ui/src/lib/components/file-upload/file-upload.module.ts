@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { MatIconModule } from '@angular/material/icon';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -16,7 +16,7 @@ import { IvtFileUploadComponent } from './file-upload.component';
     CommonModule,
     ReactiveFormsModule,
     FileUploadModule,
-    MatIconModule,
+    NzIconModule,
     MatProgressSpinnerModule,
     NzButtonModule,
     NzGridModule,

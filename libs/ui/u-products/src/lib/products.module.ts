@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { MatSelectModule } from '@angular/material/select';
 import {
   IvtEmptyModule,
@@ -48,7 +48,7 @@ import { ProductsComponent } from './products.component';
     IvtRowModule,
     IvtFolioModule,
     IvtEmptyModule,
-    MatIconModule,
+    NzIconModule,
     NgxMaskModule,
     NzGridModule,
     NzMessageModule,

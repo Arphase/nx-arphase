@@ -91,10 +91,11 @@
               <div nz-col
                    nzSpan="24">
                 <h6 class="flex-start">
-                  <mat-icon class="mr-2"
-                            [style.color]="colors[0]?.backgroundColor[i]">
-                    fiber_manual_record
-                  </mat-icon>
+                  <i nz-icon
+                     nzType="line"
+                     nzTheme="outline"
+                     lass="mr-2"
+                     [style.color]="colors[0]?.backgroundColor[i]"></i>
                   {{ item }}: {{ data[i] | currency}}
                 </h6>
               </div>

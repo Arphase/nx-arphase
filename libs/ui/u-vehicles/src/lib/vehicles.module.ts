@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { VehiclesDataModule } from '@ivt/u-state';
@@ -46,7 +46,7 @@ import { VehiclesComponent } from './vehicles.component';
     IvtTextTruncateTooltipModule,
     IvtEmptyModule,
     MatMenuModule,
-    MatIconModule,
+    NzIconModule,
     NzCardModule,
     NzButtonModule,
     MatDialogModule,

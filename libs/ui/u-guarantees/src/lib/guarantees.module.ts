@@ -5,7 +5,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
@@ -74,7 +74,7 @@ import { GuaranteesComponent } from './guarantees.component';
     NzEmptyModule,
     IvtTableModule,
     IvtVirtualScrollModule,
-    MatIconModule,
+    NzIconModule,
     IvtRowModule,
     MatCheckboxModule,
     MatMenuModule,

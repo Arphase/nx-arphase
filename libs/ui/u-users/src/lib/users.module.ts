@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NzCardModule } from 'ng-zorro-antd/card';
-import { MatIconModule } from '@angular/material/icon';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import {
   IvtCheckboxFilterModule,
   IvtEmptyModule,
@@ -26,7 +26,7 @@ import { UsersComponent } from './users.component';
     CommonModule,
     UsersRoutingModule,
     IvtSearchbarModule,
-    MatIconModule,
+    NzIconModule,
     IvtCheckboxFilterModule,
     NzEmptyModule,
     IvtTableModule,

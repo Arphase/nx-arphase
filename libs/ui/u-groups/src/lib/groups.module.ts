@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { PermissionsModule } from '@ivt/u-state';
 import {
   IvtAddressFormModule,
@@ -45,7 +45,7 @@ import { GroupsComponent } from './groups.component';
     PermissionsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatIconModule,
+    NzIconModule,
     IvtExpansionPanelModule,
     IvtFormFieldModule,
     IvtInputModule,

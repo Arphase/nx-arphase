@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -24,7 +23,6 @@ import { SpaComponent } from './spa.component';
     NzLayoutModule,
     NzAvatarModule,
     MatMenuModule,
-    MatIconModule,
   ],
   declarations: [SpaComponent, ProfileMenuComponent],
 })
