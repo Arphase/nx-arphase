@@ -59,9 +59,6 @@ export class GroupsService {
       );
     }
 
-    console.log(pageSize);
-    console.log(pageIndex);
-
     query
       .groupBy('group.id')
       .take(pageSize)

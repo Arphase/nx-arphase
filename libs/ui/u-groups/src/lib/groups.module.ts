@@ -35,7 +35,6 @@ import { CompanyRowComponent } from './components/company-row/company-row.compon
 import { GroupCompanyListComponent } from './components/group-company-list/group-company-list.component';
 import { GroupFormComponent } from './components/group-form/group-form.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
-import { GroupRowComponent } from './components/group-row/group-row.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { GroupCompanyListContainerComponent } from './containers/group-company-list-container/group-company-list-container.component';
 import { GroupFormContainerComponent } from './containers/group-form-container/group-form-container.component';
@@ -85,7 +84,6 @@ import { GroupsComponent } from './groups.component';
     CompanyFormDialogComponent,
     UserFormComponent,
     CompanyRowComponent,
-    GroupRowComponent,
     GroupCompanyListContainerComponent,
   ],
   entryComponents: [CompanyFormDialogComponent],

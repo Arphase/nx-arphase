@@ -39,7 +39,7 @@ export class UserListContainerComponent extends IvtListContainerComponent<User> 
     this.store.pipe(select(getAuthUserRoleState), filterNil(), takeUntil(this.destroy$)).subscribe(role => {
       if (role === UserRoles[UserRoles.superAdmin]) {
         this.groupCollectionService.getWithQuery({});
-        this.companyCollectionService.getAll();
+        this.companyCollectionService.getWithQuery({});
       }
     });
   }

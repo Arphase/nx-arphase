@@ -19,7 +19,7 @@ export class GuaranteeResolverService implements Resolve<[Guarantee, Product[]]>
     id
       ? (guarantee$ = this.guaranteeCollectionService.getByKey(Number(id)))
       : this.guaranteeCollectionService.removeOneFromCache(null);
-    const products$ = this.productCollectionService.getAll();
+    const products$ = this.productCollectionService.getWithQuery({});
 
     return forkJoin([guarantee$, products$]);
   }

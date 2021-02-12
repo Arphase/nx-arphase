@@ -5,57 +5,88 @@
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
 
-  <div nz-col
-       class="-2 flex-start">
+  <div nz-col>
     <button nz-button
             nzType="text"
             [ngClass]="{ 'bg-primary text-white': showFilters }"
-            nz-tooltip nzTooltipTitle="Filtrar"
+            nz-tooltip
+            nzTooltipTitle="Filtrar"
             (click)="toggleFilter()">
-      <i nz-icon nzType="filter" nzTheme="outline"></i>
+      <i nz-icon
+         nzType="filter"
+         nzTheme="outline"></i>
     </button>
   </div>
 </div>
 
-<div [hidden]="!showFilters"
-     nz-row
-     [nzGutter]="[24, 8]"
-     class="mx-0 mb-4 rounded mt-3 py-3 px-2">
-  <div nz-col
-       class="-auto px-1 my-2 filter-column">
+<nz-divider></nz-divider>
+
+<div nz-row
+     [nzGutter]="12">
+  <div nz-col>
     <ivt-checkbox-filter *ngIf="groupOptions?.length"
-                         class="mr-3"
                          label="Grupos"
                          [options]="groupOptions"
+                         [preselectedOptions]="queryParams?.groupIds"
                          (filterItems)="updateGroupsFilters($event)">
     </ivt-checkbox-filter>
   </div>
-  <div nz-col
-       class="-auto px-1 my-2 filter-column">
+  <div nz-col>
     <ivt-checkbox-filter *ngIf="companyOptions?.length"
-                         class="mr-3"
                          label="Compañías"
                          [options]="companyOptions"
+                         [preselectedOptions]="queryParams?.companyIds"
                          (filterItems)="updateCompaniesFilters($event)">
     </ivt-checkbox-filter>
   </div>
+  <div nz-col
+       nzFlex="auto"
+       class="flex-end">
+    {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}
+  </div>
 </div>
 
-<nz-empty *ngIf="!list.length"
-          nzNotFoundContent="No existen productos.">
-</nz-empty>
+<nz-divider></nz-divider>
 
-<ng-container *ngIf="list.length">
-  <ivt-table-header class="d-block mt-4"
-                    [columns]="columns"
-                    (sort)="updateSort($event)"></ivt-table-header>
-
-  <ivt-virtual-scroll height="60vh"
-                      [list]="list"
-                      [ignoreNextBatch]="!hasMoreItems || loading"
-                      (nextBatchEmitter)="getMoreItems.emit()">
-    <ng-template let-item>
-      <ivt-user-row [item]="item"></ivt-user-row>
-    </ng-template>
-  </ivt-virtual-scroll>
-</ng-container>
+<nz-table #table
+          nzSize="small"
+          [nzData]="list"
+          [nzFrontPagination]="false"
+          [nzTotal]="info?.total"
+          [nzPageIndex]="info?.pageIndex"
+          [nzLoading]="loading"
+          (nzQueryParams)="filterItems.emit($event)">
+  <thead>
+    <tr nz-row>
+      <th nzSortFn="true"
+          nzColumnKey="user.firstName"
+          nz-col
+          nzMd="6">Nombre</th>
+      <th nzSortFn="true"
+          nzColumnKey="user.email"
+          nz-col
+          nzMd="6">Correo</th>
+      <th nzSortFn="true"
+          nzColumnKey="user.createdAt"
+          nz-col
+          nzMd="6">Fecha de alta</th>
+      <th nzSortFn="true"
+          nzColumnKey="company.businessName"
+          nz-col
+          nzMd="6">Compañía</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of table.data"
+        nz-row>
+      <td nz-col
+          nzXs="6">{{ item?.firstName }} {{ item?.lastName }}</td>
+      <td nz-col
+          nzXs="6">{{ item.email | empty }}</td>
+      <td nz-col
+          nzXs="6">{{ item.createdAt | date: 'dd/MM/yy' }}</td>
+      <td nz-col
+          nzXs="6">{{ item.company?.businessName | empty }}</td>
+    </tr>
+  </tbody>
+</nz-table>

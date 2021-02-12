@@ -77,7 +77,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
         if (disabledCompanyInput) {
           this.companyCollectionService.getByKey(companyId);
         } else {
-          this.companyCollectionService.getAll();
+          this.companyCollectionService.getWithQuery({});
         }
       });
 

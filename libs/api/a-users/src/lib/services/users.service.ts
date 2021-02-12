@@ -1,5 +1,5 @@
 import { FilterUsersDto, UserRepository } from '@ivt/a-state';
-import { User, UserRoles } from '@ivt/c-data';
+import { IvtCollectionResponse, User, UserRoles } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -8,8 +8,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class UsersService {
   constructor(@InjectRepository(UserRepository) private userRepository: UserRepository) {}
 
-  async getUsers(filterDto: FilterUsersDto, user: Partial<User>): Promise<User[]> {
-    const { sort, direction, companyIds, groupIds, text, offset, limit } = filterDto;
+  async getUsers(filterDto: FilterUsersDto, user: Partial<User>): Promise<IvtCollectionResponse<User>> {
+    const { sort, direction, companyIds, groupIds, text, pageIndex, pageSize } = filterDto;
     const query = this.userRepository.createQueryBuilder('user');
 
     query
@@ -44,8 +44,21 @@ export class UsersService {
       query.andWhere('(company.id IN (:...companyIds))', { companyIds });
     }
 
-    query.take(limit).skip(offset);
+    query.take(pageSize).skip(pageSize * (pageIndex - 1));
 
-    return await query.getMany();
+    const users = await query.getMany();
+    const total = await query.getCount();
+
+    return {
+      info: {
+        pageSize: pageSize,
+        pageIndex: pageIndex,
+        total,
+        pageStart: (pageIndex - 1) * pageSize + 1,
+        pageEnd: (pageIndex - 1) * pageSize + pageSize,
+        last: users.length < pageSize,
+      },
+      results: users,
+    };
   }
 }

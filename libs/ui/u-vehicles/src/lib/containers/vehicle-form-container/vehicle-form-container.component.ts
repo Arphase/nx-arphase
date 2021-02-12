@@ -69,7 +69,7 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
         if (disabledCompanyInput) {
           this.companyCollectionService.getByKey(companyId);
         } else {
-          this.companyCollectionService.getAll();
+          this.companyCollectionService.getWithQuery({});
         }
       });
   }

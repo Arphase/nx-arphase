@@ -74,8 +74,8 @@ export class DashboardContainerComponent extends IvtSubscriberComponent implemen
     this.store.pipe(select(getAuthUserRoleState), filterNil(), takeUntil(this.destroy$)).subscribe(role => {
       if (role === UserRoles[UserRoles.superAdmin]) {
         this.groupCollectionService.getWithQuery({});
-        this.companyCollectionService.getAll();
-        this.userCollectionService.getAll();
+        this.companyCollectionService.getWithQuery({});
+        this.userCollectionService.getWithQuery({});
       }
     });
 

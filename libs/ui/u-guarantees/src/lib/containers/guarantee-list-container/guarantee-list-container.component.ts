@@ -57,9 +57,9 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
     this.userCollectionService.clearCache();
     this.store.pipe(select(getAuthUserRoleState), filterNil(), takeUntil(this.destroy$)).subscribe(role => {
       if (role === UserRoles[UserRoles.superAdmin]) {
-        this.companyCollectionService.getAll();
+        this.companyCollectionService.getWithQuery({});
         this.groupCollectionService.getWithQuery({});
-        this.userCollectionService.getAll();
+        this.userCollectionService.getWithQuery({});
       }
     });
   }
