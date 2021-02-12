@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
-import { IvtEmptyModule, IvtRowModule, IvtTableModule, IvtVirtualScrollModule } from '@ivt/u-ui';
+import { IvtEmptyModule, IvtRowModule, IvtSearchbarModule, IvtTableModule, IvtVirtualScrollModule } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -14,6 +15,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
@@ -49,6 +51,9 @@ import { RevisionsComponent } from './revisions.component';
     ApsAutoErrorModule,
     NzTypographyModule,
     NzToolTipModule,
+    NzTableModule,
+    NzDividerModule,
+    IvtSearchbarModule,
   ],
   declarations: [
     RevisionFormComponent,

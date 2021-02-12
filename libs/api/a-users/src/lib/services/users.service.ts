@@ -55,7 +55,7 @@ export class UsersService {
         pageIndex: pageIndex,
         total,
         pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: (pageIndex - 1) * pageSize + pageSize,
+        pageEnd: users.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
         last: users.length < pageSize,
       },
       results: users,

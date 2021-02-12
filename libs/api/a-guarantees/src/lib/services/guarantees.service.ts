@@ -89,7 +89,7 @@ export class GuaranteesService {
         pageIndex: pageIndex,
         total,
         pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: (pageIndex - 1) * pageSize + pageSize,
+        pageEnd: guarantees.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
         last: guarantees.length < pageSize,
       },
       results: guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity),

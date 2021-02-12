@@ -4,19 +4,6 @@
        class="-9 col-md-6">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
-
-  <div nz-col>
-    <button nz-button
-            nzType="text"
-            [ngClass]="{ 'bg-primary text-white': showFilters }"
-            nz-tooltip
-            nzTooltipTitle="Filtrar"
-            (click)="toggleFilter()">
-      <i nz-icon
-         nzType="filter"
-         nzTheme="outline"></i>
-    </button>
-  </div>
 </div>
 
 <nz-divider></nz-divider>

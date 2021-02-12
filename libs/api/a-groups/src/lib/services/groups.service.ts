@@ -73,7 +73,7 @@ export class GroupsService {
         pageIndex: pageIndex,
         total,
         pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: (pageIndex - 1) * pageSize + pageSize,
+        pageEnd: groups.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
         last: groups.length < pageSize,
       },
       results: groups,

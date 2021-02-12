@@ -45,7 +45,7 @@ export class VehiclesService {
         pageIndex: pageIndex,
         total,
         pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: (pageIndex - 1) * pageSize + pageSize,
+        pageEnd: vehicles.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
         last: vehicles.length < pageSize,
       },
       results: vehicles,
