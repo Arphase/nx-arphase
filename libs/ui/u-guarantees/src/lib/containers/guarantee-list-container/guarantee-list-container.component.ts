@@ -52,9 +52,6 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   }
 
   ngOnInit(): void {
-    this.groupCollectionService.clearCache();
-    this.companyCollectionService.clearCache();
-    this.userCollectionService.clearCache();
     this.store.pipe(select(getAuthUserRoleState), filterNil(), takeUntil(this.destroy$)).subscribe(role => {
       if (role === UserRoles[UserRoles.superAdmin]) {
         this.companyCollectionService.getWithQuery({});

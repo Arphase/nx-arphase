@@ -19,7 +19,6 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 import { UserListComponent } from './components/user-list/user-list.component';
-import { UserRowComponent } from './components/user-row/user-row.component';
 import { UserListContainerComponent } from './containers/user-list-container/user-list-container.component';
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
@@ -44,6 +43,6 @@ import { UsersComponent } from './users.component';
     NzDividerModule,
     NzTableModule,
   ],
-  declarations: [UserListContainerComponent, UsersComponent, UserListComponent, UserRowComponent],
+  declarations: [UserListContainerComponent, UsersComponent, UserListComponent],
 })
 export class UsersModule {}

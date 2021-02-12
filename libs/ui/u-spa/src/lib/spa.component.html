@@ -31,6 +31,9 @@
           <li *ngIf="item.display"
               nz-menu-item
               nzMatchRouter
+              nz-tooltip
+              [nzTooltipTitle]="item.header"
+              nzTooltipPlacement="right"
               [routerLink]="item.path">
             <i nz-icon
                [nzType]="item.icon"></i>

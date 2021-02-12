@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Vehicle } from '@ivt/c-data';
+import { isVehicleElegible, Vehicle } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
 
 import { columns } from './vehicle-list.constants';
@@ -17,4 +17,8 @@ export class VehicleListComponent extends IvtListComponent<Vehicle> {
   @Output() goToRevisions = new EventEmitter<Vehicle>();
   @Output() createGuarantee = new EventEmitter<Vehicle>();
   @Output() createRevisionRequest = new EventEmitter<Vehicle>();
+
+  isElegible(vehicle: Vehicle): boolean {
+    return isVehicleElegible(vehicle);
+  }
 }

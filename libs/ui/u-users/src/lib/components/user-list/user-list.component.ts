@@ -15,13 +15,4 @@ export class UserListComponent extends IvtListComponent<Product> {
   @Input() companyOptions: Select[] = [];
   columns = columns;
   @Output() filterCompanies = new EventEmitter<number[]>();
-
-  updateGroupsFilters(groupIds: number[]): void {
-    this.filterItems.emit({ groupIds });
-    this.filterCompanies.emit(groupIds);
-  }
-
-  updateCompaniesFilters(companyIds: number[]): void {
-    this.filterItems.emit({ companyIds });
-  }
 }
