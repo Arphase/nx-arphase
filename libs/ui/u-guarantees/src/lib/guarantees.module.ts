@@ -21,6 +21,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -37,8 +38,6 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NgxMaskModule } from 'ngx-mask';
-import { NzDividerModule } from 'ng-zorro-antd/divider';
-
 
 import { GuaranteeFormComponent } from './components/guarantee-form/guarantee-form.component';
 import { GuaranteeInvoiceNumberDialogComponent } from './components/guarantee-invoice-number-dialog/guarantee-invoice-number-dialog.component';
@@ -92,7 +91,7 @@ import { GuaranteesComponent } from './guarantees.component';
     NzToolTipModule,
     NzTableModule,
     NzSpaceModule,
-    NzDividerModule
+    NzDividerModule,
   ],
   declarations: [
     GuaranteeFormComponent,
