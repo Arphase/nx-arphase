@@ -8,7 +8,7 @@ import {
   UserEntity,
   UserRepository,
 } from '@ivt/a-state';
-import { Company, Group, User } from '@ivt/c-data';
+import { Company, Group, IvtCollectionResponse, User } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -41,8 +41,8 @@ export class GroupsService {
     return found;
   }
 
-  async getGroups(filterDto: Partial<GetGroupsFilterDto>): Promise<Group[]> {
-    const { limit, offset, sort, direction, text } = filterDto;
+  async getGroups(filterDto: Partial<GetGroupsFilterDto>): Promise<IvtCollectionResponse<Group>> {
+    const { pageSize, pageIndex, sort, direction, text } = filterDto;
     const query = this.groupRepository.createQueryBuilder('group');
 
     if (sort && direction) {
@@ -59,10 +59,28 @@ export class GroupsService {
       );
     }
 
-    query.groupBy('group.id').take(limit).skip(offset);
+    console.log(pageSize);
+    console.log(pageIndex);
+
+    query
+      .groupBy('group.id')
+      .take(pageSize)
+      .skip(pageSize * (pageIndex - 1));
 
     const groups = await query.getMany();
-    return groups;
+    const total = await query.getCount();
+
+    return {
+      info: {
+        pageSize: pageSize,
+        pageIndex: pageIndex,
+        total,
+        pageStart: (pageIndex - 1) * pageSize + 1,
+        pageEnd: (pageIndex - 1) * pageSize + pageSize,
+        last: groups.length < pageSize,
+      },
+      results: groups,
+    };
   }
 
   async createGroup(createGroupDto: CreateGroupDto): Promise<Group> {

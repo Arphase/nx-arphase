@@ -1,13 +1,16 @@
 <div nz-row
-     [nzGutter]="[24, 8]">
+     [nzGutter]="[12]"
+     nzAlign="center">
   <div nz-col
-       class="-12 col-md-6">
+       nzSm="16"
+       nzMd="20"
+       nzLg="12">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
 
   <div nz-col
        nzFlex="auto"
-       class="flex-end pr-0">
+       class="flex-end">
     <button nz-button
             [routerLink]="['new']"
             type="button"
@@ -17,22 +20,69 @@
   </div>
 </div>
 
-<nz-empty *ngIf="!list.length"
-          nzNotFoundContent="No existen grupos que cumplan con el criterio de búsqueda">
-</nz-empty>
+<nz-divider></nz-divider>
 
-<ng-container *ngIf="list.length">
-  <ivt-table-header class="d-block mt-4"
-                    [columns]="columns"
-                    (sort)="updateSort($event)"></ivt-table-header>
+<div nz-col
+     nzFlex="auto"
+     class="flex-end">
+  {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}
+</div>
 
-  <ivt-virtual-scroll height="60vh"
-                      [list]="list"
-                      [ignoreNextBatch]="!hasMoreItems || loading"
-                      (nextBatchEmitter)="getMoreItems.emit()">
-    <ng-template let-item>
-      <ivt-group-row [item]="item">
-      </ivt-group-row>
-    </ng-template>
-  </ivt-virtual-scroll>
-</ng-container>
+<nz-divider></nz-divider>
+
+<nz-table #table
+          nzSize="small"
+          [nzData]="list"
+          [nzFrontPagination]="false"
+          [nzTotal]="info?.total"
+          [nzPageIndex]="info?.pageIndex"
+          [nzLoading]="loading"
+          (nzQueryParams)="filterItems.emit($event)">
+  <thead>
+    <tr nz-row>
+      <th nzSortFn="true"
+          nzColumnKey="group.name"
+          nz-col
+          nzMd="6">Nombre</th>
+      <th nzSortFn="true"
+          nzColumnKey="group.name"
+          nz-col
+          nzMd="6">Contacto</th>
+      <th nzSortFn="true"
+          nzColumnKey="group.name"
+          nz-col
+          nzMd="6">Correo</th>
+      <th nzSortFn="true"
+          nzColumnKey="group.name"
+          nz-col
+          nzMd="4">Teléfono</th>
+      <th nz-col
+          nzXs="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of table.data"
+        nz-row>
+      <td nz-col
+          nzXs="6">{{ item.name | empty }}</td>
+      <td nz-col
+          nzXs="6">{{ item.contact | empty }}</td>
+      <td nz-col
+          nzXs="6">{{ item.email | empty }}</td>
+      <td nz-col
+          nzXs="4">{{ item.phone | empty }}</td>
+      <td nz-col
+          nzXs="2">
+        <button nz-button
+                nzType="text"
+                nz-tooltip
+                nzTooltipTitle="Editar grupo"
+                [routerLink]="[item.id]">
+          <i nz-icon
+             nzType="edit"
+             nzTheme="outline"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

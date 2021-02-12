@@ -6,7 +6,6 @@ import { GroupFormContainerComponent } from './containers/group-form-container/g
 import { GroupListContainerComponent } from './containers/group-list-container/group-list-container.component';
 import { GroupsComponent } from './groups.component';
 import { GroupResolverService } from './resolvers/group-resolver.service';
-import { GroupsResolverService } from './resolvers/groups-resolver.service';
 
 export const routes: Routes = [
   {
@@ -16,7 +15,6 @@ export const routes: Routes = [
       {
         path: '',
         component: GroupListContainerComponent,
-        resolve: { resolvedGroups: GroupsResolverService },
       },
       {
         path: 'new',
