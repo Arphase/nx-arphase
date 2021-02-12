@@ -6,6 +6,7 @@ import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { select } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 
 import { IvtSubscriberComponent } from '../../components';
@@ -16,8 +17,12 @@ import { IvtSubscriberComponent } from '../../components';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
+  loadingSubject = new BehaviorSubject<boolean>(false);
+  ivtLoading$ = this.loadingSubject.asObservable();
   list$ = this.entityCollectionService.entities$;
-  loading$ = this.entityCollectionService.loading$;
+  loading$ = combineLatest([this.entityCollectionService.loading$, this.ivtLoading$]).pipe(
+    map(([loading1, loading2]) => loading1 || loading2)
+  );
   hasMore$ = this.entityCollectionService.store.pipe(
     select(this.entityCollectionService.selectors.selectCollection),
     filterNil(),
@@ -92,7 +97,7 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
 
   deleteItem(item: T): void {
     this.modal
-      .confirm({ nzContent: this.deleteConfirmMessage })
+      .confirm({ nzContent: this.deleteConfirmMessage, nzOnOk: () => true })
       .afterClose.pipe(take(1), filterNil())
       .subscribe(() => this.entityCollectionService.delete(item, { isOptimistic: false }));
   }

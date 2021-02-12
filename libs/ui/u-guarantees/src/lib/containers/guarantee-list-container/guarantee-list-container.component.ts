@@ -17,7 +17,7 @@ import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { finalize, take, takeUntil } from 'rxjs/operators';
 
 import { GuaranteeInvoiceNumberDialogContainerComponent } from '../guarantee-invoice-number-dialog-container/guarantee-invoice-number-dialog-container.component';
 import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
@@ -75,13 +75,24 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   }
 
   downloadPdf(id: number): void {
-    this.guaranteeDataService.getGuaranteePdf(id).pipe(take(1)).subscribe();
+    this.loadingSubject.next(true);
+    this.guaranteeDataService
+      .getGuaranteePdf(id)
+      .pipe(
+        take(1),
+        finalize(() => this.loadingSubject.next(false))
+      )
+      .subscribe();
   }
 
   changeStatus(guarantee: Partial<Guarantee>): void {
+    this.loadingSubject.next(true);
     this.guaranteeCollectionService
       .update(guarantee)
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => this.loadingSubject.next(false))
+      )
       .subscribe(() =>
         this.messageService.success(
           `La garantía con folio ${transformFolio(guarantee.id)} ahora está ${statusLabels[
@@ -92,9 +103,13 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   }
 
   updatePaymentOrder(paymentOrderId: number): void {
+    this.loadingSubject.next(true);
     this.paymentOrderCollectionService
       .getByKey(paymentOrderId)
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => this.loadingSubject.next(false))
+      )
       .subscribe(() =>
         this.modal.create({
           nzTitle: 'Editar Orden de Pago',
@@ -105,7 +120,14 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   }
 
   downloadPaymentOrder(id: number): void {
-    this.paymentOrderDataService.getPaymentOrderPdf(id).pipe(take(1)).subscribe();
+    this.loadingSubject.next(true);
+    this.paymentOrderDataService
+      .getPaymentOrderPdf(id)
+      .pipe(
+        take(1),
+        finalize(() => this.loadingSubject.next(false))
+      )
+      .subscribe();
   }
 
   editInvoiceNumber(guarantee: Guarantee): void {

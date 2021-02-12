@@ -1,5 +1,5 @@
 import { CompanyRepository, FilterCompaniesDto } from '@ivt/a-state';
-import { Company, User, UserRoles } from '@ivt/c-data';
+import { Company, IvtCollectionResponse, User, UserRoles } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -7,17 +7,31 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class CompaniesService {
   constructor(@InjectRepository(CompanyRepository) private companyRepository: CompanyRepository) {}
 
-  async getCompanies(filterDto: FilterCompaniesDto, user: Partial<User>): Promise<Company[]> {
+  async getCompanies(filterDto: FilterCompaniesDto, user: Partial<User>): Promise<IvtCollectionResponse<Company>> {
+    const { groupIds, pageSize, pageIndex } = filterDto;
     const query = this.companyRepository.createQueryBuilder('company');
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
       query.andWhere('(company.id = :id)', { id: user.companyId });
     }
 
-    if (filterDto?.groupIds) {
-      query.andWhere('(company.groupId IN (:...ids))', { ids: filterDto.groupIds });
+    if (groupIds) {
+      query.andWhere('(company.groupId IN (:...ids))', { ids: groupIds });
     }
 
-    return await query.getMany();
+    const companies = await query.getMany();
+    const total = await query.getCount();
+
+    return {
+      info: {
+        pageSize: pageSize,
+        pageIndex: pageIndex,
+        total,
+        pageStart: (pageIndex - 1) * pageSize + 1,
+        pageEnd: companies.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
+        last: companies.length < pageSize,
+      },
+      results: companies,
+    };
   }
 
   async getCompany(id: number): Promise<Company> {

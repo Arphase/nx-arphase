@@ -1,6 +1,6 @@
 <ivt-revision-list [list]="list$ | async"
                    [hasMoreItems]="hasMore$ | async"
-                   [title]="title"
+                   [title]="title$ | async"
                    [loading]="loading$ | async"
                    [info]="info$ | async"
                    [queryParams]="queryParams"

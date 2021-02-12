@@ -21,7 +21,8 @@
   <div nz-col
        nzFlex="auto"
        class="flex-end">
-    <button nz-button
+    <button *ngIf="title"
+            nz-button
             [routerLink]="['new']"
             type="button"
             nzType="primary">
