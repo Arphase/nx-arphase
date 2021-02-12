@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, Optional } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { IvtQueryParams } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import { buildQueryParams, IvtCollectionService, IvtDataService, IvtEntityCollection } from '@ivt/u-state';
 import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { select } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 
-import { IvtConfirmationDialogComponent, IvtSubscriberComponent } from '../../components';
+import { IvtSubscriberComponent } from '../../components';
 
 @Component({
   selector: 'ivt-list-container',
@@ -33,7 +33,7 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
   constructor(
     protected entityCollectionService: IvtCollectionService<T>,
     protected entityDataService: IvtDataService<T>,
-    @Optional() protected dialog?: MatDialog,
+    @Optional() protected modal?: NzModalService,
     @Optional() protected messageService?: NzMessageService
   ) {
     super();
@@ -79,10 +79,9 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
   }
 
   deleteItem(item: T): void {
-    this.dialog
-      .open(IvtConfirmationDialogComponent, { data: { message: this.deleteConfirmMessage } })
-      .afterClosed()
-      .pipe(take(1), filterNil())
+    this.modal
+      .confirm({ nzContent: this.deleteConfirmMessage })
+      .afterClose.pipe(take(1), filterNil())
       .subscribe(() => this.entityCollectionService.delete(item, { isOptimistic: false }));
   }
 }

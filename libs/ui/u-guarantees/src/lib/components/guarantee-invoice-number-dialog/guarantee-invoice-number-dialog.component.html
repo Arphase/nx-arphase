@@ -2,36 +2,18 @@
       nzLayout="vertical"
       [formGroup]="form"
       (ngSubmit)="submit()">
-  <h1 class="text-primary font-weight-light h3">
-    Actualizar número de factura - Garantía {{ item.id | folio }}
-  </h1>
-
-  <mat-dialog-content>
-    <div nz-row
-         [nzGutter]="[24, 8]"
-         class="mt-3 mb-2">
-      <div nz-col
-           nzSpan="24">
-        <nz-form-item>
-          <nz-form-label nzRequired>Número de factura</nz-form-label>
-          <nz-form-control apsAutoError>
-            <input nz-input
-                   formControlName="invoiceNumber" />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
+  <div nz-row
+       [nzGutter]="[24, 8]"
+       class="mt-3 mb-2">
+    <div nz-col
+         nzSpan="24">
+      <nz-form-item>
+        <nz-form-label nzRequired>Número de factura</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="invoiceNumber" />
+        </nz-form-control>
+      </nz-form-item>
     </div>
-  </mat-dialog-content>
-
-
-  <div mat-dialog-actions
-       class="flex-end">
-    <button nz-button
-            type="button"
-            mat-dialog-close>Cancelar</button>
-    <button nz-button
-            [nzLoading]="loading"
-            type="submit"
-            nzType="primary">Guardar</button>
   </div>
 </form>

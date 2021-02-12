@@ -1,7 +1,7 @@
 import 'dayjs/locale/es';
 
-import { GetGuaranteesFilterDto, GuaranteeEntity, IMAGE_ASSETS_PATH, transformFolio } from '@ivt/a-state';
-import { Guarantee, User, UserRoles } from '@ivt/c-data';
+import { GetGuaranteesFilterDto, GuaranteeEntity, IMAGE_ASSETS_PATH } from '@ivt/a-state';
+import { Guarantee, transformFolio, User, UserRoles } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';

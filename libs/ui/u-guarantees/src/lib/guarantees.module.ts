@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
 import { ApsAutoErrorModule } from '@arphase/ui';
 import { PermissionsModule, VehiclesDataModule } from '@ivt/u-state';
 import {
@@ -13,7 +12,6 @@ import {
   IvtRadioFilterModule,
   IvtRowModule,
   IvtSearchbarModule,
-  IvtSuccessDialogModule,
   IvtTableModule,
   IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
@@ -31,6 +29,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzSelectModule } from 'ng-zorro-antd/select';
@@ -41,7 +40,6 @@ import { GuaranteeInvoiceNumberDialogComponent } from './components/guarantee-in
 import { GuaranteeListComponent } from './components/guarantee-list/guarantee-list.component';
 import { GuaranteeRowComponent } from './components/guarantee-row/guarantee-row.component';
 import { PaymentOrderDialogComponent } from './components/payment-order-dialog/payment-order-dialog.component';
-import { PaymentOrderDownloadDialogComponent } from './components/payment-order-download-dialog/payment-order-download-dialog.component';
 import { GuaranteeFormContainerComponent } from './containers/guarantee-form-container/guarantee-form-container.component';
 import { GuaranteeInvoiceNumberDialogContainerComponent } from './containers/guarantee-invoice-number-dialog-container/guarantee-invoice-number-dialog-container.component';
 import { GuaranteeListContainerComponent } from './containers/guarantee-list-container/guarantee-list-container.component';
@@ -61,7 +59,6 @@ import { GuaranteesComponent } from './guarantees.component';
     NzPageHeaderModule,
     NzCollapseModule,
     IvtAddressFormModule,
-    MatDialogModule,
     IvtFolioModule,
     IvtSearchbarModule,
     IvtDateFilterModule,
@@ -76,7 +73,6 @@ import { GuaranteesComponent } from './guarantees.component';
     IvtEmptyModule,
     NzCardModule,
     NzButtonModule,
-    IvtSuccessDialogModule,
     NgxMaskModule,
     NzGridModule,
     NzMessageModule,
@@ -89,6 +85,7 @@ import { GuaranteesComponent } from './guarantees.component';
     ApsAutoErrorModule,
     NzCheckboxModule,
     FormsModule,
+    NzModalModule,
   ],
   declarations: [
     GuaranteeFormComponent,
@@ -100,7 +97,6 @@ import { GuaranteesComponent } from './guarantees.component';
     GuaranteesComponent,
     PaymentOrderDialogComponent,
     PaymentOrderDialogContainerComponent,
-    PaymentOrderDownloadDialogComponent,
     GuaranteeInvoiceNumberDialogContainerComponent,
     GuaranteeInvoiceNumberDialogComponent,
   ],

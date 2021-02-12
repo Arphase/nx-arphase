@@ -4,7 +4,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
@@ -58,7 +57,6 @@ const MATERIAL_MODULES = [
   MatProgressSpinnerModule,
   MatProgressBarModule,
   // Popups and modals
-  MatDialogModule,
   MatTooltipModule,
 ];
 

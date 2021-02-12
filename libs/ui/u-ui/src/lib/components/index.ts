@@ -1,6 +1,5 @@
 export * from './address-form';
 export * from './autocomplete';
-export * from './confirmation-dialog';
 export * from './file-upload';
 export * from './filters';
 export * from './form';
@@ -9,7 +8,6 @@ export * from './row';
 export * from './searchbar';
 export * from './status-message';
 export * from './subscriber';
-export * from './success-dialog';
 export * from './table';
 export * from './text-truncate-tooltip';
 export * from './virtual-scroll';

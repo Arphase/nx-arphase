@@ -3,7 +3,6 @@ import { HttpClientModule } from '@angular/common/http';
 import es from '@angular/common/locales/es';
 import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
@@ -14,6 +13,7 @@ import { IVT_UI_STATE_CONFIGURATION, IvtStateModule, IvtUiStateConfiguration } f
 import * as Sentry from '@sentry/angular';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { environment } from '../environments/environment';
@@ -41,7 +41,7 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
     BrowserAnimationsModule,
     HttpClientModule,
     IvtStateModule,
-    MatDialogModule,
+    NzModalModule,
     NgxMaskModule.forRoot(),
     NzIconModule.forRoot(icons),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),

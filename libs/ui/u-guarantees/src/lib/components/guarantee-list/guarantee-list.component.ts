@@ -8,7 +8,6 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, Select } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
 
@@ -33,10 +32,6 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   @Output() createPaymentOrder = new EventEmitter<number[]>();
   @Output() filterCompanies = new EventEmitter<number[]>();
   @Output() filterUsers = new EventEmitter<number[]>();
-
-  constructor(public dialog: MatDialog) {
-    super();
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.clearSelected && this.clearSelected) {

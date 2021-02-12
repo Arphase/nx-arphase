@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Guarantee, UserRoles } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import {
@@ -14,6 +13,7 @@ import {
 } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 
@@ -36,14 +36,14 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,
     protected guaranteeDataService: GuaranteeDataService,
-    protected dialog: MatDialog,
+    protected modal: NzModalService,
     private paymentOrderCollectionService: PaymentOrderCollectionService,
     private store: Store<IvtState>,
     private groupCollectionService: GroupCollectionService,
     private companyCollectionService: CompanyCollectionService,
     private userCollectionService: UserCollectionService
   ) {
-    super(guaranteeCollectionService, guaranteeDataService, dialog);
+    super(guaranteeCollectionService, guaranteeDataService, modal);
   }
 
   ngOnInit(): void {
@@ -61,10 +61,14 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
 
   createPaymentOrder(guaranteeIds: number[]): void {
     this.paymentOrderCollectionService.removeOneFromCache(null);
-    this.dialog
-      .open(PaymentOrderDialogContainerComponent, { data: guaranteeIds, maxWidth: '90w' })
-      .afterClosed()
-      .pipe(take(1))
+    this.modal
+      .create({
+        nzTitle: 'Generar Orden de Pago',
+        nzContent: PaymentOrderDialogContainerComponent,
+        nzComponentParams: { data: guaranteeIds },
+        nzOnOk: component => component.submitChild(),
+      })
+      .afterClose.pipe(take(1))
       .subscribe(() => this.clearSelectedSubject.next(true));
   }
 }

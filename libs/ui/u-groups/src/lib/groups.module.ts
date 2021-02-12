@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
 import { ApsAutoErrorModule } from '@arphase/ui';
 import { PermissionsModule } from '@ivt/u-state';
 import {
@@ -23,6 +22,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NgxMaskModule } from 'ngx-mask';
 
@@ -45,7 +45,6 @@ import { GroupsComponent } from './groups.component';
     GroupsRoutingModule,
     PermissionsModule,
     ReactiveFormsModule,
-    MatDialogModule,
     NzIconModule,
     IvtAddressFormModule,
     IvtRowModule,
@@ -66,6 +65,7 @@ import { GroupsComponent } from './groups.component';
     NzFormModule,
     NzInputModule,
     ApsAutoErrorModule,
+    NzModalModule,
   ],
   declarations: [
     GroupsComponent,

@@ -9,8 +9,8 @@ import {
   OUT_FILE,
   PhysicalPersonRepository,
   tobase64,
-  transformFolio,
   UpdateGuaranteeDto,
+  VehicleEntity,
   VehicleRepository,
 } from '@ivt/a-state';
 import {
@@ -19,8 +19,10 @@ import {
   isVehicleElegible,
   PersonTypes,
   statusLabels,
+  transformFolio,
   User,
   UserRoles,
+  Vehicle,
   VehicleStatus,
 } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
@@ -34,7 +36,11 @@ import { Connection } from 'typeorm';
 import { promisify } from 'util';
 import * as XLSX from 'xlsx';
 
-import { applyGuaranteeFilter, applyGuaranteeSharedFilters, getGuaranteePdfTemplate } from './guarantees.service.constants';
+import {
+  applyGuaranteeFilter,
+  applyGuaranteeSharedFilters,
+  getGuaranteePdfTemplate,
+} from './guarantees.service.constants';
 
 @Injectable()
 export class GuaranteesService {
@@ -314,12 +320,6 @@ export class GuaranteesService {
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
-      const vehicle = this.vehicleRepository.create({
-        ...updateGuaranteeDto.vehicle,
-        userId: user.id,
-      });
-      await vehicle.save();
-
       if (updateGuaranteeDto.client?.personType === PersonTypes.moral && updateGuaranteeDto.client?.physicalInfo?.id) {
         await this.physicalPersonRepository.delete(updateGuaranteeDto.client.physicalInfo.id);
       }
@@ -327,11 +327,22 @@ export class GuaranteesService {
         await this.moralPersonRepository.delete(updateGuaranteeDto.client.moralInfo.id);
       }
       const preloadedGuarantee = await this.guaranteeRepository.preload(updateGuaranteeDto);
+
+      let vehicle: VehicleEntity;
+      if (updateGuaranteeDto.vehicle) {
+        vehicle = this.vehicleRepository.create({
+          ...updateGuaranteeDto.vehicle,
+          userId: user.id,
+        });
+        await vehicle.save();
+      } else {
+        vehicle = preloadedGuarantee.vehicle as VehicleEntity;
+      }
       const guarantee = this.omitInfo(updateGuaranteeDto);
       const updatedGuarantee = await this.guaranteeRepository.save({
         ...preloadedGuarantee,
         ...guarantee,
-        vehicle,
+        vehicle: updateGuaranteeDto.vehicle ? vehicle : preloadedGuarantee.vehicle,
       });
       await updatedGuarantee.reload();
       await queryRunner.commitTransaction();

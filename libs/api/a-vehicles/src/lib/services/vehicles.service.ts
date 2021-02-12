@@ -1,5 +1,5 @@
-import { CreateVehicleDto, GetVehiclesDto, transformFolio, UpdateVehicleDto, VehicleRepository } from '@ivt/a-state';
-import { User, UserRoles, Vehicle, VehicleStatus } from '@ivt/c-data';
+import { CreateVehicleDto, GetVehiclesDto, UpdateVehicleDto, VehicleRepository } from '@ivt/a-state';
+import { transformFolio, User, UserRoles, Vehicle, VehicleStatus } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';

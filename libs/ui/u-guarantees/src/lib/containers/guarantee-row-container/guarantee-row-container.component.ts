@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Guarantee, GuaranteeStatus, statusLabels, UserRoles } from '@ivt/c-data';
+import { Guarantee, GuaranteeStatus, statusLabels, transformFolio, UserRoles } from '@ivt/c-data';
 import {
   GuaranteeCollectionService,
   GuaranteeDataService,
@@ -10,11 +9,16 @@ import {
 } from '@ivt/u-state';
 import { IvtFolioPipe, IvtRowComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
-import { GuaranteeInvoiceNumberDialogContainerComponent } from '../guarantee-invoice-number-dialog-container/guarantee-invoice-number-dialog-container.component';
-import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
+import {
+  GuaranteeInvoiceNumberDialogContainerComponent,
+} from '../guarantee-invoice-number-dialog-container/guarantee-invoice-number-dialog-container.component';
+import {
+  PaymentOrderDialogContainerComponent,
+} from '../payment-order-dialog-container/payment-order-dialog-container.component';
 
 @Component({
   selector: 'ivt-guarantee-row-container',
@@ -26,13 +30,14 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
   isEditable$ = this.permissionService.hasUpdatePermission([UserRoles.agencyUser, UserRoles.superAdmin]);
+  loading: boolean;
 
   constructor(
     private guaranteeCollectiionService: GuaranteeCollectionService,
     private guaranteeDataService: GuaranteeDataService,
     private paymentOrderCollectionService: PaymentOrderCollectionService,
     private paymentOrderDataService: PaymentOrderDataService,
-    private dialog: MatDialog,
+    private modal: NzModalService,
     private messageService: NzMessageService,
     private folioPipe: IvtFolioPipe,
     private permissionService: PermissionService
@@ -70,14 +75,27 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
 
   createPaymentOrder(guaranteeId: number): void {
     this.paymentOrderCollectionService.removeOneFromCache(null);
-    this.dialog.open(PaymentOrderDialogContainerComponent, { data: [guaranteeId], maxWidth: '90w' });
+    this.modal.create({
+      nzTitle: 'Generar Orden de Pago',
+      nzContent: PaymentOrderDialogContainerComponent,
+      nzComponentParams: { data: [guaranteeId] },
+      nzOkLoading: this.loading,
+      nzOnOk: component => component.submitChild(),
+    });
   }
 
   updatePaymentOrder(paymentOrderId: number): void {
     this.paymentOrderCollectionService
       .getByKey(paymentOrderId)
       .pipe(take(1))
-      .subscribe(() => this.dialog.open(PaymentOrderDialogContainerComponent, { maxWidth: '90w' }));
+      .subscribe(() =>
+        this.modal.create({
+          nzTitle: 'Editar Orden de Pago',
+          nzContent: PaymentOrderDialogContainerComponent,
+          nzOkLoading: this.loading,
+          nzOnOk: component => component.submitChild(),
+        })
+      );
   }
 
   downloadPaymentOrder(id: number): void {
@@ -91,7 +109,12 @@ export class GuaranteeRowContainerComponent extends IvtRowComponent<Guarantee> {
       .subscribe();
   }
 
-  editInvoiceNumber(data: Guarantee): void {
-    this.dialog.open(GuaranteeInvoiceNumberDialogContainerComponent, { data });
+  editInvoiceNumber(guarantee: Guarantee): void {
+    this.modal.create({
+      nzTitle: `Actualizar número de gactura - Garantía ${transformFolio(guarantee.id)}`,
+      nzContent: GuaranteeInvoiceNumberDialogContainerComponent,
+      nzOnOk: component => component.submitChild(),
+      nzComponentParams: { guarantee },
+    });
   }
 }
