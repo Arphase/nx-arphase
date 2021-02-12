@@ -1,26 +1,43 @@
 <ivt-row>
   <div nz-col
        class="-8 col-md-3">
-    <ivt-text-truncate-tooltip [label]="item.businessName | empty"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.businessName | empty"></p>
   </div>
   <div nz-col
        class="-2 d-none d-sm-block d-md-block d-lg-block d-xl-block">
-    <ivt-text-truncate-tooltip [label]="item.contact | empty"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.contact | empty"></p>
   </div>
   <div nz-col
        class="-3 d-none d-sm-block d-md-block d-lg-block d-xl-block">
-    <ivt-text-truncate-tooltip [label]="item.email | empty"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.email | empty"></p>
   </div>
   <div nz-col
        class="-2 d-none d-sm-block d-md-block d-lg-block d-xl-block">
-    <ivt-text-truncate-tooltip [label]="item.rfc | empty"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.rfc | empty"></p>
   </div>
   <div nz-col
        class="flex-end">
     <button nz-button
             nzType="text"
             type="button"
-            matTooltip="Editar compañía"
+            nz-tooltip
+            nzTooltipTitle="Editar compañía"
             (click)="edit.emit(item)">
       <i nz-icon
          nzType="edit"

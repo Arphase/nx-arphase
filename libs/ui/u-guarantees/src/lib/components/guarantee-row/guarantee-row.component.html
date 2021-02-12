@@ -25,12 +25,22 @@
   <div nz-col
        nzSpan="4"
        class="d-none d-lg-block d-xl-block">
-    <ivt-text-truncate-tooltip [label]="item.vehicle?.vin"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       [nzContent]="item.vehicle?.vin | empty"
+       class="m-0">
+    </p>
   </div>
   <div nz-col
        nzSpan="4"
        class="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-    <ivt-text-truncate-tooltip [label]="item.paymentOrder?.distributor | empty"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.paymentOrder?.distributor | empty">
+    </p>
   </div>
   <div nz-col
        nzXs="12"
@@ -53,7 +63,12 @@
   <div nz-col
        nzSpan="4"
        class="d-none d-sm-block d-md-block d-lg-block d-xl-block text-right">
-    <ivt-text-truncate-tooltip [label]="item.amount | currency | empty"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.amount | currency | empty">
+    </p>
   </div>
   <div nz-col
        class="ml-auto pl-0">
@@ -61,7 +76,8 @@
             nz-dropdown
             [nzDropdownMenu]="menu"
             nzType="text"
-            matTooltip="Acciones"
+            nz-tooltip
+            nzTooltipTitle="Acciones"
             [nzLoading]="loading"
             nzTrigger="click">
       <i nz-icon

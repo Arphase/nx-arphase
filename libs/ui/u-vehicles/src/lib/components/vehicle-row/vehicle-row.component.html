@@ -13,27 +13,51 @@
   </div>
   <div nz-col
        class="-2 d-none d-lg-block d-xl-block">
-    <ivt-text-truncate-tooltip [label]="item.vin | empty"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.vin | empty"></p>
   </div>
   <div nz-col
        class="-6 col-md-2 d-none d-sm-block d-md-block d-lg-block d-xl-block">
-    <ivt-text-truncate-tooltip [label]="item.brand | empty"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.brand | empty"></p>
   </div>
   <div nz-col
        class="-5 col-md-2">
-    <ivt-text-truncate-tooltip [label]="item.model | empty"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.model | empty"></p>
   </div>
   <div nz-col
        class="-2 d-none d-sm-block d-md-block d-lg-block d-xl-block">
-    <ivt-text-truncate-tooltip [label]="item.version | empty"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.version | empty"></p>
   </div>
   <div nz-col
        class="-4 col-md-2 col-lg-1">
-    <ivt-text-truncate-tooltip [label]="item.year | empty"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.year | empty"></p>
   </div>
   <div nz-col
        class="-2 d-none d-sm-block d-md-block d-lg-block d-xl-block">
-    <ivt-text-truncate-tooltip [label]="item.createdAt | date: 'dd/MM/yy'"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.createdAt | date: 'dd/MM/yy'"></p>
   </div>
   <div nz-col
        class="flex-end pl-0">
@@ -41,7 +65,8 @@
             nz-dropdown
             [nzDropdownMenu]="menu"
             nzType="text"
-            matTooltip="Acciones"
+            nz-tooltip
+            nzTooltipTitle="Acciones"
             nzTrigger="click">
       <i nz-icon
          nzType="more"
@@ -50,14 +75,13 @@
 
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu>
-        <div matTooltip="Solo se pueden generar garantías a los vehículos aptos para garantizar"
-             [matTooltipDisabled]="isElegible">
-          <li nz-menu-item
-              [nzDisabled]="!isElegible"
-              (click)="isElegible && createGuarantee.emit(item)">
-            Generar garantía
-          </li>
-        </div>
+        <li nz-menu-item
+            nz-tooltip
+            [nzTooltipTitle]="!isElegible ?  'Solo se pueden generar garantías a los vehículos aptos para garantizar' : ''"
+            [nzDisabled]="!isElegible"
+            (click)="isElegible && createGuarantee.emit(item)">
+          Generar garantía
+        </li>
         <li nz-menu-item
             *ngIf="canManageRevisions"
             (click)="goToRevisions.emit(item)">

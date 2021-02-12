@@ -14,27 +14,51 @@
 
   <div nz-col
        class="-2">
-    <ivt-text-truncate-tooltip [label]="item.observations | empty"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.observations | empty"></p>
   </div>
   <div nz-col
        class="-2">
-    <ivt-text-truncate-tooltip [label]="item.vehicle?.vin"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.vehicle?.vin | empty"></p>
   </div>
   <div nz-col
        class="-2">
-    <ivt-text-truncate-tooltip [label]="item.vehicle?.brand"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.vehicle?.brand | empty"></p>
   </div>
   <div nz-col
        class="-2">
-    <ivt-text-truncate-tooltip [label]="item.vehicle?.model"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.vehicle?.model | empty"></p>
   </div>
   <div nz-col
        class="-2">
-    <ivt-text-truncate-tooltip [label]="item.vehicle?.year"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.vehicle?.year | empty"></p>
   </div>
   <div nz-col
        class="-1">
-    <ivt-text-truncate-tooltip [label]="item.createdAt | date: 'dd/mm/yy'"></ivt-text-truncate-tooltip>
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.createdAt | date: 'dd/mm/yy'"></p>
   </div>
 
   <div nz-col
@@ -43,7 +67,8 @@
             nz-dropdown
             [nzDropdownMenu]="menu"
             nzType="text"
-            matTooltip="Acciones"
+            nz-tooltip
+            nzTooltipTitle="Acciones"
             nzTrigger="click">
       <i nz-icon
          nzType="more"
@@ -52,23 +77,21 @@
 
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu>
-        <div matTooltip="La revisión no se puede editar porque ya pasaron más de tres meses"
-             [matTooltipDisabled]="isEditable">
-          <li nz-menu-item
-              [routerLink]="isEditable ? [item.id] : null"
-              [nzDisabled]="!isEditable">
-            Editar revisión
-          </li>
-        </div>
+        <li nz-menu-item
+            nz-tooltip
+            [nzTooltipTitle]="!isEditable ? 'La revisión no se puede editar porque ya pasaron más de tres meses' : ''"
+            [routerLink]="isEditable ? [item.id] : null"
+            [nzDisabled]="!isEditable">
+          Editar revisión
+        </li>
 
-        <div matTooltip="La revisión no se puede eliminar porque ya pasaron más de tres meses"
-             [matTooltipDisabled]="isEditable">
-          <li nz-menu-item
-              [nzDisabled]="!isEditable"
-              (click)="isEditable && delete.emit(item)">
-            Eliminar revisión
-          </li>
-        </div>
+        <li nz-menu-item
+            nz-tooltip
+            [nzTooltipTitle]="!isEditable ? 'La revisión no se puede eliminar porque ya pasaron más de tres meses' : ''"
+            [nzDisabled]="!isEditable"
+            (click)="isEditable && delete.emit(item)">
+          Eliminar revisión
+        </li>
       </ul>
     </nz-dropdown-menu>
   </div>

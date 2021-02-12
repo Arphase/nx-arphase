@@ -1,15 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { ApsAutoErrorModule } from '@arphase/ui';
-import {
-  IvtEmptyModule,
-  IvtRowModule,
-  IvtTableModule,
-  IvtTextTruncateTooltipModule,
-  IvtVirtualScrollModule,
-} from '@ivt/u-ui';
+import { IvtEmptyModule, IvtRowModule, IvtTableModule, IvtVirtualScrollModule } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
@@ -21,6 +14,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 import { RevisionFormComponent } from './components/revision-form/revision-form.component';
 import { RevisionListComponent } from './components/revision-list/revision-list.component';
@@ -40,12 +35,11 @@ import { RevisionsComponent } from './revisions.component';
     IvtTableModule,
     IvtVirtualScrollModule,
     IvtRowModule,
-    IvtTextTruncateTooltipModule,
     IvtEmptyModule,
     NzIconModule,
     NzButtonModule,
     NzCardModule,
-    MatTooltipModule,
+    NzToolTipModule,
     NzGridModule,
     NzMessageModule,
     NzDropDownModule,
@@ -53,6 +47,8 @@ import { RevisionsComponent } from './revisions.component';
     NzInputModule,
     NzSelectModule,
     ApsAutoErrorModule,
+    NzTypographyModule,
+    NzToolTipModule,
   ],
   declarations: [
     RevisionFormComponent,

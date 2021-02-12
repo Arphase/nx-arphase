@@ -1,6 +1,5 @@
 export * from './address-form';
 export * from './autocomplete';
-export * from './file-upload';
 export * from './filters';
 export * from './form';
 export * from './list';
@@ -9,6 +8,5 @@ export * from './searchbar';
 export * from './status-message';
 export * from './subscriber';
 export * from './table';
-export * from './text-truncate-tooltip';
 export * from './virtual-scroll';
 export * from './components.module';

@@ -10,7 +10,6 @@ import {
   IvtRowModule,
   IvtSearchbarModule,
   IvtTableHeaderModule,
-  IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -24,6 +23,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { CompanyFormDialogComponent } from './components/company-form-dialog/company-form-dialog.component';
@@ -48,7 +49,6 @@ import { GroupsComponent } from './groups.component';
     NzIconModule,
     IvtAddressFormModule,
     IvtRowModule,
-    IvtTextTruncateTooltipModule,
     IvtEmptyModule,
     NzEmptyModule,
     IvtTableHeaderModule,
@@ -66,6 +66,8 @@ import { GroupsComponent } from './groups.component';
     NzInputModule,
     ApsAutoErrorModule,
     NzModalModule,
+    NzTypographyModule,
+    NzToolTipModule
   ],
   declarations: [
     GroupsComponent,

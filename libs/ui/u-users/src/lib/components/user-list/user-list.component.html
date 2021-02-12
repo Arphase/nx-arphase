@@ -10,7 +10,7 @@
     <button nz-button
             nzType="text"
             [ngClass]="{ 'bg-primary text-white': showFilters }"
-            matTooltip="Filtrar"
+            nz-tooltip nzTooltipTitle="Filtrar"
             (click)="toggleFilter()">
       <i nz-icon nzType="filter" nzTheme="outline"></i>
     </button>

@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
 import { ApsValidators, FormBuilder } from '@angular/forms';
-import { MatSelectChange } from '@angular/material/select';
 import { ApsValidators } from '@arphase/ui';
 import { glossary, Product } from '@ivt/c-data';
 import { ProductDataService } from '@ivt/u-state';
@@ -63,7 +62,7 @@ export class ProductFormComponent extends IvtFormComponent<Product> implements O
       .subscribe();
   }
 
-  selectedValue(event: MatSelectChange) {
+  selectedValue(event) {
     let text = this.form.get('template').value;
     this.selectedData = {
       value: event.value,

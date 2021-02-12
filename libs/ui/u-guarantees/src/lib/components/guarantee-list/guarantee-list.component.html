@@ -14,7 +14,7 @@
     <button nz-button
             nzType="text"
             [ngClass]="{ 'bg-primary text-white': showFilters }"
-            matTooltip="Filtrar"
+            nz-tooltip nzTooltipTitle="Filtrar"
             (click)="toggleFilter()">
       <i nz-icon
          nzType="filter"
@@ -22,7 +22,7 @@
     </button>
     <button nz-button
             nzType="text"
-            matTooltip="Exportar a Excel"
+            nz-tooltip nzTooltipTitle="Exportar a Excel"
             [nzLoading]="loadingExcel"
             (click)="exportExcel.emit()">
       <i nz-icon

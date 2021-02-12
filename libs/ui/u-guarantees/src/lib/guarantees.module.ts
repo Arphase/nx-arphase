@@ -13,7 +13,6 @@ import {
   IvtRowModule,
   IvtSearchbarModule,
   IvtTableModule,
-  IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
@@ -33,6 +32,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { GuaranteeFormComponent } from './components/guarantee-form/guarantee-form.component';
@@ -69,7 +70,6 @@ import { GuaranteesComponent } from './guarantees.component';
     IvtVirtualScrollModule,
     NzIconModule,
     IvtRowModule,
-    IvtTextTruncateTooltipModule,
     IvtEmptyModule,
     NzCardModule,
     NzButtonModule,
@@ -86,6 +86,8 @@ import { GuaranteesComponent } from './guarantees.component';
     NzCheckboxModule,
     FormsModule,
     NzModalModule,
+    NzTypographyModule,
+    NzToolTipModule,
   ],
   declarations: [
     GuaranteeFormComponent,

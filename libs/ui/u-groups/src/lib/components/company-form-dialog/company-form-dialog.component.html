@@ -116,7 +116,7 @@
           <button *ngIf="!userForm.value.id"
                   nz-button
                   nzType="text"
-                  matTooltip="Eliminar usuario"
+                  nz-tooltip nzTooltipTitle="Eliminar usuario"
                   type="button"
                   (click)="removeUser(index)">
             <i nz-icon

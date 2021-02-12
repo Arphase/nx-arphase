@@ -1,19 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NzCardModule } from 'ng-zorro-antd/card';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import {
   IvtCheckboxFilterModule,
   IvtEmptyModule,
   IvtRowModule,
   IvtSearchbarModule,
   IvtTableModule,
-  IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserRowComponent } from './components/user-row/user-row.component';
@@ -32,11 +33,12 @@ import { UsersComponent } from './users.component';
     IvtTableModule,
     IvtVirtualScrollModule,
     IvtRowModule,
-    IvtTextTruncateTooltipModule,
     IvtEmptyModule,
     NzButtonModule,
     NzCardModule,
     NzGridModule,
+    NzTypographyModule,
+    NzToolTipModule,
   ],
   declarations: [UserListContainerComponent, UsersComponent, UserListComponent, UserRowComponent],
 })

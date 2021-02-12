@@ -1,18 +1,33 @@
 <ivt-row>
-  <div nz-col class="-1">
+  <div nz-col
+       class="-1">
     {{ item.id | folio }}
   </div>
-  <div nz-col nzSpan="24">
-    <ivt-text-truncate-tooltip [label]="item.name"></ivt-text-truncate-tooltip>
+  <div nz-col
+       nzSpan="24">
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.name | empty"></p>
   </div>
-  <div nz-col class="-1">
-    <ivt-text-truncate-tooltip [label]="item.price | currency | empty"></ivt-text-truncate-tooltip>
+  <div nz-col
+       class="-1">
+    <p nz-typography
+       nzEllipsis
+       nzCopyable
+       class="m-0"
+       [nzContent]="item.price | currency | empty"></p>
   </div>
-  <div nz-col class="-auto ml-auto">
+  <div nz-col
+       class="-auto ml-auto">
     <button nz-button
-            matTooltip="Editar producto"
+            nz-tooltip
+            nzTooltipTitle="Editar producto"
             [routerLink]="[item.id]">
-      <i nz-icon nzType="edit" nzTheme="outline"></i>
+      <i nz-icon
+         nzType="edit"
+         nzTheme="outline"></i>
     </button>
   </div>
 </ivt-row>

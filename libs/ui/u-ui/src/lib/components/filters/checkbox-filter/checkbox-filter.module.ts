@@ -6,7 +6,6 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-import { IvtTextTruncateTooltipModule } from '../../text-truncate-tooltip';
 import { IvtCheckboxFilterComponent } from './checkbox-filter.component';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { IvtCheckboxFilterComponent } from './checkbox-filter.component';
     NzDropDownModule,
     ScrollingModule,
     NzCheckboxModule,
-    IvtTextTruncateTooltipModule,
     NzGridModule,
     NzIconModule,
   ],
