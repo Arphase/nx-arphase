@@ -1,4 +1,4 @@
-import { DEFAULT_LIMIT_SIZE, IvtQueryParams } from '@ivt/c-data';
+import { IvtCollectionResponseInfo, IvtQueryParams } from '@ivt/c-data';
 import {
   EntityAction,
   EntityActionPayload,
@@ -12,6 +12,7 @@ export interface IvtEntityCollection<T> extends EntityCollection {
   hasMore: boolean;
   currentItem: T;
   loadingModify: boolean;
+  info: IvtCollectionResponseInfo;
 }
 
 export interface IvtEntityAction extends EntityAction {
@@ -40,17 +41,19 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
   }
 
   protected queryManySuccess(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
-    let entityCollection = super.queryManySuccess(collection, action) as IvtEntityCollection<T>;
+    const customAction = action.payload.data?.results
+      ? { ...action, payload: { ...action.payload, data: action.payload.data.results } }
+      : action;
+    let entityCollection = super.queryManySuccess(collection, customAction) as IvtEntityCollection<T>;
     if (entityCollection.queryParams.resetList === String(true)) {
-      entityCollection = super.queryManySuccess(super.removeAll(collection, action), action) as IvtEntityCollection<T>;
+      entityCollection = super.queryManySuccess(
+        super.removeAll(collection, customAction),
+        customAction
+      ) as IvtEntityCollection<T>;
     }
     return {
       ...entityCollection,
-      hasMore: action.payload.data.length >= DEFAULT_LIMIT_SIZE,
-      queryParams: {
-        ...entityCollection.queryParams,
-        offset: String(entityCollection.ids.length),
-      },
+      info: action.payload.data.info,
     };
   }
 

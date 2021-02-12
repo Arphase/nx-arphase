@@ -1,21 +1,21 @@
 <button class="ivt-filter"
         [class.ivt-filter--disabled]="disabled"
         [disabled]="disabled"
-        [ngClass]="{ 'active-filter': active || selectedOptions.length }"
+        [ngClass]="{ 'active-filter': activeOptions }"
         nz-dropdown
         [nzDropdownMenu]="menu"
         nzTrigger="click">
 
   <span class="ivt-button-label">{{ mappedTitle || label }}</span>
 
-  <i *ngIf="!selectedOptions.length"
+  <i *ngIf="!activeOptions"
      nz-icon
      nzType="down"
      nzTheme="outline"
      class="right"></i>
 
   <i nz-icon
-     *ngIf="!disabled && selectedOptions.length"
+     *ngIf="!disabled && activeOptions"
      nzType="close"
      nzTheme="outline"
      class="delete-icon right"
@@ -27,21 +27,16 @@
   <div *ngIf="displayContent"
        nz-menu
        class="content">
-    <cdk-virtual-scroll-viewport itemSize="22"
-                                 [style.width]="width"
-                                 [style.height]="height">
-      <nz-checkbox-wrapper (nzOnChange)="onFilterChange($event)">
-        <div *ngFor="let option of visibleOptions"
-             nz-row
-             [nzGutter]="[24, 8]"
-             class="m-0">
-          <div nz-col
-               nzSpan="24">
-            <label nz-checkbox
-                   [nzValue]="option">{{ option.label }}</label>
-          </div>
+    <nz-checkbox-wrapper (nzOnChange)="onFilterChange($event)">
+      <div *ngFor="let option of selectedOptions"
+           nz-row>
+        <div nz-col
+             nzSpan="24">
+          <label nz-checkbox
+                 [(ngModel)]="option.checked"
+                 [nzValue]="option">{{ option.label }}</label>
         </div>
-      </nz-checkbox-wrapper>
-    </cdk-virtual-scroll-viewport>
+      </div>
+    </nz-checkbox-wrapper>
   </div>
 </nz-dropdown-menu>

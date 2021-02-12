@@ -20,6 +20,7 @@ export class IvtDirtyFormGuard implements CanDeactivate<ComponentCanDeactivate> 
       return this.modalService.confirm({
         nzContent:
           'Tiene cambios que no han sido guardados. Presione cancelar para seguir dentro de la forma y guardar sus cambios o presione aceptar para salir de esta página',
+        nzOnOk: () => true,
       }).afterClose;
     }
   }

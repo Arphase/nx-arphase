@@ -29,4 +29,5 @@ export interface Guarantee {
   userId?: number;
   user?: User;
   productType?: string;
+  checked?: boolean;
 }

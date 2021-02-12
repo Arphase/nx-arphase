@@ -32,19 +32,21 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NgxMaskModule } from 'ngx-mask';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+
 
 import { GuaranteeFormComponent } from './components/guarantee-form/guarantee-form.component';
 import { GuaranteeInvoiceNumberDialogComponent } from './components/guarantee-invoice-number-dialog/guarantee-invoice-number-dialog.component';
 import { GuaranteeListComponent } from './components/guarantee-list/guarantee-list.component';
-import { GuaranteeRowComponent } from './components/guarantee-row/guarantee-row.component';
 import { PaymentOrderDialogComponent } from './components/payment-order-dialog/payment-order-dialog.component';
 import { GuaranteeFormContainerComponent } from './containers/guarantee-form-container/guarantee-form-container.component';
 import { GuaranteeInvoiceNumberDialogContainerComponent } from './containers/guarantee-invoice-number-dialog-container/guarantee-invoice-number-dialog-container.component';
 import { GuaranteeListContainerComponent } from './containers/guarantee-list-container/guarantee-list-container.component';
-import { GuaranteeRowContainerComponent } from './containers/guarantee-row-container/guarantee-row-container.component';
 import { PaymentOrderDialogContainerComponent } from './containers/payment-order-dialog-container/payment-order-dialog-container.component';
 import { GuaranteesRoutingModule } from './guarantees-routing.module';
 import { GuaranteesComponent } from './guarantees.component';
@@ -88,14 +90,15 @@ import { GuaranteesComponent } from './guarantees.component';
     NzModalModule,
     NzTypographyModule,
     NzToolTipModule,
+    NzTableModule,
+    NzSpaceModule,
+    NzDividerModule
   ],
   declarations: [
     GuaranteeFormComponent,
     GuaranteeFormContainerComponent,
     GuaranteeListContainerComponent,
     GuaranteeListComponent,
-    GuaranteeRowComponent,
-    GuaranteeRowContainerComponent,
     GuaranteesComponent,
     PaymentOrderDialogComponent,
     PaymentOrderDialogContainerComponent,

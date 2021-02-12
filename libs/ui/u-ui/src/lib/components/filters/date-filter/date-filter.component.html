@@ -1,6 +1,6 @@
 <button *ngIf="control && control.get('startDate') && control.get('endDate')"
         class="ivt-filter"
-        [ngClass]="{'active-filter': showActiveStatus}"
+        [ngClass]="{ 'active-filter': showActiveStatus }"
         nz-dropdown
         [nzDropdownMenu]="menu"
         nzTrigger="click">
@@ -29,25 +29,19 @@
   <div nz-menu
        nz-form
        nzLayout="vertical"
-       [formGroup]="form"
+       [formGroup]="control"
        class="content"
        (click)="$event.stopPropagation()">
     <div nz-row
          [nzGutter]="[24, 8]">
-      <div nz-col
-           class="p-0">
-        <div class="mb-3"
-             *ngIf="dateTypeOptions.length">
-          <nz-form-item>
-            <nz-form-control>
-              <nz-radio-group formControlName="dateType">
-                <label *ngFor="let option of dateTypeOptions"
-                       nz-radio
-                       [nzValue]="option.value"
-                       (click)="$event.stopPropagation()">{{ option.label }}</label>
-              </nz-radio-group>
-            </nz-form-control>
-          </nz-form-item>
+      <div nz-col>
+        <div *ngIf="dateTypeOptions.length">
+          <nz-radio-group formControlName="dateType">
+            <label *ngFor="let option of dateTypeOptions"
+                   nz-radio
+                   [nzValue]="option.value"
+                   (click)="$event.stopPropagation()">{{ option.label }}</label>
+          </nz-radio-group>
         </div>
       </div>
     </div>

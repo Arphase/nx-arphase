@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Select } from '@ivt/c-data';
 import { Subject } from 'rxjs';
@@ -12,8 +21,9 @@ import { IvtFilterComponent } from '../filter';
   styleUrls: ['./radio-filter.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtRadioFilterComponent extends IvtFilterComponent<string> implements OnInit, OnDestroy {
+export class IvtRadioFilterComponent extends IvtFilterComponent<string> implements OnChanges, OnDestroy {
   @Input() options: Select[] = [];
+  @Input() selectedOption: string | number;
   @Output() filterCleared = new EventEmitter<void>();
   @Output() filterChanged = new EventEmitter<string>();
   control = this.fb.control('');
@@ -21,13 +31,16 @@ export class IvtRadioFilterComponent extends IvtFilterComponent<string> implemen
 
   constructor(private fb: FormBuilder) {
     super();
-  }
-
-  ngOnInit() {
     this.control.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(value => {
       this.setTitle(value);
       this.filterItems.emit(value);
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.selectedOption && this.selectedOption) {
+      this.control.patchValue(this.selectedOption);
+    }
   }
 
   ngOnDestroy() {

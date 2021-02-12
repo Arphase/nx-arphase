@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Guarantee, IvtQueryParams } from '@ivt/c-data';
 import { GuaranteeCollectionService } from '@ivt/u-state';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +12,7 @@ export class GuaranteesResolverService implements Resolve<Guarantee[]> {
 
   resolve(): Observable<Guarantee[]> {
     const queryParams: IvtQueryParams = { resetList: String(true) };
+    return of([]);
     return this.guaranteeCollectionService.getWithQuery(queryParams);
   }
 }

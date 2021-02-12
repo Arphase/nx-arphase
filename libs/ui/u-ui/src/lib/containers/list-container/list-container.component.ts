@@ -23,6 +23,11 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
     filterNil(),
     map((collection: IvtEntityCollection<T>) => collection.hasMore)
   );
+  info$ = this.entityCollectionService.store.pipe(
+    select(this.entityCollectionService.selectors.selectCollection),
+    filterNil(),
+    map((collection: IvtEntityCollection<T>) => collection.info)
+  );
   loadingExcel$ = this.entityDataService.loadingExcel$;
   queryParams: IvtQueryParams;
   excelFileName: string;
@@ -49,6 +54,13 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
         takeUntil(this.destroy$)
       )
       .subscribe(() => this.messageService.success(this.deleteSuccessMessage));
+
+    this.entityCollectionService.entities$
+      .pipe(
+        take(1),
+        filter(entities => !entities.length)
+      )
+      .subscribe(() => this.entityCollectionService.getWithQuery({}));
   }
 
   getMoreItems(): void {

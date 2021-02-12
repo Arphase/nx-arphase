@@ -1,5 +1,4 @@
 <div nz-row
-     [nzGutter]="[24, 8]"
      class="py-5">
   <div nz-col
        nzSm="24"
@@ -24,8 +23,7 @@
           </div>
         </div>
 
-        <div nz-row
-             [nzGutter]="[24, 8]">
+        <div nz-row>
           <div nz-col
                nzSpan="24">
             <nz-form-item>
@@ -39,12 +37,11 @@
           </div>
         </div>
 
-        <div nz-row
-             [nzGutter]="[24, 8]">
+        <div nz-row>
           <div nz-col
                nzSpan="24">
             <nz-form-item>
-              <nz-form-label nzRequired>Correo</nz-form-label>
+              <nz-form-label nzRequired>Contraseña</nz-form-label>
               <nz-form-control apsAutoError>
                 <input nz-input
                        type="password"
@@ -54,8 +51,7 @@
           </div>
         </div>
 
-        <div nz-row
-             [nzGutter]="[24, 8]">
+        <div nz-row>
           <div nz-col
                nzSpan="24">
             <a [routerLink]="['..', 'reset-password']">¿Olvidaste tu contraseña?</a>
@@ -63,13 +59,12 @@
         </div>
 
         <div nz-row
-             [nzGutter]="[24, 8]"
              class="py-3">
           <div nz-col
                nzSpan="24"
                class="flex-end">
             <button nz-button
-                    class="w-100 py-2"
+                    class="w-100"
                     type="submit"
                     nzType="primary"
                     [nzLoading]="loading">

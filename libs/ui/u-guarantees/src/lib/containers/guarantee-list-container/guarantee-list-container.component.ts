@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Guarantee, UserRoles } from '@ivt/c-data';
+import { Guarantee, GuaranteeStatus, statusLabels, transformFolio, UserRoles } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import {
   CompanyCollectionService,
@@ -9,14 +9,17 @@ import {
   GuaranteeDataService,
   IvtState,
   PaymentOrderCollectionService,
+  PaymentOrderDataService,
   UserCollectionService,
 } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 
+import { GuaranteeInvoiceNumberDialogContainerComponent } from '../guarantee-invoice-number-dialog-container/guarantee-invoice-number-dialog-container.component';
 import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
 
 @Component({
@@ -37,13 +40,15 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
     protected guaranteeCollectionService: GuaranteeCollectionService,
     protected guaranteeDataService: GuaranteeDataService,
     protected modal: NzModalService,
+    protected messageService: NzMessageService,
     private paymentOrderCollectionService: PaymentOrderCollectionService,
     private store: Store<IvtState>,
     private groupCollectionService: GroupCollectionService,
     private companyCollectionService: CompanyCollectionService,
-    private userCollectionService: UserCollectionService
+    private userCollectionService: UserCollectionService,
+    private paymentOrderDataService: PaymentOrderDataService
   ) {
-    super(guaranteeCollectionService, guaranteeDataService, modal);
+    super(guaranteeCollectionService, guaranteeDataService, modal, messageService);
   }
 
   ngOnInit(): void {
@@ -70,5 +75,48 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
       })
       .afterClose.pipe(take(1))
       .subscribe(() => this.clearSelectedSubject.next(true));
+  }
+
+  downloadPdf(id: number): void {
+    this.guaranteeDataService.getGuaranteePdf(id).pipe(take(1)).subscribe();
+  }
+
+  changeStatus(guarantee: Partial<Guarantee>): void {
+    this.guaranteeCollectionService
+      .update(guarantee)
+      .pipe(take(1))
+      .subscribe(() =>
+        this.messageService.success(
+          `La garantía con folio ${transformFolio(guarantee.id)} ahora está ${statusLabels[
+            GuaranteeStatus[GuaranteeStatus[guarantee.status]]
+          ].toLowerCase()}`
+        )
+      );
+  }
+
+  updatePaymentOrder(paymentOrderId: number): void {
+    this.paymentOrderCollectionService
+      .getByKey(paymentOrderId)
+      .pipe(take(1))
+      .subscribe(() =>
+        this.modal.create({
+          nzTitle: 'Editar Orden de Pago',
+          nzContent: PaymentOrderDialogContainerComponent,
+          nzOnOk: component => component.submitChild(),
+        })
+      );
+  }
+
+  downloadPaymentOrder(id: number): void {
+    this.paymentOrderDataService.getPaymentOrderPdf(id).pipe(take(1)).subscribe();
+  }
+
+  editInvoiceNumber(guarantee: Guarantee): void {
+    this.modal.create({
+      nzTitle: `Actualizar número de gactura - Garantía ${transformFolio(guarantee.id)}`,
+      nzContent: GuaranteeInvoiceNumberDialogContainerComponent,
+      nzOnOk: component => component.submitChild(),
+      nzComponentParams: { guarantee },
+    });
   }
 }

@@ -29,7 +29,7 @@ export class IvtCheckboxFilterComponent extends IvtFilterComponent<number[]> imp
   @Input() disabled: boolean;
   @Input() height = '15vh';
   @Input() width = '275px';
-  visibleOptions: CheckboxOption[] = [];
+  @Input() preselectedOptions: string;
   displayContent = true;
   selectedOptions: CheckboxOption[] = [];
 
@@ -37,9 +37,24 @@ export class IvtCheckboxFilterComponent extends IvtFilterComponent<number[]> imp
     super();
   }
 
+  get activeOptions(): boolean {
+    return this.selectedOptions?.some(option => option.checked);
+  }
+
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.options || changes.label) {
-      this.visibleOptions = this.options;
+    if (changes.options && this.options) {
+      this.selectedOptions = [...this.options];
+    }
+
+    if (changes.preselectedOptions && this.preselectedOptions) {
+      const optionsArray = this.preselectedOptions.split(',').map(option => Number(option));
+      this.selectedOptions = this.selectedOptions.map(option => {
+        if (optionsArray.includes(option.value)) {
+          return { ...option, checked: true };
+        } else {
+          return option;
+        }
+      });
       this.setSelectedOptions();
     }
   }
@@ -49,13 +64,25 @@ export class IvtCheckboxFilterComponent extends IvtFilterComponent<number[]> imp
   }
 
   onFilterChange(event: CheckboxOption[]): void {
-    this.selectedOptions = event;
+    this.selectedOptions = this.selectedOptions.map(option => {
+      if (
+        event
+          .filter(eventOption => eventOption.checked)
+          .map(eventOption => eventOption.value)
+          .includes(option.value)
+      ) {
+        return { ...option, checked: true };
+      } else {
+        return option;
+      }
+    });
     this.setSelectedOptions();
   }
 
   setSelectedOptions(): void {
-    const selectedValues = this.selectedOptions.map(option => option.value);
-    const selectedLabels = this.selectedOptions.map(option => option.label);
+    const selectedOptions = this.selectedOptions.filter(option => option.checked);
+    const selectedValues = selectedOptions.map(option => option.value);
+    const selectedLabels = selectedOptions.map(option => option.label);
     this.setTitle(selectedLabels);
     this.filterItems.emit(selectedValues);
   }
@@ -63,18 +90,10 @@ export class IvtCheckboxFilterComponent extends IvtFilterComponent<number[]> imp
   deleteFilters(): void {
     this.displayContent = false;
     this.cdr.detectChanges();
-    this.options = this.options.map(option => ({ ...option, checked: false }));
-    this.visibleOptions = this.visibleOptions.map(option => ({ ...option, checked: false }));
-    this.selectedOptions = [];
+    this.selectedOptions = this.options;
     this.mappedTitle = this.label;
     this.filterItems.emit([]);
     this.displayContent = true;
     this.cdr.detectChanges();
-  }
-
-  setVisibleOptions(value: string): void {
-    const filterValue = value.toLowerCase();
-
-    this.visibleOptions = this.options.filter(option => option.label?.toLowerCase().includes(filterValue));
   }
 }

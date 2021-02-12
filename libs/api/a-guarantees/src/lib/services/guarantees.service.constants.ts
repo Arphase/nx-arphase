@@ -235,7 +235,7 @@ export function applyGuaranteeFilter(
   filterDto: Partial<GetGuaranteesFilterDto>,
   user: Partial<User>
 ): SelectQueryBuilder<GuaranteeEntity> {
-  const { limit, offset, sort, direction, text, status } = filterDto;
+  const { pageIndex, pageSize, sort, direction, text, status } = filterDto;
 
   query
     .leftJoinAndSelect('guarantee.client', 'client')
@@ -291,7 +291,7 @@ export function applyGuaranteeFilter(
 
   applyGuaranteeSharedFilters(query, filterDto);
 
-  query.take(limit).skip(offset);
+  query.take(pageSize).skip(pageSize * (pageIndex - 1));
 
   return query;
 }

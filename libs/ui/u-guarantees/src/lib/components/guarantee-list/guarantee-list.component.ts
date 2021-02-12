@@ -1,17 +1,8 @@
-import { SelectionModel } from '@angular/cdk/collections';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, Select } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
 
-import { columns, statusOptions } from './guarantee-list.constants';
+import { menuOptions, statusOptions } from './guarantee-list.constants';
 
 @Component({
   selector: 'ivt-guarantee-list',
@@ -19,31 +10,57 @@ import { columns, statusOptions } from './guarantee-list.constants';
   styleUrls: ['./guarantee-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeListComponent extends IvtListComponent<Guarantee> implements OnChanges {
+export class GuaranteeListComponent extends IvtListComponent<Guarantee> {
   @Input() clearSelected: boolean;
   @Input() groupOptions: Select[] = [];
   @Input() companyOptions: Select[] = [];
   @Input() userOptions: Select[] = [];
-  columns = columns;
   dateTypeOptions = guaranteeDateTypeOptions;
   statusOptions = statusOptions;
-  selectedIds = new SelectionModel<number>(true, []);
+  menuOptions = menuOptions;
+  checked = false;
+  indeterminate = false;
+  setOfCheckedId = new Set<number>();
   @Output() downloadPdf = new EventEmitter<number>();
   @Output() createPaymentOrder = new EventEmitter<number[]>();
   @Output() filterCompanies = new EventEmitter<number[]>();
   @Output() filterUsers = new EventEmitter<number[]>();
+  @Output() downloadPaymentOrder = new EventEmitter<number>();
+  @Output() updatePaymentOrder = new EventEmitter<number>();
+  @Output() editInvoiceNumber = new EventEmitter<Guarantee>();
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.clearSelected && this.clearSelected) {
-      this.selectedIds.clear();
-    }
+  get checkedIdsArray(): number[] {
+    return Array.from(this.setOfCheckedId);
   }
 
-  onSelectItem(id: number): void {
-    this.selectedIds.toggle(id);
+  onItemChecked(id: number, checked: boolean): void {
+    this.updateCheckedSet(id, checked);
+    this.refreshCheckedStatus();
+
+  }
+
+  onAllChecked(value: boolean): void {
+    this.list.forEach(item => this.updateCheckedSet(item.id, value));
+    this.refreshCheckedStatus();
+  }
+
+  refreshCheckedStatus(): void {
+    this.checked = this.list.every(item => this.setOfCheckedId.has(item.id));
+    this.indeterminate = this.list.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
+  }
+
+  updateCheckedSet(id: number, checked: boolean): void {
+    if (checked) {
+      this.setOfCheckedId.add(id);
+    } else {
+      this.setOfCheckedId.delete(id);
+    }
   }
 
   updateStatusFilter(status: GuaranteeStatus): void {
     this.filterItems.emit({ status });
+  }
+  onChangeStatus(id: number, status: GuaranteeStatus): void {
+    this.edit.emit({ id, status: GuaranteeStatus[status] });
   }
 }

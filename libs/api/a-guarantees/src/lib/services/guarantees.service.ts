@@ -15,14 +15,15 @@ import {
 } from '@ivt/a-state';
 import {
   Client,
+  Guarantee,
   GuaranteeSummary,
   isVehicleElegible,
+  IvtCollectionResponse,
   PersonTypes,
   statusLabels,
   transformFolio,
   User,
   UserRoles,
-  Vehicle,
   VehicleStatus,
 } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
@@ -72,12 +73,27 @@ export class GuaranteesService {
     return found;
   }
 
-  async getGuarantees(filterDto: Partial<GetGuaranteesFilterDto>, user: Partial<User>): Promise<GuaranteeEntity[]> {
+  async getGuarantees(
+    filterDto: Partial<GetGuaranteesFilterDto>,
+    user: Partial<User>
+  ): Promise<IvtCollectionResponse<Guarantee>> {
+    const { pageSize, pageIndex } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     applyGuaranteeFilter(query, filterDto, user);
 
     const guarantees = await query.getMany();
-    return guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity);
+    const total = await query.getCount();
+    return {
+      info: {
+        pageSize: pageSize,
+        pageIndex: pageIndex,
+        total,
+        pageStart: (pageIndex - 1) * pageSize + 1,
+        pageEnd: (pageIndex - 1) * pageSize + pageSize,
+        last: guarantees < pageSize,
+      },
+      results: guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity),
+    };
   }
 
   async getGuaranteesSummary(
@@ -102,7 +118,7 @@ export class GuaranteesService {
   }
 
   async getGuaranteesExcel(filterDto: GetGuaranteesFilterDto, user: Partial<User>, response: Response): Promise<void> {
-    const guarantees = await this.getGuarantees(omit(filterDto, ['offset', 'limit']), user);
+    const guarantees = await (await this.getGuarantees(omit(filterDto, ['offset', 'limit']), user)).results;
     const excelColumnConstants: string[] = [
       'Folio',
       'Fecha de carga',

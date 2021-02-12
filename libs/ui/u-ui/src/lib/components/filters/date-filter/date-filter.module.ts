@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
-import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 import { IvtFilterModule } from '../filter';
 import { IvtDateFilterComponent } from './date-filter.component';
@@ -21,7 +22,8 @@ import { IvtDateFilterComponent } from './date-filter.component';
     NzGridModule,
     NzIconModule,
     NzRadioModule,
-    NzDatePickerModule
+    NzDatePickerModule,
+    NzFormModule,
   ],
   exports: [IvtDateFilterComponent],
 })
