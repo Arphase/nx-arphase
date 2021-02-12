@@ -6,5 +6,6 @@ module.exports = {
     '<rootDir>/libs/api/a-revisions',
     '<rootDir>/libs/ui/u-revisions',
     '<rootDir>/libs/api/a-revision-requests',
+    '<rootDir>/libs/arphase/ui/aps-u-ui',
   ],
 };

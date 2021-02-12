@@ -1,6 +1,6 @@
 import { GetUser } from '@ivt/a-auth';
 import { CreateGuaranteeDto, GetGuaranteesFilterDto, GuaranteeEntity, UpdateGuaranteeDto } from '@ivt/a-state';
-import { GuaranteeSummary, User } from '@ivt/c-data';
+import { Guarantee, GuaranteeSummary, IvtCollectionResponse, User } from '@ivt/c-data';
 import {
   Body,
   Controller,
@@ -30,7 +30,7 @@ export class GuaranteesController {
   async getGuarantees(
     @Query(new ValidationPipe({ transform: true })) filterDto: GetGuaranteesFilterDto,
     @GetUser() user: Partial<User>
-  ): Promise<GuaranteeEntity[]> {
+  ): Promise<IvtCollectionResponse<Guarantee>> {
     return this.guaranteesService.getGuarantees(filterDto, user);
   }
 

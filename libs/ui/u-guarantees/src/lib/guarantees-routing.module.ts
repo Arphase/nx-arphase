@@ -6,7 +6,6 @@ import { GuaranteeFormContainerComponent } from './containers/guarantee-form-con
 import { GuaranteeListContainerComponent } from './containers/guarantee-list-container/guarantee-list-container.component';
 import { GuaranteesComponent } from './guarantees.component';
 import { GuaranteeResolverService } from './resolvers/guarantee-resolver.service';
-import { GuaranteesResolverService } from './resolvers/guarantees-resolver.service';
 
 export const routes: Routes = [
   {
@@ -16,7 +15,6 @@ export const routes: Routes = [
       {
         path: '',
         component: GuaranteeListContainerComponent,
-        resolve: { resolvedGuarantees: GuaranteesResolverService },
       },
       {
         path: 'new',

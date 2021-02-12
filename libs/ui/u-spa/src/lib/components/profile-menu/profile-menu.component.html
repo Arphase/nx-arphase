@@ -1,0 +1,39 @@
+<div class="profile">
+  <div class="profile__menu flex-end"
+       nz-dropdown
+       [nzDropdownMenu]="menu"
+       nzTrigger="click">
+
+    <nz-avatar [nzText]="avatarText"></nz-avatar>
+
+    <div class="profile__info d-none d-sm-block ml-3">
+      <div class="info__name d-flex align-items-center">
+        {{ name }}
+      </div>
+
+      <div class="info__email">{{ email }}</div>
+    </div>
+  </div>
+
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <div nz-menu
+         class="profile__menu-content">
+      <div class="menu-content__body">
+
+        <nz-avatar [nzText]="avatarText"
+                   nzSize="large"></nz-avatar>
+
+        <div class="menu-content__info">
+          <div class="menu-info__name">{{ name }}</div>
+          <span class="menu-info__email">{{ email }}</span>
+        </div>
+      </div>
+
+      <div class="menu-content__footer">
+        <button nz-button
+                class="text-danger"
+                (click)="logout.emit()">Cerrar sesión</button>
+      </div>
+    </div>
+  </nz-dropdown-menu>
+</div>

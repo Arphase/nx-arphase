@@ -1,13 +1,14 @@
-import { ChangeDetectionStrategy, Component, Optional } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Optional, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IvtCollectionService } from '@ivt/u-state';
 import { EntityActionOptions, EntityOp, ofEntityOp } from '@ngrx/data';
 import { get } from 'lodash-es';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 import { filter, mapTo, takeUntil } from 'rxjs/operators';
 
-import { IvtSubscriberComponent } from '../../components';
+import { IvtFormComponent, IvtSubscriberComponent } from '../../components';
 import { ComponentCanDeactivate } from '../../guards/dirty-form/dirty-form.guard';
 
 @Component({
@@ -16,6 +17,7 @@ import { ComponentCanDeactivate } from '../../guards/dirty-form/dirty-form.guard
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtFormContainerComponent<T> extends IvtSubscriberComponent implements ComponentCanDeactivate {
+  @ViewChild('form', { static: false }) formComponent: IvtFormComponent<T>;
   loading$ = this.entityCollectionService.loadingModify$;
   currentItem$ = this.entityCollectionService.currentItem$;
   showSuccess$ = this.entityCollectionService.entityActions$.pipe(
@@ -30,7 +32,8 @@ export class IvtFormContainerComponent<T> extends IvtSubscriberComponent impleme
   constructor(
     protected entityCollectionService: IvtCollectionService<T>,
     @Optional() protected router?: Router,
-    @Optional() protected toastr?: ToastrService
+    @Optional() protected messageService?: NzMessageService,
+    @Optional() protected modalRef?: NzModalRef
   ) {
     super();
     this.entityCollectionService.entityActions$
@@ -43,27 +46,47 @@ export class IvtFormContainerComponent<T> extends IvtSubscriberComponent impleme
 
     this.entityCollectionService.entityActions$
       .pipe(
-        ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS),
-        filter(() => !!this.createSuccessMessage && !!this.toastr),
+        ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS, EntityOp.SAVE_UPDATE_ONE_SUCCESS),
+        filter(() => !!this.modalRef),
         takeUntil(this.destroy$)
       )
-      .subscribe(() => this.toastr.success(this.createSuccessMessage));
+      .subscribe(() => this.modalRef.close());
+
+    this.entityCollectionService.entityActions$
+      .pipe(
+        ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS),
+        filter(() => !!this.createSuccessMessage && !!this.messageService),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(() => this.messageService.success(this.createSuccessMessage));
 
     this.entityCollectionService.entityActions$
       .pipe(
         ofEntityOp(EntityOp.SAVE_UPDATE_ONE_SUCCESS),
-        filter(() => !!this.updateSuccessMessage && !!this.toastr),
+        filter(() => !!this.updateSuccessMessage && !!this.messageService),
         takeUntil(this.destroy$)
       )
-      .subscribe(() => this.toastr.success(this.updateSuccessMessage));
+      .subscribe(() => this.messageService.success(this.updateSuccessMessage));
+
+    this.entityCollectionService.loadingModify$
+      .pipe(
+        filter(() => !!this.modalRef),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(loading => this.modalRef.updateConfig({ nzOkLoading: loading }));
   }
 
   canDeactivate(): boolean {
     return !this.form.touched;
   }
 
+  submitChild(): boolean {
+    this.formComponent.submit();
+    return false;
+  }
+
   submit(item: T, entityActionOptions: EntityActionOptions = {}): void {
-    this.form.markAsUntouched();
+    this.form?.markAsUntouched();
     get(item, 'id')
       ? this.entityCollectionService.update(item, entityActionOptions)
       : this.entityCollectionService.add(item, entityActionOptions);

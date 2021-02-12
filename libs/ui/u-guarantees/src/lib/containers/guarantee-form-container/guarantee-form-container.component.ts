@@ -17,7 +17,7 @@ import {
 } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { combineLatest } from 'rxjs';
 import { map, take, takeUntil } from 'rxjs/operators';
 
@@ -60,14 +60,14 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,
     protected router: Router,
-    protected toastr: ToastrService,
+    protected messageService: NzMessageService,
     private productCollectionService: ProductCollectionService,
     private permissionService: PermissionService,
     private store: Store<IvtState>,
     private companyCollectionService: CompanyCollectionService,
     private vehicleCollectionService: VehicleCollectionService
   ) {
-    super(guaranteeCollectionService, router, toastr);
+    super(guaranteeCollectionService, router, messageService);
   }
 
   ngOnInit() {
@@ -77,7 +77,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
         if (disabledCompanyInput) {
           this.companyCollectionService.getByKey(companyId);
         } else {
-          this.companyCollectionService.getAll();
+          this.companyCollectionService.getWithQuery({});
         }
       });
 

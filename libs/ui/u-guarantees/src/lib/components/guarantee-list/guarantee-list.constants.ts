@@ -1,100 +1,29 @@
 import { GuaranteeStatus, Select } from '@ivt/c-data';
 import { IvtColumns } from '@ivt/u-ui';
 
-export const columns: IvtColumns = [
+export const menuOptions = [
   {
-    label: '',
-    prop: 'checkbox',
-    sortable: false,
-    colSizes: {
-      xs: '1',
-    },
+    class: 'bg-success',
+    label: 'Pagada',
+    value: GuaranteeStatus.paid,
   },
   {
-    label: 'Folio',
-    prop: 'guarantee.id',
-    sortable: true,
-    colSizes: {
-      md: '1',
-      xs: '2',
-      sm: '2',
-    },
+    class: 'bg-warning',
+    label: 'Pendiente',
+    value: GuaranteeStatus.outstanding,
   },
   {
-    label: 'VIN',
-    prop: 'guarantee.vin',
-    sortable: false,
-    colSizes: {
-      xs: '2',
-    },
-    breakpointShow: {
-      lg: true,
-      xl: true,
-    },
+    class: 'bg-alert',
+    label: 'Cancelada',
+    value: GuaranteeStatus.cancelled,
   },
   {
-    label: 'Distribuidor',
-    prop: 'paymentOrder.distributor',
-    sortable: true,
-    colSizes: {
-      xs: '2',
-    },
-    breakpointShow: {
-      sm: true,
-      md: true,
-      lg: true,
-      xl: true,
-    },
+    class: 'bg-info',
+    label: 'Caducada',
+    value: GuaranteeStatus.expired,
   },
-  {
-    label: 'Inicio',
-    prop: 'guarantee.startDate',
-    sortable: true,
-    colSizes: {
-      xs: '3',
-      sm: '2',
-      lg: '1',
-    },
-  },
-  {
-    label: 'Fin',
-    prop: 'guarantee.endDate',
-    sortable: true,
-    colSizes: {
-      xs: '3',
-      sm: '2',
-      lg: '1',
-    },
-  },
-  {
-    label: 'Factura',
-    prop: 'guarantee.invoiceNumber',
-    sortable: true,
-    colSizes: {
-      xs: '2',
-      lg: '1',
-    },
-    breakpointShow: {
-      lg: true,
-      xl: true,
-    },
-  },
-  {
-    label: 'Importe',
-    prop: 'guarantee.amount',
-    sortable: true,
-    colSizes: {
-      xs: '2',
-    },
-    alignment: 'right',
-    breakpointShow: {
-      sm: true,
-      md: true,
-      lg: true,
-      xl: true,
-    },
-  }
 ];
+
 
 export const statusOptions: Select[] = [
   {

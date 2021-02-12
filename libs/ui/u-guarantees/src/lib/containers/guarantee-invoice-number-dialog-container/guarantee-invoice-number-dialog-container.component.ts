@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Guarantee } from '@ivt/c-data';
 import { GuaranteeCollectionService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'ivt-guarantee-invoice-number-dialog-container',
@@ -11,10 +12,14 @@ import { IvtFormContainerComponent } from '@ivt/u-ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeInvoiceNumberDialogContainerComponent extends IvtFormContainerComponent<Guarantee> {
+  updateSuccessMessage = 'El número de factura se ha actualizado con éxito';
+  @Input() guarantee: Guarantee;
+
   constructor(
     protected guaranteeCollectiionService: GuaranteeCollectionService,
-    @Inject(MAT_DIALOG_DATA) public guarantee: Guarantee
+    protected messageService: NzMessageService,
+    protected modalRef: NzModalRef
   ) {
-    super(guaranteeCollectiionService);
+    super(guaranteeCollectiionService, null, messageService, modalRef);
   }
 }

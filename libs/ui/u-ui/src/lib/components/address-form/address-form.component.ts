@@ -50,8 +50,4 @@ export class IvtAddressFormComponent extends IvtFormComponent<Address> implement
         this.cdr.detectChanges();
       });
   }
-
-  markForCheck(): void {
-    this.cdr.markForCheck();
-  }
 }

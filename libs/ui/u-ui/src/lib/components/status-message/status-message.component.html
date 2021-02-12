@@ -4,8 +4,17 @@
   'text-danger': error,
   'text-warning': warning
 }">
-  <mat-icon *ngIf="error">cancel</mat-icon>
-  <mat-icon *ngIf="success">check_circle</mat-icon>
-  <mat-icon *ngIf="normal">stop_circle</mat-icon>
+  <i *ngIf="error"
+     nz-icon
+     nzType="close-circle"
+     nzTheme="outline"></i>
+  <i *ngIf="success"
+     nz-icon
+     nzType="check-circle"
+     nzTheme="outline"></i>
+  <i *ngIf="normal"
+     nz-icon
+     nzType="info-circle"
+     nzTheme="outline"></i>
   <ng-content></ng-content>
 </span>

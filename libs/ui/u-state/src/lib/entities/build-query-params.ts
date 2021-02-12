@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
-import { DEFAULT_LIMIT_SIZE, SortEvent } from '@ivt/c-data';
+import { DEFAULT_LIMIT_SIZE } from '@ivt/c-data';
 import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat'
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { omit } from 'lodash-es';
 
 dayjs.extend(customParseFormat);
@@ -10,6 +10,8 @@ export function buildQueryParams(queryParams): HttpParams {
   let params: Record<string, string | string[]> = {
     offset: '0',
     limit: String(DEFAULT_LIMIT_SIZE),
+    pageSize: '10',
+    pageIndex: '1',
   };
 
   if (queryParams == null) {
@@ -23,6 +25,8 @@ export function buildQueryParams(queryParams): HttpParams {
   if (queryParams.noLimit) {
     params = omit(params, 'limit');
     params = omit(params, 'offset');
+    params = omit(params, 'pageSize');
+    params = omit(params, 'pageLimit');
   }
 
   Object.keys(queryParams)
@@ -39,9 +43,14 @@ export function buildQueryParams(queryParams): HttpParams {
   }
 
   if (queryParams.sort) {
-    const { value, order } = queryParams.sort as SortEvent;
-    params.sort = value;
-    params.direction = order;
+    const activeSort = (queryParams.sort as { key: string; value: 'ascend' | 'descend' }[]).find(sort => !!sort.value);
+    if (activeSort) {
+      const { key, value } = activeSort;
+      params.sort = key;
+      params.direction = value;
+    } else {
+      params = omit(params, 'sort');
+    }
   }
 
   if (queryParams.resetList === String(true)) {
@@ -49,7 +58,7 @@ export function buildQueryParams(queryParams): HttpParams {
   }
 
   return new HttpParams({
-    fromObject: omit(params, ['dates', 'resetList', 'noLimit', 'noDates']),
+    fromObject: omit(params, ['dates', 'resetList', 'noLimit', 'noDates', 'filter']),
   });
 }
 

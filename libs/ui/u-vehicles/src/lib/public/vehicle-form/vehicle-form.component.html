@@ -1,73 +1,107 @@
-<form [formGroup]="form">
-  <div class="row">
+<form nz-form
+      nzLayout="vertical"
+      [formGroup]="form">
+  <div nz-row
+       [nzGutter]="[24, 8]">
     <div *ngIf="showCompanyInput"
-         class="col-12 col-lg-4">
-      <ivt-form-field label="Compañía">
-        <mat-select formControlName="companyId">
-          <mat-option *ngFor="let option of companyOptions"
-                      [value]="option.value">
-            {{ option.label }}
-          </mat-option>
-        </mat-select>
-      </ivt-form-field>
+         nz-col
+         nzMd="24"
+         nzLg="8">
+      <nz-form-item>
+        <nz-form-label nzRequired>Compañía</nz-form-label>
+        <nz-form-control apsAutoError>
+          <nz-select formControlName="companyId">
+            <nz-option *ngFor="let option of companyOptions"
+                       [nzValue]="option.value"
+                       [nzLabel]="option.label"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
     </div>
-    <div class="col-12"
-         [ngClass]="{
-           'col-lg-6': !showCompanyInput,
-           'col-lg-4': showCompanyInput
-          }">
-      <ivt-form-field label="VIN">
-        <input ivtInput
-               maxlength="17"
-               formControlName="vin">
-      </ivt-form-field>
+    <div nz-col
+         [nzSpan]="showCompanyInput ? 8 : 12">
+      <nz-form-item>
+        <nz-form-label nzRequired>VIN</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="vin"
+                 maxlength="17" />
+        </nz-form-control>
+      </nz-form-item>
     </div>
-    <div class="col-12"
-         [ngClass]="{
-      'col-lg-6': !showCompanyInput,
-      'col-lg-4': showCompanyInput
-     }">
-      <ivt-form-field label="N° de motor">
-        <input ivtInput
-               formControlName="motorNumber">
-      </ivt-form-field>
+    <div nz-col
+         [nzSpan]="showCompanyInput ? 8 : 12">
+      <nz-form-item>
+        <nz-form-label nzRequired>N° de motor</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="motorNumber" />
+        </nz-form-control>
+      </nz-form-item>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 col-lg-4">
-      <ivt-form-field label="Marca">
-        <input ivtInput
-               formControlName="brand">
-      </ivt-form-field>
+  <div nz-row
+       [nzGutter]="[24, 8]">
+    <div nz-col
+         nzXs="24"
+         nzLg="8">
+      <nz-form-item>
+        <nz-form-label nzRequired>Marca</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="brand" />
+        </nz-form-control>
+      </nz-form-item>
     </div>
-    <div class="col-12 col-lg-4">
-      <ivt-form-field label="Modelo">
-        <input ivtInput
-               formControlName="model">
-      </ivt-form-field>
+    <div nz-col
+         nzXs="24"
+         nzLg="8">
+      <nz-form-item>
+        <nz-form-label nzRequired>Modelo</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="model" />
+        </nz-form-control>
+      </nz-form-item>
     </div>
-    <div class="col-12 col-lg-4">
-      <ivt-form-field label="Versión">
-        <input ivtInput
-               formControlName="version">
-      </ivt-form-field>
+    <div nz-col
+         nzXs="24"
+         nzLg="8">
+      <nz-form-item>
+        <nz-form-label nzRequired>Versión</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="version" />
+        </nz-form-control>
+      </nz-form-item>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-12 col-lg-6">
-      <ivt-form-field label="Año del vehículo">
-        <input ivtInput
-               type="number"
-               formControlName="year">
-      </ivt-form-field>
+  <div nz-row
+       [nzGutter]="[24, 8]">
+    <div nz-col
+         nzMd="24"
+         nzLg="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Año del vehículo</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 type="number"
+                 formControlName="year" />
+        </nz-form-control>
+      </nz-form-item>
     </div>
-    <div class="col-12 col-lg-6">
-      <ivt-form-field label="HP">
-        <input ivtInput
-               type="number"
-               formControlName="horsePower">
-      </ivt-form-field>
+    <div nz-col
+         nzMd="24"
+         nzLg="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>HP</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 type="number"
+                 formControlName="horsePower" />
+        </nz-form-control>
+      </nz-form-item>
     </div>
   </div>
 </form>

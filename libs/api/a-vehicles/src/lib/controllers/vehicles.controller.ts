@@ -1,6 +1,6 @@
 import { GetUser } from '@ivt/a-auth';
 import { CreateVehicleDto, GetVehiclesDto, UpdateVehicleDto } from '@ivt/a-state';
-import { User, Vehicle } from '@ivt/c-data';
+import { IvtCollectionResponse, User, Vehicle } from '@ivt/c-data';
 import {
   Body,
   Controller,
@@ -28,7 +28,7 @@ export class VehiclesController {
   async getVehicles(
     @Query(new ValidationPipe({ transform: true })) filterDto: GetVehiclesDto,
     @GetUser() user: Partial<User>
-  ): Promise<Vehicle[]> {
+  ): Promise<IvtCollectionResponse<Vehicle>> {
     return this.vehiclesService.getVehicles(filterDto, user);
   }
 

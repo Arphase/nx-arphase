@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
-import { IvtInputModule } from '../../directives';
-import { IvtFormFieldModule } from '../form-field';
 import { IvtAutocompleteComponent } from './autocomplete.component';
 
 @NgModule({
   declarations: [IvtAutocompleteComponent],
-  imports: [CommonModule, ReactiveFormsModule, MatAutocompleteModule, IvtInputModule, IvtFormFieldModule],
+  imports: [CommonModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzAutocompleteModule],
   exports: [IvtAutocompleteComponent],
 })
 export class IvtAutocompleteModule {}

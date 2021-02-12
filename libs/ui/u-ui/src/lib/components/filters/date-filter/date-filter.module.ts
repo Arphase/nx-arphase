@@ -1,15 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatRadioModule } from '@angular/material/radio';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
 
-import { IvtInputModule } from '../../../directives';
-import { IvtFormFieldModule } from '../../form-field';
 import { IvtFilterModule } from '../filter';
 import { IvtDateFilterComponent } from './date-filter.component';
 
@@ -20,14 +18,12 @@ import { IvtDateFilterComponent } from './date-filter.component';
     FormsModule,
     ReactiveFormsModule,
     IvtFilterModule,
-    IvtFormFieldModule,
-    IvtInputModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatMenuModule,
-    MatFormFieldModule,
-    MatInputModule,
+    NzDropDownModule,
+    NzGridModule,
+    NzIconModule,
+    NzRadioModule,
+    NzDatePickerModule,
+    NzFormModule,
   ],
   exports: [IvtDateFilterComponent],
 })

@@ -1,14 +1,6 @@
-<ivt-payment-order-dialog *ngIf="!(showSuccess$ | async) else successDialog"
+<ivt-payment-order-dialog #form
                           [loading]="loading$ | async"
                           [selectedIds]="data"
                           [item]="currentItem$ | async"
                           (submitForm)="generatePaymentOrder($event)">
 </ivt-payment-order-dialog>
-
-
-<ng-template #successDialog>
-  <ivt-payment-order-download-dialog [item]="currentItem$ | async"
-                                     [loading]="loadingDownload$ | async"
-                                     (downloadPdf)="downloadPaymentOrder($event)">
-  </ivt-payment-order-download-dialog>
-</ng-template>

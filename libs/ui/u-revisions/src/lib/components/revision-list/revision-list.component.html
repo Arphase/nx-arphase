@@ -1,38 +1,134 @@
 <div *ngIf="title"
-     class="row">
-  <div class="col">
-    <ivt-go-back-title [title]="title"
-                       [link]="['/spa/vehicles']"></ivt-go-back-title>
+     nz-row>
+  <div nz-col
+       nzSpan="24">
+    <nz-page-header nzBackIcon
+                    [nzTitle]="title"
+                    [routerLink]="['/spa/vehicles']">
+    </nz-page-header>
   </div>
 </div>
 
-<div class="row mb-3">
-  <div class="col flex-end pr-0">
-    <button mat-raised-button
+<div nz-row
+     [nzGutter]="[24, 8]"
+     class="mb-3">
+  <div nz-col
+       nzSm="16"
+       nzMd="20"
+       nzLg="12">
+    <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
+  </div>
+  <div nz-col
+       nzFlex="auto"
+       class="flex-end">
+    <button *ngIf="title"
+            nz-button
             [routerLink]="['new']"
             type="button"
-            color="primary">
+            nzType="primary">
       Nueva revisión
     </button>
   </div>
 </div>
 
-<ivt-empty-state *ngIf="!list.length"
-                 message="No existen revisiones.">
-</ivt-empty-state>
+<nz-divider></nz-divider>
 
-<ng-container *ngIf="list.length">
-  <ivt-table-header class="d-block mt-4"
-                    [columns]="columns"
-                    (sort)="updateSort($event)"></ivt-table-header>
+<div nz-row
+     [nzGutter]="12">
+  <div nz-col
+       nzFlex="auto"
+       class="flex-end">
+    {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}
+  </div>
+</div>
 
-  <ivt-virtual-scroll height="60vh"
-                      [list]="list"
-                      [ignoreNextBatch]="!hasMoreItems || loading"
-                      (nextBatchEmitter)="getMoreItems.emit()">
-    <ng-template let-item>
-      <ivt-revision-row [item]="item"
-                        (delete)="delete.emit($event)"></ivt-revision-row>
-    </ng-template>
-  </ivt-virtual-scroll>
-</ng-container>
+<nz-divider></nz-divider>
+
+<nz-table #table
+          nzSize="small"
+          [nzData]="list"
+          [nzFrontPagination]="false"
+          [nzTotal]="info?.total"
+          [nzPageIndex]="info?.pageIndex"
+          [nzLoading]="loading"
+          (nzQueryParams)="filterItems.emit($event)">
+  <thead>
+    <tr nz-row>
+      <th nzSortFn="true"
+          nzColumnKey="user.firstName"
+          nz-col
+          nzMd="4">Observaciones</th>
+      <th nzSortFn="true"
+          nzColumnKey="revision.observations"
+          nz-col
+          nzMd="4">VIN</th>
+      <th nzSortFn="true"
+          nzColumnKey="vehicle.vin"
+          nz-col
+          nzMd="4">Marca</th>
+      <th nzSortFn="true"
+          nzColumnKey="vehicle.brand"
+          nz-col
+          nzMd="4">Modelo</th>
+      <th nzSortFn="true"
+          nzColumnKey="vehicle.model"
+          nz-col
+          nzMd="4">Año</th>
+      <th nzSortFn="true"
+          nzColumnKey="revision.createdAt"
+          nz-col
+          nzMd="3">Fecha de alta</th>
+      <th nz-col
+          nzXs="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of table.data"
+        nz-row>
+      <td nz-col
+          nzXs="4">{{ item?.observations | empty }}</td>
+      <td nz-col
+          nzXs="4">{{ item?.vehicle?.vin | empty }}</td>
+      <td nz-col
+          nzXs="4">{{ item?.vehicle?.brand | empty }}</td>
+      <td nz-col
+          nzXs="4">{{ item?.vehicle?.model | empty }}</td>
+      <td nz-col
+          nzXs="4">{{ item?.vehicle?.year | empty }}</td>
+      <td nz-col
+          nzXs="3">{{ item?.createdAt | date: 'dd/mm/yy' }}</td>
+      <td nzXs="1">
+        <button nz-button
+                nz-dropdown
+                [nzDropdownMenu]="menu"
+                nzType="text"
+                nz-tooltip
+                nzTooltipTitle="Acciones"
+                nzTrigger="click">
+          <i nz-icon
+             nzType="more"
+             nzTheme="outline"></i>
+        </button>
+      </td>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item
+              nz-tooltip
+              [nzTooltipTitle]="!isEditable(item) ? 'La revisión no se puede editar porque ya pasaron más de tres meses' : ''"
+              [routerLink]="isEditable(item) ? [item.id] : null"
+              [nzDisabled]="!isEditable(item)">
+            Editar revisión
+          </li>
+
+          <li nz-menu-item
+              nz-tooltip
+              [nzTooltipTitle]="!isEditable(item) ? 'La revisión no se puede eliminar porque ya pasaron más de tres meses' : ''"
+              [nzDisabled]="!isEditable(item)"
+              (click)="isEditable(item) && delete.emit(item)">
+            Eliminar revisión
+          </li>
+        </ul>
+      </nz-dropdown-menu>
+    </tr>
+  </tbody>
+</nz-table>

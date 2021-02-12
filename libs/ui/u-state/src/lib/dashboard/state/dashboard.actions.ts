@@ -12,5 +12,3 @@ export const getGuaranteeSummarySuccess = createAction(
 );
 
 export const getGuaranteeSummaryFailed = createAction('[Dashboard] Get guarantee summary failed');
-
-export const clearDashboardState = createAction('[Dashboard] Clear dashboard state');

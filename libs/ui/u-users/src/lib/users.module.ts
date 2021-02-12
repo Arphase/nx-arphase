@@ -1,21 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
 import {
   IvtCheckboxFilterModule,
   IvtEmptyModule,
-  IvtEmptyStateModule,
   IvtRowModule,
   IvtSearchbarModule,
   IvtTableModule,
-  IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 import { UserListComponent } from './components/user-list/user-list.component';
-import { UserRowComponent } from './components/user-row/user-row.component';
 import { UserListContainerComponent } from './containers/user-list-container/user-list-container.component';
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
@@ -25,17 +28,21 @@ import { UsersComponent } from './users.component';
     CommonModule,
     UsersRoutingModule,
     IvtSearchbarModule,
-    MatIconModule,
+    NzIconModule,
     IvtCheckboxFilterModule,
-    IvtEmptyStateModule,
+    NzEmptyModule,
     IvtTableModule,
     IvtVirtualScrollModule,
     IvtRowModule,
-    IvtTextTruncateTooltipModule,
     IvtEmptyModule,
-    MatButtonModule,
-    MatCardModule,
+    NzButtonModule,
+    NzCardModule,
+    NzGridModule,
+    NzTypographyModule,
+    NzToolTipModule,
+    NzDividerModule,
+    NzTableModule,
   ],
-  declarations: [UserListContainerComponent, UsersComponent, UserListComponent, UserRowComponent],
+  declarations: [UserListContainerComponent, UsersComponent, UserListComponent],
 })
 export class UsersModule {}

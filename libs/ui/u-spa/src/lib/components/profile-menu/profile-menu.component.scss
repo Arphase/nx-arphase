@@ -1,0 +1,62 @@
+@use 'variables' as *;
+
+.profile {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  margin-left: auto;
+
+  .info__name {
+    font-size: $font-small;
+    line-height: $font-size-medium;
+  }
+
+  .info__email {
+    font-size: 11px;
+    line-height: $font-small;
+  }
+
+  &__arrow {
+    height: 8px;
+    width: 8px;
+    font-size: 8px;
+    color: $text-color;
+  }
+
+  &__menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    padding: 0 24px;
+    cursor: pointer;
+    color: $white-color;
+  }
+
+  &__menu-content {
+    .menu-content__body {
+      display: flex;
+      padding: 24px 32px;
+    }
+
+    .menu-info__name {
+      font-weight: 500;
+      font-size: $font-size-large;
+    }
+
+    .menu-info__email {
+      font-size: $font-size;
+      color: $text-color;
+    }
+
+    .menu-content__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      height: 80px;
+      padding: 0 32px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+}

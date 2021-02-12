@@ -18,5 +18,6 @@ export class UpdateRevisionDto {
 
   @IsNotEmpty()
   @IsNumber()
+  @IsOptional()
   vehicleId: number;
 }

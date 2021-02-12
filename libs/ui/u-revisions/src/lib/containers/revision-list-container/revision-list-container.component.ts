@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Revision } from '@ivt/c-data';
-import { RevisionCollectionService, RevisionDataService } from '@ivt/u-state';
+import { IvtState, RevisionCollectionService, RevisionDataService, selectUrl } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
+import { select, Store } from '@ngrx/store';
 import dayjs from 'dayjs';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-revision-list-container',
@@ -13,14 +15,18 @@ import { ToastrService } from 'ngx-toastr';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionListContainerComponent extends IvtListContainerComponent<Revision> {
-  title = localStorage.getItem('currentVehicleName') ? `${localStorage.getItem('currentVehicleName')}` : '';
+  title$ = this.store.pipe(
+    select(selectUrl),
+    map(url => (url.includes('vehicles') ? localStorage.getItem('currentVehicleName') : ''))
+  );
   constructor(
     protected revisionCollectionService: RevisionCollectionService,
     protected revisionDataService: RevisionDataService,
-    protected dialog: MatDialog,
-    protected toastrService: ToastrService
+    protected modal: NzModalService,
+    protected toastrService: NzMessageService,
+    private store: Store<IvtState>
   ) {
-    super(revisionCollectionService, revisionDataService, dialog, toastrService);
+    super(revisionCollectionService, revisionDataService, modal, toastrService);
   }
 
   deleteItem(item: Revision): void {

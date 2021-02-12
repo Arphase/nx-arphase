@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { ApsValidators } from '@arphase/ui';
 import { Guarantee } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
 
@@ -14,7 +15,7 @@ export class GuaranteeInvoiceNumberDialogComponent extends IvtFormComponent<Guar
     super();
     this.form = this.fb.group({
       id: null,
-      invoiceNumber: [null, Validators.required],
+      invoiceNumber: [null, ApsValidators.required],
     });
   }
 

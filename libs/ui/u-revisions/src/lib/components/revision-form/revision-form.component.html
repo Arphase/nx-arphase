@@ -1,44 +1,63 @@
-<form [formGroup]="form"
+<form nz-form
+      nzLayout="vertical"
+      [formGroup]="form"
       (ngSubmit)="submit()">
-  <div class="row mb-3">
-    <div class="col">
-      <ivt-go-back-title [title]="item?.id ? 'Editar Revisión' : 'Nueva Revisión'"></ivt-go-back-title>
+  <div nz-row
+       class="mb-3">
+    <div nz-col
+         nzSpan="24">
+      <nz-page-header nzBackIcon
+                      [nzTitle]="item?.id ? 'Editar Revisión' : 'Nueva Revisión'"
+                      [routerLink]="['..']">
+      </nz-page-header>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <ivt-form-field label="Estatus">
-        <mat-select formControlName="status">
-          <mat-option *ngFor="let option of statusOptions"
-                      [value]="option.value">
-            {{ option.label }}
-          </mat-option>
-        </mat-select>
-      </ivt-form-field>
+  <div nz-row
+       [nzGutter]="[24, 8]">
+    <div nz-col
+         nzSpan="24">
+      <nz-form-item>
+        <nz-form-label nzRequired>Estatus</nz-form-label>
+        <nz-form-control apsAutoError>
+          <nz-select formControlName="status">
+            <nz-option *ngFor="let option of statusOptions"
+                       [nzValue]="option.value"
+                       [nzLabel]="option.label"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
     </div>
   </div>
 
-  <div class="row mb-3">
-    <div class="col">
-      <ivt-form-field label="Observaciones">
-        <textarea ivtInput
-                  cdkTextareaAutosize
-                  cdkAutosizeMinRows="1"
-                  formControlName="observations"> </textarea>
-      </ivt-form-field>
+  <div nz-row
+       [nzGutter]="[24, 8]"
+       class="mb-3">
+    <div nz-col
+         nzSpan="24">
+      <nz-form-item>
+        <nz-form-label nzRequired>Observaciones</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="observations" />
+        </nz-form-control>
+      </nz-form-item>
     </div>
   </div>
 
-  <div class="row mt-4 mb-3">
-    <div class="col px-0 flex-end">
-      <button mat-raised-button
+  <div nz-row
+       [nzGutter]="[24, 8]"
+       class="mt-4 mb-3">
+    <div nz-col
+         nzSpan="24"
+         class="px-0 flex-end">
+      <button nz-button
               class="mr-3"
               type="button"
               [routerLink]="['..']">Cancelar</button>
-      <button mat-raised-button
+      <button nz-button
               type="submit"
-              color="primary">Guardar</button>
+              nzType="primary">Guardar</button>
     </div>
   </div>
 </form>

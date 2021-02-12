@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { MatSelectChange } from '@angular/material/select';
+import { ApsValidators, FormBuilder } from '@angular/forms';
+import { ApsValidators } from '@arphase/ui';
 import { glossary, Product } from '@ivt/c-data';
 import { ProductDataService } from '@ivt/u-state';
 import { IvtFormComponent } from '@ivt/u-ui';
@@ -24,10 +24,10 @@ export class ProductFormComponent extends IvtFormComponent<Product> implements O
     super();
     this.form = this.fb.group({
       id: null,
-      name: [null, Validators.required],
-      price: [null, Validators.required],
-      logo: [null, Validators.required],
-      template: ['', Validators.required],
+      name: [null, ApsValidators.required],
+      price: [null, ApsValidators.required],
+      logo: [null, ApsValidators.required],
+      template: ['', ApsValidators.required],
     });
   }
 
@@ -62,7 +62,7 @@ export class ProductFormComponent extends IvtFormComponent<Product> implements O
       .subscribe();
   }
 
-  selectedValue(event: MatSelectChange) {
+  selectedValue(event) {
     let text = this.form.get('template').value;
     this.selectedData = {
       value: event.value,

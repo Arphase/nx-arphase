@@ -1,10 +1,19 @@
-<div class="row py-5">
-  <div class="col-lg-6 col-12 offset-lg-3">
-    <mat-card>
-      <form [formGroup]="form"
+<div nz-row
+     class="py-5">
+  <div nz-col
+       nzSm="24"
+       [nzLg]="{ span: 12, offset: 6 }">
+    <nz-card>
+      <form nz-form
+            nzLayout="vertical"
+            [formGroup]="form"
             (ngSubmit)="submit()">
-        <div class="row py-5">
-          <div class="col text-center">
+        <div nz-row
+             [nzGutter]="[24, 8]"
+             class="py-5">
+          <div nz-col
+               nzSpan="24"
+               class="text-center">
             <h1 class="text-secondary h2">
               Bienvenido a Innovatech
             </h1>
@@ -14,43 +23,56 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col">
-            <ivt-form-field label="Correo">
-              <input ivtInput
-                     formControlName="email">
-            </ivt-form-field>
+        <div nz-row>
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Correo</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="email"
+                       formControlName="email" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col">
-            <ivt-form-field label="Contraseña">
-              <input ivtInput
-                     type="password"
-                     formControlName="password">
-            </ivt-form-field>
+        <div nz-row>
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Contraseña</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="password"
+                       formControlName="password" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col">
+        <div nz-row>
+          <div nz-col
+               nzSpan="24">
             <a [routerLink]="['..', 'reset-password']">¿Olvidaste tu contraseña?</a>
           </div>
         </div>
 
-        <div class="row py-3">
-          <div class="col flex-end">
-            <button mat-raised-button
-            class="w-100 py-2"
+        <div nz-row
+             class="py-3">
+          <div nz-col
+               nzSpan="24"
+               class="flex-end">
+            <button nz-button
+                    class="w-100"
                     type="submit"
-                    color="primary"
-                    [loading]="loading">
+                    nzType="primary"
+                    [nzLoading]="loading">
               Iniciar sesión
             </button>
           </div>
         </div>
       </form>
-    </mat-card>
+    </nz-card>
   </div>
 </div>

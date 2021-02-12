@@ -1,18 +1,31 @@
+import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import es from '@angular/common/locales/es';
 import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { IconDefinition } from '@ant-design/icons-angular';
+import * as AllIcons from '@ant-design/icons-angular/icons';
 import { IVT_UI_STATE_CONFIGURATION, IvtStateModule, IvtUiStateConfiguration } from '@ivt/u-state';
 import * as Sentry from '@sentry/angular';
+import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NgxMaskModule } from 'ngx-mask';
-import { ToastrModule } from 'ngx-toastr';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+const antDesignIcons = AllIcons as {
+  [key: string]: IconDefinition;
+};
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key]);
+
+registerLocaleData(es);
 
 const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
   apiUrl: environment.apiUrl,
@@ -24,12 +37,13 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
   imports: [
     AppRoutingModule,
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     IvtStateModule,
-    MatDialogModule,
+    NzModalModule,
     NgxMaskModule.forRoot(),
-    ToastrModule.forRoot(),
+    NzIconModule.forRoot(icons),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
@@ -52,6 +66,7 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
       deps: [Sentry.TraceService],
       multi: true,
     },
+    { provide: NZ_I18N, useValue: es_ES },
   ],
   bootstrap: [AppComponent],
 })

@@ -5,6 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 import { AuthEffects } from '../auth/state';
 import { CompanyDataService } from '../companies';
@@ -23,6 +24,7 @@ import { reducers } from './reducers';
 
 @NgModule({
   imports: [
+    NzMessageModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       name: 'IVT UI',

@@ -1,14 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
-import { IvtFormFieldModule, IvtInputModule } from '@ivt/u-ui';
+import { ApsAutoErrorModule } from '@arphase/ui';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 import { VehicleFormComponent } from './vehicle-form.component';
 
 @NgModule({
   declarations: [VehicleFormComponent],
-  imports: [CommonModule, ReactiveFormsModule, IvtFormFieldModule, IvtInputModule, MatSelectModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    NzSelectModule,
+    NzGridModule,
+    ApsAutoErrorModule,
+    NzFormModule,
+    NzInputModule,
+  ],
   exports: [VehicleFormComponent],
 })
 export class VehicleFormModule {}

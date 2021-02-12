@@ -1,12 +1,4 @@
-@forward '~ngx-toastr/toastr';
 @forward 'bootstrap-custom';
-@forward 'buttons';
-@forward 'checkbox';
 @forward 'global';
-@forward 'icons';
-@forward 'input';
-@forward 'list';
-@forward 'menu';
 @forward 'positioning';
-@forward 'radios';
-@forward 'theme';
+@import '~ng-zorro-antd/ng-zorro-antd.min.css';

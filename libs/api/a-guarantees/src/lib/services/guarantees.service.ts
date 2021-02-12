@@ -9,16 +9,19 @@ import {
   OUT_FILE,
   PhysicalPersonRepository,
   tobase64,
-  transformFolio,
   UpdateGuaranteeDto,
+  VehicleEntity,
   VehicleRepository,
 } from '@ivt/a-state';
 import {
   Client,
+  Guarantee,
   GuaranteeSummary,
   isVehicleElegible,
+  IvtCollectionResponse,
   PersonTypes,
   statusLabels,
+  transformFolio,
   User,
   UserRoles,
   VehicleStatus,
@@ -34,7 +37,11 @@ import { Connection } from 'typeorm';
 import { promisify } from 'util';
 import * as XLSX from 'xlsx';
 
-import { applyGuaranteeFilter, applyGuaranteeSharedFilters, getGuaranteePdfTemplate } from './guarantees.service.constants';
+import {
+  applyGuaranteeFilter,
+  applyGuaranteeSharedFilters,
+  getGuaranteePdfTemplate,
+} from './guarantees.service.constants';
 
 @Injectable()
 export class GuaranteesService {
@@ -66,12 +73,27 @@ export class GuaranteesService {
     return found;
   }
 
-  async getGuarantees(filterDto: Partial<GetGuaranteesFilterDto>, user: Partial<User>): Promise<GuaranteeEntity[]> {
+  async getGuarantees(
+    filterDto: Partial<GetGuaranteesFilterDto>,
+    user: Partial<User>
+  ): Promise<IvtCollectionResponse<Guarantee>> {
+    const { pageSize, pageIndex } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     applyGuaranteeFilter(query, filterDto, user);
 
     const guarantees = await query.getMany();
-    return guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity);
+    const total = await query.getCount();
+    return {
+      info: {
+        pageSize: pageSize,
+        pageIndex: pageIndex,
+        total,
+        pageStart: (pageIndex - 1) * pageSize + 1,
+        pageEnd: guarantees.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
+        last: guarantees.length < pageSize,
+      },
+      results: guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity),
+    };
   }
 
   async getGuaranteesSummary(
@@ -96,7 +118,7 @@ export class GuaranteesService {
   }
 
   async getGuaranteesExcel(filterDto: GetGuaranteesFilterDto, user: Partial<User>, response: Response): Promise<void> {
-    const guarantees = await this.getGuarantees(omit(filterDto, ['offset', 'limit']), user);
+    const guarantees = await (await this.getGuarantees(omit(filterDto, ['offset', 'limit']), user)).results;
     const excelColumnConstants: string[] = [
       'Folio',
       'Fecha de carga',
@@ -314,12 +336,6 @@ export class GuaranteesService {
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
-      const vehicle = this.vehicleRepository.create({
-        ...updateGuaranteeDto.vehicle,
-        userId: user.id,
-      });
-      await vehicle.save();
-
       if (updateGuaranteeDto.client?.personType === PersonTypes.moral && updateGuaranteeDto.client?.physicalInfo?.id) {
         await this.physicalPersonRepository.delete(updateGuaranteeDto.client.physicalInfo.id);
       }
@@ -327,11 +343,22 @@ export class GuaranteesService {
         await this.moralPersonRepository.delete(updateGuaranteeDto.client.moralInfo.id);
       }
       const preloadedGuarantee = await this.guaranteeRepository.preload(updateGuaranteeDto);
+
+      let vehicle: VehicleEntity;
+      if (updateGuaranteeDto.vehicle) {
+        vehicle = this.vehicleRepository.create({
+          ...updateGuaranteeDto.vehicle,
+          userId: user.id,
+        });
+        await vehicle.save();
+      } else {
+        vehicle = preloadedGuarantee.vehicle as VehicleEntity;
+      }
       const guarantee = this.omitInfo(updateGuaranteeDto);
       const updatedGuarantee = await this.guaranteeRepository.save({
         ...preloadedGuarantee,
         ...guarantee,
-        vehicle,
+        vehicle: updateGuaranteeDto.vehicle ? vehicle : preloadedGuarantee.vehicle,
       });
       await updatedGuarantee.reload();
       await queryRunner.commitTransaction();
