@@ -245,7 +245,7 @@ export function applyGuaranteeFilter(
     .leftJoinAndSelect('guarantee.paymentOrder', 'paymentOrder')
     .leftJoinAndSelect('guarantee.product', 'product')
     .leftJoinAndSelect('guarantee.vehicle', 'vehicle')
-    .leftJoin('guarantee.company', 'company')
+    .leftJoinAndSelect('guarantee.company', 'company')
     .leftJoin('guarantee.user', 'user')
     .groupBy('guarantee.id')
     .addGroupBy('client.id')
@@ -291,7 +291,9 @@ export function applyGuaranteeFilter(
 
   applyGuaranteeSharedFilters(query, filterDto);
 
-  query.take(pageSize).skip(pageSize * (pageIndex - 1));
+  if (pageSize && pageIndex) {
+    query.take(pageSize).skip(pageSize * (pageIndex - 1));
+  }
 
   return query;
 }

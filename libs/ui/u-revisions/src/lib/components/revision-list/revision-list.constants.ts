@@ -1,7 +1,8 @@
 import { ApsColumns } from '@arphase/ui';
+import { RevisionStatus } from '@ivt/c-data';
 
 export const columns: ApsColumns = [
-    {
+  {
     label: 'VIN',
     prop: 'vehicle.vin',
     colSizes: {
@@ -57,3 +58,14 @@ export const columns: ApsColumns = [
     },
   },
 ];
+
+export const colorMaps: Record<RevisionStatus, string> = {
+  [RevisionStatus.elegible]: 'success',
+  [RevisionStatus.needsRepairs]: 'warning',
+  [RevisionStatus.notElegible]: 'error',
+};
+export const iconMaps: Record<RevisionStatus, string> = {
+  [RevisionStatus.elegible]: 'check-circle',
+  [RevisionStatus.needsRepairs]: 'exclamation-circle',
+  [RevisionStatus.notElegible]: 'close-circle',
+};

@@ -36,6 +36,7 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NgxMaskModule } from 'ngx-mask';
@@ -95,6 +96,7 @@ import { GuaranteesComponent } from './guarantees.component';
     NzDividerModule,
     ApsAutoSelectModule,
     NzAlertModule,
+    NzTagModule,
   ],
   declarations: [
     GuaranteeFormComponent,

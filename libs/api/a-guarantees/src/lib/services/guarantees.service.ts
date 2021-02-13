@@ -118,7 +118,7 @@ export class GuaranteesService {
   }
 
   async getGuaranteesExcel(filterDto: GetGuaranteesFilterDto, user: Partial<User>, response: Response): Promise<void> {
-    const guarantees = await (await this.getGuarantees(omit(filterDto, ['offset', 'limit']), user)).results;
+    const guarantees = await (await this.getGuarantees(omit(filterDto, ['pageIndex', 'pageSize']), user)).results;
     const excelColumnConstants: string[] = [
       'Folio',
       'Fecha de carga',
