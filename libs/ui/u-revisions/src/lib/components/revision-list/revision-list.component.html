@@ -10,7 +10,7 @@
 </div>
 
 <div nz-row
-     [nzGutter]="[24, 8]"
+     [nzGutter]="12"
      class="mb-3">
   <div nz-col
        nzSm="16"
@@ -55,23 +55,23 @@
   <thead>
     <tr nz-row>
       <th nzSortFn="true"
-          nzColumnKey="user.firstName"
+          nzColumnKey="revision.observations"
           nz-col
           nzMd="4">Observaciones</th>
       <th nzSortFn="true"
-          nzColumnKey="revision.observations"
+          nzColumnKey="vehicle.vin"
           nz-col
           nzMd="4">VIN</th>
       <th nzSortFn="true"
-          nzColumnKey="vehicle.vin"
+          nzColumnKey="vehicle.brand"
           nz-col
           nzMd="4">Marca</th>
       <th nzSortFn="true"
-          nzColumnKey="vehicle.brand"
+          nzColumnKey="vehicle.model"
           nz-col
           nzMd="4">Modelo</th>
       <th nzSortFn="true"
-          nzColumnKey="vehicle.model"
+          nzColumnKey="vehicle.year"
           nz-col
           nzMd="4">Año</th>
       <th nzSortFn="true"

@@ -3,7 +3,7 @@
       [formGroup]="form"
       (ngSubmit)="submit()">
   <div nz-row
-       [nzGutter]="[24, 8]"
+       [nzGutter]="12"
        class="mt-3 mb-2">
     <div nz-col
          nzSpan="24">
@@ -24,7 +24,7 @@
           nzLayout="vertical"
           [formGroup]="guarantee"
           nz-row
-          [nzGutter]="[24, 8]">
+          [nzGutter]="12">
       <div nz-col
            nzSpan="4"
            class="flex-start">
@@ -34,8 +34,7 @@
            nzSpan="10">
         <nz-form-item>
           <nz-form-control apsAutoError>
-            <nz-date-picker class="w-100"
-                            formControlName="invoiceDate"></nz-date-picker>
+            <nz-date-picker formControlName="invoiceDate"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>

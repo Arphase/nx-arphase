@@ -1,107 +1,105 @@
 <form nz-form
+      nz-row
       nzLayout="vertical"
       [formGroup]="form"
       (ngSubmit)="submit()">
-  <div nz-row
-       class="mb-3">
-    <div nz-col
-         nzSpan="24">
-      <nz-page-header nzBackIcon
-                      [nzTitle]="item?.id ? 'Editar Grupo' : 'Nuevo Grupo'"
-                      [routerLink]="['..']">
-      </nz-page-header>
-    </div>
-  </div>
+  <nz-space nzDirection="vertical"
+            nz-col
+            nzSpan="24"
+            nzSize="middle">
+    <nz-page-header nzBackIcon
+                    [nzTitle]="item?.id ? 'Editar Grupo' : 'Nuevo Grupo'"
+                    [routerLink]="['..']">
+    </nz-page-header>
 
-  <nz-collapse>
-    <nz-collapse-panel nzHeader="Información General"
-                       [nzActive]="true">
-      <div class="pt-3">
-        <div nz-row
-             [nzGutter]="[24, 8]">
-          <div nz-col
-               nzSpan="24">
-            <nz-form-item>
-              <nz-form-label nzRequired>Nombre del grupo</nz-form-label>
-              <nz-form-control apsAutoError>
-                <input nz-input
-                       formControlName="name" />
-              </nz-form-control>
-            </nz-form-item>
+    <nz-space-item>
+      <nz-collapse>
+        <nz-collapse-panel nzHeader="Información General"
+                           [nzActive]="true">
+          <div nz-row>
+            <div nz-col
+                 nzSpan="24">
+              <nz-form-item>
+                <nz-form-label nzRequired>Nombre del grupo</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         formControlName="name" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
           </div>
-        </div>
-        <div nz-row
-             [nzGutter]="[24, 8]">
-          <div nz-col
-               nzSpan="24">
-            <nz-form-item>
-              <nz-form-label nzRequired>Nombre del contacto</nz-form-label>
-              <nz-form-control apsAutoError>
-                <input nz-input
-                       formControlName="contact" />
-              </nz-form-control>
-            </nz-form-item>
+          <div nz-row>
+            <div nz-col
+                 nzSpan="24">
+              <nz-form-item>
+                <nz-form-label nzRequired>Nombre del contacto</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         formControlName="contact" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
           </div>
-        </div>
-        <div nz-row
-             [nzGutter]="[24, 8]">
-          <div nz-col
-               nzSpan="24">
-            <nz-form-item>
-              <nz-form-label nzRequired>Correo</nz-form-label>
-              <nz-form-control apsAutoError>
-                <input nz-input
-                       formControlName="email" />
-              </nz-form-control>
-            </nz-form-item>
+          <div nz-row>
+            <div nz-col
+                 nzSpan="24">
+              <nz-form-item>
+                <nz-form-label nzRequired>Correo</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         formControlName="email" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
           </div>
-        </div>
-        <div nz-row
-             [nzGutter]="[24, 8]">
-          <div nz-col
-               nzSpan="24">
-            <nz-form-item>
-              <nz-form-label nzRequired>Teléfono</nz-form-label>
-              <nz-form-control apsAutoError>
-                <input nz-input
-                       type="tel"
-                       mask="(00) 0000 0000"
-                       formControlName="phone" />
-              </nz-form-control>
-            </nz-form-item>
+          <div nz-row>
+            <div nz-col
+                 nzSpan="24">
+              <nz-form-item>
+                <nz-form-label nzRequired>Teléfono</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         type="tel"
+                         mask="(00) 0000 0000"
+                         formControlName="phone" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
           </div>
-        </div>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-space-item>
 
+    <nz-space-item>
+      <nz-collapse>
+        <nz-collapse-panel nzHeader="Compañías"
+                           [nzActive]="true">
+          <ivt-group-company-list-container [item]="item">
+          </ivt-group-company-list-container>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-space-item>
+
+    <nz-space-item nz-row>
+      <div nz-col
+           nzSpan="24"
+           class="flex-end">
+        <nz-space>
+          <nz-space-item>
+            <button nz-button
+                    type="button"
+                    [routerLink]="['..']">
+              Cancelar
+            </button>
+          </nz-space-item>
+          <button nz-button
+                  type="submit"
+                  nzType="primary"
+                  [nzLoading]="loading">
+            Guardar
+          </button>
+        </nz-space>
       </div>
-    </nz-collapse-panel>
-  </nz-collapse>
-
-  <nz-collapse>
-    <nz-collapse-panel nzHeader="Compañías"
-                       [nzActive]="true">
-      <ivt-group-company-list-container [item]="item">
-      </ivt-group-company-list-container>
-    </nz-collapse-panel>
-  </nz-collapse>
-
-  <div nz-row
-       [nzGutter]="[24, 8]"
-       class="mt-4 mb-3">
-    <div nz-col
-         nzSpan="24"
-         class="px-0 flex-end">
-      <button nz-button
-              class="mr-3"
-              type="button"
-              [routerLink]="['..']">
-        Cancelar
-      </button>
-      <button nz-button
-              type="submit"
-              nzType="primary"
-              [nzLoading]="loading">
-        Guardar
-      </button>
-    </div>
-  </div>
+    </nz-space-item>
+  </nz-space>
 </form>

@@ -1,5 +1,4 @@
-<div nz-row
-     class="py-5">
+<div nz-row>
   <div nz-col
        nzSm="24"
        [nzLg]="{ span: 12, offset: 6 }">
@@ -9,8 +8,7 @@
             [formGroup]="form"
             (ngSubmit)="submit()">
         <div nz-row
-             [nzGutter]="[24, 8]"
-             class="py-5">
+             [nzGutter]="12">
           <div nz-col
                nzSpan="24"
                class="text-center">
@@ -58,16 +56,14 @@
           </div>
         </div>
 
-        <div nz-row
-             class="py-3">
+        <div nz-row>
           <div nz-col
-               nzSpan="24"
-               class="flex-end">
+               nzSpan="24">
             <button nz-button
-                    class="w-100"
                     type="submit"
                     nzType="primary"
-                    [nzLoading]="loading">
+                    [nzLoading]="loading"
+                    nzBlock>
               Iniciar sesión
             </button>
           </div>

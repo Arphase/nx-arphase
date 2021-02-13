@@ -16,6 +16,7 @@ import {
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
@@ -93,6 +94,7 @@ import { GuaranteesComponent } from './guarantees.component';
     NzSpaceModule,
     NzDividerModule,
     ApsAutoSelectModule,
+    NzAlertModule,
   ],
   declarations: [
     GuaranteeFormComponent,

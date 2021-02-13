@@ -18,6 +18,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
@@ -54,6 +55,7 @@ import { VehiclesComponent } from './vehicles.component';
     NzTypographyModule,
     NzDividerModule,
     NzTableModule,
+    NzSpaceModule,
   ],
   declarations: [
     VehicleListComponent,

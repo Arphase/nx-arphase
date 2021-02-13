@@ -33,7 +33,7 @@
        class="content"
        (click)="$event.stopPropagation()">
     <div nz-row
-         [nzGutter]="[24, 8]">
+         [nzGutter]="12">
       <div nz-col>
         <div *ngIf="dateTypeOptions.length">
           <nz-radio-group formControlName="dateType">
@@ -47,14 +47,13 @@
     </div>
 
     <div nz-row
-         [nzGutter]="[24, 8]">
+         [nzGutter]="12">
       <div nz-col
            nxSpan="12">
         <nz-form-item>
           <nz-form-label nzRequired>Fecha inicial</nz-form-label>
           <nz-form-control apsAutoError>
-            <nz-date-picker class="w-100"
-                            formControlName="startDate"></nz-date-picker>
+            <nz-date-picker formControlName="startDate"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -63,8 +62,7 @@
         <nz-form-item>
           <nz-form-label nzRequired>Fecha final</nz-form-label>
           <nz-form-control apsAutoError>
-            <nz-date-picker class="w-100"
-                            formControlName="endDate"></nz-date-picker>
+            <nz-date-picker formControlName="endDate"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -72,7 +70,7 @@
 
     <div *ngIf="showError"
          nz-row
-         [nzGutter]="[24, 8]"
+         [nzGutter]="12"
          class="small">
       <div nz-col
            nzSpan="24"
