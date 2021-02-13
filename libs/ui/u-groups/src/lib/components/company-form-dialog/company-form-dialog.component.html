@@ -2,15 +2,11 @@
       nzLayout="vertical"
       [formGroup]="form"
       (ngSubmit)="submit()">
-  <h1 class="text-primary font-weight-light h3 mb-3">
-    {{ company?.id ? 'Editar' : 'Nueva' }} Compañía
-  </h1>
-
   <nz-collapse>
     <nz-collapse-panel nzHeader="Información General"
                        [nzActive]="true">
       <div nz-row
-           [nzGutter]="[24, 8]">
+           [nzGutter]="12">
         <div nz-col
              nzMd="24"
              nzLg="12">
@@ -38,7 +34,6 @@
     </nz-collapse-panel>
   </nz-collapse>
 
-
   <nz-collapse>
     <nz-collapse-panel nzHeader="Dirección"
                        [nzActive]="true">
@@ -50,18 +45,10 @@
     <nz-collapse-panel nzHeader="Contacto"
                        [nzActive]="true">
       <div nz-row
-           [nzGutter]="[24, 8]">
+           [nzGutter]="12">
         <div nz-col
              nzMd="24"
              nzLg="8">
-          <nz-form-item>
-            <nz-form-label nzRequired>Razón Social</nz-form-label>
-            <nz-form-control apsAutoError>
-              <input nz-input
-                     formControlName="businessName" />
-            </nz-form-control>
-          </nz-form-item>
-
           <nz-form-item>
             <nz-form-label nzRequired>Nombre del contacto</nz-form-label>
             <nz-form-control apsAutoError>
@@ -101,9 +88,9 @@
   <nz-collapse>
     <nz-collapse-panel nzHeader="Usuarios"
                        [nzActive]="true">
-      <ivt-row *ngFor="let userForm of usersFormArray.controls; let index = index;"
-               nz-row
-               [nzGutter]="[24, 8]">
+      <div *ngFor="let userForm of usersFormArray.controls; let index = index;"
+           nz-row
+           [nzGutter]="12">
         <div nz-col
              nzXs="20"
              nzMd="22">
@@ -112,11 +99,12 @@
         <div nz-col
              nzXs="4"
              nzMd="2"
-             class="center">
+             class="flex-center">
           <button *ngIf="!userForm.value.id"
                   nz-button
                   nzType="text"
-                  nz-tooltip nzTooltipTitle="Eliminar usuario"
+                  nz-tooltip
+                  nzTooltipTitle="Eliminar usuario"
                   type="button"
                   (click)="removeUser(index)">
             <i nz-icon
@@ -124,10 +112,10 @@
                nzTheme="outline"></i>
           </button>
         </div>
-      </ivt-row>
+      </div>
 
       <div nz-row
-           [nzGutter]="[24, 8]">
+           [nzGutter]="12">
         <div nz-col
              nzSpan="24">
           <button nz-button
@@ -141,13 +129,4 @@
       </div>
     </nz-collapse-panel>
   </nz-collapse>
-
-  <div class="flex-end">
-    <button nz-button
-            (click)="modalRef.close()">Cancelar</button>
-    <button nz-button
-            [nzLoading]="loading"
-            type="submit"
-            nzType="primary">Guardar</button>
-  </div>
 </form>

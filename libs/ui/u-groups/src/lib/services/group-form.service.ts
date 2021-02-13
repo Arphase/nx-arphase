@@ -21,14 +21,25 @@ export class GroupFormService {
 
   createCompany(): void {
     this.modal
-      .create({ nzContent: CompanyFormDialogComponent })
+      .create({
+        nzTitle: 'Crear compañía',
+        nzContent: CompanyFormDialogComponent,
+        nzStyle: { width: '80%' },
+        nzOnOk: component => component.submit(),
+      })
       .afterClose.pipe(filterExisting(), take(1))
       .subscribe(company => this.companiesFormArray.push(createCompanyForm(company)));
   }
 
   editCoompany(company: Company): void {
     this.modal
-      .create({ nzContent: CompanyFormDialogComponent, nzComponentParams: { company } })
+      .create({
+        nzTitle: 'Editar compañía',
+        nzContent: CompanyFormDialogComponent,
+        nzComponentParams: { company },
+        nzStyle: { width: '80%' },
+        nzOnOk: component => component.submit(),
+      })
       .afterClose.pipe(filterExisting(), take(1))
       .subscribe(editedCompany => {
         const index = findFormArrayIndex<Company>(this.companiesFormArray, value => value.tempId === company.tempId);

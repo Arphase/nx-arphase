@@ -20,10 +20,8 @@
       <nz-form-item>
         <nz-form-label nzRequired>Estatus</nz-form-label>
         <nz-form-control apsAutoError>
-          <nz-select formControlName="status">
-            <nz-option *ngFor="let option of statusOptions"
-                       [nzValue]="option.value"
-                       [nzLabel]="option.label"></nz-option>
+          <nz-select formControlName="status"
+                     [nzOptions]="statusOptions">
           </nz-select>
         </nz-form-control>
       </nz-form-item>

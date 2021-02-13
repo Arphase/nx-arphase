@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ApsAutoErrorModule } from '@arphase/ui';
+import { ApsAutoErrorModule, ApsAutoSelectModule } from '@arphase/ui';
 import { PermissionsModule, VehiclesDataModule } from '@ivt/u-state';
 import {
   IvtAddressFormModule,
@@ -92,6 +92,7 @@ import { GuaranteesComponent } from './guarantees.component';
     NzTableModule,
     NzSpaceModule,
     NzDividerModule,
+    ApsAutoSelectModule,
   ],
   declarations: [
     GuaranteeFormComponent,

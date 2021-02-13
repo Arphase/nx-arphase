@@ -1,8 +1,9 @@
 <div nz-row
-     [nzGutter]="[24, 8]">
+     [nzGutter]="[12]"
+     nzAlign="center">
   <div nz-col
-       nzSpan="24"
-       class="flex-end pr-0 pb-3">
+       nzFlex="auto"
+       class="flex-end">
     <button nz-button
             (click)="create.emit()"
             type="button"
@@ -12,20 +13,53 @@
   </div>
 </div>
 
-<nz-empty *ngIf="!list?.length"
-          nzNotFoundContent="No hay compañías">
-</nz-empty>
+<nz-divider></nz-divider>
 
-<ng-container *ngIf="list?.length">
-  <ivt-table-header class="d-block mt-4"
-                    [columns]="columns"></ivt-table-header>
-
-  <ivt-virtual-scroll height="40vh"
-                      [list]="list">
-    <ng-template let-item>
-      <ivt-company-row [item]="item"
-                       (edit)="edit.emit($event)">
-      </ivt-company-row>
-    </ng-template>
-  </ivt-virtual-scroll>
-</ng-container>
+<nz-table #table
+          nzSize="small"
+          [nzData]="list || []"
+          [nzTotal]="list?.length || 0">
+  <thead>
+    <tr nz-row>
+      <th nzSortFn="businessNameSortFn"
+          nz-col
+          nzMd="6">Razón Social</th>
+      <th nzSortFn="rfcSortFn"
+          nz-col
+          nzMd="6">RFC</th>
+      <th nzSortFn="contactSortFn"
+          nz-col
+          nzMd="6">Contacto</th>
+      <th nzSortFn="emailSortFn"
+          nz-col
+          nzMd="5">Email</th>
+      <th nz-col
+          nzMd="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of table.data"
+        nz-row>
+      <td nz-col
+          nzXs="6">{{ item?.businessName | empty }}</td>
+      <td nz-col
+          nzXs="6">{{ item.rfc | empty }}</td>
+      <td nz-col
+          nzXs="6">{{ item.contact | empty }}</td>
+      <td nz-col
+          nzXs="5">{{ item.company?.email | empty }}</td>
+      <td nz-col
+          nzXs="1">
+        <button nz-button
+                nzType="text"
+                type="button"
+                nz-tooltip
+                nzTooltipTitle="Editar compañía"
+                (click)="edit.emit(item)">
+          <i nz-icon
+             nzType="edit"
+             nzTheme="outline"></i>
+        </button></td>
+    </tr>
+  </tbody>
+</nz-table>

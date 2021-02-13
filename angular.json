@@ -859,7 +859,7 @@
       "projectType": "library",
       "root": "libs/arphase/ui/aps-u-ui",
       "sourceRoot": "libs/arphase/ui/aps-u-ui/src",
-      "prefix": "ivt",
+      "prefix": "aps",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
