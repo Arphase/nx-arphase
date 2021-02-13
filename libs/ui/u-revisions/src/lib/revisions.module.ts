@@ -26,6 +26,7 @@ import { RevisionFormContainerComponent } from './containers/revision-form-conta
 import { RevisionListContainerComponent } from './containers/revision-list-container/revision-list-container.component';
 import { RevisionsRoutingModule } from './revisions-routing.module';
 import { RevisionsComponent } from './revisions.component';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { RevisionsComponent } from './revisions.component';
     NzDividerModule,
     IvtSearchbarModule,
     NzSpaceModule,
+    NzTagModule
   ],
   declarations: [
     RevisionFormComponent,

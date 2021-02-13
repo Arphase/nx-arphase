@@ -13,9 +13,9 @@
      [nzGutter]="12"
      class="mb-3">
   <div nz-col
-       nzSm="16"
-       nzMd="20"
-       nzLg="12">
+       nzXs="16"
+       nzSm="20"
+       nzMd="12">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
   <div nz-col
@@ -55,49 +55,86 @@
   <thead>
     <tr nz-row>
       <th nzSortFn="true"
-          nzColumnKey="revision.observations"
+          nzColumnKey="revision.status"
           nz-col
-          nzMd="4">Observaciones</th>
+          nzXs="7"
+          nzMd="4"
+          nzLg="2">Estatus</th>
       <th nzSortFn="true"
           nzColumnKey="vehicle.vin"
           nz-col
-          nzMd="4">VIN</th>
+          nzXs="17"
+          nzMd="8"
+          nzLg="4">VIN</th>
       <th nzSortFn="true"
           nzColumnKey="vehicle.brand"
           nz-col
-          nzMd="4">Marca</th>
+          nzXs="0"
+          nzMd="6"
+          nzLg="3">Marca</th>
       <th nzSortFn="true"
           nzColumnKey="vehicle.model"
           nz-col
-          nzMd="4">Modelo</th>
+          nzXs="0"
+          nzLg="3">Modelo</th>
       <th nzSortFn="true"
           nzColumnKey="vehicle.year"
           nz-col
-          nzMd="4">Año</th>
+          nzXs="0"
+          nzLg="2">Año</th>
       <th nzSortFn="true"
           nzColumnKey="revision.createdAt"
           nz-col
-          nzMd="3">Fecha de alta</th>
-      <th nz-col
-          nzXs="1"></th>
+          nzXs="0"
+          nzMd="6"
+          nzLg="4">Fecha de revisión</th>
+      <th nzSortFn="true"
+          nzColumnKey="revision.observations"
+          nz-col
+          nzXs="0"
+          nzLg="6">Observaciones</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of table.data"
         nz-row>
       <td nz-col
-          nzXs="4">{{ item?.observations | empty }}</td>
+          nzXs="7"
+          nzMd="4"
+          nzLg="2">
+        <nz-tag nz-tooltip
+                nzTooltipPlacement="right"
+                [nzTooltipTitle]="statusLabels[revisionStatus[item.status]] | empty"
+                [nzColor]="colorMaps[revisionStatus[item.status]]">
+          <i nz-icon
+             [nzType]="iconMaps[revisionStatus[item.status]]"></i>
+        </nz-tag>
+      </td>
       <td nz-col
-          nzXs="4">{{ item?.vehicle?.vin | empty }}</td>
+          nzXs="15"
+          nzMd="8"
+          nzLg="4">{{ item?.vehicle?.vin | empty }}</td>
       <td nz-col
-          nzXs="4">{{ item?.vehicle?.brand | empty }}</td>
+          nzXs="0"
+          nzMd="6"
+          nzLg="3">{{ item?.vehicle?.brand | empty }}</td>
       <td nz-col
-          nzXs="4">{{ item?.vehicle?.model | empty }}</td>
+          nzXs="0"
+          nzLg="3">{{ item?.vehicle?.model | empty }}</td>
       <td nz-col
-          nzXs="4">{{ item?.vehicle?.year | empty }}</td>
+          nzXs="0"
+          nzLg="2">{{ item?.vehicle?.year | empty }}</td>
       <td nz-col
-          nzXs="3">{{ item?.createdAt | date: 'dd/mm/yy' }}</td>
-      <td nzXs="1">
+          nzXs="0"
+          nzMd="4"
+          nzLg="4">{{ item?.createdAt | date: 'dd/mm/yy' }}</td>
+      <td nz-col
+          nzXs="0"
+          nzLg="5">{{ item?.observations | empty }}</td>
+      <td nz-col
+          nzXs="2"
+          nzMd="2"
+          nzLg="1">
         <button nz-button
                 nz-dropdown
                 [nzDropdownMenu]="menu"
