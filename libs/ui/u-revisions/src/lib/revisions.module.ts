@@ -17,6 +17,7 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
@@ -26,7 +27,6 @@ import { RevisionFormContainerComponent } from './containers/revision-form-conta
 import { RevisionListContainerComponent } from './containers/revision-list-container/revision-list-container.component';
 import { RevisionsRoutingModule } from './revisions-routing.module';
 import { RevisionsComponent } from './revisions.component';
-import { NzTagModule } from 'ng-zorro-antd/tag';
 
 @NgModule({
   imports: [

@@ -30,9 +30,10 @@
               nz-menu-item
               nzMatchRouter
               nz-tooltip
-              [nzTooltipTitle]="item.header"
+              [nzTooltipTitle]="mobileQuery.matches ? '' : item.header"
               nzTooltipPlacement="right"
-              [routerLink]="item.path">
+              [routerLink]="item.path"
+              (click)="isCollapsed = true">
             <i nz-icon
                [nzType]="item.icon"></i>
             <span>{{ item.header }}</span>

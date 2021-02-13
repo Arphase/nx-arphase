@@ -1,52 +1,59 @@
-import { IvtColumns } from '@ivt/u-ui';
+import { ApsColumns } from '@arphase/ui';
 
-export const columns: IvtColumns = [
-  {
-    label: 'Observaciones',
-    prop: 'revision.observations',
-    sortable: true,
-    colSizes: {
-      xs: '2',
-    },
-  },
-  {
+export const columns: ApsColumns = [
+    {
     label: 'VIN',
     prop: 'vehicle.vin',
-    sortable: true,
     colSizes: {
-      xs: '2',
+      xs: 16,
+      md: 8,
+      lg: 4,
     },
   },
   {
     label: 'Marca',
     prop: 'vehicle.brand',
-    sortable: true,
     colSizes: {
-      xs: '2',
+      md: 6,
+      lg: 3,
     },
   },
   {
     label: 'Modelo',
     prop: 'vehicle.model',
-    sortable: true,
     colSizes: {
-      xs: '2',
+      lg: 3,
     },
   },
   {
     label: 'Año',
     prop: 'vehicle.year',
-    sortable: true,
     colSizes: {
-      xs: '2',
+      lg: 2,
     },
   },
   {
     label: 'Alta',
     prop: 'revision.createdAt',
-    sortable: true,
     colSizes: {
-      xs: '2',
+      md: 6,
+      lg: 4,
+    },
+  },
+  {
+    label: 'Observaciones',
+    prop: 'revision.observations',
+    colSizes: {
+      lg: 6,
+    },
+  },
+  {
+    label: 'Estatus',
+    prop: 'revision.status',
+    colSizes: {
+      xs: 8,
+      md: 4,
+      lg: 2,
     },
   },
 ];
