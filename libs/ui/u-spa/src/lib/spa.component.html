@@ -24,7 +24,8 @@
               }">
       <ul nz-menu
           [nzTheme]="'dark'"
-          nzMode="inline">
+          nzMode="inline"
+          class="h-95">
         <ng-container *ngFor="let item of (menuItems$ | async)">
           <li *ngIf="item.display"
               nz-menu-item
@@ -40,6 +41,10 @@
           </li>
         </ng-container>
       </ul>
+      <div [hidden]="isCollapsed"
+           class="version text-white">
+        Versión {{ version }}
+      </div>
     </nz-sider>
     <nz-content>
       <div *ngIf="mobileQuery.matches && !isCollapsed"
