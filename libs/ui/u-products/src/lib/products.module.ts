@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { IvtEmptyModule, IvtFolioModule, IvtTableModule, IvtVirtualScrollModule } from '@ivt/u-ui';
+import { IvtEmptyModule, IvtFolioModule } from '@ivt/u-ui';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -30,8 +30,6 @@ import { ProductsComponent } from './products.component';
     ReactiveFormsModule,
     NzPageHeaderModule,
     NzEmptyModule,
-    IvtTableModule,
-    IvtVirtualScrollModule,
     IvtFolioModule,
     IvtEmptyModule,
     NzIconModule,

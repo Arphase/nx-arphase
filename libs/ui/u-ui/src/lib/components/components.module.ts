@@ -8,7 +8,6 @@ import { IvtListModule } from './list';
 import { IvtSearchbarModule } from './searchbar';
 import { IvtStatusMessageModule } from './status-message';
 import { IvtSubscriberModule } from './subscriber';
-import { IvtTableModule } from './table';
 import { IvtVirtualScrollModule } from './virtual-scroll';
 
 const MODULES = [
@@ -23,7 +22,6 @@ const MODULES = [
   IvtSearchbarModule,
   IvtStatusMessageModule,
   IvtSubscriberModule,
-  IvtTableModule,
   IvtVirtualScrollModule,
 ];
 

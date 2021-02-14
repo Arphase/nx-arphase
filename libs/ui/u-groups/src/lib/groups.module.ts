@@ -3,14 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
 import { PermissionsModule } from '@ivt/u-state';
-import {
-  IvtAddressFormModule,
-  IvtEmptyModule,
-  IvtPhoneModule,
-  IvtSearchbarModule,
-  IvtTableHeaderModule,
-  IvtVirtualScrollModule,
-} from '@ivt/u-ui';
+import { IvtAddressFormModule, IvtEmptyModule, IvtPhoneModule, IvtSearchbarModule } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
@@ -50,8 +43,6 @@ import { GroupsComponent } from './groups.component';
     IvtAddressFormModule,
     IvtEmptyModule,
     NzEmptyModule,
-    IvtTableHeaderModule,
-    IvtVirtualScrollModule,
     NzPageHeaderModule,
     IvtSearchbarModule,
     IvtPhoneModule,
