@@ -32,6 +32,10 @@ const routes: Routes = [
         path: 'revisions',
         loadChildren: () => import('@ivt/u-revisions').then(m => m.RevisionsModule),
       },
+      {
+        path: 'revision-requests',
+        loadChildren: () => import('@ivt/u-revision-requests').then(m => m.RevisionRequestsModule),
+      },
       // TODO: uncomment when feature is ready
       // {
       //   path: 'products',

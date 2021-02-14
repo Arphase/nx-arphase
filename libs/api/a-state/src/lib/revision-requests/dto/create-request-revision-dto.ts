@@ -1,6 +1,6 @@
 import { Address } from '@ivt/c-data';
 import { Type } from 'class-transformer';
-import { IsEmail, IsNotEmpty, IsString, ValidateNested } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsNumber, IsString, ValidateNested } from 'class-validator';
 
 import { CreateAddressDto } from '../../addresses';
 
@@ -20,4 +20,8 @@ export class CreateRevisionRequestDto {
   @IsNotEmpty()
   @IsEmail()
   email: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  vehicleId: number;
 }

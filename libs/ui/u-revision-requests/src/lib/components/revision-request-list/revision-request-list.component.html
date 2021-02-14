@@ -1,0 +1,39 @@
+<div nz-row
+     [nzGutter]="12">
+  <div nz-col
+       nzXs="18"
+       nzMd="12">
+    <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
+  </div>
+  <div nz-col
+       nzXs="0"
+       nzMd="24"
+       nzFlex="auto">
+    <div class="flex-end">
+      <button nz-button
+              [routerLink]="['new']"
+              type="button"
+              nzType="primary">
+        Nueva solicitud
+      </button>
+    </div>
+  </div>
+
+  <div nz-col
+       nzXs="24"
+       nzMd="0"
+       nzFlex="auto">
+    <div class="flex-end">
+      <button nz-button
+              [routerLink]="['new']"
+              type="button"
+              nzType="primary"
+              nzShape="circle">
+        <i nz-icon
+           nzType="plus-circle"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<nz-divider></nz-divider>

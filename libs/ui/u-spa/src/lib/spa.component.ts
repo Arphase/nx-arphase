@@ -101,6 +101,12 @@ export class SpaComponent extends IvtSubscriberComponent {
           path: ['revisions'],
           display: true,
         },
+        {
+          icon: 'container',
+          header: 'Solicitudes',
+          path: ['revision-requests'],
+          display: true,
+        },
       ])
     );
   }

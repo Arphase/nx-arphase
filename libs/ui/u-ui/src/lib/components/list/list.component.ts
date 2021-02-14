@@ -13,7 +13,6 @@ import { IvtSubscriberComponent } from '../subscriber';
 })
 export class IvtListComponent<T> extends IvtSubscriberComponent implements CrudEvents<T> {
   @Input() list: T[] = [];
-  @Input() hasMoreItems: boolean;
   @Input() loading: boolean;
   @Input() loadingExcel: boolean;
   @Input() info: IvtCollectionResponseInfo;
@@ -24,7 +23,6 @@ export class IvtListComponent<T> extends IvtSubscriberComponent implements CrudE
   @Output() delete = new EventEmitter<T>();
   @Output() toggle = new EventEmitter<T>();
   @Output() filterItems = new EventEmitter<unknown>();
-  @Output() getMoreItems = new EventEmitter<void>();
   @Output() exportExcel = new EventEmitter<void>();
   showFilters: boolean;
 

@@ -23,11 +23,7 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
   loading$ = combineLatest([this.entityCollectionService.loading$, this.ivtLoading$]).pipe(
     map(([loading1, loading2]) => loading1 || loading2)
   );
-  hasMore$ = this.entityCollectionService.store.pipe(
-    select(this.entityCollectionService.selectors.selectCollection),
-    filterNil(),
-    map((collection: IvtEntityCollection<T>) => collection.hasMore)
-  );
+
   info$ = this.entityCollectionService.store.pipe(
     select(this.entityCollectionService.selectors.selectCollection),
     filterNil(),
@@ -66,14 +62,6 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
         filter(entities => !entities.length)
       )
       .subscribe(() => this.entityCollectionService.getWithQuery({}));
-  }
-
-  getMoreItems(): void {
-    const queryParams: IvtQueryParams = {
-      ...this.queryParams,
-      resetList: String(false),
-    };
-    this.entityCollectionService.getWithQuery(queryParams);
   }
 
   filterItems(payload: IvtQueryParams): void {

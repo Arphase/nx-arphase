@@ -101,6 +101,9 @@
       "@ivt/u-products": [
         "libs/ui/u-products/src/index.ts"
       ],
+      "@ivt/u-revision-requests": [
+        "libs/ui/u-revision-requests/src/index.ts"
+      ],
       "@ivt/u-revisions": [
         "libs/ui/u-revisions/src/index.ts"
       ],
