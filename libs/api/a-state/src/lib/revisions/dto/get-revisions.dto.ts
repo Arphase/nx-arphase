@@ -1,6 +1,6 @@
 import { DEFAULT_LIMIT_SIZE } from '@ivt/c-data';
 import { Transform } from 'class-transformer';
-import { IsNotEmpty, IsNumber, IsNumberString, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsNumberString, IsOptional, IsString } from 'class-validator';
 
 export class GetRevisionsDto {
   @IsOptional()
@@ -22,9 +22,16 @@ export class GetRevisionsDto {
 
   @IsOptional()
   @IsNotEmpty()
+  @IsString()
   sort: string;
 
   @IsOptional()
   @IsNotEmpty()
+  @IsString()
   direction: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsString()
+  text: string;
 }

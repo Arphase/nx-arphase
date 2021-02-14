@@ -21,7 +21,7 @@ export class RevisionsService {
   ) {}
 
   async getRevisions(getRevisionsDto: GetRevisionsDto): Promise<IvtCollectionResponse<Revision>> {
-    const { vehicleId, sort, direction, pageIndex, pageSize } = getRevisionsDto;
+    const { vehicleId, sort, direction, pageIndex, pageSize, text } = getRevisionsDto;
     const query = this.revisionRepository.createQueryBuilder('revision');
 
     query.leftJoinAndSelect('revision.vehicle', 'vehicle').orderBy('revision.createdAt', sortDirection.desc);
@@ -32,6 +32,17 @@ export class RevisionsService {
 
     if (sort && direction) {
       query.orderBy(`${sort}`, sortDirection[direction]);
+    }
+
+    if (text) {
+      query.andWhere(
+        `LOWER(vehicle.vin) like :text OR
+           LOWER(vehicle.brand) like :text OR
+           LOWER(vehicle.model) like :text OR
+           LOWER(vehicle.version) like :text
+          `,
+        { text: `%${text.toLowerCase()}%` }
+      );
     }
 
     query.take(pageSize).skip(pageSize * (pageIndex - 1));

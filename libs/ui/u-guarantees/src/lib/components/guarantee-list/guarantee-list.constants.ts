@@ -54,22 +54,22 @@ export const columns: ApsColumns = [
 
 export const menuOptions = [
   {
-    class: 'bg-success',
+    type: 'success',
     label: 'Pagada',
     value: GuaranteeStatus.paid,
   },
   {
-    class: 'bg-warning',
+    type: 'warning',
     label: 'Pendiente',
     value: GuaranteeStatus.outstanding,
   },
   {
-    class: 'bg-alert',
+    type: 'error',
     label: 'Cancelada',
     value: GuaranteeStatus.cancelled,
   },
   {
-    class: 'bg-info',
+    type: 'info',
     label: 'Caducada',
     value: GuaranteeStatus.expired,
   },

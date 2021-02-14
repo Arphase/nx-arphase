@@ -182,7 +182,7 @@
             nzLg="3">{{ item.invoiceNumber | empty }} </td>
         <td nz-col
             nzXs="0"
-            nzLg="4">{{ item.amount | currency }}</td>
+            nzLg="4">{{ item.amount | currency | empty }}</td>
         <td nz-col
             nzXs="6"
             nzMd="2"
@@ -227,11 +227,9 @@
               <ul>
                 <li *ngFor="let menuOption of menuOptions"
                     nz-menu-item
-                    class="status-option my-2"
                     (click)="onChangeStatus(item.id, menuOption.value)">
-                  <span class="{{ menuOption.class }} text-white text-center rounded flex-center">
-                    {{ menuOption.label }}
-                  </span>
+                  <nz-alert [nzType]="menuOption.type"
+                            [nzMessage]="menuOption.label"></nz-alert>
                 </li>
               </ul>
             </li>

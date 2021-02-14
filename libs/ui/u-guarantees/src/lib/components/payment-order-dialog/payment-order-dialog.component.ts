@@ -50,7 +50,7 @@ export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> 
       this.selectedIds.forEach(id => this.guaranteesFormArray.push(this.createGuaranteeForm({ id })));
     }
 
-    if (changes.item && this.item) {
+    if (changes.item && this.item?.guarantees) {
       this.form.patchValue(this.item);
       this.item.guarantees.forEach(guarantee => this.guaranteesFormArray.push(this.createGuaranteeForm(guarantee)));
     }
