@@ -2,24 +2,26 @@
       nzLayout="vertical"
       [formGroup]="form">
   <div nz-row
-       [nzGutter]="[24, 8]">
+       [nzGutter]="12">
     <div *ngIf="showCompanyInput"
          nz-col
+         nzXs="24"
          nzMd="24"
-         nzLg="8">
+         nzLg="6">
       <nz-form-item>
         <nz-form-label nzRequired>Compañía</nz-form-label>
         <nz-form-control apsAutoError>
-          <nz-select formControlName="companyId">
-            <nz-option *ngFor="let option of companyOptions"
-                       [nzValue]="option.value"
-                       [nzLabel]="option.label"></nz-option>
+          <nz-select apsAutoSelect
+                     formControlName="companyId"
+                     [nzOptions]="companyOptions">
           </nz-select>
         </nz-form-control>
       </nz-form-item>
     </div>
     <div nz-col
-         [nzSpan]="showCompanyInput ? 8 : 12">
+         nzXs="24"
+         [nzMd]="showCompanyInput ? 12 : 24"
+         [nzLg]="showCompanyInput ? 6 : 8">
       <nz-form-item>
         <nz-form-label nzRequired>VIN</nz-form-label>
         <nz-form-control apsAutoError>
@@ -30,7 +32,9 @@
       </nz-form-item>
     </div>
     <div nz-col
-         [nzSpan]="showCompanyInput ? 8 : 12">
+         nzXs="24"
+         [nzMd]="showCompanyInput ? 12 : 24"
+         [nzLg]="showCompanyInput ? 6 : 8">
       <nz-form-item>
         <nz-form-label nzRequired>N° de motor</nz-form-label>
         <nz-form-control apsAutoError>
@@ -39,12 +43,11 @@
         </nz-form-control>
       </nz-form-item>
     </div>
-  </div>
-  <div nz-row
-       [nzGutter]="[24, 8]">
+
     <div nz-col
          nzXs="24"
-         nzLg="8">
+         nzMd="12"
+         [nzLg]="showCompanyInput ? 6 : 8">
       <nz-form-item>
         <nz-form-label nzRequired>Marca</nz-form-label>
         <nz-form-control apsAutoError>
@@ -55,7 +58,8 @@
     </div>
     <div nz-col
          nzXs="24"
-         nzLg="8">
+         nzMd="12"
+         nzLg="6">
       <nz-form-item>
         <nz-form-label nzRequired>Modelo</nz-form-label>
         <nz-form-control apsAutoError>
@@ -66,7 +70,8 @@
     </div>
     <div nz-col
          nzXs="24"
-         nzLg="8">
+         nzMd="8"
+         nzLg="6">
       <nz-form-item>
         <nz-form-label nzRequired>Versión</nz-form-label>
         <nz-form-control apsAutoError>
@@ -75,13 +80,11 @@
         </nz-form-control>
       </nz-form-item>
     </div>
-  </div>
 
-  <div nz-row
-       [nzGutter]="[24, 8]">
     <div nz-col
-         nzMd="24"
-         nzLg="12">
+         nzXs="24"
+         nzMd="8"
+         nzLg="6">
       <nz-form-item>
         <nz-form-label nzRequired>Año del vehículo</nz-form-label>
         <nz-form-control apsAutoError>
@@ -92,8 +95,9 @@
       </nz-form-item>
     </div>
     <div nz-col
-         nzMd="24"
-         nzLg="12">
+         nzXs="24"
+         nzMd="8"
+         nzLg="6">
       <nz-form-item>
         <nz-form-label nzRequired>HP</nz-form-label>
         <nz-form-control apsAutoError>

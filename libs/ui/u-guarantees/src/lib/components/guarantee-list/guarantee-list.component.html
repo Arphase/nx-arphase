@@ -1,16 +1,12 @@
 <div nz-row
-     [nzGutter]="[12]"
-     nzAlign="center">
+     [nzGutter]="[12, 12]">
   <div nz-col
-       nzSm="16"
-       nzMd="20"
-       nzLg="12">
+       nzXs="16"
+       nzMd="12">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
-
   <div nz-col
-       nzSm="8"
-       nzMd="4">
+       nzXs="2">
     <button nz-button
             nzType="text"
             nz-tooltip
@@ -24,25 +20,59 @@
   </div>
 
   <div nz-col
-       nzFlex="auto"
-       class="flex-end">
-    <nz-space>
-      <nz-space-item>
-        <button *ngIf="indeterminate || checked"
-                nz-button
-                type="button"
-                nzType="primary"
-                (click)="createPaymentOrder.emit(checkedIdsArray)">
-          Generar orden de pago
-        </button>
-      </nz-space-item>
+       nzXs="24"
+       nzMd="0"
+       nzFlex="auto">
+    <div class="flex-end">
+      <button nz-button
+              [routerLink]="['new']"
+              type="button"
+              nzType="primary"
+              nzShape="circle">
+        <i nz-icon
+           nzType="plus-circle"></i>
+      </button>
+    </div>
+  </div>
+
+  <div nz-col
+       nzXs="0"
+       nzMd="10"
+       nzFlex="auto">
+    <div class="flex-end">
+      <nz-space>
+        <nz-space-item>
+          <button *ngIf="indeterminate || checked"
+                  nz-button
+                  type="button"
+                  nzType="primary"
+                  (click)="createPaymentOrder.emit(checkedIdsArray)">
+            Generar orden de pago
+          </button>
+        </nz-space-item>
+      </nz-space>
       <button nz-button
               [routerLink]="['new']"
               type="button"
               nzType="primary">
-        Nueva garantía
+        Nuevo vehículo
       </button>
-    </nz-space>
+    </div>
+  </div>
+
+  <div *ngIf="indeterminate || checked"
+       nz-col
+       nzXs="24"
+       nzMd="0"
+       nzFlex="auto">
+    <div class="flex-end">
+      <button nz-button
+              type="button"
+              nzType="primary"
+              (click)="createPaymentOrder.emit(checkedIdsArray)">
+        Generar orden de pago
+      </button>
+    </div>
   </div>
 </div>
 
@@ -50,7 +80,7 @@
 
 <div nz-row
      nzAlign="middle"
-     [nzGutter]="12">
+     [nzGutter]="[12, 12]">
   <div nz-col>
     <ivt-date-filter label="Fecha"
                      [dateTypeOptions]="dateTypeOptions"
@@ -109,132 +139,240 @@
   <thead>
     <tr nz-row>
       <th nz-col
-          nzMd="1"
+          nzXs="1"
+          nzMd="2"
           [(nzChecked)]="checked"
           [nzIndeterminate]="indeterminate"
           (nzCheckedChange)="onAllChecked($event)"></th>
-      <th nzSortFn="true"
-          nzColumnKey="guarantee.id"
+      <th *ngFor="let column of columns"
+          [nzSortFn]="column.sortFn || true"
+          [nzColumnKey]="column.prop"
           nz-col
-          nzMd="2">Folio</th>
-      <th nzSortFn="true"
-          nzColumnKey="vehicle.vin"
-          nzXs="0"
-          nzMd="4"
-          nz-col>VIN</th>
-      <th nzSortFn="true"
-          nzColumnKey="paymentOrder.distributor"
-          nzXs="0"
-          nzMd="4"
-          nz-col>Distribuidor</th>
-      <th nzSortFn="true"
-          nzColumnKey="guarantee.startDate"
-          nzXs="0"
-          nzMd="2"
-          nz-col>Inicio</th>
-      <th nzSortFn="true"
-          nzColumnKey="guarantee.endDate"
-          nzXs="0"
-          nzMd="2"
-          nz-col>Fin</th>
-      <th nzSortFn="true"
-          nzColumnKey="guarantee.invoiceNumber"
-          nzXs="0"
-          nzMd="4"
-          nz-col>Factura</th>
-      <th nzSortFn="true"
-          nzColumnKey="guarantee.amount"
-          nz-col
-          nzMd="4">Importe</th>
-      <th nz-col
-          nzXs="1"></th>
+          [nzXs]="column.colSizes?.xs || 0"
+          [nzSm]="column.colSizes?.sm || 0"
+          [nzMd]="column.colSizes?.md || 0"
+          [nzLg]="column.colSizes?.lg"
+          [nzXl]="column.colSizes?.xl">
+        {{ column.label }}
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of table.data"
-        nz-row>
-      <td nz-col
-          nzMd="1"
-          [nzChecked]="setOfCheckedId.has(item.id)"
-          (nzCheckedChange)="onItemChecked(item.id, $event)"></td>
-      <td nz-col
-          nzXs="2">{{ item.id | folio }}</td>
-      <td nzXs="0"
-          nzMd="4"
-          nz-col>{{ item.vehicle?.vin }}</td>
-      <td nzXs="0"
-          nzMd="4"
-          nz-col>{{ item.paymentOrder?.distributor }}</td>
-      <td nzXs="0"
-          nzMd="2"
-          nz-col>{{ item.startDate | date: "dd/MM/yy" }}</td>
-      <td nzXs="0"
-          nzMd="2"
-          nz-col>{{ item.endDate | date: "dd/MM/yy" }}</td>
-      <td nzXs="0"
-          nzMd="4"
-          nz-col>{{ item.invoiceNumber | empty }} </td>
-      <td nz-col
-          nzMd="4">{{ item.amount | currency | empty }}</td>
-      <td nz-col
-          nzXs="1">
-        <button nz-button
-                nz-dropdown
-                [nzDropdownMenu]="menu"
-                nzType="text"
-                nz-tooltip
-                nzTooltipTitle="Acciones"
-                nzTrigger="click">
-          <i nz-icon
-             nzType="more"
-             nzTheme="outline"></i>
-        </button>
-      </td>
-      <nz-dropdown-menu #menu="nzDropdownMenu">
-        <ul nz-menu>
-          <li nz-menu-item
-              [routerLink]="[item.id]">
-            Editar garantía
-          </li>
-          <li nz-submenu
-              nzTitle="Cambiar estatus">
-            <ul>
-              <li *ngFor="let menuOption of menuOptions"
-                  nz-menu-item
-                  class="status-option my-2"
-                  (click)="onChangeStatus(item.id, menuOption.value)">
-                <span class="{{ menuOption.class }} text-white text-center rounded flex-center">
-                  {{ menuOption.label }}
-                </span>
+    <ng-container *ngFor="let item of table.data">
+      <tr nz-row>
+        <td nz-col
+            nzXs="2"
+            [nzDisabled]="item.amount"
+            [nzChecked]="setOfCheckedId.has(item.id)"
+            (nzCheckedChange)="onItemChecked(item.id, $event)"></td>
+        <td nz-col
+            nzXs="8"
+            nzMd="4"
+            nzLg="2">{{ item.id | folio }}</td>
+        <td nz-col
+            nzXs="0"
+            nzMd="6"
+            nzLg="4">{{ item.vehicle?.vin }}</td>
+        <td nz-col
+            nzXs="0"
+            nzMd="4">{{ item.company?.businessName }}</td>
+        <td nz-col
+            nzXs="0"
+            nzMd="4"
+            nzLg="3">{{ item.invoiceNumber | empty }} </td>
+        <td nz-col
+            nzXs="0"
+            nzLg="4">{{ item.amount | currency | empty }}</td>
+        <td nz-col
+            nzXs="6"
+            nzMd="2"
+            nzLg="3">
+          <nz-tag nz-tooltip
+                  nzTooltipPlacement="top"
+                  [nzTooltipTitle]="statusLabels[item.status]"
+                  [nzColor]="colorMaps[guaranteeStatus[item.status]]">
+            <i nz-icon
+               [nzType]="iconMaps[guaranteeStatus[item.status]]"></i>
+          </nz-tag>
+        </td>
+        <td nz-col
+            nzXs="3"
+            nzMd="1"
+            [nzExpand]="expandSet.has(item.id)"
+            (nzExpandChange)="onExpandChange(item.id, $event)"></td>
+        <td nz-col
+            nzXs="3"
+            nzMd="1">
+          <button nz-button
+                  nz-dropdown
+                  [nzDropdownMenu]="menu"
+                  nzType="text"
+                  nz-tooltip
+                  nzTooltipTitle="Acciones"
+                  nzTrigger="click"
+                  nzSize="small">
+            <i nz-icon
+               nzType="more"
+               nzTheme="outline"></i>
+          </button>
+        </td>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item
+                [routerLink]="[item.id]">
+              Editar garantía
+            </li>
+            <li nz-submenu
+                nzTitle="Cambiar estatus">
+              <ul>
+                <li *ngFor="let menuOption of menuOptions"
+                    nz-menu-item
+                    (click)="onChangeStatus(item.id, menuOption.value)">
+                  <nz-alert [nzType]="menuOption.type"
+                            [nzMessage]="menuOption.label"></nz-alert>
+                </li>
+              </ul>
+            </li>
+            <li nz-menu-item
+                (click)="downloadPdf.emit(item.id)">
+              Descargar PDF
+            </li>
+            <li *ngIf="!item.paymentOrderId"
+                nz-menu-item
+                (click)="createPaymentOrder.emit([item.id])">
+              Generar orden de pago
+            </li>
+            <ng-container *ngIf="item.paymentOrderId">
+              <li nz-menu-item
+                  (click)="downloadPaymentOrder.emit(item.paymentOrderId)">
+                Descargar orden de pago
               </li>
-            </ul>
-          </li>
-          <li nz-menu-item
-              (click)="downloadPdf.emit(item.id)">
-            Descargar PDF
-          </li>
-          <li *ngIf="!item.paymentOrderId"
-              nz-menu-item
-              (click)="createPaymentOrder.emit([item.id])">
-            Generar orden de pago
-          </li>
-          <ng-container *ngIf="item.paymentOrderId">
-            <li nz-menu-item
-                (click)="downloadPaymentOrder.emit(item.paymentOrderId)">
-              Descargar orden de pago
-            </li>
 
+              <li nz-menu-item
+                  (click)="updatePaymentOrder.emit(item.paymentOrderId)">
+                Editar orden de pago
+              </li>
+            </ng-container>
             <li nz-menu-item
-                (click)="updatePaymentOrder.emit(item.paymentOrderId)">
-              Editar orden de pago
+                (click)="editInvoiceNumber.emit(item)">
+              Editar número de factura
             </li>
-          </ng-container>
-          <li nz-menu-item
-              (click)="editInvoiceNumber.emit(item)">
-            Editar número de factura
-          </li>
-        </ul>
-      </nz-dropdown-menu>
-    </tr>
+          </ul>
+        </nz-dropdown-menu>
+      </tr>
+      <tr [nzExpand]="expandSet.has(item.id)">
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzXs="12"
+               nzMd="0">
+            <span nz-typography><strong>Compañía:</strong></span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="0">
+            <span>{{ item.company?.businessName | empty }}</span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="0">
+            <span nz-typography><strong>Factura:</strong></span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="0">
+            <span>{{ item.invoiceNumber | empty }}</span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6">
+            <span nz-typography><strong>Monto:</strong></span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6"
+               nzLg="0">
+            <span>{{ item?.amount | currency | empty }}</span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6"
+               nzLg="0">
+            <span nz-typography><strong>Captura:</strong></span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6">
+            <span>{{ item.createdAt | date: 'dd/MM/yy' | empty }}</span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6">
+            <span nz-typography><strong>Vehículo:</strong></span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6">
+            <span>{{ item?.vehicle?.brand }} {{ item?.vehicle?.model }} {{ item.vehicle?.year }}</span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6">
+            <span nz-typography><strong>N° de motor:</strong></span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6">
+            <span>{{ item.vehicle?.motorNumber }}</span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6">
+            <span nz-typography><strong>Inicio:</strong></span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6">
+            <span>{{ item.startDate | date: 'dd/MM/yy' | empty }}</span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6">
+            <span nz-typography><strong>Fin:</strong></span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6">
+            <span>{{ item.endDate | date: 'dd/MM/yy' | empty }}</span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6">
+            <span nz-typography><strong>Cliente:</strong></span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6">
+            <span *ngIf="item.client?.physicalInfo?.name">
+              {{ item.client?.physicalInfo?.name }} {{ item.client?.physicalInfo?.lastName }}
+              {{ item.client?.physicalInfo?.secondLastName }}
+            </span>
+            <span *ngIf="item.client?.moralInfo?.businessName">
+              {{ item.client?.moralInfo?.businessName }}
+            </span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6">
+            <span nz-typography><strong>Producto: </strong></span>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="6">
+            <span>{{ item?.productType }}</span>
+          </div>
+        </div>
+      </tr>
+    </ng-container>
   </tbody>
 </nz-table>

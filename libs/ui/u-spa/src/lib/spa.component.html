@@ -7,9 +7,7 @@
     <img src="assets/img/logo.jpg"
          alt="Company Logo"
          class="logo">
-
     <div class="spacer"></div>
-
     <div class="flex-center">
       <ivt-profile-menu [name]="name$ | async"
                         [email]="email$ | async"
@@ -26,21 +24,27 @@
               }">
       <ul nz-menu
           [nzTheme]="'dark'"
-          nzMode="inline">
+          nzMode="inline"
+          class="h-95">
         <ng-container *ngFor="let item of (menuItems$ | async)">
           <li *ngIf="item.display"
               nz-menu-item
               nzMatchRouter
               nz-tooltip
-              [nzTooltipTitle]="item.header"
+              [nzTooltipTitle]="mobileQuery.matches ? '' : item.header"
               nzTooltipPlacement="right"
-              [routerLink]="item.path">
+              [routerLink]="item.path"
+              (click)="isCollapsed = true">
             <i nz-icon
                [nzType]="item.icon"></i>
             <span>{{ item.header }}</span>
           </li>
         </ng-container>
       </ul>
+      <div [hidden]="isCollapsed"
+           class="version text-white">
+        Versión {{ version }}
+      </div>
     </nz-sider>
     <nz-content>
       <div *ngIf="mobileQuery.matches && !isCollapsed"

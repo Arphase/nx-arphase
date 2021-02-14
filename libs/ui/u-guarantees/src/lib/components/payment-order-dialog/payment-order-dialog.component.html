@@ -2,54 +2,49 @@
       nzLayout="vertical"
       [formGroup]="form"
       (ngSubmit)="submit()">
-  <div nz-row
-       [nzGutter]="[24, 8]"
-       class="mt-3 mb-2">
-    <div nz-col
-         nzSpan="24">
-      <nz-form-item>
-        <nz-form-label nzRequired>Distribuidor</nz-form-label>
-        <nz-form-control apsAutoError>
-          <input nz-input
-                 formControlName="distributor" />
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-  </div>
-
-  <ivt-table-header [columns]="columns"></ivt-table-header>
-
-  <ivt-row *ngFor="let guarantee of guaranteesFormArray.controls">
-    <form nz-form
-          nzLayout="vertical"
-          [formGroup]="guarantee"
+  <nz-table #table
+            nzSize="small"
+            [nzData]="guaranteesFormArray.value"
+            [nzShowPagination]="false">
+    <thead>
+      <tr nz-row>
+        <th *ngFor="let column of columns"
+            nz-col
+            [nzXs]="column.colSizes?.xs">
+          {{ column.label }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let guarantee of guaranteesFormArray.controls"
           nz-row
-          [nzGutter]="[24, 8]">
-      <div nz-col
-           nzSpan="4"
-           class="flex-start">
-        <span>{{ guarantee.value.id | folio }}</span>
-      </div>
-      <div nz-col
-           nzSpan="10">
-        <nz-form-item class="m-0">
-          <nz-form-control apsAutoError>
-            <nz-date-picker class="w-100"
-                            formControlName="invoiceDate"></nz-date-picker>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-      <div nz-col
-           nzSpan="10">
-        <nz-form-item class="m-0">
-          <nz-form-control apsAutoError>
-            <input nz-input
-                   prefix="$ "
-                   mask="0*.00"
-                   formControlName="amount" />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-    </form>
-  </ivt-row>
+          nz-form
+          nzLayout="vertical"
+          nz-row
+          [formGroup]="guarantee"
+          [nzGutter]="12">
+        <td nz-col
+            nzXs="4">{{ guarantee.value.id | folio }}</td>
+        <td nz-col
+            nzXs="10">
+          <nz-form-item>
+            <nz-form-control apsAutoError>
+              <nz-date-picker formControlName="invoiceDate"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </td>
+        <td nz-col
+            nzXs="10">
+          <nz-form-item>
+            <nz-form-control apsAutoError>
+              <input nz-input
+                     prefix="$ "
+                     mask="0*.00"
+                     formControlName="amount" />
+            </nz-form-control>
+          </nz-form-item>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
 </form>

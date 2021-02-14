@@ -1,63 +1,67 @@
 <form nz-form
+      nz-row
       nzLayout="vertical"
       [formGroup]="form"
       (ngSubmit)="submit()">
-  <div nz-row
-       class="mb-3">
-    <div nz-col
-         nzSpan="24">
-      <nz-page-header nzBackIcon
-                      [nzTitle]="item?.id ? 'Editar Revisión' : 'Nueva Revisión'"
-                      [routerLink]="['..']">
-      </nz-page-header>
-    </div>
-  </div>
+  <nz-space nzDirection="vertical"
+            nz-col
+            nzSpan="24"
+            nzSize="middle">
 
-  <div nz-row
-       [nzGutter]="[24, 8]">
-    <div nz-col
-         nzSpan="24">
-      <nz-form-item>
-        <nz-form-label nzRequired>Estatus</nz-form-label>
-        <nz-form-control apsAutoError>
-          <nz-select formControlName="status">
-            <nz-option *ngFor="let option of statusOptions"
-                       [nzValue]="option.value"
-                       [nzLabel]="option.label"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-  </div>
+    <nz-page-header nzBackIcon
+                    [nzTitle]="item?.id ? 'Editar Revisión' : 'Nueva Revisión'"
+                    [routerLink]="['..']">
+    </nz-page-header>
 
-  <div nz-row
-       [nzGutter]="[24, 8]"
-       class="mb-3">
-    <div nz-col
-         nzSpan="24">
-      <nz-form-item>
-        <nz-form-label nzRequired>Observaciones</nz-form-label>
-        <nz-form-control apsAutoError>
-          <input nz-input
-                 formControlName="observations" />
-        </nz-form-control>
-      </nz-form-item>
+    <div nz-row
+         [nzGutter]="12">
+      <div nz-col
+           nzSpan="24">
+        <nz-form-item>
+          <nz-form-label nzRequired>Estatus</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-select formControlName="status"
+                       [nzOptions]="statusOptions">
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
     </div>
-  </div>
 
-  <div nz-row
-       [nzGutter]="[24, 8]"
-       class="mt-4 mb-3">
-    <div nz-col
-         nzSpan="24"
-         class="px-0 flex-end">
-      <button nz-button
-              class="mr-3"
-              type="button"
-              [routerLink]="['..']">Cancelar</button>
-      <button nz-button
-              type="submit"
-              nzType="primary">Guardar</button>
+    <div nz-row
+         [nzGutter]="12">
+      <div nz-col
+           nzSpan="24">
+        <nz-form-item>
+          <nz-form-label nzRequired>Observaciones</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   formControlName="observations" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
     </div>
-  </div>
+
+    <nz-space-item nz-row>
+      <div nz-col
+           nzSpan="24"
+           class="flex-end">
+        <nz-space>
+          <nz-space-item>
+            <button nz-button
+                    type="button"
+                    [routerLink]="['..']">
+              Cancelar
+            </button>
+          </nz-space-item>
+          <button nz-button
+                  type="submit"
+                  nzType="primary"
+                  [nzLoading]="loading">
+            Guardar
+          </button>
+        </nz-space>
+      </div>
+    </nz-space-item>
+  </nz-space>
 </form>

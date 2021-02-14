@@ -8,6 +8,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
@@ -31,6 +32,7 @@ import { SignInFormContainerComponent } from './containers/sign-in-form-containe
     NzFormModule,
     NzInputModule,
     ApsAutoErrorModule,
+    NzSpaceModule,
   ],
   declarations: [
     AuthComponent,

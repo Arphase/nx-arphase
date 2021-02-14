@@ -1,76 +1,80 @@
-import { IvtColumns } from '@ivt/u-ui';
+import { ApsColumns } from '@arphase/ui';
+import { VehicleStatus } from '@ivt/c-data';
 
-export const columns: IvtColumns = [
+export const columns: ApsColumns = [
   {
     label: 'VIN',
     prop: 'vehicle.vin',
-    sortable: true,
     colSizes: {
-      xs: '2',
-    },
-    breakpointShow: {
-      lg: true,
-      xl: true,
+      xs: 16,
+      md: 8,
+      lg: 4,
     },
   },
   {
     label: 'Marca',
     prop: 'vehicle.brand',
-    sortable: true,
     colSizes: {
-      xs: '6',
-      sm: '2',
-    },
-    breakpointShow: {
-      md: true,
-      lg: true,
-      xl: true,
+      lg: 4,
     },
   },
   {
     label: 'Modelo',
     prop: 'vehicle.model',
-    sortable: true,
     colSizes: {
-      xs: '5',
-      sm: '2',
+      md: 5,
+      lg: 3,
     },
   },
   {
     label: 'Versión',
     prop: 'vehicle.version',
-    sortable: true,
     colSizes: {
-      xs: '2',
-    },
-    breakpointShow: {
-      md: true,
-      lg: true,
-      xl: true,
+      md: 5,
+      lg: 3,
     },
   },
   {
     label: 'Año',
     prop: 'vehicle.year',
-    sortable: true,
     colSizes: {
-      xs: '4',
-      sm: '2',
-      lg: '1'
+      md: 2,
+      lg: 2,
     },
   },
   {
     label: 'Fecha de alta',
     prop: 'vehicle.createdAt',
-    sortable: true,
     colSizes: {
-      xs: '2',
+      lg: 4,
     },
-    breakpointShow: {
-      md: true,
-      lg: true,
-      xl: true,
+  },
+  {
+    label: 'Estatus',
+    prop: 'vehicle.status',
+    colSizes: {
+      xs: 8,
+      md: 4,
+      lg: 4,
     },
-    className: 'p-0',
   },
 ];
+
+export const colorMaps: Record<VehicleStatus, string> = {
+  [VehicleStatus.elegible]: 'success',
+  [VehicleStatus.needsRevision]: 'warning',
+  [VehicleStatus.notElegible]: 'error',
+  [VehicleStatus.hasActiveGuarantee]: 'processing',
+};
+export const iconMaps: Record<VehicleStatus, string> = {
+  [VehicleStatus.elegible]: 'check-circle',
+  [VehicleStatus.needsRevision]: 'exclamation-circle',
+  [VehicleStatus.notElegible]: 'close-circle',
+  [VehicleStatus.hasActiveGuarantee]: 'sync',
+};
+export const statusLabels: Record<string, string> = {
+  [VehicleStatus[VehicleStatus.notElegible]]: 'No garantizable',
+  [VehicleStatus[VehicleStatus.hasActiveGuarantee]]: 'Garantía vigente',
+  [VehicleStatus[VehicleStatus.needsRevision]]: 'Necesita revisión',
+  [VehicleStatus[VehicleStatus.elegible]]: 'Garantizable',
+};

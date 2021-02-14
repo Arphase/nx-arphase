@@ -1,8 +1,9 @@
 <div nz-row
-     [nzGutter]="[24, 8]">
+     [nzGutter]="[12]"
+     nzAlign="center">
   <div nz-col
-       nzSpan="24"
-       class="flex-end pr-0 pb-3">
+       nzFlex="auto"
+       class="flex-end">
     <button nz-button
             (click)="create.emit()"
             type="button"
@@ -12,20 +13,55 @@
   </div>
 </div>
 
-<nz-empty *ngIf="!list?.length"
-          nzNotFoundContent="No hay compañías">
-</nz-empty>
+<nz-divider></nz-divider>
 
-<ng-container *ngIf="list?.length">
-  <ivt-table-header class="d-block mt-4"
-                    [columns]="columns"></ivt-table-header>
-
-  <ivt-virtual-scroll height="40vh"
-                      [list]="list">
-    <ng-template let-item>
-      <ivt-company-row [item]="item"
-                       (edit)="edit.emit($event)">
-      </ivt-company-row>
-    </ng-template>
-  </ivt-virtual-scroll>
-</ng-container>
+<nz-table #table
+          nzSize="small"
+          [nzData]="list || []"
+          [nzTotal]="list?.length || 0">
+  <thead>
+    <tr nz-row>
+      <th *ngFor="let column of columns"
+          [nzSortFn]="column.sortFn || true"
+          [nzColumnKey]="column.prop"
+          nz-col
+          [nzXs]="column.colSizes?.xs || 0"
+          [nzSm]="column.colSizes?.sm || 0"
+          [nzMd]="column.colSizes?.md || 0"
+          [nzLg]="column.colSizes?.lg"
+          [nzXl]="column.colSizes?.xl">
+        {{ column.label }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of table.data"
+        nz-row>
+      <td nz-col
+          nzXs="20"
+          nzMd="6">{{ item.businessName | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzMd="5">{{ item.rfc | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzMd="5">{{ item.contact | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzMd="6">{{ item.email | empty }}</td>
+      <td nz-col
+          nzXs="4"
+          nzMd="2">
+        <button nz-button
+                nzType="text"
+                type="button"
+                nz-tooltip
+                nzTooltipTitle="Editar compañía"
+                (click)="edit.emit(item)">
+          <i nz-icon
+             nzType="edit"
+             nzTheme="outline"></i>
+        </button></td>
+    </tr>
+  </tbody>
+</nz-table>

@@ -1,7 +1,11 @@
-<div nz-row
-     class="py-5">
+<nz-space nzSize="large"
+          nzDirection="vertical">
+  <nz-space-item></nz-space-item>
+</nz-space>
+
+<div nz-row>
   <div nz-col
-       nzSm="24"
+       [nzXs]="{ span: 20, offset: 2 }"
        [nzLg]="{ span: 12, offset: 6 }">
     <nz-card>
       <form nz-form
@@ -9,16 +13,12 @@
             [formGroup]="form"
             (ngSubmit)="submit()">
         <div nz-row
-             [nzGutter]="[24, 8]"
-             class="py-5">
+             [nzGutter]="12">
           <div nz-col
-               nzSpan="24"
-               class="text-center">
-            <h1 class="text-secondary h2">
-              Bienvenido a Innovatech
-            </h1>
-            <p class="text-muted">
-              Introduce tu correo y contraseña para acceder al portal.
+               nzSpan="24">
+            <h2 nz-typography>Bienvenido a Innovatech</h2>
+            <p>
+              Accede a la plataforma ingresando tu correo y contraseña
             </p>
           </div>
         </div>
@@ -58,16 +58,18 @@
           </div>
         </div>
 
-        <div nz-row
-             class="py-3">
+        <nz-space nzDirection="vertical">
+          <nz-space-item></nz-space-item>
+        </nz-space>
+
+        <div nz-row>
           <div nz-col
-               nzSpan="24"
-               class="flex-end">
+               nzSpan="24">
             <button nz-button
-                    class="w-100"
                     type="submit"
                     nzType="primary"
-                    [nzLoading]="loading">
+                    [nzLoading]="loading"
+                    nzBlock>
               Iniciar sesión
             </button>
           </div>

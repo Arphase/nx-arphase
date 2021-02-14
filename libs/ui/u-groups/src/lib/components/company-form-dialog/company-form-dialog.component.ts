@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
-import { Company, Group } from '@ivt/c-data';
+import { Company } from '@ivt/c-data';
 import { IvtFormComponent, updateFormControlsValueAndValidity } from '@ivt/u-ui';
-import { NzModalRef } from 'ng-zorro-antd/modal';
 
 import { createCompanyForm, createUserForm, patchCompanyForm } from '../../functions/group-form.functions';
 
@@ -12,7 +11,7 @@ import { createCompanyForm, createUserForm, patchCompanyForm } from '../../funct
   styleUrls: ['./company-form-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CompanyFormDialogComponent extends IvtFormComponent<Group> implements OnInit {
+export class CompanyFormDialogComponent extends IvtFormComponent<Company> implements OnInit {
   @Input() company: Company;
 
   get addressForm(): FormGroup {
@@ -23,7 +22,7 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
     return this.form.get('users') as FormArray;
   }
 
-  constructor(public modalRef: NzModalRef) {
+  constructor() {
     super();
     this.form = createCompanyForm();
   }
@@ -42,12 +41,13 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
     this.usersFormArray.removeAt(index);
   }
 
-  submit(): void {
+  submit(): boolean | Company {
     if (this.form.valid || this.form.disabled) {
-      this.modalRef.close(this.values);
+      return this.values;
     } else {
       this.form.markAllAsTouched();
       setTimeout(() => updateFormControlsValueAndValidity(this.form));
+      return false;
     }
   }
 }

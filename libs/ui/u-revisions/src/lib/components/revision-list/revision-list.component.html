@@ -1,33 +1,46 @@
-<div *ngIf="title"
-     nz-row>
-  <div nz-col
-       nzSpan="24">
-    <nz-page-header nzBackIcon
-                    [nzTitle]="title"
-                    [routerLink]="['/spa/vehicles']">
-    </nz-page-header>
-  </div>
-</div>
+<nz-page-header *ngIf="title"
+                nzBackIcon
+                [nzTitle]="title"
+                [routerLink]="['/spa/vehicles']">
+</nz-page-header>
 
 <div nz-row
-     [nzGutter]="[24, 8]"
-     class="mb-3">
+     [nzGutter]="12">
   <div nz-col
-       nzSm="16"
-       nzMd="20"
-       nzLg="12">
+       nzXs="18"
+       nzMd="12">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
-  <div nz-col
-       nzFlex="auto"
-       class="flex-end">
-    <button *ngIf="title"
-            nz-button
-            [routerLink]="['new']"
-            type="button"
-            nzType="primary">
-      Nueva revisión
-    </button>
+  <div *ngIf="title"
+       nz-col
+       nzXs="0"
+       nzMd="24"
+       nzFlex="auto">
+    <div class="flex-end">
+      <button nz-button
+              [routerLink]="['new']"
+              type="button"
+              nzType="primary">
+        Nueva revisión
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="title"
+       nz-col
+       nzXs="24"
+       nzMd="0"
+       nzFlex="auto">
+    <div class="flex-end">
+      <button nz-button
+              [routerLink]="['new']"
+              type="button"
+              nzType="primary"
+              nzShape="circle">
+        <i nz-icon
+           nzType="plus-circle"></i>
+      </button>
+    </div>
   </div>
 </div>
 
@@ -54,50 +67,59 @@
           (nzQueryParams)="filterItems.emit($event)">
   <thead>
     <tr nz-row>
-      <th nzSortFn="true"
-          nzColumnKey="user.firstName"
+      <th *ngFor="let column of columns"
+          [nzSortFn]="column.sortFn || true"
+          [nzColumnKey]="column.prop"
           nz-col
-          nzMd="4">Observaciones</th>
-      <th nzSortFn="true"
-          nzColumnKey="revision.observations"
-          nz-col
-          nzMd="4">VIN</th>
-      <th nzSortFn="true"
-          nzColumnKey="vehicle.vin"
-          nz-col
-          nzMd="4">Marca</th>
-      <th nzSortFn="true"
-          nzColumnKey="vehicle.brand"
-          nz-col
-          nzMd="4">Modelo</th>
-      <th nzSortFn="true"
-          nzColumnKey="vehicle.model"
-          nz-col
-          nzMd="4">Año</th>
-      <th nzSortFn="true"
-          nzColumnKey="revision.createdAt"
-          nz-col
-          nzMd="3">Fecha de alta</th>
-      <th nz-col
-          nzXs="1"></th>
+          [nzXs]="column.colSizes?.xs || 0"
+          [nzSm]="column.colSizes?.sm || 0"
+          [nzMd]="column.colSizes?.md || 0"
+          [nzLg]="column.colSizes?.lg"
+          [nzXl]="column.colSizes?.xl">
+        {{ column.label }}
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of table.data"
         nz-row>
       <td nz-col
-          nzXs="4">{{ item?.observations | empty }}</td>
+          nzXs="17"
+          nzMd="8"
+          nzLg="4">{{ item?.vehicle?.vin | empty }}</td>
       <td nz-col
-          nzXs="4">{{ item?.vehicle?.vin | empty }}</td>
+          nzXs="0"
+          nzMd="6"
+          nzLg="3">{{ item?.vehicle?.brand | empty }}</td>
       <td nz-col
-          nzXs="4">{{ item?.vehicle?.brand | empty }}</td>
+          nzXs="0"
+          nzLg="3">{{ item?.vehicle?.model | empty }}</td>
       <td nz-col
-          nzXs="4">{{ item?.vehicle?.model | empty }}</td>
+          nzXs="0"
+          nzLg="2">{{ item?.vehicle?.year | empty }}</td>
       <td nz-col
-          nzXs="4">{{ item?.vehicle?.year | empty }}</td>
+          nzXs="0"
+          nzMd="6"
+          nzLg="4">{{ item?.createdAt | date: 'dd/MM/yy' }}</td>
       <td nz-col
-          nzXs="3">{{ item?.createdAt | date: 'dd/mm/yy' }}</td>
-      <td nzXs="1">
+          nzXs="0"
+          nzLg="6">{{ item?.observations | empty }}</td>
+      <td nz-col
+          nzXs="4"
+          nzMd="2"
+          nzLg="1">
+        <nz-tag nz-tooltip
+                nzTooltipPlacement="top"
+                [nzTooltipTitle]="statusLabels[revisionStatus[item.status]] | empty"
+                [nzColor]="colorMaps[revisionStatus[item.status]]">
+          <i nz-icon
+             [nzType]="iconMaps[revisionStatus[item.status]]"></i>
+        </nz-tag>
+      </td>
+      <td nz-col
+          nzXs="3"
+          nzMd="2"
+          nzLg="1">
         <button nz-button
                 nz-dropdown
                 [nzDropdownMenu]="menu"

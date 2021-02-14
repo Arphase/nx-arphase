@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://bitbucket.org/arphase/innovatech/compare/v2.0.0...v2.1.0) (2021-02-14)
+
+
+### Features
+
+* **app:** add application version ([922545e](https://bitbucket.org/arphase/innovatech/commit/922545ee995c3885e657ec8e1686ca0aad248f45))
+* **auth:** responsive design ([35f4483](https://bitbucket.org/arphase/innovatech/commit/35f4483f41d7228eae9a0cf733bd8029eaf09151))
+* **groups:** responsive design ([d493534](https://bitbucket.org/arphase/innovatech/commit/d493534687de2d577f8d5833e74700acbe9b6483))
+* **guarantees:** responsive design ([a6721de](https://bitbucket.org/arphase/innovatech/commit/a6721de2509ecd48182eb130452dd77592f0e62d))
+* **revisions:** filter by text ([637cc70](https://bitbucket.org/arphase/innovatech/commit/637cc705ab6c618753dc0507894f4205f5440c7f))
+* **revisions:** list responsive design ([6314911](https://bitbucket.org/arphase/innovatech/commit/6314911b72fdfb43516267a03e71ca8478179b4f))
+* **ui:** autoselect directive ([6986011](https://bitbucket.org/arphase/innovatech/commit/6986011f0c70b2ceb1d9d4c0e09a918516ab4999))
+* **ui:** uninstall bootstrap ([ce1bff4](https://bitbucket.org/arphase/innovatech/commit/ce1bff4f36408c89267af6d2de43f447807d2917))
+* **vehicles:** responsive design ([ed2fe63](https://bitbucket.org/arphase/innovatech/commit/ed2fe630f53238d4de4ca767b77e29d3ddb48ae2))
+
 ## [2.0.0](https://bitbucket.org/arphase/innovatech/compare/v1.6.1...v2.0.0) (2021-02-12)
 
 

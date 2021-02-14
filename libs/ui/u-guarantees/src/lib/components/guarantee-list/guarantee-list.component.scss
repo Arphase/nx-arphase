@@ -1,9 +1,0 @@
-@use 'variables' as *;
-
-.color-status {
-  width: 8px;
-  border-top-left-radius: $border-radius;
-  border-bottom-left-radius: $border-radius;
-  cursor: pointer;
-  height: 46px;
-}

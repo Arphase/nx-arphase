@@ -1,6 +1,6 @@
 <form [formGroup]="form">
   <div nz-row
-       [nzGutter]="[24, 8]"
+       [nzGutter]="12"
        class="d-flex flex-center">
     <div nz-col
          nzXs="24"
@@ -26,10 +26,9 @@
         <nz-form-item>
           <nz-form-label nzRequired>País</nz-form-label>
           <nz-form-control apsAutoError>
-            <nz-select formControlName="country">
-              <nz-option *ngFor="let option of countryOptions"
-                         [nzValue]="option.value"
-                         [nzLabel]="option.label"></nz-option>
+            <nz-select apsAutoSelect
+                       formControlName="country"
+                       [nzOptions]="countryOptions">
             </nz-select>
           </nz-form-control>
         </nz-form-item>
@@ -41,10 +40,9 @@
         <nz-form-item>
           <nz-form-label nzRequired>Estado</nz-form-label>
           <nz-form-control apsAutoError>
-            <nz-select formControlName="state">
-              <nz-option *ngFor="let option of stateOptions"
-                         [nzValue]="option.value"
-                         [nzLabel]="option.label"></nz-option>
+            <nz-select apsAutoSelect
+                       formControlName="state"
+                       [nzOptions]="stateOptions">
             </nz-select>
           </nz-form-control>
         </nz-form-item>
@@ -56,10 +54,9 @@
         <nz-form-item>
           <nz-form-label nzRequired>Ciudad</nz-form-label>
           <nz-form-control apsAutoError>
-            <nz-select formControlName="city">
-              <nz-option *ngFor="let option of cityOptions"
-                         [nzValue]="option.value"
-                         [nzLabel]="option.label"></nz-option>
+            <nz-select apsAutoSelect
+                       formControlName="city"
+                       [nzOptions]="cityOptions">
             </nz-select>
           </nz-form-control>
         </nz-form-item>
@@ -109,7 +106,7 @@
   </div>
 
   <div nz-row
-       [nzGutter]="[24, 8]"
+       [nzGutter]="12"
        class="d-flex flex-center">
     <div nz-col
          nzXs="24"

@@ -15,7 +15,9 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
@@ -53,6 +55,8 @@ import { RevisionsComponent } from './revisions.component';
     NzTableModule,
     NzDividerModule,
     IvtSearchbarModule,
+    NzSpaceModule,
+    NzTagModule
   ],
   declarations: [
     RevisionFormComponent,
