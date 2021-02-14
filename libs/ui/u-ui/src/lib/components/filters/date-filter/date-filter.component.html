@@ -2,6 +2,7 @@
         nz-dropdown
         [nzType]="showActiveStatus ? 'primary' : 'default'"
         [nzDropdownMenu]="menu"
+        [nzClickHide]="false"
         nzTrigger="click">
 
   {{ mappedTitle }}
@@ -25,21 +26,19 @@
       nz-form
       nzLayout="vertical"
       [formGroup]="control"
-      class="content"
       (click)="$event.stopPropagation()">
     <li *ngIf="dateTypeOptions.length"
         nz-menu-item>
       <nz-radio-group formControlName="dateType">
         <label *ngFor="let option of dateTypeOptions"
                nz-radio
-               [nzValue]="option.value"
-               (click)="$event.stopPropagation()">{{ option.label }}</label>
+               [nzValue]="option.value">{{ option.label }}</label>
       </nz-radio-group>
     </li>
 
     <li nz-menu-item
         nz-row
-        (click)="$event.stopPropagation()">
+        [nzGutter]="12">
       <div nz-col
            nzSpan="12">
         <nz-form-item>
@@ -59,10 +58,13 @@
         </nz-form-item>
       </div>
     </li>
-
-    <nz-alert *ngIf="showError"
-              nzType="error"
-              nzMessage="La fecha inicial no puede ser después que la fecha final"
-              nzShowIcon></nz-alert>
+    <li *ngIf="showError"
+        nz-menu-item>
+      <nz-tag nzColor="error">
+        <i nz-icon
+           nzType="close-circle"></i>
+        <span>Rango de fechas inválido</span>
+      </nz-tag>
+    </li>
   </ul>
 </nz-dropdown-menu>

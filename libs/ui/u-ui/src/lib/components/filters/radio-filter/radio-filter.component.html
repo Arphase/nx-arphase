@@ -1,8 +1,9 @@
 <button nz-button
         nz-dropdown
+        nzTrigger="click"
         [nzType]="active ? 'primary' : 'default'"
         [nzDropdownMenu]="menu"
-        nzTrigger="click">
+        [nzClickHide]="false">
 
   {{ mappedTitle || label }}
 
@@ -26,11 +27,10 @@
   <nz-radio-group [formControl]="control">
     <ul nz-menu>
       <li *ngFor="let option of options"
-          nz-menu-item
-          (click)="$event.stopPropagation()">
+          nz-menu-item>
         <label nz-radio
                [nzValue]="option.value"
-               (click)="$event.stopPropagation(); filterChanged.emit(option.value)">{{ option.label }}</label>
+               (click)="filterChanged.emit(option.value)">{{ option.label }}</label>
       </li>
     </ul>
   </nz-radio-group>

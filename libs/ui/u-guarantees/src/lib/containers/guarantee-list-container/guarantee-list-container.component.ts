@@ -132,7 +132,7 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
 
   editInvoiceNumber(guarantee: Guarantee): void {
     this.modal.create({
-      nzTitle: `Actualizar número de gactura - Garantía ${transformFolio(guarantee.id)}`,
+      nzTitle: `Número de factura - Garantía ${transformFolio(guarantee.id)}`,
       nzContent: GuaranteeInvoiceNumberDialogContainerComponent,
       nzOnOk: component => component.submitChild(),
       nzComponentParams: { guarantee },

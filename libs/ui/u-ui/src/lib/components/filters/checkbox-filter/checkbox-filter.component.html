@@ -1,9 +1,10 @@
 <button nz-dropdown
         nz-button
+        nzTrigger="click"
         [disabled]="disabled"
         [nzType]="activeOptions ? 'primary' : 'default'"
         [nzDropdownMenu]="menu"
-        nzTrigger="click">
+        [nzClickHide]="false">
   {{ mappedTitle || label }}
   <i *ngIf="!activeOptions"
      nz-icon
@@ -29,8 +30,7 @@
           (click)="$event.stopPropagation()">
         <label nz-checkbox
                [(ngModel)]="option.checked"
-               [nzValue]="option"
-               (click)="$event.stopPropagation()">{{ option.label }}</label>
+               [nzValue]="option">{{ option.label }}</label>
       </li>
     </ul>
   </nz-checkbox-wrapper>
