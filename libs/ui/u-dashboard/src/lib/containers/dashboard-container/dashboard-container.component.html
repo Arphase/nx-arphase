@@ -1,12 +1,13 @@
 <ivt-dashboard [data]="data$ | async"
                [isEmpty]="isEmpty$ | async"
+               [groupOptions]="groupOptions$ | async"
+               [companyOptions]="companyOptions$ | async"
+               [userOptions]="userOptions$ | async"
+               [queryParams]="queryParams$ | async"
                [options]="options"
                [labels]="labels"
                [colors]="colors"
                [type]="type"
                [legend]="legend"
-               [groupOptions]="groupOptions$ | async"
-               [companyOptions]="companyOptions$ | async"
-               [userOptions]="userOptions$ | async"
                (filterItems)="filterItems($event)">
 </ivt-dashboard>

@@ -1,10 +1,4 @@
-<ivt-guarantee-invoice-number-dialog *ngIf="!(showSuccess$ | async) else successDialog"
-                                     [loading]="loading$ | async"
+<ivt-guarantee-invoice-number-dialog #form
                                      [item]="guarantee"
                                      (submitForm)="submit($event)">
 </ivt-guarantee-invoice-number-dialog>
-
-
-<ng-template #successDialog>
-  <ivt-success-dialog successMessage="El número de factura se ha actualizado con éxito"></ivt-success-dialog>
-</ng-template>

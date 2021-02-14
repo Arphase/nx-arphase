@@ -1,6 +1,11 @@
-<mat-form-field>
-  <input matInput
-         [formControl]="control">
-  <mat-icon matPrefix
-            class="mr-3">search</mat-icon>
-</mat-form-field>
+<nz-input-group [nzSuffix]="suffixIconSearch">
+  <input type="text"
+         nz-input
+         [formControl]="control"
+         placeholder="Buscar..." />
+</nz-input-group>
+
+<ng-template #suffixIconSearch>
+  <i nz-icon
+     nzType="search"></i>
+</ng-template>

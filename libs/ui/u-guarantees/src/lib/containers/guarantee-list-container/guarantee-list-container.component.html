@@ -5,8 +5,16 @@
                     [groupOptions]="groupOptions$ | async"
                     [companyOptions]="companyOptions$ | async"
                     [userOptions]="userOptions$ | async"
+                    [loading]="loading$ | async"
+                    [info]="info$ | async"
+                    [queryParams]="queryParams"
                     (filterItems)="filterItems($event)"
                     (getMoreItems)="getMoreItems()"
                     (exportExcel)="exportExcel()"
-                    (createPaymentOrder)="createPaymentOrder($event)">
+                    (downloadPdf)="downloadPdf($event)"
+                    (edit)="changeStatus($event)"
+                    (createPaymentOrder)="createPaymentOrder($event)"
+                    (updatePaymentOrder)="updatePaymentOrder($event)"
+                    (downloadPaymentOrder)="downloadPaymentOrder($event)"
+                    (editInvoiceNumber)="editInvoiceNumber($event)">
 </ivt-guarantee-list>

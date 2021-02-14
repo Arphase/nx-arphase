@@ -1,22 +1,9 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  OnInit,
-  Optional,
-  QueryList,
-  ViewChild,
-  ViewChildren,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Company, Group } from '@ivt/c-data';
-import { IvtAddressFormComponent, IvtFormComponent } from '@ivt/u-ui';
-import { takeUntil } from 'rxjs/operators';
+import { Company } from '@ivt/c-data';
+import { IvtFormComponent, updateFormControlsValueAndValidity } from '@ivt/u-ui';
 
 import { createCompanyForm, createUserForm, patchCompanyForm } from '../../functions/group-form.functions';
-import { UserFormComponent } from '../user-form/user-form.component';
 
 @Component({
   selector: 'ivt-company-form-dialog',
@@ -24,9 +11,8 @@ import { UserFormComponent } from '../user-form/user-form.component';
   styleUrls: ['./company-form-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CompanyFormDialogComponent extends IvtFormComponent<Group> implements OnInit, AfterViewInit {
-  @ViewChild(IvtAddressFormComponent) addressFormComponent: IvtAddressFormComponent;
-  @ViewChildren(UserFormComponent) userFormComponents: QueryList<UserFormComponent>;
+export class CompanyFormDialogComponent extends IvtFormComponent<Company> implements OnInit {
+  @Input() company: Company;
 
   get addressForm(): FormGroup {
     return this.form.get('address') as FormGroup;
@@ -36,10 +22,7 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
     return this.form.get('users') as FormArray;
   }
 
-  constructor(
-    public dialogRef: MatDialogRef<CompanyFormDialogComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public company: Company
-  ) {
+  constructor() {
     super();
     this.form = createCompanyForm();
   }
@@ -50,13 +33,6 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
     }
   }
 
-  ngAfterViewInit() {
-    this.stateChanged.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.addressFormComponent.markForCheck();
-      this.userFormComponents.forEach(userFormComponent => userFormComponent.markForCheck());
-    });
-  }
-
   addUser(): void {
     this.usersFormArray.push(createUserForm());
   }
@@ -65,12 +41,13 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Group> implemen
     this.usersFormArray.removeAt(index);
   }
 
-  submit(): void {
+  submit(): boolean | Company {
     if (this.form.valid || this.form.disabled) {
-      this.dialogRef.close(this.values);
+      return this.values;
     } else {
       this.form.markAllAsTouched();
+      setTimeout(() => updateFormControlsValueAndValidity(this.form));
+      return false;
     }
-    this.stateChanged.next();
   }
 }

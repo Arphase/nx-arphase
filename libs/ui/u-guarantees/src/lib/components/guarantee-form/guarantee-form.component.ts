@@ -7,13 +7,13 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
-  ViewChild,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ApsValidators } from '@arphase/ui';
 import { Guarantee, isVehicleElegible, PersonTypes, Select, Vehicle } from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
-import { createAddressForm, IvtAddressFormComponent, IvtFormComponent, IvtValidators } from '@ivt/u-ui';
-import { createVehicleForm, VehicleFormComponent } from '@ivt/u-vehicles';
+import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
+import { createVehicleForm } from '@ivt/u-vehicles';
 import { omit } from 'lodash-es';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -22,31 +22,31 @@ export function createGuaranteeForm(): FormGroup {
   return new FormGroup({
     id: new FormControl(null),
     productId: new FormControl(null),
-    startDate: new FormControl(null, Validators.required),
-    endDate: new FormControl(null, Validators.required),
-    companyId: new FormControl(null, Validators.required),
-    kilometrageStart: new FormControl(null, IvtValidators.requiredNumber),
-    kilometrageEnd: new FormControl(null, IvtValidators.requiredNumber),
-    productType: new FormControl(null, Validators.required),
+    startDate: new FormControl(null, ApsValidators.required),
+    endDate: new FormControl(null, ApsValidators.required),
+    companyId: new FormControl(null, ApsValidators.required),
+    kilometrageStart: new FormControl(null, ApsValidators.requiredNumber),
+    kilometrageEnd: new FormControl(null, ApsValidators.requiredNumber),
+    productType: new FormControl(null, ApsValidators.required),
     client: new FormGroup({
       id: new FormControl(null),
-      personType: new FormControl(null, Validators.required),
-      rfc: new FormControl(null, [Validators.required, IvtValidators.rfc(RfcValidatorTypes.any)]),
-      phone: new FormControl(null, [Validators.required, IvtValidators.phone]),
-      email: new FormControl(null, [Validators.required, IvtValidators.email]),
-      salesPlace: new FormControl(null, Validators.required),
+      personType: new FormControl(null, ApsValidators.required),
+      rfc: new FormControl(null, [ApsValidators.required, ApsValidators.rfc(RfcValidatorTypes.any)]),
+      phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
+      email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
+      salesPlace: new FormControl(null, ApsValidators.required),
       physicalInfo: new FormGroup({
         id: new FormControl(null),
-        name: new FormControl(null, Validators.required),
-        lastName: new FormControl(null, Validators.required),
-        secondLastName: new FormControl(null, Validators.required),
-        birthDate: new FormControl(null, Validators.required),
+        name: new FormControl(null, ApsValidators.required),
+        lastName: new FormControl(null, ApsValidators.required),
+        secondLastName: new FormControl(null, ApsValidators.required),
+        birthDate: new FormControl(null, ApsValidators.required),
       }),
       moralInfo: new FormGroup({
         id: new FormControl(null),
-        businessName: new FormControl(null, Validators.required),
-        constitutionDate: new FormControl(null, Validators.required),
-        adviser: new FormControl(null, Validators.required),
+        businessName: new FormControl(null, ApsValidators.required),
+        constitutionDate: new FormControl(null, ApsValidators.required),
+        adviser: new FormControl(null, ApsValidators.required),
       }),
       address: createAddressForm(),
     }),
@@ -61,8 +61,6 @@ export function createGuaranteeForm(): FormGroup {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnChanges, AfterViewInit {
-  @ViewChild(IvtAddressFormComponent) addressFormComponent: IvtAddressFormComponent;
-  @ViewChild(VehicleFormComponent) vehicleFormComponent: VehicleFormComponent;
   @Input() productOptions: Select[] = [];
   @Input() companyOptions: Select[] = [];
   @Input() disabledCompanyInput: boolean;
@@ -99,7 +97,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
   }
 
   get isElegible(): boolean {
-    return this.currentVehicle && isVehicleElegible(this.currentVehicle);
+    return !this.currentVehicle || isVehicleElegible(this.currentVehicle);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -148,11 +146,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         },
       });
     }
-
-    this.stateChanged.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.addressFormComponent.markForCheck();
-      this.vehicleFormComponent.markForCheck();
-    });
   }
 
   personTypeChange(value: string): void {

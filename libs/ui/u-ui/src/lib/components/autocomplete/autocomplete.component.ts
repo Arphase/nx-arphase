@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -7,19 +7,18 @@ import { map, startWith } from 'rxjs/operators';
   selector: 'ivt-autocomplete',
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.scss'],
-  // Don't use change detection for displaying error messages
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtAutocompleteComponent implements OnInit {
+  @Input() required: boolean;
   @Input() label: string;
   @Input() type: string;
   @Input() control: FormControl;
-  @Input() errors;
   @Input() options: string[] = [];
-  filteredOptions: Observable<string[]>;
+  filteredOptions$: Observable<string[]>;
 
   ngOnInit() {
-    this.filteredOptions = this.control.valueChanges.pipe(
+    this.filteredOptions$ = this.control.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
     );

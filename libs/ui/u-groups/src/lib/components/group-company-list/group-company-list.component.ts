@@ -12,4 +12,8 @@ import { columns } from './group-company-list.constants';
 })
 export class GroupCompanyListComponent extends IvtListComponent<Company> {
   columns = columns;
+  businessNameSortFn = (a: Company, b: Company) => a.businessName.localeCompare(b.businessName);
+  rfcSortFn = (a: Company, b: Company) => a.rfc.localeCompare(b.rfc);
+  contactSortFn = (a: Company, b: Company) => a.contact.localeCompare(b.contact);
+  emailSortFn = (a: Company, b: Company) => a.email.localeCompare(b.email);
 }

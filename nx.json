@@ -175,6 +175,12 @@
       "tags": [
         "front"
       ]
+    },
+    "aps-u-ui": {
+      "tags": [
+        "arphase",
+        "front"
+      ]
     }
   }
 }

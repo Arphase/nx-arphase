@@ -1,103 +1,165 @@
 <form [formGroup]="form">
-  <div class="row d-flex flex-center">
-    <div class="col-12 col-md-6 col-lg-3">
-      <ivt-form-field label="Código postal">
-        <input ivtInput
-               maxlength="5"
-               mask="00000"
-               autocomplete="off"
-               formControlName="zipcode">
-      </ivt-form-field>
+  <div nz-row
+       [nzGutter]="12"
+       class="d-flex flex-center">
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
+      <nz-form-item>
+        <nz-form-label nzRequired>Código postal</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 maxlength="5"
+                 mask="00000"
+                 autocomplete="off"
+                 formControlName="zipcode" />
+        </nz-form-control>
+      </nz-form-item>
     </div>
 
     <ng-container *ngIf="showAddressSelects">
-      <div class="col-12 col-md-6 col-lg-3">
-        <ivt-form-field label="País">
-          <mat-select formControlName="country">
-            <mat-option *ngFor="let option of countryOptions"
-                        [value]="option.value">
-              {{ option.label }}
-            </mat-option>
-          </mat-select>
-        </ivt-form-field>
+      <div nz-col
+           nzXs="24"
+           nzMd="12"
+           nzLg="6">
+        <nz-form-item>
+          <nz-form-label nzRequired>País</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-select apsAutoSelect
+                       formControlName="country"
+                       [nzOptions]="countryOptions">
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </div>
-      <div class="col-12 col-md-6 col-lg-3">
-        <ivt-form-field label="Estado">
-          <mat-select formControlName="state">
-            <mat-option *ngFor="let option of stateOptions"
-                        [value]="option.value">
-              {{ option.label }}
-            </mat-option>
-          </mat-select>
-        </ivt-form-field>
+      <div nz-col
+           nzXs="24"
+           nzMd="12"
+           nzLg="6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Estado</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-select apsAutoSelect
+                       formControlName="state"
+                       [nzOptions]="stateOptions">
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </div>
-      <div class="col-12 col-md-6 col-lg-3">
-        <ivt-form-field label="Ciudad">
-          <mat-select formControlName="city">
-            <mat-option *ngFor="let option of cityOptions"
-                        [value]="option.value">
-              {{ option.label }}
-            </mat-option>
-          </mat-select>
-        </ivt-form-field>
+      <div nz-col
+           nzXs="24"
+           nzMd="12"
+           nzLg="6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Ciudad</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-select apsAutoSelect
+                       formControlName="city"
+                       [nzOptions]="cityOptions">
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </ng-container>
 
     <ng-container *ngIf="!showAddressSelects">
-      <div class="col-12 col-md-6 col-lg-3">
-        <ivt-form-field label="País">
-          <input ivtInput
-                 formControlName="country">
-        </ivt-form-field>
+      <div nz-col
+           nzXs="24"
+           nzMd="12"
+           nzLg="6">
+        <nz-form-item>
+          <nz-form-label nzRequired>País</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   formControlName="country" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
 
-      <div class="col-12 col-md-6 col-lg-3">
-        <ivt-form-field label="Estado">
-          <input ivtInput
-                 formControlName="state">
-        </ivt-form-field>
+      <div nz-col
+           nzXs="24"
+           nzMd="12"
+           nzLg="6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Estado</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   formControlName="state" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
 
-      <div class="col-12 col-md-6 col-lg-3">
-        <ivt-form-field label="Ciudad">
-          <input ivtInput
-                 formControlName="city">
-        </ivt-form-field>
+      <div nz-col
+           nzXs="24"
+           nzMd="12"
+           nzLg="6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Ciudad</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   formControlName="city" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </ng-container>
   </div>
 
-  <div class="row d-flex flex-center">
-    <div class="col-12 col-md-6 col-lg-3">
+  <div nz-row
+       [nzGutter]="12"
+       class="d-flex flex-center">
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
       <ivt-autocomplete label="Colonia"
                         [control]="form.get('suburb')"
-                        [options]="suburbOptions">
+                        [options]="suburbOptions"
+                        [required]="true">
       </ivt-autocomplete>
     </div>
-    <div class="col-12 col-md-6 col-lg-3">
-      <ivt-form-field label="Calle">
-        <input ivtInput
-               maxlength="50"
-               formControlName="street">
-      </ivt-form-field>
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
+      <nz-form-item>
+        <nz-form-label nzRequired>Calle</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="street"
+                 maxlength="50" />
+        </nz-form-control>
+      </nz-form-item>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-3">
-      <ivt-form-field label="Número externo">
-        <input ivtInput
-               maxlength="10"
-               autocomplete="off"
-               formControlName="externalNumber">
-      </ivt-form-field>
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
+      <nz-form-item>
+        <nz-form-label nzRequired>Número exterior</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="externalNumber"
+                 maxlength="10"
+                 autocomplete="off" />
+        </nz-form-control>
+      </nz-form-item>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-3">
-      <ivt-form-field label="Número interno">
-        <input ivtInput
-               maxlength="10"
-               autocomplete="off"
-               formControlName="internalNumber">
-      </ivt-form-field>
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
+      <nz-form-item>
+        <nz-form-label>Número interior</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="internalNumber"
+                 maxlength="10"
+                 autocomplete="off" />
+        </nz-form-control>
+      </nz-form-item>
     </div>
   </div>
 </form>

@@ -1,27 +1,33 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
+import { ApsAutoErrorModule } from '@arphase/ui';
 import { PermissionsModule } from '@ivt/u-state';
 import {
   IvtAddressFormModule,
   IvtEmptyModule,
-  IvtEmptyStateModule,
-  IvtExpansionPanelModule,
-  IvtFormFieldModule,
-  IvtGoBackTitleModule,
-  IvtInputModule,
-  IvtLoadingModule,
   IvtPhoneModule,
   IvtRowModule,
   IvtSearchbarModule,
   IvtTableHeaderModule,
-  IvtTextTruncateTooltipModule,
   IvtVirtualScrollModule,
 } from '@ivt/u-ui';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { CompanyFormDialogComponent } from './components/company-form-dialog/company-form-dialog.component';
@@ -29,7 +35,6 @@ import { CompanyRowComponent } from './components/company-row/company-row.compon
 import { GroupCompanyListComponent } from './components/group-company-list/group-company-list.component';
 import { GroupFormComponent } from './components/group-form/group-form.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
-import { GroupRowComponent } from './components/group-row/group-row.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { GroupCompanyListContainerComponent } from './containers/group-company-list-container/group-company-list-container.component';
 import { GroupFormContainerComponent } from './containers/group-form-container/group-form-container.component';
@@ -43,25 +48,31 @@ import { GroupsComponent } from './groups.component';
     GroupsRoutingModule,
     PermissionsModule,
     ReactiveFormsModule,
-    MatDialogModule,
-    MatIconModule,
-    IvtExpansionPanelModule,
-    IvtFormFieldModule,
-    IvtInputModule,
+    NzIconModule,
     IvtAddressFormModule,
     IvtRowModule,
-    IvtLoadingModule,
-    IvtTextTruncateTooltipModule,
     IvtEmptyModule,
-    IvtEmptyStateModule,
+    NzEmptyModule,
     IvtTableHeaderModule,
     IvtVirtualScrollModule,
-    IvtGoBackTitleModule,
+    NzPageHeaderModule,
     IvtSearchbarModule,
     IvtPhoneModule,
-    MatCardModule,
-    MatButtonModule,
-    NgxMaskModule
+    NzCardModule,
+    NzButtonModule,
+    NgxMaskModule,
+    NzGridModule,
+    NzMessageModule,
+    NzCollapseModule,
+    NzFormModule,
+    NzInputModule,
+    ApsAutoErrorModule,
+    NzModalModule,
+    NzTypographyModule,
+    NzToolTipModule,
+    NzSpaceModule,
+    NzDividerModule,
+    NzTableModule,
   ],
   declarations: [
     GroupsComponent,
@@ -73,7 +84,6 @@ import { GroupsComponent } from './groups.component';
     CompanyFormDialogComponent,
     UserFormComponent,
     CompanyRowComponent,
-    GroupRowComponent,
     GroupCompanyListContainerComponent,
   ],
   entryComponents: [CompanyFormDialogComponent],

@@ -1,39 +1,56 @@
-<form [formGroup]="form"
+<form nz-form
+      nz-row
+      nzLayout="vertical"
+      [formGroup]="form"
       (ngSubmit)="submit()">
-  <div class="row mb-3">
-    <div class="col">
-      <ivt-go-back-title [title]="item?.id ? 'Editar Vehículo' : 'Nuevo Vehículo'"></ivt-go-back-title>
-    </div>
-  </div>
+  <nz-space nzDirection="vertical"
+            nz-col
+            nzSpan="24"
+            nzSize="middle">
+    <nz-page-header nzBackIcon
+                    [nzTitle]="item?.id ? 'Editar Vehículo' : 'Nuevo Vehículo'"
+                    [routerLink]="['..']">
+    </nz-page-header>
 
-  <div *ngIf="invalidVin"
-       class="row my-3">
-    <div class="col bg-alert text-white py-3 rounded flex-start">
-      <mat-icon class="mr-3">error</mat-icon>
-      <span> Un vehículo con este VIN ya está dado de alta en la plataforma. Intente con otro VIN. </span>
+    <div *ngIf="invalidVin"
+         nz-row
+         [nzGutter]="12"
+         class="my-3">
+      <div nz-col
+           nzSpan="24"
+           class="bg-alert text-white py-3 rounded flex-start">
+        <i nz-icon
+           nzType="close-circle"
+           nzTheme="outline"></i>
+        <span> Un vehículo con este VIN ya está dado de alta en la plataforma. Intente con otro VIN. </span>
+      </div>
     </div>
-  </div>
 
-  <ivt-vehicle-form [form]="form"
-                    [showCompanyInput]="true"
-                    [companyOptions]="companyOptions"
-                    (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
+    <ivt-vehicle-form [form]="form"
+                      [showCompanyInput]="true"
+                      [companyOptions]="companyOptions"
+                      (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
 
-  <div class="row mt-4 mb-3">
-    <div class="col px-0 flex-end">
-      <button mat-raised-button
-              class="mr-3"
-              type="button"
-              [routerLink]="['..']">
-        Cancelar
-      </button>
-      <button mat-raised-button
-              type="submit"
-              color="primary"
-              [loading]="loading"
-              [disabled]="invalidVin">
-        Guardar
-      </button>
-    </div>
-  </div>
+    <nz-space-item nz-row>
+      <div nz-col
+           nzSpan="24"
+           class="flex-end">
+        <nz-space>
+          <nz-space-item>
+            <button nz-button
+                    type="button"
+                    [routerLink]="['..']">
+              Cancelar
+            </button>
+          </nz-space-item>
+          <button nz-button
+                  type="submit"
+                  nzType="primary"
+                  [nzLoading]="loading">
+            Guardar
+          </button>
+        </nz-space>
+      </div>
+    </nz-space-item>
+  </nz-space>
 </form>

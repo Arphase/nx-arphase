@@ -22,7 +22,7 @@ export class PaymentOrderEntity extends BaseEntity implements PaymentOrder {
   @UpdateDateColumn({ select: false })
   updatedAt: Date;
 
-  @Column()
+  @Column({ nullable: true })
   distributor: string;
 
   @OneToMany(() => GuaranteeEntity, guarantee => guarantee.paymentOrder, {

@@ -4,7 +4,7 @@ import { Revision } from '@ivt/c-data';
 import { IvtState, RevisionCollectionService, selectRouteParam } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { take, takeUntil } from 'rxjs/operators';
 
 import { createRevisionForm } from '../../components/revision-form/revision-form.component';
@@ -23,10 +23,10 @@ export class RevisionFormContainerComponent extends IvtFormContainerComponent<Re
   constructor(
     protected revisionCollectionService: RevisionCollectionService,
     protected router: Router,
-    protected toastr: ToastrService,
+    protected messageService: NzMessageService,
     private store: Store<IvtState>
   ) {
-    super(revisionCollectionService, router, toastr);
+    super(revisionCollectionService, router, messageService);
   }
 
   ngOnInit() {

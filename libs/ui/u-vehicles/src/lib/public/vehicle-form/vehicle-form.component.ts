@@ -1,6 +1,5 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -8,9 +7,10 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ApsValidators } from '@arphase/ui';
 import { Select, Vehicle, VEHICLE_VIN_LENGTH } from '@ivt/c-data';
-import { IvtFormComponent, IvtValidators } from '@ivt/u-ui';
+import { IvtFormComponent } from '@ivt/u-ui';
 import { filter, takeUntil } from 'rxjs/operators';
 
 export function createVehicleForm(vehicle?: Vehicle) {
@@ -18,22 +18,22 @@ export function createVehicleForm(vehicle?: Vehicle) {
 
   const form = new FormGroup({
     id: new FormControl(null),
-    brand: new FormControl('', Validators.required),
-    model: new FormControl('', Validators.required),
-    version: new FormControl('', Validators.required),
+    brand: new FormControl('', ApsValidators.required),
+    model: new FormControl('', ApsValidators.required),
+    version: new FormControl('', ApsValidators.required),
     year: new FormControl('', [
-      IvtValidators.requiredNumber,
-      Validators.min(todayYear - 20),
-      Validators.max(todayYear + 1),
+      ApsValidators.requiredNumber,
+      ApsValidators.min(todayYear - 20),
+      ApsValidators.max(todayYear + 1),
     ]),
     vin: new FormControl('', [
-      Validators.required,
-      Validators.minLength(VEHICLE_VIN_LENGTH),
-      Validators.maxLength(VEHICLE_VIN_LENGTH),
+      ApsValidators.required,
+      ApsValidators.minLength(VEHICLE_VIN_LENGTH),
+      ApsValidators.maxLength(VEHICLE_VIN_LENGTH),
     ]),
-    motorNumber: new FormControl('', Validators.required),
-    horsePower: new FormControl('', [IvtValidators.requiredNumber, Validators.min(1), Validators.max(400)]),
-    companyId: new FormControl(null, Validators.required),
+    motorNumber: new FormControl('', ApsValidators.required),
+    horsePower: new FormControl('', [ApsValidators.requiredNumber, ApsValidators.min(1), ApsValidators.max(400)]),
+    companyId: new FormControl(null, ApsValidators.required),
   });
 
   if (vehicle) {
@@ -55,10 +55,6 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
   @Input() companyOptions: Select[] = [];
   @Output() verifyVin = new EventEmitter<string>();
 
-  constructor(private cdr: ChangeDetectorRef) {
-    super();
-  }
-
   ngOnChanges(changes: SimpleChanges) {
     if (changes.companyId) {
       this.form.get('companyId').patchValue(this.companyId || '');
@@ -73,9 +69,5 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
         )
         .subscribe(vin => this.verifyVin.emit(vin));
     }
-  }
-
-  markForCheck(): void {
-    this.cdr.markForCheck();
   }
 }

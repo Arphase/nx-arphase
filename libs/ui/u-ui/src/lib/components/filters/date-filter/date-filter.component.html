@@ -1,7 +1,9 @@
 <button *ngIf="control && control.get('startDate') && control.get('endDate')"
         class="ivt-filter"
-        [ngClass]="{'active-filter': showActiveStatus}"
-        [matMenuTriggerFor]="menu">
+        [ngClass]="{ 'active-filter': showActiveStatus }"
+        nz-dropdown
+        [nzDropdownMenu]="menu"
+        nzTrigger="click">
   <span *ngIf="mappedTitle"
         class="ivt-button-label">
     {{ mappedTitle }}
@@ -11,63 +13,70 @@
     {{ label }}
   </span>
   <i *ngIf="!showActiveStatus"
-     class="material-icons float-right">
-    expand_more
-  </i>
-  <i *ngIf="showActiveStatus"
-     class="material-icons delete-icon right"
-     (click)="deleteFilters(); $event.stopPropagation()">
-    close
-  </i>
+     nz-icon
+     nzType="down"
+     nzTheme="outline"
+     class="right"></i>
+
+  <i nz-icon
+     *ngIf="showActiveStatus"
+     nzType="close"
+     nzTheme="outline"
+     class="delete-icon right"
+     (click)="deleteFilters(); $event.stopPropagation()"></i>
 </button>
-<mat-menu #menu="matMenu">
-  <div class="content"
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <div nz-menu
+       nz-form
+       nzLayout="vertical"
+       [formGroup]="control"
+       class="content"
        (click)="$event.stopPropagation()">
-    <div class="row">
-      <div class="col p-0">
-        <div class="mb-3"
-             *ngIf="dateTypeOptions.length">
-          <mat-radio-group [formControl]="control.get('dateType')">
-            <ng-container *ngFor="let option of dateTypeOptions">
-              <mat-radio-button class="mr-3"
-                                [value]="option.value"
-                                (click)="$event.stopPropagation()">{{ option.label }}</mat-radio-button>
-            </ng-container>
-          </mat-radio-group>
+    <div nz-row
+         [nzGutter]="12">
+      <div nz-col>
+        <div *ngIf="dateTypeOptions.length">
+          <nz-radio-group formControlName="dateType">
+            <label *ngFor="let option of dateTypeOptions"
+                   nz-radio
+                   [nzValue]="option.value"
+                   (click)="$event.stopPropagation()">{{ option.label }}</label>
+          </nz-radio-group>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-6">
-        <mat-form-field>
-          <mat-label>Fecha inicial</mat-label>
-          <input matInput
-                 [formControl]="control.get('startDate')"
-                 [matDatepicker]="startDate">
-          <mat-datepicker-toggle matSuffix
-                                 [for]="startDate"></mat-datepicker-toggle>
-          <mat-datepicker #startDate></mat-datepicker>
-        </mat-form-field>
+    <div nz-row
+         [nzGutter]="12">
+      <div nz-col
+           nxSpan="12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Fecha inicial</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-date-picker formControlName="startDate"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
       </div>
-      <div class="col-6">
-        <mat-form-field>
-          <mat-label>Fecha final</mat-label>
-          <input matInput
-                 [formControl]="control.get('endDate')"
-                 [matDatepicker]="endDate">
-          <mat-datepicker-toggle matSuffix
-                                 [for]="endDate"></mat-datepicker-toggle>
-          <mat-datepicker #endDate></mat-datepicker>
-        </mat-form-field>
+      <div nz-col
+           nxSpan="12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Fecha final</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-date-picker formControlName="endDate"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
 
     <div *ngIf="showError"
-         class="row small">
-      <div class="col text-alert">
+         nz-row
+         [nzGutter]="12"
+         class="small">
+      <div nz-col
+           nzSpan="24"
+           class="text-alert">
         <span>La fecha inicial no puede ser después que la fecha final</span>
       </div>
     </div>
   </div>
-</mat-menu>
+</nz-dropdown-menu>

@@ -1,18 +1,20 @@
-import { GuaranteeStatus } from '@ivt/c-data';
+import { DEFAULT_LIMIT_SIZE, GuaranteeStatus } from '@ivt/c-data';
 import { convertStringToNumberArray } from '@ivt/c-utils';
 import { Transform } from 'class-transformer';
-import { IsArray, IsEnum, IsNotEmpty, IsNumber, IsNumberString, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class GetGuaranteesFilterDto {
   @IsOptional()
   @IsNotEmpty()
-  @IsNumberString()
-  offset;
+  @IsNumber()
+  @Transform(({ obj, key }) => Number([obj[key]]))
+  pageSize = DEFAULT_LIMIT_SIZE;
 
   @IsOptional()
   @IsNotEmpty()
-  @IsNumberString()
-  limit;
+  @IsNumber()
+  @Transform(({ obj, key }) => Number([obj[key]]))
+  pageIndex = 1;
 
   @IsOptional()
   @IsNotEmpty()

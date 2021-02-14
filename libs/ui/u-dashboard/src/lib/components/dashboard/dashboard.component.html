@@ -1,60 +1,76 @@
-<div class="row mb-3">
-  <div class="col">
+<div nz-row
+     class="mb-3">
+  <div nz-col
+       nzSpan="24">
     <h1 class="font-weight-light h2 text-primary">Dashboard</h1>
   </div>
 </div>
 
-<div class="row">
-  <div class="col">
-    <mat-card>
+<div nz-row>
+  <div nz-col
+       nzSpan="24">
+    <nz-card>
       <ng-container *ngIf="data">
-        <div class="row mb-3">
-          <div class="col text-center">
+        <div nz-row
+             [nzGutter]="12"
+             class="mb-3">
+          <div nz-col
+               nzSpan="24"
+               class="text-center">
             <h3>Resumen de Garantías</h3>
           </div>
         </div>
 
-        <div class="row bg-light mx-0 mb-4 rounded mt-3 py-3 px-2">
-          <div class="col-auto px-1 my-2 filter-column">
-            <ivt-date-filter class="mr-3"
-                             label="Fecha"
+        <nz-divider></nz-divider>
+
+        <div nz-row
+             nzAlign="middle"
+             [nzGutter]="[12, 12]">
+          <div nz-col>
+            <ivt-date-filter label="Fecha"
                              [dateTypeOptions]="dateTypeOptions"
+                             [currentDates]="queryParams?.dates"
                              (filterItems)="updateDateFilter($event)">
             </ivt-date-filter>
           </div>
-          <div class="col-auto px-1 my-2 filter-column">
+          <div nz-col>
             <ivt-checkbox-filter *ngIf="groupOptions?.length"
-                                 class="mr-3"
                                  label="Grupos"
                                  [options]="groupOptions"
+                                 [preselectedOptions]="queryParams?.groupIds"
                                  (filterItems)="updateGroupsFilters($event)">
             </ivt-checkbox-filter>
           </div>
-          <div class="col-auto px-1 my-2 filter-column">
+          <div nz-col>
             <ivt-checkbox-filter *ngIf="companyOptions?.length"
-                                 class="mr-3"
                                  label="Compañías"
                                  [options]="companyOptions"
+                                 [preselectedOptions]="queryParams?.companyIds"
                                  (filterItems)="updateCompaniesFilters($event)">
             </ivt-checkbox-filter>
           </div>
-          <div class="col-auto px-1 my-2 filter-column">
+          <div nz-col>
             <ivt-checkbox-filter *ngIf="userOptions?.length"
-                                 class="mr-3"
                                  label="Vendedores"
                                  [options]="userOptions"
+                                 [preselectedOptions]="queryParams?.userIds"
                                  (filterItems)="updateUsersFilters($event)">
             </ivt-checkbox-filter>
           </div>
         </div>
 
-        <ivt-empty-state *ngIf="isEmpty"
-                         message="No hay datos">
-        </ivt-empty-state>
+        <nz-divider></nz-divider>
+
+        <nz-empty *ngIf="isEmpty"
+                  nzNotFoundContent="No hay datos">
+        </nz-empty>
 
         <div *ngIf="!isEmpty"
-             class="row">
-          <div class="col-12 col-md-8 mb-3">
+             nz-row>
+          <div nz-col
+               nzSm="24"
+               nzLg="16"
+               class="mb-3">
             <div style="display: block;">
               <canvas baseChart
                       [data]="data"
@@ -66,22 +82,28 @@
               </canvas>
             </div>
           </div>
-          <div class="col-12 col-md-4">
-            <div class="row my-3"
-                 *ngFor="let item of labels; let i = index">
-              <div class="col">
-                <h6 class="flex-start">
-                  <mat-icon class="mr-2"
-                            [style.color]="colors[0]?.backgroundColor[i]">
-                    fiber_manual_record
-                  </mat-icon>
-                  {{ item }}: {{ data[i] | currency}}
-                </h6>
-              </div>
-            </div>
+          <div nz-col
+               nzSm="24"
+               nzLg="8">
+            <h4 *ngFor="let item of labels; let i = index"
+                nz-typography>
+              <nz-space>
+                <nz-space-item class="flex-start">
+                  <i nz-icon
+                     nzType="info-circle"
+                     nzTheme="fill"
+                     [style.color]="colors[0]?.backgroundColor[i]"></i>
+                </nz-space-item>
+                <nz-space-item>
+                  <span>
+                    {{ item }}: {{ data[i] | currency }}
+                  </span>
+                </nz-space-item>
+              </nz-space>
+            </h4>
           </div>
         </div>
       </ng-container>
-    </mat-card>
+    </nz-card>
   </div>
 </div>

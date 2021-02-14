@@ -1,7 +1,7 @@
 import 'dayjs/locale/es';
 
-import { GetGuaranteesFilterDto, GuaranteeEntity, IMAGE_ASSETS_PATH, transformFolio } from '@ivt/a-state';
-import { Guarantee, User, UserRoles } from '@ivt/c-data';
+import { GetGuaranteesFilterDto, GuaranteeEntity, IMAGE_ASSETS_PATH } from '@ivt/a-state';
+import { Guarantee, transformFolio, User, UserRoles } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
@@ -235,7 +235,7 @@ export function applyGuaranteeFilter(
   filterDto: Partial<GetGuaranteesFilterDto>,
   user: Partial<User>
 ): SelectQueryBuilder<GuaranteeEntity> {
-  const { limit, offset, sort, direction, text, status } = filterDto;
+  const { pageIndex, pageSize, sort, direction, text, status } = filterDto;
 
   query
     .leftJoinAndSelect('guarantee.client', 'client')
@@ -245,7 +245,7 @@ export function applyGuaranteeFilter(
     .leftJoinAndSelect('guarantee.paymentOrder', 'paymentOrder')
     .leftJoinAndSelect('guarantee.product', 'product')
     .leftJoinAndSelect('guarantee.vehicle', 'vehicle')
-    .leftJoin('guarantee.company', 'company')
+    .leftJoinAndSelect('guarantee.company', 'company')
     .leftJoin('guarantee.user', 'user')
     .groupBy('guarantee.id')
     .addGroupBy('client.id')
@@ -291,7 +291,9 @@ export function applyGuaranteeFilter(
 
   applyGuaranteeSharedFilters(query, filterDto);
 
-  query.take(limit).skip(offset);
+  if (pageSize && pageIndex) {
+    query.take(pageSize).skip(pageSize * (pageIndex - 1));
+  }
 
   return query;
 }

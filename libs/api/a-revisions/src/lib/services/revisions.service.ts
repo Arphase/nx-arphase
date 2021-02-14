@@ -5,7 +5,7 @@ import {
   UpdateRevisionDto,
   VehicleRepository,
 } from '@ivt/a-state';
-import { Revision, RevisionStatus, VehicleStatus } from '@ivt/c-data';
+import { IvtCollectionResponse, Revision, RevisionStatus, VehicleStatus } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -20,8 +20,8 @@ export class RevisionsService {
     private connection: Connection
   ) {}
 
-  async getRevisions(getRevisionsDto: GetRevisionsDto): Promise<Revision[]> {
-    const { vehicleId, sort, direction } = getRevisionsDto;
+  async getRevisions(getRevisionsDto: GetRevisionsDto): Promise<IvtCollectionResponse<Revision>> {
+    const { vehicleId, sort, direction, pageIndex, pageSize, text } = getRevisionsDto;
     const query = this.revisionRepository.createQueryBuilder('revision');
 
     query.leftJoinAndSelect('revision.vehicle', 'vehicle').orderBy('revision.createdAt', sortDirection.desc);
@@ -34,7 +34,33 @@ export class RevisionsService {
       query.orderBy(`${sort}`, sortDirection[direction]);
     }
 
-    return await query.getMany();
+    if (text) {
+      query.andWhere(
+        `LOWER(vehicle.vin) like :text OR
+           LOWER(vehicle.brand) like :text OR
+           LOWER(vehicle.model) like :text OR
+           LOWER(vehicle.version) like :text
+          `,
+        { text: `%${text.toLowerCase()}%` }
+      );
+    }
+
+    query.take(pageSize).skip(pageSize * (pageIndex - 1));
+
+    const revisions = await query.getMany();
+    const total = await query.getCount();
+
+    return {
+      info: {
+        pageSize: pageSize,
+        pageIndex: pageIndex,
+        total,
+        pageStart: (pageIndex - 1) * pageSize + 1,
+        pageEnd: revisions.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
+        last: revisions.length < pageSize,
+      },
+      results: revisions,
+    };
   }
 
   async getRevision(id: number): Promise<Revision> {

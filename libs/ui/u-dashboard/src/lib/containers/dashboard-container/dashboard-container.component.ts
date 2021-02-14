@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GuaranteeStatus, UserRoles } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import {
@@ -6,6 +6,7 @@ import {
   fromDashboard,
   getAuthUserRoleState,
   getDashboardGuaranteeSummaryState,
+  getDashboardQueryParamsState,
   GroupCollectionService,
   IvtState,
   UserCollectionService,
@@ -15,14 +16,14 @@ import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
 import { ChartOptions, ChartType } from 'chart.js';
 import { keyBy } from 'lodash-es';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, take, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-dashboard-container',
   templateUrl: './dashboard-container.component.html',
   styleUrls: ['./dashboard-container.component.scss'],
 })
-export class DashboardContainerComponent extends IvtSubscriberComponent implements OnInit, OnDestroy {
+export class DashboardContainerComponent extends IvtSubscriberComponent implements OnInit {
   options: ChartOptions = {
     responsive: true,
   };
@@ -55,6 +56,7 @@ export class DashboardContainerComponent extends IvtSubscriberComponent implemen
   groupOptions$ = this.groupCollectionService.options$;
   companyOptions$ = this.companyCollectionService.options$;
   userOptions$ = this.userCollectionService.options$;
+  queryParams$ = this.store.pipe(select(getDashboardQueryParamsState));
 
   constructor(
     private store: Store<IvtState>,
@@ -66,25 +68,20 @@ export class DashboardContainerComponent extends IvtSubscriberComponent implemen
   }
 
   ngOnInit(): void {
-    this.groupCollectionService.clearCache();
-    this.companyCollectionService.clearCache();
-    this.userCollectionService.clearCache();
-    this.store.dispatch(fromDashboard.actions.getGuaranteeSummary({}));
     this.store.pipe(select(getAuthUserRoleState), filterNil(), takeUntil(this.destroy$)).subscribe(role => {
       if (role === UserRoles[UserRoles.superAdmin]) {
-        this.groupCollectionService.getAll();
-        this.companyCollectionService.getAll();
-        this.userCollectionService.getAll();
+        this.groupCollectionService.getWithQuery({});
+        this.companyCollectionService.getWithQuery({});
+        this.userCollectionService.getWithQuery({});
       }
+    });
+
+    this.queryParams$.pipe(take(1)).subscribe(queryParams => {
+      this.store.dispatch(fromDashboard.actions.getGuaranteeSummary(queryParams));
     });
   }
 
   filterItems(payload: QueryParams): void {
     this.store.dispatch(fromDashboard.actions.getGuaranteeSummary({ payload }));
-  }
-
-  ngOnDestroy() {
-    super.ngOnDestroy();
-    this.store.dispatch(fromDashboard.actions.clearDashboardState());
   }
 }

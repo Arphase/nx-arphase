@@ -1,6 +1,6 @@
 import { Roles, RolesGuard } from '@ivt/a-auth';
 import { CreateRevisionDto, GetRevisionsDto, UpdateRevisionDto } from '@ivt/a-state';
-import { Revision, UserRoles } from '@ivt/c-data';
+import { IvtCollectionResponse, Revision, UserRoles } from '@ivt/c-data';
 import {
   Body,
   Controller,
@@ -25,7 +25,9 @@ export class RevisionsController {
   constructor(private revisionsService: RevisionsService) {}
 
   @Get()
-  async getRevisions(@Query(new ValidationPipe({ transform: true })) filterDto: GetRevisionsDto): Promise<Revision[]> {
+  async getRevisions(
+    @Query(new ValidationPipe({ transform: true })) filterDto: GetRevisionsDto
+  ): Promise<IvtCollectionResponse<Revision>> {
     return this.revisionsService.getRevisions(filterDto);
   }
 

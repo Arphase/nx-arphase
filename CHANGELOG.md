@@ -2,6 +2,57 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://bitbucket.org/arphase/innovatech/compare/v2.0.0...v2.1.0) (2021-02-14)
+
+
+### Features
+
+* **app:** add application version ([922545e](https://bitbucket.org/arphase/innovatech/commit/922545ee995c3885e657ec8e1686ca0aad248f45))
+* **auth:** responsive design ([35f4483](https://bitbucket.org/arphase/innovatech/commit/35f4483f41d7228eae9a0cf733bd8029eaf09151))
+* **groups:** responsive design ([d493534](https://bitbucket.org/arphase/innovatech/commit/d493534687de2d577f8d5833e74700acbe9b6483))
+* **guarantees:** responsive design ([a6721de](https://bitbucket.org/arphase/innovatech/commit/a6721de2509ecd48182eb130452dd77592f0e62d))
+* **revisions:** filter by text ([637cc70](https://bitbucket.org/arphase/innovatech/commit/637cc705ab6c618753dc0507894f4205f5440c7f))
+* **revisions:** list responsive design ([6314911](https://bitbucket.org/arphase/innovatech/commit/6314911b72fdfb43516267a03e71ca8478179b4f))
+* **ui:** autoselect directive ([6986011](https://bitbucket.org/arphase/innovatech/commit/6986011f0c70b2ceb1d9d4c0e09a918516ab4999))
+* **ui:** uninstall bootstrap ([ce1bff4](https://bitbucket.org/arphase/innovatech/commit/ce1bff4f36408c89267af6d2de43f447807d2917))
+* **vehicles:** responsive design ([ed2fe63](https://bitbucket.org/arphase/innovatech/commit/ed2fe630f53238d4de4ca767b77e29d3ddb48ae2))
+
+## [2.0.0](https://bitbucket.org/arphase/innovatech/compare/v1.6.1...v2.0.0) (2021-02-12)
+
+
+### Features
+
+* **arphase:ui:** create library ([08849de](https://bitbucket.org/arphase/innovatech/commit/08849de2bee30be2fbe2bb5a6848d246f232c75e))
+* **dashboard:** use ng zoro components ([6b5c873](https://bitbucket.org/arphase/innovatech/commit/6b5c87303eb1e3250856b215ac2307cce4591e24))
+* **groups:** use ng zorro table ([de41319](https://bitbucket.org/arphase/innovatech/commit/de413199877d1cefdd24b415214610df734926e4))
+* **guarantees:** use ng zorro table ([c860856](https://bitbucket.org/arphase/innovatech/commit/c86085616f6a12dab002e978f85dd81f9cc1d5bf))
+* **revisions:** use ng zorro table ([a255e74](https://bitbucket.org/arphase/innovatech/commit/a255e74933eacc3a9adbc5648483535e60360dc3))
+* **ui:** add loading subject in list container ([211992c](https://bitbucket.org/arphase/innovatech/commit/211992c6c2a2563c1d2c9fd73cc8067bf3bddd5c))
+* **ui:** implement auto generated errors with ng zorro inputs ([86f0e2f](https://bitbucket.org/arphase/innovatech/commit/86f0e2f28a801c04cb68e89b513b94ac476555fa))
+* **ui:** use ant design buttons ([1246d7d](https://bitbucket.org/arphase/innovatech/commit/1246d7dc77bfc33cac80baa09460558243f5c628))
+* **ui:** use ng zorro cards ([e6ee54c](https://bitbucket.org/arphase/innovatech/commit/e6ee54c026ea24cf96cbf452c2bc6e5e69a15c84))
+* **ui:** use ng zorro checkboxes ([5d838e1](https://bitbucket.org/arphase/innovatech/commit/5d838e13ffce806b16a5d7b7951bdd2b70951b8b))
+* **ui:** use ng zorro dropdown ([386f58a](https://bitbucket.org/arphase/innovatech/commit/386f58a1cb936373bc9042c5bb4357c50e22780d))
+* **ui:** use ng zorro empty state ([43f5634](https://bitbucket.org/arphase/innovatech/commit/43f5634968d2b233b3f6d22f86fd7c46e39436a4))
+* **ui:** use ng zorro expansion panels ([c6f6678](https://bitbucket.org/arphase/innovatech/commit/c6f6678a64b98570148a26c0cc61852a54a3497f))
+* **ui:** use ng zorro forms module ([61aadc3](https://bitbucket.org/arphase/innovatech/commit/61aadc332c09e8df66f462239dfa7da72a6828a5))
+* **ui:** use ng zorro grid system ([c7f9b90](https://bitbucket.org/arphase/innovatech/commit/c7f9b90f1265afb6cf7251eb57dd0fa58a0b7385))
+* **ui:** use ng zorro icons ([2b7fc75](https://bitbucket.org/arphase/innovatech/commit/2b7fc759f5d60de6a184a5b43b578b6b0cadb956))
+* **ui:** use ng zorro layout ([b395a4b](https://bitbucket.org/arphase/innovatech/commit/b395a4b8b708088937d3991792a730e698741964))
+* **ui:** use ng zorro message service instead of ngx-toastr ([d5aae53](https://bitbucket.org/arphase/innovatech/commit/d5aae53d0d5e05722f5376c37c85568f8e69f92f))
+* **ui:** use ng zorro modals ([436d537](https://bitbucket.org/arphase/innovatech/commit/436d5371dd0ff77112b7bb664fa33342003f2d36))
+* **ui:** use ng zorro page title ([a01319a](https://bitbucket.org/arphase/innovatech/commit/a01319a0e0cfca3fe0d12434ae57ad04a97a9aad))
+* **ui:** use ng zorro radio buttons ([e60bdf6](https://bitbucket.org/arphase/innovatech/commit/e60bdf642624f2622124b73efab249b03297332c))
+* **ui:** use ng zorro searchbar ([5ad49ce](https://bitbucket.org/arphase/innovatech/commit/5ad49ce66390f727c96698136c2ef920bbc0c565))
+* **ui:** use ng zorro tooltips ([161379a](https://bitbucket.org/arphase/innovatech/commit/161379a9334e4259062dc1766bebd2464593d386))
+* **users:** use ng zorro table ([3c71070](https://bitbucket.org/arphase/innovatech/commit/3c710706b903ea4d134757e8af4035cdcd56de01))
+* **vehicles:** use ng zorro table ([639b9cc](https://bitbucket.org/arphase/innovatech/commit/639b9ccf44470658bb790369d29713bd3f9259cb))
+
+
+### Bug Fixes
+
+* **vehicles:** don't update vehicles with notElegible status ([f436907](https://bitbucket.org/arphase/innovatech/commit/f436907e5e963f2802dcdec61020658438dc30bc))
+
 ### [1.6.1](https://bitbucket.org/arphase/innovatech/compare/v1.3.3...v1.6.1) (2021-02-06)
 
 

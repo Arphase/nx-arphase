@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Subject, timer } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
 
@@ -37,8 +36,4 @@ export class IvtRowComponent<T> extends IvtSubscriberComponent implements CrudEv
   @Output() delete = new EventEmitter<T>();
   @Output() toggle = new EventEmitter<T>();
   @Output() selectItem = new EventEmitter<T>();
-
-  onToggleStatusChange({ checked }: MatSlideToggleChange): void {
-    this.toggle.emit({ ...this.item, active: checked });
-  }
 }

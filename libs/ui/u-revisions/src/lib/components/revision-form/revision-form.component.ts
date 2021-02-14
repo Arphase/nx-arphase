@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ApsValidators } from '@arphase/ui';
 import { Revision, RevisionStatus, Select } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
 
 export function createRevisionForm(): FormGroup {
   return new FormGroup({
     id: new FormControl(null),
-    observations: new FormControl(null, Validators.required),
-    status: new FormControl(null, Validators.required),
+    observations: new FormControl(null, ApsValidators.required),
+    status: new FormControl(null, ApsValidators.required),
   });
 }
 

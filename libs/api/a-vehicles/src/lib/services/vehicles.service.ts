@@ -1,5 +1,5 @@
-import { CreateVehicleDto, GetVehiclesDto, transformFolio, UpdateVehicleDto, VehicleRepository } from '@ivt/a-state';
-import { User, UserRoles, Vehicle, VehicleStatus } from '@ivt/c-data';
+import { CreateVehicleDto, GetVehiclesDto, UpdateVehicleDto, VehicleRepository } from '@ivt/a-state';
+import { IvtCollectionResponse, transformFolio, User, UserRoles, Vehicle, VehicleStatus } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
@@ -9,8 +9,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class VehiclesService {
   constructor(@InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository) {}
 
-  async getVehicles(filterDto: GetVehiclesDto, user: Partial<User>): Promise<Vehicle[]> {
-    const { sort, direction, offset, limit, text } = filterDto;
+  async getVehicles(filterDto: GetVehiclesDto, user: Partial<User>): Promise<IvtCollectionResponse<Vehicle>> {
+    const { sort, direction, pageSize, pageIndex, text } = filterDto;
     const query = this.vehicleRepository.createQueryBuilder('vehicle');
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
@@ -34,9 +34,22 @@ export class VehiclesService {
       query.orderBy(`${sort}`, sortDirection[direction]);
     }
 
-    query.take(limit).skip(offset);
+    query.take(pageSize).skip(pageSize * (pageIndex - 1));
 
-    return await query.getMany();
+    const vehicles = await query.getMany();
+    const total = await query.getCount();
+
+    return {
+      info: {
+        pageSize: pageSize,
+        pageIndex: pageIndex,
+        total,
+        pageStart: (pageIndex - 1) * pageSize + 1,
+        pageEnd: vehicles.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
+        last: vehicles.length < pageSize,
+      },
+      results: vehicles,
+    };
   }
 
   async getVehicle(id: number): Promise<Vehicle> {
@@ -107,6 +120,7 @@ export class VehiclesService {
               AND revisions.status = '1')
       )`
       )
+      .andWhere('vehicle.status != :status', { status: VehicleStatus.notElegible })
       .execute();
   }
 }

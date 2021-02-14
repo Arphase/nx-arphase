@@ -5,7 +5,6 @@ import { IvtDirtyFormGuard } from '@ivt/u-ui';
 import { RevisionFormContainerComponent } from './containers/revision-form-container/revision-form-container.component';
 import { RevisionListContainerComponent } from './containers/revision-list-container/revision-list-container.component';
 import { RevisionResolverService } from './resolvers/revision-resolver.service';
-import { RevisionsResolverService } from './resolvers/revisions-resolver.service';
 import { RevisionsComponent } from './revisions.component';
 
 export const routes: Routes = [
@@ -16,7 +15,6 @@ export const routes: Routes = [
       {
         path: '',
         component: RevisionListContainerComponent,
-        resolve: { resolvedRevisions: RevisionsResolverService },
       },
       {
         path: 'new',

@@ -1,21 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
-import {
-  IvtEmptyModule,
-  IvtEmptyStateModule,
-  IvtFileUploadModule,
-  IvtFolioModule,
-  IvtFormFieldModule,
-  IvtGoBackTitleModule,
-  IvtInputModule,
-  IvtRowModule,
-  IvtTableModule,
-  IvtTextTruncateTooltipModule,
-  IvtVirtualScrollModule,
-} from '@ivt/u-ui';
+import { IvtEmptyModule, IvtFolioModule, IvtRowModule, IvtTableModule, IvtVirtualScrollModule } from '@ivt/u-ui';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NgxMaskModule } from 'ngx-mask';
 import { ShowdownModule } from 'ngx-showdown';
 
@@ -33,21 +29,22 @@ import { ProductsComponent } from './products.component';
     ProductsRoutingModule,
     ShowdownModule,
     ReactiveFormsModule,
-    IvtGoBackTitleModule,
-    IvtFormFieldModule,
-    IvtInputModule,
-    IvtFileUploadModule,
-    MatSelectModule,
-    IvtEmptyStateModule,
+    NzPageHeaderModule,
+    NzEmptyModule,
     IvtTableModule,
     IvtVirtualScrollModule,
-    IvtFileUploadModule,
-    IvtTextTruncateTooltipModule,
     IvtRowModule,
     IvtFolioModule,
     IvtEmptyModule,
-    MatIconModule,
+    NzIconModule,
     NgxMaskModule,
+    NzGridModule,
+    NzMessageModule,
+    NzFormModule,
+    NzInputModule,
+    NzSelectModule,
+    NzTypographyModule,
+    NzToolTipModule,
   ],
   declarations: [
     ProductFormComponent,

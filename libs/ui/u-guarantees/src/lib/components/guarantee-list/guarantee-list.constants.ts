@@ -1,99 +1,78 @@
+import { ApsColumns } from '@arphase/ui';
 import { GuaranteeStatus, Select } from '@ivt/c-data';
-import { IvtColumns } from '@ivt/u-ui';
 
-export const columns: IvtColumns = [
-  {
-    label: '',
-    prop: 'checkbox',
-    sortable: false,
-    colSizes: {
-      xs: '1',
-    },
-  },
+export const columns: ApsColumns = [
   {
     label: 'Folio',
     prop: 'guarantee.id',
-    sortable: true,
     colSizes: {
-      md: '1',
-      xs: '2',
-      sm: '2',
+      xs: 8,
+      md: 4,
+      lg: 2,
     },
   },
   {
     label: 'VIN',
     prop: 'guarantee.vin',
-    sortable: false,
     colSizes: {
-      xs: '2',
-    },
-    breakpointShow: {
-      lg: true,
-      xl: true,
+      md: 6,
+      lg: 4,
     },
   },
   {
-    label: 'Distribuidor',
-    prop: 'paymentOrder.distributor',
-    sortable: true,
+    label: 'Compañía',
+    prop: 'company.businessName',
     colSizes: {
-      xs: '2',
-    },
-    breakpointShow: {
-      sm: true,
-      md: true,
-      lg: true,
-      xl: true,
-    },
-  },
-  {
-    label: 'Inicio',
-    prop: 'guarantee.startDate',
-    sortable: true,
-    colSizes: {
-      xs: '3',
-      sm: '2',
-      lg: '1',
-    },
-  },
-  {
-    label: 'Fin',
-    prop: 'guarantee.endDate',
-    sortable: true,
-    colSizes: {
-      xs: '3',
-      sm: '2',
-      lg: '1',
+      md: 4
     },
   },
   {
     label: 'Factura',
     prop: 'guarantee.invoiceNumber',
-    sortable: true,
     colSizes: {
-      xs: '2',
-      lg: '1',
-    },
-    breakpointShow: {
-      lg: true,
-      xl: true,
+      md: 4,
+      lg: 3,
     },
   },
   {
     label: 'Importe',
     prop: 'guarantee.amount',
-    sortable: true,
     colSizes: {
-      xs: '2',
+      lg: 4,
     },
-    alignment: 'right',
-    breakpointShow: {
-      sm: true,
-      md: true,
-      lg: true,
-      xl: true,
+  },
+  {
+    label: 'Estatus',
+    prop: 'guarantee.status',
+    colSizes: {
+      xs: 12,
+      md: 4,
+      lg: 5,
     },
-  }
+  },
+];
+
+export const menuOptions = [
+  {
+    type: 'success',
+    label: 'Pagada',
+    value: GuaranteeStatus.paid,
+  },
+  {
+    type: 'warning',
+    label: 'Pendiente',
+    value: GuaranteeStatus.outstanding,
+  },
+  {
+    type: 'error',
+    label: 'Cancelada',
+    value: GuaranteeStatus.cancelled,
+  },
+  {
+    type: 'info',
+    label: 'Caducada',
+    value: GuaranteeStatus.expired,
+  },
 ];
 
 export const statusOptions: Select[] = [
@@ -114,3 +93,16 @@ export const statusOptions: Select[] = [
     value: GuaranteeStatus[GuaranteeStatus.expired],
   },
 ];
+
+export const colorMaps: Record<GuaranteeStatus, string> = {
+  [GuaranteeStatus.paid]: 'success',
+  [GuaranteeStatus.outstanding]: 'warning',
+  [GuaranteeStatus.cancelled]: 'error',
+  [GuaranteeStatus.expired]: 'processing',
+};
+export const iconMaps: Record<GuaranteeStatus, string> = {
+  [GuaranteeStatus.paid]: 'check-circle',
+  [GuaranteeStatus.outstanding]: 'exclamation-circle',
+  [GuaranteeStatus.cancelled]: 'close-circle',
+  [GuaranteeStatus.expired]: 'sync',
+};

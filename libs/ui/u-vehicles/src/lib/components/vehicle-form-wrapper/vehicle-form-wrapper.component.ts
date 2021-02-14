@@ -4,16 +4,11 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
   SimpleChanges,
-  ViewChild,
 } from '@angular/core';
 import { Select, Vehicle } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
-import { takeUntil } from 'rxjs/operators';
-
-import { VehicleFormComponent } from '../../public';
 
 @Component({
   selector: 'ivt-vehicle-form-wrapper',
@@ -21,16 +16,11 @@ import { VehicleFormComponent } from '../../public';
   styleUrls: ['./vehicle-form-wrapper.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VehicleFormWrapperComponent extends IvtFormComponent<Vehicle> implements OnInit, OnChanges {
-  @ViewChild(VehicleFormComponent) vehicleFormComponent: VehicleFormComponent;
+export class VehicleFormWrapperComponent extends IvtFormComponent<Vehicle> implements OnChanges {
   @Input() disabledCompanyInput: boolean;
   @Input() companyOptions: Select[] = [];
   @Input() invalidVin: boolean;
   @Output() verifyVin = new EventEmitter<string>();
-
-  ngOnInit() {
-    this.stateChanged.pipe(takeUntil(this.destroy$)).subscribe(() => this.vehicleFormComponent.markForCheck());
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.disabledCompanyInput) {
