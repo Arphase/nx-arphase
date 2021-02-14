@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -9,6 +10,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
@@ -31,6 +33,8 @@ import { SpaComponent } from './spa.component';
     NzSpaceModule,
     NzTypographyModule,
     NzGridModule,
+    NzSwitchModule,
+    FormsModule,
   ],
   declarations: [SpaComponent, ProfileMenuComponent],
 })

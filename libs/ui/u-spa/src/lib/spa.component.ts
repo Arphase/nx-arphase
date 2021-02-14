@@ -1,6 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
-import { MenuItem } from '@ivt/c-data';
+import { MenuItem, Select } from '@ivt/c-data';
 import {
   fromAuth,
   getAuthUserEmailState,
@@ -10,6 +10,7 @@ import {
   IvtUiStateConfiguration,
   PermissionService,
 } from '@ivt/u-state';
+import { IvtSubscriberComponent, Themes, ThemeService } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -20,13 +21,24 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./spa.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SpaComponent {
+export class SpaComponent extends IvtSubscriberComponent {
   isCollapsed = true;
   menuItems$ = this.getMenuItems();
   name$ = this.store.pipe(select(getAuthUserNameState));
   email$ = this.store.pipe(select(getAuthUserEmailState));
   version = this.config.version;
   mobileQuery: MediaQueryList;
+  darkModeChecked = this.themeService.currentTheme === Themes.dark;
+  themeOptions: Select[] = [
+    {
+      label: 'Claro',
+      value: Themes.default,
+    },
+    {
+      label: 'Oscuro',
+      value: Themes.dark,
+    },
+  ];
   private _mobileQueryListener: () => void;
 
   constructor(
@@ -34,8 +46,10 @@ export class SpaComponent {
     private permissionService: PermissionService,
     @Inject(IVT_UI_STATE_CONFIGURATION) private config: IvtUiStateConfiguration,
     private cdr: ChangeDetectorRef,
-    private media: MediaMatcher
+    private media: MediaMatcher,
+    private themeService: ThemeService
   ) {
+    super();
     this.mobileQuery = this.media.matchMedia('(max-width: 769px)');
     this._mobileQueryListener = () => this.cdr.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -89,6 +103,10 @@ export class SpaComponent {
         },
       ])
     );
+  }
+
+  toggleDarkMode(): void {
+    this.themeService.loadTheme(this.darkModeChecked ? Themes.dark : Themes.default);
   }
 
   logout(): void {

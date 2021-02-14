@@ -22,7 +22,17 @@
               "apps/innovatech-ui/src/manifest.webmanifest"
             ],
             "styles": [
-              "apps/innovatech-ui/src/styles.less"
+              "apps/innovatech-ui/src/styles.less",
+              {
+                "input": "libs/ui/u-ui/src/styles/default.less",
+                "bundleName": "default",
+                "inject": false
+              },
+              {
+                "input": "libs/ui/u-ui/src/styles/dark.less",
+                "bundleName": "dark",
+                "inject": false
+              }
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [

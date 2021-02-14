@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Optional, ViewChild } from '@angula
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IvtCollectionService } from '@ivt/u-state';
-import { EntityActionOptions, EntityOp, ofEntityOp } from '@ngrx/data';
+import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { get } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -85,10 +85,10 @@ export class IvtFormContainerComponent<T> extends IvtSubscriberComponent impleme
     return false;
   }
 
-  submit(item: T, entityActionOptions: EntityActionOptions = {}): void {
+  submit(item: T): void {
     this.form?.markAsUntouched();
     get(item, 'id')
-      ? this.entityCollectionService.update(item, entityActionOptions)
-      : this.entityCollectionService.add(item, entityActionOptions);
+      ? this.entityCollectionService.update(item, { isOptimistic: false })
+      : this.entityCollectionService.add(item, { isOptimistic: false });
   }
 }
