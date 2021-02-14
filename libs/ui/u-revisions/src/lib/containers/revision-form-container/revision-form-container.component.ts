@@ -12,7 +12,7 @@ import { createRevisionForm } from '../../components/revision-form/revision-form
 @Component({
   selector: 'ivt-revision-form-container',
   templateUrl: './revision-form-container.component.html',
-  styleUrls: ['./revision-form-container.component.scss'],
+  styleUrls: ['./revision-form-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionFormContainerComponent extends IvtFormContainerComponent<Revision> implements OnInit {

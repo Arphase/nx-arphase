@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import {
   IvtCheckboxFilterModule,
   IvtEmptyModule,
-  IvtRowModule,
   IvtSearchbarModule,
   IvtTableModule,
   IvtVirtualScrollModule,
@@ -33,7 +32,6 @@ import { UsersComponent } from './users.component';
     NzEmptyModule,
     IvtTableModule,
     IvtVirtualScrollModule,
-    IvtRowModule,
     IvtEmptyModule,
     NzButtonModule,
     NzCardModule,

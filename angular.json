@@ -22,8 +22,7 @@
               "apps/innovatech-ui/src/manifest.webmanifest"
             ],
             "styles": [
-              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
-              "apps/innovatech-ui/src/styles.scss"
+              "apps/innovatech-ui/src/styles.less"
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
@@ -900,7 +899,7 @@
       "unitTestRunner": "jest"
     },
     "@nrwl/angular:component": {
-      "style": "scss",
+      "style": "less",
       "changeDetection": "OnPush"
     }
   },

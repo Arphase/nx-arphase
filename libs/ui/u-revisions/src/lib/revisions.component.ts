@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'ivt-revisions',
   templateUrl: './revisions.component.html',
-  styleUrls: ['./revisions.component.scss'],
+  styleUrls: ['./revisions.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionsComponent {

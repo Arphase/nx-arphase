@@ -21,7 +21,7 @@ import { map, take, takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'ivt-dashboard-container',
   templateUrl: './dashboard-container.component.html',
-  styleUrls: ['./dashboard-container.component.scss'],
+  styleUrls: ['./dashboard-container.component.less'],
 })
 export class DashboardContainerComponent extends IvtSubscriberComponent implements OnInit {
   options: ChartOptions = {

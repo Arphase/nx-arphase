@@ -7,7 +7,7 @@ import { IvtFormComponent, MessageStatus } from '@ivt/u-ui';
 @Component({
   selector: 'ivt-set-password-form',
   templateUrl: './set-password-form.component.html',
-  styleUrls: ['./set-password-form.component.scss'],
+  styleUrls: ['./set-password-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SetPasswordFormComponent extends IvtFormComponent<{ password: string }> {

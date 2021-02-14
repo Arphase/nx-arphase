@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'ivt-revision-list-container',
   templateUrl: './revision-list-container.component.html',
-  styleUrls: ['./revision-list-container.component.scss'],
+  styleUrls: ['./revision-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionListContainerComponent extends IvtListContainerComponent<Revision> {

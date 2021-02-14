@@ -14,7 +14,7 @@ import {
 @Component({
   selector: 'ivt-virtual-scroll',
   templateUrl: './virtual-scroll.component.html',
-  styleUrls: ['./virtual-scroll.component.scss'],
+  styleUrls: ['./virtual-scroll.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtVirtualScrollComponent<T> {

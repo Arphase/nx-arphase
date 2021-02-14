@@ -18,7 +18,7 @@ import { IvtFilterComponent } from '../filter';
 @Component({
   selector: 'ivt-radio-filter',
   templateUrl: './radio-filter.component.html',
-  styleUrls: ['./radio-filter.component.scss'],
+  styleUrls: ['./radio-filter.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtRadioFilterComponent extends IvtFilterComponent<string> implements OnChanges, OnDestroy {

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
-import { IvtEmptyModule, IvtRowModule, IvtSearchbarModule, IvtTableModule, IvtVirtualScrollModule } from '@ivt/u-ui';
+import { IvtEmptyModule, IvtSearchbarModule, IvtTableModule, IvtVirtualScrollModule } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -37,7 +37,6 @@ import { RevisionsComponent } from './revisions.component';
     NzEmptyModule,
     IvtTableModule,
     IvtVirtualScrollModule,
-    IvtRowModule,
     IvtEmptyModule,
     NzIconModule,
     NzButtonModule,
@@ -56,7 +55,7 @@ import { RevisionsComponent } from './revisions.component';
     NzDividerModule,
     IvtSearchbarModule,
     NzSpaceModule,
-    NzTagModule
+    NzTagModule,
   ],
   declarations: [
     RevisionFormComponent,

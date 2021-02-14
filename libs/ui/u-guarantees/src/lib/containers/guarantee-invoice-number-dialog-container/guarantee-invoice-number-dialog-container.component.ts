@@ -8,7 +8,7 @@ import { NzModalRef } from 'ng-zorro-antd/modal';
 @Component({
   selector: 'ivt-guarantee-invoice-number-dialog-container',
   templateUrl: './guarantee-invoice-number-dialog-container.component.html',
-  styleUrls: ['./guarantee-invoice-number-dialog-container.component.scss'],
+  styleUrls: ['./guarantee-invoice-number-dialog-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeInvoiceNumberDialogContainerComponent extends IvtFormContainerComponent<Guarantee> {

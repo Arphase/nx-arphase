@@ -17,7 +17,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'ivt-spa',
   templateUrl: './spa.component.html',
-  styleUrls: ['./spa.component.scss'],
+  styleUrls: ['./spa.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpaComponent {

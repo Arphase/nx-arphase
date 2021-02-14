@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'ivt-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss'],
+  styleUrls: ['./filter.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtFilterComponent<T> {

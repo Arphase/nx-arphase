@@ -7,7 +7,7 @@ import { columns } from './group-list.constants';
 @Component({
   selector: 'ivt-group-list',
   templateUrl: './group-list.component.html',
-  styleUrls: ['./group-list.component.scss'],
+  styleUrls: ['./group-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupListComponent extends IvtListComponent<Group> {

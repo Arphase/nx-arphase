@@ -15,7 +15,7 @@ import { colorMaps, columns, iconMaps, menuOptions, statusOptions } from './guar
 @Component({
   selector: 'ivt-guarantee-list',
   templateUrl: './guarantee-list.component.html',
-  styleUrls: ['./guarantee-list.component.scss'],
+  styleUrls: ['./guarantee-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeListComponent extends IvtListComponent<Guarantee> implements OnChanges {

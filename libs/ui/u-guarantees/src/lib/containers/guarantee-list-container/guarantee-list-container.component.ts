@@ -25,7 +25,7 @@ import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-co
 @Component({
   selector: 'ivt-guarantee-list-container',
   templateUrl: './guarantee-list-container.component.html',
-  styleUrls: ['./guarantee-list-container.component.scss'],
+  styleUrls: ['./guarantee-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeListContainerComponent extends IvtListContainerComponent<Guarantee> implements OnInit {

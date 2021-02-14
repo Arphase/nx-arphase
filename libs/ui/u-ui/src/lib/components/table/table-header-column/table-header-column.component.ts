@@ -11,7 +11,7 @@ import { IvtColumn, SortEvent, SortOrder } from '../table.model';
 @Component({
   selector: 'ivt-table-header-column',
   templateUrl: './table-header-column.component.html',
-  styleUrls: ['./table-header-column.component.scss'],
+  styleUrls: ['./table-header-column.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtTableHeaderColumnComponent {

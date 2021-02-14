@@ -8,7 +8,7 @@ import { createCompanyForm, createUserForm, patchCompanyForm } from '../../funct
 @Component({
   selector: 'ivt-company-form-dialog',
   templateUrl: './company-form-dialog.component.html',
-  styleUrls: ['./company-form-dialog.component.scss'],
+  styleUrls: ['./company-form-dialog.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompanyFormDialogComponent extends IvtFormComponent<Company> implements OnInit {

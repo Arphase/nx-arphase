@@ -13,7 +13,7 @@ export const columns: ApsColumns = [
   },
   {
     label: 'VIN',
-    prop: 'guarantee.vin',
+    prop: 'vehicle.vin',
     colSizes: {
       md: 6,
       lg: 4,

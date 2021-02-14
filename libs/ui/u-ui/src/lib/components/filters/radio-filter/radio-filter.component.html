@@ -1,12 +1,12 @@
-<button *ngIf="control"
-        class="ivt-filter"
-        [ngClass]="{'active-filter': active || control.value !== ''}"
+<button nz-button
         nz-dropdown
+        [nzType]="active ? 'primary' : 'default'"
         [nzDropdownMenu]="menu"
         nzTrigger="click">
-  <span class="ivt-button-label">{{ mappedTitle || label }}</span>
 
-  <i *ngIf="control.value === '' || control.value == null; else removeFilter"
+  {{ mappedTitle || label }}
+
+  <i *ngIf="!active; else removeFilter"
      nz-icon
      nzType="down"
      nzTheme="outline"
@@ -22,20 +22,16 @@
 </button>
 
 <nz-dropdown-menu #menu="nzDropdownMenu">
-  <div nz-menu
-       class="content">
-    <nz-radio-group [formControl]="control">
-      <div *ngFor="let option of options"
-           nz-row
-           [nzGutter]="12">
-        <div nz-col
-             nzSpan="24"
-             class="d-flex">
-          <label nz-radio
-                 [nzValue]="option.value"
-                 (click)="$event.stopPropagation(); filterChanged.emit(option.value)">{{ option.label }}</label>
-        </div>
-      </div>
-    </nz-radio-group>
-  </div>
+
+  <nz-radio-group [formControl]="control">
+    <ul nz-menu>
+      <li *ngFor="let option of options"
+          nz-menu-item
+          (click)="$event.stopPropagation()">
+        <label nz-radio
+               [nzValue]="option.value"
+               (click)="$event.stopPropagation(); filterChanged.emit(option.value)">{{ option.label }}</label>
+      </li>
+    </ul>
+  </nz-radio-group>
 </nz-dropdown-menu>

@@ -5,7 +5,7 @@ import { IvtFormComponent } from '@ivt/u-ui';
 @Component({
   selector: 'ivt-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss'],
+  styleUrls: ['./user-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserFormComponent extends IvtFormComponent<Group> {}

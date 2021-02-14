@@ -1,13 +1,10 @@
-<button class="ivt-filter"
-        [class.ivt-filter--disabled]="disabled"
+<button nz-dropdown
+        nz-button
         [disabled]="disabled"
-        [ngClass]="{ 'active-filter': activeOptions }"
-        nz-dropdown
+        [nzType]="activeOptions ? 'primary' : 'default'"
         [nzDropdownMenu]="menu"
         nzTrigger="click">
-
-  <span class="ivt-button-label">{{ mappedTitle || label }}</span>
-
+  {{ mappedTitle || label }}
   <i *ngIf="!activeOptions"
      nz-icon
      nzType="down"
@@ -24,19 +21,17 @@
 </button>
 
 <nz-dropdown-menu #menu="nzDropdownMenu">
-  <div *ngIf="displayContent"
-       nz-menu
-       class="content">
-    <nz-checkbox-wrapper (nzOnChange)="onFilterChange($event)">
-      <div *ngFor="let option of selectedOptions"
-           nz-row>
-        <div nz-col
-             nzSpan="24">
-          <label nz-checkbox
-                 [(ngModel)]="option.checked"
-                 [nzValue]="option">{{ option.label }}</label>
-        </div>
-      </div>
-    </nz-checkbox-wrapper>
-  </div>
+  <nz-checkbox-wrapper nz-menu
+                       (nzOnChange)="onFilterChange($event)">
+    <ul nz-menu>
+      <li *ngFor="let option of selectedOptions"
+          nz-menu-item
+          (click)="$event.stopPropagation()">
+        <label nz-checkbox
+               [(ngModel)]="option.checked"
+               [nzValue]="option"
+               (click)="$event.stopPropagation()">{{ option.label }}</label>
+      </li>
+    </ul>
+  </nz-checkbox-wrapper>
 </nz-dropdown-menu>

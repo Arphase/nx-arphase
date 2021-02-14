@@ -7,7 +7,7 @@ import { colorMaps, columns, iconMaps, statusLabels } from './vehicle-list.const
 @Component({
   selector: 'ivt-vehicle-list',
   templateUrl: './vehicle-list.component.html',
-  styleUrls: ['./vehicle-list.component.scss'],
+  styleUrls: ['./vehicle-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VehicleListComponent extends IvtListComponent<Vehicle> {

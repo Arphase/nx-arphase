@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subject, timer } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
 
@@ -7,14 +7,7 @@ import { IvtSubscriberComponent } from '../subscriber/subscriber.component';
 
 @Component({
   selector: 'ivt-row',
-  templateUrl: './row.component.html',
-  styleUrls: ['./row.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    class: 'ivt-row',
-  },
+  template: '',
 })
 export class IvtRowComponent<T> extends IvtSubscriberComponent implements CrudEvents<T> {
   @Input() item: T;

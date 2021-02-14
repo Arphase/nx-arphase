@@ -7,7 +7,6 @@ import {
   IvtAddressFormModule,
   IvtEmptyModule,
   IvtPhoneModule,
-  IvtRowModule,
   IvtSearchbarModule,
   IvtTableHeaderModule,
   IvtVirtualScrollModule,
@@ -31,7 +30,6 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { CompanyFormDialogComponent } from './components/company-form-dialog/company-form-dialog.component';
-import { CompanyRowComponent } from './components/company-row/company-row.component';
 import { GroupCompanyListComponent } from './components/group-company-list/group-company-list.component';
 import { GroupFormComponent } from './components/group-form/group-form.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
@@ -50,7 +48,6 @@ import { GroupsComponent } from './groups.component';
     ReactiveFormsModule,
     NzIconModule,
     IvtAddressFormModule,
-    IvtRowModule,
     IvtEmptyModule,
     NzEmptyModule,
     IvtTableHeaderModule,
@@ -83,7 +80,6 @@ import { GroupsComponent } from './groups.component';
     GroupFormComponent,
     CompanyFormDialogComponent,
     UserFormComponent,
-    CompanyRowComponent,
     GroupCompanyListContainerComponent,
   ],
   entryComponents: [CompanyFormDialogComponent],

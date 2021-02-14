@@ -15,7 +15,7 @@ export function createRevisionForm(): FormGroup {
 @Component({
   selector: 'ivt-revision-form',
   templateUrl: './revision-form.component.html',
-  styleUrls: ['./revision-form.component.scss'],
+  styleUrls: ['./revision-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionFormComponent extends IvtFormComponent<Revision> implements OnChanges {

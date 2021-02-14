@@ -16,7 +16,7 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'ivt-user-list-container',
   templateUrl: './user-list-container.component.html',
-  styleUrls: ['./user-list-container.component.scss'],
+  styleUrls: ['./user-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserListContainerComponent extends IvtListContainerComponent<User> implements OnInit {

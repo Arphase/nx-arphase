@@ -6,7 +6,7 @@ import { ChartOptions, ChartType } from 'chart.js';
 @Component({
   selector: 'ivt-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  styleUrls: ['./dashboard.component.less'],
 })
 export class DashboardComponent extends IvtListComponent<number[]> {
   @Input() data: number[];

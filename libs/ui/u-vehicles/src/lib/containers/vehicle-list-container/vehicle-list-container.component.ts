@@ -9,7 +9,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 @Component({
   selector: 'ivt-vehicle-list-container',
   templateUrl: './vehicle-list-container.component.html',
-  styleUrls: ['./vehicle-list-container.component.scss'],
+  styleUrls: ['./vehicle-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VehicleListContainerComponent extends IvtListContainerComponent<Vehicle> {

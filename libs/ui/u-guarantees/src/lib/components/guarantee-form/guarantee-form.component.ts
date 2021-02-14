@@ -57,7 +57,7 @@ export function createGuaranteeForm(): FormGroup {
 @Component({
   selector: 'ivt-guarantee-form',
   templateUrl: './guarantee-form.component.html',
-  styleUrls: ['./guarantee-form.component.scss'],
+  styleUrls: ['./guarantee-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnChanges, AfterViewInit {

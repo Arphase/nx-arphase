@@ -8,7 +8,7 @@ import { patchGroupForm } from '../../functions/group-form.functions';
 @Component({
   selector: 'ivt-group-form',
   templateUrl: './group-form.component.html',
-  styleUrls: ['./group-form.component.scss'],
+  styleUrls: ['./group-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupFormComponent extends IvtFormComponent<Group> implements OnChanges {

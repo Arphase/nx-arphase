@@ -5,7 +5,7 @@ import { IvtBreakpointShow, IvtColumns, IvtColumnSizes, SortEvent } from '../tab
 @Component({
   selector: 'ivt-table-header',
   templateUrl: './table-header.component.html',
-  styleUrls: ['./table-header.component.scss'],
+  styleUrls: ['./table-header.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtTableHeaderComponent {

@@ -46,7 +46,7 @@ export function createVehicleForm(vehicle?: Vehicle) {
 @Component({
   selector: 'ivt-vehicle-form',
   templateUrl: './vehicle-form.component.html',
-  styleUrls: ['./vehicle-form.component.scss'],
+  styleUrls: ['./vehicle-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements OnChanges {

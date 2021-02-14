@@ -7,7 +7,7 @@ import { columns } from './user-list.constants';
 @Component({
   selector: 'ivt-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss'],
+  styleUrls: ['./user-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserListComponent extends IvtListComponent<Product> {

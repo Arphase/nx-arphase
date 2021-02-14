@@ -10,7 +10,7 @@ import { GroupFormService } from '../../services/group-form.service';
 @Component({
   selector: 'ivt-group-form-container',
   templateUrl: './group-form-container.component.html',
-  styleUrls: ['./group-form-container.component.scss'],
+  styleUrls: ['./group-form-container.component.less'],
   providers: [GroupFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
