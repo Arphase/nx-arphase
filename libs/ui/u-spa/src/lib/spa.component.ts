@@ -105,6 +105,13 @@ export class SpaComponent extends IvtSubscriberComponent {
     );
   }
 
+  toggleIsCollapsed(): void {
+    this.isCollapsed = !this.isCollapsed;
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 500);
+  }
+
   toggleDarkMode(): void {
     this.themeService.loadTheme(this.darkModeChecked ? Themes.dark : Themes.default);
   }

@@ -55,7 +55,7 @@
               [routerLink]="['new']"
               type="button"
               nzType="primary">
-        Nuevo vehículo
+        Nueva garantía
       </button>
     </div>
   </div>
@@ -285,7 +285,8 @@
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="4">
             <span nz-typography><strong>Monto:</strong></span>
           </div>
           <div nz-col
@@ -302,57 +303,68 @@
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="4">
             <span>{{ item.createdAt | date: 'dd/MM/yy' | empty }}</span>
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="4">
             <span nz-typography><strong>Vehículo:</strong></span>
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="4">
             <span>{{ item?.vehicle?.brand }} {{ item?.vehicle?.model }} {{ item.vehicle?.year }}</span>
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="4">
             <span nz-typography><strong>N° de motor:</strong></span>
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="4">
             <span>{{ item.vehicle?.motorNumber }}</span>
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="4">
             <span nz-typography><strong>Inicio:</strong></span>
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="4">
             <span>{{ item.startDate | date: 'dd/MM/yy' | empty }}</span>
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="4">
             <span nz-typography><strong>Fin:</strong></span>
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="4">
             <span>{{ item.endDate | date: 'dd/MM/yy' | empty }}</span>
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="4">
             <span nz-typography><strong>Cliente:</strong></span>
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="4">
             <span *ngIf="item.client?.physicalInfo?.name">
               {{ item.client?.physicalInfo?.name }} {{ item.client?.physicalInfo?.lastName }}
               {{ item.client?.physicalInfo?.secondLastName }}
@@ -363,12 +375,14 @@
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="4">
             <span nz-typography><strong>Producto: </strong></span>
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="4">
             <span>{{ item?.productType }}</span>
           </div>
         </div>

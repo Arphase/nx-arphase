@@ -66,17 +66,20 @@
         <div *ngIf="!isEmpty"
              nz-row>
           <div nz-col
-               nzSm="24">
-            <ngx-charts-bar-vertical [results]="data"
-                                     [scheme]="colors"
-                                     [xAxis]="true"
-                                     [yAxis]="true"
-                                     [yAxisTickFormatting]="yAxisTickFormatting">
-              <ng-template #tooltipTemplate
-                           let-model="model">
-                {{ model.value | currency }}
-              </ng-template>
-            </ngx-charts-bar-vertical>
+               nzSm="24"
+               [nzLg]="{ span: 18, offset: 3 }">
+            <div class="grid">
+              <ngx-charts-bar-vertical [results]="data"
+                                       [scheme]="colors"
+                                       [xAxis]="true"
+                                       [yAxis]="true"
+                                       [yAxisTickFormatting]="yAxisTickFormatting">
+                <ng-template #tooltipTemplate
+                             let-model="model">
+                  {{ model.value | currency }}
+                </ng-template>
+              </ngx-charts-bar-vertical>
+            </div>
           </div>
         </div>
       </ng-container>
