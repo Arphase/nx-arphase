@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, Select, statusLabels } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
 
@@ -10,7 +18,7 @@ import { colorMaps, columns, iconMaps, menuOptions, statusOptions } from './guar
   styleUrls: ['./guarantee-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeListComponent extends IvtListComponent<Guarantee> {
+export class GuaranteeListComponent extends IvtListComponent<Guarantee> implements OnChanges {
   @Input() clearSelected: boolean;
   @Input() groupOptions: Select[] = [];
   @Input() companyOptions: Select[] = [];
@@ -39,6 +47,14 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> {
     return Array.from(this.setOfCheckedId);
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.clearSelected) {
+      this.setOfCheckedId.clear();
+      this.indeterminate = false;
+      this.checked = false;
+    }
+  }
+
   updateStatusFilter(status: GuaranteeStatus): void {
     this.filterItems.emit({ status });
   }
@@ -52,7 +68,7 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> {
   }
 
   onAllChecked(value: boolean): void {
-    this.list.forEach(item => this.updateCheckedSet(item.id, value));
+    this.list.filter(item => !item.amount).forEach(item => this.updateCheckedSet(item.id, value));
     this.refreshCheckedStatus();
   }
 

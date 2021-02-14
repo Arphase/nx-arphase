@@ -15,6 +15,7 @@ export enum MessageStatus {
 })
 export class IvtStatusMessageComponent {
   @Input() status = MessageStatus.normal;
+  @Input() message: string;
   messageStatus = MessageStatus;
 
   get normal(): boolean {

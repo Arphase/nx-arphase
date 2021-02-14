@@ -1,20 +1,17 @@
-<span class="flex-start"
-      [ngClass]="{
-  'text-success': success,
-  'text-danger': error,
-  'text-warning': warning
-}">
-  <i *ngIf="error"
-     nz-icon
-     nzType="close-circle"
-     nzTheme="outline"></i>
-  <i *ngIf="success"
-     nz-icon
-     nzType="check-circle"
-     nzTheme="outline"></i>
-  <i *ngIf="normal"
-     nz-icon
-     nzType="info-circle"
-     nzTheme="outline"></i>
-  <ng-content></ng-content>
-</span>
+<nz-alert *ngIf="error"
+          nzType="error"
+          [nzMessage]="message"
+          nzShowIcon></nz-alert>
+<nz-alert *ngIf="success"
+          nzType="success"
+          [nzMessage]="message"
+          nzShowIcon></nz-alert>
+<nz-alert *ngIf="normal"
+          nzType="info"
+          [nzMessage]="message"
+          nzShowIcon></nz-alert>
+<nz-space nzDirection="vertical"
+          nzSize="small">
+  <nz-space-item>
+  </nz-space-item>
+</nz-space>

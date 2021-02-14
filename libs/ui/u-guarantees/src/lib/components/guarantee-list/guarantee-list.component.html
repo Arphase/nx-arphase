@@ -162,6 +162,7 @@
       <tr nz-row>
         <td nz-col
             nzXs="2"
+            [nzDisabled]="item.amount"
             [nzChecked]="setOfCheckedId.has(item.id)"
             (nzCheckedChange)="onItemChecked(item.id, $event)"></td>
         <td nz-col
@@ -181,7 +182,7 @@
             nzLg="3">{{ item.invoiceNumber | empty }} </td>
         <td nz-col
             nzXs="0"
-            nzLg="4">{{ item.productType }}</td>
+            nzLg="4">{{ item.amount | currency }}</td>
         <td nz-col
             nzXs="6"
             nzMd="2"
@@ -291,12 +292,14 @@
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="0">
             <span>{{ item?.amount | currency | empty }}</span>
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6">
+               nzMd="6"
+               nzLg="0">
             <span nz-typography><strong>Captura:</strong></span>
           </div>
           <div nz-col
@@ -362,14 +365,12 @@
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6"
-               nzLg="0">
+               nzMd="6">
             <span nz-typography><strong>Producto: </strong></span>
           </div>
           <div nz-col
                nzXs="12"
-               nzMd="6"
-               nzLg="0">
+               nzMd="6">
             <span>{{ item?.productType }}</span>
           </div>
         </div>

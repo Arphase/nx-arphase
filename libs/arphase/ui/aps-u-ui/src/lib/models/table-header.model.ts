@@ -1,7 +1,7 @@
 export type ApsColumns = ApsColumn[];
 
 export interface ApsColumn {
-  prop: string;
+  prop?: string;
   label: string;
   sortFn?: (a, b) => number;
   colSizes: ApsColumnSizes;

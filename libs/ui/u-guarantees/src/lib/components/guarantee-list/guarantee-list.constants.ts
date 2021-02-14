@@ -35,8 +35,8 @@ export const columns: ApsColumns = [
     },
   },
   {
-    label: 'Producto',
-    prop: 'guarantee.productType',
+    label: 'Importe',
+    prop: 'guarantee.amount',
     colSizes: {
       lg: 4,
     },
