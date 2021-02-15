@@ -1,10 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IvtSearchbarModule } from '@ivt/u-ui';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ApsAutoErrorModule } from '@arphase/ui';
+import { VehiclesDataModule } from '@ivt/u-state';
+import { IvtAddressFormModule, IvtSearchbarModule } from '@ivt/u-ui';
+import { VehicleFormModule } from '@ivt/u-vehicles';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { RevisionRequestFormComponent } from './components/revision-request-form/revision-request-form.component';
 import { RevisionRequestListComponent } from './components/revision-request-list/revision-request-list.component';
@@ -16,12 +27,24 @@ import { RevisionRequestsComponent } from './revision-requests.component';
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RevisionRequestsRoutingModule,
     IvtSearchbarModule,
     NzGridModule,
     NzCardModule,
     NzButtonModule,
     NzDividerModule,
+    NzSpaceModule,
+    NzPageHeaderModule,
+    NzCollapseModule,
+    NzAlertModule,
+    VehicleFormModule,
+    VehiclesDataModule,
+    IvtAddressFormModule,
+    ApsAutoErrorModule,
+    NzFormModule,
+    NzInputModule,
+    NgxMaskModule,
   ],
   declarations: [
     RevisionRequestsComponent,

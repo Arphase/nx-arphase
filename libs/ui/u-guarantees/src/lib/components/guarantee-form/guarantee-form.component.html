@@ -315,6 +315,8 @@
           </div>
           <ivt-vehicle-form [form]="vehicleForm"
                             [companyId]="companyId$ | async"
+                            [item]="vehicle"
+                            [vehicle]="currentVehicle"
                             (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
         </nz-collapse-panel>
       </nz-collapse>

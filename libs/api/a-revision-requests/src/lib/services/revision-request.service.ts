@@ -1,5 +1,6 @@
-import { CreateRevisionRequestDto, RevisionRequestRepository } from '@ivt/a-state';
-import { RevisionRequest, User } from '@ivt/c-data';
+import { CreateRevisionRequestDto, GetRevisionRequestsDto, RevisionRequestRepository } from '@ivt/a-state';
+import { IvtCollectionResponse, RevisionRequest, User, UserRoles } from '@ivt/c-data';
+import { sortDirection } from '@ivt/c-utils';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -8,6 +9,41 @@ export class RevisionRequestService {
   constructor(
     @InjectRepository(RevisionRequestRepository) private revisionRequestRepository: RevisionRequestRepository
   ) {}
+
+  async getRevisionRequests(
+    filterDto: GetRevisionRequestsDto,
+    user: Partial<User>
+  ): Promise<IvtCollectionResponse<RevisionRequest>> {
+    const { pageSize, pageIndex, sort, direction } = filterDto;
+    const query = this.revisionRequestRepository.createQueryBuilder('revisionRequest');
+
+    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+      query.where('revisionRequest.companyId = :id', { id: user.companyId });
+    }
+
+    query.orderBy('revisionRequest.createdAt', sortDirection.desc);
+
+    if (sort && direction) {
+      query.orderBy(`${sort}`, sortDirection[direction]);
+    }
+
+    query.take(pageSize).skip(pageSize * (pageIndex - 1));
+
+    const revisionRequests = await query.getMany();
+    const total = await query.getCount();
+
+    return {
+      info: {
+        pageSize: pageSize,
+        pageIndex: pageIndex,
+        total,
+        pageStart: (pageIndex - 1) * pageSize + 1,
+        pageEnd: revisionRequests.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
+        last: revisionRequests.length < pageSize,
+      },
+      results: revisionRequests,
+    };
+  }
 
   async createRevisionRequest(
     createRevisionRequestDto: CreateRevisionRequestDto,

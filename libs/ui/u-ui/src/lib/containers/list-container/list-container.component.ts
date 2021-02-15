@@ -68,7 +68,6 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
     const queryParams: IvtQueryParams = {
       ...this.queryParams,
       ...payload,
-      resetList: String(true),
     };
     this.entityCollectionService.getWithQuery(queryParams);
   }

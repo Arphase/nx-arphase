@@ -11,6 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { Select, Vehicle, VEHICLE_VIN_LENGTH } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
+import { omit } from 'lodash-es';
 import { filter, takeUntil } from 'rxjs/operators';
 
 export function createVehicleForm(vehicle?: Vehicle) {
@@ -53,6 +54,7 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
   @Input() companyId: number;
   @Input() showCompanyInput: boolean;
   @Input() companyOptions: Select[] = [];
+  @Input() vehicle: Vehicle;
   @Output() verifyVin = new EventEmitter<string>();
 
   ngOnChanges(changes: SimpleChanges) {
@@ -68,6 +70,23 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
           takeUntil(this.destroy$)
         )
         .subscribe(vin => this.verifyVin.emit(vin));
+    }
+
+    if (changes.item && this.item) {
+      this.form.patchValue(this.item, { emitEvent: false });
+      this.form.disable({ emitEvent: false });
+      this.form.get('vin').enable({ emitEvent: false });
+    }
+
+    if (changes.vehicle) {
+      if (this.vehicle) {
+        this.form.patchValue(omit(this.vehicle, 'vin'));
+        this.form.disable({ emitEvent: false });
+        this.form.get('vin').enable({ emitEvent: false });
+      } else {
+        this.form.enable({ emitEvent: false });
+        this.form.get('id').patchValue(null);
+      }
     }
   }
 }

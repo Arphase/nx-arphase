@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserRoles } from '@ivt/c-data';
+import { RoleGuard } from '@ivt/u-ui';
 
 import { SpaComponent } from './spa.component';
 
@@ -18,6 +20,10 @@ const routes: Routes = [
       },
       {
         path: 'groups',
+        canActivate: [RoleGuard],
+        data: {
+          roles: [UserRoles.superAdmin],
+        },
         loadChildren: () => import('@ivt/u-groups').then(m => m.GroupsModule),
       },
       {

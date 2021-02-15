@@ -1,3 +1,7 @@
-<ivt-revision-request-form [item]="currentItem$ | async"
+<ivt-revision-request-form [form]="form"
+                           [item]="currentItem$ | async"
                            [loading]="loading$ | async"
+                           [vehicle]="vehicle$ | async"
+                           [currentVehicle]="currentVehicle$ | async"
+                           (verifyVin)="verifyVin($event)"
                            (submitForm)="submit($event)"></ivt-revision-request-form>

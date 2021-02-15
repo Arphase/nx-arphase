@@ -8,9 +8,7 @@ dayjs.extend(customParseFormat);
 
 export function buildQueryParams(queryParams): HttpParams {
   let params: Record<string, string | string[]> = {
-    offset: '0',
-    limit: String(DEFAULT_LIMIT_SIZE),
-    pageSize: '10',
+    pageSize: String(DEFAULT_LIMIT_SIZE),
     pageIndex: '1',
   };
 
@@ -20,13 +18,6 @@ export function buildQueryParams(queryParams): HttpParams {
 
   if (queryParams.noDates) {
     params = omit(params, ['startDate', 'endDate', 'noDates', 'dateType']);
-  }
-
-  if (queryParams.noLimit) {
-    params = omit(params, 'limit');
-    params = omit(params, 'offset');
-    params = omit(params, 'pageSize');
-    params = omit(params, 'pageLimit');
   }
 
   Object.keys(queryParams)
@@ -53,12 +44,8 @@ export function buildQueryParams(queryParams): HttpParams {
     }
   }
 
-  if (queryParams.resetList === String(true)) {
-    params.offset = '0';
-  }
-
   return new HttpParams({
-    fromObject: omit(params, ['dates', 'resetList', 'noLimit', 'noDates', 'filter']),
+    fromObject: omit(params, ['dates', 'noDates', 'filter']),
   });
 }
 

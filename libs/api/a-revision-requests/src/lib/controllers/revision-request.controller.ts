@@ -1,7 +1,7 @@
 import { GetUser, Roles, RolesGuard } from '@ivt/a-auth';
-import { CreateRevisionRequestDto } from '@ivt/a-state';
-import { User, UserRoles } from '@ivt/c-data';
-import { Body, Controller, Post, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { CreateRevisionRequestDto, GetRevisionRequestsDto } from '@ivt/a-state';
+import { IvtCollectionResponse, RevisionRequest, User, UserRoles } from '@ivt/c-data';
+import { Body, Controller, Get, Post, Query, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { RevisionRequestService } from '../services/revision-request.service';
@@ -11,10 +11,21 @@ import { RevisionRequestService } from '../services/revision-request.service';
 export class RevisionRequestController {
   constructor(private revisionRequestsService: RevisionRequestService) {}
 
+  @Get()
+  async getRevisionRequests(
+    @Query(new ValidationPipe({ transform: true })) filterDto: GetRevisionRequestsDto,
+    @GetUser() user: Partial<User>
+  ): Promise<IvtCollectionResponse<RevisionRequest>> {
+    return this.revisionRequestsService.getRevisionRequests(filterDto, user);
+  }
+
   @Post()
   @Roles(UserRoles.agencyUser)
   @UsePipes(new ValidationPipe({ transform: true }))
-  async createRevision(@Body() createRevisionRequestDto: CreateRevisionRequestDto, @GetUser() user: Partial<User>) {
+  async createRevisionRequest(
+    @Body() createRevisionRequestDto: CreateRevisionRequestDto,
+    @GetUser() user: Partial<User>
+  ): Promise<RevisionRequest> {
     return this.revisionRequestsService.createRevisionRequest(createRevisionRequestDto, user);
   }
 }
