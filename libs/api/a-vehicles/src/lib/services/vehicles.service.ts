@@ -68,6 +68,7 @@ export class VehiclesService {
   async createVehicle(createVehicleDto: CreateVehicleDto, user: Partial<User>): Promise<Vehicle> {
     const newVehicle = this.vehicleRepository.create({
       ...createVehicleDto,
+      companyId: user && UserRoles[user.role] === UserRoles.superAdmin ? createVehicleDto.companyId : user.companyId,
       userId: user.id,
     });
     await newVehicle.save();

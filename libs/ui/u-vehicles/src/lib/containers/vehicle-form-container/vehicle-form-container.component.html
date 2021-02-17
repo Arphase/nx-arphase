@@ -3,5 +3,6 @@
                           [companyOptions]="companyOptions$ | async"
                           [loading]="loading$ | async"
                           [invalidVin]="invalidVin$ | async"
+                          [showCompanyInput]="showCompanyInput$ | async"
                           (verifyVin)="verifyVin($event)"
                           (submitForm)="submit($event)"></ivt-vehicle-form-wrapper>
