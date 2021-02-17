@@ -7,7 +7,7 @@ import { colorMaps, columns, iconMaps, statusLabels } from './vehicle-list.const
 @Component({
   selector: 'ivt-vehicle-list',
   templateUrl: './vehicle-list.component.html',
-  styleUrls: ['./vehicle-list.component.scss'],
+  styleUrls: ['./vehicle-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VehicleListComponent extends IvtListComponent<Vehicle> {
@@ -18,8 +18,8 @@ export class VehicleListComponent extends IvtListComponent<Vehicle> {
   colorMaps = colorMaps;
   iconMaps = iconMaps;
   statusLabels = statusLabels;
-  @Output() goToRevisions = new EventEmitter<Vehicle>();
   @Output() createGuarantee = new EventEmitter<Vehicle>();
+  @Output() createRevision = new EventEmitter<Vehicle>();
   @Output() createRevisionRequest = new EventEmitter<Vehicle>();
 
   isElegible(vehicle: Vehicle): boolean {

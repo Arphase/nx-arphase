@@ -9,11 +9,11 @@ import { colorMaps, columns, iconMaps } from './revision-list.constants';
 @Component({
   selector: 'ivt-revision-list',
   templateUrl: './revision-list.component.html',
-  styleUrls: ['./revision-list.component.scss'],
+  styleUrls: ['./revision-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionListComponent extends IvtListComponent<Revision> {
-  @Input() title: string;
+  @Input() isSuperAdmin: boolean;
   columns = columns;
   statusLabels = revisionStatusLabels;
   revisionStatus = RevisionStatus;

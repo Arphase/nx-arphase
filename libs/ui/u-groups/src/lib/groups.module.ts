@@ -3,15 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
 import { PermissionsModule } from '@ivt/u-state';
-import {
-  IvtAddressFormModule,
-  IvtEmptyModule,
-  IvtPhoneModule,
-  IvtRowModule,
-  IvtSearchbarModule,
-  IvtTableHeaderModule,
-  IvtVirtualScrollModule,
-} from '@ivt/u-ui';
+import { IvtAddressFormModule, IvtEmptyModule, IvtPhoneModule, IvtSearchbarModule } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
@@ -31,7 +23,6 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { CompanyFormDialogComponent } from './components/company-form-dialog/company-form-dialog.component';
-import { CompanyRowComponent } from './components/company-row/company-row.component';
 import { GroupCompanyListComponent } from './components/group-company-list/group-company-list.component';
 import { GroupFormComponent } from './components/group-form/group-form.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
@@ -50,11 +41,8 @@ import { GroupsComponent } from './groups.component';
     ReactiveFormsModule,
     NzIconModule,
     IvtAddressFormModule,
-    IvtRowModule,
     IvtEmptyModule,
     NzEmptyModule,
-    IvtTableHeaderModule,
-    IvtVirtualScrollModule,
     NzPageHeaderModule,
     IvtSearchbarModule,
     IvtPhoneModule,
@@ -83,7 +71,6 @@ import { GroupsComponent } from './groups.component';
     GroupFormComponent,
     CompanyFormDialogComponent,
     UserFormComponent,
-    CompanyRowComponent,
     GroupCompanyListContainerComponent,
   ],
   entryComponents: [CompanyFormDialogComponent],

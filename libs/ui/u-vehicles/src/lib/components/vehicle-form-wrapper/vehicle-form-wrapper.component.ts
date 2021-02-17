@@ -13,7 +13,7 @@ import { IvtFormComponent } from '@ivt/u-ui';
 @Component({
   selector: 'ivt-vehicle-form-wrapper',
   templateUrl: './vehicle-form-wrapper.component.html',
-  styleUrls: ['./vehicle-form-wrapper.component.scss'],
+  styleUrls: ['./vehicle-form-wrapper.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VehicleFormWrapperComponent extends IvtFormComponent<Vehicle> implements OnChanges {

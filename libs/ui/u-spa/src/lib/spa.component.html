@@ -3,8 +3,8 @@
     <i class="trigger text-white"
        nz-icon
        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-       (click)="isCollapsed = !isCollapsed"></i>
-    <img src="assets/img/logo.jpg"
+       (click)="toggleIsCollapsed()"></i>
+    <img src="assets/img/logo.svg"
          alt="Company Logo"
          class="logo">
     <div class="spacer"></div>
@@ -23,7 +23,7 @@
                 'absolute': mobileQuery.matches
               }">
       <ul nz-menu
-          [nzTheme]="'dark'"
+          nzTheme="dark"
           nzMode="inline"
           class="h-95">
         <ng-container *ngFor="let item of (menuItems$ | async)">
@@ -34,13 +34,25 @@
               [nzTooltipTitle]="mobileQuery.matches ? '' : item.header"
               nzTooltipPlacement="right"
               [routerLink]="item.path"
-              (click)="isCollapsed = true">
+              (click)="isCollapsed = mobileQuery.matches ? true : isCollapsed">
             <i nz-icon
                [nzType]="item.icon"></i>
             <span>{{ item.header }}</span>
           </li>
         </ng-container>
       </ul>
+      <div [hidden]="isCollapsed"
+           class="flex-center">
+        <p class="text-white flex-center">
+          <i nz-icon
+             [style.font-size]="'20px'"
+             [style.margin-right]="'8px'"
+             [nzType]="darkModeChecked ? 'eye-invisible': 'eye'"
+             nzTheme="outline"></i>
+          <nz-switch [(ngModel)]="darkModeChecked"
+                     (ngModelChange)="toggleDarkMode()"></nz-switch>
+        </p>
+      </div>
       <div [hidden]="isCollapsed"
            class="version text-white">
         Versión {{ version }}

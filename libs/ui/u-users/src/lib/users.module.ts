@@ -1,13 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {
-  IvtCheckboxFilterModule,
-  IvtEmptyModule,
-  IvtRowModule,
-  IvtSearchbarModule,
-  IvtTableModule,
-  IvtVirtualScrollModule,
-} from '@ivt/u-ui';
+import { IvtCheckboxFilterModule, IvtEmptyModule, IvtSearchbarModule } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -31,9 +24,6 @@ import { UsersComponent } from './users.component';
     NzIconModule,
     IvtCheckboxFilterModule,
     NzEmptyModule,
-    IvtTableModule,
-    IvtVirtualScrollModule,
-    IvtRowModule,
     IvtEmptyModule,
     NzButtonModule,
     NzCardModule,

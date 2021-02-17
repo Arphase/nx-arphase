@@ -22,8 +22,17 @@
               "apps/innovatech-ui/src/manifest.webmanifest"
             ],
             "styles": [
-              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
-              "apps/innovatech-ui/src/styles.scss"
+              "apps/innovatech-ui/src/styles.less",
+              {
+                "input": "libs/ui/u-ui/src/styles/default.less",
+                "bundleName": "default",
+                "inject": false
+              },
+              {
+                "input": "libs/ui/u-ui/src/styles/dark.less",
+                "bundleName": "dark",
+                "inject": false
+              }
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
@@ -881,6 +890,33 @@
           }
         }
       }
+    },
+    "u-revision-requests": {
+      "projectType": "library",
+      "root": "libs/ui/u-revision-requests",
+      "sourceRoot": "libs/ui/u-revision-requests/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui/u-revision-requests/src/**/*.ts",
+              "libs/ui/u-revision-requests/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/ui/u-revision-requests"
+          ],
+          "options": {
+            "jestConfig": "libs/ui/u-revision-requests/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
@@ -900,7 +936,7 @@
       "unitTestRunner": "jest"
     },
     "@nrwl/angular:component": {
-      "style": "scss",
+      "style": "less",
       "changeDetection": "OnPush"
     }
   },

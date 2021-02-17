@@ -11,7 +11,7 @@ import { finalize, take } from 'rxjs/operators';
 @Component({
   selector: 'ivt-product-form',
   templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.scss'],
+  styleUrls: ['./product-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductFormComponent extends IvtFormComponent<Product> implements OnChanges {

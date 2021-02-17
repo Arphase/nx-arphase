@@ -13,7 +13,7 @@ import { IvtSubscriberComponent } from '../subscriber';
 @Component({
   selector: 'ivt-searchbar',
   templateUrl: './searchbar.component.html',
-  styleUrls: ['./searchbar.component.scss'],
+  styleUrls: ['./searchbar.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtSearchbarComponent extends IvtSubscriberComponent

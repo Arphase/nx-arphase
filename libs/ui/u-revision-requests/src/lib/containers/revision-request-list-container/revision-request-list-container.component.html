@@ -1,0 +1,8 @@
+<ivt-revision-request-list [list]="list$ | async"
+                           [loading]="loading$ | async"
+                           [info]="info$ | async"
+                           [isSuperAdmin]="isSuperAdmin$ | async"
+                           [queryParams]="queryParams"
+                           (edit)="changeStatus($event)"
+                           (filterItems)="filterItems($event)">
+</ivt-revision-request-list>

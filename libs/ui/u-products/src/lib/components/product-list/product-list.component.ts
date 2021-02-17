@@ -5,7 +5,7 @@ import { IvtColumns, IvtListComponent } from '@ivt/u-ui';
 @Component({
   selector: 'ivt-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss'],
+  styleUrls: ['./product-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListComponent extends IvtListComponent<Product> {

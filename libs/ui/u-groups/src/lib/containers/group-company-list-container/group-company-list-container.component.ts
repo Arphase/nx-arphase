@@ -8,7 +8,7 @@ import { GroupFormService } from '../../services/group-form.service';
 @Component({
   selector: 'ivt-group-company-list-container',
   templateUrl: './group-company-list-container.component.html',
-  styleUrls: ['./group-company-list-container.component.scss'],
+  styleUrls: ['./group-company-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupCompanyListContainerComponent extends IvtFormComponent<Group> {

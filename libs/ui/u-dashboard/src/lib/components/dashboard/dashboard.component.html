@@ -1,5 +1,4 @@
-<div nz-row
-     class="mb-3">
+<div nz-row>
   <div nz-col
        nzSpan="24">
     <h1 class="font-weight-light h2 text-primary">Dashboard</h1>
@@ -12,8 +11,7 @@
     <nz-card>
       <ng-container *ngIf="data">
         <div nz-row
-             [nzGutter]="12"
-             class="mb-3">
+             [nzGutter]="12">
           <div nz-col
                nzSpan="24"
                class="text-center">
@@ -69,38 +67,19 @@
              nz-row>
           <div nz-col
                nzSm="24"
-               nzLg="16"
-               class="mb-3">
-            <div style="display: block;">
-              <canvas baseChart
-                      [data]="data"
-                      [labels]="labels"
-                      [chartType]="type"
-                      [options]="options"
-                      [legend]="legend"
-                      [colors]="colors">
-              </canvas>
+               [nzLg]="{ span: 18, offset: 3 }">
+            <div class="grid">
+              <ngx-charts-bar-vertical [results]="data"
+                                       [scheme]="colors"
+                                       [xAxis]="true"
+                                       [yAxis]="true"
+                                       [yAxisTickFormatting]="yAxisTickFormatting">
+                <ng-template #tooltipTemplate
+                             let-model="model">
+                  {{ model.value | currency }}
+                </ng-template>
+              </ngx-charts-bar-vertical>
             </div>
-          </div>
-          <div nz-col
-               nzSm="24"
-               nzLg="8">
-            <h4 *ngFor="let item of labels; let i = index"
-                nz-typography>
-              <nz-space>
-                <nz-space-item class="flex-start">
-                  <i nz-icon
-                     nzType="info-circle"
-                     nzTheme="fill"
-                     [style.color]="colors[0]?.backgroundColor[i]"></i>
-                </nz-space-item>
-                <nz-space-item>
-                  <span>
-                    {{ item }}: {{ data[i] | currency }}
-                  </span>
-                </nz-space-item>
-              </nz-space>
-            </h4>
           </div>
         </div>
       </ng-container>

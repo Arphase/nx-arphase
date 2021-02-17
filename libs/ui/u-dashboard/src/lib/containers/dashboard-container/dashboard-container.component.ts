@@ -14,37 +14,37 @@ import {
 import { IvtSubscriberComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
-import { ChartOptions, ChartType } from 'chart.js';
 import { keyBy } from 'lodash-es';
 import { map, take, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-dashboard-container',
   templateUrl: './dashboard-container.component.html',
-  styleUrls: ['./dashboard-container.component.scss'],
+  styleUrls: ['./dashboard-container.component.less'],
 })
 export class DashboardContainerComponent extends IvtSubscriberComponent implements OnInit {
-  options: ChartOptions = {
-    responsive: true,
-  };
-  labels = ['Pagada', 'Pendiente', 'Cancelada', 'Caducada'];
-  colors = [
-    {
-      backgroundColor: ['#28a745', '#ffc107', '#e63917', '#17a2b8'],
-    },
-  ];
-  type: ChartType = 'pie';
-  legend = false;
   data$ = this.store.pipe(
     select(getDashboardGuaranteeSummaryState),
     filterNil(),
     map(guaranteeSummary => {
       const formattedSummary = keyBy(guaranteeSummary, 'status');
       return [
-        Number(formattedSummary[GuaranteeStatus.paid]?.amount) || 0,
-        Number(formattedSummary[GuaranteeStatus.outstanding]?.amount) || 0,
-        Number(formattedSummary[GuaranteeStatus.cancelled]?.amount) || 0,
-        Number(formattedSummary[GuaranteeStatus.expired]?.amount) || 0,
+        {
+          name: `Pagada`,
+          value: Number(formattedSummary[GuaranteeStatus.paid]?.amount) || 0,
+        },
+        {
+          name: 'Pendiente',
+          value: Number(formattedSummary[GuaranteeStatus.outstanding]?.amount) || 0,
+        },
+        {
+          name: 'Cancelada',
+          value: Number(formattedSummary[GuaranteeStatus.cancelled]?.amount) || 0,
+        },
+        {
+          name: 'Caducada',
+          value: Number(formattedSummary[GuaranteeStatus.expired]?.amount) || 0,
+        },
       ];
     })
   );

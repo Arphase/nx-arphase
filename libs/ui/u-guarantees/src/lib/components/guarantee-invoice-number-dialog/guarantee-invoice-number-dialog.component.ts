@@ -7,7 +7,7 @@ import { IvtFormComponent } from '@ivt/u-ui';
 @Component({
   selector: 'ivt-guarantee-invoice-number-dialog',
   templateUrl: './guarantee-invoice-number-dialog.component.html',
-  styleUrls: ['./guarantee-invoice-number-dialog.component.scss'],
+  styleUrls: ['./guarantee-invoice-number-dialog.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeInvoiceNumberDialogComponent extends IvtFormComponent<Guarantee> implements OnChanges {

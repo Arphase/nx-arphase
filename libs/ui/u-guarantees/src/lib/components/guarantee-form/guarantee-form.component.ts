@@ -57,7 +57,7 @@ export function createGuaranteeForm(): FormGroup {
 @Component({
   selector: 'ivt-guarantee-form',
   templateUrl: './guarantee-form.component.html',
-  styleUrls: ['./guarantee-form.component.scss'],
+  styleUrls: ['./guarantee-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnChanges, AfterViewInit {
@@ -116,22 +116,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
 
     if (changes.disabledCompanyInput) {
       this.disabledCompanyInput ? this.form.get('companyId').disable() : this.form.get('companyId').enable();
-    }
-
-    if (changes.vehicle && this.vehicle) {
-      this.vehicleForm.patchValue(this.vehicle);
-      this.vehicleForm.disable();
-    }
-
-    if (changes.currentVehicle) {
-      if (this.currentVehicle) {
-        this.vehicleForm.patchValue(omit(this.currentVehicle, 'vin'));
-        this.vehicleForm.disable({ emitEvent: false });
-        this.vehicleForm.get('vin').enable({ emitEvent: false });
-      } else {
-        this.vehicleForm.enable({ emitEvent: false });
-        this.vehicleForm.get('id').patchValue(null);
-      }
     }
   }
 

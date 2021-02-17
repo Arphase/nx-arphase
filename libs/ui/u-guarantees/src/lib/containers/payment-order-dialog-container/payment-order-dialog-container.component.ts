@@ -12,7 +12,7 @@ import { finalize, take } from 'rxjs/operators';
 @Component({
   selector: 'ivt-payment-order-dialog-container',
   templateUrl: './payment-order-dialog-container.component.html',
-  styleUrls: ['./payment-order-dialog-container.component.scss'],
+  styleUrls: ['./payment-order-dialog-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentOrderDialogContainerComponent extends IvtFormContainerComponent<PaymentOrder> {

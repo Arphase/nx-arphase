@@ -13,7 +13,7 @@ export const columns: ApsColumns = [
   },
   {
     label: 'VIN',
-    prop: 'guarantee.vin',
+    prop: 'vehicle.vin',
     colSizes: {
       md: 6,
       lg: 4,
@@ -52,36 +52,13 @@ export const columns: ApsColumns = [
   },
 ];
 
-export const menuOptions = [
-  {
-    type: 'success',
-    label: 'Pagada',
-    value: GuaranteeStatus.paid,
-  },
-  {
-    type: 'warning',
-    label: 'Pendiente',
-    value: GuaranteeStatus.outstanding,
-  },
-  {
-    type: 'error',
-    label: 'Cancelada',
-    value: GuaranteeStatus.cancelled,
-  },
-  {
-    type: 'info',
-    label: 'Caducada',
-    value: GuaranteeStatus.expired,
-  },
-];
-
 export const statusOptions: Select[] = [
   {
     label: 'Pagada',
     value: GuaranteeStatus[GuaranteeStatus.paid],
   },
   {
-    label: 'Pendiente de pago',
+    label: 'Pendiente',
     value: GuaranteeStatus[GuaranteeStatus.outstanding],
   },
   {

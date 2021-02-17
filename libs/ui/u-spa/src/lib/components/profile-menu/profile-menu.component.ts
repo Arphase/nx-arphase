@@ -12,7 +12,7 @@ import {
 @Component({
   selector: 'ivt-profile-menu',
   templateUrl: './profile-menu.component.html',
-  styleUrls: ['./profile-menu.component.scss'],
+  styleUrls: ['./profile-menu.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

@@ -11,7 +11,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 
-import { CreateVehicleDto, UpdateVehicleDto } from '../../../vehicles';
+import { CreateVehicleDto } from '../../../vehicles';
 import { UpdateClientDto } from './update-client.dto';
 
 export class UpdateGuaranteeDto {

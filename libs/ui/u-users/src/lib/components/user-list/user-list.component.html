@@ -1,7 +1,8 @@
 <div nz-row
      [nzGutter]="12">
   <div nz-col
-       class="-9 col-md-6">
+       nzXs="24"
+       nzMd="12">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
 </div>
@@ -9,7 +10,7 @@
 <nz-divider></nz-divider>
 
 <div nz-row
-     [nzGutter]="12">
+     [nzGutter]="[12, 12]">
   <div nz-col>
     <ivt-checkbox-filter *ngIf="groupOptions?.length"
                          label="Grupos"

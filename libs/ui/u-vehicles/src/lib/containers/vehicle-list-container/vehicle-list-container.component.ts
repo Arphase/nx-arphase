@@ -9,7 +9,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 @Component({
   selector: 'ivt-vehicle-list-container',
   templateUrl: './vehicle-list-container.component.html',
-  styleUrls: ['./vehicle-list-container.component.scss'],
+  styleUrls: ['./vehicle-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VehicleListContainerComponent extends IvtListContainerComponent<Vehicle> {
@@ -34,17 +34,15 @@ export class VehicleListContainerComponent extends IvtListContainerComponent<Veh
     super.deleteItem(item);
   }
 
-  goToRevisions(item: Vehicle): void {
-    const { id, model, year } = item;
-    localStorage.setItem('currentVehicleName', `${model} ${year}`);
-    this.router.navigateByUrl(`spa/vehicles/${id}/revisions`);
-  }
-
   createGuarantee(item: Vehicle): void {
     this.router.navigateByUrl(`/spa/guarantees/new?vehicleId=${item.id}`);
   }
 
+  createRevision(item: Vehicle): void {
+    this.router.navigateByUrl(`/spa/revisions/new?vehicleId=${item.id}`);
+  }
+
   createRevisionRequest(item: Vehicle): void {
-    console.log('Implement create revision request');
+    this.router.navigateByUrl(`/spa/revision-requests/new?vehicleId=${item.id}`);
   }
 }

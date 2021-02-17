@@ -7,7 +7,7 @@ import { IvtFormComponent } from '@ivt/u-ui';
 @Component({
   selector: 'ivt-reset-password-form',
   templateUrl: './reset-password-form.component.html',
-  styleUrls: ['./reset-password-form.component.scss'],
+  styleUrls: ['./reset-password-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResetPasswordFormComponent extends IvtFormComponent<Partial<User>> {

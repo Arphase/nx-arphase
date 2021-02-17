@@ -47,7 +47,7 @@ export class ProductService {
   }
 
   async getProducts(filterDto: Partial<GetProductsFilterDto>): Promise<Product[]> {
-    const { limit, offset, sort, price, name } = filterDto;
+    const { sort, price, name } = filterDto;
     const query = this.productRepository.createQueryBuilder('products');
 
     if (sort && price) {
@@ -58,7 +58,7 @@ export class ProductService {
       query.andWhere('LOWER(products.name) LIKE :name', { name: `%${name.toLowerCase()}%` });
     }
 
-    query.groupBy('products.id').take(limit).skip(offset);
+    query.groupBy('products.id');
 
     const products = await query.getMany();
 

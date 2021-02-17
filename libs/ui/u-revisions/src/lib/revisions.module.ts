@@ -2,9 +2,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
-import { IvtEmptyModule, IvtRowModule, IvtSearchbarModule, IvtTableModule, IvtVirtualScrollModule } from '@ivt/u-ui';
+import { VehiclesDataModule } from '@ivt/u-state';
+import { IvtEmptyModule, IvtSearchbarModule } from '@ivt/u-ui';
+import { VehicleFormModule } from '@ivt/u-vehicles';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
@@ -35,9 +39,6 @@ import { RevisionsComponent } from './revisions.component';
     ReactiveFormsModule,
     NzPageHeaderModule,
     NzEmptyModule,
-    IvtTableModule,
-    IvtVirtualScrollModule,
-    IvtRowModule,
     IvtEmptyModule,
     NzIconModule,
     NzButtonModule,
@@ -56,7 +57,11 @@ import { RevisionsComponent } from './revisions.component';
     NzDividerModule,
     IvtSearchbarModule,
     NzSpaceModule,
-    NzTagModule
+    NzTagModule,
+    VehicleFormModule,
+    NzCollapseModule,
+    NzAlertModule,
+    VehiclesDataModule,
   ],
   declarations: [
     RevisionFormComponent,

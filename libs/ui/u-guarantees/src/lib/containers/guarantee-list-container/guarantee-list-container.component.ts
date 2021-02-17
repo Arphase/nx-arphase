@@ -25,7 +25,7 @@ import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-co
 @Component({
   selector: 'ivt-guarantee-list-container',
   templateUrl: './guarantee-list-container.component.html',
-  styleUrls: ['./guarantee-list-container.component.scss'],
+  styleUrls: ['./guarantee-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeListContainerComponent extends IvtListContainerComponent<Guarantee> implements OnInit {
@@ -86,13 +86,9 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   }
 
   changeStatus(guarantee: Partial<Guarantee>): void {
-    this.loadingSubject.next(true);
     this.guaranteeCollectionService
       .update(guarantee)
-      .pipe(
-        take(1),
-        finalize(() => this.loadingSubject.next(false))
-      )
+      .pipe(take(1))
       .subscribe(() =>
         this.messageService.success(
           `La garantía con folio ${transformFolio(guarantee.id)} ahora está ${statusLabels[
@@ -132,7 +128,7 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
 
   editInvoiceNumber(guarantee: Guarantee): void {
     this.modal.create({
-      nzTitle: `Actualizar número de gactura - Garantía ${transformFolio(guarantee.id)}`,
+      nzTitle: `Número de factura - Garantía ${transformFolio(guarantee.id)}`,
       nzContent: GuaranteeInvoiceNumberDialogContainerComponent,
       nzOnOk: component => component.submitChild(),
       nzComponentParams: { guarantee },

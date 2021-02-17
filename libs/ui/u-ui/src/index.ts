@@ -5,5 +5,5 @@ export * from './lib/functions';
 export * from './lib/guards';
 export * from './lib/models';
 export * from './lib/pipes';
-export * from './lib/validators';
+export * from './lib/services';
 export * from './lib/ui.module';

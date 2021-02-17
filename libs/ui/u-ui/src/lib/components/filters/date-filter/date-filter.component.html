@@ -1,17 +1,12 @@
-<button *ngIf="control && control.get('startDate') && control.get('endDate')"
-        class="ivt-filter"
-        [ngClass]="{ 'active-filter': showActiveStatus }"
+<button nz-button
         nz-dropdown
+        [nzType]="showActiveStatus ? 'primary' : 'default'"
         [nzDropdownMenu]="menu"
+        [nzClickHide]="false"
         nzTrigger="click">
-  <span *ngIf="mappedTitle"
-        class="ivt-button-label">
-    {{ mappedTitle }}
-  </span>
-  <span *ngIf="!mappedTitle"
-        class="ivt-button-label">
-    {{ label }}
-  </span>
+
+  {{ mappedTitle }}
+
   <i *ngIf="!showActiveStatus"
      nz-icon
      nzType="down"
@@ -25,31 +20,27 @@
      class="delete-icon right"
      (click)="deleteFilters(); $event.stopPropagation()"></i>
 </button>
-<nz-dropdown-menu #menu="nzDropdownMenu">
-  <div nz-menu
-       nz-form
-       nzLayout="vertical"
-       [formGroup]="control"
-       class="content"
-       (click)="$event.stopPropagation()">
-    <div nz-row
-         [nzGutter]="12">
-      <div nz-col>
-        <div *ngIf="dateTypeOptions.length">
-          <nz-radio-group formControlName="dateType">
-            <label *ngFor="let option of dateTypeOptions"
-                   nz-radio
-                   [nzValue]="option.value"
-                   (click)="$event.stopPropagation()">{{ option.label }}</label>
-          </nz-radio-group>
-        </div>
-      </div>
-    </div>
 
-    <div nz-row
-         [nzGutter]="12">
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu
+      nz-form
+      nzLayout="vertical"
+      [formGroup]="control"
+      (click)="$event.stopPropagation()">
+    <li *ngIf="dateTypeOptions.length"
+        nz-menu-item>
+      <nz-radio-group formControlName="dateType">
+        <label *ngFor="let option of dateTypeOptions"
+               nz-radio
+               [nzValue]="option.value">{{ option.label }}</label>
+      </nz-radio-group>
+    </li>
+
+    <li nz-menu-item
+        nz-row
+        [nzGutter]="12">
       <div nz-col
-           nxSpan="12">
+           nzSpan="12">
         <nz-form-item>
           <nz-form-label nzRequired>Fecha inicial</nz-form-label>
           <nz-form-control apsAutoError>
@@ -58,7 +49,7 @@
         </nz-form-item>
       </div>
       <div nz-col
-           nxSpan="12">
+           nzSpan="12">
         <nz-form-item>
           <nz-form-label nzRequired>Fecha final</nz-form-label>
           <nz-form-control apsAutoError>
@@ -66,17 +57,14 @@
           </nz-form-control>
         </nz-form-item>
       </div>
-    </div>
-
-    <div *ngIf="showError"
-         nz-row
-         [nzGutter]="12"
-         class="small">
-      <div nz-col
-           nzSpan="24"
-           class="text-alert">
-        <span>La fecha inicial no puede ser después que la fecha final</span>
-      </div>
-    </div>
-  </div>
+    </li>
+    <li *ngIf="showError"
+        nz-menu-item>
+      <nz-tag nzColor="error">
+        <i nz-icon
+           nzType="close-circle"></i>
+        <span>Rango de fechas inválido</span>
+      </nz-tag>
+    </li>
+  </ul>
 </nz-dropdown-menu>
