@@ -113,7 +113,9 @@ export class GroupsService {
             users.map(async user => {
               const newUser = this.userRepository.create({ ...user, companyId } as UserEntity);
               await queryRunner.manager.save(newUser);
-              await newUser.reload();
+              if (user.id) {
+                await newUser.reload();
+              }
               if (!newUser.password) {
                 const resetPasswordEntity = this.resetPasswordRepository.create({
                   userId: newUser.id,
@@ -134,7 +136,6 @@ export class GroupsService {
       return newGroup;
     } catch (err) {
       await queryRunner.rollbackTransaction();
-      console.log(err);
       throw new InternalServerErrorException({ ...err, message: err.detail });
     } finally {
       await queryRunner.release();
