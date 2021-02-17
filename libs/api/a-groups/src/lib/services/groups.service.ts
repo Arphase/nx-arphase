@@ -9,7 +9,7 @@ import {
   UserEntity,
   UserRepository,
 } from '@ivt/a-state';
-import { Company, Group, IvtCollectionResponse, User } from '@ivt/c-data';
+import { Company, createCollectionResponse, Group, IvtCollectionResponse, User } from '@ivt/c-data';
 import { generateId, sortDirection } from '@ivt/c-utils';
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -69,17 +69,7 @@ export class GroupsService {
     const groups = await query.getMany();
     const total = await query.getCount();
 
-    return {
-      info: {
-        pageSize: pageSize,
-        pageIndex: pageIndex,
-        total,
-        pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: groups.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
-        last: groups.length < pageSize,
-      },
-      results: groups,
-    };
+    return createCollectionResponse(groups, pageSize, pageIndex, total);
   }
 
   async createGroup(createGroupDto: CreateGroupDto): Promise<Group> {

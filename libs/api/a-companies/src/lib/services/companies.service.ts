@@ -1,5 +1,5 @@
 import { CompanyRepository, FilterCompaniesDto } from '@ivt/a-state';
-import { Company, IvtCollectionResponse, User, UserRoles } from '@ivt/c-data';
+import { Company, createCollectionResponse, IvtCollectionResponse, User, UserRoles } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -21,17 +21,7 @@ export class CompaniesService {
     const companies = await query.getMany();
     const total = await query.getCount();
 
-    return {
-      info: {
-        pageSize: pageSize,
-        pageIndex: pageIndex,
-        total,
-        pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: companies.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
-        last: companies.length < pageSize,
-      },
-      results: companies,
-    };
+    return createCollectionResponse(companies, pageSize, pageIndex, total);
   }
 
   async getCompany(id: number): Promise<Company> {

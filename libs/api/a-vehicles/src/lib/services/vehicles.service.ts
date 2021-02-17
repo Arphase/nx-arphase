@@ -1,5 +1,13 @@
 import { CreateVehicleDto, GetVehiclesDto, UpdateVehicleDto, VehicleRepository } from '@ivt/a-state';
-import { IvtCollectionResponse, transformFolio, User, UserRoles, Vehicle, VehicleStatus } from '@ivt/c-data';
+import {
+  createCollectionResponse,
+  IvtCollectionResponse,
+  transformFolio,
+  User,
+  UserRoles,
+  Vehicle,
+  VehicleStatus,
+} from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
@@ -39,17 +47,7 @@ export class VehiclesService {
     const vehicles = await query.getMany();
     const total = await query.getCount();
 
-    return {
-      info: {
-        pageSize: pageSize,
-        pageIndex: pageIndex,
-        total,
-        pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: vehicles.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
-        last: vehicles.length < pageSize,
-      },
-      results: vehicles,
-    };
+    return createCollectionResponse(vehicles, pageSize, pageIndex, total);
   }
 
   async getVehicle(id: number): Promise<Vehicle> {

@@ -5,7 +5,7 @@ import {
   UpdateRevisionDto,
   VehicleRepository,
 } from '@ivt/a-state';
-import { IvtCollectionResponse, Revision, RevisionStatus, VehicleStatus } from '@ivt/c-data';
+import { createCollectionResponse, IvtCollectionResponse, Revision, RevisionStatus, VehicleStatus } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -50,17 +50,7 @@ export class RevisionsService {
     const revisions = await query.getMany();
     const total = await query.getCount();
 
-    return {
-      info: {
-        pageSize: pageSize,
-        pageIndex: pageIndex,
-        total,
-        pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: revisions.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
-        last: revisions.length < pageSize,
-      },
-      results: revisions,
-    };
+    return createCollectionResponse(revisions, pageSize, pageIndex, total);
   }
 
   async getRevision(id: number): Promise<Revision> {

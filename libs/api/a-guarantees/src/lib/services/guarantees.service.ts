@@ -15,6 +15,7 @@ import {
 } from '@ivt/a-state';
 import {
   Client,
+  createCollectionResponse,
   Guarantee,
   GuaranteeSummary,
   isVehicleElegible,
@@ -83,17 +84,12 @@ export class GuaranteesService {
 
     const guarantees = await query.getMany();
     const total = await query.getCount();
-    return {
-      info: {
-        pageSize: pageSize,
-        pageIndex: pageIndex,
-        total,
-        pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: guarantees.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
-        last: guarantees.length < pageSize,
-      },
-      results: guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity),
-    };
+    return createCollectionResponse(
+      guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity),
+      pageSize,
+      pageIndex,
+      total
+    );
   }
 
   async getGuaranteesSummary(

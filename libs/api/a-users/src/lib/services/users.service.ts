@@ -1,5 +1,5 @@
 import { FilterUsersDto, UserRepository } from '@ivt/a-state';
-import { IvtCollectionResponse, User, UserRoles } from '@ivt/c-data';
+import { createCollectionResponse, IvtCollectionResponse, User, UserRoles } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -49,16 +49,6 @@ export class UsersService {
     const users = await query.getMany();
     const total = await query.getCount();
 
-    return {
-      info: {
-        pageSize: pageSize,
-        pageIndex: pageIndex,
-        total,
-        pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: users.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
-        last: users.length < pageSize,
-      },
-      results: users,
-    };
+    return createCollectionResponse(users, pageSize, pageIndex, total);
   }
 }
