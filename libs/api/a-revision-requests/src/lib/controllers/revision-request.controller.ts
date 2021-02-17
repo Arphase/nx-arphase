@@ -1,5 +1,5 @@
 import { GetUser, Roles, RolesGuard } from '@ivt/a-auth';
-import { CreateRevisionRequestDto, GetRevisionRequestsDto } from '@ivt/a-state';
+import { CreateRevisionRequestDto, GetRevisionRequestsDto, UpdateRevisionRequestDto } from '@ivt/a-state';
 import { IvtCollectionResponse, RevisionRequest, User, UserRoles } from '@ivt/c-data';
 import {
   Body,
@@ -8,6 +8,7 @@ import {
   Param,
   ParseIntPipe,
   Post,
+  Put,
   Query,
   UseGuards,
   UsePipes,
@@ -43,5 +44,14 @@ export class RevisionRequestController {
     @GetUser() user: Partial<User>
   ): Promise<RevisionRequest> {
     return this.revisionRequestsService.createRevisionRequest(createRevisionRequestDto, user);
+  }
+
+  @Put(':id')
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async updateRevisionRequest(
+    @Body() updateRevisionRequestDto: UpdateRevisionRequestDto,
+    @GetUser() user: Partial<User>
+  ): Promise<RevisionRequest> {
+    return this.revisionRequestsService.updateRevisionRequest(updateRevisionRequestDto, user);
   }
 }

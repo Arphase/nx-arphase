@@ -1,7 +1,12 @@
-import { CreateRevisionRequestDto, GetRevisionRequestsDto, RevisionRequestRepository } from '@ivt/a-state';
+import {
+  CreateRevisionRequestDto,
+  GetRevisionRequestsDto,
+  RevisionRequestRepository,
+  UpdateRevisionRequestDto,
+} from '@ivt/a-state';
 import { IvtCollectionResponse, RevisionRequest, User, UserRoles } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -71,5 +76,21 @@ export class RevisionRequestService {
     });
     await newRevisionRequest.save();
     return newRevisionRequest;
+  }
+
+  async updateRevisionRequest(
+    updateRevisionRequestDto: UpdateRevisionRequestDto,
+    user: Partial<User>
+  ): Promise<RevisionRequest> {
+    if (user && UserRoles[user.role] !== UserRoles.superAdmin && updateRevisionRequestDto.status) {
+      throw new UnauthorizedException('Only super admin users can update revision request status');
+    }
+    const preloadedRevisionRequest = await this.revisionRequestRepository.preload(updateRevisionRequestDto);
+    if (!preloadedRevisionRequest) {
+      throw new NotFoundException(`Revision request with id "${updateRevisionRequestDto.id}" not found`);
+    }
+    await preloadedRevisionRequest.save();
+    await preloadedRevisionRequest.reload();
+    return preloadedRevisionRequest;
   }
 }

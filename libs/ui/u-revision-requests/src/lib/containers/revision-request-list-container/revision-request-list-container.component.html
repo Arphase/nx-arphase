@@ -3,5 +3,6 @@
                            [info]="info$ | async"
                            [showDetailOption]="showDetailOption$ | async"
                            [queryParams]="queryParams"
+                           (edit)="changeStatus($event)"
                            (filterItems)="filterItems($event)">
 </ivt-revision-request-list>

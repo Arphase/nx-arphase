@@ -117,12 +117,24 @@
       </td>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul nz-menu>
-          <li *ngIf="showDetailOption"
-              nz-menu-item
-              nz-tooltip
-              [routerLink]="[item.id]">
-            Ver detalle
-          </li>
+          <ng-container *ngIf="showDetailOption">
+            <li nz-menu-item
+                nz-tooltip
+                [routerLink]="[item.id]">
+              Ver detalle
+            </li>
+            <li nz-submenu
+                nzTitle="Cambiar estatus">
+              <ul>
+                <li *ngFor="let option of statusOptions"
+                    nz-menu-item
+                    (click)="onChangeStatus(item.id, option.value)">
+                  <nz-tag [nzColor]="colorMaps[revisionRequestStatus[option.value]]">
+                    {{ option.label }}</nz-tag>
+                </li>
+              </ul>
+            </li>
+          </ng-container>
         </ul>
       </nz-dropdown-menu>
     </tr>

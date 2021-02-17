@@ -10,7 +10,7 @@ import {
 import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, Select, statusLabels } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
 
-import { colorMaps, columns, iconMaps, menuOptions, statusOptions } from './guarantee-list.constants';
+import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.constants';
 
 @Component({
   selector: 'ivt-guarantee-list',
@@ -25,7 +25,6 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   @Input() userOptions: Select[] = [];
   dateTypeOptions = guaranteeDateTypeOptions;
   statusOptions = statusOptions;
-  menuOptions = menuOptions;
   checked = false;
   indeterminate = false;
   setOfCheckedId = new Set<number>();
@@ -59,7 +58,7 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
     this.filterItems.emit({ status });
   }
   onChangeStatus(id: number, status: GuaranteeStatus): void {
-    this.edit.emit({ id, status: GuaranteeStatus[status] });
+    this.edit.emit({ id, status: status });
   }
 
   onItemChecked(id: number, checked: boolean): void {

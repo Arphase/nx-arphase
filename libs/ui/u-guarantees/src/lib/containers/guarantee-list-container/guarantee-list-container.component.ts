@@ -86,13 +86,9 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   }
 
   changeStatus(guarantee: Partial<Guarantee>): void {
-    this.loadingSubject.next(true);
     this.guaranteeCollectionService
       .update(guarantee)
-      .pipe(
-        take(1),
-        finalize(() => this.loadingSubject.next(false))
-      )
+      .pipe(take(1))
       .subscribe(() =>
         this.messageService.success(
           `La garantía con folio ${transformFolio(guarantee.id)} ahora está ${statusLabels[

@@ -81,9 +81,7 @@ export class RevisionsService {
       const newRevision = this.revisionRepository.create(createRevisionDto);
       await newRevision.save();
       await newRevision.reload();
-
       await this.updateVehicleStatus(createRevisionDto.status, newRevision.vehicleId);
-
       await queryRunner.commitTransaction();
       return newRevision;
     } catch (err) {
@@ -103,14 +101,11 @@ export class RevisionsService {
     await this.validateRevisionExpiration(preloadedRevision);
 
     try {
-      await preloadedRevision.save();
+      const updatedRevision = await this.revisionRepository.save(updateRevisionDto);
       await preloadedRevision.reload();
-
       await this.updateVehicleStatus(updateRevisionDto.status, preloadedRevision.vehicleId);
-
       await queryRunner.commitTransaction();
-
-      return preloadedRevision;
+      return updatedRevision;
     } catch (err) {
       await queryRunner.rollbackTransaction();
     } finally {

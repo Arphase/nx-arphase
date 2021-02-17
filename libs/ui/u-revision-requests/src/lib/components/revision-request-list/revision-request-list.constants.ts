@@ -1,5 +1,5 @@
 import { ApsColumns } from '@arphase/ui';
-import { RevisionRequestStatus } from '@ivt/c-data';
+import { RevisionRequestStatus, Select } from '@ivt/c-data';
 
 export const statusLabels: Record<RevisionRequestStatus, string> = {
   [RevisionRequestStatus.completed]: 'Completada',
@@ -19,6 +19,21 @@ export const colorMaps: Record<RevisionRequestStatus, string> = {
   [RevisionRequestStatus.new]: 'processing',
 };
 
+export const statusOptions: Select[] = [
+  {
+    label: 'Completada',
+    value: RevisionRequestStatus[RevisionRequestStatus.completed],
+  },
+  {
+    label: 'En proceso',
+    value: RevisionRequestStatus[RevisionRequestStatus.inProgress],
+  },
+  {
+    label: 'Nueva',
+    value: RevisionRequestStatus[RevisionRequestStatus.new],
+  },
+];
+
 export const columns: ApsColumns = [
   {
     label: 'VIN',
@@ -34,7 +49,7 @@ export const columns: ApsColumns = [
     prop: 'revisionRequest.name',
     colSizes: {
       md: 7,
-      lg: 5
+      lg: 5,
     },
   },
   {

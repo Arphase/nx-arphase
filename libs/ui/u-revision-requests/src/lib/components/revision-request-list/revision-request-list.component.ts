@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RevisionRequest, RevisionRequestStatus } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
 
-import { colorMaps, columns, iconMaps, statusLabels } from './revision-request-list.constants';
+import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './revision-request-list.constants';
 
 @Component({
   selector: 'ivt-revision-request-list',
@@ -17,4 +17,9 @@ export class RevisionRequestListComponent extends IvtListComponent<RevisionReque
   colorMaps = colorMaps;
   columns = columns;
   revisionRequestStatus = RevisionRequestStatus;
+  statusOptions = statusOptions;
+
+  onChangeStatus(id: number, status: RevisionRequestStatus): void {
+    this.edit.emit({ id, status: status });
+  }
 }

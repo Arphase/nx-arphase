@@ -223,11 +223,11 @@
             <li nz-submenu
                 nzTitle="Cambiar estatus">
               <ul>
-                <li *ngFor="let menuOption of menuOptions"
+                <li *ngFor="let option of statusOptions"
                     nz-menu-item
-                    (click)="onChangeStatus(item.id, menuOption.value)">
-                  <nz-alert [nzType]="menuOption.type"
-                            [nzMessage]="menuOption.label"></nz-alert>
+                    (click)="onChangeStatus(item.id, option.value)">
+                  <nz-tag [nzColor]="colorMaps[guaranteeStatus[option.value]]">
+                    {{ option.label }}</nz-tag>
                 </li>
               </ul>
             </li>
