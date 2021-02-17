@@ -20,6 +20,7 @@ export function createRevisionRequestForm(): FormGroup {
     name: new FormControl(null, ApsValidators.required),
     email: new FormControl(null, ApsValidators.email),
     phone: new FormControl(null, ApsValidators.phone),
+    additionalNotes: new FormControl(null),
     vehicle: createVehicleForm(),
     address: createAddressForm(),
   });

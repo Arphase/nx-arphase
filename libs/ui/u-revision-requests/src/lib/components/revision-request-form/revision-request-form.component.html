@@ -41,7 +41,7 @@
 
     <nz-space-item>
       <nz-collapse>
-        <nz-collapse-panel nzHeader="Contácto"
+        <nz-collapse-panel nzHeader="Información General"
                            [nzActive]="true">
           <div nz-row
                nzGutter="12">
@@ -77,6 +77,19 @@
                          type="tel"
                          mask="(00) 0000 0000"
                          formControlName="phone" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+          <div nz-row>
+            <div nz-col
+                 nzXs="24">
+              <nz-form-item>
+                <nz-form-label>Notas adicionales</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <textarea nz-input
+                            formControlName="additionalNotes"></textarea>
                 </nz-form-control>
               </nz-form-item>
             </div>
