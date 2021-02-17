@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Revision } from '@ivt/c-data';
-import { IvtState, RevisionCollectionService, RevisionDataService, selectUrl } from '@ivt/u-state';
+import { Revision, UserRoles } from '@ivt/c-data';
+import { getAuthUserRoleState, IvtState, RevisionCollectionService, RevisionDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import dayjs from 'dayjs';
@@ -15,10 +15,11 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionListContainerComponent extends IvtListContainerComponent<Revision> {
-  title$ = this.store.pipe(
-    select(selectUrl),
-    map(url => (url.includes('vehicles') ? localStorage.getItem('currentVehicleName') : ''))
+  isSuperAdmin$ = this.store.pipe(
+    select(getAuthUserRoleState),
+    map(role => UserRoles[role] === UserRoles.superAdmin)
   );
+
   constructor(
     protected revisionCollectionService: RevisionCollectionService,
     protected revisionDataService: RevisionDataService,

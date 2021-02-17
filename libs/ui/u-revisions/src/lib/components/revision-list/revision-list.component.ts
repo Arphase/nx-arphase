@@ -13,7 +13,7 @@ import { colorMaps, columns, iconMaps } from './revision-list.constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionListComponent extends IvtListComponent<Revision> {
-  @Input() title: string;
+  @Input() isSuperAdmin: boolean;
   columns = columns;
   statusLabels = revisionStatusLabels;
   revisionStatus = RevisionStatus;

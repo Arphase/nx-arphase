@@ -34,14 +34,12 @@ export class VehicleListContainerComponent extends IvtListContainerComponent<Veh
     super.deleteItem(item);
   }
 
-  goToRevisions(item: Vehicle): void {
-    const { id, model, year } = item;
-    localStorage.setItem('currentVehicleName', `${model} ${year}`);
-    this.router.navigateByUrl(`spa/vehicles/${id}/revisions`);
-  }
-
   createGuarantee(item: Vehicle): void {
     this.router.navigateByUrl(`/spa/guarantees/new?vehicleId=${item.id}`);
+  }
+
+  createRevision(item: Vehicle): void {
+    this.router.navigateByUrl(`/spa/revisions/new?vehicleId=${item.id}`);
   }
 
   createRevisionRequest(item: Vehicle): void {

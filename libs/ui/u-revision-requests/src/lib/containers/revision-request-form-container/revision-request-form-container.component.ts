@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RevisionRequest, UserRoles } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
@@ -28,7 +28,7 @@ import { createRevisionRequestForm } from '../../components/revision-request-for
 })
 export class RevisionRequestFormContainerComponent
   extends IvtFormContainerComponent<RevisionRequest>
-  implements OnInit {
+  implements OnInit, OnDestroy {
   form = createRevisionRequestForm();
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
   vehicle$ = this.vehicleCollectionService.currentItem$;
@@ -38,6 +38,7 @@ export class RevisionRequestFormContainerComponent
     map(role => UserRoles[role] === UserRoles.agencyUser)
   );
   createSuccessMessage = 'La solicitud para la revisión de tu vehículo se ha creado con éxito';
+  updateSuccessMessage = 'La solicitud para la revisión de tu vehículo se ha actualizado con éxito';
   successUrl = '/spa/revision-requests';
 
   constructor(
@@ -62,5 +63,10 @@ export class RevisionRequestFormContainerComponent
 
   submit(item: RevisionRequest): void {
     super.submit(omit({ ...item, vehicleId: item.vehicle.id }, 'vehicle'));
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    this.store.dispatch(fromVehicles.actions.clearVehiclesState());
   }
 }

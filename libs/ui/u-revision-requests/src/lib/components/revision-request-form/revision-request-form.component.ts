@@ -36,7 +36,6 @@ export class RevisionRequestFormComponent
   implements OnChanges, AfterViewInit {
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
-  @Input() isEditable: boolean;
   @Output() verifyVin = new EventEmitter<string>();
 
   ngOnChanges(changes: SimpleChanges) {

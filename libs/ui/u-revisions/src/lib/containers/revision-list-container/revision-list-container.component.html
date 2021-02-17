@@ -1,7 +1,7 @@
 <ivt-revision-list [list]="list$ | async"
-                   [title]="title$ | async"
                    [loading]="loading$ | async"
                    [info]="info$ | async"
+                   [isSuperAdmin]="isSuperAdmin$ | async"
                    [queryParams]="queryParams"
                    (filterItems)="filterItems($event)"
                    (delete)="deleteItem($event)">

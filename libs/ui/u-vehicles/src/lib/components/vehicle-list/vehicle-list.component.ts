@@ -18,8 +18,8 @@ export class VehicleListComponent extends IvtListComponent<Vehicle> {
   colorMaps = colorMaps;
   iconMaps = iconMaps;
   statusLabels = statusLabels;
-  @Output() goToRevisions = new EventEmitter<Vehicle>();
   @Output() createGuarantee = new EventEmitter<Vehicle>();
+  @Output() createRevision = new EventEmitter<Vehicle>();
   @Output() createRevisionRequest = new EventEmitter<Vehicle>();
 
   isElegible(vehicle: Vehicle): boolean {

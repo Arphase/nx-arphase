@@ -133,9 +133,9 @@
             Generar garantía
           </li>
           <li nz-menu-item
-              *ngIf="canManageRevisions"
-              (click)="goToRevisions.emit(item)">
-            Manejar revisiones
+              *ngIf="!canCreateReviewRequest"
+              (click)="createRevision.emit(item)">
+            Generar revisión
           </li>
           <li nz-menu-item
               *ngIf="canCreateReviewRequest"

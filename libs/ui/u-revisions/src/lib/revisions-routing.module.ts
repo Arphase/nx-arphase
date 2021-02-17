@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IvtDirtyFormGuard } from '@ivt/u-ui';
+import { UserRoles } from '@ivt/c-data';
+import { IvtDirtyFormGuard, RoleGuard } from '@ivt/u-ui';
 
 import { RevisionFormContainerComponent } from './containers/revision-form-container/revision-form-container.component';
 import { RevisionListContainerComponent } from './containers/revision-list-container/revision-list-container.component';
@@ -19,6 +20,10 @@ export const routes: Routes = [
       {
         path: 'new',
         component: RevisionFormContainerComponent,
+        canActivate: [RoleGuard],
+        data: {
+          roles: [UserRoles.superAdmin],
+        },
         canDeactivate: [IvtDirtyFormGuard],
         resolve: { resolvedRevision: RevisionResolverService },
       },

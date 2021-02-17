@@ -65,7 +65,10 @@ export class RevisionsService {
 
   async getRevision(id: number): Promise<Revision> {
     const query = this.revisionRepository.createQueryBuilder('revision');
-    const found = await query.where('revision.id = :id', { id }).getOne();
+    const found = await query
+      .leftJoinAndSelect('revision.vehicle', 'vehicle')
+      .where('revision.id = :id', { id })
+      .getOne();
     if (!found) {
       throw new NotFoundException(`Revision with id "${id}" not found`);
     }
