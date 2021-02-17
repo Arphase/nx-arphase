@@ -20,7 +20,7 @@ import { statusLabels } from '../../components/revision-request-list/revision-re
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionRequestListContainerComponent extends IvtListContainerComponent<RevisionRequest> {
-  showDetailOption$ = this.store.pipe(
+  isSuperAdmin$ = this.store.pipe(
     select(getAuthUserRoleState),
     map(role => UserRoles[role] === UserRoles.superAdmin)
   );

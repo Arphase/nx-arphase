@@ -5,35 +5,37 @@
        nzMd="12">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
-  <div nz-col
-       nzXs="0"
-       nzMd="24"
-       nzFlex="auto">
-    <div class="flex-end">
-      <button nz-button
-              [routerLink]="['new']"
-              type="button"
-              nzType="primary">
-        Nueva solicitud
-      </button>
+  <ng-container *ngIf="!isSuperAdmin">
+    <div nz-col
+         nzXs="0"
+         nzMd="24"
+         nzFlex="auto">
+      <div class="flex-end">
+        <button nz-button
+                [routerLink]="['new']"
+                type="button"
+                nzType="primary">
+          Nueva solicitud
+        </button>
+      </div>
     </div>
-  </div>
 
-  <div nz-col
-       nzXs="24"
-       nzMd="0"
-       nzFlex="auto">
-    <div class="flex-end">
-      <button nz-button
-              [routerLink]="['new']"
-              type="button"
-              nzType="primary"
-              nzShape="circle">
-        <i nz-icon
-           nzType="plus-circle"></i>
-      </button>
+    <div nz-col
+         nzXs="24"
+         nzMd="0"
+         nzFlex="auto">
+      <div class="flex-end">
+        <button nz-button
+                [routerLink]="['new']"
+                type="button"
+                nzType="primary"
+                nzShape="circle">
+          <i nz-icon
+             nzType="plus-circle"></i>
+        </button>
+      </div>
     </div>
-  </div>
+  </ng-container>
 </div>
 
 <nz-divider></nz-divider>
@@ -117,24 +119,23 @@
       </td>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul nz-menu>
-          <ng-container *ngIf="showDetailOption">
-            <li nz-menu-item
-                nz-tooltip
-                [routerLink]="[item.id]">
-              Ver detalle
-            </li>
-            <li nz-submenu
-                nzTitle="Cambiar estatus">
-              <ul>
-                <li *ngFor="let option of statusOptions"
-                    nz-menu-item
-                    (click)="onChangeStatus(item.id, option.value)">
-                  <nz-tag [nzColor]="colorMaps[revisionRequestStatus[option.value]]">
-                    {{ option.label }}</nz-tag>
-                </li>
-              </ul>
-            </li>
-          </ng-container>
+          <li nz-menu-item
+              nz-tooltip
+              [routerLink]="[item.id]">
+            {{ isSuperAdmin ? 'Ver detalle' : 'Editar solicitud' }}
+          </li>
+          <li *ngIf="isSuperAdmin"
+              nz-submenu
+              nzTitle="Cambiar estatus">
+            <ul>
+              <li *ngFor="let option of statusOptions"
+                  nz-menu-item
+                  (click)="onChangeStatus(item.id, option.value)">
+                <nz-tag [nzColor]="colorMaps[revisionRequestStatus[option.value]]">
+                  {{ option.label }}</nz-tag>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nz-dropdown-menu>
     </tr>

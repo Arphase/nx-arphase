@@ -11,7 +11,7 @@ import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './rev
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionRequestListComponent extends IvtListComponent<RevisionRequest> {
-  @Input() showDetailOption: boolean;
+  @Input() isSuperAdmin: boolean;
   statusLabels = statusLabels;
   iconMaps = iconMaps;
   colorMaps = colorMaps;

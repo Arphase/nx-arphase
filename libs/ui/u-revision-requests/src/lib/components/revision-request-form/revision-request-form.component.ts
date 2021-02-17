@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
@@ -30,19 +31,23 @@ export function createRevisionRequestForm(): FormGroup {
   styleUrls: ['./revision-request-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RevisionRequestFormComponent extends IvtFormComponent<RevisionRequest> implements OnChanges {
+export class RevisionRequestFormComponent
+  extends IvtFormComponent<RevisionRequest>
+  implements OnChanges, AfterViewInit {
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
   @Input() isEditable: boolean;
   @Output() verifyVin = new EventEmitter<string>();
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.item && this.item) {
-      this.form.patchValue(this.item);
-    }
-
     if (changes.isEditable) {
       this.isEditable ? this.form.enable({ emitEvent: false }) : this.form.disable({ emitEvent: false });
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.item) {
+      this.form.patchValue(this.item);
     }
   }
 
