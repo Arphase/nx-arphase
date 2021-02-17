@@ -95,25 +95,25 @@
                       (filterItems)="updateStatusFilter($event)">
     </ivt-radio-filter>
   </div>
-  <div nz-col>
-    <ivt-checkbox-filter *ngIf="groupOptions?.length"
-                         label="Grupos"
+  <div *ngIf="groupOptions?.length"
+       nz-col>
+    <ivt-checkbox-filter label="Grupos"
                          [options]="groupOptions"
                          [preselectedOptions]="queryParams?.groupIds"
                          (filterItems)="updateGroupsFilters($event)">
     </ivt-checkbox-filter>
   </div>
-  <div nz-col>
-    <ivt-checkbox-filter *ngIf="companyOptions?.length"
-                         label="Compañías"
+  <div *ngIf="companyOptions?.length"
+       nz-col>
+    <ivt-checkbox-filter label="Compañías"
                          [options]="companyOptions"
                          [preselectedOptions]="queryParams?.companyIds"
                          (filterItems)="updateCompaniesFilters($event)">
     </ivt-checkbox-filter>
   </div>
-  <div nz-col>
-    <ivt-checkbox-filter *ngIf="userOptions?.length"
-                         label="Vendedores"
+  <div *ngIf="userOptions?.length"
+       nz-col>
+    <ivt-checkbox-filter label="Vendedores"
                          [options]="userOptions"
                          [preselectedOptions]="queryParams?.userIds"
                          (filterItems)="updateUsersFilters($event)">
