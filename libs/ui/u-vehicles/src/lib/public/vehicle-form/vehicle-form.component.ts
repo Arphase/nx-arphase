@@ -78,7 +78,7 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
       this.form.get('vin').enable({ emitEvent: false });
     }
 
-    if (changes.vehicle) {
+    if (changes.vehicle && this.isEditable) {
       if (this.vehicle) {
         this.form.patchValue(omit(this.vehicle, 'vin'));
         this.form.disable({ emitEvent: false });
