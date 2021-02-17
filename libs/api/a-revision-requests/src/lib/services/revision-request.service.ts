@@ -15,7 +15,9 @@ export class RevisionRequestService {
     user: Partial<User>
   ): Promise<IvtCollectionResponse<RevisionRequest>> {
     const { pageSize, pageIndex, sort, direction } = filterDto;
-    const query = this.revisionRequestRepository.createQueryBuilder('revisionRequest');
+    const query = this.revisionRequestRepository
+      .createQueryBuilder('revisionRequest')
+      .leftJoinAndSelect('revisionRequest.vehicle', 'vehicle');
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
       query.where('revisionRequest.companyId = :id', { id: user.companyId });

@@ -64,6 +64,7 @@ export const colorMaps: Record<RevisionStatus, string> = {
   [RevisionStatus.needsRepairs]: 'warning',
   [RevisionStatus.notElegible]: 'error',
 };
+
 export const iconMaps: Record<RevisionStatus, string> = {
   [RevisionStatus.elegible]: 'check-circle',
   [RevisionStatus.needsRepairs]: 'exclamation-circle',

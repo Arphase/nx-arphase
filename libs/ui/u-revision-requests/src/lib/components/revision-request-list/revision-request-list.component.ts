@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RevisionRequest } from '@ivt/c-data';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { RevisionRequest, RevisionRequestStatus } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
+
+import { colorMaps, columns, iconMaps, statusLabels } from './revision-request-list.constants';
 
 @Component({
   selector: 'ivt-revision-request-list',
@@ -8,4 +10,11 @@ import { IvtListComponent } from '@ivt/u-ui';
   styleUrls: ['./revision-request-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RevisionRequestListComponent extends IvtListComponent<RevisionRequest> {}
+export class RevisionRequestListComponent extends IvtListComponent<RevisionRequest> {
+  @Input() showDetailOption: boolean;
+  statusLabels = statusLabels;
+  iconMaps = iconMaps;
+  colorMaps = colorMaps;
+  columns = columns;
+  revisionRequestStatus = RevisionRequestStatus;
+}
