@@ -55,6 +55,7 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
   @Input() showCompanyInput: boolean;
   @Input() companyOptions: Select[] = [];
   @Input() vehicle: Vehicle;
+  @Input() isEditable = true;
   @Output() verifyVin = new EventEmitter<string>();
 
   ngOnChanges(changes: SimpleChanges) {
@@ -87,6 +88,10 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
         this.form.enable({ emitEvent: false });
         this.form.get('id').patchValue(null);
       }
+    }
+
+    if (changes.isEditable) {
+      this.isEditable ? this.form.enable({ emitEvent: false }) : this.form.disable({ emitEvent: false });
     }
   }
 }

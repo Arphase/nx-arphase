@@ -8,7 +8,7 @@
             nzSpan="24"
             nzSize="middle">
     <nz-page-header nzBackIcon
-                    nzTitle="Nueva solicitud de revisión"
+                    [nzTitle]="title"
                     [routerLink]="['..']">
     </nz-page-header>
 
@@ -33,6 +33,7 @@
           <ivt-vehicle-form [form]="vehicleForm"
                             [item]="vehicle"
                             [vehicle]="currentVehicle"
+                            [isEditable]="isEditable"
                             (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
         </nz-collapse-panel>
       </nz-collapse>
@@ -93,7 +94,8 @@
       </nz-collapse>
     </nz-space-item>
 
-    <nz-space-item nz-row>
+    <nz-space-item *ngIf="isEditable"
+                   nz-row>
       <div nz-col
            nzSpan="24"
            class="flex-end">

@@ -3,5 +3,6 @@
                            [loading]="loading$ | async"
                            [vehicle]="vehicle$ | async"
                            [currentVehicle]="currentVehicle$ | async"
+                           [isEditable]="isEditable$ | async"
                            (verifyVin)="verifyVin($event)"
                            (submitForm)="submit($event)"></ivt-revision-request-form>

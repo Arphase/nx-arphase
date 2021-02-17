@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RevisionRequest } from '@ivt/c-data';
+import { RevisionRequest, UserRoles } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import {
   fromVehicles,
   getAuthUserCompanyIdState,
+  getAuthUserRoleState,
   getVehiclesVehicleState,
   IvtState,
   RevisionRequestCollectionService,
@@ -15,7 +16,7 @@ import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 
 import { createRevisionRequestForm } from '../../components/revision-request-form/revision-request-form.component';
 
@@ -32,6 +33,10 @@ export class RevisionRequestFormContainerComponent
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
   vehicle$ = this.vehicleCollectionService.currentItem$;
   currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
+  isEditable$ = this.store.pipe(
+    select(getAuthUserRoleState),
+    map(role => UserRoles[role] === UserRoles.agencyUser)
+  );
   createSuccessMessage = 'La solicitud para la revisión de tu vehículo se ha creado con éxito';
   successUrl = '/spa/revision-requests';
 

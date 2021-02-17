@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { RevisionRequest, Vehicle } from '@ivt/c-data';
@@ -22,13 +30,32 @@ export function createRevisionRequestForm(): FormGroup {
   styleUrls: ['./revision-request-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RevisionRequestFormComponent extends IvtFormComponent<RevisionRequest> {
+export class RevisionRequestFormComponent extends IvtFormComponent<RevisionRequest> implements OnChanges {
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
+  @Input() isEditable: boolean;
   @Output() verifyVin = new EventEmitter<string>();
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.item && this.item) {
+      this.form.patchValue(this.item);
+    }
+
+    if (changes.isEditable) {
+      this.isEditable ? this.form.enable({ emitEvent: false }) : this.form.disable({ emitEvent: false });
+    }
+  }
+
+  get title(): string {
+    if (this.item) {
+      return this.isEditable ? 'Editar solicitud de revisión' : 'Detalle de solicitud de revisión';
+    } else {
+      return 'Nueva solicitud de revisión';
+    }
+  }
+
   get showVehicleAlert(): boolean {
-    return !this.currentVehicle && this.vehicleForm.get('vin').valid;
+    return !this.currentVehicle && this.vehicleForm.get('vin').valid && this.isEditable;
   }
 
   get vehicleForm(): FormGroup {

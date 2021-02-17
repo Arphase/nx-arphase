@@ -1,7 +1,7 @@
 import { CreateRevisionRequestDto, GetRevisionRequestsDto, RevisionRequestRepository } from '@ivt/a-state';
 import { IvtCollectionResponse, RevisionRequest, User, UserRoles } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -45,6 +45,19 @@ export class RevisionRequestService {
       },
       results: revisionRequests,
     };
+  }
+
+  async getRevisionRequest(id: number): Promise<RevisionRequest> {
+    const query = this.revisionRequestRepository.createQueryBuilder('revisionRequest');
+    const found = await query
+      .leftJoinAndSelect('revisionRequest.vehicle', 'vehicle')
+      .leftJoinAndSelect('revisionRequest.address', 'address')
+      .where('revisionRequest.id = :id', { id })
+      .getOne();
+    if (!found) {
+      throw new NotFoundException(`Revision request with id "${id}" not found`);
+    }
+    return found;
   }
 
   async createRevisionRequest(
