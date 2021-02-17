@@ -108,24 +108,21 @@ export class AuthService {
 
   async createResetPasswordToken(userId: number): Promise<ResetPassword> {
     const resetPassword = await this.resetPasswordRepository.findOne({ userId });
-    const resetPasswordEntity = {
+    const resetPasswordEntity = this.resetPasswordRepository.create({
       ...resetPassword,
       userId,
       passwordToken: generateId(),
       timestamp: new Date(),
-    };
-    const updatedResetPassword = await this.resetPasswordRepository.save(resetPasswordEntity);
-    return updatedResetPassword;
+    });
+    await resetPasswordEntity.save();
+    return resetPasswordEntity;
   }
 
-  async sendSetPasswordEmail(userId): Promise<Record<string, boolean>> {
-    const userFromDb = await this.userRepository.findOne({ id: userId });
-    if (!userFromDb) {
-      throw new NotFoundException(`User not found`);
-    }
-    const tokenEntity = await this.createResetPasswordToken(userFromDb.id);
-
-    if (tokenEntity && tokenEntity.passwordToken) {
+  async sendSetPasswordEmail(
+    user: Partial<User>,
+    resetPasswordEntity: ResetPassword
+  ): Promise<Record<string, boolean>> {
+    if (resetPasswordEntity && resetPasswordEntity.passwordToken) {
       const transporter = createTransport({
         host: process.env.SMTP,
         port: Number(process.env.MAIL_PORT),
@@ -138,32 +135,23 @@ export class AuthService {
 
       const mailOptions: Mail.Options = {
         from: `Innovatech Garantías <${process.env.MAIL_ACCOUNT_SENDER}>`,
-        to: userFromDb.email,
+        to: user.email,
         subject: 'Bienvenido a Innovatech',
         attachments: [
           {
             filename: 'logo.png',
             path: __dirname + '/assets/img/logo.png',
-            cid: 'unique@kreata.ee',
           },
         ],
-        html: getNewUserEmailTemplate(`${process.env.MAIL_HOST_URL}/${tokenEntity.passwordToken}/${userFromDb.id}`),
+        html: getNewUserEmailTemplate(
+          `${process.env.MAIL_HOST_URL}/${resetPasswordEntity.passwordToken}/${resetPasswordEntity.userId}`
+        ),
       };
       await transporter.sendMail(mailOptions);
       return { success: true };
     } else {
       throw new NotFoundException('User not found');
     }
-  }
-
-  async sendEmailToPendingUsers(userIds: number[]): Promise<boolean> {
-    const query = this.userRepository.createQueryBuilder('user');
-    const users = await query
-      .where(`user.id IN (:...userIds)`, { userIds })
-      .andWhere(`user.password IS NULL`)
-      .getMany();
-    users.forEach(async user => await this.sendSetPasswordEmail(user.id));
-    return true;
   }
 
   async validateToken(passwordToken: string): Promise<ResetPasswordEntity> {
@@ -201,7 +189,6 @@ export class AuthService {
           {
             filename: 'logo.png',
             path: __dirname + '/assets/img/logo.png',
-            cid: 'unique@kreata.ee',
           },
         ],
         html: getResetPasswordEmailTemplate(
