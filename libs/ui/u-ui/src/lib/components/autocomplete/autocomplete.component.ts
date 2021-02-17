@@ -6,7 +6,7 @@ import { map, startWith } from 'rxjs/operators';
 @Component({
   selector: 'ivt-autocomplete',
   templateUrl: './autocomplete.component.html',
-  styleUrls: ['./autocomplete.component.scss'],
+  styleUrls: ['./autocomplete.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtAutocompleteComponent implements OnInit {

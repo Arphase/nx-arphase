@@ -8,7 +8,7 @@ import { createAddressForm, IvtAddressFormService } from './address-form.service
 @Component({
   selector: 'ivt-address-form',
   templateUrl: './address-form.component.html',
-  styleUrls: ['./address-form.component.scss'],
+  styleUrls: ['./address-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [IvtAddressFormService],
 })

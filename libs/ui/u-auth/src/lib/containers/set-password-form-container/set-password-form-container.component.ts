@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 @Component({
   selector: 'ivt-set-password-form-container',
   templateUrl: './set-password-form-container.component.html',
-  styleUrls: ['./set-password-form-container.component.scss'],
+  styleUrls: ['./set-password-form-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SetPasswordFormContainerComponent {

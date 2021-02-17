@@ -19,7 +19,7 @@ export interface CheckboxOption {
 @Component({
   selector: 'ivt-checkbox-filter',
   templateUrl: './checkbox-filter.component.html',
-  styleUrls: ['./checkbox-filter.component.scss'],
+  styleUrls: ['./checkbox-filter.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -30,7 +30,6 @@ export class IvtCheckboxFilterComponent extends IvtFilterComponent<number[]> imp
   @Input() height = '15vh';
   @Input() width = '275px';
   @Input() preselectedOptions: string;
-  displayContent = true;
   selectedOptions: CheckboxOption[] = [];
 
   constructor(private cdr: ChangeDetectorRef) {
@@ -88,12 +87,9 @@ export class IvtCheckboxFilterComponent extends IvtFilterComponent<number[]> imp
   }
 
   deleteFilters(): void {
-    this.displayContent = false;
-    this.cdr.detectChanges();
-    this.selectedOptions = this.options;
+    this.selectedOptions = this.selectedOptions.map(option => ({ ...option, checked: false }));
     this.mappedTitle = this.label;
     this.filterItems.emit([]);
-    this.displayContent = true;
     this.cdr.detectChanges();
   }
 }

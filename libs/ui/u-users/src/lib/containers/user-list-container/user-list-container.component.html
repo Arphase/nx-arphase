@@ -1,10 +1,8 @@
 <ivt-user-list [list]="list$ | async"
-               [hasMoreItems]="hasMore$ | async"
                [loading]="loading$ | async"
                [info]="info$ | async"
                [queryParams]="queryParams"
                [groupOptions]="groupOptions$ | async"
                [companyOptions]="companyOptions$ | async"
-               (getMoreItems)="getMoreItems()"
                (filterItems)="filterItems($event)">
 </ivt-user-list>

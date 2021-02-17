@@ -8,7 +8,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'ivt-product-form-container',
   templateUrl: './product-form-container.component.html',
-  styleUrls: ['./product-form-container.component.scss'],
+  styleUrls: ['./product-form-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductFormContainerComponent extends IvtFormContainerComponent<Product> {

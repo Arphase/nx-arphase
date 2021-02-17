@@ -21,7 +21,7 @@ import { createVehicleForm } from '../../public';
 @Component({
   selector: 'ivt-vehicle-form-container',
   templateUrl: './vehicle-form-container.component.html',
-  styleUrls: ['./vehicle-form-container.component.scss'],
+  styleUrls: ['./vehicle-form-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VehicleFormContainerComponent extends IvtFormContainerComponent<Vehicle> implements OnInit, OnDestroy {

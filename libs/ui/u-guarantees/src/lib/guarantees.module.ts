@@ -10,10 +10,7 @@ import {
   IvtEmptyModule,
   IvtFolioModule,
   IvtRadioFilterModule,
-  IvtRowModule,
   IvtSearchbarModule,
-  IvtTableModule,
-  IvtVirtualScrollModule,
 } from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
@@ -69,10 +66,7 @@ import { GuaranteesComponent } from './guarantees.component';
     IvtCheckboxFilterModule,
     IvtRadioFilterModule,
     NzEmptyModule,
-    IvtTableModule,
-    IvtVirtualScrollModule,
     NzIconModule,
-    IvtRowModule,
     IvtEmptyModule,
     NzCardModule,
     NzButtonModule,

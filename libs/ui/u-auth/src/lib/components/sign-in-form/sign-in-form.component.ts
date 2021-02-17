@@ -7,7 +7,7 @@ import { IvtFormComponent } from '@ivt/u-ui';
 @Component({
   selector: 'ivt-sign-in-form',
   templateUrl: './sign-in-form.component.html',
-  styleUrls: ['./sign-in-form.component.scss'],
+  styleUrls: ['./sign-in-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInFormComponent extends IvtFormComponent<SignInRequest> {

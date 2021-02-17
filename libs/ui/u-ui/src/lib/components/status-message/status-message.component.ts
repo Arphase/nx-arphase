@@ -10,7 +10,7 @@ export enum MessageStatus {
 @Component({
   selector: 'ivt-status-message',
   templateUrl: './status-message.component.html',
-  styleUrls: ['./status-message.component.scss'],
+  styleUrls: ['./status-message.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtStatusMessageComponent {

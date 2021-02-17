@@ -7,7 +7,7 @@ import { IvtFormComponent } from '@ivt/u-ui';
 @Component({
   selector: 'ivt-payment-order-dialog',
   templateUrl: './payment-order-dialog.component.html',
-  styleUrls: ['./payment-order-dialog.component.scss'],
+  styleUrls: ['./payment-order-dialog.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> implements OnChanges {

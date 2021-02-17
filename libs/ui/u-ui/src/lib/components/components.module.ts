@@ -5,11 +5,9 @@ import { IvtAutocompleteModule } from './autocomplete';
 import { IvtCheckboxFilterModule, IvtDateFilterModule, IvtFilterModule, IvtRadioFilterModule } from './filters';
 import { IvtFormModule } from './form';
 import { IvtListModule } from './list';
-import { IvtRowModule } from './row';
 import { IvtSearchbarModule } from './searchbar';
 import { IvtStatusMessageModule } from './status-message';
 import { IvtSubscriberModule } from './subscriber';
-import { IvtTableModule } from './table';
 import { IvtVirtualScrollModule } from './virtual-scroll';
 
 const MODULES = [
@@ -21,11 +19,9 @@ const MODULES = [
   IvtFormModule,
   IvtListModule,
   IvtRadioFilterModule,
-  IvtRowModule,
   IvtSearchbarModule,
   IvtStatusMessageModule,
   IvtSubscriberModule,
-  IvtTableModule,
   IvtVirtualScrollModule,
 ];
 

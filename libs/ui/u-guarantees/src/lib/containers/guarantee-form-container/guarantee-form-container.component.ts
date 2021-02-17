@@ -26,7 +26,7 @@ import { createGuaranteeForm } from '../../components/guarantee-form/guarantee-f
 @Component({
   selector: 'ivt-guarantee-form-container',
   templateUrl: './guarantee-form-container.component.html',
-  styleUrls: ['./guarantee-form-container.component.scss'],
+  styleUrls: ['./guarantee-form-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<Guarantee> implements OnInit, OnDestroy {

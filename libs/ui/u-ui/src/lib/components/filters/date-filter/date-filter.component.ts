@@ -16,7 +16,7 @@ export interface Dates {
 @Component({
   selector: 'ivt-date-filter',
   templateUrl: './date-filter.component.html',
-  styleUrls: ['./date-filter.component.scss'],
+  styleUrls: ['./date-filter.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -60,6 +60,10 @@ export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes.label) {
+      this.mappedTitle = this.label;
+    }
+
     if (changes.currentDates && changes.currentDates.firstChange && this.currentDates) {
       const { startDate, endDate, dateType } = this.currentDates;
       if (this.currentDates) {
@@ -111,6 +115,7 @@ export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements
     this.endDate = '';
     this.dateType = '';
     this.setFilter();
+    this.mappedTitle = this.label;
     this.filterItems.emit({
       startDate: '',
       endDate: '',

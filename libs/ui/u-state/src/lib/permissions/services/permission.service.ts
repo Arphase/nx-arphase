@@ -27,6 +27,13 @@ export class PermissionService {
     );
   }
 
+  hasCreatePermission(roles: UserRoles[]): Observable<boolean> {
+    return this.userRole$.pipe(
+      filterNil(),
+      map(role => roles.includes(UserRoles[role]))
+    );
+  }
+
   hasUpdatePermission(roles: UserRoles[]): Observable<boolean> {
     return this.userRole$.pipe(
       filterNil(),

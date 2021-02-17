@@ -28,10 +28,6 @@ export const routes: Routes = [
         canDeactivate: [IvtDirtyFormGuard],
         resolve: { resolvedVehicle: VehicleResolverService },
       },
-      {
-        path: ':id/revisions',
-        loadChildren: () => import('@ivt/u-revisions').then(m => m.RevisionsModule),
-      },
     ],
   },
 ];

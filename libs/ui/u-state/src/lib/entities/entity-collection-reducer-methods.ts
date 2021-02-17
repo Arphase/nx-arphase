@@ -9,7 +9,6 @@ import {
 
 export interface IvtEntityCollection<T> extends EntityCollection {
   queryParams: IvtQueryParams;
-  hasMore: boolean;
   currentItem: T;
   loadingModify: boolean;
   info: IvtCollectionResponseInfo;
@@ -21,7 +20,6 @@ export interface IvtEntityAction extends EntityAction {
 
 export interface IvtActionPayload extends EntityActionPayload {
   queryParams: IvtQueryParams;
-  hasMore: boolean;
 }
 
 export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectionReducerMethods<T> {

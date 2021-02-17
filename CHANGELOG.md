@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://bitbucket.org/arphase/innovatech/compare/v2.1.0...v2.2.0) (2021-02-17)
+
+
+### Features
+
+* **app:** dark mode toggle ([e72ed97](https://bitbucket.org/arphase/innovatech/commit/e72ed971fa0745067b51b4bae5d86d580850384c))
+* **dashboard:** use vertical bar chart ([b884ffa](https://bitbucket.org/arphase/innovatech/commit/b884ffa61bf8fd328730328aa7c3c76a5c51ef78))
+* **revision-request:** list ([95a32b6](https://bitbucket.org/arphase/innovatech/commit/95a32b68aa00879ce647c085547daca21ba0da6a))
+* **revision-requests:** create ([8105655](https://bitbucket.org/arphase/innovatech/commit/8105655ad6dc681253c5e6238f663d9fd3ae0d2f))
+* **revision-requests:** see detail as super admin ([08f9647](https://bitbucket.org/arphase/innovatech/commit/08f9647d68e2b850d163f47ba81b9e6ba2da4a34))
+* **revision-requests:** ui module setup ([5f1f151](https://bitbucket.org/arphase/innovatech/commit/5f1f151b930ea52460338ba6cd4c5185f04c52ba))
+* **revision-requests:** update status ([64c014f](https://bitbucket.org/arphase/innovatech/commit/64c014f359a3acd347d329ed6dbe8f9d4e157124))
+* **revision-requests:** user permissions on list and form ([dcd3828](https://bitbucket.org/arphase/innovatech/commit/dcd3828f72822f78e99144165d0a14de5a12cd37))
+* **revisions:** add view detail option in list ([12f453d](https://bitbucket.org/arphase/innovatech/commit/12f453dc1ffb63f8dd995846fac434688d82d2e9))
+* **revisions:** create ([ab5bce8](https://bitbucket.org/arphase/innovatech/commit/ab5bce800c0e0dc60d48431e7471c7f8232d6a2a))
+* **ui:** migrate to less preprocessor option ([f0dbb73](https://bitbucket.org/arphase/innovatech/commit/f0dbb73ce10de42ab55a94ceea23aa71422828fe))
+* **vehicles:** create revision request from list ([1e0ade8](https://bitbucket.org/arphase/innovatech/commit/1e0ade8a146e520bf2e79358e2f6120949d19189))
+
+
+### Bug Fixes
+
+* **dashboard:** adjust size on sidenav toggle ([da11ce0](https://bitbucket.org/arphase/innovatech/commit/da11ce0e1ea1e6a77c5258cc7bdb407e317246fa))
+
 ## [2.1.0](https://bitbucket.org/arphase/innovatech/compare/v2.0.0...v2.1.0) (2021-02-14)
 
 

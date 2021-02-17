@@ -4,16 +4,6 @@ import { IsOptional, IsNotEmpty, IsNumber, IsString , IsArray, IsNumberString} f
 export class GetProductsFilterDto {
   @IsOptional()
   @IsNotEmpty()
-  @IsNumberString()
-  offset;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsNumberString()
-  limit;
-
-  @IsOptional()
-  @IsNotEmpty()
   sort: string;
 
   @IsOptional()

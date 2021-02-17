@@ -1,8 +1,6 @@
 <ivt-group-list [list]="list$ | async"
-                [hasMoreItems]="hasMore$ | async"
                 [loading]="loading$ | async"
                 [info]="info$ | async"
                 [queryParams]="queryParams"
-                (filterItems)="filterItems($event)"
-                (getMoreItems)="getMoreItems()">
+                (filterItems)="filterItems($event)">
 </ivt-group-list>

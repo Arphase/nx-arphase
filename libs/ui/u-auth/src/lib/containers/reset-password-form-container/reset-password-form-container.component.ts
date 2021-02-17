@@ -8,7 +8,7 @@ import { mapTo } from 'rxjs/operators';
 @Component({
   selector: 'ivt-reset-password-form-container',
   templateUrl: './reset-password-form-container.component.html',
-  styleUrls: ['./reset-password-form-container.component.scss'],
+  styleUrls: ['./reset-password-form-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResetPasswordFormContainerComponent {

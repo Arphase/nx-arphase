@@ -6,6 +6,7 @@ const entityMetadata: EntityMetadataMap = {
   Guarantee: {},
   PaymentOrder: {},
   Product: {},
+  RevisionRequest: {},
   Revision: {},
   User: {},
   Vehicle: {},

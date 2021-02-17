@@ -1,8 +1,6 @@
 <div nz-row
-     [nzGutter]="12"
-     class="mb-3">
-  <div nz-col
-       class="flex-end pr-0">
+     [nzGutter]="12">
+  <div nz-col>
     <button nz-button
             [routerLink]="['new']"
             type="button"
@@ -16,17 +14,16 @@
           nzNotFoundContent="No existen productos.">
 </nz-empty>
 
-<ng-container *ngIf="list.length">
+<!-- <ng-container *ngIf="list.length">
   <ivt-table-header class="d-block mt-4"
                     [columns]="columns"
                     (sort)="updateSort($event)"></ivt-table-header>
 
   <ivt-virtual-scroll height="60vh"
                       [list]="list"
-                      [ignoreNextBatch]="!hasMoreItems || loading"
                       (nextBatchEmitter)="getMoreItems.emit()">
     <ng-template let-item>
       <ivt-product-row [item]="item"></ivt-product-row>
     </ng-template>
   </ivt-virtual-scroll>
-</ng-container>
+</ng-container> -->
