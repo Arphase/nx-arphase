@@ -45,6 +45,6 @@ export class VehicleListContainerComponent extends IvtListContainerComponent<Veh
   }
 
   createRevisionRequest(item: Vehicle): void {
-    console.log('Implement create revision request');
+    this.router.navigateByUrl(`/spa/revision-requests/new?vehicleId=${item.id}`);
   }
 }

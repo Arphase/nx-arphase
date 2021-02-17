@@ -22,4 +22,8 @@ export class GetRevisionRequestsDto {
   @IsOptional()
   @IsNotEmpty()
   direction: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  text: string;
 }

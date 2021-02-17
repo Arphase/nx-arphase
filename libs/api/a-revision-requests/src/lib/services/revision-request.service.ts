@@ -19,13 +19,24 @@ export class RevisionRequestService {
     filterDto: GetRevisionRequestsDto,
     user: Partial<User>
   ): Promise<IvtCollectionResponse<RevisionRequest>> {
-    const { pageSize, pageIndex, sort, direction } = filterDto;
+    const { pageSize, pageIndex, sort, direction, text } = filterDto;
     const query = this.revisionRequestRepository
       .createQueryBuilder('revisionRequest')
       .leftJoinAndSelect('revisionRequest.vehicle', 'vehicle');
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
       query.where('revisionRequest.companyId = :id', { id: user.companyId });
+    }
+
+    if (text) {
+      query.andWhere(
+        `LOWER(vehicle.vin) like :text OR
+           LOWER(revisionRequest.name) like :text OR
+           LOWER(revisionRequest.phone) like :text OR
+           LOWER(revisionRequest.email) like :text
+          `,
+        { text: `%${text.toLowerCase()}%` }
+      );
     }
 
     query.orderBy('revisionRequest.createdAt', sortDirection.desc);
