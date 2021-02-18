@@ -38,39 +38,7 @@
                 </nz-form-control>
               </nz-form-item>
             </div>
-          </div>
 
-          <div nz-row
-               [nzGutter]="12">
-            <div nz-col
-                 nzXs="24"
-                 nzLg="12">
-              <nz-form-item>
-                <nz-form-label nzRequired>Compañía</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <nz-select apsAutoSelect
-                             formControlName="companyId"
-                             [nzOptions]="companyOptions">
-                  </nz-select>
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-
-            <div nz-col
-                 nzXs="24"
-                 nzLg="12">
-              <nz-form-item>
-                <nz-form-label nzRequired>Tipo de producto</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         formControlName="productType" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-
-          <div nz-row
-               [nzGutter]="12">
             <div nz-col
                  nzXs="24"
                  nzLg="12">
@@ -95,8 +63,35 @@
                 </nz-form-control>
               </nz-form-item>
             </div>
-          </div>
 
+            <div *ngIf="showCompanyInput"
+                 nz-col
+                 nzXs="24"
+                 nzLg="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Compañía</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <nz-select apsAutoSelect
+                             formControlName="companyId"
+                             [nzOptions]="companyOptions">
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+            <div nz-col
+                 nzXs="24"
+                 nzLg="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Tipo de producto</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         formControlName="productType" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+          </div>
           <!-- TODO: Uncomment when products is ready
         <div nz-row
              [nzGutter]="12">
@@ -311,6 +306,11 @@
                       Consultar las revisiones del vehículo para confirmar."
                           nzShowIcon>
                 </nz-alert>
+                <nz-alert *ngIf="error"
+                          nzType="error"
+                          [nzMessage]="error"
+                          nzShowIcon>
+                </nz-alert>
               </nz-space-item>
             </nz-space>
           </div>
@@ -339,7 +339,7 @@
                   type="submit"
                   nzType="primary"
                   [nzLoading]="loading"
-                  [disabled]="!isEditable && this.item || !isElegible">
+                  [disabled]="!isEditable && this.item || !isElegible || error">
             Guardar
           </button>
         </nz-space>

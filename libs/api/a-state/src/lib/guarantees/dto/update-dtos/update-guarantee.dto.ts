@@ -1,4 +1,4 @@
-import { Client, GuaranteeStatus, Vehicle } from '@ivt/c-data';
+import { Client, GuaranteeStatus } from '@ivt/c-data';
 import { Transform, Type } from 'class-transformer';
 import {
   IsDateString,
@@ -11,7 +11,6 @@ import {
   ValidateNested,
 } from 'class-validator';
 
-import { CreateVehicleDto } from '../../../vehicles';
 import { UpdateClientDto } from './update-client.dto';
 
 export class UpdateGuaranteeDto {
@@ -25,9 +24,8 @@ export class UpdateGuaranteeDto {
   client: Client;
 
   @IsOptional()
-  @ValidateNested()
-  @Type(() => CreateVehicleDto)
-  vehicle: Vehicle;
+  @IsNumber()
+  vehicleId: number;
 
   @IsOptional()
   @Transform(({ obj, key }) => GuaranteeStatus[obj[key]])
@@ -61,4 +59,8 @@ export class UpdateGuaranteeDto {
   @IsOptional()
   @IsNumber()
   kilometrageEnd: number;
+
+  @IsOptional()
+  @IsNumber()
+  companyId: number;
 }
