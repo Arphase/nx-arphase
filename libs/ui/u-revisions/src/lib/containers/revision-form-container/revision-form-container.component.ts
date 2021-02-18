@@ -63,6 +63,7 @@ export class RevisionFormContainerComponent extends IvtFormContainerComponent<Re
 
   ngOnDestroy() {
     super.ngOnDestroy();
+    this.vehicleCollectionService.removeOneFromCache(null);
     this.store.dispatch(fromVehicles.actions.clearVehiclesState());
   }
 }

@@ -14,7 +14,7 @@ export class VehiclesEffects {
       mergeMap(({ vin }) =>
         this.vehicleDataService.getVehicleByVin(vin).pipe(
           map(payload => VehiclesActions.getVehicleByVinSuccess({ payload })),
-          catchError(() => of(VehiclesActions.getVehicleByVinFailed()))
+          catchError(error => of(VehiclesActions.getVehicleByVinFailed({ payload: error.error })))
         )
       )
     )

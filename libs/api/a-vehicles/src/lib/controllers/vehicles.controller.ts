@@ -38,8 +38,8 @@ export class VehiclesController {
   }
 
   @Get('vin/:vin')
-  async getVehicleFromVin(@Param('vin') vin: string): Promise<Vehicle | null> {
-    return this.vehiclesService.getVehicleFromVin(vin);
+  async getVehicleFromVin(@Param('vin') vin: string, @GetUser() user: Partial<User>): Promise<Vehicle | null> {
+    return this.vehiclesService.getVehicleFromVin(vin, user);
   }
 
   @Post()

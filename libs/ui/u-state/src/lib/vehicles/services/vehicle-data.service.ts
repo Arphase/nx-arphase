@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Vehicle } from '@ivt/c-data';
 import { HttpUrlGenerator } from '@ngrx/data';
@@ -17,6 +17,8 @@ export class VehicleDataService extends IvtDataService<Vehicle> {
   }
 
   getVehicleByVin(vin: string): Observable<Vehicle | null> {
-    return this.http.get<Vehicle | null>(`/ivtApi/vehicles/vin/${vin}`);
+    return this.http.get<Vehicle | null>(`/ivtApi/vehicles/vin/${vin}`, {
+      headers: new HttpHeaders({ noMessage: 'true' }),
+    });
   }
 }

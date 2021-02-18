@@ -62,6 +62,7 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
 
   ngOnDestroy() {
     super.ngOnDestroy();
+    this.vehicleCollectionService.removeOneFromCache(null);
     this.store.dispatch(fromVehicles.actions.clearVehiclesState());
   }
 }

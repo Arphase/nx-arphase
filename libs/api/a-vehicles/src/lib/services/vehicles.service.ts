@@ -9,7 +9,7 @@ import {
   VehicleStatus,
 } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -59,10 +59,21 @@ export class VehiclesService {
     return found;
   }
 
-  async getVehicleFromVin(vin: string): Promise<Vehicle | null> {
+  async getVehicleFromVin(vin: string, user: Partial<User>): Promise<Vehicle | null> {
     const query = this.vehicleRepository.createQueryBuilder('vehicle');
-    const found = await query.where('vehicle.vin = :vin', { vin }).getOne();
-    return found;
+    const vehicle = await query.where('vehicle.vin = :vin', { vin }).getOne();
+
+    if (!vehicle) {
+      throw new NotFoundException(`Vehículo con vin ${vin} no está dado de alta en el sistema`);
+    }
+
+    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+      if (vehicle?.companyId !== user.companyId) {
+        throw new ForbiddenException('Este vehículo pertenece a otra compañía');
+      }
+    }
+
+    return vehicle;
   }
 
   async createVehicle(createVehicleDto: CreateVehicleDto, user: Partial<User>): Promise<Vehicle> {

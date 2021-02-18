@@ -92,6 +92,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
 
   ngOnDestroy() {
     super.ngOnDestroy();
+    this.vehicleCollectionService.removeOneFromCache(null);
     this.store.dispatch(fromVehicles.actions.clearVehiclesState());
   }
 }
