@@ -5,7 +5,15 @@ import {
   UpdateRevisionDto,
   VehicleRepository,
 } from '@ivt/a-state';
-import { createCollectionResponse, IvtCollectionResponse, Revision, RevisionStatus, VehicleStatus } from '@ivt/c-data';
+import {
+  createCollectionResponse,
+  IvtCollectionResponse,
+  Revision,
+  RevisionStatus,
+  User,
+  UserRoles,
+  VehicleStatus,
+} from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -20,11 +28,15 @@ export class RevisionsService {
     private connection: Connection
   ) {}
 
-  async getRevisions(getRevisionsDto: GetRevisionsDto): Promise<IvtCollectionResponse<Revision>> {
+  async getRevisions(getRevisionsDto: GetRevisionsDto, user: Partial<User>): Promise<IvtCollectionResponse<Revision>> {
     const { vehicleId, sort, direction, pageIndex, pageSize, text } = getRevisionsDto;
     const query = this.revisionRepository.createQueryBuilder('revision');
 
     query.leftJoinAndSelect('revision.vehicle', 'vehicle').orderBy('revision.createdAt', sortDirection.desc);
+
+    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+      query.andWhere('(vehicle.companyId = :id)', { id: user.companyId });
+    }
 
     if (vehicleId) {
       query.andWhere('(revision.vehicleId = :id)', { id: vehicleId });

@@ -60,10 +60,6 @@ export class RevisionRequestFormComponent
     }
   }
 
-  get showVehicleAlert(): boolean {
-    return !this.currentVehicle && !this.vehicle && this.vehicleForm.get('vin').valid && this.isEditable;
-  }
-
   get vehicleForm(): FormGroup {
     return this.form.get('vehicle') as FormGroup;
   }

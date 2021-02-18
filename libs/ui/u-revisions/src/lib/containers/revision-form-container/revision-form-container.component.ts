@@ -5,6 +5,7 @@ import { filterNil } from '@ivt/c-utils';
 import {
   fromVehicles,
   getAuthUserRoleState,
+  getVehiclesErrorState,
   getVehiclesVehicleState,
   IvtState,
   RevisionCollectionService,
@@ -36,6 +37,7 @@ export class RevisionFormContainerComponent extends IvtFormContainerComponent<Re
   );
   vehicle$ = this.vehicleCollectionService.currentItem$;
   currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
+  error$ = this.store.pipe(select(getVehiclesErrorState));
 
   constructor(
     protected revisionCollectionService: RevisionCollectionService,
