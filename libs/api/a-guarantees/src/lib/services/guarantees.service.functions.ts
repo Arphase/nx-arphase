@@ -246,7 +246,7 @@ export function applyGuaranteeFilter(
     .leftJoinAndSelect('guarantee.product', 'product')
     .leftJoinAndSelect('guarantee.vehicle', 'vehicle')
     .leftJoinAndSelect('guarantee.company', 'company')
-    .leftJoin('guarantee.user', 'user')
+    .leftJoinAndSelect('guarantee.user', 'user')
     .groupBy('guarantee.id')
     .addGroupBy('client.id')
     .addGroupBy('address.id')
