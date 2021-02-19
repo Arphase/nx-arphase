@@ -72,8 +72,8 @@ export class DashboardContainerComponent extends IvtSubscriberComponent implemen
       if (role === UserRoles[UserRoles.superAdmin]) {
         this.groupCollectionService.getWithQuery({});
         this.companyCollectionService.getWithQuery({});
-        this.userCollectionService.getWithQuery({});
       }
+      this.userCollectionService.getWithQuery({});
     });
 
     this.queryParams$.pipe(take(1)).subscribe(queryParams => {

@@ -1,7 +1,7 @@
-import { DEFAULT_LIMIT_SIZE } from '@ivt/c-data';
+import { DEFAULT_LIMIT_SIZE, VehicleStatus } from '@ivt/c-data';
 import { convertStringToNumberArray } from '@ivt/c-utils';
 import { Transform } from 'class-transformer';
-import { IsArray, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsArray, IsEnum, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
 export class GetVehiclesDto {
   @IsOptional()
@@ -15,6 +15,11 @@ export class GetVehiclesDto {
   @IsNumber()
   @Transform(({ obj, key }) => Number([obj[key]]))
   pageIndex = 1;
+
+  @IsOptional()
+  @Transform(({ obj, key }) => VehicleStatus[obj[key]])
+  @IsEnum(VehicleStatus)
+  status: VehicleStatus;
 
   @IsOptional()
   @IsNotEmpty()
@@ -39,4 +44,18 @@ export class GetVehiclesDto {
   @IsArray()
   @Transform(({ obj, key }) => convertStringToNumberArray(obj[key]))
   groupIds: number[];
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsArray()
+  @Transform(({ obj, key }) => convertStringToNumberArray(obj[key]))
+  userIds: number[];
+
+  @IsOptional()
+  @IsNotEmpty()
+  endDate: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  startDate: string;
 }

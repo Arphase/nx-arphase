@@ -18,8 +18,23 @@ export class VehiclesService {
   constructor(@InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository) {}
 
   async getVehicles(filterDto: GetVehiclesDto, user: Partial<User>): Promise<IvtCollectionResponse<Vehicle>> {
-    const { sort, direction, pageSize, pageIndex, text } = filterDto;
-    const query = this.vehicleRepository.createQueryBuilder('vehicle');
+    const {
+      sort,
+      direction,
+      pageSize,
+      pageIndex,
+      text,
+      status,
+      startDate,
+      endDate,
+      groupIds,
+      companyIds,
+      userIds,
+    } = filterDto;
+    const query = this.vehicleRepository
+      .createQueryBuilder('vehicle')
+      .leftJoinAndSelect('vehicle.company', 'company')
+      .leftJoinAndSelect('vehicle.user', 'user');
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
       query.andWhere('(vehicle.companyId = :id)', { id: user.companyId });
@@ -36,7 +51,32 @@ export class VehiclesService {
       );
     }
 
+    if (status) {
+      query.andWhere('(vehicle.status = :status)', { status });
+    }
+
     query.orderBy('vehicle.createdAt', sortDirection.desc);
+
+    if (startDate && endDate) {
+      query.andWhere(
+        `vehicle.createdAt
+        BETWEEN :begin
+        AND :end`,
+        { begin: startDate, end: endDate }
+      );
+    }
+
+    if (groupIds) {
+      query.innerJoin('company.group', 'group').andWhere('(group.id IN (:...groupIds))', { groupIds });
+    }
+
+    if (companyIds) {
+      query.andWhere('(company.id IN (:...companyIds))', { companyIds });
+    }
+
+    if (userIds) {
+      query.andWhere('(user.id IN (:...userIds))', { userIds });
+    }
 
     if (sort && direction) {
       query.orderBy(`${sort}`, sortDirection[direction]);

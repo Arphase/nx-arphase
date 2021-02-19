@@ -1,5 +1,5 @@
 import { ApsColumns } from '@arphase/ui';
-import { VehicleStatus } from '@ivt/c-data';
+import { Select, VehicleStatus } from '@ivt/c-data';
 
 export const columns: ApsColumns = [
   {
@@ -78,3 +78,22 @@ export const statusLabels: Record<string, string> = {
   [VehicleStatus[VehicleStatus.needsRevision]]: 'Necesita revisión',
   [VehicleStatus[VehicleStatus.elegible]]: 'Garantizable',
 };
+
+export const statusOptions: Select[] = [
+  {
+    label: statusLabels[VehicleStatus[VehicleStatus.elegible]],
+    value: VehicleStatus[VehicleStatus.elegible],
+  },
+  {
+    label: statusLabels[VehicleStatus[VehicleStatus.hasActiveGuarantee]],
+    value: VehicleStatus[VehicleStatus.hasActiveGuarantee],
+  },
+  {
+    label: statusLabels[VehicleStatus[VehicleStatus.needsRevision]],
+    value: VehicleStatus[VehicleStatus.needsRevision],
+  },
+  {
+    label: statusLabels[VehicleStatus[VehicleStatus.notElegible]],
+    value: VehicleStatus[VehicleStatus.notElegible],
+  },
+];

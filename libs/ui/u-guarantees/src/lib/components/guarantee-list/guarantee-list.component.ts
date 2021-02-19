@@ -60,6 +60,7 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   updateStatusFilter(status: GuaranteeStatus): void {
     this.filterItems.emit({ status });
   }
+
   onChangeStatus(id: number, status: GuaranteeStatus): void {
     this.edit.emit({ id, status: status });
   }

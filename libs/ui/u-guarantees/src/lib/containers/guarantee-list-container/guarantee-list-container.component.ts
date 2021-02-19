@@ -57,8 +57,8 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
       if (role === UserRoles[UserRoles.superAdmin]) {
         this.companyCollectionService.getWithQuery({});
         this.groupCollectionService.getWithQuery({});
-        this.userCollectionService.getWithQuery({});
       }
+      this.userCollectionService.getWithQuery({});
     });
   }
 

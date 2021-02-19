@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { VehiclesDataModule } from '@ivt/u-state';
-import { IvtEmptyModule, IvtSearchbarModule } from '@ivt/u-ui';
+import { IvtCheckboxFilterModule, IvtDateFilterModule, IvtEmptyModule, IvtRadioFilterModule, IvtSearchbarModule } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -49,6 +49,9 @@ import { VehiclesComponent } from './vehicles.component';
     NzTableModule,
     NzSpaceModule,
     NzTagModule,
+    IvtDateFilterModule,
+    IvtRadioFilterModule,
+    IvtCheckboxFilterModule
   ],
   declarations: [
     VehicleListComponent,
