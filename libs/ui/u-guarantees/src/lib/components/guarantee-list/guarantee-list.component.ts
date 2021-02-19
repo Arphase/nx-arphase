@@ -40,7 +40,6 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   @Output() filterUsers = new EventEmitter<number[]>();
   @Output() downloadPaymentOrder = new EventEmitter<number>();
   @Output() updatePaymentOrder = new EventEmitter<number>();
-  @Output() editInvoiceNumber = new EventEmitter<Guarantee>();
 
   get checkedIdsArray(): number[] {
     return Array.from(this.setOfCheckedId);

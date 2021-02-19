@@ -19,8 +19,9 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take, takeUntil } from 'rxjs/operators';
 
-import { GuaranteeInvoiceNumberDialogContainerComponent } from '../guarantee-invoice-number-dialog-container/guarantee-invoice-number-dialog-container.component';
-import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
+import {
+  PaymentOrderDialogContainerComponent,
+} from '../payment-order-dialog-container/payment-order-dialog-container.component';
 
 @Component({
   selector: 'ivt-guarantee-list-container',
@@ -122,14 +123,5 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe();
-  }
-
-  editInvoiceNumber(guarantee: Guarantee): void {
-    this.modal.create({
-      nzTitle: `Número de factura - Garantía ${transformFolio(guarantee.id)}`,
-      nzContent: GuaranteeInvoiceNumberDialogContainerComponent,
-      nzOnOk: component => component.submitChild(),
-      nzComponentParams: { guarantee },
-    });
   }
 }
