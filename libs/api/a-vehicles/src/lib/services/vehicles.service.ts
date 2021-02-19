@@ -54,7 +54,7 @@ export class VehiclesService {
     const query = this.vehicleRepository.createQueryBuilder('vehicle');
     const found = await query.where('vehicle.id = :id', { id }).getOne();
     if (!found) {
-      throw new NotFoundException(`Vehicle with id "${id}" not found`);
+      throw new NotFoundException(`Vehicle with id "${id}" not found.`);
     }
     return found;
   }
@@ -64,12 +64,12 @@ export class VehiclesService {
     const vehicle = await query.where('vehicle.vin = :vin', { vin }).getOne();
 
     if (!vehicle) {
-      throw new NotFoundException(`Vehículo con vin ${vin} no está dado de alta en el sistema`);
+      throw new NotFoundException(`Vehículo con vin ${vin} no está dado de alta en el sistema.`);
     }
 
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
       if (vehicle?.companyId !== user.companyId) {
-        throw new ForbiddenException('Este vehículo pertenece a otra compañía');
+        throw new ForbiddenException('Este vehículo pertenece a otra compañía.');
       }
     }
 

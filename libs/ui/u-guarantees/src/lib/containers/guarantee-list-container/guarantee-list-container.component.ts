@@ -68,10 +68,25 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
         nzTitle: 'Generar Orden de Pago',
         nzContent: PaymentOrderDialogContainerComponent,
         nzComponentParams: { data: guaranteeIds },
+        nzStyle: { minWidth: '80%' },
         nzOnOk: component => component.submitChild(),
       })
       .afterClose.pipe(take(1))
       .subscribe(() => this.clearSelectedSubject.next(true));
+  }
+
+  updatePaymentOrder(paymentOrderId: number): void {
+    this.paymentOrderCollectionService
+      .getByKey(paymentOrderId)
+      .pipe(take(1))
+      .subscribe(() =>
+        this.modal.create({
+          nzTitle: 'Editar Orden de Pago',
+          nzContent: PaymentOrderDialogContainerComponent,
+          nzStyle: { minWidth: '80%' },
+          nzOnOk: component => component.submitChild(),
+        })
+      );
   }
 
   downloadPdf(id: number): void {
@@ -95,23 +110,6 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
             GuaranteeStatus[GuaranteeStatus[guarantee.status]]
           ].toLowerCase()}`
         )
-      );
-  }
-
-  updatePaymentOrder(paymentOrderId: number): void {
-    this.loadingSubject.next(true);
-    this.paymentOrderCollectionService
-      .getByKey(paymentOrderId)
-      .pipe(
-        take(1),
-        finalize(() => this.loadingSubject.next(false))
-      )
-      .subscribe(() =>
-        this.modal.create({
-          nzTitle: 'Editar Orden de Pago',
-          nzContent: PaymentOrderDialogContainerComponent,
-          nzOnOk: component => component.submitChild(),
-        })
       );
   }
 

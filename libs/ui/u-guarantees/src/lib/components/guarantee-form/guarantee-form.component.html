@@ -14,6 +14,39 @@
 
     <nz-space-item>
       <nz-collapse>
+        <nz-collapse-panel nzHeader="Vehículo"
+                           [nzActive]="true">
+          <div nz-row>
+            <nz-space nzDirection="vertical"
+                      nzSize="middle"
+                      nz-col
+                      nzSpan="24">
+              <nz-space-item>
+                <nz-alert *ngIf="!isElegible"
+                          nzType="error"
+                          nzMessage="Este vehículo no es elegible para garantizar.
+                      Consultar las revisiones del vehículo para confirmar."
+                          nzShowIcon>
+                </nz-alert>
+                <nz-alert *ngIf="error"
+                          nzType="error"
+                          [nzMessage]="error"
+                          nzShowIcon>
+                </nz-alert>
+              </nz-space-item>
+            </nz-space>
+          </div>
+          <ivt-vehicle-form [form]="vehicleForm"
+                            [companyId]="companyId$ | async"
+                            [item]="vehicle"
+                            [vehicle]="currentVehicle"
+                            (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-space-item>
+
+    <nz-space-item>
+      <nz-collapse>
         <nz-collapse-panel nzHeader="Información General"
                            [nzActive]="true">
           <div nz-row
@@ -286,39 +319,6 @@
             </div>
             <ivt-address-form [form]="addressForm"></ivt-address-form>
           </form>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </nz-space-item>
-
-    <nz-space-item>
-      <nz-collapse>
-        <nz-collapse-panel nzHeader="Vehículo"
-                           [nzActive]="true">
-          <div nz-row>
-            <nz-space nzDirection="vertical"
-                      nzSize="middle"
-                      nz-col
-                      nzSpan="24">
-              <nz-space-item>
-                <nz-alert *ngIf="!isElegible"
-                          nzType="error"
-                          nzMessage="Este vehículo no es elegible para garantizar.
-                      Consultar las revisiones del vehículo para confirmar."
-                          nzShowIcon>
-                </nz-alert>
-                <nz-alert *ngIf="error"
-                          nzType="error"
-                          [nzMessage]="error"
-                          nzShowIcon>
-                </nz-alert>
-              </nz-space-item>
-            </nz-space>
-          </div>
-          <ivt-vehicle-form [form]="vehicleForm"
-                            [companyId]="companyId$ | async"
-                            [item]="vehicle"
-                            [vehicle]="currentVehicle"
-                            (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
         </nz-collapse-panel>
       </nz-collapse>
     </nz-space-item>

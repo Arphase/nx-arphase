@@ -46,6 +46,10 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
     return Array.from(this.setOfCheckedId);
   }
 
+  get showPaymentOrderButton(): boolean {
+    return this.checked || this.indeterminate;
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.clearSelected) {
       this.setOfCheckedId.clear();

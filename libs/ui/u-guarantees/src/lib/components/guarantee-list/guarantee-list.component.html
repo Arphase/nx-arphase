@@ -2,7 +2,7 @@
      [nzGutter]="[12, 12]">
   <div nz-col
        nzXs="16"
-       nzMd="12">
+       [nzMd]="showPaymentOrderButton ? 10 : 12">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
   <div nz-col
@@ -37,12 +37,12 @@
 
   <div nz-col
        nzXs="0"
-       nzMd="10"
+       [nzMd]="showPaymentOrderButton ? 12 : 10"
        nzFlex="auto">
     <div class="flex-end">
       <nz-space>
         <nz-space-item>
-          <button *ngIf="indeterminate || checked"
+          <button *ngIf="showPaymentOrderButton"
                   nz-button
                   type="button"
                   nzType="primary"
@@ -60,7 +60,7 @@
     </div>
   </div>
 
-  <div *ngIf="indeterminate || checked"
+  <div *ngIf="showPaymentOrderButton"
        nz-col
        nzXs="24"
        nzMd="0"
