@@ -2,6 +2,9 @@
                            [loading]="loading$ | async"
                            [info]="info$ | async"
                            [isSuperAdmin]="isSuperAdmin$ | async"
+                           [groupOptions]="groupOptions$ | async"
+                           [companyOptions]="companyOptions$ | async"
+                           [userOptions]="userOptions$ | async"
                            [queryParams]="queryParams"
                            (edit)="changeStatus($event)"
                            (filterItems)="filterItems($event)">

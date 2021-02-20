@@ -20,11 +20,17 @@ export class RevisionRequestService {
     filterDto: GetRevisionRequestsDto,
     user: Partial<User>
   ): Promise<IvtCollectionResponse<RevisionRequest>> {
-    const { pageSize, pageIndex, text } = filterDto;
+    const { pageSize, pageIndex, text, status } = filterDto;
     const query = this.revisionRequestRepository
       .createQueryBuilder('revisionRequest')
       .leftJoinAndSelect('revisionRequest.vehicle', 'vehicle')
+      .leftJoinAndSelect('revisionRequest.company', 'company')
+      .leftJoinAndSelect('revisionRequest.user', 'user')
       .orderBy('revisionRequest.createdAt', sortDirection.desc);
+
+    if (status) {
+      query.andWhere('(revisionRequest.status = :status)', { status });
+    }
 
     if (text) {
       query.andWhere(

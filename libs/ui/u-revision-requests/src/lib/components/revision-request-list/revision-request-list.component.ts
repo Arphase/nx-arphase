@@ -22,4 +22,8 @@ export class RevisionRequestListComponent extends IvtListComponent<RevisionReque
   onChangeStatus(id: number, status: RevisionRequestStatus): void {
     this.edit.emit({ id, status: status });
   }
+
+  updateStatusFilter(status: RevisionRequestStatus): void {
+    this.filterItems.emit({ status });
+  }
 }

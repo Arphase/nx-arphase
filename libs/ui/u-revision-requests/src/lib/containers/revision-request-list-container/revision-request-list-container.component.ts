@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RevisionRequest, RevisionStatus, UserRoles } from '@ivt/c-data';
 import {
   getAuthUserRoleState,
+  IdentityFilterService,
   IvtState,
   RevisionRequestCollectionService,
   RevisionRequestDataService,
@@ -19,19 +20,29 @@ import { statusLabels } from '../../components/revision-request-list/revision-re
   styleUrls: ['./revision-request-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RevisionRequestListContainerComponent extends IvtListContainerComponent<RevisionRequest> {
+export class RevisionRequestListContainerComponent
+  extends IvtListContainerComponent<RevisionRequest>
+  implements OnInit {
   isSuperAdmin$ = this.store.pipe(
     select(getAuthUserRoleState),
     map(role => UserRoles[role] === UserRoles.superAdmin)
   );
+  groupOptions$ = this.identityFilterService.groupOptions$;
+  companyOptions$ = this.identityFilterService.companyOptions$;
+  userOptions$ = this.identityFilterService.userOptions$;
 
   constructor(
     protected revisionRequestCollecitonService: RevisionRequestCollectionService,
     protected revisionRequestDataService: RevisionRequestDataService,
     protected messageService: NzMessageService,
-    private store: Store<IvtState>
+    private store: Store<IvtState>,
+    private identityFilterService: IdentityFilterService
   ) {
     super(revisionRequestCollecitonService, revisionRequestDataService, null, messageService);
+  }
+
+  ngOnInit() {
+    this.identityFilterService.getItems();
   }
 
   changeStatus(revisionRequest: Partial<RevisionRequest>): void {
