@@ -3,7 +3,13 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
 import { VehiclesDataModule } from '@ivt/u-state';
-import { IvtEmptyModule, IvtSearchbarModule } from '@ivt/u-ui';
+import {
+  IvtCheckboxFilterModule,
+  IvtDateFilterModule,
+  IvtEmptyModule,
+  IvtRadioFilterModule,
+  IvtSearchbarModule,
+} from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -62,6 +68,9 @@ import { RevisionsComponent } from './revisions.component';
     NzCollapseModule,
     NzAlertModule,
     VehiclesDataModule,
+    IvtDateFilterModule,
+    IvtCheckboxFilterModule,
+    IvtRadioFilterModule,
   ],
   declarations: [
     RevisionFormComponent,

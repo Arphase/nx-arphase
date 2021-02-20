@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { IvtCollectionResponseInfo, SortEvent } from '@ivt/c-data';
+import { IvtCollectionResponseInfo, Select, SortEvent } from '@ivt/c-data';
 import { QueryParams } from '@ngrx/data';
 
 import { CrudEvents } from '../../models';
@@ -17,6 +17,9 @@ export class IvtListComponent<T> extends IvtSubscriberComponent implements CrudE
   @Input() loadingExcel: boolean;
   @Input() info: IvtCollectionResponseInfo;
   @Input() queryParams: QueryParams;
+  @Input() groupOptions: Select[] = [];
+  @Input() companyOptions: Select[] = [];
+  @Input() userOptions: Select[] = [];
   @Output() create = new EventEmitter<void>();
   @Output() showDetail = new EventEmitter<T>();
   @Output() edit = new EventEmitter<Partial<T>>();

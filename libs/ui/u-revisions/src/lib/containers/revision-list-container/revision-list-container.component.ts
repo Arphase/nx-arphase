@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Revision, UserRoles } from '@ivt/c-data';
-import { getAuthUserRoleState, IvtState, RevisionCollectionService, RevisionDataService } from '@ivt/u-state';
+import { getAuthUserRoleState, IdentityFilterService, IvtState, RevisionCollectionService, RevisionDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import dayjs from 'dayjs';
@@ -14,20 +14,28 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./revision-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RevisionListContainerComponent extends IvtListContainerComponent<Revision> {
+export class RevisionListContainerComponent extends IvtListContainerComponent<Revision> implements OnInit {
   isSuperAdmin$ = this.store.pipe(
     select(getAuthUserRoleState),
     map(role => UserRoles[role] === UserRoles.superAdmin)
   );
+  groupOptions$ = this.identityFilterService.groupOptions$;
+  companyOptions$ = this.identityFilterService.companyOptions$;
+  userOptions$ = this.identityFilterService.userOptions$;
 
   constructor(
     protected revisionCollectionService: RevisionCollectionService,
     protected revisionDataService: RevisionDataService,
     protected modal: NzModalService,
     protected toastrService: NzMessageService,
-    private store: Store<IvtState>
+    private store: Store<IvtState>,
+    private identityFilterService: IdentityFilterService
   ) {
     super(revisionCollectionService, revisionDataService, modal, toastrService);
+  }
+
+  ngOnInit() {
+    this.identityFilterService.getItems();
   }
 
   deleteItem(item: Revision): void {

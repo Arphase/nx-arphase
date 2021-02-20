@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { isVehicleElegible, Select, Vehicle, VehicleStatus } from '@ivt/c-data';
+import { isVehicleElegible, Vehicle, VehicleStatus } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
 
 import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './vehicle-list.constants';
@@ -13,9 +13,6 @@ import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './veh
 export class VehicleListComponent extends IvtListComponent<Vehicle> {
   @Input() canCreateReviewRequest: boolean;
   @Input() canManageRevisions: boolean;
-  @Input() groupOptions: Select[] = [];
-  @Input() companyOptions: Select[] = [];
-  @Input() userOptions: Select[] = [];
   columns = columns;
   vehicleStatus = VehicleStatus;
   colorMaps = colorMaps;

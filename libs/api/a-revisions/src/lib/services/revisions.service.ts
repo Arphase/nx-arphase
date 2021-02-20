@@ -29,13 +29,20 @@ export class RevisionsService {
   ) {}
 
   async getRevisions(getRevisionsDto: GetRevisionsDto, user: Partial<User>): Promise<IvtCollectionResponse<Revision>> {
-    const { vehicleId, pageIndex, pageSize, text } = getRevisionsDto;
-    const query = this.revisionRepository.createQueryBuilder('revision');
-
-    query.leftJoinAndSelect('revision.vehicle', 'vehicle').orderBy('revision.createdAt', sortDirection.desc);
+    const { vehicleId, pageIndex, pageSize, text, status } = getRevisionsDto;
+    const query = this.revisionRepository
+      .createQueryBuilder('revision')
+      .leftJoinAndSelect('revision.vehicle', 'vehicle')
+      .leftJoinAndSelect('vehicle.company', 'company')
+      .leftJoinAndSelect('vehicle.user', 'user')
+      .orderBy('revision.createdAt', sortDirection.desc);
 
     if (vehicleId) {
       query.andWhere('(revision.vehicleId = :id)', { id: vehicleId });
+    }
+
+    if (status) {
+      query.andWhere('(revision.status = :status)', { status });
     }
 
     if (text) {
@@ -49,7 +56,7 @@ export class RevisionsService {
       );
     }
 
-    filterCommonQuery('revision', query, getRevisionsDto, user);
+    filterCommonQuery('revision', query, getRevisionsDto, user, { companyidEntityName: 'vehicle' });
 
     const revisions = await query.getMany();
     const total = await query.getCount();

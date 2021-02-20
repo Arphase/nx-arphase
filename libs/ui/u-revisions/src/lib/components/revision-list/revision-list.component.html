@@ -41,7 +41,45 @@
 <nz-divider></nz-divider>
 
 <div nz-row
-     [nzGutter]="12">
+     nzAlign="middle"
+     [nzGutter]="[12, 12]">
+  <div nz-col>
+    <ivt-date-filter label="Fecha de alta"
+                     [currentDates]="queryParams?.dates"
+                     (filterItems)="updateDateFilter($event)">
+    </ivt-date-filter>
+  </div>
+  <div nz-col>
+    <ivt-radio-filter label="Estatus"
+                      [options]="statusOptions"
+                      [selectedOption]="queryParams?.status"
+                      (filterItems)="updateStatusFilter($event)">
+    </ivt-radio-filter>
+  </div>
+  <div *ngIf="groupOptions?.length"
+       nz-col>
+    <ivt-checkbox-filter label="Grupos"
+                         [options]="groupOptions"
+                         [preselectedOptions]="queryParams?.groupIds"
+                         (filterItems)="updateGroupsFilters($event)">
+    </ivt-checkbox-filter>
+  </div>
+  <div *ngIf="companyOptions?.length"
+       nz-col>
+    <ivt-checkbox-filter label="Compañías"
+                         [options]="companyOptions"
+                         [preselectedOptions]="queryParams?.companyIds"
+                         (filterItems)="updateCompaniesFilters($event)">
+    </ivt-checkbox-filter>
+  </div>
+  <div *ngIf="userOptions?.length"
+       nz-col>
+    <ivt-checkbox-filter label="Vendedores"
+                         [options]="userOptions"
+                         [preselectedOptions]="queryParams?.userIds"
+                         (filterItems)="updateUsersFilters($event)">
+    </ivt-checkbox-filter>
+  </div>
   <div nz-col
        nzFlex="auto"
        class="flex-end">

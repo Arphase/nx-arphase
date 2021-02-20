@@ -1,13 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
-import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, Select, statusLabels } from '@ivt/c-data';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, statusLabels } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
 
 import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.constants';
@@ -20,9 +12,6 @@ import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.co
 })
 export class GuaranteeListComponent extends IvtListComponent<Guarantee> implements OnChanges {
   @Input() clearSelected: boolean;
-  @Input() groupOptions: Select[] = [];
-  @Input() companyOptions: Select[] = [];
-  @Input() userOptions: Select[] = [];
   dateTypeOptions = guaranteeDateTypeOptions;
   statusOptions = statusOptions;
   checked = false;

@@ -8,7 +8,8 @@ export function filterCommonQuery(
   entityName: string,
   query: SelectQueryBuilder<BaseEntity>,
   filterDto: Partial<CommonFilterDto>,
-  user?: Partial<User>
+  user?: Partial<User>,
+  options?: Partial<{ companyidEntityName: string }>
 ) {
   const {
     startDate,
@@ -24,7 +25,7 @@ export function filterCommonQuery(
   } = filterDto;
 
   if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-    query.andWhere(`(${entityName}.companyId = :id)`, { id: user.companyId });
+    query.andWhere(`(${options?.companyidEntityName || entityName}.companyId = :id)`, { id: user.companyId });
   }
 
   if (sort && direction) {

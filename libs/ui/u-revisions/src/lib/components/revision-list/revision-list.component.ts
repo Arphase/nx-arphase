@@ -3,7 +3,7 @@ import { Revision, RevisionStatus } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
 import dayjs from 'dayjs';
 
-import { revisionStatusLabels } from '../revision-form/revision-form.constants';
+import { revisionStatusLabels, statusOptions } from '../revision-form/revision-form.constants';
 import { colorMaps, columns, iconMaps } from './revision-list.constants';
 
 @Component({
@@ -19,8 +19,13 @@ export class RevisionListComponent extends IvtListComponent<Revision> {
   revisionStatus = RevisionStatus;
   colorMaps = colorMaps;
   iconMaps = iconMaps;
+  statusOptions = statusOptions;
 
   isEditable(revision: Revision): boolean {
     return dayjs(revision.createdAt).isAfter(dayjs().subtract(3, 'months'));
+  }
+
+  updateStatusFilter(status: RevisionStatus): void {
+    this.filterItems.emit({ status });
   }
 }
