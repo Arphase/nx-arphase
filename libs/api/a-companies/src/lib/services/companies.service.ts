@@ -1,4 +1,4 @@
-import { CompanyRepository, FilterCompaniesDto } from '@ivt/a-state';
+import { CommonFilterDto, CompanyRepository } from '@ivt/a-state';
 import { Company, createCollectionResponse, IvtCollectionResponse, User, UserRoles } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -7,7 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class CompaniesService {
   constructor(@InjectRepository(CompanyRepository) private companyRepository: CompanyRepository) {}
 
-  async getCompanies(filterDto: FilterCompaniesDto, user: Partial<User>): Promise<IvtCollectionResponse<Company>> {
+  async getCompanies(filterDto: CommonFilterDto, user: Partial<User>): Promise<IvtCollectionResponse<Company>> {
     const { groupIds, pageSize, pageIndex } = filterDto;
     const query = this.companyRepository.createQueryBuilder('company');
     if (user && UserRoles[user.role] !== UserRoles.superAdmin) {

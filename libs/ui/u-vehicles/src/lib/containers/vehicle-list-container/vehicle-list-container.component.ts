@@ -1,22 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRoles, Vehicle } from '@ivt/c-data';
-import { filterNil } from '@ivt/c-utils';
-import {
-  CompanyCollectionService,
-  getAuthUserRoleState,
-  GroupCollectionService,
-  IvtState,
-  PermissionService,
-  UserCollectionService,
-  VehicleCollectionService,
-  VehicleDataService,
-} from '@ivt/u-state';
+import { IdentityFilterService, PermissionService, VehicleCollectionService, VehicleDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
-import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-vehicle-list-container',
@@ -27,9 +15,9 @@ import { takeUntil } from 'rxjs/operators';
 export class VehicleListContainerComponent extends IvtListContainerComponent<Vehicle> implements OnInit {
   canCreateReviewRequest$ = this.permissionsService.hasUpdatePermission([UserRoles.agencyUser]);
   canManageRevisions$ = this.permissionsService.hasUpdatePermission([UserRoles.superAdmin]);
-  groupOptions$ = this.groupCollectionService.options$;
-  companyOptions$ = this.companyCollectionService.options$;
-  userOptions$ = this.userCollectionService.options$;
+  groupOptions$ = this.identityFilterService.groupOptions$;
+  companyOptions$ = this.identityFilterService.companyOptions$;
+  userOptions$ = this.identityFilterService.userOptions$;
 
   constructor(
     protected vehicleCollectionService: VehicleCollectionService,
@@ -38,22 +26,13 @@ export class VehicleListContainerComponent extends IvtListContainerComponent<Veh
     protected messageService: NzMessageService,
     protected router: Router,
     protected permissionsService: PermissionService,
-    private groupCollectionService: GroupCollectionService,
-    private companyCollectionService: CompanyCollectionService,
-    private userCollectionService: UserCollectionService,
-    private store: Store<IvtState>
+    private identityFilterService: IdentityFilterService
   ) {
     super(vehicleCollectionService, vehicleDataService, modal, messageService);
   }
 
   ngOnInit() {
-    this.store.pipe(select(getAuthUserRoleState), filterNil(), takeUntil(this.destroy$)).subscribe(role => {
-      if (role === UserRoles[UserRoles.superAdmin]) {
-        this.companyCollectionService.getWithQuery({});
-        this.groupCollectionService.getWithQuery({});
-      }
-      this.userCollectionService.getWithQuery({});
-    });
+    this.identityFilterService.getItems();
   }
 
   deleteItem(item: Vehicle): void {

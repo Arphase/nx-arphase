@@ -1,5 +1,5 @@
 import { GetUser } from '@ivt/a-auth';
-import { FilterUsersDto } from '@ivt/a-state';
+import { CommonFilterDto } from '@ivt/a-state';
 import { IvtCollectionResponse, User } from '@ivt/c-data';
 import { Controller, Get, Query, UseGuards, ValidationPipe } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
@@ -13,7 +13,7 @@ export class UsersController {
 
   @Get()
   async getUsers(
-    @Query(new ValidationPipe({ transform: true })) filterDto: FilterUsersDto,
+    @Query(new ValidationPipe({ transform: true })) filterDto: CommonFilterDto,
     @GetUser() user: Partial<User>
   ): Promise<IvtCollectionResponse<User>> {
     return this.usersService.getUsers(filterDto, user);

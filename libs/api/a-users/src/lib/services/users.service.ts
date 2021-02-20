@@ -1,4 +1,4 @@
-import { FilterUsersDto, UserRepository } from '@ivt/a-state';
+import { CommonFilterDto, UserRepository } from '@ivt/a-state';
 import { createCollectionResponse, IvtCollectionResponse, User, UserRoles } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { Injectable } from '@nestjs/common';
@@ -8,7 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class UsersService {
   constructor(@InjectRepository(UserRepository) private userRepository: UserRepository) {}
 
-  async getUsers(filterDto: FilterUsersDto, user: Partial<User>): Promise<IvtCollectionResponse<User>> {
+  async getUsers(filterDto: CommonFilterDto, user: Partial<User>): Promise<IvtCollectionResponse<User>> {
     const { sort, direction, companyIds, groupIds, text, pageIndex, pageSize } = filterDto;
     const query = this.userRepository.createQueryBuilder('user');
 

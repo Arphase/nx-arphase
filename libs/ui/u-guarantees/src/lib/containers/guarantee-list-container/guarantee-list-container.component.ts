@@ -1,27 +1,19 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Guarantee, GuaranteeStatus, statusLabels, transformFolio, UserRoles } from '@ivt/c-data';
-import { filterNil } from '@ivt/c-utils';
+import { Guarantee, GuaranteeStatus, statusLabels, transformFolio } from '@ivt/c-data';
 import {
-  CompanyCollectionService,
-  getAuthUserRoleState,
-  GroupCollectionService,
   GuaranteeCollectionService,
   GuaranteeDataService,
-  IvtState,
+  IdentityFilterService,
   PaymentOrderCollectionService,
   PaymentOrderDataService,
-  UserCollectionService,
 } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
-import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
-import { finalize, take, takeUntil } from 'rxjs/operators';
+import { finalize, take } from 'rxjs/operators';
 
-import {
-  PaymentOrderDialogContainerComponent,
-} from '../payment-order-dialog-container/payment-order-dialog-container.component';
+import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
 
 @Component({
   selector: 'ivt-guarantee-list-container',
@@ -33,9 +25,9 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   clearSelectedSubject = new BehaviorSubject<boolean>(false);
   clearSelected$ = this.clearSelectedSubject.asObservable();
   excelFileName = 'Garantias';
-  groupOptions$ = this.groupCollectionService.options$;
-  companyOptions$ = this.companyCollectionService.options$;
-  userOptions$ = this.userCollectionService.options$;
+  groupOptions$ = this.identityFilterService.groupOptions$;
+  companyOptions$ = this.identityFilterService.companyOptions$;
+  userOptions$ = this.identityFilterService.userOptions$;
 
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,
@@ -43,23 +35,14 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
     protected modal: NzModalService,
     protected messageService: NzMessageService,
     private paymentOrderCollectionService: PaymentOrderCollectionService,
-    private store: Store<IvtState>,
-    private groupCollectionService: GroupCollectionService,
-    private companyCollectionService: CompanyCollectionService,
-    private userCollectionService: UserCollectionService,
-    private paymentOrderDataService: PaymentOrderDataService
+    private paymentOrderDataService: PaymentOrderDataService,
+    private identityFilterService: IdentityFilterService
   ) {
     super(guaranteeCollectionService, guaranteeDataService, modal, messageService);
   }
 
   ngOnInit(): void {
-    this.store.pipe(select(getAuthUserRoleState), filterNil(), takeUntil(this.destroy$)).subscribe(role => {
-      if (role === UserRoles[UserRoles.superAdmin]) {
-        this.companyCollectionService.getWithQuery({});
-        this.groupCollectionService.getWithQuery({});
-      }
-      this.userCollectionService.getWithQuery({});
-    });
+    this.identityFilterService.getItems();
   }
 
   createPaymentOrder(guaranteeIds: number[]): void {

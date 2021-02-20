@@ -1,21 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { GuaranteeStatus, UserRoles } from '@ivt/c-data';
+import { GuaranteeStatus } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import {
-  CompanyCollectionService,
   fromDashboard,
-  getAuthUserRoleState,
   getDashboardGuaranteeSummaryState,
   getDashboardQueryParamsState,
-  GroupCollectionService,
+  IdentityFilterService,
   IvtState,
-  UserCollectionService,
 } from '@ivt/u-state';
 import { IvtSubscriberComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
 import { keyBy } from 'lodash-es';
-import { map, take, takeUntil } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-dashboard-container',
@@ -53,30 +50,21 @@ export class DashboardContainerComponent extends IvtSubscriberComponent implemen
     filterNil(),
     map(summary => !summary.length || !summary.some(value => Number(value.amount)))
   );
-  groupOptions$ = this.groupCollectionService.options$;
-  companyOptions$ = this.companyCollectionService.options$;
-  userOptions$ = this.userCollectionService.options$;
+  groupOptions$ = this.identityFilterService.groupOptions$;
+  companyOptions$ = this.identityFilterService.companyOptions$;
+  userOptions$ = this.identityFilterService.userOptions$;
   queryParams$ = this.store.pipe(select(getDashboardQueryParamsState));
 
   constructor(
     private store: Store<IvtState>,
-    private groupCollectionService: GroupCollectionService,
-    private companyCollectionService: CompanyCollectionService,
-    private userCollectionService: UserCollectionService
+    private identityFilterService: IdentityFilterService
   ) {
     super();
   }
 
   ngOnInit(): void {
-    this.store.pipe(select(getAuthUserRoleState), filterNil(), takeUntil(this.destroy$)).subscribe(role => {
-      if (role === UserRoles[UserRoles.superAdmin]) {
-        this.groupCollectionService.getWithQuery({});
-        this.companyCollectionService.getWithQuery({});
-      }
-      this.userCollectionService.getWithQuery({});
-    });
-
     this.queryParams$.pipe(take(1)).subscribe(queryParams => {
+      this.identityFilterService.getItems();
       this.store.dispatch(fromDashboard.actions.getGuaranteeSummary(queryParams));
     });
   }

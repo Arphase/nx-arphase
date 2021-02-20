@@ -1,8 +1,8 @@
 import { AuthService } from '@ivt/a-auth';
 import {
+  CommonFilterDto,
   CompanyRepository,
   CreateGroupDto,
-  GetGroupsFilterDto,
   GroupRepository,
   ResetPasswordRepository,
   UpdateGroupDto,
@@ -43,7 +43,7 @@ export class GroupsService {
     return found;
   }
 
-  async getGroups(filterDto: Partial<GetGroupsFilterDto>): Promise<IvtCollectionResponse<Group>> {
+  async getGroups(filterDto: Partial<CommonFilterDto>): Promise<IvtCollectionResponse<Group>> {
     const { pageSize, pageIndex, sort, direction, text } = filterDto;
     const query = this.groupRepository.createQueryBuilder('group');
 
