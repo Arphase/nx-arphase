@@ -1,6 +1,7 @@
 import { getProductPdfTemplate } from '@ivt/a-products';
 import {
   CreateGuaranteeDto,
+  filterCommonQuery,
   GetGuaranteesFilterDto,
   getReadableStream,
   GuaranteeEntity,
@@ -28,13 +29,7 @@ import {
   VehicleStatus,
 } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
-import {
-  BadRequestException,
-  ConflictException,
-  ForbiddenException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, ConflictException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import fs from 'fs';
@@ -45,11 +40,7 @@ import { promisify } from 'util';
 import * as XLSX from 'xlsx';
 
 import { guaranteeExcelColumns } from './guarantees.service.constants';
-import {
-  applyGuaranteeFilter,
-  applyGuaranteeSharedFilters,
-  getGuaranteePdfTemplate,
-} from './guarantees.service.functions';
+import { applyGuaranteeFilter, getGuaranteePdfTemplate } from './guarantees.service.functions';
 
 @Injectable()
 export class GuaranteesService {
@@ -115,7 +106,7 @@ export class GuaranteesService {
       query.andWhere('(guarantee.companyId = :id)', { id: user.companyId });
     }
 
-    applyGuaranteeSharedFilters(query, filterDto);
+    filterCommonQuery('guarantee', query, filterDto);
 
     return query.getRawMany();
   }

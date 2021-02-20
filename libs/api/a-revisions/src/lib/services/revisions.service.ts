@@ -1,5 +1,6 @@
 import {
   CreateRevisionDto,
+  filterCommonQuery,
   GetRevisionsDto,
   RevisionRepository,
   UpdateRevisionDto,
@@ -11,7 +12,6 @@ import {
   Revision,
   RevisionStatus,
   User,
-  UserRoles,
   VehicleStatus,
 } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
@@ -29,21 +29,13 @@ export class RevisionsService {
   ) {}
 
   async getRevisions(getRevisionsDto: GetRevisionsDto, user: Partial<User>): Promise<IvtCollectionResponse<Revision>> {
-    const { vehicleId, sort, direction, pageIndex, pageSize, text } = getRevisionsDto;
+    const { vehicleId, pageIndex, pageSize, text } = getRevisionsDto;
     const query = this.revisionRepository.createQueryBuilder('revision');
 
     query.leftJoinAndSelect('revision.vehicle', 'vehicle').orderBy('revision.createdAt', sortDirection.desc);
 
-    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-      query.andWhere('(vehicle.companyId = :id)', { id: user.companyId });
-    }
-
     if (vehicleId) {
       query.andWhere('(revision.vehicleId = :id)', { id: vehicleId });
-    }
-
-    if (sort && direction) {
-      query.orderBy(`${sort}`, sortDirection[direction]);
     }
 
     if (text) {
@@ -57,7 +49,7 @@ export class RevisionsService {
       );
     }
 
-    query.take(pageSize).skip(pageSize * (pageIndex - 1));
+    filterCommonQuery('revision', query, getRevisionsDto, user);
 
     const revisions = await query.getMany();
     const total = await query.getCount();

@@ -1,5 +1,6 @@
 import {
   CreateRevisionRequestDto,
+  filterCommonQuery,
   GetRevisionRequestsDto,
   RevisionRequestRepository,
   UpdateRevisionRequestDto,
@@ -19,14 +20,11 @@ export class RevisionRequestService {
     filterDto: GetRevisionRequestsDto,
     user: Partial<User>
   ): Promise<IvtCollectionResponse<RevisionRequest>> {
-    const { pageSize, pageIndex, sort, direction, text } = filterDto;
+    const { pageSize, pageIndex, text } = filterDto;
     const query = this.revisionRequestRepository
       .createQueryBuilder('revisionRequest')
-      .leftJoinAndSelect('revisionRequest.vehicle', 'vehicle');
-
-    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-      query.where('revisionRequest.companyId = :id', { id: user.companyId });
-    }
+      .leftJoinAndSelect('revisionRequest.vehicle', 'vehicle')
+      .orderBy('revisionRequest.createdAt', sortDirection.desc);
 
     if (text) {
       query.andWhere(
@@ -39,13 +37,7 @@ export class RevisionRequestService {
       );
     }
 
-    query.orderBy('revisionRequest.createdAt', sortDirection.desc);
-
-    if (sort && direction) {
-      query.orderBy(`${sort}`, sortDirection[direction]);
-    }
-
-    query.take(pageSize).skip(pageSize * (pageIndex - 1));
+    filterCommonQuery('revisionRequest', query, filterDto, user);
 
     const revisionRequests = await query.getMany();
     const total = await query.getCount();

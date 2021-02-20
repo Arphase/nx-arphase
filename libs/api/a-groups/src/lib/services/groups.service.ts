@@ -3,6 +3,7 @@ import {
   CommonFilterDto,
   CompanyRepository,
   CreateGroupDto,
+  filterCommonQuery,
   GroupRepository,
   ResetPasswordRepository,
   UpdateGroupDto,
@@ -10,7 +11,7 @@ import {
   UserRepository,
 } from '@ivt/a-state';
 import { Company, createCollectionResponse, Group, IvtCollectionResponse, User } from '@ivt/c-data';
-import { generateId, sortDirection } from '@ivt/c-utils';
+import { generateId } from '@ivt/c-utils';
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { omit } from 'lodash';
@@ -44,12 +45,8 @@ export class GroupsService {
   }
 
   async getGroups(filterDto: Partial<CommonFilterDto>): Promise<IvtCollectionResponse<Group>> {
-    const { pageSize, pageIndex, sort, direction, text } = filterDto;
+    const { pageSize, pageIndex, text } = filterDto;
     const query = this.groupRepository.createQueryBuilder('group');
-
-    if (sort && direction) {
-      query.orderBy(`${sort}`, sortDirection[direction]);
-    }
 
     if (text) {
       query.andWhere(
@@ -61,10 +58,7 @@ export class GroupsService {
       );
     }
 
-    query
-      .groupBy('group.id')
-      .take(pageSize)
-      .skip(pageSize * (pageIndex - 1));
+    filterCommonQuery('group', query, filterDto);
 
     const groups = await query.getMany();
     const total = await query.getCount();

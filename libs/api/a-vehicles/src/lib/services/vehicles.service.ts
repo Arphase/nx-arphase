@@ -1,4 +1,4 @@
-import { CreateVehicleDto, GetVehiclesDto, UpdateVehicleDto, VehicleRepository } from '@ivt/a-state';
+import { CreateVehicleDto, filterCommonQuery, GetVehiclesDto, UpdateVehicleDto, VehicleRepository } from '@ivt/a-state';
 import {
   createCollectionResponse,
   IvtCollectionResponse,
@@ -18,27 +18,12 @@ export class VehiclesService {
   constructor(@InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository) {}
 
   async getVehicles(filterDto: GetVehiclesDto, user: Partial<User>): Promise<IvtCollectionResponse<Vehicle>> {
-    const {
-      sort,
-      direction,
-      pageSize,
-      pageIndex,
-      text,
-      status,
-      startDate,
-      endDate,
-      groupIds,
-      companyIds,
-      userIds,
-    } = filterDto;
+    const { pageSize, pageIndex, text, status } = filterDto;
     const query = this.vehicleRepository
       .createQueryBuilder('vehicle')
       .leftJoinAndSelect('vehicle.company', 'company')
-      .leftJoinAndSelect('vehicle.user', 'user');
-
-    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-      query.andWhere('(vehicle.companyId = :id)', { id: user.companyId });
-    }
+      .leftJoinAndSelect('vehicle.user', 'user')
+      .orderBy('vehicle.createdAt', sortDirection.desc);
 
     if (text) {
       query.andWhere(
@@ -55,34 +40,7 @@ export class VehiclesService {
       query.andWhere('(vehicle.status = :status)', { status });
     }
 
-    query.orderBy('vehicle.createdAt', sortDirection.desc);
-
-    if (startDate && endDate) {
-      query.andWhere(
-        `vehicle.createdAt
-        BETWEEN :begin
-        AND :end`,
-        { begin: startDate, end: endDate }
-      );
-    }
-
-    if (groupIds) {
-      query.innerJoin('company.group', 'group').andWhere('(group.id IN (:...groupIds))', { groupIds });
-    }
-
-    if (companyIds) {
-      query.andWhere('(company.id IN (:...companyIds))', { companyIds });
-    }
-
-    if (userIds) {
-      query.andWhere('(user.id IN (:...userIds))', { userIds });
-    }
-
-    if (sort && direction) {
-      query.orderBy(`${sort}`, sortDirection[direction]);
-    }
-
-    query.take(pageSize).skip(pageSize * (pageIndex - 1));
+    filterCommonQuery('vehicle', query, filterDto, user);
 
     const vehicles = await query.getMany();
     const total = await query.getCount();

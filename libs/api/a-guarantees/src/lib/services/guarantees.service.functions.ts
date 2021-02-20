@@ -1,7 +1,7 @@
 import 'dayjs/locale/es';
 
-import { GetGuaranteesFilterDto, GuaranteeEntity, IMAGE_ASSETS_PATH } from '@ivt/a-state';
-import { Guarantee, transformFolio, User, UserRoles } from '@ivt/c-data';
+import { filterCommonQuery, GetGuaranteesFilterDto, GuaranteeEntity, IMAGE_ASSETS_PATH } from '@ivt/a-state';
+import { Guarantee, transformFolio, User } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
@@ -235,7 +235,7 @@ export function applyGuaranteeFilter(
   filterDto: Partial<GetGuaranteesFilterDto>,
   user: Partial<User>
 ): SelectQueryBuilder<GuaranteeEntity> {
-  const { pageIndex, pageSize, sort, direction, text, status } = filterDto;
+  const { text, status } = filterDto;
 
   query
     .leftJoinAndSelect('guarantee.client', 'client')
@@ -259,14 +259,6 @@ export function applyGuaranteeFilter(
     .addGroupBy('user.id')
     .orderBy('guarantee.createdAt', sortDirection.desc);
 
-  if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-    query.andWhere('(guarantee.companyId = :id)', { id: user.companyId });
-  }
-
-  if (sort && direction) {
-    query.orderBy(`${sort}`, sortDirection[direction]);
-  }
-
   if (text) {
     if (text.length < 5) {
       query.andWhere(
@@ -289,41 +281,7 @@ export function applyGuaranteeFilter(
     query.andWhere('(guarantee.status = :status)', { status });
   }
 
-  applyGuaranteeSharedFilters(query, filterDto);
-
-  if (pageSize && pageIndex) {
-    query.take(pageSize).skip(pageSize * (pageIndex - 1));
-  }
-
-  return query;
-}
-
-export function applyGuaranteeSharedFilters(
-  query: SelectQueryBuilder<GuaranteeEntity>,
-  filterDto: Partial<GetGuaranteesFilterDto>
-): SelectQueryBuilder<GuaranteeEntity> {
-  const { startDate, endDate, dateType, groupIds, companyIds, userIds } = filterDto;
-
-  if (startDate && endDate && dateType) {
-    query.andWhere(
-      `guarantee.${dateType}
-      BETWEEN :begin
-      AND :end`,
-      { begin: startDate, end: endDate }
-    );
-  }
-
-  if (groupIds) {
-    query.innerJoin('company.group', 'group').andWhere('(group.id IN (:...groupIds))', { groupIds });
-  }
-
-  if (companyIds) {
-    query.andWhere('(company.id IN (:...companyIds))', { companyIds });
-  }
-
-  if (userIds) {
-    query.andWhere('(user.id IN (:...userIds))', { userIds });
-  }
+  filterCommonQuery('guarantee', query, filterDto, user);
 
   return query;
 }
