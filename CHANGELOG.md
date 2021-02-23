@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://bitbucket.org/arphase/innovatech/compare/v2.2.0...v2.3.0) (2021-02-23)
+
+
+### Features
+
+* **app:** lazy load identity filters ([c2ed53c](https://bitbucket.org/arphase/innovatech/commit/c2ed53cf93e799f3795ea9f789aae07560c6174f))
+* **guarantees:** add invoice number field in payment order dialog ([d154d24](https://bitbucket.org/arphase/innovatech/commit/d154d244def1ee1add79a865ef1eb020ac4e97a6))
+* **guarantees:** add user and vin details in table row ([8db029f](https://bitbucket.org/arphase/innovatech/commit/8db029f06b434ca36c9138c11fa6ab1a633b9616))
+* **guarantees:** apply searchbar to users filter ([bd03b1b](https://bitbucket.org/arphase/innovatech/commit/bd03b1bb9c8c542563945a00dcff622c9505cb85))
+* **guarantees:** validate vehicle when creating or updating guarantees ([673d773](https://bitbucket.org/arphase/innovatech/commit/673d773dab5a6229c7c6dd079a716c8c6e08d593))
+* **revision-requests:** additional notes property in model ([b2f8167](https://bitbucket.org/arphase/innovatech/commit/b2f8167d793b4997cf7a887036845351dd45af4b))
+* **revision-requests:** filter ([d89f2cb](https://bitbucket.org/arphase/innovatech/commit/d89f2cb1d85f02e3c0b3597eed8cda8260b6367f))
+* **revision-requests:** restrict creating using vehicles from other companies ([dc34080](https://bitbucket.org/arphase/innovatech/commit/dc340805c1d517595b87a06cf6610ae63df56e3b))
+* **revisions:** filters ([1f4843b](https://bitbucket.org/arphase/innovatech/commit/1f4843bd5d85c97e294d34e7b43cce87a7f6cb04))
+* **revisions:** restrict items by company ([314226d](https://bitbucket.org/arphase/innovatech/commit/314226dc219dcc132d0da0440c9d80b839249c99))
+* **state:** create filter collection services ([6a435fd](https://bitbucket.org/arphase/innovatech/commit/6a435fdc775c998cb897dbd1b5453aa8e2e0e226))
+* **vehicles:** filters ([46f666a](https://bitbucket.org/arphase/innovatech/commit/46f666aa1aead62289481f3cda51d49a9058ad06))
+
+
+### Bug Fixes
+
+* **api:** display 0 in page start if collection has no items ([cd2d4b8](https://bitbucket.org/arphase/innovatech/commit/cd2d4b881d6aca80f68e27aa22594d094368e49c))
+* **dashboard:** not render nz-col if filter options are empty ([ca2797c](https://bitbucket.org/arphase/innovatech/commit/ca2797cfbf321ddba76965604afc03869946f306))
+* **groups:** RFC inputs validations ([9ccf5ce](https://bitbucket.org/arphase/innovatech/commit/9ccf5ce0a519a816254a929acb46c9aba329bc4f))
+* **groups:** send set password email only to users with no password ([1b477ec](https://bitbucket.org/arphase/innovatech/commit/1b477ecaa0931f2f327af83d186b61060349ea27))
+* **vehicles:** hide company input for not super admin users in vehicle form ([3d148b4](https://bitbucket.org/arphase/innovatech/commit/3d148b4937bec598b4f5ab4176e9797149be9c3a))
+
 ## [2.2.0](https://bitbucket.org/arphase/innovatech/compare/v2.1.0...v2.2.0) (2021-02-17)
 
 

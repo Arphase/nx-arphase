@@ -13,6 +13,7 @@ export interface RevisionRequest {
   createdAt: Date;
   updatedAt: Date;
   status: RevisionRequestStatus | string;
+  additionalNotes: string;
   userId: number;
   user: User;
   companyId: number;

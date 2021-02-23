@@ -5,6 +5,7 @@ import { VehiclesState } from './vehicles.state';
 
 export const initialState: VehiclesState = {
   vehicle: null,
+  error: null,
 };
 
 const vehiclesReducer = createReducer(
@@ -12,6 +13,11 @@ const vehiclesReducer = createReducer(
   on(VehiclesActions.getVehicleByVinSuccess, (state, action) => ({
     ...state,
     vehicle: action.payload,
+    error: null
+  })),
+  on(VehiclesActions.getVehicleByVinFailed, (state, action) => ({
+    ...state,
+    error: action.payload,
   })),
   on(VehiclesActions.clearVehiclesState, (state, action) => initialState)
 );

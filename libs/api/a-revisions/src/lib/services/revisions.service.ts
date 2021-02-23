@@ -1,11 +1,19 @@
 import {
   CreateRevisionDto,
+  filterCommonQuery,
   GetRevisionsDto,
   RevisionRepository,
   UpdateRevisionDto,
   VehicleRepository,
 } from '@ivt/a-state';
-import { IvtCollectionResponse, Revision, RevisionStatus, VehicleStatus } from '@ivt/c-data';
+import {
+  createCollectionResponse,
+  IvtCollectionResponse,
+  Revision,
+  RevisionStatus,
+  User,
+  VehicleStatus,
+} from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -20,18 +28,21 @@ export class RevisionsService {
     private connection: Connection
   ) {}
 
-  async getRevisions(getRevisionsDto: GetRevisionsDto): Promise<IvtCollectionResponse<Revision>> {
-    const { vehicleId, sort, direction, pageIndex, pageSize, text } = getRevisionsDto;
-    const query = this.revisionRepository.createQueryBuilder('revision');
-
-    query.leftJoinAndSelect('revision.vehicle', 'vehicle').orderBy('revision.createdAt', sortDirection.desc);
+  async getRevisions(getRevisionsDto: GetRevisionsDto, user: Partial<User>): Promise<IvtCollectionResponse<Revision>> {
+    const { vehicleId, pageIndex, pageSize, text, status } = getRevisionsDto;
+    const query = this.revisionRepository
+      .createQueryBuilder('revision')
+      .leftJoinAndSelect('revision.vehicle', 'vehicle')
+      .leftJoinAndSelect('vehicle.company', 'company')
+      .leftJoinAndSelect('vehicle.user', 'user')
+      .orderBy('revision.createdAt', sortDirection.desc);
 
     if (vehicleId) {
       query.andWhere('(revision.vehicleId = :id)', { id: vehicleId });
     }
 
-    if (sort && direction) {
-      query.orderBy(`${sort}`, sortDirection[direction]);
+    if (status) {
+      query.andWhere('(revision.status = :status)', { status });
     }
 
     if (text) {
@@ -45,22 +56,12 @@ export class RevisionsService {
       );
     }
 
-    query.take(pageSize).skip(pageSize * (pageIndex - 1));
+    filterCommonQuery('revision', query, getRevisionsDto, user, { companyidEntityName: 'vehicle' });
 
     const revisions = await query.getMany();
     const total = await query.getCount();
 
-    return {
-      info: {
-        pageSize: pageSize,
-        pageIndex: pageIndex,
-        total,
-        pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: revisions.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
-        last: revisions.length < pageSize,
-      },
-      results: revisions,
-    };
+    return createCollectionResponse(revisions, pageSize, pageIndex, total);
   }
 
   async getRevision(id: number): Promise<Revision> {

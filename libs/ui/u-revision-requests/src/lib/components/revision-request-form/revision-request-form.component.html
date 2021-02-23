@@ -22,9 +22,9 @@
                       nz-col
                       nzSpan="24">
               <nz-space-item>
-                <nz-alert *ngIf="showVehicleAlert"
+                <nz-alert *ngIf="error"
                           nzType="error"
-                          nzMessage="Este vehículo no esta dado de alta en el sistema. Favor de crear el vehículo que desea solicitar la revisión para continuar."
+                          [nzMessage]="error"
                           nzShowIcon>
                 </nz-alert>
               </nz-space-item>
@@ -41,7 +41,7 @@
 
     <nz-space-item>
       <nz-collapse>
-        <nz-collapse-panel nzHeader="Contácto"
+        <nz-collapse-panel nzHeader="Información General"
                            [nzActive]="true">
           <div nz-row
                nzGutter="12">
@@ -81,6 +81,19 @@
               </nz-form-item>
             </div>
           </div>
+
+          <div nz-row>
+            <div nz-col
+                 nzXs="24">
+              <nz-form-item>
+                <nz-form-label>Notas adicionales</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <textarea nz-input
+                            formControlName="additionalNotes"></textarea>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
         </nz-collapse-panel>
       </nz-collapse>
     </nz-space-item>
@@ -110,6 +123,7 @@
           <button nz-button
                   type="submit"
                   nzType="primary"
+                  [disabled]="error"
                   [nzLoading]="loading">
             Guardar
           </button>

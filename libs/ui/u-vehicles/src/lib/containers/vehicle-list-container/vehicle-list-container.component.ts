@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRoles, Vehicle } from '@ivt/c-data';
-import { PermissionService, VehicleCollectionService, VehicleDataService } from '@ivt/u-state';
+import { IdentityFilterService, PermissionService, VehicleCollectionService, VehicleDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -21,10 +21,11 @@ export class VehicleListContainerComponent extends IvtListContainerComponent<Veh
     protected vehicleDataService: VehicleDataService,
     protected modal: NzModalService,
     protected messageService: NzMessageService,
+    protected identityFilterService: IdentityFilterService,
     protected router: Router,
     protected permissionsService: PermissionService
   ) {
-    super(vehicleCollectionService, vehicleDataService, modal, messageService);
+    super(vehicleCollectionService, vehicleDataService, modal, messageService, identityFilterService);
   }
 
   deleteItem(item: Vehicle): void {

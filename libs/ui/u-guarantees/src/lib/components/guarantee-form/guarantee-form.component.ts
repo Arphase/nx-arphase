@@ -14,7 +14,6 @@ import { Guarantee, isVehicleElegible, PersonTypes, Select, Vehicle } from '@ivt
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 import { createVehicleForm } from '@ivt/u-vehicles';
-import { omit } from 'lodash-es';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -63,9 +62,10 @@ export function createGuaranteeForm(): FormGroup {
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnChanges, AfterViewInit {
   @Input() productOptions: Select[] = [];
   @Input() companyOptions: Select[] = [];
-  @Input() disabledCompanyInput: boolean;
+  @Input() showCompanyInput: boolean;
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
+  @Input() error: string;
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -114,8 +114,8 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       this.isEditable ? this.form.enable() : this.form.disable();
     }
 
-    if (changes.disabledCompanyInput) {
-      this.disabledCompanyInput ? this.form.get('companyId').disable() : this.form.get('companyId').enable();
+    if (changes.showCompanyInput) {
+      this.showCompanyInput ? this.form.get('companyId').enable() : this.form.get('companyId').disable();
     }
   }
 

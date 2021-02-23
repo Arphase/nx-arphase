@@ -1,46 +1,10 @@
-import { DEFAULT_LIMIT_SIZE, GuaranteeStatus } from '@ivt/c-data';
-import { convertStringToNumberArray } from '@ivt/c-utils';
+import { GuaranteeStatus } from '@ivt/c-data';
 import { Transform } from 'class-transformer';
-import { IsArray, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
-export class GetGuaranteesFilterDto {
-  @IsOptional()
-  @IsNotEmpty()
-  @IsNumber()
-  @Transform(({ obj, key }) => Number([obj[key]]))
-  pageSize = DEFAULT_LIMIT_SIZE;
+import { CommonFilterDto } from '../../core';
 
-  @IsOptional()
-  @IsNotEmpty()
-  @IsNumber()
-  @Transform(({ obj, key }) => Number([obj[key]]))
-  pageIndex = 1;
-
-  @IsOptional()
-  @IsNotEmpty()
-  sort: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  direction: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  startDate: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  endDate: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  dateType: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  text: string;
-
+export class GetGuaranteesFilterDto extends CommonFilterDto {
   @IsOptional()
   @IsNotEmpty()
   @IsNumber()
@@ -50,22 +14,4 @@ export class GetGuaranteesFilterDto {
   @Transform(({ obj, key }) => GuaranteeStatus[obj[key]])
   @IsEnum(GuaranteeStatus)
   status: GuaranteeStatus;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsArray()
-  @Transform(({ obj, key }) => convertStringToNumberArray(obj[key]))
-  groupIds: number[];
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsArray()
-  @Transform(({ obj, key }) => convertStringToNumberArray(obj[key]))
-  companyIds: number[];
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsArray()
-  @Transform(({ obj, key }) => convertStringToNumberArray(obj[key]))
-  userIds: number[];
 }

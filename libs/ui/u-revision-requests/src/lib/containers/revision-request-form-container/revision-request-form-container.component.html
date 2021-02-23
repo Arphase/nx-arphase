@@ -4,5 +4,6 @@
                            [vehicle]="vehicle$ | async"
                            [currentVehicle]="currentVehicle$ | async"
                            [isEditable]="isEditable$ | async"
+                           [error]="error$ | async"
                            (verifyVin)="verifyVin($event)"
                            (submitForm)="submit($event)"></ivt-revision-request-form>

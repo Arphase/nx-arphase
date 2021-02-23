@@ -1,10 +1,11 @@
 import {
   CreateRevisionRequestDto,
+  filterCommonQuery,
   GetRevisionRequestsDto,
   RevisionRequestRepository,
   UpdateRevisionRequestDto,
 } from '@ivt/a-state';
-import { IvtCollectionResponse, RevisionRequest, User, UserRoles } from '@ivt/c-data';
+import { createCollectionResponse, IvtCollectionResponse, RevisionRequest, User, UserRoles } from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
 import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -19,13 +20,16 @@ export class RevisionRequestService {
     filterDto: GetRevisionRequestsDto,
     user: Partial<User>
   ): Promise<IvtCollectionResponse<RevisionRequest>> {
-    const { pageSize, pageIndex, sort, direction, text } = filterDto;
+    const { pageSize, pageIndex, text, status } = filterDto;
     const query = this.revisionRequestRepository
       .createQueryBuilder('revisionRequest')
-      .leftJoinAndSelect('revisionRequest.vehicle', 'vehicle');
+      .leftJoinAndSelect('revisionRequest.vehicle', 'vehicle')
+      .leftJoinAndSelect('revisionRequest.company', 'company')
+      .leftJoinAndSelect('revisionRequest.user', 'user')
+      .orderBy('revisionRequest.createdAt', sortDirection.desc);
 
-    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-      query.where('revisionRequest.companyId = :id', { id: user.companyId });
+    if (status) {
+      query.andWhere('(revisionRequest.status = :status)', { status });
     }
 
     if (text) {
@@ -39,28 +43,12 @@ export class RevisionRequestService {
       );
     }
 
-    query.orderBy('revisionRequest.createdAt', sortDirection.desc);
-
-    if (sort && direction) {
-      query.orderBy(`${sort}`, sortDirection[direction]);
-    }
-
-    query.take(pageSize).skip(pageSize * (pageIndex - 1));
+    filterCommonQuery('revisionRequest', query, filterDto, user);
 
     const revisionRequests = await query.getMany();
     const total = await query.getCount();
 
-    return {
-      info: {
-        pageSize: pageSize,
-        pageIndex: pageIndex,
-        total,
-        pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: revisionRequests.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
-        last: revisionRequests.length < pageSize,
-      },
-      results: revisionRequests,
-    };
+    return createCollectionResponse(revisionRequests, pageSize, pageIndex, total);
   }
 
   async getRevisionRequest(id: number): Promise<RevisionRequest> {

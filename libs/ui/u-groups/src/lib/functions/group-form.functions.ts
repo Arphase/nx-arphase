@@ -35,7 +35,7 @@ export function createCompanyForm(company?: Company): FormGroup {
     phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
     address: createAddressForm(),
     users: new FormArray([]),
-    rfc: new FormControl(null, [ApsValidators.required, ApsValidators.rfc(RfcValidatorTypes.any)]),
+    rfc: new FormControl(null, [ApsValidators.required, ApsValidators.rfc(RfcValidatorTypes.moral)]),
     contact: new FormControl(null, ApsValidators.required),
   });
 
@@ -60,7 +60,7 @@ export function createUserForm(user?: User): FormGroup {
     secondLastName: new FormControl(null, ApsValidators.required),
     email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
     phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
-    rfc: new FormControl(null, [ApsValidators.required, ApsValidators.rfc(RfcValidatorTypes.any)]),
+    rfc: new FormControl(null, [ApsValidators.required, ApsValidators.rfc(RfcValidatorTypes.physical)]),
   });
 
   if (user) {

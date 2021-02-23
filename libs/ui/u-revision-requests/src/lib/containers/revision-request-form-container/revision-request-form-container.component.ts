@@ -6,6 +6,7 @@ import {
   fromVehicles,
   getAuthUserCompanyIdState,
   getAuthUserRoleState,
+  getVehiclesErrorState,
   getVehiclesVehicleState,
   IvtState,
   RevisionRequestCollectionService,
@@ -37,6 +38,7 @@ export class RevisionRequestFormContainerComponent
     select(getAuthUserRoleState),
     map(role => UserRoles[role] === UserRoles.agencyUser)
   );
+  error$ = this.store.pipe(select(getVehiclesErrorState));
   createSuccessMessage = 'La solicitud para la revisión de tu vehículo se ha creado con éxito';
   updateSuccessMessage = 'La solicitud para la revisión de tu vehículo se ha actualizado con éxito';
   successUrl = '/spa/revision-requests';
@@ -67,6 +69,7 @@ export class RevisionRequestFormContainerComponent
 
   ngOnDestroy() {
     super.ngOnDestroy();
+    this.vehicleCollectionService.removeOneFromCache(null);
     this.store.dispatch(fromVehicles.actions.clearVehiclesState());
   }
 }

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRoles, Vehicle } from '@ivt/c-data';
+import { filterExisting } from '@ivt/c-utils';
 import {
   CompanyCollectionService,
   fromVehicles,
@@ -13,7 +14,6 @@ import {
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { combineLatest } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
 import { createVehicleForm } from '../../public';
@@ -30,23 +30,11 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
   createSuccessMessage = 'El vehículo se ha creado con éxito';
   updateSuccessMessage = 'El vehículo se ha actualizado con éxito';
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
-  disabledCompanyInput$ = this.store.pipe(
+  showCompanyInput$ = this.store.pipe(
     select(getAuthUserRoleState),
-    map(role => role !== UserRoles[UserRoles.superAdmin])
+    map(role => role === UserRoles[UserRoles.superAdmin])
   );
-  companyOptions$ = combineLatest([
-    this.disabledCompanyInput$,
-    this.companyCollectionService.currentItem$,
-    this.companyCollectionService.options$,
-  ]).pipe(
-    map(([disabledCompanyInput, currentItem, options]) => {
-      if (disabledCompanyInput) {
-        return currentItem ? [{ label: currentItem.businessName, value: currentItem.id }] : [];
-      } else {
-        return options;
-      }
-    })
-  );
+  companyOptions$ = this.companyCollectionService.options$;
   invalidVin$ = this.store.pipe(
     select(getVehiclesVehicleState),
     map(vehicle => !!vehicle)
@@ -63,15 +51,9 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
   }
 
   ngOnInit() {
-    combineLatest([this.disabledCompanyInput$, this.companyId$])
-      .pipe(take(1))
-      .subscribe(([disabledCompanyInput, companyId]) => {
-        if (disabledCompanyInput) {
-          this.companyCollectionService.getByKey(companyId);
-        } else {
-          this.companyCollectionService.getWithQuery({});
-        }
-      });
+    this.showCompanyInput$
+      .pipe(filterExisting(), take(1))
+      .subscribe(() => this.companyCollectionService.getWithQuery({}));
   }
 
   verifyVin(vin: string): void {
@@ -80,6 +62,7 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
 
   ngOnDestroy() {
     super.ngOnDestroy();
+    this.vehicleCollectionService.removeOneFromCache(null);
     this.store.dispatch(fromVehicles.actions.clearVehiclesState());
   }
 }

@@ -1,6 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Revision, UserRoles } from '@ivt/c-data';
-import { getAuthUserRoleState, IvtState, RevisionCollectionService, RevisionDataService } from '@ivt/u-state';
+import {
+  getAuthUserRoleState,
+  IdentityFilterService,
+  IvtState,
+  RevisionCollectionService,
+  RevisionDataService,
+} from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import dayjs from 'dayjs';
@@ -25,9 +31,10 @@ export class RevisionListContainerComponent extends IvtListContainerComponent<Re
     protected revisionDataService: RevisionDataService,
     protected modal: NzModalService,
     protected toastrService: NzMessageService,
+    protected identityFilterService: IdentityFilterService,
     private store: Store<IvtState>
   ) {
-    super(revisionCollectionService, revisionDataService, modal, toastrService);
+    super(revisionCollectionService, revisionDataService, modal, toastrService, identityFilterService);
   }
 
   deleteItem(item: Revision): void {

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { IvtCollectionResponseInfo, SortEvent } from '@ivt/c-data';
+import { FilterInfo } from '@ivt/u-state';
 import { QueryParams } from '@ngrx/data';
 
 import { CrudEvents } from '../../models';
@@ -17,6 +18,9 @@ export class IvtListComponent<T> extends IvtSubscriberComponent implements CrudE
   @Input() loadingExcel: boolean;
   @Input() info: IvtCollectionResponseInfo;
   @Input() queryParams: QueryParams;
+  @Input() groupFilterInfo: FilterInfo;
+  @Input() companyFilterInfo: FilterInfo;
+  @Input() userFilterInfo: FilterInfo;
   @Output() create = new EventEmitter<void>();
   @Output() showDetail = new EventEmitter<T>();
   @Output() edit = new EventEmitter<Partial<T>>();
@@ -24,6 +28,9 @@ export class IvtListComponent<T> extends IvtSubscriberComponent implements CrudE
   @Output() toggle = new EventEmitter<T>();
   @Output() filterItems = new EventEmitter<unknown>();
   @Output() exportExcel = new EventEmitter<void>();
+  @Output() filterUserOptions = new EventEmitter<QueryParams>();
+  @Output() filterCompanyOptions = new EventEmitter<QueryParams>();
+  @Output() filterGroupOptions = new EventEmitter<QueryParams>();
   showFilters: boolean;
 
   toggleFilter(): void {

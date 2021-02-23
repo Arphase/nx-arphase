@@ -16,19 +16,29 @@ export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> 
     {
       label: 'Folio',
       colSizes: {
-        xs: 4,
+        xs: 12,
+        md: 4,
       },
     },
     {
       label: 'Fecha de factura',
       colSizes: {
-        xs: 10,
+        xs: 12,
+        md: 7,
+      },
+    },
+    {
+      label: 'Número de factura',
+      colSizes: {
+        xs: 12,
+        md: 7,
       },
     },
     {
       label: 'Importe',
       colSizes: {
-        xs: 10,
+        xs: 12,
+        md: 6,
       },
     },
   ];
@@ -60,6 +70,7 @@ export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> 
     const formControl = this.fb.group({
       id: guarantee.id,
       invoiceDate: [null, ApsValidators.required],
+      invoiceNumber: null,
       amount: [null, ApsValidators.required],
     });
 

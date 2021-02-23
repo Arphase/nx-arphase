@@ -11,22 +11,30 @@
 
 <div nz-row
      [nzGutter]="[12, 12]">
-  <div nz-col>
-    <ivt-checkbox-filter *ngIf="groupOptions?.length"
-                         label="Grupos"
-                         [options]="groupOptions"
-                         [preselectedOptions]="queryParams?.groupIds"
-                         (filterItems)="updateGroupsFilters($event)">
-    </ivt-checkbox-filter>
-  </div>
-  <div nz-col>
-    <ivt-checkbox-filter *ngIf="companyOptions?.length"
-                         label="Compañías"
-                         [options]="companyOptions"
-                         [preselectedOptions]="queryParams?.companyIds"
-                         (filterItems)="updateCompaniesFilters($event)">
-    </ivt-checkbox-filter>
-  </div>
+  <ng-container *ivtCreatePermission>
+    <div nz-col>
+      <ivt-checkbox-filter label="Grupos"
+                           [options]="groupFilterInfo?.options"
+                           [loading]="groupFilterInfo?.loading"
+                           [last]="groupFilterInfo?.last"
+                           [pageIndex]="groupFilterInfo?.pageIndex"
+                           [preselectedOptions]="queryParams?.groupIds"
+                           (filterItems)="updateGroupsFilters($event)"
+                           (filterOptions)="filterGroupOptions.emit($event)">
+      </ivt-checkbox-filter>
+    </div>
+    <div nz-col>
+      <ivt-checkbox-filter label="Compañías"
+                           [options]="companyFilterInfo?.options"
+                           [loading]="companyFilterInfo?.loading"
+                           [last]="companyFilterInfo?.last"
+                           [pageIndex]="companyFilterInfo?.pageIndex"
+                           [preselectedOptions]="queryParams?.companyIds"
+                           (filterItems)="updateCompaniesFilters($event)"
+                           (filterOptions)="filterCompanyOptions.emit($event)">
+      </ivt-checkbox-filter>
+    </div>
+  </ng-container>
   <div nz-col
        nzFlex="auto"
        class="flex-end">

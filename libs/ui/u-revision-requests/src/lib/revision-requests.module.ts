@@ -2,8 +2,16 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
-import { VehiclesDataModule } from '@ivt/u-state';
-import { IvtAddressFormModule, IvtEmptyModule, IvtPhoneModule, IvtSearchbarModule } from '@ivt/u-ui';
+import { PermissionsModule, VehiclesDataModule } from '@ivt/u-state';
+import {
+  IvtAddressFormModule,
+  IvtCheckboxFilterModule,
+  IvtDateFilterModule,
+  IvtEmptyModule,
+  IvtPhoneModule,
+  IvtRadioFilterModule,
+  IvtSearchbarModule,
+} from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -57,6 +65,10 @@ import { RevisionRequestsComponent } from './revision-requests.component';
     NzToolTipModule,
     NzIconModule,
     IvtPhoneModule,
+    IvtDateFilterModule,
+    IvtCheckboxFilterModule,
+    IvtRadioFilterModule,
+    PermissionsModule,
   ],
   declarations: [
     RevisionRequestsComponent,

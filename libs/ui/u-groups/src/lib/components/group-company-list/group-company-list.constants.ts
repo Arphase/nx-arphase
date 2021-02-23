@@ -1,4 +1,5 @@
 import { ApsColumns } from '@arphase/ui';
+import { Company } from '@ivt/c-data';
 
 export const columns: ApsColumns = [
   {
@@ -8,6 +9,7 @@ export const columns: ApsColumns = [
       xs: 24,
       md: 6,
     },
+    sortFn: (a: Company, b: Company) => a.businessName.localeCompare(b.businessName),
   },
   {
     label: 'RFC',
@@ -15,6 +17,7 @@ export const columns: ApsColumns = [
     colSizes: {
       md: 5,
     },
+    sortFn: (a: Company, b: Company) => a.rfc.localeCompare(b.rfc),
   },
   {
     label: 'Contacto',
@@ -22,6 +25,7 @@ export const columns: ApsColumns = [
     colSizes: {
       md: 5,
     },
+    sortFn: (a: Company, b: Company) => a.contact.localeCompare(b.contact),
   },
   {
     label: 'Email',
@@ -29,5 +33,6 @@ export const columns: ApsColumns = [
     colSizes: {
       md: 8,
     },
+    sortFn: (a: Company, b: Company) => a.email.localeCompare(b.email),
   },
 ];

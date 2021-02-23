@@ -40,6 +40,7 @@ export class IvtRadioFilterComponent extends IvtFilterComponent<string> implemen
   ngOnChanges(changes: SimpleChanges) {
     if (changes.selectedOption && this.selectedOption) {
       this.control.patchValue(this.selectedOption);
+      this.active = true;
     }
   }
 
@@ -57,5 +58,6 @@ export class IvtRadioFilterComponent extends IvtFilterComponent<string> implemen
     this.control.reset('');
     this.filterItems.emit('');
     this.filterCleared.emit();
+    this.active = false;
   }
 }

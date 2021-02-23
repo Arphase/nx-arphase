@@ -64,21 +64,24 @@ export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements
       this.mappedTitle = this.label;
     }
 
-    if (changes.currentDates && changes.currentDates.firstChange && this.currentDates) {
+    if (
+      changes.currentDates &&
+      changes.currentDates.firstChange &&
+      this.currentDates?.startDate &&
+      this.currentDates?.endDate
+    ) {
       const { startDate, endDate, dateType } = this.currentDates;
-      if (this.currentDates) {
-        this.control.get('startDate').patchValue(dayjs(startDate, 'DD/MM/YY').toDate(), {
-          emitEvent: false,
-        });
-        this.control.get('endDate').patchValue(dayjs(endDate, 'DD/MM/YY').toDate(), {
-          emitEvent: false,
-        });
-        this.control.get('dateType').patchValue(dateType, { emitEvent: false });
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.dateType = dateType;
-        this.mappedTitle = `${this.startDate} - ${this.endDate}`;
-      }
+      this.control.get('startDate').patchValue(dayjs(startDate, 'DD/MM/YY').toDate(), {
+        emitEvent: false,
+      });
+      this.control.get('endDate').patchValue(dayjs(endDate, 'DD/MM/YY').toDate(), {
+        emitEvent: false,
+      });
+      this.control.get('dateType').patchValue(dateType, { emitEvent: false });
+      this.startDate = startDate;
+      this.endDate = endDate;
+      this.dateType = dateType;
+      this.mappedTitle = `${this.startDate} - ${this.endDate}`;
     }
   }
 

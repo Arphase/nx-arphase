@@ -1,37 +1,17 @@
-import { DEFAULT_LIMIT_SIZE } from '@ivt/c-data';
+import { RevisionStatus } from '@ivt/c-data';
 import { Transform } from 'class-transformer';
-import { IsNotEmpty, IsNumber, IsNumberString, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumberString, IsOptional } from 'class-validator';
 
-export class GetRevisionsDto {
-  @IsOptional()
-  @IsNotEmpty()
-  @IsNumber()
-  @Transform(({ obj, key }) => Number([obj[key]]))
-  pageSize = DEFAULT_LIMIT_SIZE;
+import { CommonFilterDto } from '../../core';
 
-  @IsOptional()
-  @IsNotEmpty()
-  @IsNumber()
-  @Transform(({ obj, key }) => Number([obj[key]]))
-  pageIndex = 1;
-
+export class GetRevisionsDto extends CommonFilterDto {
   @IsOptional()
   @IsNotEmpty()
   @IsNumberString()
   vehicleId;
 
   @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  sort: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  direction: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  text: string;
+  @Transform(({ obj, key }) => RevisionStatus[obj[key]])
+  @IsEnum(RevisionStatus)
+  status: RevisionStatus;
 }

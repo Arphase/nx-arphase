@@ -1,5 +1,5 @@
 import { Roles, RolesGuard } from '@ivt/a-auth';
-import { CreateGroupDto, GetGroupsFilterDto, UpdateGroupDto } from '@ivt/a-state';
+import { CommonFilterDto, CreateGroupDto, UpdateGroupDto } from '@ivt/a-state';
 import { Group, IvtCollectionResponse, UserRoles } from '@ivt/c-data';
 import {
   Body,
@@ -33,7 +33,7 @@ export class GroupsController {
   @Get()
   @Roles(UserRoles.superAdmin)
   async getGroups(
-    @Query(new ValidationPipe({ transform: true })) filterDto: GetGroupsFilterDto
+    @Query(new ValidationPipe({ transform: true })) filterDto: CommonFilterDto
   ): Promise<IvtCollectionResponse<Group>> {
     return this.groupsService.getGroups(filterDto);
   }

@@ -11,6 +11,7 @@ import {
   IvtFolioModule,
   IvtRadioFilterModule,
   IvtSearchbarModule,
+  IvtUppercaseModule,
 } from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
@@ -39,15 +40,14 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { GuaranteeFormComponent } from './components/guarantee-form/guarantee-form.component';
-import { GuaranteeInvoiceNumberDialogComponent } from './components/guarantee-invoice-number-dialog/guarantee-invoice-number-dialog.component';
 import { GuaranteeListComponent } from './components/guarantee-list/guarantee-list.component';
 import { PaymentOrderDialogComponent } from './components/payment-order-dialog/payment-order-dialog.component';
 import { GuaranteeFormContainerComponent } from './containers/guarantee-form-container/guarantee-form-container.component';
-import { GuaranteeInvoiceNumberDialogContainerComponent } from './containers/guarantee-invoice-number-dialog-container/guarantee-invoice-number-dialog-container.component';
 import { GuaranteeListContainerComponent } from './containers/guarantee-list-container/guarantee-list-container.component';
 import { PaymentOrderDialogContainerComponent } from './containers/payment-order-dialog-container/payment-order-dialog-container.component';
 import { GuaranteesRoutingModule } from './guarantees-routing.module';
 import { GuaranteesComponent } from './guarantees.component';
+import { GuaranteeRowDetailsComponent } from './components/guarantee-row-details/guarantee-row-details.component';
 
 @NgModule({
   imports: [
@@ -91,6 +91,7 @@ import { GuaranteesComponent } from './guarantees.component';
     ApsAutoSelectModule,
     NzAlertModule,
     NzTagModule,
+    IvtUppercaseModule,
   ],
   declarations: [
     GuaranteeFormComponent,
@@ -100,8 +101,7 @@ import { GuaranteesComponent } from './guarantees.component';
     GuaranteesComponent,
     PaymentOrderDialogComponent,
     PaymentOrderDialogContainerComponent,
-    GuaranteeInvoiceNumberDialogContainerComponent,
-    GuaranteeInvoiceNumberDialogComponent,
+    GuaranteeRowDetailsComponent,
   ],
 })
 export class GuaranteesModule {}
