@@ -14,6 +14,39 @@
 
     <nz-space-item>
       <nz-collapse>
+        <nz-collapse-panel nzHeader="Vehículo"
+                           [nzActive]="true">
+          <div nz-row>
+            <nz-space nzDirection="vertical"
+                      nzSize="middle"
+                      nz-col
+                      nzSpan="24">
+              <nz-space-item>
+                <nz-alert *ngIf="!isElegible"
+                          nzType="error"
+                          nzMessage="Este vehículo no es elegible para garantizar.
+                      Consultar las revisiones del vehículo para confirmar."
+                          nzShowIcon>
+                </nz-alert>
+                <nz-alert *ngIf="error"
+                          nzType="error"
+                          [nzMessage]="error"
+                          nzShowIcon>
+                </nz-alert>
+              </nz-space-item>
+            </nz-space>
+          </div>
+          <ivt-vehicle-form [form]="vehicleForm"
+                            [companyId]="companyId$ | async"
+                            [item]="vehicle"
+                            [vehicle]="currentVehicle"
+                            (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-space-item>
+
+    <nz-space-item>
+      <nz-collapse>
         <nz-collapse-panel nzHeader="Información General"
                            [nzActive]="true">
           <div nz-row
@@ -38,39 +71,7 @@
                 </nz-form-control>
               </nz-form-item>
             </div>
-          </div>
 
-          <div nz-row
-               [nzGutter]="12">
-            <div nz-col
-                 nzXs="24"
-                 nzLg="12">
-              <nz-form-item>
-                <nz-form-label nzRequired>Compañía</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <nz-select apsAutoSelect
-                             formControlName="companyId"
-                             [nzOptions]="companyOptions">
-                  </nz-select>
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-
-            <div nz-col
-                 nzXs="24"
-                 nzLg="12">
-              <nz-form-item>
-                <nz-form-label nzRequired>Tipo de producto</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         formControlName="productType" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-
-          <div nz-row
-               [nzGutter]="12">
             <div nz-col
                  nzXs="24"
                  nzLg="12">
@@ -95,8 +96,35 @@
                 </nz-form-control>
               </nz-form-item>
             </div>
-          </div>
 
+            <div *ngIf="showCompanyInput"
+                 nz-col
+                 nzXs="24"
+                 nzLg="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Compañía</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <nz-select apsAutoSelect
+                             formControlName="companyId"
+                             [nzOptions]="companyOptions">
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+            <div nz-col
+                 nzXs="24"
+                 nzLg="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Tipo de producto</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         formControlName="productType" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+          </div>
           <!-- TODO: Uncomment when products is ready
         <div nz-row
              [nzGutter]="12">
@@ -258,6 +286,7 @@
                   <nz-form-label nzRequired>RFC</nz-form-label>
                   <nz-form-control apsAutoError>
                     <input nz-input
+                           ivtUppercase
                            formControlName="rfc" />
                   </nz-form-control>
                 </nz-form-item>
@@ -294,34 +323,6 @@
       </nz-collapse>
     </nz-space-item>
 
-    <nz-space-item>
-      <nz-collapse>
-        <nz-collapse-panel nzHeader="Vehículo"
-                           [nzActive]="true">
-          <div nz-row>
-            <nz-space nzDirection="vertical"
-                      nzSize="middle"
-                      nz-col
-                      nzSpan="24">
-              <nz-space-item>
-                <nz-alert *ngIf="!isElegible"
-                          nzType="error"
-                          nzMessage="Este vehículo no es elegible para garantizar.
-                      Consultar las revisiones del vehículo para confirmar."
-                          nzShowIcon>
-                </nz-alert>
-              </nz-space-item>
-            </nz-space>
-          </div>
-          <ivt-vehicle-form [form]="vehicleForm"
-                            [companyId]="companyId$ | async"
-                            [item]="vehicle"
-                            [vehicle]="currentVehicle"
-                            (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </nz-space-item>
-
     <nz-space-item nz-row>
       <div nz-col
            nzSpan="24"
@@ -338,7 +339,7 @@
                   type="submit"
                   nzType="primary"
                   [nzLoading]="loading"
-                  [disabled]="!isEditable && this.item || !isElegible">
+                  [disabled]="!isEditable && this.item || !isElegible || error">
             Guardar
           </button>
         </nz-space>

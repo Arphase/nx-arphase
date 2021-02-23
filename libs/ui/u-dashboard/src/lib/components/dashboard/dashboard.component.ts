@@ -1,6 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { guaranteeDateTypeOptions, Select } from '@ivt/c-data';
+import { guaranteeDateTypeOptions, UserRoles } from '@ivt/c-data';
+import { REQUIRED_ROLES } from '@ivt/u-state';
 import { IvtListComponent } from '@ivt/u-ui';
 
 @Component({
@@ -8,14 +9,11 @@ import { IvtListComponent } from '@ivt/u-ui';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [CurrencyPipe],
+  providers: [CurrencyPipe, { provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
 export class DashboardComponent extends IvtListComponent<number[]> {
   @Input() data: { name: string; value: string }[];
   @Input() isEmpty: boolean;
-  @Input() groupOptions: Select[] = [];
-  @Input() companyOptions: Select[] = [];
-  @Input() userOptions: Select[] = [];
   dateTypeOptions = guaranteeDateTypeOptions;
   colors = {
     domain: ['#53C51A', '#FBAD13', '#FF4D4E', '#1A90FF'],

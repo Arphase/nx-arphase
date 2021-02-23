@@ -1,7 +1,15 @@
-import { CreateVehicleDto, GetVehiclesDto, UpdateVehicleDto, VehicleRepository } from '@ivt/a-state';
-import { IvtCollectionResponse, transformFolio, User, UserRoles, Vehicle, VehicleStatus } from '@ivt/c-data';
+import { CreateVehicleDto, filterCommonQuery, GetVehiclesDto, UpdateVehicleDto, VehicleRepository } from '@ivt/a-state';
+import {
+  createCollectionResponse,
+  IvtCollectionResponse,
+  transformFolio,
+  User,
+  UserRoles,
+  Vehicle,
+  VehicleStatus,
+} from '@ivt/c-data';
 import { sortDirection } from '@ivt/c-utils';
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -10,12 +18,12 @@ export class VehiclesService {
   constructor(@InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository) {}
 
   async getVehicles(filterDto: GetVehiclesDto, user: Partial<User>): Promise<IvtCollectionResponse<Vehicle>> {
-    const { sort, direction, pageSize, pageIndex, text } = filterDto;
-    const query = this.vehicleRepository.createQueryBuilder('vehicle');
-
-    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-      query.andWhere('(vehicle.companyId = :id)', { id: user.companyId });
-    }
+    const { pageSize, pageIndex, text, status } = filterDto;
+    const query = this.vehicleRepository
+      .createQueryBuilder('vehicle')
+      .leftJoinAndSelect('vehicle.company', 'company')
+      .leftJoinAndSelect('vehicle.user', 'user')
+      .orderBy('vehicle.createdAt', sortDirection.desc);
 
     if (text) {
       query.andWhere(
@@ -28,48 +36,48 @@ export class VehiclesService {
       );
     }
 
-    query.orderBy('vehicle.createdAt', sortDirection.desc);
-
-    if (sort && direction) {
-      query.orderBy(`${sort}`, sortDirection[direction]);
+    if (status) {
+      query.andWhere('(vehicle.status = :status)', { status });
     }
 
-    query.take(pageSize).skip(pageSize * (pageIndex - 1));
+    filterCommonQuery('vehicle', query, filterDto, user);
 
     const vehicles = await query.getMany();
     const total = await query.getCount();
 
-    return {
-      info: {
-        pageSize: pageSize,
-        pageIndex: pageIndex,
-        total,
-        pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: vehicles.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
-        last: vehicles.length < pageSize,
-      },
-      results: vehicles,
-    };
+    return createCollectionResponse(vehicles, pageSize, pageIndex, total);
   }
 
   async getVehicle(id: number): Promise<Vehicle> {
     const query = this.vehicleRepository.createQueryBuilder('vehicle');
     const found = await query.where('vehicle.id = :id', { id }).getOne();
     if (!found) {
-      throw new NotFoundException(`Vehicle with id "${id}" not found`);
+      throw new NotFoundException(`Vehicle with id "${id}" not found.`);
     }
     return found;
   }
 
-  async getVehicleFromVin(vin: string): Promise<Vehicle | null> {
+  async getVehicleFromVin(vin: string, user: Partial<User>): Promise<Vehicle | null> {
     const query = this.vehicleRepository.createQueryBuilder('vehicle');
-    const found = await query.where('vehicle.vin = :vin', { vin }).getOne();
-    return found;
+    const vehicle = await query.where('vehicle.vin = :vin', { vin }).getOne();
+
+    if (!vehicle) {
+      throw new NotFoundException(`Vehículo con vin ${vin} no está dado de alta en el sistema.`);
+    }
+
+    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+      if (vehicle?.companyId !== user.companyId) {
+        throw new ForbiddenException('Este vehículo pertenece a otra compañía.');
+      }
+    }
+
+    return vehicle;
   }
 
   async createVehicle(createVehicleDto: CreateVehicleDto, user: Partial<User>): Promise<Vehicle> {
     const newVehicle = this.vehicleRepository.create({
       ...createVehicleDto,
+      companyId: user && UserRoles[user.role] === UserRoles.superAdmin ? createVehicleDto.companyId : user.companyId,
       userId: user.id,
     });
     await newVehicle.save();

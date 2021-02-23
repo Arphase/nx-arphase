@@ -23,9 +23,9 @@
                       nz-col
                       nzSpan="24">
               <nz-space-item>
-                <nz-alert *ngIf="showVehicleAlert"
+                <nz-alert *ngIf="error"
                           nzType="error"
-                          nzMessage="Este vehículo no esta dado de alta en el sistema. Favor de crear el vehículo que desea solicitar la revisión para continuar."
+                          [nzMessage]="error"
                           nzShowIcon>
                 </nz-alert>
               </nz-space-item>
@@ -66,8 +66,8 @@
               <nz-form-item>
                 <nz-form-label nzRequired>Observaciones</nz-form-label>
                 <nz-form-control apsAutoError>
-                  <input nz-input
-                         formControlName="observations" />
+                  <textarea nz-input
+                            formControlName="observations"></textarea>
                 </nz-form-control>
               </nz-form-item>
             </div>

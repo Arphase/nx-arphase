@@ -1,9 +1,9 @@
 import { DEFAULT_LIMIT_SIZE } from '@ivt/c-data';
 import { convertStringToNumberArray } from '@ivt/c-utils';
 import { Transform } from 'class-transformer';
-import { IsArray, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
-export class FilterUsersDto {
+export class CommonFilterDto {
   @IsOptional()
   @IsNotEmpty()
   @IsNumber()
@@ -18,15 +18,34 @@ export class FilterUsersDto {
 
   @IsOptional()
   @IsNotEmpty()
-  text: string;
-
-  @IsOptional()
-  @IsNotEmpty()
   sort: string;
 
   @IsOptional()
   @IsNotEmpty()
   direction: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  startDate: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  endDate: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  dateType: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsString()
+  text: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsArray()
+  @Transform(({ obj, key }) => convertStringToNumberArray(obj[key]))
+  groupIds: number[];
 
   @IsOptional()
   @IsNotEmpty()
@@ -38,5 +57,5 @@ export class FilterUsersDto {
   @IsNotEmpty()
   @IsArray()
   @Transform(({ obj, key }) => convertStringToNumberArray(obj[key]))
-  groupIds: number[];
+  userIds: number[];
 }

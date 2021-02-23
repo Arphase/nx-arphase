@@ -72,6 +72,12 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
         .subscribe(vin => this.verifyVin.emit(vin));
     }
 
+    if (changes.showCompanyInput) {
+      this.showCompanyInput
+        ? this.form.get('companyId').enable({ emitEvent: false })
+        : this.form.get('companyId').disable({ emitEvent: false });
+    }
+
     if (changes.item && this.item) {
       this.form.patchValue(this.item, { emitEvent: false });
       this.form.disable({ emitEvent: false });

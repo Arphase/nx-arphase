@@ -7,7 +7,8 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, Select, statusLabels } from '@ivt/c-data';
+import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, statusLabels, UserRoles } from '@ivt/c-data';
+import { REQUIRED_ROLES } from '@ivt/u-state';
 import { IvtListComponent } from '@ivt/u-ui';
 
 import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.constants';
@@ -17,12 +18,10 @@ import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.co
   templateUrl: './guarantee-list.component.html',
   styleUrls: ['./guarantee-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
 export class GuaranteeListComponent extends IvtListComponent<Guarantee> implements OnChanges {
   @Input() clearSelected: boolean;
-  @Input() groupOptions: Select[] = [];
-  @Input() companyOptions: Select[] = [];
-  @Input() userOptions: Select[] = [];
   dateTypeOptions = guaranteeDateTypeOptions;
   statusOptions = statusOptions;
   checked = false;
@@ -36,14 +35,15 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   statusLabels = statusLabels;
   @Output() downloadPdf = new EventEmitter<number>();
   @Output() createPaymentOrder = new EventEmitter<number[]>();
-  @Output() filterCompanies = new EventEmitter<number[]>();
-  @Output() filterUsers = new EventEmitter<number[]>();
   @Output() downloadPaymentOrder = new EventEmitter<number>();
   @Output() updatePaymentOrder = new EventEmitter<number>();
-  @Output() editInvoiceNumber = new EventEmitter<Guarantee>();
 
   get checkedIdsArray(): number[] {
     return Array.from(this.setOfCheckedId);
+  }
+
+  get showPaymentOrderButton(): boolean {
+    return this.checked || this.indeterminate;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -57,6 +57,7 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   updateStatusFilter(status: GuaranteeStatus): void {
     this.filterItems.emit({ status });
   }
+
   onChangeStatus(id: number, status: GuaranteeStatus): void {
     this.edit.emit({ id, status: status });
   }

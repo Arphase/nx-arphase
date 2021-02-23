@@ -1,6 +1,7 @@
 import { getProductPdfTemplate } from '@ivt/a-products';
 import {
   CreateGuaranteeDto,
+  filterCommonQuery,
   GetGuaranteesFilterDto,
   getReadableStream,
   GuaranteeEntity,
@@ -10,11 +11,11 @@ import {
   PhysicalPersonRepository,
   tobase64,
   UpdateGuaranteeDto,
-  VehicleEntity,
   VehicleRepository,
 } from '@ivt/a-state';
 import {
   Client,
+  createCollectionResponse,
   Guarantee,
   GuaranteeSummary,
   isVehicleElegible,
@@ -24,10 +25,11 @@ import {
   transformFolio,
   User,
   UserRoles,
+  Vehicle,
   VehicleStatus,
 } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
-import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import fs from 'fs';
@@ -37,11 +39,8 @@ import { Connection } from 'typeorm';
 import { promisify } from 'util';
 import * as XLSX from 'xlsx';
 
-import {
-  applyGuaranteeFilter,
-  applyGuaranteeSharedFilters,
-  getGuaranteePdfTemplate,
-} from './guarantees.service.constants';
+import { guaranteeExcelColumns } from './guarantees.service.constants';
+import { applyGuaranteeFilter, getGuaranteePdfTemplate } from './guarantees.service.functions';
 
 @Injectable()
 export class GuaranteesService {
@@ -83,17 +82,12 @@ export class GuaranteesService {
 
     const guarantees = await query.getMany();
     const total = await query.getCount();
-    return {
-      info: {
-        pageSize: pageSize,
-        pageIndex: pageIndex,
-        total,
-        pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: guarantees.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
-        last: guarantees.length < pageSize,
-      },
-      results: guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity),
-    };
+    return createCollectionResponse(
+      guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity),
+      pageSize,
+      pageIndex,
+      total
+    );
   }
 
   async getGuaranteesSummary(
@@ -112,57 +106,14 @@ export class GuaranteesService {
       query.andWhere('(guarantee.companyId = :id)', { id: user.companyId });
     }
 
-    applyGuaranteeSharedFilters(query, filterDto);
+    filterCommonQuery('guarantee', query, filterDto);
 
     return query.getRawMany();
   }
 
   async getGuaranteesExcel(filterDto: GetGuaranteesFilterDto, user: Partial<User>, response: Response): Promise<void> {
     const guarantees = await (await this.getGuarantees(omit(filterDto, ['pageIndex', 'pageSize']), user)).results;
-    const excelColumnConstants: string[] = [
-      'Folio',
-      'Fecha de carga',
-      'Fecha de actualización',
-      'Estatus',
-      'Fecha inicio',
-      'Fecha fin',
-      'Importe',
-      'Fecha de factura',
-      'Tipo de persona',
-      'Nombre',
-      'Apellido Paterno',
-      'Apellido Materno',
-      'Fecha de nacimiento',
-      'Razón social',
-      'Fecha de constitución',
-      'Asesor',
-      'RFC',
-      'Teléfono',
-      'Correo',
-      'Código Postal',
-      'País',
-      'Estado',
-      'Ciudad',
-      'Colonia',
-      'Calle',
-      'Número Externo',
-      'Número Interno',
-      'Punto de Venta',
-      'Tipo de Producto',
-      'Marca',
-      'Modelo',
-      'Versión',
-      'Año del vehículo',
-      'HP',
-      'VIN',
-      'Nº de Motor',
-      'Kilometraje inicial',
-      'Fin garantía por kilometraje',
-      'Creación orden de compra',
-      'Actualización orden de compra',
-      'Distribuidor',
-      'Factura',
-    ];
+
     const guaranteesData: string[][] = guarantees.map(guarantee => {
       return [
         transformFolio(guarantee.id),
@@ -209,7 +160,7 @@ export class GuaranteesService {
         guarantee?.invoiceNumber,
       ].map(field => (field ? String(field) : ''));
     });
-    const data = [[...excelColumnConstants], ...guaranteesData];
+    const data = [[...guaranteeExcelColumns], ...guaranteesData];
     const workSheet = XLSX.utils.aoa_to_sheet(data);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, workSheet, 'SheetJS');
@@ -223,28 +174,21 @@ export class GuaranteesService {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
-    const vehicle = this.vehicleRepository.create({
-      ...createGuaranteeDto.vehicle,
-      userId: user.id,
-    });
-    await vehicle.reload();
-    if (!isVehicleElegible(vehicle)) {
-      throw new ConflictException(`Vehicle with id ${vehicle.id} isn't elegible for a guarantee`);
-    }
-
+    const vehicle = await this.vehicleRepository.findOne({ id: createGuaranteeDto.vehicleId });
+    this.validateVehicle(vehicle, user);
     try {
       vehicle.status = VehicleStatus.hasActiveGuarantee;
       await vehicle.save();
 
       createGuaranteeDto = this.omitInfo(createGuaranteeDto);
       const newGuarantee = this.guaranteeRepository.create({
-        ...omit(createGuaranteeDto, 'vehicle'),
+        ...createGuaranteeDto,
+        companyId:
+          user && UserRoles[user.role] === UserRoles.superAdmin ? createGuaranteeDto.companyId : user.companyId,
         userId: user.id,
-        vehicle,
       });
       await newGuarantee.save();
       await newGuarantee.reload();
-
       await queryRunner.commitTransaction();
       return newGuarantee;
     } catch (err) {
@@ -343,22 +287,14 @@ export class GuaranteesService {
         await this.moralPersonRepository.delete(updateGuaranteeDto.client.moralInfo.id);
       }
       const preloadedGuarantee = await this.guaranteeRepository.preload(updateGuaranteeDto);
-
-      let vehicle: VehicleEntity;
-      if (updateGuaranteeDto.vehicle) {
-        vehicle = this.vehicleRepository.create({
-          ...updateGuaranteeDto.vehicle,
-          userId: user.id,
-        });
-        await vehicle.save();
-      } else {
-        vehicle = preloadedGuarantee.vehicle as VehicleEntity;
-      }
+      const vehicle = await this.vehicleRepository.findOne({ id: updateGuaranteeDto.vehicleId });
+      this.validateVehicle(vehicle, user);
       const guarantee = this.omitInfo(updateGuaranteeDto);
       const updatedGuarantee = await this.guaranteeRepository.save({
         ...preloadedGuarantee,
         ...guarantee,
-        vehicle: updateGuaranteeDto.vehicle ? vehicle : preloadedGuarantee.vehicle,
+        companyId:
+          user && UserRoles[user.role] === UserRoles.superAdmin ? updateGuaranteeDto.companyId : user.companyId,
       });
       await updatedGuarantee.reload();
       await queryRunner.commitTransaction();
@@ -388,5 +324,20 @@ export class GuaranteesService {
       guarantee.client = omit(guarantee.client, 'physicalInfo') as Client;
     }
     return guarantee;
+  }
+
+  validateVehicle(vehicle: Vehicle, user: Partial<User>): void {
+    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+      if (vehicle?.companyId !== user.companyId) {
+        throw new ForbiddenException('No se puede actualizar una garantía con un vehículo de otra compañía');
+      }
+    }
+    if (!vehicle) {
+      throw new NotFoundException(`Vehicle with id ${vehicle.id} doesn't exist`);
+    }
+
+    if (!isVehicleElegible(vehicle)) {
+      throw new ConflictException(`Vehicle with id ${vehicle.id} isn't elegible for a guarantee`);
+    }
   }
 }

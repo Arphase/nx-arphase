@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { RevisionRequest, RevisionRequestStatus } from '@ivt/c-data';
+import { RevisionRequest, RevisionRequestStatus, UserRoles } from '@ivt/c-data';
+import { REQUIRED_ROLES } from '@ivt/u-state';
 import { IvtListComponent } from '@ivt/u-ui';
 
 import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './revision-request-list.constants';
@@ -9,6 +10,7 @@ import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './rev
   templateUrl: './revision-request-list.component.html',
   styleUrls: ['./revision-request-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
 export class RevisionRequestListComponent extends IvtListComponent<RevisionRequest> {
   @Input() isSuperAdmin: boolean;
@@ -21,5 +23,9 @@ export class RevisionRequestListComponent extends IvtListComponent<RevisionReque
 
   onChangeStatus(id: number, status: RevisionRequestStatus): void {
     this.edit.emit({ id, status: status });
+  }
+
+  updateStatusFilter(status: RevisionRequestStatus): void {
+    this.filterItems.emit({ status });
   }
 }

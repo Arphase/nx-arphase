@@ -27,7 +27,9 @@ export class TokenInterceptor implements HttpInterceptor {
     });
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        this.handleError(error.error);
+        if (!request.headers.get('noMessage')) {
+          this.handleError(error.error);
+        }
         return throwError(error);
       }),
       finalize(() => this.loadingService.hide())

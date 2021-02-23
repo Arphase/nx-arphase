@@ -41,9 +41,6 @@ export class ThemeService {
       localStorage.setItem('theme', themeName);
     }
     const theme = this.currentTheme;
-    if (firstLoad) {
-      document.documentElement.classList.add(theme);
-    }
     this.loadCss(`${theme}.css`, theme).then(() => {
       if (!firstLoad) {
         document.documentElement.classList.add(theme);

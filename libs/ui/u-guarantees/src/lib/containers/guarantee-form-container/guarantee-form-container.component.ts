@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Guarantee, UserRoles } from '@ivt/c-data';
-import { filterNil } from '@ivt/c-utils';
+import { filterExisting, filterNil } from '@ivt/c-utils';
 import {
   CompanyCollectionService,
   fromVehicles,
   getAuthUserCompanyIdState,
   getAuthUserRoleState,
+  getVehiclesErrorState,
   getVehiclesVehicleState,
   GuaranteeCollectionService,
   IvtState,
@@ -17,8 +18,8 @@ import {
 } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
+import { omit } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { combineLatest } from 'rxjs';
 import { map, take, takeUntil } from 'rxjs/operators';
 
 import { createGuaranteeForm } from '../../components/guarantee-form/guarantee-form.component';
@@ -38,24 +39,13 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   productOptions$ = this.productCollectionService.options$;
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
   vehicle$ = this.vehicleCollectionService.currentItem$;
-  disabledCompanyInput$ = this.store.pipe(
+  showCompanyInput$ = this.store.pipe(
     select(getAuthUserRoleState),
-    map(role => role !== UserRoles[UserRoles.superAdmin])
+    map(role => role === UserRoles[UserRoles.superAdmin])
   );
-  companyOptions$ = combineLatest([
-    this.disabledCompanyInput$,
-    this.companyCollectionService.currentItem$,
-    this.companyCollectionService.options$,
-  ]).pipe(
-    map(([disabledCompanyInput, currentItem, options]) => {
-      if (disabledCompanyInput) {
-        return currentItem ? [{ label: currentItem.businessName, value: currentItem.id }] : [];
-      } else {
-        return options;
-      }
-    })
-  );
+  companyOptions$ = this.companyCollectionService.options$;
   currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
+  error$ = this.store.pipe(select(getVehiclesErrorState));
 
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,
@@ -71,15 +61,9 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   }
 
   ngOnInit() {
-    combineLatest([this.disabledCompanyInput$, this.companyId$])
-      .pipe(take(1))
-      .subscribe(([disabledCompanyInput, companyId]) => {
-        if (disabledCompanyInput) {
-          this.companyCollectionService.getByKey(companyId);
-        } else {
-          this.companyCollectionService.getWithQuery({});
-        }
-      });
+    this.showCompanyInput$.pipe(take(1), filterExisting()).subscribe(() => {
+      this.companyCollectionService.getWithQuery({});
+    });
 
     this.store
       .pipe(select(selectQueryParam('vehicleId')), takeUntil(this.destroy$), filterNil())
@@ -90,8 +74,13 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin }));
   }
 
+  submit(item: Guarantee): void {
+    super.submit(omit({ ...item, vehicleId: item.vehicle.id }, 'vehicle'));
+  }
+
   ngOnDestroy() {
     super.ngOnDestroy();
+    this.vehicleCollectionService.removeOneFromCache(null);
     this.store.dispatch(fromVehicles.actions.clearVehiclesState());
   }
 }

@@ -10,23 +10,24 @@
       <tr nz-row>
         <th *ngFor="let column of columns"
             nz-col
-            [nzXs]="column.colSizes?.xs">
+            [nzXs]="column.colSizes?.xs"
+            [nzMd]="column.colSizes?.md">
           {{ column.label }}
         </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let guarantee of guaranteesFormArray.controls"
-          nz-row
           nz-form
-          nzLayout="vertical"
           nz-row
-          [formGroup]="guarantee"
-          [nzGutter]="12">
+          nzLayout="vertical"
+          [formGroup]="guarantee">
         <td nz-col
-            nzXs="4">{{ guarantee.value.id | folio }}</td>
+            nzXs="12"
+            nzMd="4">{{ guarantee.value.id | folio }}</td>
         <td nz-col
-            nzXs="10">
+            nzXs="12"
+            nzMd="7">
           <nz-form-item>
             <nz-form-control apsAutoError>
               <nz-date-picker formControlName="invoiceDate"></nz-date-picker>
@@ -34,7 +35,18 @@
           </nz-form-item>
         </td>
         <td nz-col
-            nzXs="10">
+            nzXs="12"
+            nzMd="7">
+          <nz-form-item>
+            <nz-form-control apsAutoError>
+              <input nz-input
+                     formControlName="invoiceNumber" />
+            </nz-form-control>
+          </nz-form-item>
+        </td>
+        <td nz-col
+            nzXs="12"
+            nzMd="6">
           <nz-form-item>
             <nz-form-control apsAutoError>
               <input nz-input

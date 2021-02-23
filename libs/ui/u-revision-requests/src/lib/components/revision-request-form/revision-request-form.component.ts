@@ -20,6 +20,7 @@ export function createRevisionRequestForm(): FormGroup {
     name: new FormControl(null, ApsValidators.required),
     email: new FormControl(null, ApsValidators.email),
     phone: new FormControl(null, ApsValidators.phone),
+    additionalNotes: new FormControl(null),
     vehicle: createVehicleForm(),
     address: createAddressForm(),
   });
@@ -36,6 +37,7 @@ export class RevisionRequestFormComponent
   implements OnChanges, AfterViewInit {
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
+  @Input() error: string;
   @Output() verifyVin = new EventEmitter<string>();
 
   ngOnChanges(changes: SimpleChanges) {
@@ -56,10 +58,6 @@ export class RevisionRequestFormComponent
     } else {
       return 'Nueva solicitud de revisión';
     }
-  }
-
-  get showVehicleAlert(): boolean {
-    return !this.currentVehicle && !this.vehicle && this.vehicleForm.get('vin').valid && this.isEditable;
   }
 
   get vehicleForm(): FormGroup {

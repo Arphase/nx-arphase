@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RevisionRequest, RevisionStatus, UserRoles } from '@ivt/c-data';
 import {
   getAuthUserRoleState,
+  IdentityFilterService,
   IvtState,
   RevisionRequestCollectionService,
   RevisionRequestDataService,
@@ -29,9 +30,10 @@ export class RevisionRequestListContainerComponent extends IvtListContainerCompo
     protected revisionRequestCollecitonService: RevisionRequestCollectionService,
     protected revisionRequestDataService: RevisionRequestDataService,
     protected messageService: NzMessageService,
+    protected identityFilterService: IdentityFilterService,
     private store: Store<IvtState>
   ) {
-    super(revisionRequestCollecitonService, revisionRequestDataService, null, messageService);
+    super(revisionRequestCollecitonService, revisionRequestDataService, null, messageService, identityFilterService);
   }
 
   changeStatus(revisionRequest: Partial<RevisionRequest>): void {

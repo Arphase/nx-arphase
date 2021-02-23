@@ -42,6 +42,9 @@ export class RevisionRequestEntity extends BaseEntity implements RevisionRequest
   @Column()
   email: string;
 
+  @Column({ nullable: true })
+  additionalNotes: string;
+
   @CreateDateColumn()
   createdAt: Date;
 

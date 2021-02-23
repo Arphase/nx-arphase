@@ -2,7 +2,7 @@
      [nzGutter]="[12, 12]">
   <div nz-col
        nzXs="16"
-       nzMd="12">
+       [nzMd]="showPaymentOrderButton ? 10 : 12">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
   <div nz-col
@@ -37,12 +37,12 @@
 
   <div nz-col
        nzXs="0"
-       nzMd="10"
+       [nzMd]="showPaymentOrderButton ? 12 : 10"
        nzFlex="auto">
     <div class="flex-end">
       <nz-space>
         <nz-space-item>
-          <button *ngIf="indeterminate || checked"
+          <button *ngIf="showPaymentOrderButton"
                   nz-button
                   type="button"
                   nzType="primary"
@@ -60,7 +60,7 @@
     </div>
   </div>
 
-  <div *ngIf="indeterminate || checked"
+  <div *ngIf="showPaymentOrderButton"
        nz-col
        nzXs="24"
        nzMd="0"
@@ -95,28 +95,39 @@
                       (filterItems)="updateStatusFilter($event)">
     </ivt-radio-filter>
   </div>
+  <ng-container *ivtCreatePermission>
+    <div nz-col>
+      <ivt-checkbox-filter label="Grupos"
+                           [options]="groupFilterInfo?.options"
+                           [loading]="groupFilterInfo?.loading"
+                           [last]="groupFilterInfo?.last"
+                           [pageIndex]="groupFilterInfo?.pageIndex"
+                           [preselectedOptions]="queryParams?.groupIds"
+                           (filterItems)="updateGroupsFilters($event)"
+                           (filterOptions)="filterGroupOptions.emit($event)">
+      </ivt-checkbox-filter>
+    </div>
+    <div nz-col>
+      <ivt-checkbox-filter label="Compañías"
+                           [options]="companyFilterInfo?.options"
+                           [loading]="companyFilterInfo?.loading"
+                           [last]="companyFilterInfo?.last"
+                           [pageIndex]="companyFilterInfo?.pageIndex"
+                           [preselectedOptions]="queryParams?.companyIds"
+                           (filterItems)="updateCompaniesFilters($event)"
+                           (filterOptions)="filterCompanyOptions.emit($event)">
+      </ivt-checkbox-filter>
+    </div>
+  </ng-container>
   <div nz-col>
-    <ivt-checkbox-filter *ngIf="groupOptions?.length"
-                         label="Grupos"
-                         [options]="groupOptions"
-                         [preselectedOptions]="queryParams?.groupIds"
-                         (filterItems)="updateGroupsFilters($event)">
-    </ivt-checkbox-filter>
-  </div>
-  <div nz-col>
-    <ivt-checkbox-filter *ngIf="companyOptions?.length"
-                         label="Compañías"
-                         [options]="companyOptions"
-                         [preselectedOptions]="queryParams?.companyIds"
-                         (filterItems)="updateCompaniesFilters($event)">
-    </ivt-checkbox-filter>
-  </div>
-  <div nz-col>
-    <ivt-checkbox-filter *ngIf="userOptions?.length"
-                         label="Vendedores"
-                         [options]="userOptions"
+    <ivt-checkbox-filter label="Vendedores"
+                         [options]="userFilterInfo?.options"
+                         [loading]="userFilterInfo?.loading"
+                         [last]="userFilterInfo?.last"
+                         [pageIndex]="userFilterInfo?.pageIndex"
                          [preselectedOptions]="queryParams?.userIds"
-                         (filterItems)="updateUsersFilters($event)">
+                         (filterItems)="updateUsersFilters($event)"
+                         (filterOptions)="filterUserOptions.emit($event)">
     </ivt-checkbox-filter>
   </div>
   <div nz-col
@@ -251,139 +262,11 @@
                 Editar orden de pago
               </li>
             </ng-container>
-            <li nz-menu-item
-                (click)="editInvoiceNumber.emit(item)">
-              Editar número de factura
-            </li>
           </ul>
         </nz-dropdown-menu>
       </tr>
       <tr [nzExpand]="expandSet.has(item.id)">
-        <div nz-row
-             [nzGutter]="12">
-          <div nz-col
-               nzXs="12"
-               nzMd="0">
-            <span nz-typography><strong>Compañía:</strong></span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="0">
-            <span>{{ item.company?.businessName | empty }}</span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="0">
-            <span nz-typography><strong>Factura:</strong></span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="0">
-            <span>{{ item.invoiceNumber | empty }}</span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="4">
-            <span nz-typography><strong>Monto:</strong></span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="0">
-            <span>{{ item?.amount | currency | empty }}</span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="0">
-            <span nz-typography><strong>Captura:</strong></span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="4">
-            <span>{{ item.createdAt | date: 'dd/MM/yy' | empty }}</span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="4">
-            <span nz-typography><strong>Vehículo:</strong></span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="4">
-            <span>{{ item?.vehicle?.brand }} {{ item?.vehicle?.model }} {{ item.vehicle?.year }}</span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="4">
-            <span nz-typography><strong>N° de motor:</strong></span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="4">
-            <span>{{ item.vehicle?.motorNumber }}</span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="4">
-            <span nz-typography><strong>Inicio:</strong></span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="4">
-            <span>{{ item.startDate | date: 'dd/MM/yy' | empty }}</span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="4">
-            <span nz-typography><strong>Fin:</strong></span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="4">
-            <span>{{ item.endDate | date: 'dd/MM/yy' | empty }}</span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="4">
-            <span nz-typography><strong>Cliente:</strong></span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="4">
-            <span *ngIf="item.client?.physicalInfo?.name">
-              {{ item.client?.physicalInfo?.name }} {{ item.client?.physicalInfo?.lastName }}
-              {{ item.client?.physicalInfo?.secondLastName }}
-            </span>
-            <span *ngIf="item.client?.moralInfo?.businessName">
-              {{ item.client?.moralInfo?.businessName }}
-            </span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="4">
-            <span nz-typography><strong>Producto: </strong></span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               nzLg="4">
-            <span>{{ item?.productType }}</span>
-          </div>
-        </div>
+        <ivt-guarantee-row-details [item]="item"></ivt-guarantee-row-details>
       </tr>
     </ng-container>
   </tbody>

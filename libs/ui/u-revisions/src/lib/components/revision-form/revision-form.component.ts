@@ -32,6 +32,7 @@ export function createRevisionForm(): FormGroup {
 export class RevisionFormComponent extends IvtFormComponent<Revision> implements OnChanges, AfterViewInit {
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
+  @Input() error: string;
   statusOptions: Select[] = [
     {
       label: 'En buenas condiciones',
@@ -50,10 +51,6 @@ export class RevisionFormComponent extends IvtFormComponent<Revision> implements
 
   get vehicleForm(): FormGroup {
     return this.form.get('vehicle') as FormGroup;
-  }
-
-  get showVehicleAlert(): boolean {
-    return !this.currentVehicle && !this.vehicle && this.vehicleForm.get('vin').valid && this.isEditable;
   }
 
   ngOnChanges(changes: SimpleChanges) {

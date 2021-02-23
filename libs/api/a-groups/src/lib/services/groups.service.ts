@@ -1,18 +1,20 @@
 import { AuthService } from '@ivt/a-auth';
 import {
+  CommonFilterDto,
   CompanyRepository,
   CreateGroupDto,
-  GetGroupsFilterDto,
+  filterCommonQuery,
   GroupRepository,
+  ResetPasswordRepository,
   UpdateGroupDto,
   UserEntity,
   UserRepository,
 } from '@ivt/a-state';
-import { Company, Group, IvtCollectionResponse, User } from '@ivt/c-data';
-import { sortDirection } from '@ivt/c-utils';
+import { Company, createCollectionResponse, Group, IvtCollectionResponse, User } from '@ivt/c-data';
+import { generateId } from '@ivt/c-utils';
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { flatten, omit } from 'lodash';
+import { omit } from 'lodash';
 import { Connection } from 'typeorm';
 
 @Injectable()
@@ -21,6 +23,7 @@ export class GroupsService {
     @InjectRepository(GroupRepository) private groupRepository: GroupRepository,
     @InjectRepository(CompanyRepository) private companyRepository: CompanyRepository,
     @InjectRepository(UserRepository) private userRepository: UserRepository,
+    @InjectRepository(ResetPasswordRepository) private resetPasswordRepository: ResetPasswordRepository,
     private connection: Connection,
     private authService: AuthService
   ) {}
@@ -41,13 +44,9 @@ export class GroupsService {
     return found;
   }
 
-  async getGroups(filterDto: Partial<GetGroupsFilterDto>): Promise<IvtCollectionResponse<Group>> {
-    const { pageSize, pageIndex, sort, direction, text } = filterDto;
+  async getGroups(filterDto: Partial<CommonFilterDto>): Promise<IvtCollectionResponse<Group>> {
+    const { pageSize, pageIndex, text } = filterDto;
     const query = this.groupRepository.createQueryBuilder('group');
-
-    if (sort && direction) {
-      query.orderBy(`${sort}`, sortDirection[direction]);
-    }
 
     if (text) {
       query.andWhere(
@@ -59,25 +58,12 @@ export class GroupsService {
       );
     }
 
-    query
-      .groupBy('group.id')
-      .take(pageSize)
-      .skip(pageSize * (pageIndex - 1));
+    filterCommonQuery('group', query, filterDto);
 
     const groups = await query.getMany();
     const total = await query.getCount();
 
-    return {
-      info: {
-        pageSize: pageSize,
-        pageIndex: pageIndex,
-        total,
-        pageStart: (pageIndex - 1) * pageSize + 1,
-        pageEnd: groups.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
-        last: groups.length < pageSize,
-      },
-      results: groups,
-    };
+    return createCollectionResponse(groups, pageSize, pageIndex, total);
   }
 
   async createGroup(createGroupDto: CreateGroupDto): Promise<Group> {
@@ -85,13 +71,7 @@ export class GroupsService {
   }
 
   async updateGroup(updateGroupDto: UpdateGroupDto): Promise<Group> {
-    const updatedGroup = await this.saveGroup(updateGroupDto);
-    console.log(updatedGroup);
-    const userIds: number[] = flatten(updatedGroup.companies.map(company => company.users.map(user => user.id)));
-    if (userIds.length) {
-      await this.authService.sendEmailToPendingUsers(userIds);
-    }
-    return updatedGroup;
+    return await this.saveGroup(updateGroupDto);
   }
 
   async saveGroup(groupDto: CreateGroupDto | UpdateGroupDto): Promise<Group> {
@@ -117,7 +97,18 @@ export class GroupsService {
             users.map(async user => {
               const newUser = this.userRepository.create({ ...user, companyId } as UserEntity);
               await queryRunner.manager.save(newUser);
-              await this.authService.sendSetPasswordEmail(newUser.id);
+              if (user.id) {
+                await newUser.reload();
+              }
+              if (!newUser.password) {
+                const resetPasswordEntity = this.resetPasswordRepository.create({
+                  userId: newUser.id,
+                  passwordToken: generateId(),
+                  timestamp: new Date(),
+                });
+                await queryRunner.manager.save(resetPasswordEntity);
+                await this.authService.sendSetPasswordEmail(user, resetPasswordEntity);
+              }
               return newUser;
             })
           );

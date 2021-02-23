@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DasboardStateModule } from '@ivt/u-state';
+import { DasboardStateModule, PermissionsModule } from '@ivt/u-state';
 import { IvtCheckboxFilterModule, IvtDateFilterModule } from '@ivt/u-ui';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -30,6 +30,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     NzSpaceModule,
     NzTypographyModule,
     NgxChartsModule,
+    PermissionsModule,
   ],
   declarations: [DashboardContainerComponent, DashboardComponent],
 })

@@ -39,7 +39,56 @@
 <nz-divider></nz-divider>
 
 <div nz-row
-     [nzGutter]="12">
+     nzAlign="middle"
+     [nzGutter]="[12, 12]">
+  <div nz-col>
+    <ivt-date-filter label="Fecha de alta"
+                     [currentDates]="queryParams?.dates"
+                     (filterItems)="updateDateFilter($event)">
+    </ivt-date-filter>
+  </div>
+  <div nz-col>
+    <ivt-radio-filter label="Estatus"
+                      [options]="statusOptions"
+                      [selectedOption]="queryParams?.status"
+                      (filterItems)="updateStatusFilter($event)">
+    </ivt-radio-filter>
+  </div>
+  <ng-container *ivtCreatePermission>
+    <div nz-col>
+      <ivt-checkbox-filter label="Grupos"
+                           [options]="groupFilterInfo?.options"
+                           [loading]="groupFilterInfo?.loading"
+                           [last]="groupFilterInfo?.last"
+                           [pageIndex]="groupFilterInfo?.pageIndex"
+                           [preselectedOptions]="queryParams?.groupIds"
+                           (filterItems)="updateGroupsFilters($event)"
+                           (filterOptions)="filterGroupOptions.emit($event)">
+      </ivt-checkbox-filter>
+    </div>
+    <div nz-col>
+      <ivt-checkbox-filter label="Compañías"
+                           [options]="companyFilterInfo?.options"
+                           [loading]="companyFilterInfo?.loading"
+                           [last]="companyFilterInfo?.last"
+                           [pageIndex]="companyFilterInfo?.pageIndex"
+                           [preselectedOptions]="queryParams?.companyIds"
+                           (filterItems)="updateCompaniesFilters($event)"
+                           (filterOptions)="filterCompanyOptions.emit($event)">
+      </ivt-checkbox-filter>
+    </div>
+  </ng-container>
+  <div nz-col>
+    <ivt-checkbox-filter label="Vendedores"
+                         [options]="userFilterInfo?.options"
+                         [loading]="userFilterInfo?.loading"
+                         [last]="userFilterInfo?.last"
+                         [pageIndex]="userFilterInfo?.pageIndex"
+                         [preselectedOptions]="queryParams?.userIds"
+                         (filterItems)="updateUsersFilters($event)"
+                         (filterOptions)="filterUserOptions.emit($event)">
+    </ivt-checkbox-filter>
+  </div>
   <div nz-col
        nzFlex="auto"
        class="flex-end">
