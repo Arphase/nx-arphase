@@ -3,9 +3,9 @@
                     [loadingExcel]="loadingExcel$ | async"
                     [groupOptions]="groupOptions$ | async"
                     [companyOptions]="companyOptions$ | async"
-                    [userOptions]="userOptions$ | async"
                     [loading]="loading$ | async"
                     [info]="info$ | async"
+                    [userFilterInfo]="userFilterInfo$ | async"
                     [queryParams]="queryParams"
                     (filterItems)="filterItems($event)"
                     (exportExcel)="exportExcel()"
@@ -13,5 +13,6 @@
                     (edit)="changeStatus($event)"
                     (createPaymentOrder)="createPaymentOrder($event)"
                     (updatePaymentOrder)="updatePaymentOrder($event)"
-                    (downloadPaymentOrder)="downloadPaymentOrder($event)">
+                    (downloadPaymentOrder)="downloadPaymentOrder($event)"
+                    (filterUserOptions)="filterUserOptions($event)">
 </ivt-guarantee-list>

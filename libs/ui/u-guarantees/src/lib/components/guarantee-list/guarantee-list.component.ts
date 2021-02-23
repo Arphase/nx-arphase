@@ -1,5 +1,14 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, statusLabels } from '@ivt/c-data';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, statusLabels, UserRoles } from '@ivt/c-data';
+import { REQUIRED_ROLES } from '@ivt/u-state';
 import { IvtListComponent } from '@ivt/u-ui';
 
 import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.constants';
@@ -9,6 +18,7 @@ import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.co
   templateUrl: './guarantee-list.component.html',
   styleUrls: ['./guarantee-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
 export class GuaranteeListComponent extends IvtListComponent<Guarantee> implements OnChanges {
   @Input() clearSelected: boolean;
@@ -25,8 +35,6 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   statusLabels = statusLabels;
   @Output() downloadPdf = new EventEmitter<number>();
   @Output() createPaymentOrder = new EventEmitter<number[]>();
-  @Output() filterCompanies = new EventEmitter<number[]>();
-  @Output() filterUsers = new EventEmitter<number[]>();
   @Output() downloadPaymentOrder = new EventEmitter<number>();
   @Output() updatePaymentOrder = new EventEmitter<number>();
 

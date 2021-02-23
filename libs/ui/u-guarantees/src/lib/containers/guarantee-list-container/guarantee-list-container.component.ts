@@ -21,7 +21,7 @@ import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-co
   styleUrls: ['./guarantee-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeListContainerComponent extends IvtListContainerComponent<Guarantee> implements OnInit {
+export class GuaranteeListContainerComponent extends IvtListContainerComponent<Guarantee> {
   clearSelectedSubject = new BehaviorSubject<boolean>(false);
   clearSelected$ = this.clearSelectedSubject.asObservable();
   excelFileName = 'Garantias';
@@ -34,15 +34,11 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
     protected guaranteeDataService: GuaranteeDataService,
     protected modal: NzModalService,
     protected messageService: NzMessageService,
+    protected identityFilterService: IdentityFilterService,
     private paymentOrderCollectionService: PaymentOrderCollectionService,
-    private paymentOrderDataService: PaymentOrderDataService,
-    private identityFilterService: IdentityFilterService
+    private paymentOrderDataService: PaymentOrderDataService
   ) {
-    super(guaranteeCollectionService, guaranteeDataService, modal, messageService);
-  }
-
-  ngOnInit(): void {
-    this.identityFilterService.getItems();
+    super(guaranteeCollectionService, guaranteeDataService, modal, messageService, identityFilterService);
   }
 
   createPaymentOrder(guaranteeIds: number[]): void {

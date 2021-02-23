@@ -1,8 +1,14 @@
 import { ChangeDetectionStrategy, Component, Optional } from '@angular/core';
 import { IvtQueryParams } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
-import { buildQueryParams, IvtCollectionService, IvtDataService, IvtEntityCollection } from '@ivt/u-state';
-import { EntityOp, ofEntityOp } from '@ngrx/data';
+import {
+  buildQueryParams,
+  IdentityFilterService,
+  IvtCollectionService,
+  IvtDataService,
+  IvtEntityCollection,
+} from '@ivt/u-state';
+import { EntityOp, ofEntityOp, QueryParams } from '@ngrx/data';
 import { select } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -23,7 +29,6 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
   loading$ = combineLatest([this.entityCollectionService.loading$, this.ivtLoading$]).pipe(
     map(([loading1, loading2]) => loading1 || loading2)
   );
-
   info$ = this.entityCollectionService.store.pipe(
     select(this.entityCollectionService.selectors.selectCollection),
     filterNil(),
@@ -35,12 +40,15 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
   excelUrl: string;
   deleteConfirmMessage: string;
   deleteSuccessMessage: string;
+  userOptions$ = this.identityFilterService?.userFilterCollectionService.options$;
+  userFilterInfo$ = this.identityFilterService?.userFilterInfo$;
 
   constructor(
     protected entityCollectionService: IvtCollectionService<T>,
     protected entityDataService: IvtDataService<T>,
     @Optional() protected modal?: NzModalService,
-    @Optional() protected messageService?: NzMessageService
+    @Optional() protected messageService?: NzMessageService,
+    @Optional() protected identityFilterService?: IdentityFilterService
   ) {
     super();
     this.entityCollectionService.store
@@ -62,13 +70,17 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
         filter(entities => !entities.length)
       )
       .subscribe(() => this.entityCollectionService.getWithQuery({}));
+
+    if (this.identityFilterService) {
+      this.identityFilterService.getItems();
+    }
   }
 
   filterItems(payload: IvtQueryParams): void {
     const queryParams: IvtQueryParams = {
       ...this.queryParams,
       ...payload,
-      resetList: String(true)
+      resetList: String(true),
     };
     this.entityCollectionService.getWithQuery(queryParams);
   }
@@ -88,5 +100,17 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
       .confirm({ nzContent: this.deleteConfirmMessage, nzOnOk: () => true })
       .afterClose.pipe(take(1), filterNil())
       .subscribe(() => this.entityCollectionService.delete(item, { isOptimistic: false }));
+  }
+
+  filterGroupOptions(text: string): void {
+    this.identityFilterService.groupFilterCollectionService.getWithQuery({ text, resetList: String(true) });
+  }
+
+  filterCompanyOptions(text: string): void {
+    this.identityFilterService.companyFilterCollectionService.getWithQuery({ text, resetList: String(true) });
+  }
+
+  filterUserOptions(queryParams: QueryParams): void {
+    this.identityFilterService.userFilterCollectionService.getWithQuery(queryParams);
   }
 }

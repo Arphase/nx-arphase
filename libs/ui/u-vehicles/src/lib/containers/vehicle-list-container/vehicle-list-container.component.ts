@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRoles, Vehicle } from '@ivt/c-data';
 import { IdentityFilterService, PermissionService, VehicleCollectionService, VehicleDataService } from '@ivt/u-state';
@@ -12,7 +12,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
   styleUrls: ['./vehicle-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VehicleListContainerComponent extends IvtListContainerComponent<Vehicle> implements OnInit {
+export class VehicleListContainerComponent extends IvtListContainerComponent<Vehicle> {
   canCreateReviewRequest$ = this.permissionsService.hasUpdatePermission([UserRoles.agencyUser]);
   canManageRevisions$ = this.permissionsService.hasUpdatePermission([UserRoles.superAdmin]);
   groupOptions$ = this.identityFilterService.groupOptions$;
@@ -24,15 +24,11 @@ export class VehicleListContainerComponent extends IvtListContainerComponent<Veh
     protected vehicleDataService: VehicleDataService,
     protected modal: NzModalService,
     protected messageService: NzMessageService,
+    protected identityFilterService: IdentityFilterService,
     protected router: Router,
-    protected permissionsService: PermissionService,
-    private identityFilterService: IdentityFilterService
+    protected permissionsService: PermissionService
   ) {
-    super(vehicleCollectionService, vehicleDataService, modal, messageService);
-  }
-
-  ngOnInit() {
-    this.identityFilterService.getItems();
+    super(vehicleCollectionService, vehicleDataService, modal, messageService, identityFilterService);
   }
 
   deleteItem(item: Vehicle): void {
