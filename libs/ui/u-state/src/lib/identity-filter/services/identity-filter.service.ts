@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Select, User, UserRoles } from '@ivt/c-data';
+import { Company, Group, Select, User, UserRoles } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import { select, Store } from '@ngrx/store';
 import { combineLatest, Observable } from 'rxjs';
@@ -23,11 +23,38 @@ export interface FilterInfo {
   providedIn: 'root',
 })
 export class IdentityFilterService {
-  groupOptions$ = this.groupFilterCollectionService.options$;
-  companyOptions$ = this.companyFilterCollectionService.options$;
+  private groupLoading$ = this.groupFilterCollectionService.loading$;
+  private groupOptions$ = this.groupFilterCollectionService.options$;
+  private groupInfo$ = this.groupFilterCollectionService.store.pipe(
+    select(this.groupFilterCollectionService.selectors.selectCollection),
+    map((collection: IvtEntityCollection<Group>) => collection.info)
+  );
+  private groupLast$ = this.groupInfo$.pipe(map(info => info?.last));
+  private groupPageIndex$ = this.groupInfo$.pipe(map(info => info?.pageIndex));
+  groupFilterInfo$: Observable<FilterInfo> = combineLatest([
+    this.groupLoading$,
+    this.groupOptions$,
+    this.groupLast$,
+    this.groupPageIndex$,
+  ]).pipe(map(([loading, options, last, pageIndex]) => ({ loading, options, last, pageIndex })));
+
+  private companyLoading$ = this.companyFilterCollectionService.loading$;
+  private companyOptions$ = this.companyFilterCollectionService.options$;
+  private companyInfo$ = this.companyFilterCollectionService.store.pipe(
+    select(this.companyFilterCollectionService.selectors.selectCollection),
+    map((collection: IvtEntityCollection<Company>) => collection.info)
+  );
+  private companyLast$ = this.companyInfo$.pipe(map(info => info?.last));
+  private companyPageIndex$ = this.companyInfo$.pipe(map(info => info?.pageIndex));
+  companyFilterInfo$: Observable<FilterInfo> = combineLatest([
+    this.companyLoading$,
+    this.companyOptions$,
+    this.companyLast$,
+    this.companyPageIndex$,
+  ]).pipe(map(([loading, options, last, pageIndex]) => ({ loading, options, last, pageIndex })));
 
   private userLoading$ = this.userFilterCollectionService.loading$;
-  userOptions$ = this.userFilterCollectionService.options$;
+  private userOptions$ = this.userFilterCollectionService.options$;
   private userInfo$ = this.userFilterCollectionService.store.pipe(
     select(this.userFilterCollectionService.selectors.selectCollection),
     map((collection: IvtEntityCollection<User>) => collection.info)

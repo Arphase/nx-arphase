@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
-import { VehiclesDataModule } from '@ivt/u-state';
+import { PermissionsModule, VehiclesDataModule } from '@ivt/u-state';
 import {
   IvtCheckboxFilterModule,
   IvtDateFilterModule,
@@ -71,6 +71,7 @@ import { RevisionsComponent } from './revisions.component';
     IvtDateFilterModule,
     IvtCheckboxFilterModule,
     IvtRadioFilterModule,
+    PermissionsModule,
   ],
   declarations: [
     RevisionFormComponent,

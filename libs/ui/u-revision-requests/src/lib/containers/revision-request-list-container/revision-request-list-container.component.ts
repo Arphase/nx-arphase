@@ -25,9 +25,6 @@ export class RevisionRequestListContainerComponent extends IvtListContainerCompo
     select(getAuthUserRoleState),
     map(role => UserRoles[role] === UserRoles.superAdmin)
   );
-  groupOptions$ = this.identityFilterService.groupOptions$;
-  companyOptions$ = this.identityFilterService.companyOptions$;
-  userOptions$ = this.identityFilterService.userOptions$;
 
   constructor(
     protected revisionRequestCollecitonService: RevisionRequestCollectionService,

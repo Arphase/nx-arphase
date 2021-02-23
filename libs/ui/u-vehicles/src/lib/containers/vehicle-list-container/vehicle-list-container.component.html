@@ -3,13 +3,16 @@
                   [canManageRevisions]="canManageRevisions$ | async"
                   [loading]="loading$ | async"
                   [info]="info$ | async"
-                  [groupOptions]="groupOptions$ | async"
-                  [companyOptions]="companyOptions$ | async"
-                  [userOptions]="userOptions$ | async"
+                  [groupFilterInfo]="groupFilterInfo$ | async"
+                  [companyFilterInfo]="companyFilterInfo$ | async"
+                  [userFilterInfo]="userFilterInfo$ | async"
                   [queryParams]="queryParams"
                   (filterItems)="filterItems($event)"
                   (delete)="deleteItem($event)"
                   (createGuarantee)="createGuarantee($event)"
                   (createRevision)="createRevision($event)"
-                  (createRevisionRequest)="createRevisionRequest($event)">
+                  (createRevisionRequest)="createRevisionRequest($event)"
+                  (filterGroupOptions)="filterGroupOptions($event)"
+                  (filterCompanyOptions)="filterCompanyOptions($event)"
+                  (filterUserOptions)="filterUserOptions($event)">
 </ivt-vehicle-list>

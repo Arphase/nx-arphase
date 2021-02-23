@@ -2,7 +2,9 @@
                [loading]="loading$ | async"
                [info]="info$ | async"
                [queryParams]="queryParams"
-               [groupOptions]="groupOptions$ | async"
-               [companyOptions]="companyOptions$ | async"
-               (filterItems)="filterItems($event)">
+               [groupFilterInfo]="groupFilterInfo$ | async"
+               [companyFilterInfo]="companyFilterInfo$ | async"
+               (filterItems)="filterItems($event)"
+               (filterGroupOptions)="filterGroupOptions($event)"
+               (filterCompanyOptions)="filterCompanyOptions($event)">
 </ivt-user-list>

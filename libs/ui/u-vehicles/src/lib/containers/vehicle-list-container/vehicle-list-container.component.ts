@@ -15,9 +15,6 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 export class VehicleListContainerComponent extends IvtListContainerComponent<Vehicle> {
   canCreateReviewRequest$ = this.permissionsService.hasUpdatePermission([UserRoles.agencyUser]);
   canManageRevisions$ = this.permissionsService.hasUpdatePermission([UserRoles.superAdmin]);
-  groupOptions$ = this.identityFilterService.groupOptions$;
-  companyOptions$ = this.identityFilterService.companyOptions$;
-  userOptions$ = this.identityFilterService.userOptions$;
 
   constructor(
     protected vehicleCollectionService: VehicleCollectionService,

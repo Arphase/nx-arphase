@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Guarantee, GuaranteeStatus, statusLabels, transformFolio } from '@ivt/c-data';
 import {
   GuaranteeCollectionService,
@@ -25,9 +25,6 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   clearSelectedSubject = new BehaviorSubject<boolean>(false);
   clearSelected$ = this.clearSelectedSubject.asObservable();
   excelFileName = 'Garantias';
-  groupOptions$ = this.identityFilterService.groupOptions$;
-  companyOptions$ = this.identityFilterService.companyOptions$;
-  userOptions$ = this.identityFilterService.userOptions$;
 
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,

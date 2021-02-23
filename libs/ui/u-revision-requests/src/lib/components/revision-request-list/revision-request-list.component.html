@@ -56,28 +56,39 @@
                       (filterItems)="updateStatusFilter($event)">
     </ivt-radio-filter>
   </div>
-  <div *ngIf="groupOptions?.length"
-       nz-col>
-    <ivt-checkbox-filter label="Grupos"
-                         [options]="groupOptions"
-                         [preselectedOptions]="queryParams?.groupIds"
-                         (filterItems)="updateGroupsFilters($event)">
-    </ivt-checkbox-filter>
-  </div>
-  <div *ngIf="companyOptions?.length"
-       nz-col>
-    <ivt-checkbox-filter label="Compañías"
-                         [options]="companyOptions"
-                         [preselectedOptions]="queryParams?.companyIds"
-                         (filterItems)="updateCompaniesFilters($event)">
-    </ivt-checkbox-filter>
-  </div>
-  <div *ngIf="userOptions?.length"
-       nz-col>
+  <ng-container *ivtCreatePermission>
+    <div nz-col>
+      <ivt-checkbox-filter label="Grupos"
+                           [options]="groupFilterInfo?.options"
+                           [loading]="groupFilterInfo?.loading"
+                           [last]="groupFilterInfo?.last"
+                           [pageIndex]="groupFilterInfo?.pageIndex"
+                           [preselectedOptions]="queryParams?.groupIds"
+                           (filterItems)="updateGroupsFilters($event)"
+                           (filterOptions)="filterGroupOptions.emit($event)">
+      </ivt-checkbox-filter>
+    </div>
+    <div nz-col>
+      <ivt-checkbox-filter label="Compañías"
+                           [options]="companyFilterInfo?.options"
+                           [loading]="companyFilterInfo?.loading"
+                           [last]="companyFilterInfo?.last"
+                           [pageIndex]="companyFilterInfo?.pageIndex"
+                           [preselectedOptions]="queryParams?.companyIds"
+                           (filterItems)="updateCompaniesFilters($event)"
+                           (filterOptions)="filterCompanyOptions.emit($event)">
+      </ivt-checkbox-filter>
+    </div>
+  </ng-container>
+  <div nz-col>
     <ivt-checkbox-filter label="Vendedores"
-                         [options]="userOptions"
+                         [options]="userFilterInfo?.options"
+                         [loading]="userFilterInfo?.loading"
+                         [last]="userFilterInfo?.last"
+                         [pageIndex]="userFilterInfo?.pageIndex"
                          [preselectedOptions]="queryParams?.userIds"
-                         (filterItems)="updateUsersFilters($event)">
+                         (filterItems)="updateUsersFilters($event)"
+                         (filterOptions)="filterUserOptions.emit($event)">
     </ivt-checkbox-filter>
   </div>
   <div nz-col

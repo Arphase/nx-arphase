@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Optional } from '@angular/core';
-import { IvtQueryParams } from '@ivt/c-data';
+import { IvtCollectionResponseInfo, IvtQueryParams } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import {
   buildQueryParams,
@@ -12,7 +12,7 @@ import { EntityOp, ofEntityOp, QueryParams } from '@ngrx/data';
 import { select } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { BehaviorSubject, combineLatest } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 
 import { IvtSubscriberComponent } from '../../components';
@@ -23,53 +23,64 @@ import { IvtSubscriberComponent } from '../../components';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
-  loadingSubject = new BehaviorSubject<boolean>(false);
-  ivtLoading$ = this.loadingSubject.asObservable();
-  list$ = this.entityCollectionService.entities$;
-  loading$ = combineLatest([this.entityCollectionService.loading$, this.ivtLoading$]).pipe(
-    map(([loading1, loading2]) => loading1 || loading2)
-  );
-  info$ = this.entityCollectionService.store.pipe(
-    select(this.entityCollectionService.selectors.selectCollection),
-    filterNil(),
-    map((collection: IvtEntityCollection<T>) => collection.info)
-  );
-  loadingExcel$ = this.entityDataService.loadingExcel$;
+  list$: Observable<T[]>;
+  loading$: Observable<boolean>;
+  info$: Observable<IvtCollectionResponseInfo>;
   queryParams: IvtQueryParams;
   excelFileName: string;
   excelUrl: string;
   deleteConfirmMessage: string;
   deleteSuccessMessage: string;
-  userOptions$ = this.identityFilterService?.userFilterCollectionService.options$;
+  loadingExcel$: Observable<boolean>;
+  loadingSubject = new BehaviorSubject<boolean>(false);
+  ivtLoading$ = this.loadingSubject.asObservable();
+  groupFilterInfo$ = this.identityFilterService?.groupFilterInfo$;
+  companyFilterInfo$ = this.identityFilterService?.companyFilterInfo$;
   userFilterInfo$ = this.identityFilterService?.userFilterInfo$;
 
   constructor(
-    protected entityCollectionService: IvtCollectionService<T>,
-    protected entityDataService: IvtDataService<T>,
+    @Optional() protected entityCollectionService?: IvtCollectionService<T>,
+    @Optional() protected entityDataService?: IvtDataService<T>,
     @Optional() protected modal?: NzModalService,
     @Optional() protected messageService?: NzMessageService,
     @Optional() protected identityFilterService?: IdentityFilterService
   ) {
     super();
-    this.entityCollectionService.store
-      .pipe(select(this.entityCollectionService.selectors.selectCollection), filterNil(), takeUntil(this.destroy$))
-      .subscribe((collection: IvtEntityCollection<T>) => (this.queryParams = collection.queryParams));
-    this.excelUrl = `${this.entityDataService.getEntitiesUrl()}/export/excel`;
+    if (this.entityCollectionService) {
+      this.entityCollectionService.store
+        .pipe(select(this.entityCollectionService.selectors.selectCollection), filterNil(), takeUntil(this.destroy$))
+        .subscribe((collection: IvtEntityCollection<T>) => (this.queryParams = collection.queryParams));
 
-    this.entityCollectionService.entityActions$
-      .pipe(
-        ofEntityOp(EntityOp.SAVE_DELETE_ONE_SUCCESS),
-        filter(() => !!this.deleteSuccessMessage && !!this.messageService),
-        takeUntil(this.destroy$)
-      )
-      .subscribe(() => this.messageService.success(this.deleteSuccessMessage));
+      this.entityCollectionService.entityActions$
+        .pipe(
+          ofEntityOp(EntityOp.SAVE_DELETE_ONE_SUCCESS),
+          filter(() => !!this.deleteSuccessMessage && !!this.messageService),
+          takeUntil(this.destroy$)
+        )
+        .subscribe(() => this.messageService.success(this.deleteSuccessMessage));
 
-    this.entityCollectionService.entities$
-      .pipe(
-        take(1),
-        filter(entities => !entities.length)
-      )
-      .subscribe(() => this.entityCollectionService.getWithQuery({}));
+      this.entityCollectionService.entities$
+        .pipe(
+          take(1),
+          filter(entities => !entities.length)
+        )
+        .subscribe(() => this.entityCollectionService.getWithQuery({}));
+
+      this.list$ = this.entityCollectionService.entities$;
+      this.loading$ = combineLatest([this.entityCollectionService.loading$, this.ivtLoading$]).pipe(
+        map(([loading1, loading2]) => loading1 || loading2)
+      );
+      this.info$ = this.entityCollectionService.store.pipe(
+        select(this.entityCollectionService.selectors.selectCollection),
+        filterNil(),
+        map((collection: IvtEntityCollection<T>) => collection.info)
+      );
+    }
+
+    if (this.entityDataService) {
+      this.excelUrl = `${this.entityDataService.getEntitiesUrl()}/export/excel`;
+      this.loadingExcel$ = this.entityDataService.loadingExcel$;
+    }
 
     if (this.identityFilterService) {
       this.identityFilterService.getItems();
@@ -102,12 +113,12 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
       .subscribe(() => this.entityCollectionService.delete(item, { isOptimistic: false }));
   }
 
-  filterGroupOptions(text: string): void {
-    this.identityFilterService.groupFilterCollectionService.getWithQuery({ text, resetList: String(true) });
+  filterGroupOptions(queryParams: QueryParams): void {
+    this.identityFilterService.groupFilterCollectionService.getWithQuery(queryParams);
   }
 
-  filterCompanyOptions(text: string): void {
-    this.identityFilterService.companyFilterCollectionService.getWithQuery({ text, resetList: String(true) });
+  filterCompanyOptions(queryParams: QueryParams): void {
+    this.identityFilterService.companyFilterCollectionService.getWithQuery(queryParams);
   }
 
   filterUserOptions(queryParams: QueryParams): void {

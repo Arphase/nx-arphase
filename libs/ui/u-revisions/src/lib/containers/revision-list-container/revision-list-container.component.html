@@ -2,10 +2,13 @@
                    [loading]="loading$ | async"
                    [info]="info$ | async"
                    [isSuperAdmin]="isSuperAdmin$ | async"
-                   [groupOptions]="groupOptions$ | async"
-                   [companyOptions]="companyOptions$ | async"
-                   [userOptions]="userOptions$ | async"
+                   [groupFilterInfo]="groupFilterInfo$ | async"
+                   [companyFilterInfo]="companyFilterInfo$ | async"
+                   [userFilterInfo]="userFilterInfo$ | async"
                    [queryParams]="queryParams"
                    (filterItems)="filterItems($event)"
-                   (delete)="deleteItem($event)">
+                   (delete)="deleteItem($event)"
+                   (filterGroupOptions)="filterGroupOptions($event)"
+                   (filterCompanyOptions)="filterCompanyOptions($event)"
+                   (filterUserOptions)="filterUserOptions($event)">
 </ivt-revision-list>

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Revision, RevisionStatus } from '@ivt/c-data';
+import { Revision, RevisionStatus, UserRoles } from '@ivt/c-data';
+import { REQUIRED_ROLES } from '@ivt/u-state';
 import { IvtListComponent } from '@ivt/u-ui';
 import dayjs from 'dayjs';
 
@@ -11,6 +12,7 @@ import { colorMaps, columns, iconMaps } from './revision-list.constants';
   templateUrl: './revision-list.component.html',
   styleUrls: ['./revision-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
 export class RevisionListComponent extends IvtListComponent<Revision> {
   @Input() isSuperAdmin: boolean;

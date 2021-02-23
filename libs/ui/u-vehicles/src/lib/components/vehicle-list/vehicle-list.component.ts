@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { isVehicleElegible, Vehicle, VehicleStatus } from '@ivt/c-data';
+import { isVehicleElegible, UserRoles, Vehicle, VehicleStatus } from '@ivt/c-data';
+import { REQUIRED_ROLES } from '@ivt/u-state';
 import { IvtListComponent } from '@ivt/u-ui';
 
 import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './vehicle-list.constants';
@@ -9,6 +10,7 @@ import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './veh
   templateUrl: './vehicle-list.component.html',
   styleUrls: ['./vehicle-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
 export class VehicleListComponent extends IvtListComponent<Vehicle> {
   @Input() canCreateReviewRequest: boolean;

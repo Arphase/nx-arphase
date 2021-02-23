@@ -1,10 +1,10 @@
 <ivt-guarantee-list [list]="list$ | async"
                     [clearSelected]="clearSelected$ | async"
                     [loadingExcel]="loadingExcel$ | async"
-                    [groupOptions]="groupOptions$ | async"
-                    [companyOptions]="companyOptions$ | async"
                     [loading]="loading$ | async"
                     [info]="info$ | async"
+                    [groupFilterInfo]="groupFilterInfo$ | async"
+                    [companyFilterInfo]="companyFilterInfo$ | async"
                     [userFilterInfo]="userFilterInfo$ | async"
                     [queryParams]="queryParams"
                     (filterItems)="filterItems($event)"
@@ -14,5 +14,7 @@
                     (createPaymentOrder)="createPaymentOrder($event)"
                     (updatePaymentOrder)="updatePaymentOrder($event)"
                     (downloadPaymentOrder)="downloadPaymentOrder($event)"
+                    (filterGroupOptions)="filterGroupOptions($event)"
+                    (filterCompanyOptions)="filterCompanyOptions($event)"
                     (filterUserOptions)="filterUserOptions($event)">
 </ivt-guarantee-list>

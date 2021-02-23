@@ -98,16 +98,24 @@
   <ng-container *ivtCreatePermission>
     <div nz-col>
       <ivt-checkbox-filter label="Grupos"
-                           [options]="groupOptions"
+                           [options]="groupFilterInfo?.options"
+                           [loading]="groupFilterInfo?.loading"
+                           [last]="groupFilterInfo?.last"
+                           [pageIndex]="groupFilterInfo?.pageIndex"
                            [preselectedOptions]="queryParams?.groupIds"
-                           (filterItems)="updateGroupsFilters($event)">
+                           (filterItems)="updateGroupsFilters($event)"
+                           (filterOptions)="filterGroupOptions.emit($event)">
       </ivt-checkbox-filter>
     </div>
     <div nz-col>
       <ivt-checkbox-filter label="Compañías"
-                           [options]="companyOptions"
+                           [options]="companyFilterInfo?.options"
+                           [loading]="companyFilterInfo?.loading"
+                           [last]="companyFilterInfo?.last"
+                           [pageIndex]="companyFilterInfo?.pageIndex"
                            [preselectedOptions]="queryParams?.companyIds"
-                           (filterItems)="updateCompaniesFilters($event)">
+                           (filterItems)="updateCompaniesFilters($event)"
+                           (filterOptions)="filterCompanyOptions.emit($event)">
       </ivt-checkbox-filter>
     </div>
   </ng-container>

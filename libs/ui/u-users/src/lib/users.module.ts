@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { PermissionsModule } from '@ivt/u-state';
 import { IvtCheckboxFilterModule, IvtEmptyModule, IvtSearchbarModule } from '@ivt/u-ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -32,6 +33,7 @@ import { UsersComponent } from './users.component';
     NzToolTipModule,
     NzDividerModule,
     NzTableModule,
+    PermissionsModule,
   ],
   declarations: [UserListContainerComponent, UsersComponent, UserListComponent],
 })

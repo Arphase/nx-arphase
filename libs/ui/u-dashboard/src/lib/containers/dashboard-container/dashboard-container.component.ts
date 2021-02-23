@@ -8,7 +8,7 @@ import {
   IdentityFilterService,
   IvtState,
 } from '@ivt/u-state';
-import { IvtSubscriberComponent } from '@ivt/u-ui';
+import { IvtListContainerComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
 import { keyBy } from 'lodash-es';
@@ -19,7 +19,7 @@ import { map, take } from 'rxjs/operators';
   templateUrl: './dashboard-container.component.html',
   styleUrls: ['./dashboard-container.component.less'],
 })
-export class DashboardContainerComponent extends IvtSubscriberComponent implements OnInit {
+export class DashboardContainerComponent extends IvtListContainerComponent<number[]> implements OnInit {
   data$ = this.store.pipe(
     select(getDashboardGuaranteeSummaryState),
     filterNil(),
@@ -50,23 +50,16 @@ export class DashboardContainerComponent extends IvtSubscriberComponent implemen
     filterNil(),
     map(summary => !summary.length || !summary.some(value => Number(value.amount)))
   );
-  groupOptions$ = this.identityFilterService.groupOptions$;
-  companyOptions$ = this.identityFilterService.companyOptions$;
-  userOptions$ = this.identityFilterService.userOptions$;
   queryParams$ = this.store.pipe(select(getDashboardQueryParamsState));
 
-  constructor(
-    private store: Store<IvtState>,
-    private identityFilterService: IdentityFilterService
-  ) {
-    super();
+  constructor(private store: Store<IvtState>, protected identityFilterService: IdentityFilterService) {
+    super(null, null, null, null, identityFilterService);
   }
 
   ngOnInit(): void {
-    this.queryParams$.pipe(take(1)).subscribe(queryParams => {
-      this.identityFilterService.getItems();
-      this.store.dispatch(fromDashboard.actions.getGuaranteeSummary(queryParams));
-    });
+    this.queryParams$
+      .pipe(take(1))
+      .subscribe(queryParams => this.store.dispatch(fromDashboard.actions.getGuaranteeSummary(queryParams)));
   }
 
   filterItems(payload: QueryParams): void {
