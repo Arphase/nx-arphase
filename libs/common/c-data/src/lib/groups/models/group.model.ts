@@ -7,5 +7,7 @@ export interface Group {
   email: string;
   phone: string;
   companies: Company[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 

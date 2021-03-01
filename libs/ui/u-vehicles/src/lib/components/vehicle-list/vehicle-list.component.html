@@ -1,0 +1,207 @@
+<div nz-row
+     [nzGutter]="12">
+  <div nz-col
+       nzXs="18"
+       nzMd="12">
+    <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
+  </div>
+  <div nz-col
+       nzXs="0"
+       nzMd="24"
+       nzFlex="auto">
+    <div class="flex-end">
+      <button nz-button
+              [routerLink]="['new']"
+              type="button"
+              nzType="primary">
+        Nuevo vehículo
+      </button>
+    </div>
+  </div>
+
+  <div nz-col
+       nzXs="24"
+       nzMd="0"
+       nzFlex="auto">
+    <div class="flex-end">
+      <button nz-button
+              [routerLink]="['new']"
+              type="button"
+              nzType="primary"
+              nzShape="circle">
+        <i nz-icon
+           nzType="plus-circle"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<nz-divider></nz-divider>
+
+<div nz-row
+     nzAlign="middle"
+     [nzGutter]="[12, 12]">
+  <div nz-col>
+    <ivt-date-filter label="Fecha de alta"
+                     [currentDates]="queryParams?.dates"
+                     (filterItems)="updateDateFilter($event)">
+    </ivt-date-filter>
+  </div>
+  <div nz-col>
+    <ivt-radio-filter label="Estatus"
+                      [options]="statusOptions"
+                      [selectedOption]="queryParams?.status"
+                      (filterItems)="updateStatusFilter($event)">
+    </ivt-radio-filter>
+  </div>
+  <ng-container *ivtCreatePermission>
+    <div nz-col>
+      <ivt-checkbox-filter label="Grupos"
+                           [options]="groupFilterInfo?.options"
+                           [loading]="groupFilterInfo?.loading"
+                           [last]="groupFilterInfo?.last"
+                           [pageIndex]="groupFilterInfo?.pageIndex"
+                           [preselectedOptions]="queryParams?.groupIds"
+                           (filterItems)="updateGroupsFilters($event)"
+                           (filterOptions)="filterGroupOptions.emit($event)">
+      </ivt-checkbox-filter>
+    </div>
+    <div nz-col>
+      <ivt-checkbox-filter label="Compañías"
+                           [options]="companyFilterInfo?.options"
+                           [loading]="companyFilterInfo?.loading"
+                           [last]="companyFilterInfo?.last"
+                           [pageIndex]="companyFilterInfo?.pageIndex"
+                           [preselectedOptions]="queryParams?.companyIds"
+                           (filterItems)="updateCompaniesFilters($event)"
+                           (filterOptions)="filterCompanyOptions.emit($event)">
+      </ivt-checkbox-filter>
+    </div>
+  </ng-container>
+  <div nz-col>
+    <ivt-checkbox-filter label="Vendedores"
+                         [options]="userFilterInfo?.options"
+                         [loading]="userFilterInfo?.loading"
+                         [last]="userFilterInfo?.last"
+                         [pageIndex]="userFilterInfo?.pageIndex"
+                         [preselectedOptions]="queryParams?.userIds"
+                         (filterItems)="updateUsersFilters($event)"
+                         (filterOptions)="filterUserOptions.emit($event)">
+    </ivt-checkbox-filter>
+  </div>
+  <div nz-col
+       nzFlex="auto"
+       class="flex-end">
+    {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}
+  </div>
+</div>
+
+<nz-divider></nz-divider>
+
+<nz-table #table
+          nzSize="small"
+          [nzData]="list"
+          [nzFrontPagination]="false"
+          [nzTotal]="info?.total"
+          [nzPageIndex]="info?.pageIndex"
+          [nzLoading]="loading"
+          (nzQueryParams)="filterItems.emit($event)">
+  <thead>
+    <tr nz-row>
+      <th *ngFor="let column of columns"
+          [nzSortFn]="column.sortFn || true"
+          [nzColumnKey]="column.prop"
+          nz-col
+          [nzXs]="column.colSizes?.xs || 0"
+          [nzSm]="column.colSizes?.sm || 0"
+          [nzMd]="column.colSizes?.md || 0"
+          [nzLg]="column.colSizes?.lg"
+          [nzXl]="column.colSizes?.xl">
+        {{ column.label }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of table.data"
+        nz-row>
+      <td nz-col
+          nzXs="16"
+          nzMd="8"
+          nzLg="4">{{ item?.vin | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzLg="4">{{ item?.brand | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzMd="5"
+          nzLg="3">{{ item?.model | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzMd="5"
+          nzLg="3">{{ item?.version | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzMd="2"
+          nzLg="2">{{ item?.year | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzLg="4">{{ item?.createdAt | date: 'dd/MM/yy' }}</td>
+      <td nz-col
+          nzXs="5"
+          nzMd="2"
+          nzLg="3">
+        <nz-tag nz-tooltip
+                nzTooltipPlacement="top"
+                [nzTooltipTitle]="statusLabels[item.status]"
+                [nzColor]="colorMaps[vehicleStatus[item.status]]">
+          <i nz-icon
+             [nzType]="iconMaps[vehicleStatus[item.status]]"></i>
+        </nz-tag>
+      </td>
+      <td nz-col
+          nzXs="3"
+          nzMd="2"
+          nzLg="1">
+        <button nz-button
+                nz-dropdown
+                [nzDropdownMenu]="menu"
+                nzType="text"
+                nzTrigger="click">
+          <i nz-icon
+             nzType="more"
+             nzTheme="outline"></i>
+        </button>
+      </td>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item
+              nz-tooltip
+              [nzTooltipTitle]="!isElegible(item) ?  'Solo se pueden generar garantías a los vehículos aptos para garantizar' : ''"
+              [nzDisabled]="!isElegible(item)"
+              (click)="isElegible(item) && createGuarantee.emit(item)">
+            Generar garantía
+          </li>
+          <li nz-menu-item
+              *ngIf="!canCreateReviewRequest"
+              (click)="createRevision.emit(item)">
+            Generar revisión
+          </li>
+          <li nz-menu-item
+              *ngIf="canCreateReviewRequest"
+              (click)="createRevisionRequest.emit(item)">
+            Solicitar revisión
+          </li>
+          <li nz-menu-item
+              [routerLink]="[item.id]">
+            Editar vehículo
+          </li>
+          <li nz-menu-item
+              class="text-danger"
+              (click)="delete.emit(item)">
+            Eliminar vehículo
+          </li>
+        </ul>
+      </nz-dropdown-menu>
+    </tr>
+  </tbody>
+</nz-table>

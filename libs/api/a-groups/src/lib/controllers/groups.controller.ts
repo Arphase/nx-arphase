@@ -1,5 +1,6 @@
 import { Roles, RolesGuard } from '@ivt/a-auth';
-import { Group, UserRoles } from '@ivt/c-data';
+import { CommonFilterDto, CreateGroupDto, UpdateGroupDto } from '@ivt/a-state';
+import { Group, IvtCollectionResponse, UserRoles } from '@ivt/c-data';
 import {
   Body,
   Controller,
@@ -15,14 +16,10 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import { CreateGroupDto } from '../dto/create-group.dto';
-import { GetGroupsFilterDto } from '../dto/get-groups-filter.dto';
-import { UpdateGroupDto } from '../dto/update-group.dto';
 import { GroupsService } from '../services/groups.service';
 
 @Controller('groups')
 @UseGuards(AuthGuard(), RolesGuard)
-@Roles(UserRoles.superAdmin)
 export class GroupsController {
   constructor(private groupsService: GroupsService) {}
 
@@ -35,16 +32,20 @@ export class GroupsController {
 
   @Get()
   @Roles(UserRoles.superAdmin)
-  async getGroups(@Query(ValidationPipe) filterDto: GetGroupsFilterDto): Promise<Group[]> {
+  async getGroups(
+    @Query(new ValidationPipe({ transform: true })) filterDto: CommonFilterDto
+  ): Promise<IvtCollectionResponse<Group>> {
     return this.groupsService.getGroups(filterDto);
   }
 
   @Get(':id')
+  @Roles(UserRoles.superAdmin)
   async getGroupById(@Param('id', ParseIntPipe) id: number): Promise<Group> {
     return this.groupsService.getGroupById(id);
   }
 
   @Put(':id')
+  @Roles(UserRoles.superAdmin)
   @UsePipes(new ValidationPipe({ transform: true }))
   updateGroup(@Body() updateGroupDto: UpdateGroupDto): Promise<Group> {
     return this.groupsService.updateGroup(updateGroupDto);

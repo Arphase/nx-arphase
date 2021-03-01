@@ -1,0 +1,147 @@
+<div nz-row
+     [nzGutter]="12">
+  <div nz-col
+       nzXs="12"
+       nzMd="0">
+    <span nz-typography><strong>Compañía:</strong></span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="0">
+    <span>{{ item.company?.businessName | empty }}</span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="0">
+    <span nz-typography><strong>Factura:</strong></span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="0">
+    <span>{{ item.invoiceNumber | empty }}</span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span nz-typography><strong>Monto:</strong></span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="0">
+    <span>{{ item?.amount | currency | empty }}</span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="0">
+    <span nz-typography><strong>Captura:</strong></span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span>{{ item.createdAt | date: 'dd/MM/yy' | empty }}</span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="0">
+    <span nz-typography><strong>VIN:</strong></span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="0">
+    <span>{{ item?.vehicle?.vin }}</span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span nz-typography><strong>Vehículo:</strong></span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span>{{ item?.vehicle?.brand }} {{ item?.vehicle?.model }} {{ item.vehicle?.year }}</span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span nz-typography><strong>N° de motor:</strong></span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span>{{ item.vehicle?.motorNumber }}</span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span nz-typography><strong>Inicio:</strong></span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span>{{ item.startDate | date: 'dd/MM/yy' | empty }}</span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span nz-typography><strong>Fin:</strong></span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span>{{ item.endDate | date: 'dd/MM/yy' | empty }}</span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span nz-typography><strong>Cliente:</strong></span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span *ngIf="item.client?.physicalInfo?.name">
+      {{ item.client?.physicalInfo?.name }} {{ item.client?.physicalInfo?.lastName }}
+      {{ item.client?.physicalInfo?.secondLastName }}
+    </span>
+    <span *ngIf="item.client?.moralInfo?.businessName">
+      {{ item.client?.moralInfo?.businessName }}
+    </span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span nz-typography><strong>Producto: </strong></span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span>{{ item?.productType }}</span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span nz-typography><strong>Vendedor: </strong></span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span>{{ item?.user?.firstName }} {{ item?.user?.lastName }}</span>
+  </div>
+</div>

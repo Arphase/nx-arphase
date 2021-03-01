@@ -1,26 +1,32 @@
 import { AuthService } from '@ivt/a-auth';
-import { CompanyRepository, GroupRepository, UserEntity, UserRepository } from '@ivt/a-state';
-import { Company, Group, User } from '@ivt/c-data';
-import { sortDirection } from '@ivt/c-utils';
+import {
+  CommonFilterDto,
+  CompanyRepository,
+  CreateGroupDto,
+  filterCommonQuery,
+  GroupRepository,
+  ResetPasswordRepository,
+  UpdateGroupDto,
+  UserEntity,
+  UserRepository,
+} from '@ivt/a-state';
+import { Company, createCollectionResponse, Group, IvtCollectionResponse, User } from '@ivt/c-data';
+import { generateId } from '@ivt/c-utils';
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
-import { flatten, omit } from 'lodash';
+import { InjectRepository } from '@nestjs/typeorm';
+import { omit } from 'lodash';
 import { Connection } from 'typeorm';
-
-import { CreateGroupDto } from '../dto/create-group.dto';
-import { GetGroupsFilterDto } from '../dto/get-groups-filter.dto';
-import { UpdateGroupDto } from '../dto/update-group.dto';
 
 @Injectable()
 export class GroupsService {
-  groupRepository: GroupRepository;
-  companyRepository: CompanyRepository;
-  userRepository: UserRepository;
-
-  constructor(private readonly connection: Connection, private authService: AuthService) {
-    this.groupRepository = this.connection.getCustomRepository(GroupRepository);
-    this.companyRepository = this.connection.getCustomRepository(CompanyRepository);
-    this.userRepository = this.connection.getCustomRepository(UserRepository);
-  }
+  constructor(
+    @InjectRepository(GroupRepository) private groupRepository: GroupRepository,
+    @InjectRepository(CompanyRepository) private companyRepository: CompanyRepository,
+    @InjectRepository(UserRepository) private userRepository: UserRepository,
+    @InjectRepository(ResetPasswordRepository) private resetPasswordRepository: ResetPasswordRepository,
+    private connection: Connection,
+    private authService: AuthService
+  ) {}
 
   async getGroupById(id: number): Promise<Group> {
     const query = this.groupRepository.createQueryBuilder('group');
@@ -38,13 +44,9 @@ export class GroupsService {
     return found;
   }
 
-  async getGroups(filterDto: Partial<GetGroupsFilterDto>): Promise<Group[]> {
-    const { limit, offset, sort, direction, text } = filterDto;
+  async getGroups(filterDto: Partial<CommonFilterDto>): Promise<IvtCollectionResponse<Group>> {
+    const { pageSize, pageIndex, text } = filterDto;
     const query = this.groupRepository.createQueryBuilder('group');
-
-    if (sort && direction) {
-      query.orderBy(`${sort}`, sortDirection[direction]);
-    }
 
     if (text) {
       query.andWhere(
@@ -56,10 +58,12 @@ export class GroupsService {
       );
     }
 
-    query.groupBy('group.id').take(limit).skip(offset);
+    filterCommonQuery('group', query, filterDto);
 
     const groups = await query.getMany();
-    return groups;
+    const total = await query.getCount();
+
+    return createCollectionResponse(groups, pageSize, pageIndex, total);
   }
 
   async createGroup(createGroupDto: CreateGroupDto): Promise<Group> {
@@ -67,13 +71,7 @@ export class GroupsService {
   }
 
   async updateGroup(updateGroupDto: UpdateGroupDto): Promise<Group> {
-    const updatedGroup = await this.saveGroup(updateGroupDto);
-    console.log(updatedGroup);
-    const userIds: number[] = flatten(updatedGroup.companies.map(company => company.users.map(user => user.id)));
-    if (userIds.length) {
-      await this.authService.sendEmailToPendingUsers(userIds);
-    }
-    return updatedGroup;
+    return await this.saveGroup(updateGroupDto);
   }
 
   async saveGroup(groupDto: CreateGroupDto | UpdateGroupDto): Promise<Group> {
@@ -99,7 +97,18 @@ export class GroupsService {
             users.map(async user => {
               const newUser = this.userRepository.create({ ...user, companyId } as UserEntity);
               await queryRunner.manager.save(newUser);
-              await this.authService.sendSetPasswordEmail(newUser.id);
+              if (user.id) {
+                await newUser.reload();
+              }
+              if (!newUser.password) {
+                const resetPasswordEntity = this.resetPasswordRepository.create({
+                  userId: newUser.id,
+                  passwordToken: generateId(),
+                  timestamp: new Date(),
+                });
+                await queryRunner.manager.save(resetPasswordEntity);
+                await this.authService.sendSetPasswordEmail(user, resetPasswordEntity);
+              }
               return newUser;
             })
           );

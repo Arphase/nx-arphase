@@ -1,61 +1,62 @@
-<form [formGroup]="form"
+<form nz-form
+      nzLayout="vertical"
+      [formGroup]="form"
       (ngSubmit)="submit()">
-  <h1 class="text-primary font-weight-light h3">
-    {{ item?.id ? 'Editar' : 'Generar' }} Orden de Pago
-  </h1>
-
-  <mat-dialog-content>
-    <div class="row mt-3 mb-2">
-      <div class="col">
-        <ivt-form-field label="Distribuidor">
-          <input ivtInput
-                 formControlName="distributor">
-        </ivt-form-field>
-      </div>
-    </div>
-
-    <ivt-table-header [columns]="columns"></ivt-table-header>
-
-    <ivt-row *ngFor="let guarantee of guaranteesFormArray.controls">
-      <form [formGroup]="guarantee"
-            class="row">
-        <div class="col-2 flex-start">
-          <span>{{ guarantee.value.id | folio }}</span>
-        </div>
-        <div class="col-5">
-          <ivt-form-field label="Fecha de factura"
-                          [hideLabel]="true">
-            <input ivtInput
-                   [matDatepicker]="invoiceDate"
-                   formControlName="invoiceDate">
-            <mat-datepicker-toggle matSuffix
-                                   [for]="invoiceDate"></mat-datepicker-toggle>
-            <mat-datepicker #invoiceDate></mat-datepicker>
-          </ivt-form-field>
-        </div>
-        <div class="col-5">
-          <ivt-form-field label="Importe"
-                          [hideLabel]="true">
-            <input ivtInput
-                   formControlName="amount"
-                   prefix="$ "
-                   mask="0*.00"
-                   class="text-right px-3">
-          </ivt-form-field>
-        </div>
-      </form>
-    </ivt-row>
-
-  </mat-dialog-content>
-
-  <div mat-dialog-actions
-       class="flex-end">
-    <button mat-button
-            type="button"
-            mat-dialog-close>Cancelar</button>
-    <button mat-raised-button
-            [loading]="loading"
-            type="submit"
-            color="primary">Guardar</button>
-  </div>
+  <nz-table #table
+            nzSize="small"
+            [nzData]="guaranteesFormArray.value"
+            [nzShowPagination]="false">
+    <thead>
+      <tr nz-row>
+        <th *ngFor="let column of columns"
+            nz-col
+            [nzXs]="column.colSizes?.xs"
+            [nzMd]="column.colSizes?.md">
+          {{ column.label }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let guarantee of guaranteesFormArray.controls"
+          nz-form
+          nz-row
+          nzLayout="vertical"
+          [formGroup]="guarantee">
+        <td nz-col
+            nzXs="12"
+            nzMd="4">{{ guarantee.value.id | folio }}</td>
+        <td nz-col
+            nzXs="12"
+            nzMd="7">
+          <nz-form-item>
+            <nz-form-control apsAutoError>
+              <nz-date-picker formControlName="invoiceDate"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </td>
+        <td nz-col
+            nzXs="12"
+            nzMd="7">
+          <nz-form-item>
+            <nz-form-control apsAutoError>
+              <input nz-input
+                     formControlName="invoiceNumber" />
+            </nz-form-control>
+          </nz-form-item>
+        </td>
+        <td nz-col
+            nzXs="12"
+            nzMd="6">
+          <nz-form-item>
+            <nz-form-control apsAutoError>
+              <input nz-input
+                     prefix="$ "
+                     mask="0*.00"
+                     formControlName="amount" />
+            </nz-form-control>
+          </nz-form-item>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
 </form>

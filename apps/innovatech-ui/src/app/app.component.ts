@@ -1,9 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ThemeService } from '@ivt/u-ui';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(private themeService: ThemeService) {
+    this.themeService.loadTheme();
+  }
+}

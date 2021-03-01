@@ -1,6 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IvtUiModule } from '@ivt/u-ui';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ApsAutoErrorModule } from '@arphase/ui';
+import { IvtStatusMessageModule } from '@ivt/u-ui';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
@@ -13,7 +22,20 @@ import { SetPasswordFormContainerComponent } from './containers/set-password-for
 import { SignInFormContainerComponent } from './containers/sign-in-form-container/sign-in-form-container.component';
 
 @NgModule({
-  imports: [CommonModule, IvtUiModule, AuthRoutingModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    AuthRoutingModule,
+    NzCardModule,
+    IvtStatusMessageModule,
+    NzGridModule,
+    NzButtonModule,
+    NzFormModule,
+    NzInputModule,
+    ApsAutoErrorModule,
+    NzSpaceModule,
+    NzLayoutModule,
+  ],
   declarations: [
     AuthComponent,
     SignInFormContainerComponent,

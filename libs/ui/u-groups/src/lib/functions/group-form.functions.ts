@@ -1,15 +1,16 @@
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { ApsValidators } from '@arphase/ui';
 import { Company, Group, User } from '@ivt/c-data';
 import { generateId, RfcValidatorTypes } from '@ivt/c-utils';
-import { createAddressForm, IvtValidators, setFormArrayValue } from '@ivt/u-ui';
+import { createAddressForm, setFormArrayValue } from '@ivt/u-ui';
 
 export function createGroupForm(group?: Group): FormGroup {
   const form = new FormGroup({
     id: new FormControl(null),
-    name: new FormControl(null, Validators.required),
-    contact: new FormControl(null, Validators.required),
-    email: new FormControl(null, [Validators.required, IvtValidators.email]),
-    phone: new FormControl(null, [Validators.required, IvtValidators.phone]),
+    name: new FormControl(null, ApsValidators.required),
+    contact: new FormControl(null, ApsValidators.required),
+    email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
+    phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
     companies: new FormArray([]),
   });
 
@@ -29,13 +30,13 @@ export function createCompanyForm(company?: Company): FormGroup {
   const form = new FormGroup({
     id: new FormControl(null),
     tempId: new FormControl(generateId()),
-    businessName: new FormControl(null, Validators.required),
-    email: new FormControl(null, [Validators.required, IvtValidators.email]),
-    phone: new FormControl(null, [Validators.required, IvtValidators.phone]),
+    businessName: new FormControl(null, ApsValidators.required),
+    email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
+    phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
     address: createAddressForm(),
     users: new FormArray([]),
-    rfc: new FormControl(null, [Validators.required, IvtValidators.rfc(RfcValidatorTypes.any)]),
-    contact: new FormControl(null, Validators.required),
+    rfc: new FormControl(null, [ApsValidators.required, ApsValidators.rfc(RfcValidatorTypes.moral)]),
+    contact: new FormControl(null, ApsValidators.required),
   });
 
   if (company) {
@@ -54,12 +55,12 @@ export function createUserForm(user?: User): FormGroup {
   const form = new FormGroup({
     id: new FormControl(null),
     tempId: new FormControl(generateId()),
-    firstName: new FormControl(null, Validators.required),
-    lastName: new FormControl(null, Validators.required),
-    secondLastName: new FormControl(null, Validators.required),
-    email: new FormControl(null, [Validators.required, IvtValidators.email]),
-    phone: new FormControl(null, [Validators.required, IvtValidators.phone]),
-    rfc: new FormControl(null, [Validators.required, IvtValidators.rfc(RfcValidatorTypes.any)]),
+    firstName: new FormControl(null, ApsValidators.required),
+    lastName: new FormControl(null, ApsValidators.required),
+    secondLastName: new FormControl(null, ApsValidators.required),
+    email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
+    phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
+    rfc: new FormControl(null, [ApsValidators.required, ApsValidators.rfc(RfcValidatorTypes.physical)]),
   });
 
   if (user) {

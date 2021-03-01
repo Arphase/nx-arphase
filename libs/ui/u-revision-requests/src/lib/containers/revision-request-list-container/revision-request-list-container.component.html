@@ -1,0 +1,15 @@
+<ivt-revision-request-list [list]="list$ | async"
+                           [loading]="loading$ | async"
+                           [info]="info$ | async"
+                           [isSuperAdmin]="isSuperAdmin$ | async"
+                           [groupFilterInfo]="groupFilterInfo$ | async"
+                           [companyFilterInfo]="companyFilterInfo$ | async"
+                           [userFilterInfo]="userFilterInfo$ | async"
+                           [queryParams]="queryParams"
+                           (edit)="changeStatus($event)"
+                           (filterItems)="filterItems($event)"
+                           (filterUserOptions)="filterUserOptions($event)"
+                           (filterGroupOptions)="filterGroupOptions($event)"
+                           (filterCompanyOptions)="filterCompanyOptions($event)"
+                           (filterUserOptions)="filterUserOptions($event)">
+</ivt-revision-request-list>

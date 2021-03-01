@@ -1,8 +1,7 @@
+import { AuthCredentialsDto, ResetPasswordDto } from '@ivt/a-state';
 import { ResetPassword, User } from '@ivt/c-data';
 import { Body, Controller, Get, Param, Post, ValidationPipe } from '@nestjs/common';
 
-import { AuthCredentialsDto } from '../dto/auth-credentials.dto';
-import { ResetPasswordDto } from '../dto/reset-password.dto';
 import { AuthService } from '../services/auth.service';
 
 @Controller('auth')

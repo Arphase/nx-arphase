@@ -1,0 +1,134 @@
+<form nz-form
+      nz-row
+      nzLayout="vertical"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+  <nz-space nzDirection="vertical"
+            nz-col
+            nzSpan="24"
+            nzSize="middle">
+    <nz-page-header nzBackIcon
+                    [nzTitle]="title"
+                    [routerLink]="['..']">
+    </nz-page-header>
+
+    <nz-space-item>
+      <nz-collapse>
+        <nz-collapse-panel nzHeader="Vehículo"
+                           [nzActive]="true">
+          <div nz-row>
+            <nz-space nzDirection="vertical"
+                      nzSize="middle"
+                      nz-col
+                      nzSpan="24">
+              <nz-space-item>
+                <nz-alert *ngIf="error"
+                          nzType="error"
+                          [nzMessage]="error"
+                          nzShowIcon>
+                </nz-alert>
+              </nz-space-item>
+            </nz-space>
+          </div>
+          <ivt-vehicle-form [form]="vehicleForm"
+                            [item]="vehicle"
+                            [vehicle]="currentVehicle"
+                            [isEditable]="isEditable"
+                            (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-space-item>
+
+    <nz-space-item>
+      <nz-collapse>
+        <nz-collapse-panel nzHeader="Información General"
+                           [nzActive]="true">
+          <div nz-row
+               nzGutter="12">
+            <div nz-col
+                 nzXs="24"
+                 nzMd="8">
+              <nz-form-item>
+                <nz-form-label nzRequired>Nombre</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         formControlName="name" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="24"
+                 nzMd="8">
+              <nz-form-item>
+                <nz-form-label nzRequired>Correo</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         formControlName="email" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="24"
+                 nzMd="8">
+              <nz-form-item>
+                <nz-form-label nzRequired>Teléfono</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         type="tel"
+                         mask="(00) 0000 0000"
+                         formControlName="phone" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+          <div nz-row>
+            <div nz-col
+                 nzXs="24">
+              <nz-form-item>
+                <nz-form-label>Notas adicionales</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <textarea nz-input
+                            formControlName="additionalNotes"></textarea>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-space-item>
+
+    <nz-space-item>
+      <nz-collapse>
+        <nz-collapse-panel nzHeader="Dirección"
+                           [nzActive]="true">
+          <ivt-address-form [form]="addressForm"></ivt-address-form>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-space-item>
+
+    <nz-space-item *ngIf="isEditable"
+                   nz-row>
+      <div nz-col
+           nzSpan="24"
+           class="flex-end">
+        <nz-space>
+          <nz-space-item>
+            <button nz-button
+                    type="button"
+                    [routerLink]="['..']">
+              Cancelar
+            </button>
+          </nz-space-item>
+          <button nz-button
+                  type="submit"
+                  nzType="primary"
+                  [disabled]="error"
+                  [nzLoading]="loading">
+            Guardar
+          </button>
+        </nz-space>
+      </div>
+    </nz-space-item>
+  </nz-space>
+</form>

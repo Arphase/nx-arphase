@@ -1,0 +1,8 @@
+<ivt-revision-form [form]="form"
+                   [item]="currentItem$ | async"
+                   [isEditable]="isEditable$ | async"
+                   [vehicle]="vehicle$ | async"
+                   [currentVehicle]="currentVehicle$ | async"
+                   [error]="error$ | async"
+                   (verifyVin)="verifyVin($event)"
+                   (submitForm)="submit($event)"></ivt-revision-form>

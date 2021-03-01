@@ -1,5 +1,8 @@
 import { getProductPdfTemplate } from '@ivt/a-products';
 import {
+  CreateGuaranteeDto,
+  filterCommonQuery,
+  GetGuaranteesFilterDto,
   getReadableStream,
   GuaranteeEntity,
   GuaranteeRepository,
@@ -7,11 +10,27 @@ import {
   OUT_FILE,
   PhysicalPersonRepository,
   tobase64,
-  transformFolio,
+  UpdateGuaranteeDto,
+  VehicleRepository,
 } from '@ivt/a-state';
-import { Client, GuaranteeSummary, PersonTypes, statusLabels, User, UserRoles } from '@ivt/c-data';
+import {
+  Client,
+  createCollectionResponse,
+  Guarantee,
+  GuaranteeSummary,
+  isVehicleElegible,
+  IvtCollectionResponse,
+  PersonTypes,
+  statusLabels,
+  transformFolio,
+  User,
+  UserRoles,
+  Vehicle,
+  VehicleStatus,
+} from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import fs from 'fs';
 import { omit } from 'lodash';
@@ -20,26 +39,18 @@ import { Connection } from 'typeorm';
 import { promisify } from 'util';
 import * as XLSX from 'xlsx';
 
-import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
-import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
-import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
-import {
-  applyGuaranteeFilter,
-  applyGuaranteeSharedFilters,
-  getGuaranteePdfTemplate,
-} from './guarantees.service.constants';
+import { guaranteeExcelColumns } from './guarantees.service.constants';
+import { applyGuaranteeFilter, getGuaranteePdfTemplate } from './guarantees.service.functions';
 
 @Injectable()
 export class GuaranteesService {
-  guaranteeRepository: GuaranteeRepository;
-  physicalPersonRepository: PhysicalPersonRepository;
-  moralPersonRepository: MoralPersonRepository;
-
-  constructor(private readonly connection: Connection) {
-    this.guaranteeRepository = this.connection.getCustomRepository(GuaranteeRepository);
-    this.physicalPersonRepository = this.connection.getCustomRepository(PhysicalPersonRepository);
-    this.moralPersonRepository = this.connection.getCustomRepository(MoralPersonRepository);
-  }
+  constructor(
+    @InjectRepository(GuaranteeRepository) private guaranteeRepository: GuaranteeRepository,
+    @InjectRepository(PhysicalPersonRepository) private physicalPersonRepository: PhysicalPersonRepository,
+    @InjectRepository(MoralPersonRepository) private moralPersonRepository: MoralPersonRepository,
+    @InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository,
+    private readonly connection: Connection
+  ) {}
 
   async getGuaranteeById(id: number): Promise<GuaranteeEntity> {
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
@@ -61,12 +72,22 @@ export class GuaranteesService {
     return found;
   }
 
-  async getGuarantees(filterDto: Partial<GetGuaranteesFilterDto>, user: Partial<User>): Promise<GuaranteeEntity[]> {
+  async getGuarantees(
+    filterDto: Partial<GetGuaranteesFilterDto>,
+    user: Partial<User>
+  ): Promise<IvtCollectionResponse<Guarantee>> {
+    const { pageSize, pageIndex } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     applyGuaranteeFilter(query, filterDto, user);
 
     const guarantees = await query.getMany();
-    return guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity);
+    const total = await query.getCount();
+    return createCollectionResponse(
+      guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity),
+      pageSize,
+      pageIndex,
+      total
+    );
   }
 
   async getGuaranteesSummary(
@@ -85,56 +106,14 @@ export class GuaranteesService {
       query.andWhere('(guarantee.companyId = :id)', { id: user.companyId });
     }
 
-    applyGuaranteeSharedFilters(query, filterDto);
+    filterCommonQuery('guarantee', query, filterDto);
 
     return query.getRawMany();
   }
 
   async getGuaranteesExcel(filterDto: GetGuaranteesFilterDto, user: Partial<User>, response: Response): Promise<void> {
-    const guarantees = await this.getGuarantees(omit(filterDto, ['offset', 'limit']), user);
-    const excelColumnConstants: string[] = [
-      'Folio',
-      'Fecha de carga',
-      'Fecha de actualización',
-      'Estatus',
-      'Fecha inicio',
-      'Fecha fin',
-      'Importe',
-      'Fecha de factura',
-      'Tipo de persona',
-      'Nombre',
-      'Apellido Paterno',
-      'Apellido Materno',
-      'Fecha de nacimiento',
-      'Razón social',
-      'Fecha de constitución',
-      'Asesor',
-      'RFC',
-      'Teléfono',
-      'Correo',
-      'Código Postal',
-      'País',
-      'Estado',
-      'Ciudad',
-      'Colonia',
-      'Calle',
-      'Número Externo',
-      'Número Interno',
-      'Punto de Venta',
-      'Tipo de Producto',
-      'Marca',
-      'Modelo',
-      'Versión',
-      'Año del vehículo',
-      'HP',
-      'VIN',
-      'Nº de Motor',
-      'Kilometraje inicial',
-      'Fin garantía por kilometraje',
-      'Creación orden de compra',
-      'Actualización orden de compra',
-      'Distribuidor',
-    ];
+    const guarantees = await (await this.getGuarantees(omit(filterDto, ['pageIndex', 'pageSize']), user)).results;
+
     const guaranteesData: string[][] = guarantees.map(guarantee => {
       return [
         transformFolio(guarantee.id),
@@ -165,7 +144,7 @@ export class GuaranteesService {
         guarantee.client?.address?.externalNumber,
         guarantee.client?.address?.internalNumber,
         guarantee.client?.salesPlace,
-        guarantee.vehicle?.productType,
+        guarantee?.productType,
         guarantee.vehicle?.brand,
         guarantee.vehicle?.model,
         guarantee.vehicle?.version,
@@ -173,14 +152,15 @@ export class GuaranteesService {
         guarantee.vehicle?.horsePower,
         guarantee.vehicle?.vin,
         guarantee.vehicle?.motorNumber,
-        guarantee.vehicle?.kilometrageStart,
-        guarantee.vehicle?.kilometrageEnd,
+        guarantee?.kilometrageStart,
+        guarantee?.kilometrageEnd,
         guarantee.paymentOrder?.createdAt,
         guarantee.paymentOrder?.updatedAt,
         guarantee.paymentOrder?.distributor,
+        guarantee?.invoiceNumber,
       ].map(field => (field ? String(field) : ''));
     });
-    const data = [[...excelColumnConstants], ...guaranteesData];
+    const data = [[...guaranteeExcelColumns], ...guaranteesData];
     const workSheet = XLSX.utils.aoa_to_sheet(data);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, workSheet, 'SheetJS');
@@ -191,13 +171,32 @@ export class GuaranteesService {
   }
 
   async createGuarantee(createGuaranteeDto: CreateGuaranteeDto, user: Partial<User>): Promise<GuaranteeEntity> {
-    createGuaranteeDto = this.omitInfo(createGuaranteeDto);
-    const newGuarantee = this.guaranteeRepository.create({
-      ...createGuaranteeDto,
-      userId: user.id,
-    });
-    await newGuarantee.save();
-    return newGuarantee;
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    const vehicle = await this.vehicleRepository.findOne({ id: createGuaranteeDto.vehicleId });
+    this.validateVehicle(vehicle, user);
+    try {
+      vehicle.status = VehicleStatus.hasActiveGuarantee;
+      await vehicle.save();
+
+      createGuaranteeDto = this.omitInfo(createGuaranteeDto);
+      const newGuarantee = this.guaranteeRepository.create({
+        ...createGuaranteeDto,
+        companyId:
+          user && UserRoles[user.role] === UserRoles.superAdmin ? createGuaranteeDto.companyId : user.companyId,
+        userId: user.id,
+      });
+      await newGuarantee.save();
+      await newGuarantee.reload();
+      await queryRunner.commitTransaction();
+      return newGuarantee;
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+      throw new BadRequestException(err.message);
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   async generatePdf(id: number, response: Response): Promise<void> {
@@ -219,7 +218,6 @@ export class GuaranteesService {
       headerLogo = logo;
     }
 
-
     const headerImg = await tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
     const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
 
@@ -235,7 +233,7 @@ export class GuaranteesService {
       `,
     });
     const buffer = await page.pdf({
-      format: 'A4',
+      format: 'a4',
       margin: {
         left: '1in',
         top: '1in',
@@ -277,7 +275,7 @@ export class GuaranteesService {
     stream.pipe(response);
   }
 
-  async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto): Promise<GuaranteeEntity> {
+  async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto, user: Partial<User>): Promise<GuaranteeEntity> {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
@@ -289,8 +287,15 @@ export class GuaranteesService {
         await this.moralPersonRepository.delete(updateGuaranteeDto.client.moralInfo.id);
       }
       const preloadedGuarantee = await this.guaranteeRepository.preload(updateGuaranteeDto);
+      const vehicle = await this.vehicleRepository.findOne({ id: updateGuaranteeDto.vehicleId });
+      this.validateVehicle(vehicle, user);
       const guarantee = this.omitInfo(updateGuaranteeDto);
-      const updatedGuarantee = await this.guaranteeRepository.save({ ...preloadedGuarantee, ...guarantee });
+      const updatedGuarantee = await this.guaranteeRepository.save({
+        ...preloadedGuarantee,
+        ...guarantee,
+        companyId:
+          user && UserRoles[user.role] === UserRoles.superAdmin ? updateGuaranteeDto.companyId : user.companyId,
+      });
       await updatedGuarantee.reload();
       await queryRunner.commitTransaction();
       return updatedGuarantee;
@@ -319,5 +324,20 @@ export class GuaranteesService {
       guarantee.client = omit(guarantee.client, 'physicalInfo') as Client;
     }
     return guarantee;
+  }
+
+  validateVehicle(vehicle: Vehicle, user: Partial<User>): void {
+    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+      if (vehicle?.companyId !== user.companyId) {
+        throw new ForbiddenException('No se puede actualizar una garantía con un vehículo de otra compañía');
+      }
+    }
+    if (!vehicle) {
+      throw new NotFoundException(`Vehicle with id ${vehicle.id} doesn't exist`);
+    }
+
+    if (!isVehicleElegible(vehicle)) {
+      throw new ConflictException(`Vehicle with id ${vehicle.id} isn't elegible for a guarantee`);
+    }
   }
 }

@@ -1,0 +1,14 @@
+<ivt-revision-list [list]="list$ | async"
+                   [loading]="loading$ | async"
+                   [info]="info$ | async"
+                   [isSuperAdmin]="isSuperAdmin$ | async"
+                   [groupFilterInfo]="groupFilterInfo$ | async"
+                   [companyFilterInfo]="companyFilterInfo$ | async"
+                   [userFilterInfo]="userFilterInfo$ | async"
+                   [queryParams]="queryParams"
+                   (filterItems)="filterItems($event)"
+                   (delete)="deleteItem($event)"
+                   (filterGroupOptions)="filterGroupOptions($event)"
+                   (filterCompanyOptions)="filterCompanyOptions($event)"
+                   (filterUserOptions)="filterUserOptions($event)">
+</ivt-revision-list>

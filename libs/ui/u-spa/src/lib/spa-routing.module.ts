@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserRoles } from '@ivt/c-data';
+import { RoleGuard } from '@ivt/u-ui';
 
 import { SpaComponent } from './spa.component';
 
@@ -18,11 +20,27 @@ const routes: Routes = [
       },
       {
         path: 'groups',
+        canActivate: [RoleGuard],
+        data: {
+          roles: [UserRoles.superAdmin],
+        },
         loadChildren: () => import('@ivt/u-groups').then(m => m.GroupsModule),
       },
       {
         path: 'users',
         loadChildren: () => import('@ivt/u-users').then(m => m.UsersModule),
+      },
+      {
+        path: 'vehicles',
+        loadChildren: () => import('@ivt/u-vehicles').then(m => m.VehiclesModule),
+      },
+      {
+        path: 'revisions',
+        loadChildren: () => import('@ivt/u-revisions').then(m => m.RevisionsModule),
+      },
+      {
+        path: 'revision-requests',
+        loadChildren: () => import('@ivt/u-revision-requests').then(m => m.RevisionRequestsModule),
       },
       // TODO: uncomment when feature is ready
       // {

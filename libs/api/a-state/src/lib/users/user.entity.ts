@@ -1,4 +1,4 @@
-import { Company, Guarantee, ResetPassword, User, UserRoles } from '@ivt/c-data';
+import { Company, Guarantee, ResetPassword, RevisionRequest, User, UserRoles, Vehicle } from '@ivt/c-data';
 import * as bcrypt from 'bcryptjs';
 import {
   BaseEntity,
@@ -13,9 +13,11 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { ResetPasswordEntity } from '../auth/reset-password.entity';
+import { ResetPasswordEntity } from '../auth/entities';
 import { CompanyEntity } from '../companies/company.entity';
 import { GuaranteeEntity } from '../guarantees/entities/guarantee.entity';
+import { RevisionRequestEntity } from '../revision-requests/revision-request.entity';
+import { VehicleEntity } from '../vehicles/vechicle.entity';
 
 @Entity('users')
 @Unique(['email'])
@@ -83,6 +85,16 @@ export class UserEntity extends BaseEntity implements User {
     cascade: true,
   })
   resetPassword: ResetPassword[];
+
+  @OneToMany(() => VehicleEntity, vehicle => vehicle.user, {
+    cascade: true,
+  })
+  vehicles: Vehicle[];
+
+  @OneToMany(() => RevisionRequestEntity, revisionRequest => revisionRequest.user, {
+    cascade: true,
+  })
+  revisionRequests: RevisionRequest[];
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

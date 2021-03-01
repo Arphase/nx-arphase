@@ -1,12 +1,15 @@
 import { HttpParams } from '@angular/common/http';
-import { DEFAULT_LIMIT_SIZE, SortEvent } from '@ivt/c-data';
-import { omit } from 'lodash';
-import moment from 'moment';
+import { DEFAULT_LIMIT_SIZE } from '@ivt/c-data';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { omit } from 'lodash-es';
+
+dayjs.extend(customParseFormat);
 
 export function buildQueryParams(queryParams): HttpParams {
   let params: Record<string, string | string[]> = {
-    offset: '0',
-    limit: String(DEFAULT_LIMIT_SIZE),
+    pageSize: String(DEFAULT_LIMIT_SIZE),
+    pageIndex: '1',
   };
 
   if (queryParams == null) {
@@ -15,11 +18,6 @@ export function buildQueryParams(queryParams): HttpParams {
 
   if (queryParams.noDates) {
     params = omit(params, ['startDate', 'endDate', 'noDates', 'dateType']);
-  }
-
-  if (queryParams.noLimit) {
-    params = omit(params, 'limit');
-    params = omit(params, 'offset');
   }
 
   Object.keys(queryParams)
@@ -36,20 +34,21 @@ export function buildQueryParams(queryParams): HttpParams {
   }
 
   if (queryParams.sort) {
-    const { value, order } = queryParams.sort as SortEvent;
-    params.sort = value;
-    params.direction = order;
-  }
-
-  if (queryParams.resetList === String(true)) {
-    params.offset = '0';
+    const activeSort = (queryParams.sort as { key: string; value: 'ascend' | 'descend' }[]).find(sort => !!sort.value);
+    if (activeSort) {
+      const { key, value } = activeSort;
+      params.sort = key;
+      params.direction = value;
+    } else {
+      params = omit(params, 'sort');
+    }
   }
 
   return new HttpParams({
-    fromObject: omit(params, ['dates', 'resetList', 'noLimit', 'noDates']),
+    fromObject: omit(params, ['dates', 'noDates', 'filter']),
   });
 }
 
 function parseDate(date: string | Date): string {
-  return moment(date, ['DD/MM/YY', moment.ISO_8601]).format('YYYY-MM-DD');
+  return dayjs(date, 'DD/MM/YY').format('YYYY-MM-DD');
 }

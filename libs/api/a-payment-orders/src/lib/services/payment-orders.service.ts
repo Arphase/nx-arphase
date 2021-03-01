@@ -1,14 +1,16 @@
 import {
+  CreatePaymentOrderDto,
   getReadableStream,
   GuaranteeRepository,
   OUT_FILE,
   PaymentOrderRepository,
   tobase64,
-  transformFolio,
+  UpdatePaymentOrderDto,
 } from '@ivt/a-state';
-import { PaymentOrder } from '@ivt/c-data';
+import { PaymentOrder, transformFolio } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import fs from 'fs';
 import { omit } from 'lodash';
@@ -16,18 +18,13 @@ import puppeteer from 'puppeteer';
 import { Connection, getManager } from 'typeorm';
 import { promisify } from 'util';
 
-import { CreatePaymentOrderDto } from '../dto/create-payment-order.dto';
-import { UpdatePaymentOrderDto } from '../dto/update-payment-order.dto';
-
 @Injectable()
 export class PaymentOrdersService {
-  paymentOrderRepository: PaymentOrderRepository;
-  guaranteeRepository: GuaranteeRepository;
-
-  constructor(private readonly connection: Connection) {
-    this.paymentOrderRepository = this.connection.getCustomRepository(PaymentOrderRepository);
-    this.guaranteeRepository = this.connection.getCustomRepository(GuaranteeRepository);
-  }
+  constructor(
+    @InjectRepository(PaymentOrderRepository) private paymentOrderRepository: PaymentOrderRepository,
+    @InjectRepository(GuaranteeRepository) private guaranteeRepository: GuaranteeRepository,
+    private connection: Connection
+  ) {}
 
   async getPaymentOrder(id: number): Promise<PaymentOrder> {
     const paymentOrder = await this.paymentOrderRepository
@@ -257,7 +254,7 @@ export class PaymentOrdersService {
     const page = await browser.newPage();
     await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
     const buffer = await page.pdf({
-      format: 'A4',
+      format: 'a4',
       printBackground: true,
       margin: {
         left: '1in',

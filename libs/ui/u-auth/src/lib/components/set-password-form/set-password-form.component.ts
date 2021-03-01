@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { ApsValidators } from '@arphase/ui';
 import { specialCharactersForPassword } from '@ivt/c-data';
-import { IvtFormComponent, IvtValidators, MessageStatus } from '@ivt/u-ui';
+import { IvtFormComponent, MessageStatus } from '@ivt/u-ui';
 
 @Component({
   selector: 'ivt-set-password-form',
   templateUrl: './set-password-form.component.html',
-  styleUrls: ['./set-password-form.component.scss'],
+  styleUrls: ['./set-password-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SetPasswordFormComponent extends IvtFormComponent<{ password: string }> {
@@ -45,11 +46,11 @@ export class SetPasswordFormComponent extends IvtFormComponent<{ password: strin
       {
         password: [
           null,
-          [Validators.required, Validators.minLength(8), IvtValidators.uppercase, IvtValidators.specialCharacter],
+          [ApsValidators.required, ApsValidators.minLength(8), ApsValidators.uppercase, ApsValidators.specialCharacter],
         ],
-        passwordConfirm: [null, Validators.required],
+        passwordConfirm: [null, ApsValidators.required],
       },
-      { validators: IvtValidators.matchPasswords('password', 'passwordConfirm') }
+      { validators: ApsValidators.matchPasswords('password', 'passwordConfirm') }
     );
   }
 

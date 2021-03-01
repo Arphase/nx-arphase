@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Injectable } from '@angular/core';
 import { HttpStatusCodes, IvtHttpErrorResponse } from '@ivt/c-data';
 import { Store } from '@ngrx/store';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 
@@ -15,7 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(
     private loadingService: LoadingService,
     private authService: AuthService,
-    private toastr: ToastrService,
+    private messageService: NzMessageService,
     private store: Store<IvtState>
   ) {}
   intercept(request: HttpRequest<null>, next: HttpHandler): Observable<HttpEvent<null>> {
@@ -27,7 +27,9 @@ export class TokenInterceptor implements HttpInterceptor {
     });
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        this.handleError(error.error);
+        if (!request.headers.get('noMessage')) {
+          this.handleError(error.error);
+        }
         return throwError(error);
       }),
       finalize(() => this.loadingService.hide())
@@ -38,6 +40,6 @@ export class TokenInterceptor implements HttpInterceptor {
     if (error.statusCode === HttpStatusCodes.Unauthorized) {
       this.store.dispatch(fromAuth.actions.logout());
     }
-    this.toastr.error(`${error.message}`);
+    this.messageService.error(`${error.message}`);
   }
 }

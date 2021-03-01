@@ -1,303 +1,349 @@
-<form [formGroup]="form"
+<form nz-form
+      nz-row
+      nzLayout="vertical"
+      [formGroup]="form"
       (ngSubmit)="submit()">
-  <div class="row">
-    <div class="col">
-      <ivt-go-back-title [title]="item?.id ? 'Editar Garantía' : 'Nueva Garantía'"></ivt-go-back-title>
-    </div>
-  </div>
-  <div class="pt-3">
-    <ivt-expansion-panel class="primary-panel mb-3 d-block"
-                         title="Información General"
-                         [isOpen]="true">
-      <div class="row">
-        <div class="col-lg-6 col-12">
-          <ivt-form-field label="Fecha inicio garantía">
-            <input ivtInput
-                   [matDatepicker]="startDate"
-                   formControlName="startDate">
-            <mat-datepicker-toggle matSuffix
-                                   [for]="startDate"></mat-datepicker-toggle>
-            <mat-datepicker #startDate></mat-datepicker>
-          </ivt-form-field>
-        </div>
-        <div class="col-lg-6 col-12">
-          <ivt-form-field label="Fin garantía por tiempo">
-            <input ivtInput
-                   [matDatepicker]="endDate"
-                   formControlName="endDate">
-            <mat-datepicker-toggle matSuffix
-                                   [for]="endDate"></mat-datepicker-toggle>
-            <mat-datepicker #endDate></mat-datepicker>
-          </ivt-form-field>
-        </div>
+  <nz-space nzDirection="vertical"
+            nz-col
+            nzSpan="24"
+            nzSize="middle">
+    <nz-page-header nzBackIcon
+                    [nzTitle]="item?.id ? 'Editar Garantía' : 'Nueva Garantía'"
+                    [routerLink]="['..']">
+    </nz-page-header>
+
+    <nz-space-item>
+      <nz-collapse>
+        <nz-collapse-panel nzHeader="Vehículo"
+                           [nzActive]="true">
+          <div nz-row>
+            <nz-space nzDirection="vertical"
+                      nzSize="middle"
+                      nz-col
+                      nzSpan="24">
+              <nz-space-item>
+                <nz-alert *ngIf="!isElegible"
+                          nzType="error"
+                          nzMessage="Este vehículo no es elegible para garantizar.
+                      Consultar las revisiones del vehículo para confirmar."
+                          nzShowIcon>
+                </nz-alert>
+                <nz-alert *ngIf="error"
+                          nzType="error"
+                          [nzMessage]="error"
+                          nzShowIcon>
+                </nz-alert>
+              </nz-space-item>
+            </nz-space>
+          </div>
+          <ivt-vehicle-form [form]="vehicleForm"
+                            [companyId]="companyId$ | async"
+                            [item]="vehicle"
+                            [vehicle]="currentVehicle"
+                            (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-space-item>
+
+    <nz-space-item>
+      <nz-collapse>
+        <nz-collapse-panel nzHeader="Información General"
+                           [nzActive]="true">
+          <div nz-row
+               [nzGutter]="12">
+            <div nz-col
+                 nzXs="24"
+                 nzLg="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Fecha inicio</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <nz-date-picker formControlName="startDate"></nz-date-picker>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="24"
+                 nzLg="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Fecha fin</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <nz-date-picker formControlName="endDate"></nz-date-picker>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+            <div nz-col
+                 nzXs="24"
+                 nzLg="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Kilometraje inicial</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         type="number"
+                         formControlName="kilometrageStart" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="24"
+                 nzLg="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Kilometraje final</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         type="number"
+                         formControlName="kilometrageEnd" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+            <div *ngIf="showCompanyInput"
+                 nz-col
+                 nzXs="24"
+                 nzLg="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Compañía</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <nz-select apsAutoSelect
+                             formControlName="companyId"
+                             [nzOptions]="companyOptions">
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+            <div nz-col
+                 nzXs="24"
+                 nzLg="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Tipo de producto</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         formControlName="productType" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+          </div>
+          <!-- TODO: Uncomment when products is ready
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Producto</nz-form-label>
+              <nz-form-control apsAutoError>
+                <nz-select formControlName="productId">
+                  <nz-option *ngFor="let option of productOptions"
+                             [nzValue]="option.value"
+                             [nzLabel]="option.label"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div> -->
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-space-item>
+
+    <nz-space-item>
+      <nz-collapse>
+        <nz-collapse-panel nzHeader="Cliente"
+                           [nzActive]="true">
+          <form [formGroup]="client">
+            <div nz-row
+                 [nzGutter]="12">
+              <div nz-col
+                   nzXs="24"
+                   nzLg="12">
+                <nz-form-item>
+                  <nz-form-label nzRequired>Tipo de persona</nz-form-label>
+                  <nz-form-control apsAutoError>
+                    <nz-radio-group formControlName="personType">
+                      <label *ngFor="let option of personTypeOptions"
+                             nz-radio
+                             [nzValue]="option.value">{{ option.label }}</label>
+                    </nz-radio-group>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col
+                   nzXs="24"
+                   nzLg="12">
+                <nz-form-item>
+                  <nz-form-label nzRequired>Punto de venta</nz-form-label>
+                  <nz-form-control apsAutoError>
+                    <input nz-input
+                           formControlName="salesPlace" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+
+            <form [hidden]="!showPhysicalForm"
+                  [formGroup]="physicalInfoForm">
+              <div nz-row
+                   [nzGutter]="12">
+                <div nz-col
+                     nzXs="24"
+                     nzLg="12">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Nombre(s)</nz-form-label>
+                    <nz-form-control apsAutoError>
+                      <input nz-input
+                             formControlName="name" />
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col
+                     nzXs="24"
+                     nzLg="12">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Appelido Paterno</nz-form-label>
+                    <nz-form-control apsAutoError>
+                      <input nz-input
+                             formControlName="lastName" />
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+              <div nz-row
+                   [nzGutter]="12">
+                <div nz-col
+                     nzXs="24"
+                     nzLg="12">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Apellido Materno</nz-form-label>
+                    <nz-form-control apsAutoError>
+                      <input nz-input
+                             formControlName="secondLastName" />
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col
+                     nzXs="24"
+                     nzLg="12">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Fecha de nacimiento</nz-form-label>
+                    <nz-form-control apsAutoError>
+                      <nz-date-picker formControlName="birthDate"></nz-date-picker>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+            </form>
+
+            <form [hidden]="!showMoralForm"
+                  [formGroup]="moralInfoForm">
+              <div nz-row
+                   [nzGutter]="12">
+                <div nz-col
+                     nzXs="24"
+                     nzLg="12">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Razón social</nz-form-label>
+                    <nz-form-control apsAutoError>
+                      <input nz-input
+                             formControlName="businessName" />
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col
+                     nzXs="24"
+                     nzLg="12">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Fecha de constitución</nz-form-label>
+                    <nz-form-control apsAutoError>
+                      <nz-date-picker formControlName="constitutionDate"></nz-date-picker>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+              <div nz-row
+                   [nzGutter]="12">
+                <div nz-col
+                     nzXs="24"
+                     nzLg="12">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Asesor</nz-form-label>
+                    <nz-form-control apsAutoError>
+                      <input nz-input
+                             formControlName="adviser" />
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+            </form>
+
+            <div nz-row
+                 [nzGutter]="12">
+              <div nz-col
+                   nzXs="24"
+                   nzLg="8">
+                <nz-form-item>
+                  <nz-form-label nzRequired>RFC</nz-form-label>
+                  <nz-form-control apsAutoError>
+                    <input nz-input
+                           ivtUppercase
+                           formControlName="rfc" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col
+                   nzXs="24"
+                   nzLg="8">
+                <nz-form-item>
+                  <nz-form-label nzRequired>Teléfono</nz-form-label>
+                  <nz-form-control apsAutoError>
+                    <input nz-input
+                           type="tel"
+                           mask="(00) 0000 0000"
+                           formControlName="phone" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col
+                   nzXs="24"
+                   nzLg="8">
+                <nz-form-item>
+                  <nz-form-label nzRequired>Correo</nz-form-label>
+                  <nz-form-control apsAutoError>
+                    <input nz-input
+                           type="email"
+                           formControlName="email" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+            <ivt-address-form [form]="addressForm"></ivt-address-form>
+          </form>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-space-item>
+
+    <nz-space-item nz-row>
+      <div nz-col
+           nzSpan="24"
+           class="flex-end">
+        <nz-space>
+          <nz-space-item>
+            <button nz-button
+                    type="button"
+                    [routerLink]="['..']">
+              Cancelar
+            </button>
+          </nz-space-item>
+          <button nz-button
+                  type="submit"
+                  nzType="primary"
+                  [nzLoading]="loading"
+                  [disabled]="!isEditable && this.item || !isElegible || error">
+            Guardar
+          </button>
+        </nz-space>
       </div>
-
-      <div class="row">
-        <div class="col-12 col-lg-6">
-          <mat-form-field>
-            <mat-label>Compañía</mat-label>
-            <mat-select formControlName="companyId">
-              <mat-option *ngFor="let option of currentCompanyOptions"
-                          [value]="option.value">
-                {{ option.label }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-
-      <!-- TODO: Uncomment when products is ready
-      <div class="row">
-        <div class="col">
-          <mat-form-field>
-            <mat-label>Producto</mat-label>
-            <mat-select formControlName="productId">
-              <mat-option *ngFor="let option of productOptions"
-                          [value]="option.value">
-                {{ option.label }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div> -->
-    </ivt-expansion-panel>
-
-    <ivt-expansion-panel class="primary-panel mb-3 d-block"
-                         title="Cliente"
-                         [isOpen]="true">
-      <form [formGroup]="client">
-        <div class="row">
-          <div class="col-lg-6 col-12">
-            <div>
-              <label>Tipo de persona:</label>
-            </div>
-            <mat-radio-group formControlName="personType">
-              <mat-radio-button *ngFor="let option of personTypeOptions"
-                                [value]="option.value"
-                                class="mr-3">
-                {{ option.label }}
-              </mat-radio-button>
-            </mat-radio-group>
-          </div>
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Punto de Venta">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="salesPlace">
-            </ivt-form-field>
-          </div>
-        </div>
-
-        <form [hidden]="!showPhysicalForm"
-              [formGroup]="physicalInfoForm">
-          <div class="row">
-            <div class="col-lg-6 col-12">
-              <ivt-form-field label="Nombre(s)">
-                <input ivtInput
-                       ivtUppercase
-                       formControlName="name">
-              </ivt-form-field>
-            </div>
-            <div class="col-lg-6 col-12">
-              <ivt-form-field label="Apellido Paterno">
-                <input ivtInput
-                       ivtUppercase
-                       formControlName="lastName">
-              </ivt-form-field>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-6 col-12">
-              <ivt-form-field label="Apellido Materno">
-                <input ivtInput
-                       ivtUppercase
-                       formControlName="secondLastName">
-              </ivt-form-field>
-            </div>
-            <div class="col-lg-6 col-12">
-              <ivt-form-field label="Fecha de nacimiento">
-                <input ivtInput
-                       [matDatepicker]="birthDatePicker"
-                       formControlName="birthDate">
-                <mat-datepicker-toggle matSuffix
-                                       [for]="birthDatePicker"></mat-datepicker-toggle>
-                <mat-datepicker #birthDatePicker></mat-datepicker>
-              </ivt-form-field>
-            </div>
-          </div>
-        </form>
-
-        <form [hidden]="!showMoralForm"
-              [formGroup]="moralInfoForm">
-          <div class="row">
-            <div class="col-lg-6 col-12">
-              <ivt-form-field label="Razón Social">
-                <input ivtInput
-                       ivtUppercase
-                       formControlName="businessName">
-              </ivt-form-field>
-            </div>
-            <div class="col-lg-6 col-12">
-              <ivt-form-field label="Fecha de constitución">
-                <input ivtInput
-                       [matDatepicker]="constitutionDatePicker"
-                       formControlName="constitutionDate">
-                <mat-datepicker-toggle matSuffix
-                                       [for]="constitutionDatePicker"></mat-datepicker-toggle>
-                <mat-datepicker #constitutionDatePicker></mat-datepicker>
-              </ivt-form-field>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-6 col-12">
-              <ivt-form-field label="Asesor">
-                <input ivtInput
-                       ivtUppercase
-                       formControlName="adviser">
-              </ivt-form-field>
-            </div>
-          </div>
-        </form>
-
-        <div class="row">
-          <div class="col-lg-4 col-12">
-            <ivt-form-field label="RFC">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="rfc">
-            </ivt-form-field>
-          </div>
-          <div class="col-lg-4 col-12">
-            <ivt-form-field label="Teléfono">
-              <input ivtInput
-                     type="tel"
-                     mask="(00) 0000 0000"
-                     formControlName="phone">
-            </ivt-form-field>
-          </div>
-          <div class="col-lg-4 col-12">
-            <ivt-form-field label="Correo">
-              <input ivtInput
-                     type="email"
-                     formControlName="email">
-            </ivt-form-field>
-          </div>
-        </div>
-        <ivt-address-form [form]="addressForm"></ivt-address-form>
-      </form>
-    </ivt-expansion-panel>
-
-    <ivt-expansion-panel class="primary-panel mb-3 d-block"
-                         title="Vehículo"
-                         [isOpen]="true">
-      <form [formGroup]="vehicle">
-        <div class="row">
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Tipo de producto">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="productType">
-            </ivt-form-field>
-          </div>
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Marca">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="brand">
-            </ivt-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Modelo">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="model">
-            </ivt-form-field>
-          </div>
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Versión">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="version">
-            </ivt-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Año del vehículo">
-              <input ivtInput
-                     type="number"
-                     formControlName="year">
-            </ivt-form-field>
-          </div>
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="HP">
-              <input ivtInput
-                     type="number"
-                     formControlName="horsePower">
-            </ivt-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="VIN">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="vin">
-            </ivt-form-field>
-          </div>
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="N° de motor">
-              <input ivtInput
-                     ivtUppercase
-                     formControlName="motorNumber">
-            </ivt-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Kilometraje inicial">
-              <input ivtInput
-                     ivtUppercase
-                     type="number"
-                     formControlName="kilometrageStart">
-            </ivt-form-field>
-          </div>
-          <div class="col-lg-6 col-12">
-            <ivt-form-field label="Fin garantía por kilometraje">
-              <input ivtInput
-                     ivtUppercase
-                     type="number"
-                     formControlName="kilometrageEnd">
-            </ivt-form-field>
-          </div>
-        </div>
-      </form>
-    </ivt-expansion-panel>
-  </div>
-
-  <div class="row mt-4 mb-3">
-    <div class="col px-0 flex-end">
-      <button mat-raised-button
-              class="mr-3"
-              type="button"
-              [routerLink]="['..']">
-        Cancelar
-      </button>
-      <button mat-raised-button
-              type="submit"
-              color="primary"
-              [loading]="loading"
-              [disabled]="!isEditable && this.item">
-        Guardar
-      </button>
-    </div>
-  </div>
+    </nz-space-item>
+  </nz-space>
 </form>

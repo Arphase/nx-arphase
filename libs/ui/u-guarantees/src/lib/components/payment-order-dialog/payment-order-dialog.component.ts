@@ -1,39 +1,44 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { ApsColumns, ApsValidators } from '@arphase/ui';
 import { Guarantee, PaymentOrder } from '@ivt/c-data';
-import { IvtColumns, IvtFormComponent } from '@ivt/u-ui';
+import { IvtFormComponent } from '@ivt/u-ui';
 
 @Component({
   selector: 'ivt-payment-order-dialog',
   templateUrl: './payment-order-dialog.component.html',
-  styleUrls: ['./payment-order-dialog.component.scss'],
+  styleUrls: ['./payment-order-dialog.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> implements OnChanges {
   @Input() selectedIds: number[];
-  columns: IvtColumns = [
+  columns: ApsColumns = [
     {
       label: 'Folio',
-      prop: 'id',
-      sortable: false,
       colSizes: {
-        xs: '2',
+        xs: 12,
+        md: 4,
       },
     },
     {
       label: 'Fecha de factura',
-      prop: 'invoiceDate',
-      sortable: false,
       colSizes: {
-        xs: '5',
+        xs: 12,
+        md: 7,
+      },
+    },
+    {
+      label: 'Número de factura',
+      colSizes: {
+        xs: 12,
+        md: 7,
       },
     },
     {
       label: 'Importe',
-      prop: 'amount',
-      sortable: false,
       colSizes: {
-        xs: '5',
+        xs: 12,
+        md: 6,
       },
     },
   ];
@@ -42,7 +47,6 @@ export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> 
     super();
     this.form = this.fb.group({
       id: null,
-      distributor: [null, Validators.required],
       guarantees: this.fb.array([]),
     });
   }
@@ -56,7 +60,7 @@ export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> 
       this.selectedIds.forEach(id => this.guaranteesFormArray.push(this.createGuaranteeForm({ id })));
     }
 
-    if (changes.item && this.item) {
+    if (changes.item && this.item?.guarantees) {
       this.form.patchValue(this.item);
       this.item.guarantees.forEach(guarantee => this.guaranteesFormArray.push(this.createGuaranteeForm(guarantee)));
     }
@@ -65,8 +69,9 @@ export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> 
   createGuaranteeForm(guarantee: Partial<Guarantee>): FormGroup {
     const formControl = this.fb.group({
       id: guarantee.id,
-      invoiceDate: [null, Validators.required],
-      amount: [0, Validators.required],
+      invoiceDate: [null, ApsValidators.required],
+      invoiceNumber: null,
+      amount: [null, ApsValidators.required],
     });
 
     if (guarantee.amount) {

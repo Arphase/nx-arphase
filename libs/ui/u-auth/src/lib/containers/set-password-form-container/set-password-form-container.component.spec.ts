@@ -1,4 +1,9 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { LoadingService } from '@ivt/u-state';
+import { LoadingServiceMock } from '@ivt/u-tests';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { SetPasswordFormContainerComponent } from './set-password-form-container.component';
 
@@ -8,9 +13,11 @@ describe('SetPasswordFormContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SetPasswordFormContainerComponent ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule],
+      declarations: [SetPasswordFormContainerComponent],
+      providers: [provideMockStore(), { provide: LoadingService, useClass: LoadingServiceMock }],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

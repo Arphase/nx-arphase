@@ -1,4 +1,5 @@
-import { AuthService, SignUpCredentialsDto } from '@ivt/a-auth';
+import { AuthService } from '@ivt/a-auth';
+import { ResetPasswordRepository, SignUpCredentialsDto, UserRepository } from '@ivt/a-state';
 import { UserRoles } from '@ivt/c-data';
 import fs from 'fs';
 import path from 'path';
@@ -14,7 +15,11 @@ async function run() {
   };
 
   const connection = await createConnection(opt as ConnectionOptions);
-  const authService = new AuthService(null, connection);
+  const authService = new AuthService(
+    connection.getCustomRepository(UserRepository),
+    connection.getCustomRepository(ResetPasswordRepository),
+    null
+  );
   const entityManager = getManager();
 
   const users: SignUpCredentialsDto[] = [

@@ -1,4 +1,5 @@
 <ivt-group-form [form]="form"
                 [item]="currentItem$ | async"
+                [loading]="loading$ | async"
                 (submitForm)="submit($event)">
 </ivt-group-form>

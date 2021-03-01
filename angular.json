@@ -18,18 +18,33 @@
             "aot": true,
             "assets": [
               "apps/innovatech-ui/src/favicon.ico",
-              "apps/innovatech-ui/src/assets"
+              "apps/innovatech-ui/src/assets",
+              "apps/innovatech-ui/src/manifest.webmanifest"
             ],
             "styles": [
-              "apps/innovatech-ui/src/styles.scss"
+              "apps/innovatech-ui/src/styles.less",
+              {
+                "input": "libs/ui/u-ui/src/styles/default.less",
+                "bundleName": "default",
+                "inject": false
+              },
+              {
+                "input": "libs/ui/u-ui/src/styles/dark.less",
+                "bundleName": "dark",
+                "inject": false
+              }
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
               "chart.js",
-              "lodash",
               "file-saver",
               "showdown"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/ui/u-ui/src/styles"
+              ]
+            }
           },
           "configurations": {
             "qa": {
@@ -42,7 +57,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -56,7 +70,9 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/innovatech-ui/ngsw-config.json"
             },
             "production": {
               "fileReplacements": [
@@ -68,7 +84,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -82,15 +97,16 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/innovatech-ui/ngsw-config.json"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "innovatech-ui:build",
-            "proxyConfig": "apps/innovatech-ui/proxy.conf.json"
+            "browserTarget": "innovatech-ui:build"
           },
           "configurations": {
             "production": {
@@ -115,10 +131,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/innovatech-ui/jest.config.js",
-            "tsConfig": "apps/innovatech-ui/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "apps/innovatech-ui/src/test-setup.ts"
+            "jestConfig": "apps/innovatech-ui/jest.config.js"
           }
         }
       }
@@ -694,6 +707,216 @@
           }
         }
       }
+    },
+    "a-vehicles": {
+      "root": "libs/api/a-vehicles",
+      "sourceRoot": "libs/api/a-vehicles/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/a-vehicles/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/api/a-vehicles"
+          ],
+          "options": {
+            "jestConfig": "libs/api/a-vehicles/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "u-vehicles": {
+      "projectType": "library",
+      "root": "libs/ui/u-vehicles",
+      "sourceRoot": "libs/ui/u-vehicles/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui/u-vehicles/src/**/*.ts",
+              "libs/ui/u-vehicles/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/ui/u-vehicles"
+          ],
+          "options": {
+            "jestConfig": "libs/ui/u-vehicles/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "u-tests": {
+      "projectType": "library",
+      "root": "libs/ui/u-tests",
+      "sourceRoot": "libs/ui/u-tests/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui/u-tests/src/**/*.ts",
+              "libs/ui/u-tests/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/ui/u-tests"
+          ],
+          "options": {
+            "jestConfig": "libs/ui/u-tests/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "a-revisions": {
+      "root": "libs/api/a-revisions",
+      "sourceRoot": "libs/api/a-revisions/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/a-revisions/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/api/a-revisions"
+          ],
+          "options": {
+            "jestConfig": "libs/api/a-revisions/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "u-revisions": {
+      "projectType": "library",
+      "root": "libs/ui/u-revisions",
+      "sourceRoot": "libs/ui/u-revisions/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui/u-revisions/src/**/*.ts",
+              "libs/ui/u-revisions/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/ui/u-revisions"
+          ],
+          "options": {
+            "jestConfig": "libs/ui/u-revisions/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "a-revision-requests": {
+      "root": "libs/api/a-revision-requests",
+      "sourceRoot": "libs/api/a-revision-requests/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/a-revision-requests/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/api/a-revision-requests"
+          ],
+          "options": {
+            "jestConfig": "libs/api/a-revision-requests/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "aps-u-ui": {
+      "projectType": "library",
+      "root": "libs/arphase/ui/aps-u-ui",
+      "sourceRoot": "libs/arphase/ui/aps-u-ui/src",
+      "prefix": "aps",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/arphase/ui/aps-u-ui/src/**/*.ts",
+              "libs/arphase/ui/aps-u-ui/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/arphase/ui/aps-u-ui"
+          ],
+          "options": {
+            "jestConfig": "libs/arphase/ui/aps-u-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "u-revision-requests": {
+      "projectType": "library",
+      "root": "libs/ui/u-revision-requests",
+      "sourceRoot": "libs/ui/u-revision-requests/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui/u-revision-requests/src/**/*.ts",
+              "libs/ui/u-revision-requests/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/ui/u-revision-requests"
+          ],
+          "options": {
+            "jestConfig": "libs/ui/u-revision-requests/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
@@ -702,16 +925,18 @@
   },
   "schematics": {
     "@nrwl/angular:application": {
+      "style": "less",
+      "linter": "eslint",
       "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress",
-      "linter": "eslint"
+      "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
-      "unitTestRunner": "jest",
-      "linter": "eslint"
+      "style": "less",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
     },
     "@nrwl/angular:component": {
-      "style": "scss",
+      "style": "less",
       "changeDetection": "OnPush"
     }
   },

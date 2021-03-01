@@ -1,52 +1,38 @@
-import { IvtColumns } from '@ivt/u-ui';
+import { ApsColumns } from '@arphase/ui';
+import { Company } from '@ivt/c-data';
 
-export const columns: IvtColumns = [
+export const columns: ApsColumns = [
   {
     label: 'Razón Social',
     prop: 'company.businessName',
-    sortable: false,
     colSizes: {
-      xs: '8',
-      md: '3',
-    }
-  },
-  {
-    label: 'Contacto',
-    prop: 'company.contact',
-    sortable: false,
-    colSizes: {
-      xs: '2',
+      xs: 24,
+      md: 6,
     },
-    breakpointShow: {
-      md: true,
-      lg: true,
-      xl: true,
-    },
-  },
-  {
-    label: 'Email',
-    prop: 'company.email',
-    sortable: false,
-    colSizes: {
-      xs: '3',
-    },
-    breakpointShow: {
-      md: true,
-      lg: true,
-      xl: true,
-    },
+    sortFn: (a: Company, b: Company) => a.businessName.localeCompare(b.businessName),
   },
   {
     label: 'RFC',
     prop: 'company.rfc',
-    sortable: false,
     colSizes: {
-      xs: '2',
+      md: 5,
     },
-    breakpointShow: {
-      md: true,
-      lg: true,
-      xl: true,
+    sortFn: (a: Company, b: Company) => a.rfc.localeCompare(b.rfc),
+  },
+  {
+    label: 'Contacto',
+    prop: 'company.contact',
+    colSizes: {
+      md: 5,
     },
+    sortFn: (a: Company, b: Company) => a.contact.localeCompare(b.contact),
+  },
+  {
+    label: 'Email',
+    prop: 'company.email',
+    colSizes: {
+      md: 8,
+    },
+    sortFn: (a: Company, b: Company) => a.email.localeCompare(b.email),
   },
 ];

@@ -1,22 +1,22 @@
 import { Directive, Inject, TemplateRef, ViewContainerRef } from '@angular/core';
+import { UserRoles } from '@ivt/c-data';
 
-import { PermissionTypes } from '../enums/permission-types.enum';
-import { PermissionService, REQUIRED_PERMISSIONS } from '../services/permission.service';
+import { PermissionService, REQUIRED_ROLES } from '../services/permission.service';
 import { BasePermissionDirective } from './base-permission.directive';
 
 @Directive({
   selector: '[ivtUpdatePermission]',
 })
 export class UpdatePermissionDirective extends BasePermissionDirective {
-  hasPermission$ = this.permissionService.hasUpdatePermission();
+  hasPermission$ = this.permissionService.hasUpdatePermission(this.requiredRoles);
 
   constructor(
     protected templateRef: TemplateRef<null>,
     public viewContainer: ViewContainerRef,
     protected permissionService: PermissionService,
-    @Inject(REQUIRED_PERMISSIONS)
-    protected requiredPermissionTypes: PermissionTypes[]
+    @Inject(REQUIRED_ROLES)
+    protected requiredRoles: UserRoles[]
   ) {
-    super(templateRef, viewContainer, permissionService, requiredPermissionTypes);
+    super(templateRef, viewContainer, permissionService, requiredRoles);
   }
 }

@@ -7,4 +7,6 @@ export interface Product {
   name: string;
   logo: string;
   guarantees: Guarantee[];
+  createdAt: Date;
+  updatedAt: Date;
 }

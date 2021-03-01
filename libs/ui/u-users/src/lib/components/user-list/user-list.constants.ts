@@ -1,48 +1,34 @@
-import { IvtColumns } from '@ivt/u-ui';
+import { ApsColumns } from '@arphase/ui';
 
-export const columns: IvtColumns = [
+export const columns: ApsColumns = [
   {
     label: 'Nombre',
     prop: 'user.firstName',
-    sortable: true,
     colSizes: {
-      xs: '6',
-      sm: '3',
+      xs: 12,
+      md: 6,
     },
   },
   {
     label: 'Correo',
     prop: 'user.email',
-    sortable: true,
     colSizes: {
-      xs: '6',
-      sm: '3',
+      xs: 12,
+      md: 6,
     },
   },
   {
     label: 'Fecha de alta',
     prop: 'user.createdAt',
-    sortable: true,
     colSizes: {
-      xs: '3',
-    },
-    breakpointShow: {
-      md: true,
-      lg: true,
-      xl: true,
+      md: 6,
     },
   },
   {
     label: 'Compañía',
     prop: 'company.businessName',
-    sortable: true,
     colSizes: {
-      xs: '3',
-    },
-    breakpointShow: {
-      md: true,
-      lg: true,
-      xl: true,
+      md: 6,
     },
   },
 ];

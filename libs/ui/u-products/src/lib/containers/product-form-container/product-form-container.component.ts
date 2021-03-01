@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 import { Product } from '@ivt/c-data';
 import { ProductCollectionService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
-import { ToastrService } from 'ngx-toastr';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'ivt-product-form-container',
   templateUrl: './product-form-container.component.html',
-  styleUrls: ['./product-form-container.component.scss'],
+  styleUrls: ['./product-form-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductFormContainerComponent extends IvtFormContainerComponent<Product> {
@@ -18,8 +18,8 @@ export class ProductFormContainerComponent extends IvtFormContainerComponent<Pro
   constructor(
     protected productCollectionService: ProductCollectionService,
     protected router: Router,
-    protected toastr: ToastrService
+    protected messageService: NzMessageService
   ) {
-    super(productCollectionService, router, toastr);
+    super(productCollectionService, router, messageService);
   }
 }

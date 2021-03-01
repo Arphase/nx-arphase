@@ -3,7 +3,7 @@ import { Group } from '@ivt/c-data';
 import { filterNilArray, mapToSelectOptions, sortSelectOptionsAlphabetical } from '@ivt/c-utils';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
-import { IvtCollectionService } from '../../core';
+import { IvtCollectionService } from '../../core/services/collection.service';
 
 @Injectable({
   providedIn: 'root',

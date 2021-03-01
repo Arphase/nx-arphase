@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { ApsValidators } from '@arphase/ui';
 import { User } from '@ivt/c-data';
-import { IvtFormComponent, IvtValidators } from '@ivt/u-ui';
+import { IvtFormComponent } from '@ivt/u-ui';
 
 @Component({
   selector: 'ivt-reset-password-form',
   templateUrl: './reset-password-form.component.html',
-  styleUrls: ['./reset-password-form.component.scss'],
+  styleUrls: ['./reset-password-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResetPasswordFormComponent extends IvtFormComponent<Partial<User>> {
@@ -15,7 +16,7 @@ export class ResetPasswordFormComponent extends IvtFormComponent<Partial<User>> 
   constructor(private fb: FormBuilder) {
     super();
     this.form = this.fb.group({
-      email: [null, [Validators.required, IvtValidators.email]],
+      email: [null, [ApsValidators.required, ApsValidators.email]],
     });
   }
 }

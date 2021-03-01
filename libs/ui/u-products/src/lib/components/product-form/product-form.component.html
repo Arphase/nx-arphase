@@ -1,75 +1,96 @@
 <form [formGroup]="form"
       (ngSubmit)="submit()">
-  <div class="row">
-    <div class="col">
-      <ivt-go-back-title title="Nuevo Producto"></ivt-go-back-title>
+  <div nz-row>
+    <div nz-col
+         nzSpan="24">
+      <nz-page-header nzBackIcon
+                      [nzTitle]="item?.id ? 'Nuevo Producto' : 'Editar Producto'"
+                      [routerLink]="['..']">
+      </nz-page-header>
     </div>
   </div>
 
   <div class="pt-3">
-    <div class="row">
-      <div class="col-lg-6 col-12">
-        <h6>Nombre del producto</h6>
-        <ivt-form-field>
-          <input ivtInput
-                 formControlName="name" />
-        </ivt-form-field>
+    <div nz-row
+         [nzGutter]="12">
+      <div nz-col
+           nzMd="24"
+           nzLg="12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Nombre del producto</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   formControlName="name" />
+          </nz-form-control>
+        </nz-form-item>
       </div>
-      <div class="col-lg-6 col-12">
-        <ivt-file-upload label="Imagen de logo"
-                         (fileQueueChanges)="saveFile($event)"> </ivt-file-upload>
-      </div>
-    </div>
-
-    <div class="row mt-4 mb-3">
-      <div class="col-lg-4 col-4">
-        <h6>Precio</h6>
-        <ivt-form-field>
-          <input ivtInput
-                 prefix="$ "
-                 mask="0*.00"
-                 formControlName="price" />
-        </ivt-form-field>
-      </div>
-
-      <div class="col-4 px-0 ml-auto">
-          <mat-form-field>
-            <mat-label>Glosario</mat-label>
-            <mat-select (selectionChange)="selectedValue($event)">
-              <mat-option *ngFor="let option of glossaryOptions"
-                                [value]="option.value">
-                {{ option.label }}
-              </mat-option>
-
-            </mat-select>
-          </mat-form-field>
+      <div nz-col
+           nzMd="24"
+           nzLg="12">
+        <!-- TODO: Use ng zorro file uploader -->
       </div>
     </div>
 
-    <div class="row mb-3">
-      <div class="col-lg-12 col-12">
-        <h6>Cuerpo del producto</h6>
-        <ivt-form-field appearance="fill">
-          <textarea matInput
-                    formControlName="template"> </textarea>
-        </ivt-form-field>
+    <div nz-row
+         [nzGutter]="12">
+      <div nz-col
+           nzSpan="8"
+           class="-lg-4 col-4">
+        <nz-form-item>
+          <nz-form-label nzRequired>Precio</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   prefix="$ "
+                   mask="0*.00"
+                   formControlName="price" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col
+           nzSpan="8"
+           class="px-0 ml-auto">
+        <nz-form-item>
+          <nz-form-label nzRequired>Glosario</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-select formControlName="glosary"
+                       [nzOptions]="glossaryOptions">
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
 
-    <div class="row mt-4 mb-3">
-      <div class="col px-0 flex-end">
-        <button mat-raised-button
+    <div nz-row
+         [nzGutter]="12">
+      <div nz-col
+           nzSpan="24">
+        <nz-form-item>
+          <nz-form-label nzRequired>Cuerpo del producto</nz-form-label>
+          <nz-form-control apsAutoError>
+            <textarea nz-input
+                      formControlName="template"></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row
+         [nzGutter]="12">
+      <div nz-col
+           class="px-0 flex-end">
+        <button nz-button
                 class="mr-3"
                 type="button"
                 [routerLink]="['..']">Cancelar</button>
-        <button mat-raised-button
+        <button nz-button
                 class="mr-3"
-                color="primary"
+                nzType="primary"
                 type="button"
                 (click)="downloadTemplatePreview()">Vista previa</button>
-        <button mat-raised-button
+        <button nz-button
                 type="submit"
-                color="primary">Guardar</button>
+                nzType="primary">Guardar</button>
       </div>
     </div>
   </div>

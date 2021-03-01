@@ -1,11 +1,12 @@
 module.exports = {
-  testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
-  transform: {
-    '^.+\\.(ts|js|html)$': 'ts-jest',
-  },
-  resolver: '@nrwl/jest/plugins/resolver',
-  moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageReporters: ['html'],
-  projects: '<rootDir>/libs/ui/u-users',
-  projects: '<rootDir>/libs/ui/u-products',
+  projects: [
+    '<rootDir>/apps/innovatech-ui',
+    '<rootDir>/libs/ui/u-auth',
+    '<rootDir>/libs/ui/u-tests',
+    '<rootDir>/libs/api/a-revisions',
+    '<rootDir>/libs/ui/u-revisions',
+    '<rootDir>/libs/api/a-revision-requests',
+    '<rootDir>/libs/arphase/ui/aps-u-ui',
+    '<rootDir>/libs/ui/u-revision-requests',
+  ],
 };

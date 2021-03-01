@@ -1,53 +1,87 @@
-<div class="row">
-  <div class="col-9 col-md-6">
+<div nz-row
+     [nzGutter]="12">
+  <div nz-col
+       nzXs="24"
+       nzMd="12">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
+</div>
 
-  <div class="col-2 flex-start">
-    <button mat-icon-button
-            [ngClass]="{ 'bg-primary text-white': showFilters }"
-            matTooltip="Filtrar"
-            (click)="toggleFilter()">
-      <mat-icon>filter_alt</mat-icon>
-    </button>
+<nz-divider></nz-divider>
+
+<div nz-row
+     [nzGutter]="[12, 12]">
+  <ng-container *ivtCreatePermission>
+    <div nz-col>
+      <ivt-checkbox-filter label="Grupos"
+                           [options]="groupFilterInfo?.options"
+                           [loading]="groupFilterInfo?.loading"
+                           [last]="groupFilterInfo?.last"
+                           [pageIndex]="groupFilterInfo?.pageIndex"
+                           [preselectedOptions]="queryParams?.groupIds"
+                           (filterItems)="updateGroupsFilters($event)"
+                           (filterOptions)="filterGroupOptions.emit($event)">
+      </ivt-checkbox-filter>
+    </div>
+    <div nz-col>
+      <ivt-checkbox-filter label="Compañías"
+                           [options]="companyFilterInfo?.options"
+                           [loading]="companyFilterInfo?.loading"
+                           [last]="companyFilterInfo?.last"
+                           [pageIndex]="companyFilterInfo?.pageIndex"
+                           [preselectedOptions]="queryParams?.companyIds"
+                           (filterItems)="updateCompaniesFilters($event)"
+                           (filterOptions)="filterCompanyOptions.emit($event)">
+      </ivt-checkbox-filter>
+    </div>
+  </ng-container>
+  <div nz-col
+       nzFlex="auto"
+       class="flex-end">
+    {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}
   </div>
 </div>
 
-<div [hidden]="!showFilters"
-     class="row bg-light mx-0 mb-4 rounded mt-3 py-3 px-2">
-  <div class="col-auto px-1 my-2 filter-column">
-    <ivt-checkbox-filter *ngIf="groupOptions?.length"
-                         class="mr-3"
-                         label="Grupos"
-                         [options]="groupOptions"
-                         (filterItems)="updateGroupsFilters($event)">
-    </ivt-checkbox-filter>
-  </div>
-  <div class="col-auto px-1 my-2 filter-column">
-    <ivt-checkbox-filter *ngIf="companyOptions?.length"
-                         class="mr-3"
-                         label="Compañías"
-                         [options]="companyOptions"
-                         (filterItems)="updateCompaniesFilters($event)">
-    </ivt-checkbox-filter>
-  </div>
-</div>
+<nz-divider></nz-divider>
 
-<ivt-empty-state *ngIf="!list.length"
-                 message="No existen productos.">
-</ivt-empty-state>
-
-<ng-container *ngIf="list.length">
-  <ivt-table-header class="d-block mt-4"
-                    [columns]="columns"
-                    (sort)="updateSort($event)"></ivt-table-header>
-
-  <ivt-virtual-scroll height="60vh"
-                      [list]="list"
-                      [ignoreNextBatch]="!hasMoreItems || loading"
-                      (nextBatchEmitter)="getMoreItems.emit()">
-    <ng-template let-item>
-      <ivt-user-row [item]="item"></ivt-user-row>
-    </ng-template>
-  </ivt-virtual-scroll>
-</ng-container>
+<nz-table #table
+          nzSize="small"
+          [nzData]="list"
+          [nzFrontPagination]="false"
+          [nzTotal]="info?.total"
+          [nzPageIndex]="info?.pageIndex"
+          [nzLoading]="loading"
+          (nzQueryParams)="filterItems.emit($event)">
+  <thead>
+    <tr nz-row>
+      <th *ngFor="let column of columns"
+          [nzSortFn]="column.sortFn || true"
+          [nzColumnKey]="column.prop"
+          nz-col
+          [nzXs]="column.colSizes?.xs || 0"
+          [nzSm]="column.colSizes?.sm || 0"
+          [nzMd]="column.colSizes?.md || 0"
+          [nzLg]="column.colSizes?.lg"
+          [nzXl]="column.colSizes?.xl">
+        {{ column.label }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of table.data"
+        nz-row>
+      <td nz-col
+          nzXs="12"
+          nzMd="6">{{ item?.firstName }} {{ item?.lastName }}</td>
+      <td nz-col
+          nzXs="12"
+          nzMd="6">{{ item.email | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzMd="6">{{ item.createdAt | date: 'dd/MM/yy' }}</td>
+      <td nz-col
+          nzXs="0"
+          nzMd="6">{{ item.company?.businessName | empty }}</td>
+    </tr>
+  </tbody>
+</nz-table>

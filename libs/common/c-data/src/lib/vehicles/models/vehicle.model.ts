@@ -1,6 +1,12 @@
+import { Company } from '../../companies/models/company.model';
+import { Guarantee } from '../../guarantees';
+import { RevisionRequest } from '../../revision-requests';
+import { Revision } from '../../revisions';
+import { User } from '../../users';
+import { VehicleStatus } from '../enums';
+
 export interface Vehicle {
   id: number;
-  productType: string;
   brand: string;
   model: string;
   version: string;
@@ -8,6 +14,17 @@ export interface Vehicle {
   vin: string;
   motorNumber: string;
   horsePower: number;
-  kilometrageStart: number;
-  kilometrageEnd: number;
+  status: VehicleStatus | string;
+  companyId?: number;
+  company?: Company;
+  kilometrageStart?: number;
+  kilometrageEnd?: number;
+  productType?: string;
+  userId?: number;
+  user?: User;
+  createdAt: Date;
+  updatedAt: Date;
+  guarantees?: Guarantee[];
+  revisions?: Revision[];
+  revisionRequests?: RevisionRequest[];
 }

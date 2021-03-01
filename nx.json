@@ -81,12 +81,27 @@
         "back"
       ]
     },
+    "a-revision-requests": {
+      "tags": [
+        "back"
+      ]
+    },
+    "a-revisions": {
+      "tags": [
+        "back"
+      ]
+    },
     "a-state": {
       "tags": [
         "back"
       ]
     },
     "a-users": {
+      "tags": [
+        "back"
+      ]
+    },
+    "a-vehicles": {
       "tags": [
         "back"
       ]
@@ -141,8 +156,32 @@
         "front"
       ]
     },
+    "u-revision-requests": {
+      "tags": []
+    },
+    "u-revisions": {
+      "tags": [
+        "front"
+      ]
+    },
+    "u-tests": {
+      "tags": [
+        "front"
+      ]
+    },
     "u-users": {
       "tags": [
+        "front"
+      ]
+    },
+    "u-vehicles": {
+      "tags": [
+        "front"
+      ]
+    },
+    "aps-u-ui": {
+      "tags": [
+        "arphase",
         "front"
       ]
     }

@@ -1,7 +1,16 @@
 import { Address, Client, MoralPerson, PersonTypes, PhysicalPerson } from '@ivt/c-data';
-import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
-import { AddressEntity } from './address.entity';
+import { AddressEntity } from '../../addresses/entities/address.entity';
 import { MoralPersonEntity } from './moral-person.entity';
 import { PhysicalPersonEntity } from './physical-person.entity';
 
@@ -58,4 +67,10 @@ export class ClientEntity extends BaseEntity implements Client {
 
   @Column()
   salesPlace: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

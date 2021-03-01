@@ -1,102 +1,146 @@
-<form [formGroup]="form"
+<form nz-row
+      nz-form
+      nzLayout="vertical"
+      [formGroup]="form"
       (ngSubmit)="submit()">
-  <h1 class="text-primary font-weight-light h3 mb-3">
-    {{ company?.id ? 'Editar' : 'Nueva' }} Compañía
-  </h1>
+  <nz-space nzDirection="vertical"
+            nz-col
+            nzSpan="24"
+            nzSize="middle">
+    <nz-space-item>
+      <nz-collapse>
+        <nz-collapse-panel nzHeader="Información General"
+                           [nzActive]="true">
+          <div nz-row
+               [nzGutter]="12">
+            <div nz-col
+                 nzXs="24"
+                 nzLg="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Razón Social</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         formControlName="businessName" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="24"
+                 nzLg="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>RFC</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         ivtUppercase
+                         formControlName="rfc" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-space-item>
 
-  <mat-dialog-content>
-    <ivt-expansion-panel class="primary-panel mb-3 d-block"
-                         title="Información General"
-                         [isOpen]="true">
-      <div class="row">
-        <div class="col-lg-6 col-12">
-          <ivt-form-field label="Razón Social">
-            <input ivtInput
-                   formControlName="businessName">
-          </ivt-form-field>
-        </div>
-        <div class="col-lg-6 col-12">
-          <ivt-form-field label="RFC">
-            <input ivtInput
-                   ivtUppercase
-                   formControlName="rfc">
-          </ivt-form-field>
-        </div>
-      </div>
-    </ivt-expansion-panel>
-    <ivt-expansion-panel class="primary-panel mb-3 d-block"
-                         title="Dirección"
-                         [isOpen]="true">
-      <ivt-address-form [form]="addressForm"></ivt-address-form>
-    </ivt-expansion-panel>
+    <nz-space-item>
+      <nz-collapse>
+        <nz-collapse-panel nzHeader="Dirección"
+                           [nzActive]="true">
+          <ivt-address-form [form]="addressForm"></ivt-address-form>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-space-item>
 
-    <ivt-expansion-panel class="primary-panel mb-3 d-block"
-                         title="Contacto"
-                         [isOpen]="true">
-      <div class="row">
-        <div class="col-lg-4 col-12">
-          <ivt-form-field label="Nombre del contacto">
-            <input ivtInput
-                   formControlName="contact">
-          </ivt-form-field>
-        </div>
-        <div class="col-lg-4 col-12">
-          <ivt-form-field label="Correo">
-            <input ivtInput
-                   formControlName="email">
-          </ivt-form-field>
-        </div>
-        <div class="col-lg-4 col-12">
-          <ivt-form-field label="Telefono">
-            <input ivtInput
-                   type="tel"
-                   mask="(00) 0000 0000"
-                   formControlName="phone">
-          </ivt-form-field>
-        </div>
-      </div>
-    </ivt-expansion-panel>
+    <nz-space-item>
+      <nz-collapse>
+        <nz-collapse-panel nzHeader="Contacto"
+                           [nzActive]="true">
+          <div nz-row
+               [nzGutter]="12">
+            <div nz-col
+                 nzXs="24"
+                 nzLg="8">
+              <nz-form-item>
+                <nz-form-label nzRequired>Nombre del contacto</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         formControlName="contact" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="24"
+                 nzLg="8">
+              <nz-form-item>
+                <nz-form-label nzRequired>Corrreo</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         formControlName="email" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="24"
+                 nzLg="8">
+              <nz-form-item>
+                <nz-form-label nzRequired>Teléfono</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         type="tel"
+                         mask="(00) 0000 0000"
+                         formControlName="phone" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-space-item>
 
-    <ivt-expansion-panel class="primary-panel mb-3 d-block"
-                         title="Usuarios"
-                         [isOpen]="true">
-      <ivt-row *ngFor="let userForm of usersFormArray.controls; let index = index;"
-               class="row">
-        <div class="col-10 col-md-11">
-          <ivt-user-form [form]="userForm"></ivt-user-form>
-        </div>
-        <div class="col-2 col-md-1 flex-center">
-          <button *ngIf="!userForm.value.id"
-                  mat-icon-button
-                  matTooltip="Eliminar usuario"
-                  type="button"
-                  (click)="removeUser(index)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-      </ivt-row>
+    <nz-space-item>
+      <nz-collapse>
+        <nz-collapse-panel nzHeader="Usuarios"
+                           [nzActive]="true">
+          <div *ngFor="let userForm of usersFormArray.controls; let index = index;"
+               nz-row
+               [nzGutter]="12">
+            <div nz-col
+                 nzXs="20"
+                 nzMd="22">
+              <ivt-user-form [form]="userForm"></ivt-user-form>
+            </div>
+            <div nz-col
+                 nzXs="4"
+                 nzMd="2"
+                 class="flex-center">
+              <button *ngIf="!userForm.value.id"
+                      nz-button
+                      nzType="text"
+                      nz-tooltip
+                      nzTooltipTitle="Eliminar usuario"
+                      type="button"
+                      (click)="removeUser(index)">
+                <i nz-icon
+                   nzType="delete"
+                   nzTheme="outline"></i>
+              </button>
+            </div>
+          </div>
 
-      <div class="row">
-        <div class="col">
-          <button mat-raised-button
-                  color="primary"
-                  type="button"
-                  [disabled]="usersFormArray.invalid"
-                  (click)="addUser()">
-            Agregar nuevo usuario
-          </button>
-        </div>
-      </div>
-    </ivt-expansion-panel>
-  </mat-dialog-content>
-
-  <div mat-dialog-actions
-       class="flex-end">
-    <button mat-button
-            mat-dialog-close>Cancelar</button>
-    <button mat-raised-button
-            [loading]="loading"
-            type="submit"
-            color="primary">Guardar</button>
-  </div>
+          <div nz-row
+               [nzGutter]="12">
+            <div nz-col
+                 nzSpan="24">
+              <button nz-button
+                      nzType="primary"
+                      type="button"
+                      [disabled]="usersFormArray.invalid"
+                      (click)="addUser()">
+                Agregar nuevo usuario
+              </button>
+            </div>
+          </div>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-space-item>
+  </nz-space>
 </form>

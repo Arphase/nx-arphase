@@ -2,12 +2,305 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://bitbucket.org/arphase/innovatech/compare/v2.2.0...v2.3.0) (2021-02-23)
+
+
+### Features
+
+* **app:** lazy load identity filters ([c2ed53c](https://bitbucket.org/arphase/innovatech/commit/c2ed53cf93e799f3795ea9f789aae07560c6174f))
+* **guarantees:** add invoice number field in payment order dialog ([d154d24](https://bitbucket.org/arphase/innovatech/commit/d154d244def1ee1add79a865ef1eb020ac4e97a6))
+* **guarantees:** add user and vin details in table row ([8db029f](https://bitbucket.org/arphase/innovatech/commit/8db029f06b434ca36c9138c11fa6ab1a633b9616))
+* **guarantees:** apply searchbar to users filter ([bd03b1b](https://bitbucket.org/arphase/innovatech/commit/bd03b1bb9c8c542563945a00dcff622c9505cb85))
+* **guarantees:** validate vehicle when creating or updating guarantees ([673d773](https://bitbucket.org/arphase/innovatech/commit/673d773dab5a6229c7c6dd079a716c8c6e08d593))
+* **revision-requests:** additional notes property in model ([b2f8167](https://bitbucket.org/arphase/innovatech/commit/b2f8167d793b4997cf7a887036845351dd45af4b))
+* **revision-requests:** filter ([d89f2cb](https://bitbucket.org/arphase/innovatech/commit/d89f2cb1d85f02e3c0b3597eed8cda8260b6367f))
+* **revision-requests:** restrict creating using vehicles from other companies ([dc34080](https://bitbucket.org/arphase/innovatech/commit/dc340805c1d517595b87a06cf6610ae63df56e3b))
+* **revisions:** filters ([1f4843b](https://bitbucket.org/arphase/innovatech/commit/1f4843bd5d85c97e294d34e7b43cce87a7f6cb04))
+* **revisions:** restrict items by company ([314226d](https://bitbucket.org/arphase/innovatech/commit/314226dc219dcc132d0da0440c9d80b839249c99))
+* **state:** create filter collection services ([6a435fd](https://bitbucket.org/arphase/innovatech/commit/6a435fdc775c998cb897dbd1b5453aa8e2e0e226))
+* **vehicles:** filters ([46f666a](https://bitbucket.org/arphase/innovatech/commit/46f666aa1aead62289481f3cda51d49a9058ad06))
+
+
+### Bug Fixes
+
+* **api:** display 0 in page start if collection has no items ([cd2d4b8](https://bitbucket.org/arphase/innovatech/commit/cd2d4b881d6aca80f68e27aa22594d094368e49c))
+* **dashboard:** not render nz-col if filter options are empty ([ca2797c](https://bitbucket.org/arphase/innovatech/commit/ca2797cfbf321ddba76965604afc03869946f306))
+* **groups:** RFC inputs validations ([9ccf5ce](https://bitbucket.org/arphase/innovatech/commit/9ccf5ce0a519a816254a929acb46c9aba329bc4f))
+* **groups:** send set password email only to users with no password ([1b477ec](https://bitbucket.org/arphase/innovatech/commit/1b477ecaa0931f2f327af83d186b61060349ea27))
+* **vehicles:** hide company input for not super admin users in vehicle form ([3d148b4](https://bitbucket.org/arphase/innovatech/commit/3d148b4937bec598b4f5ab4176e9797149be9c3a))
+
+## [2.2.0](https://bitbucket.org/arphase/innovatech/compare/v2.1.0...v2.2.0) (2021-02-17)
+
+
+### Features
+
+* **app:** dark mode toggle ([e72ed97](https://bitbucket.org/arphase/innovatech/commit/e72ed971fa0745067b51b4bae5d86d580850384c))
+* **dashboard:** use vertical bar chart ([b884ffa](https://bitbucket.org/arphase/innovatech/commit/b884ffa61bf8fd328730328aa7c3c76a5c51ef78))
+* **revision-request:** list ([95a32b6](https://bitbucket.org/arphase/innovatech/commit/95a32b68aa00879ce647c085547daca21ba0da6a))
+* **revision-requests:** create ([8105655](https://bitbucket.org/arphase/innovatech/commit/8105655ad6dc681253c5e6238f663d9fd3ae0d2f))
+* **revision-requests:** see detail as super admin ([08f9647](https://bitbucket.org/arphase/innovatech/commit/08f9647d68e2b850d163f47ba81b9e6ba2da4a34))
+* **revision-requests:** ui module setup ([5f1f151](https://bitbucket.org/arphase/innovatech/commit/5f1f151b930ea52460338ba6cd4c5185f04c52ba))
+* **revision-requests:** update status ([64c014f](https://bitbucket.org/arphase/innovatech/commit/64c014f359a3acd347d329ed6dbe8f9d4e157124))
+* **revision-requests:** user permissions on list and form ([dcd3828](https://bitbucket.org/arphase/innovatech/commit/dcd3828f72822f78e99144165d0a14de5a12cd37))
+* **revisions:** add view detail option in list ([12f453d](https://bitbucket.org/arphase/innovatech/commit/12f453dc1ffb63f8dd995846fac434688d82d2e9))
+* **revisions:** create ([ab5bce8](https://bitbucket.org/arphase/innovatech/commit/ab5bce800c0e0dc60d48431e7471c7f8232d6a2a))
+* **ui:** migrate to less preprocessor option ([f0dbb73](https://bitbucket.org/arphase/innovatech/commit/f0dbb73ce10de42ab55a94ceea23aa71422828fe))
+* **vehicles:** create revision request from list ([1e0ade8](https://bitbucket.org/arphase/innovatech/commit/1e0ade8a146e520bf2e79358e2f6120949d19189))
+
+
+### Bug Fixes
+
+* **dashboard:** adjust size on sidenav toggle ([da11ce0](https://bitbucket.org/arphase/innovatech/commit/da11ce0e1ea1e6a77c5258cc7bdb407e317246fa))
+
+## [2.1.0](https://bitbucket.org/arphase/innovatech/compare/v2.0.0...v2.1.0) (2021-02-14)
+
+
+### Features
+
+* **app:** add application version ([922545e](https://bitbucket.org/arphase/innovatech/commit/922545ee995c3885e657ec8e1686ca0aad248f45))
+* **auth:** responsive design ([35f4483](https://bitbucket.org/arphase/innovatech/commit/35f4483f41d7228eae9a0cf733bd8029eaf09151))
+* **groups:** responsive design ([d493534](https://bitbucket.org/arphase/innovatech/commit/d493534687de2d577f8d5833e74700acbe9b6483))
+* **guarantees:** responsive design ([a6721de](https://bitbucket.org/arphase/innovatech/commit/a6721de2509ecd48182eb130452dd77592f0e62d))
+* **revisions:** filter by text ([637cc70](https://bitbucket.org/arphase/innovatech/commit/637cc705ab6c618753dc0507894f4205f5440c7f))
+* **revisions:** list responsive design ([6314911](https://bitbucket.org/arphase/innovatech/commit/6314911b72fdfb43516267a03e71ca8478179b4f))
+* **ui:** autoselect directive ([6986011](https://bitbucket.org/arphase/innovatech/commit/6986011f0c70b2ceb1d9d4c0e09a918516ab4999))
+* **ui:** uninstall bootstrap ([ce1bff4](https://bitbucket.org/arphase/innovatech/commit/ce1bff4f36408c89267af6d2de43f447807d2917))
+* **vehicles:** responsive design ([ed2fe63](https://bitbucket.org/arphase/innovatech/commit/ed2fe630f53238d4de4ca767b77e29d3ddb48ae2))
+
+## [2.0.0](https://bitbucket.org/arphase/innovatech/compare/v1.6.1...v2.0.0) (2021-02-12)
+
+
+### Features
+
+* **arphase:ui:** create library ([08849de](https://bitbucket.org/arphase/innovatech/commit/08849de2bee30be2fbe2bb5a6848d246f232c75e))
+* **dashboard:** use ng zoro components ([6b5c873](https://bitbucket.org/arphase/innovatech/commit/6b5c87303eb1e3250856b215ac2307cce4591e24))
+* **groups:** use ng zorro table ([de41319](https://bitbucket.org/arphase/innovatech/commit/de413199877d1cefdd24b415214610df734926e4))
+* **guarantees:** use ng zorro table ([c860856](https://bitbucket.org/arphase/innovatech/commit/c86085616f6a12dab002e978f85dd81f9cc1d5bf))
+* **revisions:** use ng zorro table ([a255e74](https://bitbucket.org/arphase/innovatech/commit/a255e74933eacc3a9adbc5648483535e60360dc3))
+* **ui:** add loading subject in list container ([211992c](https://bitbucket.org/arphase/innovatech/commit/211992c6c2a2563c1d2c9fd73cc8067bf3bddd5c))
+* **ui:** implement auto generated errors with ng zorro inputs ([86f0e2f](https://bitbucket.org/arphase/innovatech/commit/86f0e2f28a801c04cb68e89b513b94ac476555fa))
+* **ui:** use ant design buttons ([1246d7d](https://bitbucket.org/arphase/innovatech/commit/1246d7dc77bfc33cac80baa09460558243f5c628))
+* **ui:** use ng zorro cards ([e6ee54c](https://bitbucket.org/arphase/innovatech/commit/e6ee54c026ea24cf96cbf452c2bc6e5e69a15c84))
+* **ui:** use ng zorro checkboxes ([5d838e1](https://bitbucket.org/arphase/innovatech/commit/5d838e13ffce806b16a5d7b7951bdd2b70951b8b))
+* **ui:** use ng zorro dropdown ([386f58a](https://bitbucket.org/arphase/innovatech/commit/386f58a1cb936373bc9042c5bb4357c50e22780d))
+* **ui:** use ng zorro empty state ([43f5634](https://bitbucket.org/arphase/innovatech/commit/43f5634968d2b233b3f6d22f86fd7c46e39436a4))
+* **ui:** use ng zorro expansion panels ([c6f6678](https://bitbucket.org/arphase/innovatech/commit/c6f6678a64b98570148a26c0cc61852a54a3497f))
+* **ui:** use ng zorro forms module ([61aadc3](https://bitbucket.org/arphase/innovatech/commit/61aadc332c09e8df66f462239dfa7da72a6828a5))
+* **ui:** use ng zorro grid system ([c7f9b90](https://bitbucket.org/arphase/innovatech/commit/c7f9b90f1265afb6cf7251eb57dd0fa58a0b7385))
+* **ui:** use ng zorro icons ([2b7fc75](https://bitbucket.org/arphase/innovatech/commit/2b7fc759f5d60de6a184a5b43b578b6b0cadb956))
+* **ui:** use ng zorro layout ([b395a4b](https://bitbucket.org/arphase/innovatech/commit/b395a4b8b708088937d3991792a730e698741964))
+* **ui:** use ng zorro message service instead of ngx-toastr ([d5aae53](https://bitbucket.org/arphase/innovatech/commit/d5aae53d0d5e05722f5376c37c85568f8e69f92f))
+* **ui:** use ng zorro modals ([436d537](https://bitbucket.org/arphase/innovatech/commit/436d5371dd0ff77112b7bb664fa33342003f2d36))
+* **ui:** use ng zorro page title ([a01319a](https://bitbucket.org/arphase/innovatech/commit/a01319a0e0cfca3fe0d12434ae57ad04a97a9aad))
+* **ui:** use ng zorro radio buttons ([e60bdf6](https://bitbucket.org/arphase/innovatech/commit/e60bdf642624f2622124b73efab249b03297332c))
+* **ui:** use ng zorro searchbar ([5ad49ce](https://bitbucket.org/arphase/innovatech/commit/5ad49ce66390f727c96698136c2ef920bbc0c565))
+* **ui:** use ng zorro tooltips ([161379a](https://bitbucket.org/arphase/innovatech/commit/161379a9334e4259062dc1766bebd2464593d386))
+* **users:** use ng zorro table ([3c71070](https://bitbucket.org/arphase/innovatech/commit/3c710706b903ea4d134757e8af4035cdcd56de01))
+* **vehicles:** use ng zorro table ([639b9cc](https://bitbucket.org/arphase/innovatech/commit/639b9ccf44470658bb790369d29713bd3f9259cb))
+
+
+### Bug Fixes
+
+* **vehicles:** don't update vehicles with notElegible status ([f436907](https://bitbucket.org/arphase/innovatech/commit/f436907e5e963f2802dcdec61020658438dc30bc))
+
+### [1.6.1](https://bitbucket.org/arphase/innovatech/compare/v1.3.3...v1.6.1) (2021-02-06)
+
+
+### Features
+
+* **api:** add revision request model migration ([83c720e](https://bitbucket.org/arphase/innovatech/commit/83c720e64da186387e3bfb8212dba61c71703b94))
+* **groups:** make unique company and group name ([1b6a0ca](https://bitbucket.org/arphase/innovatech/commit/1b6a0cad36b7708998c2656c93e5cc4a1809466c))
+* **guarantees:** restrict creation if vehicle isn't elegible ([7387b31](https://bitbucket.org/arphase/innovatech/commit/7387b3190fcb2954be635240171d88307ff31d33))
+* **revisions:** adapt list to see in vehicle and general list ([ed0bb62](https://bitbucket.org/arphase/innovatech/commit/ed0bb628f3cdd6502e3bbe49149ef8dacbf50439))
+* **revisions:** don't allow delete on old revisions ([5d546c6](https://bitbucket.org/arphase/innovatech/commit/5d546c6da950936c0f54918f96943ebf539ea109))
+* **revisions:** don't allow edit on old revisions ([b803540](https://bitbucket.org/arphase/innovatech/commit/b80354078eeaf2318fc9f380d894f597cd8b2781))
+* **revisions:** update vehicle status to match most recent revision status on delete ([2c90b81](https://bitbucket.org/arphase/innovatech/commit/2c90b8103552dc3917ab8ea402566575663c55e1))
+* **revisions:** update vehicle status when creating/updating revisions ([68a6ce9](https://bitbucket.org/arphase/innovatech/commit/68a6ce99f9274883994ea167d0f15e4188b1e4fa))
+* **vehicles:** display request revision option only for agency users ([196512e](https://bitbucket.org/arphase/innovatech/commit/196512e2363dfbaac7bc809b4f3c611430927bca))
+* **vehicles:** set needs revision status to vehicles garantees had expired ([f6bb4c6](https://bitbucket.org/arphase/innovatech/commit/f6bb4c65f90e9e52953b5e818ec5b2fe8e74abc2))
+
+## [1.6.0](https://bitbucket.org/arphase/innovatech/compare/v1.3.2...v1.6.0) (2021-01-28)
+
+
+### Features
+
+* **app:** implement dirty form guard in vehicles, groups, and guarantees ([49fcee6](https://bitbucket.org/arphase/innovatech/commit/49fcee6095ebd517f51e64087f4811d41916e710))
+* **guarantees:** add invoice number to list and Excel ([0023a41](https://bitbucket.org/arphase/innovatech/commit/0023a41e6ef25449ac8ca64acf85d4aacc9d5c98))
+* **guarantees:** create new vehicle un update if has different vin ([90126f9](https://bitbucket.org/arphase/innovatech/commit/90126f95fd50004a9cce68a5834669d46671b54f))
+* **guarantees:** populate vehicles from VIN in form ([0ffe9f0](https://bitbucket.org/arphase/innovatech/commit/0ffe9f0d21c2ccdc77d917be9b4c10e3d1abd0c8))
+* **revision-request:** model ([899b94a](https://bitbucket.org/arphase/innovatech/commit/899b94a0cd13636e41ce090d141ae436c0406af5))
+* **revision-requests:** add companyId and userId relations ([ac62f31](https://bitbucket.org/arphase/innovatech/commit/ac62f317542c72b6c282ea541fbd967c0daf771d))
+* **revision-requests:** create endpoint ([05399a2](https://bitbucket.org/arphase/innovatech/commit/05399a2074ca21c9583f69b8569625e7be0b7ccd))
+* **revisions:** update vehicle status when creating new elegible revision ([412d5ae](https://bitbucket.org/arphase/innovatech/commit/412d5ae034bac89bf07b26830b17a5ec3554960a))
+* **state:** add loadingModify variable for modify operations (Create, Update, and Delete) ([c441e83](https://bitbucket.org/arphase/innovatech/commit/c441e835476b2f2673c907f6a7e1c00eeb64307a))
+* **ui:** add a proxy service for API calls ([a38f4c1](https://bitbucket.org/arphase/innovatech/commit/a38f4c1feedc14f6479b7c7fdf824d89055e8712))
+* **ui:** add dirty form guard ([de9fe5c](https://bitbucket.org/arphase/innovatech/commit/de9fe5cb6bc150565aeed0c5b99ec39e15c87919))
+* **ui:** use SASS module system ([6226004](https://bitbucket.org/arphase/innovatech/commit/62260043462098e6945189813ef5fc3bbd5c7943))
+* **vehicles:** add constraint of vin length to equal 17 ([8dafb66](https://bitbucket.org/arphase/innovatech/commit/8dafb66dec88ec27d9670609e5e3633280c541ab))
+* **vehicles:** add status to model ([be7cfea](https://bitbucket.org/arphase/innovatech/commit/be7cfea0301303a3fd9b304627e8cbca08b01e2c))
+* **vehicles:** filter by text in API ([d3c390a](https://bitbucket.org/arphase/innovatech/commit/d3c390af1105a0c279ffbc374a56c54375a5f4ca))
+* **vehicles:** schedule midnight job to update status depending on revisions ([fdd7fba](https://bitbucket.org/arphase/innovatech/commit/fdd7fbaa20ed2d1e41478e91c9d45a1c7edc7307))
+* **vehicles:** status color in row ([82a9edd](https://bitbucket.org/arphase/innovatech/commit/82a9edddd9a32a9bd3cccc93cc7f440ee900fa0c))
+* **vehicles:** validate in form not submitting vehicles with repeated vin ([70ccc41](https://bitbucket.org/arphase/innovatech/commit/70ccc4182315d8c4246b34b2682dd836b2364e20))
+
+
+### Bug Fixes
+
+* **guarantees:** add vehicle creation in a transaction when creating guarantee ([5c70ce6](https://bitbucket.org/arphase/innovatech/commit/5c70ce662a5141b622cbd0deaf8f186be2b2970f))
+* **ui:** display correct error message for number inputs ([b7a3fe5](https://bitbucket.org/arphase/innovatech/commit/b7a3fe5750ba12d70b5b1be6e9f643a88bec60f0))
+* **vehicles:** add min validator to HP field ([05bddbb](https://bitbucket.org/arphase/innovatech/commit/05bddbb76e656d254727f224b5566653e23522f5))
+* **vehicles:** use correct loading variable on form ([d644482](https://bitbucket.org/arphase/innovatech/commit/d644482b1cf500c0f70bf4d31cc7ab3e95852c31))
+
+## [1.5.0](https://bitbucket.org/arphase/innovatech/compare/v1.4.0...v1.5.0) (2021-01-19)
+
+
+### Features
+
+* **revisions:** create form ([eabb782](https://bitbucket.org/arphase/innovatech/commit/eabb782922a885fe9b62923bf3c0de6483c117de))
+* **revisions:** create model ([dfb6d49](https://bitbucket.org/arphase/innovatech/commit/dfb6d49348eaf7a9113ea243bdd56973ddb5728e))
+* **revisions:** delete ([1966953](https://bitbucket.org/arphase/innovatech/commit/1966953fa20f479f42f5cd86568a43d9e381aa47))
+* **revisions:** delete endpoint ([36da58b](https://bitbucket.org/arphase/innovatech/commit/36da58bfb4aa5d4337f666d31a0cfc51465abe14))
+* **revisions:** edit ([30f3f3f](https://bitbucket.org/arphase/innovatech/commit/30f3f3f2d56dfb9617ad03793ee226f46e41d2a6))
+* **revisions:** get by id endpoint ([7517182](https://bitbucket.org/arphase/innovatech/commit/7517182548ea8438065f9cab9547dacf4d2eeaa0))
+* **revisions:** list ([a1cce22](https://bitbucket.org/arphase/innovatech/commit/a1cce221376c5a1ac26426c415419881f95abb82))
+* **revisions:** list endpoint ([b6fdd51](https://bitbucket.org/arphase/innovatech/commit/b6fdd51b6c630a41bf46f81675982c0f0a1d35a1))
+* **revisions:** post endpoint ([d8da707](https://bitbucket.org/arphase/innovatech/commit/d8da70754cd017c9c3b4a649136b51c30a931aeb))
+* **revisions:** setup ui module ([abe3f26](https://bitbucket.org/arphase/innovatech/commit/abe3f269947c21f7b6a0208c91ca60d2d97ee42a))
+* **vehicles:** create guarantee from list ([e5c8571](https://bitbucket.org/arphase/innovatech/commit/e5c8571da1a9cd4bf08c145d1c77d56c331fe794))
+
+## [1.4.0](https://bitbucket.org/arphase/innovatech/compare/v1.3.1...v1.4.0) (2021-01-16)
+
+
+### Features
+
+* **api:** update class-transformer syntax ([7a3b07e](https://bitbucket.org/arphase/innovatech/commit/7a3b07ee65dae72aad50663b9395d595dc242610))
+* **app:** add PWA support ([cefe1db](https://bitbucket.org/arphase/innovatech/commit/cefe1db3c08955ab88d979bfbab26a216491ac6a))
+* **guarantees:** use new vehicle model ([005747a](https://bitbucket.org/arphase/innovatech/commit/005747a5c84368fe06d8038150421d841d717c41))
+* **vehicles:** create shareable form component ([bc95c74](https://bitbucket.org/arphase/innovatech/commit/bc95c74883a2b4d58931d85c67104e09f60f8a71))
+* **vehicles:** delete confirmation dialog ([a5c1194](https://bitbucket.org/arphase/innovatech/commit/a5c11942eccb2e21e91aa770a0883bb5a4b738fc))
+* **vehicles:** delete endpoint ([b872c51](https://bitbucket.org/arphase/innovatech/commit/b872c5112744de5b66d7082fb89e9a8cd71eccfc))
+* **vehicles:** endpoint for create item ([73e58f1](https://bitbucket.org/arphase/innovatech/commit/73e58f19db27f70c83a00c85eebe905fe40fdfb6))
+* **vehicles:** form ([6ce447d](https://bitbucket.org/arphase/innovatech/commit/6ce447d37bf1282afbb66b965e374cd7c0d0f05c))
+* **vehicles:** get item endpoint ([2f10872](https://bitbucket.org/arphase/innovatech/commit/2f10872c4325d2edcb522ae13122348a397dfd0b))
+* **vehicles:** get items endpoint ([2ed6259](https://bitbucket.org/arphase/innovatech/commit/2ed6259376eacaa76395b6038829c7936176147c))
+* **vehicles:** list ([12431f2](https://bitbucket.org/arphase/innovatech/commit/12431f24febb73ef632a3a65921ae970e93a7d6b))
+* **vehicles:** update item ([7675a43](https://bitbucket.org/arphase/innovatech/commit/7675a43d61381a589eab1832d3f9af1c9bc0e926))
+* **vehicles:** update model ([c40d615](https://bitbucket.org/arphase/innovatech/commit/c40d615c39bebdf6448763b6522bbd6eb80f41ee))
+
+## [1.6.0](https://bitbucket.org/arphase/innovatech/compare/v1.3.2...v1.6.0) (2021-01-28)
+
+
+### Features
+
+* **app:** implement dirty form guard in vehicles, groups, and guarantees ([49fcee6](https://bitbucket.org/arphase/innovatech/commit/49fcee6095ebd517f51e64087f4811d41916e710))
+* **guarantees:** add invoice number to list and Excel ([0023a41](https://bitbucket.org/arphase/innovatech/commit/0023a41e6ef25449ac8ca64acf85d4aacc9d5c98))
+* **guarantees:** create new vehicle un update if has different vin ([90126f9](https://bitbucket.org/arphase/innovatech/commit/90126f95fd50004a9cce68a5834669d46671b54f))
+* **guarantees:** populate vehicles from VIN in form ([0ffe9f0](https://bitbucket.org/arphase/innovatech/commit/0ffe9f0d21c2ccdc77d917be9b4c10e3d1abd0c8))
+* **revision-request:** model ([899b94a](https://bitbucket.org/arphase/innovatech/commit/899b94a0cd13636e41ce090d141ae436c0406af5))
+* **revision-requests:** add companyId and userId relations ([ac62f31](https://bitbucket.org/arphase/innovatech/commit/ac62f317542c72b6c282ea541fbd967c0daf771d))
+* **revision-requests:** create endpoint ([05399a2](https://bitbucket.org/arphase/innovatech/commit/05399a2074ca21c9583f69b8569625e7be0b7ccd))
+* **revisions:** update vehicle status when creating new elegible revision ([412d5ae](https://bitbucket.org/arphase/innovatech/commit/412d5ae034bac89bf07b26830b17a5ec3554960a))
+* **state:** add loadingModify variable for modify operations (Create, Update, and Delete) ([c441e83](https://bitbucket.org/arphase/innovatech/commit/c441e835476b2f2673c907f6a7e1c00eeb64307a))
+* **ui:** add a proxy service for API calls ([a38f4c1](https://bitbucket.org/arphase/innovatech/commit/a38f4c1feedc14f6479b7c7fdf824d89055e8712))
+* **ui:** add dirty form guard ([de9fe5c](https://bitbucket.org/arphase/innovatech/commit/de9fe5cb6bc150565aeed0c5b99ec39e15c87919))
+* **ui:** use SASS module system ([6226004](https://bitbucket.org/arphase/innovatech/commit/62260043462098e6945189813ef5fc3bbd5c7943))
+* **vehicles:** add constraint of vin length to equal 17 ([8dafb66](https://bitbucket.org/arphase/innovatech/commit/8dafb66dec88ec27d9670609e5e3633280c541ab))
+* **vehicles:** add status to model ([be7cfea](https://bitbucket.org/arphase/innovatech/commit/be7cfea0301303a3fd9b304627e8cbca08b01e2c))
+* **vehicles:** filter by text in API ([d3c390a](https://bitbucket.org/arphase/innovatech/commit/d3c390af1105a0c279ffbc374a56c54375a5f4ca))
+* **vehicles:** schedule midnight job to update status depending on revisions ([fdd7fba](https://bitbucket.org/arphase/innovatech/commit/fdd7fbaa20ed2d1e41478e91c9d45a1c7edc7307))
+* **vehicles:** status color in row ([82a9edd](https://bitbucket.org/arphase/innovatech/commit/82a9edddd9a32a9bd3cccc93cc7f440ee900fa0c))
+* **vehicles:** validate in form not submitting vehicles with repeated vin ([70ccc41](https://bitbucket.org/arphase/innovatech/commit/70ccc4182315d8c4246b34b2682dd836b2364e20))
+
+
+## [1.5.0](https://bitbucket.org/arphase/innovatech/compare/v1.4.0...v1.5.0) (2021-01-19)
+
+
+### Features
+
+* **revisions:** create form ([eabb782](https://bitbucket.org/arphase/innovatech/commit/eabb782922a885fe9b62923bf3c0de6483c117de))
+* **revisions:** create model ([dfb6d49](https://bitbucket.org/arphase/innovatech/commit/dfb6d49348eaf7a9113ea243bdd56973ddb5728e))
+* **revisions:** delete ([1966953](https://bitbucket.org/arphase/innovatech/commit/1966953fa20f479f42f5cd86568a43d9e381aa47))
+* **revisions:** delete endpoint ([36da58b](https://bitbucket.org/arphase/innovatech/commit/36da58bfb4aa5d4337f666d31a0cfc51465abe14))
+* **revisions:** edit ([30f3f3f](https://bitbucket.org/arphase/innovatech/commit/30f3f3f2d56dfb9617ad03793ee226f46e41d2a6))
+* **revisions:** get by id endpoint ([7517182](https://bitbucket.org/arphase/innovatech/commit/7517182548ea8438065f9cab9547dacf4d2eeaa0))
+* **revisions:** list ([a1cce22](https://bitbucket.org/arphase/innovatech/commit/a1cce221376c5a1ac26426c415419881f95abb82))
+* **revisions:** list endpoint ([b6fdd51](https://bitbucket.org/arphase/innovatech/commit/b6fdd51b6c630a41bf46f81675982c0f0a1d35a1))
+* **revisions:** post endpoint ([d8da707](https://bitbucket.org/arphase/innovatech/commit/d8da70754cd017c9c3b4a649136b51c30a931aeb))
+* **revisions:** setup ui module ([abe3f26](https://bitbucket.org/arphase/innovatech/commit/abe3f269947c21f7b6a0208c91ca60d2d97ee42a))
+* **vehicles:** create guarantee from list ([e5c8571](https://bitbucket.org/arphase/innovatech/commit/e5c8571da1a9cd4bf08c145d1c77d56c331fe794))
+
+## [1.4.0](https://bitbucket.org/arphase/innovatech/compare/v1.3.1...v1.4.0) (2021-01-16)
+
+
+### Features
+
+* **api:** update class-transformer syntax ([7a3b07e](https://bitbucket.org/arphase/innovatech/commit/7a3b07ee65dae72aad50663b9395d595dc242610))
+* **app:** add PWA support ([cefe1db](https://bitbucket.org/arphase/innovatech/commit/cefe1db3c08955ab88d979bfbab26a216491ac6a))
+* **guarantees:** use new vehicle model ([005747a](https://bitbucket.org/arphase/innovatech/commit/005747a5c84368fe06d8038150421d841d717c41))
+* **vehicles:** create shareable form component ([bc95c74](https://bitbucket.org/arphase/innovatech/commit/bc95c74883a2b4d58931d85c67104e09f60f8a71))
+* **vehicles:** delete confirmation dialog ([a5c1194](https://bitbucket.org/arphase/innovatech/commit/a5c11942eccb2e21e91aa770a0883bb5a4b738fc))
+* **vehicles:** delete endpoint ([b872c51](https://bitbucket.org/arphase/innovatech/commit/b872c5112744de5b66d7082fb89e9a8cd71eccfc))
+* **vehicles:** endpoint for create item ([73e58f1](https://bitbucket.org/arphase/innovatech/commit/73e58f19db27f70c83a00c85eebe905fe40fdfb6))
+* **vehicles:** form ([6ce447d](https://bitbucket.org/arphase/innovatech/commit/6ce447d37bf1282afbb66b965e374cd7c0d0f05c))
+* **vehicles:** get item endpoint ([2f10872](https://bitbucket.org/arphase/innovatech/commit/2f10872c4325d2edcb522ae13122348a397dfd0b))
+* **vehicles:** get items endpoint ([2ed6259](https://bitbucket.org/arphase/innovatech/commit/2ed6259376eacaa76395b6038829c7936176147c))
+* **vehicles:** list ([12431f2](https://bitbucket.org/arphase/innovatech/commit/12431f24febb73ef632a3a65921ae970e93a7d6b))
+* **vehicles:** update item ([7675a43](https://bitbucket.org/arphase/innovatech/commit/7675a43d61381a589eab1832d3f9af1c9bc0e926))
+* **vehicles:** update model ([c40d615](https://bitbucket.org/arphase/innovatech/commit/c40d615c39bebdf6448763b6522bbd6eb80f41ee))
+
+## [1.5.0](https://bitbucket.org/arphase/innovatech/compare/v1.4.0...v1.5.0) (2021-01-19)
+
+
+### Features
+
+* **revisions:** create form ([eabb782](https://bitbucket.org/arphase/innovatech/commit/eabb782922a885fe9b62923bf3c0de6483c117de))
+* **revisions:** create model ([dfb6d49](https://bitbucket.org/arphase/innovatech/commit/dfb6d49348eaf7a9113ea243bdd56973ddb5728e))
+* **revisions:** delete ([1966953](https://bitbucket.org/arphase/innovatech/commit/1966953fa20f479f42f5cd86568a43d9e381aa47))
+* **revisions:** delete endpoint ([36da58b](https://bitbucket.org/arphase/innovatech/commit/36da58bfb4aa5d4337f666d31a0cfc51465abe14))
+* **revisions:** edit ([30f3f3f](https://bitbucket.org/arphase/innovatech/commit/30f3f3f2d56dfb9617ad03793ee226f46e41d2a6))
+* **revisions:** get by id endpoint ([7517182](https://bitbucket.org/arphase/innovatech/commit/7517182548ea8438065f9cab9547dacf4d2eeaa0))
+* **revisions:** list ([a1cce22](https://bitbucket.org/arphase/innovatech/commit/a1cce221376c5a1ac26426c415419881f95abb82))
+* **revisions:** list endpoint ([b6fdd51](https://bitbucket.org/arphase/innovatech/commit/b6fdd51b6c630a41bf46f81675982c0f0a1d35a1))
+* **revisions:** post endpoint ([d8da707](https://bitbucket.org/arphase/innovatech/commit/d8da70754cd017c9c3b4a649136b51c30a931aeb))
+* **revisions:** setup ui module ([abe3f26](https://bitbucket.org/arphase/innovatech/commit/abe3f269947c21f7b6a0208c91ca60d2d97ee42a))
+* **vehicles:** create guarantee from list ([e5c8571](https://bitbucket.org/arphase/innovatech/commit/e5c8571da1a9cd4bf08c145d1c77d56c331fe794))
+
+
+### Bug Fixes
+
+* **core:** lazy load lists ([eeef985](https://bitbucket.org/arphase/innovatech/commit/eeef9855c6c9b70dd6661832ddcb1c2c468cc0b0))
+* **dashboard:** calculate status amounts correctly ([02f28bc](https://bitbucket.org/arphase/innovatech/commit/02f28bcea35504c104f092d9b674c321311c33c9))
+* **ui:** email and phone input validation ([1bbfe1d](https://bitbucket.org/arphase/innovatech/commit/1bbfe1da11502ac399245f327cd58ddf177e1c5c))
+
+## [1.4.0](https://bitbucket.org/arphase/innovatech/compare/v1.3.1...v1.4.0) (2021-01-16)
+
+
+### Features
+
+* **api:** update class-transformer syntax ([7a3b07e](https://bitbucket.org/arphase/innovatech/commit/7a3b07ee65dae72aad50663b9395d595dc242610))
+* **app:** add PWA support ([cefe1db](https://bitbucket.org/arphase/innovatech/commit/cefe1db3c08955ab88d979bfbab26a216491ac6a))
+* **guarantees:** use new vehicle model ([005747a](https://bitbucket.org/arphase/innovatech/commit/005747a5c84368fe06d8038150421d841d717c41))
+* **vehicles:** create shareable form component ([bc95c74](https://bitbucket.org/arphase/innovatech/commit/bc95c74883a2b4d58931d85c67104e09f60f8a71))
+* **vehicles:** delete confirmation dialog ([a5c1194](https://bitbucket.org/arphase/innovatech/commit/a5c11942eccb2e21e91aa770a0883bb5a4b738fc))
+* **vehicles:** delete endpoint ([b872c51](https://bitbucket.org/arphase/innovatech/commit/b872c5112744de5b66d7082fb89e9a8cd71eccfc))
+* **vehicles:** endpoint for create item ([73e58f1](https://bitbucket.org/arphase/innovatech/commit/73e58f19db27f70c83a00c85eebe905fe40fdfb6))
+* **vehicles:** form ([6ce447d](https://bitbucket.org/arphase/innovatech/commit/6ce447d37bf1282afbb66b965e374cd7c0d0f05c))
+* **vehicles:** get item endpoint ([2f10872](https://bitbucket.org/arphase/innovatech/commit/2f10872c4325d2edcb522ae13122348a397dfd0b))
+* **vehicles:** get items endpoint ([2ed6259](https://bitbucket.org/arphase/innovatech/commit/2ed6259376eacaa76395b6038829c7936176147c))
+* **vehicles:** list ([12431f2](https://bitbucket.org/arphase/innovatech/commit/12431f24febb73ef632a3a65921ae970e93a7d6b))
+* **vehicles:** update item ([7675a43](https://bitbucket.org/arphase/innovatech/commit/7675a43d61381a589eab1832d3f9af1c9bc0e926))
+* **vehicles:** update model ([c40d615](https://bitbucket.org/arphase/innovatech/commit/c40d615c39bebdf6448763b6522bbd6eb80f41ee))
+* **groups:** handle transactions correcly on create/update ([6d84946](https://bitbucket.org/arphase/innovatech/commit/6d849466bd3e9430c9d4b114a27aff39dac961ca))
+
 ### [1.3.3](https://bitbucket.org/arphase/innovatech/compare/v1.3.2...v1.3.3) (2021-02-05)
 
 
 ### Bug Fixes
 
-* **groups:** handle transactions correcly on create/update ([6d84946](https://bitbucket.org/arphase/innovatech/commit/6d849466bd3e9430c9d4b114a27aff39dac961ca))
+* **guarantees:** add vehicle creation in a transaction when creating guarantee ([5c70ce6](https://bitbucket.org/arphase/innovatech/commit/5c70ce662a5141b622cbd0deaf8f186be2b2970f))
+* **ui:** display correct error message for number inputs ([b7a3fe5](https://bitbucket.org/arphase/innovatech/commit/b7a3fe5750ba12d70b5b1be6e9f643a88bec60f0))
+* **vehicles:** add min validator to HP field ([05bddbb](https://bitbucket.org/arphase/innovatech/commit/05bddbb76e656d254727f224b5566653e23522f5))
+* **vehicles:** use correct loading variable on form ([d644482](https://bitbucket.org/arphase/innovatech/commit/d644482b1cf500c0f70bf4d31cc7ab3e95852c31))
 
 ### [1.3.2](https://bitbucket.org/arphase/innovatech/compare/v1.3.1...v1.3.2) (2021-01-22)
 
