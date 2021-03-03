@@ -1,6 +1,5 @@
 import { CommonFilterDto, filterCommonQuery, UserRepository } from '@ivt/a-state';
-import { createCollectionResponse, IvtCollectionResponse, User } from '@ivt/c-data';
-import { sortDirection } from '@ivt/c-utils';
+import { createCollectionResponse, IvtCollectionResponse, sortDirection, User } from '@ivt/c-data';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -16,7 +15,7 @@ export class UsersService {
       .leftJoinAndSelect('user.company', 'company')
       .groupBy('user.id')
       .addGroupBy('company.id')
-      .orderBy('user.createdAt', sortDirection.desc);
+      .orderBy('user.createdAt', sortDirection.descend);
 
     if (text) {
       query.andWhere(
