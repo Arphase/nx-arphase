@@ -5,8 +5,14 @@ import {
   RevisionRequestRepository,
   UpdateRevisionRequestDto,
 } from '@ivt/a-state';
-import { createCollectionResponse, IvtCollectionResponse, RevisionRequest, User, UserRoles } from '@ivt/c-data';
-import { sortDirection } from '@ivt/c-utils';
+import {
+  createCollectionResponse,
+  IvtCollectionResponse,
+  RevisionRequest,
+  sortDirection,
+  User,
+  UserRoles,
+} from '@ivt/c-data';
 import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -26,7 +32,7 @@ export class RevisionRequestService {
       .leftJoinAndSelect('revisionRequest.vehicle', 'vehicle')
       .leftJoinAndSelect('revisionRequest.company', 'company')
       .leftJoinAndSelect('revisionRequest.user', 'user')
-      .orderBy('revisionRequest.createdAt', sortDirection.desc);
+      .orderBy('revisionRequest.createdAt', sortDirection.descend);
 
     if (status) {
       query.andWhere('(revisionRequest.status = :status)', { status });

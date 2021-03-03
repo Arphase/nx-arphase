@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.1](https://bitbucket.org/arphase/innovatech/compare/v2.3.0...v2.3.1) (2021-03-03)
+
+
+### Features
+
+* **companies:** lazy load and search on select inputs ([5e8a766](https://bitbucket.org/arphase/innovatech/commit/5e8a766b1f5550845196472772b4a0d9753927c9))
+* **guarantees:** add createdAt column in list ([52932cd](https://bitbucket.org/arphase/innovatech/commit/52932cd9a07b13939f5d9380ecf33483ba35502a))
+
+
+### Bug Fixes
+
+* **api:** use sort direction enum to sort correctly ([5803f47](https://bitbucket.org/arphase/innovatech/commit/5803f478caf973d7df4f813e2dfc28ed659b5cd6))
+
 ## [2.3.0](https://bitbucket.org/arphase/innovatech/compare/v2.2.0...v2.3.0) (2021-02-23)
 
 

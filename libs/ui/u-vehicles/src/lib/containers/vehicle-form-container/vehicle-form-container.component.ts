@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserRoles, Vehicle } from '@ivt/c-data';
+import { Company, UserRoles, Vehicle } from '@ivt/c-data';
 import { filterExisting } from '@ivt/c-utils';
 import {
   CompanyCollectionService,
@@ -8,10 +8,12 @@ import {
   getAuthUserCompanyIdState,
   getAuthUserRoleState,
   getVehiclesVehicleState,
+  IvtEntityCollection,
   IvtState,
   VehicleCollectionService,
 } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
+import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { map, take } from 'rxjs/operators';
@@ -35,6 +37,10 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
     map(role => role === UserRoles[UserRoles.superAdmin])
   );
   companyOptions$ = this.companyCollectionService.options$;
+  companiesInfo$ = this.companyCollectionService.store.pipe(
+    select(this.companyCollectionService.selectors.selectCollection),
+    map((collection: IvtEntityCollection<Company>) => collection.info)
+  );
   invalidVin$ = this.store.pipe(
     select(getVehiclesVehicleState),
     map(vehicle => !!vehicle)
@@ -58,6 +64,10 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
 
   verifyVin(vin: string): void {
     this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin }));
+  }
+
+  getCompanies(queryParams: QueryParams): void {
+    this.companyCollectionService.getWithQuery(queryParams);
   }
 
   ngOnDestroy() {

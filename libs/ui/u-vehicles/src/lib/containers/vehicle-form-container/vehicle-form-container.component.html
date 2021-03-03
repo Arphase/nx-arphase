@@ -4,5 +4,7 @@
                           [loading]="loading$ | async"
                           [invalidVin]="invalidVin$ | async"
                           [showCompanyInput]="showCompanyInput$ | async"
+                          [companiesInfo]="companiesInfo$ | async"
                           (verifyVin)="verifyVin($event)"
+                          (getCompanies)="getCompanies($event)"
                           (submitForm)="submit($event)"></ivt-vehicle-form-wrapper>
