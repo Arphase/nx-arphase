@@ -193,11 +193,14 @@
             nzLg="3">{{ item.invoiceNumber | empty }} </td>
         <td nz-col
             nzXs="0"
-            nzLg="4">{{ item.amount | currency | empty }}</td>
+            nzLg="3">{{ item.amount | currency | empty }}</td>
+        <td nz-col
+            nzXs="0"
+            nzLg="2">{{ item.createdAt | date: 'dd/MM/yy' | empty }}</td>
         <td nz-col
             nzXs="6"
             nzMd="2"
-            nzLg="3">
+            nzLg="2">
           <nz-tag nz-tooltip
                   nzTooltipPlacement="top"
                   [nzTooltipTitle]="statusLabels[item.status]"
