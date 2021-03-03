@@ -9,8 +9,9 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { Select, Vehicle, VEHICLE_VIN_LENGTH } from '@ivt/c-data';
+import { IvtCollectionResponseInfo, Select, Vehicle, VEHICLE_VIN_LENGTH } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
+import { QueryParams } from '@ngrx/data';
 import { omit } from 'lodash-es';
 import { filter, takeUntil } from 'rxjs/operators';
 
@@ -55,7 +56,9 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
   @Input() showCompanyInput: boolean;
   @Input() companyOptions: Select[] = [];
   @Input() vehicle: Vehicle;
+  @Input() companiesInfo: IvtCollectionResponseInfo;
   @Output() verifyVin = new EventEmitter<string>();
+  @Output() getCompanies = new EventEmitter<QueryParams>();
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.companyId) {
@@ -98,5 +101,13 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
     if (changes.isEditable) {
       this.isEditable ? this.form.enable({ emitEvent: false }) : this.form.disable({ emitEvent: false });
     }
+  }
+
+  getMoreCompanies(): void {
+    this.getCompanies.emit({ pageIndex: String(this.companiesInfo.pageIndex + 1), resetList: String(false) });
+  }
+
+  searchCompanies(text: string): void {
+    this.getCompanies.emit({ text, resetList: String(true) });
   }
 }

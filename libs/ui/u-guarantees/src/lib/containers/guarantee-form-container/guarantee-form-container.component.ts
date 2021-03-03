@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Guarantee, UserRoles } from '@ivt/c-data';
+import { Company, Guarantee, UserRoles } from '@ivt/c-data';
 import { filterExisting, filterNil } from '@ivt/c-utils';
 import {
   CompanyCollectionService,
@@ -10,6 +10,7 @@ import {
   getVehiclesErrorState,
   getVehiclesVehicleState,
   GuaranteeCollectionService,
+  IvtEntityCollection,
   IvtState,
   PermissionService,
   ProductCollectionService,
@@ -17,6 +18,7 @@ import {
   VehicleCollectionService,
 } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
+import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -44,6 +46,10 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     map(role => role === UserRoles[UserRoles.superAdmin])
   );
   companyOptions$ = this.companyCollectionService.options$;
+  companiesInfo$ = this.companyCollectionService.store.pipe(
+    select(this.companyCollectionService.selectors.selectCollection),
+    map((collection: IvtEntityCollection<Company>) => collection.info)
+  );
   currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
   error$ = this.store.pipe(select(getVehiclesErrorState));
 
@@ -76,6 +82,10 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
 
   submit(item: Guarantee): void {
     super.submit(omit({ ...item, vehicleId: item.vehicle.id }, 'vehicle'));
+  }
+
+  getCompanies(queryParams: QueryParams): void {
+    this.companyCollectionService.getWithQuery(queryParams);
   }
 
   ngOnDestroy() {

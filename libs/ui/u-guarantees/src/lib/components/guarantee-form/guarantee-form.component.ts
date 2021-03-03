@@ -10,10 +10,11 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { Guarantee, isVehicleElegible, PersonTypes, Select, Vehicle } from '@ivt/c-data';
+import { Guarantee, isVehicleElegible, IvtCollectionResponseInfo, PersonTypes, Select, Vehicle } from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 import { createVehicleForm } from '@ivt/u-vehicles';
+import { QueryParams } from '@ngrx/data';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -66,6 +67,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
   @Input() error: string;
+  @Input() companiesInfo: IvtCollectionResponseInfo;
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -75,6 +77,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
   ];
   companyId$: Observable<number>;
   @Output() verifyVin = new EventEmitter<string>();
+  @Output() getCompanies = new EventEmitter<QueryParams>();
 
   get client() {
     return this.form.get('client');
@@ -143,5 +146,13 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       this.moralInfoForm.enable();
       this.physicalInfoForm.disable();
     }
+  }
+
+  getMoreCompanies(): void {
+    this.getCompanies.emit({ pageIndex: String(this.companiesInfo.pageIndex + 1), resetList: String(false) });
+  }
+
+  searchCompanies(text: string): void {
+    this.getCompanies.emit({ text, resetList: String(true) });
   }
 }

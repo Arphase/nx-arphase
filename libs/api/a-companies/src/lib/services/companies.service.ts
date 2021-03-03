@@ -8,8 +8,12 @@ export class CompaniesService {
   constructor(@InjectRepository(CompanyRepository) private companyRepository: CompanyRepository) {}
 
   async getCompanies(filterDto: CommonFilterDto, user: Partial<User>): Promise<IvtCollectionResponse<Company>> {
-    const { pageSize, pageIndex } = filterDto;
+    const { pageSize, pageIndex, text } = filterDto;
     const query = this.companyRepository.createQueryBuilder('company');
+
+    if (text) {
+      query.andWhere(`LOWER(company.businessName) like :text`, { text: `%${text.toLowerCase()}%` });
+    }
 
     filterCommonQuery('company', query, filterDto, user);
 
