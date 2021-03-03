@@ -2,13 +2,13 @@ import { CreateVehicleDto, filterCommonQuery, GetVehiclesDto, UpdateVehicleDto, 
 import {
   createCollectionResponse,
   IvtCollectionResponse,
+  sortDirection,
   transformFolio,
   User,
   UserRoles,
   Vehicle,
   VehicleStatus,
 } from '@ivt/c-data';
-import { sortDirection } from '@ivt/c-utils';
 import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -23,7 +23,7 @@ export class VehiclesService {
       .createQueryBuilder('vehicle')
       .leftJoinAndSelect('vehicle.company', 'company')
       .leftJoinAndSelect('vehicle.user', 'user')
-      .orderBy('vehicle.createdAt', sortDirection.desc);
+      .orderBy('vehicle.createdAt', sortDirection.descend);
 
     if (text) {
       query.andWhere(

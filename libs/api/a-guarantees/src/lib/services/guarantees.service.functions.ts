@@ -1,8 +1,7 @@
 import 'dayjs/locale/es';
 
 import { filterCommonQuery, GetGuaranteesFilterDto, GuaranteeEntity, IMAGE_ASSETS_PATH } from '@ivt/a-state';
-import { Guarantee, transformFolio, User } from '@ivt/c-data';
-import { sortDirection } from '@ivt/c-utils';
+import { Guarantee, sortDirection, transformFolio, User } from '@ivt/c-data';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import { SelectQueryBuilder } from 'typeorm';
@@ -257,7 +256,7 @@ export function applyGuaranteeFilter(
     .addGroupBy('product.id')
     .addGroupBy('company.id')
     .addGroupBy('user.id')
-    .orderBy('guarantee.createdAt', sortDirection.desc);
+    .orderBy('guarantee.createdAt', sortDirection.descend);
 
   if (text) {
     if (text.length < 5) {

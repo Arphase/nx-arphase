@@ -1,5 +1,4 @@
-import { User, UserRoles } from '@ivt/c-data';
-import { sortDirection } from '@ivt/c-utils';
+import { sortDirection, User, UserRoles } from '@ivt/c-data';
 import { BaseEntity, SelectQueryBuilder } from 'typeorm';
 
 import { CommonFilterDto } from '../dto';

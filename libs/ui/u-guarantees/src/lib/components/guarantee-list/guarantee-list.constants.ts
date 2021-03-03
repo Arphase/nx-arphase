@@ -38,7 +38,14 @@ export const columns: ApsColumns = [
     label: 'Importe',
     prop: 'guarantee.amount',
     colSizes: {
-      lg: 4,
+      lg: 3,
+    },
+  },
+  {
+    label: 'Captura',
+    prop: 'guarantee.createdAt',
+    colSizes: {
+      lg: 2,
     },
   },
   {
@@ -47,7 +54,7 @@ export const columns: ApsColumns = [
     colSizes: {
       xs: 12,
       md: 4,
-      lg: 5,
+      lg: 4,
     },
   },
 ];
