@@ -1,14 +1,17 @@
 import { Directive, Inject, TemplateRef, ViewContainerRef } from '@angular/core';
 import { UserRoles } from '@ivt/c-data';
+import { map } from 'rxjs/operators';
 
 import { PermissionService, REQUIRED_ROLES } from '../services/permission.service';
 import { BasePermissionDirective } from './base-permission.directive';
 
 @Directive({
-  selector: '[ivtReadPermission]',
+  selector: '[ivtNoCreatePermission]',
 })
-export class ReadPermissionDirective extends BasePermissionDirective {
-  hasPermission$ = this.permissionService.hasReadPermission(this.requiredRoles);
+export class NoCreatePermissionDirective extends BasePermissionDirective {
+  hasPermission$ = this.permissionService
+    .hasCreatePermission(this.requiredRoles)
+    .pipe(map(hasPermission => !hasPermission));
 
   constructor(
     protected templateRef: TemplateRef<null>,

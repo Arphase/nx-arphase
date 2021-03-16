@@ -13,7 +13,6 @@ import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './rev
   providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
 export class RevisionRequestListComponent extends IvtListComponent<RevisionRequest> {
-  @Input() isSuperAdmin: boolean;
   statusLabels = statusLabels;
   iconMaps = iconMaps;
   colorMaps = colorMaps;

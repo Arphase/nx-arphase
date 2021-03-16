@@ -20,10 +20,10 @@ export class PermissionService {
 
   constructor(private store: Store<IvtState>) {}
 
-  hasReadPermission(): Observable<boolean> {
+  hasReadPermission(roles: UserRoles[]): Observable<boolean> {
     return this.userRole$.pipe(
       filterNil(),
-      map(role => role === UserRoles[UserRoles.superAdmin] || role === UserRoles[UserRoles.admin])
+      map(role => roles.includes(UserRoles[role]))
     );
   }
 
@@ -35,6 +35,13 @@ export class PermissionService {
   }
 
   hasUpdatePermission(roles: UserRoles[]): Observable<boolean> {
+    return this.userRole$.pipe(
+      filterNil(),
+      map(role => roles.includes(UserRoles[role]))
+    );
+  }
+
+  hasDeletePermission(roles: UserRoles[]): Observable<boolean> {
     return this.userRole$.pipe(
       filterNil(),
       map(role => roles.includes(UserRoles[role]))

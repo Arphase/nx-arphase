@@ -5,7 +5,7 @@
        nzMd="12">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
-  <ng-container *ngIf="isSuperAdmin">
+  <ng-container *ivtCreatePermission>
     <div nz-col
          nzXs="0"
          nzMd="24"
@@ -180,22 +180,22 @@
               [routerLink]="[item.id]">
             Ver detalle
           </li>
-          <ng-container *ngIf="isSuperAdmin">
-            <li nz-menu-item
-                nz-tooltip
-                [nzTooltipTitle]="!isEditable(item) ? 'La revisión no se puede editar porque ya pasaron más de tres meses' : ''"
-                [routerLink]="isEditable(item) ? [item.id] : null"
-                [nzDisabled]="!isEditable(item)">
-              Editar revisión
-            </li>
-            <li nz-menu-item
-                nz-tooltip
-                [nzTooltipTitle]="!isEditable(item) ? 'La revisión no se puede eliminar porque ya pasaron más de tres meses' : ''"
-                [nzDisabled]="!isEditable(item)"
-                (click)="isEditable(item) && delete.emit(item)">
-              Eliminar revisión
-            </li>
-          </ng-container>
+          <li *ivtUpdatePermission
+              nz-menu-item
+              nz-tooltip
+              [nzTooltipTitle]="!isEditable(item) ? 'La revisión no se puede editar porque ya pasaron más de tres meses' : ''"
+              [routerLink]="isEditable(item) ? [item.id] : null"
+              [nzDisabled]="!isEditable(item)">
+            Editar revisión
+          </li>
+          <li *ivtDeletePermission
+              nz-menu-item
+              nz-tooltip
+              [nzTooltipTitle]="!isEditable(item) ? 'La revisión no se puede eliminar porque ya pasaron más de tres meses' : ''"
+              [nzDisabled]="!isEditable(item)"
+              (click)="isEditable(item) && delete.emit(item)">
+            Eliminar revisión
+          </li>
         </ul>
       </nz-dropdown-menu>
     </tr>

@@ -148,8 +148,7 @@
           nzLg="4">{{ item?.createdAt | date: 'dd/MM/yy' }}</td>
       <td nz-col
           nzXs="5"
-          nzMd="2"
-          nzLg="3">
+          nzMd="2">
         <nz-tag nz-tooltip
                 nzTooltipPlacement="top"
                 [nzTooltipTitle]="statusLabels[item.status]"
@@ -160,8 +159,7 @@
       </td>
       <td nz-col
           nzXs="3"
-          nzMd="2"
-          nzLg="1">
+          nzMd="2">
         <button nz-button
                 nz-dropdown
                 [nzDropdownMenu]="menu"
@@ -193,9 +191,15 @@
           </li>
           <li nz-menu-item
               [routerLink]="[item.id]">
-            Editar vehículo
+            <ng-container *ivtUpdatePermission>
+              Editar vehículo
+            </ng-container>
+            <ng-container *ivtNoUpdatePermission>
+              Ver vehículo
+            </ng-container>
           </li>
-          <li nz-menu-item
+          <li *ivtDeletePermission
+              nz-menu-item
               class="text-danger"
               (click)="delete.emit(item)">
             Eliminar vehículo

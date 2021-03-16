@@ -1,6 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
-import { MenuItem, Select } from '@ivt/c-data';
+import { MenuItem, Select, UserRoles } from '@ivt/c-data';
 import {
   fromAuth,
   getAuthUserEmailState,
@@ -56,7 +56,7 @@ export class SpaComponent extends IvtSubscriberComponent {
   }
 
   getMenuItems(): Observable<MenuItem[]> {
-    return this.permissionService.hasReadPermission().pipe(
+    return this.permissionService.hasReadPermission([UserRoles.superAdmin]).pipe(
       map(hasPermission => [
         {
           icon: 'pie-chart',

@@ -33,7 +33,8 @@
                       (getCompanies)="getCompanies.emit($event)"
                       (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
 
-    <nz-space-item nz-row>
+    <nz-space-item *ngIf="isEditable"
+                   nz-row>
       <div nz-col
            nzSpan="24"
            class="flex-end">
