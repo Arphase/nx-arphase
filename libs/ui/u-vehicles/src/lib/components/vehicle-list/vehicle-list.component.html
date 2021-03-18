@@ -130,15 +130,15 @@
           nzLg="4">{{ item?.vin | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="4">{{ item?.brand | empty }}</td>
+          nzMd="5"
+          nzLg="4">{{ item?.company?.businessName | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzLg="3">{{ item?.brand | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="5"
           nzLg="3">{{ item?.model | empty }}</td>
-      <td nz-col
-          nzXs="0"
-          nzMd="5"
-          nzLg="3">{{ item?.version | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="2"

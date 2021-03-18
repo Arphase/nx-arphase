@@ -12,23 +12,24 @@ export const columns: ApsColumns = [
     },
   },
   {
+    label: 'Compañía',
+    prop: 'company.businessName',
+    colSizes: {
+      xs: 0,
+      md: 5,
+      lg: 4,
+    },
+  },
+  {
     label: 'Marca',
     prop: 'vehicle.brand',
     colSizes: {
-      lg: 4,
+      lg: 3,
     },
   },
   {
     label: 'Modelo',
     prop: 'vehicle.model',
-    colSizes: {
-      md: 5,
-      lg: 3,
-    },
-  },
-  {
-    label: 'Versión',
-    prop: 'vehicle.version',
     colSizes: {
       md: 5,
       lg: 3,
