@@ -37,16 +37,16 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
   @Column()
   model: string;
 
-  @Column()
+  @Column({ nullable: true })
   version: string;
 
-  @Column()
+  @Column({ nullable: true })
   year: number;
 
   @Column({ length: VEHICLE_VIN_LENGTH, unique: true, nullable: true })
   vin: string;
 
-  @Column()
+  @Column({ nullable: true })
   motorNumber: string;
 
   @Column()
