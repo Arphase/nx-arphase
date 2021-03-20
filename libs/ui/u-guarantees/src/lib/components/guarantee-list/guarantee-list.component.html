@@ -146,6 +146,7 @@
           [nzTotal]="info?.total"
           [nzPageIndex]="info?.pageIndex"
           [nzLoading]="loading"
+          [nzShowSizeChanger]="true"
           (nzQueryParams)="filterItems.emit($event)">
   <thead>
     <tr nz-row>
