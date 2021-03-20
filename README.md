@@ -147,7 +147,7 @@ These is the info you need to set up:
 
 2) Create an alias in your terminal to set the following environment variables:
 ```
-alias ivt="SMTP=email-smtp.us-east-1.amazonaws.com MAIL_PORT=587 MAIL_ACCOUNT=<Ask the tech lead for this variable> MAIL_PASS=<Ask the tech lead for this variable> MAIL_ACCOUNT_SENDER=fernando.jimenez@innovatechcorp.com MAIL_HOST_URL=http://localhost:4200/auth/set-password JWT_SECRET=test JWT_EXPIRATION=360000 HOST=localhost DATABASE=innovatech_dev USERNAME=innovatech PASSWORD=innovatech"
+alias ivt="SMTP=email-smtp.us-east-1.amazonaws.com MAIL_PORT=587 MAIL_ACCOUNT=<Ask the tech lead for this variable> MAIL_PASS=<Ask the tech lead for this variable> MAIL_ACCOUNT_SENDER=no-reply@innovatechcorp.com MAIL_HOST_URL=http://localhost:4200/auth/set-password JWT_SECRET=test JWT_EXPIRATION=360000 HOST=localhost DATABASE=innovatech_dev USERNAME=innovatech PASSWORD=innovatech"
 ```
 
 3) You can now start the api with the development server command, this will synchronize your database with the entities of the backend project.
