@@ -1,5 +1,6 @@
-import { VEHICLE_VIN_LENGTH } from '@ivt/c-data';
-import { IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
+import { VEHICLE_VIN_LENGTH, VehicleStatus } from '@ivt/c-data';
+import { Transform } from 'class-transformer';
+import { IsEnum, IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
 
 export class UpdateVehicleDto {
   @IsNotEmpty()
@@ -46,4 +47,9 @@ export class UpdateVehicleDto {
   @IsOptional()
   @IsNumber()
   kilometrageEnd: number;
+
+  @IsOptional()
+  @Transform(({ obj, key }) => VehicleStatus[obj[key]])
+  @IsEnum(VehicleStatus)
+  status: VehicleStatus;
 }

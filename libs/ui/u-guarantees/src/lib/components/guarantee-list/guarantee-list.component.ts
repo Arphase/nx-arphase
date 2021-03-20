@@ -60,7 +60,7 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   }
 
   onChangeStatus(id: number, status: GuaranteeStatus): void {
-    this.edit.emit({ id, status: status });
+    this.edit.emit({ id, status });
   }
 
   onItemChecked(id: number, checked: boolean): void {

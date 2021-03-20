@@ -172,6 +172,19 @@
       </td>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul nz-menu>
+          <li *ivtUpdatePermission
+              nz-submenu
+              nzTitle="Cambiar estatus">
+            <ul>
+              <li *ngFor="let option of statusOptions"
+                  nz-menu-item
+                  (click)="onChangeStatus(item.id, option.value, item.vin)">
+                <nz-tag [nzColor]="colorMaps[vehicleStatus[option.value]]">
+                  {{ option.label }}
+                </nz-tag>
+              </li>
+            </ul>
+          </li>
           <li nz-menu-item
               nz-tooltip
               [nzTooltipTitle]="!isElegible(item) ?  'Solo se pueden generar garantías a los vehículos aptos para garantizar' : ''"

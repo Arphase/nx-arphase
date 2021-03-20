@@ -66,18 +66,21 @@ export const colorMaps: Record<VehicleStatus, string> = {
   [VehicleStatus.needsRevision]: 'warning',
   [VehicleStatus.notElegible]: 'error',
   [VehicleStatus.hasActiveGuarantee]: 'processing',
+  [VehicleStatus.soldWidhoutGuarantee]: 'default',
 };
 export const iconMaps: Record<VehicleStatus, string> = {
   [VehicleStatus.elegible]: 'check-circle',
   [VehicleStatus.needsRevision]: 'exclamation-circle',
   [VehicleStatus.notElegible]: 'close-circle',
   [VehicleStatus.hasActiveGuarantee]: 'sync',
+  [VehicleStatus.soldWidhoutGuarantee]: 'fall',
 };
 export const statusLabels: Record<string, string> = {
   [VehicleStatus[VehicleStatus.notElegible]]: 'No garantizable',
   [VehicleStatus[VehicleStatus.hasActiveGuarantee]]: 'Garantía vigente',
   [VehicleStatus[VehicleStatus.needsRevision]]: 'Necesita revisión',
   [VehicleStatus[VehicleStatus.elegible]]: 'Garantizable',
+  [VehicleStatus[VehicleStatus.soldWidhoutGuarantee]]: 'Vendido sin garantía',
 };
 
 export const statusOptions: Select[] = [
@@ -96,5 +99,9 @@ export const statusOptions: Select[] = [
   {
     label: statusLabels[VehicleStatus[VehicleStatus.notElegible]],
     value: VehicleStatus[VehicleStatus.notElegible],
+  },
+  {
+    label: statusLabels[VehicleStatus[VehicleStatus.soldWidhoutGuarantee]],
+    value: VehicleStatus[VehicleStatus.soldWidhoutGuarantee],
   },
 ];

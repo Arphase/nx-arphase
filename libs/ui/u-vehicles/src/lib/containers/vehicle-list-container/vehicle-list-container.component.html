@@ -8,6 +8,7 @@
                   [userFilterInfo]="userFilterInfo$ | async"
                   [queryParams]="queryParams"
                   (filterItems)="filterItems($event)"
+                  (edit)="changeStatus($event)"
                   (delete)="deleteItem($event)"
                   (createGuarantee)="createGuarantee($event)"
                   (createRevision)="createRevision($event)"

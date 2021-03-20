@@ -85,8 +85,10 @@ export class VehiclesService {
   }
 
   async updateVehicle(updateVehcleDto: UpdateVehicleDto): Promise<Vehicle> {
-    const updatedVehicle = await this.vehicleRepository.save(updateVehcleDto);
-    return updatedVehicle;
+    const preloadedGuarantee = await this.vehicleRepository.preload(updateVehcleDto);
+    await preloadedGuarantee.save();
+    await preloadedGuarantee.reload();
+    return preloadedGuarantee;
   }
 
   async deleteVehicle(id: number): Promise<Vehicle> {
