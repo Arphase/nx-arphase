@@ -10,8 +10,17 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { Guarantee, isVehicleElegible, IvtCollectionResponseInfo, PersonTypes, Select, Vehicle } from '@ivt/c-data';
+import {
+  Guarantee,
+  isVehicleElegible,
+  IvtCollectionResponseInfo,
+  PersonTypes,
+  Select,
+  UserRoles,
+  Vehicle,
+} from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
+import { REQUIRED_ROLES } from '@ivt/u-state';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 import { createVehicleForm } from '@ivt/u-vehicles';
 import { QueryParams } from '@ngrx/data';
@@ -59,11 +68,11 @@ export function createGuaranteeForm(): FormGroup {
   templateUrl: './guarantee-form.component.html',
   styleUrls: ['./guarantee-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnChanges, AfterViewInit {
   @Input() productOptions: Select[] = [];
   @Input() companyOptions: Select[] = [];
-  @Input() showCompanyInput: boolean;
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
   @Input() error: string;
@@ -115,10 +124,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
 
     if (changes.isEditable && this.item) {
       this.isEditable ? this.form.enable() : this.form.disable();
-    }
-
-    if (changes.showCompanyInput) {
-      this.showCompanyInput ? this.form.get('companyId').enable() : this.form.get('companyId').disable();
     }
   }
 

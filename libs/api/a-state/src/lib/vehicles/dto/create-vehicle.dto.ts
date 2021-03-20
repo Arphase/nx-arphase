@@ -14,11 +14,11 @@ export class CreateVehicleDto {
   @IsString()
   model: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   version: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   year: number;
 
@@ -27,7 +27,7 @@ export class CreateVehicleDto {
   @Length(VEHICLE_VIN_LENGTH, VEHICLE_VIN_LENGTH)
   vin: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   motorNumber: string;
 

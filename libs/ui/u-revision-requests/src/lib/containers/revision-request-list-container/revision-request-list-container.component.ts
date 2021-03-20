@@ -1,16 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RevisionRequest, RevisionStatus, UserRoles } from '@ivt/c-data';
-import {
-  getAuthUserRoleState,
-  IdentityFilterService,
-  IvtState,
-  RevisionRequestCollectionService,
-  RevisionRequestDataService,
-} from '@ivt/u-state';
+import { RevisionRequest, RevisionStatus } from '@ivt/c-data';
+import { IdentityFilterService, RevisionRequestCollectionService, RevisionRequestDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
-import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { map, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 import { statusLabels } from '../../components/revision-request-list/revision-request-list.constants';
 
@@ -21,17 +14,11 @@ import { statusLabels } from '../../components/revision-request-list/revision-re
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionRequestListContainerComponent extends IvtListContainerComponent<RevisionRequest> {
-  isSuperAdmin$ = this.store.pipe(
-    select(getAuthUserRoleState),
-    map(role => UserRoles[role] === UserRoles.superAdmin)
-  );
-
   constructor(
     protected revisionRequestCollecitonService: RevisionRequestCollectionService,
     protected revisionRequestDataService: RevisionRequestDataService,
     protected messageService: NzMessageService,
-    protected identityFilterService: IdentityFilterService,
-    private store: Store<IvtState>
+    protected identityFilterService: IdentityFilterService
   ) {
     super(revisionRequestCollecitonService, revisionRequestDataService, null, messageService, identityFilterService);
   }

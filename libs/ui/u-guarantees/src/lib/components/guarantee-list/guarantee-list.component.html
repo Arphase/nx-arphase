@@ -146,6 +146,7 @@
           [nzTotal]="info?.total"
           [nzPageIndex]="info?.pageIndex"
           [nzLoading]="loading"
+          [nzShowSizeChanger]="true"
           (nzQueryParams)="filterItems.emit($event)">
   <thead>
     <tr nz-row>
@@ -241,7 +242,8 @@
                     nz-menu-item
                     (click)="onChangeStatus(item.id, option.value)">
                   <nz-tag [nzColor]="colorMaps[guaranteeStatus[option.value]]">
-                    {{ option.label }}</nz-tag>
+                    {{ option.label }}
+                  </nz-tag>
                 </li>
               </ul>
             </li>
@@ -249,18 +251,21 @@
                 (click)="downloadPdf.emit(item.id)">
               Descargar PDF
             </li>
-            <li *ngIf="!item.paymentOrderId"
-                nz-menu-item
-                (click)="createPaymentOrder.emit([item.id])">
-              Generar orden de pago
-            </li>
+            <ng-container *ivtCreatePermission>
+              <li *ngIf="!item.paymentOrderId"
+                  nz-menu-item
+                  (click)="createPaymentOrder.emit([item.id])">
+                Generar orden de pago
+              </li>
+            </ng-container>
             <ng-container *ngIf="item.paymentOrderId">
               <li nz-menu-item
                   (click)="downloadPaymentOrder.emit(item.paymentOrderId)">
                 Descargar orden de pago
               </li>
 
-              <li nz-menu-item
+              <li *ivtUpdatePermission
+                  nz-menu-item
                   (click)="updatePaymentOrder.emit(item.paymentOrderId)">
                 Editar orden de pago
               </li>

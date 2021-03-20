@@ -1,6 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
-import { MenuItem, Select } from '@ivt/c-data';
+import { MenuItem, Select, UserRoles } from '@ivt/c-data';
 import {
   fromAuth,
   getAuthUserEmailState,
@@ -22,7 +22,7 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpaComponent extends IvtSubscriberComponent {
-  isCollapsed = true;
+  isCollapsed: boolean;
   menuItems$ = this.getMenuItems();
   name$ = this.store.pipe(select(getAuthUserNameState));
   email$ = this.store.pipe(select(getAuthUserEmailState));
@@ -53,10 +53,11 @@ export class SpaComponent extends IvtSubscriberComponent {
     this.mobileQuery = this.media.matchMedia('(max-width: 769px)');
     this._mobileQueryListener = () => this.cdr.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.isCollapsed = this.mobileQuery.matches;
   }
 
   getMenuItems(): Observable<MenuItem[]> {
-    return this.permissionService.hasReadPermission().pipe(
+    return this.permissionService.hasReadPermission([UserRoles.superAdmin]).pipe(
       map(hasPermission => [
         {
           icon: 'pie-chart',

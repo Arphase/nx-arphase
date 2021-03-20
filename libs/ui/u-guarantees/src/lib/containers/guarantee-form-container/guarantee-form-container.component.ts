@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Company, Guarantee, UserRoles } from '@ivt/c-data';
-import { filterExisting, filterNil } from '@ivt/c-utils';
+import { filterNil } from '@ivt/c-utils';
 import {
   CompanyCollectionService,
   fromVehicles,
   getAuthUserCompanyIdState,
-  getAuthUserRoleState,
   getVehiclesErrorState,
   getVehiclesVehicleState,
   GuaranteeCollectionService,
@@ -22,7 +21,7 @@ import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { map, take, takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 
 import { createGuaranteeForm } from '../../components/guarantee-form/guarantee-form.component';
 
@@ -41,10 +40,6 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   productOptions$ = this.productCollectionService.options$;
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
   vehicle$ = this.vehicleCollectionService.currentItem$;
-  showCompanyInput$ = this.store.pipe(
-    select(getAuthUserRoleState),
-    map(role => role === UserRoles[UserRoles.superAdmin])
-  );
   companyOptions$ = this.companyCollectionService.options$;
   companiesInfo$ = this.companyCollectionService.store.pipe(
     select(this.companyCollectionService.selectors.selectCollection),
@@ -67,10 +62,6 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   }
 
   ngOnInit() {
-    this.showCompanyInput$.pipe(take(1), filterExisting()).subscribe(() => {
-      this.companyCollectionService.getWithQuery({});
-    });
-
     this.store
       .pipe(select(selectQueryParam('vehicleId')), takeUntil(this.destroy$), filterNil())
       .subscribe(id => this.vehicleCollectionService.getByKey(Number(id)));
