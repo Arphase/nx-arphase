@@ -5,7 +5,7 @@
        nzMd="12">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
-  <ng-container *ngIf="!isSuperAdmin">
+  <ng-container *ivtNoCreatePermission>
     <div nz-col
          nzXs="0"
          nzMd="24"
@@ -56,7 +56,7 @@
                       (filterItems)="updateStatusFilter($event)">
     </ivt-radio-filter>
   </div>
-  <ng-container *ivtCreatePermission>
+  <ng-container *ivtReadPermission>
     <div nz-col>
       <ivt-checkbox-filter label="Grupos"
                            [options]="groupFilterInfo?.options"
@@ -106,6 +106,7 @@
           [nzTotal]="info?.total"
           [nzPageIndex]="info?.pageIndex"
           [nzLoading]="loading"
+          [nzShowSizeChanger]="true"
           (nzQueryParams)="filterItems.emit($event)">
   <thead>
     <tr nz-row>
@@ -170,9 +171,14 @@
           <li nz-menu-item
               nz-tooltip
               [routerLink]="[item.id]">
-            {{ isSuperAdmin ? 'Ver detalle' : 'Editar solicitud' }}
+            <ng-container *ivtReadPermission>
+              Ver detalle
+            </ng-container>
+            <ng-container *ivtNoReadPermission>
+              Editar solicitud
+            </ng-container>
           </li>
-          <li *ngIf="isSuperAdmin"
+          <li *ivtReadPermission
               nz-submenu
               nzTitle="Cambiar estatus">
             <ul>

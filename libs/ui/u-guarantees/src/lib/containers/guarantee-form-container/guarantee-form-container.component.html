@@ -3,11 +3,12 @@
                     [loading]="loading$ | async"
                     [isEditable]="isEditable$ | async"
                     [productOptions]="productOptions$ | async"
-                    [showCompanyInput]="showCompanyInput$ | async"
                     [companyOptions]="companyOptions$ | async"
                     [vehicle]="vehicle$ | async"
                     [currentVehicle]="currentVehicle$ | async"
                     [error]="error$ | async"
+                    [companiesInfo]="companiesInfo$ | async"
                     (verifyVin)="verifyVin($event)"
+                    (getCompanies)="getCompanies($event)"
                     (submitForm)="submit($event)">
 </ivt-guarantee-form>

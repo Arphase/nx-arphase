@@ -11,10 +11,10 @@ import {
   IvtCollectionResponse,
   Revision,
   RevisionStatus,
+  sortDirection,
   User,
   VehicleStatus,
 } from '@ivt/c-data';
-import { sortDirection } from '@ivt/c-utils';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import dayjs from 'dayjs';
@@ -35,7 +35,7 @@ export class RevisionsService {
       .leftJoinAndSelect('revision.vehicle', 'vehicle')
       .leftJoinAndSelect('vehicle.company', 'company')
       .leftJoinAndSelect('vehicle.user', 'user')
-      .orderBy('revision.createdAt', sortDirection.desc);
+      .orderBy('revision.createdAt', sortDirection.descend);
 
     if (vehicleId) {
       query.andWhere('(revision.vehicleId = :id)', { id: vehicleId });
@@ -134,7 +134,7 @@ export class RevisionsService {
 
       const mostRecentRevision = await this.revisionRepository.findOne({
         vehicleId: revision.vehicleId,
-        order: { createdAt: sortDirection.desc },
+        order: { createdAt: sortDirection.descend },
       } as FindOneOptions);
 
       if (mostRecentRevision) {

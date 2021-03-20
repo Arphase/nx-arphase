@@ -9,10 +9,10 @@ export interface Vehicle {
   id: number;
   brand: string;
   model: string;
-  version: string;
-  year: number;
+  version?: string;
+  year?: number;
   vin: string;
-  motorNumber: string;
+  motorNumber?: string;
   horsePower: number;
   status: VehicleStatus | string;
   companyId?: number;

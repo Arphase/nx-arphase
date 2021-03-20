@@ -2,13 +2,13 @@ import { CreateVehicleDto, filterCommonQuery, GetVehiclesDto, UpdateVehicleDto, 
 import {
   createCollectionResponse,
   IvtCollectionResponse,
+  sortDirection,
   transformFolio,
   User,
   UserRoles,
   Vehicle,
   VehicleStatus,
 } from '@ivt/c-data';
-import { sortDirection } from '@ivt/c-utils';
 import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -23,7 +23,7 @@ export class VehiclesService {
       .createQueryBuilder('vehicle')
       .leftJoinAndSelect('vehicle.company', 'company')
       .leftJoinAndSelect('vehicle.user', 'user')
-      .orderBy('vehicle.createdAt', sortDirection.desc);
+      .orderBy('vehicle.createdAt', sortDirection.descend);
 
     if (text) {
       query.andWhere(
@@ -85,8 +85,10 @@ export class VehiclesService {
   }
 
   async updateVehicle(updateVehcleDto: UpdateVehicleDto): Promise<Vehicle> {
-    const updatedVehicle = await this.vehicleRepository.save(updateVehcleDto);
-    return updatedVehicle;
+    const preloadedGuarantee = await this.vehicleRepository.preload(updateVehcleDto);
+    await preloadedGuarantee.save();
+    await preloadedGuarantee.reload();
+    return preloadedGuarantee;
   }
 
   async deleteVehicle(id: number): Promise<Vehicle> {

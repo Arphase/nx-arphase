@@ -1,10 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserRoles, Vehicle } from '@ivt/c-data';
+import { UserRoles, Vehicle, VehicleStatus } from '@ivt/c-data';
 import { IdentityFilterService, PermissionService, VehicleCollectionService, VehicleDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { take } from 'rxjs/operators';
+
+import { statusLabels } from '../../components/vehicle-list/vehicle-list.constants';
 
 @Component({
   selector: 'ivt-vehicle-list-container',
@@ -45,5 +48,18 @@ export class VehicleListContainerComponent extends IvtListContainerComponent<Veh
 
   createRevisionRequest(item: Vehicle): void {
     this.router.navigateByUrl(`/spa/revision-requests/new?vehicleId=${item.id}`);
+  }
+
+  changeStatus(vehicle: Partial<Vehicle>): void {
+    this.vehicleCollectionService
+      .update(vehicle)
+      .pipe(take(1))
+      .subscribe(() =>
+        this.messageService.success(
+          `El vehículo con VIN ${vehicle.vin} ahora está en estatus: ${statusLabels[
+            VehicleStatus[VehicleStatus[vehicle.status]]
+          ].toLowerCase()}`
+        )
+      );
   }
 }

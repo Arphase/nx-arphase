@@ -105,6 +105,7 @@
           [nzTotal]="info?.total"
           [nzPageIndex]="info?.pageIndex"
           [nzLoading]="loading"
+          [nzShowSizeChanger]="true"
           (nzQueryParams)="filterItems.emit($event)">
   <thead>
     <tr nz-row>
@@ -130,15 +131,15 @@
           nzLg="4">{{ item?.vin | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="4">{{ item?.brand | empty }}</td>
+          nzMd="5"
+          nzLg="4">{{ item?.company?.businessName | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzLg="3">{{ item?.brand | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="5"
           nzLg="3">{{ item?.model | empty }}</td>
-      <td nz-col
-          nzXs="0"
-          nzMd="5"
-          nzLg="3">{{ item?.version | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="2"
@@ -148,8 +149,7 @@
           nzLg="4">{{ item?.createdAt | date: 'dd/MM/yy' }}</td>
       <td nz-col
           nzXs="5"
-          nzMd="2"
-          nzLg="3">
+          nzMd="2">
         <nz-tag nz-tooltip
                 nzTooltipPlacement="top"
                 [nzTooltipTitle]="statusLabels[item.status]"
@@ -160,8 +160,7 @@
       </td>
       <td nz-col
           nzXs="3"
-          nzMd="2"
-          nzLg="1">
+          nzMd="2">
         <button nz-button
                 nz-dropdown
                 [nzDropdownMenu]="menu"
@@ -174,6 +173,19 @@
       </td>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul nz-menu>
+          <li *ivtUpdatePermission
+              nz-submenu
+              nzTitle="Cambiar estatus">
+            <ul>
+              <li *ngFor="let option of statusOptions"
+                  nz-menu-item
+                  (click)="onChangeStatus(item.id, option.value, item.vin)">
+                <nz-tag [nzColor]="colorMaps[vehicleStatus[option.value]]">
+                  {{ option.label }}
+                </nz-tag>
+              </li>
+            </ul>
+          </li>
           <li nz-menu-item
               nz-tooltip
               [nzTooltipTitle]="!isElegible(item) ?  'Solo se pueden generar garantías a los vehículos aptos para garantizar' : ''"
@@ -193,9 +205,15 @@
           </li>
           <li nz-menu-item
               [routerLink]="[item.id]">
-            Editar vehículo
+            <ng-container *ivtUpdatePermission>
+              Editar vehículo
+            </ng-container>
+            <ng-container *ivtNoUpdatePermission>
+              Ver vehículo
+            </ng-container>
           </li>
-          <li nz-menu-item
+          <li *ivtDeletePermission
+              nz-menu-item
               class="text-danger"
               (click)="delete.emit(item)">
             Eliminar vehículo

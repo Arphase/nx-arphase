@@ -1,18 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Revision, UserRoles } from '@ivt/c-data';
-import {
-  getAuthUserRoleState,
-  IdentityFilterService,
-  IvtState,
-  RevisionCollectionService,
-  RevisionDataService,
-} from '@ivt/u-state';
+import { Revision } from '@ivt/c-data';
+import { IdentityFilterService, RevisionCollectionService, RevisionDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
-import { select, Store } from '@ngrx/store';
 import dayjs from 'dayjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-revision-list-container',
@@ -21,18 +13,12 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionListContainerComponent extends IvtListContainerComponent<Revision> {
-  isSuperAdmin$ = this.store.pipe(
-    select(getAuthUserRoleState),
-    map(role => UserRoles[role] === UserRoles.superAdmin)
-  );
-
   constructor(
     protected revisionCollectionService: RevisionCollectionService,
     protected revisionDataService: RevisionDataService,
     protected modal: NzModalService,
     protected toastrService: NzMessageService,
-    protected identityFilterService: IdentityFilterService,
-    private store: Store<IvtState>
+    protected identityFilterService: IdentityFilterService
   ) {
     super(revisionCollectionService, revisionDataService, modal, toastrService, identityFilterService);
   }

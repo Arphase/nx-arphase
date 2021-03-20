@@ -24,6 +24,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
@@ -72,6 +73,7 @@ import { RevisionsComponent } from './revisions.component';
     IvtCheckboxFilterModule,
     IvtRadioFilterModule,
     PermissionsModule,
+    NzRadioModule,
   ],
   declarations: [
     RevisionFormComponent,

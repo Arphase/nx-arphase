@@ -10,10 +10,20 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { Guarantee, isVehicleElegible, PersonTypes, Select, Vehicle } from '@ivt/c-data';
+import {
+  Guarantee,
+  isVehicleElegible,
+  IvtCollectionResponseInfo,
+  PersonTypes,
+  Select,
+  UserRoles,
+  Vehicle,
+} from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
+import { REQUIRED_ROLES } from '@ivt/u-state';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 import { createVehicleForm } from '@ivt/u-vehicles';
+import { QueryParams } from '@ngrx/data';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -58,14 +68,15 @@ export function createGuaranteeForm(): FormGroup {
   templateUrl: './guarantee-form.component.html',
   styleUrls: ['./guarantee-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnChanges, AfterViewInit {
   @Input() productOptions: Select[] = [];
   @Input() companyOptions: Select[] = [];
-  @Input() showCompanyInput: boolean;
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
   @Input() error: string;
+  @Input() companiesInfo: IvtCollectionResponseInfo;
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -75,6 +86,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
   ];
   companyId$: Observable<number>;
   @Output() verifyVin = new EventEmitter<string>();
+  @Output() getCompanies = new EventEmitter<QueryParams>();
 
   get client() {
     return this.form.get('client');
@@ -113,10 +125,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     if (changes.isEditable && this.item) {
       this.isEditable ? this.form.enable() : this.form.disable();
     }
-
-    if (changes.showCompanyInput) {
-      this.showCompanyInput ? this.form.get('companyId').enable() : this.form.get('companyId').disable();
-    }
   }
 
   ngAfterViewInit() {
@@ -143,5 +151,13 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
       this.moralInfoForm.enable();
       this.physicalInfoForm.disable();
     }
+  }
+
+  getMoreCompanies(): void {
+    this.getCompanies.emit({ pageIndex: String(this.companiesInfo.pageIndex + 1), resetList: String(false) });
+  }
+
+  searchCompanies(text: string): void {
+    this.getCompanies.emit({ text, resetList: String(true) });
   }
 }

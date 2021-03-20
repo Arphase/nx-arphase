@@ -6,6 +6,7 @@
                     [groupFilterInfo]="groupFilterInfo$ | async"
                     [companyFilterInfo]="companyFilterInfo$ | async"
                     [userFilterInfo]="userFilterInfo$ | async"
+                    [canModifyPaymentOrders]="canModifyPaymentOrders$ | async"
                     [queryParams]="queryParams"
                     (filterItems)="filterItems($event)"
                     (exportExcel)="exportExcel()"

@@ -97,7 +97,7 @@
               </nz-form-item>
             </div>
 
-            <div *ngIf="showCompanyInput"
+            <div *ivtCreatePermission
                  nz-col
                  nzXs="24"
                  nzLg="12">
@@ -105,8 +105,12 @@
                 <nz-form-label nzRequired>Compañía</nz-form-label>
                 <nz-form-control apsAutoError>
                   <nz-select apsAutoSelect
+                             nzShowSearch
+                             nzServerSearch
                              formControlName="companyId"
-                             [nzOptions]="companyOptions">
+                             [nzOptions]="companyOptions"
+                             (nzScrollToBottom)="getMoreCompanies()"
+                             (nzOnSearch)="searchCompanies($event)">
                   </nz-select>
                 </nz-form-control>
               </nz-form-item>

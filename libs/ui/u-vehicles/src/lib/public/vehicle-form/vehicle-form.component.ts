@@ -9,8 +9,9 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { Select, Vehicle, VEHICLE_VIN_LENGTH } from '@ivt/c-data';
+import { IvtCollectionResponseInfo, Select, Vehicle, VEHICLE_VIN_LENGTH } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
+import { QueryParams } from '@ngrx/data';
 import { omit } from 'lodash-es';
 import { filter, takeUntil } from 'rxjs/operators';
 
@@ -19,21 +20,17 @@ export function createVehicleForm(vehicle?: Vehicle) {
 
   const form = new FormGroup({
     id: new FormControl(null),
-    brand: new FormControl('', ApsValidators.required),
-    model: new FormControl('', ApsValidators.required),
-    version: new FormControl('', ApsValidators.required),
-    year: new FormControl('', [
-      ApsValidators.requiredNumber,
-      ApsValidators.min(todayYear - 20),
-      ApsValidators.max(todayYear + 1),
-    ]),
-    vin: new FormControl('', [
+    brand: new FormControl(null, ApsValidators.required),
+    model: new FormControl(null, ApsValidators.required),
+    version: new FormControl(null),
+    year: new FormControl(null, [ApsValidators.min(todayYear - 20), ApsValidators.max(todayYear + 1)]),
+    vin: new FormControl(null, [
       ApsValidators.required,
       ApsValidators.minLength(VEHICLE_VIN_LENGTH),
       ApsValidators.maxLength(VEHICLE_VIN_LENGTH),
     ]),
-    motorNumber: new FormControl('', ApsValidators.required),
-    horsePower: new FormControl('', [ApsValidators.requiredNumber, ApsValidators.min(1), ApsValidators.max(400)]),
+    motorNumber: new FormControl(null),
+    horsePower: new FormControl(null, [ApsValidators.requiredNumber, ApsValidators.min(1), ApsValidators.max(400)]),
     companyId: new FormControl(null, ApsValidators.required),
   });
 
@@ -55,7 +52,9 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
   @Input() showCompanyInput: boolean;
   @Input() companyOptions: Select[] = [];
   @Input() vehicle: Vehicle;
+  @Input() companiesInfo: IvtCollectionResponseInfo;
   @Output() verifyVin = new EventEmitter<string>();
+  @Output() getCompanies = new EventEmitter<QueryParams>();
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.companyId) {
@@ -98,5 +97,13 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
     if (changes.isEditable) {
       this.isEditable ? this.form.enable({ emitEvent: false }) : this.form.disable({ emitEvent: false });
     }
+  }
+
+  getMoreCompanies(): void {
+    this.getCompanies.emit({ pageIndex: String(this.companiesInfo.pageIndex + 1), resetList: String(false) });
+  }
+
+  searchCompanies(text: string): void {
+    this.getCompanies.emit({ text, resetList: String(true) });
   }
 }

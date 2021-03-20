@@ -20,6 +20,7 @@ import { SignInFormComponent } from './components/sign-in-form/sign-in-form.comp
 import { ResetPasswordFormContainerComponent } from './containers/reset-password-form-container/reset-password-form-container.component';
 import { SetPasswordFormContainerComponent } from './containers/set-password-form-container/set-password-form-container.component';
 import { SignInFormContainerComponent } from './containers/sign-in-form-container/sign-in-form-container.component';
+import { CompanyLogoComponent } from './components/company-logo/company-logo.component';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { SignInFormContainerComponent } from './containers/sign-in-form-containe
     ExpiredTokenComponent,
     ResetPasswordFormContainerComponent,
     ResetPasswordFormComponent,
+    CompanyLogoComponent,
   ],
 })
 export class AuthModule {}

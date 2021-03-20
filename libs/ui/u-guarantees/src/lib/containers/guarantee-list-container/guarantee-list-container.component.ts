@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Guarantee, GuaranteeStatus, statusLabels, transformFolio } from '@ivt/c-data';
+import { Guarantee, GuaranteeStatus, statusLabels, transformFolio, UserRoles } from '@ivt/c-data';
 import {
   GuaranteeCollectionService,
   GuaranteeDataService,
   IdentityFilterService,
   PaymentOrderCollectionService,
   PaymentOrderDataService,
+  PermissionService,
 } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -25,6 +26,7 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
   clearSelectedSubject = new BehaviorSubject<boolean>(false);
   clearSelected$ = this.clearSelectedSubject.asObservable();
   excelFileName = 'Garantias';
+  canModifyPaymentOrders$ = this.permissionService.hasCreatePermission([UserRoles.superAdmin]);
 
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,
@@ -33,7 +35,8 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
     protected messageService: NzMessageService,
     protected identityFilterService: IdentityFilterService,
     private paymentOrderCollectionService: PaymentOrderCollectionService,
-    private paymentOrderDataService: PaymentOrderDataService
+    private paymentOrderDataService: PaymentOrderDataService,
+    private permissionService: PermissionService
   ) {
     super(guaranteeCollectionService, guaranteeDataService, modal, messageService, identityFilterService);
   }

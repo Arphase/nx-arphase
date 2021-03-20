@@ -1,6 +1,6 @@
-import { GetUser } from '@ivt/a-auth';
+import { GetUser, Roles, RolesGuard } from '@ivt/a-auth';
 import { CreateVehicleDto, GetVehiclesDto, UpdateVehicleDto } from '@ivt/a-state';
-import { IvtCollectionResponse, User, Vehicle } from '@ivt/c-data';
+import { IvtCollectionResponse, User, UserRoles, Vehicle } from '@ivt/c-data';
 import {
   Body,
   Controller,
@@ -20,7 +20,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { VehiclesService } from '../services/vehicles.service';
 
 @Controller('vehicles')
-@UseGuards(AuthGuard())
+@UseGuards(AuthGuard(), RolesGuard)
 export class VehiclesController {
   constructor(private vehiclesService: VehiclesService) {}
 
@@ -49,12 +49,14 @@ export class VehiclesController {
   }
 
   @Put(':id')
+  @Roles(UserRoles.superAdmin)
   @UsePipes(new ValidationPipe({ transform: true }))
   updateVehicle(@Body() updateVehicleDto: UpdateVehicleDto): Promise<Vehicle> {
     return this.vehiclesService.updateVehicle(updateVehicleDto);
   }
 
   @Delete(':id')
+  @Roles(UserRoles.superAdmin)
   async deleteVehicle(@Param('id', ParseIntPipe) id: number): Promise<Vehicle> {
     return this.vehiclesService.deleteVehicle(id);
   }

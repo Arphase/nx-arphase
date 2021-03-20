@@ -1,5 +1,5 @@
-import { User, UserRoles } from '@ivt/c-data';
-import { sortDirection } from '@ivt/c-utils';
+import { sortDirection, User, UserRoles } from '@ivt/c-data';
+import dayjs from 'dayjs';
 import { BaseEntity, SelectQueryBuilder } from 'typeorm';
 
 import { CommonFilterDto } from '../dto';
@@ -33,12 +33,9 @@ export function filterCommonQuery(
   }
 
   if (startDate && endDate) {
-    query.andWhere(
-      `${entityName}.${dateType || 'createdAt'}
-      BETWEEN :begin
-      AND :end`,
-      { begin: startDate, end: endDate }
-    );
+    const modifiedEndDate = dayjs(endDate, 'YYYY-MM-DD').add(1, 'day').format('YYYY-MM-DD');
+    const date = `${entityName}.${dateType || 'createdAt'}`;
+    query.andWhere(`${date} >= :begin and ${date} <= :end`, { begin: startDate, end: modifiedEndDate });
   }
 
   if (groupIds) {

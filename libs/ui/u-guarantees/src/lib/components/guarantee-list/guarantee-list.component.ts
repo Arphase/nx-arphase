@@ -22,6 +22,7 @@ import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.co
 })
 export class GuaranteeListComponent extends IvtListComponent<Guarantee> implements OnChanges {
   @Input() clearSelected: boolean;
+  @Input() canModifyPaymentOrders: boolean;
   dateTypeOptions = guaranteeDateTypeOptions;
   statusOptions = statusOptions;
   checked = false;
@@ -43,7 +44,7 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   }
 
   get showPaymentOrderButton(): boolean {
-    return this.checked || this.indeterminate;
+    return (this.checked || this.indeterminate) && this.canModifyPaymentOrders;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -59,7 +60,7 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   }
 
   onChangeStatus(id: number, status: GuaranteeStatus): void {
-    this.edit.emit({ id, status: status });
+    this.edit.emit({ id, status });
   }
 
   onItemChecked(id: number, checked: boolean): void {

@@ -28,13 +28,11 @@ to read on GitHub as well as in various git tools.
 The footer should contain a closing reference to an issue if any.
 
 #### Revert
-
 If the commit reverts a previous commit, it should begin with `revert:`, followed by the header of
 the reverted commit. In the body it should say: `This reverts commit <hash>., where the hash is the
 SHA of the commit being reverted.
 
 #### Type
-
 Must be one of the following:
 
 - **build:** Changes that affect the build system or external dependencies (example scopes: gulp,
@@ -51,7 +49,6 @@ Must be one of the following:
 - **test:** Adding missing tests or correcting existing tests
 
 #### Scope
-
 The scope should be the name of the npm package affected (as perceived by the person reading the
 changelog generated from commit messages.
 
@@ -71,7 +68,6 @@ The following is the list of supported scopes:
 - utils
 
 #### Subject
-
 The subject contains a succinct description of the change:
 
 - use the imperative, present tense: "change" not "changed" nor "changes"
@@ -79,12 +75,10 @@ The subject contains a succinct description of the change:
 - no dot (.) at the end
 
 #### Body
-
 Just as in the **subject**, use the imperative, present tense: "change" not "changed" nor "changes".
 The body should include the motivation for the change and contrast this with previous behavior.
 
 #### Footer
-
 The footer should contain any information about **Breaking Changes** and is also the place to
 reference Jira issues that this commit **Closes**.
 
@@ -92,40 +86,42 @@ reference Jira issues that this commit **Closes**.
 rest of the commit message is then used for this.
 
 ### Understand your workspace
-
 Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
 ### Running unit tests
-
 Run `nx test` to execute the unit tests via [Jest](https://jestjs.io). 
 
 ---
 
-
 ## Frontend
 Here is everything you need to know to for getting started with the frontend project of Innovatech
 
-### Generate a library
+### Setup
+Steps to run the frontend project: 
 
-Run `ng g @nrwl/angular:lib my-lib --directory=ui` to generate a library.
+1) Install [NodeJS](https://nodejs.dev) in your computer.
+2) Install the npm dependencies with the `npm install` command.
+3) Install the Nx cli with the `npm install -g @nrwl/cli` command.
+
+### Development server
+Run `nx serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+
+### Generate a library
+Run `nx generate @nrwl/angular:lib my-lib --directory=ui` to generate a library.
 
 Libraries are sharable across libraries and applications. They can be imported from `@ivt/mylib`.
 
-### Development server
-
-Run `npm run start:ui` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
 ### Code scaffolding
 #### Application
-- Run `ng g component my-component` to generate a new component.
-- Run `ng g service my-service` to generate a new service.
-- Run `ng g guard my-guard` to generate a new guard.
-- Run `ng g module my-module` to generate a new module.
+- Run `nx generate component my-component` to generate a new component.
+- Run `nx generate service my-service` to generate a new service.
+- Run `nx generate guard my-guard` to generate a new guard.
+- Run `nx generate module my-module` to generate a new module.
 #### Library
-- Run `ng g component my-component --project="my-lib"` to generate a new component.
-- Run `ng g service my-service --project="my-lib"` to generate a new service.
-- Run `ng g guard my-guard --project="my-lib"` to generate a new guard.
-- Run `ng g module my-module --project="my-lib"` to generate a new module.
+- Run `nx generate component my-component --project="my-lib"` to generate a new component.
+- Run `nx generate service my-service --project="my-lib"` to generate a new service.
+- Run `nx generate guard my-guard --project="my-lib"` to generate a new guard.
+- Run `nx generate module my-module --project="my-lib"` to generate a new module.
 
 ### Build
 These are the commands to build for different environments:
@@ -135,15 +131,13 @@ These are the commands to build for different environments:
 The build artifacts will be stored in the `dist/` directory
 
 ### Running end-to-end tests
-
 Run `nx e2e` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
 
 ---
 
 ## Backend
-
 ### Setup
-Create a new postgres database in order tu start working with the api.
+1) Create a new postgres database in order to start working with the api.
 These is the info you need to set up:
 
 - Host: localhost
@@ -151,21 +145,22 @@ These is the info you need to set up:
 - username: innovatech
 - password: innovatech
 
-You can now start the api with the development server command, this will synchronize your database with the entities of the backend project.
+2) Create an alias in your terminal to set the following environment variables:
+```
+alias ivt="SMTP=email-smtp.us-east-1.amazonaws.com MAIL_PORT=587 MAIL_ACCOUNT=<Ask the tech lead for this variable> MAIL_PASS=<Ask the tech lead for this variable> MAIL_ACCOUNT_SENDER=no-reply@innovatechcorp.com MAIL_HOST_URL=http://localhost:4200/auth/set-password JWT_SECRET=test JWT_EXPIRATION=360000 HOST=localhost DATABASE=innovatech_dev USERNAME=innovatech PASSWORD=innovatech"
+```
 
-You'll need to run the following command in order to have a username in the application `npm run seed`
+3) You can now start the api with the development server command, this will synchronize your database with the entities of the backend project.
 
-When the command finished you can run the development server again and start using the app
-
-## Generate a library
-
-Run `nx g @nrwl/nest:library my-lib --directory=api` to generate a library.
-
-Libraries are sharable across libraries and applications. They can be imported from `@ivt/mylib`.
+4) You'll need to run the following command in order to have a username in the application `npm run seed`. When the command finished you can run the development server again and start using the app.
 
 ### Development server
+Run `ivt nx serve innovatech-api` for a dev server. Navigate to http://localhost:3333/. The app will automatically reload if you change any of the source files.
 
-Run `npm run start:api` for a dev server. Navigate to http://localhost:3333/. The app will automatically reload if you change any of the source files.
+### Generate a library
+Run `nx generate @nrwl/nest:library my-lib --directory=api` to generate a library.
+
+Libraries are sharable across libraries and applications. They can be imported from `@ivt/mylib`.
 
 ### Code scaffolding
 Unfortunately I haven't found any way to scaffold NestJS code using Nrwl, what I usually do is the following: 
@@ -174,10 +169,10 @@ Unfortunately I haven't found any way to scaffold NestJS code using Nrwl, what I
 2) Go the the app project `cd apps/innovatech-api/src/app`
 3) Run the commands
 
-- Run `nest g controller my-controller` to generate a new controller.
-- Run `nest g service my-service` to generate a new service.
-- Run `nest g guard my-guard` to generate a new guard.
-- Run `nest g module my-module` to generate a new module.
+- Run `nest generate controller my-controller` to generate a new controller.
+- Run `nest generate service my-service` to generate a new service.
+- Run `nest generate guard my-guard` to generate a new guard.
+- Run `nest generate module my-module` to generate a new module.
 
 ### Build
 Run `nx build innovatech-api --prod` for any environment, the environment variables exist in the ElasticBeanstalk environment of the application
@@ -185,5 +180,4 @@ Run `nx build innovatech-api --prod` for any environment, the environment variab
 The build artifacts will be stored in the `dist/` directory
 
 ### Running unit tests
-
 Run `nx test` to execute the unit tests via [Jest](https://jestjs.io).

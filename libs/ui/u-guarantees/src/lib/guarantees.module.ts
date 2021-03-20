@@ -41,13 +41,13 @@ import { NgxMaskModule } from 'ngx-mask';
 
 import { GuaranteeFormComponent } from './components/guarantee-form/guarantee-form.component';
 import { GuaranteeListComponent } from './components/guarantee-list/guarantee-list.component';
+import { GuaranteeRowDetailsComponent } from './components/guarantee-row-details/guarantee-row-details.component';
 import { PaymentOrderDialogComponent } from './components/payment-order-dialog/payment-order-dialog.component';
 import { GuaranteeFormContainerComponent } from './containers/guarantee-form-container/guarantee-form-container.component';
 import { GuaranteeListContainerComponent } from './containers/guarantee-list-container/guarantee-list-container.component';
 import { PaymentOrderDialogContainerComponent } from './containers/payment-order-dialog-container/payment-order-dialog-container.component';
 import { GuaranteesRoutingModule } from './guarantees-routing.module';
 import { GuaranteesComponent } from './guarantees.component';
-import { GuaranteeRowDetailsComponent } from './components/guarantee-row-details/guarantee-row-details.component';
 
 @NgModule({
   imports: [
