@@ -1,4 +1,4 @@
-import { Revision, RevisionStatus, Vehicle } from '@ivt/c-data';
+import { Revision, RevisionReport, RevisionStatus, Vehicle } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
@@ -42,4 +42,7 @@ export class RevisionEntity extends BaseEntity implements Revision {
 
   @Column()
   vehicleId: number;
+
+  @Column('jsonb', { nullable: true })
+  report: RevisionReport;
 }

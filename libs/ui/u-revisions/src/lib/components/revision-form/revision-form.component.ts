@@ -10,13 +10,20 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { Revision, RevisionStatus, Select, Vehicle } from '@ivt/c-data';
+import { Revision, RevisionReportItems, Vehicle } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
 import { createVehicleForm } from '@ivt/u-vehicles';
 
+import { iconMap, reportLabels, revisionReportSections, statusOptions } from './revision-form.constants';
+
 export function createRevisionForm(): FormGroup {
+  const report = {};
+  Object.keys(RevisionReportItems)
+    .filter(key => /^\d+$/.test(key))
+    .forEach(key => (report[key] = new FormControl('')));
   return new FormGroup({
     id: new FormControl(null),
+    report: new FormGroup(report),
     observations: new FormControl(null, ApsValidators.required),
     status: new FormControl(null, ApsValidators.required),
     vehicle: createVehicleForm(),
@@ -33,24 +40,18 @@ export class RevisionFormComponent extends IvtFormComponent<Revision> implements
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
   @Input() error: string;
-  statusOptions: Select[] = [
-    {
-      label: 'En buenas condiciones',
-      value: RevisionStatus[RevisionStatus.elegible],
-    },
-    {
-      label: 'Necesita reparaciones',
-      value: RevisionStatus[RevisionStatus.needsRepairs],
-    },
-    {
-      label: 'No apto para garantizar',
-      value: RevisionStatus[RevisionStatus.notElegible],
-    },
-  ];
+  statusOptions = statusOptions;
+  revisionReportSections = revisionReportSections;
+  reportLabels = reportLabels;
+  iconMap = iconMap;
   @Output() verifyVin = new EventEmitter<string>();
 
   get vehicleForm(): FormGroup {
     return this.form.get('vehicle') as FormGroup;
+  }
+
+  get reportForm(): FormGroup {
+    return this.form.get('report') as FormGroup;
   }
 
   ngOnChanges(changes: SimpleChanges) {
