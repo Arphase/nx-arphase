@@ -45,4 +45,7 @@ export class RevisionEntity extends BaseEntity implements Revision {
 
   @Column('jsonb', { nullable: true })
   report: RevisionReport;
+
+  @Column({ nullable: true })
+  reviewdBy: string;
 }

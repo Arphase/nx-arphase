@@ -11,4 +11,5 @@ export interface Revision {
   updatedAt: Date;
   vehicleId: number;
   vehicle: Vehicle;
+  reviewdBy?: string;
 }

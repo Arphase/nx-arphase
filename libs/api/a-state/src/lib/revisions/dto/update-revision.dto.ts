@@ -23,4 +23,8 @@ export class UpdateRevisionDto {
   @IsOptional()
   @IsObject()
   report: RevisionReport;
+
+  @IsString()
+  @IsOptional()
+  reviedBy: string;
 }

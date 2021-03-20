@@ -19,4 +19,8 @@ export class CreateRevisionDto {
   @IsNotEmpty()
   @IsObject()
   report: RevisionReport;
+
+  @IsNotEmpty()
+  @IsNumber()
+  reviewdBy: string;
 }

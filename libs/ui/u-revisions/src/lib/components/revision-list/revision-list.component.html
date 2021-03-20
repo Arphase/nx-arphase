@@ -175,7 +175,8 @@
       </td>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul nz-menu>
-          <li nz-menu-item
+          <li *ivtNoUpdatePermission
+              nz-menu-item
               nz-tooltip
               [routerLink]="[item.id]">
             Ver detalle
