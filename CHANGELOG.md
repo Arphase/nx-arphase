@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.1](https://bitbucket.org/arphase/innovatech/compare/v2.4.0...v2.4.1) (2021-03-22)
+
+
+### Bug Fixes
+
+* **vehicles:** midnight job query error ([172c4ec](https://bitbucket.org/arphase/innovatech/commit/172c4ec2b00cfc98ca5d1f1dc06845affc4953f5))
+
 ## [2.4.0](https://bitbucket.org/arphase/innovatech/compare/v2.3.1...v2.4.0) (2021-03-20)
 
 
