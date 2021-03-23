@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.2](https://bitbucket.org/arphase/innovatech/compare/v2.4.1...v2.4.2) (2021-03-23)
+
+
+### Features
+
+* **guarantees:** disable edit action for agency users ([42b767f](https://bitbucket.org/arphase/innovatech/commit/42b767f532d9e6394ac25d01f34e785702266dcb))
+
+
+### Bug Fixes
+
+* **revisions:** change reviewBy property from number to string in dto ([be371c8](https://bitbucket.org/arphase/innovatech/commit/be371c81eae5f52c86bf4c51e6fb04c07e56217f))
+
 ### [2.4.1](https://bitbucket.org/arphase/innovatech/compare/v2.4.0...v2.4.1) (2021-03-22)
 
 
