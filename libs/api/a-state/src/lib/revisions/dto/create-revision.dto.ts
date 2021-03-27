@@ -21,6 +21,6 @@ export class CreateRevisionDto {
   report: RevisionReport;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsString()
   reviewdBy: string;
 }

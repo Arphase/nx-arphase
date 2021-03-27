@@ -233,7 +233,8 @@
           <ul nz-menu>
             <li nz-menu-item
                 [routerLink]="[item.id]">
-              Editar garantía
+              <ng-container *ivtUpdatePermission> Editar garantía </ng-container>
+              <ng-container *ivtNoUpdatePermission> Ver garantía </ng-container>
             </li>
             <li nz-submenu
                 nzTitle="Cambiar estatus">

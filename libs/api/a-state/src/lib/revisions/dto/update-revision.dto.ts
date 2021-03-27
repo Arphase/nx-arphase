@@ -16,15 +16,15 @@ export class UpdateRevisionDto {
   @IsEnum(RevisionStatus)
   status: RevisionStatus;
 
-  @IsNumber()
   @IsOptional()
+  @IsNumber()
   vehicleId: number;
 
   @IsOptional()
   @IsObject()
   report: RevisionReport;
 
-  @IsString()
   @IsOptional()
+  @IsString()
   reviedBy: string;
 }
