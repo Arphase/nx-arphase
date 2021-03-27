@@ -113,7 +113,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
   }
 
   get disableSubmit(): boolean {
-    return !!this.item || !this.isElegible || !!this.error;
+    return !this.isElegible || !!this.error;
   }
 
   ngOnChanges(changes: SimpleChanges) {
