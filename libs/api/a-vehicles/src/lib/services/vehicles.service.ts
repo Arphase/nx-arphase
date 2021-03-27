@@ -2,6 +2,7 @@ import { CreateVehicleDto, filterCommonQuery, GetVehiclesDto, UpdateVehicleDto, 
 import {
   createCollectionResponse,
   IvtCollectionResponse,
+  RevisionStatus,
   sortDirection,
   transformFolio,
   User,
@@ -112,8 +113,8 @@ export class VehiclesService {
 
   @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
   async updateVehicleStatusFromRevisions() {
-    const query = this.vehicleRepository.createQueryBuilder('vehicle');
-    await query
+    await this.vehicleRepository
+      .createQueryBuilder('vehicle')
       .update()
       .set({
         status: VehicleStatus.needsRevision,
@@ -122,15 +123,16 @@ export class VehiclesService {
         `NOT EXISTS(
           SELECT NULL
           FROM guarantees,
-               revisions
+               revisions,
+               vehicles
           WHERE (guarantees."vehicleId" = vehicles.id
               AND guarantees."endDate" > CURRENT_DATE - INTERVAL '0 days')
              OR (revisions."vehicleId" = vehicles.id
               AND revisions."createdAt" > CURRENT_DATE - INTERVAL '3 months'
-              AND revisions.status = '1')
-      )`
+              AND revisions.status = :revisionStatus )
+              AND vehicles.status != :vehicleStatus )`,
+        { vehicleStatus: VehicleStatus.notElegible, revisionStatus: RevisionStatus.elegible }
       )
-      .andWhere('vehicle.status != :status', { status: VehicleStatus.notElegible })
       .execute();
   }
 }

@@ -112,6 +112,10 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     return !this.currentVehicle || isVehicleElegible(this.currentVehicle);
   }
 
+  get disableSubmit(): boolean {
+    return !this.isElegible || !!this.error;
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.form && this.form) {
       this.client
@@ -144,12 +148,14 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     this.showPhysicalForm = value === PersonTypes[PersonTypes.physical];
     this.showMoralForm = value === PersonTypes[PersonTypes.moral];
 
-    if (this.showPhysicalForm) {
-      this.moralInfoForm.disable();
-      this.physicalInfoForm.enable();
-    } else {
-      this.moralInfoForm.enable();
-      this.physicalInfoForm.disable();
+    if (this.isEditable) {
+      if (this.showPhysicalForm) {
+        this.moralInfoForm.disable();
+        this.physicalInfoForm.enable();
+      } else {
+        this.moralInfoForm.enable();
+        this.physicalInfoForm.disable();
+      }
     }
   }
 

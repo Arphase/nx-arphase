@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Company, Guarantee, UserRoles } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import {
@@ -21,6 +21,7 @@ import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { combineLatest } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 import { createGuaranteeForm } from '../../components/guarantee-form/guarantee-form.component';
@@ -36,7 +37,16 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   successUrl = '/spa/guarantees';
   createSuccessMessage = 'La garantía se ha creado con éxito';
   updateSuccessMessage = 'La garantía se ha actualizado con éxito';
-  isEditable$ = this.permissionService.hasUpdatePermission([UserRoles.superAdmin, UserRoles.agencyUser]);
+  isEditable$ = combineLatest([
+    this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.agencyUser]),
+    this.permissionService.hasUpdatePermission([UserRoles.superAdmin]),
+    this.route.url,
+  ]).pipe(
+    map(([create, update, url]) => {
+      const createRoute = url.find(segment => segment.path === 'new');
+      return createRoute ? create : update;
+    })
+  );
   productOptions$ = this.productCollectionService.options$;
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
   vehicle$ = this.vehicleCollectionService.currentItem$;
@@ -56,7 +66,8 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     private permissionService: PermissionService,
     private store: Store<IvtState>,
     private companyCollectionService: CompanyCollectionService,
-    private vehicleCollectionService: VehicleCollectionService
+    private vehicleCollectionService: VehicleCollectionService,
+    private route: ActivatedRoute
   ) {
     super(guaranteeCollectionService, router, messageService);
   }
