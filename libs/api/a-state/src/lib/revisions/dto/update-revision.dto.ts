@@ -1,6 +1,6 @@
-import { RevisionStatus } from '@ivt/c-data';
+import { RevisionReport, RevisionStatus } from '@ivt/c-data';
 import { Transform } from 'class-transformer';
-import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, IsObject, IsOptional, IsString } from 'class-validator';
 
 export class UpdateRevisionDto {
   @IsNotEmpty()
@@ -16,8 +16,15 @@ export class UpdateRevisionDto {
   @IsEnum(RevisionStatus)
   status: RevisionStatus;
 
-  @IsNotEmpty()
-  @IsNumber()
   @IsOptional()
+  @IsNumber()
   vehicleId: number;
+
+  @IsOptional()
+  @IsObject()
+  report: RevisionReport;
+
+  @IsOptional()
+  @IsString()
+  reviedBy: string;
 }

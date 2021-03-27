@@ -40,6 +40,7 @@
                             [companyId]="companyId$ | async"
                             [item]="vehicle"
                             [vehicle]="currentVehicle"
+                            [isEditable]="isEditable"
                             (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
         </nz-collapse-panel>
       </nz-collapse>
@@ -97,7 +98,7 @@
               </nz-form-item>
             </div>
 
-            <div *ngIf="showCompanyInput"
+            <div *ivtCreatePermission
                  nz-col
                  nzXs="24"
                  nzLg="12">
@@ -327,7 +328,8 @@
       </nz-collapse>
     </nz-space-item>
 
-    <nz-space-item nz-row>
+    <nz-space-item *ngIf="isEditable"
+                   nz-row>
       <div nz-col
            nzSpan="24"
            class="flex-end">
@@ -343,7 +345,7 @@
                   type="submit"
                   nzType="primary"
                   [nzLoading]="loading"
-                  [disabled]="!isEditable && this.item || !isElegible || error">
+                  [disabled]="disableSubmit">
             Guardar
           </button>
         </nz-space>

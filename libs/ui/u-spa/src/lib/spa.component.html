@@ -19,7 +19,7 @@
               [(nzCollapsed)]="isCollapsed"
               [nzTrigger]="null"
               [ngClass]="{
-                '-m-80': mobileQuery.matches && isCollapsed,
+                'm-80': mobileQuery.matches && isCollapsed,
                 'absolute': mobileQuery.matches
               }">
       <ul nz-menu
@@ -28,6 +28,7 @@
           class="h-95">
         <ng-container *ngFor="let item of (menuItems$ | async)">
           <li *ngIf="item.display"
+          class="mt-0"
               nz-menu-item
               nzMatchRouter
               nz-tooltip

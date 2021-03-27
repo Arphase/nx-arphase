@@ -1,21 +1,22 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Company, UserRoles, Vehicle } from '@ivt/c-data';
 import { filterExisting } from '@ivt/c-utils';
 import {
   CompanyCollectionService,
   fromVehicles,
   getAuthUserCompanyIdState,
-  getAuthUserRoleState,
   getVehiclesVehicleState,
   IvtEntityCollection,
   IvtState,
+  PermissionService,
   VehicleCollectionService,
 } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { combineLatest } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
 import { createVehicleForm } from '../../public';
@@ -32,9 +33,16 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
   createSuccessMessage = 'El vehículo se ha creado con éxito';
   updateSuccessMessage = 'El vehículo se ha actualizado con éxito';
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
-  showCompanyInput$ = this.store.pipe(
-    select(getAuthUserRoleState),
-    map(role => role === UserRoles[UserRoles.superAdmin])
+  showCompanyInput$ = this.permissionService.hasCreatePermission([UserRoles.superAdmin]);
+  isEditable$ = combineLatest([
+    this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.agencyUser]),
+    this.permissionService.hasUpdatePermission([UserRoles.superAdmin]),
+    this.route.url,
+  ]).pipe(
+    map(([create, update, url]) => {
+      const createRoute = url.find(segment => segment.path === 'new');
+      return createRoute ? create : update;
+    })
   );
   companyOptions$ = this.companyCollectionService.options$;
   companiesInfo$ = this.companyCollectionService.store.pipe(
@@ -51,7 +59,9 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
     protected router: Router,
     protected messageService: NzMessageService,
     private store: Store<IvtState>,
-    private companyCollectionService: CompanyCollectionService
+    private companyCollectionService: CompanyCollectionService,
+    private permissionService: PermissionService,
+    private route: ActivatedRoute
   ) {
     super(vehicleCollectionService, router, messageService);
   }

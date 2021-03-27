@@ -1,6 +1,6 @@
-import { GetUser } from '@ivt/a-auth';
+import { GetUser, Roles, RolesGuard } from '@ivt/a-auth';
 import { CreateGuaranteeDto, GetGuaranteesFilterDto, GuaranteeEntity, UpdateGuaranteeDto } from '@ivt/a-state';
-import { Guarantee, GuaranteeSummary, IvtCollectionResponse, User } from '@ivt/c-data';
+import { Guarantee, GuaranteeSummary, IvtCollectionResponse, User, UserRoles } from '@ivt/c-data';
 import {
   Body,
   Controller,
@@ -22,7 +22,7 @@ import { Response } from 'express';
 import { GuaranteesService } from '../services/guarantees.service';
 
 @Controller('guarantees')
-@UseGuards(AuthGuard())
+@UseGuards(AuthGuard(), RolesGuard)
 export class GuaranteesController {
   constructor(private guaranteesService: GuaranteesService) {}
 
@@ -68,6 +68,7 @@ export class GuaranteesController {
   }
 
   @Put(':id')
+  @Roles(UserRoles.superAdmin)
   @UsePipes(new ValidationPipe({ transform: true }))
   updateGuarantee(
     @Body() updateGuaranteeDto: UpdateGuaranteeDto,

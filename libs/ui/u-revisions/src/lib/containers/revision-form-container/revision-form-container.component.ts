@@ -4,10 +4,10 @@ import { Revision, UserRoles } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import {
   fromVehicles,
-  getAuthUserRoleState,
   getVehiclesErrorState,
   getVehiclesVehicleState,
   IvtState,
+  PermissionService,
   RevisionCollectionService,
   selectQueryParam,
   VehicleCollectionService,
@@ -16,7 +16,7 @@ import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { map, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 import { createRevisionForm } from '../../components/revision-form/revision-form.component';
 
@@ -31,10 +31,7 @@ export class RevisionFormContainerComponent extends IvtFormContainerComponent<Re
   createSuccessMessage = 'La revisión se ha creado con éxito';
   updateSuccessMessage = 'La revisión se ha actualizado con éxito';
   successUrl = '/spa/revisions';
-  isEditable$ = this.store.pipe(
-    select(getAuthUserRoleState),
-    map(role => UserRoles[role] === UserRoles.superAdmin)
-  );
+  isEditable$ = this.permissionService.hasUpdatePermission([UserRoles.superAdmin]);
   vehicle$ = this.vehicleCollectionService.currentItem$;
   currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
   error$ = this.store.pipe(select(getVehiclesErrorState));
@@ -44,7 +41,8 @@ export class RevisionFormContainerComponent extends IvtFormContainerComponent<Re
     protected router: Router,
     protected messageService: NzMessageService,
     private store: Store<IvtState>,
-    private vehicleCollectionService: VehicleCollectionService
+    private vehicleCollectionService: VehicleCollectionService,
+    private permissionService: PermissionService
   ) {
     super(revisionCollectionService, router, messageService);
   }

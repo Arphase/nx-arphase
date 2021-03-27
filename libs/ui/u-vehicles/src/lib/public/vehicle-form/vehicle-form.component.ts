@@ -20,21 +20,17 @@ export function createVehicleForm(vehicle?: Vehicle) {
 
   const form = new FormGroup({
     id: new FormControl(null),
-    brand: new FormControl('', ApsValidators.required),
-    model: new FormControl('', ApsValidators.required),
-    version: new FormControl('', ApsValidators.required),
-    year: new FormControl('', [
-      ApsValidators.requiredNumber,
-      ApsValidators.min(todayYear - 20),
-      ApsValidators.max(todayYear + 1),
-    ]),
-    vin: new FormControl('', [
+    brand: new FormControl(null, ApsValidators.required),
+    model: new FormControl(null, ApsValidators.required),
+    version: new FormControl(null),
+    year: new FormControl(null, [ApsValidators.min(todayYear - 20), ApsValidators.max(todayYear + 1)]),
+    vin: new FormControl(null, [
       ApsValidators.required,
       ApsValidators.minLength(VEHICLE_VIN_LENGTH),
       ApsValidators.maxLength(VEHICLE_VIN_LENGTH),
     ]),
-    motorNumber: new FormControl('', ApsValidators.required),
-    horsePower: new FormControl('', [ApsValidators.requiredNumber, ApsValidators.min(1), ApsValidators.max(400)]),
+    motorNumber: new FormControl(null),
+    horsePower: new FormControl(null, [ApsValidators.requiredNumber, ApsValidators.min(1), ApsValidators.max(400)]),
     companyId: new FormControl(null, ApsValidators.required),
   });
 

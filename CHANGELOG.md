@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.2](https://bitbucket.org/arphase/innovatech/compare/v2.4.1...v2.4.2) (2021-03-23)
+
+
+### Features
+
+* **guarantees:** disable edit action for agency users ([42b767f](https://bitbucket.org/arphase/innovatech/commit/42b767f532d9e6394ac25d01f34e785702266dcb))
+
+
+### Bug Fixes
+
+* **revisions:** change reviewBy property from number to string in dto ([be371c8](https://bitbucket.org/arphase/innovatech/commit/be371c81eae5f52c86bf4c51e6fb04c07e56217f))
+
+### [2.4.1](https://bitbucket.org/arphase/innovatech/compare/v2.4.0...v2.4.1) (2021-03-22)
+
+
+### Bug Fixes
+
+* **vehicles:** midnight job query error ([172c4ec](https://bitbucket.org/arphase/innovatech/commit/172c4ec2b00cfc98ca5d1f1dc06845affc4953f5))
+
+## [2.4.0](https://bitbucket.org/arphase/innovatech/compare/v2.3.1...v2.4.0) (2021-03-20)
+
+
+### Features
+
+* **auth:** add company logo to presentational components ([d902599](https://bitbucket.org/arphase/innovatech/commit/d902599f4d6d29a81581b2490e745137628473bd))
+* **auth:** use no-reply@innovatechcorp.com email for notifications ([e008e67](https://bitbucket.org/arphase/innovatech/commit/e008e672b2d5471eb83fbadd094d590e9f83d55f))
+* **payment-orders:** create and update only for super admin users ([cb7a748](https://bitbucket.org/arphase/innovatech/commit/cb7a748b04868fb0776054cd6cc82e7a768fb7d6))
+* **revisions:** add report to form ([8ee908e](https://bitbucket.org/arphase/innovatech/commit/8ee908eb7a1021b3892d1e3cf4b6be1edd5fb511))
+* **revisions:** add reviewdBy field in form ([0f0dfc8](https://bitbucket.org/arphase/innovatech/commit/0f0dfc8f3256cb64f060e24e7e0fa978dae43865))
+* **ui:** add page size changer to tables ([a81ee5d](https://bitbucket.org/arphase/innovatech/commit/a81ee5df774dff49321e882c9f8323fe90597690))
+* **vehicles:** add company column in list ([4147d6f](https://bitbucket.org/arphase/innovatech/commit/4147d6f05e2564078a25e9591f2c34eac24c73a1))
+* **vehicles:** allow super admin change status and add soldWidhoutGuarantee status ([c2af184](https://bitbucket.org/arphase/innovatech/commit/c2af184dcc1b30b32ebe4c6342c5cad6170be0a8))
+* **vehicles:** don't allow agency users to edit or delete vehicles ([ce022f6](https://bitbucket.org/arphase/innovatech/commit/ce022f6b5583a42ef2d424f46d920590664b8a3f))
+* **vehicles:** make motorNumber, version, and year optional values ([5af90fc](https://bitbucket.org/arphase/innovatech/commit/5af90fc8cdb135d561b5e93af29f29f1e7277c74))
+
+
+### Bug Fixes
+
+* **api:** include results with same end date on filters ([3236002](https://bitbucket.org/arphase/innovatech/commit/32360024c84443c9f2ca40dabe95f72fd76d043c))
+
 ### [2.3.1](https://bitbucket.org/arphase/innovatech/compare/v2.3.0...v2.3.1) (2021-03-03)
 
 

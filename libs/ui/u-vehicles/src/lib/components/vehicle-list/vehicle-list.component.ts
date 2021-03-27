@@ -32,4 +32,8 @@ export class VehicleListComponent extends IvtListComponent<Vehicle> {
   updateStatusFilter(status: VehicleStatus): void {
     this.filterItems.emit({ status });
   }
+
+  onChangeStatus(id: number, status: VehicleStatus, vin: string): void {
+    this.edit.emit({ id, status, vin });
+  }
 }
