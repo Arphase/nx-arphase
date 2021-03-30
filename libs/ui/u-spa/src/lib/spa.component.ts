@@ -77,13 +77,12 @@ export class SpaComponent extends IvtSubscriberComponent {
           path: ['groups'],
           display: hasPermission,
         },
-        // TODO: uncomment when feature is ready
-        // {
-        //   icon: 'folder_open',
-        //   header: 'Productos',
-        //   path: ['products'],
-        //   display: hasPermission,
-        // },
+        {
+          icon: 'barcode',
+          header: 'Productos',
+          path: ['products'],
+          display: hasPermission,
+        },
         {
           icon: 'user',
           header: 'Usuarios',

@@ -1,12 +1,23 @@
-import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
-import { ApsValidators, FormBuilder } from '@angular/forms';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { glossary, Product } from '@ivt/c-data';
 import { ProductDataService } from '@ivt/u-state';
 import { IvtFormComponent } from '@ivt/u-ui';
-import { FileItem } from 'ng2-file-upload';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { NzUploadChangeParam, NzUploadFile, NzUploadXHRArgs } from 'ng-zorro-antd/upload';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
+
+export function createProductForm(): FormGroup {
+  return new FormGroup({
+    id: new FormControl(null),
+    name: new FormControl(null, ApsValidators.required),
+    price: new FormControl(null, ApsValidators.required),
+    logo: new FormControl(null, ApsValidators.required),
+    glossary: new FormControl(null),
+  });
+}
 
 @Component({
   selector: 'ivt-product-form',
@@ -14,21 +25,28 @@ import { finalize, take } from 'rxjs/operators';
   styleUrls: ['./product-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductFormComponent extends IvtFormComponent<Product> implements OnChanges {
+export class ProductFormComponent extends IvtFormComponent<Product> implements OnInit, OnChanges {
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
   glossaryOptions = glossary;
   selectedData: { value: string; text: string };
-
-  constructor(private fb: FormBuilder, private productDataService: ProductDataService) {
-    super();
-    this.form = this.fb.group({
-      id: null,
-      name: [null, ApsValidators.required],
-      price: [null, ApsValidators.required],
-      logo: [null, ApsValidators.required],
-      template: ['', ApsValidators.required],
+  fileList: NzUploadFile[] = [];
+  customRequest = (item: NzUploadXHRArgs): Subscription => {
+    return this.http.get('/ivtApi').subscribe((event: HttpResponse<any>) => {
+      console.log(item);
+      item.onSuccess(event.body, item.file, {}), event;
     });
+  };
+
+  constructor(private productDataService: ProductDataService, private http: HttpClient) {
+    super();
+  }
+
+  ngOnInit() {
+    // this.form
+    //   .get('glossary')
+    //   .valueChanges.pipe(takeUntil(this.destroy$))
+    //   .subscribe(value => {});
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -37,13 +55,14 @@ export class ProductFormComponent extends IvtFormComponent<Product> implements O
     }
   }
 
-  saveFile(files: FileItem[]): void {
-    if (files.length === 0) {
+  saveFile(event: NzUploadChangeParam): void {
+    const { file } = event;
+    if (file.status === 'removed') {
       this.form.get('logo').patchValue('');
       return;
     }
 
-    readFileAsDataUrl(files[0]._file)
+    readFileAsDataUrl(file.originFileObj)
       .pipe(take(1))
       .subscribe(convertedFile => this.form.get('logo').patchValue(convertedFile));
   }
@@ -60,16 +79,6 @@ export class ProductFormComponent extends IvtFormComponent<Product> implements O
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe();
-  }
-
-  selectedValue(event) {
-    let text = this.form.get('template').value;
-    this.selectedData = {
-      value: event.value,
-      text: event.source.triggerValue,
-    };
-    text += event.value;
-    this.form.get('template').patchValue(text);
   }
 }
 
