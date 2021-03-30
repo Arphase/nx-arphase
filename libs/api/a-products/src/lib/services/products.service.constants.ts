@@ -1,6 +1,5 @@
 import { IMAGE_ASSETS_PATH } from '@ivt/a-state';
 import { Guarantee } from '@ivt/c-data';
-import showdown from 'showdown';
 
 function replace(source: string, replacements: Record<string, string>) {
   return source.replace(new RegExp('\\{([A-z]|.)*?}', 'g'), value => {
@@ -69,8 +68,7 @@ function getRealGlossary(guarantee: Guarantee): Record<string, string> {
 }
 
 export function getProductPdfTemplate(body: string, guarantee?: Guarantee): string {
-  const converter = new showdown.Converter();
-  let template = converter.makeHtml(body);
+  let template = body;
   if (!guarantee) {
     template = replace(template, dummyGlossary);
   } else {
@@ -107,12 +105,10 @@ export function getProductPdfTemplate(body: string, guarantee?: Guarantee): stri
               margin-right: auto;
             }
             span.footer {
-
               max-width: 100%;
               height: 50%;
             }
             footer {
-
               max-width: 100%;
               height: auto;
             }

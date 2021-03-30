@@ -73,7 +73,7 @@ export class ProductService {
     if (generateProductPdfDto.logo != null) {
       logo = generateProductPdfDto.logo;
     } else {
-      logo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
+      logo = await tobase64('apps/innovatech-api/src/assets/img/forte-shield.png');
       logo = 'data:image/png;base64,' + logo;
     }
 

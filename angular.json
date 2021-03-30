@@ -37,8 +37,7 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "chart.js",
-              "file-saver",
-              "showdown"
+              "file-saver"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

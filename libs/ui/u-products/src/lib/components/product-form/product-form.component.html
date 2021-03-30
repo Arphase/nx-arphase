@@ -74,8 +74,8 @@
            nzSpan="8"
            class="px-0 ml-auto">
         <nz-form-item>
-          <nz-form-label nzRequired>Glosario</nz-form-label>
-          <nz-form-control apsAutoError>
+          <nz-form-label>Glosario</nz-form-label>
+          <nz-form-control>
             <nz-select formControlName="glossary"
                        [nzOptions]="glossaryOptions">
             </nz-select>
@@ -85,10 +85,18 @@
     </div>
 
     <div nz-row
+         class="quill-row"
          [nzGutter]="12">
       <div nz-col
            nzSpan="24">
-
+        <nz-form-item>
+          <nz-form-label nzRequired>Plantilla</nz-form-label>
+          <nz-form-control apsAutoError>
+            <quill-editor format="html"
+                          formControlName="template"
+                          placeholder=""></quill-editor>
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
 
@@ -106,13 +114,12 @@
           <nz-space-item>
             <button nz-button
                     type="button"
+                    [nzLoading]="loading$ | async"
                     (click)="downloadTemplatePreview()">Vista previa</button>
           </nz-space-item>
-          <nz-space-item>
-            <button nz-button
-                    type="submit"
-                    nzType="primary">Guardar</button>
-          </nz-space-item>
+          <button nz-button
+                  type="submit"
+                  nzType="primary">Guardar</button>
         </nz-space>
       </div>
     </div>

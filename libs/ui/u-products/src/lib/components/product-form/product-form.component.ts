@@ -3,11 +3,12 @@ import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } 
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { glossary, Product } from '@ivt/c-data';
+import { filterNil } from '@ivt/c-utils';
 import { ProductDataService } from '@ivt/u-state';
 import { IvtFormComponent } from '@ivt/u-ui';
 import { NzUploadChangeParam, NzUploadFile, NzUploadXHRArgs } from 'ng-zorro-antd/upload';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
-import { finalize, take } from 'rxjs/operators';
+import { finalize, take, takeUntil } from 'rxjs/operators';
 
 export function createProductForm(): FormGroup {
   return new FormGroup({
@@ -15,6 +16,7 @@ export function createProductForm(): FormGroup {
     name: new FormControl(null, ApsValidators.required),
     price: new FormControl(null, ApsValidators.required),
     logo: new FormControl(null, ApsValidators.required),
+    template: new FormControl(null, ApsValidators.required),
     glossary: new FormControl(null),
   });
 }
@@ -43,10 +45,12 @@ export class ProductFormComponent extends IvtFormComponent<Product> implements O
   }
 
   ngOnInit() {
-    // this.form
-    //   .get('glossary')
-    //   .valueChanges.pipe(takeUntil(this.destroy$))
-    //   .subscribe(value => {});
+    const glossaryControl = this.form.get('glossary');
+    glossaryControl.valueChanges.pipe(filterNil(), takeUntil(this.destroy$)).subscribe(value => {
+      const control = this.form.get('template');
+      control.patchValue(`${control.value} ${value}`);
+      glossaryControl.patchValue('', { emitEvent: false });
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
