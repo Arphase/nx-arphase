@@ -1,4 +1,4 @@
-import { getProductPdfTemplate } from '@ivt/a-products';
+import { generateProductPdf, getProductPdfTemplate } from '@ivt/a-products';
 import {
   CreateGuaranteeDto,
   filterCommonQuery,
@@ -7,7 +7,6 @@ import {
   GuaranteeEntity,
   GuaranteeRepository,
   MoralPersonRepository,
-  OUT_FILE,
   PhysicalPersonRepository,
   tobase64,
   UpdateGuaranteeDto,
@@ -29,14 +28,17 @@ import {
   VehicleStatus,
 } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
-import { BadRequestException, ConflictException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
-import fs from 'fs';
 import { omit } from 'lodash';
-import puppeteer from 'puppeteer';
 import { Connection } from 'typeorm';
-import { promisify } from 'util';
 import * as XLSX from 'xlsx';
 
 import { guaranteeExcelColumns } from './guarantees.service.constants';
@@ -200,10 +202,8 @@ export class GuaranteesService {
   }
 
   async generatePdf(id: number, response: Response): Promise<void> {
+    let content, headerLogo;
     const guarantee = await this.getGuaranteeById(id);
-
-    let content = getGuaranteePdfTemplate(guarantee);
-    let headerLogo = await tobase64('apps/innovatech-api/src/assets/img/forte-shield.png');
     const product = guarantee.product;
 
     if (product) {
@@ -216,63 +216,11 @@ export class GuaranteesService {
       }
       content = getProductPdfTemplate(template, guarantee);
       headerLogo = logo;
+    } else {
+      content = getGuaranteePdfTemplate(guarantee);
+      headerLogo = await tobase64('apps/innovatech-api/src/assets/img/forte-shield.png');
     }
-
-    const headerImg = await tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
-    const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
-
-    await promisify(fs.writeFile)(OUT_FILE, content);
-    const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
-    const page = await browser.newPage();
-    await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
-
-    await page.addStyleTag({
-      content: `
-          body { margin-top: 1cm; }
-          @page:first { margin-top: 0; }
-      `,
-    });
-    const buffer = await page.pdf({
-      format: 'a4',
-      margin: {
-        left: '1in',
-        top: '1in',
-        right: '1in',
-        bottom: '2in',
-      },
-      displayHeaderFooter: true,
-      pageRanges: '1-',
-      headerTemplate: `
-      <style>
-        .innovatech-logo {
-          max-width: 15%;
-          height: auto;
-          margin: 0.3in 0 0 0.8in;
-        }
-        .shield {
-          max-width: 10%;
-          height: auto;
-          margin: 0.1in 0.18in 0 auto;
-        }
-        #header { padding: 0 !important; }
-      </style>
-      <img class="innovatech-logo" src="data:image/png;base64,${headerImg}"/>
-      <img class="shield" src="data:image/png;base64,${headerLogo}"/>`,
-      footerTemplate: `
-      <style>
-        .footer {
-          width: 100%;
-          height: 1in;
-        }
-        #footer { padding: 0 !important; }
-      </style>
-      <img class="footer" src="data:image/jpg;base64,${footerImg}"/>
-      `,
-    });
-    promisify(fs.unlink)(OUT_FILE);
-    await browser.close();
-    const stream = getReadableStream(buffer);
-    stream.pipe(response);
+    await generateProductPdf(content, headerLogo, response);
   }
 
   async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto, user: Partial<User>): Promise<GuaranteeEntity> {

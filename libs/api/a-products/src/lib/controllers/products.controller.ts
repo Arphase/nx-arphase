@@ -1,5 +1,5 @@
-import { CreateProductDto, GenerateProductPdfDto, GetProductsFilterDto, UpdateProductDto } from '@ivt/a-state';
-import { Product } from '@ivt/c-data';
+import { CommonFilterDto, CreateProductDto, GenerateProductPdfDto, UpdateProductDto } from '@ivt/a-state';
+import { IvtCollectionResponse, Product } from '@ivt/c-data';
 import {
   Body,
   Controller,
@@ -34,7 +34,7 @@ export class ProductController {
   }
 
   @Get()
-  async getGuarantees(@Query(ValidationPipe) filterDto: GetProductsFilterDto): Promise<Product[]> {
+  async getGuarantees(@Query(ValidationPipe) filterDto: CommonFilterDto): Promise<IvtCollectionResponse<Product>> {
     return this.productService.getProducts(filterDto);
   }
 
