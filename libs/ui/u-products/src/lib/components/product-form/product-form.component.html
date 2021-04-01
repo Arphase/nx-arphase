@@ -43,17 +43,23 @@
            nzMd="24"
            nzLg="8">
         <nz-form-item>
-          <nz-form-label nzRequired>Logo</nz-form-label>
+          <nz-form-label nzRequired>Logo (.png, .jpg, .jpeg)</nz-form-label>
           <nz-form-control apsAutoError>
             <input nz-input
                    [hidden]="true"
                    formControlName="logo" />
-            <nz-upload nzListType="picture"
+            <nz-upload class="product-upload"
+                       nzListType="picture"
                        [(nzFileList)]="fileList"
-                       [nzDisabled]="fileList.length > 0"
+                       [nzShowButton]="!fileList.length"
+                       [nzDisabled]="!!fileList.length"
                        [nzLimit]="1"
                        [nzSize]="5000"
                        [nzCustomRequest]="customRequest"
+                       [nzAccept]="imageFileTypes"
+                       [nzFileType]="imageFileTypes"
+                       [nzShowUploadList]="showUploadList"
+                       [nzPreview]="preview"
                        (nzChange)="saveFile($event)">
               <button nz-button
                       type="button">

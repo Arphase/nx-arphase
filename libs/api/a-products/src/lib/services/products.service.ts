@@ -47,7 +47,7 @@ export class ProductService {
     const query = this.productRepository.createQueryBuilder('product').groupBy('product.id');
 
     if (text) {
-      query.andWhere('LOWER(products.name) LIKE :text', { text: `%${text.toLowerCase()}%` });
+      query.andWhere('LOWER(product.name) LIKE :text', { text: `%${text.toLowerCase()}%` });
     }
 
     filterCommonQuery('product', query, filterDto);
