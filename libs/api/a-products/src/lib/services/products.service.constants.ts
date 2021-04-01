@@ -166,7 +166,7 @@ export async function generateProductPdf(content: string, headerLogo: string, re
       #header { padding: 0 !important; }
     </style>
     <img class="innovatech-logo" src="data:image/png;base64,${headerImg}"/>
-    <img class="shield" src="data:image/png;base64,${headerLogo}"/>`,
+    <img class="shield" src="${headerLogo}"/>`,
     footerTemplate: `
     <style>
       .footer {

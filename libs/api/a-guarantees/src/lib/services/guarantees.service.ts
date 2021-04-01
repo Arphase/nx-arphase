@@ -205,20 +205,13 @@ export class GuaranteesService {
     let content, headerLogo;
     const guarantee = await this.getGuaranteeById(id);
     const product = guarantee.product;
-
     if (product) {
-      const template = product.template;
-      let logo = product.logo;
-
-      if (!logo) {
-        logo = await tobase64('apps/innovatech-api/src/assets/img/forte-shield.png');
-        logo = 'data:image/png;base64,' + logo;
-      }
-      content = getProductPdfTemplate(template, guarantee);
-      headerLogo = logo;
+      content = getProductPdfTemplate(product.template, guarantee);
+      headerLogo = product.logo;
     } else {
       content = getGuaranteePdfTemplate(guarantee);
       headerLogo = await tobase64('apps/innovatech-api/src/assets/img/forte-shield.png');
+      headerLogo = 'data:image/png;base64,' + headerLogo;
     }
     await generateProductPdf(content, headerLogo, response);
   }
