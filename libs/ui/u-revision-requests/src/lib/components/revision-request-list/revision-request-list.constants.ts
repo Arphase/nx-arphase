@@ -1,5 +1,6 @@
 import { ApsColumns } from '@arphase/ui';
-import { RevisionRequestStatus, Select } from '@ivt/c-data';
+import { RevisionRequestStatus } from '@ivt/c-data';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export const statusLabels: Record<RevisionRequestStatus, string> = {
   [RevisionRequestStatus.completed]: 'Completada',
@@ -19,7 +20,7 @@ export const colorMaps: Record<RevisionRequestStatus, string> = {
   [RevisionRequestStatus.new]: 'processing',
 };
 
-export const statusOptions: Select[] = [
+export const statusOptions: NzSelectOptionInterface[] = [
   {
     label: 'Completada',
     value: RevisionRequestStatus[RevisionRequestStatus.completed],

@@ -1,4 +1,5 @@
-import { RevisionReportItems, RevisionReportStatus, RevisionStatus, Select } from '@ivt/c-data';
+import { RevisionReportItems, RevisionReportStatus, RevisionStatus } from '@ivt/c-data';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export const revisionStatusLabels: Record<RevisionStatus, string> = {
   [RevisionStatus.elegible]: 'En buenas condiciones',
@@ -6,7 +7,7 @@ export const revisionStatusLabels: Record<RevisionStatus, string> = {
   [RevisionStatus.notElegible]: 'No garantizable',
 };
 
-export const statusOptions: Select[] = [
+export const statusOptions: NzSelectOptionInterface[] = [
   {
     label: revisionStatusLabels[RevisionStatus.elegible],
     value: RevisionStatus[RevisionStatus.elegible],

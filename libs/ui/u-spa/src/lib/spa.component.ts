@@ -1,6 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
-import { MenuItem, Select, UserRoles } from '@ivt/c-data';
+import { MenuItem, UserRoles } from '@ivt/c-data';
 import {
   fromAuth,
   getAuthUserEmailState,
@@ -12,6 +12,7 @@ import {
 } from '@ivt/u-state';
 import { IvtSubscriberComponent, Themes, ThemeService } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -29,7 +30,7 @@ export class SpaComponent extends IvtSubscriberComponent {
   version = this.config.version;
   mobileQuery: MediaQueryList;
   darkModeChecked = this.themeService.currentTheme === Themes.dark;
-  themeOptions: Select[] = [
+  themeOptions: NzSelectOptionInterface[] = [
     {
       label: 'Claro',
       value: Themes.default,

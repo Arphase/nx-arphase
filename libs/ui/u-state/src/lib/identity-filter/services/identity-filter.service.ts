@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Company, Group, Select, User, UserRoles } from '@ivt/c-data';
+import { Company, Group, User, UserRoles } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import { select } from '@ngrx/store';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { combineLatest, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
@@ -13,7 +14,7 @@ import { UserFilterCollectionService } from './users/user-filter-collection.serv
 
 export interface FilterInfo {
   loading: boolean;
-  options: Select[];
+  options: NzSelectOptionInterface[];
   last: boolean;
   pageIndex: number;
 }

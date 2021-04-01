@@ -130,23 +130,22 @@
             </div>
 
           </div>
-          <!-- TODO: Uncomment when products is ready
-        <div nz-row
-             [nzGutter]="12">
-          <div nz-col
-               nzSpan="24">
-            <nz-form-item>
-              <nz-form-label nzRequired>Producto</nz-form-label>
-              <nz-form-control apsAutoError>
-                <nz-select formControlName="productId">
-                  <nz-option *ngFor="let option of productOptions"
-                             [nzValue]="option.value"
-                             [nzLabel]="option.label"></nz-option>
-                </nz-select>
-              </nz-form-control>
-            </nz-form-item>
+          <div nz-row
+               [nzGutter]="12">
+            <div nz-col
+                 nzSpan="24">
+              <nz-form-item>
+                <nz-form-label nzRequired>Producto</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <nz-select formControlName="productId">
+                    <nz-option *ngFor="let option of productOptions"
+                               [nzValue]="option.value"
+                               [nzLabel]="option.label"></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
           </div>
-        </div> -->
         </nz-collapse-panel>
       </nz-collapse>
     </nz-space-item>
