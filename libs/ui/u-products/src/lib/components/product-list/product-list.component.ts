@@ -15,22 +15,32 @@ export class ProductListComponent extends IvtListComponent<Product> {
       label: 'Folio',
       prop: 'product.id',
       colSizes: {
-        xs: 2,
+        xs: 0,
+        md: 4,
       },
     },
     {
       label: 'Nombre',
       prop: 'product.name',
       colSizes: {
-        xs: 2,
+        xs: 10,
+        md: 6,
       },
     },
     {
       label: 'Precio',
       prop: 'product.price',
       colSizes: {
-        xs: 2,
-        sm: 18,
+        xs: 0,
+        md: 6,
+      },
+    },
+    {
+      label: 'Logo',
+      prop: 'product.logo',
+      colSizes: {
+        xs: 14,
+        md: 8,
       },
     },
   ];

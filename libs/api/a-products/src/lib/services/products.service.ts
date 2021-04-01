@@ -44,13 +44,13 @@ export class ProductService {
 
   async getProducts(filterDto: CommonFilterDto): Promise<IvtCollectionResponse<Product>> {
     const { text, pageSize, pageIndex } = filterDto;
-    const query = this.productRepository.createQueryBuilder('products').groupBy('products.id');
+    const query = this.productRepository.createQueryBuilder('product').groupBy('product.id');
 
     if (text) {
       query.andWhere('LOWER(products.name) LIKE :text', { text: `%${text.toLowerCase()}%` });
     }
 
-    filterCommonQuery('user', query, filterDto);
+    filterCommonQuery('product', query, filterDto);
 
     const products = await query.getMany();
     const total = await query.getCount();
