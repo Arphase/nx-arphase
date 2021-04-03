@@ -184,6 +184,11 @@
         "arphase",
         "front"
       ]
+    },
+    "ivt-app": {
+      "tags": [
+        "mobile"
+      ]
     }
   }
 }

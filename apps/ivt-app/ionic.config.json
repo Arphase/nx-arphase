@@ -1,0 +1,7 @@
+{
+  "name": "ivtapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

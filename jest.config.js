@@ -8,5 +8,12 @@ module.exports = {
     '<rootDir>/libs/api/a-revision-requests',
     '<rootDir>/libs/arphase/ui/aps-u-ui',
     '<rootDir>/libs/ui/u-revision-requests',
+    '<rootDir>/libs/xplat/core',
+    '<rootDir>/libs/xplat/features',
+    '<rootDir>/libs/xplat/scss',
+    '<rootDir>/libs/xplat/utils',
+    '<rootDir>/libs/xplat/ionic/core',
+    '<rootDir>/libs/xplat/ionic/features',
+    '<rootDir>/libs/xplat/ionic/scss',
   ],
 };

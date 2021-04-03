@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "ivtapp",
+  "bundledWebRuntime": false,
+  "webDir": "www",
+  "npmClient": "npm",
+  "allowMixedContent": true
+}
