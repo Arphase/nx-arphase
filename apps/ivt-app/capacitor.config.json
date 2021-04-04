@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "ivtapp",
+  "appId": "ivt.app",
+  "appName": "Innovatech",
   "bundledWebRuntime": false,
   "webDir": "www",
   "npmClient": "npm",

@@ -1,9 +1,7 @@
 {
-  "name": "ivtapp",
+  "name": "ivt-app",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "description": "An Ionic project",
-  "homepage": "https://ionicframework.com/",
+  "author": "Arphase",
   "scripts": {
     "cap.add.ios": "npx ionic capacitor add ios",
     "cap.add.android": "npx ionic capacitor add android",
@@ -11,13 +9,5 @@
     "cap.android": "npx ionic capacitor open android",
     "cap.copy": "npx ionic capacitor copy",
     "cap.update": "npx ionic capacitor update"
-  },
-  "dependencies": {
-    "@capacitor/android": "^2.4.7",
-    "@capacitor/core": "2.4.7",
-    "@capacitor/ios": "~2.4.5"
-  },
-  "devDependencies": {
-    "@capacitor/cli": "2.4.7"
   }
 }
