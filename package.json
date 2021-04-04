@@ -35,7 +35,7 @@
     "typeorm:run": "npm run typeorm migration:run",
     "api:prod": "nx build innovatech-api --prod && node dist/apps/innovatech-api/main.js",
     "prepare.ionic.ivt-app.ios": "cd apps/ivt-app && npx rimraf -- ios && npm run cap.add.ios",
-    "prepare.ionic.ivt-app.android": "cd apps/ivt-app && npx rimraf -- android && npm run cap.add.android",
+    "prepare.ionic.ivt-app.android": "cd apps/ivt-app && npx rimraf -- android && npm run cap.add.android && npm run cap.res.android",
     "open.ionic.ivt-app.ios": "cd apps/ivt-app && npm run cap.ios",
     "open.ionic.ivt-app.android": "cd apps/ivt-app && npm run cap.android",
     "sync.ionic.ivt-app": "cd apps/ivt-app && npm run cap.copy"

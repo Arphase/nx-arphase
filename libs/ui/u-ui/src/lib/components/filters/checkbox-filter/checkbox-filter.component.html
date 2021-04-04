@@ -10,12 +10,12 @@
   <i *ngIf="!hasActiveOptions"
      nz-icon
      nzType="down"
-     nzTheme="outline"
+
      class="right"></i>
   <i nz-icon
      *ngIf="!disabled && hasActiveOptions"
      nzType="close"
-     nzTheme="outline"
+
      class="delete-icon right"
      (click)="deleteFilters(); $event.stopPropagation()"></i>
 
