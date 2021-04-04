@@ -8,5 +8,5 @@ export const environment: Environment = {
   production: false,
   apiUrl: 'http://localhost:3333',
   version: packageJson.version,
-  environmentName: 'ionic-dev',
+  environmentName: 'dev',
 };

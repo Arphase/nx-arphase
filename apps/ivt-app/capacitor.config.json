@@ -2,7 +2,7 @@
   "appId": "ivt.app",
   "appName": "Innovatech",
   "bundledWebRuntime": false,
-  "webDir": "www",
+  "webDir": "../.../dist/ivt-app",
   "npmClient": "npm",
   "allowMixedContent": true
 }

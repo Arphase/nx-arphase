@@ -5,5 +5,5 @@ export const environment: Environment = {
   production: true,
   apiUrl: 'https://apiqa.innovatechcorp.com',
   version: packageJson.version,
-  environmentName: 'ionic-qa',
+  environmentName: 'qa',
 };

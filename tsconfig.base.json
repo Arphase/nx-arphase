@@ -24,10 +24,10 @@
     "resolveJsonModule": true,
     "paths": {
       "@app/*": [
-        "apps/innovatech-ui/src/app/*"
+        "apps/ivt-app/src/app/*"
       ],
       "@app/env/*": [
-        "apps/innovatech-ui/src/environments/*"
+        "apps/ivt-app/src/environments/*"
       ],
       "@api/*": [
         "apps/innovatech-api/src/app/*"

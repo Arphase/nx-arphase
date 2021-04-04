@@ -5,5 +5,5 @@ export const environment: Environment = {
   production: true,
   apiUrl: 'https://api.innovatechcorp.com',
   version: packageJson.version,
-  environmentName: 'ionic-prod',
+  environmentName: 'prod',
 };
