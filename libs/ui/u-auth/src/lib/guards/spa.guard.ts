@@ -8,8 +8,8 @@ import { map, switchMap, take } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
-  loginUrlTree = this.router.parseUrl('/auth');
+export class SpaGuard implements CanActivate {
+  spaUrlTruee = this.router.parseUrl('/spa');
 
   constructor(private router: Router, private authService: AuthService, private actions$: Actions) {}
 
@@ -18,11 +18,11 @@ export class AuthGuard implements CanActivate {
       take(1),
       switchMap(isAuthenticated =>
         isAuthenticated
-          ? of(true)
+          ? of(this.spaUrlTruee)
           : this.actions$.pipe(
               ofType(fromAuth.actions.loadUserFromStorage),
               take(1),
-              map(({ user }) => (user.token ? true : this.loginUrlTree))
+              map(({ user }) => (user.token ? this.spaUrlTruee : true))
             )
       )
     );

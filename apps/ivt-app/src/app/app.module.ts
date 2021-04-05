@@ -9,6 +9,7 @@ import { Router, RouteReuseStrategy } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicStorageModule } from '@ionic/storage-angular';
 import { IVT_UI_STATE_CONFIGURATION, IvtStateModule, IvtUiStateConfiguration } from '@ivt/u-state';
 import * as Sentry from '@sentry/angular';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -32,15 +33,16 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     IvtStateModule,
     NzModalModule,
+    IonicModule.forRoot(),
     NgxMaskModule.forRoot(),
     NzIconModule.forRoot(icons),
+    IonicStorageModule.forRoot(),
   ],
   providers: [
     StatusBar,
@@ -60,8 +62,7 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
     },
     {
       provide: APP_INITIALIZER,
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      useFactory: () => () => {},
+      useFactory: () => () => null,
       deps: [Sentry.TraceService],
       multi: true,
     },

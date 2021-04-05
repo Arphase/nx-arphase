@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '@ivt/u-auth';
+import { RouterModule, Routes } from '@angular/router';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { AuthGuard, SpaGuard } from '@ivt/u-auth';
 
 export const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('@ivt/u-auth').then(m => m.AuthModule),
+    canActivate: [SpaGuard],
   },
   {
     path: 'spa',
@@ -24,7 +26,6 @@ export const routes: Routes = [
     RouterModule.forRoot(routes, {
       paramsInheritanceStrategy: 'always',
       relativeLinkResolution: 'legacy',
-      preloadingStrategy: PreloadAllModules,
     }),
   ],
   exports: [RouterModule],

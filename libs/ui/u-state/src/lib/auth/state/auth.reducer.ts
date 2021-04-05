@@ -5,21 +5,21 @@ import { AuthState } from './auth.state';
 
 export const initialState: AuthState = {
   user: {
-    id: Number(localStorage.getItem('id')),
-    firstName: localStorage.getItem('firstName'),
-    secondName: localStorage.getItem('secondName'),
-    lastName: localStorage.getItem('lastName'),
-    secondLastName: localStorage.getItem('secondLastName'),
-    email: localStorage.getItem('email'),
-    role: localStorage.getItem('role'),
-    token: localStorage.getItem('token'),
-    companyId: Number(localStorage.getItem('companyId')),
+    id: null,
+    firstName: null,
+    secondName: null,
+    lastName: null,
+    secondLastName: null,
+    email: null,
+    role: null,
+    token: null,
+    companyId: null,
   },
 };
 
 const authReducer = createReducer(
   initialState,
-  on(AuthActions.signInSuccess, (state, action) => ({
+  on(AuthActions.signInSuccess, AuthActions.loadUserFromStorage, (state, action) => ({
     ...state,
     user: action.user,
   })),

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, UrlTree } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
 import { fromAuth, IvtState } from '@ivt/u-state';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
@@ -10,12 +11,17 @@ import { mapTo, take } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class SetPasswordGuard implements CanActivate {
-  constructor(private store: Store<IvtState>, private actions$: Actions, private router: Router) {}
+  constructor(
+    private store: Store<IvtState>,
+    private actions$: Actions,
+    private router: Router,
+    private storage: Storage
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    localStorage.clear();
+    this.storage.clear();
     const passwordToken = route.paramMap.get('passwordToken');
     this.store.dispatch(fromAuth.actions.validateToken({ payload: { passwordToken } }));
 

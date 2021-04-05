@@ -922,7 +922,7 @@
     }
   },
   "cli": {
-    "defaultCollection": "@nstudio/xplat",
+    "defaultCollection": "@nrwl/angular",
     "analytics": false
   },
   "schematics": {

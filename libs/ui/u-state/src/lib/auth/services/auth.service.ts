@@ -25,8 +25,11 @@ export class AuthService {
     );
   }
 
-  getToken(): string {
-    return localStorage.getItem('token') || '';
+  getToken(): Observable<string> {
+    return this.store.pipe(
+      select(getAuthUserStateState),
+      map(user => user?.token)
+    );
   }
 
   setPassword(payload: SetPasswordPayload): Observable<User> {
