@@ -3,6 +3,7 @@ export const guaranteeExcelColumns: string[] = [
   'Fecha de carga',
   'Fecha de actualización',
   'Estatus',
+  'Compañía',
   'Fecha inicio',
   'Fecha fin',
   'Importe',
@@ -40,5 +41,5 @@ export const guaranteeExcelColumns: string[] = [
   'Creación orden de compra',
   'Actualización orden de compra',
   'Distribuidor',
-  'Factura',
+  'Factura'
 ];

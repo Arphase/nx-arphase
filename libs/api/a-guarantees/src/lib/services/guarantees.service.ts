@@ -122,6 +122,7 @@ export class GuaranteesService {
         formatDate(guarantee.createdAt),
         formatDate(guarantee.updatedAt),
         statusLabels[guarantee.status],
+        guarantee?.company?.businessName,
         formatDate(guarantee.startDate),
         formatDate(guarantee.endDate),
         guarantee.amount,
