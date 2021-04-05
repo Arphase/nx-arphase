@@ -9,6 +9,7 @@
     "cap.android": "npx ionic capacitor open android",
     "cap.copy": "npx ionic capacitor copy",
     "cap.update": "npx ionic capacitor update",
-    "cap.res.android": "cordova-res android --skip-config --copy"
+    "cap.res.android": "cordova-res android --skip-config --copy",
+    "cap.res.ios": "cordova-res ios --skip-config --copy"
   }
 }

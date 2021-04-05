@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { Platform } from '@ionic/angular';
 import { Plugins, StatusBarStyle } from '@capacitor/core';
-const { StatusBar } = Plugins;
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar as NgxStatusBar } from '@ionic-native/status-bar/ngx';
+import { Platform } from '@ionic/angular';
 import { ThemeService } from '@ivt/u-ui';
+
+const { StatusBar } = Plugins;
 
 @Component({
   selector: 'app-root',

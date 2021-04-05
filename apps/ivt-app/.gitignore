@@ -38,6 +38,7 @@ testem.log
 # mobile
 /www
 /android
+/ios
 
 # System Files
 .DS_Store

@@ -24,11 +24,10 @@
               }">
       <ul nz-menu
           nzTheme="dark"
-          nzMode="inline"
-          class="h-95">
+          nzMode="inline">
         <ng-container *ngFor="let item of (menuItems$ | async)">
           <li *ngIf="item.display"
-          class="mt-0"
+              class="mt-0"
               nz-menu-item
               nzMatchRouter
               nz-tooltip
@@ -43,13 +42,12 @@
         </ng-container>
       </ul>
       <div [hidden]="isCollapsed"
-           class="flex-center">
+           class="flex-center mt-auto">
         <p class="text-white flex-center">
           <i nz-icon
              [style.font-size]="'20px'"
              [style.margin-right]="'8px'"
-             [nzType]="darkModeChecked ? 'eye-invisible': 'eye'"
-           ></i>
+             [nzType]="darkModeChecked ? 'eye-invisible': 'eye'"></i>
           <nz-switch [(ngModel)]="darkModeChecked"
                      (ngModelChange)="toggleDarkMode()"></nz-switch>
         </p>
