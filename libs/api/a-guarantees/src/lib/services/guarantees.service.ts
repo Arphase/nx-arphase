@@ -33,6 +33,7 @@ import {
   ConflictException,
   ForbiddenException,
   Injectable,
+  InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -228,21 +229,22 @@ export class GuaranteesService {
       if (updateGuaranteeDto.client?.personType === PersonTypes.physical && updateGuaranteeDto.client?.moralInfo?.id) {
         await this.moralPersonRepository.delete(updateGuaranteeDto.client.moralInfo.id);
       }
-      const preloadedGuarantee = await this.guaranteeRepository.preload(updateGuaranteeDto);
-      const vehicle = await this.vehicleRepository.findOne({ id: updateGuaranteeDto.vehicleId });
-      this.validateVehicle(vehicle, user);
-      const guarantee = this.omitInfo(updateGuaranteeDto);
-      const updatedGuarantee = await this.guaranteeRepository.save({
-        ...preloadedGuarantee,
-        ...guarantee,
+      const preloadedGuarantee = await this.guaranteeRepository.preload({
+        ...this.omitInfo(updateGuaranteeDto),
         companyId:
           user && UserRoles[user.role] === UserRoles.superAdmin ? updateGuaranteeDto.companyId : user.companyId,
       });
-      await updatedGuarantee.reload();
+      if (updateGuaranteeDto.vehicleId) {
+        const vehicle = await this.vehicleRepository.findOne({ id: updateGuaranteeDto.vehicleId });
+        this.validateVehicle(vehicle, user);
+      }
+      await preloadedGuarantee.save();
+      await preloadedGuarantee.reload();
       await queryRunner.commitTransaction();
-      return updatedGuarantee;
+      return preloadedGuarantee;
     } catch (err) {
       await queryRunner.rollbackTransaction();
+      throw new InternalServerErrorException({ ...err, message: err.detail });
     } finally {
       await queryRunner.release();
     }
