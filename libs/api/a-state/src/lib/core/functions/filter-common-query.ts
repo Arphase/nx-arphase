@@ -35,7 +35,7 @@ export function filterCommonQuery(
   if (startDate && endDate) {
     const modifiedEndDate = dayjs(endDate, 'YYYY-MM-DD').add(1, 'day').format('YYYY-MM-DD');
     const date = `${entityName}.${dateType || 'createdAt'}`;
-    query.andWhere(`${date} >= :begin and ${date} <= :end`, { begin: startDate, end: modifiedEndDate });
+    query.andWhere(`${date} > :startDate and ${date} <= :endDate`, { startDate, endDate: modifiedEndDate });
   }
 
   if (groupIds) {
