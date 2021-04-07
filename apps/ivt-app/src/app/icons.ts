@@ -1,5 +1,6 @@
 import { IconDefinition } from '@ant-design/icons-angular';
 import {
+  ArrowLeftOutline,
   BarcodeOutline,
   CarOutline,
   CheckCircleOutline,
@@ -11,6 +12,7 @@ import {
   EditOutline,
   ExclamationCircleOutline,
   ExportOutline,
+  EyeInvisibleOutline,
   FallOutline,
   FileTextOutline,
   MenuFoldOutline,
@@ -27,6 +29,7 @@ import {
 } from '@ant-design/icons-angular/icons';
 
 export const icons: IconDefinition[] = [
+  ArrowLeftOutline,
   BarcodeOutline,
   CarOutline,
   CheckCircleOutline,
@@ -38,6 +41,7 @@ export const icons: IconDefinition[] = [
   EditOutline,
   ExclamationCircleOutline,
   ExportOutline,
+  EyeInvisibleOutline,
   FallOutline,
   FileTextOutline,
   MenuFoldOutline,
