@@ -89,6 +89,18 @@ export class AuthEffects {
     )
   );
 
+  loadUserFromSession$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.loadUserFromStorage),
+      map(({ user }) => {
+        if (!user?.token) {
+          return AuthActions.logout();
+        }
+        return AuthActions.signInSuccess({ user });
+      })
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private authService: AuthService,

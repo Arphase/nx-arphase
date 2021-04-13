@@ -18,7 +18,7 @@ import { ComponentCanDeactivate } from '../../guards/dirty-form/dirty-form.guard
 })
 export class IvtFormContainerComponent<T> extends IvtSubscriberComponent implements ComponentCanDeactivate {
   @ViewChild('form', { static: false }) formComponent: IvtFormComponent<T>;
-  loading$ = this.entityCollectionService.loadingModify$;
+  loading$ = this.entityCollectionService.loading$;
   currentItem$ = this.entityCollectionService.currentItem$;
   showSuccess$ = this.entityCollectionService.entityActions$.pipe(
     ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS, EntityOp.SAVE_UPDATE_ONE_SUCCESS),
@@ -68,7 +68,7 @@ export class IvtFormContainerComponent<T> extends IvtSubscriberComponent impleme
       )
       .subscribe(() => this.messageService.success(this.updateSuccessMessage));
 
-    this.entityCollectionService.loadingModify$
+    this.entityCollectionService.loading$
       .pipe(
         filter(() => !!this.modalRef),
         takeUntil(this.destroy$)
