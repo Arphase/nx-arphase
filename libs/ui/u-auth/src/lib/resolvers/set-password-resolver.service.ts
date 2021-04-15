@@ -20,6 +20,6 @@ export class SetPasswordResolverService implements Resolve<Action> {
       .pipe(ofType(fromAuth.actions.validateTokenFailed), take(1))
       .subscribe(() => this.router.navigateByUrl('auth/expired-token'));
 
-    return this.actions$.pipe(ofType(fromAuth.actions.validateTokenSuccess));
+    return this.actions$.pipe(ofType(fromAuth.actions.validateTokenSuccess), take(1));
   }
 }

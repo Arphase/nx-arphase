@@ -112,18 +112,17 @@
            nzSpan="24"
            class="flex-end">
         <nz-space>
-          <nz-space-item>
-            <button nz-button
-                    type="button"
-                    [routerLink]="['..']">Cancelar</button>
-          </nz-space-item>
-          <nz-space-item>
-            <button nz-button
-                    type="button"
-                    [nzLoading]="loading$ | async"
-                    (click)="downloadTemplatePreview()">Vista previa</button>
-          </nz-space-item>
-          <button nz-button
+          <button *nzSpaceItem
+                  nz-button
+                  type="button"
+                  [routerLink]="['..']">Cancelar</button>
+          <button *nzSpaceItem
+                  nz-button
+                  type="button"
+                  [nzLoading]="loading$ | async"
+                  (click)="downloadTemplatePreview()">Vista previa</button>
+          <button *nzSpaceItem
+                  nz-button
                   type="submit"
                   nzType="primary">Guardar</button>
         </nz-space>

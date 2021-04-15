@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 
+import { IvtState } from '../../state';
 import { AuthService } from '../services';
 import * as AuthActions from './auth.actions';
 
@@ -89,22 +91,11 @@ export class AuthEffects {
     )
   );
 
-  loadUserFromSession$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AuthActions.loadUserFromStorage),
-      map(({ user }) => {
-        if (!user?.token) {
-          return AuthActions.logout();
-        }
-        return AuthActions.signInSuccess({ user });
-      })
-    )
-  );
-
   constructor(
     private actions$: Actions,
     private authService: AuthService,
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    private store: Store<IvtState>
   ) {}
 }

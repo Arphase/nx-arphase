@@ -10,6 +10,7 @@ import {
 export interface IvtEntityCollection<T> extends EntityCollection {
   queryParams: IvtQueryParams;
   currentItem: T;
+  loadingModify: boolean;
   info: IvtCollectionResponseInfo;
 }
 
@@ -58,6 +59,54 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
       currentItem: action.payload.data,
       loading: false,
     };
+  }
+
+  protected saveAddOne(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    const entityCollection = super.saveAddOne(collection, action) as IvtEntityCollection<T>;
+    return { ...entityCollection, loadingModify: true };
+  }
+
+  protected saveAddOneSuccess(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    return {
+      ...collection,
+      currentItem: action.payload.data,
+      loadingModify: false,
+    };
+  }
+
+  protected saveAddOneError(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    const entityCollection = super.saveAddOneError(collection, action) as IvtEntityCollection<T>;
+    return { ...entityCollection, loadingModify: false };
+  }
+
+  protected saveUpdateOne(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    const entityCollection = super.saveUpdateOne(collection, action) as IvtEntityCollection<T>;
+    return { ...entityCollection, loadingModify: true };
+  }
+
+  protected saveUpdateOneSuccess(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    const entityCollection = super.saveUpdateOneSuccess(collection, action) as IvtEntityCollection<T>;
+    return { ...entityCollection, loadingModify: false };
+  }
+
+  protected saveUpdateOneError(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    const entityCollection = super.saveUpdateOneError(collection, action) as IvtEntityCollection<T>;
+    return { ...entityCollection, loadingModify: false };
+  }
+
+  protected saveDeleteOne(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    const entityCollection = super.saveDeleteOne(collection, action) as IvtEntityCollection<T>;
+    return { ...entityCollection, loadingModify: true };
+  }
+
+  protected saveDeleteOneSuccess(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    const entityCollection = super.saveDeleteOneSuccess(collection, action) as IvtEntityCollection<T>;
+    return { ...entityCollection, loadingModify: false };
+  }
+
+  protected saveDeleteOneError(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    const entityCollection = super.saveDeleteOneError(collection, action) as IvtEntityCollection<T>;
+    return { ...entityCollection, loadingModify: false };
   }
 
   protected removeOne(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {

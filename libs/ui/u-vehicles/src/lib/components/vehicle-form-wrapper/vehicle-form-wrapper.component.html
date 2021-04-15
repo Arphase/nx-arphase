@@ -20,8 +20,7 @@
            nzSpan="24"
            class="bg-alert text-white py-3 rounded flex-start">
         <i nz-icon
-           nzType="close-circle"
-         ></i>
+           nzType="close-circle"></i>
         <span> Un vehículo con este VIN ya está dado de alta en la plataforma. Intente con otro VIN. </span>
       </div>
     </div>
@@ -33,27 +32,30 @@
                       (getCompanies)="getCompanies.emit($event)"
                       (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
 
-    <nz-space-item *ngIf="isEditable"
-                   nz-row>
-      <div nz-col
-           nzSpan="24"
-           class="flex-end">
-        <nz-space>
-          <nz-space-item>
-            <button nz-button
+    <ng-container *ngIf="isEditable">
+
+      <div *nzSpaceItem
+           nz-row>
+        <div nz-col
+             nzSpan="24"
+             class="flex-end">
+          <nz-space>
+            <button *nzSpaceItem
+                    nz-button
                     type="button"
                     [routerLink]="['..']">
               Cancelar
             </button>
-          </nz-space-item>
-          <button nz-button
-                  type="submit"
-                  nzType="primary"
-                  [nzLoading]="loading">
-            Guardar
-          </button>
-        </nz-space>
+            <button *nzSpaceItem
+                    nz-button
+                    type="submit"
+                    nzType="primary"
+                    [nzLoading]="loading">
+              Guardar
+            </button>
+          </nz-space>
+        </div>
       </div>
-    </nz-space-item>
+    </ng-container>
   </nz-space>
 </form>

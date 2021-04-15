@@ -13,35 +13,32 @@
                     [routerLink]="['..']">
     </nz-page-header>
 
-    <nz-space-item>
-      <nz-collapse>
-        <nz-collapse-panel nzHeader="Vehículo"
-                           [nzActive]="true">
-          <div nz-row>
-            <nz-space nzDirection="vertical"
-                      nzSize="middle"
-                      nz-col
-                      nzSpan="24">
-              <nz-space-item>
-                <nz-alert *ngIf="error"
-                          nzType="error"
-                          [nzMessage]="error"
-                          nzShowIcon>
-                </nz-alert>
-              </nz-space-item>
-            </nz-space>
-          </div>
-          <ivt-vehicle-form [form]="vehicleForm"
-                            [item]="vehicle"
-                            [vehicle]="currentVehicle"
-                            [isEditable]="isEditable"
-                            (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </nz-space-item>
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Vehículo"
+                         [nzActive]="true">
+        <div nz-row>
+          <nz-space nzDirection="vertical"
+                    nzSize="middle"
+                    nz-col
+                    nzSpan="24">
+            <div *nzSpaceItem>
+              <nz-alert *ngIf="error"
+                        nzType="error"
+                        [nzMessage]="error"
+                        nzShowIcon></nz-alert>
+            </div>
+          </nz-space>
+        </div>
+        <ivt-vehicle-form [form]="vehicleForm"
+                          [item]="vehicle"
+                          [vehicle]="currentVehicle"
+                          [isEditable]="isEditable"
+                          (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
+      </nz-collapse-panel>
+    </nz-collapse>
 
-    <nz-space-item *ngFor="let reportSection of revisionReportSections | keyvalue">
-      <nz-collapse>
+    <div *ngFor="let reportSection of revisionReportSections | keyvalue">
+      <nz-collapse *nzSpaceItem>
         <nz-collapse-panel [nzHeader]="reportSection.key"
                            [nzActive]="true">
           <div nz-row>
@@ -62,8 +59,7 @@
               <nz-tag nz-tooltip
                       [nzColor]="icon.color">
                 <i nz-icon
-                   [nzType]="icon.type"
-                 ></i>
+                   [nzType]="icon.type"></i>
               </nz-tag>
             </div>
           </div>
@@ -98,10 +94,8 @@
           </div>
         </nz-collapse-panel>
       </nz-collapse>
-    </nz-space-item>
 
-    <nz-space-item>
-      <nz-collapse>
+      <nz-collapse *nzSpaceItem>
         <nz-collapse-panel nzHeader="Revisión"
                            [nzActive]="true">
 
@@ -147,29 +141,30 @@
           </div>
         </nz-collapse-panel>
       </nz-collapse>
-    </nz-space-item>
-
-    <nz-space-item *ngIf="isEditable"
-                   nz-row>
-      <div nz-col
-           nzSpan="24"
-           class="flex-end">
-        <nz-space>
-          <nz-space-item>
-            <button nz-button
+    </div>
+    <ng-container *ngIf="isEditable">
+      <div *nzSpaceItem
+           nz-row>
+        <div nz-col
+             nzSpan="24"
+             class="flex-end">
+          <nz-space>
+            <button *nzSpaceItem
+                    nz-button
                     type="button"
                     [routerLink]="['..']">
               Cancelar
             </button>
-          </nz-space-item>
-          <button nz-button
-                  type="submit"
-                  nzType="primary"
-                  [nzLoading]="loading">
-            Guardar
-          </button>
-        </nz-space>
+            <button *nzSpaceItem
+                    nz-button
+                    type="submit"
+                    nzType="primary"
+                    [nzLoading]="loading">
+              Guardar
+            </button>
+          </nz-space>
+        </div>
       </div>
-    </nz-space-item>
+    </ng-container>
   </nz-space>
 </form>

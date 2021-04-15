@@ -40,7 +40,7 @@
        nzFlex="auto">
     <div class="flex-end">
       <nz-space>
-        <nz-space-item>
+        <div *nzSpaceItem>
           <button *ngIf="showPaymentOrderButton"
                   nz-button
                   type="button"
@@ -48,7 +48,7 @@
                   (click)="createPaymentOrder.emit(checkedIdsArray)">
             Generar orden de pago
           </button>
-        </nz-space-item>
+        </div>
       </nz-space>
       <button nz-button
               [routerLink]="['new']"

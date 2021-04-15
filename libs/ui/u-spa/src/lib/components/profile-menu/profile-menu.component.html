@@ -4,25 +4,21 @@
      nzTrigger="click"
      class="flex-center profile">
   <nz-space>
-    <nz-space-item>
-      <nz-avatar [nzText]="avatarText"></nz-avatar>
-    </nz-space-item>
-  </nz-space>
-  <nz-space [nzSize]="24">
-    <nz-space-item>
-      <span nz-col
-            nzXs="0"
-            nzMd="24"
-            class="text-white"> {{ name }}</span>
-    </nz-space-item>
+    <nz-avatar *nzSpaceItem
+               [nzText]="avatarText"></nz-avatar>
+    <div *nzSpaceItem
+         nz-col
+         nzXs="0"
+         nzMd="24"
+         class="text-white"> {{ name }}</div>
   </nz-space>
 </div>
 
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <div nz-menu>
-    <nz-space nzDirection="vertical"
-              nzSize="large">
-      <nz-space-item></nz-space-item>
+    <nz-space nzDirection="vertical">
+      <div *nzSpaceItem></div>
+      <div *nzSpaceItem></div>
     </nz-space>
     <div nz-row>
       <div nz-col
@@ -48,9 +44,9 @@
                 (click)="logout.emit()">Cerrar sesión</button>
       </div>
     </div>
-    <nz-space nzDirection="vertical"
-              nzSize="large">
-      <nz-space-item></nz-space-item>
+    <nz-space nzDirection="vertical">
+      <div *nzSpaceItem></div>
+      <div *nzSpaceItem></div>
     </nz-space>
   </div>
 </nz-dropdown-menu>

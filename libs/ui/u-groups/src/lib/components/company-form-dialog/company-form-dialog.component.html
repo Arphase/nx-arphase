@@ -7,139 +7,131 @@
             nz-col
             nzSpan="24"
             nzSize="middle">
-    <nz-space-item>
-      <nz-collapse>
-        <nz-collapse-panel nzHeader="Información General"
-                           [nzActive]="true">
-          <div nz-row
-               [nzGutter]="12">
-            <div nz-col
-                 nzXs="24"
-                 nzLg="12">
-              <nz-form-item>
-                <nz-form-label nzRequired>Razón Social</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         formControlName="businessName" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-            <div nz-col
-                 nzXs="24"
-                 nzLg="12">
-              <nz-form-item>
-                <nz-form-label nzRequired>RFC</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         ivtUppercase
-                         formControlName="rfc" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Información General"
+                         [nzActive]="true">
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzXs="24"
+               nzLg="12">
+            <nz-form-item>
+              <nz-form-label nzRequired>Razón Social</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="businessName" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </nz-space-item>
-
-    <nz-space-item>
-      <nz-collapse>
-        <nz-collapse-panel nzHeader="Dirección"
-                           [nzActive]="true">
-          <ivt-address-form [form]="addressForm"></ivt-address-form>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </nz-space-item>
-
-    <nz-space-item>
-      <nz-collapse>
-        <nz-collapse-panel nzHeader="Contacto"
-                           [nzActive]="true">
-          <div nz-row
-               [nzGutter]="12">
-            <div nz-col
-                 nzXs="24"
-                 nzLg="8">
-              <nz-form-item>
-                <nz-form-label nzRequired>Nombre del contacto</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         formControlName="contact" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-            <div nz-col
-                 nzXs="24"
-                 nzLg="8">
-              <nz-form-item>
-                <nz-form-label nzRequired>Corrreo</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         formControlName="email" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-            <div nz-col
-                 nzXs="24"
-                 nzLg="8">
-              <nz-form-item>
-                <nz-form-label nzRequired>Teléfono</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         type="tel"
-                         mask="(00) 0000 0000"
-                         formControlName="phone" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
+          <div nz-col
+               nzXs="24"
+               nzLg="12">
+            <nz-form-item>
+              <nz-form-label nzRequired>RFC</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       ivtUppercase
+                       formControlName="rfc" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </nz-space-item>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
 
-    <nz-space-item>
-      <nz-collapse>
-        <nz-collapse-panel nzHeader="Usuarios"
-                           [nzActive]="true">
-          <div *ngFor="let userForm of usersFormArray.controls; let index = index;"
-               nz-row
-               [nzGutter]="12">
-            <div nz-col
-                 nzXs="20"
-                 nzMd="22">
-              <ivt-user-form [form]="userForm"></ivt-user-form>
-            </div>
-            <div nz-col
-                 nzXs="4"
-                 nzMd="2"
-                 class="flex-center">
-              <button *ngIf="!userForm.value.id"
-                      nz-button
-                      nzType="text"
-                      nz-tooltip
-                      nzTooltipTitle="Eliminar usuario"
-                      type="button"
-                      (click)="removeUser(index)">
-                <i nz-icon
-                   nzType="delete"></i>
-              </button>
-            </div>
-          </div>
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Dirección"
+                         [nzActive]="true">
+        <ivt-address-form [form]="addressForm"></ivt-address-form>
+      </nz-collapse-panel>
+    </nz-collapse>
 
-          <div nz-row
-               [nzGutter]="12">
-            <div nz-col
-                 nzSpan="24">
-              <button nz-button
-                      nzType="primary"
-                      type="button"
-                      [disabled]="usersFormArray.invalid"
-                      (click)="addUser()">
-                Agregar nuevo usuario
-              </button>
-            </div>
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Contacto"
+                         [nzActive]="true">
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzXs="24"
+               nzLg="8">
+            <nz-form-item>
+              <nz-form-label nzRequired>Nombre del contacto</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="contact" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </nz-space-item>
+          <div nz-col
+               nzXs="24"
+               nzLg="8">
+            <nz-form-item>
+              <nz-form-label nzRequired>Corrreo</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="email" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzLg="8">
+            <nz-form-item>
+              <nz-form-label nzRequired>Teléfono</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="tel"
+                       mask="(00) 0000 0000"
+                       formControlName="phone" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Usuarios"
+                         [nzActive]="true">
+        <div *ngFor="let userForm of usersFormArray.controls; let index = index;"
+             nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzXs="20"
+               nzMd="22">
+            <ivt-user-form [form]="userForm"></ivt-user-form>
+          </div>
+          <div nz-col
+               nzXs="4"
+               nzMd="2"
+               class="flex-center">
+            <button *ngIf="!userForm.value.id"
+                    nz-button
+                    nzType="text"
+                    nz-tooltip
+                    nzTooltipTitle="Eliminar usuario"
+                    type="button"
+                    (click)="removeUser(index)">
+              <i nz-icon
+                 nzType="delete"></i>
+            </button>
+          </div>
+        </div>
+
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzSpan="24">
+            <button nz-button
+                    nzType="primary"
+                    type="button"
+                    [disabled]="usersFormArray.invalid"
+                    (click)="addUser()">
+              Agregar nuevo usuario
+            </button>
+          </div>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
   </nz-space>
 </form>
