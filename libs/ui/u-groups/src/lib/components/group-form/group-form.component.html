@@ -12,87 +12,84 @@
                     [routerLink]="['..']">
     </nz-page-header>
 
-    <nz-space-item>
-      <nz-collapse>
-        <nz-collapse-panel nzHeader="Información General"
-                           [nzActive]="true">
-          <div nz-row>
-            <div nz-col
-                 nzSpan="24">
-              <nz-form-item>
-                <nz-form-label nzRequired>Nombre del grupo</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         formControlName="name" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Información General"
+                         [nzActive]="true">
+        <div nz-row>
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Nombre del grupo</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="name" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
-          <div nz-row>
-            <div nz-col
-                 nzSpan="24">
-              <nz-form-item>
-                <nz-form-label nzRequired>Nombre del contacto</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         formControlName="contact" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
+        </div>
+        <div nz-row>
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Nombre del contacto</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="contact" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
-          <div nz-row>
-            <div nz-col
-                 nzSpan="24">
-              <nz-form-item>
-                <nz-form-label nzRequired>Correo</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         formControlName="email" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
+        </div>
+        <div nz-row>
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Correo</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="email" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
-          <div nz-row>
-            <div nz-col
-                 nzSpan="24">
-              <nz-form-item>
-                <nz-form-label nzRequired>Teléfono</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         type="tel"
-                         mask="(00) 0000 0000"
-                         formControlName="phone" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
+        </div>
+        <div nz-row>
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Teléfono</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="tel"
+                       mask="(00) 0000 0000"
+                       formControlName="phone" />
+              </nz-form-control>
+            </nz-form-item>
           </div>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </nz-space-item>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
 
-    <nz-space-item>
-      <nz-collapse>
-        <nz-collapse-panel nzHeader="Compañías"
-                           [nzActive]="true">
-          <ivt-group-company-list-container [item]="item">
-          </ivt-group-company-list-container>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </nz-space-item>
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Compañías"
+                         [nzActive]="true">
+        <ivt-group-company-list-container [item]="item">
+        </ivt-group-company-list-container>
+      </nz-collapse-panel>
+    </nz-collapse>
 
-    <nz-space-item nz-row>
+    <div nz-row
+         *nzSpaceItem>
       <div nz-col
            nzSpan="24"
            class="flex-end">
         <nz-space>
-          <nz-space-item>
-            <button nz-button
-                    type="button"
-                    [routerLink]="['..']">
-              Cancelar
-            </button>
-          </nz-space-item>
-          <button nz-button
+          <button *nzSpaceItem
+                  nz-button
+                  type="button"
+                  [routerLink]="['..']">
+            Cancelar
+          </button>
+          <button *nzSpaceItem
+                  nz-button
                   type="submit"
                   nzType="primary"
                   [nzLoading]="loading">
@@ -100,6 +97,6 @@
           </button>
         </nz-space>
       </div>
-    </nz-space-item>
+    </div>
   </nz-space>
 </form>

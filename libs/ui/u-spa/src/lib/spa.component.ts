@@ -1,6 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
-import { MenuItem, Select, UserRoles } from '@ivt/c-data';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
+import { MenuItem, UserRoles } from '@ivt/c-data';
 import {
   fromAuth,
   getAuthUserEmailState,
@@ -11,9 +11,11 @@ import {
   PermissionService,
 } from '@ivt/u-state';
 import { IvtSubscriberComponent, Themes, ThemeService } from '@ivt/u-ui';
+import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-spa',
@@ -21,7 +23,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./spa.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SpaComponent extends IvtSubscriberComponent {
+export class SpaComponent extends IvtSubscriberComponent implements OnInit {
   isCollapsed: boolean;
   menuItems$ = this.getMenuItems();
   name$ = this.store.pipe(select(getAuthUserNameState));
@@ -29,7 +31,7 @@ export class SpaComponent extends IvtSubscriberComponent {
   version = this.config.version;
   mobileQuery: MediaQueryList;
   darkModeChecked = this.themeService.currentTheme === Themes.dark;
-  themeOptions: Select[] = [
+  themeOptions: NzSelectOptionInterface[] = [
     {
       label: 'Claro',
       value: Themes.default,
@@ -47,13 +49,22 @@ export class SpaComponent extends IvtSubscriberComponent {
     @Inject(IVT_UI_STATE_CONFIGURATION) private config: IvtUiStateConfiguration,
     private cdr: ChangeDetectorRef,
     private media: MediaMatcher,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private actions$: Actions
   ) {
     super();
     this.mobileQuery = this.media.matchMedia('(max-width: 769px)');
     this._mobileQueryListener = () => this.cdr.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.isCollapsed = this.mobileQuery.matches;
+  }
+
+  ngOnInit() {
+    this.actions$.pipe(ofType(fromAuth.actions.loadUserFromStorage), take(1)).subscribe(({ user }) => {
+      if (!user?.token) {
+        this.store.dispatch(fromAuth.actions.logout());
+      }
+    });
   }
 
   getMenuItems(): Observable<MenuItem[]> {
@@ -77,13 +88,12 @@ export class SpaComponent extends IvtSubscriberComponent {
           path: ['groups'],
           display: hasPermission,
         },
-        // TODO: uncomment when feature is ready
-        // {
-        //   icon: 'folder_open',
-        //   header: 'Productos',
-        //   path: ['products'],
-        //   display: hasPermission,
-        // },
+        {
+          icon: 'barcode',
+          header: 'Productos',
+          path: ['products'],
+          display: hasPermission,
+        },
         {
           icon: 'user',
           header: 'Usuarios',

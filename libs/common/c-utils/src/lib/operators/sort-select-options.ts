@@ -1,15 +1,18 @@
-import { Select } from '@ivt/c-data';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { OperatorFunction } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-export function sortSelectOptionsAlphabetical(): OperatorFunction<Select[], Select[]> {
+export function sortSelectOptionsAlphabetical(): OperatorFunction<
+  NzSelectOptionInterface[],
+  NzSelectOptionInterface[]
+> {
   return map(values => sortSelectOptions(values));
 }
 
-export function sortSelectOptions(options: Select[]): Select[] {
+export function sortSelectOptions(options: NzSelectOptionInterface[]): NzSelectOptionInterface[] {
   return options.sort((a, b) => {
-    const aLabel = a.label?.toLowerCase();
-    const bLabel = b.label?.toLowerCase();
+    const aLabel = (a.label as string)?.toLowerCase();
+    const bLabel = (b.label as string)?.toLowerCase();
 
     if (aLabel < bLabel) {
       return -1;

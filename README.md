@@ -125,8 +125,8 @@ Libraries are sharable across libraries and applications. They can be imported f
 
 ### Build
 These are the commands to build for different environments:
-- Run `nx build innovatech-ui --c=qa` for QA environment
-- Run `nx build innovatech-ui --prod` for PROD environment
+- Run `nx build --c=qa` for QA environment
+- Run `nx build --prod` for PROD environment
 
 The build artifacts will be stored in the `dist/` directory
 

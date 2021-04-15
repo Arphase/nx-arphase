@@ -1,2 +1,6 @@
-<ivt-product-list [list]="list$ | async">
+<ivt-product-list [list]="list$ | async"
+                  [loading]="loading$ | async"
+                  [info]="info$ | async"
+                  [queryParams]="queryParams"
+                  (filterItems)="filterItems($event)">
 </ivt-product-list>

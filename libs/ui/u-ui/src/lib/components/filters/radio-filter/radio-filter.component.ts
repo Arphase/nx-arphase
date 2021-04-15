@@ -9,7 +9,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Select } from '@ivt/c-data';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -22,7 +22,7 @@ import { IvtFilterComponent } from '../filter';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtRadioFilterComponent extends IvtFilterComponent<string> implements OnChanges, OnDestroy {
-  @Input() options: Select[] = [];
+  @Input() options: NzSelectOptionInterface[] = [];
   @Input() selectedOption: string | number;
   @Output() filterCleared = new EventEmitter<void>();
   @Output() filterChanged = new EventEmitter<string>();
@@ -51,7 +51,7 @@ export class IvtRadioFilterComponent extends IvtFilterComponent<string> implemen
 
   setTitle(value: string): void {
     const radioOption = this.options.find(option => option.value === value);
-    this.mappedTitle = radioOption ? radioOption.label : this.label;
+    this.mappedTitle = radioOption ? (radioOption.label as string) : this.label;
   }
 
   deleteFilters(): void {

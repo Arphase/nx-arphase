@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 
+import { IvtState } from '../../state';
 import { AuthService } from '../services';
 import * as AuthActions from './auth.actions';
 
@@ -26,7 +29,7 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(AuthActions.signInSuccess),
         tap(({ user }) => {
-          Object.keys(user).forEach(key => localStorage.setItem(key, String(user[key])));
+          Object.keys(user).forEach(async key => await this.storage.set(key, String(user[key])));
           this.router.navigateByUrl('/spa');
         })
       ),
@@ -37,9 +40,9 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.logout),
-        tap(() => {
+        tap(async () => {
           this.router.navigateByUrl('/auth');
-          localStorage.clear();
+          await this.storage.clear();
         })
       ),
     { dispatch: false }
@@ -77,16 +80,22 @@ export class AuthEffects {
   );
 
   sendPasswordEmail$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(AuthActions.sendPasswordEmail),
-    mergeMap(({ payload }) =>
-      this.authService.sendPasswordEmail(payload).pipe(
-        map(() => AuthActions.sendPasswordEmailSuccess()),
-        catchError(() => of(AuthActions.sendPasswordEmailFailed()))
+    this.actions$.pipe(
+      ofType(AuthActions.sendPasswordEmail),
+      mergeMap(({ payload }) =>
+        this.authService.sendPasswordEmail(payload).pipe(
+          map(() => AuthActions.sendPasswordEmailSuccess()),
+          catchError(() => of(AuthActions.sendPasswordEmailFailed()))
+        )
       )
     )
-  )
-);
+  );
 
-  constructor(private actions$: Actions, private authService: AuthService, private router: Router) {}
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private router: Router,
+    private storage: Storage,
+    private store: Store<IvtState>
+  ) {}
 }

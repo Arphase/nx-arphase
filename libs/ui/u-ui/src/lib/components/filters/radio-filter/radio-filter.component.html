@@ -10,13 +10,13 @@
   <i *ngIf="!active; else removeFilter"
      nz-icon
      nzType="down"
-     nzTheme="outline"
+
      class="right"></i>
 
   <ng-template #removeFilter>
     <i nz-icon
        nzType="close"
-       nzTheme="outline"
+
        class="delete-icon right"
        (click)="deleteFilters(); $event.stopPropagation()"></i>
   </ng-template>

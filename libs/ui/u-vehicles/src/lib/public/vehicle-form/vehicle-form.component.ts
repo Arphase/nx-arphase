@@ -9,10 +9,11 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { IvtCollectionResponseInfo, Select, Vehicle, VEHICLE_VIN_LENGTH } from '@ivt/c-data';
+import { IvtCollectionResponseInfo, Vehicle, VEHICLE_VIN_LENGTH } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
 import { omit } from 'lodash-es';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { filter, takeUntil } from 'rxjs/operators';
 
 export function createVehicleForm(vehicle?: Vehicle) {
@@ -50,7 +51,7 @@ export function createVehicleForm(vehicle?: Vehicle) {
 export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements OnChanges {
   @Input() companyId: number;
   @Input() showCompanyInput: boolean;
-  @Input() companyOptions: Select[] = [];
+  @Input() companyOptions: NzSelectOptionInterface[] = [];
   @Input() vehicle: Vehicle;
   @Input() companiesInfo: IvtCollectionResponseInfo;
   @Output() verifyVin = new EventEmitter<string>();

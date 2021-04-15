@@ -1,4 +1,5 @@
-<ivt-product-form [item]="currentItem$ | async"
+<ivt-product-form [form]="form"
+                  [item]="currentItem$ | async"
                   [loading]="loading$ | async"
                   (submitForm)="submit($event)">
 </ivt-product-form>
