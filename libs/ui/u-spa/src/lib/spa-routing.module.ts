@@ -42,12 +42,10 @@ const routes: Routes = [
         path: 'revision-requests',
         loadChildren: () => import('@ivt/u-revision-requests').then(m => m.RevisionRequestsModule),
       },
-      // TODO: uncomment when feature is ready
-      // {
-      //   path: 'products',
-      //   loadChildren: () =>
-      //     import('@ivt/u-products').then((m) => m.ProductsModule),
-      // },
+      {
+        path: 'products',
+        loadChildren: () => import('@ivt/u-products').then(m => m.ProductsModule),
+      },
       {
         path: '',
         redirectTo: 'dashboard',

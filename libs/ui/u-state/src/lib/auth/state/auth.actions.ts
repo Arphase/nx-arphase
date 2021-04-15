@@ -26,3 +26,5 @@ export const sendPasswordEmail = createAction('[Auth] Send password email', prop
 export const sendPasswordEmailSuccess = createAction('[Auth] Send password email success');
 
 export const sendPasswordEmailFailed = createAction('[Auth] Send password email failed');
+
+export const loadUserFromStorage = createAction('[Auth] load user from storage', props<{ user: User }>());

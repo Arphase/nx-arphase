@@ -1,5 +1,6 @@
 import { ApsColumns } from '@arphase/ui';
-import { Select, VehicleStatus } from '@ivt/c-data';
+import { VehicleStatus } from '@ivt/c-data';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export const columns: ApsColumns = [
   {
@@ -83,7 +84,7 @@ export const statusLabels: Record<string, string> = {
   [VehicleStatus[VehicleStatus.soldWidhoutGuarantee]]: 'Vendido sin garantía',
 };
 
-export const statusOptions: Select[] = [
+export const statusOptions: NzSelectOptionInterface[] = [
   {
     label: statusLabels[VehicleStatus[VehicleStatus.elegible]],
     value: VehicleStatus[VehicleStatus.elegible],

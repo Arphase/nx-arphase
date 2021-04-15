@@ -6,7 +6,6 @@ import { ProductFormContainerComponent } from './containers/product-form-contain
 import { ProductListContainerComponent } from './containers/product-list-container/product-list-container.component';
 import { ProductsComponent } from './products.component';
 import { ProductResolverService } from './resolvers/product-resolver.service';
-import { ProductsResolverService } from './resolvers/products-resolver.service';
 
 export const routes: Routes = [
   {
@@ -16,7 +15,6 @@ export const routes: Routes = [
       {
         path: '',
         component: ProductListContainerComponent,
-        resolve: { resolvedProducts: ProductsResolverService },
       },
       {
         path: 'new',

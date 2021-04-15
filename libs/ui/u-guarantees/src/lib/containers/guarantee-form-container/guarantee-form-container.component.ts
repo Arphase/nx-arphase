@@ -73,6 +73,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   }
 
   ngOnInit() {
+    this.productCollectionService.getWithQuery({});
     this.store
       .pipe(select(selectQueryParam('vehicleId')), takeUntil(this.destroy$), filterNil())
       .subscribe(id => this.vehicleCollectionService.getByKey(Number(id)));

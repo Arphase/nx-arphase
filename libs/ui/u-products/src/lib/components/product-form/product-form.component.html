@@ -1,4 +1,6 @@
-<form [formGroup]="form"
+<form nz-form
+      nzLayout="vertical"
+      [formGroup]="form"
       (ngSubmit)="submit()">
   <div nz-row>
     <div nz-col
@@ -15,7 +17,7 @@
          [nzGutter]="12">
       <div nz-col
            nzMd="24"
-           nzLg="12">
+           nzLg="8">
         <nz-form-item>
           <nz-form-label nzRequired>Nombre del producto</nz-form-label>
           <nz-form-control apsAutoError>
@@ -26,16 +28,7 @@
       </div>
       <div nz-col
            nzMd="24"
-           nzLg="12">
-        <!-- TODO: Use ng zorro file uploader -->
-      </div>
-    </div>
-
-    <div nz-row
-         [nzGutter]="12">
-      <div nz-col
-           nzSpan="8"
-           class="-lg-4 col-4">
+           nzLg="8">
         <nz-form-item>
           <nz-form-label nzRequired>Precio</nz-form-label>
           <nz-form-control apsAutoError>
@@ -46,14 +39,50 @@
           </nz-form-control>
         </nz-form-item>
       </div>
+      <div nz-col
+           nzMd="24"
+           nzLg="8">
+        <nz-form-item>
+          <nz-form-label nzRequired>Logo (.png, .jpg, .jpeg)</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   [hidden]="true"
+                   formControlName="logo" />
+            <nz-upload class="product-upload"
+                       nzListType="picture"
+                       [(nzFileList)]="fileList"
+                       [nzShowButton]="!fileList.length"
+                       [nzDisabled]="!!fileList.length"
+                       [nzLimit]="1"
+                       [nzSize]="5000"
+                       [nzCustomRequest]="customRequest"
+                       [nzAccept]="imageFileTypes"
+                       [nzFileType]="imageFileTypes"
+                       [nzShowUploadList]="showUploadList"
+                       [nzPreview]="preview"
+                       (nzChange)="saveFile($event)">
+              <button nz-button
+                      type="button">
+                <i nz-icon
+                   nzType="upload"></i>
+                Subir archivo
+              </button>
+            </nz-upload>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
 
+    </div>
+
+    <div nz-row
+         [nzGutter]="12">
       <div nz-col
            nzSpan="8"
            class="px-0 ml-auto">
         <nz-form-item>
-          <nz-form-label nzRequired>Glosario</nz-form-label>
-          <nz-form-control apsAutoError>
-            <nz-select formControlName="glosary"
+          <nz-form-label>Glosario</nz-form-label>
+          <nz-form-control>
+            <nz-select formControlName="glossary"
                        [nzOptions]="glossaryOptions">
             </nz-select>
           </nz-form-control>
@@ -62,14 +91,16 @@
     </div>
 
     <div nz-row
+         class="quill-row"
          [nzGutter]="12">
       <div nz-col
            nzSpan="24">
         <nz-form-item>
-          <nz-form-label nzRequired>Cuerpo del producto</nz-form-label>
+          <nz-form-label nzRequired>Plantilla</nz-form-label>
           <nz-form-control apsAutoError>
-            <textarea nz-input
-                      formControlName="template"></textarea>
+            <quill-editor format="html"
+                          formControlName="template"
+                          placeholder=""></quill-editor>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -78,19 +109,23 @@
     <div nz-row
          [nzGutter]="12">
       <div nz-col
-           class="px-0 flex-end">
-        <button nz-button
-                class="mr-3"
-                type="button"
-                [routerLink]="['..']">Cancelar</button>
-        <button nz-button
-                class="mr-3"
-                nzType="primary"
-                type="button"
-                (click)="downloadTemplatePreview()">Vista previa</button>
-        <button nz-button
-                type="submit"
-                nzType="primary">Guardar</button>
+           nzSpan="24"
+           class="flex-end">
+        <nz-space>
+          <button *nzSpaceItem
+                  nz-button
+                  type="button"
+                  [routerLink]="['..']">Cancelar</button>
+          <button *nzSpaceItem
+                  nz-button
+                  type="button"
+                  [nzLoading]="loading$ | async"
+                  (click)="downloadTemplatePreview()">Vista previa</button>
+          <button *nzSpaceItem
+                  nz-button
+                  type="submit"
+                  nzType="primary">Guardar</button>
+        </nz-space>
       </div>
     </div>
   </div>

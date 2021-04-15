@@ -2,17 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { Locality, Select } from '@ivt/c-data';
+import { Locality } from '@ivt/c-data';
 import { sortSelectOptions, sortStringOptions } from '@ivt/c-utils';
 import { uniq, uniqBy } from 'lodash-es';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 export interface MappedLocalities {
   showAddressSelects: boolean;
-  countryOptions: Select[];
-  stateOptions: Select[];
-  cityOptions: Select[];
+  countryOptions: NzSelectOptionInterface[];
+  stateOptions: NzSelectOptionInterface[];
+  cityOptions: NzSelectOptionInterface[];
   suburbOptions: string[];
 }
 
@@ -50,7 +51,7 @@ export class IvtAddressFormService {
     };
   }
 
-  private mapOptions(zipCodeInfo: Locality[], mappingFn: (info: Locality) => Select) {
+  private mapOptions(zipCodeInfo: Locality[], mappingFn: (info: Locality) => NzSelectOptionInterface) {
     return uniqBy(zipCodeInfo.map(mappingFn), 'value');
   }
 

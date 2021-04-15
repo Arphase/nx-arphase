@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.3](https://bitbucket.org/arphase/innovatech/compare/v2.4.2...v2.4.3) (2021-04-05)
+
+
+### Features
+
+* **app:** add android icon and splash screen ([9be60ec](https://bitbucket.org/arphase/innovatech/commit/9be60ecfe1239106dad03ad3afe12bc037db08c2))
+* **app:** add ios icon and splash screen ([25f6725](https://bitbucket.org/arphase/innovatech/commit/25f6725d73f471775a30c921c5e2ceb2f82695b6))
+* **auth:** persist user data with ionic storage ([01359e0](https://bitbucket.org/arphase/innovatech/commit/01359e05ed3a55fd6c92f6a1dc97c65e3b15d190))
+* **guarantees:** add company businessName in Excel report ([56e73dc](https://bitbucket.org/arphase/innovatech/commit/56e73dc3da1d7297b47035eba279d8d9004ea83b))
+* **products:** add product to guarantee form ([c8fd7f2](https://bitbucket.org/arphase/innovatech/commit/c8fd7f27d64e455fbc5c95f45aba0008b795541b))
+* **products:** edit ([bc2e267](https://bitbucket.org/arphase/innovatech/commit/bc2e267391245d1683017971ae9a2afae928f99d))
+* **products:** implement ngx quill for product template ([37a723a](https://bitbucket.org/arphase/innovatech/commit/37a723af5407394912dd43dd386bb98ac0abe132))
+* **products:** responsive list ([27b6169](https://bitbucket.org/arphase/innovatech/commit/27b6169adc2801dabbb70176917ee429b2d5a4fb))
+* **products:** use nz upload for logo ([c52f14f](https://bitbucket.org/arphase/innovatech/commit/c52f14f85b7b099651f213ed1c9c5f501eb1f42a))
+
+
+### Bug Fixes
+
+* **guarantees:** make guarantees editable for admin users ([aaa3a14](https://bitbucket.org/arphase/innovatech/commit/aaa3a1478846c294ef56b1cc4c20fe275e442a25))
+
 ### [2.4.2](https://bitbucket.org/arphase/innovatech/compare/v2.4.1...v2.4.2) (2021-03-23)
 
 

@@ -4,7 +4,7 @@ import { HttpStatusCodes, IvtHttpErrorResponse } from '@ivt/c-data';
 import { Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Observable, throwError } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
+import { catchError, finalize, switchMap, take } from 'rxjs/operators';
 
 import { AuthService, fromAuth } from '../../auth';
 import { IvtState } from '../../state';
@@ -19,20 +19,25 @@ export class TokenInterceptor implements HttpInterceptor {
     private store: Store<IvtState>
   ) {}
   intercept(request: HttpRequest<null>, next: HttpHandler): Observable<HttpEvent<null>> {
-    this.loadingService.show();
-    request = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${this.authService.getToken()}`,
-      },
-    });
-    return next.handle(request).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (!request.headers.get('noMessage')) {
-          this.handleError(error.error);
-        }
-        return throwError(error);
-      }),
-      finalize(() => this.loadingService.hide())
+    return this.authService.getToken().pipe(
+      take(1),
+      switchMap(token => {
+        this.loadingService.show();
+        request = request.clone({
+          setHeaders: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return next.handle(request).pipe(
+          catchError((error: HttpErrorResponse) => {
+            if (!request.headers.get('noMessage')) {
+              this.handleError(error.error);
+            }
+            return throwError(error);
+          }),
+          finalize(() => this.loadingService.hide())
+        );
+      })
     );
   }
 

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder } from '@angular/forms';
-import { Select } from '@ivt/c-data';
 import { formatDate } from '@ivt/c-utils';
 import dayjs from 'dayjs';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { tap } from 'rxjs/operators';
 
 import { IvtFilterComponent } from '../filter';
@@ -21,7 +21,7 @@ export interface Dates {
   encapsulation: ViewEncapsulation.None,
 })
 export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements OnChanges {
-  @Input() dateTypeOptions: Select[] = [];
+  @Input() dateTypeOptions: NzSelectOptionInterface[] = [];
   @Input() currentDates: Dates;
   startDate = '';
   endDate = '';

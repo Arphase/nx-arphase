@@ -7,10 +7,11 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { IvtCollectionResponseInfo, Select, UserRoles, Vehicle } from '@ivt/c-data';
+import { IvtCollectionResponseInfo, UserRoles, Vehicle } from '@ivt/c-data';
 import { REQUIRED_ROLES } from '@ivt/u-state';
 import { IvtFormComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 @Component({
   selector: 'ivt-vehicle-form-wrapper',
@@ -21,7 +22,7 @@ import { QueryParams } from '@ngrx/data';
 })
 export class VehicleFormWrapperComponent extends IvtFormComponent<Vehicle> implements OnChanges {
   @Input() showCompanyInput: boolean;
-  @Input() companyOptions: Select[] = [];
+  @Input() companyOptions: NzSelectOptionInterface[] = [];
   @Input() invalidVin: boolean;
   @Input() companiesInfo: IvtCollectionResponseInfo;
   @Input() isEditable: boolean;
