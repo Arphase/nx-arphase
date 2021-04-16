@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.4](https://bitbucket.org/arphase/innovatech/compare/v2.4.3...v2.4.4) (2021-04-16)
+
+
+### Features
+
+* **auth:** implement set password resolver ([8f7c95c](https://bitbucket.org/arphase/innovatech/commit/8f7c95c382a33513ddf988706416551f2b18faa3))
+
+
+### Bug Fixes
+
+* **guarantees:** only validate vehicle if vehicleId exists in update payload ([be5c960](https://bitbucket.org/arphase/innovatech/commit/be5c9606a3c826a7d42330736cba83108e580c84))
+* **guarantees:** start and end date filters precision ([3cfde77](https://bitbucket.org/arphase/innovatech/commit/3cfde77f1dabcbfef92e5be19ee651fbc6c634b3))
+
 ### [2.4.3](https://bitbucket.org/arphase/innovatech/compare/v2.4.2...v2.4.3) (2021-04-05)
 
 
