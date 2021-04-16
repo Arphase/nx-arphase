@@ -1,6 +1,7 @@
 import { AuthService } from '@ivt/a-auth';
 import {
   CommonFilterDto,
+  CompanyEntity,
   CompanyRepository,
   CreateGroupDto,
   filterCommonQuery,
@@ -81,7 +82,7 @@ export class GroupsService {
 
     try {
       const companies: Company[] = [...groupDto.companies];
-      const group = omit(groupDto, 'companies');
+      const group = omit(groupDto, 'companies') as CreateGroupDto | UpdateGroupDto;
       const newGroup = this.groupRepository.create(group);
       await queryRunner.manager.save(newGroup);
       const groupId = newGroup.id;
@@ -89,7 +90,7 @@ export class GroupsService {
       newGroup.companies = await Promise.all(
         companies.map(async company => {
           const users: User[] = [...company.users];
-          const newCompany = this.companyRepository.create(omit({ ...company, groupId }, 'users'));
+          const newCompany = this.companyRepository.create(omit({ ...company, groupId }, 'users') as CompanyEntity);
           await queryRunner.manager.save(newCompany);
           const companyId = newCompany.id;
 
