@@ -1,5 +1,11 @@
 import { AuthModule } from '@ivt/a-auth';
-import { CompanyRepository, GroupRepository, ResetPasswordRepository, UserRepository } from '@ivt/a-state';
+import {
+  CompanyRepository,
+  GroupRepository,
+  ProductRepository,
+  ResetPasswordRepository,
+  UserRepository,
+} from '@ivt/a-state';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -8,7 +14,13 @@ import { GroupsService } from './services/groups.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([CompanyRepository, GroupRepository, UserRepository, ResetPasswordRepository]),
+    TypeOrmModule.forFeature([
+      CompanyRepository,
+      GroupRepository,
+      UserRepository,
+      ResetPasswordRepository,
+      ProductRepository,
+    ]),
     AuthModule,
   ],
   controllers: [GroupsController],
