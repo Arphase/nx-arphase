@@ -1,5 +1,6 @@
+import { GetUser } from '@ivt/a-auth';
 import { CommonFilterDto, CreateProductDto, GenerateProductPdfDto, UpdateProductDto } from '@ivt/a-state';
-import { IvtCollectionResponse, Product } from '@ivt/c-data';
+import { IvtCollectionResponse, Product, User } from '@ivt/c-data';
 import {
   Body,
   Controller,
@@ -34,8 +35,11 @@ export class ProductController {
   }
 
   @Get()
-  async getGuarantees(@Query(ValidationPipe) filterDto: CommonFilterDto): Promise<IvtCollectionResponse<Product>> {
-    return this.productService.getProducts(filterDto);
+  async getProducts(
+    @Query(ValidationPipe) filterDto: CommonFilterDto,
+    @GetUser() user: Partial<User>
+  ): Promise<IvtCollectionResponse<Product>> {
+    return this.productService.getProducts(filterDto, user);
   }
 
   @Post('preview/pdf')
