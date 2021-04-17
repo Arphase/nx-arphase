@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { Group } from '@ivt/c-data';
 import { IvtListComponent } from '@ivt/u-ui';
 
@@ -12,4 +12,5 @@ import { columns } from './group-list.constants';
 })
 export class GroupListComponent extends IvtListComponent<Group> {
   columns = columns;
+  @Output() assignProducts = new EventEmitter<Group>();
 }

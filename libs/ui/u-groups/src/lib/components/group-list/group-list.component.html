@@ -84,12 +84,20 @@
           nzMd="5">{{ item.email | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzMd="6"
-          nzLg="7">{{ item.phone | empty }}</td>
+          nzMd="6">{{ item.phone | empty }}</td>
       <td nz-col
           nzXs="3"
           nzMd="2"
-          nzLg="1">
+          class="flex-start">
+        <button nz-button
+                nzType="text"
+                nz-tooltip
+                nzTooltipTitle="Asignar productos"
+                (click)="assignProducts.emit(item)">
+          <i nz-icon
+             nzType="barcode"></i>
+        </button>
+
         <button nz-button
                 nzType="text"
                 nz-tooltip

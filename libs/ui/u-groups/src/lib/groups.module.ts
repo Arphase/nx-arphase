@@ -38,6 +38,8 @@ import { GroupFormContainerComponent } from './containers/group-form-container/g
 import { GroupListContainerComponent } from './containers/group-list-container/group-list-container.component';
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsComponent } from './groups.component';
+import { AssignProductsModalContainerComponent } from './containers/assign-products-modal-container/assign-products-modal-container.component';
+import { AssignProductsModalComponent } from './components/assign-products-modal/assign-products-modal.component';
 
 @NgModule({
   imports: [
@@ -79,6 +81,8 @@ import { GroupsComponent } from './groups.component';
     CompanyFormDialogComponent,
     UserFormComponent,
     GroupCompanyListContainerComponent,
+    AssignProductsModalContainerComponent,
+    AssignProductsModalComponent,
   ],
   entryComponents: [CompanyFormDialogComponent],
 })

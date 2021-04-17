@@ -50,11 +50,11 @@
             }
           },
           "configurations": {
-            "qa": {
+            "stage": {
               "fileReplacements": [
                 {
                   "replace": "apps/ivt-app/src/environments/environment.ts",
-                  "with": "apps/ivt-app/src/environments/environment.qa.ts"
+                  "with": "apps/ivt-app/src/environments/environment.stage.ts"
                 }
               ],
               "optimization": true,
