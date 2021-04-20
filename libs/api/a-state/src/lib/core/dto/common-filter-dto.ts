@@ -43,6 +43,12 @@ export class CommonFilterDto {
 
   @IsOptional()
   @IsNotEmpty()
+  @IsNumber()
+  @Transform(({ obj, key }) => Number([obj[key]]))
+  groupId: number;
+
+  @IsOptional()
+  @IsNotEmpty()
   @IsArray()
   @Transform(({ obj, key }) => convertStringToNumberArray(obj[key]))
   groupIds: number[];

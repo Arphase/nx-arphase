@@ -2,5 +2,6 @@
                 [loading]="loading$ | async"
                 [info]="info$ | async"
                 [queryParams]="queryParams"
-                (filterItems)="filterItems($event)">
+                (filterItems)="filterItems($event)"
+                (assignProducts)="assignProducts($event)">
 </ivt-group-list>

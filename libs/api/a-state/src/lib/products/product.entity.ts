@@ -34,6 +34,18 @@ export class ProductEntity extends BaseEntity implements Product {
   @Column()
   logo: string;
 
+  @Column()
+  minYear: number;
+
+  @Column()
+  maxYear: number;
+
+  @Column()
+  minHp: number;
+
+  @Column()
+  maxHp: number;
+
   @OneToMany(() => GuaranteeEntity, guarantee => guarantee.product, {
     cascade: true,
     eager: true,

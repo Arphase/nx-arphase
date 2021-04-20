@@ -11,12 +11,28 @@ import { NzUploadChangeParam, NzUploadFile, NzUploadXHRArgs } from 'ng-zorro-ant
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { finalize, take, takeUntil } from 'rxjs/operators';
 
+import { ProductForm } from '../../models/product-form.model';
+
 export function createProductForm(): FormGroup {
   return new FormGroup({
     id: new FormControl(null),
     name: new FormControl(null, ApsValidators.required),
     price: new FormControl(null, ApsValidators.required),
     logo: new FormControl(null, ApsValidators.required),
+    yearValidations: new FormGroup(
+      {
+        minYear: new FormControl(null, ApsValidators.required),
+        maxYear: new FormControl(null, ApsValidators.required),
+      },
+      { validators: ApsValidators.minMax('minYear', 'maxYear') }
+    ),
+    hpValidations: new FormGroup(
+      {
+        minHp: new FormControl(null, ApsValidators.required),
+        maxHp: new FormControl(null, ApsValidators.required),
+      },
+      { validators: ApsValidators.minMax('minHp', 'maxHp') }
+    ),
     template: new FormControl(null, ApsValidators.required),
     glossary: new FormControl(null),
   });
@@ -29,7 +45,7 @@ export function createProductForm(): FormGroup {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class ProductFormComponent extends IvtFormComponent<Product> implements OnInit, OnChanges {
+export class ProductFormComponent extends IvtFormComponent<Product, ProductForm> implements OnInit, OnChanges {
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
   glossaryOptions = glossary;
@@ -54,6 +70,30 @@ export class ProductFormComponent extends IvtFormComponent<Product> implements O
     });
   };
 
+  get yearValidationsForm(): FormGroup {
+    return this.form.get('yearValidations') as FormGroup;
+  }
+
+  get hpValidationsForm(): FormGroup {
+    return this.form.get('hpValidations') as FormGroup;
+  }
+
+  get yearValidationsFormError(): boolean {
+    return (
+      this.yearValidationsForm.invalid &&
+      this.yearValidationsForm.get('minYear').touched &&
+      this.yearValidationsForm.get('maxYear').touched
+    );
+  }
+
+  get hpValidationsFormError(): boolean {
+    return (
+      this.hpValidationsForm.invalid &&
+      this.hpValidationsForm.get('minHp').touched &&
+      this.hpValidationsForm.get('maxHp').touched
+    );
+  }
+
   constructor(
     private productDataService: ProductDataService,
     private http: HttpClient,
@@ -73,7 +113,11 @@ export class ProductFormComponent extends IvtFormComponent<Product> implements O
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.item && this.item) {
-      this.form.patchValue(this.item);
+      this.form.patchValue({
+        ...this.item,
+        yearValidations: { minYear: this.item.minYear, maxYear: this.item.maxYear },
+        hpValidations: { minHp: this.item.minHp, maxHp: this.item.maxHp },
+      });
       this.fileList = [
         {
           uid: '1',
@@ -107,6 +151,16 @@ export class ProductFormComponent extends IvtFormComponent<Product> implements O
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe();
+  }
+
+  transformFromForm(form: ProductForm): Product {
+    return {
+      ...form,
+      minYear: form.yearValidations.minYear,
+      maxYear: form.yearValidations.maxYear,
+      minHp: form.hpValidations.minHp,
+      maxHp: form.hpValidations.maxHp,
+    };
   }
 }
 

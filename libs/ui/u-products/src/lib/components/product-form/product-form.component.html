@@ -6,7 +6,7 @@
     <div nz-col
          nzSpan="24">
       <nz-page-header nzBackIcon
-                      [nzTitle]="item?.id ? 'Nuevo Producto' : 'Editar Producto'"
+                      [nzTitle]="item?.id ? 'Editar Producto' : 'Nuevo Producto'"
                       [routerLink]="['..']">
       </nz-page-header>
     </div>
@@ -16,7 +16,7 @@
     <div nz-row
          [nzGutter]="12">
       <div nz-col
-           nzMd="24"
+           nzXs="24"
            nzLg="8">
         <nz-form-item>
           <nz-form-label nzRequired>Nombre del producto</nz-form-label>
@@ -27,7 +27,7 @@
         </nz-form-item>
       </div>
       <div nz-col
-           nzMd="24"
+           nzXs="24"
            nzLg="8">
         <nz-form-item>
           <nz-form-label nzRequired>Precio</nz-form-label>
@@ -71,14 +71,118 @@
           </nz-form-control>
         </nz-form-item>
       </div>
+    </div>
 
+    <div nz-row
+         [nzGutter]="12">
+      <form nz-col
+            nzMd="24"
+            nzLg="12"
+            [formGroup]="yearValidationsForm">
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="12">
+            <nz-form-item>
+              <nz-form-label nzRequired>Antigüedad mínima (años)</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="number"
+                       formControlName="minYear" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="12">
+            <nz-form-item>
+              <nz-form-label nzRequired>Antigüedad máxima (años)</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="number"
+                       formControlName="maxYear" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
+        <div *ngIf="yearValidationsFormError"
+             nzDirection="vertical"
+             nzSize="large"
+             nz-row>
+          <div nz-col
+               nzSpan="24">
+            <nz-alert nzType="error"
+                      nzMessage="La antigüedad mínima no puede ser mayor a la antigüedad máxima"
+                      nzShowIcon></nz-alert>
+            <nz-space nzDirection="vertical">
+              <div *nzSpaceItem></div>
+            </nz-space>
+          </div>
+        </div>
+      </form>
+
+      <form nz-col
+            nzMd="24"
+            nzLg="12"
+            [formGroup]="hpValidationsForm">
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="12">
+            <nz-form-item>
+              <nz-form-label nzRequired>HP mínimo</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="number"
+                       formControlName="minHp" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="12">
+            <nz-form-item>
+              <nz-form-label nzRequired>HP máximo</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="number"
+                       formControlName="maxHp" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
+        <div *ngIf="hpValidationsFormError"
+             nzDirection="vertical"
+             nzSize="large"
+             nz-row>
+          <div nz-col
+               nzSpan="24">
+            <nz-alert nzType="error"
+                      nzMessage="El HP mínimo no puede ser mayor al HP máximo"
+                      nzShowIcon></nz-alert>
+            <nz-space nzDirection="vertical">
+              <div *nzSpaceItem></div>
+            </nz-space>
+          </div>
+        </div>
+      </form>
     </div>
 
     <div nz-row
          [nzGutter]="12">
       <div nz-col
-           nzSpan="8"
-           class="px-0 ml-auto">
+           nzXs="24"
+           nzMd="8">
         <nz-form-item>
           <nz-form-label>Glosario</nz-form-label>
           <nz-form-control>

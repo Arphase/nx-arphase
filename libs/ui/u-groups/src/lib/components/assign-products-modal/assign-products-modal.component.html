@@ -1,0 +1,51 @@
+<nz-spin *ngIf="loading"></nz-spin>
+
+<nz-space *ngIf="!loading"
+          nzDirection="vertical"
+          nzSize="middle"
+          class="w-100">
+  <div *nzSpaceItem
+       nz-row>
+    <div nz-col
+         nzSpan="24">
+      <nz-alert nzType="warning"
+                nzMessage="Los productos del lado derecho son los que las compañías del grupo podrán vender"
+                nzShowIcon></nz-alert>
+
+    </div>
+  </div>
+  <div *nzSpaceItem
+       nz-row>
+    <div nz-col
+         nzSpan="12">
+      Todos los productos
+    </div>
+    <div nz-col
+         nzSpan="12"
+         class="flex-end">
+      Productos del grupo
+    </div>
+  </div>
+  <div *nzSpaceItem
+       nz-row>
+    <div nz-col
+         nzSpan="24"
+         class="flex-center">
+      <nz-transfer [nzDataSource]="transferData"
+                   [nzRender]="render"
+                   [nzListStyle]="{ 'width': '39vw', 'height.px': 400 }">
+        <ng-template #render
+                     let-item>
+          <nz-space>
+            <img *nzSpaceItem
+                 [src]="item.description"
+                 alt="{{ item.title }} logo"
+                 class="logo">
+            <span *nzSpaceItem
+                  class="h-100 flex-center">{{ item.title }}</span>
+          </nz-space>
+        </ng-template>
+      </nz-transfer>
+    </div>
+  </div>
+</nz-space>

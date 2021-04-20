@@ -3,7 +3,7 @@ import { Environment } from './environment.model';
 
 export const environment: Environment = {
   production: true,
-  apiUrl: 'https://apiqa.innovatechcorp.com',
+  apiUrl: 'https://apistage.innovatechcorp.com',
   version: packageJson.version,
-  environmentName: 'qa',
+  environmentName: 'stage',
 };

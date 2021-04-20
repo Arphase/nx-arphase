@@ -13,10 +13,11 @@ const vehiclesReducer = createReducer(
   on(VehiclesActions.getVehicleByVinSuccess, (state, action) => ({
     ...state,
     vehicle: action.payload,
-    error: null
+    error: null,
   })),
   on(VehiclesActions.getVehicleByVinFailed, (state, action) => ({
     ...state,
+    vehicle: null,
     error: action.payload,
   })),
   on(VehiclesActions.clearVehiclesState, (state, action) => initialState)

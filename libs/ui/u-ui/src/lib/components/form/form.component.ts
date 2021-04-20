@@ -9,7 +9,7 @@ import { IvtSubscriberComponent } from '../subscriber';
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtFormComponent<T> extends IvtSubscriberComponent {
+export class IvtFormComponent<T = any, F = any> extends IvtSubscriberComponent {
   @Input() form: FormGroup;
   @Input() item: T;
   @Input() loading: boolean;
@@ -20,9 +20,14 @@ export class IvtFormComponent<T> extends IvtSubscriberComponent {
     return this.form?.getRawValue() as T;
   }
 
+  transformFromForm(values: F): T {
+    return values as any;
+  }
+
   submit(): void {
     if (this.form.valid || this.form.disabled) {
-      this.submitForm.emit(this.values);
+      const transformedForm = this.transformFromForm(this.values as any);
+      this.submitForm.emit(transformedForm);
     } else {
       this.form.markAllAsTouched();
       setTimeout(() => updateFormControlsValueAndValidity(this.form));

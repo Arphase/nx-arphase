@@ -1,16 +1,19 @@
 import { AuthService } from '@ivt/a-auth';
 import {
+  AssignProductsDto,
   CommonFilterDto,
+  CompanyEntity,
   CompanyRepository,
   CreateGroupDto,
   filterCommonQuery,
   GroupRepository,
+  ProductRepository,
   ResetPasswordRepository,
   UpdateGroupDto,
   UserEntity,
   UserRepository,
 } from '@ivt/a-state';
-import { Company, createCollectionResponse, Group, IvtCollectionResponse, User } from '@ivt/c-data';
+import { Company, createCollectionResponse, Group, IvtCollectionResponse, Product, User } from '@ivt/c-data';
 import { generateId } from '@ivt/c-utils';
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -24,6 +27,7 @@ export class GroupsService {
     @InjectRepository(CompanyRepository) private companyRepository: CompanyRepository,
     @InjectRepository(UserRepository) private userRepository: UserRepository,
     @InjectRepository(ResetPasswordRepository) private resetPasswordRepository: ResetPasswordRepository,
+    @InjectRepository(ProductRepository) private productRepository: ProductRepository,
     private connection: Connection,
     private authService: AuthService
   ) {}
@@ -81,7 +85,7 @@ export class GroupsService {
 
     try {
       const companies: Company[] = [...groupDto.companies];
-      const group = omit(groupDto, 'companies');
+      const group = omit(groupDto, 'companies') as CreateGroupDto | UpdateGroupDto;
       const newGroup = this.groupRepository.create(group);
       await queryRunner.manager.save(newGroup);
       const groupId = newGroup.id;
@@ -89,7 +93,7 @@ export class GroupsService {
       newGroup.companies = await Promise.all(
         companies.map(async company => {
           const users: User[] = [...company.users];
-          const newCompany = this.companyRepository.create(omit({ ...company, groupId }, 'users'));
+          const newCompany = this.companyRepository.create(omit({ ...company, groupId }, 'users') as CompanyEntity);
           await queryRunner.manager.save(newCompany);
           const companyId = newCompany.id;
 
@@ -124,5 +128,24 @@ export class GroupsService {
     } finally {
       await queryRunner.release();
     }
+  }
+
+  async assignProducts(assignProductsDto: AssignProductsDto): Promise<Product[]> {
+    const { groupId, productIds } = assignProductsDto;
+    const group = await this.groupRepository.findOne({ id: groupId });
+    if (!group) {
+      throw new NotFoundException(`Group with id "${groupId} not found`);
+    }
+    const products = await this.productRepository.findByIds(productIds);
+    const databaseProductIds = products.map(product => product.id);
+    const missingProducts = productIds.filter(productId => !databaseProductIds.includes(productId));
+
+    if (missingProducts.length) {
+      throw new NotFoundException(`Products with id(s) "${missingProducts.toString()} not found`);
+    }
+
+    group.products = products;
+    group.save();
+    return products;
   }
 }

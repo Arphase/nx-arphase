@@ -29,7 +29,7 @@ export function createGuaranteeForm(): FormGroup {
     companyId: new FormControl(null, ApsValidators.required),
     kilometrageStart: new FormControl(null, ApsValidators.requiredNumber),
     kilometrageEnd: new FormControl(null, ApsValidators.requiredNumber),
-    productType: new FormControl(null, ApsValidators.required),
+    productType: new FormControl(null),
     client: new FormGroup({
       id: new FormControl(null),
       personType: new FormControl(null, ApsValidators.required),
@@ -80,6 +80,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
   companyId$: Observable<number>;
   @Output() verifyVin = new EventEmitter<string>();
   @Output() getCompanies = new EventEmitter<QueryParams>();
+  @Output() getProducts = new EventEmitter<{ year: string; horsePower: string }>();
 
   get client() {
     return this.form.get('client');
@@ -109,13 +110,18 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     return !this.isElegible || !!this.error;
   }
 
+  get showProductError(): boolean {
+    return (
+      !this.productOptions.length && this.vehicleForm.get('horsePower').value && this.vehicleForm.get('year').value
+    );
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.form && this.form) {
       this.client
         .get('personType')
         .valueChanges.pipe(filterNil(), takeUntil(this.destroy$))
         .subscribe(value => this.personTypeChange(value));
-
       this.companyId$ = this.form.get('companyId').valueChanges;
     }
 

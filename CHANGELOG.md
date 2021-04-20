@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://bitbucket.org/arphase/innovatech/compare/v2.4.4...v2.5.0) (2021-04-20)
+
+
+### Features
+
+* **groups:** assign products endpoint ([6fa4051](https://bitbucket.org/arphase/innovatech/commit/6fa40514b79134192c32eba3f8c3f3413d7a8000))
+* **groups:** assign products modal layout ([72eb6d1](https://bitbucket.org/arphase/innovatech/commit/72eb6d1b394dbd7d10478fc41e9ee2106ac820fe))
+* **groups:** assign products using transfer modal ([53d9687](https://bitbucket.org/arphase/innovatech/commit/53d9687bbcaa72e5f9d532b13472d2f8299552f7))
+* **guarantees:** autoselect product in form depending on vehicle stats ([5d790b7](https://bitbucket.org/arphase/innovatech/commit/5d790b7dfd1c0bf18756b930c22f4c8ff70196b3))
+* **products:** add year and HP validations ([a84b660](https://bitbucket.org/arphase/innovatech/commit/a84b66080ef49472a41d88ceaf9e3693253eee3a))
+* **products:** return only the group products for agency users ([1ff5d74](https://bitbucket.org/arphase/innovatech/commit/1ff5d74e581722d7b4088e66118884acd569ee96))
+
+### [2.4.4](https://bitbucket.org/arphase/innovatech/compare/v2.4.3...v2.4.4) (2021-04-16)
+
+
+### Features
+
+* **auth:** implement set password resolver ([8f7c95c](https://bitbucket.org/arphase/innovatech/commit/8f7c95c382a33513ddf988706416551f2b18faa3))
+
+
+### Bug Fixes
+
+* **guarantees:** only validate vehicle if vehicleId exists in update payload ([be5c960](https://bitbucket.org/arphase/innovatech/commit/be5c9606a3c826a7d42330736cba83108e580c84))
+* **guarantees:** start and end date filters precision ([3cfde77](https://bitbucket.org/arphase/innovatech/commit/3cfde77f1dabcbfef92e5be19ee651fbc6c634b3))
+
 ### [2.4.3](https://bitbucket.org/arphase/innovatech/compare/v2.4.2...v2.4.3) (2021-04-05)
 
 
