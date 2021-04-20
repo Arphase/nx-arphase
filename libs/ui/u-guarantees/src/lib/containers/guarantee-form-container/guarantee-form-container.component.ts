@@ -70,10 +70,10 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     private route: ActivatedRoute
   ) {
     super(guaranteeCollectionService, router, messageService);
+    this.productCollectionService.clearCache();
   }
 
   ngOnInit() {
-    this.productCollectionService.getWithQuery({ resetList: String(true) });
     this.store
       .pipe(select(selectQueryParam('vehicleId')), takeUntil(this.destroy$), filterNil())
       .subscribe(id => this.vehicleCollectionService.getByKey(Number(id)));
@@ -91,9 +91,14 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     this.companyCollectionService.getWithQuery(queryParams);
   }
 
+  getProducts(payload: { year: string; horsePower: string }): void {
+    this.productCollectionService.getWithQuery({ ...payload, resetList: String(true) });
+  }
+
   ngOnDestroy() {
     super.ngOnDestroy();
     this.vehicleCollectionService.removeOneFromCache(null);
     this.store.dispatch(fromVehicles.actions.clearVehiclesState());
+    this.productCollectionService.clearCache();
   }
 }

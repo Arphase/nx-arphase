@@ -54,9 +54,19 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
   }
 
   protected queryByKeySuccess(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    const entityCollection = super.queryByKeySuccess(collection, action) as IvtEntityCollection<T>;
     return {
-      ...collection,
+      ...entityCollection,
       currentItem: action.payload.data,
+      loading: false,
+    };
+  }
+
+  protected queryByKeyError(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    const entityCollection = super.queryByKeyError(collection, action) as IvtEntityCollection<T>;
+    return {
+      ...entityCollection,
+      currentItem: null,
       loading: false,
     };
   }

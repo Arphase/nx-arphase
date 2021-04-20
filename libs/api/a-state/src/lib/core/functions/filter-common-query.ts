@@ -10,7 +10,7 @@ export function filterCommonQuery(
   filterDto: Partial<CommonFilterDto>,
   user?: Partial<User>,
   options?: Partial<{ companyidEntityName: string }>
-) {
+): void {
   const {
     startDate,
     endDate,
