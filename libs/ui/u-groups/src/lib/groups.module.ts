@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
-import { PermissionsModule } from '@ivt/u-state';
+import { GroupsDataModule, PermissionsModule } from '@ivt/u-state';
 import {
   IvtAddressFormModule,
   IvtEmptyModule,
@@ -10,6 +10,7 @@ import {
   IvtSearchbarModule,
   IvtUppercaseModule,
 } from '@ivt/u-ui';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
@@ -25,21 +26,23 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NgxMaskModule } from 'ngx-mask';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
+import { AssignProductsModalComponent } from './components/assign-products-modal/assign-products-modal.component';
 import { CompanyFormDialogComponent } from './components/company-form-dialog/company-form-dialog.component';
 import { GroupCompanyListComponent } from './components/group-company-list/group-company-list.component';
 import { GroupFormComponent } from './components/group-form/group-form.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
+import { AssignProductsModalContainerComponent } from './containers/assign-products-modal-container/assign-products-modal-container.component';
 import { GroupCompanyListContainerComponent } from './containers/group-company-list-container/group-company-list-container.component';
 import { GroupFormContainerComponent } from './containers/group-form-container/group-form-container.component';
 import { GroupListContainerComponent } from './containers/group-list-container/group-list-container.component';
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsComponent } from './groups.component';
-import { AssignProductsModalContainerComponent } from './containers/assign-products-modal-container/assign-products-modal-container.component';
-import { AssignProductsModalComponent } from './components/assign-products-modal/assign-products-modal.component';
 
 @NgModule({
   imports: [
@@ -70,6 +73,10 @@ import { AssignProductsModalComponent } from './components/assign-products-modal
     NzDividerModule,
     NzTableModule,
     IvtUppercaseModule,
+    GroupsDataModule,
+    NzTransferModule,
+    NzAlertModule,
+    NzSpinModule
   ],
   declarations: [
     GroupsComponent,

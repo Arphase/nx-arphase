@@ -9,7 +9,7 @@ import {
   tobase64,
   UpdateProductDto,
 } from '@ivt/a-state';
-import { createCollectionResponse, IvtCollectionResponse, Product, User, UserRoles } from '@ivt/c-data';
+import { Company, createCollectionResponse, IvtCollectionResponse, Product, User, UserRoles } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
@@ -49,7 +49,7 @@ export class ProductService {
   }
 
   async getProducts(filterDto: CommonFilterDto, user: Partial<User>): Promise<IvtCollectionResponse<Product>> {
-    const { text, pageSize, pageIndex } = filterDto;
+    const { text, pageSize, pageIndex, groupId } = filterDto;
     const query = this.productRepository.createQueryBuilder('product').groupBy('product.id');
 
     if (text) {
@@ -58,12 +58,15 @@ export class ProductService {
 
     filterCommonQuery('product', query, filterDto);
 
-    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-      const company = await this.companyRepository.findOne({ id: user.companyId });
+    if ((user && UserRoles[user.role] !== UserRoles.superAdmin) || groupId) {
+      let company: Company;
+      if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+        company = await this.companyRepository.findOne({ id: user.companyId });
+      }
       const group = await this.groupRepository
         .createQueryBuilder('group')
         .leftJoinAndSelect('group.products', 'products')
-        .andWhere('group.id = :id', { id: company.groupId })
+        .andWhere('group.id = :id', { id: company?.groupId || groupId })
         .getOne();
       const products = group?.products || [];
       const total = products.length;

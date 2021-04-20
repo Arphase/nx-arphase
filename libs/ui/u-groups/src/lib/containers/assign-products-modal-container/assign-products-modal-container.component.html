@@ -1,1 +1,3 @@
-<p>assign-products-modal-container works!</p>
+<ivt-assign-products-modal [products]="products$ | async"
+                           [groupProducts]="groupProducts$ | async"
+                           (submitData)="submit($event)"></ivt-assign-products-modal>

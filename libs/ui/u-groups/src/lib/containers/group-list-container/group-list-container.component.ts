@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Group } from '@ivt/c-data';
-import { GroupCollectionService, GroupDataService, ProductCollectionService } from '@ivt/u-state';
+import { GroupCollectionService, GroupDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
@@ -23,8 +23,10 @@ export class GroupListContainerComponent extends IvtListContainerComponent<Group
 
   assignProducts(group: Group): void {
     this.modalService.create({
-      nzTitle: `Asignar productos al grupo ${group.name}`,
+      nzTitle: `Asignar productos - ${group.name}`,
       nzContent: AssignProductsModalContainerComponent,
+      nzComponentParams: { groupId: group.id },
+      nzStyle: { minWidth: '85vw' },
       nzOnOk: component => component.submitChild(),
     });
   }

@@ -1,5 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
-import { ProductCollectionService } from '@ivt/u-state';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { fromGroups, getGroupsProductsState, IvtState, ProductCollectionService } from '@ivt/u-state';
+import { Actions, ofType } from '@ngrx/effects';
+import { select, Store } from '@ngrx/store';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalRef } from 'ng-zorro-antd/modal';
+import { take } from 'rxjs/operators';
 
 import { AssignProductsModalComponent } from '../../components/assign-products-modal/assign-products-modal.component';
 
@@ -9,17 +14,40 @@ import { AssignProductsModalComponent } from '../../components/assign-products-m
   styleUrls: ['./assign-products-modal-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AssignProductsModalContainerComponent implements OnInit {
-  @ViewChild('form', { static: false }) formComponent: AssignProductsModalComponent;
+export class AssignProductsModalContainerComponent implements OnInit, OnDestroy {
+  @ViewChild(AssignProductsModalComponent, { static: true }) formComponent: AssignProductsModalComponent;
+  @Input() groupId: number;
+  products$ = this.productCollectionService.entities$;
+  groupProducts$ = this.store.pipe(select(getGroupsProductsState));
 
-  constructor(private productCollectionService: ProductCollectionService) {}
+  constructor(
+    private productCollectionService: ProductCollectionService,
+    private store: Store<IvtState>,
+    private actions$: Actions,
+    private modalRef: NzModalRef,
+    private messageService: NzMessageService
+  ) {}
 
   ngOnInit(): void {
     this.productCollectionService.getWithQuery({});
+    this.store.dispatch(fromGroups.actions.getGroupProducts({ groupId: this.groupId }));
+    this.actions$.pipe(ofType(fromGroups.actions.assignGroupProductsSuccess), take(1)).subscribe(() => {
+      this.messageService.success('Los productos del grupo se han actualizado con éxito');
+      this.modalRef.close();
+    });
   }
 
   submitChild(): boolean {
     this.formComponent.submit();
     return false;
+  }
+
+  submit(productIds: number[]): void {
+    const payload = { groupId: this.groupId, productIds };
+    this.store.dispatch(fromGroups.actions.assignGroupProducts({ payload }));
+  }
+
+  ngOnDestroy() {
+    this.store.dispatch(fromGroups.actions.clearGroupsStore());
   }
 }

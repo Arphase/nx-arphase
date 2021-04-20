@@ -94,7 +94,8 @@
       </td>
       <td nz-col
           nzXs="10"
-          nzMd="6"> <img [src]="item.logo"
+          nzMd="6">
+        <img [src]="item.logo"
              alt="{{ item.name }} logo"
              class="logo"></td>
       <td nz-col
@@ -107,8 +108,7 @@
                 nzTooltipTitle="Editar grupo"
                 [routerLink]="[item.id]">
           <i nz-icon
-             nzType="edit"
-           ></i>
+             nzType="edit"></i>
         </button>
       </td>
     </tr>
