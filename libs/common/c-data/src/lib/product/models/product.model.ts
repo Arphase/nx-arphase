@@ -6,7 +6,11 @@ export interface Product {
   template: string;
   name: string;
   logo: string;
-  guarantees: Guarantee[];
-  createdAt: Date;
-  updatedAt: Date;
+  minYear: number;
+  maxYear: number;
+  minHp: number;
+  maxHp: number;
+  guarantees?: Guarantee[];
+  createdAt?: Date;
+  updatedAt?: Date;
 }

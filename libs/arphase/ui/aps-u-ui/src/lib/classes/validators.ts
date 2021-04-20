@@ -102,4 +102,13 @@ export class ApsValidators {
       return null;
     };
   }
+
+  static minMax(minField: string, maxField: string): ValidatorFn {
+    return (control: AbstractControl): ApsValidationErrors => {
+      if (Number(control.get(minField).value) > Number(control.get(maxField).value)) {
+        return { minMax: { es: `El campo ${minField} no puede ser mayor a ${maxField}` } };
+      }
+      return null;
+    };
+  }
 }

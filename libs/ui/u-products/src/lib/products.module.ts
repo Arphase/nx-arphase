@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IvtEmptyModule, IvtFolioModule, IvtSearchbarModule } from '@ivt/u-ui';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -51,6 +52,7 @@ import { ProductsComponent } from './products.component';
     IvtSearchbarModule,
     NzDividerModule,
     NzTableModule,
+    NzAlertModule,
     QuillModule.forRoot(),
   ],
   declarations: [
