@@ -86,6 +86,6 @@ export const revisionReportSections: RevisionReportSections = {
 
 export const iconMap: { color: string; type: string; value: RevisionReportStatus }[] = [
   { color: 'success', type: 'check-circle', value: RevisionReportStatus.good },
-  { color: 'warning', type: 'warning', value: RevisionReportStatus.normal },
+  { color: 'warning', type: 'exclamation-circle', value: RevisionReportStatus.normal },
   { color: 'error', type: 'close-circle', value: RevisionReportStatus.bad },
 ];

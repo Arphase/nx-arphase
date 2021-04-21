@@ -49,13 +49,14 @@
             Generar orden de pago
           </button>
         </div>
+        <button *nzSpaceItem
+                nz-button
+                [routerLink]="['new']"
+                type="button"
+                nzType="primary">
+          Nueva garantía
+        </button>
       </nz-space>
-      <button nz-button
-              [routerLink]="['new']"
-              type="button"
-              nzType="primary">
-        Nueva garantía
-      </button>
     </div>
   </div>
 
