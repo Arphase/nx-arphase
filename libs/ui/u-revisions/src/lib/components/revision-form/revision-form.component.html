@@ -7,7 +7,6 @@
             nz-col
             nzSpan="24"
             nzSize="middle">
-
     <nz-page-header nzBackIcon
                     [nzTitle]="item?.id ? 'Editar Revisión' : 'Nueva Revisión'"
                     [routerLink]="['..']">
@@ -37,7 +36,7 @@
       </nz-collapse-panel>
     </nz-collapse>
 
-    <div *ngFor="let reportSection of revisionReportSections | keyvalue">
+    <ng-container *ngFor="let reportSection of revisionReportSections | keyvalue">
       <nz-collapse *nzSpaceItem>
         <nz-collapse-panel [nzHeader]="reportSection.key"
                            [nzActive]="true">
@@ -94,54 +93,68 @@
           </div>
         </nz-collapse-panel>
       </nz-collapse>
+    </ng-container>
 
-      <nz-collapse *nzSpaceItem>
-        <nz-collapse-panel nzHeader="Revisión"
-                           [nzActive]="true">
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Revisión"
+                         [nzActive]="true">
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Estatus</nz-form-label>
+              <nz-form-control apsAutoError>
+                <nz-select formControlName="status"
+                           [nzOptions]="statusOptions">
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Kilometraje</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="number"
+                       formControlName="kilometrage" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Revisado por</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="reviewdBy" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Observaciones</nz-form-label>
+              <nz-form-control apsAutoError>
+                <textarea nz-input
+                          formControlName="observations"></textarea>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
 
-          <div nz-row
-               [nzGutter]="12">
-            <div nz-col
-                 nzSpan="24">
-              <nz-form-item>
-                <nz-form-label nzRequired>Estatus</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <nz-select formControlName="status"
-                             [nzOptions]="statusOptions">
-                  </nz-select>
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-          <div nz-row
-               [nzGutter]="12">
-            <div nz-col
-                 nzSpan="24">
-              <nz-form-item>
-                <nz-form-label nzRequired>Revisado por</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         formControlName="reviewdBy" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-          <div nz-row
-               [nzGutter]="12">
-            <div nz-col
-                 nzSpan="24">
-              <nz-form-item>
-                <nz-form-label nzRequired>Observaciones</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <textarea nz-input
-                            formControlName="observations"></textarea>
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </div>
     <ng-container *ngIf="isEditable">
       <div *nzSpaceItem
            nz-row>

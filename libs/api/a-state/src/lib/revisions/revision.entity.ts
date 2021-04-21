@@ -48,4 +48,7 @@ export class RevisionEntity extends BaseEntity implements Revision {
 
   @Column({ nullable: true })
   reviewdBy: string;
+
+  @Column({ nullable: true })
+  kilometrage: number;
 }

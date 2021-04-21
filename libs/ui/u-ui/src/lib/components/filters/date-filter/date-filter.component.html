@@ -4,19 +4,15 @@
         [nzDropdownMenu]="menu"
         [nzClickHide]="false"
         nzTrigger="click">
-
   {{ mappedTitle }}
-
   <i *ngIf="!showActiveStatus"
      nz-icon
      nzType="down"
-
      class="right"></i>
 
   <i nz-icon
      *ngIf="showActiveStatus"
      nzType="close"
-
      class="delete-icon right"
      (click)="deleteFilters(); $event.stopPropagation()"></i>
 </button>

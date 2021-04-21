@@ -23,4 +23,8 @@ export class CreateRevisionDto {
   @IsNotEmpty()
   @IsString()
   reviewdBy: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  kilometrage: number;
 }

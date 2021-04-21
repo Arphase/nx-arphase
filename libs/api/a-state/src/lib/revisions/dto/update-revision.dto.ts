@@ -27,4 +27,8 @@ export class UpdateRevisionDto {
   @IsOptional()
   @IsString()
   reviedBy: string;
+
+  @IsOptional()
+  @IsNumber()
+  kilometrage: number;
 }
