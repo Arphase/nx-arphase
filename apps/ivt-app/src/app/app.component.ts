@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Plugins, StatusBarStyle } from '@capacitor/core';
 import { Platform } from '@ionic/angular';
-import { Storage } from '@ionic/storage-angular';
 import { fromAuth, IvtState } from '@ivt/u-state';
 import { ThemeService } from '@ivt/u-ui';
 import { Store } from '@ngrx/store';
@@ -14,29 +13,23 @@ const { StatusBar } = Plugins;
   styleUrls: ['app.component.less'],
 })
 export class AppComponent {
-  constructor(
-    private platform: Platform,
-    private themeService: ThemeService,
-    private storage: Storage,
-    private store: Store<IvtState>
-  ) {
+  constructor(private platform: Platform, private themeService: ThemeService, private store: Store<IvtState>) {
     this.initializeApp();
     this.themeService.loadTheme();
   }
 
   initializeApp() {
-    this.platform.ready().then(async () => {
-      await this.storage.create();
+    this.platform.ready().then(() => {
       const user = {
-        id: Number(await this.storage.get('id')),
-        firstName: await this.storage.get('firstName'),
-        secondName: await this.storage.get('secondName'),
-        lastName: await this.storage.get('lastName'),
-        secondLastName: await this.storage.get('secondLastName'),
-        email: await this.storage.get('email'),
-        role: await this.storage.get('role'),
-        token: await this.storage.get('token'),
-        companyId: Number(await this.storage.get('companyId')),
+        id: Number(localStorage.getItem('id')),
+        firstName: localStorage.getItem('firstName'),
+        secondName: localStorage.getItem('secondName'),
+        lastName: localStorage.getItem('lastName'),
+        secondLastName: localStorage.getItem('secondLastName'),
+        email: localStorage.getItem('email'),
+        role: localStorage.getItem('role'),
+        token: localStorage.getItem('token'),
+        companyId: Number(localStorage.getItem('companyId')),
       };
       this.store.dispatch(fromAuth.actions.loadUserFromStorage({ user }));
 

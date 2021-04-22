@@ -1,29 +1,26 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, TestBed } from '@angular/core/testing';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from '@ionic/angular';
+import { ThemeService } from '@ivt/u-ui';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy;
+  let spectator: Spectator<AppComponent>;
+  const createComponent = createComponentFactory({
+    component: AppComponent,
+    providers: [
+      provideMockStore(),
+      { provide: Platform, useValue: { ready: () => new Promise((resolve, reject) => {}) } },
+    ],
+    mocks: [ThemeService, StatusBar, SplashScreen],
+    shallow: true,
+  });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [AppComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [
-        { provide: StatusBar, useValue: statusBarSpy },
-        { provide: SplashScreen, useValue: splashScreenSpy },
-        { provide: Platform, useValue: platformSpy },
-      ],
-    }).compileComponents();
-  }));
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => (spectator = createComponent()));
+  it('should create', () => {
+    expect(spectator.component).toBeTruthy();
   });
 });

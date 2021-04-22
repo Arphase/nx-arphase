@@ -1,28 +1,18 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { ResetPasswordFormComponent } from './reset-password-form.component';
 
 describe('ResetPasswordFormComponent', () => {
-  let component: ResetPasswordFormComponent;
-  let fixture: ComponentFixture<ResetPasswordFormComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule],
-      declarations: [ResetPasswordFormComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
+  let spectator: Spectator<ResetPasswordFormComponent>;
+  const createComponent = createComponentFactory({
+    component: ResetPasswordFormComponent,
+    imports: [ReactiveFormsModule],
+    shallow: true
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ResetPasswordFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

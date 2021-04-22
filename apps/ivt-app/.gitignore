@@ -39,6 +39,7 @@ testem.log
 /www
 /android
 /ios
+.gradle
 
 # System Files
 .DS_Store

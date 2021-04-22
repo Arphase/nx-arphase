@@ -58,7 +58,7 @@ export class RevisionFormContainerComponent extends IvtFormContainerComponent<Re
   }
 
   submit(item: Revision): void {
-    super.submit(omit({ ...item, vehicleId: item.vehicle.id }, 'vehicle'));
+    super.submit(omit({ ...item, vehicleId: item.vehicle.id }, 'vehicle') as Revision);
   }
 
   ngOnDestroy() {

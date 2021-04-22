@@ -1,16 +1,24 @@
-import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { Action } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
+import { Observable } from 'rxjs';
 
 import { SetPasswordResolverService } from './set-password-resolver.service';
 
 describe('SetPasswordResolverService', () => {
-  let service: SetPasswordResolverService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(SetPasswordResolverService);
+  let actions$ = new Observable<Action>();
+  let spectator: SpectatorService<SetPasswordResolverService>;
+  const createService = createServiceFactory({
+    service: SetPasswordResolverService,
+    imports: [RouterTestingModule],
+    providers: [provideMockStore(), provideMockActions(() => actions$)],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator).toBeTruthy();
   });
 });

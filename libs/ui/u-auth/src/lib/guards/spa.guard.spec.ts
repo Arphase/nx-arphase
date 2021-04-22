@@ -1,16 +1,20 @@
-import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AuthService } from '@ivt/u-state';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
 import { SpaGuard } from './spa.guard';
 
 describe('SpaGuard', () => {
-  let guard: SpaGuard;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    guard = TestBed.inject(SpaGuard);
+  let spectator: SpectatorService<SpaGuard>;
+  const createService = createServiceFactory({
+    service: SpaGuard,
+    imports: [RouterTestingModule],
+    mocks: [AuthService],
   });
 
-  it('should be created', () => {
-    expect(guard).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator).toBeTruthy();
   });
 });

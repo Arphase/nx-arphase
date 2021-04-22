@@ -84,7 +84,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   }
 
   submit(item: Guarantee): void {
-    super.submit(omit({ ...item, vehicleId: item.vehicle.id }, 'vehicle'));
+    super.submit(omit({ ...item, vehicleId: item.vehicle.id }, 'vehicle') as Guarantee);
   }
 
   getCompanies(queryParams: QueryParams): void {

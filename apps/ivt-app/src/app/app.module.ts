@@ -9,7 +9,6 @@ import { Router, RouteReuseStrategy } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { IonicStorageModule } from '@ionic/storage-angular';
 import { IVT_UI_STATE_CONFIGURATION, IvtStateModule, IvtUiStateConfiguration } from '@ivt/u-state';
 import * as Sentry from '@sentry/angular';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -42,7 +41,6 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
     IonicModule.forRoot(),
     NgxMaskModule.forRoot(),
     NzIconModule.forRoot(icons),
-    IonicStorageModule.forRoot(),
   ],
   providers: [
     StatusBar,
