@@ -6,6 +6,7 @@ import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { get } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
+import { of } from 'rxjs';
 import { filter, mapTo, takeUntil } from 'rxjs/operators';
 
 import { IvtFormComponent, IvtSubscriberComponent } from '../../components';
@@ -18,9 +19,9 @@ import { ComponentCanDeactivate } from '../../guards/dirty-form/dirty-form.guard
 })
 export class IvtFormContainerComponent<T> extends IvtSubscriberComponent implements ComponentCanDeactivate {
   @ViewChild('form', { static: false }) formComponent: IvtFormComponent<T>;
-  loading$ = this.entityCollectionService.loadingModify$;
-  currentItem$ = this.entityCollectionService.currentItem$;
-  showSuccess$ = this.entityCollectionService.entityActions$.pipe(
+  loading$ = this.entityCollectionService.loadingModify$ || of();
+  currentItem$ = this.entityCollectionService.currentItem$ || of();
+  showSuccess$ = (this.entityCollectionService.entityActions$ || of()).pipe(
     ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS, EntityOp.SAVE_UPDATE_ONE_SUCCESS),
     mapTo(true)
   );
@@ -36,44 +37,48 @@ export class IvtFormContainerComponent<T> extends IvtSubscriberComponent impleme
     @Optional() protected modalRef?: NzModalRef
   ) {
     super();
-    this.entityCollectionService.entityActions$
-      .pipe(
-        ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS, EntityOp.SAVE_UPDATE_ONE_SUCCESS),
-        filter(() => !!this.successUrl && !!this.router),
-        takeUntil(this.destroy$)
-      )
-      .subscribe(() => this.router.navigateByUrl(this.successUrl));
+    if (this.entityCollectionService.entityActions$) {
+      this.entityCollectionService.entityActions$
+        .pipe(
+          ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS, EntityOp.SAVE_UPDATE_ONE_SUCCESS),
+          filter(() => !!this.successUrl && !!this.router),
+          takeUntil(this.destroy$)
+        )
+        .subscribe(() => this.router.navigateByUrl(this.successUrl));
 
-    this.entityCollectionService.entityActions$
-      .pipe(
-        ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS, EntityOp.SAVE_UPDATE_ONE_SUCCESS),
-        filter(() => !!this.modalRef),
-        takeUntil(this.destroy$)
-      )
-      .subscribe(() => this.modalRef.close());
+      this.entityCollectionService.entityActions$
+        .pipe(
+          ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS, EntityOp.SAVE_UPDATE_ONE_SUCCESS),
+          filter(() => !!this.modalRef),
+          takeUntil(this.destroy$)
+        )
+        .subscribe(() => this.modalRef.close());
 
-    this.entityCollectionService.entityActions$
-      .pipe(
-        ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS),
-        filter(() => !!this.createSuccessMessage && !!this.messageService),
-        takeUntil(this.destroy$)
-      )
-      .subscribe(() => this.messageService.success(this.createSuccessMessage));
+      this.entityCollectionService.entityActions$
+        .pipe(
+          ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS),
+          filter(() => !!this.createSuccessMessage && !!this.messageService),
+          takeUntil(this.destroy$)
+        )
+        .subscribe(() => this.messageService.success(this.createSuccessMessage));
 
-    this.entityCollectionService.entityActions$
-      .pipe(
-        ofEntityOp(EntityOp.SAVE_UPDATE_ONE_SUCCESS),
-        filter(() => !!this.updateSuccessMessage && !!this.messageService),
-        takeUntil(this.destroy$)
-      )
-      .subscribe(() => this.messageService.success(this.updateSuccessMessage));
+      this.entityCollectionService.entityActions$
+        .pipe(
+          ofEntityOp(EntityOp.SAVE_UPDATE_ONE_SUCCESS),
+          filter(() => !!this.updateSuccessMessage && !!this.messageService),
+          takeUntil(this.destroy$)
+        )
+        .subscribe(() => this.messageService.success(this.updateSuccessMessage));
+    }
 
-    this.entityCollectionService.loadingModify$
-      .pipe(
-        filter(() => !!this.modalRef),
-        takeUntil(this.destroy$)
-      )
-      .subscribe(loading => this.modalRef.updateConfig({ nzOkLoading: loading }));
+    if (this.entityCollectionService.loadingModify$) {
+      this.entityCollectionService.loadingModify$
+        .pipe(
+          filter(() => !!this.modalRef),
+          takeUntil(this.destroy$)
+        )
+        .subscribe(loading => this.modalRef.updateConfig({ nzOkLoading: loading }));
+    }
   }
 
   canDeactivate(): boolean {

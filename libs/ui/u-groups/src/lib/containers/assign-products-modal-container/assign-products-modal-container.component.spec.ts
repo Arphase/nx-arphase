@@ -1,25 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ProductCollectionService } from '@ivt/u-state';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { Action } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalRef } from 'ng-zorro-antd/modal';
+import { Observable } from 'rxjs';
 
 import { AssignProductsModalContainerComponent } from './assign-products-modal-container.component';
 
 describe('AssignProductsModalContainerComponent', () => {
-  let component: AssignProductsModalContainerComponent;
-  let fixture: ComponentFixture<AssignProductsModalContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ AssignProductsModalContainerComponent ]
-    })
-    .compileComponents();
+  let actions$ = new Observable<Action>();
+  let spectator: Spectator<AssignProductsModalContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: AssignProductsModalContainerComponent,
+    shallow: true,
+    providers: [provideMockStore(), provideMockActions(() => actions$)],
+    mocks: [ProductCollectionService, NzModalRef, NzMessageService],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AssignProductsModalContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

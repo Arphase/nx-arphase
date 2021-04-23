@@ -1,16 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { GroupFormService } from './group-form.service';
 
 describe('GroupFormService', () => {
-  let service: GroupFormService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(GroupFormService);
+  let spectator: SpectatorService<GroupFormService>;
+  const createService = createServiceFactory({
+    service: GroupFormService,
+    mocks: [NzModalService],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

@@ -1,25 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { GroupCollectionService, GroupDataService } from '@ivt/u-state';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { GroupListContainerComponent } from './group-list-container.component';
 
 describe('GroupListContainerComponent', () => {
-  let component: GroupListContainerComponent;
-  let fixture: ComponentFixture<GroupListContainerComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ GroupListContainerComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GroupListContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  let spectator: Spectator<GroupListContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: GroupListContainerComponent,
+    shallow: true,
+    mocks: [GroupCollectionService, GroupDataService, NzModalService],
   });
 
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

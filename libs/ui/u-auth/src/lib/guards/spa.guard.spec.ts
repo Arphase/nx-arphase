@@ -15,6 +15,6 @@ describe('SpaGuard', () => {
   beforeEach(() => (spectator = createService()));
 
   it('should create', () => {
-    expect(spectator).toBeTruthy();
+    expect(spectator.service).toBeTruthy();
   });
 });

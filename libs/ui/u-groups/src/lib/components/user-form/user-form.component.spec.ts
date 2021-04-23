@@ -1,25 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { UserFormComponent } from './user-form.component';
 
 describe('UserFormComponent', () => {
-  let component: UserFormComponent;
-  let fixture: ComponentFixture<UserFormComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ UserFormComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<UserFormComponent>;
+  const createComponent = createComponentFactory({
+    component: UserFormComponent,
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(UserFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

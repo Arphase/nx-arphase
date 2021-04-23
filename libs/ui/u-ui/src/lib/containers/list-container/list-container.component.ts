@@ -46,7 +46,11 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
     @Optional() protected identityFilterService?: IdentityFilterService
   ) {
     super();
-    if (this.entityCollectionService) {
+    if (
+      this.entityCollectionService?.store &&
+      this.entityCollectionService?.entityActions$ &&
+      this.entityCollectionService?.entities$
+    ) {
       this.entityCollectionService.store
         .pipe(select(this.entityCollectionService.selectors.selectCollection), filterNil(), takeUntil(this.destroy$))
         .subscribe((collection: IvtEntityCollection<T>) => (this.queryParams = collection.queryParams));
@@ -67,9 +71,11 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
         .subscribe(() => this.entityCollectionService.getWithQuery({}));
 
       this.list$ = this.entityCollectionService.entities$;
-      this.loading$ = combineLatest([this.entityCollectionService.loading$, this.ivtLoading$]).pipe(
+
+      this.loading$ = combineLatest([this.entityCollectionService?.loading$, this.ivtLoading$]).pipe(
         map(([loading1, loading2]) => loading1 || loading2)
       );
+
       this.info$ = this.entityCollectionService.store.pipe(
         select(this.entityCollectionService.selectors.selectCollection),
         filterNil(),
@@ -77,7 +83,7 @@ export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
       );
     }
 
-    if (this.entityDataService) {
+    if (this.entityDataService?.getEntitiesUrl && this.entityDataService?.loadingExcel$) {
       this.excelUrl = `${this.entityDataService.getEntitiesUrl()}/export/excel`;
       this.loadingExcel$ = this.entityDataService.loadingExcel$;
     }

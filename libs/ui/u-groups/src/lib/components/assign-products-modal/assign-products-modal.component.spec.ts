@@ -1,25 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { AssignProductsModalComponent } from './assign-products-modal.component';
 
 describe('AssignProductsModalComponent', () => {
-  let component: AssignProductsModalComponent;
-  let fixture: ComponentFixture<AssignProductsModalComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ AssignProductsModalComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<AssignProductsModalComponent>;
+  const createComponent = createComponentFactory({
+    component: AssignProductsModalComponent,
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AssignProductsModalComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });
