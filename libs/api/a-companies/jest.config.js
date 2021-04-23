@@ -1,9 +1,9 @@
 module.exports = {
-  name: 'api-a-companies',
-  preset: '../../../jest.config.js',
+  name: 'a-companies',
+  preset: '../../../jest.preset.js',
   globals: {
     'ts-jest': {
-      tsConfig: '<rootDir>/tsconfig.spec.json',
+      tsconfig: '<rootDir>/tsconfig.spec.json',
     },
   },
   testEnvironment: 'node',
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
-  coverageDirectory: '../../../coverage/libs/api/a-companies',
+  coverageDirectory: '../../../coverage/libs/a-companies',
 };

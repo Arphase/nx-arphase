@@ -20,7 +20,6 @@ const MODULES = [
   IvtSearchbarModule,
   IvtStatusMessageModule,
   IvtSubscriberModule,
-  ,
 ];
 
 @NgModule({
