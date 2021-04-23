@@ -1,16 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { VehicleCollectionService } from '@ivt/u-state';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
 import { VehicleResolverService } from './vehicle-resolver.service';
 
 describe('VehicleResolverService', () => {
-  let service: VehicleResolverService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(VehicleResolverService);
+  let spectator: SpectatorService<VehicleResolverService>;
+  const createService = createServiceFactory({
+    service: VehicleResolverService,
+    mocks: [VehicleCollectionService],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

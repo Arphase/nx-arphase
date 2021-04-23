@@ -55,6 +55,7 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
   @Input() companyOptions: NzSelectOptionInterface[] = [];
   @Input() vehicle: Vehicle;
   @Input() companiesInfo: IvtCollectionResponseInfo;
+  form = createVehicleForm();
   @Output() verifyVin = new EventEmitter<string>();
   @Output() getCompanies = new EventEmitter<QueryParams>();
   @Output() getProducts = new EventEmitter<{ year: string; horsePower: string }>();

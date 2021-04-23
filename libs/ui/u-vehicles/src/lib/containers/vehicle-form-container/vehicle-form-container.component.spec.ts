@@ -1,25 +1,32 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CompanyCollectionService, PermissionService, VehicleCollectionService } from '@ivt/u-state';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { provideMockStore } from '@ngrx/store/testing';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { of } from 'rxjs';
 
 import { VehicleFormContainerComponent } from './vehicle-form-container.component';
 
 describe('VehicleFormContainerComponent', () => {
-  let component: VehicleFormContainerComponent;
-  let fixture: ComponentFixture<VehicleFormContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ VehicleFormContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<VehicleFormContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: VehicleFormContainerComponent,
+    shallow: true,
+    imports: [RouterTestingModule],
+    providers: [
+      provideMockStore(),
+      { provide: CompanyCollectionService, useValue: { store: of({}), selectors: { selectCollection: '' } } },
+      {
+        provide: PermissionService,
+        useValue: { hasCreatePermission: () => of(true), hasUpdatePermission: () => of(true) },
+      },
+    ],
+    mocks: [VehicleCollectionService, NzModalService, NzMessageService],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(VehicleFormContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });
