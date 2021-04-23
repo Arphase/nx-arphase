@@ -22,7 +22,7 @@ import { IvtSubscriberComponent } from '../../components';
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtListContainerComponent<T> extends IvtSubscriberComponent {
+export class IvtListContainerComponent<T = any> extends IvtSubscriberComponent {
   list$: Observable<T[]>;
   loading$: Observable<boolean>;
   info$: Observable<IvtCollectionResponseInfo>;

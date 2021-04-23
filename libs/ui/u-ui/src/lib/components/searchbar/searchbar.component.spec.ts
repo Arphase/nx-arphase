@@ -1,25 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { IvtSearchbarComponent } from './searchbar.component';
 
 describe('IvtSearchbarComponent', () => {
-  let component: IvtSearchbarComponent;
-  let fixture: ComponentFixture<IvtSearchbarComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ IvtSearchbarComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(IvtSearchbarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  let spectator: Spectator<IvtSearchbarComponent>;
+  const createComponent = createComponentFactory({
+    component: IvtSearchbarComponent,
+    shallow: true,
   });
 
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

@@ -17,7 +17,7 @@ import { ComponentCanDeactivate } from '../../guards/dirty-form/dirty-form.guard
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtFormContainerComponent<T> extends IvtSubscriberComponent implements ComponentCanDeactivate {
+export class IvtFormContainerComponent<T = any> extends IvtSubscriberComponent implements ComponentCanDeactivate {
   @ViewChild('form', { static: false }) formComponent: IvtFormComponent<T>;
   loading$ = this.entityCollectionService.loadingModify$ || of();
   currentItem$ = this.entityCollectionService.currentItem$ || of();
@@ -31,7 +31,7 @@ export class IvtFormContainerComponent<T> extends IvtSubscriberComponent impleme
   form: FormGroup;
 
   constructor(
-    protected entityCollectionService: IvtCollectionService<T>,
+    @Optional() protected entityCollectionService: IvtCollectionService<T>,
     @Optional() protected router?: Router,
     @Optional() protected messageService?: NzMessageService,
     @Optional() protected modalRef?: NzModalRef

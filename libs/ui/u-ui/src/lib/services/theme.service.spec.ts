@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
 import { ThemeService } from './theme.service';
 
 describe('ThemeService', () => {
-  let service: ThemeService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ThemeService);
+  let spectator: SpectatorService<ThemeService>;
+  const createService = createServiceFactory({
+    service: ThemeService,
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

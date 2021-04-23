@@ -1,25 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 import { IvtRadioFilterComponent } from './radio-filter.component';
 
 describe('IvtRadioFilterComponent', () => {
-  let component: IvtRadioFilterComponent;
-  let fixture: ComponentFixture<IvtRadioFilterComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ IvtRadioFilterComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(IvtRadioFilterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  let spectator: Spectator<IvtRadioFilterComponent>;
+  const createComponent = createComponentFactory({
+    component: IvtRadioFilterComponent,
+    imports: [NzDropDownModule],
+    shallow: true,
   });
 
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

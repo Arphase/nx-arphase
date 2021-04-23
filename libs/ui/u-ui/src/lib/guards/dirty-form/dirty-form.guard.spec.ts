@@ -1,16 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { IvtDirtyFormGuard } from './dirty-form.guard';
 
 describe('IvtDirtyFormGuard', () => {
-  let guard: IvtDirtyFormGuard;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    guard = TestBed.inject(IvtDirtyFormGuard);
+  let spectator: SpectatorService<IvtDirtyFormGuard>;
+  const createService = createServiceFactory({
+    service: IvtDirtyFormGuard,
+    mocks: [NzModalService],
   });
 
-  it('should be created', () => {
-    expect(guard).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

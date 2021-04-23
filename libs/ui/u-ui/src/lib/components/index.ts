@@ -6,5 +6,4 @@ export * from './list';
 export * from './searchbar';
 export * from './status-message';
 export * from './subscriber';
-export * from './virtual-scroll';
 export * from './components.module';

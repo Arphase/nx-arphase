@@ -14,6 +14,7 @@ import { createAddressForm, IvtAddressFormService } from './address-form.service
   providers: [IvtAddressFormService],
 })
 export class IvtAddressFormComponent extends IvtFormComponent<Address> implements OnInit {
+  form = createAddressForm();
   showAddressSelects: boolean;
   countryOptions: NzSelectOptionInterface[] = [];
   stateOptions: NzSelectOptionInterface[] = [];
@@ -22,7 +23,6 @@ export class IvtAddressFormComponent extends IvtFormComponent<Address> implement
 
   constructor(private addressFormService: IvtAddressFormService, private cdr: ChangeDetectorRef) {
     super();
-    this.form = createAddressForm();
   }
 
   ngOnInit(): void {

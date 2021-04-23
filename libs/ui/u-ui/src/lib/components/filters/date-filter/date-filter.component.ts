@@ -1,11 +1,18 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { AbstractControl, FormBuilder } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  ViewEncapsulation,
+} from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { formatDate } from '@ivt/c-utils';
 import dayjs from 'dayjs';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { tap } from 'rxjs/operators';
-
-import { IvtFilterComponent } from '../filter';
 
 export interface Dates {
   startDate: string;
@@ -20,16 +27,19 @@ export interface Dates {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class IvtDateFilterComponent extends IvtFilterComponent<Dates> implements OnChanges {
+export class IvtDateFilterComponent implements OnChanges {
   @Input() dateTypeOptions: NzSelectOptionInterface[] = [];
   @Input() currentDates: Dates;
+  @Input() label: string;
   startDate = '';
   endDate = '';
   dateType = '';
   showError = false;
+  control: FormGroup;
+  mappedTitle: string;
+  @Output() filterItems = new EventEmitter<Dates>();
 
   constructor(private fb: FormBuilder) {
-    super();
     this.control = this.fb.group(
       {
         dateType: null,

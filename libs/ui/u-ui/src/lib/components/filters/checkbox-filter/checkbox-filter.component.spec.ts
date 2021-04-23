@@ -1,24 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 import { IvtCheckboxFilterComponent } from './checkbox-filter.component';
 
 describe('IvtCheckboxFilterComponent', () => {
-  let component: IvtCheckboxFilterComponent;
-  let fixture: ComponentFixture<IvtCheckboxFilterComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [IvtCheckboxFilterComponent],
-    }).compileComponents();
+  let spectator: Spectator<IvtCheckboxFilterComponent>;
+  const createComponent = createComponentFactory({
+    component: IvtCheckboxFilterComponent,
+    imports: [NzDropDownModule, ScrollingModule],
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(IvtCheckboxFilterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

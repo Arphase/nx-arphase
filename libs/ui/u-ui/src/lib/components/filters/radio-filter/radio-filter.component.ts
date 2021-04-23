@@ -8,12 +8,10 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
-import { IvtFilterComponent } from '../filter';
 
 @Component({
   selector: 'ivt-radio-filter',
@@ -21,16 +19,19 @@ import { IvtFilterComponent } from '../filter';
   styleUrls: ['./radio-filter.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtRadioFilterComponent extends IvtFilterComponent<string> implements OnChanges, OnDestroy {
+export class IvtRadioFilterComponent implements OnChanges, OnDestroy {
   @Input() options: NzSelectOptionInterface[] = [];
+  @Input() label: string;
   @Input() selectedOption: string | number;
   @Output() filterCleared = new EventEmitter<void>();
   @Output() filterChanged = new EventEmitter<string>();
-  control = this.fb.control('');
+  @Output() filterItems = new EventEmitter<string>();
+  control = new FormControl();
+  mappedTitle: string;
+  active: boolean;
   private destroy$ = new Subject<void>();
 
-  constructor(private fb: FormBuilder) {
-    super();
+  constructor() {
     this.control.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(value => {
       this.setTitle(value);
       this.filterItems.emit(value);
