@@ -53,7 +53,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   companyOptions$ = this.companyCollectionService.options$;
   companiesInfo$ = this.companyCollectionService.store.pipe(
     select(this.companyCollectionService.selectors.selectCollection),
-    map((collection: IvtEntityCollection<Company>) => collection.info)
+    map((collection: IvtEntityCollection<Company>) => collection?.info)
   );
   currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
   error$ = this.store.pipe(select(getVehiclesErrorState));

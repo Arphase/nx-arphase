@@ -1,25 +1,43 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import {
+  CompanyCollectionService,
+  GuaranteeCollectionService,
+  GuaranteeDataService,
+  IdentityFilterService,
+  PaymentOrderCollectionService,
+  PaymentOrderDataService,
+  PermissionService,
+  ProductCollectionService,
+  VehicleCollectionService,
+} from '@ivt/u-state';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { provideMockStore } from '@ngrx/store/testing';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { GuaranteeListContainerComponent } from './guarantee-list-container.component';
 
 describe('GuaranteeListContainerComponent', () => {
-  let component: GuaranteeListContainerComponent;
-  let fixture: ComponentFixture<GuaranteeListContainerComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ GuaranteeListContainerComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GuaranteeListContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  let spectator: Spectator<GuaranteeListContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: GuaranteeListContainerComponent,
+    shallow: true,
+    imports: [RouterTestingModule],
+    providers: [provideMockStore()],
+    mocks: [
+      GuaranteeCollectionService,
+      GuaranteeDataService,
+      PaymentOrderCollectionService,
+      PaymentOrderDataService,
+      IdentityFilterService,
+      NzModalService,
+      NzMessageService,
+      PermissionService,
+    ],
   });
 
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

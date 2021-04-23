@@ -1,25 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { IvtEmptyPipe } from '@ivt/u-ui';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { MockPipe } from 'ng-mocks';
 
 import { GuaranteeRowDetailsComponent } from './guarantee-row-details.component';
 
 describe('GuaranteeRowDetailsComponent', () => {
-  let component: GuaranteeRowDetailsComponent;
-  let fixture: ComponentFixture<GuaranteeRowDetailsComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ GuaranteeRowDetailsComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<GuaranteeRowDetailsComponent>;
+  const createComponent = createComponentFactory({
+    component: GuaranteeRowDetailsComponent,
+    declarations: [MockPipe(IvtEmptyPipe)],
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GuaranteeRowDetailsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

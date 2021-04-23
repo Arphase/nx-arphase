@@ -1,25 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IvtEmptyPipe, IvtFolioPipe } from '@ivt/u-ui';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { MockPipe } from 'ng-mocks';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 import { GuaranteeListComponent } from './guarantee-list.component';
 
 describe('GuaranteeListComponent', () => {
-  let component: GuaranteeListComponent;
-  let fixture: ComponentFixture<GuaranteeListComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ GuaranteeListComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GuaranteeListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  let spectator: Spectator<GuaranteeListComponent>;
+  const createComponent = createComponentFactory({
+    component: GuaranteeListComponent,
+    imports: [NzDropDownModule],
+    declarations: [MockPipe(IvtFolioPipe), MockPipe(IvtEmptyPipe)],
+    shallow: true,
   });
 
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });
