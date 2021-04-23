@@ -1,4 +1,6 @@
+import { RevisionRequestRepository } from '@ivt/a-state';
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { RevisionRequestService } from './revision-request.service';
 
 describe('RevisionRequestService', () => {
@@ -6,7 +8,7 @@ describe('RevisionRequestService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [RevisionRequestService],
+      providers: [RevisionRequestService, { provide: RevisionRequestRepository, useValue: {} }],
     }).compile();
 
     service = module.get<RevisionRequestService>(RevisionRequestService);
