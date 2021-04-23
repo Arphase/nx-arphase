@@ -1,16 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { RevisionRequestCollectionService } from '@ivt/u-state';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
 import { RevisionRequestResolverService } from './revision-request-resolver.service';
 
 describe('RevisionRequestResolverService', () => {
-  let service: RevisionRequestResolverService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(RevisionRequestResolverService);
+  let spectator: SpectatorService<RevisionRequestResolverService>;
+  const createService = createServiceFactory({
+    service: RevisionRequestResolverService,
+    mocks: [RevisionRequestCollectionService],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

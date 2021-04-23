@@ -1,25 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { PermissionService, RevisionRequestCollectionService, VehicleCollectionService } from '@ivt/u-state';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { provideMockStore } from '@ngrx/store/testing';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { RevisionRequestFormContainerComponent } from './revision-request-form-container.component';
 
 describe('RevisionRequestFormContainerComponent', () => {
-  let component: RevisionRequestFormContainerComponent;
-  let fixture: ComponentFixture<RevisionRequestFormContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ RevisionRequestFormContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<RevisionRequestFormContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: RevisionRequestFormContainerComponent,
+    imports: [RouterTestingModule],
+    providers: [provideMockStore()],
+    shallow: true,
+    mocks: [RevisionRequestCollectionService, VehicleCollectionService, NzMessageService, PermissionService],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(RevisionRequestFormContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });
