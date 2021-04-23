@@ -1,25 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { CompanyFormDialogComponent } from './company-form-dialog.component';
 
 describe('CompanyFormDialogComponent', () => {
-  let component: CompanyFormDialogComponent;
-  let fixture: ComponentFixture<CompanyFormDialogComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ CompanyFormDialogComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<CompanyFormDialogComponent>;
+  const createComponent = createComponentFactory({
+    component: CompanyFormDialogComponent,
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CompanyFormDialogComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

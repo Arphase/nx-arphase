@@ -1,25 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IvtEmptyPipe } from '@ivt/u-ui';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { MockPipe } from 'ng-mocks';
 
-import { GuaranteeListComponent } from './guarantee-list.component';
+import { GroupListComponent } from './group-list.component';
 
-describe('GuaranteeListComponent', () => {
-  let component: GuaranteeListComponent;
-  let fixture: ComponentFixture<GuaranteeListComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ GuaranteeListComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GuaranteeListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+describe('GroupListComponent', () => {
+  let spectator: Spectator<GroupListComponent>;
+  const createComponent = createComponentFactory({
+    component: GroupListComponent,
+    declarations: [MockPipe(IvtEmptyPipe)],
+    shallow: true,
   });
 
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

@@ -1,5 +1,6 @@
-import { CreateProductDto, GenerateProductPdfDto, GetProductsFilterDto, UpdateProductDto } from '@ivt/a-state';
-import { Product } from '@ivt/c-data';
+import { GetUser } from '@ivt/a-auth';
+import { CreateProductDto, GenerateProductPdfDto, GetProductsDto, UpdateProductDto } from '@ivt/a-state';
+import { IvtCollectionResponse, Product, User } from '@ivt/c-data';
 import {
   Body,
   Controller,
@@ -19,9 +20,22 @@ import { Response } from 'express';
 import { ProductService } from '../services/products.service';
 
 @Controller('products')
-@UseGuards(AuthGuard())
+@UseGuards(AuthGuard('jwt'))
 export class ProductController {
   constructor(private productService: ProductService) {}
+
+  @Get()
+  async getProducts(
+    @Query(new ValidationPipe({ transform: true })) filterDto: GetProductsDto,
+    @GetUser() user: Partial<User>
+  ): Promise<IvtCollectionResponse<Product>> {
+    return this.productService.getProducts(filterDto, user);
+  }
+
+  @Get(':id')
+  async getProductById(@Param('id', ParseIntPipe) id: number): Promise<Product> {
+    return this.productService.getProductById(id);
+  }
 
   @Post('')
   async createProduct(@Body() product: CreateProductDto): Promise<Product> {
@@ -33,21 +47,11 @@ export class ProductController {
     return this.productService.updateProduct(updateProductDto);
   }
 
-  @Get()
-  async getGuarantees(@Query(ValidationPipe) filterDto: GetProductsFilterDto): Promise<Product[]> {
-    return this.productService.getProducts(filterDto);
-  }
-
   @Post('preview/pdf')
   async getGuaranteePdf(
     @Body() generateProductPdfDto: GenerateProductPdfDto,
     @Res() response: Response
   ): Promise<void> {
     return this.productService.generateProductPdf(generateProductPdfDto, response);
-  }
-
-  @Get(':id')
-  async getProductById(@Param('id', ParseIntPipe) id: number): Promise<Product> {
-    return this.productService.getProductById(id);
   }
 }

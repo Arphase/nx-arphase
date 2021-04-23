@@ -1,25 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { IvtFolioPipe } from '@ivt/u-ui';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { MockPipe } from 'ng-mocks';
 import { PaymentOrderDialogComponent } from './payment-order-dialog.component';
 
 describe('PaymentOrderDialogComponent', () => {
-  let component: PaymentOrderDialogComponent;
-  let fixture: ComponentFixture<PaymentOrderDialogComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PaymentOrderDialogComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PaymentOrderDialogComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  let spectator: Spectator<PaymentOrderDialogComponent>;
+  const createComponent = createComponentFactory({
+    component: PaymentOrderDialogComponent,
+    imports: [ReactiveFormsModule],
+    declarations: [MockPipe(IvtFolioPipe)],
+    shallow: true,
   });
 
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

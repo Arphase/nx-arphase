@@ -1,25 +1,30 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IVT_UI_STATE_CONFIGURATION, PermissionService } from '@ivt/u-state';
+import { ThemeService } from '@ivt/u-ui';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { Action } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
+import { Observable, of } from 'rxjs';
 
 import { SpaComponent } from './spa.component';
 
 describe('SpaComponent', () => {
-  let component: SpaComponent;
-  let fixture: ComponentFixture<SpaComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SpaComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SpaComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  let actions$ = new Observable<Action>();
+  let spectator: Spectator<SpaComponent>;
+  const createComponent = createComponentFactory({
+    component: SpaComponent,
+    providers: [
+      provideMockStore(),
+      provideMockActions(() => actions$),
+      { provide: IVT_UI_STATE_CONFIGURATION, useValue: {} },
+      { provide: PermissionService, useValue: { hasReadPermission: () => of(true) } },
+    ],
+    shallow: true,
+    mocks: [ThemeService],
   });
 
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

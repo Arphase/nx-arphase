@@ -1,25 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { GroupCollectionService } from '@ivt/u-state';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
+import { createGroupForm } from '../../functions/group-form.functions';
+import { GroupFormService } from '../../services/group-form.service';
 import { GroupFormContainerComponent } from './group-form-container.component';
 
 describe('GroupFormContainerComponent', () => {
-  let component: GroupFormContainerComponent;
-  let fixture: ComponentFixture<GroupFormContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ GroupFormContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<GroupFormContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: GroupFormContainerComponent,
+    imports: [RouterTestingModule],
+    shallow: true,
+    componentProviders: [{ provide: GroupFormService, useValue: { form: createGroupForm() } }],
+    mocks: [GroupCollectionService, NzMessageService],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GroupFormContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

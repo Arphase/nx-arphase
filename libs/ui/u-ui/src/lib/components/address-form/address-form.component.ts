@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Address, Select } from '@ivt/c-data';
+import { Address } from '@ivt/c-data';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { filter, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
 import { IvtFormComponent } from '../form';
@@ -13,15 +14,15 @@ import { createAddressForm, IvtAddressFormService } from './address-form.service
   providers: [IvtAddressFormService],
 })
 export class IvtAddressFormComponent extends IvtFormComponent<Address> implements OnInit {
+  form = createAddressForm();
   showAddressSelects: boolean;
-  countryOptions: Select[] = [];
-  stateOptions: Select[] = [];
-  cityOptions: Select[] = [];
+  countryOptions: NzSelectOptionInterface[] = [];
+  stateOptions: NzSelectOptionInterface[] = [];
+  cityOptions: NzSelectOptionInterface[] = [];
   suburbOptions: string[] = [];
 
   constructor(private addressFormService: IvtAddressFormService, private cdr: ChangeDetectorRef) {
     super();
-    this.form = createAddressForm();
   }
 
   ngOnInit(): void {

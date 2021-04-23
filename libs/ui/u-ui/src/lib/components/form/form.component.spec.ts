@@ -1,24 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { IvtFormComponent } from './form.component';
 
 describe('IvtFormComponent', () => {
-  let component: IvtFormComponent;
-  let fixture: ComponentFixture<IvtFormComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [IvtFormComponent],
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(IvtFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  let spectator: Spectator<IvtFormComponent>;
+  const createComponent = createComponentFactory({
+    component: IvtFormComponent,
+    shallow: true,
   });
 
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

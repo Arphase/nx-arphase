@@ -1,29 +1,116 @@
 <div nz-row
      [nzGutter]="12">
-  <div nz-col>
-    <button nz-button
-            [routerLink]="['new']"
-            type="button"
-            nzType="primary">
-      Nuevo producto
-    </button>
+  <div nz-col
+       nzXs="18"
+       nzMd="12">
+    <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
+  </div>
+  <div nz-col
+       nzXs="0"
+       nzMd="24"
+       nzFlex="auto">
+    <div class="flex-end">
+      <button nz-button
+              [routerLink]="['new']"
+              type="button"
+              nzType="primary">
+        Nuevo producto
+      </button>
+    </div>
+  </div>
+
+  <div nz-col
+       nzXs="24"
+       nzMd="0"
+       nzFlex="auto">
+    <div class="flex-end">
+      <button nz-button
+              [routerLink]="['new']"
+              type="button"
+              nzType="primary"
+              nzShape="circle">
+        <i nz-icon
+           nzType="plus-circle"></i>
+      </button>
+    </div>
   </div>
 </div>
 
-<nz-empty *ngIf="!list.length"
-          nzNotFoundContent="No existen productos.">
-</nz-empty>
+<nz-divider></nz-divider>
 
-<!-- <ng-container *ngIf="list.length">
-  <ivt-table-header class="d-block mt-4"
-                    [columns]="columns"
-                    (sort)="updateSort($event)"></ivt-table-header>
+<div nz-col
+     nzFlex="auto"
+     class="flex-end">
+  {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}
+</div>
 
-  <ivt-virtual-scroll height="60vh"
-                      [list]="list"
-                      (nextBatchEmitter)="getMoreItems.emit()">
-    <ng-template let-item>
-      <ivt-product-row [item]="item"></ivt-product-row>
-    </ng-template>
-  </ivt-virtual-scroll>
-</ng-container> -->
+<nz-divider></nz-divider>
+
+
+<nz-table #table
+          nzSize="small"
+          [nzData]="list"
+          [nzFrontPagination]="false"
+          [nzTotal]="info?.total"
+          [nzPageIndex]="info?.pageIndex"
+          [nzLoading]="loading"
+          [nzShowSizeChanger]="true"
+          (nzQueryParams)="filterItems.emit($event)">
+  <thead>
+    <tr nz-row>
+      <th *ngFor="let column of columns"
+          [nzSortFn]="column.sortFn || true"
+          [nzColumnKey]="column.prop"
+          nz-col
+          [nzXs]="column.colSizes?.xs || 0"
+          [nzMd]="column.colSizes?.md || 0">
+        {{ column.label }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of table.data"
+        nz-row>
+      <td nz-col
+          nzXs="0"
+          nzMd="4">
+        <div class="flex-start h-100">
+          {{ item.id | folio }}
+        </div>
+      </td>
+      <td nz-col
+          nzXs="10"
+          nzMd="6">
+        <div class="flex-start h-100">
+          {{ item.name | empty }}
+        </div>
+      </td>
+      <td nz-col
+          nzXs="0"
+          nzMd="6">
+        <div class="flex-start h-100">
+          {{ item.price | currency }}
+        </div>
+      </td>
+      <td nz-col
+          nzXs="10"
+          nzMd="6">
+        <img [src]="item.logo"
+             alt="{{ item.name }} logo"
+             class="logo"></td>
+      <td nz-col
+          nzXs="4"
+          nzMd="2"
+          class="flex-start">
+        <button nz-button
+                nzType="text"
+                nz-tooltip
+                nzTooltipTitle="Editar producto"
+                [routerLink]="[item.id]">
+          <i nz-icon
+             nzType="edit"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Company, Group, Select, User, UserRoles } from '@ivt/c-data';
+import { Company, Group, User, UserRoles } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import { select } from '@ngrx/store';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { combineLatest, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
@@ -13,7 +14,7 @@ import { UserFilterCollectionService } from './users/user-filter-collection.serv
 
 export interface FilterInfo {
   loading: boolean;
-  options: Select[];
+  options: NzSelectOptionInterface[];
   last: boolean;
   pageIndex: number;
 }
@@ -26,7 +27,7 @@ export class IdentityFilterService {
   private groupOptions$ = this.groupFilterCollectionService.options$;
   private groupInfo$ = this.groupFilterCollectionService.store.pipe(
     select(this.groupFilterCollectionService.selectors.selectCollection),
-    map((collection: IvtEntityCollection<Group>) => collection.info)
+    map((collection: IvtEntityCollection<Group>) => collection?.info)
   );
   private groupLast$ = this.groupInfo$.pipe(map(info => info?.last));
   private groupPageIndex$ = this.groupInfo$.pipe(map(info => info?.pageIndex));
@@ -41,7 +42,7 @@ export class IdentityFilterService {
   private companyOptions$ = this.companyFilterCollectionService.options$;
   private companyInfo$ = this.companyFilterCollectionService.store.pipe(
     select(this.companyFilterCollectionService.selectors.selectCollection),
-    map((collection: IvtEntityCollection<Company>) => collection.info)
+    map((collection: IvtEntityCollection<Company>) => collection?.info)
   );
   private companyLast$ = this.companyInfo$.pipe(map(info => info?.last));
   private companyPageIndex$ = this.companyInfo$.pipe(map(info => info?.pageIndex));
@@ -56,7 +57,7 @@ export class IdentityFilterService {
   private userOptions$ = this.userFilterCollectionService.options$;
   private userInfo$ = this.userFilterCollectionService.store.pipe(
     select(this.userFilterCollectionService.selectors.selectCollection),
-    map((collection: IvtEntityCollection<User>) => collection.info)
+    map((collection: IvtEntityCollection<User>) => collection?.info)
   );
   private userLast$ = this.userInfo$.pipe(map(info => info?.last));
   private userPageIndex$ = this.userInfo$.pipe(map(info => info?.pageIndex));

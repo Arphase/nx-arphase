@@ -1,25 +1,29 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { IdentityFilterService, PermissionService, VehicleCollectionService, VehicleDataService } from '@ivt/u-state';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { VehicleListContainerComponent } from './vehicle-list-container.component';
 
 describe('VehicleListContainerComponent', () => {
-  let component: VehicleListContainerComponent;
-  let fixture: ComponentFixture<VehicleListContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ VehicleListContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<VehicleListContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: VehicleListContainerComponent,
+    shallow: true,
+    imports: [RouterTestingModule],
+    mocks: [
+      VehicleCollectionService,
+      VehicleDataService,
+      NzModalService,
+      NzMessageService,
+      IdentityFilterService,
+      PermissionService,
+    ],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(VehicleListContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

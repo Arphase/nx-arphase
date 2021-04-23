@@ -53,7 +53,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   companyOptions$ = this.companyCollectionService.options$;
   companiesInfo$ = this.companyCollectionService.store.pipe(
     select(this.companyCollectionService.selectors.selectCollection),
-    map((collection: IvtEntityCollection<Company>) => collection.info)
+    map((collection: IvtEntityCollection<Company>) => collection?.info)
   );
   currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
   error$ = this.store.pipe(select(getVehiclesErrorState));
@@ -70,6 +70,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     private route: ActivatedRoute
   ) {
     super(guaranteeCollectionService, router, messageService);
+    this.productCollectionService.clearCache();
   }
 
   ngOnInit() {
@@ -83,16 +84,21 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   }
 
   submit(item: Guarantee): void {
-    super.submit(omit({ ...item, vehicleId: item.vehicle.id }, 'vehicle'));
+    super.submit(omit({ ...item, vehicleId: item.vehicle.id }, 'vehicle') as Guarantee);
   }
 
   getCompanies(queryParams: QueryParams): void {
     this.companyCollectionService.getWithQuery(queryParams);
   }
 
+  getProducts(payload: { year: string; horsePower: string }): void {
+    this.productCollectionService.getWithQuery({ ...payload, resetList: String(true) });
+  }
+
   ngOnDestroy() {
     super.ngOnDestroy();
     this.vehicleCollectionService.removeOneFromCache(null);
     this.store.dispatch(fromVehicles.actions.clearVehiclesState());
+    this.productCollectionService.clearCache();
   }
 }

@@ -12,53 +12,163 @@
                     [routerLink]="['..']">
     </nz-page-header>
 
-    <nz-space-item>
-      <nz-collapse>
-        <nz-collapse-panel nzHeader="Vehículo"
-                           [nzActive]="true">
-          <div nz-row>
-            <nz-space nzDirection="vertical"
-                      nzSize="middle"
-                      nz-col
-                      nzSpan="24">
-              <nz-space-item>
-                <nz-alert *ngIf="!isElegible"
-                          nzType="error"
-                          nzMessage="Este vehículo no es elegible para garantizar.
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Vehículo"
+                         [nzActive]="true">
+        <div nz-row>
+          <nz-space nzDirection="vertical"
+                    nzSize="middle"
+                    nz-col
+                    nzSpan="24">
+            <div *nzSpaceItem>
+              <nz-alert *ngIf="!isElegible"
+                        nzType="error"
+                        nzMessage="Este vehículo no es elegible para garantizar.
                       Consultar las revisiones del vehículo para confirmar."
-                          nzShowIcon>
-                </nz-alert>
-                <nz-alert *ngIf="error"
-                          nzType="error"
-                          [nzMessage]="error"
-                          nzShowIcon>
-                </nz-alert>
-              </nz-space-item>
-            </nz-space>
-          </div>
-          <ivt-vehicle-form [form]="vehicleForm"
-                            [companyId]="companyId$ | async"
-                            [item]="vehicle"
-                            [vehicle]="currentVehicle"
-                            [isEditable]="isEditable"
-                            (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </nz-space-item>
+                        nzShowIcon>
+              </nz-alert>
+              <nz-alert *ngIf="error"
+                        nzType="error"
+                        [nzMessage]="error"
+                        nzShowIcon>
+              </nz-alert>
+            </div>
+          </nz-space>
+        </div>
+        <ivt-vehicle-form [form]="vehicleForm"
+                          [companyId]="companyId$ | async"
+                          [item]="vehicle"
+                          [vehicle]="currentVehicle"
+                          [isEditable]="isEditable"
+                          (verifyVin)="verifyVin.emit($event)"
+                          (getProducts)="getProducts.emit($event)"></ivt-vehicle-form>
+      </nz-collapse-panel>
+    </nz-collapse>
 
-    <nz-space-item>
-      <nz-collapse>
-        <nz-collapse-panel nzHeader="Información General"
-                           [nzActive]="true">
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Información General"
+                         [nzActive]="true">
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzXs="24"
+               nzLg="12">
+            <nz-form-item>
+              <nz-form-label nzRequired>Fecha inicio</nz-form-label>
+              <nz-form-control apsAutoError>
+                <nz-date-picker formControlName="startDate"></nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzLg="12">
+            <nz-form-item>
+              <nz-form-label nzRequired>Fecha fin</nz-form-label>
+              <nz-form-control apsAutoError>
+                <nz-date-picker formControlName="endDate"></nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div nz-col
+               nzXs="24"
+               nzLg="12">
+            <nz-form-item>
+              <nz-form-label nzRequired>Kilometraje inicial</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="number"
+                       formControlName="kilometrageStart" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzLg="12">
+            <nz-form-item>
+              <nz-form-label nzRequired>Kilometraje final</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="number"
+                       formControlName="kilometrageEnd" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div *ivtCreatePermission
+               nz-col
+               nzXs="24"
+               nzLg="12">
+            <nz-form-item>
+              <nz-form-label nzRequired>Compañía</nz-form-label>
+              <nz-form-control apsAutoError>
+                <nz-select apsAutoSelect
+                           nzShowSearch
+                           nzServerSearch
+                           formControlName="companyId"
+                           [nzOptions]="companyOptions"
+                           (nzScrollToBottom)="getMoreCompanies()"
+                           (nzOnSearch)="searchCompanies($event)">
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div nz-col
+               nzXs="24"
+               nzLg="12">
+            <nz-form-item>
+              <nz-form-label>Tipo de producto</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="productType" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzLg="12">
+            <nz-form-item>
+              <nz-form-label nzRequired>Producto</nz-form-label>
+              <nz-form-control apsAutoError>
+                <nz-select apsAutoSelect
+                           formControlName="productId"
+                           [nzOptions]="productOptions">
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div *ngIf="showProductError"
+             nz-row>
+          <div nz-col
+               nzSpan="24">
+            <nz-alert nzType="error"
+                      nzMessage="No hay productos para un vehículo con este HP y año"
+                      nzShowIcon></nz-alert>
+          </div>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Cliente"
+                         [nzActive]="true">
+        <form [formGroup]="client">
           <div nz-row
                [nzGutter]="12">
             <div nz-col
                  nzXs="24"
                  nzLg="12">
               <nz-form-item>
-                <nz-form-label nzRequired>Fecha inicio</nz-form-label>
+                <nz-form-label nzRequired>Tipo de persona</nz-form-label>
                 <nz-form-control apsAutoError>
-                  <nz-date-picker formControlName="startDate"></nz-date-picker>
+                  <nz-radio-group formControlName="personType">
+                    <label *ngFor="let option of personTypeOptions"
+                           nz-radio
+                           [nzValue]="option.value">{{ option.label }}</label>
+                  </nz-radio-group>
                 </nz-form-control>
               </nz-form-item>
             </div>
@@ -66,109 +176,27 @@
                  nzXs="24"
                  nzLg="12">
               <nz-form-item>
-                <nz-form-label nzRequired>Fecha fin</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <nz-date-picker formControlName="endDate"></nz-date-picker>
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-
-            <div nz-col
-                 nzXs="24"
-                 nzLg="12">
-              <nz-form-item>
-                <nz-form-label nzRequired>Kilometraje inicial</nz-form-label>
+                <nz-form-label nzRequired>Punto de venta</nz-form-label>
                 <nz-form-control apsAutoError>
                   <input nz-input
-                         type="number"
-                         formControlName="kilometrageStart" />
+                         formControlName="salesPlace" />
                 </nz-form-control>
               </nz-form-item>
             </div>
-            <div nz-col
-                 nzXs="24"
-                 nzLg="12">
-              <nz-form-item>
-                <nz-form-label nzRequired>Kilometraje final</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         type="number"
-                         formControlName="kilometrageEnd" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-
-            <div *ivtCreatePermission
-                 nz-col
-                 nzXs="24"
-                 nzLg="12">
-              <nz-form-item>
-                <nz-form-label nzRequired>Compañía</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <nz-select apsAutoSelect
-                             nzShowSearch
-                             nzServerSearch
-                             formControlName="companyId"
-                             [nzOptions]="companyOptions"
-                             (nzScrollToBottom)="getMoreCompanies()"
-                             (nzOnSearch)="searchCompanies($event)">
-                  </nz-select>
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-
-            <div nz-col
-                 nzXs="24"
-                 nzLg="12">
-              <nz-form-item>
-                <nz-form-label nzRequired>Tipo de producto</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         formControlName="productType" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-
           </div>
-          <!-- TODO: Uncomment when products is ready
-        <div nz-row
-             [nzGutter]="12">
-          <div nz-col
-               nzSpan="24">
-            <nz-form-item>
-              <nz-form-label nzRequired>Producto</nz-form-label>
-              <nz-form-control apsAutoError>
-                <nz-select formControlName="productId">
-                  <nz-option *ngFor="let option of productOptions"
-                             [nzValue]="option.value"
-                             [nzLabel]="option.label"></nz-option>
-                </nz-select>
-              </nz-form-control>
-            </nz-form-item>
-          </div>
-        </div> -->
-        </nz-collapse-panel>
-      </nz-collapse>
-    </nz-space-item>
 
-    <nz-space-item>
-      <nz-collapse>
-        <nz-collapse-panel nzHeader="Cliente"
-                           [nzActive]="true">
-          <form [formGroup]="client">
+          <form [hidden]="!showPhysicalForm"
+                [formGroup]="physicalInfoForm">
             <div nz-row
                  [nzGutter]="12">
               <div nz-col
                    nzXs="24"
                    nzLg="12">
                 <nz-form-item>
-                  <nz-form-label nzRequired>Tipo de persona</nz-form-label>
+                  <nz-form-label nzRequired>Nombre(s)</nz-form-label>
                   <nz-form-control apsAutoError>
-                    <nz-radio-group formControlName="personType">
-                      <label *ngFor="let option of personTypeOptions"
-                             nz-radio
-                             [nzValue]="option.value">{{ option.label }}</label>
-                    </nz-radio-group>
+                    <input nz-input
+                           formControlName="name" />
                   </nz-form-control>
                 </nz-form-item>
               </div>
@@ -176,180 +204,154 @@
                    nzXs="24"
                    nzLg="12">
                 <nz-form-item>
-                  <nz-form-label nzRequired>Punto de venta</nz-form-label>
+                  <nz-form-label nzRequired>Appelido Paterno</nz-form-label>
                   <nz-form-control apsAutoError>
                     <input nz-input
-                           formControlName="salesPlace" />
+                           formControlName="lastName" />
                   </nz-form-control>
                 </nz-form-item>
               </div>
             </div>
-
-            <form [hidden]="!showPhysicalForm"
-                  [formGroup]="physicalInfoForm">
-              <div nz-row
-                   [nzGutter]="12">
-                <div nz-col
-                     nzXs="24"
-                     nzLg="12">
-                  <nz-form-item>
-                    <nz-form-label nzRequired>Nombre(s)</nz-form-label>
-                    <nz-form-control apsAutoError>
-                      <input nz-input
-                             formControlName="name" />
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-                <div nz-col
-                     nzXs="24"
-                     nzLg="12">
-                  <nz-form-item>
-                    <nz-form-label nzRequired>Appelido Paterno</nz-form-label>
-                    <nz-form-control apsAutoError>
-                      <input nz-input
-                             formControlName="lastName" />
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-              </div>
-
-              <div nz-row
-                   [nzGutter]="12">
-                <div nz-col
-                     nzXs="24"
-                     nzLg="12">
-                  <nz-form-item>
-                    <nz-form-label nzRequired>Apellido Materno</nz-form-label>
-                    <nz-form-control apsAutoError>
-                      <input nz-input
-                             formControlName="secondLastName" />
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-                <div nz-col
-                     nzXs="24"
-                     nzLg="12">
-                  <nz-form-item>
-                    <nz-form-label nzRequired>Fecha de nacimiento</nz-form-label>
-                    <nz-form-control apsAutoError>
-                      <nz-date-picker formControlName="birthDate"></nz-date-picker>
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-              </div>
-            </form>
-
-            <form [hidden]="!showMoralForm"
-                  [formGroup]="moralInfoForm">
-              <div nz-row
-                   [nzGutter]="12">
-                <div nz-col
-                     nzXs="24"
-                     nzLg="12">
-                  <nz-form-item>
-                    <nz-form-label nzRequired>Razón social</nz-form-label>
-                    <nz-form-control apsAutoError>
-                      <input nz-input
-                             formControlName="businessName" />
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-                <div nz-col
-                     nzXs="24"
-                     nzLg="12">
-                  <nz-form-item>
-                    <nz-form-label nzRequired>Fecha de constitución</nz-form-label>
-                    <nz-form-control apsAutoError>
-                      <nz-date-picker formControlName="constitutionDate"></nz-date-picker>
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-              </div>
-
-              <div nz-row
-                   [nzGutter]="12">
-                <div nz-col
-                     nzXs="24"
-                     nzLg="12">
-                  <nz-form-item>
-                    <nz-form-label nzRequired>Asesor</nz-form-label>
-                    <nz-form-control apsAutoError>
-                      <input nz-input
-                             formControlName="adviser" />
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-              </div>
-            </form>
 
             <div nz-row
                  [nzGutter]="12">
               <div nz-col
                    nzXs="24"
-                   nzLg="8">
+                   nzLg="12">
                 <nz-form-item>
-                  <nz-form-label nzRequired>RFC</nz-form-label>
+                  <nz-form-label nzRequired>Apellido Materno</nz-form-label>
                   <nz-form-control apsAutoError>
                     <input nz-input
-                           ivtUppercase
-                           formControlName="rfc" />
+                           formControlName="secondLastName" />
                   </nz-form-control>
                 </nz-form-item>
               </div>
               <div nz-col
                    nzXs="24"
-                   nzLg="8">
+                   nzLg="12">
                 <nz-form-item>
-                  <nz-form-label nzRequired>Teléfono</nz-form-label>
+                  <nz-form-label nzRequired>Fecha de nacimiento</nz-form-label>
                   <nz-form-control apsAutoError>
-                    <input nz-input
-                           type="tel"
-                           mask="(00) 0000 0000"
-                           formControlName="phone" />
-                  </nz-form-control>
-                </nz-form-item>
-              </div>
-              <div nz-col
-                   nzXs="24"
-                   nzLg="8">
-                <nz-form-item>
-                  <nz-form-label nzRequired>Correo</nz-form-label>
-                  <nz-form-control apsAutoError>
-                    <input nz-input
-                           type="email"
-                           formControlName="email" />
+                    <nz-date-picker formControlName="birthDate"></nz-date-picker>
                   </nz-form-control>
                 </nz-form-item>
               </div>
             </div>
-            <ivt-address-form [form]="addressForm"></ivt-address-form>
           </form>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </nz-space-item>
 
-    <nz-space-item *ngIf="isEditable"
-                   nz-row>
-      <div nz-col
-           nzSpan="24"
-           class="flex-end">
-        <nz-space>
-          <nz-space-item>
-            <button nz-button
+          <form [hidden]="!showMoralForm"
+                [formGroup]="moralInfoForm">
+            <div nz-row
+                 [nzGutter]="12">
+              <div nz-col
+                   nzXs="24"
+                   nzLg="12">
+                <nz-form-item>
+                  <nz-form-label nzRequired>Razón social</nz-form-label>
+                  <nz-form-control apsAutoError>
+                    <input nz-input
+                           formControlName="businessName" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col
+                   nzXs="24"
+                   nzLg="12">
+                <nz-form-item>
+                  <nz-form-label nzRequired>Fecha de constitución</nz-form-label>
+                  <nz-form-control apsAutoError>
+                    <nz-date-picker formControlName="constitutionDate"></nz-date-picker>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+
+            <div nz-row
+                 [nzGutter]="12">
+              <div nz-col
+                   nzXs="24"
+                   nzLg="12">
+                <nz-form-item>
+                  <nz-form-label nzRequired>Asesor</nz-form-label>
+                  <nz-form-control apsAutoError>
+                    <input nz-input
+                           formControlName="adviser" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+          </form>
+
+          <div nz-row
+               [nzGutter]="12">
+            <div nz-col
+                 nzXs="24"
+                 nzLg="8">
+              <nz-form-item>
+                <nz-form-label nzRequired>RFC</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         ivtUppercase
+                         formControlName="rfc" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="24"
+                 nzLg="8">
+              <nz-form-item>
+                <nz-form-label nzRequired>Teléfono</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         type="tel"
+                         mask="(00) 0000 0000"
+                         formControlName="phone" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="24"
+                 nzLg="8">
+              <nz-form-item>
+                <nz-form-label nzRequired>Correo</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         type="email"
+                         formControlName="email" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <ivt-address-form [form]="addressForm"></ivt-address-form>
+        </form>
+      </nz-collapse-panel>
+    </nz-collapse>
+
+    <ng-container *ngIf="isEditable">
+
+      <div *nzSpaceItem
+           nz-row>
+        <div nz-col
+             nzSpan="24"
+             class="flex-end">
+          <nz-space>
+            <button *nzSpaceItem
+                    nz-button
                     type="button"
                     [routerLink]="['..']">
               Cancelar
             </button>
-          </nz-space-item>
-          <button nz-button
-                  type="submit"
-                  nzType="primary"
-                  [nzLoading]="loading"
-                  [disabled]="disableSubmit">
-            Guardar
-          </button>
-        </nz-space>
+            <button *nzSpaceItem
+                    nz-button
+                    type="submit"
+                    nzType="primary"
+                    [nzLoading]="loading"
+                    [disabled]="disableSubmit">
+              Guardar
+            </button>
+          </nz-space>
+        </div>
       </div>
-    </nz-space-item>
+    </ng-container>
   </nz-space>
 </form>

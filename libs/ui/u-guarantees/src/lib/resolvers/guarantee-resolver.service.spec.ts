@@ -1,16 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { GuaranteeCollectionService } from '@ivt/u-state';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
 import { GuaranteeResolverService } from './guarantee-resolver.service';
 
 describe('GuaranteeResolverService', () => {
-  let service: GuaranteeResolverService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(GuaranteeResolverService);
+  let spectator: SpectatorService<GuaranteeResolverService>;
+  const createService = createServiceFactory({
+    service: GuaranteeResolverService,
+    mocks: [GuaranteeCollectionService],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

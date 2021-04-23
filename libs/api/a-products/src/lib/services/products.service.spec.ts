@@ -1,4 +1,6 @@
+import { CompanyRepository, GroupRepository, ProductRepository } from '@ivt/a-state';
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { ProductService } from './products.service';
 
 describe('ProductService', () => {
@@ -6,7 +8,12 @@ describe('ProductService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ProductService],
+      providers: [
+        ProductService,
+        { provide: ProductRepository, useValue: {} },
+        { provide: CompanyRepository, useValue: {} },
+        { provide: GroupRepository, useValue: {} },
+      ],
     }).compile();
 
     service = module.get<ProductService>(ProductService);

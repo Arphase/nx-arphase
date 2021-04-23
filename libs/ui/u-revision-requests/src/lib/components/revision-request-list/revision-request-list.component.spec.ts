@@ -1,25 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { IvtEmptyPipe, IvtPhonePipe } from '@ivt/u-ui';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { MockPipe } from 'ng-mocks';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 import { RevisionRequestListComponent } from './revision-request-list.component';
 
 describe('RevisionRequestListComponent', () => {
-  let component: RevisionRequestListComponent;
-  let fixture: ComponentFixture<RevisionRequestListComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ RevisionRequestListComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<RevisionRequestListComponent>;
+  const createComponent = createComponentFactory({
+    component: RevisionRequestListComponent,
+    imports: [NzDropDownModule],
+    declarations: [MockPipe(IvtEmptyPipe), MockPipe(IvtPhonePipe)],
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(RevisionRequestListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

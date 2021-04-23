@@ -15,7 +15,7 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": [
           "build",
@@ -23,24 +23,14 @@
           "test",
           "e2e"
         ],
-        "cacheDirectory": ".cache/nx"
+        "cacheDirectory": ".cache/nx",
+        "accessToken": "NjZhNGY2MzYtZjI3Ny00NDI0LWE5NzItY2EyZTdlOTIyZTYxfHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
     }
   },
   "projects": {
-    "innovatech-ui": {
-      "tags": [
-        "front"
-      ]
-    },
-    "innovatech-ui-e2e": {
-      "tags": [
-        "test"
-      ],
-      "implicitDependencies": [
-        "innovatech-ui"
-      ]
-    },
     "innovatech-api": {
       "tags": [
         "back"
@@ -164,11 +154,6 @@
         "front"
       ]
     },
-    "u-tests": {
-      "tags": [
-        "front"
-      ]
-    },
     "u-users": {
       "tags": [
         "front"
@@ -183,6 +168,11 @@
       "tags": [
         "arphase",
         "front"
+      ]
+    },
+    "ivt-app": {
+      "tags": [
+        "mobile"
       ]
     }
   }

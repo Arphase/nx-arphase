@@ -1,4 +1,14 @@
+import { AuthService } from '@ivt/a-auth';
+import {
+  CompanyRepository,
+  GroupRepository,
+  ProductRepository,
+  ResetPasswordRepository,
+  UserRepository,
+} from '@ivt/a-state';
 import { Test, TestingModule } from '@nestjs/testing';
+import { Connection } from 'typeorm';
+
 import { GroupsService } from './groups.service';
 
 describe('GroupsService', () => {
@@ -6,7 +16,16 @@ describe('GroupsService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [GroupsService],
+      providers: [
+        GroupsService,
+        { provide: GroupRepository, useValue: {} },
+        { provide: CompanyRepository, useValue: {} },
+        { provide: UserRepository, useValue: {} },
+        { provide: ResetPasswordRepository, useValue: {} },
+        { provide: ProductRepository, useValue: {} },
+        { provide: AuthService, useValue: {} },
+        { provide: Connection, useValue: {} },
+      ],
     }).compile();
 
     service = module.get<GroupsService>(GroupsService);

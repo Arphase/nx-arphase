@@ -1,54 +1,29 @@
-import { Component, NO_ERRORS_SCHEMA, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
 
 import { IvtUppercaseDirective } from './uppercase.directive';
 
-@Component({
-  selector: 'ivt-test-host',
-  template: `
-    <div>
-      <input #inputEl cdpUppercase [formControl]="control" />
-    </div>
-  `,
-})
-export class TestHostComponent {
-  @ViewChild('inputEl')
-  inputEl: HTMLInputElement;
-
-  control = new FormControl('');
-}
-
 describe('IvtUppercaseDirective', () => {
-  let fixture: ComponentFixture<TestHostComponent>;
-  let component: TestHostComponent;
+  @Component({
+    selector: 'test',
+  })
+  class TestHostcomponent {
+    form = new FormGroup({ test: new FormControl() });
+  }
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule],
-      declarations: [TestHostComponent, IvtUppercaseDirective],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
-  }));
+  let spectator: SpectatorDirective<IvtUppercaseDirective>;
+  const createDirective = createDirectiveFactory({
+    directive: IvtUppercaseDirective,
+    host: TestHostcomponent,
+    imports: [ReactiveFormsModule],
+  });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestHostComponent);
-    component = fixture.componentInstance;
-
-    fixture.detectChanges();
+    spectator = createDirective('<form [formGroup]="form"> <input formControlName="test" ivtUppercase /></form>');
   });
 
-  it('should create an instance', () => {
-    fixture.detectChanges();
-
-    expect(component).toBeTruthy();
-  });
-
-  it(`should convert the input's value to uppercase`, () => {
-    fixture.detectChanges();
-
-    component.control.patchValue('test');
-
-    expect(component.control.value).toEqual('TEST');
+  it('should create', () => {
+    expect(spectator.directive).toBeTruthy();
   });
 });

@@ -20,7 +20,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { RevisionsService } from '../services/revisions.service';
 
 @Controller('revisions')
-@UseGuards(AuthGuard(), RolesGuard)
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class RevisionsController {
   constructor(private revisionsService: RevisionsService) {}
 

@@ -1,8 +1,18 @@
+import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
+
 import { ApsAutoErrorDirective } from './auto-error.directive';
 
 describe('ApsAutoErrorDirective', () => {
-  it('should create an instance', () => {
-    const directive = new ApsAutoErrorDirective();
-    expect(directive).toBeTruthy();
+  let spectator: SpectatorDirective<ApsAutoErrorDirective>;
+  const createDirective = createDirectiveFactory({
+    directive: ApsAutoErrorDirective,
+  });
+
+  beforeEach(() => {
+    spectator = createDirective(`<div apsAutoError></div>`);
+  });
+
+  it('should create', () => {
+    expect(spectator.directive).toBeTruthy();
   });
 });

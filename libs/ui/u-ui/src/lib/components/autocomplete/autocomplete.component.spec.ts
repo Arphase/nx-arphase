@@ -1,25 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { IvtAutocompleteComponent } from './autocomplete.component';
 
 describe('IvtAutocompleteComponent', () => {
-  let component: IvtAutocompleteComponent;
-  let fixture: ComponentFixture<IvtAutocompleteComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ IvtAutocompleteComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<IvtAutocompleteComponent>;
+  const createComponent = createComponentFactory({
+    component: IvtAutocompleteComponent,
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(IvtAutocompleteComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

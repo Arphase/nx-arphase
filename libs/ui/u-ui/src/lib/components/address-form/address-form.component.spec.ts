@@ -1,25 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { IvtAddressFormComponent } from './address-form.component';
+import { IvtAddressFormService } from './address-form.service';
 
 describe('IvtAddressFormComponent', () => {
-  let component: IvtAddressFormComponent;
-  let fixture: ComponentFixture<IvtAddressFormComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ IvtAddressFormComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(IvtAddressFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  let spectator: Spectator<IvtAddressFormComponent>;
+  const createComponent = createComponentFactory({
+    component: IvtAddressFormComponent,
+    shallow: true,
+    componentProviders: [{ provide: IvtAddressFormService, useValue: {} }],
   });
 
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

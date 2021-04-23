@@ -11,9 +11,8 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { QueryParams } from '@ngrx/data';
-
-import { IvtFilterComponent } from '../filter';
 
 export interface CheckboxOption {
   label: string;
@@ -29,8 +28,9 @@ export interface CheckboxOption {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class IvtCheckboxFilterComponent extends IvtFilterComponent<number[]> implements OnChanges {
+export class IvtCheckboxFilterComponent implements OnChanges {
   @ViewChild(CdkVirtualScrollViewport) viewport: CdkVirtualScrollViewport;
+  @Input() label: string;
   @Input() options: CheckboxOption[] = [];
   @Input() searchable: boolean;
   @Input() disabled: boolean;
@@ -41,11 +41,11 @@ export class IvtCheckboxFilterComponent extends IvtFilterComponent<number[]> imp
   @Input() pageIndex: string;
   localOptions: CheckboxOption[] = [];
   text: string;
+  control: FormControl;
+  mappedTitle: string;
+  active = false;
   @Output() filterOptions = new EventEmitter<QueryParams>();
-
-  constructor(private cdr: ChangeDetectorRef) {
-    super();
-  }
+  @Output() filterItems = new EventEmitter<number[]>();
 
   get hasActiveOptions(): boolean {
     return this.localOptions?.some(option => option.checked);
@@ -58,6 +58,8 @@ export class IvtCheckboxFilterComponent extends IvtFilterComponent<number[]> imp
   get visibleOptions(): CheckboxOption[] {
     return this.localOptions.filter(option => option.visible);
   }
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.options && this.options) {

@@ -1,25 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ProductCollectionService } from '@ivt/u-state';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { ProductFormContainerComponent } from './product-form-container.component';
 
 describe('ProductFormContainerComponent', () => {
-  let component: ProductFormContainerComponent;
-  let fixture: ComponentFixture<ProductFormContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ProductFormContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<ProductFormContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: ProductFormContainerComponent,
+    imports: [RouterTestingModule],
+    shallow: true,
+    mocks: [ProductCollectionService, NzMessageService],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProductFormContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

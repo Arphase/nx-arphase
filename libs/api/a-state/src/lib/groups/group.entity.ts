@@ -1,15 +1,18 @@
-import { Company, Group } from '@ivt/c-data';
+import { Company, Group, Product } from '@ivt/c-data';
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 import { CompanyEntity } from '../companies/company.entity';
+import { ProductEntity } from '../products';
 
 @Entity('groups')
 export class GroupEntity extends BaseEntity implements Group {
@@ -38,4 +41,8 @@ export class GroupEntity extends BaseEntity implements Group {
     cascade: true,
   })
   companies: Company[];
+
+  @ManyToMany(() => ProductEntity)
+  @JoinTable()
+  products: Product[];
 }

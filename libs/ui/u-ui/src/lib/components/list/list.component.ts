@@ -12,7 +12,7 @@ import { IvtSubscriberComponent } from '../subscriber';
   selector: 'ivt-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtListComponent<T> extends IvtSubscriberComponent implements CrudEvents<T> {
+export class IvtListComponent<T = any> extends IvtSubscriberComponent implements CrudEvents<T> {
   @Input() list: T[] = [];
   @Input() loading: boolean;
   @Input() loadingExcel: boolean;

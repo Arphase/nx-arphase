@@ -20,6 +20,26 @@ export class CreateProductDto {
   @IsString()
   logo: string;
 
+  @IsNotEmpty()
+  @Transform(({ obj, key }) => Number(obj[key]))
+  @IsNumber()
+  minYear: number;
+
+  @IsNotEmpty()
+  @Transform(({ obj, key }) => Number(obj[key]))
+  @IsNumber()
+  maxYear: number;
+
+  @IsNotEmpty()
+  @Transform(({ obj, key }) => Number(obj[key]))
+  @IsNumber()
+  minHp: number;
+
+  @IsNotEmpty()
+  @Transform(({ obj, key }) => Number(obj[key]))
+  @IsNumber()
+  maxHp: number;
+
   @IsOptional()
   @IsArray()
   guarantees: Partial<Guarantee>[];

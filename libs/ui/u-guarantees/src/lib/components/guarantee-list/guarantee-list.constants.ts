@@ -1,5 +1,6 @@
 import { ApsColumns } from '@arphase/ui';
-import { GuaranteeStatus, Select } from '@ivt/c-data';
+import { GuaranteeStatus } from '@ivt/c-data';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export const columns: ApsColumns = [
   {
@@ -23,7 +24,7 @@ export const columns: ApsColumns = [
     label: 'Compañía',
     prop: 'company.businessName',
     colSizes: {
-      md: 4
+      md: 4,
     },
   },
   {
@@ -59,7 +60,7 @@ export const columns: ApsColumns = [
   },
 ];
 
-export const statusOptions: Select[] = [
+export const statusOptions: NzSelectOptionInterface[] = [
   {
     label: 'Pagada',
     value: GuaranteeStatus[GuaranteeStatus.paid],

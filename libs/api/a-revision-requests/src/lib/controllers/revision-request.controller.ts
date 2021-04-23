@@ -19,7 +19,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { RevisionRequestService } from '../services/revision-request.service';
 
 @Controller('revision-requests')
-@UseGuards(AuthGuard(), RolesGuard)
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class RevisionRequestController {
   constructor(private revisionRequestsService: RevisionRequestService) {}
 

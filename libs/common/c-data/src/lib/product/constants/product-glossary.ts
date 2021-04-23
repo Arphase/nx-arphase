@@ -1,6 +1,6 @@
-import { Select } from '@ivt/c-data';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
-export const glossary: Select[] = [
+export const glossary: NzSelectOptionInterface[] = [
   { label: 'ID del cliente', value: '{guarantee.client.id}' },
   { label: 'Tipo de persona del cliente', value: '{guarantee.client.personType}' },
   { label: 'RFC del cliente', value: '{guarantee.client.rfc}' },

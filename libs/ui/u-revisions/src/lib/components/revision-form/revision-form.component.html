@@ -7,41 +7,37 @@
             nz-col
             nzSpan="24"
             nzSize="middle">
-
     <nz-page-header nzBackIcon
                     [nzTitle]="item?.id ? 'Editar Revisión' : 'Nueva Revisión'"
                     [routerLink]="['..']">
     </nz-page-header>
 
-    <nz-space-item>
-      <nz-collapse>
-        <nz-collapse-panel nzHeader="Vehículo"
-                           [nzActive]="true">
-          <div nz-row>
-            <nz-space nzDirection="vertical"
-                      nzSize="middle"
-                      nz-col
-                      nzSpan="24">
-              <nz-space-item>
-                <nz-alert *ngIf="error"
-                          nzType="error"
-                          [nzMessage]="error"
-                          nzShowIcon>
-                </nz-alert>
-              </nz-space-item>
-            </nz-space>
-          </div>
-          <ivt-vehicle-form [form]="vehicleForm"
-                            [item]="vehicle"
-                            [vehicle]="currentVehicle"
-                            [isEditable]="isEditable"
-                            (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </nz-space-item>
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Vehículo"
+                         [nzActive]="true">
+        <div nz-row>
+          <nz-space nzDirection="vertical"
+                    nzSize="middle"
+                    nz-col
+                    nzSpan="24">
+            <div *nzSpaceItem>
+              <nz-alert *ngIf="error"
+                        nzType="error"
+                        [nzMessage]="error"
+                        nzShowIcon></nz-alert>
+            </div>
+          </nz-space>
+        </div>
+        <ivt-vehicle-form [form]="vehicleForm"
+                          [item]="vehicle"
+                          [vehicle]="currentVehicle"
+                          [isEditable]="isEditable"
+                          (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
+      </nz-collapse-panel>
+    </nz-collapse>
 
-    <nz-space-item *ngFor="let reportSection of revisionReportSections | keyvalue">
-      <nz-collapse>
+    <ng-container *ngFor="let reportSection of revisionReportSections | keyvalue">
+      <nz-collapse *nzSpaceItem>
         <nz-collapse-panel [nzHeader]="reportSection.key"
                            [nzActive]="true">
           <div nz-row>
@@ -62,8 +58,7 @@
               <nz-tag nz-tooltip
                       [nzColor]="icon.color">
                 <i nz-icon
-                   [nzType]="icon.type"
-                   nzTheme="outline"></i>
+                   [nzType]="icon.type"></i>
               </nz-tag>
             </div>
           </div>
@@ -98,78 +93,91 @@
           </div>
         </nz-collapse-panel>
       </nz-collapse>
-    </nz-space-item>
+    </ng-container>
 
-    <nz-space-item>
-      <nz-collapse>
-        <nz-collapse-panel nzHeader="Revisión"
-                           [nzActive]="true">
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Revisión"
+                         [nzActive]="true">
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Estatus</nz-form-label>
+              <nz-form-control apsAutoError>
+                <nz-select formControlName="status"
+                           [nzOptions]="statusOptions">
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Kilometraje</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       type="number"
+                       formControlName="kilometrage" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Revisado por</nz-form-label>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       formControlName="reviewdBy" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row
+             [nzGutter]="12">
+          <div nz-col
+               nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzRequired>Observaciones</nz-form-label>
+              <nz-form-control apsAutoError>
+                <textarea nz-input
+                          formControlName="observations"></textarea>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
 
-          <div nz-row
-               [nzGutter]="12">
-            <div nz-col
-                 nzSpan="24">
-              <nz-form-item>
-                <nz-form-label nzRequired>Estatus</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <nz-select formControlName="status"
-                             [nzOptions]="statusOptions">
-                  </nz-select>
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-          <div nz-row
-               [nzGutter]="12">
-            <div nz-col
-                 nzSpan="24">
-              <nz-form-item>
-                <nz-form-label nzRequired>Revisado por</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <input nz-input
-                         formControlName="reviewdBy" />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-          <div nz-row
-               [nzGutter]="12">
-            <div nz-col
-                 nzSpan="24">
-              <nz-form-item>
-                <nz-form-label nzRequired>Observaciones</nz-form-label>
-                <nz-form-control apsAutoError>
-                  <textarea nz-input
-                            formControlName="observations"></textarea>
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </nz-space-item>
-
-    <nz-space-item *ngIf="isEditable"
-                   nz-row>
-      <div nz-col
-           nzSpan="24"
-           class="flex-end">
-        <nz-space>
-          <nz-space-item>
-            <button nz-button
+    <ng-container *ngIf="isEditable">
+      <div *nzSpaceItem
+           nz-row>
+        <div nz-col
+             nzSpan="24"
+             class="flex-end">
+          <nz-space>
+            <button *nzSpaceItem
+                    nz-button
                     type="button"
                     [routerLink]="['..']">
               Cancelar
             </button>
-          </nz-space-item>
-          <button nz-button
-                  type="submit"
-                  nzType="primary"
-                  [nzLoading]="loading">
-            Guardar
-          </button>
-        </nz-space>
+            <button *nzSpaceItem
+                    nz-button
+                    type="submit"
+                    nzType="primary"
+                    [nzLoading]="loading">
+              Guardar
+            </button>
+          </nz-space>
+        </div>
       </div>
-    </nz-space-item>
+    </ng-container>
   </nz-space>
 </form>

@@ -62,7 +62,7 @@ export class RevisionRequestFormContainerComponent
   }
 
   submit(item: RevisionRequest): void {
-    super.submit(omit({ ...item, vehicleId: item.vehicle.id }, 'vehicle'));
+    super.submit(omit({ ...item, vehicleId: item.vehicle.id }, 'vehicle') as RevisionRequest);
   }
 
   ngOnDestroy() {

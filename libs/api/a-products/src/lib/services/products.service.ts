@@ -1,26 +1,72 @@
 import {
+  CompanyRepository,
   CreateProductDto,
+  filterCommonQuery,
   GenerateProductPdfDto,
-  GetProductsFilterDto,
-  getReadableStream,
-  OUT_FILE,
+  GetProductsDto,
+  GroupRepository,
   ProductRepository,
   tobase64,
   UpdateProductDto,
 } from '@ivt/a-state';
-import { Product } from '@ivt/c-data';
+import { Company, createCollectionResponse, IvtCollectionResponse, Product, User, UserRoles } from '@ivt/c-data';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import dayjs from 'dayjs';
 import { Response } from 'express';
-import fs from 'fs';
-import puppeteer from 'puppeteer';
-import { promisify } from 'util';
+import { BaseEntity, SelectQueryBuilder } from 'typeorm';
 
-import { getProductPdfTemplate } from './products.service.constants';
+import { generateProductPdf, getProductPdfTemplate } from './products.service.constants';
 
 @Injectable()
 export class ProductService {
-  constructor(@InjectRepository(ProductRepository) private productRepository: ProductRepository) {}
+  constructor(
+    @InjectRepository(ProductRepository) private productRepository: ProductRepository,
+    @InjectRepository(CompanyRepository) private companyRepository: CompanyRepository,
+    @InjectRepository(GroupRepository) private groupRepository: GroupRepository
+  ) {}
+
+  async getProducts(filterDto: GetProductsDto, user: Partial<User>): Promise<IvtCollectionResponse<Product>> {
+    const { text, pageSize, pageIndex, groupId, year, horsePower } = filterDto;
+    const query = this.productRepository.createQueryBuilder('product').groupBy('product.id');
+
+    if (text) {
+      query.andWhere('LOWER(product.name) LIKE :text', { text: `%${text.toLowerCase()}%` });
+    }
+
+    filterCommonQuery('product', query, filterDto);
+
+    if ((user && UserRoles[user.role] !== UserRoles.superAdmin) || groupId) {
+      let company: Company;
+      if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+        company = await this.companyRepository.findOne({ id: user.companyId });
+      }
+      const groupQuery = this.groupRepository
+        .createQueryBuilder('group')
+        .leftJoinAndSelect('group.products', 'product')
+        .andWhere('group.id = :id', { id: company?.groupId || groupId });
+      this.filterYearAndHp(groupQuery, year, horsePower);
+      const group = await groupQuery.getOne();
+      const products = group?.products || [];
+      const total = products.length;
+      return createCollectionResponse(products, pageSize, pageIndex, total);
+    } else {
+      this.filterYearAndHp(query, year, horsePower);
+      const products = await query.getMany();
+      const total = await query.getCount();
+      return createCollectionResponse(products, pageSize, pageIndex, total);
+    }
+  }
+
+  filterYearAndHp(query: SelectQueryBuilder<BaseEntity>, year: number, horsePower: number): void {
+    if (year && horsePower) {
+      const todayYear = Number(dayjs().format('YYYY'));
+      const productYear = todayYear - year;
+      query
+        .andWhere(`product.minYear <= :productYear and product.maxYear >= :productYear`, { productYear })
+        .andWhere(`product.minHp <= :horsePower and product.maxHp >= :horsePower`, { horsePower });
+    }
+  }
 
   async getProductById(id: number): Promise<Product> {
     const query = this.productRepository.createQueryBuilder('product');
@@ -46,96 +92,18 @@ export class ProductService {
     return updatedProduct;
   }
 
-  async getProducts(filterDto: Partial<GetProductsFilterDto>): Promise<Product[]> {
-    const { sort, price, name } = filterDto;
-    const query = this.productRepository.createQueryBuilder('products');
-
-    if (sort && price) {
-      query.orderBy(`${sort}`, price);
-    }
-
-    if (name) {
-      query.andWhere('LOWER(products.name) LIKE :name', { name: `%${name.toLowerCase()}%` });
-    }
-
-    query.groupBy('products.id');
-
-    const products = await query.getMany();
-
-    return products;
-  }
-
   async generateProductPdf(generateProductPdfDto: GenerateProductPdfDto, response: Response): Promise<void> {
     const template = generateProductPdfDto.template;
+    let headerLogo;
 
-    let logo;
-
-    if (generateProductPdfDto.logo != null) {
-      logo = generateProductPdfDto.logo;
+    if (generateProductPdfDto.logo) {
+      headerLogo = generateProductPdfDto.logo;
     } else {
-      logo = await tobase64('apps/innovatech-api/src/assets/img/EscudoForte.png');
-      logo = 'data:image/png;base64,' + logo;
+      headerLogo = await tobase64('apps/innovatech-api/src/assets/img/forte-shield.png');
+      headerLogo = 'data:image/png;base64,' + headerLogo;
     }
-
     const content = getProductPdfTemplate(template);
-    const headerImg = await tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
-    const headerLogo = logo;
-    const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
 
-    await promisify(fs.writeFile)(OUT_FILE, content);
-    const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
-    const page = await browser.newPage();
-    await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
-
-    await page.addStyleTag({
-      content: `
-          body { margin-top: 1cm; }
-          @page:first { margin-top: 0; }
-      `,
-    });
-    const buffer = await page.pdf({
-      format: 'a4',
-      printBackground: true,
-      margin: {
-        left: '1in',
-        top: '1in',
-        right: '1in',
-        bottom: '2in',
-      },
-      displayHeaderFooter: true,
-      headerTemplate: `
-      <style>
-        .logo {
-          max-width: 15%;
-          height: auto;
-          margin: 0.3in 0 0 0.8in;
-        }
-        .shield {
-          max-width: 10%;
-          height: auto;
-          margin: 0.1in 0.18in 0 auto;
-        }
-        #header { padding: 0 !important; }
-      </style>
-      <img class="logo"
-      src="data:image/png;base64,${headerImg}"/>
-      <img class="shield"
-          src="${headerLogo}"/>`,
-      footerTemplate: `
-      <style>
-        .footer {
-          width: 100%;
-          height: 1in;
-        }
-        #footer { padding: 0 !important; }
-      </style>
-      <img class="footer"
-          src="data:image/jpg;base64,${footerImg}"/>
-      `,
-    });
-    promisify(fs.unlink)(OUT_FILE);
-    await browser.close();
-    const stream = getReadableStream(buffer);
-    stream.pipe(response);
+    await generateProductPdf(content, headerLogo, response);
   }
 }

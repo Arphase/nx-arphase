@@ -1,25 +1,37 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import {
+  CompanyCollectionService,
+  GuaranteeCollectionService,
+  PermissionService,
+  ProductCollectionService,
+  VehicleCollectionService,
+} from '@ivt/u-state';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { provideMockStore } from '@ngrx/store/testing';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { of } from 'rxjs';
 
 import { GuaranteeFormContainerComponent } from './guarantee-form-container.component';
 
 describe('GuaranteeFormContainerComponent', () => {
-  let component: GuaranteeFormContainerComponent;
-  let fixture: ComponentFixture<GuaranteeFormContainerComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ GuaranteeFormContainerComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GuaranteeFormContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  let spectator: Spectator<GuaranteeFormContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: GuaranteeFormContainerComponent,
+    shallow: true,
+    imports: [RouterTestingModule],
+    providers: [
+      provideMockStore(),
+      { provide: CompanyCollectionService, useValue: { store: of({}), selectors: { selectCollection: '' } } },
+      {
+        provide: PermissionService,
+        useValue: { hasCreatePermission: () => of(true), hasUpdatePermission: () => of(true) },
+      },
+    ],
+    mocks: [GuaranteeCollectionService, ProductCollectionService, VehicleCollectionService, NzMessageService],
   });
 
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

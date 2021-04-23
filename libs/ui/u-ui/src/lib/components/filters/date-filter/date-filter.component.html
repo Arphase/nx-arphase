@@ -4,19 +4,15 @@
         [nzDropdownMenu]="menu"
         [nzClickHide]="false"
         nzTrigger="click">
-
   {{ mappedTitle }}
-
   <i *ngIf="!showActiveStatus"
      nz-icon
      nzType="down"
-     nzTheme="outline"
      class="right"></i>
 
   <i nz-icon
      *ngIf="showActiveStatus"
      nzType="close"
-     nzTheme="outline"
      class="delete-icon right"
      (click)="deleteFilters(); $event.stopPropagation()"></i>
 </button>
@@ -44,7 +40,8 @@
         <nz-form-item>
           <nz-form-label nzRequired>Fecha inicial</nz-form-label>
           <nz-form-control apsAutoError>
-            <nz-date-picker formControlName="startDate"></nz-date-picker>
+            <nz-date-picker ngDefaultControl
+                            formControlName="startDate"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -53,7 +50,8 @@
         <nz-form-item>
           <nz-form-label nzRequired>Fecha final</nz-form-label>
           <nz-form-control apsAutoError>
-            <nz-date-picker formControlName="endDate"></nz-date-picker>
+            <nz-date-picker ngDefaultControl
+                            formControlName="endDate"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>

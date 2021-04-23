@@ -1,6 +1,6 @@
-import { Select } from '../../ui/models/select.model';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
-export const guaranteeDateTypeOptions: Select[] = [
+export const guaranteeDateTypeOptions: NzSelectOptionInterface[] = [
   { label: 'Inicio', value: 'startDate' },
   { label: 'Fin', value: 'endDate' },
   { label: 'Captura', value: 'createdAt' },

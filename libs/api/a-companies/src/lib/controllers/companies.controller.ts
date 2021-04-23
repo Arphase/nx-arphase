@@ -7,7 +7,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { CompaniesService } from '../services/companies.service';
 
 @Controller('companies')
-@UseGuards(AuthGuard())
+@UseGuards(AuthGuard('jwt'))
 export class CompaniesController {
   constructor(private companiesService: CompaniesService) {}
 

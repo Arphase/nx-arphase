@@ -1,4 +1,6 @@
+import { VehicleRepository } from '@ivt/a-state';
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { VehiclesService } from './vehicles.service';
 
 describe('VehiclesService', () => {
@@ -6,7 +8,7 @@ describe('VehiclesService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [VehiclesService],
+      providers: [VehiclesService, { provide: VehicleRepository, useValue: {} }],
     }).compile();
 
     service = module.get<VehiclesService>(VehiclesService);

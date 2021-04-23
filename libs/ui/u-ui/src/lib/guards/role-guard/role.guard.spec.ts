@@ -1,16 +1,20 @@
-import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { RoleGuard } from './role.guard';
 
 describe('RoleGuard', () => {
-  let guard: RoleGuard;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    guard = TestBed.inject(RoleGuard);
+  let spectator: SpectatorService<RoleGuard>;
+  const createService = createServiceFactory({
+    service: RoleGuard,
+    imports: [RouterTestingModule],
+    providers: [provideMockStore()],
   });
 
-  it('should be created', () => {
-    expect(guard).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

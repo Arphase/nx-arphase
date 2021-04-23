@@ -1,6 +1,6 @@
 import { Roles, RolesGuard } from '@ivt/a-auth';
-import { CommonFilterDto, CreateGroupDto, UpdateGroupDto } from '@ivt/a-state';
-import { Group, IvtCollectionResponse, UserRoles } from '@ivt/c-data';
+import { AssignProductsDto, CommonFilterDto, CreateGroupDto, UpdateGroupDto } from '@ivt/a-state';
+import { Group, IvtCollectionResponse, Product, UserRoles } from '@ivt/c-data';
 import {
   Body,
   Controller,
@@ -19,7 +19,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { GroupsService } from '../services/groups.service';
 
 @Controller('groups')
-@UseGuards(AuthGuard(), RolesGuard)
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class GroupsController {
   constructor(private groupsService: GroupsService) {}
 
@@ -49,5 +49,12 @@ export class GroupsController {
   @UsePipes(new ValidationPipe({ transform: true }))
   updateGroup(@Body() updateGroupDto: UpdateGroupDto): Promise<Group> {
     return this.groupsService.updateGroup(updateGroupDto);
+  }
+
+  @Put('assign/products')
+  @Roles(UserRoles.superAdmin)
+  @UsePipes(new ValidationPipe({ transform: true }))
+  assignProducts(@Body() assignProductsDto: AssignProductsDto): Promise<Product[]> {
+    return this.groupsService.assignProducts(assignProductsDto);
   }
 }

@@ -1,16 +1,29 @@
-import { TestBed } from '@angular/core/testing';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { of } from 'rxjs';
 
+import { PermissionService } from '../../permissions';
+import { CompanyFilterCollectionService } from './companies';
+import { GroupFilterCollectionService } from './groups';
 import { IdentityFilterService } from './identity-filter.service';
+import { UserFilterCollectionService } from './users';
 
 describe('IdentityFilterService', () => {
-  let service: IdentityFilterService;
+  const collectionServiceMock = { store: of({}), selectors: { selectCollection: '' } };
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(IdentityFilterService);
+  let spectator: SpectatorService<IdentityFilterService>;
+  const createService = createServiceFactory({
+    service: IdentityFilterService,
+    providers: [
+      { provide: GroupFilterCollectionService, useValue: collectionServiceMock },
+      { provide: CompanyFilterCollectionService, useValue: collectionServiceMock },
+      { provide: UserFilterCollectionService, useValue: collectionServiceMock },
+    ],
+    mocks: [PermissionService],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

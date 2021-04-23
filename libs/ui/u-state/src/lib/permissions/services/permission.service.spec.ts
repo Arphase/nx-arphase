@@ -1,16 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { PermissionService } from './permission.service';
 
 describe('PermissionService', () => {
-  let service: PermissionService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(PermissionService);
+  let spectator: SpectatorService<PermissionService>;
+  const createService = createServiceFactory({
+    service: PermissionService,
+    providers: [provideMockStore()],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

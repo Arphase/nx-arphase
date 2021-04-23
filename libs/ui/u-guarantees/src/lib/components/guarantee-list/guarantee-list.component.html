@@ -14,8 +14,7 @@
             [nzLoading]="loadingExcel"
             (click)="exportExcel.emit()">
       <i nz-icon
-         nzType="export"
-         nzTheme="outline"></i>
+         nzType="export"></i>
     </button>
   </div>
 
@@ -41,7 +40,7 @@
        nzFlex="auto">
     <div class="flex-end">
       <nz-space>
-        <nz-space-item>
+        <div *nzSpaceItem>
           <button *ngIf="showPaymentOrderButton"
                   nz-button
                   type="button"
@@ -49,14 +48,15 @@
                   (click)="createPaymentOrder.emit(checkedIdsArray)">
             Generar orden de pago
           </button>
-        </nz-space-item>
+        </div>
+        <button *nzSpaceItem
+                nz-button
+                [routerLink]="['new']"
+                type="button"
+                nzType="primary">
+          Nueva garantía
+        </button>
       </nz-space>
-      <button nz-button
-              [routerLink]="['new']"
-              type="button"
-              nzType="primary">
-        Nueva garantía
-      </button>
     </div>
   </div>
 
@@ -225,8 +225,7 @@
                   nzTrigger="click"
                   nzSize="small">
             <i nz-icon
-               nzType="more"
-               nzTheme="outline"></i>
+               nzType="more"></i>
           </button>
         </td>
         <nz-dropdown-menu #menu="nzDropdownMenu">

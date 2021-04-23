@@ -1,16 +1,19 @@
-import { TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { GroupFilterDataService } from './group-filter-data.service';
+import { SpectatorService, createServiceFactory } from '@ngneat/spectator';
+import { HttpUrlGenerator } from '@ngrx/data';
 
 describe('GroupFilterDataService', () => {
-  let service: GroupFilterDataService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(GroupFilterDataService);
+  let spectator: SpectatorService<GroupFilterDataService>;
+  const createService = createServiceFactory({
+    service: GroupFilterDataService,
+    imports: [HttpClientTestingModule],
+    providers: [{ provide: HttpUrlGenerator, useValue: { entityResource: jest.fn(), collectionResource: jest.fn() } }],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

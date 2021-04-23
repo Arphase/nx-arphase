@@ -5,6 +5,8 @@ import { ProductCollectionService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
+import { createProductForm } from '../../components/product-form/product-form.component';
+
 @Component({
   selector: 'ivt-product-form-container',
   templateUrl: './product-form-container.component.html',
@@ -12,6 +14,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductFormContainerComponent extends IvtFormContainerComponent<Product> {
+  form = createProductForm();
   successUrl = '/spa/products';
   createSuccessMessage = 'El producto se ha creado con éxito';
 

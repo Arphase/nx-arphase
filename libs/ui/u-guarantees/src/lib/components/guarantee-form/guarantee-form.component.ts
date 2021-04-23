@@ -10,20 +10,13 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import {
-  Guarantee,
-  isVehicleElegible,
-  IvtCollectionResponseInfo,
-  PersonTypes,
-  Select,
-  UserRoles,
-  Vehicle,
-} from '@ivt/c-data';
+import { Guarantee, isVehicleElegible, IvtCollectionResponseInfo, PersonTypes, UserRoles, Vehicle } from '@ivt/c-data';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
 import { REQUIRED_ROLES } from '@ivt/u-state';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 import { createVehicleForm } from '@ivt/u-vehicles';
 import { QueryParams } from '@ngrx/data';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -36,7 +29,7 @@ export function createGuaranteeForm(): FormGroup {
     companyId: new FormControl(null, ApsValidators.required),
     kilometrageStart: new FormControl(null, ApsValidators.requiredNumber),
     kilometrageEnd: new FormControl(null, ApsValidators.requiredNumber),
-    productType: new FormControl(null, ApsValidators.required),
+    productType: new FormControl(null),
     client: new FormGroup({
       id: new FormControl(null),
       personType: new FormControl(null, ApsValidators.required),
@@ -71,8 +64,8 @@ export function createGuaranteeForm(): FormGroup {
   providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnChanges, AfterViewInit {
-  @Input() productOptions: Select[] = [];
-  @Input() companyOptions: Select[] = [];
+  @Input() productOptions: NzSelectOptionInterface[] = [];
+  @Input() companyOptions: NzSelectOptionInterface[] = [];
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
   @Input() error: string;
@@ -80,13 +73,14 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
-  personTypeOptions: Select[] = [
+  personTypeOptions: NzSelectOptionInterface[] = [
     { label: 'Física', value: PersonTypes[PersonTypes.physical] },
     { label: 'Moral', value: PersonTypes[PersonTypes.moral] },
   ];
   companyId$: Observable<number>;
   @Output() verifyVin = new EventEmitter<string>();
   @Output() getCompanies = new EventEmitter<QueryParams>();
+  @Output() getProducts = new EventEmitter<{ year: string; horsePower: string }>();
 
   get client() {
     return this.form.get('client');
@@ -116,13 +110,18 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     return !this.isElegible || !!this.error;
   }
 
+  get showProductError(): boolean {
+    return (
+      !this.productOptions.length && this.vehicleForm.get('horsePower').value && this.vehicleForm.get('year').value
+    );
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.form && this.form) {
       this.client
         .get('personType')
         .valueChanges.pipe(filterNil(), takeUntil(this.destroy$))
         .subscribe(value => this.personTypeChange(value));
-
       this.companyId$ = this.form.get('companyId').valueChanges;
     }
 

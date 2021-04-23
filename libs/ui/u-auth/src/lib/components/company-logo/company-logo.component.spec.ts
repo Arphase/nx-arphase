@@ -1,25 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ThemeService } from '@ivt/u-ui';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { CompanyLogoComponent } from './company-logo.component';
 
 describe('CompanyLogoComponent', () => {
-  let component: CompanyLogoComponent;
-  let fixture: ComponentFixture<CompanyLogoComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ CompanyLogoComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<CompanyLogoComponent>;
+  const createComponent = createComponentFactory({
+    component: CompanyLogoComponent,
+    mocks: [ThemeService],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CompanyLogoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

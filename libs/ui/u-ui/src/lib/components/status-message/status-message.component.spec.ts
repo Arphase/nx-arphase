@@ -1,25 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { IvtStatusMessageComponent } from './status-message.component';
 
 describe('IvtStatusMessageComponent', () => {
-  let component: IvtStatusMessageComponent;
-  let fixture: ComponentFixture<IvtStatusMessageComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ IvtStatusMessageComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<IvtStatusMessageComponent>;
+  const createComponent = createComponentFactory({
+    component: IvtStatusMessageComponent,
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(IvtStatusMessageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

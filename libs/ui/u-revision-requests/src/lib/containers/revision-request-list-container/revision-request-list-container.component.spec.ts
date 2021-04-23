@@ -1,25 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { IdentityFilterService, RevisionRequestCollectionService, RevisionRequestDataService } from '@ivt/u-state';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { RevisionRequestListContainerComponent } from './revision-request-list-container.component';
 
 describe('RevisionRequestListContainerComponent', () => {
-  let component: RevisionRequestListContainerComponent;
-  let fixture: ComponentFixture<RevisionRequestListContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ RevisionRequestListContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<RevisionRequestListContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: RevisionRequestListContainerComponent,
+    shallow: true,
+    mocks: [RevisionRequestCollectionService, RevisionRequestDataService, NzMessageService, IdentityFilterService],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(RevisionRequestListContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

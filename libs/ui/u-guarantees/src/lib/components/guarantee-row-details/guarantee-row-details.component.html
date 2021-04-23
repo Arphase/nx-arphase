@@ -8,7 +8,7 @@
   <div nz-col
        nzXs="12"
        nzMd="0">
-    <span>{{ item.company?.businessName | empty }}</span>
+    <span>{{ item?.company?.businessName | empty }}</span>
   </div>
   <div nz-col
        nzXs="12"
@@ -18,7 +18,7 @@
   <div nz-col
        nzXs="12"
        nzMd="0">
-    <span>{{ item.invoiceNumber | empty }}</span>
+    <span>{{ item?.invoiceNumber | empty }}</span>
   </div>
   <div nz-col
        nzXs="12"
@@ -42,7 +42,7 @@
        nzXs="12"
        nzMd="6"
        nzLg="0">
-    <span>{{ item.createdAt | date: 'dd/MM/yy' | empty }}</span>
+    <span>{{ item?.createdAt | date: 'dd/MM/yy' | empty }}</span>
   </div>
   <div nz-col
        nzXs="12"
@@ -64,7 +64,7 @@
        nzXs="12"
        nzMd="6"
        nzLg="4">
-    <span>{{ item?.vehicle?.brand }} {{ item?.vehicle?.model }} {{ item.vehicle?.year }}</span>
+    <span>{{ item?.vehicle?.brand }} {{ item?.vehicle?.model }} {{ item?.vehicle?.year }}</span>
   </div>
   <div nz-col
        nzXs="12"
@@ -76,7 +76,7 @@
        nzXs="12"
        nzMd="6"
        nzLg="4">
-    <span>{{ item.vehicle?.motorNumber }}</span>
+    <span>{{ item?.vehicle?.motorNumber }}</span>
   </div>
   <div nz-col
        nzXs="12"
@@ -88,7 +88,7 @@
        nzXs="12"
        nzMd="6"
        nzLg="4">
-    <span>{{ item.startDate | date: 'dd/MM/yy' | empty }}</span>
+    <span>{{ item?.startDate | date: 'dd/MM/yy' | empty }}</span>
   </div>
   <div nz-col
        nzXs="12"
@@ -100,7 +100,7 @@
        nzXs="12"
        nzMd="6"
        nzLg="4">
-    <span>{{ item.endDate | date: 'dd/MM/yy' | empty }}</span>
+    <span>{{ item?.endDate | date: 'dd/MM/yy' | empty }}</span>
   </div>
   <div nz-col
        nzXs="12"
@@ -112,12 +112,12 @@
        nzXs="12"
        nzMd="6"
        nzLg="4">
-    <span *ngIf="item.client?.physicalInfo?.name">
-      {{ item.client?.physicalInfo?.name }} {{ item.client?.physicalInfo?.lastName }}
-      {{ item.client?.physicalInfo?.secondLastName }}
+    <span *ngIf="item?.client?.physicalInfo?.name">
+      {{ item?.client?.physicalInfo?.name }} {{ item?.client?.physicalInfo?.lastName }}
+      {{ item?.client?.physicalInfo?.secondLastName }}
     </span>
-    <span *ngIf="item.client?.moralInfo?.businessName">
-      {{ item.client?.moralInfo?.businessName }}
+    <span *ngIf="item?.client?.moralInfo?.businessName">
+      {{ item?.client?.moralInfo?.businessName }}
     </span>
   </div>
   <div nz-col

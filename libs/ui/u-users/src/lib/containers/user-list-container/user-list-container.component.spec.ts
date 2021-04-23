@@ -1,25 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { IdentityFilterService, UserCollectionService, UserDataService } from '@ivt/u-state';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { UserListContainerComponent } from './user-list-container.component';
 
 describe('UserListContainerComponent', () => {
-  let component: UserListContainerComponent;
-  let fixture: ComponentFixture<UserListContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ UserListContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<UserListContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: UserListContainerComponent,
+    shallow: true,
+    mocks: [UserCollectionService, UserDataService, IdentityFilterService],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(UserListContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

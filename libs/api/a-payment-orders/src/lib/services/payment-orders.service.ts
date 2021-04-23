@@ -41,7 +41,9 @@ export class PaymentOrdersService {
   }
 
   async createPaymentOrder(paymentOrder: CreatePaymentOrderDto): Promise<PaymentOrder> {
-    const newPaymentOrder = await this.paymentOrderRepository.create(omit(paymentOrder, 'guarantees'));
+    const newPaymentOrder = await this.paymentOrderRepository.create(
+      omit(paymentOrder, 'guarantees') as CreatePaymentOrderDto
+    );
     const ids = paymentOrder.guarantees.map(guarantee => guarantee.id);
     const guarantees = await this.guaranteeRepository.findByIds(ids);
     guarantees.forEach(guarantee => {

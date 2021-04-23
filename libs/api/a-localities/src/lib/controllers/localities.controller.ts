@@ -5,7 +5,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { LocalitiesService } from '../services/localities.service';
 
 @Controller('localities')
-@UseGuards(AuthGuard())
+@UseGuards(AuthGuard('jwt'))
 export class LocalitiesController {
   constructor(private localitiesService: LocalitiesService) {}
 

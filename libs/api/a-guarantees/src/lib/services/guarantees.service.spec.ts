@@ -1,4 +1,7 @@
+import { GuaranteeRepository, MoralPersonRepository, PhysicalPersonRepository, VehicleRepository } from '@ivt/a-state';
 import { Test, TestingModule } from '@nestjs/testing';
+import { Connection } from 'typeorm';
+
 import { GuaranteesService } from './guarantees.service';
 
 describe('GuaranteesService', () => {
@@ -6,7 +9,14 @@ describe('GuaranteesService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [GuaranteesService],
+      providers: [
+        GuaranteesService,
+        { provide: GuaranteeRepository, useValue: {} },
+        { provide: PhysicalPersonRepository, useValue: {} },
+        { provide: MoralPersonRepository, useValue: {} },
+        { provide: VehicleRepository, useValue: {} },
+        { provide: Connection, useValue: {} },
+      ],
     }).compile();
 
     service = module.get<GuaranteesService>(GuaranteesService);

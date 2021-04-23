@@ -9,16 +9,15 @@ import { PermissionService, REQUIRED_ROLES } from '../services/permission.servic
   selector: '[ivtBasePermission]',
 })
 export class BasePermissionDirective implements OnInit, OnDestroy {
-  protected hasPermission$: Observable<boolean>;
+  hasPermission$: Observable<boolean>;
   private hasView = false;
   private destroy$ = new Subject<void>();
 
   constructor(
     protected templateRef: TemplateRef<null>,
-    public viewContainer: ViewContainerRef,
+    protected viewContainer: ViewContainerRef,
     protected permissionService: PermissionService,
-    @Inject(REQUIRED_ROLES)
-    protected requiredRoles: UserRoles[]
+    @Inject(REQUIRED_ROLES) protected requiredRoles: UserRoles[]
   ) {}
 
   ngOnInit() {

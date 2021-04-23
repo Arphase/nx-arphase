@@ -26,6 +26,7 @@ export function createRevisionForm(): FormGroup {
     report: new FormGroup(report),
     observations: new FormControl(null, ApsValidators.required),
     status: new FormControl(null, ApsValidators.required),
+    kilometrage: new FormControl(null, ApsValidators.required),
     reviewdBy: new FormControl(null, ApsValidators.required),
     vehicle: createVehicleForm(),
   });
@@ -45,6 +46,7 @@ export class RevisionFormComponent extends IvtFormComponent<Revision> implements
   revisionReportSections = revisionReportSections;
   reportLabels = reportLabels;
   iconMap = iconMap;
+  form = createRevisionForm();
   @Output() verifyVin = new EventEmitter<string>();
 
   get vehicleForm(): FormGroup {

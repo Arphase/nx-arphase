@@ -8,7 +8,7 @@ import { Response } from 'express';
 import { PaymentOrdersService } from '../services/payment-orders.service';
 
 @Controller('payment-orders')
-@UseGuards(AuthGuard(), RolesGuard)
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class PaymentOrdersController {
   constructor(private paymentOrdersService: PaymentOrdersService) {}
 
