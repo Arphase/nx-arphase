@@ -17,13 +17,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v1
         with:
           node-version: 12
 
+      - run: git fetch --no-tags --prune --depth=5 origin staging
+
       - name: Install Dependencies
         run: npm ci
 
       - name: Run unit tests
-        run: npm run affected:test:staging
+        run: nx affected:test -- --base=origin/staging --ci --runInBand
