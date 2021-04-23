@@ -30,4 +30,4 @@ jobs:
         run: npm ci
 
       - name: Run unit tests
-        run: nx affected:test -- --base=origin/staging --ci --runInBand
+        run: npx nx affected:test --base=remotes/origin/staging --ci --runInBand
