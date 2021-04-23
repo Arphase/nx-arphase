@@ -46,6 +46,7 @@ export function createProductForm(): FormGroup {
   encapsulation: ViewEncapsulation.None,
 })
 export class ProductFormComponent extends IvtFormComponent<Product, ProductForm> implements OnInit, OnChanges {
+  form = createProductForm();
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
   glossaryOptions = glossary;

@@ -1,25 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { IvtEmptyPipe, IvtFolioPipe } from '@ivt/u-ui';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { MockPipe } from 'ng-mocks';
 
 import { ProductListComponent } from './product-list.component';
 
 describe('ProductListComponent', () => {
-  let component: ProductListComponent;
-  let fixture: ComponentFixture<ProductListComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ProductListComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<ProductListComponent>;
+  const createComponent = createComponentFactory({
+    component: ProductListComponent,
+    declarations: [MockPipe(IvtEmptyPipe), MockPipe(IvtFolioPipe)],
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProductListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

@@ -1,25 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { ProductDataService } from '@ivt/u-state';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { ProductFormComponent } from './product-form.component';
 
 describe('ProductFormComponent', () => {
-  let component: ProductFormComponent;
-  let fixture: ComponentFixture<ProductFormComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ProductFormComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<ProductFormComponent>;
+  const createComponent = createComponentFactory({
+    component: ProductFormComponent,
+    imports: [HttpClientModule],
+    shallow: true,
+    mocks: [ProductDataService, NzModalService],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProductFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

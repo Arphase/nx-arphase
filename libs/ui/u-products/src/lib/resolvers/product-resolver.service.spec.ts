@@ -1,16 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { ProductCollectionService } from '@ivt/u-state';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
 import { ProductResolverService } from './product-resolver.service';
 
 describe('ProductResolverService', () => {
-  let service: ProductResolverService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ProductResolverService);
+  let spectator: SpectatorService<ProductResolverService>;
+  const createService = createServiceFactory({
+    service: ProductResolverService,
+    mocks: [ProductCollectionService],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

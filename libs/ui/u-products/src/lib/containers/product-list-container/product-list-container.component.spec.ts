@@ -1,25 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ProductCollectionService, ProductDataService } from '@ivt/u-state';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { ProductListContainerComponent } from './product-list-container.component';
 
 describe('ProductListContainerComponent', () => {
-  let component: ProductListContainerComponent;
-  let fixture: ComponentFixture<ProductListContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ProductListContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<ProductListContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: ProductListContainerComponent,
+    shallow: true,
+    mocks: [ProductCollectionService, ProductDataService],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProductListContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });
