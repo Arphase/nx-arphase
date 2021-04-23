@@ -20,7 +20,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { VehiclesService } from '../services/vehicles.service';
 
 @Controller('vehicles')
-@UseGuards(AuthGuard(), RolesGuard)
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class VehiclesController {
   constructor(private vehiclesService: VehiclesService) {}
 

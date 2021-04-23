@@ -20,6 +20,7 @@
     "affected:test": "nx affected:test",
     "affected:lint": "nx affected:lint",
     "affected:dep-graph": "nx affected:dep-graph",
+    "test:coverage": "nx affected:test --ci --runInBand --base=remotes/origin/master",
     "affected": "nx affected",
     "format": "nx format:write",
     "format:write": "nx format:write",
