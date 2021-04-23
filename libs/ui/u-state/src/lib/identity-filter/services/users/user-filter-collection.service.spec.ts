@@ -1,16 +1,29 @@
-import { TestBed } from '@angular/core/testing';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
+import { of } from 'rxjs';
 
 import { UserFilterCollectionService } from './user-filter-collection.service';
 
 describe('UserFilterCollectionService', () => {
-  let service: UserFilterCollectionService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(UserFilterCollectionService);
+  let spectator: SpectatorService<UserFilterCollectionService>;
+  const createService = createServiceFactory({
+    service: UserFilterCollectionService,
+    providers: [
+      {
+        provide: EntityCollectionServiceElementsFactory,
+        useValue: {
+          create: () => ({
+            dispatcher: {},
+            selectors$: { collection$: of({}), entities$: of({}) },
+          }),
+        },
+      },
+    ],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

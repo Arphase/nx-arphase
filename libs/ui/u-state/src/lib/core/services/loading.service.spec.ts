@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
 import { LoadingService } from './loading.service';
 
 describe('LoadingService', () => {
-  let service: LoadingService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(LoadingService);
+  let spectator: SpectatorService<LoadingService>;
+  const createService = createServiceFactory({
+    service: LoadingService,
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

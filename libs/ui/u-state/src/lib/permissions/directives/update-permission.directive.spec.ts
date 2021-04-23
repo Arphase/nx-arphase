@@ -1,8 +1,24 @@
+import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
+import { of } from 'rxjs';
+
+import { PermissionService, REQUIRED_ROLES } from '..';
 import { UpdatePermissionDirective } from './update-permission.directive';
 
 describe('UpdatePermissionDirective', () => {
-  it('should create an instance', () => {
-    const directive = new UpdatePermissionDirective();
-    expect(directive).toBeTruthy();
+  let spectator: SpectatorDirective<UpdatePermissionDirective>;
+  const createDirective = createDirectiveFactory({
+    directive: UpdatePermissionDirective,
+    providers: [
+      { provide: REQUIRED_ROLES, useValue: [] },
+      { provide: PermissionService, useValue: { hasUpdatePermission: jest.fn().mockReturnValue(of(true)) } },
+    ],
+  });
+
+  beforeEach(() => {
+    spectator = createDirective(`<div *ivtUpdatePermission></div>`);
+  });
+
+  it('should create', () => {
+    expect(spectator.directive).toBeTruthy();
   });
 });

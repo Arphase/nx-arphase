@@ -1,16 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
+import { IVT_UI_STATE_CONFIGURATION } from '../../ui-state-config';
 import { HttpProxyService } from './http-proxy.service';
 
 describe('HttpProxyService', () => {
-  let service: HttpProxyService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(HttpProxyService);
+  let spectator: SpectatorService<HttpProxyService>;
+  const createService = createServiceFactory({
+    service: HttpProxyService,
+    providers: [{ provide: IVT_UI_STATE_CONFIGURATION, useValue: {} }],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

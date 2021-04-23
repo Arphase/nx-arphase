@@ -1,4 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Optional } from '@angular/core';
 import { saveFile } from '@ivt/c-utils';
 import { DefaultDataService, HttpUrlGenerator, QueryParams } from '@ngrx/data';
 import dayjs from 'dayjs';
@@ -11,7 +12,11 @@ export class IvtDataService<T> extends DefaultDataService<T> {
   private loadingExcelSubject = new BehaviorSubject<boolean>(false);
   loadingExcel$ = this.loadingExcelSubject.asObservable();
 
-  constructor(protected entityName: string, protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
+  constructor(
+    @Optional() public entityName: string,
+    protected http: HttpClient,
+    protected httpUrlGenerator: HttpUrlGenerator
+  ) {
     super(entityName, http, httpUrlGenerator);
   }
 

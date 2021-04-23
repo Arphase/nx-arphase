@@ -1,16 +1,20 @@
-import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { HttpUrlGenerator } from '@ngrx/data';
 
 import { VehicleDataService } from './vehicle-data.service';
 
 describe('VehicleDataService', () => {
-  let service: VehicleDataService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(VehicleDataService);
+  let spectator: SpectatorService<VehicleDataService>;
+  const createService = createServiceFactory({
+    service: VehicleDataService,
+    imports: [HttpClientTestingModule],
+    providers: [{ provide: HttpUrlGenerator, useValue: { entityResource: jest.fn(), collectionResource: jest.fn() } }],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });
