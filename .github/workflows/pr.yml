@@ -28,4 +28,5 @@ jobs:
         run: npm ci
 
       - name: Run unit tests
-        run: npm run affected:test -- --base=$BEFORE_SHA --ci --runInBand
+        run: NX_BRANCH=$NX_BRANCH npm run affected:test -- --base=$BEFORE_SHA
+
