@@ -15,100 +15,165 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "cacheDirectory": ".cache/nx"
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "cacheDirectory": ".cache/nx",
+        "accessToken": "NjZhNGY2MzYtZjI3Ny00NDI0LWE5NzItY2EyZTdlOTIyZTYxfHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
     }
   },
   "projects": {
     "innovatech-api": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "a-auth": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "a-companies": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "a-groups": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "a-guarantees": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "a-localities": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "a-payment-orders": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "a-products": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "a-revision-requests": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "a-revisions": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "a-state": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "a-users": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "a-vehicles": {
-      "tags": ["back"]
+      "tags": [
+        "back"
+      ]
     },
     "c-utils": {
-      "tags": ["common"]
+      "tags": [
+        "common"
+      ]
     },
     "c-data": {
-      "tags": ["common"]
+      "tags": [
+        "common"
+      ]
     },
     "u-auth": {
-      "tags": ["front"]
+      "tags": [
+        "front"
+      ]
     },
     "u-dashboard": {
-      "tags": ["front"]
+      "tags": [
+        "front"
+      ]
     },
     "u-guarantees": {
-      "tags": ["front"]
+      "tags": [
+        "front"
+      ]
     },
     "u-spa": {
-      "tags": ["front"]
+      "tags": [
+        "front"
+      ]
     },
     "u-state": {
-      "tags": ["front"]
+      "tags": [
+        "front"
+      ]
     },
     "u-ui": {
-      "tags": ["front"]
+      "tags": [
+        "front"
+      ]
     },
     "u-groups": {
-      "tags": ["front"]
+      "tags": [
+        "front"
+      ]
     },
     "u-products": {
-      "tags": ["front"]
+      "tags": [
+        "front"
+      ]
     },
     "u-revision-requests": {
       "tags": []
     },
     "u-revisions": {
-      "tags": ["front"]
+      "tags": [
+        "front"
+      ]
     },
     "u-users": {
-      "tags": ["front"]
+      "tags": [
+        "front"
+      ]
     },
     "u-vehicles": {
-      "tags": ["front"]
+      "tags": [
+        "front"
+      ]
     },
     "aps-u-ui": {
-      "tags": ["arphase", "front"]
+      "tags": [
+        "arphase",
+        "front"
+      ]
     },
     "ivt-app": {
-      "tags": ["mobile"]
+      "tags": [
+        "mobile"
+      ]
     }
   }
 }
