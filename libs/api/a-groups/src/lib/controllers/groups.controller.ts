@@ -19,7 +19,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { GroupsService } from '../services/groups.service';
 
 @Controller('groups')
-@UseGuards(AuthGuard(), RolesGuard)
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class GroupsController {
   constructor(private groupsService: GroupsService) {}
 
