@@ -46,6 +46,7 @@ export class RevisionFormComponent extends IvtFormComponent<Revision> implements
   revisionReportSections = revisionReportSections;
   reportLabels = reportLabels;
   iconMap = iconMap;
+  form = createRevisionForm();
   @Output() verifyVin = new EventEmitter<string>();
 
   get vehicleForm(): FormGroup {

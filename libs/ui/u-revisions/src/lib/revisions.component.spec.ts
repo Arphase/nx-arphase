@@ -1,25 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { RevisionsComponent } from './revisions.component';
 
 describe('RevisionsComponent', () => {
-  let component: RevisionsComponent;
-  let fixture: ComponentFixture<RevisionsComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ RevisionsComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<RevisionsComponent>;
+  const createComponent = createComponentFactory({
+    component: RevisionsComponent,
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(RevisionsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });
