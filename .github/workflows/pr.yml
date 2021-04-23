@@ -18,7 +18,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+        fetch-depth: 0
 
       - uses: actions/setup-node@v1
         with:
@@ -37,5 +40,5 @@ jobs:
               export NX_BASE=$(git rev-parse HEAD~1)
           fi
           echo "Base => $NX_BASE"
-          NX_BRANCH=$NX_BRANCH npm run affected:test -- --base=$NX_BASE
+          npm run affected:test -- --base=$NX_BASE
 
