@@ -1,27 +1,22 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Pull Request CI
+name: Master Pull Request CI
 
 env:
-  BEFORE_SHA: ${{ github.event.before }}
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
 
 on:
   pull_request:
     branches:
-      - staging
       - master
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.ref }}
-        fetch-depth: 0
+      - uses: actions/checkout@v2
 
       - uses: actions/setup-node@v1
         with:
@@ -31,14 +26,4 @@ jobs:
         run: npm ci
 
       - name: Run unit tests
-        shell: bash
-        run: |
-          if [[ $GITHUB_BASE_REF ]]
-            then
-              export NX_BASE=remotes/origin/$GITHUB_BASE_REF
-            else
-              export NX_BASE=$(git rev-parse HEAD~1)
-          fi
-          echo "Base => $NX_BASE"
-          npm run affected:test -- --base=$NX_BASE
-
+        run: npm run test:coverage:master
