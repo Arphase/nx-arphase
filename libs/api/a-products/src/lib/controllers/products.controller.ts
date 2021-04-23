@@ -20,7 +20,7 @@ import { Response } from 'express';
 import { ProductService } from '../services/products.service';
 
 @Controller('products')
-@UseGuards(AuthGuard())
+@UseGuards(AuthGuard('jwt'))
 export class ProductController {
   constructor(private productService: ProductService) {}
 

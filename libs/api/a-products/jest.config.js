@@ -1,9 +1,9 @@
 module.exports = {
-  name: 'a-product',
-  preset: '../../jest.config.js',
+  name: 'a-products',
+  preset: '../../../jest.preset.js',
   globals: {
     'ts-jest': {
-      tsConfig: '<rootDir>/tsconfig.spec.json',
+      tsconfig: '<rootDir>/tsconfig.spec.json',
     },
   },
   testEnvironment: 'node',
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
-  coverageDirectory: '../../coverage/libs/a-product',
+  coverageDirectory: '../../../coverage/libs/a-products',
 };
