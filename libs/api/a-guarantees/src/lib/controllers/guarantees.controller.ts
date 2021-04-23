@@ -22,7 +22,7 @@ import { Response } from 'express';
 import { GuaranteesService } from '../services/guarantees.service';
 
 @Controller('guarantees')
-@UseGuards(AuthGuard(), RolesGuard)
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class GuaranteesController {
   constructor(private guaranteesService: GuaranteesService) {}
 
