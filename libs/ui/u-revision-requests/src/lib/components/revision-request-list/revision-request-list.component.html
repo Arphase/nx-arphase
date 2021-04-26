@@ -91,7 +91,8 @@
                          (filterOptions)="filterUserOptions.emit($event)">
     </ivt-checkbox-filter>
   </div>
-  <div nz-col
+  <div *ngIf="info?.total"
+       nz-col
        nzFlex="auto"
        class="flex-end">
     {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}

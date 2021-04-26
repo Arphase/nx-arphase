@@ -35,7 +35,8 @@
       </ivt-checkbox-filter>
     </div>
   </ng-container>
-  <div nz-col
+  <div *ngIf="info?.total"
+       nz-col
        nzFlex="auto"
        class="flex-end">
     {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}
