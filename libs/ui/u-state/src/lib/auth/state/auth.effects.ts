@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 
-import { IvtState } from '../../state';
 import { AuthService } from '../services';
 import * as AuthActions from './auth.actions';
 
@@ -90,10 +88,5 @@ export class AuthEffects {
     )
   );
 
-  constructor(
-    private actions$: Actions,
-    private authService: AuthService,
-    private router: Router,
-    private store: Store<IvtState>
-  ) {}
+  constructor(private actions$: Actions, private authService: AuthService, private router: Router) {}
 }
