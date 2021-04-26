@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.1](https://github.com/Arphase/nx-arphase/compare/v2.5.0...v2.5.1) (2021-04-26)
+
+
+### Features
+
+* **products:** format data from glossary in PDF transform ([175b0ef](https://github.com/Arphase/nx-arphase/commit/175b0efff886ee64a1e7713cbd4dbbe0aba90bb8))
+* **revisions:** add kilometrage property ([b3035aa](https://github.com/Arphase/nx-arphase/commit/b3035aac20e78c1abb66eca3692ab3381551e2f6))
+
+
+### Bug Fixes
+
+* **revisions:** add correct icon for warning in report ([61e7012](https://github.com/Arphase/nx-arphase/commit/61e7012ed499e7bfb4652826fa11521186bfd988))
+
 ## [2.5.0](https://github.com/Arphase/nx-arphase/compare/v2.4.4...v2.5.0) (2021-04-20)
 
 ### Features
