@@ -20,19 +20,6 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      const user = {
-        id: Number(localStorage.getItem('id')),
-        firstName: localStorage.getItem('firstName'),
-        secondName: localStorage.getItem('secondName'),
-        lastName: localStorage.getItem('lastName'),
-        secondLastName: localStorage.getItem('secondLastName'),
-        email: localStorage.getItem('email'),
-        role: localStorage.getItem('role'),
-        token: localStorage.getItem('token'),
-        companyId: Number(localStorage.getItem('companyId')),
-      };
-      this.store.dispatch(fromAuth.actions.loadUserFromStorage({ user }));
-
       if (this.platform.is('capacitor')) {
         StatusBar.setStyle({
           style: StatusBarStyle.Dark,
