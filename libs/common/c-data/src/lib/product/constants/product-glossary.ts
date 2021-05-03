@@ -18,6 +18,6 @@ export const glossary: NzSelectOptionInterface[] = [
   { label: 'Folio - {guarantee.id}', value: '{guarantee.id}' },
   { label: 'Kilometraje inicial - {guarantee.kilometrageStart}', value: '{guarantee.kilometrageStart}' },
   { label: 'Kilometraje final - {guarantee.kilometrageEnd}', value: '{guarantee.kilometrageEnd}' },
-  { label: 'Fecha inicial - {guarantee.value}', value: '{guarantee.startDate}' },
+  { label: 'Fecha inicial - {guarantee.startDate}', value: '{guarantee.startDate}' },
   { label: 'Fecha final - {guarantee.endDate}', value: '{guarantee.endDate}' },
 ];

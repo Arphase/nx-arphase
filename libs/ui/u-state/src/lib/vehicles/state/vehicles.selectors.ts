@@ -8,4 +8,6 @@ export const getVehicleState = createSelector(getVehiclesFeatureState, state => 
 
 export const getVehiclesVehicleState = createSelector(getVehiclesFeatureState, state => state.vehicle);
 
-export const getVehiclesErrorState = createSelector(getVehiclesFeatureState, state => state.error?.message);
+export const getVehiclesErrorState = createSelector(getVehiclesFeatureState, state => state.error);
+
+export const getVehiclesErrorMessageState = createSelector(getVehiclesFeatureState, state => state.error?.message);

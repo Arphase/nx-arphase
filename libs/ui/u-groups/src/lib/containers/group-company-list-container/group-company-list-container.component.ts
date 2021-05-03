@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormArray } from '@angular/forms';
 import { Company, Group } from '@ivt/c-data';
 import { IvtFormComponent } from '@ivt/u-ui';
-import { takeUntil } from 'rxjs/operators';
+import { startWith } from 'rxjs/operators';
 
 import { GroupFormService } from '../../services/group-form.service';
 
@@ -12,11 +13,14 @@ import { GroupFormService } from '../../services/group-form.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupCompanyListContainerComponent extends IvtFormComponent<Group> {
-  companies$ = this.groupFormService.form.get('companies').valueChanges;
+  companies$ = this.companiesForm.valueChanges.pipe(startWith(this.companiesForm.value));
 
-  constructor(private groupFormService: GroupFormService, private cdr: ChangeDetectorRef) {
+  get companiesForm(): FormArray {
+    return this.groupFormService.form.get('companies') as FormArray;
+  }
+
+  constructor(private groupFormService: GroupFormService) {
     super();
-    this.companies$.pipe(takeUntil(this.destroy$)).subscribe(() => this.cdr.detectChanges());
   }
 
   createCompany(): void {
