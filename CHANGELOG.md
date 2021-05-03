@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.2](https://github.com/Arphase/nx-arphase/compare/v2.5.1...v2.5.2) (2021-05-03)
+
+
+### Features
+
+* **app:** display table info only if collection has entities ([0605091](https://github.com/Arphase/nx-arphase/commit/06050911659b0019a3aab0bf1596fd67752aa54a))
+
+
+### Bug Fixes
+
+* **auth:** [#58](https://github.com/Arphase/nx-arphase/issues/58) add styles for input auto fill in dark mode ([1900d88](https://github.com/Arphase/nx-arphase/commit/1900d88eed13cbf611699c65f3ea027ed1c7a674))
+* **guarantees:** remove required productType in create dto ([cef61b6](https://github.com/Arphase/nx-arphase/commit/cef61b64ef79ccce559c916e7131393e013997a9))
+
 ### [2.5.1](https://github.com/Arphase/nx-arphase/compare/v2.5.0...v2.5.1) (2021-04-26)
 
 
