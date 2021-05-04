@@ -70,6 +70,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
   @Input() currentVehicle: Vehicle;
   @Input() error: string;
   @Input() companiesInfo: IvtCollectionResponseInfo;
+  @Input() showCompanyInput: boolean;
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -127,6 +128,12 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
 
     if (changes.isEditable && this.item) {
       this.isEditable ? this.form.enable() : this.form.disable();
+    }
+
+    if (changes.showCompanyInput) {
+      this.showCompanyInput
+        ? this.form.get('companyId').enable({ emitEvent: false })
+        : this.form.get('companyId').disable({ emitEvent: false });
     }
   }
 

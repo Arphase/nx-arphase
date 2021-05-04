@@ -33,7 +33,7 @@ export function createProductForm(): FormGroup {
       },
       { validators: ApsValidators.minMax('minHp', 'maxHp') }
     ),
-    template: new FormControl(null, ApsValidators.required),
+    template: new FormControl('', ApsValidators.required),
     glossary: new FormControl(null),
   });
 }

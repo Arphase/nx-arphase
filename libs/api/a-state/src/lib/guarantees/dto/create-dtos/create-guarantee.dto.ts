@@ -1,6 +1,6 @@
 import { Client } from '@ivt/c-data';
 import { Type } from 'class-transformer';
-import { IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsDateString, IsNotEmpty, IsNumber, IsOptional, ValidateNested } from 'class-validator';
 
 import { CreateClientDto } from './create-client.dto';
 
@@ -21,13 +21,9 @@ export class CreateGuaranteeDto {
   @IsDateString()
   endDate: Date;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsNumber()
   productId: number;
-
-  @IsNotEmpty()
-  @IsString()
-  productType: string;
 
   @IsNotEmpty()
   @IsNumber()

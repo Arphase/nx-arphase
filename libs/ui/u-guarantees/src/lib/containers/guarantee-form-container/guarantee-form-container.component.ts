@@ -5,8 +5,7 @@ import { filterNil } from '@ivt/c-utils';
 import {
   CompanyCollectionService,
   fromVehicles,
-  getAuthUserCompanyIdState,
-  getVehiclesErrorState,
+  getVehiclesErrorMessageState,
   getVehiclesVehicleState,
   GuaranteeCollectionService,
   IvtEntityCollection,
@@ -47,8 +46,8 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
       return createRoute ? create : update;
     })
   );
+  showCompanyInput$ = this.permissionService.hasCreatePermission([UserRoles.superAdmin]);
   productOptions$ = this.productCollectionService.options$;
-  companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
   vehicle$ = this.vehicleCollectionService.currentItem$;
   companyOptions$ = this.companyCollectionService.options$;
   companiesInfo$ = this.companyCollectionService.store.pipe(
@@ -56,7 +55,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     map((collection: IvtEntityCollection<Company>) => collection?.info)
   );
   currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
-  error$ = this.store.pipe(select(getVehiclesErrorState));
+  error$ = this.store.pipe(select(getVehiclesErrorMessageState));
 
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,

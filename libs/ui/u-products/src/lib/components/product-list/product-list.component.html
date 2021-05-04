@@ -36,15 +36,15 @@
   </div>
 </div>
 
-<nz-divider></nz-divider>
-
-<div nz-col
-     nzFlex="auto"
-     class="flex-end">
-  {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}
-</div>
-
-<nz-divider></nz-divider>
+<ng-container *ngIf="info?.total">
+  <nz-divider></nz-divider>
+  <div nz-col
+       nzFlex="auto"
+       class="flex-end">
+    {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}
+  </div>
+  <nz-divider></nz-divider>
+</ng-container>
 
 
 <nz-table #table

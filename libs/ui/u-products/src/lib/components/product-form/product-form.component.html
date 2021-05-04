@@ -228,6 +228,7 @@
                   (click)="downloadTemplatePreview()">Vista previa</button>
           <button *nzSpaceItem
                   nz-button
+                  [nzLoading]="loading"
                   type="submit"
                   nzType="primary">Guardar</button>
         </nz-space>

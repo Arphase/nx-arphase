@@ -12,18 +12,10 @@
                     [routerLink]="['..']">
     </nz-page-header>
 
-    <div *ngIf="invalidVin"
-         nz-row
-         [nzGutter]="12"
-         class="my-3">
-      <div nz-col
-           nzSpan="24"
-           class="bg-alert text-white py-3 rounded flex-start">
-        <i nz-icon
-           nzType="close-circle"></i>
-        <span> Un vehículo con este VIN ya está dado de alta en la plataforma. Intente con otro VIN. </span>
-      </div>
-    </div>
+    <nz-alert *ngIf="invalidVin"
+              nzType="error"
+              nzMessage="Un vehículo con este VIN ya está dado de alta en la plataforma. Intente con otro VIN."
+              nzShowIcon></nz-alert>
 
     <ivt-vehicle-form [form]="form"
                       [showCompanyInput]="showCompanyInput"
