@@ -42,9 +42,8 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   handleError(error: IvtHttpErrorResponse): void {
-    if (error.statusCode === HttpStatusCodes.Unauthorized) {
-      this.store.dispatch(fromAuth.actions.logout());
-    }
-    this.messageService.error(`${error.message}`);
+    error.statusCode === HttpStatusCodes.Unauthorized
+      ? this.store.dispatch(fromAuth.actions.logout())
+      : this.messageService.error(`${error.message}`);
   }
 }
