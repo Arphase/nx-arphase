@@ -94,6 +94,10 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     this.productCollectionService.getWithQuery({ ...payload, resetList: String(true) });
   }
 
+  saveCompanyInCache(id: number): void {
+    this.companyCollectionService.getByKey(id);
+  }
+
   ngOnDestroy() {
     super.ngOnDestroy();
     this.vehicleCollectionService.removeOneFromCache(null);
