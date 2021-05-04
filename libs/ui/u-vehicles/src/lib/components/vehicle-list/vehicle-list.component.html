@@ -168,8 +168,7 @@
                 nzType="text"
                 nzTrigger="click">
           <i nz-icon
-             nzType="more"
-           ></i>
+             nzType="more"></i>
         </button>
       </td>
       <nz-dropdown-menu #menu="nzDropdownMenu">
@@ -213,12 +212,14 @@
               Ver vehículo
             </ng-container>
           </li>
-          <li *ivtDeletePermission
-              nz-menu-item
-              class="text-danger"
-              (click)="delete.emit(item)">
-            Eliminar vehículo
-          </li>
+          <ng-container *ngIf="item?.status !== vehicleStatus[vehicleStatus.hasActiveGuarantee]">
+            <li *ivtDeletePermission
+                nz-menu-item
+                class="text-danger"
+                (click)="delete.emit(item)">
+              Eliminar vehículo
+            </li>
+          </ng-container>
         </ul>
       </nz-dropdown-menu>
     </tr>

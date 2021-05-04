@@ -24,7 +24,7 @@ export class RevisionListContainerComponent extends IvtListContainerComponent<Re
   }
 
   deleteItem(item: Revision): void {
-    const date = dayjs(item.createdAt).format('DD/mm/yy');
+    const date = dayjs(item.createdAt).format('DD/MM/YY');
     this.deleteConfirmMessage = `¿Desea eliminar la revisión con fecha ${date}?`;
     this.deleteSuccessMessage = `La revisión con fecha ${date} se ha eliminado`;
     super.deleteItem(item);
