@@ -92,6 +92,7 @@ export class PaymentOrdersService {
     const paymentOrder = await this.paymentOrderRepository
       .createQueryBuilder('paymentOrder')
       .leftJoinAndSelect('paymentOrder.guarantees', 'guarantees')
+      .leftJoinAndSelect('guarantees.company', 'company')
       .where('paymentOrder.id = :id', { id })
       .getOne();
 
@@ -100,12 +101,12 @@ export class PaymentOrdersService {
     }
 
     const guarantees = paymentOrder.guarantees;
-    const createdAt = paymentOrder.createdAt;
     let total = 0;
     const guaranteesRowsArray = guarantees.map(guarantee => {
       total += guarantee.amount;
       return `
     <tr>
+      <td>${guarantee.company?.businessName}</td>
       <td>${formatDate(guarantee.invoiceDate)}</td>
       <td>${transformFolio(guarantee.id)}</td>
       <td>${formatter.format(guarantee.amount)}</td>
@@ -192,7 +193,7 @@ export class PaymentOrdersService {
           <table>
             <tr>
               <td>Fecha de Emisión</td>
-              <td>${formatDate(createdAt)}</td>
+              <td>${formatDate(paymentOrder.createdAt)}</td>
             </tr>
             <tr>
               <td>No. de Orden de Pago</td>
@@ -201,15 +202,9 @@ export class PaymentOrdersService {
           </table>
         </div>
       </div>
-      <table style="margin-bottom: 3rem;">
-        <tr>
-          <td>DISTRIBUIDOR</td>
-          <td colspan=3>${paymentOrder.distributor}</td>
-        </tr>
-      </table>
-
       <table style="margin-bottom: 2rem;">
         <tr>
+          <td>DISTRIBUIDOR</td>
           <td>FECHA DE FACTURA</td>
           <td>No. DE CONTRATO</td>
           <td>IMPORTE</td>

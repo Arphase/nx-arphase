@@ -151,7 +151,8 @@
           (nzQueryParams)="filterItems.emit($event)">
   <thead>
     <tr nz-row>
-      <th nz-col
+      <th *ivtCreatePermission
+          nz-col
           nzXs="1"
           nzMd="2"
           [(nzChecked)]="checked"
@@ -173,7 +174,8 @@
   <tbody>
     <ng-container *ngFor="let item of table.data">
       <tr nz-row>
-        <td nz-col
+        <td *ivtCreatePermission
+            nz-col
             nzXs="2"
             [nzDisabled]="item.amount"
             [nzChecked]="setOfCheckedId.has(item.id)"
@@ -200,9 +202,7 @@
             nzXs="0"
             nzLg="2">{{ item.createdAt | date: 'dd/MM/yy' | empty }}</td>
         <td nz-col
-            nzXs="6"
-            nzMd="2"
-            nzLg="2">
+            nzFlex="auto">
           <nz-tag nz-tooltip
                   nzTooltipPlacement="top"
                   [nzTooltipTitle]="statusLabels[item.status]"

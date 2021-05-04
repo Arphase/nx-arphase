@@ -20,6 +20,7 @@ export interface IvtEntityAction extends EntityAction {
 
 export interface IvtActionPayload extends EntityActionPayload {
   queryParams: IvtQueryParams;
+  info: IvtCollectionResponseInfo;
 }
 
 export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectionReducerMethods<T> {
@@ -45,7 +46,7 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
     }
     return {
       ...entityCollection,
-      info: action.payload.data.info,
+      info: action.payload.info,
     };
   }
 
