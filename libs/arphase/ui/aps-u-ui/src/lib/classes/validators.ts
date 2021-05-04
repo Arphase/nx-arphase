@@ -14,7 +14,7 @@ export class ApsValidators {
   }
 
   static requiredNumber(c: AbstractControl): ApsValidationErrors {
-    if (!c.value) {
+    if (!c.value && c.value !== 0) {
       return { requiredNumber: { es: `El campo es requerido` } };
     }
   }

@@ -1,5 +1,5 @@
 import { getReadableStream, IMAGE_ASSETS_PATH, OUT_FILE, tobase64 } from '@ivt/a-state';
-import { formatAddress, formatPhone, Guarantee, transformFolio } from '@ivt/c-data';
+import { Client, formatAddress, formatPhone, Guarantee, transformFolio } from '@ivt/c-data';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import { Response } from 'express';
@@ -20,6 +20,7 @@ function replace(source: string, replacements: Record<string, string>) {
 }
 
 export const dummyGlossary: Record<string, string> = {
+  'guarantee.client.name': '(Nombre del cliente)',
   'guarantee.client.rfc': '(RFC del cliente)',
   'guarantee.client.phone': '(Teléfono del cliente)',
   'guarantee.client.email': '(Correo del cliente)',
@@ -43,6 +44,7 @@ export const dummyGlossary: Record<string, string> = {
 
 function getRealGlossary(guarantee: Guarantee): Record<string, string> {
   return {
+    'guarantee.client.name': getClientName(guarantee.client),
     'guarantee.client.rfc': guarantee.client.rfc,
     'guarantee.client.phone': formatPhone(guarantee.client.phone),
     'guarantee.client.email': guarantee.client.email,
@@ -63,6 +65,13 @@ function getRealGlossary(guarantee: Guarantee): Record<string, string> {
     'guarantee.startDate': dayjs(guarantee.startDate).locale('es').format('LL'),
     'guarantee.endDate': dayjs(guarantee.endDate).locale('es').format('LL'),
   };
+}
+
+function getClientName(client: Client): string {
+  const { physicalInfo, moralInfo } = client;
+  return physicalInfo
+    ? `${physicalInfo?.name} ${physicalInfo?.lastName} ${physicalInfo?.secondLastName}`
+    : moralInfo?.businessName;
 }
 
 export function getProductPdfTemplate(body: string, guarantee?: Guarantee): string {

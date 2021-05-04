@@ -105,6 +105,7 @@ export class GroupsService {
                 await newUser.reload();
               }
               if (!newUser.password) {
+                await this.resetPasswordRepository.delete({ userId: newUser.id });
                 const resetPasswordEntity = this.resetPasswordRepository.create({
                   userId: newUser.id,
                   passwordToken: generateId(),

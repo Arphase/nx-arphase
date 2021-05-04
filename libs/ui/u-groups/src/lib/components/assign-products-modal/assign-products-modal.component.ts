@@ -11,12 +11,9 @@ import { TransferItem } from 'ng-zorro-antd/transfer';
 export class AssignProductsModalComponent implements OnChanges {
   @Input() products: Product[];
   @Input() groupProducts: Product[];
+  @Input() loading: boolean;
   transferData: TransferItem[] = [];
   @Output() submitData = new EventEmitter<number[]>();
-
-  get loading(): boolean {
-    return !this.products || !this.groupProducts;
-  }
 
   ngOnChanges() {
     if (this.products && this.groupProducts) {

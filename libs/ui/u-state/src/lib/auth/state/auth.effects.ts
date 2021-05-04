@@ -59,7 +59,9 @@ export class AuthEffects {
         ofType(AuthActions.logout),
         tap(() => {
           this.router.navigateByUrl('/auth');
+          const theme = localStorage.getItem('theme');
           localStorage.clear();
+          localStorage.setItem('theme', theme);
         })
       ),
     { dispatch: false }

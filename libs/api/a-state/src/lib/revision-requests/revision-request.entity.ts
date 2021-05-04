@@ -76,7 +76,7 @@ export class RevisionRequestEntity extends BaseEntity implements RevisionRequest
   @Column({ nullable: true })
   userId: number;
 
-  @ManyToOne(() => VehicleEntity, vehicle => vehicle.revisionRequests)
+  @ManyToOne(() => VehicleEntity, vehicle => vehicle.revisionRequests, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'vehicleId' })
   vehicle: Vehicle;
 

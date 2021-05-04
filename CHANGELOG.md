@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.3](https://github.com/Arphase/nx-arphase/compare/v2.5.2...v2.5.3) (2021-05-04)
+
+
+### Features
+
+* **auth:** persist theme after logout ([18b177c](https://github.com/Arphase/nx-arphase/commit/18b177c7afc20641e321ab0a36fe10bfc8f9abbb))
+* **groups:** add loading state to assign products modal ([b5638a4](https://github.com/Arphase/nx-arphase/commit/b5638a4f845c48dc697012bda4c5cf1cbb50b6b2))
+* **grupos:** disable users who has set his password in form ([4d5dfad](https://github.com/Arphase/nx-arphase/commit/4d5dfad469ed36fe5bc2827da18535d92b5ac039))
+* **payment-orders:** add company businessName to PDF ([5fb4309](https://github.com/Arphase/nx-arphase/commit/5fb4309b1dbc5d7619d80a4537589862f353d258))
+* **revision-requests:** add createdAt column on list ([b4319ad](https://github.com/Arphase/nx-arphase/commit/b4319adc53235712387f2f00eda3ff05cc461838))
+* **vehicles:** cascade delete revisions and revision requests ([bc81ba5](https://github.com/Arphase/nx-arphase/commit/bc81ba5ed8c220aa673a0859da77172b89f85f07))
+
+
+### Bug Fixes
+
+* **guarantees:** save company in cache when editing item ([5bb9bfc](https://github.com/Arphase/nx-arphase/commit/5bb9bfc0dddf9a54d14018d2ec48ccb8e8729641))
+* **revisions:** parse date correctly on delete modal ([5fd747a](https://github.com/Arphase/nx-arphase/commit/5fd747a00738c9889674bcc9a61a61d9cd72fdd6))
+
 ### [2.5.2](https://github.com/Arphase/nx-arphase/compare/v2.5.1...v2.5.2) (2021-05-03)
 
 

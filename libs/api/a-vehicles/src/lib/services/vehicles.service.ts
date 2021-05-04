@@ -111,7 +111,7 @@ export class VehiclesService {
     if (vehicle?.guarantees?.length) {
       const folios = vehicle.guarantees.map(guarantee => transformFolio(guarantee.id)).toString();
       throw new BadRequestException(
-        `This vehicle can't be deleted because it has guarantees with the following folios: ${folios}`
+        `El vehículo no puede ser eliminado porque tiene garantías con los siguientes folios: ${folios}`
       );
     }
 

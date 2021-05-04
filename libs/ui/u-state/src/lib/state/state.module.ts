@@ -1,6 +1,11 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { EntityCollectionReducerMethodsFactory, EntityDataModule, EntityDataService } from '@ngrx/data';
+import {
+  EntityCollectionReducerMethodsFactory,
+  EntityDataModule,
+  EntityDataService,
+  PersistenceResultHandler,
+} from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
@@ -13,6 +18,7 @@ import { HttpProxyService, IvtDataService } from '../core';
 import { TokenInterceptor } from '../core/interceptors/token-interceptor';
 import { AdditionalEntityCollectionReducerMethodsFactory } from '../entities';
 import { entityConfig } from '../entities/entity.metadata';
+import { AdditionalPropertyPersistenceResultHandler } from '../entities/results.handler';
 import { GroupDataService } from '../groups/services/group-data.service';
 import { GuaranteeDataService } from '../guarantees/services/guarantee-data.service';
 import { CompanyFilterDataService } from '../identity-filter/services/companies/company-filter-data.service';
@@ -48,6 +54,10 @@ import { reducers } from './reducers';
     {
       provide: EntityCollectionReducerMethodsFactory,
       useClass: AdditionalEntityCollectionReducerMethodsFactory,
+    },
+    {
+      provide: PersistenceResultHandler,
+      useClass: AdditionalPropertyPersistenceResultHandler,
     },
   ],
 })

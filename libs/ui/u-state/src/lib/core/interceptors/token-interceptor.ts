@@ -22,7 +22,7 @@ export class TokenInterceptor implements HttpInterceptor {
     return this.authService.getToken().pipe(
       take(1),
       switchMap(token => {
-        this.loadingService.show();
+        this.loadingService.show(request.method);
         request = request.clone({
           setHeaders: {
             Authorization: `Bearer ${token}`,
@@ -35,16 +35,15 @@ export class TokenInterceptor implements HttpInterceptor {
             }
             return throwError(error);
           }),
-          finalize(() => this.loadingService.hide())
+          finalize(() => this.loadingService.hide(request.method))
         );
       })
     );
   }
 
   handleError(error: IvtHttpErrorResponse): void {
-    if (error.statusCode === HttpStatusCodes.Unauthorized) {
-      this.store.dispatch(fromAuth.actions.logout());
-    }
-    this.messageService.error(`${error.message}`);
+    error.statusCode === HttpStatusCodes.Unauthorized
+      ? this.store.dispatch(fromAuth.actions.logout())
+      : this.messageService.error(`${error.message}`);
   }
 }

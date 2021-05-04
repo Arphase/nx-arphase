@@ -36,7 +36,7 @@ export class RevisionEntity extends BaseEntity implements Revision {
   })
   status: RevisionStatus | string;
 
-  @ManyToOne(() => VehicleEntity, vehicle => vehicle.revisions)
+  @ManyToOne(() => VehicleEntity, vehicle => vehicle.revisions, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'vehicleId' })
   vehicle: Vehicle;
 
