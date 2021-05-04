@@ -34,7 +34,7 @@ export const columns: ApsColumns = [
     },
   },
   {
-    label: 'Alta',
+    label: 'Fecha de alta',
     prop: 'revision.createdAt',
     colSizes: {
       md: 6,
