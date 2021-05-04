@@ -1,6 +1,7 @@
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export const glossary: NzSelectOptionInterface[] = [
+  { label: 'Nombre del cliente - {guarantee.client.name}', value: '{guarantee.client.name}' },
   { label: 'RFC del cliente - {guarantee.client.rfc}', value: '{guarantee.client.rfc}' },
   { label: 'Telefono del cliente - {guarantee.client.phone}', value: '{guarantee.client.phone}' },
   { label: 'Correo del cliente - {guarantee.client.email}', value: '{guarantee.client.email}' },
