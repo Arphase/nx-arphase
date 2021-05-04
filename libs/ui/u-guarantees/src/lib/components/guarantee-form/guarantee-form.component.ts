@@ -70,6 +70,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
   @Input() currentVehicle: Vehicle;
   @Input() error: string;
   @Input() companiesInfo: IvtCollectionResponseInfo;
+  @Input() showCompanyInput: boolean;
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -81,6 +82,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
   @Output() verifyVin = new EventEmitter<string>();
   @Output() getCompanies = new EventEmitter<QueryParams>();
   @Output() getProducts = new EventEmitter<{ year: string; horsePower: string }>();
+  @Output() saveCompanyInCache = new EventEmitter<number>();
 
   get client() {
     return this.form.get('client');
@@ -127,6 +129,13 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
 
     if (changes.isEditable && this.item) {
       this.isEditable ? this.form.enable() : this.form.disable();
+      this.saveCompanyInCache.emit(this.item.companyId);
+    }
+
+    if (changes.showCompanyInput) {
+      this.showCompanyInput
+        ? this.form.get('companyId').enable({ emitEvent: false })
+        : this.form.get('companyId').disable({ emitEvent: false });
     }
   }
 

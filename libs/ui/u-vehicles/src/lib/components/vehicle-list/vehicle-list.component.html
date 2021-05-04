@@ -79,7 +79,7 @@
     </div>
   </ng-container>
   <div nz-col>
-    <ivt-checkbox-filter label="Vendedores"
+    <ivt-checkbox-filter label="Usuarios"
                          [options]="userFilterInfo?.options"
                          [loading]="userFilterInfo?.loading"
                          [last]="userFilterInfo?.last"
@@ -89,7 +89,8 @@
                          (filterOptions)="filterUserOptions.emit($event)">
     </ivt-checkbox-filter>
   </div>
-  <div nz-col
+  <div *ngIf="info?.total"
+       nz-col
        nzFlex="auto"
        class="flex-end">
     {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}
@@ -167,8 +168,7 @@
                 nzType="text"
                 nzTrigger="click">
           <i nz-icon
-             nzType="more"
-           ></i>
+             nzType="more"></i>
         </button>
       </td>
       <nz-dropdown-menu #menu="nzDropdownMenu">
@@ -212,12 +212,14 @@
               Ver vehículo
             </ng-container>
           </li>
-          <li *ivtDeletePermission
-              nz-menu-item
-              class="text-danger"
-              (click)="delete.emit(item)">
-            Eliminar vehículo
-          </li>
+          <ng-container *ngIf="item?.status !== vehicleStatus[vehicleStatus.hasActiveGuarantee]">
+            <li *ivtDeletePermission
+                nz-menu-item
+                class="text-danger"
+                (click)="delete.emit(item)">
+              Eliminar vehículo
+            </li>
+          </ng-container>
         </ul>
       </nz-dropdown-menu>
     </tr>

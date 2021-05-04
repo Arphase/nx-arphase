@@ -1,16 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
+import { Actions, createEffect, ofType, ROOT_EFFECTS_INIT } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 
-import { IvtState } from '../../state';
 import { AuthService } from '../services';
 import * as AuthActions from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
+  getAllPermissions$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ROOT_EFFECTS_INIT),
+      map(() => {
+        const user = {
+          id: Number(localStorage.getItem('id')),
+          firstName: localStorage.getItem('firstName'),
+          secondName: localStorage.getItem('secondName'),
+          lastName: localStorage.getItem('lastName'),
+          secondLastName: localStorage.getItem('secondLastName'),
+          email: localStorage.getItem('email'),
+          role: localStorage.getItem('role'),
+          token: localStorage.getItem('token'),
+          companyId: Number(localStorage.getItem('companyId')),
+        };
+        return AuthActions.loadUserFromStorage({ user });
+      })
+    )
+  );
+
   signIn$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.signIn),
@@ -41,7 +59,9 @@ export class AuthEffects {
         ofType(AuthActions.logout),
         tap(() => {
           this.router.navigateByUrl('/auth');
+          const theme = localStorage.getItem('theme');
           localStorage.clear();
+          localStorage.setItem('theme', theme);
         })
       ),
     { dispatch: false }
@@ -90,10 +110,5 @@ export class AuthEffects {
     )
   );
 
-  constructor(
-    private actions$: Actions,
-    private authService: AuthService,
-    private router: Router,
-    private store: Store<IvtState>
-  ) {}
+  constructor(private actions$: Actions, private authService: AuthService, private router: Router) {}
 }

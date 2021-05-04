@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.3](https://github.com/Arphase/nx-arphase/compare/v2.5.2...v2.5.3) (2021-05-04)
+
+
+### Features
+
+* **auth:** persist theme after logout ([18b177c](https://github.com/Arphase/nx-arphase/commit/18b177c7afc20641e321ab0a36fe10bfc8f9abbb))
+* **groups:** add loading state to assign products modal ([b5638a4](https://github.com/Arphase/nx-arphase/commit/b5638a4f845c48dc697012bda4c5cf1cbb50b6b2))
+* **grupos:** disable users who has set his password in form ([4d5dfad](https://github.com/Arphase/nx-arphase/commit/4d5dfad469ed36fe5bc2827da18535d92b5ac039))
+* **payment-orders:** add company businessName to PDF ([5fb4309](https://github.com/Arphase/nx-arphase/commit/5fb4309b1dbc5d7619d80a4537589862f353d258))
+* **revision-requests:** add createdAt column on list ([b4319ad](https://github.com/Arphase/nx-arphase/commit/b4319adc53235712387f2f00eda3ff05cc461838))
+* **vehicles:** cascade delete revisions and revision requests ([bc81ba5](https://github.com/Arphase/nx-arphase/commit/bc81ba5ed8c220aa673a0859da77172b89f85f07))
+
+
+### Bug Fixes
+
+* **guarantees:** save company in cache when editing item ([5bb9bfc](https://github.com/Arphase/nx-arphase/commit/5bb9bfc0dddf9a54d14018d2ec48ccb8e8729641))
+* **revisions:** parse date correctly on delete modal ([5fd747a](https://github.com/Arphase/nx-arphase/commit/5fd747a00738c9889674bcc9a61a61d9cd72fdd6))
+
+### [2.5.2](https://github.com/Arphase/nx-arphase/compare/v2.5.1...v2.5.2) (2021-05-03)
+
+
+### Features
+
+* **app:** display table info only if collection has entities ([0605091](https://github.com/Arphase/nx-arphase/commit/06050911659b0019a3aab0bf1596fd67752aa54a))
+
+
+### Bug Fixes
+
+* **auth:** [#58](https://github.com/Arphase/nx-arphase/issues/58) add styles for input auto fill in dark mode ([1900d88](https://github.com/Arphase/nx-arphase/commit/1900d88eed13cbf611699c65f3ea027ed1c7a674))
+* **guarantees:** remove required productType in create dto ([cef61b6](https://github.com/Arphase/nx-arphase/commit/cef61b64ef79ccce559c916e7131393e013997a9))
+
+### [2.5.1](https://github.com/Arphase/nx-arphase/compare/v2.5.0...v2.5.1) (2021-04-26)
+
+
+### Features
+
+* **products:** format data from glossary in PDF transform ([175b0ef](https://github.com/Arphase/nx-arphase/commit/175b0efff886ee64a1e7713cbd4dbbe0aba90bb8))
+* **revisions:** add kilometrage property ([b3035aa](https://github.com/Arphase/nx-arphase/commit/b3035aac20e78c1abb66eca3692ab3381551e2f6))
+
+
+### Bug Fixes
+
+* **revisions:** add correct icon for warning in report ([61e7012](https://github.com/Arphase/nx-arphase/commit/61e7012ed499e7bfb4652826fa11521186bfd988))
+
 ## [2.5.0](https://github.com/Arphase/nx-arphase/compare/v2.4.4...v2.5.0) (2021-04-20)
 
 ### Features

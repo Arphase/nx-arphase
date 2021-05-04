@@ -81,7 +81,7 @@
     </div>
   </ng-container>
   <div nz-col>
-    <ivt-checkbox-filter label="Vendedores"
+    <ivt-checkbox-filter label="Usuarios"
                          [options]="userFilterInfo?.options"
                          [loading]="userFilterInfo?.loading"
                          [last]="userFilterInfo?.last"
@@ -91,7 +91,8 @@
                          (filterOptions)="filterUserOptions.emit($event)">
     </ivt-checkbox-filter>
   </div>
-  <div nz-col
+  <div *ngIf="info?.total"
+       nz-col
        nzFlex="auto"
        class="flex-end">
     {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}
@@ -133,14 +134,17 @@
       <td nz-col
           nzXs="0"
           nzMd="7"
-          nzLg="5">{{ item?.name | empty }}</td>
+          nzLg="4">{{ item?.name | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="7"
-          nzLg="6">{{ item?.phone | phone | empty }}</td>
+          nzLg="5">{{ item?.phone | phone | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="6">{{ item?.email | empty }}</td>
+          nzLg="5">{{ item?.email | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzLg="3">{{ item?.createdAt | date: 'dd/MM/yy' | empty  }}</td>
       <td nz-col
           nzXs="4"
           nzMd="2">
@@ -162,8 +166,7 @@
                 nzType="text"
                 nzTrigger="click">
           <i nz-icon
-             nzType="more"
-           ></i>
+             nzType="more"></i>
         </button>
       </td>
       <nz-dropdown-menu #menu="nzDropdownMenu">

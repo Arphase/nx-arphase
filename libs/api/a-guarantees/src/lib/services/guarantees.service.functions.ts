@@ -1,7 +1,7 @@
 import 'dayjs/locale/es';
 
 import { filterCommonQuery, GetGuaranteesFilterDto, GuaranteeEntity, IMAGE_ASSETS_PATH } from '@ivt/a-state';
-import { Guarantee, sortDirection, transformFolio, User } from '@ivt/c-data';
+import { formatAddress, Guarantee, sortDirection, transformFolio, User } from '@ivt/c-data';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import { SelectQueryBuilder } from 'typeorm';
@@ -81,29 +81,18 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
         <p>*Los datos introducidos tendrán que coincidir fehacientemente con los del vehículo objeto de garantía. En caso de error será motivo de rescisión del contrato.</p>
         <p><span class="bold">PUNTO DE VENTA:</span> ${guarantee.client.salesPlace}</p>
         <p><span class="bold">R.F.C.</span> ${guarantee.client.rfc}</p>
-        <p><span class="bold">DIRECCIÓN:</span> ${guarantee.client.address.street} ${
-    guarantee.client.address.externalNumber
-  }, ${guarantee.client.address.suburb}. ${guarantee.client.address.city}, ${guarantee.client.address.state}. ${
-    guarantee.client.address.zipcode
-  } </p>
+        <p><span class="bold">DIRECCIÓN:</span> ${formatAddress(guarantee.client.address)} </p>
         <p><span class="bold">TELEFONO:</span> ${guarantee.client.phone}</p>
         <p><span class="bold">EMAIL:</span> ${guarantee.client.email}</p>
         <p class="bold">DATOS DEL VEHÍCULO:</p>
-        <p><span class="bold">MARCA:</span> ${
-          guarantee.vehicle.brand
-        }       <span class="bold"> - NUMERO DE SERIE:</span> ${
-    guarantee.vehicle.vin
-  }  <span class="bold"> - HP:</span> ${guarantee.vehicle.horsePower} </p>
+        <p><span class="bold">MARCA:</span> ${guarantee.vehicle.brand}
+        <span class="bold"> - NUMERO DE SERIE:</span> ${guarantee.vehicle.vin} <span class="bold"> - HP:</span> ${guarantee.vehicle.horsePower} </p>
         <p><span class="bold">MODELO:</span> ${guarantee.vehicle.model}</p>
         <p><span class="bold">MOTOR:</span> ${guarantee.vehicle.motorNumber}</p>
         <center><p>PERIODO DE VIGENCIA</p></center>
         <p><span class="bold">FECHA INICIO GARANTIA:</span> ${dayjs(guarantee.startDate).locale('es').format('LL')}</p>
-          <p>
-          <span class="bold">FIN GARANTIA POR TIEMPO:</span> ${dayjs(guarantee.endDate).locale('es').format('LL')}
-          </p>
-        <p><span class="bold">KILOMETRAJE INICIAL: </span> ${
-          guarantee.kilometrageStart
-        } <span class="bold"> - FIN GARANTIA POR KILOMETRAJE: </span> ${guarantee.kilometrageEnd} </p>
+        <p><span class="bold">FIN GARANTIA POR TIEMPO:</span> ${dayjs(guarantee.endDate).locale('es').format('LL')}</p>
+        <p><span class="bold">KILOMETRAJE INICIAL: </span> ${guarantee.kilometrageStart} <span class="bold"> - FIN GARANTIA POR KILOMETRAJE: </span> ${guarantee.kilometrageEnd} </p>
         <p>Siempre que se hayan realizado en el VEHÍCULO en tiempo y forma los servicios y mantenimientos señalados en el certificado de garantía; el PERIODO DE VIGENCIA podrá comenzar a computarse hasta el dayjso en que expire la garantía del fabricante o alguna otra garantía de similar naturaleza, ya sea por sobrepasar el kilometraje o cumplirse el tiempo establecido en la misma.</p>
         <p>En caso de rescisión anticipada de esta garantía, Innovatech no estará obligada a la devolución del precio.</p>
         <p>COBERTURAS</p>

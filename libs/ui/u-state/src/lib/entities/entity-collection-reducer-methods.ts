@@ -20,6 +20,7 @@ export interface IvtEntityAction extends EntityAction {
 
 export interface IvtActionPayload extends EntityActionPayload {
   queryParams: IvtQueryParams;
+  info: IvtCollectionResponseInfo;
 }
 
 export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectionReducerMethods<T> {
@@ -39,17 +40,13 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
   }
 
   protected queryManySuccess(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
-    const customAction = { ...action, payload: { ...action.payload, data: action.payload.data.results } };
-    let entityCollection = super.queryManySuccess(collection, customAction) as IvtEntityCollection<T>;
-    if (entityCollection.queryParams.resetList === String(true)) {
-      entityCollection = super.queryManySuccess(
-        super.removeAll(collection, customAction),
-        customAction
-      ) as IvtEntityCollection<T>;
+    let entityCollection = super.queryManySuccess(collection, action) as IvtEntityCollection<T>;
+    if (entityCollection.queryParams.resetList) {
+      entityCollection = super.queryManySuccess(super.removeAll(collection, action), action) as IvtEntityCollection<T>;
     }
     return {
       ...entityCollection,
-      info: action.payload.data.info,
+      info: action.payload.info,
     };
   }
 

@@ -52,9 +52,14 @@
                   "with": "apps/ivt-app/src/environments/environment.stage.ts"
                 }
               ],
+              "sourceMap": {
+                "scripts": true,
+                "styles": true,
+                "vendor": true,
+                "hidden": false
+              },
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,

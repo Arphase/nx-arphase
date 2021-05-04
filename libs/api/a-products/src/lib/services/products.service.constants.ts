@@ -1,9 +1,13 @@
 import { getReadableStream, IMAGE_ASSETS_PATH, OUT_FILE, tobase64 } from '@ivt/a-state';
-import { Guarantee } from '@ivt/c-data';
+import { Client, formatAddress, formatPhone, Guarantee, transformFolio } from '@ivt/c-data';
+import dayjs from 'dayjs';
+import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import { Response } from 'express';
 import fs from 'fs';
 import puppeteer from 'puppeteer';
 import { promisify } from 'util';
+
+dayjs.extend(LocalizedFormat);
 
 function replace(source: string, replacements: Record<string, string>) {
   return source.replace(new RegExp('\\{([A-z]|.)*?}', 'g'), value => {
@@ -16,42 +20,35 @@ function replace(source: string, replacements: Record<string, string>) {
 }
 
 export const dummyGlossary: Record<string, string> = {
-  'guarantee.client.id': '(ID del cliente)',
-  'guarantee.client.personType': '(Tipo de persona del cliente)',
+  'guarantee.client.name': '(Nombre del cliente)',
   'guarantee.client.rfc': '(RFC del cliente)',
-  'guarantee.client.phone': '(Telefono del cliente)',
-  'guarantee.client.email': '(Email del cliente)',
+  'guarantee.client.phone': '(Teléfono del cliente)',
+  'guarantee.client.email': '(Correo del cliente)',
   'guarantee.client.address': '(Dirección del cliente)',
-  'guarantee.client.salesPlace': '(Lugar de ventas del cliente)',
+  'guarantee.client.salesPlace': '(Punto de venta)',
 
   'guarantee.vehicle.brand': '(Marca del vehículo)',
   'guarantee.vehicle.model': '(Modelo del vehículo)',
   'guarantee.vehicle.version': '(Versión del vehículo)',
   'guarantee.vehicle.year': '(Año del vehículo)',
-  'guarantee.vehicle.vin': '(Vin del vehículo)',
-  'guarantee.vehicle.motorNumber': '(Número de motor del vehículo)',
-  'guarantee.vehicle.kilometrageStart': '(Kilometraje inicial del vehículo)',
-  'guarantee.vehicle.kilometrageEnd': '(Kilometraje final del vehículo)',
+  'guarantee.vehicle.vin': '(Vin)',
+  'guarantee.vehicle.horsePower': '(Caballos de fuerza)',
+  'guarantee.vehicle.motorNumber': '(Número de motor)',
 
-  'guarantee.status': '(Status de la garantía)',
-  'guarantee.startDate': '(Fecha inicial de la garantía)',
-  'guarantee.endDate': '(Fecha final de la garantía)',
-  'guarantee.invoiceDate': '(Fecha de la factura de la garantía)',
-  'guarantee.amount': '(Precio de la garantía)',
-  'guarantee.paymentOrder.createdAt': '(Fecha de la creación orden de compra)',
-  'guarantee.paymentOrder.updatedAt': '(Fecha de la actualización orden de compra)',
-  'guarantee.paymentOrder.distributor': '(Distribuidor de la orden de compra)',
-  'guarantee.paymentOrder.Guarantee': '(Garantías de la orden de compra)',
+  'guarantee.id': '(Folio)',
+  'guarantee.kilometrageStart': '(Kilometraje inicial)',
+  'guarantee.kilometrageEnd': '(Kilometraje final)',
+  'guarantee.startDate': '(Fecha inicial)',
+  'guarantee.endDate': '(Fecha final)',
 };
 
 function getRealGlossary(guarantee: Guarantee): Record<string, string> {
   return {
-    'guarantee.client.id': String(guarantee.client.id),
-    'guarantee.client.personType': String(guarantee.client.personType),
+    'guarantee.client.name': getClientName(guarantee.client),
     'guarantee.client.rfc': guarantee.client.rfc,
-    'guarantee.client.phone': guarantee.client.phone,
+    'guarantee.client.phone': formatPhone(guarantee.client.phone),
     'guarantee.client.email': guarantee.client.email,
-    'guarantee.client.address': String(guarantee.client.address),
+    'guarantee.client.address': formatAddress(guarantee.client.address),
     'guarantee.client.salesPlace': guarantee.client.salesPlace,
 
     'guarantee.vehicle.brand': guarantee.vehicle.brand,
@@ -59,16 +56,22 @@ function getRealGlossary(guarantee: Guarantee): Record<string, string> {
     'guarantee.vehicle.version': guarantee.vehicle.version,
     'guarantee.vehicle.year': String(guarantee.vehicle.year),
     'guarantee.vehicle.vin': guarantee.vehicle.vin,
+    'guarantee.vehicle.horsePower': String(guarantee.vehicle.horsePower),
     'guarantee.vehicle.motorNumber': guarantee.vehicle.motorNumber,
-    'guarantee.vehicle.kilometrageStart': String(guarantee.kilometrageStart),
-    'guarantee.vehicle.kilometrageEnd': String(guarantee.kilometrageEnd),
 
-    'guarantee.status': String(guarantee.status),
-    'guarantee.startDate': String(guarantee.startDate),
-    'guarantee.endDate': String(guarantee.endDate),
-    'guarantee.invoiceDate': String(guarantee.invoiceDate),
-    'guarantee.amount': String(guarantee.amount),
+    'guarantee.id': String(transformFolio(guarantee.id)),
+    'guarantee.kilometrageStart': String(guarantee.kilometrageStart),
+    'guarantee.kilometrageEnd': String(guarantee.kilometrageEnd),
+    'guarantee.startDate': dayjs(guarantee.startDate).locale('es').format('LL'),
+    'guarantee.endDate': dayjs(guarantee.endDate).locale('es').format('LL'),
   };
+}
+
+function getClientName(client: Client): string {
+  const { physicalInfo, moralInfo } = client;
+  return physicalInfo
+    ? `${physicalInfo?.name} ${physicalInfo?.lastName} ${physicalInfo?.secondLastName}`
+    : moralInfo?.businessName;
 }
 
 export function getProductPdfTemplate(body: string, guarantee?: Guarantee): string {

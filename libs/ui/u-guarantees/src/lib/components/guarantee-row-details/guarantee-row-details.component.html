@@ -23,8 +23,8 @@
   <div nz-col
        nzXs="12"
        nzMd="6"
-       nzLg="4">
-    <span nz-typography><strong>Monto:</strong></span>
+       nzLg="0">
+    <span nz-typography><strong>Importe:</strong></span>
   </div>
   <div nz-col
        nzXs="12"
@@ -130,13 +130,13 @@
        nzXs="12"
        nzMd="6"
        nzLg="4">
-    <span>{{ item?.productType }}</span>
+    <span>{{ item?.product?.name | empty }}</span>
   </div>
   <div nz-col
        nzXs="12"
        nzMd="6"
        nzLg="4">
-    <span nz-typography><strong>Vendedor: </strong></span>
+    <span nz-typography><strong>Usuario: </strong></span>
   </div>
   <div nz-col
        nzXs="12"

@@ -120,7 +120,7 @@
     </div>
   </ng-container>
   <div nz-col>
-    <ivt-checkbox-filter label="Vendedores"
+    <ivt-checkbox-filter label="Usuarios"
                          [options]="userFilterInfo?.options"
                          [loading]="userFilterInfo?.loading"
                          [last]="userFilterInfo?.last"
@@ -130,7 +130,8 @@
                          (filterOptions)="filterUserOptions.emit($event)">
     </ivt-checkbox-filter>
   </div>
-  <div nz-col
+  <div *ngIf="info?.total"
+       nz-col
        nzFlex="auto"
        class="flex-end">
     {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}
@@ -150,7 +151,8 @@
           (nzQueryParams)="filterItems.emit($event)">
   <thead>
     <tr nz-row>
-      <th nz-col
+      <th *ivtCreatePermission
+          nz-col
           nzXs="1"
           nzMd="2"
           [(nzChecked)]="checked"
@@ -172,7 +174,8 @@
   <tbody>
     <ng-container *ngFor="let item of table.data">
       <tr nz-row>
-        <td nz-col
+        <td *ivtCreatePermission
+            nz-col
             nzXs="2"
             [nzDisabled]="item.amount"
             [nzChecked]="setOfCheckedId.has(item.id)"
@@ -199,9 +202,7 @@
             nzXs="0"
             nzLg="2">{{ item.createdAt | date: 'dd/MM/yy' | empty }}</td>
         <td nz-col
-            nzXs="6"
-            nzMd="2"
-            nzLg="2">
+            nzFlex="auto">
           <nz-tag nz-tooltip
                   nzTooltipPlacement="top"
                   [nzTooltipTitle]="statusLabels[item.status]"
@@ -235,7 +236,8 @@
               <ng-container *ivtUpdatePermission> Editar garantía </ng-container>
               <ng-container *ivtNoUpdatePermission> Ver garantía </ng-container>
             </li>
-            <li nz-submenu
+            <li *ivtUpdatePermission
+                nz-submenu
                 nzTitle="Cambiar estatus">
               <ul>
                 <li *ngFor="let option of statusOptions"

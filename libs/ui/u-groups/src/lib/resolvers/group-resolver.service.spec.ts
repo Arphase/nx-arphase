@@ -1,7 +1,7 @@
 import { GroupCollectionService } from '@ivt/u-state';
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
-import { GroupResolverService } from './Group-resolver.service';
+import { GroupResolverService } from './group-resolver.service';
 
 describe('GroupResolverService', () => {
   let spectator: SpectatorService<GroupResolverService>;

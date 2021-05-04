@@ -182,12 +182,13 @@
          [nzGutter]="12">
       <div nz-col
            nzXs="24"
-           nzMd="8">
+           nzMd="12">
         <nz-form-item>
           <nz-form-label>Glosario</nz-form-label>
           <nz-form-control>
             <nz-select formControlName="glossary"
-                       [nzOptions]="glossaryOptions">
+                       [nzOptions]="glossaryOptions"
+                       [nzShowSearch]="true">
             </nz-select>
           </nz-form-control>
         </nz-form-item>
@@ -227,6 +228,7 @@
                   (click)="downloadTemplatePreview()">Vista previa</button>
           <button *nzSpaceItem
                   nz-button
+                  [nzLoading]="loading"
                   type="submit"
                   nzType="primary">Guardar</button>
         </nz-space>

@@ -6,6 +6,7 @@ import {
   CompanyCollectionService,
   fromVehicles,
   getAuthUserCompanyIdState,
+  getVehiclesErrorState,
   getVehiclesVehicleState,
   IvtEntityCollection,
   IvtState,
@@ -49,9 +50,13 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
     select(this.companyCollectionService.selectors.selectCollection),
     map((collection: IvtEntityCollection<Company>) => collection.info)
   );
-  invalidVin$ = this.store.pipe(
-    select(getVehiclesVehicleState),
-    map(vehicle => !!vehicle)
+  invalidVin$ = combineLatest([
+    this.store.pipe(select(getVehiclesVehicleState)),
+    this.store.pipe(select(getVehiclesErrorState)),
+  ]).pipe(
+    map(([vehicle, error]) => {
+      return !!vehicle || error?.statusCode === 403;
+    })
   );
 
   constructor(

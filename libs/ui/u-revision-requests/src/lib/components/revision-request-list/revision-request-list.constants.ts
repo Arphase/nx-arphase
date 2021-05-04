@@ -50,7 +50,7 @@ export const columns: ApsColumns = [
     prop: 'revisionRequest.name',
     colSizes: {
       md: 7,
-      lg: 5,
+      lg: 4,
     },
   },
   {
@@ -58,19 +58,26 @@ export const columns: ApsColumns = [
     prop: 'revisionRequest.phone',
     colSizes: {
       md: 7,
-      lg: 6,
+      lg: 5,
     },
   },
   {
     label: 'Correo',
     prop: 'revisionRequest.email',
     colSizes: {
-      lg: 6,
+      lg: 5,
+    },
+  },
+  {
+    label: 'Fecha de alta',
+    prop: 'revisionRequest.email',
+    colSizes: {
+      lg: 3,
     },
   },
   {
     label: 'Estatus',
-    prop: 'guarantee.status',
+    prop: 'revisionRequest.status',
     colSizes: {
       xs: 10,
       md: 4,

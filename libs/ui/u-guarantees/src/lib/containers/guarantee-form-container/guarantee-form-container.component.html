@@ -8,8 +8,9 @@
                     [currentVehicle]="currentVehicle$ | async"
                     [error]="error$ | async"
                     [companiesInfo]="companiesInfo$ | async"
+                    [showCompanyInput]="showCompanyInput$ | async"
                     (verifyVin)="verifyVin($event)"
                     (getCompanies)="getCompanies($event)"
                     (getProducts)="getProducts($event)"
-                    (submitForm)="submit($event)">
-</ivt-guarantee-form>
+                    (saveCompanyInCache)="saveCompanyInCache($event)"
+                    (submitForm)="submit($event)"></ivt-guarantee-form>

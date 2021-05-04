@@ -76,6 +76,15 @@ export class VehiclesService {
   }
 
   async createVehicle(createVehicleDto: CreateVehicleDto, user: Partial<User>): Promise<Vehicle> {
+    const query = this.vehicleRepository.createQueryBuilder('vehicle');
+    const vehicle = await query.where('vehicle.vin = :vin', { vin: createVehicleDto.vin }).getOne();
+
+    if (vehicle) {
+      throw new NotFoundException(
+        `Vehículo con vin ${createVehicleDto.vin} ya se encuentra dado de alta en el sistema`
+      );
+    }
+
     const newVehicle = this.vehicleRepository.create({
       ...createVehicleDto,
       companyId: user && UserRoles[user.role] === UserRoles.superAdmin ? createVehicleDto.companyId : user.companyId,
@@ -102,7 +111,7 @@ export class VehiclesService {
     if (vehicle?.guarantees?.length) {
       const folios = vehicle.guarantees.map(guarantee => transformFolio(guarantee.id)).toString();
       throw new BadRequestException(
-        `This vehicle can't be deleted because it has guarantees with the following folios: ${folios}`
+        `El vehículo no puede ser eliminado porque tiene garantías con los siguientes folios: ${folios}`
       );
     }
 

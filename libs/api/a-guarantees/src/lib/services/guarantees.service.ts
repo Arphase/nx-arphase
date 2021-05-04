@@ -149,6 +149,7 @@ export class GuaranteesService {
         guarantee.client?.address?.internalNumber,
         guarantee.client?.salesPlace,
         guarantee?.productType,
+        guarantee?.product?.name,
         guarantee.vehicle?.brand,
         guarantee.vehicle?.model,
         guarantee.vehicle?.version,
@@ -158,8 +159,8 @@ export class GuaranteesService {
         guarantee.vehicle?.motorNumber,
         guarantee?.kilometrageStart,
         guarantee?.kilometrageEnd,
-        guarantee.paymentOrder?.createdAt,
-        guarantee.paymentOrder?.updatedAt,
+        formatDate(guarantee.paymentOrder?.createdAt),
+        formatDate(guarantee.paymentOrder?.updatedAt),
         guarantee.paymentOrder?.distributor,
         guarantee?.invoiceNumber,
       ].map(field => (field ? String(field) : ''));

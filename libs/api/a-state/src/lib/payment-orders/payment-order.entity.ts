@@ -16,10 +16,10 @@ export class PaymentOrderEntity extends BaseEntity implements PaymentOrder {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn({ select: false })
+  @CreateDateColumn()
   createdAt: Date;
 
-  @UpdateDateColumn({ select: false })
+  @UpdateDateColumn()
   updatedAt: Date;
 
   @Column({ nullable: true })

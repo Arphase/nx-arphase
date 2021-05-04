@@ -4,7 +4,7 @@ import { Revision, UserRoles } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import {
   fromVehicles,
-  getVehiclesErrorState,
+  getVehiclesErrorMessageState,
   getVehiclesVehicleState,
   IvtState,
   PermissionService,
@@ -34,7 +34,7 @@ export class RevisionFormContainerComponent extends IvtFormContainerComponent<Re
   isEditable$ = this.permissionService.hasUpdatePermission([UserRoles.superAdmin]);
   vehicle$ = this.vehicleCollectionService.currentItem$;
   currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
-  error$ = this.store.pipe(select(getVehiclesErrorState));
+  error$ = this.store.pipe(select(getVehiclesErrorMessageState));
 
   constructor(
     protected revisionCollectionService: RevisionCollectionService,

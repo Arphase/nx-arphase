@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges, V
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { glossary, Product } from '@ivt/c-data';
-import { filterNil } from '@ivt/c-utils';
+import { filterNil, sortSelectOptions } from '@ivt/c-utils';
 import { ProductDataService } from '@ivt/u-state';
 import { IvtFormComponent } from '@ivt/u-ui';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -33,7 +33,7 @@ export function createProductForm(): FormGroup {
       },
       { validators: ApsValidators.minMax('minHp', 'maxHp') }
     ),
-    template: new FormControl(null, ApsValidators.required),
+    template: new FormControl('', ApsValidators.required),
     glossary: new FormControl(null),
   });
 }
@@ -49,7 +49,7 @@ export class ProductFormComponent extends IvtFormComponent<Product, ProductForm>
   form = createProductForm();
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
-  glossaryOptions = glossary;
+  glossaryOptions = sortSelectOptions(glossary);
   selectedData: { value: string; text: string };
   fileList: NzUploadFile[] = [];
   imageFileTypes = 'image/png,image/jpeg,image/jpg';

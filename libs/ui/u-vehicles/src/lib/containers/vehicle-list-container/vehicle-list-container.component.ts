@@ -33,7 +33,7 @@ export class VehicleListContainerComponent extends IvtListContainerComponent<Veh
 
   deleteItem(item: Vehicle): void {
     const { model, year, vin } = item;
-    this.deleteConfirmMessage = `¿Desea eliminar el vehículo ${model} ${year} con número de serie ${vin}?`;
+    this.deleteConfirmMessage = `¿Desea eliminar el vehículo ${model} ${year} con número de serie ${vin}? También se borrarán todas las revisiones y solicitudes de revisión asociadas a este vehículo.`;
     this.deleteSuccessMessage = `El vehículo ${model} ${year} con número de serie ${vin} ha sido eliminado`;
     super.deleteItem(item);
   }
