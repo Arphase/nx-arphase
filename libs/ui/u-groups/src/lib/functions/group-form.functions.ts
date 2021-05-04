@@ -48,7 +48,7 @@ export function createCompanyForm(company?: Company): FormGroup {
 
 export function patchCompanyForm(form: FormGroup, company: Company): void {
   form.patchValue(company);
-  setFormArrayValue(form.get('users') as FormArray, company.users, user => createUserForm(user));
+  setFormArrayValue(form.get('users') as FormArray, company.users || [], user => createUserForm(user));
 }
 
 export function createUserForm(user?: User): FormGroup {
@@ -61,10 +61,14 @@ export function createUserForm(user?: User): FormGroup {
     email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
     phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
     rfc: new FormControl(null, [ApsValidators.required, ApsValidators.rfc(RfcValidatorTypes.physical)]),
+    password: new FormControl(null),
   });
 
   if (user) {
     form.patchValue(user);
+    if (user.password) {
+      form.disable();
+    }
   }
   return form;
 }

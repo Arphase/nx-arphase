@@ -13,6 +13,7 @@ import { createCompanyForm, createUserForm, patchCompanyForm } from '../../funct
 })
 export class CompanyFormDialogComponent extends IvtFormComponent<Company> implements OnInit {
   @Input() company: Company;
+  form = createCompanyForm();
 
   get addressForm(): FormGroup {
     return this.form.get('address') as FormGroup;
@@ -20,11 +21,6 @@ export class CompanyFormDialogComponent extends IvtFormComponent<Company> implem
 
   get usersFormArray(): FormArray {
     return this.form.get('users') as FormArray;
-  }
-
-  constructor() {
-    super();
-    this.form = createCompanyForm();
   }
 
   ngOnInit() {

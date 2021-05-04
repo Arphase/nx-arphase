@@ -13,7 +13,7 @@ import { GroupFormService } from '../../services/group-form.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupCompanyListContainerComponent extends IvtFormComponent<Group> {
-  companies$ = this.companiesForm.valueChanges.pipe(startWith(this.companiesForm.value));
+  companies$ = this.companiesForm.valueChanges.pipe(startWith(this.companiesForm.getRawValue()));
 
   get companiesForm(): FormArray {
     return this.groupFormService.form.get('companies') as FormArray;

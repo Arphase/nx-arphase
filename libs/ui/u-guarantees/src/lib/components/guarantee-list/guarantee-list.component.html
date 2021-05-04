@@ -236,7 +236,8 @@
               <ng-container *ivtUpdatePermission> Editar garantía </ng-container>
               <ng-container *ivtNoUpdatePermission> Ver garantía </ng-container>
             </li>
-            <li nz-submenu
+            <li *ivtUpdatePermission
+                nz-submenu
                 nzTitle="Cambiar estatus">
               <ul>
                 <li *ngFor="let option of statusOptions"
