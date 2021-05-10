@@ -1,4 +1,4 @@
-import { sortDirection, User, UserRoles } from '@ivt/c-data';
+import { hasAccessToAllData, sortDirection, User } from '@ivt/c-data';
 import dayjs from 'dayjs';
 import { BaseEntity, SelectQueryBuilder } from 'typeorm';
 
@@ -24,7 +24,7 @@ export function filterCommonQuery(
     pageSize,
   } = filterDto;
 
-  if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+  if (user && !hasAccessToAllData(user.role)) {
     query.andWhere(`(${options?.companyidEntityName || entityName}.companyId = :id)`, { id: user.companyId });
   }
 

@@ -38,7 +38,7 @@ export class RevisionsController {
   }
 
   @Post()
-  @Roles(UserRoles.superAdmin)
+  @Roles(UserRoles.superAdmin, UserRoles.repairman)
   @UsePipes(new ValidationPipe({ transform: true }))
   async createRevision(@Body() createRevisionDto: CreateRevisionDto) {
     return this.revisionsService.createRevision(createRevisionDto);

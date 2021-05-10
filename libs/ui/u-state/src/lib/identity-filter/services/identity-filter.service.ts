@@ -77,7 +77,7 @@ export class IdentityFilterService {
 
   getItems(): void {
     this.permissionService
-      .hasReadPermission([UserRoles.superAdmin])
+      .hasReadPermission([UserRoles.superAdmin, UserRoles.repairman])
       .pipe(filterNil(), take(1))
       .subscribe(hasPermission => {
         if (hasPermission) {

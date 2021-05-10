@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Revision, UserRoles } from '@ivt/c-data';
 import { filterNil } from '@ivt/c-utils';
 import {
@@ -16,7 +16,8 @@ import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { takeUntil } from 'rxjs/operators';
+import { combineLatest } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
 import { createRevisionForm } from '../../components/revision-form/revision-form.component';
 
@@ -31,7 +32,16 @@ export class RevisionFormContainerComponent extends IvtFormContainerComponent<Re
   createSuccessMessage = 'La revisión se ha creado con éxito';
   updateSuccessMessage = 'La revisión se ha actualizado con éxito';
   successUrl = '/spa/revisions';
-  isEditable$ = this.permissionService.hasUpdatePermission([UserRoles.superAdmin]);
+  isEditable$ = combineLatest([
+    this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.repairman]),
+    this.permissionService.hasUpdatePermission([UserRoles.superAdmin]),
+    this.route.url,
+  ]).pipe(
+    map(([create, update, url]) => {
+      const createRoute = url.find(segment => segment.path === 'new');
+      return createRoute ? create : update;
+    })
+  );
   vehicle$ = this.vehicleCollectionService.currentItem$;
   currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
   error$ = this.store.pipe(select(getVehiclesErrorMessageState));
@@ -42,7 +52,8 @@ export class RevisionFormContainerComponent extends IvtFormContainerComponent<Re
     protected messageService: NzMessageService,
     private store: Store<IvtState>,
     private vehicleCollectionService: VehicleCollectionService,
-    private permissionService: PermissionService
+    private permissionService: PermissionService,
+    private route: ActivatedRoute
   ) {
     super(revisionCollectionService, router, messageService);
   }

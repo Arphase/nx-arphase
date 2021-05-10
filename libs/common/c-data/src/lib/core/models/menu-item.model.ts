@@ -1,7 +1,9 @@
+import { Observable } from 'rxjs';
+
 export interface MenuItem {
   icon?: string;
   header?: string;
-  display?: boolean;
+  display$?: Observable<boolean>;
   enabled?: boolean;
   path?: string | string[];
   children?: ChildMenuItem[];
@@ -9,7 +11,6 @@ export interface MenuItem {
 
 export interface ChildMenuItem {
   label?: string;
-  display?: boolean;
   enabled?: boolean;
   path?: string[];
 }

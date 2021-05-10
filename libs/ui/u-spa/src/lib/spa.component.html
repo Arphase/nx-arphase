@@ -25,8 +25,8 @@
       <ul nz-menu
           nzTheme="dark"
           nzMode="inline">
-        <ng-container *ngFor="let item of (menuItems$ | async)">
-          <li *ngIf="item.display"
+        <ng-container *ngFor="let item of menuItems">
+          <li *ngIf="item.display$ | async"
               class="mt-0"
               nz-menu-item
               nzMatchRouter

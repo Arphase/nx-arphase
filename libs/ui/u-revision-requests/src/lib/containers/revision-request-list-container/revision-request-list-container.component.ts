@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RevisionRequest, RevisionStatus } from '@ivt/c-data';
+import { RevisionRequest, RevisionRequestStatus } from '@ivt/c-data';
 import { IdentityFilterService, RevisionRequestCollectionService, RevisionRequestDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -30,7 +30,7 @@ export class RevisionRequestListContainerComponent extends IvtListContainerCompo
       .subscribe(() =>
         this.messageService.success(
           `La solicitud de revisión ahora está ${statusLabels[
-            RevisionStatus[RevisionStatus[revisionRequest.status]]
+            RevisionRequestStatus[revisionRequest.status]
           ].toLowerCase()}`
         )
       );

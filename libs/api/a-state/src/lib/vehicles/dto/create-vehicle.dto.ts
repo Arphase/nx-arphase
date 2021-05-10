@@ -31,7 +31,7 @@ export class CreateVehicleDto {
   @IsString()
   motorNumber: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   horsePower: number;
 

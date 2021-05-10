@@ -36,7 +36,7 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
   showCompanyInput$ = this.permissionService.hasCreatePermission([UserRoles.superAdmin]);
   isEditable$ = combineLatest([
-    this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.agencyUser]),
+    this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.agencyUser, UserRoles.repairman]),
     this.permissionService.hasUpdatePermission([UserRoles.superAdmin]),
     this.route.url,
   ]).pipe(

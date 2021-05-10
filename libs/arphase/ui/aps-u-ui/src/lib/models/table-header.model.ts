@@ -4,7 +4,8 @@ export interface ApsColumn {
   prop?: string;
   label: string;
   sortFn?: (a, b) => number;
-  colSizes: ApsColumnSizes;
+  colSizes?: ApsColumnSizes;
+  flex?: string;
 }
 
 export interface ApsColumnSizes {
