@@ -14,8 +14,7 @@ import { IvtSubscriberComponent, Themes, ThemeService } from '@ivt/u-ui';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
-import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-spa',
@@ -25,7 +24,68 @@ import { map, take } from 'rxjs/operators';
 })
 export class SpaComponent extends IvtSubscriberComponent implements OnInit {
   isCollapsed: boolean;
-  menuItems$ = this.getMenuItems();
+  menuItems: MenuItem[] = [
+    {
+      icon: 'pie-chart',
+      header: 'Dashboard',
+      path: ['dashboard'],
+      display$: this.permissionService.hasReadPermission([UserRoles.superAdmin, UserRoles.agencyUser]),
+    },
+    {
+      icon: 'file-text',
+      header: 'Garantías',
+      path: ['guarantees'],
+      display$: this.permissionService.hasReadPermission([UserRoles.superAdmin, UserRoles.agencyUser]),
+    },
+    {
+      icon: 'usergroup-add',
+      header: 'Grupos',
+      path: ['groups'],
+      display$: this.permissionService.hasReadPermission([UserRoles.superAdmin]),
+    },
+    {
+      icon: 'barcode',
+      header: 'Productos',
+      path: ['products'],
+      display$: this.permissionService.hasReadPermission([UserRoles.superAdmin]),
+    },
+    {
+      icon: 'user',
+      header: 'Usuarios',
+      path: ['users'],
+      display$: this.permissionService.hasReadPermission([UserRoles.superAdmin, UserRoles.agencyUser]),
+    },
+    {
+      icon: 'car',
+      header: 'Vehículos',
+      path: ['vehicles'],
+      display$: this.permissionService.hasReadPermission([
+        UserRoles.superAdmin,
+        UserRoles.agencyUser,
+        UserRoles.repairman,
+      ]),
+    },
+    {
+      icon: 'tool',
+      header: 'Revisiones',
+      path: ['revisions'],
+      display$: this.permissionService.hasReadPermission([
+        UserRoles.superAdmin,
+        UserRoles.agencyUser,
+        UserRoles.repairman,
+      ]),
+    },
+    {
+      icon: 'container',
+      header: 'Solicitudes',
+      path: ['revision-requests'],
+      display$: this.permissionService.hasReadPermission([
+        UserRoles.superAdmin,
+        UserRoles.agencyUser,
+        UserRoles.repairman,
+      ]),
+    },
+  ];
   name$ = this.store.pipe(select(getAuthUserNameState));
   email$ = this.store.pipe(select(getAuthUserEmailState));
   version = this.config.version;
@@ -65,61 +125,6 @@ export class SpaComponent extends IvtSubscriberComponent implements OnInit {
         this.store.dispatch(fromAuth.actions.logout());
       }
     });
-  }
-
-  getMenuItems(): Observable<MenuItem[]> {
-    return this.permissionService.hasReadPermission([UserRoles.superAdmin]).pipe(
-      map(hasPermission => [
-        {
-          icon: 'pie-chart',
-          header: 'Dashboard',
-          path: ['dashboard'],
-          display: true,
-        },
-        {
-          icon: 'file-text',
-          header: 'Garantías',
-          path: ['guarantees'],
-          display: true,
-        },
-        {
-          icon: 'usergroup-add',
-          header: 'Grupos',
-          path: ['groups'],
-          display: hasPermission,
-        },
-        {
-          icon: 'barcode',
-          header: 'Productos',
-          path: ['products'],
-          display: hasPermission,
-        },
-        {
-          icon: 'user',
-          header: 'Usuarios',
-          path: ['users'],
-          display: true,
-        },
-        {
-          icon: 'car',
-          header: 'Vehículos',
-          path: ['vehicles'],
-          display: true,
-        },
-        {
-          icon: 'tool',
-          header: 'Revisiones',
-          path: ['revisions'],
-          display: true,
-        },
-        {
-          icon: 'container',
-          header: 'Solicitudes',
-          path: ['revision-requests'],
-          display: true,
-        },
-      ])
-    );
   }
 
   toggleIsCollapsed(): void {

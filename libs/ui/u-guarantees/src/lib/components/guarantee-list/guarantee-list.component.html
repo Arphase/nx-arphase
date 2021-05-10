@@ -162,11 +162,11 @@
           [nzSortFn]="column.sortFn || true"
           [nzColumnKey]="column.prop"
           nz-col
-          [nzXs]="column.colSizes?.xs || 0"
-          [nzSm]="column.colSizes?.sm || 0"
-          [nzMd]="column.colSizes?.md || 0"
+          [nzXs]="column.colSizes?.xs"
+          [nzSm]="column.colSizes?.sm"
+          [nzMd]="column.colSizes?.md"
           [nzLg]="column.colSizes?.lg"
-          [nzXl]="column.colSizes?.xl">
+          [nzFlex]="column.flex">
         {{ column.label }}
       </th>
     </tr>
@@ -189,8 +189,7 @@
             nzMd="6"
             nzLg="4">{{ item.vehicle?.vin }}</td>
         <td nz-col
-            nzXs="0"
-            nzMd="4">{{ item.company?.businessName }}</td>
+            nzFlex="auto">{{ item.company?.businessName }}</td>
         <td nz-col
             nzXs="0"
             nzMd="4"
@@ -202,7 +201,8 @@
             nzXs="0"
             nzLg="2">{{ item.createdAt | date: 'dd/MM/yy' | empty }}</td>
         <td nz-col
-            nzFlex="auto">
+            nzXs="4"
+            nzMd="2">
           <nz-tag nz-tooltip
                   nzTooltipPlacement="top"
                   [nzTooltipTitle]="statusLabels[item.status]"

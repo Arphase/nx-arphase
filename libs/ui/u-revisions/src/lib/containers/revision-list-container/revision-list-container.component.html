@@ -4,6 +4,7 @@
                    [groupFilterInfo]="groupFilterInfo$ | async"
                    [companyFilterInfo]="companyFilterInfo$ | async"
                    [userFilterInfo]="userFilterInfo$ | async"
+                   [canCreateRevision]="canCreateRevision$ | async"
                    [queryParams]="queryParams"
                    (filterItems)="filterItems($event)"
                    (delete)="deleteItem($event)"

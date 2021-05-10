@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RevisionRequest, RevisionRequestStatus, UserRoles } from '@ivt/c-data';
 import { REQUIRED_ROLES } from '@ivt/u-state';
 import { IvtListComponent } from '@ivt/u-ui';
@@ -10,7 +10,7 @@ import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './rev
   templateUrl: './revision-request-list.component.html',
   styleUrls: ['./revision-request-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
+  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin, UserRoles.repairman] }],
 })
 export class RevisionRequestListComponent extends IvtListComponent<RevisionRequest> {
   statusLabels = statusLabels;

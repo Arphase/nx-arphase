@@ -49,7 +49,7 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
   @Column({ nullable: true })
   motorNumber: string;
 
-  @Column()
+  @Column({nullable: true})
   horsePower: number;
 
   @Column({

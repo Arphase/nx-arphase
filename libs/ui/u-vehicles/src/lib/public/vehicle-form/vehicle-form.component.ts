@@ -32,7 +32,7 @@ export function createVehicleForm(vehicle?: Vehicle) {
       ApsValidators.maxLength(VEHICLE_VIN_LENGTH),
     ]),
     motorNumber: new FormControl(null),
-    horsePower: new FormControl(null, [ApsValidators.requiredNumber, ApsValidators.min(1), ApsValidators.max(500)]),
+    horsePower: new FormControl(null, [ApsValidators.min(1), ApsValidators.max(500)]),
     companyId: new FormControl(null, ApsValidators.required),
   });
 

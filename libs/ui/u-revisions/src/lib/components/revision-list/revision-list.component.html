@@ -5,7 +5,7 @@
        nzMd="12">
     <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
   </div>
-  <ng-container *ivtCreatePermission>
+  <ng-container *ngIf="canCreateRevision">
     <div nz-col
          nzXs="0"
          nzMd="24"
@@ -171,8 +171,7 @@
                 nzType="text"
                 nzTrigger="click">
           <i nz-icon
-             nzType="more"
-           ></i>
+             nzType="more"></i>
         </button>
       </td>
       <nz-dropdown-menu #menu="nzDropdownMenu">

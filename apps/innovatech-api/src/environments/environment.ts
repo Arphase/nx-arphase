@@ -4,12 +4,12 @@ export const environment: Environment = {
   production: false,
   databaseConfig: {
     type: 'postgres',
-    host: 'localhost',
+    host: 'aa1avzes3vk45sa.ckvaqjgmdubs.us-east-1.rds.amazonaws.com',
     port: 5432,
-    database: 'innovatech_dev',
-    synchronize: true,
-    username: 'innovatech',
-    password: 'innovatech',
+    database: 'ebdb',
+    synchronize: false,
+    username: 'innovatechstage',
+    password: 'innovatech123',
   },
   server: {
     port: 3333,

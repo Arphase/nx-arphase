@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Revision } from '@ivt/c-data';
-import { IdentityFilterService, RevisionCollectionService, RevisionDataService } from '@ivt/u-state';
+import { Revision, UserRoles } from '@ivt/c-data';
+import { IdentityFilterService, PermissionService, RevisionCollectionService, RevisionDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import dayjs from 'dayjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -13,12 +13,15 @@ import { NzModalService } from 'ng-zorro-antd/modal';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionListContainerComponent extends IvtListContainerComponent<Revision> {
+  canCreateRevision$ = this.permissionService.hasUpdatePermission([UserRoles.superAdmin, UserRoles.repairman]);
+
   constructor(
     protected revisionCollectionService: RevisionCollectionService,
     protected revisionDataService: RevisionDataService,
     protected modal: NzModalService,
     protected toastrService: NzMessageService,
-    protected identityFilterService: IdentityFilterService
+    protected identityFilterService: IdentityFilterService,
+    private permissionService: PermissionService
   ) {
     super(revisionCollectionService, revisionDataService, modal, toastrService, identityFilterService);
   }

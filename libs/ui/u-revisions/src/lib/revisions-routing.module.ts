@@ -22,7 +22,7 @@ export const routes: Routes = [
         component: RevisionFormContainerComponent,
         canActivate: [RoleGuard],
         data: {
-          roles: [UserRoles.superAdmin],
+          roles: [UserRoles.superAdmin, UserRoles.repairman],
         },
         canDeactivate: [IvtDirtyFormGuard],
         resolve: { resolvedRevision: RevisionResolverService },

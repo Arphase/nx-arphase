@@ -23,9 +23,7 @@ export const columns: ApsColumns = [
   {
     label: 'Compañía',
     prop: 'company.businessName',
-    colSizes: {
-      md: 4,
-    },
+    flex: 'auto',
   },
   {
     label: 'Factura',
@@ -55,7 +53,6 @@ export const columns: ApsColumns = [
     colSizes: {
       xs: 12,
       md: 4,
-      lg: 4,
     },
   },
 ];

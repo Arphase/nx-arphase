@@ -1,6 +1,7 @@
 import { CreateVehicleDto, filterCommonQuery, GetVehiclesDto, UpdateVehicleDto, VehicleRepository } from '@ivt/a-state';
 import {
   createCollectionResponse,
+  hasAccessToAllData,
   IvtCollectionResponse,
   RevisionStatus,
   sortDirection,
@@ -66,7 +67,7 @@ export class VehiclesService {
       throw new NotFoundException(`Vehículo con vin ${vin} no está dado de alta en el sistema.`);
     }
 
-    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+    if (user && !hasAccessToAllData(user.role)) {
       if (vehicle?.companyId !== user.companyId) {
         throw new ForbiddenException('Este vehículo pertenece a otra compañía.');
       }

@@ -31,7 +31,7 @@ export class GroupsController {
   }
 
   @Get()
-  @Roles(UserRoles.superAdmin)
+  @Roles(UserRoles.superAdmin, UserRoles.repairman)
   async getGroups(
     @Query(new ValidationPipe({ transform: true })) filterDto: CommonFilterDto
   ): Promise<IvtCollectionResponse<Group>> {
