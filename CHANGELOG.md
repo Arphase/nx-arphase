@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.4](https://github.com/Arphase/nx-arphase/compare/v2.5.3...v2.5.4) (2021-05-10)
+
+
+### Features
+
+* **auth:** [#64](https://github.com/Arphase/nx-arphase/issues/64) add repairman role in users ([d50af11](https://github.com/Arphase/nx-arphase/commit/d50af11556f6b3b6ab154dccbf847680536c58f9))
+
 ### [2.5.3](https://github.com/Arphase/nx-arphase/compare/v2.5.2...v2.5.3) (2021-05-04)
 
 
