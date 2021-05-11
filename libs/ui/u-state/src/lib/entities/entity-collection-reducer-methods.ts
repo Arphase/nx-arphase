@@ -41,7 +41,7 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
 
   protected queryManySuccess(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
     let entityCollection = super.queryManySuccess(collection, action) as IvtEntityCollection<T>;
-    if (entityCollection.queryParams.resetList) {
+    if (entityCollection.queryParams.resetList === String(true)) {
       entityCollection = super.queryManySuccess(super.removeAll(collection, action), action) as IvtEntityCollection<T>;
     }
     return {

@@ -34,7 +34,7 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
   createSuccessMessage = 'El vehículo se ha creado con éxito';
   updateSuccessMessage = 'El vehículo se ha actualizado con éxito';
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
-  showCompanyInput$ = this.permissionService.hasCreatePermission([UserRoles.superAdmin]);
+  showCompanyInput$ = this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.repairman]);
   isEditable$ = combineLatest([
     this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.agencyUser, UserRoles.repairman]),
     this.permissionService.hasUpdatePermission([UserRoles.superAdmin]),
@@ -82,7 +82,10 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
   }
 
   getCompanies(queryParams: QueryParams): void {
-    this.companyCollectionService.getWithQuery(queryParams);
+    this.companyCollectionService.getWithQuery({
+      ...queryParams,
+      sort: [{ key: 'company.businessName', value: 'ascend' } as any],
+    });
   }
 
   ngOnDestroy() {
