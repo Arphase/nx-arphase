@@ -87,7 +87,10 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   }
 
   getCompanies(queryParams: QueryParams): void {
-    this.companyCollectionService.getWithQuery(queryParams);
+    this.companyCollectionService.getWithQuery({
+      ...queryParams,
+      sort: [{ key: 'company.businessName', value: 'ascend' } as any],
+    });
   }
 
   getProducts(payload: { year: string; horsePower: string }): void {

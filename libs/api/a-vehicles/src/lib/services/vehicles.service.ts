@@ -7,7 +7,6 @@ import {
   sortDirection,
   transformFolio,
   User,
-  UserRoles,
   Vehicle,
   VehicleStatus,
 } from '@ivt/c-data';
@@ -88,7 +87,7 @@ export class VehiclesService {
 
     const newVehicle = this.vehicleRepository.create({
       ...createVehicleDto,
-      companyId: user && UserRoles[user.role] === UserRoles.superAdmin ? createVehicleDto.companyId : user.companyId,
+      companyId: user && hasAccessToAllData(user.role) ? createVehicleDto.companyId : user.companyId,
       userId: user.id,
     });
     await newVehicle.save();
