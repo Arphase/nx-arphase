@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.5](https://github.com/Arphase/nx-arphase/compare/v2.5.4...v2.5.5) (2021-05-11)
+
+
+### Bug Fixes
+
+* **vehicles:** [#67](https://github.com/Arphase/nx-arphase/issues/67) allow repairman to select company on vehicle create ([35d4e78](https://github.com/Arphase/nx-arphase/commit/35d4e7881dfa320c204df6762c483c0fb93736df))
+
 ### [2.5.4](https://github.com/Arphase/nx-arphase/compare/v2.5.3...v2.5.4) (2021-05-10)
 
 
