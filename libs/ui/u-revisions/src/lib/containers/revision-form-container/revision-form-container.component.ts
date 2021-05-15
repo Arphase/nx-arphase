@@ -6,11 +6,9 @@ import {
   fromVehicles,
   getVehiclesErrorMessageState,
   getVehiclesVehicleState,
-  PermissionService,
-  RevisionCollectionService,
-  selectQueryParam,
   VehicleCollectionService,
-} from '@ivt/u-state';
+} from '@innovatech/ui/vehicles/data-access';
+import { PermissionService, RevisionCollectionService, selectQueryParam } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';

@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
-import { PermissionsModule, VehiclesDataModule } from '@ivt/u-state';
+import { VehiclesDataModule } from '@innovatech/ui/vehicles/data-access';
+import { VehicleFormModule } from '@innovatech/ui/vehicles/ui';
+import { PermissionsModule } from '@ivt/u-state';
 import {
   IvtAddressFormModule,
   IvtCheckboxFilterModule,
@@ -12,7 +14,6 @@ import {
   IvtRadioFilterModule,
   IvtSearchbarModule,
 } from '@ivt/u-ui';
-import { VehicleFormModule } from '@ivt/u-vehicles';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';

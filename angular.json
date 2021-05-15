@@ -637,23 +637,26 @@
         }
       }
     },
-    "u-vehicles": {
+    "innovatech-ui-vehicles-feature": {
       "projectType": "library",
-      "root": "libs/ui/u-vehicles",
-      "sourceRoot": "libs/ui/u-vehicles/src",
+      "root": "libs/innovatech/ui/vehicles/feature",
+      "sourceRoot": "libs/innovatech/ui/vehicles/feature/src",
       "prefix": "ivt",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ui/u-vehicles/src/**/*.ts", "libs/ui/u-vehicles/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/innovatech/ui/vehicles/feature/src/**/*.ts",
+              "libs/innovatech/ui/vehicles/feature/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ui/u-vehicles"],
+          "outputs": ["coverage/libs/innovatech/ui/vehicles/feature"],
           "options": {
-            "jestConfig": "libs/ui/u-vehicles/jest.config.js",
+            "jestConfig": "libs/innovatech/ui/vehicles/feature/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -788,7 +791,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/common/domain/src/**/*.ts", "libs/innovatech/common/domain/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/innovatech/common/domain/src/**/*.ts",
+              "libs/innovatech/common/domain/src/**/*.html"
+            ]
           }
         },
         "test": {
@@ -822,7 +828,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/common/utils/src/**/*.ts", "libs/innovatech/common/utils/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/innovatech/common/utils/src/**/*.ts",
+              "libs/innovatech/common/utils/src/**/*.html"
+            ]
           }
         },
         "test": {
@@ -830,6 +839,56 @@
           "outputs": ["coverage/libs/innovatech/common/utils"],
           "options": {
             "jestConfig": "libs/innovatech/common/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "innovatech-ui-vehicles-ui": {
+      "projectType": "library",
+      "root": "libs/innovatech/ui/vehicles/feature",
+      "sourceRoot": "libs/innovatech/ui/vehicles/feature/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/innovatech/ui/vehicles/feature/src/**/*.ts",
+              "libs/innovatech/ui/vehicles/feature/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/ui/vehicles/feature"],
+          "options": {
+            "jestConfig": "libs/innovatech/ui/vehicles/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "innovatech-ui-vehicles-data-access": {
+      "projectType": "library",
+      "root": "libs/innovatech/ui/vehicles/data-access",
+      "sourceRoot": "libs/innovatech/ui/vehicles/data-access/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/innovatech/ui/vehicles/data-access/src/**/*.ts",
+              "libs/innovatech/ui/vehicles/data-access/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/ui/vehicles/data-access"],
+          "options": {
+            "jestConfig": "libs/innovatech/ui/vehicles/data-access/jest.config.js",
             "passWithNoTests": true
           }
         }

@@ -3,15 +3,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Company, Guarantee, UserRoles } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
 import {
-  CompanyCollectionService,
   fromVehicles,
   getVehiclesErrorMessageState,
   getVehiclesVehicleState,
+  VehicleCollectionService,
+} from '@innovatech/ui/vehicles/data-access';
+import {
+  CompanyCollectionService,
   IvtEntityCollection,
   PermissionService,
   ProductCollectionService,
   selectQueryParam,
-  VehicleCollectionService,
 } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';

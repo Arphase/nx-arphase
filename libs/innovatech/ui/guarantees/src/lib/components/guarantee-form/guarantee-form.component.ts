@@ -10,11 +10,18 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { Guarantee, isVehicleElegible, IvtCollectionResponseInfo, PersonTypes, UserRoles, Vehicle } from '@innovatech/common/domain';
+import {
+  Guarantee,
+  isVehicleElegible,
+  IvtCollectionResponseInfo,
+  PersonTypes,
+  UserRoles,
+  Vehicle,
+} from '@innovatech/common/domain';
 import { filterNil, RfcValidatorTypes } from '@innovatech/common/utils';
+import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
 import { REQUIRED_ROLES } from '@ivt/u-state';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
-import { createVehicleForm } from '@ivt/u-vehicles';
 import { QueryParams } from '@ngrx/data';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';

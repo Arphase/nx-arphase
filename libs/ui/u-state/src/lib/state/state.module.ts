@@ -28,7 +28,6 @@ import { ProductDataService } from '../products';
 import { RevisionRequestDataService } from '../revision-requests';
 import { RevisionDataService } from '../revisions';
 import { UserDataService } from '../users';
-import { VehicleDataService } from '../vehicles/services/vehicle-data.service';
 import { reducers } from './reducers';
 
 @NgModule({
@@ -72,8 +71,7 @@ export class IvtStateModule {
     revisionRequestDataService: RevisionRequestDataService,
     revisionDataService: RevisionDataService,
     userDataService: UserDataService,
-    userFilterDataService: UserFilterDataService,
-    vehicleDataService: VehicleDataService
+    userFilterDataService: UserFilterDataService
   ) {
     const services: Record<string, IvtDataService<unknown>> = {
       Company: companyDataService,
@@ -86,7 +84,6 @@ export class IvtStateModule {
       Revision: revisionDataService,
       User: userDataService,
       UserFilter: userFilterDataService,
-      Vehicle: vehicleDataService,
     };
     entityDataService.registerServices(services);
   }

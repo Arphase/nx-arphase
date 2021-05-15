@@ -32,7 +32,7 @@ const routes: Routes = [
       },
       {
         path: 'vehicles',
-        loadChildren: () => import('@ivt/u-vehicles').then(m => m.VehiclesModule),
+        loadChildren: () => import('@innovatech/ui/vehicles/feature').then(m => m.VehiclesModule),
       },
       {
         path: 'revisions',

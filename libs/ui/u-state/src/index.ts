@@ -11,5 +11,4 @@ export * from './lib/revision-requests';
 export * from './lib/revisions';
 export * from './lib/state';
 export * from './lib/users';
-export * from './lib/vehicles';
 export * from './lib/ui-state-config';

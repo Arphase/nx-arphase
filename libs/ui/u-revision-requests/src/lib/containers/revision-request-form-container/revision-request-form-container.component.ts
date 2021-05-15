@@ -4,13 +4,15 @@ import { RevisionRequest, UserRoles } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
 import {
   fromVehicles,
-  getAuthUserCompanyIdState,
   getVehiclesErrorMessageState,
   getVehiclesVehicleState,
+  VehicleCollectionService,
+} from '@innovatech/ui/vehicles/data-access';
+import {
+  getAuthUserCompanyIdState,
   PermissionService,
   RevisionRequestCollectionService,
   selectQueryParam,
-  VehicleCollectionService,
 } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';

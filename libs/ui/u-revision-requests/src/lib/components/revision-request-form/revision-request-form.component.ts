@@ -11,8 +11,8 @@ import {
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { RevisionRequest, Vehicle } from '@innovatech/common/domain';
+import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
-import { createVehicleForm } from '@ivt/u-vehicles';
 
 export function createRevisionRequestForm(): FormGroup {
   return new FormGroup({

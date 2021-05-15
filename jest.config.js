@@ -10,5 +10,7 @@ module.exports = {
     '<rootDir>/libs/arphase/ui',
     '<rootDir>/libs/innovatech/common/domain',
     '<rootDir>/libs/innovatech/common/utils',
+    '<rootDir>/libs/innovatech/ui/vehicles/innovatech-ui-vehicles-feature',
+    '<rootDir>/libs/innovatech/ui/vehicles/innovatech-ui-vehicles-data-access',
   ],
 };
