@@ -43,7 +43,7 @@
     "u-ui": { "tags": ["type:ui"] },
     "u-groups": { "tags": ["front"] },
     "u-products": { "tags": ["front"] },
-    "u-revision-requests": { "tags": [] },
+    "innovatech-ui-revision-requests": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "innovatech-ui-revisions": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "u-users": { "tags": ["front"] },
     "innovatech-ui-vehicles-feature": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },

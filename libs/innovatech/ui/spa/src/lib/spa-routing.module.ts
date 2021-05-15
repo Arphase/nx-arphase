@@ -40,7 +40,7 @@ const routes: Routes = [
       },
       {
         path: 'revision-requests',
-        loadChildren: () => import('@ivt/u-revision-requests').then(m => m.RevisionRequestsModule),
+        loadChildren: () => import('@innovatech/ui/revision-requests').then(m => m.RevisionRequestsModule),
       },
       {
         path: 'products',

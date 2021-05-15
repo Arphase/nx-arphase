@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RevisionRequest, RevisionRequestStatus } from '@innovatech/common/domain';
-import { IdentityFilterService, RevisionRequestCollectionService, RevisionRequestDataService } from '@ivt/u-state';
+import { IdentityFilterService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { take } from 'rxjs/operators';
 
 import { statusLabels } from '../../components/revision-request-list/revision-request-list.constants';
+import { RevisionRequestCollectionService } from '../../services/revision-request-collection.service';
+import { RevisionRequestDataService } from '../../services/revision-request-data.service';
 
 @Component({
   selector: 'ivt-revision-request-list-container',

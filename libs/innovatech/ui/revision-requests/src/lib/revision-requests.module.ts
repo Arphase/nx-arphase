@@ -14,6 +14,7 @@ import {
   IvtRadioFilterModule,
   IvtSearchbarModule,
 } from '@ivt/u-ui';
+import { EntityDataService } from '@ngrx/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -37,6 +38,7 @@ import { RevisionRequestFormContainerComponent } from './containers/revision-req
 import { RevisionRequestListContainerComponent } from './containers/revision-request-list-container/revision-request-list-container.component';
 import { RevisionRequestsRoutingModule } from './revision-requests-routing.module';
 import { RevisionRequestsComponent } from './revision-requests.component';
+import { RevisionRequestDataService } from './services/revision-request-data.service';
 
 @NgModule({
   imports: [
@@ -79,4 +81,8 @@ import { RevisionRequestsComponent } from './revision-requests.component';
     RevisionRequestListComponent,
   ],
 })
-export class RevisionRequestsModule {}
+export class RevisionRequestsModule {
+  constructor(entityDataService: EntityDataService, revisionRequestDataService: RevisionRequestDataService) {
+    entityDataService.registerService('RevisionRequest', revisionRequestDataService);
+  }
+}

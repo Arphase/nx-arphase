@@ -692,7 +692,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/ui/revisions/src/**/*.ts", "libs/innovatech/ui/revisions/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/innovatech/ui/revisions/src/**/*.ts",
+              "libs/innovatech/ui/revisions/src/**/*.html"
+            ]
           }
         },
         "test": {
@@ -748,23 +751,26 @@
         }
       }
     },
-    "u-revision-requests": {
+    "innovatech-ui-revision-requests": {
       "projectType": "library",
-      "root": "libs/ui/u-revision-requests",
-      "sourceRoot": "libs/ui/u-revision-requests/src",
+      "root": "libs/innovatech/ui/revision-requests",
+      "sourceRoot": "libs/innovatech/ui/revision-requests/src",
       "prefix": "ivt",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ui/u-revision-requests/src/**/*.ts", "libs/ui/u-revision-requests/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/innovatech/ui/revision-requests/src/**/*.ts",
+              "libs/innovatech/ui/revision-requests/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ui/u-revision-requests"],
+          "outputs": ["coverage/libs/innovatech/ui/revision-requests"],
           "options": {
-            "jestConfig": "libs/ui/u-revision-requests/jest.config.js",
+            "jestConfig": "libs/innovatech/ui/revision-requests/jest.config.js",
             "passWithNoTests": true
           }
         }

@@ -8,12 +8,7 @@ import {
   getVehiclesVehicleState,
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data-access';
-import {
-  getAuthUserCompanyIdState,
-  PermissionService,
-  RevisionRequestCollectionService,
-  selectQueryParam,
-} from '@ivt/u-state';
+import { getAuthUserCompanyIdState, PermissionService, selectQueryParam } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
@@ -21,6 +16,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { takeUntil } from 'rxjs/operators';
 
 import { createRevisionRequestForm } from '../../components/revision-request-form/revision-request-form.component';
+import { RevisionRequestCollectionService } from '../../services/revision-request-collection.service';
 
 @Component({
   selector: 'ivt-revision-request-form-container',

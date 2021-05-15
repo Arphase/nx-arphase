@@ -101,8 +101,8 @@
       "@ivt/u-products": [
         "libs/ui/u-products/src/index.ts"
       ],
-      "@ivt/u-revision-requests": [
-        "libs/ui/u-revision-requests/src/index.ts"
+      "@innovatech/ui/revision-requests": [
+        "libs/innovatech/ui/revision-requests/src/index.ts"
       ],
       "@innovatech/ui/revisions": [
         "libs/innovatech/ui/revisions/src/index.ts"
