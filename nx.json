@@ -46,7 +46,7 @@
     "innovatech-ui-products-data-access": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data-access"] },
     "innovatech-ui-revision-requests": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "innovatech-ui-revisions": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "u-users": { "tags": ["front"] },
+    "innovatech-ui-users": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]  },
     "innovatech-ui-vehicles-feature": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "innovatech-ui-vehicles-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
     "innovatech-ui-vehicles-data-access": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data-access"] },

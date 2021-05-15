@@ -7,5 +7,4 @@ export * from './lib/identity-filter';
 export * from './lib/payment-orders';
 export * from './lib/permissions';
 export * from './lib/state';
-export * from './lib/users';
 export * from './lib/ui-state-config';

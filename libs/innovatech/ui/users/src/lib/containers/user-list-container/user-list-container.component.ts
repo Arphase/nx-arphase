@@ -1,7 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { User } from '@innovatech/common/domain';
-import { IdentityFilterService, UserCollectionService, UserDataService } from '@ivt/u-state';
+import { IdentityFilterService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
+
+import { UserCollectionService } from '../../services/user-collection.service';
+import { UserDataService } from '../../services/user-data.service';
 
 @Component({
   selector: 'ivt-user-list-container',

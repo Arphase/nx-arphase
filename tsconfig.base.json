@@ -113,8 +113,8 @@
       "@ivt/u-tests": [
         "libs/ui/u-tests/src/index.ts"
       ],
-      "@ivt/u-users": [
-        "libs/ui/u-users/src/index.ts"
+      "@innovatech/ui/users": [
+        "libs/innovatech/ui/users/src/index.ts"
       ],
       "@innovatech/ui/vehicles/feature": [
         "libs/innovatech/ui/vehicles/feature/src/index.ts"

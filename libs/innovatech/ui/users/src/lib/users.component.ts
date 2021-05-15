@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'ivt-users',
@@ -6,4 +6,4 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UsersComponent  {}
+export class UsersComponent {}

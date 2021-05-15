@@ -24,7 +24,6 @@ import { CompanyFilterDataService } from '../identity-filter/services/companies/
 import { GroupFilterDataService } from '../identity-filter/services/groups/group-filter-data.service';
 import { UserFilterDataService } from '../identity-filter/services/users/user-filter-data.service';
 import { PaymentOrderDataService } from '../payment-orders';
-import { UserDataService } from '../users';
 import { reducers } from './reducers';
 
 @NgModule({
@@ -64,7 +63,6 @@ export class IvtStateModule {
     groupDataService: GroupDataService,
     groupFilterDataService: GroupFilterDataService,
     paymentOrderDataService: PaymentOrderDataService,
-    userDataService: UserDataService,
     userFilterDataService: UserFilterDataService
   ) {
     const services: Record<string, IvtDataService<unknown>> = {
@@ -73,7 +71,6 @@ export class IvtStateModule {
       Group: groupDataService,
       GroupFilter: groupFilterDataService,
       PaymentOrder: paymentOrderDataService,
-      User: userDataService,
       UserFilter: userFilterDataService,
     };
     entityDataService.registerServices(services);
