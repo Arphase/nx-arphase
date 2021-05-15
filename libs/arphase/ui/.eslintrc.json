@@ -16,7 +16,7 @@
       ],
       "parserOptions": {
         "project": [
-          "libs/arphase/ui/aps-u-ui/tsconfig.*?.json"
+          "libs/arphase/ui/tsconfig.*?.json"
         ]
       },
       "rules": {

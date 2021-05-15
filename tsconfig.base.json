@@ -117,7 +117,7 @@
         "libs/ui/u-vehicles/src/index.ts"
       ],
       "@arphase/ui": [
-        "libs/arphase/ui/aps-u-ui/src/index.ts"
+        "libs/arphase/ui/src/index.ts"
       ]
     }
   },

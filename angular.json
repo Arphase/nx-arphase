@@ -768,23 +768,23 @@
         }
       }
     },
-    "aps-u-ui": {
+    "arphase-ui": {
       "projectType": "library",
-      "root": "libs/arphase/ui/aps-u-ui",
-      "sourceRoot": "libs/arphase/ui/aps-u-ui/src",
+      "root": "libs/arphase/ui",
+      "sourceRoot": "libs/arphase/ui/src",
       "prefix": "aps",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/arphase/ui/aps-u-ui/src/**/*.ts", "libs/arphase/ui/aps-u-ui/src/**/*.html"]
+            "lintFilePatterns": ["libs/arphase/ui/src/**/*.ts", "libs/arphase/ui/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/ui/aps-u-ui"],
+          "outputs": ["coverage/libs/arphase/ui"],
           "options": {
-            "jestConfig": "libs/arphase/ui/aps-u-ui/jest.config.js",
+            "jestConfig": "libs/arphase/ui/jest.config.js",
             "passWithNoTests": true
           }
         }

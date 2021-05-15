@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'aps-u-ui',
+  displayName: 'arphase-ui',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../../../coverage/libs/arphase/ui/aps-u-ui',
+  coverageDirectory: '../../../../coverage/libs/arphase/ui/arphase-ui',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',
