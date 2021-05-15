@@ -38,7 +38,7 @@
     "u-auth": { "tags": ["front"] },
     "u-dashboard": { "tags": ["front"] },
     "u-guarantees": { "tags": ["front"] },
-    "u-spa": { "tags": ["front"] },
+    "innovatech-ui-spa": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "u-state": { "tags": ["front"] },
     "u-ui": { "tags": ["front"] },
     "u-groups": { "tags": ["front"] },

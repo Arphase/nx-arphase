@@ -80,6 +80,13 @@
                   "domain:innovatech",
                   "domain:shared"
                 ]
+              },
+              {
+                "sourceTag": "domain:innovatech:ui",
+                "onlyDependOnLibsWithTags": [
+                  "domain:innovatech",
+                  "domain:innovatech:ui"
+                ]
               }
             ]
           }

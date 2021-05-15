@@ -9,7 +9,7 @@ export const routes: Routes = [
   },
   {
     path: 'spa',
-    loadChildren: () => import('@ivt/u-spa').then(m => m.SpaModule),
+    loadChildren: () => import('@innovatech/ui/spa').then(m => m.SpaModule),
     canActivate: [AuthGuard],
   },
   {

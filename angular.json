@@ -285,25 +285,25 @@
         }
       }
     },
-    "u-spa": {
+    "innovatech-ui-spa": {
       "projectType": "library",
-      "root": "libs/ui/u-spa",
-      "sourceRoot": "libs/ui/u-spa/src",
+      "root": "libs/innovatech/ui/spa",
+      "sourceRoot": "libs/innovatech/ui/spa/src",
       "prefix": "ivt",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ui/u-spa/**/*.ts"]
+            "lintFilePatterns": ["libs/innovatech/ui/spa/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/ui/u-spa/jest.config.js",
-            "tsConfig": "libs/ui/u-spa/tsconfig.spec.json",
+            "jestConfig": "libs/innovatech/ui/spa/jest.config.js",
+            "tsConfig": "libs/innovatech/ui/spa/tsconfig.spec.json",
             "passWithNoTests": true,
-            "setupFile": "libs/ui/u-spa/src/test-setup.ts"
+            "setupFile": "libs/innovatech/ui/spa/src/test-setup.ts"
           }
         }
       }
