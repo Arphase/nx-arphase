@@ -104,8 +104,8 @@
       "@ivt/u-revision-requests": [
         "libs/ui/u-revision-requests/src/index.ts"
       ],
-      "@ivt/u-revisions": [
-        "libs/ui/u-revisions/src/index.ts"
+      "@innovatech/ui/revisions": [
+        "libs/innovatech/ui/revisions/src/index.ts"
       ],
       "@ivt/u-tests": [
         "libs/ui/u-tests/src/index.ts"

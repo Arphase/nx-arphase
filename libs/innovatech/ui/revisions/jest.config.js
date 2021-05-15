@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'u-revisions',
-  preset: '../../../jest.preset.js',
+  displayName: 'innovatech-ui-revisions',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../../coverage/libs/u-revisions',
+  coverageDirectory: '../../../../coverage/libs/innovatech/ui/revisions',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

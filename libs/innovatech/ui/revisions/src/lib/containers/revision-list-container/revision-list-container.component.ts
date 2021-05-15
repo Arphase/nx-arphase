@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Revision, UserRoles } from '@innovatech/common/domain';
-import { IdentityFilterService, PermissionService, RevisionCollectionService, RevisionDataService } from '@ivt/u-state';
+import { IdentityFilterService, PermissionService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import dayjs from 'dayjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { RevisionCollectionService } from '../../services/revision-collection.service';
+import { RevisionDataService } from '../../services/revision-data.service';
 
 @Component({
   selector: 'ivt-revision-list-container',

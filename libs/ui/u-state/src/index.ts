@@ -8,7 +8,6 @@ export * from './lib/payment-orders';
 export * from './lib/permissions';
 export * from './lib/products';
 export * from './lib/revision-requests';
-export * from './lib/revisions';
 export * from './lib/state';
 export * from './lib/users';
 export * from './lib/ui-state-config';

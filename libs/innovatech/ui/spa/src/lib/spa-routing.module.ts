@@ -36,7 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'revisions',
-        loadChildren: () => import('@ivt/u-revisions').then(m => m.RevisionsModule),
+        loadChildren: () => import('@innovatech/ui/revisions').then(m => m.RevisionsModule),
       },
       {
         path: 'revision-requests',

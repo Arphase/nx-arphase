@@ -8,7 +8,7 @@ import {
   getVehiclesVehicleState,
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data-access';
-import { PermissionService, RevisionCollectionService, selectQueryParam } from '@ivt/u-state';
+import { PermissionService, selectQueryParam } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
@@ -17,6 +17,7 @@ import { combineLatest } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 import { createRevisionForm } from '../../components/revision-form/revision-form.component';
+import { RevisionCollectionService } from '../../services/revision-collection.service';
 
 @Component({
   selector: 'ivt-revision-form-container',

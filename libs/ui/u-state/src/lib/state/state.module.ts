@@ -26,7 +26,6 @@ import { UserFilterDataService } from '../identity-filter/services/users/user-fi
 import { PaymentOrderDataService } from '../payment-orders';
 import { ProductDataService } from '../products';
 import { RevisionRequestDataService } from '../revision-requests';
-import { RevisionDataService } from '../revisions';
 import { UserDataService } from '../users';
 import { reducers } from './reducers';
 
@@ -69,7 +68,6 @@ export class IvtStateModule {
     paymentOrderDataService: PaymentOrderDataService,
     productDataService: ProductDataService,
     revisionRequestDataService: RevisionRequestDataService,
-    revisionDataService: RevisionDataService,
     userDataService: UserDataService,
     userFilterDataService: UserFilterDataService
   ) {
@@ -81,7 +79,6 @@ export class IvtStateModule {
       PaymentOrder: paymentOrderDataService,
       Product: productDataService,
       RevisionRequest: revisionRequestDataService,
-      Revision: revisionDataService,
       User: userDataService,
       UserFilter: userFilterDataService,
     };

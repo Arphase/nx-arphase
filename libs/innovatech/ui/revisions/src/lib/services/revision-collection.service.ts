@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Revision } from '@innovatech/common/domain';
+import { IvtCollectionService } from '@ivt/u-state';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
-
-import { IvtCollectionService } from '../../core';
 
 @Injectable({
   providedIn: 'root',
