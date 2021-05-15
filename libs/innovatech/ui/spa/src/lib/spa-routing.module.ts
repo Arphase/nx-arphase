@@ -16,7 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'guarantees',
-        loadChildren: () => import('@ivt/u-guarantees').then(m => m.GuaranteesModule),
+        loadChildren: () => import('@innovatech/ui/guarantees').then(m => m.GuaranteesModule),
       },
       {
         path: 'groups',

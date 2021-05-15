@@ -80,8 +80,8 @@
       "@ivt/u-ui": [
         "libs/ui/u-ui/src/index.ts"
       ],
-      "@ivt/u-guarantees": [
-        "libs/ui/u-guarantees/src/index.ts"
+      "@innovatech/ui/guarantees": [
+        "libs/innovatech/ui/guarantees/src/index.ts"
       ],
       "@ivt/u-auth": [
         "libs/ui/u-auth/src/index.ts"

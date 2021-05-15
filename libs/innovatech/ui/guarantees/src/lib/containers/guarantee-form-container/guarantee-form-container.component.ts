@@ -7,7 +7,6 @@ import {
   fromVehicles,
   getVehiclesErrorMessageState,
   getVehiclesVehicleState,
-  GuaranteeCollectionService,
   IvtEntityCollection,
   PermissionService,
   ProductCollectionService,
@@ -23,6 +22,7 @@ import { combineLatest } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 import { createGuaranteeForm } from '../../components/guarantee-form/guarantee-form.component';
+import { GuaranteeCollectionService } from '../../services/guarantee-collection.service';
 
 @Component({
   selector: 'ivt-guarantee-form-container',

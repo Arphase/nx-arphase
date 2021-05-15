@@ -37,7 +37,7 @@
     "a-vehicles": { "tags": ["back"] },
     "u-auth": { "tags": ["front"] },
     "innovatech-ui-dashboard": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "u-guarantees": { "tags": ["front"] },
+    "innovatech-ui-guarantees": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "innovatech-ui-spa": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "u-state": { "tags": ["front"] },
     "u-ui": { "tags": ["front"] },

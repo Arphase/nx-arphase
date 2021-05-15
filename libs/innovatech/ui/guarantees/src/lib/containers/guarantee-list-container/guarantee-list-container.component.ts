@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Guarantee, GuaranteeStatus, statusLabels, transformFolio, UserRoles } from '@innovatech/common/domain';
 import {
-  GuaranteeCollectionService,
-  GuaranteeDataService,
   IdentityFilterService,
   PaymentOrderCollectionService,
   PaymentOrderDataService,
@@ -13,6 +11,8 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
+import { GuaranteeCollectionService } from '../../services/guarantee-collection.service';
+import { GuaranteeDataService } from '../../services/guarantee-data.service';
 
 import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
 

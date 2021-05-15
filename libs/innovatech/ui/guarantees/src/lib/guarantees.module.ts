@@ -14,6 +14,7 @@ import {
   IvtUppercaseModule,
 } from '@ivt/u-ui';
 import { VehicleFormModule } from '@ivt/u-vehicles';
+import { EntityDataService } from '@ngrx/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -48,6 +49,7 @@ import { GuaranteeListContainerComponent } from './containers/guarantee-list-con
 import { PaymentOrderDialogContainerComponent } from './containers/payment-order-dialog-container/payment-order-dialog-container.component';
 import { GuaranteesRoutingModule } from './guarantees-routing.module';
 import { GuaranteesComponent } from './guarantees.component';
+import { GuaranteeDataService } from './services/guarantee-data.service';
 
 @NgModule({
   imports: [
@@ -104,4 +106,8 @@ import { GuaranteesComponent } from './guarantees.component';
     GuaranteeRowDetailsComponent,
   ],
 })
-export class GuaranteesModule {}
+export class GuaranteesModule {
+  constructor(entityDataService: EntityDataService, guaranteeDataService: GuaranteeDataService) {
+    entityDataService.registerService('Guarantee', guaranteeDataService);
+  }
+}
