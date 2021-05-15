@@ -2,13 +2,13 @@
  * This is not a production server yet!
  * This is only a minimal backend to get started.
  */
-import { environment } from '@api/env/environment';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as Sentry from '@sentry/node';
 import * as bodyParser from 'body-parser';
 
 import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
 import { SentryInterceptor } from './sentry.inerceptor';
 
 async function bootstrap() {

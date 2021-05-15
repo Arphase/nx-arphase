@@ -1,6 +1,6 @@
 module.exports = {
-  name: 'ivt-app',
-  preset: '../../jest.preset.js',
+  name: 'innovatech-app',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../coverage/apps/ivt-app',
+  coverageDirectory: '../../../coverage/apps/innovatech/app',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

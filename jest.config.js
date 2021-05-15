@@ -1,6 +1,6 @@
 module.exports = {
   projects: [
-    '<rootDir>/apps/ivt-app',
+    '<rootDir>/apps/innovatech/app',
     '<rootDir>/libs/api/a-auth',
     '<rootDir>/libs/ui/u-auth',
     '<rootDir>/libs/api/a-revisions',

@@ -1,5 +1,5 @@
 {
-  "extends": "../../.eslintrc.json",
+  "extends": "../../../.eslintrc.json",
   "ignorePatterns": [
     "!**/*"
   ],
@@ -10,28 +10,12 @@
       ],
       "parserOptions": {
         "project": [
-          "apps/ivt-app/tsconfig.app.json",
-          "apps/ivt-app/tsconfig.spec.json"
+          "apps/innovatech/api/tsconfig.app.json",
+          "apps/innovatech/api/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
       },
       "rules": {
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "type": "element",
-            "prefix": "app",
-            "style": "kebab-case"
-          }
-        ],
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "type": "attribute",
-            "prefix": "app",
-            "style": "camelCase"
-          }
-        ],
         "@typescript-eslint/consistent-type-definitions": "error",
         "@typescript-eslint/dot-notation": "off",
         "@typescript-eslint/explicit-member-accessibility": [

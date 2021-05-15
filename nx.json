@@ -21,7 +21,8 @@
     }
   },
   "projects": {
-    "innovatech-api": { "tags": ["back"] },
+    "innovatech-api": { "tags": ["domain:innovatech", "executable:backend"] },
+    "innovatech-app": { "tags": ["domain:innovatech", "executable:frontend"] },
     "a-auth": { "tags": ["back"] },
     "a-companies": { "tags": ["back"] },
     "a-groups": { "tags": ["back"] },
@@ -47,7 +48,6 @@
     "u-users": { "tags": ["front"] },
     "u-vehicles": { "tags": ["front"] },
     "arphase-ui": { "tags": ["domain:arphase", "type:ui"] },
-    "ivt-app": { "tags": ["mobile"] },
     "innovatech-domain": { "tags": ["domain:innovatech", "type:domain-logic"] },
     "innovatech-utils": { "tags": ["domain:innovatech", "type:util"] }
   }

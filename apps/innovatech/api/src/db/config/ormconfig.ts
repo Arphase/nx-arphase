@@ -1,6 +1,6 @@
-import { environment } from '@api/env/environment';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
+import { environment } from '../../environments/environment';
 import { ENTITIES } from './entities';
 
 const config: TypeOrmModuleOptions = {
@@ -23,7 +23,7 @@ const config: TypeOrmModuleOptions = {
     // to be compiled into dist/ folder.
     migrationsDir: 'apps/innovatech-api/src/db/migrations',
   },
-  logging: true
+  logging: true,
 };
 
 export = config;

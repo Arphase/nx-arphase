@@ -1,33 +1,33 @@
 {
   "version": 1,
   "projects": {
-    "ivt-app": {
+    "innovatech-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "less"
         }
       },
-      "root": "apps/ivt-app/",
-      "sourceRoot": "apps/ivt-app/src",
+      "root": "apps/innovatech/app/",
+      "sourceRoot": "apps/innovatech/app/src",
       "prefix": "ivt",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/ivt-app",
-            "index": "apps/ivt-app/src/index.html",
-            "main": "apps/ivt-app/src/main.ts",
-            "polyfills": "apps/ivt-app/src/polyfills.ts",
-            "tsConfig": "apps/ivt-app/tsconfig.app.json",
+            "outputPath": "dist/apps/innovatech/app",
+            "index": "apps/innovatech/app/src/index.html",
+            "main": "apps/innovatech/app/src/main.ts",
+            "polyfills": "apps/innovatech/app/src/polyfills.ts",
+            "tsConfig": "apps/innovatech/app/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "apps/ivt-app/src/favicon.ico",
-              "apps/ivt-app/src/assets",
-              "apps/ivt-app/src/manifest.webmanifest"
+              "apps/innovatech/app/src/favicon.ico",
+              "apps/innovatech/app/src/assets",
+              "apps/innovatech/app/src/manifest.webmanifest"
             ],
             "styles": [
-              "apps/ivt-app/src/styles.less",
+              "apps/innovatech/app/src/styles.less",
               {
                 "input": "libs/ui/u-ui/src/styles/default.less",
                 "bundleName": "default",
@@ -48,8 +48,8 @@
             "stage": {
               "fileReplacements": [
                 {
-                  "replace": "apps/ivt-app/src/environments/environment.ts",
-                  "with": "apps/ivt-app/src/environments/environment.stage.ts"
+                  "replace": "apps/innovatech/app/src/environments/environment.ts",
+                  "with": "apps/innovatech/app/src/environments/environment.stage.ts"
                 }
               ],
               "sourceMap": {
@@ -75,13 +75,13 @@
                 }
               ],
               "serviceWorker": true,
-              "ngswConfigPath": "apps/ivt-app/ngsw-config.json"
+              "ngswConfigPath": "apps/innovatech/app/ngsw-config.json"
             },
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/ivt-app/src/environments/environment.ts",
-                  "with": "apps/ivt-app/src/environments/environment.prod.ts"
+                  "replace": "apps/innovatech/app/src/environments/environment.ts",
+                  "with": "apps/innovatech/app/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -102,18 +102,18 @@
                 }
               ],
               "serviceWorker": true,
-              "ngswConfigPath": "apps/ivt-app/ngsw-config.json"
+              "ngswConfigPath": "apps/innovatech/app/ngsw-config.json"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ivt-app:build"
+            "browserTarget": "innovatech-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ivt-app:build:production"
+              "browserTarget": "innovatech-app:build:production"
             },
             "ci": {
               "progress": false
@@ -123,50 +123,50 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ivt-app:build"
+            "browserTarget": "innovatech-app:build"
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/ivt-app/jest.config.js"
+            "jestConfig": "apps/innovatech/app/jest.config.js"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/ivt-app/**/*.ts"]
+            "lintFilePatterns": ["apps/innovatech/app/**/*.ts"]
           }
         },
         "ionic-cordova-build": {
           "builder": "@ionic/angular-toolkit:cordova-build",
           "options": {
-            "browserTarget": "ivt-app:build"
+            "browserTarget": "innovatech-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ivt-app:build:production"
+              "browserTarget": "innovatech-app:build:production"
             }
           }
         },
         "ionic-cordova-serve": {
           "builder": "@ionic/angular-toolkit:cordova-serve",
           "options": {
-            "cordovaBuildTarget": "ivt-app:ionic-cordova-build",
-            "devServerTarget": "ivt-app:serve"
+            "cordovaBuildTarget": "innovatech-app:ionic-cordova-build",
+            "devServerTarget": "innovatech-app:serve"
           },
           "configurations": {
             "production": {
-              "cordovaBuildTarget": "ivt-app:ionic-cordova-build:production",
-              "devServerTarget": "ivt-app:serve:production"
+              "cordovaBuildTarget": "innovatech-app:ionic-cordova-build:production",
+              "devServerTarget": "innovatech-app:serve:production"
             }
           }
         }
       }
     },
     "innovatech-api": {
-      "root": "apps/innovatech-api",
-      "sourceRoot": "apps/innovatech-api/src",
+      "root": "apps/innovatech/api",
+      "sourceRoot": "apps/innovatech/api/src",
       "projectType": "application",
       "prefix": "ivt",
       "schematics": {},
@@ -174,10 +174,10 @@
         "build": {
           "builder": "@nrwl/node:build",
           "options": {
-            "outputPath": "dist/apps/innovatech-api",
-            "main": "apps/innovatech-api/src/main.ts",
-            "tsConfig": "apps/innovatech-api/tsconfig.app.json",
-            "assets": ["apps/innovatech-api/src/assets"],
+            "outputPath": "dist/apps/innovatech/api",
+            "main": "apps/innovatech/api/src/main.ts",
+            "tsConfig": "apps/innovatech/api/tsconfig.app.json",
+            "assets": ["apps/innovatech/api/src/assets"],
             "showCircularDependencies": false
           },
           "configurations": {
@@ -187,8 +187,8 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/innovatech-api/src/environments/environment.ts",
-                  "with": "apps/innovatech-api/src/environments/environment.prod.ts"
+                  "replace": "apps/innovatech/api/src/environments/environment.ts",
+                  "with": "apps/innovatech/api/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -203,14 +203,14 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/innovatech-api/**/*.ts"]
+            "lintFilePatterns": ["apps/innovatech/api/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/innovatech-api/jest.config.js",
-            "tsConfig": "apps/innovatech-api/tsconfig.spec.json",
+            "jestConfig": "apps/innovatech/api/jest.config.js",
+            "tsConfig": "apps/innovatech/api/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -857,5 +857,5 @@
       "changeDetection": "OnPush"
     }
   },
-  "defaultProject": "ivt-app"
+  "defaultProject": "innovatech-app"
 }
