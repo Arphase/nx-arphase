@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
 import { ProductsDataModule } from '@innovatech/ui/products/data-access';
-import { GroupsDataModule, PermissionsModule } from '@ivt/u-state';
+import { PermissionsModule } from '@ivt/u-state';
 import {
   IvtAddressFormModule,
   IvtEmptyModule,
@@ -11,6 +11,9 @@ import {
   IvtSearchbarModule,
   IvtUppercaseModule,
 } from '@ivt/u-ui';
+import { EntityDataService } from '@ngrx/data';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -44,6 +47,9 @@ import { GroupFormContainerComponent } from './containers/group-form-container/g
 import { GroupListContainerComponent } from './containers/group-list-container/group-list-container.component';
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsComponent } from './groups.component';
+import { GroupDataService } from './services/group-data.service';
+import { GroupsEffects } from './state/groups.effects';
+import { reducer } from './state/groups.reducer';
 
 @NgModule({
   imports: [
@@ -74,11 +80,12 @@ import { GroupsComponent } from './groups.component';
     NzDividerModule,
     NzTableModule,
     IvtUppercaseModule,
-    GroupsDataModule,
     NzTransferModule,
     NzAlertModule,
     NzSpinModule,
     ProductsDataModule,
+    StoreModule.forFeature('groups', reducer),
+    EffectsModule.forFeature([GroupsEffects]),
   ],
   declarations: [
     GroupsComponent,
@@ -95,4 +102,8 @@ import { GroupsComponent } from './groups.component';
   ],
   entryComponents: [CompanyFormDialogComponent],
 })
-export class GroupsModule {}
+export class GroupsModule {
+  constructor(entityDataService: EntityDataService, groupDataService: GroupDataService) {
+    entityDataService.registerService('Group', groupDataService);
+  }
+}

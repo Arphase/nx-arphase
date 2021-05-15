@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
-import { GroupDataService } from '../services';
+import { GroupDataService } from '../services/group-data.service';
 import * as GroupsActions from './groups.actions';
 
 @Injectable()

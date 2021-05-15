@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'u-groups',
+  displayName: 'innovatech-ui-groups',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../../coverage/libs/u-groups',
+  coverageDirectory: '../../../coverage/libs/innovatech/ui/groups',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

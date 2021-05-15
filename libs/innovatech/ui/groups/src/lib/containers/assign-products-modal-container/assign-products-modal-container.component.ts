@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ProductCollectionService } from '@innovatech/ui/products/data-access';
-import { fromGroups, getGroupsProductsState, LoadingService } from '@ivt/u-state';
+import { LoadingService } from '@ivt/u-state';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -8,6 +8,13 @@ import { NzModalRef } from 'ng-zorro-antd/modal';
 import { take } from 'rxjs/operators';
 
 import { AssignProductsModalComponent } from '../../components/assign-products-modal/assign-products-modal.component';
+import {
+  assignGroupProducts,
+  assignGroupProductsSuccess,
+  clearGroupsStore,
+  getGroupProducts,
+} from '../../state/groups.actions';
+import { getGroupsProductsState } from '../../state/groups.selectors';
 
 @Component({
   selector: 'ivt-assign-products-modal-container',
@@ -33,8 +40,8 @@ export class AssignProductsModalContainerComponent implements OnInit, OnDestroy 
 
   ngOnInit(): void {
     this.productCollectionService.getWithQuery({});
-    this.store.dispatch(fromGroups.actions.getGroupProducts({ groupId: this.groupId }));
-    this.actions$.pipe(ofType(fromGroups.actions.assignGroupProductsSuccess), take(1)).subscribe(() => {
+    this.store.dispatch(getGroupProducts({ groupId: this.groupId }));
+    this.actions$.pipe(ofType(assignGroupProductsSuccess), take(1)).subscribe(() => {
       this.messageService.success('Los productos del grupo se han actualizado con éxito');
       this.modalRef.close();
     });
@@ -47,10 +54,10 @@ export class AssignProductsModalContainerComponent implements OnInit, OnDestroy 
 
   submit(productIds: number[]): void {
     const payload = { groupId: this.groupId, productIds };
-    this.store.dispatch(fromGroups.actions.assignGroupProducts({ payload }));
+    this.store.dispatch(assignGroupProducts({ payload }));
   }
 
   ngOnDestroy() {
-    this.store.dispatch(fromGroups.actions.clearGroupsStore());
+    this.store.dispatch(clearGroupsStore());
   }
 }

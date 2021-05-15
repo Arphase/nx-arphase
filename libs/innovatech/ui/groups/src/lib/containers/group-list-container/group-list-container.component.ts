@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Group } from '@innovatech/common/domain';
-import { GroupCollectionService, GroupDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
+import { GroupCollectionService } from '../../services/group-collection.service';
+import { GroupDataService } from '../../services/group-data.service';
 import { AssignProductsModalContainerComponent } from '../assign-products-modal-container/assign-products-modal-container.component';
 
 @Component({

@@ -19,7 +19,6 @@ import { TokenInterceptor } from '../core/interceptors/token-interceptor';
 import { AdditionalEntityCollectionReducerMethodsFactory } from '../entities';
 import { entityConfig } from '../entities/entity.metadata';
 import { AdditionalPropertyPersistenceResultHandler } from '../entities/results.handler';
-import { GroupDataService } from '../groups/services/group-data.service';
 import { CompanyFilterDataService } from '../identity-filter/services/companies/company-filter-data.service';
 import { GroupFilterDataService } from '../identity-filter/services/groups/group-filter-data.service';
 import { UserFilterDataService } from '../identity-filter/services/users/user-filter-data.service';
@@ -60,7 +59,6 @@ export class IvtStateModule {
     entityDataService: EntityDataService,
     companyDataService: CompanyDataService,
     companyFilterDataService: CompanyFilterDataService,
-    groupDataService: GroupDataService,
     groupFilterDataService: GroupFilterDataService,
     paymentOrderDataService: PaymentOrderDataService,
     userFilterDataService: UserFilterDataService
@@ -68,7 +66,6 @@ export class IvtStateModule {
     const services: Record<string, IvtDataService<unknown>> = {
       Company: companyDataService,
       CompanyFilter: companyFilterDataService,
-      Group: groupDataService,
       GroupFilter: groupFilterDataService,
       PaymentOrder: paymentOrderDataService,
       UserFilter: userFilterDataService,

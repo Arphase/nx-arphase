@@ -95,8 +95,8 @@
       "@ivt/u-state": [
         "libs/ui/u-state/src/index.ts"
       ],
-      "@ivt/u-groups": [
-        "libs/ui/u-groups/src/index.ts"
+      "@innovatech/ui/groups": [
+        "libs/innovatech/ui/groups/src/index.ts"
       ],
       "@innovatech/ui/products/feature": [
         "libs/innovatech/ui/products/feature/src/index.ts"
@@ -109,9 +109,6 @@
       ],
       "@innovatech/ui/revisions": [
         "libs/innovatech/ui/revisions/src/index.ts"
-      ],
-      "@ivt/u-tests": [
-        "libs/ui/u-tests/src/index.ts"
       ],
       "@innovatech/ui/users": [
         "libs/innovatech/ui/users/src/index.ts"

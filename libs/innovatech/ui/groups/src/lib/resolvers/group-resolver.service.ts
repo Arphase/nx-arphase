@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Group } from '@innovatech/common/domain';
-import { GroupCollectionService } from '@ivt/u-state';
 import { Observable, of } from 'rxjs';
+
+import { GroupCollectionService } from '../services/group-collection.service';
 
 @Injectable({
   providedIn: 'root',

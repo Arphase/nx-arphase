@@ -24,7 +24,7 @@ const routes: Routes = [
         data: {
           roles: [UserRoles.superAdmin],
         },
-        loadChildren: () => import('@ivt/u-groups').then(m => m.GroupsModule),
+        loadChildren: () => import('@innovatech/ui/groups').then(m => m.GroupsModule),
       },
       {
         path: 'users',
