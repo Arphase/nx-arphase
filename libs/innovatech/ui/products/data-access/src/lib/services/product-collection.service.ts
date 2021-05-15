@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Product } from '@innovatech/common/domain';
 import { mapToSelectOptions } from '@innovatech/common/utils';
+import { IvtCollectionService } from '@ivt/u-state';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
-
-import { IvtCollectionService } from '../../core';
 
 @Injectable({
   providedIn: 'root',

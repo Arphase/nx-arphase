@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule, ApsAutoSelectModule } from '@arphase/ui';
+import { ProductsDataModule } from '@innovatech/ui/products/data-access';
 import { VehiclesDataModule } from '@innovatech/ui/vehicles/data-access';
 import { VehicleFormModule } from '@innovatech/ui/vehicles/ui';
 import { PermissionsModule } from '@ivt/u-state';
@@ -95,6 +96,7 @@ import { GuaranteeDataService } from './services/guarantee-data.service';
     NzAlertModule,
     NzTagModule,
     IvtUppercaseModule,
+    ProductsDataModule,
   ],
   declarations: [
     GuaranteeFormComponent,

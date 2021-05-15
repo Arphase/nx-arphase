@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { glossary, Product } from '@innovatech/common/domain';
 import { filterNil, sortSelectOptions } from '@innovatech/common/utils';
-import { ProductDataService } from '@ivt/u-state';
+import { ProductDataService } from '@innovatech/ui/products/data-access';
 import { IvtFormComponent } from '@ivt/u-ui';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzUploadChangeParam, NzUploadFile, NzUploadXHRArgs } from 'ng-zorro-antd/upload';

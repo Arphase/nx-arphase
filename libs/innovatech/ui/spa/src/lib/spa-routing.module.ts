@@ -44,7 +44,7 @@ const routes: Routes = [
       },
       {
         path: 'products',
-        loadChildren: () => import('@ivt/u-products').then(m => m.ProductsModule),
+        loadChildren: () => import('@innovatech/ui/products/feature').then(m => m.ProductsModule),
       },
       {
         path: '',

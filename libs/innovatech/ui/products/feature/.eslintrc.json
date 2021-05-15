@@ -1,5 +1,7 @@
 {
-  "extends": "../../../.eslintrc.json",
+  "extends": [
+    "../../../../../.eslintrc.json"
+  ],
   "ignorePatterns": [
     "!**/*"
   ],
@@ -10,8 +12,7 @@
       ],
       "parserOptions": {
         "project": [
-          "libs/ui/u-products/tsconfig.lib.json",
-          "libs/ui/u-products/tsconfig.spec.json"
+          "libs/innovatech/ui/products/feature/tsconfig.*?.json"
         ],
         "createDefaultProgram": true
       },

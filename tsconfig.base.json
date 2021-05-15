@@ -98,8 +98,11 @@
       "@ivt/u-groups": [
         "libs/ui/u-groups/src/index.ts"
       ],
-      "@ivt/u-products": [
-        "libs/ui/u-products/src/index.ts"
+      "@innovatech/ui/products/feature": [
+        "libs/innovatech/ui/products/feature/src/index.ts"
+      ],
+      "@innovatech/ui/products/data-access": [
+        "libs/innovatech/ui/products/data-access/src/index.ts"
       ],
       "@innovatech/ui/revision-requests": [
         "libs/innovatech/ui/revision-requests/src/index.ts"

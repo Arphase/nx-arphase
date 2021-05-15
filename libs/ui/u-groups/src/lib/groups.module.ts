@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
+import { ProductsDataModule } from '@innovatech/ui/products/data-access';
 import { GroupsDataModule, PermissionsModule } from '@ivt/u-state';
 import {
   IvtAddressFormModule,
@@ -24,12 +25,12 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NgxMaskModule } from 'ngx-mask';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 import { AssignProductsModalComponent } from './components/assign-products-modal/assign-products-modal.component';
 import { CompanyFormDialogComponent } from './components/company-form-dialog/company-form-dialog.component';
@@ -76,7 +77,8 @@ import { GroupsComponent } from './groups.component';
     GroupsDataModule,
     NzTransferModule,
     NzAlertModule,
-    NzSpinModule
+    NzSpinModule,
+    ProductsDataModule,
   ],
   declarations: [
     GroupsComponent,

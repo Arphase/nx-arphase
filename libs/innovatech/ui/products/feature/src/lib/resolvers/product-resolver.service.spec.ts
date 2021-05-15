@@ -1,4 +1,4 @@
-import { ProductCollectionService } from '@ivt/u-state';
+import { ProductCollectionService } from '@innovatech/ui/products/data-access';
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
 import { ProductResolverService } from './product-resolver.service';

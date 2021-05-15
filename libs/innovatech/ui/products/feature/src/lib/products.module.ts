@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductsDataModule } from '@innovatech/ui/products/data-access';
 import { IvtEmptyModule, IvtFolioModule, IvtSearchbarModule } from '@ivt/u-ui';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -53,6 +54,7 @@ import { ProductsComponent } from './products.component';
     NzDividerModule,
     NzTableModule,
     NzAlertModule,
+    ProductsDataModule,
     QuillModule.forRoot(),
   ],
   declarations: [

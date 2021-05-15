@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { fromGroups, getGroupsProductsState, LoadingService, ProductCollectionService } from '@ivt/u-state';
+import { ProductCollectionService } from '@innovatech/ui/products/data-access';
+import { fromGroups, getGroupsProductsState, LoadingService } from '@ivt/u-state';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';

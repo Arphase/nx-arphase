@@ -12,5 +12,6 @@ module.exports = {
     '<rootDir>/libs/innovatech/common/utils',
     '<rootDir>/libs/innovatech/ui/vehicles/innovatech-ui-vehicles-feature',
     '<rootDir>/libs/innovatech/ui/vehicles/innovatech-ui-vehicles-data-access',
+    '<rootDir>/libs/innovatech/ui/products/innovatech-ui-products-data-access',
   ],
 };

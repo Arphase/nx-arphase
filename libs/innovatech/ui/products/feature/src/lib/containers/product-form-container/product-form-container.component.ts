@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '@innovatech/common/domain';
-import { ProductCollectionService } from '@ivt/u-state';
+import { ProductCollectionService } from '@innovatech/ui/products/data-access';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
