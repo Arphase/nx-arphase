@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { fromGroups, getGroupsProductsState, IvtState, LoadingService, ProductCollectionService } from '@ivt/u-state';
+import { fromGroups, getGroupsProductsState, LoadingService, ProductCollectionService } from '@ivt/u-state';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -23,7 +23,7 @@ export class AssignProductsModalContainerComponent implements OnInit, OnDestroy 
 
   constructor(
     private productCollectionService: ProductCollectionService,
-    private store: Store<IvtState>,
+    private store: Store,
     private actions$: Actions,
     private modalRef: NzModalRef,
     private messageService: NzMessageService,

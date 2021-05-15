@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { getAuthUserRoleState } from '../../auth';
-import { IvtState } from '../../state';
 
 export const REQUIRED_ROLES = new InjectionToken<UserRoles[]>(
   'Required Roles which the user must have to complete an action (CRUD privileges)'
@@ -18,7 +17,7 @@ export const REQUIRED_ROLES = new InjectionToken<UserRoles[]>(
 export class PermissionService {
   userRole$ = this.store.pipe(select(getAuthUserRoleState));
 
-  constructor(private store: Store<IvtState>) {}
+  constructor(private store: Store) {}
 
   hasReadPermission(roles: UserRoles[]): Observable<boolean> {
     return this.userRole$.pipe(

@@ -9,7 +9,6 @@ import {
   getVehiclesErrorState,
   getVehiclesVehicleState,
   IvtEntityCollection,
-  IvtState,
   PermissionService,
   VehicleCollectionService,
 } from '@ivt/u-state';
@@ -63,7 +62,7 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
     protected vehicleCollectionService: VehicleCollectionService,
     protected router: Router,
     protected messageService: NzMessageService,
-    private store: Store<IvtState>,
+    private store: Store,
     private companyCollectionService: CompanyCollectionService,
     private permissionService: PermissionService,
     private route: ActivatedRoute

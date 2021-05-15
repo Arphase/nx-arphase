@@ -5,14 +5,13 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { IvtState } from '../../state';
 import { getAuthUserStateState } from '../state/auth.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private store: Store<IvtState>, private http: HttpClient) {}
+  constructor(private store: Store, private http: HttpClient) {}
 
   signIn(payload: SignInRequest): Observable<User> {
     return this.http.post<User>(`/ivtApi/auth/signIn`, payload);

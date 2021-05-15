@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, UrlTree } from '@angular/router';
 import { UserRoles } from '@innovatech/common/domain';
-import { getAuthUserRoleState, IvtState } from '@ivt/u-state';
+import { getAuthUserRoleState } from '@ivt/u-state';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 export class RoleGuard implements CanActivate {
   spaUrlTree = this.router.parseUrl('/spa');
 
-  constructor(private store: Store<IvtState>, private router: Router) {}
+  constructor(private store: Store, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
     return this.store.pipe(

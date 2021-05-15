@@ -1,5 +1,5 @@
 {
-  "extends": "../../../.eslintrc.json",
+  "extends": "../../../../.eslintrc.json",
   "ignorePatterns": [
     "!**/*"
   ],
@@ -10,8 +10,8 @@
       ],
       "parserOptions": {
         "project": [
-          "libs/ui/u-dashboard/tsconfig.lib.json",
-          "libs/ui/u-dashboard/tsconfig.spec.json"
+          "libs/innovatech/ui/dashboard/tsconfig.lib.json",
+          "libs/innovatech/ui/dashboard/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
       },

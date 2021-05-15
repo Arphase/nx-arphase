@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { User } from '@innovatech/common/domain';
-import { fromAuth, IvtState, LoadingService } from '@ivt/u-state';
+import { fromAuth, LoadingService } from '@ivt/u-state';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { mapTo } from 'rxjs/operators';
@@ -15,7 +15,7 @@ export class ResetPasswordFormContainerComponent {
   emailSent$ = this.actions$.pipe(ofType(fromAuth.actions.sendPasswordEmailSuccess), mapTo(true));
   loading$ = this.loadingService.loading$;
 
-  constructor(private store: Store<IvtState>, private actions$: Actions, private loadingService: LoadingService) {}
+  constructor(private store: Store, private actions$: Actions, private loadingService: LoadingService) {}
 
   submit(payload: Partial<User>): void {
     this.store.dispatch(fromAuth.actions.sendPasswordEmail({ payload }));

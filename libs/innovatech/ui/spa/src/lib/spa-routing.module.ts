@@ -12,7 +12,7 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadChildren: () => import('@ivt/u-dashboard').then(m => m.DashboardModule),
+        loadChildren: () => import('@innovatech/ui/dashboard').then(m => m.DashboardModule),
       },
       {
         path: 'guarantees',

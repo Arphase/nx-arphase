@@ -6,7 +6,6 @@ import {
   fromVehicles,
   getVehiclesErrorMessageState,
   getVehiclesVehicleState,
-  IvtState,
   PermissionService,
   RevisionCollectionService,
   selectQueryParam,
@@ -50,7 +49,7 @@ export class RevisionFormContainerComponent extends IvtFormContainerComponent<Re
     protected revisionCollectionService: RevisionCollectionService,
     protected router: Router,
     protected messageService: NzMessageService,
-    private store: Store<IvtState>,
+    private store: Store,
     private vehicleCollectionService: VehicleCollectionService,
     private permissionService: PermissionService,
     private route: ActivatedRoute

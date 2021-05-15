@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SetPasswordPayload } from '@innovatech/common/domain';
-import { fromAuth, IvtState, LoadingService } from '@ivt/u-state';
+import { fromAuth, LoadingService } from '@ivt/u-state';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -12,7 +12,7 @@ import { Store } from '@ngrx/store';
 })
 export class SetPasswordFormContainerComponent {
   loading$ = this.loadingService.loading$;
-  constructor(private store: Store<IvtState>, private loadingService: LoadingService, private route: ActivatedRoute) {}
+  constructor(private store: Store, private loadingService: LoadingService, private route: ActivatedRoute) {}
 
   submit(formValue: { password: string }): void {
     const payload: SetPasswordPayload = {

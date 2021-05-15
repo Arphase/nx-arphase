@@ -9,7 +9,6 @@ import {
   getVehiclesVehicleState,
   GuaranteeCollectionService,
   IvtEntityCollection,
-  IvtState,
   PermissionService,
   ProductCollectionService,
   selectQueryParam,
@@ -63,7 +62,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     protected messageService: NzMessageService,
     private productCollectionService: ProductCollectionService,
     private permissionService: PermissionService,
-    private store: Store<IvtState>,
+    private store: Store,
     private companyCollectionService: CompanyCollectionService,
     private vehicleCollectionService: VehicleCollectionService,
     private route: ActivatedRoute

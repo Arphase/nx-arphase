@@ -6,7 +6,6 @@ import {
   getAuthUserEmailState,
   getAuthUserNameState,
   IVT_UI_STATE_CONFIGURATION,
-  IvtState,
   IvtUiStateConfiguration,
   PermissionService,
 } from '@ivt/u-state';
@@ -104,7 +103,7 @@ export class SpaComponent extends IvtSubscriberComponent implements OnInit {
   private _mobileQueryListener: () => void;
 
   constructor(
-    private store: Store<IvtState>,
+    private store: Store,
     private permissionService: PermissionService,
     @Inject(IVT_UI_STATE_CONFIGURATION) private config: IvtUiStateConfiguration,
     private cdr: ChangeDetectorRef,

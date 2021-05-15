@@ -7,7 +7,6 @@ import {
   getAuthUserCompanyIdState,
   getVehiclesErrorMessageState,
   getVehiclesVehicleState,
-  IvtState,
   PermissionService,
   RevisionRequestCollectionService,
   selectQueryParam,
@@ -44,7 +43,7 @@ export class RevisionRequestFormContainerComponent
     protected revisionRequestCollectionService: RevisionRequestCollectionService,
     protected router: Router,
     protected messageService: NzMessageService,
-    private store: Store<IvtState>,
+    private store: Store,
     private vehicleCollectionService: VehicleCollectionService,
     private permissionService: PermissionService
   ) {

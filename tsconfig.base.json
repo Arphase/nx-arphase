@@ -86,8 +86,8 @@
       "@ivt/u-auth": [
         "libs/ui/u-auth/src/index.ts"
       ],
-      "@ivt/u-dashboard": [
-        "libs/ui/u-dashboard/src/index.ts"
+      "@innovatech/ui/dashboard": [
+        "libs/innovatech/ui/dashboard/src/index.ts"
       ],
       "@innovatech/ui/spa": [
         "libs/innovatech/ui/spa/src/index.ts"
