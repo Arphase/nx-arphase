@@ -1,4 +1,4 @@
-import { Client, GuaranteeStatus } from '@ivt/c-data';
+import { Client, GuaranteeStatus } from '@innovatech/common/domain';
 import { Transform, Type } from 'class-transformer';
 import {
   IsDateString,

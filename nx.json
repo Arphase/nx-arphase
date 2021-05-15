@@ -35,7 +35,6 @@
     "a-users": { "tags": ["back"] },
     "a-vehicles": { "tags": ["back"] },
     "c-utils": { "tags": ["common"] },
-    "c-data": { "tags": ["common"] },
     "u-auth": { "tags": ["front"] },
     "u-dashboard": { "tags": ["front"] },
     "u-guarantees": { "tags": ["front"] },
@@ -49,6 +48,7 @@
     "u-users": { "tags": ["front"] },
     "u-vehicles": { "tags": ["front"] },
     "arphase-ui": { "tags": ["domain:arphase", "type:ui"] },
-    "ivt-app": { "tags": ["mobile"] }
+    "ivt-app": { "tags": ["mobile"] },
+    "innovatech-domain": { "tags": ["domain:innovatech", "type:domain-logic"] }
   }
 }

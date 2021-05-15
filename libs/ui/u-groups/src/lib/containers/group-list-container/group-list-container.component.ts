@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Group } from '@ivt/c-data';
+import { Group } from '@innovatech/common/domain';
 import { GroupCollectionService, GroupDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { NzModalService } from 'ng-zorro-antd/modal';

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RevisionRequest, RevisionRequestStatus, UserRoles } from '@ivt/c-data';
+import { RevisionRequest, RevisionRequestStatus, UserRoles } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@ivt/u-state';
 import { IvtListComponent } from '@ivt/u-ui';
 

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Guarantee } from '@ivt/c-data';
+import { Guarantee } from '@innovatech/common/domain';
 
 @Component({
   selector: 'ivt-guarantee-row-details',

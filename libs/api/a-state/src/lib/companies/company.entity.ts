@@ -1,4 +1,4 @@
-import { Address, Company, Group, Guarantee, RevisionRequest, User, Vehicle } from '@ivt/c-data';
+import { Address, Company, Group, Guarantee, RevisionRequest, User, Vehicle } from '@innovatech/common/domain';
 import {
   BaseEntity,
   Column,

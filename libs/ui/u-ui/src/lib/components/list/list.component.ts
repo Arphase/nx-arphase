@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { IvtCollectionResponseInfo, SortEvent } from '@ivt/c-data';
+import { IvtCollectionResponseInfo, SortEvent } from '@innovatech/common/domain';
 import { FilterInfo } from '@ivt/u-state';
 import { QueryParams } from '@ngrx/data';
 

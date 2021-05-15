@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Group } from '@ivt/c-data';
+import { Group } from '@innovatech/common/domain';
 import { IvtFormComponent } from '@ivt/u-ui';
 
 @Component({

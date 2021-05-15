@@ -1,5 +1,5 @@
 import { getReadableStream, IMAGE_ASSETS_PATH, OUT_FILE, tobase64 } from '@ivt/a-state';
-import { Client, formatAddress, formatPhone, Guarantee, transformFolio } from '@ivt/c-data';
+import { Client, formatAddress, formatPhone, Guarantee, transformFolio } from '@innovatech/common/domain';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import { Response } from 'express';

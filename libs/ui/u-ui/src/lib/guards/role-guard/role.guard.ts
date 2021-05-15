@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, UrlTree } from '@angular/router';
-import { UserRoles } from '@ivt/c-data';
+import { UserRoles } from '@innovatech/common/domain';
 import { getAuthUserRoleState, IvtState } from '@ivt/u-state';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';

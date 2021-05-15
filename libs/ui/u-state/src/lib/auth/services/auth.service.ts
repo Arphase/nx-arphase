@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ResetPassword, SetPasswordPayload, SignInRequest, User } from '@ivt/c-data';
+import { ResetPassword, SetPasswordPayload, SignInRequest, User } from '@innovatech/common/domain';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

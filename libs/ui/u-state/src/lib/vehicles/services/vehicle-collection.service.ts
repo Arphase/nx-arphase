@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Vehicle } from '@ivt/c-data';
+import { Vehicle } from '@innovatech/common/domain';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
 import { IvtCollectionService } from '../../core';

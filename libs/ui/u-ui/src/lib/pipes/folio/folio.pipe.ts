@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { transformFolio } from '@ivt/c-data';
+import { transformFolio } from '@innovatech/common/domain';
 
 @Pipe({
   name: 'folio',

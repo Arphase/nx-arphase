@@ -1,4 +1,4 @@
-import { VehicleStatus } from '@ivt/c-data';
+import { VehicleStatus } from '@innovatech/common/domain';
 import { Transform } from 'class-transformer';
 import { IsEnum, IsOptional } from 'class-validator';
 

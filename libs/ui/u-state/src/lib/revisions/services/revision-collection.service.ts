@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Revision } from '@ivt/c-data';
+import { Revision } from '@innovatech/common/domain';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
 import { IvtCollectionService } from '../../core';

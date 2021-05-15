@@ -1,4 +1,4 @@
-import { RevisionReportItems, RevisionReportStatus, RevisionStatus } from '@ivt/c-data';
+import { RevisionReportItems, RevisionReportStatus, RevisionStatus } from '@innovatech/common/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export const revisionStatusLabels: Record<RevisionStatus, string> = {

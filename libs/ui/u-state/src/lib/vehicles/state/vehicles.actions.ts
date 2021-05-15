@@ -1,4 +1,4 @@
-import { IvtHttpErrorResponse, Vehicle } from '@ivt/c-data';
+import { IvtHttpErrorResponse, Vehicle } from '@innovatech/common/domain';
 import { createAction, props } from '@ngrx/store';
 
 export const getVehicleByVin = createAction('[Vehicles] Get vehicle by vin', props<{ vin: string }>());

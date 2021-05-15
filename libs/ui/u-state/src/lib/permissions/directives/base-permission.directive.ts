@@ -1,5 +1,5 @@
 import { Directive, Inject, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
-import { UserRoles } from '@ivt/c-data';
+import { UserRoles } from '@innovatech/common/domain';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 

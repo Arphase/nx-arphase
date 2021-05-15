@@ -1,4 +1,4 @@
-import { Revision, RevisionReport, RevisionStatus, Vehicle } from '@ivt/c-data';
+import { Revision, RevisionReport, RevisionStatus, Vehicle } from '@innovatech/common/domain';
 import {
   BaseEntity,
   Column,

@@ -1,4 +1,4 @@
-import { VEHICLE_VIN_LENGTH, VehicleStatus } from '@ivt/c-data';
+import { VEHICLE_VIN_LENGTH, VehicleStatus } from '@innovatech/common/domain';
 import { Transform } from 'class-transformer';
 import { IsEnum, IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
 

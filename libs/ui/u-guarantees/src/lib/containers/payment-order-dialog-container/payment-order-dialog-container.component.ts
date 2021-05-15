@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { PaymentOrder } from '@ivt/c-data';
+import { PaymentOrder } from '@innovatech/common/domain';
 import { filterNil } from '@ivt/c-utils';
 import { GuaranteeCollectionService, PaymentOrderCollectionService, PaymentOrderDataService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Company } from '@ivt/c-data';
+import { Company } from '@innovatech/common/domain';
 import { IvtListComponent } from '@ivt/u-ui';
 
 import { columns } from './group-company-list.constants';

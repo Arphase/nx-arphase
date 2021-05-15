@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
 import { FormArray } from '@angular/forms';
-import { Group } from '@ivt/c-data';
+import { Group } from '@innovatech/common/domain';
 import { IvtFormComponent } from '@ivt/u-ui';
 
 import { patchGroupForm } from '../../functions/group-form.functions';

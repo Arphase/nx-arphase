@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Group } from '@ivt/c-data';
+import { Group } from '@innovatech/common/domain';
 import { filterNilArray, mapToSelectOptions, sortSelectOptionsAlphabetical } from '@ivt/c-utils';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 

@@ -1,6 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import { MenuItem, UserRoles } from '@ivt/c-data';
+import { MenuItem, UserRoles } from '@innovatech/common/domain';
 import {
   fromAuth,
   getAuthUserEmailState,

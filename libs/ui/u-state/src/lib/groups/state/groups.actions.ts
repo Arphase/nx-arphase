@@ -1,4 +1,4 @@
-import { Product } from '@ivt/c-data';
+import { Product } from '@innovatech/common/domain';
 import { createAction, props } from '@ngrx/store';
 
 export const getGroupProducts = createAction('[Groups] Get group products', props<{ groupId: number }>());

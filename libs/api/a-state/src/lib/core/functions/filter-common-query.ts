@@ -1,4 +1,4 @@
-import { hasAccessToAllData, sortDirection, User } from '@ivt/c-data';
+import { hasAccessToAllData, sortDirection, User } from '@innovatech/common/domain';
 import dayjs from 'dayjs';
 import { BaseEntity, SelectQueryBuilder } from 'typeorm';
 

@@ -1,6 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { guaranteeDateTypeOptions, UserRoles } from '@ivt/c-data';
+import { guaranteeDateTypeOptions, UserRoles } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@ivt/u-state';
 import { IvtListComponent } from '@ivt/u-ui';
 

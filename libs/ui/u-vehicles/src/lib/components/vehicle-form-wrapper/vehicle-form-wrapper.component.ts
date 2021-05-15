@@ -7,7 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { IvtCollectionResponseInfo, UserRoles, Vehicle } from '@ivt/c-data';
+import { IvtCollectionResponseInfo, UserRoles, Vehicle } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@ivt/u-state';
 import { IvtFormComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';

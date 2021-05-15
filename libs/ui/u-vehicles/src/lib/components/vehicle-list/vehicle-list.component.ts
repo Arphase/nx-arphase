@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { isVehicleElegible, UserRoles, Vehicle, VehicleStatus } from '@ivt/c-data';
+import { isVehicleElegible, UserRoles, Vehicle, VehicleStatus } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@ivt/u-state';
 import { IvtListComponent } from '@ivt/u-ui';
 

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Address } from '@ivt/c-data';
+import { Address } from '@innovatech/common/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { filter, startWith, switchMap, takeUntil } from 'rxjs/operators';
 

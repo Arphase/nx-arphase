@@ -1,4 +1,4 @@
-import { DEFAULT_LIMIT_SIZE } from '@ivt/c-data';
+import { DEFAULT_LIMIT_SIZE } from '@innovatech/common/domain';
 import { convertStringToNumberArray } from '@ivt/c-utils';
 import { Transform } from 'class-transformer';
 import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';

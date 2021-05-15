@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { SignInRequest } from '@ivt/c-data';
+import { SignInRequest } from '@innovatech/common/domain';
 import { IvtFormComponent } from '@ivt/u-ui';
 
 @Component({

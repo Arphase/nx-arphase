@@ -1,4 +1,4 @@
-import { UserRoles } from '@ivt/c-data';
+import { UserRoles } from '@innovatech/common/domain';
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class AuthCredentialsDto {

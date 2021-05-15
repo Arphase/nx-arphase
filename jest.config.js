@@ -9,5 +9,6 @@ module.exports = {
     '<rootDir>/libs/ui/u-revision-requests',
     '<rootDir>/libs/arphase/ui',
     '<rootDir>/libs/arphase/domain',
+    '<rootDir>/libs/innovatech/domain',
   ],
 };

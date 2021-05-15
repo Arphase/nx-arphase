@@ -7,7 +7,7 @@ import {
   UserEntity,
   UserRepository,
 } from '@ivt/a-state';
-import { ResetPassword, User } from '@ivt/c-data';
+import { ResetPassword, User } from '@innovatech/common/domain';
 import { generateId } from '@ivt/c-utils';
 import {
   ConflictException,

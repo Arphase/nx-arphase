@@ -1,5 +1,5 @@
 import { ApsColumns } from '@arphase/ui';
-import { GuaranteeStatus } from '@ivt/c-data';
+import { GuaranteeStatus } from '@innovatech/common/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export const columns: ApsColumns = [

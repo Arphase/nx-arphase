@@ -1,4 +1,4 @@
-import { User, UserRoles } from '@ivt/c-data';
+import { User, UserRoles } from '@innovatech/common/domain';
 import { CanActivate, ExecutionContext, Injectable, SetMetadata } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 

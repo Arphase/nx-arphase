@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpStatusCodes, IvtHttpErrorResponse } from '@ivt/c-data';
+import { HttpStatusCodes, IvtHttpErrorResponse } from '@innovatech/common/domain';
 import { Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Observable, throwError } from 'rxjs';

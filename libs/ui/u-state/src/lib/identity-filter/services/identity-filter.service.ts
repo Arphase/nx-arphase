@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Company, Group, User, UserRoles } from '@ivt/c-data';
+import { Company, Group, User, UserRoles } from '@innovatech/common/domain';
 import { filterNil } from '@ivt/c-utils';
 import { select } from '@ngrx/store';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';

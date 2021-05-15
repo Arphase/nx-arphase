@@ -1,4 +1,4 @@
-import { GuaranteeStatus } from '@ivt/c-data';
+import { GuaranteeStatus } from '@innovatech/common/domain';
 import { Transform } from 'class-transformer';
 import { IsEnum, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 

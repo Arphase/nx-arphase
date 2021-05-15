@@ -1,4 +1,4 @@
-import { Product } from '@ivt/c-data';
+import { Product } from '@innovatech/common/domain';
 
 export interface GroupsState {
   products: Product[];

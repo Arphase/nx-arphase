@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PaymentOrder } from '@ivt/c-data';
+import { PaymentOrder } from '@innovatech/common/domain';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
 import { IvtCollectionService } from '../../core';

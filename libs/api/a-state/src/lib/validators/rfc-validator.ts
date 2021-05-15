@@ -1,4 +1,4 @@
-import { PersonTypes } from '@ivt/c-data';
+import { PersonTypes } from '@innovatech/common/domain';
 import { isRfc, rfcValidations, RfcValidatorTypes } from '@ivt/c-utils';
 import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator';
 

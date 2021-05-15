@@ -216,28 +216,6 @@
         }
       }
     },
-    "c-data": {
-      "root": "libs/common/c-data",
-      "sourceRoot": "libs/common/c-data/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/common/c-data/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/common/c-data/jest.config.js",
-            "tsConfig": "libs/common/c-data/tsconfig.spec.json",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "c-utils": {
       "projectType": "library",
       "root": "libs/common/c-utils",
@@ -807,6 +785,40 @@
           "outputs": ["coverage/libs/ui/u-revision-requests"],
           "options": {
             "jestConfig": "libs/ui/u-revision-requests/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "innovatech-domain": {
+      "projectType": "library",
+      "root": "libs/innovatech/domain",
+      "sourceRoot": "libs/innovatech/domain/src",
+      "prefix": "innovatech",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/innovatech/domain/tsconfig.lib.json",
+            "project": "libs/innovatech/domain/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/innovatech/domain/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/innovatech/domain/src/**/*.ts", "libs/innovatech/domain/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/domain"],
+          "options": {
+            "jestConfig": "libs/innovatech/domain/jest.config.js",
             "passWithNoTests": true
           }
         }

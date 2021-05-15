@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
-import { Product } from '@ivt/c-data';
+import { Product } from '@innovatech/common/domain';
 import { TransferItem } from 'ng-zorro-antd/transfer';
 
 @Component({

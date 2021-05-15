@@ -1,6 +1,6 @@
 import { GetUser, Roles, RolesGuard } from '@ivt/a-auth';
 import { CreateGuaranteeDto, GetGuaranteesFilterDto, GuaranteeEntity, UpdateGuaranteeDto } from '@ivt/a-state';
-import { Guarantee, GuaranteeSummary, IvtCollectionResponse, User, UserRoles } from '@ivt/c-data';
+import { Guarantee, GuaranteeSummary, IvtCollectionResponse, User, UserRoles } from '@innovatech/common/domain';
 import {
   Body,
   Controller,

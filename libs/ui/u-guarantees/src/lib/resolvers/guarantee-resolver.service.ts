@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { Guarantee } from '@ivt/c-data';
+import { Guarantee } from '@innovatech/common/domain';
 import { GuaranteeCollectionService } from '@ivt/u-state';
 import { Observable, of } from 'rxjs';
 

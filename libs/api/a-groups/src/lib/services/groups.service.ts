@@ -13,7 +13,7 @@ import {
   UserEntity,
   UserRepository,
 } from '@ivt/a-state';
-import { Company, createCollectionResponse, Group, IvtCollectionResponse, Product, User } from '@ivt/c-data';
+import { Company, createCollectionResponse, Group, IvtCollectionResponse, Product, User } from '@innovatech/common/domain';
 import { generateId } from '@ivt/c-utils';
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

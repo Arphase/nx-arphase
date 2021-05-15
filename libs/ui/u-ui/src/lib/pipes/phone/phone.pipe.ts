@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { formatPhone } from '@ivt/c-data';
+import { formatPhone } from '@innovatech/common/domain';
 
 @Pipe({
   name: 'phone',

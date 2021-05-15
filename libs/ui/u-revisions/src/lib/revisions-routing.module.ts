@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserRoles } from '@ivt/c-data';
+import { UserRoles } from '@innovatech/common/domain';
 import { IvtDirtyFormGuard, RoleGuard } from '@ivt/u-ui';
 
 import { RevisionFormContainerComponent } from './containers/revision-form-container/revision-form-container.component';

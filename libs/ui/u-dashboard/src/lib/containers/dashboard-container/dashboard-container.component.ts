@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GuaranteeStatus } from '@ivt/c-data';
+import { GuaranteeStatus } from '@innovatech/common/domain';
 import { filterNil } from '@ivt/c-utils';
 import {
   fromDashboard,

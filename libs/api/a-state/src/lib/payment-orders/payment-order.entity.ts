@@ -1,4 +1,4 @@
-import { Guarantee, PaymentOrder } from '@ivt/c-data';
+import { Guarantee, PaymentOrder } from '@innovatech/common/domain';
 import {
   BaseEntity,
   Column,

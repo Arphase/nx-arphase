@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { Guarantee, isVehicleElegible, IvtCollectionResponseInfo, PersonTypes, UserRoles, Vehicle } from '@ivt/c-data';
+import { Guarantee, isVehicleElegible, IvtCollectionResponseInfo, PersonTypes, UserRoles, Vehicle } from '@innovatech/common/domain';
 import { filterNil, RfcValidatorTypes } from '@ivt/c-utils';
 import { REQUIRED_ROLES } from '@ivt/u-state';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';

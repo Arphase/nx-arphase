@@ -1,4 +1,4 @@
-import { Client } from '@ivt/c-data';
+import { Client } from '@innovatech/common/domain';
 import { Type } from 'class-transformer';
 import { IsDateString, IsNotEmpty, IsNumber, IsOptional, ValidateNested } from 'class-validator';
 

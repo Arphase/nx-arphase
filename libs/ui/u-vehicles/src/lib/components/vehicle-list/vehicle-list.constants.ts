@@ -1,5 +1,5 @@
 import { ApsColumns } from '@arphase/ui';
-import { VehicleStatus } from '@ivt/c-data';
+import { VehicleStatus } from '@innovatech/common/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export const columns: ApsColumns = [

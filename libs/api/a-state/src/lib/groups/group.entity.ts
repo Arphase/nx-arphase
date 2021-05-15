@@ -1,4 +1,4 @@
-import { Company, Group, Product } from '@ivt/c-data';
+import { Company, Group, Product } from '@innovatech/common/domain';
 import {
   BaseEntity,
   Column,

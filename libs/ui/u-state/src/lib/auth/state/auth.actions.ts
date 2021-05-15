@@ -1,4 +1,4 @@
-import { SetPasswordPayload, SignInRequest, User } from '@ivt/c-data';
+import { SetPasswordPayload, SignInRequest, User } from '@innovatech/common/domain';
 import { createAction, props } from '@ngrx/store';
 
 export const signIn = createAction('[Auth] Sign in', props<{ payload: SignInRequest }>());

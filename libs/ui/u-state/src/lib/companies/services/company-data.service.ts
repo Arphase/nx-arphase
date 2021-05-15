@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Company } from '@ivt/c-data';
+import { Company } from '@innovatech/common/domain';
 import { HttpUrlGenerator } from '@ngrx/data';
 
 import { IvtDataService } from '../../core';

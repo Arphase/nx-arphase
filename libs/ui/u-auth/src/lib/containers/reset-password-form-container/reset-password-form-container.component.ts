@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { User } from '@ivt/c-data';
+import { User } from '@innovatech/common/domain';
 import { fromAuth, IvtState, LoadingService } from '@ivt/u-state';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';

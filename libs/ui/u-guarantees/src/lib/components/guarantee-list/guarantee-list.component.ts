@@ -7,7 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, statusLabels, UserRoles } from '@ivt/c-data';
+import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, statusLabels, UserRoles } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@ivt/u-state';
 import { IvtListComponent } from '@ivt/u-ui';
 

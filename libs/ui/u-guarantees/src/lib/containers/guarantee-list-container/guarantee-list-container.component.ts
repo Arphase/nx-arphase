@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Guarantee, GuaranteeStatus, statusLabels, transformFolio, UserRoles } from '@ivt/c-data';
+import { Guarantee, GuaranteeStatus, statusLabels, transformFolio, UserRoles } from '@innovatech/common/domain';
 import {
   GuaranteeCollectionService,
   GuaranteeDataService,

@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { IvtCollectionResponseInfo, Vehicle, VEHICLE_VIN_LENGTH } from '@ivt/c-data';
+import { IvtCollectionResponseInfo, Vehicle, VEHICLE_VIN_LENGTH } from '@innovatech/common/domain';
 import { IvtFormComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
 import { omit } from 'lodash-es';

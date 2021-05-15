@@ -1,4 +1,4 @@
-import { IvtHttpErrorResponse, Vehicle } from '@ivt/c-data';
+import { IvtHttpErrorResponse, Vehicle } from '@innovatech/common/domain';
 
 export interface VehiclesState {
   vehicle: Vehicle;

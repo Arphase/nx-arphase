@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
-import { Company } from '@ivt/c-data';
+import { Company } from '@innovatech/common/domain';
 import { filterExisting } from '@ivt/c-utils';
 import { findFormArrayIndex } from '@ivt/u-ui';
 import { NzModalService } from 'ng-zorro-antd/modal';

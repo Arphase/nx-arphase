@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Product } from '@ivt/c-data';
+import { Product } from '@innovatech/common/domain';
 import { ProductCollectionService, ProductDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 

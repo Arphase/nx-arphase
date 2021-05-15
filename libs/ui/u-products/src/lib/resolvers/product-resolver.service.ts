@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { Product } from '@ivt/c-data';
+import { Product } from '@innovatech/common/domain';
 import { ProductCollectionService } from '@ivt/u-state';
 import { Observable, of } from 'rxjs';
 

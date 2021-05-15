@@ -2,7 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { glossary, Product } from '@ivt/c-data';
+import { glossary, Product } from '@innovatech/common/domain';
 import { filterNil, sortSelectOptions } from '@ivt/c-utils';
 import { ProductDataService } from '@ivt/u-state';
 import { IvtFormComponent } from '@ivt/u-ui';

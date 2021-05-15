@@ -1,4 +1,4 @@
-import { Address, Client, MoralPerson, PersonTypes, PhysicalPerson } from '@ivt/c-data';
+import { Address, Client, MoralPerson, PersonTypes, PhysicalPerson } from '@innovatech/common/domain';
 import {
   BaseEntity,
   Column,

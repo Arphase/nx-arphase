@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { RevisionRequest, Vehicle } from '@ivt/c-data';
+import { RevisionRequest, Vehicle } from '@innovatech/common/domain';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 import { createVehicleForm } from '@ivt/u-vehicles';
 

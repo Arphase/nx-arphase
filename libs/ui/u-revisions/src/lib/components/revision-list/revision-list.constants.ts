@@ -1,5 +1,5 @@
 import { ApsColumns } from '@arphase/ui';
-import { RevisionStatus } from '@ivt/c-data';
+import { RevisionStatus } from '@innovatech/common/domain';
 
 export const columns: ApsColumns = [
   {

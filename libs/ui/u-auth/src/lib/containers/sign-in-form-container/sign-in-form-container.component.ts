@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SignInRequest } from '@ivt/c-data';
+import { SignInRequest } from '@innovatech/common/domain';
 import { fromAuth, IvtState, LoadingService } from '@ivt/u-state';
 import { Store } from '@ngrx/store';
 

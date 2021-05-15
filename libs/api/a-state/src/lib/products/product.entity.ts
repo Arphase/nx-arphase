@@ -1,4 +1,4 @@
-import { Guarantee, Product } from '@ivt/c-data';
+import { Guarantee, Product } from '@innovatech/common/domain';
 import {
   BaseEntity,
   Column,

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsColumns } from '@arphase/ui';
-import { Product } from '@ivt/c-data';
+import { Product } from '@innovatech/common/domain';
 import { IvtListComponent } from '@ivt/u-ui';
 
 @Component({

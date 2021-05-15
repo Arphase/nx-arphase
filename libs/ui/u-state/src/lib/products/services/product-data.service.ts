@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product } from '@ivt/c-data';
+import { Product } from '@innovatech/common/domain';
 import { saveFile } from '@ivt/c-utils';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Observable } from 'rxjs';

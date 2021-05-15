@@ -1,4 +1,4 @@
-import { IvtCollectionResponseInfo, IvtQueryParams } from '@ivt/c-data';
+import { IvtCollectionResponseInfo, IvtQueryParams } from '@innovatech/common/domain';
 import {
   EntityAction,
   EntityActionPayload,

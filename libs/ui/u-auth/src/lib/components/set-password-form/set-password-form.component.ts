@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { specialCharactersForPassword } from '@ivt/c-data';
+import { specialCharactersForPassword } from '@innovatech/common/domain';
 import { IvtFormComponent, MessageStatus } from '@ivt/u-ui';
 
 @Component({

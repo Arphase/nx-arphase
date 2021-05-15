@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Optional } from '@angular/core';
-import { IvtCollectionResponseInfo, IvtQueryParams } from '@ivt/c-data';
+import { IvtCollectionResponseInfo, IvtQueryParams } from '@innovatech/common/domain';
 import { filterNil } from '@ivt/c-utils';
 import {
   buildQueryParams,

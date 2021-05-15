@@ -1,4 +1,4 @@
-import { Company } from '@ivt/c-data';
+import { Company } from '@innovatech/common/domain';
 import { Type } from 'class-transformer';
 import { IsArray, IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
 

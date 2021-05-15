@@ -1,7 +1,7 @@
 import 'dayjs/locale/es';
 
 import { filterCommonQuery, GetGuaranteesFilterDto, GuaranteeEntity, IMAGE_ASSETS_PATH } from '@ivt/a-state';
-import { formatAddress, Guarantee, sortDirection, transformFolio, User } from '@ivt/c-data';
+import { formatAddress, Guarantee, sortDirection, transformFolio, User } from '@innovatech/common/domain';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import { SelectQueryBuilder } from 'typeorm';

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ApsColumns, ApsValidators } from '@arphase/ui';
-import { Guarantee, PaymentOrder } from '@ivt/c-data';
+import { Guarantee, PaymentOrder } from '@innovatech/common/domain';
 import { IvtFormComponent } from '@ivt/u-ui';
 
 @Component({

@@ -12,7 +12,7 @@ import {
   sortDirection,
   User,
   UserRoles,
-} from '@ivt/c-data';
+} from '@innovatech/common/domain';
 import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RevisionRequest, RevisionRequestStatus } from '@ivt/c-data';
+import { RevisionRequest, RevisionRequestStatus } from '@innovatech/common/domain';
 import { IdentityFilterService, RevisionRequestCollectionService, RevisionRequestDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';

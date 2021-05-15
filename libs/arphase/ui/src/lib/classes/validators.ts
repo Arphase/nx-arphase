@@ -1,5 +1,5 @@
 import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
-import { specialCharactersForPassword } from '@ivt/c-data';
+import { specialCharactersForPassword } from '@innovatech/common/domain';
 import { rfcValidations, RfcValidatorTypes } from '@ivt/c-utils';
 
 export type ApsErrorsOptions = { es: string } & Record<string, unknown>;

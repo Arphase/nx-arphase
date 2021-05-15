@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { User } from '@ivt/c-data';
+import { User } from '@innovatech/common/domain';
 import { IdentityFilterService, UserCollectionService, UserDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 

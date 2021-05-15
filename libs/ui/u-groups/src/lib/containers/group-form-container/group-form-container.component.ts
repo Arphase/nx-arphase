@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Group } from '@ivt/c-data';
+import { Group } from '@innovatech/common/domain';
 import { GroupCollectionService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';

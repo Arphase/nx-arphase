@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { DEFAULT_LIMIT_SIZE } from '@ivt/c-data';
+import { DEFAULT_LIMIT_SIZE } from '@innovatech/common/domain';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { omit } from 'lodash-es';

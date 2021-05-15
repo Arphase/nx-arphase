@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Revision, UserRoles } from '@ivt/c-data';
+import { Revision, UserRoles } from '@innovatech/common/domain';
 import { IdentityFilterService, PermissionService, RevisionCollectionService, RevisionDataService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import dayjs from 'dayjs';

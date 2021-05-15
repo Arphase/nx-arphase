@@ -1,6 +1,6 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import { Company, Group, User } from '@ivt/c-data';
+import { Company, Group, User } from '@innovatech/common/domain';
 import { generateId, RfcValidatorTypes } from '@ivt/c-utils';
 import { createAddressForm, setFormArrayValue } from '@ivt/u-ui';
 

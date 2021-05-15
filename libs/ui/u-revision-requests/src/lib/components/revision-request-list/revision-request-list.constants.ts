@@ -1,5 +1,5 @@
 import { ApsColumns } from '@arphase/ui';
-import { RevisionRequestStatus } from '@ivt/c-data';
+import { RevisionRequestStatus } from '@innovatech/common/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export const statusLabels: Record<RevisionRequestStatus, string> = {

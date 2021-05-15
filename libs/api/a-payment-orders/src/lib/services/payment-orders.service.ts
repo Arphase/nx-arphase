@@ -7,7 +7,7 @@ import {
   tobase64,
   UpdatePaymentOrderDto,
 } from '@ivt/a-state';
-import { PaymentOrder, transformFolio } from '@ivt/c-data';
+import { PaymentOrder, transformFolio } from '@innovatech/common/domain';
 import { formatDate } from '@ivt/c-utils';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

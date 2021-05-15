@@ -1,4 +1,4 @@
-import { Company, Guarantee, ResetPassword, RevisionRequest, User, UserRoles, Vehicle } from '@ivt/c-data';
+import { Company, Guarantee, ResetPassword, RevisionRequest, User, UserRoles, Vehicle } from '@innovatech/common/domain';
 import * as bcrypt from 'bcryptjs';
 import {
   BaseEntity,

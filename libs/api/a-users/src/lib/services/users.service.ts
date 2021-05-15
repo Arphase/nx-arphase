@@ -1,5 +1,5 @@
 import { CommonFilterDto, filterCommonQuery, UserRepository } from '@ivt/a-state';
-import { createCollectionResponse, IvtCollectionResponse, sortDirection, User } from '@ivt/c-data';
+import { createCollectionResponse, IvtCollectionResponse, sortDirection, User } from '@innovatech/common/domain';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 

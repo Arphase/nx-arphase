@@ -1,5 +1,5 @@
 import { Directive, Inject, TemplateRef, ViewContainerRef } from '@angular/core';
-import { UserRoles } from '@ivt/c-data';
+import { UserRoles } from '@innovatech/common/domain';
 
 import { BasePermissionDirective } from './base-permission.directive';
 import { PermissionService, REQUIRED_ROLES } from '../services/permission.service';
