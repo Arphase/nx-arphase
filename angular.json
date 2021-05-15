@@ -216,29 +216,6 @@
         }
       }
     },
-    "c-utils": {
-      "projectType": "library",
-      "root": "libs/common/c-utils",
-      "sourceRoot": "libs/common/c-utils/src",
-      "prefix": "innovatech",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/common/c-utils/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/common/c-utils/jest.config.js",
-            "tsConfig": "libs/common/c-utils/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/common/c-utils/src/test-setup.ts"
-          }
-        }
-      }
-    },
     "u-auth": {
       "projectType": "library",
       "root": "libs/ui/u-auth",
@@ -792,33 +769,67 @@
     },
     "innovatech-domain": {
       "projectType": "library",
-      "root": "libs/innovatech/domain",
-      "sourceRoot": "libs/innovatech/domain/src",
-      "prefix": "innovatech",
+      "root": "libs/innovatech/common/domain",
+      "sourceRoot": "libs/innovatech/common/domain/src",
+      "prefix": "ivt",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "options": {
-            "tsConfig": "libs/innovatech/domain/tsconfig.lib.json",
-            "project": "libs/innovatech/domain/ng-package.json"
+            "tsConfig": "libs/innovatech/common/domain/tsconfig.lib.json",
+            "project": "libs/innovatech/common/domain/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/innovatech/domain/tsconfig.lib.prod.json"
+              "tsConfig": "libs/innovatech/common/domain/tsconfig.lib.prod.json"
             }
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/domain/src/**/*.ts", "libs/innovatech/domain/src/**/*.html"]
+            "lintFilePatterns": ["libs/innovatech/common/domain/src/**/*.ts", "libs/innovatech/common/domain/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/domain"],
+          "outputs": ["coverage/libs/innovatech/common/domain"],
           "options": {
-            "jestConfig": "libs/innovatech/domain/jest.config.js",
+            "jestConfig": "libs/innovatech/common/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "innovatech-utils": {
+      "projectType": "library",
+      "root": "libs/innovatech/common/utils",
+      "sourceRoot": "libs/innovatech/common/utils/src",
+      "prefix": "ivt",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/innovatech/common/utils/tsconfig.lib.json",
+            "project": "libs/innovatech/common/utils/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/innovatech/common/utils/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/innovatech/common/utils/src/**/*.ts", "libs/innovatech/common/utils/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/common/utils"],
+          "options": {
+            "jestConfig": "libs/innovatech/common/utils/jest.config.js",
             "passWithNoTests": true
           }
         }

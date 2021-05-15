@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Company, Group, User, UserRoles } from '@innovatech/common/domain';
-import { filterNil } from '@ivt/c-utils';
+import { filterNil } from '@innovatech/common/utils';
 import { select } from '@ngrx/store';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { combineLatest, Observable } from 'rxjs';

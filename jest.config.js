@@ -8,7 +8,7 @@ module.exports = {
     '<rootDir>/libs/api/a-revision-requests',
     '<rootDir>/libs/ui/u-revision-requests',
     '<rootDir>/libs/arphase/ui',
-    '<rootDir>/libs/arphase/domain',
-    '<rootDir>/libs/innovatech/domain',
+    '<rootDir>/libs/innovatech/common/domain',
+    '<rootDir>/libs/innovatech/common/utils',
   ],
 };

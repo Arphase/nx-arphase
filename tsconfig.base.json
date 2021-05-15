@@ -49,7 +49,8 @@
       "@ivt/u-tests": ["libs/ui/u-tests/src/index.ts"],
       "@ivt/u-users": ["libs/ui/u-users/src/index.ts"],
       "@ivt/u-vehicles": ["libs/ui/u-vehicles/src/index.ts"],
-      "@arphase/ui": ["libs/arphase/ui/src/index.ts"]
+      "@arphase/ui": ["libs/arphase/ui/src/index.ts"],
+      "@innovatech/common/utils": ["libs/innovatech/common/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

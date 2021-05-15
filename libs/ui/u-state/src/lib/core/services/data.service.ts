@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Optional } from '@angular/core';
-import { saveFile } from '@ivt/c-utils';
+import { saveFile } from '@innovatech/common/utils';
 import { DefaultDataService, HttpUrlGenerator, QueryParams } from '@ngrx/data';
 import dayjs from 'dayjs';
 import { BehaviorSubject, Observable } from 'rxjs';

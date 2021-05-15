@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Company, UserRoles, Vehicle } from '@innovatech/common/domain';
-import { filterExisting } from '@ivt/c-utils';
+import { filterExisting } from '@innovatech/common/utils';
 import {
   CompanyCollectionService,
   fromVehicles,

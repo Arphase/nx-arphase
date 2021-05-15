@@ -1,5 +1,5 @@
 import { PersonTypes } from '@innovatech/common/domain';
-import { isRfc, rfcValidations, RfcValidatorTypes } from '@ivt/c-utils';
+import { isRfc, rfcValidations, RfcValidatorTypes } from '@innovatech/common/utils';
 import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator';
 
 export function validatePersonTypeRfc(type: RfcValidatorTypes | string, rfc: string): boolean {

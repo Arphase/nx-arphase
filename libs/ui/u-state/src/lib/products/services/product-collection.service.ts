@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '@innovatech/common/domain';
-import { mapToSelectOptions } from '@ivt/c-utils';
+import { mapToSelectOptions } from '@innovatech/common/utils';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
 import { IvtCollectionService } from '../../core';

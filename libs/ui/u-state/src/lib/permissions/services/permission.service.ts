@@ -1,6 +1,6 @@
 import { Injectable, InjectionToken } from '@angular/core';
 import { UserRoles } from '@innovatech/common/domain';
-import { filterNil } from '@ivt/c-utils';
+import { filterNil } from '@innovatech/common/utils';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

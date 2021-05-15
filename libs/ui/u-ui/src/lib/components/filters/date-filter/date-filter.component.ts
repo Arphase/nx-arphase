@@ -9,7 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
-import { formatDate } from '@ivt/c-utils';
+import { formatDate } from '@innovatech/common/utils';
 import dayjs from 'dayjs';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { tap } from 'rxjs/operators';

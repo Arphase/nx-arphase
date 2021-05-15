@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GuaranteeStatus } from '@innovatech/common/domain';
-import { filterNil } from '@ivt/c-utils';
+import { filterNil } from '@innovatech/common/utils';
 import {
   fromDashboard,
   getDashboardGuaranteeSummaryState,

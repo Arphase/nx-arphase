@@ -1,5 +1,5 @@
 import { Address, MoralPerson, PersonTypes, PhysicalPerson } from '@innovatech/common/domain';
-import { RfcValidatorTypes } from '@ivt/c-utils';
+import { RfcValidatorTypes } from '@innovatech/common/utils';
 import { Transform, Type } from 'class-transformer';
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, ValidateIf, ValidateNested } from 'class-validator';
 

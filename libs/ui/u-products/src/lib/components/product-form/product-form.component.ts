@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges, V
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { glossary, Product } from '@innovatech/common/domain';
-import { filterNil, sortSelectOptions } from '@ivt/c-utils';
+import { filterNil, sortSelectOptions } from '@innovatech/common/utils';
 import { ProductDataService } from '@ivt/u-state';
 import { IvtFormComponent } from '@ivt/u-ui';
 import { NzModalService } from 'ng-zorro-antd/modal';

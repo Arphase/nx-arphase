@@ -8,7 +8,7 @@ import {
   UpdatePaymentOrderDto,
 } from '@ivt/a-state';
 import { PaymentOrder, transformFolio } from '@innovatech/common/domain';
-import { formatDate } from '@ivt/c-utils';
+import { formatDate } from '@innovatech/common/utils';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';

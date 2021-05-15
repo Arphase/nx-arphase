@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { Locality } from '@innovatech/common/domain';
-import { sortSelectOptions, sortStringOptions } from '@ivt/c-utils';
+import { sortSelectOptions, sortStringOptions } from '@innovatech/common/utils';
 import { uniq, uniqBy } from 'lodash-es';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable, of } from 'rxjs';
