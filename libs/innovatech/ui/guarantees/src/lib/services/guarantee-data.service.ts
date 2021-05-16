@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Guarantee } from '@innovatech/common/domain';
 import { saveFile } from '@innovatech/common/utils';
-import { IvtDataService } from '@ivt/u-state';
+import { IvtDataService } from '@innovatech/ui/core/data';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';

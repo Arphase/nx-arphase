@@ -1,4 +1,4 @@
-import { IVT_UI_STATE_CONFIGURATION, PermissionService } from '@ivt/u-state';
+import { INNOVATECH_CONFIGURATION, PermissionService } from '@ivt/u-state';
 import { ThemeService } from '@ivt/u-ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -16,7 +16,7 @@ describe('SpaComponent', () => {
     providers: [
       provideMockStore(),
       provideMockActions(() => actions$),
-      { provide: IVT_UI_STATE_CONFIGURATION, useValue: {} },
+      { provide: INNOVATECH_CONFIGURATION, useValue: {} },
       { provide: PermissionService, useValue: { hasReadPermission: () => of(true) } },
     ],
     shallow: true,

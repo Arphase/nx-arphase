@@ -89,8 +89,8 @@
       "@innovatech/ui/auth/feature": [
         "libs/innovatech/ui/auth/feature/src/index.ts"
       ],
-      "@innovatech/ui/auth/data-access": [
-        "libs/innovatech/ui/auth/data-access/src/index.ts"
+      "@innovatech/ui/auth/data": [
+        "libs/innovatech/ui/auth/data/src/index.ts"
       ],
       "@innovatech/ui/dashboard": [
         "libs/innovatech/ui/dashboard/src/index.ts"
@@ -107,8 +107,8 @@
       "@innovatech/ui/products/feature": [
         "libs/innovatech/ui/products/feature/src/index.ts"
       ],
-      "@innovatech/ui/products/data-access": [
-        "libs/innovatech/ui/products/data-access/src/index.ts"
+      "@innovatech/ui/products/data": [
+        "libs/innovatech/ui/products/data/src/index.ts"
       ],
       "@innovatech/ui/revision-requests": [
         "libs/innovatech/ui/revision-requests/src/index.ts"
@@ -125,11 +125,20 @@
       "@innovatech/ui/vehicles/ui": [
         "libs/innovatech/ui/vehicles/ui/src/index.ts"
       ],
-      "@innovatech/ui/vehicles/data-access": [
-        "libs/innovatech/ui/vehicles/data-access/src/index.ts"
+      "@innovatech/ui/vehicles/data": [
+        "libs/innovatech/ui/vehicles/data/src/index.ts"
       ],
       "@arphase/ui": [
         "libs/arphase/ui/src/index.ts"
+      ],
+      "@innovatech/ui/core/data": [
+        "libs/innovatech/ui/core/data/src/index.ts"
+      ],
+      "@innovatech/ui/core/ui": [
+        "libs/innovatech/ui/core/ui/src/index.ts"
+      ],
+      "@innovatech/ui/core/util": [
+        "libs/innovatech/ui/core/util/src/index.ts"
       ]
     }
   },

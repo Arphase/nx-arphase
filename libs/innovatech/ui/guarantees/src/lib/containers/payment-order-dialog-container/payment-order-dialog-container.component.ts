@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { PaymentOrder } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
-import { PaymentOrderCollectionService, PaymentOrderDataService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { get } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -10,6 +9,8 @@ import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
 import { GuaranteeCollectionService } from '../../services/guarantee-collection.service';
+import { PaymentOrderCollectionService } from '../../services/payment-order-collection.service';
+import { PaymentOrderDataService } from '../../services/payment-order-data.service';
 
 @Component({
   selector: 'ivt-payment-order-dialog-container',

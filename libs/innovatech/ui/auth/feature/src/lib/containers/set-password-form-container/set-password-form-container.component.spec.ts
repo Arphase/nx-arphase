@@ -1,5 +1,5 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { LoadingService } from '@ivt/u-state';
+import { LoadingService } from '@innovatech/ui/core/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockStore } from '@ngrx/store/testing';
 

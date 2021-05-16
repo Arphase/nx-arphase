@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Company, Group, User, UserRoles } from '@innovatech/common/domain';
+import { UserRoles } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
-import { select } from '@ngrx/store';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { combineLatest, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
-import { IvtEntityCollection } from '../../entities/entity-collection-reducer-methods';
 import { PermissionService } from '../../permissions';
 import { CompanyFilterCollectionService } from './companies/company-filter-collection.service';
 import { GroupFilterCollectionService } from './groups/group-filter-collection.service';
@@ -25,10 +23,7 @@ export interface FilterInfo {
 export class IdentityFilterService {
   private groupLoading$ = this.groupFilterCollectionService.loading$;
   private groupOptions$ = this.groupFilterCollectionService.options$;
-  private groupInfo$ = this.groupFilterCollectionService.store.pipe(
-    select(this.groupFilterCollectionService.selectors.selectCollection),
-    map((collection: IvtEntityCollection<Group>) => collection?.info)
-  );
+  private groupInfo$ = this.groupFilterCollectionService.info$;
   private groupLast$ = this.groupInfo$.pipe(map(info => info?.last));
   private groupPageIndex$ = this.groupInfo$.pipe(map(info => info?.pageIndex));
   groupFilterInfo$: Observable<FilterInfo> = combineLatest([
@@ -40,10 +35,7 @@ export class IdentityFilterService {
 
   private companyLoading$ = this.companyFilterCollectionService.loading$;
   private companyOptions$ = this.companyFilterCollectionService.options$;
-  private companyInfo$ = this.companyFilterCollectionService.store.pipe(
-    select(this.companyFilterCollectionService.selectors.selectCollection),
-    map((collection: IvtEntityCollection<Company>) => collection?.info)
-  );
+  private companyInfo$ = this.companyFilterCollectionService.info$;
   private companyLast$ = this.companyInfo$.pipe(map(info => info?.last));
   private companyPageIndex$ = this.companyInfo$.pipe(map(info => info?.pageIndex));
   companyFilterInfo$: Observable<FilterInfo> = combineLatest([
@@ -55,10 +47,7 @@ export class IdentityFilterService {
 
   private userLoading$ = this.userFilterCollectionService.loading$;
   private userOptions$ = this.userFilterCollectionService.options$;
-  private userInfo$ = this.userFilterCollectionService.store.pipe(
-    select(this.userFilterCollectionService.selectors.selectCollection),
-    map((collection: IvtEntityCollection<User>) => collection?.info)
-  );
+  private userInfo$ = this.userFilterCollectionService.info$;
   private userLast$ = this.userInfo$.pipe(map(info => info?.last));
   private userPageIndex$ = this.userInfo$.pipe(map(info => info?.pageIndex));
   userFilterInfo$: Observable<FilterInfo> = combineLatest([

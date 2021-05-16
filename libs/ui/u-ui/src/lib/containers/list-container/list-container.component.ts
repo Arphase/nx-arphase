@@ -3,11 +3,11 @@ import { IvtCollectionResponseInfo, IvtQueryParams } from '@innovatech/common/do
 import { filterNil } from '@innovatech/common/utils';
 import {
   buildQueryParams,
-  IdentityFilterService,
   IvtCollectionService,
   IvtDataService,
   IvtEntityCollection,
-} from '@ivt/u-state';
+} from '@innovatech/ui/core/data';
+import { IdentityFilterService } from '@ivt/u-state';
 import { EntityOp, ofEntityOp, QueryParams } from '@ngrx/data';
 import { select } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';

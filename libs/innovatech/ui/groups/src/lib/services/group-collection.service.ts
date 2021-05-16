@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Group } from '@innovatech/common/domain';
 import { filterNilArray, mapToSelectOptions, sortSelectOptionsAlphabetical } from '@innovatech/common/utils';
-import { IvtCollectionService } from '@ivt/u-state';
+import { IvtCollectionService } from '@innovatech/ui/core/data';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
 @Injectable({

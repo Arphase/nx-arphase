@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Vehicle } from '@innovatech/common/domain';
-import { VehicleCollectionService } from '@innovatech/ui/vehicles/data-access';
+import { VehicleCollectionService } from '@innovatech/ui/vehicles/data';
 import { Observable, of } from 'rxjs';
 
 @Injectable({

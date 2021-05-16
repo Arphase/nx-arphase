@@ -1,19 +1,16 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Guarantee, GuaranteeStatus, statusLabels, transformFolio, UserRoles } from '@innovatech/common/domain';
-import {
-  IdentityFilterService,
-  PaymentOrderCollectionService,
-  PaymentOrderDataService,
-  PermissionService,
-} from '@ivt/u-state';
+import { IdentityFilterService, PermissionService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
+
 import { GuaranteeCollectionService } from '../../services/guarantee-collection.service';
 import { GuaranteeDataService } from '../../services/guarantee-data.service';
-
+import { PaymentOrderCollectionService } from '../../services/payment-order-collection.service';
+import { PaymentOrderDataService } from '../../services/payment-order-data.service';
 import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
 
 @Component({

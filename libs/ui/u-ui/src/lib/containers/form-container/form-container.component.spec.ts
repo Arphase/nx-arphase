@@ -1,4 +1,4 @@
-import { IvtCollectionService } from '@ivt/u-state';
+import { IvtCollectionService } from '@innovatech/ui/core/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { IvtFormContainerComponent } from './form-container.component';

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Company } from '@innovatech/common/domain';
 import { filterNilArray, mapToSelectOptions, sortSelectOptionsAlphabetical } from '@innovatech/common/utils';
+import { IvtCollectionService } from '@innovatech/ui/core/data';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
-
-import { IvtCollectionService } from '../../../core';
 
 @Injectable({
   providedIn: 'root',

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { User } from '@innovatech/common/domain';
-import { fromAuth } from '@innovatech/ui/auth/data-access';
-import { LoadingService } from '@ivt/u-state';
+import { fromAuth } from '@innovatech/ui/auth/data';
+import { LoadingService } from '@innovatech/ui/core/data';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { mapTo } from 'rxjs/operators';

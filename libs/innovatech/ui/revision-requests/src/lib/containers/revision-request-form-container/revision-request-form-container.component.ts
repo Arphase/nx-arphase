@@ -2,14 +2,15 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { Router } from '@angular/router';
 import { RevisionRequest, UserRoles } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
-import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data-access';
+import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data';
+import { selectQueryParam } from '@innovatech/ui/core/data';
 import {
   fromVehicles,
   getVehiclesErrorMessageState,
   getVehiclesVehicleState,
   VehicleCollectionService,
-} from '@innovatech/ui/vehicles/data-access';
-import { PermissionService, selectQueryParam } from '@ivt/u-state';
+} from '@innovatech/ui/vehicles/data';
+import { PermissionService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';

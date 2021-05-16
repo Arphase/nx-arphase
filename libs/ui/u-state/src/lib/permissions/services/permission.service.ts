@@ -1,7 +1,7 @@
 import { Injectable, InjectionToken } from '@angular/core';
 import { UserRoles } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
-import { getAuthUserRoleState } from '@innovatech/ui/auth/data-access';
+import { getAuthUserRoleState } from '@innovatech/ui/auth/data';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

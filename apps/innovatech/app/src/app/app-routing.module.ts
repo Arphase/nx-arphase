@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '@innovatech/ui/auth/data-access';
+import { AuthGuard } from '@innovatech/ui/auth/data';
 
 export const routes: Routes = [
   {

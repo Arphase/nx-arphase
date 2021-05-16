@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SetPasswordGuard, SpaGuard } from '@innovatech/ui/auth/data-access';
+import { SetPasswordGuard, SpaGuard } from '@innovatech/ui/auth/data';
 
 import { AuthComponent } from './auth.component';
 import { ExpiredTokenComponent } from './components/expired-token/expired-token.component';

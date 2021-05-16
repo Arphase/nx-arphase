@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule, ApsAutoSelectModule } from '@arphase/ui';
-import { ProductsDataModule } from '@innovatech/ui/products/data-access';
-import { VehiclesDataModule } from '@innovatech/ui/vehicles/data-access';
+import { IvtDataService } from '@innovatech/ui/core/data';
+import { ProductsDataModule } from '@innovatech/ui/products/data';
+import { VehiclesDataModule } from '@innovatech/ui/vehicles/data';
 import { VehicleFormModule } from '@innovatech/ui/vehicles/ui';
 import { PermissionsModule } from '@ivt/u-state';
 import {
@@ -52,6 +53,7 @@ import { PaymentOrderDialogContainerComponent } from './containers/payment-order
 import { GuaranteesRoutingModule } from './guarantees-routing.module';
 import { GuaranteesComponent } from './guarantees.component';
 import { GuaranteeDataService } from './services/guarantee-data.service';
+import { PaymentOrderDataService } from './services/payment-order-data.service';
 
 @NgModule({
   imports: [
@@ -110,7 +112,15 @@ import { GuaranteeDataService } from './services/guarantee-data.service';
   ],
 })
 export class GuaranteesModule {
-  constructor(entityDataService: EntityDataService, guaranteeDataService: GuaranteeDataService) {
-    entityDataService.registerService('Guarantee', guaranteeDataService);
+  constructor(
+    entityDataService: EntityDataService,
+    guaranteeDataService: GuaranteeDataService,
+    paymentOrderDataService: PaymentOrderDataService
+  ) {
+    const services: Record<string, IvtDataService<unknown>> = {
+      Guarantee: guaranteeDataService,
+      PaymentOrder: paymentOrderDataService,
+    };
+    entityDataService.registerServices(services);
   }
 }

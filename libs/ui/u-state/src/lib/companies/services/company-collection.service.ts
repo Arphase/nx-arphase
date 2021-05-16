@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Company } from '@innovatech/common/domain';
 import { filterNilArray, mapToSelectOptions } from '@innovatech/common/utils';
+import { IvtCollectionService } from '@innovatech/ui/core/data';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
-
-import { IvtCollectionService } from '../../core/services/collection.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,4 +19,3 @@ export class CompanyCollectionService extends IvtCollectionService<Company> {
     super('Company', serviceElementsFactory);
   }
 }
-

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Optional, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IvtCollectionService } from '@ivt/u-state';
+import { IvtCollectionService } from '@innovatech/ui/core/data';
 import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { get } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';

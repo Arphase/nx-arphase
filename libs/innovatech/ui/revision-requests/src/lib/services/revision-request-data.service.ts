@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RevisionRequest } from '@innovatech/common/domain';
-import { IvtDataService } from '@ivt/u-state';
+import { IvtDataService } from '@innovatech/ui/core/data';
 import { HttpUrlGenerator } from '@ngrx/data';
 
 @Injectable({

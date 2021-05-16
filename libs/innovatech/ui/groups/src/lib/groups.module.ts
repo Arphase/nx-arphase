@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
-import { ProductsDataModule } from '@innovatech/ui/products/data-access';
+import { ProductsDataModule } from '@innovatech/ui/products/data';
 import { PermissionsModule } from '@ivt/u-state';
 import {
   IvtAddressFormModule,

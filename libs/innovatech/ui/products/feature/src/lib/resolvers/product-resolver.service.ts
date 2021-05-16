@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Product } from '@innovatech/common/domain';
-import { ProductCollectionService } from '@innovatech/ui/products/data-access';
+import { ProductCollectionService } from '@innovatech/ui/products/data';
 import { Observable, of } from 'rxjs';
 
 @Injectable({

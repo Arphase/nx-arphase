@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Group } from '@innovatech/common/domain';
+import { IvtDataService } from '@innovatech/ui/core/data';
 import { HttpUrlGenerator } from '@ngrx/data';
-
-import { IvtDataService } from '../../../core';
 
 @Injectable({
   providedIn: 'root',

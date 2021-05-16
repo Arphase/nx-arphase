@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRoles, Vehicle, VehicleStatus } from '@innovatech/common/domain';
-import { VehicleCollectionService, VehicleDataService } from '@innovatech/ui/vehicles/data-access';
+import { VehicleCollectionService, VehicleDataService } from '@innovatech/ui/vehicles/data';
 import { IdentityFilterService, PermissionService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';

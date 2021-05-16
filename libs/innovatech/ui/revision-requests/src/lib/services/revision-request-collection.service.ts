@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RevisionRequest } from '@innovatech/common/domain';
-import { IvtCollectionService } from '@ivt/u-state';
+import { IvtCollectionService } from '@innovatech/ui/core/data';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
 @Injectable({

@@ -1,4 +1,4 @@
-import { LoadingService } from '@ivt/u-state';
+import { LoadingService } from '@innovatech/ui/core/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
