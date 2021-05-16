@@ -8,7 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, statusLabels, UserRoles } from '@innovatech/common/domain';
-import { REQUIRED_ROLES } from '@ivt/u-state';
+import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 import { IvtListComponent } from '@ivt/u-ui';
 
 import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.constants';

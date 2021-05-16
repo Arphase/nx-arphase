@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Guarantee, GuaranteeStatus, statusLabels, transformFolio, UserRoles } from '@innovatech/common/domain';
-import { IdentityFilterService, PermissionService } from '@ivt/u-state';
+import { IdentityFilterService } from '@ivt/u-state';
+import { PermissionService } from '@innovatech/ui/permissions/data';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';

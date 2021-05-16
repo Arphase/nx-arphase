@@ -1,6 +1,7 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { VehicleCollectionService, VehicleDataService } from '@innovatech/ui/vehicles/data';
-import { IdentityFilterService, PermissionService } from '@ivt/u-state';
+import { IdentityFilterService } from '@ivt/u-state';
+import { PermissionService } from '@innovatech/ui/permissions/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';

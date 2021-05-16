@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { VehiclesDataModule } from '@innovatech/ui/vehicles/data';
 import { VehicleFormModule } from '@innovatech/ui/vehicles/ui';
-import { PermissionsModule } from '@ivt/u-state';
+import { PermissionsModule } from '@innovatech/ui/permissions/data';
 import {
   IvtCheckboxFilterModule,
   IvtDateFilterModule,

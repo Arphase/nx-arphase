@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { UserRoles } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
+import { PermissionService } from '@innovatech/ui/permissions/data';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { combineLatest, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
-import { PermissionService } from '../../permissions';
 import { CompanyFilterCollectionService } from './companies/company-filter-collection.service';
 import { GroupFilterCollectionService } from './groups/group-filter-collection.service';
 import { UserFilterCollectionService } from './users/user-filter-collection.service';

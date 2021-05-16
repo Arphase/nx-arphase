@@ -54,8 +54,15 @@
     "arphase-ui": { "tags": ["domain:arphase", "type:ui"] },
     "innovatech-domain": { "tags": ["domain:innovatech", "type:domain-logic"] },
     "innovatech-utils": { "tags": ["domain:innovatech", "type:util"] },
-    "innovatech-ui-core-innovatech-ui-core-data": {  "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
-    "innovatech-ui-core-innovatech-ui-core-ui": {  "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
-    "innovatech-ui-core-innovatech-ui-core-util": {  "tags": ["domain:innovatech", "domain:innovatech:ui", "type:util"] }
+    "innovatech-ui-core-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+    },
+    "innovatech-ui-core-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
+    "innovatech-ui-core-util": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:util"]
+    },
+    "innovatech-ui-permissions-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+    }
   }
 }

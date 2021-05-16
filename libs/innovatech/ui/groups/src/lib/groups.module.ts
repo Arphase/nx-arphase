@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
 import { ProductsDataModule } from '@innovatech/ui/products/data';
-import { PermissionsModule } from '@ivt/u-state';
+import { PermissionsModule } from '@innovatech/ui/permissions/data';
 import {
   IvtAddressFormModule,
   IvtEmptyModule,

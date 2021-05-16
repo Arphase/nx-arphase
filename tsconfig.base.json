@@ -139,6 +139,9 @@
       ],
       "@innovatech/ui/core/util": [
         "libs/innovatech/ui/core/util/src/index.ts"
+      ],
+      "@innovatech/ui/permissions/data": [
+        "libs/innovatech/ui/permissions/data/src/index.ts"
       ]
     }
   },

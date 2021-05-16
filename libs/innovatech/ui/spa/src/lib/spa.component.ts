@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit }
 import { MenuItem, UserRoles } from '@innovatech/common/domain';
 import { fromAuth, getAuthUserEmailState, getAuthUserNameState } from '@innovatech/ui/auth/data';
 import { INNOVATECH_CONFIGURATION, InnovatechConfiguration } from '@innovatech/ui/core/data';
-import { PermissionService } from '@ivt/u-state';
+import { PermissionService } from '@innovatech/ui/permissions/data';
 import { IvtSubscriberComponent, Themes, ThemeService } from '@ivt/u-ui';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';

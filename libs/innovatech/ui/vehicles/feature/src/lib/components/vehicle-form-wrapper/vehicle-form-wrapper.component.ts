@@ -8,7 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { IvtCollectionResponseInfo, UserRoles, Vehicle } from '@innovatech/common/domain';
-import { REQUIRED_ROLES } from '@ivt/u-state';
+import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 import { IvtFormComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';

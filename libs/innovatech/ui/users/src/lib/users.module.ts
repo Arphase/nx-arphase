@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { PermissionsModule } from '@ivt/u-state';
+import { PermissionsModule } from '@innovatech/ui/permissions/data';
 import { IvtCheckboxFilterModule, IvtEmptyModule, IvtSearchbarModule } from '@ivt/u-ui';
 import { EntityDataService } from '@ngrx/data';
 import { NzButtonModule } from 'ng-zorro-antd/button';

@@ -6,7 +6,7 @@ import { IvtDataService } from '@innovatech/ui/core/data';
 import { ProductsDataModule } from '@innovatech/ui/products/data';
 import { VehiclesDataModule } from '@innovatech/ui/vehicles/data';
 import { VehicleFormModule } from '@innovatech/ui/vehicles/ui';
-import { PermissionsModule } from '@ivt/u-state';
+import { PermissionsModule } from '@innovatech/ui/permissions/data';
 import {
   IvtAddressFormModule,
   IvtCheckboxFilterModule,

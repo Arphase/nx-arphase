@@ -952,7 +952,7 @@
         }
       }
     },
-    "innovatech-ui-core-innovatech-ui-core-data": {
+    "innovatech-ui-core-data": {
       "projectType": "library",
       "root": "libs/innovatech/ui/core/data",
       "sourceRoot": "libs/innovatech/ui/core/data/src",
@@ -977,7 +977,7 @@
         }
       }
     },
-    "innovatech-ui-core-innovatech-ui-core-ui": {
+    "innovatech-ui-core-ui": {
       "projectType": "library",
       "root": "libs/innovatech/ui/core/ui",
       "sourceRoot": "libs/innovatech/ui/core/ui/src",
@@ -986,10 +986,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/ui/core/ui/src/**/*.ts",
-              "libs/innovatech/ui/core/ui/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/innovatech/ui/core/ui/src/**/*.ts", "libs/innovatech/ui/core/ui/src/**/*.html"]
           }
         },
         "test": {
@@ -1002,7 +999,7 @@
         }
       }
     },
-    "innovatech-ui-core-innovatech-ui-core-util": {
+    "innovatech-ui-core-util": {
       "projectType": "library",
       "root": "libs/innovatech/ui/core/util",
       "sourceRoot": "libs/innovatech/ui/core/util/src",
@@ -1022,6 +1019,31 @@
           "outputs": ["coverage/libs/innovatech/ui/core/util"],
           "options": {
             "jestConfig": "libs/innovatech/ui/core/util/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "innovatech-ui-permissions-data": {
+      "projectType": "library",
+      "root": "libs/innovatech/ui/permissions/data",
+      "sourceRoot": "libs/innovatech/ui/permissions/data/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/innovatech/ui/permissions/data/src/**/*.ts",
+              "libs/innovatech/ui/permissions/data/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/ui/permissions/data"],
+          "options": {
+            "jestConfig": "libs/innovatech/ui/permissions/data/jest.config.js",
             "passWithNoTests": true
           }
         }

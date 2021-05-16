@@ -20,7 +20,7 @@ import {
 } from '@innovatech/common/domain';
 import { filterNil, RfcValidatorTypes } from '@innovatech/common/utils';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
-import { REQUIRED_ROLES } from '@ivt/u-state';
+import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';

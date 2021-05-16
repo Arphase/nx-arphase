@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { PermissionsModule } from '@ivt/u-state';
+import { PermissionsModule } from '@innovatech/ui/permissions/data';
 import { IvtCheckboxFilterModule, IvtDateFilterModule } from '@ivt/u-ui';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';

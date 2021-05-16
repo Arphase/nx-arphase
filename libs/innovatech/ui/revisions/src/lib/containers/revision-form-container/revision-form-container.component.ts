@@ -9,7 +9,7 @@ import {
   getVehiclesVehicleState,
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data';
-import { PermissionService } from '@ivt/u-state';
+import { PermissionService } from '@innovatech/ui/permissions/data';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';

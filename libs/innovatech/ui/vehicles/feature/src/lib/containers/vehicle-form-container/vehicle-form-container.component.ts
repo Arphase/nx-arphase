@@ -4,6 +4,7 @@ import { Company, UserRoles, Vehicle } from '@innovatech/common/domain';
 import { filterExisting } from '@innovatech/common/utils';
 import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data';
 import { IvtEntityCollection } from '@innovatech/ui/core/data';
+import { PermissionService } from '@innovatech/ui/permissions/data';
 import {
   fromVehicles,
   getVehiclesErrorState,
@@ -11,7 +12,7 @@ import {
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
-import { CompanyCollectionService, PermissionService } from '@ivt/u-state';
+import { CompanyCollectionService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';

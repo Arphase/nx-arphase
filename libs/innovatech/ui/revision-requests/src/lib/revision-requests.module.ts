@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
 import { VehiclesDataModule } from '@innovatech/ui/vehicles/data';
 import { VehicleFormModule } from '@innovatech/ui/vehicles/ui';
-import { PermissionsModule } from '@ivt/u-state';
+import { PermissionsModule } from '@innovatech/ui/permissions/data';
 import {
   IvtAddressFormModule,
   IvtCheckboxFilterModule,
