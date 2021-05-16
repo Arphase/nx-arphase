@@ -1,11 +1,10 @@
 import { Injectable, InjectionToken } from '@angular/core';
 import { UserRoles } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
+import { getAuthUserRoleState } from '@innovatech/ui/auth/data-access';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { getAuthUserRoleState } from '../../auth';
 
 export const REQUIRED_ROLES = new InjectionToken<UserRoles[]>(
   'Required Roles which the user must have to complete an action (CRUD privileges)'

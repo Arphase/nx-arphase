@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { ActivatedRoute, Router } from '@angular/router';
 import { Company, UserRoles, Vehicle } from '@innovatech/common/domain';
 import { filterExisting } from '@innovatech/common/utils';
+import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data-access';
 import {
   fromVehicles,
   getVehiclesErrorState,
@@ -9,12 +10,7 @@ import {
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data-access';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
-import {
-  CompanyCollectionService,
-  getAuthUserCompanyIdState,
-  IvtEntityCollection,
-  PermissionService,
-} from '@ivt/u-state';
+import { CompanyCollectionService, IvtEntityCollection, PermissionService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';

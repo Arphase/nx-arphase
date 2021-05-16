@@ -10,8 +10,8 @@
       ],
       "parserOptions": {
         "project": [
-          "libs/ui/u-spa/tsconfig.lib.json",
-          "libs/ui/u-spa/tsconfig.spec.json"
+          "libs/innovatech/ui/spa/tsconfig.lib.json",
+          "libs/innovatech/ui/spa/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
       },

@@ -1,11 +1,12 @@
 import { registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import es from '@angular/common/locales/es';
 import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router, RouteReuseStrategy } from '@angular/router';
+import { TokenInterceptorService } from '@innovatech/ui/auth/data-access';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -45,19 +46,11 @@ const IVT_STATE_CONFIGURATION_VALUE: IvtUiStateConfiguration = {
   providers: [
     StatusBar,
     SplashScreen,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    {
-      provide: IVT_UI_STATE_CONFIGURATION,
-      useValue: IVT_STATE_CONFIGURATION_VALUE,
-    },
-    {
-      provide: ErrorHandler,
-      useValue: Sentry.createErrorHandler({}),
-    },
-    {
-      provide: Sentry.TraceService,
-      deps: [Router],
-    },
+    { provide: IVT_UI_STATE_CONFIGURATION, useValue: IVT_STATE_CONFIGURATION_VALUE },
+    { provide: ErrorHandler, useValue: Sentry.createErrorHandler({}) },
+    { provide: Sentry.TraceService, deps: [Router] },
     {
       provide: APP_INITIALIZER,
       useFactory: () => () => null,

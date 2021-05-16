@@ -216,29 +216,6 @@
         }
       }
     },
-    "u-auth": {
-      "projectType": "library",
-      "root": "libs/ui/u-auth",
-      "sourceRoot": "libs/ui/u-auth/src",
-      "prefix": "ivt",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/ui/u-auth/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/ui/u-auth/jest.config.js",
-            "tsConfig": "libs/ui/u-auth/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/ui/u-auth/src/test-setup.ts"
-          }
-        }
-      }
-    },
     "innovatech-ui-dashboard": {
       "projectType": "library",
       "root": "libs/innovatech/ui/dashboard",
@@ -920,6 +897,56 @@
           "outputs": ["coverage/libs/innovatech/ui/products/data-access"],
           "options": {
             "jestConfig": "libs/innovatech/ui/products/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "innovatech-ui-auth-feature": {
+      "projectType": "library",
+      "root": "libs/innovatech/ui/auth/feature",
+      "sourceRoot": "libs/innovatech/ui/auth/feature/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/innovatech/ui/auth/feature/src/**/*.ts",
+              "libs/innovatech/ui/auth/feature/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/ui/auth/feature"],
+          "options": {
+            "jestConfig": "libs/innovatech/ui/auth/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "innovatech-ui-auth-data-access": {
+      "projectType": "library",
+      "root": "libs/innovatech/ui/auth/data-access",
+      "sourceRoot": "libs/innovatech/ui/auth/data-access/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/innovatech/ui/auth/data-access/src/**/*.ts",
+              "libs/innovatech/ui/auth/data-access/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/ui/auth/data-access"],
+          "options": {
+            "jestConfig": "libs/innovatech/ui/auth/data-access/jest.config.js",
             "passWithNoTests": true
           }
         }

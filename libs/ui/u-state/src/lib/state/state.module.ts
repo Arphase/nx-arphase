@@ -1,5 +1,6 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { AuthEffects } from '@innovatech/ui/auth/data-access';
 import {
   EntityCollectionReducerMethodsFactory,
   EntityDataModule,
@@ -12,10 +13,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 
-import { AuthEffects } from '../auth/state';
 import { CompanyDataService } from '../companies';
 import { HttpProxyService, IvtDataService } from '../core';
-import { TokenInterceptor } from '../core/interceptors/token-interceptor';
 import { AdditionalEntityCollectionReducerMethodsFactory } from '../entities';
 import { entityConfig } from '../entities/entity.metadata';
 import { AdditionalPropertyPersistenceResultHandler } from '../entities/results.handler';
@@ -38,11 +37,6 @@ import { reducers } from './reducers';
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true,
-    },
     { provide: HTTP_INTERCEPTORS, useClass: HttpProxyService, multi: true },
     {
       provide: EntityCollectionReducerMethodsFactory,

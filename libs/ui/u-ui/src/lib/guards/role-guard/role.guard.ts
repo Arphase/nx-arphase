@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, UrlTree } from '@angular/router';
 import { UserRoles } from '@innovatech/common/domain';
-import { getAuthUserRoleState } from '@ivt/u-state';
+import { getAuthUserRoleState } from '@innovatech/ui/auth/data-access';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

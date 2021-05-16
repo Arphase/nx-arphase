@@ -1,14 +1,8 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { MenuItem, UserRoles } from '@innovatech/common/domain';
-import {
-  fromAuth,
-  getAuthUserEmailState,
-  getAuthUserNameState,
-  IVT_UI_STATE_CONFIGURATION,
-  IvtUiStateConfiguration,
-  PermissionService,
-} from '@ivt/u-state';
+import { fromAuth, getAuthUserEmailState, getAuthUserNameState } from '@innovatech/ui/auth/data-access';
+import { IVT_UI_STATE_CONFIGURATION, IvtUiStateConfiguration, PermissionService } from '@ivt/u-state';
 import { IvtSubscriberComponent, Themes, ThemeService } from '@ivt/u-ui';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';

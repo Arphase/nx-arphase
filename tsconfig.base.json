@@ -83,8 +83,14 @@
       "@innovatech/ui/guarantees": [
         "libs/innovatech/ui/guarantees/src/index.ts"
       ],
-      "@ivt/u-auth": [
-        "libs/ui/u-auth/src/index.ts"
+      "@innovatech/common/utils": [
+        "libs/innovatech/common/utils/src/index.ts"
+      ],
+      "@innovatech/ui/auth/feature": [
+        "libs/innovatech/ui/auth/feature/src/index.ts"
+      ],
+      "@innovatech/ui/auth/data-access": [
+        "libs/innovatech/ui/auth/data-access/src/index.ts"
       ],
       "@innovatech/ui/dashboard": [
         "libs/innovatech/ui/dashboard/src/index.ts"
@@ -124,9 +130,6 @@
       ],
       "@arphase/ui": [
         "libs/arphase/ui/src/index.ts"
-      ],
-      "@innovatech/common/utils": [
-        "libs/innovatech/common/utils/src/index.ts"
       ]
     }
   },

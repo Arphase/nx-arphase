@@ -20,3 +20,4 @@ export class CompanyCollectionService extends IvtCollectionService<Company> {
     super('Company', serviceElementsFactory);
   }
 }
+
