@@ -1,23 +1,26 @@
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { QueryParams } from '@ngrx/data';
 import { take } from 'rxjs/operators';
 
 import { IvtCollectionService } from '../services';
 
-@Injectable()
-export abstract class CollectionCheckboxFilter<T = any> {
-  options$ = this.companyFilterCollectionService.options$;
-  info = this.companyFilterCollectionService.info$;
-  loading$ = this.companyFilterCollectionService.loading$;
-  pageIndex$ = this.companyFilterCollectionService.pageIndex$;
-  last$ = this.companyFilterCollectionService.last$;
-  queryParams$ = this.companyFilterCollectionService.queryParams$;
+@Component({
+  template: '',
+  selector: 'ivt-collection-checkbox-filter',
+})
+export abstract class CollectionCheckboxFilterComponent<T = any> {
+  options$ = this.ivtCollectionService.options$;
+  info = this.ivtCollectionService.info$;
+  loading$ = this.ivtCollectionService.loading$;
+  pageIndex$ = this.ivtCollectionService.pageIndex$;
+  last$ = this.ivtCollectionService.last$;
+  queryParams$ = this.ivtCollectionService.queryParams$;
   sortValue;
   filterPropertyName: string;
   @Output() filterItems = new EventEmitter<QueryParams>();
 
-  constructor(protected companyFilterCollectionService: IvtCollectionService<any>) {
-    this.companyFilterCollectionService.getWithQuery({
+  constructor(protected ivtCollectionService: IvtCollectionService<any>) {
+    this.ivtCollectionService.getWithQuery({
       sort: this.sortValue,
       resetList: String(true),
     });
@@ -29,7 +32,7 @@ export abstract class CollectionCheckboxFilter<T = any> {
 
   filterOptions(queryParams: QueryParams): void {
     this.pageIndex$.pipe(take(1)).subscribe(pageIndex =>
-      this.companyFilterCollectionService.getWithQuery({
+      this.ivtCollectionService.getWithQuery({
         ...queryParams,
         sort: this.sortValue,
         pageIndex: String(Number(pageIndex) + 1),

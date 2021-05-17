@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { User } from '@innovatech/common/domain';
-import { CollectionCheckboxFilter } from '@innovatech/ui/core/data';
+import { CollectionCheckboxFilterComponent } from '@innovatech/ui/core/data';
 import { UserFilterCollectionService } from '@innovatech/ui/users/data';
 
 @Component({
@@ -9,7 +9,7 @@ import { UserFilterCollectionService } from '@innovatech/ui/users/data';
   styleUrls: ['./user-checkbox-filter.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserCheckboxFilterComponent extends CollectionCheckboxFilter<User> {
+export class UserCheckboxFilterComponent extends CollectionCheckboxFilterComponent<User> {
   sortValue = [{ key: 'user.firstName', value: 'ascend' }];
   filterPropertyName = 'userIds';
   constructor(protected userFilterCollectionService: UserFilterCollectionService) {

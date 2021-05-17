@@ -1,17 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
-import { IvtCollectionResponseInfo, UserRoles, Vehicle } from '@innovatech/common/domain';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { UserRoles, Vehicle } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 import { IvtFormComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
-import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 @Component({
   selector: 'ivt-vehicle-form-wrapper',
@@ -22,9 +13,7 @@ import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 })
 export class VehicleFormWrapperComponent extends IvtFormComponent<Vehicle> implements OnChanges {
   @Input() showCompanyInput: boolean;
-  @Input() companyOptions: NzSelectOptionInterface[] = [];
   @Input() invalidVin: boolean;
-  @Input() companiesInfo: IvtCollectionResponseInfo;
   @Input() isEditable: boolean;
   @Output() verifyVin = new EventEmitter<string>();
   @Output() getCompanies = new EventEmitter<QueryParams>();

@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ApsAutoErrorModule, ApsAutoSelectModule } from '@arphase/ui';
-import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
+import { ApsAutoErrorModule } from '@arphase/ui';
+import { CompanyCheckboxFilterModule, CompanySelectModule } from '@innovatech/ui/companies/ui';
 import { IvtDataService } from '@innovatech/ui/core/data';
+import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';
 import { ProductsDataModule } from '@innovatech/ui/products/data';
+import { ProductSelectModule } from '@innovatech/ui/products/ui';
+import { UserCheckboxFilterModule } from '@innovatech/ui/users/ui';
 import { VehiclesDataModule } from '@innovatech/ui/vehicles/data';
 import { VehicleFormModule } from '@innovatech/ui/vehicles/ui';
 import {
@@ -95,12 +98,15 @@ import { PaymentOrderDataService } from './services/payment-order-data.service';
     NzTableModule,
     NzSpaceModule,
     NzDividerModule,
-    ApsAutoSelectModule,
     NzAlertModule,
     NzTagModule,
     IvtUppercaseModule,
     ProductsDataModule,
+    GroupCheckboxFilterModule,
     CompanyCheckboxFilterModule,
+    UserCheckboxFilterModule,
+    CompanySelectModule,
+    ProductSelectModule,
   ],
   declarations: [
     GuaranteeFormComponent,

@@ -76,10 +76,6 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     super.submit(omit({ ...item, vehicleId: item.vehicle.id }, 'vehicle') as Guarantee);
   }
 
-  getProducts(payload: { year: string; horsePower: string }): void {
-    this.productCollectionService.getWithQuery({ ...payload, resetList: String(true) });
-  }
-
   ngOnDestroy() {
     super.ngOnDestroy();
     this.vehicleCollectionService.removeOneFromCache(null);

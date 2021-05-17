@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
+import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';
 import { UsersDataModule } from '@innovatech/ui/users/data';
 import { IvtCheckboxFilterModule, IvtEmptyModule, IvtSearchbarModule } from '@ivt/u-ui';
@@ -36,6 +38,8 @@ import { UsersComponent } from './users.component';
     NzTableModule,
     PermissionsModule,
     UsersDataModule,
+    GroupCheckboxFilterModule,
+    CompanyCheckboxFilterModule,
   ],
   declarations: [UserListContainerComponent, UsersComponent, UserListComponent],
 })

@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
+import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';
-import { IvtCheckboxFilterModule, IvtDateFilterModule } from '@ivt/u-ui';
+import { UserCheckboxFilterModule } from '@innovatech/ui/users/ui';
+import { IvtDateFilterModule } from '@ivt/u-ui';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -19,6 +22,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardEffects } from './state/dashboard.effects';
 import { reducer } from './state/dashboard.reducer';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -27,13 +31,15 @@ import { reducer } from './state/dashboard.reducer';
     NzIconModule,
     NzEmptyModule,
     IvtDateFilterModule,
-    IvtCheckboxFilterModule,
     NzGridModule,
     NzDividerModule,
     NzSpaceModule,
     NzTypographyModule,
     NgxChartsModule,
     PermissionsModule,
+    GroupCheckboxFilterModule,
+    CompanyCheckboxFilterModule,
+    UserCheckboxFilterModule,
     StoreModule.forFeature('dashboard', reducer),
     EffectsModule.forFeature([DashboardEffects]),
   ],

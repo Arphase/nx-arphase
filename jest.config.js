@@ -27,5 +27,6 @@ module.exports = {
     '<rootDir>/libs/innovatech/ui/users/innovatech-ui-users-data',
     '<rootDir>/libs/innovatech/ui/groups/data',
     '<rootDir>/libs/innovatech/ui/groups/ui',
+    '<rootDir>/libs/innovatech/ui/products/ui',
   ],
 };

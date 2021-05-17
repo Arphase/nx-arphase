@@ -11,14 +11,8 @@
       <nz-form-item>
         <nz-form-label nzRequired>Compañía</nz-form-label>
         <nz-form-control apsAutoError>
-          <nz-select apsAutoSelect
-                     nzShowSearch
-                     nzServerSearch
-                     formControlName="companyId"
-                     [nzOptions]="companyOptions"
-                     (nzScrollToBottom)="getMoreCompanies()"
-                     (nzOnSearch)="searchCompanies($event)">
-          </nz-select>
+          <nz-select ivtCompanySelect
+                     formControlName="companyId"></nz-select>
         </nz-form-control>
       </nz-form-item>
     </div>

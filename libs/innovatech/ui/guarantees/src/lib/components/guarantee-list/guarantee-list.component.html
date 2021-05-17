@@ -95,33 +95,17 @@
                       (filterItems)="updateStatusFilter($event)">
     </ivt-radio-filter>
   </div>
-  <ng-container *ivtCreatePermission>
-    <!-- <div nz-col>
-      <ivt-checkbox-filter label="Grupos"
-                           [options]="groupFilterInfo?.options"
-                           [loading]="groupFilterInfo?.loading"
-                           [last]="groupFilterInfo?.last"
-                           [pageIndex]="groupFilterInfo?.pageIndex"
-                           [preselectedOptions]="queryParams?.groupIds"
-                           (filterItems)="updateGroupsFilters($event)"
-                           (filterOptions)="filterGroupOptions.emit($event)">
-      </ivt-checkbox-filter>
-    </div> -->
+  <ng-container *ivtReadPermission>
     <div nz-col>
-      <ivt-company-checkbox-filter (filterOptions)="filterItems.emit($event)"></ivt-company-checkbox-filter>
+      <ivt-group-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-group-checkbox-filter>
+    </div>
+    <div nz-col>
+      <ivt-company-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-company-checkbox-filter>
     </div>
   </ng-container>
-  <!-- <div nz-col>
-    <ivt-checkbox-filter label="Usuarios"
-                         [options]="userFilterInfo?.options"
-                         [loading]="userFilterInfo?.loading"
-                         [last]="userFilterInfo?.last"
-                         [pageIndex]="userFilterInfo?.pageIndex"
-                         [preselectedOptions]="queryParams?.userIds"
-                         (filterItems)="updateUsersFilters($event)"
-                         (filterOptions)="filterUserOptions.emit($event)">
-    </ivt-checkbox-filter>
-  </div> -->
+  <div nz-col>
+    <ivt-user-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-user-checkbox-filter>
+  </div>
   <div *ngIf="info?.total"
        nz-col
        nzFlex="auto"

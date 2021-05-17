@@ -2,9 +2,12 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui';
+import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
+import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
+import { PermissionsModule } from '@innovatech/ui/permissions/data';
+import { UserCheckboxFilterModule } from '@innovatech/ui/users/ui';
 import { VehiclesDataModule } from '@innovatech/ui/vehicles/data';
 import { VehicleFormModule } from '@innovatech/ui/vehicles/ui';
-import { PermissionsModule } from '@innovatech/ui/permissions/data';
 import {
   IvtCheckboxFilterModule,
   IvtDateFilterModule,
@@ -77,6 +80,9 @@ import { RevisionDataService } from './services/revision-data.service';
     IvtRadioFilterModule,
     PermissionsModule,
     NzRadioModule,
+    GroupCheckboxFilterModule,
+    CompanyCheckboxFilterModule,
+    UserCheckboxFilterModule,
   ],
   declarations: [
     RevisionFormComponent,

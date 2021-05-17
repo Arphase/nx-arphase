@@ -11,28 +11,12 @@
 
 <div nz-row
      [nzGutter]="[12, 12]">
-  <ng-container *ivtCreatePermission>
+  <ng-container *ivtReadPermission>
     <div nz-col>
-      <ivt-checkbox-filter label="Grupos"
-                           [options]="groupFilterInfo?.options"
-                           [loading]="groupFilterInfo?.loading"
-                           [last]="groupFilterInfo?.last"
-                           [pageIndex]="groupFilterInfo?.pageIndex"
-                           [preselectedOptions]="queryParams?.groupIds"
-                           (filterItems)="updateGroupsFilters($event)"
-                           (filterOptions)="filterGroupOptions.emit($event)">
-      </ivt-checkbox-filter>
+      <ivt-group-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-group-checkbox-filter>
     </div>
     <div nz-col>
-      <ivt-checkbox-filter label="Compañías"
-                           [options]="companyFilterInfo?.options"
-                           [loading]="companyFilterInfo?.loading"
-                           [last]="companyFilterInfo?.last"
-                           [pageIndex]="companyFilterInfo?.pageIndex"
-                           [preselectedOptions]="queryParams?.companyIds"
-                           (filterItems)="updateCompaniesFilters($event)"
-                           (filterOptions)="filterCompanyOptions.emit($event)">
-      </ivt-checkbox-filter>
+      <ivt-company-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-company-checkbox-filter>
     </div>
   </ng-container>
   <div *ngIf="info?.total"

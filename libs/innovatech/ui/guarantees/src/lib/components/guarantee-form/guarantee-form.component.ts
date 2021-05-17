@@ -10,22 +10,15 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
-import {
-  Guarantee,
-  isVehicleElegible,
-  IvtCollectionResponseInfo,
-  PersonTypes,
-  UserRoles,
-  Vehicle,
-} from '@innovatech/common/domain';
+import { Guarantee, isVehicleElegible, PersonTypes, UserRoles, Vehicle } from '@innovatech/common/domain';
 import { filterNil, RfcValidatorTypes } from '@innovatech/common/utils';
-import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
+import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { startWith, takeUntil } from 'rxjs/operators';
 
 export function createGuaranteeForm(): FormGroup {
   return new FormGroup({
@@ -72,11 +65,9 @@ export function createGuaranteeForm(): FormGroup {
 })
 export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnChanges, AfterViewInit {
   @Input() productOptions: NzSelectOptionInterface[] = [];
-  @Input() companyOptions: NzSelectOptionInterface[] = [];
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
   @Input() error: string;
-  @Input() companiesInfo: IvtCollectionResponseInfo;
   @Input() showCompanyInput: boolean;
   showPhysicalForm = true;
   showMoralForm = false;
@@ -88,15 +79,21 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
   companyId$: Observable<number>;
   @Output() verifyVin = new EventEmitter<string>();
   @Output() getCompanies = new EventEmitter<QueryParams>();
-  @Output() getProducts = new EventEmitter<{ year: string; horsePower: string }>();
-  @Output() saveCompanyInCache = new EventEmitter<number>();
 
-  get client() {
-    return this.form.get('client');
+  get client(): FormGroup {
+    return this.form.get('client') as FormGroup;
   }
 
-  get vehicleForm() {
-    return this.form.get('vehicle');
+  get vehicleForm(): FormGroup {
+    return this.form.get('vehicle') as FormGroup;
+  }
+
+  get year$(): Observable<string> {
+    return this.vehicleForm.get('year').valueChanges.pipe(startWith(this.vehicleForm.get('year').value));
+  }
+
+  get horsePower$(): Observable<string> {
+    return this.vehicleForm.get('horsePower').valueChanges.pipe(startWith(this.vehicleForm.get('horsePower').value));
   }
 
   get addressForm(): FormGroup {
@@ -136,7 +133,6 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
 
     if (changes.isEditable && this.item) {
       this.isEditable ? this.form.enable() : this.form.disable();
-      this.saveCompanyInCache.emit(this.item.companyId);
     }
 
     if (changes.showCompanyInput) {
@@ -172,13 +168,5 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
         this.physicalInfoForm.disable();
       }
     }
-  }
-
-  getMoreCompanies(): void {
-    this.getCompanies.emit({ pageIndex: String(this.companiesInfo.pageIndex + 1), resetList: String(false) });
-  }
-
-  searchCompanies(text: string): void {
-    this.getCompanies.emit({ text, resetList: String(true) });
   }
 }

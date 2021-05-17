@@ -1175,6 +1175,31 @@
           }
         }
       }
+    },
+    "innovatech-ui-products-ui": {
+      "projectType": "library",
+      "root": "libs/innovatech/ui/products/ui",
+      "sourceRoot": "libs/innovatech/ui/products/ui/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/innovatech/ui/products/ui/src/**/*.ts",
+              "libs/innovatech/ui/products/ui/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/ui/products/ui"],
+          "options": {
+            "jestConfig": "libs/innovatech/ui/products/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

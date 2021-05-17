@@ -81,6 +81,7 @@
                 "sourceTag": "domain:innovatech",
                 "onlyDependOnLibsWithTags": [
                   "domain:innovatech",
+                  "domain:arphase",
                   "domain:shared"
                 ]
               },

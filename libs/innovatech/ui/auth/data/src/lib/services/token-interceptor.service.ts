@@ -1,12 +1,14 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpStatusCodes, IvtHttpErrorResponse } from '@innovatech/common/domain';
-import { AuthService, fromAuth } from '@innovatech/ui/auth/data';
 import { LoadingService } from '@innovatech/ui/core/data';
 import { Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize, switchMap, take } from 'rxjs/operators';
+
+import { logout } from '../state/auth.actions';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class TokenInterceptorService implements HttpInterceptor {
@@ -41,7 +43,7 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   handleError(error: IvtHttpErrorResponse): void {
     if (error.statusCode === HttpStatusCodes.Unauthorized) {
-      this.store.dispatch(fromAuth.actions.logout());
+      this.store.dispatch(logout());
     }
     this.messageService.error(`${error.message}`);
   }
