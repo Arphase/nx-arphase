@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { IvtCollectionResponseInfo, SortEvent } from '@innovatech/common/domain';
-import { FilterInfo } from '@ivt/u-state';
 import { QueryParams } from '@ngrx/data';
 
 import { CrudEvents } from '../../models';
@@ -18,9 +17,6 @@ export class IvtListComponent<T = any> extends IvtSubscriberComponent implements
   @Input() loadingExcel: boolean;
   @Input() info: IvtCollectionResponseInfo;
   @Input() queryParams: QueryParams;
-  @Input() groupFilterInfo: FilterInfo;
-  @Input() companyFilterInfo: FilterInfo;
-  @Input() userFilterInfo: FilterInfo;
   @Output() create = new EventEmitter<void>();
   @Output() showDetail = new EventEmitter<T>();
   @Output() edit = new EventEmitter<Partial<T>>();
@@ -28,14 +24,6 @@ export class IvtListComponent<T = any> extends IvtSubscriberComponent implements
   @Output() toggle = new EventEmitter<T>();
   @Output() filterItems = new EventEmitter<unknown>();
   @Output() exportExcel = new EventEmitter<void>();
-  @Output() filterUserOptions = new EventEmitter<QueryParams>();
-  @Output() filterCompanyOptions = new EventEmitter<QueryParams>();
-  @Output() filterGroupOptions = new EventEmitter<QueryParams>();
-  showFilters: boolean;
-
-  toggleFilter(): void {
-    this.showFilters = !this.showFilters;
-  }
 
   updateSearchBarFilter(text: string): void {
     this.filterItems.emit({ text });
@@ -47,17 +35,5 @@ export class IvtListComponent<T = any> extends IvtSubscriberComponent implements
 
   updateDateFilter(dates: Dates): void {
     this.filterItems.emit({ dates });
-  }
-
-  updateGroupsFilters(groupIds: number[]): void {
-    this.filterItems.emit({ groupIds: groupIds.toString() });
-  }
-
-  updateCompaniesFilters(companyIds: number[]): void {
-    this.filterItems.emit({ companyIds: companyIds.toString() });
-  }
-
-  updateUsersFilters(userIds: number[]): void {
-    this.filterItems.emit({ userIds: userIds.toString() });
   }
 }

@@ -1,7 +1,6 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { VehicleCollectionService, VehicleDataService } from '@innovatech/ui/vehicles/data';
-import { IdentityFilterService } from '@ivt/u-state';
 import { PermissionService } from '@innovatech/ui/permissions/data';
+import { VehicleCollectionService, VehicleDataService } from '@innovatech/ui/vehicles/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -14,14 +13,7 @@ describe('VehicleListContainerComponent', () => {
     component: VehicleListContainerComponent,
     shallow: true,
     imports: [RouterTestingModule],
-    mocks: [
-      VehicleCollectionService,
-      VehicleDataService,
-      NzModalService,
-      NzMessageService,
-      IdentityFilterService,
-      PermissionService,
-    ],
+    mocks: [VehicleCollectionService, VehicleDataService, NzModalService, NzMessageService, PermissionService],
   });
 
   beforeEach(() => (spectator = createComponent()));

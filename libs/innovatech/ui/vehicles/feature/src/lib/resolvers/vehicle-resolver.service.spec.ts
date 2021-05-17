@@ -1,4 +1,4 @@
-import { VehicleCollectionService } from '@ivt/u-state';
+import { VehicleCollectionService } from '@innovatech/ui/vehicles/data';
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
 import { VehicleResolverService } from './vehicle-resolver.service';

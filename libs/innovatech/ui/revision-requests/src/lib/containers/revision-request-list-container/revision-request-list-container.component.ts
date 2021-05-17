@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RevisionRequest, RevisionRequestStatus } from '@innovatech/common/domain';
-import { IdentityFilterService } from '@ivt/u-state';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { take } from 'rxjs/operators';
@@ -19,10 +18,9 @@ export class RevisionRequestListContainerComponent extends IvtListContainerCompo
   constructor(
     protected revisionRequestCollecitonService: RevisionRequestCollectionService,
     protected revisionRequestDataService: RevisionRequestDataService,
-    protected messageService: NzMessageService,
-    protected identityFilterService: IdentityFilterService
+    protected messageService: NzMessageService
   ) {
-    super(revisionRequestCollecitonService, revisionRequestDataService, null, messageService, identityFilterService);
+    super(revisionRequestCollecitonService, revisionRequestDataService, null, messageService);
   }
 
   changeStatus(revisionRequest: Partial<RevisionRequest>): void {

@@ -1,5 +1,6 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { CompanyCollectionService, PermissionService, VehicleCollectionService } from '@ivt/u-state';
+import { PermissionService } from '@innovatech/ui/permissions/data';
+import { VehicleCollectionService } from '@innovatech/ui/vehicles/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockStore } from '@ngrx/store/testing';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -16,7 +17,6 @@ describe('VehicleFormContainerComponent', () => {
     imports: [RouterTestingModule],
     providers: [
       provideMockStore(),
-      { provide: CompanyCollectionService, useValue: { store: of({}), selectors: { selectCollection: '' } } },
       {
         provide: PermissionService,
         useValue: { hasCreatePermission: () => of(true), hasUpdatePermission: () => of(true) },

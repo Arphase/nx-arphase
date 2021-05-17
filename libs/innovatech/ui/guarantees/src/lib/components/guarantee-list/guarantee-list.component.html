@@ -96,7 +96,7 @@
     </ivt-radio-filter>
   </div>
   <ng-container *ivtCreatePermission>
-    <div nz-col>
+    <!-- <div nz-col>
       <ivt-checkbox-filter label="Grupos"
                            [options]="groupFilterInfo?.options"
                            [loading]="groupFilterInfo?.loading"
@@ -106,20 +106,12 @@
                            (filterItems)="updateGroupsFilters($event)"
                            (filterOptions)="filterGroupOptions.emit($event)">
       </ivt-checkbox-filter>
-    </div>
+    </div> -->
     <div nz-col>
-      <ivt-checkbox-filter label="Compañías"
-                           [options]="companyFilterInfo?.options"
-                           [loading]="companyFilterInfo?.loading"
-                           [last]="companyFilterInfo?.last"
-                           [pageIndex]="companyFilterInfo?.pageIndex"
-                           [preselectedOptions]="queryParams?.companyIds"
-                           (filterItems)="updateCompaniesFilters($event)"
-                           (filterOptions)="filterCompanyOptions.emit($event)">
-      </ivt-checkbox-filter>
+      <ivt-company-checkbox-filter (filterOptions)="filterItems.emit($event)"></ivt-company-checkbox-filter>
     </div>
   </ng-container>
-  <div nz-col>
+  <!-- <div nz-col>
     <ivt-checkbox-filter label="Usuarios"
                          [options]="userFilterInfo?.options"
                          [loading]="userFilterInfo?.loading"
@@ -129,7 +121,7 @@
                          (filterItems)="updateUsersFilters($event)"
                          (filterOptions)="filterUserOptions.emit($event)">
     </ivt-checkbox-filter>
-  </div>
+  </div> -->
   <div *ngIf="info?.total"
        nz-col
        nzFlex="auto"

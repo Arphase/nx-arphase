@@ -1,5 +1,5 @@
-import { RevisionRequestCollectionService } from '@ivt/u-state';
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { RevisionRequestCollectionService } from '../services/revision-request-collection.service';
 
 import { RevisionRequestResolverService } from './revision-request-resolver.service';
 

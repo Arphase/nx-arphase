@@ -54,7 +54,7 @@
                       (filterItems)="updateStatusFilter($event)">
     </ivt-radio-filter>
   </div>
-  <ng-container *ivtCreatePermission>
+  <!-- <ng-container *ivtCreatePermission>
     <div nz-col>
       <ivt-checkbox-filter label="Grupos"
                            [options]="groupFilterInfo?.options"
@@ -88,7 +88,7 @@
                          (filterItems)="updateUsersFilters($event)"
                          (filterOptions)="filterUserOptions.emit($event)">
     </ivt-checkbox-filter>
-  </div>
+  </div> -->
   <div *ngIf="info?.total"
        nz-col
        nzFlex="auto"

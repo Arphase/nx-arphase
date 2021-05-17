@@ -1,7 +1,8 @@
-import { IdentityFilterService, RevisionRequestCollectionService, RevisionRequestDataService } from '@ivt/u-state';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
+import { RevisionRequestCollectionService } from '../../services/revision-request-collection.service';
+import { RevisionRequestDataService } from '../../services/revision-request-data.service';
 import { RevisionRequestListContainerComponent } from './revision-request-list-container.component';
 
 describe('RevisionRequestListContainerComponent', () => {
@@ -9,7 +10,7 @@ describe('RevisionRequestListContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: RevisionRequestListContainerComponent,
     shallow: true,
-    mocks: [RevisionRequestCollectionService, RevisionRequestDataService, NzMessageService, IdentityFilterService],
+    mocks: [RevisionRequestCollectionService, RevisionRequestDataService, NzMessageService],
   });
 
   beforeEach(() => (spectator = createComponent()));

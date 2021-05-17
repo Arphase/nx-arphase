@@ -1,5 +1,5 @@
-import { GuaranteeCollectionService } from '@ivt/u-state';
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { GuaranteeCollectionService } from '../services/guarantee-collection.service';
 
 import { GuaranteeResolverService } from './guarantee-resolver.service';
 

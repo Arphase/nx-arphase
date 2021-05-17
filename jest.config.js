@@ -21,5 +21,11 @@ module.exports = {
     '<rootDir>/libs/innovatech/ui/permissions/feature',
     '<rootDir>/libs/innovatech/ui/permissions/data',
     '<rootDir>/libs/innovatech/ui/permissions/ui',
+    '<rootDir>/libs/innovatech/ui/companies/ui',
+    '<rootDir>/libs/innovatech/ui/companies/data',
+    '<rootDir>/libs/innovatech/ui/users/innovatech-ui-users-ui',
+    '<rootDir>/libs/innovatech/ui/users/innovatech-ui-users-data',
+    '<rootDir>/libs/innovatech/ui/groups/data',
+    '<rootDir>/libs/innovatech/ui/groups/ui',
   ],
 };

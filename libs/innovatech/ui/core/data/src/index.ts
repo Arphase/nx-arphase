@@ -1,3 +1,4 @@
+export * from './lib/classes';
 export * from './lib/entity-config';
 export * from './lib/router';
 export * from './lib/services';

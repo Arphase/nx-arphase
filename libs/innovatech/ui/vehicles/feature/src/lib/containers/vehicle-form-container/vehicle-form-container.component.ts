@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Company, UserRoles, Vehicle } from '@innovatech/common/domain';
-import { filterExisting } from '@innovatech/common/utils';
+import { UserRoles, Vehicle } from '@innovatech/common/domain';
 import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data';
-import { IvtEntityCollection } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import {
   fromVehicles,
@@ -12,13 +10,11 @@ import {
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
-import { CompanyCollectionService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
-import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { combineLatest } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'ivt-vehicle-form-container',
@@ -26,7 +22,7 @@ import { map, take } from 'rxjs/operators';
   styleUrls: ['./vehicle-form-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VehicleFormContainerComponent extends IvtFormContainerComponent<Vehicle> implements OnInit, OnDestroy {
+export class VehicleFormContainerComponent extends IvtFormContainerComponent<Vehicle> implements OnDestroy {
   form = createVehicleForm();
   successUrl = '/spa/vehicles';
   createSuccessMessage = 'El vehículo se ha creado con éxito';
@@ -43,11 +39,6 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
       return createRoute ? create : update;
     })
   );
-  companyOptions$ = this.companyCollectionService.options$;
-  companiesInfo$ = this.companyCollectionService.store.pipe(
-    select(this.companyCollectionService.selectors.selectCollection),
-    map((collection: IvtEntityCollection<Company>) => collection.info)
-  );
   invalidVin$ = combineLatest([
     this.store.pipe(select(getVehiclesVehicleState)),
     this.store.pipe(select(getVehiclesErrorState)),
@@ -62,28 +53,14 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
     protected router: Router,
     protected messageService: NzMessageService,
     private store: Store,
-    private companyCollectionService: CompanyCollectionService,
     private permissionService: PermissionService,
     private route: ActivatedRoute
   ) {
     super(vehicleCollectionService, router, messageService);
   }
 
-  ngOnInit() {
-    this.showCompanyInput$
-      .pipe(filterExisting(), take(1))
-      .subscribe(() => this.companyCollectionService.getWithQuery({}));
-  }
-
   verifyVin(vin: string): void {
     this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin }));
-  }
-
-  getCompanies(queryParams: QueryParams): void {
-    this.companyCollectionService.getWithQuery({
-      ...queryParams,
-      sort: [{ key: 'company.businessName', value: 'ascend' } as any],
-    });
   }
 
   ngOnDestroy() {

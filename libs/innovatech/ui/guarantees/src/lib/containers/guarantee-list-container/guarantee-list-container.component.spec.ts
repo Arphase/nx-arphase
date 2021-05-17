@@ -1,20 +1,14 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import {
-  CompanyCollectionService,
-  GuaranteeCollectionService,
-  GuaranteeDataService,
-  IdentityFilterService,
-  PaymentOrderCollectionService,
-  PaymentOrderDataService,
-  PermissionService,
-  ProductCollectionService,
-  VehicleCollectionService,
-} from '@ivt/u-state';
+import { PermissionService } from '@innovatech/ui/permissions/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockStore } from '@ngrx/store/testing';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
+import { GuaranteeCollectionService } from '../../services/guarantee-collection.service';
+import { GuaranteeDataService } from '../../services/guarantee-data.service';
+import { PaymentOrderCollectionService } from '../../services/payment-order-collection.service';
+import { PaymentOrderDataService } from '../../services/payment-order-data.service';
 import { GuaranteeListContainerComponent } from './guarantee-list-container.component';
 
 describe('GuaranteeListContainerComponent', () => {
@@ -29,7 +23,6 @@ describe('GuaranteeListContainerComponent', () => {
       GuaranteeDataService,
       PaymentOrderCollectionService,
       PaymentOrderDataService,
-      IdentityFilterService,
       NzModalService,
       NzMessageService,
       PermissionService,

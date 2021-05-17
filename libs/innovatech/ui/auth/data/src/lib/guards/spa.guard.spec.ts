@@ -1,7 +1,7 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '@ivt/u-state';
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
+import { AuthService } from '../services/auth.service';
 import { SpaGuard } from './spa.guard';
 
 describe('SpaGuard', () => {

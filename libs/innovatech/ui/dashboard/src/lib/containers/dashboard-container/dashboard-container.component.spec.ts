@@ -1,4 +1,3 @@
-import { IdentityFilterService } from '@ivt/u-state';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockStore } from '@ngrx/store/testing';
 
@@ -9,8 +8,7 @@ describe('DashboardContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: DashboardContainerComponent,
     providers: [provideMockStore()],
-    mocks: [IdentityFilterService],
-    shallow: true
+    shallow: true,
   });
 
   beforeEach(() => (spectator = createComponent()));

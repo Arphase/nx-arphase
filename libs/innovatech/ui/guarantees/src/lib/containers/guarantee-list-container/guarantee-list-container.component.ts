@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Guarantee, GuaranteeStatus, statusLabels, transformFolio, UserRoles } from '@innovatech/common/domain';
-import { IdentityFilterService } from '@ivt/u-state';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -31,12 +30,11 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
     protected guaranteeDataService: GuaranteeDataService,
     protected modal: NzModalService,
     protected messageService: NzMessageService,
-    protected identityFilterService: IdentityFilterService,
     private paymentOrderCollectionService: PaymentOrderCollectionService,
     private paymentOrderDataService: PaymentOrderDataService,
     private permissionService: PermissionService
   ) {
-    super(guaranteeCollectionService, guaranteeDataService, modal, messageService, identityFilterService);
+    super(guaranteeCollectionService, guaranteeDataService, modal, messageService);
   }
 
   createPaymentOrder(guaranteeIds: number[]): void {

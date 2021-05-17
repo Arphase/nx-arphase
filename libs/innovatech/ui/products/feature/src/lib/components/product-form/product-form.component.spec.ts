@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { ProductDataService } from '@ivt/u-state';
+import { ProductDataService } from '@innovatech/ui/products/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzModalService } from 'ng-zorro-antd/modal';
 

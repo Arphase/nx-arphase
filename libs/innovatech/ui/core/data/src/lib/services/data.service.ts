@@ -8,7 +8,7 @@ import { finalize, tap } from 'rxjs/operators';
 
 import { buildQueryParams } from '../entity-config/build-query-params';
 
-export class IvtDataService<T> extends DefaultDataService<T> {
+export abstract class IvtDataService<T> extends DefaultDataService<T> {
   private loadingExcelSubject = new BehaviorSubject<boolean>(false);
   loadingExcel$ = this.loadingExcelSubject.asObservable();
 

@@ -71,9 +71,6 @@
       "@ivt/a-vehicles": [
         "libs/api/a-vehicles/src/index.ts"
       ],
-      "@ivt/c-utils": [
-        "libs/common/c-utils/src/index.ts"
-      ],
       "@innovatech/common/domain": [
         "libs/innovatech/common/domain/src/index.ts"
       ],
@@ -98,11 +95,14 @@
       "@innovatech/ui/spa": [
         "libs/innovatech/ui/spa/src/index.ts"
       ],
-      "@ivt/u-state": [
-        "libs/ui/u-state/src/index.ts"
+      "@innovatech/ui/groups/data": [
+        "libs/innovatech/ui/groups/data/src/index.ts"
       ],
-      "@innovatech/ui/groups": [
-        "libs/innovatech/ui/groups/src/index.ts"
+      "@innovatech/ui/groups/feature": [
+        "libs/innovatech/ui/groups/feature/src/index.ts"
+      ],
+      "@innovatech/ui/groups/ui": [
+        "libs/innovatech/ui/groups/ui/src/index.ts"
       ],
       "@innovatech/ui/products/feature": [
         "libs/innovatech/ui/products/feature/src/index.ts"
@@ -116,8 +116,14 @@
       "@innovatech/ui/revisions": [
         "libs/innovatech/ui/revisions/src/index.ts"
       ],
-      "@innovatech/ui/users": [
-        "libs/innovatech/ui/users/src/index.ts"
+      "@innovatech/ui/users/data": [
+        "libs/innovatech/ui/users/data/src/index.ts"
+      ],
+      "@innovatech/ui/users/feature": [
+        "libs/innovatech/ui/users/feature/src/index.ts"
+      ],
+      "@innovatech/ui/users/ui": [
+        "libs/innovatech/ui/users/ui/src/index.ts"
       ],
       "@innovatech/ui/vehicles/feature": [
         "libs/innovatech/ui/vehicles/feature/src/index.ts"
@@ -142,6 +148,12 @@
       ],
       "@innovatech/ui/permissions/data": [
         "libs/innovatech/ui/permissions/data/src/index.ts"
+      ],
+      "@innovatech/ui/companies/ui": [
+        "libs/innovatech/ui/companies/ui/src/index.ts"
+      ],
+      "@innovatech/ui/companies/data": [
+        "libs/innovatech/ui/companies/data/src/index.ts"
       ]
     }
   },

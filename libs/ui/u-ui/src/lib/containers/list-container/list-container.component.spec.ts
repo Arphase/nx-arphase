@@ -1,4 +1,4 @@
-import { IdentityFilterService, IvtCollectionService, IvtDataService } from '@ivt/u-state';
+import { IvtCollectionService, IvtDataService } from '@innovatech/ui/core/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -10,7 +10,7 @@ describe('IvtListContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: IvtListContainerComponent,
     shallow: true,
-    mocks: [IvtCollectionService, IvtDataService, NzModalService, NzMessageService, IdentityFilterService],
+    mocks: [IvtCollectionService, IvtDataService, NzModalService, NzMessageService],
   });
 
   beforeEach(() => (spectator = createComponent()));

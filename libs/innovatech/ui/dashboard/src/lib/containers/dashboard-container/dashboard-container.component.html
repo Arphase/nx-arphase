@@ -1,11 +1,4 @@
 <ivt-dashboard [data]="data$ | async"
                [isEmpty]="isEmpty$ | async"
-               [groupFilterInfo]="groupFilterInfo$ | async"
-               [companyFilterInfo]="companyFilterInfo$ | async"
-               [userFilterInfo]="userFilterInfo$ | async"
                [queryParams]="queryParams$ | async"
-               (filterItems)="filterItems($event)"
-               (filterGroupOptions)="filterGroupOptions($event)"
-               (filterCompanyOptions)="filterCompanyOptions($event)"
-               (filterUserOptions)="filterUserOptions($event)">
-</ivt-dashboard>
+               (filterItems)="filterItems($event)"></ivt-dashboard>

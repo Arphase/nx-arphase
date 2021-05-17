@@ -1,10 +1,12 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { PermissionService, RevisionCollectionService, VehicleCollectionService } from '@ivt/u-state';
+import { PermissionService } from '@innovatech/ui/permissions/data';
+import { VehicleCollectionService } from '@innovatech/ui/vehicles/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockStore } from '@ngrx/store/testing';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { of } from 'rxjs';
 
+import { RevisionCollectionService } from '../../services/revision-collection.service';
 import { RevisionFormContainerComponent } from './revision-form-container.component';
 
 describe('RevisionFormContainerComponent', () => {

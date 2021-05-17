@@ -3,9 +3,6 @@
                     [loadingExcel]="loadingExcel$ | async"
                     [loading]="loading$ | async"
                     [info]="info$ | async"
-                    [groupFilterInfo]="groupFilterInfo$ | async"
-                    [companyFilterInfo]="companyFilterInfo$ | async"
-                    [userFilterInfo]="userFilterInfo$ | async"
                     [canModifyPaymentOrders]="canModifyPaymentOrders$ | async"
                     [queryParams]="queryParams"
                     (filterItems)="filterItems($event)"
@@ -14,8 +11,4 @@
                     (edit)="changeStatus($event)"
                     (createPaymentOrder)="createPaymentOrder($event)"
                     (updatePaymentOrder)="updatePaymentOrder($event)"
-                    (downloadPaymentOrder)="downloadPaymentOrder($event)"
-                    (filterGroupOptions)="filterGroupOptions($event)"
-                    (filterCompanyOptions)="filterCompanyOptions($event)"
-                    (filterUserOptions)="filterUserOptions($event)">
-</ivt-guarantee-list>
+                    (downloadPaymentOrder)="downloadPaymentOrder($event)"></ivt-guarantee-list>

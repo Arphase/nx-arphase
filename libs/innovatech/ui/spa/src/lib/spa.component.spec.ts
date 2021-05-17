@@ -1,4 +1,5 @@
-import { INNOVATECH_CONFIGURATION, PermissionService } from '@ivt/u-state';
+import { INNOVATECH_CONFIGURATION } from '@innovatech/ui/core/data';
+import { PermissionService } from '@innovatech/ui/permissions/data';
 import { ThemeService } from '@ivt/u-ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockActions } from '@ngrx/effects/testing';

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GuaranteeStatus } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
-import { IdentityFilterService } from '@ivt/u-state';
-import { IvtListContainerComponent } from '@ivt/u-ui';
 import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
 import { keyBy } from 'lodash-es';
@@ -16,7 +14,7 @@ import { getDashboardGuaranteeSummaryState, getDashboardQueryParamsState } from 
   templateUrl: './dashboard-container.component.html',
   styleUrls: ['./dashboard-container.component.less'],
 })
-export class DashboardContainerComponent extends IvtListContainerComponent<number[]> implements OnInit {
+export class DashboardContainerComponent implements OnInit {
   data$ = this.store.pipe(
     select(getDashboardGuaranteeSummaryState),
     filterNil(),
@@ -49,9 +47,7 @@ export class DashboardContainerComponent extends IvtListContainerComponent<numbe
   );
   queryParams$ = this.store.pipe(select(getDashboardQueryParamsState));
 
-  constructor(private store: Store, protected identityFilterService: IdentityFilterService) {
-    super(null, null, null, null, identityFilterService);
-  }
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.queryParams$.pipe(take(1)).subscribe(queryParams => this.store.dispatch(getGuaranteeSummary(queryParams)));

@@ -1,5 +1,5 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { ProductCollectionService } from '@ivt/u-state';
+import { ProductCollectionService } from '@innovatech/ui/products/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzMessageService } from 'ng-zorro-antd/message';
 

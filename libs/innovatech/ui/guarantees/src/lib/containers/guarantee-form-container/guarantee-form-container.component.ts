@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Company, Guarantee, UserRoles } from '@innovatech/common/domain';
+import { Guarantee, UserRoles } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
-import { IvtEntityCollection, selectQueryParam } from '@innovatech/ui/core/data';
+import { selectQueryParam } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import { ProductCollectionService } from '@innovatech/ui/products/data';
 import {
@@ -11,9 +11,7 @@ import {
   getVehiclesVehicleState,
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data';
-import { CompanyCollectionService } from '@ivt/u-state';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
-import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -47,11 +45,6 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   showCompanyInput$ = this.permissionService.hasCreatePermission([UserRoles.superAdmin]);
   productOptions$ = this.productCollectionService.options$;
   vehicle$ = this.vehicleCollectionService.currentItem$;
-  companyOptions$ = this.companyCollectionService.options$;
-  companiesInfo$ = this.companyCollectionService.store.pipe(
-    select(this.companyCollectionService.selectors.selectCollection),
-    map((collection: IvtEntityCollection<Company>) => collection?.info)
-  );
   currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
   error$ = this.store.pipe(select(getVehiclesErrorMessageState));
 
@@ -62,7 +55,6 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     private productCollectionService: ProductCollectionService,
     private permissionService: PermissionService,
     private store: Store,
-    private companyCollectionService: CompanyCollectionService,
     private vehicleCollectionService: VehicleCollectionService,
     private route: ActivatedRoute
   ) {
@@ -84,19 +76,8 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
     super.submit(omit({ ...item, vehicleId: item.vehicle.id }, 'vehicle') as Guarantee);
   }
 
-  getCompanies(queryParams: QueryParams): void {
-    this.companyCollectionService.getWithQuery({
-      ...queryParams,
-      sort: [{ key: 'company.businessName', value: 'ascend' } as any],
-    });
-  }
-
   getProducts(payload: { year: string; horsePower: string }): void {
     this.productCollectionService.getWithQuery({ ...payload, resetList: String(true) });
-  }
-
-  saveCompanyInCache(id: number): void {
-    this.companyCollectionService.getByKey(id);
   }
 
   ngOnDestroy() {

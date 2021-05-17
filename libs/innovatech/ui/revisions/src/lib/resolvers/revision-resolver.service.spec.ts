@@ -1,6 +1,6 @@
-import { RevisionCollectionService } from '@ivt/u-state';
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
+import { RevisionCollectionService } from '../services/revision-collection.service';
 import { RevisionResolverService } from './revision-resolver.service';
 
 describe('RevisionResolverService', () => {

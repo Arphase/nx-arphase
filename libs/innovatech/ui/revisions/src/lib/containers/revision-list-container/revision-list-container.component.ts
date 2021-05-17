@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Revision, UserRoles } from '@innovatech/common/domain';
-import { IdentityFilterService } from '@ivt/u-state';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import { IvtListContainerComponent } from '@ivt/u-ui';
 import dayjs from 'dayjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
+
 import { RevisionCollectionService } from '../../services/revision-collection.service';
 import { RevisionDataService } from '../../services/revision-data.service';
 
@@ -23,10 +23,9 @@ export class RevisionListContainerComponent extends IvtListContainerComponent<Re
     protected revisionDataService: RevisionDataService,
     protected modal: NzModalService,
     protected toastrService: NzMessageService,
-    protected identityFilterService: IdentityFilterService,
     private permissionService: PermissionService
   ) {
-    super(revisionCollectionService, revisionDataService, modal, toastrService, identityFilterService);
+    super(revisionCollectionService, revisionDataService, modal, toastrService);
   }
 
   deleteItem(item: Revision): void {

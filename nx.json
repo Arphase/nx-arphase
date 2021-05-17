@@ -40,29 +40,28 @@
     "innovatech-ui-dashboard": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "innovatech-ui-guarantees": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "innovatech-ui-spa": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "u-state": { "tags": ["type:data"] },
     "u-ui": { "tags": ["type:ui"] },
-    "innovatech-ui-groups": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
+    "innovatech-ui-groups-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]  },
+    "innovatech-ui-groups-feature": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
+    "innovatech-ui-groups-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
     "innovatech-ui-products-feature": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "innovatech-ui-products-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
     "innovatech-ui-revision-requests": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "innovatech-ui-revisions": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "innovatech-ui-users": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
+    "innovatech-ui-users-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
+    "innovatech-ui-users-feature": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
+    "innovatech-ui-users-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
     "innovatech-ui-vehicles-feature": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "innovatech-ui-vehicles-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
     "innovatech-ui-vehicles-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
     "arphase-ui": { "tags": ["domain:arphase", "type:ui"] },
     "innovatech-domain": { "tags": ["domain:innovatech", "type:domain-logic"] },
     "innovatech-utils": { "tags": ["domain:innovatech", "type:util"] },
-    "innovatech-ui-core-data": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
-    },
+    "innovatech-ui-core-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
     "innovatech-ui-core-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
-    "innovatech-ui-core-util": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:util"]
-    },
-    "innovatech-ui-permissions-data": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
-    }
+    "innovatech-ui-core-util": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:util"] },
+    "innovatech-ui-permissions-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
+    "innovatech-ui-companies-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
+    "innovatech-ui-companies-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] }
   }
 }
