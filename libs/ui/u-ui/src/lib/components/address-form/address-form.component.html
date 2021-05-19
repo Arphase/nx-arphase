@@ -27,7 +27,8 @@
            nzLg="6">
         <nz-form-item>
           <nz-form-label nzRequired>País</nz-form-label>
-          <nz-form-control apsAutoError>
+          <nz-form-control apsAutoError
+                           apsAutocomplete>
             <nz-select apsAutoSelect
                        formControlName="country"
                        [nzOptions]="countryOptions">
@@ -114,11 +115,17 @@
          nzXs="24"
          nzMd="12"
          nzLg="6">
-      <ivt-autocomplete label="Colonia"
-                        [control]="form.get('suburb')"
-                        [options]="suburbOptions"
-                        [required]="true">
-      </ivt-autocomplete>
+      <nz-form-item>
+        <nz-form-label nzRequired>Colonia</nz-form-label>
+        <nz-form-control apsAutoError
+                         apsAutocomplete
+                         [options]="suburbOptions">
+          <input nz-input
+                 formControlName="suburb"
+                 [nzAutocomplete]="auto" />
+          <nz-autocomplete #auto></nz-autocomplete>
+        </nz-form-control>
+      </nz-form-item>
     </div>
     <div nz-col
          nzXs="24"
