@@ -15,10 +15,11 @@ import { filterNil, RfcValidatorTypes } from '@innovatech/common/utils';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
 import { createAddressForm, IvtFormComponent } from '@ivt/u-ui';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { QueryParams } from '@ngrx/data';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
-import { startWith, takeUntil } from 'rxjs/operators';
+import { startWith } from 'rxjs/operators';
 
 export function createGuaranteeForm(): FormGroup {
   return new FormGroup({
@@ -56,6 +57,7 @@ export function createGuaranteeForm(): FormGroup {
   });
 }
 
+@UntilDestroy()
 @Component({
   selector: 'ivt-guarantee-form',
   templateUrl: './guarantee-form.component.html',
@@ -126,7 +128,7 @@ export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implemen
     if (changes.form && this.form) {
       this.client
         .get('personType')
-        .valueChanges.pipe(filterNil(), takeUntil(this.destroy$))
+        .valueChanges.pipe(filterNil(), untilDestroyed(this))
         .subscribe(value => this.personTypeChange(value));
       this.companyId$ = this.form.get('companyId').valueChanges;
     }

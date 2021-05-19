@@ -4,14 +4,13 @@ import { QueryParams } from '@ngrx/data';
 
 import { CrudEvents } from '../../models';
 import { Dates } from '../filters/date-filter/date-filter.component';
-import { IvtSubscriberComponent } from '../subscriber';
 
 @Component({
   template: '',
   selector: 'ivt-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtListComponent<T = any> extends IvtSubscriberComponent implements CrudEvents<T> {
+export class IvtListComponent<T = any> implements CrudEvents<T> {
   @Input() list: T[] = [];
   @Input() loading: boolean;
   @Input() loadingExcel: boolean;

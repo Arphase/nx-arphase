@@ -3,23 +3,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Revision, UserRoles } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
 import { selectQueryParam } from '@innovatech/ui/core/data';
+import { PermissionService } from '@innovatech/ui/permissions/data';
 import {
   fromVehicles,
   getVehiclesErrorMessageState,
   getVehiclesVehicleState,
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data';
-import { PermissionService } from '@innovatech/ui/permissions/data';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { combineLatest } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { createRevisionForm } from '../../components/revision-form/revision-form.component';
 import { RevisionCollectionService } from '../../services/revision-collection.service';
 
+@UntilDestroy()
 @Component({
   selector: 'ivt-revision-form-container',
   templateUrl: './revision-form-container.component.html',
@@ -59,7 +61,7 @@ export class RevisionFormContainerComponent extends IvtFormContainerComponent<Re
 
   ngOnInit() {
     this.store
-      .pipe(select(selectQueryParam('vehicleId')), takeUntil(this.destroy$), filterNil())
+      .pipe(select(selectQueryParam('vehicleId')), untilDestroyed(this), filterNil())
       .subscribe(id => this.vehicleCollectionService.getByKey(Number(id)));
   }
 

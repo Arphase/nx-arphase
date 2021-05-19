@@ -2,14 +2,13 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { FormGroup } from '@angular/forms';
 
 import { collectFormErrors, updateFormControlsValueAndValidity } from '../../functions';
-import { IvtSubscriberComponent } from '../subscriber';
 
 @Component({
   selector: 'ivt-form',
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtFormComponent<T = any, F = any> extends IvtSubscriberComponent {
+export class IvtFormComponent<T = any, F = any> {
   @Input() form: FormGroup;
   @Input() item: T;
   @Input() loading: boolean;

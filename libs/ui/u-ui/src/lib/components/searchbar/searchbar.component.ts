@@ -1,23 +1,23 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { debounceTime } from 'rxjs/operators';
 
-import { IvtSubscriberComponent } from '../subscriber';
-
+@UntilDestroy()
 @Component({
   selector: 'ivt-searchbar',
   templateUrl: './searchbar.component.html',
   styleUrls: ['./searchbar.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtSearchbarComponent extends IvtSubscriberComponent implements OnInit {
+export class IvtSearchbarComponent implements OnInit {
   @Input() showIcon = true;
   @Output() valueChange = new EventEmitter<string>();
   control = new FormControl('');
 
   ngOnInit() {
     this.control.valueChanges
-      .pipe(debounceTime(1000), takeUntil(this.destroy$))
+      .pipe(debounceTime(1000), untilDestroyed(this))
       .subscribe(value => this.valueChange.emit(value));
   }
 }

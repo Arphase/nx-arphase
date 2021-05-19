@@ -1,17 +1,17 @@
-import { Directive, Inject, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Inject, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { UserRoles } from '@innovatech/common/domain';
-import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Observable } from 'rxjs';
 
 import { PermissionService, REQUIRED_ROLES } from '../services/permission.service';
 
+@UntilDestroy()
 @Directive({
   selector: '[ivtBasePermission]',
 })
-export class BasePermissionDirective implements OnInit, OnDestroy {
+export class BasePermissionDirective implements OnInit {
   hasPermission$: Observable<boolean>;
   private hasView = false;
-  private destroy$ = new Subject<void>();
 
   constructor(
     protected templateRef: TemplateRef<null>,
@@ -21,12 +21,7 @@ export class BasePermissionDirective implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.hasPermission$.pipe(takeUntil(this.destroy$)).subscribe(hasPermission => this.execute(hasPermission));
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
+    this.hasPermission$.pipe(untilDestroyed(this)).subscribe(hasPermission => this.execute(hasPermission));
   }
 
   execute(hasPermission: boolean) {

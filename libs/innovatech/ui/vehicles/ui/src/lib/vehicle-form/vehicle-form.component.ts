@@ -11,9 +11,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { Vehicle, VEHICLE_VIN_LENGTH } from '@innovatech/common/domain';
 import { IvtFormComponent } from '@ivt/u-ui';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { QueryParams } from '@ngrx/data';
 import { omit } from 'lodash-es';
-import { filter, takeUntil } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 
 export function createVehicleForm(vehicle?: Vehicle) {
   const todayYear = new Date().getFullYear();
@@ -41,6 +42,7 @@ export function createVehicleForm(vehicle?: Vehicle) {
   return form;
 }
 
+@UntilDestroy()
 @Component({
   selector: 'ivt-vehicle-form',
   templateUrl: './vehicle-form.component.html',
@@ -65,7 +67,7 @@ export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements O
         .get('vin')
         .valueChanges.pipe(
           filter((vin: string) => vin.length === VEHICLE_VIN_LENGTH),
-          takeUntil(this.destroy$)
+          untilDestroyed(this)
         )
         .subscribe(vin => this.verifyVin.emit(vin));
     }

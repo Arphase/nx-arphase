@@ -4,22 +4,23 @@ import { RevisionRequest, UserRoles } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
 import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data';
 import { selectQueryParam } from '@innovatech/ui/core/data';
+import { PermissionService } from '@innovatech/ui/permissions/data';
 import {
   fromVehicles,
   getVehiclesErrorMessageState,
   getVehiclesVehicleState,
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data';
-import { PermissionService } from '@innovatech/ui/permissions/data';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { takeUntil } from 'rxjs/operators';
 
 import { createRevisionRequestForm } from '../../components/revision-request-form/revision-request-form.component';
 import { RevisionRequestCollectionService } from '../../services/revision-request-collection.service';
 
+@UntilDestroy()
 @Component({
   selector: 'ivt-revision-request-form-container',
   templateUrl: './revision-request-form-container.component.html',
@@ -52,7 +53,7 @@ export class RevisionRequestFormContainerComponent
 
   ngOnInit() {
     this.store
-      .pipe(select(selectQueryParam('vehicleId')), takeUntil(this.destroy$), filterNil())
+      .pipe(select(selectQueryParam('vehicleId')), untilDestroyed(this), filterNil())
       .subscribe(id => this.vehicleCollectionService.getByKey(Number(id)));
   }
 

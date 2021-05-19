@@ -6,10 +6,11 @@ import { glossary, Product } from '@innovatech/common/domain';
 import { filterNil, sortSelectOptions } from '@innovatech/common/utils';
 import { ProductDataService } from '@innovatech/ui/products/data';
 import { IvtFormComponent } from '@ivt/u-ui';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzUploadChangeParam, NzUploadFile, NzUploadXHRArgs } from 'ng-zorro-antd/upload';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
-import { finalize, take, takeUntil } from 'rxjs/operators';
+import { finalize, take } from 'rxjs/operators';
 
 import { ProductForm } from '../../models/product-form.model';
 
@@ -38,6 +39,7 @@ export function createProductForm(): FormGroup {
   });
 }
 
+@UntilDestroy()
 @Component({
   selector: 'ivt-product-form',
   templateUrl: './product-form.component.html',
@@ -105,7 +107,7 @@ export class ProductFormComponent extends IvtFormComponent<Product, ProductForm>
 
   ngOnInit() {
     const glossaryControl = this.form.get('glossary');
-    glossaryControl.valueChanges.pipe(filterNil(), takeUntil(this.destroy$)).subscribe(value => {
+    glossaryControl.valueChanges.pipe(filterNil(), untilDestroyed(this)).subscribe(value => {
       const control = this.form.get('template');
       control.patchValue(`${control.value} ${value}`);
       glossaryControl.patchValue('', { emitEvent: false });
@@ -176,7 +178,7 @@ export function readFileAsDataUrl(file: File): Observable<string> {
 }
 
 export function dataURLtoFile(dataurl: string, filename: string): File {
-  var arr = dataurl.split(','),
+  const arr = dataurl.split(','),
     mime = arr[0].match(/:(.*?);/)[1],
     bstr = atob(arr[1]),
     n = bstr.length,

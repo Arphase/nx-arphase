@@ -4,7 +4,7 @@ import { MenuItem, UserRoles } from '@innovatech/common/domain';
 import { fromAuth, getAuthUserEmailState, getAuthUserNameState } from '@innovatech/ui/auth/data';
 import { INNOVATECH_CONFIGURATION, InnovatechConfiguration } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
-import { IvtSubscriberComponent, Themes, ThemeService } from '@ivt/u-ui';
+import { Themes, ThemeService } from '@ivt/u-ui';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
@@ -16,7 +16,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./spa.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SpaComponent extends IvtSubscriberComponent implements OnInit {
+export class SpaComponent implements OnInit {
   isCollapsed: boolean;
   menuItems: MenuItem[] = [
     {
@@ -106,7 +106,6 @@ export class SpaComponent extends IvtSubscriberComponent implements OnInit {
     private themeService: ThemeService,
     private actions$: Actions
   ) {
-    super();
     this.mobileQuery = this.media.matchMedia('(max-width: 769px)');
     this._mobileQueryListener = () => this.cdr.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

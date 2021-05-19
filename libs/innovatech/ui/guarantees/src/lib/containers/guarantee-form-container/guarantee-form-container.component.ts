@@ -12,15 +12,17 @@ import {
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data';
 import { IvtFormContainerComponent } from '@ivt/u-ui';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { combineLatest } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { createGuaranteeForm } from '../../components/guarantee-form/guarantee-form.component';
 import { GuaranteeCollectionService } from '../../services/guarantee-collection.service';
 
+@UntilDestroy()
 @Component({
   selector: 'ivt-guarantee-form-container',
   templateUrl: './guarantee-form-container.component.html',
@@ -64,7 +66,7 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
 
   ngOnInit() {
     this.store
-      .pipe(select(selectQueryParam('vehicleId')), takeUntil(this.destroy$), filterNil())
+      .pipe(select(selectQueryParam('vehicleId')), untilDestroyed(this), filterNil())
       .subscribe(id => this.vehicleCollectionService.getByKey(Number(id)));
   }
 

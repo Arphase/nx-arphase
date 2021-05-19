@@ -2,21 +2,21 @@ import { ChangeDetectionStrategy, Component, Optional } from '@angular/core';
 import { IvtCollectionResponseInfo, IvtQueryParams } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
 import { buildQueryParams, IvtCollectionService, IvtDataService, IvtEntityCollection } from '@innovatech/ui/core/data';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { select } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { filter, map, take, takeUntil } from 'rxjs/operators';
+import { filter, map, take } from 'rxjs/operators';
 
-import { IvtSubscriberComponent } from '../../components';
-
+@UntilDestroy()
 @Component({
   selector: 'ivt-list-container',
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtListContainerComponent<T = any> extends IvtSubscriberComponent {
+export class IvtListContainerComponent<T = any> {
   list$: Observable<T[]>;
   loading$: Observable<boolean>;
   info$: Observable<IvtCollectionResponseInfo>;
@@ -42,14 +42,14 @@ export class IvtListContainerComponent<T = any> extends IvtSubscriberComponent {
       this.entityCollectionService?.entities$
     ) {
       this.entityCollectionService.store
-        .pipe(select(this.entityCollectionService.selectors.selectCollection), filterNil(), takeUntil(this.destroy$))
+        .pipe(select(this.entityCollectionService.selectors.selectCollection), filterNil(), untilDestroyed(this))
         .subscribe((collection: IvtEntityCollection<T>) => (this.queryParams = collection.queryParams));
 
       this.entityCollectionService.entityActions$
         .pipe(
           ofEntityOp(EntityOp.SAVE_DELETE_ONE_SUCCESS),
           filter(() => !!this.deleteSuccessMessage && !!this.messageService),
-          takeUntil(this.destroy$)
+          untilDestroyed(this)
         )
         .subscribe(() => this.messageService.success(this.deleteSuccessMessage));
 

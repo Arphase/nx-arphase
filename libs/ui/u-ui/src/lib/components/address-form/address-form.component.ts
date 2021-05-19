@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Address } from '@innovatech/common/domain';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
-import { filter, startWith, switchMap, takeUntil } from 'rxjs/operators';
+import { filter, startWith, switchMap } from 'rxjs/operators';
 
 import { IvtFormComponent } from '../form';
 import { createAddressForm, IvtAddressFormService } from './address-form.service';
 
+@UntilDestroy()
 @Component({
   selector: 'ivt-address-form',
   templateUrl: './address-form.component.html',
@@ -32,7 +34,7 @@ export class IvtAddressFormComponent extends IvtFormComponent<Address> implement
       .pipe(
         startWith(zipCodeControl.value),
         filter(value => value && String(value).length === 5),
-        takeUntil(this.destroy$),
+        untilDestroyed(this),
         switchMap(zipcode => this.addressFormService.getLocalities(zipcode))
       )
       .subscribe(zipCodeResponse => {

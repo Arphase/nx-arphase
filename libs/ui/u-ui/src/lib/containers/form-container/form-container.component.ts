@@ -2,22 +2,24 @@ import { ChangeDetectionStrategy, Component, Optional, ViewChild } from '@angula
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IvtCollectionService } from '@innovatech/ui/core/data';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { get } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { of } from 'rxjs';
-import { filter, mapTo, takeUntil } from 'rxjs/operators';
+import { filter, mapTo } from 'rxjs/operators';
 
-import { IvtFormComponent, IvtSubscriberComponent } from '../../components';
+import { IvtFormComponent } from '../../components';
 import { ComponentCanDeactivate } from '../../guards/dirty-form/dirty-form.guard';
 
+@UntilDestroy()
 @Component({
   selector: 'ivt-form-container',
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtFormContainerComponent<T = any> extends IvtSubscriberComponent implements ComponentCanDeactivate {
+export class IvtFormContainerComponent<T = any> implements ComponentCanDeactivate {
   @ViewChild('form', { static: false }) formComponent: IvtFormComponent<T>;
   loading$ = this.entityCollectionService.loadingModify$ || of();
   currentItem$ = this.entityCollectionService.currentItem$ || of();
@@ -36,13 +38,12 @@ export class IvtFormContainerComponent<T = any> extends IvtSubscriberComponent i
     @Optional() protected messageService?: NzMessageService,
     @Optional() protected modalRef?: NzModalRef
   ) {
-    super();
     if (this.entityCollectionService.entityActions$) {
       this.entityCollectionService.entityActions$
         .pipe(
           ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS, EntityOp.SAVE_UPDATE_ONE_SUCCESS),
           filter(() => !!this.successUrl && !!this.router),
-          takeUntil(this.destroy$)
+          untilDestroyed(this)
         )
         .subscribe(() => this.router.navigateByUrl(this.successUrl));
 
@@ -50,7 +51,7 @@ export class IvtFormContainerComponent<T = any> extends IvtSubscriberComponent i
         .pipe(
           ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS, EntityOp.SAVE_UPDATE_ONE_SUCCESS),
           filter(() => !!this.modalRef),
-          takeUntil(this.destroy$)
+          untilDestroyed(this)
         )
         .subscribe(() => this.modalRef.close());
 
@@ -58,7 +59,7 @@ export class IvtFormContainerComponent<T = any> extends IvtSubscriberComponent i
         .pipe(
           ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS),
           filter(() => !!this.createSuccessMessage && !!this.messageService),
-          takeUntil(this.destroy$)
+          untilDestroyed(this)
         )
         .subscribe(() => this.messageService.success(this.createSuccessMessage));
 
@@ -66,7 +67,7 @@ export class IvtFormContainerComponent<T = any> extends IvtSubscriberComponent i
         .pipe(
           ofEntityOp(EntityOp.SAVE_UPDATE_ONE_SUCCESS),
           filter(() => !!this.updateSuccessMessage && !!this.messageService),
-          takeUntil(this.destroy$)
+          untilDestroyed(this)
         )
         .subscribe(() => this.messageService.success(this.updateSuccessMessage));
     }
@@ -75,7 +76,7 @@ export class IvtFormContainerComponent<T = any> extends IvtSubscriberComponent i
       this.entityCollectionService.loadingModify$
         .pipe(
           filter(() => !!this.modalRef),
-          takeUntil(this.destroy$)
+          untilDestroyed(this)
         )
         .subscribe(loading => this.modalRef.updateConfig({ nzOkLoading: loading }));
     }
