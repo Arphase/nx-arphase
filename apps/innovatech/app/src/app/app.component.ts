@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import { Plugins, StatusBarStyle } from '@capacitor/core';
-import { Platform } from '@ionic/angular';
 import { ThemeService } from '@arphase/ui';
-import { Store } from '@ngrx/store';
-
-const { StatusBar } = Plugins;
 
 @Component({
   selector: 'app-root',
@@ -12,18 +7,7 @@ const { StatusBar } = Plugins;
   styleUrls: ['app.component.less'],
 })
 export class AppComponent {
-  constructor(private platform: Platform, private themeService: ThemeService, private store: Store) {
-    this.initializeApp();
+  constructor(private themeService: ThemeService) {
     this.themeService.loadTheme();
-  }
-
-  initializeApp() {
-    this.platform.ready().then(() => {
-      if (this.platform.is('capacitor')) {
-        StatusBar.setStyle({
-          style: StatusBarStyle.Dark,
-        });
-      }
-    });
   }
 }

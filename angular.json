@@ -1,5 +1,27 @@
 {
   "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
+  },
+  "defaultProject": "innovatech-app",
+  "schematics": {
+    "@nrwl/angular:application": {
+      "style": "less",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "less",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "less",
+      "changeDetection": "OnPush"
+    }
+  },
   "projects": {
     "innovatech-app": {
       "projectType": "application",
@@ -184,8 +206,7 @@
             "outputPath": "dist/apps/innovatech/api",
             "main": "apps/innovatech/api/src/main.ts",
             "tsConfig": "apps/innovatech/api/tsconfig.app.json",
-            "assets": ["apps/innovatech/api/src/assets"],
-            "showCircularDependencies": false
+            "assets": ["apps/innovatech/api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -1210,27 +1231,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/angular",
-    "analytics": false
-  },
-  "schematics": {
-    "@nrwl/angular:application": {
-      "style": "less",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "style": "less",
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "less",
-      "changeDetection": "OnPush"
-    }
-  },
-  "defaultProject": "innovatech-app"
+  }
 }

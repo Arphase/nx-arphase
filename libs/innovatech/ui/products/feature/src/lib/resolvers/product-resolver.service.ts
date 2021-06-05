@@ -12,7 +12,7 @@ export class ProductResolverService implements Resolve<Product> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<Product> {
     const id = Number(route.paramMap.get('id'));
-    let product$ = of(null);
+    let product$: Observable<Product | null> = of(null);
     id
       ? (product$ = this.productCollectionService.getByKey(id))
       : this.productCollectionService.removeOneFromCache(null);

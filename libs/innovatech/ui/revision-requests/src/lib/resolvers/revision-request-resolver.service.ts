@@ -13,10 +13,10 @@ export class RevisionRequestResolverService implements Resolve<RevisionRequest> 
 
   resolve(route: ActivatedRouteSnapshot): Observable<RevisionRequest> {
     const id = Number(route.paramMap.get('id'));
-    let group$ = of(null);
+    let revisionRequest$: Observable<RevisionRequest | null> = of(null);
     id
-      ? (group$ = this.revisionRequestCollectionService.getByKey(id))
+      ? (revisionRequest$ = this.revisionRequestCollectionService.getByKey(id))
       : this.revisionRequestCollectionService.removeOneFromCache(null);
-    return group$;
+    return revisionRequest$;
   }
 }

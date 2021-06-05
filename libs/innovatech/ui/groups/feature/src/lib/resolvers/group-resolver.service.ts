@@ -12,7 +12,7 @@ export class GroupResolverService implements Resolve<Group> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<Group> {
     const id = Number(route.paramMap.get('id'));
-    let group$ = of(null);
+    let group$: Observable<Group | null> = of(null);
     id ? (group$ = this.groupCollectionService.getByKey(id)) : this.groupCollectionService.removeOneFromCache(null);
     return group$;
   }

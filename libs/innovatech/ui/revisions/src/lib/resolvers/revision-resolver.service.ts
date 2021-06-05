@@ -13,7 +13,7 @@ export class RevisionResolverService implements Resolve<Revision> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<Revision> {
     const id = Number(route.paramMap.get('revisionId'));
-    let revision$ = of(null);
+    let revision$: Observable<Revision | null> = of(null);
     id
       ? (revision$ = this.revisionCollectionService.getByKey(id))
       : this.revisionCollectionService.removeOneFromCache(null);

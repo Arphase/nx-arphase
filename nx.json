@@ -1,13 +1,18 @@
 {
-  "npmScope": "ivt",
-  "affected": { "defaultBase": "master" },
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tsconfig.json": "*",
     "tslint.json": "*",
     "nx.json": "*"
   },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "ivt",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
@@ -21,48 +26,134 @@
     }
   },
   "projects": {
-    "innovatech-api": { "tags": ["domain:innovatech", "executable:backend"] },
-    "innovatech-app": { "tags": ["domain:innovatech", "executable:frontend"] },
-    "a-auth": { "tags": ["back"] },
-    "a-companies": { "tags": ["back"] },
-    "a-groups": { "tags": ["back"] },
-    "a-guarantees": { "tags": ["back"] },
-    "a-localities": { "tags": ["back"] },
-    "a-payment-orders": { "tags": ["back"] },
-    "a-products": { "tags": ["back"] },
-    "a-revision-requests": { "tags": ["back"] },
-    "a-revisions": { "tags": ["back"] },
-    "a-state": { "tags": ["back"] },
-    "a-users": { "tags": ["back"] },
-    "a-vehicles": { "tags": ["back"] },
-    "innovatech-ui-auth-feature": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "innovatech-ui-auth-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
-    "innovatech-ui-dashboard": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "innovatech-ui-guarantees": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "innovatech-ui-spa": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "innovatech-ui-groups-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
-    "innovatech-ui-groups-feature": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "innovatech-ui-groups-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
-    "innovatech-ui-products-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
-    "innovatech-ui-products-feature": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "innovatech-ui-products-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
-    "innovatech-ui-revision-requests": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "innovatech-ui-revisions": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "innovatech-ui-users-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
-    "innovatech-ui-users-feature": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "innovatech-ui-users-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
-    "innovatech-ui-vehicles-feature": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "innovatech-ui-vehicles-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
-    "innovatech-ui-vehicles-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
-    "arphase-ui": { "tags": ["domain:arphase", "type:ui"] },
-    "innovatech-domain": { "tags": ["domain:innovatech", "type:domain-logic"] },
-    "innovatech-utils": { "tags": ["domain:innovatech", "type:util"] },
-    "innovatech-ui-core-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
-    "innovatech-ui-core-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
-    "innovatech-ui-core-util": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:util"] },
-    "innovatech-ui-permissions-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
-    "innovatech-ui-companies-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
-    "innovatech-ui-companies-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
-    "innovatech-ui-addresses-ui": { "tags":  ["domain:innovatech", "domain:innovatech:ui", "type:ui"] }
+    "innovatech-api": {
+      "tags": ["domain:innovatech", "executable:backend"]
+    },
+    "innovatech-app": {
+      "tags": ["domain:innovatech", "executable:frontend"]
+    },
+    "a-auth": {
+      "tags": ["back"]
+    },
+    "a-companies": {
+      "tags": ["back"]
+    },
+    "a-groups": {
+      "tags": ["back"]
+    },
+    "a-guarantees": {
+      "tags": ["back"]
+    },
+    "a-localities": {
+      "tags": ["back"]
+    },
+    "a-payment-orders": {
+      "tags": ["back"]
+    },
+    "a-products": {
+      "tags": ["back"]
+    },
+    "a-revision-requests": {
+      "tags": ["back"]
+    },
+    "a-revisions": {
+      "tags": ["back"]
+    },
+    "a-state": {
+      "tags": ["back"]
+    },
+    "a-users": {
+      "tags": ["back"]
+    },
+    "a-vehicles": {
+      "tags": ["back"]
+    },
+    "innovatech-ui-auth-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+    },
+    "innovatech-ui-auth-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+    },
+    "innovatech-ui-dashboard": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+    },
+    "innovatech-ui-guarantees": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+    },
+    "innovatech-ui-spa": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+    },
+    "innovatech-ui-groups-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+    },
+    "innovatech-ui-groups-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+    },
+    "innovatech-ui-groups-ui": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+    },
+    "innovatech-ui-products-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+    },
+    "innovatech-ui-products-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+    },
+    "innovatech-ui-products-ui": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+    },
+    "innovatech-ui-revision-requests": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+    },
+    "innovatech-ui-revisions": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+    },
+    "innovatech-ui-users-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+    },
+    "innovatech-ui-users-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+    },
+    "innovatech-ui-users-ui": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+    },
+    "innovatech-ui-vehicles-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+    },
+    "innovatech-ui-vehicles-ui": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+    },
+    "innovatech-ui-vehicles-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+    },
+    "arphase-ui": {
+      "tags": ["domain:arphase", "type:ui"]
+    },
+    "innovatech-domain": {
+      "tags": ["domain:innovatech", "type:domain-logic"]
+    },
+    "innovatech-utils": {
+      "tags": ["domain:innovatech", "type:util"]
+    },
+    "innovatech-ui-core-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+    },
+    "innovatech-ui-core-ui": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+    },
+    "innovatech-ui-core-util": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:util"]
+    },
+    "innovatech-ui-permissions-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+    },
+    "innovatech-ui-companies-ui": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+    },
+    "innovatech-ui-companies-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+    },
+    "innovatech-ui-addresses-ui": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+    }
   }
 }
