@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/Arphase/nx-arphase/compare/v2.5.5...v3.0.0) (2021-06-05)
+
+
+### Features
+
+* **app:** add collection select directives ([dedafde](https://github.com/Arphase/nx-arphase/commit/dedafded9940e8ceaabd78d40687498f12738e0b))
+* **arphase:** add autocomplete directive ([d28ab1b](https://github.com/Arphase/nx-arphase/commit/d28ab1b8690e9f9f1fc6b06847ed89ea3d0b6862))
+
 ### [2.5.5](https://github.com/Arphase/nx-arphase/compare/v2.5.4...v2.5.5) (2021-05-11)
 
 
