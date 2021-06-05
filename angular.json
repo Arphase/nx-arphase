@@ -20,7 +20,6 @@
             "main": "apps/innovatech/app/src/main.ts",
             "polyfills": "apps/innovatech/app/src/polyfills.ts",
             "tsConfig": "apps/innovatech/app/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "apps/innovatech/app/src/favicon.ico",
               "apps/innovatech/app/src/assets",
@@ -43,7 +42,13 @@
             "allowedCommonJsDependencies": ["file-saver"],
             "stylePreprocessorOptions": {
               "includePaths": ["libs/arphase/ui/src/styles"]
-            }
+            },
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "stage": {
@@ -105,7 +110,8 @@
               "serviceWorker": true,
               "ngswConfigPath": "apps/innovatech/app/ngsw-config.json"
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
