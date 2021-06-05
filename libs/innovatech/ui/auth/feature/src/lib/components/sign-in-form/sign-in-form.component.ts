@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { SignInRequest } from '@innovatech/common/domain';
-import { IvtFormComponent } from '@ivt/u-ui';
+import { IvtFormComponent } from '@innovatech/ui/core/data';
 
 @Component({
   selector: 'ivt-sign-in-form',

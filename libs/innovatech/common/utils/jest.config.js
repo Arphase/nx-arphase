@@ -1,6 +1,6 @@
 module.exports = {
-  name: 'c-utils',
-  preset: '../../../jest.preset.js',
+  name: 'innovatech-utils',
+  preset: '../../../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
-  coverageDirectory: '../../../coverage/libs/c-utils',
+  coverageDirectory: '../../../../coverage/libs/innovatech/common/utils',
 };

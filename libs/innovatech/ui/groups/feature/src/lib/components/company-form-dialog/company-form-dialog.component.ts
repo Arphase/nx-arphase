@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { Company } from '@innovatech/common/domain';
-import { IvtFormComponent, updateFormControlsValueAndValidity } from '@ivt/u-ui';
+import { IvtFormComponent, updateFormControlsValueAndValidity } from '@innovatech/ui/core/data';
 
 import { createCompanyForm, createUserForm, patchCompanyForm } from '../../functions/group-form.functions';
 

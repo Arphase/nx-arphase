@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserRoles } from '@innovatech/common/domain';
-import { RoleGuard } from '@ivt/u-ui';
+import { RoleGuard } from '@innovatech/ui/auth/data';
 
 import { SpaComponent } from './spa.component';
 

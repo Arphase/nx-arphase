@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { IvtDateFilterModule } from '@arphase/ui';
 import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';
 import { UserCheckboxFilterModule } from '@innovatech/ui/users/ui';
-import { IvtDateFilterModule } from '@ivt/u-ui';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -21,7 +21,6 @@ import { DashboardContainerComponent } from './containers/dashboard-container/da
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardEffects } from './state/dashboard.effects';
 import { reducer } from './state/dashboard.reducer';
-
 
 @NgModule({
   imports: [

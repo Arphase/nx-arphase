@@ -1,14 +1,15 @@
-import { IvtCollectionResponseInfo, IvtQueryParams } from '@innovatech/common/domain';
+import { IvtCollectionResponseInfo } from '@innovatech/common/domain';
 import {
   EntityAction,
   EntityActionPayload,
   EntityCollection,
   EntityCollectionReducerMethods,
   EntityDefinition,
+  QueryParams,
 } from '@ngrx/data';
 
 export interface IvtEntityCollection<T> extends EntityCollection {
-  queryParams: IvtQueryParams;
+  queryParams: QueryParams;
   currentItem: T;
   loadingModify: boolean;
   info: IvtCollectionResponseInfo;
@@ -20,7 +21,7 @@ export interface IvtEntityAction extends EntityAction {
 }
 
 export interface IvtActionPayload extends EntityActionPayload {
-  queryParams: IvtQueryParams;
+  queryParams: QueryParams;
   info: IvtCollectionResponseInfo;
 }
 

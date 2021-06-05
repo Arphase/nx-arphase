@@ -1,9 +1,10 @@
-import { GuaranteeSummary, IvtQueryParams } from '@innovatech/common/domain';
+import { GuaranteeSummary } from '@innovatech/common/domain';
+import { QueryParams } from '@ngrx/data';
 import { createAction, props } from '@ngrx/store';
 
 export const getGuaranteeSummary = createAction(
   '[Dashboard] Get guarantee summary',
-  props<{ payload?: IvtQueryParams }>()
+  props<{ payload?: QueryParams }>()
 );
 
 export const getGuaranteeSummarySuccess = createAction(

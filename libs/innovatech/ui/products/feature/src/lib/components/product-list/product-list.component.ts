@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsColumns } from '@arphase/ui';
 import { Product } from '@innovatech/common/domain';
-import { IvtListComponent } from '@ivt/u-ui';
+import { IvtListComponent } from '@innovatech/ui/core/data';
 
 @Component({
   selector: 'ivt-product-list',

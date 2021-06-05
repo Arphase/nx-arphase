@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { Company } from '@innovatech/common/domain';
 import { filterExisting } from '@innovatech/common/utils';
-import { findFormArrayIndex } from '@ivt/u-ui';
+import { findFormArrayIndex } from '@innovatech/ui/core/data';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { take } from 'rxjs/operators';
 

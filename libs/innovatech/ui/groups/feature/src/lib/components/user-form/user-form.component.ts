@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Group } from '@innovatech/common/domain';
-import { IvtFormComponent } from '@ivt/u-ui';
+import { IvtFormComponent } from '@innovatech/ui/core/data';
 
 @Component({
   selector: 'ivt-user-form',

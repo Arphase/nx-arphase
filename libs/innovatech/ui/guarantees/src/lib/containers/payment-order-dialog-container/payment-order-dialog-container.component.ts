@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { PaymentOrder } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
-import { IvtFormContainerComponent } from '@ivt/u-ui';
+import { IvtFormContainerComponent } from '@innovatech/ui/core/data';
 import { get } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';

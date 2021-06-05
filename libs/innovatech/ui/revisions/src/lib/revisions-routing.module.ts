@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IvtDirtyFormGuard } from '@arphase/ui';
 import { UserRoles } from '@innovatech/common/domain';
-import { IvtDirtyFormGuard, RoleGuard } from '@ivt/u-ui';
+import { RoleGuard } from '@innovatech/ui/auth/data';
 
 import { RevisionFormContainerComponent } from './containers/revision-form-container/revision-form-container.component';
 import { RevisionListContainerComponent } from './containers/revision-list-container/revision-list-container.component';

@@ -1,16 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
 import { DashboardService } from './dashboard.service';
 
 describe('DashboardService', () => {
-  let service: DashboardService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(DashboardService);
+  let spectator: SpectatorService<DashboardService>;
+  const createService = createServiceFactory({
+    service: DashboardService,
+    imports: [HttpClientTestingModule],
   });
 
+  beforeEach(() => (spectator = createService()));
+
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(spectator.service).toBeTruthy();
   });
 });

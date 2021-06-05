@@ -1,4 +1,4 @@
-import { ThemeService } from '@ivt/u-ui';
+import { ThemeService } from '@arphase/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { CompanyLogoComponent } from './company-logo.component';

@@ -1,4 +1,4 @@
-import { IvtEmptyPipe, IvtPhonePipe } from '@ivt/u-ui';
+import { IvtEmptyPipe, IvtPhonePipe } from '@arphase/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { MockPipe } from 'ng-mocks';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';

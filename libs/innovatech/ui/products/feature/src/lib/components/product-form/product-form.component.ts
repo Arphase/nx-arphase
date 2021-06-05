@@ -4,8 +4,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { glossary, Product } from '@innovatech/common/domain';
 import { filterNil, sortSelectOptions } from '@innovatech/common/utils';
+import { IvtFormComponent } from '@innovatech/ui/core/data';
 import { ProductDataService } from '@innovatech/ui/products/data';
-import { IvtFormComponent } from '@ivt/u-ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzUploadChangeParam, NzUploadFile, NzUploadXHRArgs } from 'ng-zorro-antd/upload';
@@ -178,11 +178,11 @@ export function readFileAsDataUrl(file: File): Observable<string> {
 }
 
 export function dataURLtoFile(dataurl: string, filename: string): File {
-  const arr = dataurl.split(','),
-    mime = arr[0].match(/:(.*?);/)[1],
-    bstr = atob(arr[1]),
-    n = bstr.length,
-    u8arr = new Uint8Array(n);
+  const arr = dataurl.split(',');
+  const mime = arr[0].match(/:(.*?);/)[1];
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
 
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n);

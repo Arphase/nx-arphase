@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 import { IvtEntityCollection } from '../entity-config/entity-collection-reducer-methods';
 
 @Injectable()
-export abstract class IvtCollectionService<T> extends EntityCollectionServiceBase<T> {
+export class IvtCollectionService<T> extends EntityCollectionServiceBase<T> {
   options$: Observable<NzSelectOptionInterface[]>;
   currentItem$ = this.selectors$.collection$.pipe(map((collection: IvtEntityCollection<T>) => collection.currentItem));
   loadingModify$ = this.selectors$.collection$.pipe(

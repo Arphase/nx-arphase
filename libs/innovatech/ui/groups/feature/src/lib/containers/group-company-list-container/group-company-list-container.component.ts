@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { Company, Group } from '@innovatech/common/domain';
-import { IvtFormComponent } from '@ivt/u-ui';
+import { IvtFormComponent } from '@innovatech/ui/core/data';
 import { startWith } from 'rxjs/operators';
 
 import { GroupFormService } from '../../services/group-form.service';

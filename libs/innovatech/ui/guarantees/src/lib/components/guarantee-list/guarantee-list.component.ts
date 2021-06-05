@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, statusLabels, UserRoles } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
-import { IvtListComponent } from '@ivt/u-ui';
+import { IvtListComponent } from '@innovatech/ui/core/data';
 
 import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.constants';
 

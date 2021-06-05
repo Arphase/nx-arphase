@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserRoles, Vehicle } from '@innovatech/common/domain';
 import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data';
+import { IvtFormContainerComponent } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import {
   fromVehicles,
@@ -10,7 +11,6 @@ import {
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
-import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { combineLatest } from 'rxjs';
@@ -64,7 +64,6 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
   }
 
   ngOnDestroy() {
-    super.ngOnDestroy();
     this.vehicleCollectionService.removeOneFromCache(null);
     this.store.dispatch(fromVehicles.actions.clearVehiclesState());
   }

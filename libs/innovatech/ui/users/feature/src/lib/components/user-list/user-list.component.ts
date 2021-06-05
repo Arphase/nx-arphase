@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product, UserRoles } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
-import { IvtListComponent } from '@ivt/u-ui';
+import { IvtListComponent } from '@innovatech/ui/core/data';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 import { columns } from './user-list.constants';

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { UsersDataModule } from '@innovatech/ui/users/data';
-import { IvtCheckboxFilterModule } from '@ivt/u-ui';
+import { IvtCheckboxFilterModule } from '@arphase/ui';
 
 import { UserCheckboxFilterComponent } from './user-checkbox-filter.component';
 

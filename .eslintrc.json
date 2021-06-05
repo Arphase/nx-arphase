@@ -55,7 +55,8 @@
                 "onlyDependOnLibsWithTags": [
                   "type:domain-logic",
                   "type:data",
-                  "type:util"
+                  "type:util",
+                  "type:ui"
                 ]
               },
               {
@@ -88,6 +89,7 @@
               {
                 "sourceTag": "domain:innovatech:ui",
                 "onlyDependOnLibsWithTags": [
+                  "domain:arphase",
                   "domain:innovatech",
                   "domain:innovatech:ui"
                 ]

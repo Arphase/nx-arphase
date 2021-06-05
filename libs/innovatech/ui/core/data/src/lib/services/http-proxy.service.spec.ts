@@ -1,6 +1,6 @@
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
-import { INNOVATECH_CONFIGURATION } from '../../ui-state-config';
+import { INNOVATECH_CONFIGURATION } from '../config';
 import { HttpProxyService } from './http-proxy.service';
 
 describe('HttpProxyService', () => {

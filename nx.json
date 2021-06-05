@@ -40,7 +40,6 @@
     "innovatech-ui-dashboard": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "innovatech-ui-guarantees": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "innovatech-ui-spa": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
-    "u-ui": { "tags": ["type:ui"] },
     "innovatech-ui-groups-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
     "innovatech-ui-groups-feature": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"] },
     "innovatech-ui-groups-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
@@ -63,6 +62,7 @@
     "innovatech-ui-core-util": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:util"] },
     "innovatech-ui-permissions-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
     "innovatech-ui-companies-ui": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"] },
-    "innovatech-ui-companies-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] }
+    "innovatech-ui-companies-data": { "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"] },
+    "innovatech-ui-addresses-ui": { "tags":  ["domain:innovatech", "domain:innovatech:ui", "type:ui"] }
   }
 }

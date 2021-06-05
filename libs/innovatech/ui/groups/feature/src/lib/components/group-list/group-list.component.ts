@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { Group } from '@innovatech/common/domain';
-import { IvtListComponent } from '@ivt/u-ui';
+import { IvtListComponent } from '@innovatech/ui/core/data';
 
 import { columns } from './group-list.constants';
 

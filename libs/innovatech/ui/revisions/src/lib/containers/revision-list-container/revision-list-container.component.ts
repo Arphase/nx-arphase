@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Revision, UserRoles } from '@innovatech/common/domain';
 import { PermissionService } from '@innovatech/ui/permissions/data';
-import { IvtListContainerComponent } from '@ivt/u-ui';
+import { IvtListContainerComponent } from '@innovatech/ui/core/data';
 import dayjs from 'dayjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';

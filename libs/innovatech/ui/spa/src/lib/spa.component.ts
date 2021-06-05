@@ -1,14 +1,29 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import { MenuItem, UserRoles } from '@innovatech/common/domain';
+import { Themes, ThemeService } from '@arphase/ui';
+import { UserRoles } from '@innovatech/common/domain';
 import { fromAuth, getAuthUserEmailState, getAuthUserNameState } from '@innovatech/ui/auth/data';
 import { INNOVATECH_CONFIGURATION, InnovatechConfiguration } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
-import { Themes, ThemeService } from '@ivt/u-ui';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
+import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
+
+interface MenuItem {
+  icon?: string;
+  header?: string;
+  display$?: Observable<boolean>;
+  enabled?: boolean;
+  path?: string | string[];
+  children?: ChildMenuItem[];
+}
+interface ChildMenuItem {
+  label?: string;
+  enabled?: boolean;
+  path?: string[];
+}
 
 @Component({
   selector: 'ivt-spa',

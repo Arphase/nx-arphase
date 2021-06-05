@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RevisionRequest, RevisionRequestStatus, UserRoles } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
-import { IvtListComponent } from '@ivt/u-ui';
+import { IvtListComponent } from '@innovatech/ui/core/data';
 
 import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './revision-request-list.constants';
 

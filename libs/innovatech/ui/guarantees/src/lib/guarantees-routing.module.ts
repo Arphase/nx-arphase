@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IvtDirtyFormGuard } from '@ivt/u-ui';
+import { IvtDirtyFormGuard } from '@arphase/ui';
 
 import { GuaranteeFormContainerComponent } from './containers/guarantee-form-container/guarantee-form-container.component';
 import { GuaranteeListContainerComponent } from './containers/guarantee-list-container/guarantee-list-container.component';

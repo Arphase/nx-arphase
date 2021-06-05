@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { RevisionRequest, UserRoles } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
 import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data';
-import { selectQueryParam } from '@innovatech/ui/core/data';
+import { IvtFormContainerComponent, selectQueryParam } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import {
   fromVehicles,
@@ -11,7 +11,6 @@ import {
   getVehiclesVehicleState,
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data';
-import { IvtFormContainerComponent } from '@ivt/u-ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
@@ -66,7 +65,6 @@ export class RevisionRequestFormContainerComponent
   }
 
   ngOnDestroy() {
-    super.ngOnDestroy();
     this.vehicleCollectionService.removeOneFromCache(null);
     this.store.dispatch(fromVehicles.actions.clearVehiclesState());
   }

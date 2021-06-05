@@ -1,4 +1,4 @@
-import { IvtEmptyPipe } from '@ivt/u-ui';
+import { IvtEmptyPipe } from '@arphase/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { MockPipe } from 'ng-mocks';
 

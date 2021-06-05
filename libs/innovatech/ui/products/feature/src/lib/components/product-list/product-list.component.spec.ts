@@ -1,4 +1,5 @@
-import { IvtEmptyPipe, IvtFolioPipe } from '@ivt/u-ui';
+import { IvtEmptyPipe } from '@arphase/ui';
+import { IvtFolioPipe } from '@innovatech/ui/core/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { MockPipe } from 'ng-mocks';
 

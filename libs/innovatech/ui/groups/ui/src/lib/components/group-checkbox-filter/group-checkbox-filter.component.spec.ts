@@ -1,25 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { GroupFilterCollectionService } from '@innovatech/ui/groups/data';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { GroupCheckboxFilterComponent } from './group-checkbox-filter.component';
 
 describe('GroupCheckboxFilterComponent', () => {
-  let component: GroupCheckboxFilterComponent;
-  let fixture: ComponentFixture<GroupCheckboxFilterComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ GroupCheckboxFilterComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<GroupCheckboxFilterComponent>;
+  const createComponent = createComponentFactory({
+    component: GroupCheckboxFilterComponent,
+    providers: [{ provide: GroupFilterCollectionService, useValue: { getWithQuery: jest.fn() } }],
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GroupCheckboxFilterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  beforeEach(() => (spectator = createComponent()));
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

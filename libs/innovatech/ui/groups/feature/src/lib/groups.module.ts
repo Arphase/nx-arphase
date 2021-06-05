@@ -1,17 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApsAutoErrorModule } from '@arphase/ui';
-import { GroupsDataModule } from '@innovatech/ui/groups/data';
-import { PermissionsModule } from '@innovatech/ui/permissions/data';
-import { ProductsDataModule } from '@innovatech/ui/products/data';
 import {
-  IvtAddressFormModule,
+  ApsAutoErrorModule,
   IvtEmptyModule,
   IvtPhoneModule,
   IvtSearchbarModule,
   IvtUppercaseModule,
-} from '@ivt/u-ui';
+} from '@arphase/ui';
+import { IvtAddressFormModule } from '@innovatech/ui/addresses/ui';
+import { GroupsDataModule } from '@innovatech/ui/groups/data';
+import { PermissionsModule } from '@innovatech/ui/permissions/data';
+import { ProductsDataModule } from '@innovatech/ui/products/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';

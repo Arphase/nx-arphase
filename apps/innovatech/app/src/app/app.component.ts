@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Plugins, StatusBarStyle } from '@capacitor/core';
 import { Platform } from '@ionic/angular';
-import { ThemeService } from '@ivt/u-ui';
+import { ThemeService } from '@arphase/ui';
 import { Store } from '@ngrx/store';
 
 const { StatusBar } = Plugins;

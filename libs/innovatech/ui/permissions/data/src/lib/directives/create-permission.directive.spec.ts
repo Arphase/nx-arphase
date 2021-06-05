@@ -1,7 +1,7 @@
 import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
 import { of } from 'rxjs';
 
-import { PermissionService, REQUIRED_ROLES } from '..';
+import { PermissionService, REQUIRED_ROLES } from '../services/permission.service';
 import { CreatePermissionDirective } from './create-permission.directive';
 
 describe('CreatePermissionDirective', () => {

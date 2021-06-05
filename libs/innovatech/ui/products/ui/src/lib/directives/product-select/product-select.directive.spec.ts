@@ -1,8 +1,36 @@
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ProductCollectionService } from '@innovatech/ui/products/data';
+import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { of } from 'rxjs';
+
 import { ProductSelectDirective } from './product-select.directive';
 
 describe('ProductSelectDirective', () => {
-  it('should create an instance', () => {
-    const directive = new ProductSelectDirective();
-    expect(directive).toBeTruthy();
+  @Component({
+    selector: 'test',
+  })
+  class HostComponent {
+    form = new FormGroup({ test: new FormControl('') });
+  }
+
+  let spectator: SpectatorDirective<ProductSelectDirective>;
+
+  const createDirective = createDirectiveFactory({
+    directive: ProductSelectDirective,
+    host: HostComponent,
+    imports: [NzSelectModule, ReactiveFormsModule],
+    providers: [{ provide: ProductCollectionService, useValue: { options$: of([]) } }],
+  });
+
+  beforeEach(() => {
+    spectator = createDirective(
+      `<form [formGroup]="form"><nz-select formControlName="test" ivtProductSelect></nz-select></form>`
+    );
+  });
+
+  it('should create', () => {
+    expect(spectator.directive).toBeTruthy();
   });
 });

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { UserRoles, Vehicle, VehicleStatus } from '@innovatech/common/domain';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import { VehicleCollectionService, VehicleDataService } from '@innovatech/ui/vehicles/data';
-import { IvtListContainerComponent } from '@ivt/u-ui';
+import { IvtListContainerComponent } from '@innovatech/ui/core/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { take } from 'rxjs/operators';

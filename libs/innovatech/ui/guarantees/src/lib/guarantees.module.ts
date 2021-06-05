@@ -1,9 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ApsAutoErrorModule } from '@arphase/ui';
+import {
+  ApsAutoErrorModule,
+  IvtCheckboxFilterModule,
+  IvtDateFilterModule,
+  IvtEmptyModule,
+  IvtRadioFilterModule,
+  IvtSearchbarModule,
+  IvtUppercaseModule,
+} from '@arphase/ui';
+import { IvtAddressFormModule } from '@innovatech/ui/addresses/ui';
 import { CompanyCheckboxFilterModule, CompanySelectModule } from '@innovatech/ui/companies/ui';
 import { IvtDataService } from '@innovatech/ui/core/data';
+import { IvtFolioModule } from '@innovatech/ui/core/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';
 import { ProductsDataModule } from '@innovatech/ui/products/data';
@@ -11,16 +21,6 @@ import { ProductSelectModule } from '@innovatech/ui/products/ui';
 import { UserCheckboxFilterModule } from '@innovatech/ui/users/ui';
 import { VehiclesDataModule } from '@innovatech/ui/vehicles/data';
 import { VehicleFormModule } from '@innovatech/ui/vehicles/ui';
-import {
-  IvtAddressFormModule,
-  IvtCheckboxFilterModule,
-  IvtDateFilterModule,
-  IvtEmptyModule,
-  IvtFolioModule,
-  IvtRadioFilterModule,
-  IvtSearchbarModule,
-  IvtUppercaseModule,
-} from '@ivt/u-ui';
 import { EntityDataService } from '@ngrx/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';

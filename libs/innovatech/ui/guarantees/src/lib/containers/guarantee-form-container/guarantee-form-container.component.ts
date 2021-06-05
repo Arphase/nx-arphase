@@ -11,7 +11,7 @@ import {
   getVehiclesVehicleState,
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data';
-import { IvtFormContainerComponent } from '@ivt/u-ui';
+import { IvtFormContainerComponent } from '@innovatech/ui/core/data';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
@@ -79,7 +79,6 @@ export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<G
   }
 
   ngOnDestroy() {
-    super.ngOnDestroy();
     this.vehicleCollectionService.removeOneFromCache(null);
     this.store.dispatch(fromVehicles.actions.clearVehiclesState());
     this.productCollectionService.clearCache();

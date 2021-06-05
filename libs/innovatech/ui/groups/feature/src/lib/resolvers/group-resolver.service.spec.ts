@@ -1,3 +1,4 @@
+import { GroupCollectionService } from '@innovatech/ui/groups/data';
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
 import { GroupResolverService } from './group-resolver.service';

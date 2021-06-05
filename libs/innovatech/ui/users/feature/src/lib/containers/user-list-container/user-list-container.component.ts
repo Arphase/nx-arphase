@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { User } from '@innovatech/common/domain';
 import { UserCollectionService, UserDataService } from '@innovatech/ui/users/data';
-import { IvtListContainerComponent } from '@ivt/u-ui';
+import { IvtListContainerComponent } from '@innovatech/ui/core/data';
 
 @Component({
   selector: 'ivt-user-list-container',

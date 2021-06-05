@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Group } from '@innovatech/common/domain';
 import { GroupCollectionService } from '@innovatech/ui/groups/data';
-import { IvtFormContainerComponent } from '@ivt/u-ui';
+import { IvtFormContainerComponent } from '@innovatech/ui/core/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { GroupFormService } from '../../services/group-form.service';

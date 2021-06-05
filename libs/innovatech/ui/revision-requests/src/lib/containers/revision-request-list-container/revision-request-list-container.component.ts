@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RevisionRequest, RevisionRequestStatus } from '@innovatech/common/domain';
-import { IvtListContainerComponent } from '@ivt/u-ui';
+import { IvtListContainerComponent } from '@innovatech/ui/core/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { take } from 'rxjs/operators';
 
