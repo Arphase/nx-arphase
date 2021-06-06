@@ -100,7 +100,7 @@ export class GroupsService {
 
           newCompany.users = await Promise.all(
             users.map(async user => {
-              const newUser = this.userRepository.create({ ...user, companyId } as User);
+              const newUser = this.userRepository.create({ ...user, companyId });
               await queryRunner.manager.save(newUser);
               if (user.id) {
                 await newUser.reload();

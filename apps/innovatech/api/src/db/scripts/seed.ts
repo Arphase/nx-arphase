@@ -1,6 +1,6 @@
-import { AuthService, ResetPasswordRepository, SignUpCredentialsDto } from '@innovatech/api/auth/data';
+import { AuthService, SignUpCredentialsDto } from '@innovatech/api/auth/data';
+import { ResetPasswordRepository, UserRepository } from '@innovatech/api/domain';
 import { UserRoles } from '@innovatech/common/domain';
-import { UserRepository } from '@ivt/a-state';
 import fs from 'fs';
 import path from 'path';
 import { ConnectionOptions, createConnection, getManager } from 'typeorm';

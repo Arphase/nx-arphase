@@ -1,6 +1,6 @@
 import { GetUser, Roles, RolesGuard } from '@innovatech/api/auth/data';
 import { Guarantee, GuaranteeSummary, IvtCollectionResponse, User, UserRoles } from '@innovatech/common/domain';
-import { CreateGuaranteeDto, GetGuaranteesFilterDto, GuaranteeEntity, UpdateGuaranteeDto } from '@ivt/a-state';
+import { CreateGuaranteeDto, GetGuaranteesFilterDto, UpdateGuaranteeDto } from '@ivt/a-state';
 import {
   Body,
   Controller,
@@ -35,7 +35,7 @@ export class GuaranteesController {
   }
 
   @Get(':id')
-  async getGuarantee(@Param('id', ParseIntPipe) id: number): Promise<GuaranteeEntity> {
+  async getGuarantee(@Param('id', ParseIntPipe) id: number): Promise<Guarantee> {
     return this.guaranteesService.getGuaranteeById(id);
   }
 
@@ -70,10 +70,7 @@ export class GuaranteesController {
   @Put(':id')
   @Roles(UserRoles.superAdmin)
   @UsePipes(new ValidationPipe({ transform: true }))
-  updateGuarantee(
-    @Body() updateGuaranteeDto: UpdateGuaranteeDto,
-    @GetUser() user: Partial<User>
-  ): Promise<GuaranteeEntity> {
+  updateGuarantee(@Body() updateGuaranteeDto: UpdateGuaranteeDto, @GetUser() user: Partial<User>): Promise<Guarantee> {
     return this.guaranteesService.updateGuarantee(updateGuaranteeDto, user);
   }
 

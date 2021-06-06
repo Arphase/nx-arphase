@@ -75,7 +75,7 @@ export class UserEntity extends BaseEntity implements User {
     },
     default: UserRoles.agencyUser,
   })
-  role: UserRoles;
+  role: UserRoles | string;
 
   @ManyToOne(() => CompanyEntity, company => company.users)
   @JoinColumn({ name: 'companyId' })

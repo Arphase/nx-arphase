@@ -1,4 +1,5 @@
 import {
+  GuaranteeEntity,
   GuaranteeRepository,
   MoralPersonRepository,
   PhysicalPersonRepository,
@@ -26,7 +27,6 @@ import {
   filterCommonQuery,
   GetGuaranteesFilterDto,
   getReadableStream,
-  GuaranteeEntity,
   tobase64,
   UpdateGuaranteeDto,
 } from '@ivt/a-state';
@@ -57,7 +57,7 @@ export class GuaranteesService {
     private readonly connection: Connection
   ) {}
 
-  async getGuaranteeById(id: number): Promise<GuaranteeEntity> {
+  async getGuaranteeById(id: number): Promise<Guarantee> {
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     query
       .leftJoinAndSelect('guarantee.client', 'client')
@@ -88,7 +88,7 @@ export class GuaranteesService {
     const guarantees = await query.getMany();
     const total = await query.getCount();
     return createCollectionResponse(
-      guarantees.map(guarantee => this.omitInfo(guarantee) as GuaranteeEntity),
+      guarantees.map(guarantee => this.omitInfo(guarantee) as Guarantee),
       pageSize,
       pageIndex,
       total
@@ -177,7 +177,7 @@ export class GuaranteesService {
     stream.pipe(response);
   }
 
-  async createGuarantee(createGuaranteeDto: CreateGuaranteeDto, user: Partial<User>): Promise<GuaranteeEntity> {
+  async createGuarantee(createGuaranteeDto: CreateGuaranteeDto, user: Partial<User>): Promise<Guarantee> {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
@@ -187,7 +187,7 @@ export class GuaranteesService {
       vehicle.status = VehicleStatus.hasActiveGuarantee;
       await vehicle.save();
 
-      createGuaranteeDto = this.omitInfo(createGuaranteeDto);
+      createGuaranteeDto = this.omitInfo(createGuaranteeDto) as CreateGuaranteeDto;
       const newGuarantee = this.guaranteeRepository.create({
         ...createGuaranteeDto,
         companyId:
@@ -221,7 +221,7 @@ export class GuaranteesService {
     await generateProductPdf(content, headerLogo, response);
   }
 
-  async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto, user: Partial<User>): Promise<GuaranteeEntity> {
+  async updateGuarantee(updateGuaranteeDto: UpdateGuaranteeDto, user: Partial<User>): Promise<Guarantee> {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
@@ -262,8 +262,8 @@ export class GuaranteesService {
   }
 
   omitInfo(
-    guarantee: GuaranteeEntity | CreateGuaranteeDto | UpdateGuaranteeDto
-  ): GuaranteeEntity | CreateGuaranteeDto | UpdateGuaranteeDto {
+    guarantee: Guarantee | CreateGuaranteeDto | UpdateGuaranteeDto
+  ): Guarantee | CreateGuaranteeDto | UpdateGuaranteeDto {
     const personType = guarantee.client?.personType;
     if (personType === PersonTypes.physical) {
       guarantee.client = omit(guarantee.client, 'moralInfo') as Client;
