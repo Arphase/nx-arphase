@@ -14,7 +14,7 @@ import {
   sortDirection,
   User,
   VehicleStatus,
-} from '@ivt/c-data';
+} from '@innovatech/common/domain';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import dayjs from 'dayjs';

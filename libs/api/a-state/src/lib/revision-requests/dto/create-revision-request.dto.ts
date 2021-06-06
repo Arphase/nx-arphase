@@ -1,4 +1,4 @@
-import { Address } from '@ivt/c-data';
+import { Address } from '@innovatech/common/domain';
 import { Type } from 'class-transformer';
 import { IsEmail, IsNotEmpty, IsNumber, IsString, ValidateNested } from 'class-validator';
 

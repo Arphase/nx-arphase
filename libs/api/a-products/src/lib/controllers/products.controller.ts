@@ -1,6 +1,6 @@
 import { GetUser } from '@ivt/a-auth';
 import { CreateProductDto, GenerateProductPdfDto, GetProductsDto, UpdateProductDto } from '@ivt/a-state';
-import { IvtCollectionResponse, Product, User } from '@ivt/c-data';
+import { IvtCollectionResponse, Product, User } from '@innovatech/common/domain';
 import {
   Body,
   Controller,

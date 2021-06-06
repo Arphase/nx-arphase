@@ -1,6 +1,6 @@
 import { Roles, RolesGuard } from '@ivt/a-auth';
 import { CreatePaymentOrderDto, UpdatePaymentOrderDto } from '@ivt/a-state';
-import { PaymentOrder, UserRoles } from '@ivt/c-data';
+import { PaymentOrder, UserRoles } from '@innovatech/common/domain';
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';

@@ -1,4 +1,4 @@
-import { PhysicalPerson } from '@ivt/c-data';
+import { PhysicalPerson } from '@innovatech/common/domain';
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('physicalPersons')

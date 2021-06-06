@@ -1,5 +1,5 @@
-import { UserRoles } from '@ivt/c-data';
-import { RfcValidatorTypes } from '@ivt/c-utils';
+import { UserRoles } from '@innovatech/common/domain';
+import { RfcValidatorTypes } from '@innovatech/common/utils';
 import { Transform } from 'class-transformer';
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 

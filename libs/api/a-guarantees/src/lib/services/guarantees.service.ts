@@ -26,8 +26,8 @@ import {
   UserRoles,
   Vehicle,
   VehicleStatus,
-} from '@ivt/c-data';
-import { formatDate } from '@ivt/c-utils';
+} from '@innovatech/common/domain';
+import { formatDate } from '@innovatech/common/utils';
 import {
   BadRequestException,
   ConflictException,

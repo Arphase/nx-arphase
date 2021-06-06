@@ -1,4 +1,4 @@
-import { VEHICLE_VIN_LENGTH } from '@ivt/c-data';
+import { VEHICLE_VIN_LENGTH } from '@innovatech/common/domain';
 import { IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
 
 export class CreateVehicleDto {

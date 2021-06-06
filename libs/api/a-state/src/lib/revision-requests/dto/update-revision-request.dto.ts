@@ -1,4 +1,4 @@
-import { Address, RevisionRequestStatus } from '@ivt/c-data';
+import { Address, RevisionRequestStatus } from '@innovatech/common/domain';
 import { Transform, Type } from 'class-transformer';
 import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 

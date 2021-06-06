@@ -1,4 +1,4 @@
-import { ResetPassword, User } from '@ivt/c-data';
+import { ResetPassword, User } from '@innovatech/common/domain';
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { UserEntity } from '../../users';

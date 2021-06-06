@@ -9,7 +9,7 @@ import {
   tobase64,
   UpdateProductDto,
 } from '@ivt/a-state';
-import { Company, createCollectionResponse, IvtCollectionResponse, Product, User, UserRoles } from '@ivt/c-data';
+import { Company, createCollectionResponse, IvtCollectionResponse, Product, User, UserRoles } from '@innovatech/common/domain';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import dayjs from 'dayjs';

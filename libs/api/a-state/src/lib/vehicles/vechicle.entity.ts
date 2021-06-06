@@ -7,7 +7,7 @@ import {
   Vehicle,
   VEHICLE_VIN_LENGTH,
   VehicleStatus,
-} from '@ivt/c-data';
+} from '@innovatech/common/domain';
 import {
   BaseEntity,
   Column,

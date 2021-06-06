@@ -1,6 +1,6 @@
 import { GetUser, Roles, RolesGuard } from '@ivt/a-auth';
 import { CreateRevisionRequestDto, GetRevisionRequestsDto, UpdateRevisionRequestDto } from '@ivt/a-state';
-import { IvtCollectionResponse, RevisionRequest, User, UserRoles } from '@ivt/c-data';
+import { IvtCollectionResponse, RevisionRequest, User, UserRoles } from '@innovatech/common/domain';
 import {
   Body,
   Controller,

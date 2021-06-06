@@ -1,0 +1,109 @@
+<form nz-form
+      nzLayout="vertical"
+      [formGroup]="form">
+  <div nz-row
+       [nzGutter]="12">
+    <div *ngIf="showCompanyInput"
+         nz-col
+         nzXs="24"
+         nzMd="24"
+         nzLg="6">
+      <nz-form-item>
+        <nz-form-label nzRequired>Compañía</nz-form-label>
+        <nz-form-control apsAutoError>
+          <nz-select ivtCompanySelect
+                     formControlName="companyId"></nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzXs="24"
+         [nzMd]="showCompanyInput ? 12 : 24"
+         [nzLg]="showCompanyInput ? 6 : 8">
+      <nz-form-item>
+        <nz-form-label nzRequired>VIN</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="vin"
+                 maxlength="17" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzXs="24"
+         [nzMd]="showCompanyInput ? 12 : 24"
+         [nzLg]="showCompanyInput ? 6 : 8">
+      <nz-form-item>
+        <nz-form-label>N° de motor</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="motorNumber" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         [nzLg]="showCompanyInput ? 6 : 8">
+      <nz-form-item>
+        <nz-form-label nzRequired>Marca</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="brand" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
+      <nz-form-item>
+        <nz-form-label nzRequired>Modelo</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="model" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="8"
+         nzLg="6">
+      <nz-form-item>
+        <nz-form-label>Versión</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="version" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col
+         nzXs="24"
+         nzMd="8"
+         nzLg="6">
+      <nz-form-item>
+        <nz-form-label>Año del vehículo</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 type="number"
+                 formControlName="year" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="8"
+         nzLg="6">
+      <nz-form-item>
+        <nz-form-label>HP</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 type="number"
+                 formControlName="horsePower" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>

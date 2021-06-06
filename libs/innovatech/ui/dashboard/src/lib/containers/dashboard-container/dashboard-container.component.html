@@ -1,0 +1,4 @@
+<ivt-dashboard [data]="data$ | async"
+               [isEmpty]="isEmpty$ | async"
+               [queryParams]="queryParams$ | async"
+               (filterItems)="filterItems($event)"></ivt-dashboard>

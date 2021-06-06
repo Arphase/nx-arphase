@@ -1,0 +1,11 @@
+<ivt-guarantee-form [form]="form"
+                    [item]="currentItem$ | async"
+                    [loading]="loading$ | async"
+                    [isEditable]="isEditable$ | async"
+                    [productOptions]="productOptions$ | async"
+                    [vehicle]="vehicle$ | async"
+                    [currentVehicle]="currentVehicle$ | async"
+                    [error]="error$ | async"
+                    [showCompanyInput]="showCompanyInput$ | async"
+                    (verifyVin)="verifyVin($event)"
+                    (submitForm)="submit($event)"></ivt-guarantee-form>

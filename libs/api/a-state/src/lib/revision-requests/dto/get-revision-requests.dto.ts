@@ -1,4 +1,4 @@
-import { RevisionRequestStatus } from '@ivt/c-data';
+import { RevisionRequestStatus } from '@innovatech/common/domain';
 import { Transform } from 'class-transformer';
 import { IsEnum, IsOptional } from 'class-validator';
 

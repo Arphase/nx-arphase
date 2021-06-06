@@ -1,6 +1,6 @@
 import { Roles, RolesGuard } from '@ivt/a-auth';
 import { AssignProductsDto, CommonFilterDto, CreateGroupDto, UpdateGroupDto } from '@ivt/a-state';
-import { Group, IvtCollectionResponse, Product, UserRoles } from '@ivt/c-data';
+import { Group, IvtCollectionResponse, Product, UserRoles } from '@innovatech/common/domain';
 import {
   Body,
   Controller,

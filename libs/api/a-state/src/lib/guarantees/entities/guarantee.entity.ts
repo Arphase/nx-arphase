@@ -1,4 +1,4 @@
-import { Client, Company, Guarantee, GuaranteeStatus, PaymentOrder, Product, User, Vehicle } from '@ivt/c-data';
+import { Client, Company, Guarantee, GuaranteeStatus, PaymentOrder, Product, User, Vehicle } from '@innovatech/common/domain';
 import {
   BaseEntity,
   Column,

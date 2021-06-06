@@ -1,0 +1,7 @@
+<ivt-revision-list [list]="list$ | async"
+                   [loading]="loading$ | async"
+                   [info]="info$ | async"
+                   [canCreateRevision]="canCreateRevision$ | async"
+                   [queryParams]="queryParams"
+                   (filterItems)="filterItems($event)"
+                   (delete)="deleteItem($event)"></ivt-revision-list>

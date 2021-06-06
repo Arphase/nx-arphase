@@ -1,4 +1,4 @@
-import { Address } from '@ivt/c-data';
+import { Address } from '@innovatech/common/domain';
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('addresses')

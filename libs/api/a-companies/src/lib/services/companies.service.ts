@@ -1,5 +1,5 @@
 import { CommonFilterDto, CompanyRepository, filterCommonQuery } from '@ivt/a-state';
-import { Company, createCollectionResponse, IvtCollectionResponse, User } from '@ivt/c-data';
+import { Company, createCollectionResponse, IvtCollectionResponse, User } from '@innovatech/common/domain';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 

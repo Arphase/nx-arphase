@@ -1,5 +1,5 @@
 import { UserRepository } from '@ivt/a-state';
-import { User } from '@ivt/c-data';
+import { User } from '@innovatech/common/domain';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';

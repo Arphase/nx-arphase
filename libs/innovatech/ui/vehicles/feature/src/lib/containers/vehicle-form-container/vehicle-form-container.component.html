@@ -1,0 +1,8 @@
+<ivt-vehicle-form-wrapper [form]="form"
+                          [item]="currentItem$ | async"
+                          [loading]="loading$ | async"
+                          [invalidVin]="invalidVin$ | async"
+                          [showCompanyInput]="showCompanyInput$ | async"
+                          [isEditable]="isEditable$ | async"
+                          (verifyVin)="verifyVin($event)"
+                          (submitForm)="submit($event)"></ivt-vehicle-form-wrapper>

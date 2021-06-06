@@ -1,4 +1,4 @@
-import { Guarantee } from '@ivt/c-data';
+import { Guarantee } from '@innovatech/common/domain';
 import { IsArray, IsNotEmpty } from 'class-validator';
 
 export class CreatePaymentOrderDto {

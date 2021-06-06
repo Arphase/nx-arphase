@@ -1,0 +1,51 @@
+<form nz-form
+      nz-row
+      nzLayout="vertical"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+  <nz-space nzDirection="vertical"
+            nz-col
+            nzSpan="24"
+            nzSize="middle">
+    <nz-page-header nzBackIcon
+                    [nzTitle]="item?.id ? 'Editar Vehículo' : 'Nuevo Vehículo'"
+                    [routerLink]="['..']">
+    </nz-page-header>
+
+    <nz-alert *ngIf="invalidVin"
+              nzType="error"
+              nzMessage="Un vehículo con este VIN ya está dado de alta en la plataforma. Intente con otro VIN."
+              nzShowIcon></nz-alert>
+
+    <ivt-vehicle-form [form]="form"
+                      [showCompanyInput]="showCompanyInput"
+                      (getCompanies)="getCompanies.emit($event)"
+                      (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
+
+    <ng-container *ngIf="isEditable">
+
+      <div *nzSpaceItem
+           nz-row>
+        <div nz-col
+             nzSpan="24"
+             class="flex-end">
+          <nz-space>
+            <button *nzSpaceItem
+                    nz-button
+                    type="button"
+                    [routerLink]="['..']">
+              Cancelar
+            </button>
+            <button *nzSpaceItem
+                    nz-button
+                    type="submit"
+                    nzType="primary"
+                    [nzLoading]="loading">
+              Guardar
+            </button>
+          </nz-space>
+        </div>
+      </div>
+    </ng-container>
+  </nz-space>
+</form>

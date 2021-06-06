@@ -1,0 +1,6 @@
+<ivt-group-list [list]="list$ | async"
+                [loading]="loading$ | async"
+                [info]="info$ | async"
+                [queryParams]="queryParams"
+                (filterItems)="filterItems($event)"
+                (assignProducts)="assignProducts($event)"></ivt-group-list>
