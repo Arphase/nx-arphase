@@ -5,6 +5,7 @@ import {
   PhysicalPersonRepository,
   VehicleRepository,
 } from '@innovatech/api/domain';
+import { generateProductPdf, getProductPdfTemplate } from '@innovatech/api/products/utils';
 import {
   Client,
   createCollectionResponse,
@@ -21,7 +22,6 @@ import {
   VehicleStatus,
 } from '@innovatech/common/domain';
 import { formatDate } from '@innovatech/common/utils';
-import { generateProductPdf, getProductPdfTemplate } from '@ivt/a-products';
 import {
   CreateGuaranteeDto,
   filterCommonQuery,

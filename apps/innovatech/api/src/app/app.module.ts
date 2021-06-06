@@ -6,7 +6,7 @@ import { GuaranteesModule } from '@innovatech/api/guarantees';
 import { LocalitiesModule } from '@innovatech/api/localities';
 import { PaymentOrdersModule } from '@innovatech/api/payment-orders';
 import { UsersModule } from '@innovatech/api/users';
-import { ProductModule } from '@ivt/a-products';
+import { ProductsModule } from '@innovatech/api/products/feature';
 import { RevisionRequestsModule } from '@ivt/a-revision-requests';
 import { RevisionsModule } from '@ivt/a-revisions';
 import { VehiclesModule } from '@ivt/a-vehicles';
@@ -28,7 +28,7 @@ import { AppController } from './app.controller';
     GuaranteesModule,
     LocalitiesModule,
     PaymentOrdersModule,
-    ProductModule,
+    ProductsModule,
     RevisionRequestsModule,
     RevisionsModule,
     UsersModule,

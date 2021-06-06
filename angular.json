@@ -372,27 +372,6 @@
         }
       }
     },
-    "a-products": {
-      "root": "libs/api/a-products",
-      "sourceRoot": "libs/api/a-products/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/a-products/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/api/a-products/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "innovatech-ui-users-feature": {
       "projectType": "library",
       "root": "libs/innovatech/ui/users/feature",
@@ -1255,6 +1234,48 @@
           "outputs": ["coverage/libs/innovatech/api/payment-orders"],
           "options": {
             "jestConfig": "libs/innovatech/api/payment-orders/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "innovatech-api-products-feature": {
+      "root": "libs/innovatech/api/products/feature",
+      "sourceRoot": "libs/innovatech/api/products/feature/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/innovatech/api/products/feature/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/api/products/feature"],
+          "options": {
+            "jestConfig": "libs/innovatech/api/products/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "innovatech-api-products-utils": {
+      "root": "libs/innovatech/api/products/utils",
+      "sourceRoot": "libs/innovatech/api/products/utils/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/innovatech/api/products/utils/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/api/products/utils"],
+          "options": {
+            "jestConfig": "libs/innovatech/api/products/utils/jest.config.js",
             "passWithNoTests": true
           }
         }

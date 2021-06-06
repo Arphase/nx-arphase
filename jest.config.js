@@ -37,5 +37,7 @@ module.exports = {
     '<rootDir>/libs/innovatech/api/guarantees',
     '<rootDir>/libs/innovatech/api/localities',
     '<rootDir>/libs/innovatech/api/payment-orders',
+    '<rootDir>/libs/innovatech/api/products/feature',
+    '<rootDir>/libs/innovatech/api/products/utils',
   ],
 };

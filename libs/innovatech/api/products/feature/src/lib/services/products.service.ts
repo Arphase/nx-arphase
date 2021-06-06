@@ -1,4 +1,5 @@
 import { CompanyRepository, GroupRepository, ProductRepository } from '@innovatech/api/domain';
+import { generateProductPdf, getProductPdfTemplate } from '@innovatech/api/products/utils';
 import {
   Company,
   createCollectionResponse,
@@ -20,8 +21,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import dayjs from 'dayjs';
 import { Response } from 'express';
 import { BaseEntity, SelectQueryBuilder } from 'typeorm';
-
-import { generateProductPdf, getProductPdfTemplate } from './products.service.constants';
 
 @Injectable()
 export class ProductService {

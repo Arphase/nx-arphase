@@ -32,9 +32,6 @@
     "innovatech-app": {
       "tags": ["domain:innovatech", "executable:frontend"]
     },
-    "a-products": {
-      "tags": ["back"]
-    },
     "a-revision-requests": {
       "tags": ["back"]
     },
@@ -147,19 +144,25 @@
       "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-companies": {
-      "tags": []
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-groups": {
-      "tags": []
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-guarantees": {
-      "tags": []
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-localities": {
-      "tags": []
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-payment-orders": {
-      "tags": []
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-products-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-products-utils": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
     }
   }
 }

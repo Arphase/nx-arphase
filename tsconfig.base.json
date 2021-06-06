@@ -35,9 +35,6 @@
       "@innovatech.api/env/*": [
         "apps/innovatech/api/src/environments/*"
       ],
-      "@ivt/a-products": [
-        "libs/api/a-products/src/index.ts"
-      ],
       "@ivt/a-revision-requests": [
         "libs/api/a-revision-requests/src/index.ts"
       ],
@@ -163,6 +160,12 @@
       ],
       "@innovatech/api/payment-orders": [
         "libs/innovatech/api/payment-orders/src/index.ts"
+      ],
+      "@innovatech/api/products/feature": [
+        "libs/innovatech/api/products/feature/src/index.ts"
+      ],
+      "@innovatech/api/products/utils": [
+        "libs/innovatech/api/products/utils/src/index.ts"
       ]
     }
   },
