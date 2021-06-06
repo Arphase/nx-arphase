@@ -9,7 +9,7 @@ import { ProductsModule } from '@innovatech/api/products/feature';
 import { RevisionRequestsModule } from '@innovatech/api/revision-requests';
 import { RevisionsModule } from '@innovatech/api/revisions';
 import { UsersModule } from '@innovatech/api/users';
-import { VehiclesModule } from '@ivt/a-vehicles';
+import { VehiclesModule } from '@innovatech/api/vehicles';
 import { Module } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';

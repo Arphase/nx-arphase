@@ -27,15 +27,12 @@
   },
   "projects": {
     "innovatech-api": {
-      "tags": ["domain:innovatech", "executable:backend"]
+      "tags": ["domain:innovatech", "domain:innovatech:api", "executable:api"]
     },
     "innovatech-app": {
-      "tags": ["domain:innovatech", "executable:frontend"]
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "executable:ui"]
     },
     "a-state": {
-      "tags": ["back"]
-    },
-    "a-vehicles": {
       "tags": ["back"]
     },
     "innovatech-ui-auth-feature": {
@@ -159,10 +156,13 @@
       "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
     },
     "innovatech-api-revision-requests": {
-      "tags": []
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-revisions": {
-      "tags": []
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-vehicles": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     }
   }
 }

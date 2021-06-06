@@ -38,9 +38,6 @@
       "@ivt/a-state": [
         "libs/api/a-state/src/index.ts"
       ],
-      "@ivt/a-vehicles": [
-        "libs/api/a-vehicles/src/index.ts"
-      ],
       "@innovatech/common/domain": [
         "libs/innovatech/common/domain/src/index.ts"
       ],
@@ -166,6 +163,9 @@
       ],
       "@innovatech/api/revisions": [
         "libs/innovatech/api/revisions/src/index.ts"
+      ],
+      "@innovatech/api/vehicles": [
+        "libs/innovatech/api/vehicles/src/index.ts"
       ]
     }
   },
