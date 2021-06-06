@@ -489,27 +489,6 @@
         }
       }
     },
-    "a-revision-requests": {
-      "root": "libs/api/a-revision-requests",
-      "sourceRoot": "libs/api/a-revision-requests/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/a-revision-requests/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/api/a-revision-requests"],
-          "options": {
-            "jestConfig": "libs/api/a-revision-requests/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "arphase-ui": {
       "projectType": "library",
       "root": "libs/arphase/ui",
@@ -1276,6 +1255,27 @@
           "outputs": ["coverage/libs/innovatech/api/products/utils"],
           "options": {
             "jestConfig": "libs/innovatech/api/products/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "innovatech-api-revision-requests": {
+      "root": "libs/innovatech/api/revision-requests",
+      "sourceRoot": "libs/innovatech/api/revision-requests/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/innovatech/api/revision-requests/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/api/revision-requests"],
+          "options": {
+            "jestConfig": "libs/innovatech/api/revision-requests/jest.config.js",
             "passWithNoTests": true
           }
         }

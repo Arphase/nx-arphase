@@ -3,7 +3,6 @@ module.exports = {
     '<rootDir>/apps/innovatech/app',
     '<rootDir>/libs/api/a-revisions',
     '<rootDir>/libs/ui/u-revisions',
-    '<rootDir>/libs/api/a-revision-requests',
     '<rootDir>/libs/ui/u-revision-requests',
     '<rootDir>/libs/arphase/ui',
     '<rootDir>/libs/innovatech/common/domain',
@@ -39,5 +38,6 @@ module.exports = {
     '<rootDir>/libs/innovatech/api/payment-orders',
     '<rootDir>/libs/innovatech/api/products/feature',
     '<rootDir>/libs/innovatech/api/products/utils',
+    '<rootDir>/libs/innovatech/api/revision-requests',
   ],
 };
