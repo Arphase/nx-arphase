@@ -32,9 +32,6 @@
     "innovatech-app": {
       "tags": ["domain:innovatech", "executable:frontend"]
     },
-    "a-groups": {
-      "tags": ["back"]
-    },
     "a-guarantees": {
       "tags": ["back"]
     },
@@ -159,6 +156,9 @@
       "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-companies": {
+      "tags": []
+    },
+    "innovatech-api-groups": {
       "tags": []
     }
   }

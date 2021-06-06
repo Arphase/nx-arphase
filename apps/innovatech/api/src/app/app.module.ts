@@ -1,8 +1,8 @@
 import { AuthDataModule } from '@innovatech/api/auth/data';
 import { AuthModule } from '@innovatech/api/auth/feature';
 import { CompaniesModule } from '@innovatech/api/companies';
+import { GroupsModule } from '@innovatech/api/groups';
 import { UsersModule } from '@innovatech/api/users';
-import { GroupsModule } from '@ivt/a-groups';
 import { GuaranteesModule } from '@ivt/a-guarantees';
 import { LocalitiesModule } from '@ivt/a-localities';
 import { PaymentOrdersModule } from '@ivt/a-payment-orders';
