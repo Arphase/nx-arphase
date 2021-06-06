@@ -1,10 +1,4 @@
-import {
-  CreateRevisionRequestDto,
-  filterCommonQuery,
-  GetRevisionRequestsDto,
-  RevisionRequestRepository,
-  UpdateRevisionRequestDto,
-} from '@ivt/a-state';
+import { RevisionRequestRepository } from '@innovatech/api/domain';
 import {
   createCollectionResponse,
   IvtCollectionResponse,
@@ -13,6 +7,12 @@ import {
   User,
   UserRoles,
 } from '@innovatech/common/domain';
+import {
+  CreateRevisionRequestDto,
+  filterCommonQuery,
+  GetRevisionRequestsDto,
+  UpdateRevisionRequestDto,
+} from '@ivt/a-state';
 import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 

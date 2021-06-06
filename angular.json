@@ -1238,6 +1238,27 @@
           }
         }
       }
+    },
+    "innovatech-api-domain": {
+      "root": "libs/innovatech/api/domain",
+      "sourceRoot": "libs/innovatech/api/domain/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/innovatech/api/domain/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/api/domain"],
+          "options": {
+            "jestConfig": "libs/innovatech/api/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

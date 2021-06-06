@@ -1,6 +1,6 @@
+import { ResetPasswordRepository, UserRepository } from '@innovatech/api/domain';
 import { ResetPassword, User } from '@innovatech/common/domain';
 import { generateId } from '@innovatech/common/utils';
-import { UserEntity, UserRepository } from '@ivt/a-state';
 import {
   ConflictException,
   Injectable,
@@ -20,8 +20,6 @@ import { getNewUserEmailTemplate } from '../constants/new-user-email-template';
 import { getResetPasswordEmailTemplate } from '../constants/reset-password-email-template';
 import { AuthCredentialsDto, SignUpCredentialsDto } from '../dto/auth-credentials.dto';
 import { ResetPasswordDto } from '../dto/reset-password.dto';
-import { ResetPasswordEntity } from '../entities/reset-password.entity';
-import { ResetPasswordRepository } from '../repositories/reset-password.repository';
 
 @Injectable()
 export class AuthService {
@@ -32,19 +30,17 @@ export class AuthService {
   ) {}
 
   async signUp(signUpCredentialsDto: SignUpCredentialsDto): Promise<User> {
-    const { password, email, firstName, secondName, lastName, secondLastName, role } = signUpCredentialsDto;
-    const user = new UserEntity();
-    user.email = email;
-    user.firstName = firstName;
-    user.secondName = secondName;
-    user.lastName = lastName;
-    user.secondLastName = secondLastName;
-    user.role = role;
-    user.salt = await bcrypt.genSalt();
-    user.password = await bcrypt.hash(password, user.salt);
+    const { password } = signUpCredentialsDto;
+    const salt = await bcrypt.genSalt();
+    const encryptecPassword = await bcrypt.hash(password, salt);
+    const newUser = this.userRepository.create({
+      ...signUpCredentialsDto,
+      salt,
+      password: encryptecPassword,
+    });
 
     try {
-      await user.save();
+      await newUser.save();
     } catch (error) {
       if (error.code === '23505') {
         throw new ConflictException('Email already exists');
@@ -52,7 +48,7 @@ export class AuthService {
         throw new InternalServerErrorException();
       }
     }
-    return user;
+    return newUser;
   }
 
   async signIn(authCredentialsDto: AuthCredentialsDto): Promise<User> {
@@ -150,7 +146,7 @@ export class AuthService {
     }
   }
 
-  async validateToken(passwordToken: string): Promise<ResetPasswordEntity> {
+  async validateToken(passwordToken: string): Promise<ResetPassword> {
     const resetToken = await this.resetPasswordRepository.findOne({ passwordToken });
     if (!resetToken) {
       throw new NotFoundException('Token not found');

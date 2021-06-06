@@ -160,6 +160,9 @@
       ],
       "@innovatech/api/auth/feature": [
         "libs/innovatech/api/auth/feature/src/index.ts"
+      ],
+      "@innovatech/api/domain": [
+        "libs/innovatech/api/domain/src/index.ts"
       ]
     }
   },

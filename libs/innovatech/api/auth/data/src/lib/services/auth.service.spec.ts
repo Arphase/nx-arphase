@@ -1,8 +1,7 @@
-import { UserRepository } from '@ivt/a-state';
+import { ResetPasswordRepository, UserRepository } from '@innovatech/api/domain';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { ResetPasswordRepository } from '../repositories/reset-password.repository';
 import { AuthService } from './auth.service';
 
 describe('AuthService', () => {

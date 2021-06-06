@@ -1,4 +1,4 @@
-import { CreateVehicleDto, filterCommonQuery, GetVehiclesDto, UpdateVehicleDto, VehicleRepository } from '@ivt/a-state';
+import { VehicleRepository } from '@innovatech/api/domain';
 import {
   createCollectionResponse,
   hasAccessToAllData,
@@ -10,9 +10,14 @@ import {
   Vehicle,
   VehicleStatus,
 } from '@innovatech/common/domain';
+import { filterCommonQuery } from '@ivt/a-state';
 import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
+
+import { CreateVehicleDto } from '../dto/create-vehicle.dto';
+import { GetVehiclesDto } from '../dto/get-vehicles.dto';
+import { UpdateVehicleDto } from '../dto/update-vehicle.dto';
 
 @Injectable()
 export class VehiclesService {

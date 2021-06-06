@@ -1,6 +1,5 @@
 import { GetUser, Roles, RolesGuard } from '@innovatech/api/auth/data';
 import { IvtCollectionResponse, User, UserRoles, Vehicle } from '@innovatech/common/domain';
-import { CreateVehicleDto, GetVehiclesDto, UpdateVehicleDto } from '@ivt/a-state';
 import {
   Body,
   Controller,
@@ -17,6 +16,9 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
+import { CreateVehicleDto } from '../dto/create-vehicle.dto';
+import { GetVehiclesDto } from '../dto/get-vehicles.dto';
+import { UpdateVehicleDto } from '../dto/update-vehicle.dto';
 import { VehiclesService } from '../services/vehicles.service';
 
 @Controller('vehicles')

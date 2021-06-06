@@ -1,4 +1,4 @@
-import { RevisionRequestRepository } from '@ivt/a-state';
+import { RevisionRequestRepository } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { RevisionRequestService } from './revision-request.service';

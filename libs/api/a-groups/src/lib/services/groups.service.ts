@@ -1,4 +1,11 @@
-import { AuthService, ResetPasswordRepository } from '@innovatech/api/auth/data';
+import { AuthService } from '@innovatech/api/auth/data';
+import {
+  CompanyRepository,
+  GroupRepository,
+  ProductRepository,
+  ResetPasswordRepository,
+  UserRepository,
+} from '@innovatech/api/domain';
 import {
   Company,
   createCollectionResponse,
@@ -8,19 +15,7 @@ import {
   User,
 } from '@innovatech/common/domain';
 import { generateId } from '@innovatech/common/utils';
-import {
-  AssignProductsDto,
-  CommonFilterDto,
-  CompanyEntity,
-  CompanyRepository,
-  CreateGroupDto,
-  filterCommonQuery,
-  GroupRepository,
-  ProductRepository,
-  UpdateGroupDto,
-  UserEntity,
-  UserRepository,
-} from '@ivt/a-state';
+import { AssignProductsDto, CommonFilterDto, CreateGroupDto, filterCommonQuery, UpdateGroupDto } from '@ivt/a-state';
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { omit } from 'lodash';
@@ -99,13 +94,13 @@ export class GroupsService {
       newGroup.companies = await Promise.all(
         companies.map(async company => {
           const users: User[] = [...company.users];
-          const newCompany = this.companyRepository.create(omit({ ...company, groupId }, 'users') as CompanyEntity);
+          const newCompany = this.companyRepository.create(omit({ ...company, groupId }, 'users') as Company);
           await queryRunner.manager.save(newCompany);
           const companyId = newCompany.id;
 
           newCompany.users = await Promise.all(
             users.map(async user => {
-              const newUser = this.userRepository.create({ ...user, companyId } as UserEntity);
+              const newUser = this.userRepository.create({ ...user, companyId } as User);
               await queryRunner.manager.save(newUser);
               if (user.id) {
                 await newUser.reload();

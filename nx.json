@@ -157,6 +157,9 @@
     },
     "innovatech-api-auth-feature": {
       "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-domain": {
+      "tags": []
     }
   }
 }

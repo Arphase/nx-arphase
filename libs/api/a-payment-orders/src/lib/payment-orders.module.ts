@@ -1,5 +1,5 @@
 import { AuthDataModule } from '@innovatech/api/auth/data';
-import { GuaranteeRepository, PaymentOrderRepository } from '@ivt/a-state';
+import { GuaranteeRepository, PaymentOrderRepository } from '@innovatech/api/domain';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 

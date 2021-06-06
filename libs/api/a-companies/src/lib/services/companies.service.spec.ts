@@ -1,4 +1,4 @@
-import { CompanyRepository } from '@ivt/a-state';
+import { CompanyRepository } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { CompaniesService } from './companies.service';

@@ -1,4 +1,4 @@
-import { GuaranteeRepository, PaymentOrderRepository } from '@ivt/a-state';
+import { GuaranteeRepository, PaymentOrderRepository } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Connection } from 'typeorm';
 

@@ -1,6 +1,5 @@
 import { AuthDataModule } from '@innovatech/api/auth/data';
-
-import { RevisionRequestRepository } from '@ivt/a-state';
+import { RevisionRequestRepository } from '@innovatech/api/domain';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 

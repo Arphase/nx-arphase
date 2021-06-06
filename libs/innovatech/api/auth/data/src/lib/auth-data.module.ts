@@ -1,11 +1,10 @@
-import { UserRepository } from '@ivt/a-state';
+import { ResetPasswordRepository, UserRepository } from '@innovatech/api/domain';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { JwtStrategy } from './jwt.strategy';
-import { ResetPasswordRepository } from './repositories/reset-password.repository';
 import { AuthService } from './services';
 
 @Module({

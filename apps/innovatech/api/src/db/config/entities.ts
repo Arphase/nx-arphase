@@ -1,4 +1,3 @@
-import { ResetPasswordEntity } from '@innovatech/api/auth/data';
 import {
   AddressEntity,
   ClientEntity,
@@ -10,11 +9,12 @@ import {
   PaymentOrderEntity,
   PhysicalPersonEntity,
   ProductEntity,
+  ResetPasswordEntity,
   RevisionEntity,
   RevisionRequestEntity,
   UserEntity,
   VehicleEntity,
-} from '@ivt/a-state';
+} from '@innovatech/api/domain';
 
 export const ENTITIES = [
   AddressEntity,

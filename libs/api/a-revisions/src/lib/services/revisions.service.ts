@@ -2,9 +2,7 @@ import {
   CreateRevisionDto,
   filterCommonQuery,
   GetRevisionsDto,
-  RevisionRepository,
   UpdateRevisionDto,
-  VehicleRepository,
 } from '@ivt/a-state';
 import {
   createCollectionResponse,
@@ -19,6 +17,7 @@ import { ConflictException, Injectable, NotFoundException } from '@nestjs/common
 import { InjectRepository } from '@nestjs/typeorm';
 import dayjs from 'dayjs';
 import { Connection, FindOneOptions } from 'typeorm';
+import { RevisionRepository, VehicleRepository } from '@innovatech/api/domain';
 
 @Injectable()
 export class RevisionsService {

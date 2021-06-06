@@ -1,5 +1,11 @@
-import { AuthDataModule, ResetPasswordRepository } from '@innovatech/api/auth/data';
-import { CompanyRepository, GroupRepository, ProductRepository, UserRepository } from '@ivt/a-state';
+import { AuthDataModule } from '@innovatech/api/auth/data';
+import {
+  CompanyRepository,
+  GroupRepository,
+  ProductRepository,
+  ResetPasswordRepository,
+  UserRepository,
+} from '@innovatech/api/domain';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 

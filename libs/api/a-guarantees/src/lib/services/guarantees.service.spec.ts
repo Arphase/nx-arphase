@@ -1,4 +1,9 @@
-import { GuaranteeRepository, MoralPersonRepository, PhysicalPersonRepository, VehicleRepository } from '@ivt/a-state';
+import {
+  GuaranteeRepository,
+  MoralPersonRepository,
+  PhysicalPersonRepository,
+  VehicleRepository,
+} from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Connection } from 'typeorm';
 

@@ -1,4 +1,4 @@
-import { VehicleRepository } from '@ivt/a-state';
+import { VehicleRepository } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { VehiclesService } from './vehicles.service';

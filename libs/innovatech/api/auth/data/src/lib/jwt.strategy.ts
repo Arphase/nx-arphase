@@ -1,5 +1,5 @@
+import { UserRepository } from '@innovatech/api/domain';
 import { User } from '@innovatech/common/domain';
-import { UserRepository } from '@ivt/a-state';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { InjectRepository } from '@nestjs/typeorm';

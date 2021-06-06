@@ -1,5 +1,5 @@
 import { AuthDataModule } from '@innovatech/api/auth/data';
-import { LocalityRepository } from '@ivt/a-state';
+import { LocalityRepository } from '@innovatech/api/domain';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
