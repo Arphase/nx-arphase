@@ -22,7 +22,6 @@
       "@innovatech/app/env/*": ["apps/innovatech/app/src/environments/*"],
       "@innovatech/api/*": ["apps/innovatech/api/src/app/*"],
       "@innovatech.api/env/*": ["apps/innovatech/api/src/environments/*"],
-      "@ivt/a-guarantees": ["libs/api/a-guarantees/src/index.ts"],
       "@ivt/a-localities": ["libs/api/a-localities/src/index.ts"],
       "@ivt/a-payment-orders": ["libs/api/a-payment-orders/src/index.ts"],
       "@ivt/a-products": ["libs/api/a-products/src/index.ts"],
@@ -64,7 +63,8 @@
       "@innovatech/api/domain": ["libs/innovatech/api/domain/src/index.ts"],
       "@innovatech/api/users": ["libs/innovatech/api/users/src/index.ts"],
       "@innovatech/api/companies": ["libs/innovatech/api/companies/src/index.ts"],
-      "@innovatech/api/groups": ["libs/innovatech/api/groups/src/index.ts"]
+      "@innovatech/api/groups": ["libs/innovatech/api/groups/src/index.ts"],
+      "@innovatech/api/guarantees": ["libs/innovatech/api/guarantees/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

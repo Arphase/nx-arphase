@@ -34,5 +34,6 @@ module.exports = {
     '<rootDir>/libs/innovatech/api/users',
     '<rootDir>/libs/innovatech/api/companies',
     '<rootDir>/libs/innovatech/api/groups',
+    '<rootDir>/libs/innovatech/api/guarantees',
   ],
 };
