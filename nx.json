@@ -159,7 +159,10 @@
       "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-domain": {
-      "tags": []
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:domain-logic"]
+    },
+    "innovatech-api-users": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     }
   }
 }

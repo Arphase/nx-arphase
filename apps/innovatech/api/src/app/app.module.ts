@@ -1,5 +1,6 @@
 import { AuthDataModule } from '@innovatech/api/auth/data';
 import { AuthModule } from '@innovatech/api/auth/feature';
+import { UsersModule } from '@innovatech/api/users';
 import { CompaniesModule } from '@ivt/a-companies';
 import { GroupsModule } from '@ivt/a-groups';
 import { GuaranteesModule } from '@ivt/a-guarantees';
@@ -8,7 +9,6 @@ import { PaymentOrdersModule } from '@ivt/a-payment-orders';
 import { ProductModule } from '@ivt/a-products';
 import { RevisionRequestsModule } from '@ivt/a-revision-requests';
 import { RevisionsModule } from '@ivt/a-revisions';
-import { UsersModule } from '@ivt/a-users';
 import { VehiclesModule } from '@ivt/a-vehicles';
 import { Module } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';

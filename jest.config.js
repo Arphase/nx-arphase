@@ -31,5 +31,6 @@ module.exports = {
     '<rootDir>/libs/innovatech/api/auth/data',
     '<rootDir>/libs/innovatech/api/auth/feature',
     '<rootDir>/libs/innovatech/api/domain',
+    '<rootDir>/libs/innovatech/api/users',
   ],
 };

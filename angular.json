@@ -1259,6 +1259,27 @@
           }
         }
       }
+    },
+    "innovatech-api-users": {
+      "root": "libs/innovatech/api/users",
+      "sourceRoot": "libs/innovatech/api/users/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/innovatech/api/users/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/api/users"],
+          "options": {
+            "jestConfig": "libs/innovatech/api/users/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
