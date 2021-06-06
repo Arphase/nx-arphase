@@ -1,7 +1,6 @@
 module.exports = {
   projects: [
     '<rootDir>/apps/innovatech/app',
-    '<rootDir>/libs/api/a-revisions',
     '<rootDir>/libs/ui/u-revisions',
     '<rootDir>/libs/ui/u-revision-requests',
     '<rootDir>/libs/arphase/ui',
@@ -39,5 +38,6 @@ module.exports = {
     '<rootDir>/libs/innovatech/api/products/feature',
     '<rootDir>/libs/innovatech/api/products/utils',
     '<rootDir>/libs/innovatech/api/revision-requests',
+    '<rootDir>/libs/innovatech/api/revisions',
   ],
 };

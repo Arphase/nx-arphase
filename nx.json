@@ -32,9 +32,6 @@
     "innovatech-app": {
       "tags": ["domain:innovatech", "executable:frontend"]
     },
-    "a-revisions": {
-      "tags": ["back"]
-    },
     "a-state": {
       "tags": ["back"]
     },
@@ -162,6 +159,9 @@
       "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
     },
     "innovatech-api-revision-requests": {
+      "tags": []
+    },
+    "innovatech-api-revisions": {
       "tags": []
     }
   }
