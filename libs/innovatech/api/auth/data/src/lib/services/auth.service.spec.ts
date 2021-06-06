@@ -1,7 +1,8 @@
-import { ResetPasswordRepository, UserRepository } from '@ivt/a-state';
+import { UserRepository } from '@ivt/a-state';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
 
+import { ResetPasswordRepository } from '../repositories/reset-password.repository';
 import { AuthService } from './auth.service';
 
 describe('AuthService', () => {

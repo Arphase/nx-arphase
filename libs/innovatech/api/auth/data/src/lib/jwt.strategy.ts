@@ -1,20 +1,17 @@
-import { UserRepository } from '@ivt/a-state';
 import { User } from '@innovatech/common/domain';
+import { UserRepository } from '@ivt/a-state';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
+import { InjectRepository } from '@nestjs/typeorm';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { Connection } from 'typeorm';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  private userRepository: UserRepository;
-
-  constructor(private connection: Connection) {
+  constructor(@InjectRepository(UserRepository) private userRepository: UserRepository) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: process.env.JWT_SECRET,
     });
-    this.userRepository = this.connection.getCustomRepository(UserRepository);
   }
 
   async validate(user): Promise<Partial<User>> {

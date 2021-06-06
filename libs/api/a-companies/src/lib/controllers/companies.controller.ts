@@ -1,6 +1,6 @@
-import { GetUser } from '@ivt/a-auth';
-import { CommonFilterDto } from '@ivt/a-state';
+import { GetUser } from '@innovatech/api/auth/data';
 import { Company, IvtCollectionResponse, User } from '@innovatech/common/domain';
+import { CommonFilterDto } from '@ivt/a-state';
 import { Controller, Get, Param, ParseIntPipe, Query, UseGuards, ValidationPipe } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 

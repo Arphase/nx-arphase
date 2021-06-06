@@ -1,11 +1,5 @@
-import { AuthService } from '@ivt/a-auth';
-import {
-  CompanyRepository,
-  GroupRepository,
-  ProductRepository,
-  ResetPasswordRepository,
-  UserRepository,
-} from '@ivt/a-state';
+import { AuthService, ResetPasswordRepository } from '@innovatech/api/auth/data';
+import { CompanyRepository, GroupRepository, ProductRepository, UserRepository } from '@ivt/a-state';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Connection } from 'typeorm';
 

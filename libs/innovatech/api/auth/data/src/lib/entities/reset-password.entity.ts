@@ -1,7 +1,6 @@
 import { ResetPassword, User } from '@innovatech/common/domain';
+import { UserEntity } from '@ivt/a-state';
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-
-import { UserEntity } from '../../users';
 
 @Entity('resetPassword')
 export class ResetPasswordEntity extends BaseEntity implements ResetPassword {

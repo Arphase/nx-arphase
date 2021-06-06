@@ -351,27 +351,6 @@
         }
       }
     },
-    "a-auth": {
-      "root": "libs/api/a-auth",
-      "sourceRoot": "libs/api/a-auth/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/a-auth/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/api/a-auth/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "a-guarantees": {
       "root": "libs/api/a-guarantees",
       "sourceRoot": "libs/api/a-guarantees/src",
@@ -1213,6 +1192,48 @@
           "outputs": ["coverage/libs/innovatech/ui/addresses/ui"],
           "options": {
             "jestConfig": "libs/innovatech/ui/addresses/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "innovatech-api-auth-data": {
+      "root": "libs/innovatech/api/auth/data",
+      "sourceRoot": "libs/innovatech/api/auth/data/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/innovatech/api/auth/data/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/api/auth/data"],
+          "options": {
+            "jestConfig": "libs/innovatech/api/auth/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "innovatech-api-auth-feature": {
+      "root": "libs/innovatech/api/auth/feature",
+      "sourceRoot": "libs/innovatech/api/auth/feature/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/innovatech/api/auth/feature/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/api/auth/feature"],
+          "options": {
+            "jestConfig": "libs/innovatech/api/auth/feature/jest.config.js",
             "passWithNoTests": true
           }
         }

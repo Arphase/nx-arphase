@@ -1,4 +1,13 @@
-import { AuthService } from '@ivt/a-auth';
+import { AuthService, ResetPasswordRepository } from '@innovatech/api/auth/data';
+import {
+  Company,
+  createCollectionResponse,
+  Group,
+  IvtCollectionResponse,
+  Product,
+  User,
+} from '@innovatech/common/domain';
+import { generateId } from '@innovatech/common/utils';
 import {
   AssignProductsDto,
   CommonFilterDto,
@@ -8,13 +17,10 @@ import {
   filterCommonQuery,
   GroupRepository,
   ProductRepository,
-  ResetPasswordRepository,
   UpdateGroupDto,
   UserEntity,
   UserRepository,
 } from '@ivt/a-state';
-import { Company, createCollectionResponse, Group, IvtCollectionResponse, Product, User } from '@innovatech/common/domain';
-import { generateId } from '@innovatech/common/utils';
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { omit } from 'lodash';

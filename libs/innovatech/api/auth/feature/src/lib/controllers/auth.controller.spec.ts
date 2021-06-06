@@ -1,6 +1,6 @@
+import { AuthService } from '@innovatech/api/auth/data';
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { AuthService } from '../services';
 import { AuthController } from './auth.controller';
 
 describe('Auth Controller', () => {

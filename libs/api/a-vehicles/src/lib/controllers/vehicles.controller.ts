@@ -1,6 +1,6 @@
-import { GetUser, Roles, RolesGuard } from '@ivt/a-auth';
-import { CreateVehicleDto, GetVehiclesDto, UpdateVehicleDto } from '@ivt/a-state';
+import { GetUser, Roles, RolesGuard } from '@innovatech/api/auth/data';
 import { IvtCollectionResponse, User, UserRoles, Vehicle } from '@innovatech/common/domain';
+import { CreateVehicleDto, GetVehiclesDto, UpdateVehicleDto } from '@ivt/a-state';
 import {
   Body,
   Controller,

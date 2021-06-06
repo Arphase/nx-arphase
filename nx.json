@@ -32,9 +32,6 @@
     "innovatech-app": {
       "tags": ["domain:innovatech", "executable:frontend"]
     },
-    "a-auth": {
-      "tags": ["back"]
-    },
     "a-companies": {
       "tags": ["back"]
     },
@@ -154,6 +151,12 @@
     },
     "innovatech-ui-addresses-ui": {
       "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+    },
+    "innovatech-api-auth-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:data"]
+    },
+    "innovatech-api-auth-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     }
   }
 }

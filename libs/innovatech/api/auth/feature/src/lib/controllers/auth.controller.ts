@@ -1,8 +1,6 @@
-import { AuthCredentialsDto, ResetPasswordDto } from '@ivt/a-state';
+import { AuthCredentialsDto, AuthService, ResetPasswordDto } from '@innovatech/api/auth/data';
 import { ResetPassword, User } from '@innovatech/common/domain';
 import { Body, Controller, Get, Param, Post, ValidationPipe } from '@nestjs/common';
-
-import { AuthService } from '../services/auth.service';
 
 @Controller('auth')
 export class AuthController {

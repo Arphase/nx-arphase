@@ -1,4 +1,4 @@
-import { AuthModule } from '@ivt/a-auth';
+import { AuthDataModule } from '@innovatech/api/auth/data';
 import { VehicleRepository } from '@ivt/a-state';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -7,7 +7,7 @@ import { VehiclesController } from './controllers/vehicles.controller';
 import { VehiclesService } from './services/vehicles.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([VehicleRepository]), AuthModule],
+  imports: [TypeOrmModule.forFeature([VehicleRepository]), AuthDataModule],
   controllers: [VehiclesController],
   providers: [VehiclesService],
 })

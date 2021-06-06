@@ -1,12 +1,12 @@
-import { ResetPasswordRepository, UserRepository } from '@ivt/a-state';
+import { UserRepository } from '@ivt/a-state';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { AuthController } from './controllers/auth.controller';
-import { AuthService } from './services/auth.service';
-import { JwtStrategy } from './services/jwt.strategy';
+import { JwtStrategy } from './jwt.strategy';
+import { ResetPasswordRepository } from './repositories/reset-password.repository';
+import { AuthService } from './services';
 
 @Module({
   imports: [
@@ -17,8 +17,7 @@ import { JwtStrategy } from './services/jwt.strategy';
     PassportModule.register({ defaultStrategy: 'jwt' }),
     TypeOrmModule.forFeature([ResetPasswordRepository, UserRepository]),
   ],
-  controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
+  providers: [JwtStrategy, AuthService],
   exports: [JwtStrategy, PassportModule, AuthService],
 })
-export class AuthModule {}
+export class AuthDataModule {}

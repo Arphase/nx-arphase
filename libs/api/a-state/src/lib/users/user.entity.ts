@@ -1,4 +1,13 @@
-import { Company, Guarantee, ResetPassword, RevisionRequest, User, UserRoles, Vehicle } from '@innovatech/common/domain';
+import { ResetPasswordEntity } from '@innovatech/api/auth/data';
+import {
+  Company,
+  Guarantee,
+  ResetPassword,
+  RevisionRequest,
+  User,
+  UserRoles,
+  Vehicle,
+} from '@innovatech/common/domain';
 import * as bcrypt from 'bcryptjs';
 import {
   BaseEntity,
@@ -13,7 +22,6 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { ResetPasswordEntity } from '../auth/entities';
 import { CompanyEntity } from '../companies/company.entity';
 import { GuaranteeEntity } from '../guarantees/entities/guarantee.entity';
 import { RevisionRequestEntity } from '../revision-requests/revision-request.entity';

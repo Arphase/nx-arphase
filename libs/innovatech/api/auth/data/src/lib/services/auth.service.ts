@@ -1,14 +1,6 @@
-import {
-  AuthCredentialsDto,
-  ResetPasswordDto,
-  ResetPasswordEntity,
-  ResetPasswordRepository,
-  SignUpCredentialsDto,
-  UserEntity,
-  UserRepository,
-} from '@ivt/a-state';
 import { ResetPassword, User } from '@innovatech/common/domain';
 import { generateId } from '@innovatech/common/utils';
+import { UserEntity, UserRepository } from '@ivt/a-state';
 import {
   ConflictException,
   Injectable,
@@ -24,8 +16,12 @@ import { createTransport } from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import { getManager } from 'typeorm';
 
-import { getNewUserEmailTemplate } from '../constants';
+import { getNewUserEmailTemplate } from '../constants/new-user-email-template';
 import { getResetPasswordEmailTemplate } from '../constants/reset-password-email-template';
+import { AuthCredentialsDto, SignUpCredentialsDto } from '../dto/auth-credentials.dto';
+import { ResetPasswordDto } from '../dto/reset-password.dto';
+import { ResetPasswordEntity } from '../entities/reset-password.entity';
+import { ResetPasswordRepository } from '../repositories/reset-password.repository';
 
 @Injectable()
 export class AuthService {
