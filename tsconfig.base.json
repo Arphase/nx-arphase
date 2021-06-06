@@ -35,9 +35,6 @@
       "@innovatech.api/env/*": [
         "apps/innovatech/api/src/environments/*"
       ],
-      "@ivt/a-payment-orders": [
-        "libs/api/a-payment-orders/src/index.ts"
-      ],
       "@ivt/a-products": [
         "libs/api/a-products/src/index.ts"
       ],
@@ -163,6 +160,9 @@
       ],
       "@innovatech/api/localities": [
         "libs/innovatech/api/localities/src/index.ts"
+      ],
+      "@innovatech/api/payment-orders": [
+        "libs/innovatech/api/payment-orders/src/index.ts"
       ]
     }
   },

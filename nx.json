@@ -32,9 +32,6 @@
     "innovatech-app": {
       "tags": ["domain:innovatech", "executable:frontend"]
     },
-    "a-payment-orders": {
-      "tags": ["back"]
-    },
     "a-products": {
       "tags": ["back"]
     },
@@ -159,6 +156,9 @@
       "tags": []
     },
     "innovatech-api-localities": {
+      "tags": []
+    },
+    "innovatech-api-payment-orders": {
       "tags": []
     }
   }
