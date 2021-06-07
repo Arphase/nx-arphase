@@ -42,5 +42,11 @@ module.exports = {
     '<rootDir>/libs/innovatech/api/vehicles',
     '<rootDir>/libs/innovatech/api/core/data',
     '<rootDir>/libs/innovatech/api/core/util',
+    '<rootDir>/libs/musicr/domain',
+    '<rootDir>/libs/musicr/api/auth',
+    '<rootDir>/libs/musicr/ui/auth',
+    '<rootDir>/apps/musicr/store',
+    '<rootDir>/apps/musicr/admin',
+    '<rootDir>/apps/musicr/api',
   ],
 };

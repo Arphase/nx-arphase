@@ -166,6 +166,32 @@
     },
     "innovatech-api-core-util": {
       "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
+    },
+    "musicr-api": {
+      "tags": ["domain:musicr", "domain:musicr:api", "executable:api"]
+    },
+    "musicr-store": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
+    },
+    "musicr-store-e2e": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
+      "implicitDependencies": ["musicr-store"]
+    },
+    "musicr-admin": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
+    },
+    "musicr-admin-e2e": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
+      "implicitDependencies": ["musicr-admin"]
+    },
+    "musicr-domain": {
+      "tags": ["domain:musicr", "type:domain-logic"]
+    },
+    "musicr-api-auth": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+    },
+    "musicr-ui-auth": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     }
   }
 }

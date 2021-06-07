@@ -93,6 +93,38 @@
                   "domain:innovatech",
                   "domain:innovatech:ui"
                 ]
+              },
+              {
+                "sourceTag": "domain:innovatech:api",
+                "onlyDependOnLibsWithTags": [
+                  "domain:arphase",
+                  "domain:innovatech",
+                  "domain:innovatech:api"
+                ]
+              },
+              {
+                "sourceTag": "domain:musicr",
+                "onlyDependOnLibsWithTags": [
+                  "domain:musicr",
+                  "domain:shared",
+                  "domain:arphase",
+                ]
+              },
+              {
+                "sourceTag": "domain:musicr:ui",
+                "onlyDependOnLibsWithTags": [
+                  "domain:arphase",
+                  "domain:musicr",
+                  "domain:musicr:ui"
+                ]
+              },
+              {
+                "sourceTag": "domain:musicr:api",
+                "onlyDependOnLibsWithTags": [
+                  "domain:arphase",
+                  "domain:musicr",
+                  "domain:musicr:api"
+                ]
               }
             ]
           }
