@@ -1,6 +1,6 @@
 import { Roles, RolesGuard } from '@innovatech/api/auth/data';
+import { CommonFilterDto } from '@innovatech/api/core/util';
 import { Group, IvtCollectionResponse, Product, UserRoles } from '@innovatech/common/domain';
-import { AssignProductsDto, CommonFilterDto, CreateGroupDto, UpdateGroupDto } from '@ivt/a-state';
 import {
   Body,
   Controller,
@@ -16,6 +16,9 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
+import { AssignProductsDto } from '../dto/assign-products.dto';
+import { CreateGroupDto } from '../dto/create-group.dto';
+import { UpdateGroupDto } from '../dto/update-group.dto';
 import { GroupsService } from '../services/groups.service';
 
 @Controller('groups')

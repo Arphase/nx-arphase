@@ -32,9 +32,6 @@
     "innovatech-app": {
       "tags": ["domain:innovatech", "domain:innovatech:ui", "executable:ui"]
     },
-    "a-state": {
-      "tags": ["back"]
-    },
     "innovatech-ui-auth-feature": {
       "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
@@ -163,6 +160,12 @@
     },
     "innovatech-api-vehicles": {
       "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-core-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:data"]
+    },
+    "innovatech-api-core-util": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
     }
   }
 }

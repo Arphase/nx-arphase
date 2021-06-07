@@ -1,9 +1,4 @@
-import {
-  CreateRevisionDto,
-  filterCommonQuery,
-  GetRevisionsDto,
-  UpdateRevisionDto,
-} from '@ivt/a-state';
+import { RevisionRepository, VehicleRepository } from '@innovatech/api/domain';
 import {
   createCollectionResponse,
   IvtCollectionResponse,
@@ -13,11 +8,15 @@ import {
   User,
   VehicleStatus,
 } from '@innovatech/common/domain';
+import { filterCommonQuery } from '@innovatech/api/core/util';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import dayjs from 'dayjs';
 import { Connection, FindOneOptions } from 'typeorm';
-import { RevisionRepository, VehicleRepository } from '@innovatech/api/domain';
+
+import { CreateRevisionDto } from '../dto/create-revision.dto';
+import { GetRevisionsDto } from '../dto/get-revisions.dto';
+import { UpdateRevisionDto } from '../dto/update-revision.dto';
 
 @Injectable()
 export class RevisionsService {

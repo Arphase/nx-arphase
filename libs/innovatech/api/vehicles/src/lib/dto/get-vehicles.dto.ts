@@ -1,5 +1,5 @@
 import { VehicleStatus } from '@innovatech/common/domain';
-import { CommonFilterDto } from '@ivt/a-state';
+import { CommonFilterDto } from '@innovatech/api/core/util';
 import { Transform } from 'class-transformer';
 import { IsEnum, IsOptional } from 'class-validator';
 

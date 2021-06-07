@@ -1,4 +1,5 @@
 import { AuthService } from '@innovatech/api/auth/data';
+import { CommonFilterDto, filterCommonQuery } from '@innovatech/api/core/util';
 import {
   CompanyRepository,
   GroupRepository,
@@ -15,11 +16,14 @@ import {
   User,
 } from '@innovatech/common/domain';
 import { generateId } from '@innovatech/common/utils';
-import { AssignProductsDto, CommonFilterDto, CreateGroupDto, filterCommonQuery, UpdateGroupDto } from '@ivt/a-state';
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { omit } from 'lodash';
 import { Connection } from 'typeorm';
+
+import { AssignProductsDto } from '../dto/assign-products.dto';
+import { CreateGroupDto } from '../dto/create-group.dto';
+import { UpdateGroupDto } from '../dto/update-group.dto';
 
 @Injectable()
 export class GroupsService {

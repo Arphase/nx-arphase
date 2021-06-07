@@ -1,5 +1,11 @@
-import { AuthService, ResetPasswordRepository } from '@innovatech/api/auth/data';
-import { CompanyRepository, GroupRepository, ProductRepository, UserRepository } from '@innovatech/api/domain';
+import { AuthService } from '@innovatech/api/auth/data';
+import {
+  CompanyRepository,
+  GroupRepository,
+  ProductRepository,
+  ResetPasswordRepository,
+  UserRepository,
+} from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Connection } from 'typeorm';
 

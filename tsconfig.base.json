@@ -35,9 +35,6 @@
       "@innovatech.api/env/*": [
         "apps/innovatech/api/src/environments/*"
       ],
-      "@ivt/a-state": [
-        "libs/api/a-state/src/index.ts"
-      ],
       "@innovatech/common/domain": [
         "libs/innovatech/common/domain/src/index.ts"
       ],
@@ -166,6 +163,12 @@
       ],
       "@innovatech/api/vehicles": [
         "libs/innovatech/api/vehicles/src/index.ts"
+      ],
+      "@innovatech/api/core/data": [
+        "libs/innovatech/api/core/data/src/index.ts"
+      ],
+      "@innovatech/api/core/util": [
+        "libs/innovatech/api/core/util/src/index.ts"
       ]
     }
   },

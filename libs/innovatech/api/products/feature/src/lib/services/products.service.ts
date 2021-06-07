@@ -1,3 +1,4 @@
+import { filterCommonQuery, tobase64 } from '@innovatech/api/core/util';
 import { CompanyRepository, GroupRepository, ProductRepository } from '@innovatech/api/domain';
 import { generateProductPdf, getProductPdfTemplate } from '@innovatech/api/products/utils';
 import {
@@ -8,19 +9,16 @@ import {
   User,
   UserRoles,
 } from '@innovatech/common/domain';
-import {
-  CreateProductDto,
-  filterCommonQuery,
-  GenerateProductPdfDto,
-  GetProductsDto,
-  tobase64,
-  UpdateProductDto,
-} from '@ivt/a-state';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import dayjs from 'dayjs';
 import { Response } from 'express';
 import { BaseEntity, SelectQueryBuilder } from 'typeorm';
+
+import { CreateProductDto } from '../dto/create-products.dto';
+import { GenerateProductPdfDto } from '../dto/generate-product-pdf.dto';
+import { GetProductsDto } from '../dto/get-products.dto';
+import { UpdateProductDto } from '../dto/update-product.dto';
 
 @Injectable()
 export class ProductService {

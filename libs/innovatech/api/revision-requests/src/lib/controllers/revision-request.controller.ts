@@ -1,6 +1,5 @@
 import { GetUser, Roles, RolesGuard } from '@innovatech/api/auth/data';
 import { IvtCollectionResponse, RevisionRequest, User, UserRoles } from '@innovatech/common/domain';
-import { CreateRevisionRequestDto, GetRevisionRequestsDto, UpdateRevisionRequestDto } from '@ivt/a-state';
 import {
   Body,
   Controller,
@@ -16,6 +15,9 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
+import { CreateRevisionRequestDto } from '../dto/create-revision-request.dto';
+import { GetRevisionRequestsDto } from '../dto/get-revision-requests.dto';
+import { UpdateRevisionRequestDto } from '../dto/update-revision-request.dto';
 import { RevisionRequestService } from '../services/revision-request.service';
 
 @Controller('revision-requests')

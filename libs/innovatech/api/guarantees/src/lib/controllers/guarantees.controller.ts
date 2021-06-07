@@ -1,6 +1,5 @@
 import { GetUser, Roles, RolesGuard } from '@innovatech/api/auth/data';
 import { Guarantee, GuaranteeSummary, IvtCollectionResponse, User, UserRoles } from '@innovatech/common/domain';
-import { CreateGuaranteeDto, GetGuaranteesFilterDto, UpdateGuaranteeDto } from '@ivt/a-state';
 import {
   Body,
   Controller,
@@ -19,6 +18,9 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 
+import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
+import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
+import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import { GuaranteesService } from '../services/guarantees.service';
 
 @Controller('guarantees')

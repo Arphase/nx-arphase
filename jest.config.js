@@ -40,5 +40,7 @@ module.exports = {
     '<rootDir>/libs/innovatech/api/revision-requests',
     '<rootDir>/libs/innovatech/api/revisions',
     '<rootDir>/libs/innovatech/api/vehicles',
+    '<rootDir>/libs/innovatech/api/core/data',
+    '<rootDir>/libs/innovatech/api/core/util',
   ],
 };

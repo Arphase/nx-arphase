@@ -1,4 +1,4 @@
-import { UserRepository } from '@ivt/a-state';
+import { UserRepository } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { UsersService } from './users.service';

@@ -10,7 +10,7 @@ import {
   Vehicle,
   VehicleStatus,
 } from '@innovatech/common/domain';
-import { filterCommonQuery } from '@ivt/a-state';
+import { filterCommonQuery } from '@innovatech/api/core/util';
 import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';

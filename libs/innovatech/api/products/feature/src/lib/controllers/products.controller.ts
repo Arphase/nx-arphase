@@ -1,6 +1,5 @@
 import { GetUser } from '@innovatech/api/auth/data';
 import { IvtCollectionResponse, Product, User } from '@innovatech/common/domain';
-import { CreateProductDto, GenerateProductPdfDto, GetProductsDto, UpdateProductDto } from '@ivt/a-state';
 import {
   Body,
   Controller,
@@ -17,6 +16,10 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 
+import { CreateProductDto } from '../dto/create-products.dto';
+import { GenerateProductPdfDto } from '../dto/generate-product-pdf.dto';
+import { GetProductsDto } from '../dto/get-products.dto';
+import { UpdateProductDto } from '../dto/update-product.dto';
 import { ProductService } from '../services/products.service';
 
 @Controller('products')

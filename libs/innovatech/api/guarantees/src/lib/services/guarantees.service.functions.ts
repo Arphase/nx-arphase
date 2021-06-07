@@ -1,11 +1,13 @@
 import 'dayjs/locale/es';
 
+import { filterCommonQuery, IMAGE_ASSETS_PATH } from '@innovatech/api/core/util';
 import { GuaranteeEntity } from '@innovatech/api/domain';
 import { formatAddress, Guarantee, sortDirection, transformFolio, User } from '@innovatech/common/domain';
-import { filterCommonQuery, GetGuaranteesFilterDto, IMAGE_ASSETS_PATH } from '@ivt/a-state';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import { SelectQueryBuilder } from 'typeorm';
+
+import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 
 dayjs.extend(LocalizedFormat);
 

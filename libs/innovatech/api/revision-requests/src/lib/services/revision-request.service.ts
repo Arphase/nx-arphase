@@ -7,14 +7,13 @@ import {
   User,
   UserRoles,
 } from '@innovatech/common/domain';
-import {
-  CreateRevisionRequestDto,
-  filterCommonQuery,
-  GetRevisionRequestsDto,
-  UpdateRevisionRequestDto,
-} from '@ivt/a-state';
+import { filterCommonQuery } from '@innovatech/api/core/util';
 import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
+import { CreateRevisionRequestDto } from '../dto/create-revision-request.dto';
+import { GetRevisionRequestsDto } from '../dto/get-revision-requests.dto';
+import { UpdateRevisionRequestDto } from '../dto/update-revision-request.dto';
 
 @Injectable()
 export class RevisionRequestService {
