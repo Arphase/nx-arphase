@@ -1,14 +1,15 @@
-import { AuthModule } from '@ivt/a-auth';
-import { CompaniesModule } from '@ivt/a-companies';
-import { GroupsModule } from '@ivt/a-groups';
-import { GuaranteesModule } from '@ivt/a-guarantees';
-import { LocalitiesModule } from '@ivt/a-localities';
-import { PaymentOrdersModule } from '@ivt/a-payment-orders';
-import { ProductModule } from '@ivt/a-products';
-import { RevisionRequestsModule } from '@ivt/a-revision-requests';
-import { RevisionsModule } from '@ivt/a-revisions';
-import { UsersModule } from '@ivt/a-users';
-import { VehiclesModule } from '@ivt/a-vehicles';
+import { AuthDataModule } from '@innovatech/api/auth/data';
+import { AuthModule } from '@innovatech/api/auth/feature';
+import { CompaniesModule } from '@innovatech/api/companies';
+import { GroupsModule } from '@innovatech/api/groups';
+import { GuaranteesModule } from '@innovatech/api/guarantees';
+import { LocalitiesModule } from '@innovatech/api/localities';
+import { PaymentOrdersModule } from '@innovatech/api/payment-orders';
+import { ProductsModule } from '@innovatech/api/products/feature';
+import { RevisionRequestsModule } from '@innovatech/api/revision-requests';
+import { RevisionsModule } from '@innovatech/api/revisions';
+import { UsersModule } from '@innovatech/api/users';
+import { VehiclesModule } from '@innovatech/api/vehicles';
 import { Module } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -21,12 +22,13 @@ import { AppController } from './app.controller';
     ScheduleModule.forRoot(),
     TypeOrmModule.forRoot(config),
     AuthModule,
+    AuthDataModule,
     CompaniesModule,
     GroupsModule,
     GuaranteesModule,
     LocalitiesModule,
     PaymentOrdersModule,
-    ProductModule,
+    ProductsModule,
     RevisionRequestsModule,
     RevisionsModule,
     UsersModule,

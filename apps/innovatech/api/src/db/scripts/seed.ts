@@ -1,5 +1,5 @@
-import { AuthService } from '@ivt/a-auth';
-import { ResetPasswordRepository, SignUpCredentialsDto, UserRepository } from '@ivt/a-state';
+import { AuthService, SignUpCredentialsDto } from '@innovatech/api/auth/data';
+import { ResetPasswordRepository, UserRepository } from '@innovatech/api/domain';
 import { UserRoles } from '@innovatech/common/domain';
 import fs from 'fs';
 import path from 'path';

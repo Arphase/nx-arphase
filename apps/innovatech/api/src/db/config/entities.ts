@@ -14,7 +14,7 @@ import {
   RevisionRequestEntity,
   UserEntity,
   VehicleEntity,
-} from '@ivt/a-state';
+} from '@innovatech/api/domain';
 
 export const ENTITIES = [
   AddressEntity,

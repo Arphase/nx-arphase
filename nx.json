@@ -27,46 +27,10 @@
   },
   "projects": {
     "innovatech-api": {
-      "tags": ["domain:innovatech", "executable:backend"]
+      "tags": ["domain:innovatech", "domain:innovatech:api", "executable:api"]
     },
     "innovatech-app": {
-      "tags": ["domain:innovatech", "executable:frontend"]
-    },
-    "a-auth": {
-      "tags": ["back"]
-    },
-    "a-companies": {
-      "tags": ["back"]
-    },
-    "a-groups": {
-      "tags": ["back"]
-    },
-    "a-guarantees": {
-      "tags": ["back"]
-    },
-    "a-localities": {
-      "tags": ["back"]
-    },
-    "a-payment-orders": {
-      "tags": ["back"]
-    },
-    "a-products": {
-      "tags": ["back"]
-    },
-    "a-revision-requests": {
-      "tags": ["back"]
-    },
-    "a-revisions": {
-      "tags": ["back"]
-    },
-    "a-state": {
-      "tags": ["back"]
-    },
-    "a-users": {
-      "tags": ["back"]
-    },
-    "a-vehicles": {
-      "tags": ["back"]
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "executable:ui"]
     },
     "innovatech-ui-auth-feature": {
       "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
@@ -154,6 +118,80 @@
     },
     "innovatech-ui-addresses-ui": {
       "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+    },
+    "innovatech-api-auth-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:data"]
+    },
+    "innovatech-api-auth-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-domain": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:domain-logic"]
+    },
+    "innovatech-api-users": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-companies": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-groups": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-guarantees": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-localities": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-payment-orders": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-products-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-products-utils": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
+    },
+    "innovatech-api-revision-requests": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-revisions": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-vehicles": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-core-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:data"]
+    },
+    "innovatech-api-core-util": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
+    },
+    "musicr-api": {
+      "tags": ["domain:musicr", "domain:musicr:api", "executable:api"]
+    },
+    "musicr-store": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
+    },
+    "musicr-store-e2e": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
+      "implicitDependencies": ["musicr-store"]
+    },
+    "musicr-admin": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
+    },
+    "musicr-admin-e2e": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
+      "implicitDependencies": ["musicr-admin"]
+    },
+    "musicr-domain": {
+      "tags": ["domain:musicr", "type:domain-logic"]
+    },
+    "musicr-api-auth": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+    },
+    "musicr-ui-auth": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     }
   }
 }
