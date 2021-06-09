@@ -53,7 +53,7 @@ export class GuaranteesService {
     private readonly connection: Connection
   ) {}
 
-  async getGuaranteeById(id: number): Promise<Guarantee> {
+  async getGuaranteeById(id: number, options?: { withTemplateAndLogo: boolean }): Promise<Guarantee> {
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     query
       .leftJoinAndSelect('guarantee.client', 'client')
@@ -62,6 +62,10 @@ export class GuaranteesService {
       .leftJoinAndSelect('client.moralInfo', 'moralPerson')
       .leftJoinAndSelect('client.address', 'address')
       .leftJoinAndSelect('guarantee.vehicle', 'vehicle');
+
+    if (options?.withTemplateAndLogo) {
+      query.addSelect('product.logo').addSelect('product.template');
+    }
 
     let found = await query.where('guarantee.id = :id', { id }).getOne();
 
@@ -204,14 +208,14 @@ export class GuaranteesService {
 
   async generatePdf(id: number, response: Response): Promise<void> {
     let content, headerLogo;
-    const guarantee = await this.getGuaranteeById(id);
+    const guarantee = await this.getGuaranteeById(id, { withTemplateAndLogo: true });
     const product = guarantee.product;
     if (product) {
       content = getProductPdfTemplate(product.template, guarantee);
       headerLogo = product.logo;
     } else {
       content = getGuaranteePdfTemplate(guarantee);
-      headerLogo = await tobase64('apps/innovatech-api/src/assets/img/forte-shield.png');
+      headerLogo = await tobase64('apps/innovatech/api/src/assets/img/forte-shield.png');
       headerLogo = 'data:image/png;base64,' + headerLogo;
     }
     await generateProductPdf(content, headerLogo, response);

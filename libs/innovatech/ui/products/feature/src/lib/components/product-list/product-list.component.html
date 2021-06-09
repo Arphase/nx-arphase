@@ -55,7 +55,7 @@
           [nzPageIndex]="info?.pageIndex"
           [nzLoading]="loading"
           [nzShowSizeChanger]="true"
-          (nzQueryParams)="filterItems.emit($event)">
+          (nzQueryParams)="onQueryParamsChanged($event)">
   <thead>
     <tr nz-row>
       <th *ngFor="let column of columns"

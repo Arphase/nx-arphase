@@ -17,11 +17,11 @@ const config: TypeOrmModuleOptions = {
   // Allow both start:prod and start:dev to use migrations
   // __dirname is either dist or src folder, meaning either
   // the compiled js in prod or the ts in dev.
-  migrations: ['apps/innovatech-api/src/db/migrations/**/*.js'],
+  migrations: ['apps/innovatech/api/src/db/migrations/**/*.js'],
   cli: {
     // Location of migration should be inside src folder
     // to be compiled into dist/ folder.
-    migrationsDir: 'apps/innovatech-api/src/db/migrations',
+    migrationsDir: 'apps/innovatech/api/src/db/migrations',
   },
   logging: true,
 };

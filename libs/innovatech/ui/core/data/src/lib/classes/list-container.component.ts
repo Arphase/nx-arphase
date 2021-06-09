@@ -56,13 +56,6 @@ export class IvtListContainerComponent<T = any> {
         )
         .subscribe(() => this.messageService.success(this.deleteSuccessMessage));
 
-      this.entityCollectionService.entities$
-        .pipe(
-          take(1),
-          filter(entities => !entities.length)
-        )
-        .subscribe(() => this.entityCollectionService.getWithQuery({}));
-
       this.list$ = this.entityCollectionService.entities$;
 
       this.loading$ = combineLatest([this.entityCollectionService?.loading$, this.ivtLoading$]).pipe(
@@ -86,6 +79,7 @@ export class IvtListContainerComponent<T = any> {
     const queryParams: QueryParams = {
       ...this.queryParams,
       ...payload,
+      pageIndex: 1 as any,
       resetList: String(true),
     };
     this.entityCollectionService.getWithQuery(queryParams);
