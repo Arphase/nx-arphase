@@ -1,11 +1,12 @@
-import { Trim } from '@arphase/api';
+import { LowerCase, Trim } from '@arphase/api';
 import { UserRoles } from '@innovatech/common/domain';
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class AuthCredentialsDto {
   @IsNotEmpty()
-  @IsString()
+  @IsEmail()
   @Trim()
+  @LowerCase()
   email: string;
 
   @IsNotEmpty()
@@ -36,6 +37,7 @@ export class SignUpCredentialsDto {
 
   @IsNotEmpty()
   @IsEmail()
+  @LowerCase()
   @Trim()
   email: string;
 

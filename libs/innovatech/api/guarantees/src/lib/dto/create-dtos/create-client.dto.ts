@@ -1,4 +1,4 @@
-import { Trim } from '@arphase/api';
+import { LowerCase, Trim } from '@arphase/api';
 import { IsRfc, UpdateAddressDto } from '@innovatech/api/core/util';
 import { Address, MoralPerson, PersonTypes, PhysicalPerson } from '@innovatech/common/domain';
 import { RfcValidatorTypes } from '@innovatech/common/utils';
@@ -36,6 +36,7 @@ export class CreateClientDto {
 
   @IsNotEmpty()
   @IsEmail()
+  @LowerCase()
   @Trim()
   email: string;
 
