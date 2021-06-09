@@ -18,10 +18,5 @@ export class UpdateMoralPersonDto {
   @IsOptional()
   @IsString()
   @Trim()
-  distributor: string;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
   adviser: string;
 }

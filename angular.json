@@ -1345,6 +1345,7 @@
       "root": "libs/musicr/ui/auth",
       "sourceRoot": "libs/musicr/ui/auth/src",
       "projectType": "library",
+      "prefix": "mrl",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1366,7 +1367,7 @@
       "projectType": "application",
       "root": "apps/musicr/store",
       "sourceRoot": "apps/musicr/store/src",
-      "prefix": "ivt",
+      "prefix": "mrl",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -1479,7 +1480,7 @@
       "projectType": "application",
       "root": "apps/musicr/admin",
       "sourceRoot": "apps/musicr/admin/src",
-      "prefix": "ivt",
+      "prefix": "mrl",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

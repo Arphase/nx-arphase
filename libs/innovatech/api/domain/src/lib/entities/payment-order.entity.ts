@@ -22,9 +22,6 @@ export class PaymentOrderEntity extends BaseEntity implements PaymentOrder {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column({ nullable: true })
-  distributor: string;
-
   @OneToMany(() => GuaranteeEntity, guarantee => guarantee.paymentOrder, {
     cascade: true,
     eager: true,

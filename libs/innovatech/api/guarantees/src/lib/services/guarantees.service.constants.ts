@@ -40,6 +40,5 @@ export const guaranteeExcelColumns: string[] = [
   'Fin garantía por kilometraje',
   'Creación orden de compra',
   'Actualización orden de compra',
-  'Distribuidor',
   'Factura'
 ];
