@@ -6,7 +6,6 @@ import { UserRoles } from '../enums/user-roles.enum';
 
 export interface User {
   id?: number;
-  rfc?: string;
   firstName: string;
   secondName?: string;
   lastName: string;

@@ -121,12 +121,6 @@ export class UpdateUserDto {
   phone: string;
 
   @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  @IsRfc(RfcValidatorTypes.any, { message: 'RFC tiene formato incorrecto' })
-  rfc: string;
-
-  @IsOptional()
   @Transform(({ obj, key }) => UserRoles[obj[key]])
   @IsEnum(UserRoles)
   role: UserRoles | string;
