@@ -9,11 +9,11 @@ export interface ApsColumn {
 }
 
 export interface ApsColumnSizes {
-  [BoostrapGridBreakpoints.xs]?: number;
-  [BoostrapGridBreakpoints.sm]?: number;
-  [BoostrapGridBreakpoints.md]?: number;
-  [BoostrapGridBreakpoints.lg]?: number;
-  [BoostrapGridBreakpoints.xl]?: number;
+  [BoostrapGridBreakpoints.xs]?: number | string;
+  [BoostrapGridBreakpoints.sm]?: number | string;
+  [BoostrapGridBreakpoints.md]?: number | string;
+  [BoostrapGridBreakpoints.lg]?: number | string;
+  [BoostrapGridBreakpoints.xl]?: number | string;
 }
 
 export enum BoostrapGridBreakpoints {

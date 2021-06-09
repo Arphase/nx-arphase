@@ -4,26 +4,20 @@ import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export const columns: ApsColumns = [
   {
-    label: 'Folio',
-    prop: 'guarantee.id',
-    colSizes: {
-      xs: 8,
-      md: 4,
-      lg: 2,
-    },
-  },
-  {
     label: 'VIN',
     prop: 'vehicle.vin',
     colSizes: {
-      md: 6,
+      md: 4,
       lg: 4,
     },
   },
   {
     label: 'Compañía',
     prop: 'company.businessName',
-    flex: 'auto',
+    colSizes: {
+      md: 6,
+      lg: 4,
+    },
   },
   {
     label: 'Factura',

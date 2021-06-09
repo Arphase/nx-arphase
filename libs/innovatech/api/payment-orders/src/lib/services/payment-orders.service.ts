@@ -110,8 +110,8 @@ export class PaymentOrdersService {
     });
     const guaranteesRows = guaranteesRowsArray.join(' ');
 
-    const headerImg = await tobase64('apps/innovatech-api/src/assets/img/logo_innovatech_garantias.jpg');
-    const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
+    const headerImg = await tobase64('apps/innovatech/api/src/assets/img/logo_innovatech_garantias.jpg');
+    const footerImg = await tobase64('apps/innovatech/api/src/assets/img/Franja_Tringulo.jpg');
 
     const content = `
       <html>

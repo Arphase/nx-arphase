@@ -71,9 +71,6 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
   companyId: number;
 
   @Column({ nullable: true })
-  productType: string;
-
-  @Column({ nullable: true })
   kilometrageStart: number;
 
   @Column({ nullable: true })

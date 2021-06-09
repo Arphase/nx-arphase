@@ -1,3 +1,4 @@
+import { Trim } from '@arphase/api';
 import { IsDateString, IsInt, IsOptional, IsString } from 'class-validator';
 
 export class UpdateMoralPersonDto {
@@ -7,6 +8,7 @@ export class UpdateMoralPersonDto {
 
   @IsOptional()
   @IsString()
+  @Trim()
   businessName: string;
 
   @IsOptional()
@@ -15,9 +17,6 @@ export class UpdateMoralPersonDto {
 
   @IsOptional()
   @IsString()
-  distributor: string;
-
-  @IsOptional()
-  @IsString()
+  @Trim()
   adviser: string;
 }

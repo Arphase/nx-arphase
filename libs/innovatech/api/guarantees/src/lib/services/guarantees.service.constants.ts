@@ -28,7 +28,6 @@ export const guaranteeExcelColumns: string[] = [
   'Número Externo',
   'Número Interno',
   'Punto de Venta',
-  'Tipo de Producto',
   'Producto',
   'Marca',
   'Modelo',
@@ -41,6 +40,5 @@ export const guaranteeExcelColumns: string[] = [
   'Fin garantía por kilometraje',
   'Creación orden de compra',
   'Actualización orden de compra',
-  'Distribuidor',
   'Factura'
 ];

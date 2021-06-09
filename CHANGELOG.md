@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/Arphase/nx-arphase/compare/v3.0.0...v3.0.1) (2021-06-09)
+
+
+### Features
+
+* **innovatech/api:** [#70](https://github.com/Arphase/nx-arphase/issues/70) make lowercase emails ([ffff596](https://github.com/Arphase/nx-arphase/commit/ffff59645d80d89e45d8057cbcef5feff4c3cca4))
+* **innovatech/api:** [#74](https://github.com/Arphase/nx-arphase/issues/74) trim string properties in dtos ([a49be6f](https://github.com/Arphase/nx-arphase/commit/a49be6fcc402a61809e805379bea49c4acd2af8a))
+* **innovatech/auth:** [#75](https://github.com/Arphase/nx-arphase/issues/75) delete rfc property from user model ([4276884](https://github.com/Arphase/nx-arphase/commit/4276884a32f8456fca0f111b6b94bb46fece4d74))
+* **innovatech/guarantees:** [#61](https://github.com/Arphase/nx-arphase/issues/61) delete property productType from guarantees model ([e699111](https://github.com/Arphase/nx-arphase/commit/e6991111da2bb7a5b69c08b220a9026dbd55fd4c))
+* **innovatech/payment-orders:** [#49](https://github.com/Arphase/nx-arphase/issues/49) delete property distributor ([1940206](https://github.com/Arphase/nx-arphase/commit/19402066a5461868cada6851afb396421ee569d3))
+* **musicr:** add initial project setup ([91f30ce](https://github.com/Arphase/nx-arphase/commit/91f30ce32093de7baa0f3546ff42b14a76e1f27e))
+
+
+### Bug Fixes
+
+* **innovatech/api:** [#69](https://github.com/Arphase/nx-arphase/issues/69) make text searches no case sensitive ([fd3ac27](https://github.com/Arphase/nx-arphase/commit/fd3ac27b30fe0c440f0bab5c9e57b9220c66d583))
+* **innovatech/guarantees:** [#73](https://github.com/Arphase/nx-arphase/issues/73)  don't load logo and template on guarantee list ([c9dffd5](https://github.com/Arphase/nx-arphase/commit/c9dffd56e7acc491c2c1214ea3c3c663bdd6096e))
+
 ## [3.0.0](https://github.com/Arphase/nx-arphase/compare/v2.5.5...v3.0.0) (2021-06-05)
 
 

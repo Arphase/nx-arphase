@@ -5,8 +5,8 @@ import puppeteer from 'puppeteer';
 import { promisify } from 'util';
 
 export async function generateProductPdf(content: string, headerLogo: string, response: Response): Promise<void> {
-  const headerImg = await tobase64(`apps/innovatech-api/src/assets/img/logo.png`);
-  const footerImg = await tobase64('apps/innovatech-api/src/assets/img/Franja_Tringulo.jpg');
+  const headerImg = await tobase64(`apps/innovatech/api/src/assets/img/logo.png`);
+  const footerImg = await tobase64('apps/innovatech/api/src/assets/img/Franja_Tringulo.jpg');
 
   await promisify(fs.writeFile)(OUT_FILE, content);
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });

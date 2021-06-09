@@ -1,19 +1,6 @@
 import { GetUser, Roles, RolesGuard } from '@innovatech/api/auth/data';
 import { IvtCollectionResponse, User, UserRoles, Vehicle } from '@innovatech/common/domain';
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  ParseIntPipe,
-  Post,
-  Put,
-  Query,
-  UseGuards,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { CreateVehicleDto } from '../dto/create-vehicle.dto';
@@ -28,7 +15,7 @@ export class VehiclesController {
 
   @Get()
   async getVehicles(
-    @Query(new ValidationPipe({ transform: true })) filterDto: GetVehiclesDto,
+    @Query() filterDto: GetVehiclesDto,
     @GetUser() user: Partial<User>
   ): Promise<IvtCollectionResponse<Vehicle>> {
     return this.vehiclesService.getVehicles(filterDto, user);
@@ -45,14 +32,12 @@ export class VehiclesController {
   }
 
   @Post()
-  @UsePipes(ValidationPipe)
   async createVehicle(@Body() createVehicleDto: CreateVehicleDto, @GetUser() user: Partial<User>) {
     return this.vehiclesService.createVehicle(createVehicleDto, user);
   }
 
   @Put(':id')
   @Roles(UserRoles.superAdmin)
-  @UsePipes(new ValidationPipe({ transform: true }))
   updateVehicle(@Body() updateVehicleDto: UpdateVehicleDto): Promise<Vehicle> {
     return this.vehiclesService.updateVehicle(updateVehicleDto);
   }

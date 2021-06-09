@@ -7,9 +7,15 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { Guarantee, guaranteeDateTypeOptions, GuaranteeStatus, statusLabels, UserRoles } from '@innovatech/common/domain';
-import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
+import {
+  Guarantee,
+  guaranteeDateTypeOptions,
+  GuaranteeStatus,
+  statusLabels,
+  UserRoles,
+} from '@innovatech/common/domain';
 import { IvtListComponent } from '@innovatech/ui/core/data';
+import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 
 import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.constants';
 
@@ -48,6 +54,9 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes.queryParams) {
+      console.log(this.queryParams);
+    }
     if (changes.clearSelected) {
       this.setOfCheckedId.clear();
       this.indeterminate = false;

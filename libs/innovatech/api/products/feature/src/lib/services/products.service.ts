@@ -30,7 +30,7 @@ export class ProductService {
 
   async getProducts(filterDto: GetProductsDto, user: Partial<User>): Promise<IvtCollectionResponse<Product>> {
     const { text, pageSize, pageIndex, groupId, year, horsePower } = filterDto;
-    const query = this.productRepository.createQueryBuilder('product').groupBy('product.id');
+    const query = this.productRepository.createQueryBuilder('product').addSelect('product.logo').groupBy('product.id');
 
     if (text) {
       query.andWhere('LOWER(product.name) LIKE :text', { text: `%${text.toLowerCase()}%` });
@@ -71,7 +71,10 @@ export class ProductService {
   }
 
   async getProductById(id: number): Promise<Product> {
-    const query = this.productRepository.createQueryBuilder('product');
+    const query = this.productRepository
+      .createQueryBuilder('product')
+      .addSelect('product.logo')
+      .addSelect('product.template');
     const found = await query.where('product.id = :id', { id }).getOne();
 
     if (!found) {
@@ -101,7 +104,7 @@ export class ProductService {
     if (generateProductPdfDto.logo) {
       headerLogo = generateProductPdfDto.logo;
     } else {
-      headerLogo = await tobase64('apps/innovatech-api/src/assets/img/forte-shield.png');
+      headerLogo = await tobase64('apps/innovatech/api/src/assets/img/forte-shield.png');
       headerLogo = 'data:image/png;base64,' + headerLogo;
     }
     const content = getProductPdfTemplate(template);

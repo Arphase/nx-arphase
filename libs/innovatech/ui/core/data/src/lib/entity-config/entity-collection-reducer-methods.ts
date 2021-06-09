@@ -76,8 +76,9 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
   }
 
   protected saveAddOneSuccess(collection: IvtEntityCollection<T>, action: IvtEntityAction): IvtEntityCollection<T> {
+    const entityCollection = super.saveAddOneSuccess(collection, action) as IvtEntityCollection<T>;
     return {
-      ...collection,
+      ...entityCollection,
       currentItem: action.payload.data,
       loadingModify: false,
     };

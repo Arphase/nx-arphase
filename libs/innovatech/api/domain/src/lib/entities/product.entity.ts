@@ -25,13 +25,13 @@ export class ProductEntity extends BaseEntity implements Product {
   @UpdateDateColumn({ select: false })
   updatedAt: Date;
 
-  @Column()
+  @Column({ select: false })
   template: string;
 
   @Column()
   name: string;
 
-  @Column()
+  @Column({ select: false })
   logo: string;
 
   @Column()

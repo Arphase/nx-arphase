@@ -1,3 +1,4 @@
+import { LowerCase, Trim } from '@arphase/api';
 import { IsRfc, UpdateAddressDto } from '@innovatech/api/core/util';
 import { Address, Company, User, UserRoles } from '@innovatech/common/domain';
 import { RfcValidatorTypes } from '@innovatech/common/utils';
@@ -11,18 +12,23 @@ export class UpdateGroupDto {
 
   @IsOptional()
   @IsString()
+  @Trim()
   name: string;
 
   @IsOptional()
   @IsString()
+  @Trim()
   contact: string;
 
   @IsOptional()
   @IsEmail()
+  @LowerCase()
+  @Trim()
   email: string;
 
   @IsOptional()
   @IsString()
+  @Trim()
   phone: string;
 
   @IsOptional()
@@ -38,23 +44,29 @@ export class UpdateCompanyDto {
 
   @IsOptional()
   @IsString()
+  @Trim()
   businessName: string;
 
   @IsOptional()
   @IsString()
+  @Trim()
   @IsRfc(RfcValidatorTypes.any, { message: 'RFC tiene formato incorrecto' })
   rfc: string;
 
   @IsOptional()
   @IsString()
+  @Trim()
   contact: string;
 
   @IsOptional()
   @IsEmail()
+  @LowerCase()
+  @Trim()
   email: string;
 
   @IsOptional()
   @IsString()
+  @Trim()
   phone: string;
 
   @ValidateNested()
@@ -75,37 +87,38 @@ export class UpdateUserDto {
   @IsOptional()
   @IsNotEmpty()
   @IsString()
+  @Trim()
   firstName: string;
 
   @IsOptional()
   @IsString()
-  secondName?: string;
+  @Trim()
+  secondName: string;
 
   @IsOptional()
   @IsNotEmpty()
   @IsString()
+  @Trim()
   lastName: string;
 
   @IsOptional()
   @IsNotEmpty()
   @IsString()
+  @Trim()
   secondLastName: string;
 
   @IsOptional()
   @IsNotEmpty()
   @IsEmail()
+  @LowerCase()
+  @Trim()
   email: string;
 
   @IsOptional()
   @IsNotEmpty()
   @IsString()
+  @Trim()
   phone: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  @IsRfc(RfcValidatorTypes.any, { message: 'RFC tiene formato incorrecto' })
-  rfc: string;
 
   @IsOptional()
   @Transform(({ obj, key }) => UserRoles[obj[key]])

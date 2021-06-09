@@ -9,7 +9,7 @@ export class ResetPasswordDto {
   @IsString()
   @MinLength(8)
   @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
-    message: 'password too weak',
+    message: 'La contraseña no cumple con las condiciones necesarias',
   })
   password: string;
 

@@ -1,20 +1,6 @@
 import { GetUser, Roles, RolesGuard } from '@innovatech/api/auth/data';
 import { Guarantee, GuaranteeSummary, IvtCollectionResponse, User, UserRoles } from '@innovatech/common/domain';
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  ParseIntPipe,
-  Post,
-  Put,
-  Query,
-  Res,
-  UseGuards,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 
@@ -30,7 +16,7 @@ export class GuaranteesController {
 
   @Get()
   async getGuarantees(
-    @Query(new ValidationPipe({ transform: true })) filterDto: GetGuaranteesFilterDto,
+    @Query() filterDto: GetGuaranteesFilterDto,
     @GetUser() user: Partial<User>
   ): Promise<IvtCollectionResponse<Guarantee>> {
     return this.guaranteesService.getGuarantees(filterDto, user);
@@ -43,7 +29,7 @@ export class GuaranteesController {
 
   @Get('report/summary')
   async getGuaranteesSummary(
-    @Query(new ValidationPipe({ transform: true })) filterDto: GetGuaranteesFilterDto,
+    @Query() filterDto: GetGuaranteesFilterDto,
     @GetUser() user: Partial<User>
   ): Promise<GuaranteeSummary> {
     return this.guaranteesService.getGuaranteesSummary(filterDto, user);
@@ -51,7 +37,7 @@ export class GuaranteesController {
 
   @Get('export/excel')
   async getGuaranteesExcel(
-    @Query(new ValidationPipe({ transform: true })) filterDto: GetGuaranteesFilterDto,
+    @Query() filterDto: GetGuaranteesFilterDto,
     @GetUser() user: Partial<User>,
     @Res() response: Response
   ): Promise<void> {
@@ -59,7 +45,6 @@ export class GuaranteesController {
   }
 
   @Post()
-  @UsePipes(new ValidationPipe({ transform: true }))
   async createGuarantee(@Body() createGuaranteeDto: CreateGuaranteeDto, @GetUser() user: Partial<User>) {
     return this.guaranteesService.createGuarantee(createGuaranteeDto, user);
   }
@@ -71,7 +56,6 @@ export class GuaranteesController {
 
   @Put(':id')
   @Roles(UserRoles.superAdmin)
-  @UsePipes(new ValidationPipe({ transform: true }))
   updateGuarantee(@Body() updateGuaranteeDto: UpdateGuaranteeDto, @GetUser() user: Partial<User>): Promise<Guarantee> {
     return this.guaranteesService.updateGuarantee(updateGuaranteeDto, user);
   }

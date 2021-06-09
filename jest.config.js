@@ -48,5 +48,6 @@ module.exports = {
     '<rootDir>/apps/musicr/store',
     '<rootDir>/apps/musicr/admin',
     '<rootDir>/apps/musicr/api',
+    '<rootDir>/libs/arphase/api',
   ],
 };

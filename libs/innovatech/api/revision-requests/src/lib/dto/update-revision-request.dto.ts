@@ -1,3 +1,4 @@
+import { LowerCase, Trim } from '@arphase/api';
 import { UpdateAddressDto } from '@innovatech/api/core/util';
 import { Address, RevisionRequestStatus } from '@innovatech/common/domain';
 import { Transform, Type } from 'class-transformer';
@@ -14,14 +15,18 @@ export class UpdateRevisionRequestDto {
 
   @IsOptional()
   @IsString()
+  @Trim()
   name: string;
 
   @IsOptional()
   @IsString()
+  @Trim()
   phone: string;
 
   @IsOptional()
   @IsEmail()
+  @LowerCase()
+  @Trim()
   email: string;
 
   @IsOptional()

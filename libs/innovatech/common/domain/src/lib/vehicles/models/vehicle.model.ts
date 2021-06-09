@@ -19,7 +19,6 @@ export interface Vehicle {
   company?: Company;
   kilometrageStart?: number;
   kilometrageEnd?: number;
-  productType?: string;
   userId?: number;
   user?: User;
   createdAt: Date;

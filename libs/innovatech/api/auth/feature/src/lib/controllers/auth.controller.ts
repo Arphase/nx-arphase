@@ -1,12 +1,12 @@
 import { AuthCredentialsDto, AuthService, ResetPasswordDto } from '@innovatech/api/auth/data';
 import { ResetPassword, User } from '@innovatech/common/domain';
-import { Body, Controller, Get, Param, Post, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
   @Post('/signIn')
-  signIn(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<User> {
+  signIn(@Body() authCredentialsDto: AuthCredentialsDto): Promise<User> {
     return this.authService.signIn(authCredentialsDto);
   }
 

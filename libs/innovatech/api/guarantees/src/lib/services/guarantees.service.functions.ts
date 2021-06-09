@@ -266,6 +266,10 @@ export function applyGuaranteeFilter(
       query.andWhere(
         `LOWER(vehicle.vin) like :text OR
          LOWER(guarantee.invoiceNumber) like :text OR
+         LOWER(physicalPerson.name) like :text OR
+         LOWER(physicalPerson.lastName) like :text OR
+         LOWER(physicalPerson.secondLastName) like :text OR
+         LOWER(moralPerson.businessName) like :text OR
          LOWER(CONCAT(physicalPerson.name, ' ', physicalPerson.lastName, ' ', physicalPerson.secondLastName)) like :text`,
         { text: `%${text.toLowerCase()}%` }
       );

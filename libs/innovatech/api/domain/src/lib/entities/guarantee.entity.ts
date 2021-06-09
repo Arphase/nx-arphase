@@ -108,9 +108,6 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   vehicleId: number;
 
   @Column({ nullable: true })
-  productType: string;
-
-  @Column({ nullable: true })
   kilometrageStart: number;
 
   @Column({ nullable: true })

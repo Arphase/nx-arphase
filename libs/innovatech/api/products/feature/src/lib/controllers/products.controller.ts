@@ -1,18 +1,6 @@
 import { GetUser } from '@innovatech/api/auth/data';
 import { IvtCollectionResponse, Product, User } from '@innovatech/common/domain';
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  ParseIntPipe,
-  Post,
-  Put,
-  Query,
-  Res,
-  UseGuards,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 
@@ -29,7 +17,7 @@ export class ProductController {
 
   @Get()
   async getProducts(
-    @Query(new ValidationPipe({ transform: true })) filterDto: GetProductsDto,
+    @Query() filterDto: GetProductsDto,
     @GetUser() user: Partial<User>
   ): Promise<IvtCollectionResponse<Product>> {
     return this.productService.getProducts(filterDto, user);

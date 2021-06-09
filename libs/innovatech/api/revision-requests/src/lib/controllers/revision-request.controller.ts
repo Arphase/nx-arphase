@@ -1,18 +1,6 @@
 import { GetUser, Roles, RolesGuard } from '@innovatech/api/auth/data';
 import { IvtCollectionResponse, RevisionRequest, User, UserRoles } from '@innovatech/common/domain';
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  ParseIntPipe,
-  Post,
-  Put,
-  Query,
-  UseGuards,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { CreateRevisionRequestDto } from '../dto/create-revision-request.dto';
@@ -27,7 +15,7 @@ export class RevisionRequestController {
 
   @Get()
   async getRevisionRequests(
-    @Query(new ValidationPipe({ transform: true })) filterDto: GetRevisionRequestsDto,
+    @Query() filterDto: GetRevisionRequestsDto,
     @GetUser() user: Partial<User>
   ): Promise<IvtCollectionResponse<RevisionRequest>> {
     return this.revisionRequestsService.getRevisionRequests(filterDto, user);
@@ -40,7 +28,6 @@ export class RevisionRequestController {
 
   @Post()
   @Roles(UserRoles.agencyUser)
-  @UsePipes(new ValidationPipe({ transform: true }))
   async createRevisionRequest(
     @Body() createRevisionRequestDto: CreateRevisionRequestDto,
     @GetUser() user: Partial<User>
@@ -49,7 +36,6 @@ export class RevisionRequestController {
   }
 
   @Put(':id')
-  @UsePipes(new ValidationPipe({ transform: true }))
   async updateRevisionRequest(
     @Body() updateRevisionRequestDto: UpdateRevisionRequestDto,
     @GetUser() user: Partial<User>
