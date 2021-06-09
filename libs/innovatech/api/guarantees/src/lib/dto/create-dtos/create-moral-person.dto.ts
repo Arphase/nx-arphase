@@ -1,8 +1,10 @@
-import { IsNotEmpty, IsString, IsDateString } from 'class-validator';
+import { Trim } from '@arphase/api';
+import { IsDateString, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateMoralPersonDto {
   @IsNotEmpty()
   @IsString()
+  @Trim()
   businessName: string;
 
   @IsNotEmpty()
@@ -11,5 +13,6 @@ export class CreateMoralPersonDto {
 
   @IsNotEmpty()
   @IsString()
+  @Trim()
   adviser: string;
 }

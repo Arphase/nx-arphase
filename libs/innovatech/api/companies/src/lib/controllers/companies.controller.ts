@@ -1,7 +1,7 @@
 import { GetUser } from '@innovatech/api/auth/data';
 import { CommonFilterDto } from '@innovatech/api/core/util';
 import { Company, IvtCollectionResponse, User } from '@innovatech/common/domain';
-import { Controller, Get, Param, ParseIntPipe, Query, UseGuards, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { CompaniesService } from '../services/companies.service';
@@ -13,7 +13,7 @@ export class CompaniesController {
 
   @Get()
   async getCompanies(
-    @Query(new ValidationPipe({ transform: true })) filterDto: CommonFilterDto,
+    @Query() filterDto: CommonFilterDto,
     @GetUser() user: Partial<User>
   ): Promise<IvtCollectionResponse<Company>> {
     return this.companiesService.getCompanies(filterDto, user);

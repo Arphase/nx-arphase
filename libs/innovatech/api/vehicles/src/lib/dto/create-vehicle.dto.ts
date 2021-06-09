@@ -1,3 +1,4 @@
+import { Trim } from '@arphase/api';
 import { VEHICLE_VIN_LENGTH } from '@innovatech/common/domain';
 import { IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
 
@@ -8,14 +9,17 @@ export class CreateVehicleDto {
 
   @IsNotEmpty()
   @IsString()
+  @Trim()
   brand: string;
 
   @IsNotEmpty()
   @IsString()
+  @Trim()
   model: string;
 
   @IsOptional()
   @IsString()
+  @Trim()
   version: string;
 
   @IsOptional()
@@ -29,6 +33,7 @@ export class CreateVehicleDto {
 
   @IsOptional()
   @IsString()
+  @Trim()
   motorNumber: string;
 
   @IsOptional()

@@ -7,7 +7,7 @@ export class GetRevisionsDto extends CommonFilterDto {
   @IsOptional()
   @IsNotEmpty()
   @IsNumberString()
-  vehicleId;
+  vehicleId: number;
 
   @IsOptional()
   @Transform(({ obj, key }) => RevisionStatus[obj[key]])

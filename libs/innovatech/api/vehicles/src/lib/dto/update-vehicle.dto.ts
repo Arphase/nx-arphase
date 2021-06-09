@@ -1,3 +1,4 @@
+import { Trim } from '@arphase/api';
 import { VEHICLE_VIN_LENGTH, VehicleStatus } from '@innovatech/common/domain';
 import { Transform } from 'class-transformer';
 import { IsEnum, IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
@@ -9,18 +10,17 @@ export class UpdateVehicleDto {
 
   @IsOptional()
   @IsString()
-  productType: string;
-
-  @IsOptional()
-  @IsString()
+  @Trim()
   brand: string;
 
   @IsOptional()
   @IsString()
+  @Trim()
   model: string;
 
   @IsOptional()
   @IsString()
+  @Trim()
   version: string;
 
   @IsOptional()
@@ -34,6 +34,7 @@ export class UpdateVehicleDto {
 
   @IsOptional()
   @IsString()
+  @Trim()
   motorNumber: string;
 
   @IsOptional()

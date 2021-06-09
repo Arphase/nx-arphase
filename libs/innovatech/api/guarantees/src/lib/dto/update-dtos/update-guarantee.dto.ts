@@ -1,3 +1,4 @@
+import { Trim } from '@arphase/api';
 import { Client, GuaranteeStatus } from '@innovatech/common/domain';
 import { Transform, Type } from 'class-transformer';
 import {
@@ -50,6 +51,7 @@ export class UpdateGuaranteeDto {
 
   @IsOptional()
   @IsString()
+  @Trim()
   productType: string;
 
   @IsOptional()

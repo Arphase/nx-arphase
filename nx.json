@@ -89,8 +89,11 @@
     "innovatech-ui-vehicles-data": {
       "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
+    "arphase-api": {
+      "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
+    },
     "arphase-ui": {
-      "tags": ["domain:arphase", "type:ui"]
+      "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
     },
     "innovatech-domain": {
       "tags": ["domain:innovatech", "type:domain-logic"]

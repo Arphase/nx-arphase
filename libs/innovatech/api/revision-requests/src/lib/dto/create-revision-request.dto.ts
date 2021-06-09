@@ -1,3 +1,4 @@
+import { Trim } from '@arphase/api';
 import { CreateAddressDto } from '@innovatech/api/core/util';
 import { Address } from '@innovatech/common/domain';
 import { Type } from 'class-transformer';
@@ -10,14 +11,17 @@ export class CreateRevisionRequestDto {
 
   @IsNotEmpty()
   @IsString()
+  @Trim()
   name: string;
 
   @IsNotEmpty()
   @IsString()
+  @Trim()
   phone: string;
 
   @IsNotEmpty()
   @IsEmail()
+  @Trim()
   email: string;
 
   @IsNotEmpty()

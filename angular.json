@@ -1637,6 +1637,27 @@
           }
         }
       }
+    },
+    "arphase-api": {
+      "root": "libs/arphase/api",
+      "sourceRoot": "libs/arphase/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/arphase/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/arphase/api"],
+          "options": {
+            "jestConfig": "libs/arphase/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

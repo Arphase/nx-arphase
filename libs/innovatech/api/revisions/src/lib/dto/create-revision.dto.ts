@@ -1,3 +1,4 @@
+import { Trim } from '@arphase/api';
 import { RevisionReport, RevisionStatus } from '@innovatech/common/domain';
 import { Transform } from 'class-transformer';
 import { IsEnum, IsNotEmpty, IsNumber, IsObject, IsString } from 'class-validator';
@@ -5,6 +6,7 @@ import { IsEnum, IsNotEmpty, IsNumber, IsObject, IsString } from 'class-validato
 export class CreateRevisionDto {
   @IsNotEmpty()
   @IsString()
+  @Trim()
   observations: string;
 
   @IsNotEmpty()
@@ -22,6 +24,7 @@ export class CreateRevisionDto {
 
   @IsNotEmpty()
   @IsString()
+  @Trim()
   reviewdBy: string;
 
   @IsNotEmpty()

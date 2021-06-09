@@ -1,19 +1,7 @@
 import { Roles, RolesGuard } from '@innovatech/api/auth/data';
 import { CommonFilterDto } from '@innovatech/api/core/util';
 import { Group, IvtCollectionResponse, Product, UserRoles } from '@innovatech/common/domain';
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  ParseIntPipe,
-  Post,
-  Put,
-  Query,
-  UseGuards,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { AssignProductsDto } from '../dto/assign-products.dto';
@@ -28,16 +16,13 @@ export class GroupsController {
 
   @Post()
   @Roles(UserRoles.superAdmin)
-  @UsePipes(new ValidationPipe({ transform: true }))
   createGroup(@Body() createGroupDto: CreateGroupDto): Promise<Group> {
     return this.groupsService.createGroup(createGroupDto);
   }
 
   @Get()
   @Roles(UserRoles.superAdmin, UserRoles.repairman)
-  async getGroups(
-    @Query(new ValidationPipe({ transform: true })) filterDto: CommonFilterDto
-  ): Promise<IvtCollectionResponse<Group>> {
+  async getGroups(@Query() filterDto: CommonFilterDto): Promise<IvtCollectionResponse<Group>> {
     return this.groupsService.getGroups(filterDto);
   }
 
@@ -49,14 +34,12 @@ export class GroupsController {
 
   @Put(':id')
   @Roles(UserRoles.superAdmin)
-  @UsePipes(new ValidationPipe({ transform: true }))
   updateGroup(@Body() updateGroupDto: UpdateGroupDto): Promise<Group> {
     return this.groupsService.updateGroup(updateGroupDto);
   }
 
   @Put('assign/products')
   @Roles(UserRoles.superAdmin)
-  @UsePipes(new ValidationPipe({ transform: true }))
   assignProducts(@Body() assignProductsDto: AssignProductsDto): Promise<Product[]> {
     return this.groupsService.assignProducts(assignProductsDto);
   }

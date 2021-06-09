@@ -1,7 +1,7 @@
 import { GetUser } from '@innovatech/api/auth/data';
-import { IvtCollectionResponse, User } from '@innovatech/common/domain';
 import { CommonFilterDto } from '@innovatech/api/core/util';
-import { Controller, Get, Query, UseGuards, ValidationPipe } from '@nestjs/common';
+import { IvtCollectionResponse, User } from '@innovatech/common/domain';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { UsersService } from '../services/users.service';
@@ -13,7 +13,7 @@ export class UsersController {
 
   @Get()
   async getUsers(
-    @Query(new ValidationPipe({ transform: true })) filterDto: CommonFilterDto,
+    @Query() filterDto: CommonFilterDto,
     @GetUser() user: Partial<User>
   ): Promise<IvtCollectionResponse<User>> {
     return this.usersService.getUsers(filterDto, user);

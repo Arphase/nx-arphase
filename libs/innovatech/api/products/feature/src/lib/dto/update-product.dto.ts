@@ -1,3 +1,4 @@
+import { Trim } from '@arphase/api';
 import { Transform } from 'class-transformer';
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
@@ -17,6 +18,7 @@ export class UpdateProductDto {
 
   @IsOptional()
   @IsString()
+  @Trim()
   name: string;
 
   @IsOptional()
