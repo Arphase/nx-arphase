@@ -150,7 +150,6 @@ export class GuaranteesService {
         guarantee.client?.address?.externalNumber,
         guarantee.client?.address?.internalNumber,
         guarantee.client?.salesPlace,
-        guarantee?.productType,
         guarantee?.product?.name,
         guarantee.vehicle?.brand,
         guarantee.vehicle?.model,

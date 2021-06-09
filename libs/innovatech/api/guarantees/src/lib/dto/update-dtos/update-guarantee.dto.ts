@@ -50,11 +50,6 @@ export class UpdateGuaranteeDto {
   productId: number;
 
   @IsOptional()
-  @IsString()
-  @Trim()
-  productType: string;
-
-  @IsOptional()
   @IsNumber()
   kilometrageStart: number;
 
