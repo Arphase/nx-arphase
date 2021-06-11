@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.2](https://github.com/Arphase/nx-arphase/compare/v3.0.1...v3.0.2) (2021-06-11)
+
+
+### Features
+
+* **innovatech/app:** avoid doing multiple http requests on lists ([5cd3413](https://github.com/Arphase/nx-arphase/commit/5cd341337818517d0e7efdd46ce23b6ae1f71dfc))
+
 ### [3.0.1](https://github.com/Arphase/nx-arphase/compare/v3.0.0...v3.0.1) (2021-06-09)
 
 
