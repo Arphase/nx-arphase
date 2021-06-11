@@ -195,6 +195,9 @@
     },
     "musicr-ui-auth": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+    },
+    "musicr-terms-and-conditions": {
+      "tags": []
     }
   }
 }
