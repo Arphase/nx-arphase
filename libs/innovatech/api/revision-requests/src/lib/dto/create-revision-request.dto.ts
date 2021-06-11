@@ -1,4 +1,4 @@
-import { LowerCase, Trim } from '@arphase/api';
+import { TransformEmail, Trim } from '@arphase/api';
 import { CreateAddressDto } from '@innovatech/api/core/util';
 import { Address } from '@innovatech/common/domain';
 import { Type } from 'class-transformer';
@@ -21,8 +21,7 @@ export class CreateRevisionRequestDto {
 
   @IsNotEmpty()
   @IsEmail()
-  @LowerCase()
-  @Trim()
+  @TransformEmail()
   email: string;
 
   @IsNotEmpty()

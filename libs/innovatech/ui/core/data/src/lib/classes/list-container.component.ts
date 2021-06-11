@@ -47,7 +47,6 @@ export class IvtListContainerComponent<T = any> {
       this.entityCollectionService.store
         .pipe(select(this.entityCollectionService.selectors.selectCollection), filterNil(), untilDestroyed(this))
         .subscribe((collection: IvtEntityCollection<T>) => (this.queryParams = collection.queryParams));
-
       this.entityCollectionService.entityActions$
         .pipe(
           ofEntityOp(EntityOp.SAVE_DELETE_ONE_SUCCESS),
@@ -55,13 +54,10 @@ export class IvtListContainerComponent<T = any> {
           untilDestroyed(this)
         )
         .subscribe(() => this.messageService.success(this.deleteSuccessMessage));
-
       this.list$ = this.entityCollectionService.entities$;
-
       this.loading$ = combineLatest([this.entityCollectionService?.loading$, this.ivtLoading$]).pipe(
         map(([loading1, loading2]) => loading1 || loading2)
       );
-
       this.info$ = this.entityCollectionService.store.pipe(
         select(this.entityCollectionService.selectors.selectCollection),
         filterNil(),
@@ -75,11 +71,10 @@ export class IvtListContainerComponent<T = any> {
     }
   }
 
-  filterItems(payload: QueryParams): void {
+  filterItems(payload?: QueryParams): void {
     const queryParams: QueryParams = {
       ...this.queryParams,
       ...payload,
-      pageIndex: 1 as any,
       resetList: String(true),
     };
     this.entityCollectionService.getWithQuery(queryParams);

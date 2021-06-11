@@ -67,11 +67,11 @@
   <div nz-col>
     <ivt-user-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-user-checkbox-filter>
   </div>
-  <div *ngIf="info?.total"
+  <div *ngIf="total"
        nz-col
        nzFlex="auto"
        class="flex-end">
-    {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}
+    {{ pageStart }}-{{ pageEnd }} de {{ total }}
   </div>
 </div>
 
@@ -81,11 +81,11 @@
           nzSize="small"
           [nzData]="list"
           [nzFrontPagination]="false"
-          [nzTotal]="info?.total"
-          [nzPageIndex]="info?.pageIndex"
+          [nzTotal]="total"
+          [nzPageIndex]="pageIndex"
           [nzLoading]="loading"
           [nzShowSizeChanger]="true"
-          (nzQueryParams)="onQueryParamsChanged($event)">
+          (nzQueryParams)="filterItems.emit($event)">
   <thead>
     <tr nz-row>
       <th *ngFor="let column of columns"
