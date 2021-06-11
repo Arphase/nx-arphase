@@ -1,4 +1,4 @@
-import { LowerCase, Trim } from '@arphase/api';
+import { TransformEmail, Trim } from '@arphase/api';
 import { IsRfc, UpdateAddressDto } from '@innovatech/api/core/util';
 import { Address, Company, User, UserRoles } from '@innovatech/common/domain';
 import { RfcValidatorTypes } from '@innovatech/common/utils';
@@ -22,8 +22,7 @@ export class UpdateGroupDto {
 
   @IsOptional()
   @IsEmail()
-  @LowerCase()
-  @Trim()
+  @TransformEmail()
   email: string;
 
   @IsOptional()
@@ -60,8 +59,7 @@ export class UpdateCompanyDto {
 
   @IsOptional()
   @IsEmail()
-  @LowerCase()
-  @Trim()
+  @TransformEmail()
   email: string;
 
   @IsOptional()
@@ -110,8 +108,7 @@ export class UpdateUserDto {
   @IsOptional()
   @IsNotEmpty()
   @IsEmail()
-  @LowerCase()
-  @Trim()
+  @TransformEmail()
   email: string;
 
   @IsOptional()

@@ -61,8 +61,6 @@ export function createUserForm(user?: User): FormGroup {
     secondLastName: new FormControl(null, ApsValidators.required),
     email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
     phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
-    rfc: new FormControl(null, [ApsValidators.required, ApsValidators.rfc(RfcValidatorTypes.physical)]),
-    password: new FormControl(null),
   });
 
   if (user) {

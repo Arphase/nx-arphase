@@ -54,9 +54,6 @@ export class GuaranteeListComponent extends IvtListComponent<Guarantee> implemen
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.queryParams) {
-      console.log(this.queryParams);
-    }
     if (changes.clearSelected) {
       this.setOfCheckedId.clear();
       this.indeterminate = false;

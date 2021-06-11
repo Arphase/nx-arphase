@@ -36,12 +36,12 @@
   </div>
 </div>
 
-<ng-container *ngIf="info?.total">
+<ng-container *ngIf="total">
   <nz-divider></nz-divider>
   <div nz-col
        nzFlex="auto"
        class="flex-end">
-    {{ info?.pageStart }}-{{ info?.pageEnd }} de {{ info?.total }}
+    {{ pageStart }}-{{ pageEnd }} de {{ total }}
   </div>
   <nz-divider></nz-divider>
 </ng-container>
@@ -50,11 +50,11 @@
           nzSize="small"
           [nzData]="list"
           [nzFrontPagination]="false"
-          [nzTotal]="info?.total"
-          [nzPageIndex]="info?.pageIndex"
+          [nzTotal]="total"
+          [nzPageIndex]="pageIndex"
           [nzLoading]="loading"
           [nzShowSizeChanger]="true"
-          (nzQueryParams)="onQueryParamsChanged($event)">
+          (nzQueryParams)="filterItems.emit($event)">
   <thead>
     <tr nz-row>
       <th *ngFor="let column of columns"

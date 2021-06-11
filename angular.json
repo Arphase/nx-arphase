@@ -206,7 +206,8 @@
             "outputPath": "dist/apps/innovatech/api",
             "main": "apps/innovatech/api/src/main.ts",
             "tsConfig": "apps/innovatech/api/tsconfig.app.json",
-            "assets": ["apps/innovatech/api/src/assets"]
+            "assets": ["apps/innovatech/api/src/assets"],
+            "maxWorkers": 1
           },
           "configurations": {
             "production": {
@@ -225,7 +226,8 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "innovatech-api:build"
+            "buildTarget": "innovatech-api:build",
+            "inspect": true
           }
         },
         "lint": {
