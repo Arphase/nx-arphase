@@ -91,29 +91,12 @@ export function getProductPdfTemplate(body: string, guarantee?: Guarantee): stri
               line-height: 1.1;
               background-color: transparent;
             }
-            .bold {
-              font-weight: 900;
-            }
-            .center {
-              text-align: center;
-            }
-            .title {
-              font-size: 14px;
-            }
             .logo {
               max-width: 50%;
               height: auto;
               display: block;
               margin-left: auto;
               margin-right: auto;
-            }
-            span.footer {
-              max-width: 100%;
-              height: 50%;
-            }
-            footer {
-              max-width: 100%;
-              height: auto;
             }
         </style>
     <head>

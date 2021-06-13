@@ -6,7 +6,7 @@ import { promisify } from 'util';
 
 export async function generateProductPdf(content: string, headerLogo: string, response: Response): Promise<void> {
   const headerImg = await tobase64(`apps/innovatech/api/src/assets/img/logo.png`);
-  const footerImg = await tobase64('apps/innovatech/api/src/assets/img/Franja_Tringulo.jpg');
+  const footerImg = await tobase64('apps/innovatech/api/src/assets/img/pdf-footer.jpg');
 
   await promisify(fs.writeFile)(OUT_FILE, content);
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
@@ -38,8 +38,11 @@ export async function generateProductPdf(content: string, headerLogo: string, re
       }
       .shield {
         max-width: 10%;
+        z-index: 2;
         height: auto;
-        margin: 0.1in 0.18in 0 auto;
+        margin-top: 12px;
+        margin-right: 12px;
+        margin-left: auto;
       }
       #header { padding: 0 !important; }
     </style>

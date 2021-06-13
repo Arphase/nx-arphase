@@ -219,7 +219,7 @@ export class GuaranteesService {
     } else {
       content = getGuaranteePdfTemplate(guarantee);
       headerLogo = await tobase64('apps/innovatech/api/src/assets/img/forte-shield.png');
-      headerLogo = 'data:image/png;base64,' + headerLogo;
+      headerLogo = `data:image/png;base64,${headerLogo}`;
     }
     await generateProductPdf(content, headerLogo, response);
   }
