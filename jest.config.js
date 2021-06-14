@@ -49,6 +49,6 @@ module.exports = {
     '<rootDir>/apps/musicr/admin',
     '<rootDir>/apps/musicr/api',
     '<rootDir>/libs/arphase/api',
-    '<rootDir>/libs/musicr/terms-and-conditions',
+    '<rootDir>/libs/musicr/ui/terms-and-conditions',
   ],
 };

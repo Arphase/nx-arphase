@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: 'terms-and-conditons',
-    loadChildren: () => import('@musicr/terms-and-conditions').then(m => m.MusicrTermsAndConditionsModule),
+    loadChildren: () => import('@musicr/ui/terms-and-conditions').then(m => m.MusicrTermsAndConditionsModule),
   },
   {
     path: '',

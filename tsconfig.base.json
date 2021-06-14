@@ -71,7 +71,7 @@
       "@musicr/domain": ["libs/musicr/domain/src/index.ts"],
       "@musicr/api/auth": ["libs/musicr/api/auth/src/index.ts"],
       "@musicr/ui/auth": ["libs/musicr/ui/auth/src/index.ts"],
-      "@musicr/terms-and-conditions": ["libs/musicr/terms-and-conditions/src/index.ts"]
+      "@musicr/ui/terms-and-conditions": ["libs/musicr/ui/terms-and-conditions/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
