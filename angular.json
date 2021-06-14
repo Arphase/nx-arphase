@@ -1661,6 +1661,31 @@
           }
         }
       }
+    },
+    "musicr-terms-and-conditions": {
+      "projectType": "library",
+      "root": "libs/musicr/terms-and-conditions",
+      "sourceRoot": "libs/musicr/terms-and-conditions/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/terms-and-conditions"],
+          "options": {
+            "jestConfig": "libs/musicr/terms-and-conditions/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/musicr/terms-and-conditions/src/**/*.ts",
+              "libs/musicr/terms-and-conditions/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }
