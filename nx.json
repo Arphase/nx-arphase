@@ -1,8 +1,4 @@
 {
-  "npmScope": "ivt",
-  "affected": {
-    "defaultBase": "master"
-  },
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": {
@@ -13,16 +9,15 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "ivt",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "cacheDirectory": ".cache/nx",
         "accessToken": "NjZhNGY2MzYtZjI3Ny00NDI0LWE5NzItY2EyZTdlOTIyZTYxfHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
@@ -32,148 +27,174 @@
   },
   "projects": {
     "innovatech-api": {
-      "tags": [
-        "back"
-      ]
+      "tags": ["domain:innovatech", "domain:innovatech:api", "executable:api"]
     },
-    "a-auth": {
-      "tags": [
-        "back"
-      ]
+    "innovatech-app": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "executable:ui"]
     },
-    "a-companies": {
-      "tags": [
-        "back"
-      ]
+    "innovatech-ui-auth-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
-    "a-groups": {
-      "tags": [
-        "back"
-      ]
+    "innovatech-ui-auth-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
-    "a-guarantees": {
-      "tags": [
-        "back"
-      ]
+    "innovatech-ui-dashboard": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
-    "a-localities": {
-      "tags": [
-        "back"
-      ]
+    "innovatech-ui-guarantees": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
-    "a-payment-orders": {
-      "tags": [
-        "back"
-      ]
+    "innovatech-ui-spa": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
-    "a-products": {
-      "tags": [
-        "back"
-      ]
+    "innovatech-ui-groups-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
-    "a-revision-requests": {
-      "tags": [
-        "back"
-      ]
+    "innovatech-ui-groups-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
-    "a-revisions": {
-      "tags": [
-        "back"
-      ]
+    "innovatech-ui-groups-ui": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
     },
-    "a-state": {
-      "tags": [
-        "back"
-      ]
+    "innovatech-ui-products-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
-    "a-users": {
-      "tags": [
-        "back"
-      ]
+    "innovatech-ui-products-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
-    "a-vehicles": {
-      "tags": [
-        "back"
-      ]
+    "innovatech-ui-products-ui": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
     },
-    "c-utils": {
-      "tags": [
-        "common"
-      ]
+    "innovatech-ui-revision-requests": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
-    "c-data": {
-      "tags": [
-        "common"
-      ]
+    "innovatech-ui-revisions": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
-    "u-auth": {
-      "tags": [
-        "front"
-      ]
+    "innovatech-ui-users-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
-    "u-dashboard": {
-      "tags": [
-        "front"
-      ]
+    "innovatech-ui-users-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
-    "u-guarantees": {
-      "tags": [
-        "front"
-      ]
+    "innovatech-ui-users-ui": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
     },
-    "u-spa": {
-      "tags": [
-        "front"
-      ]
+    "innovatech-ui-vehicles-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
-    "u-state": {
-      "tags": [
-        "front"
-      ]
+    "innovatech-ui-vehicles-ui": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
     },
-    "u-ui": {
-      "tags": [
-        "front"
-      ]
+    "innovatech-ui-vehicles-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
-    "u-groups": {
-      "tags": [
-        "front"
-      ]
+    "arphase-api": {
+      "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
     },
-    "u-products": {
-      "tags": [
-        "front"
-      ]
+    "arphase-ui": {
+      "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
     },
-    "u-revision-requests": {
-      "tags": []
+    "innovatech-domain": {
+      "tags": ["domain:innovatech", "type:domain-logic"]
     },
-    "u-revisions": {
-      "tags": [
-        "front"
-      ]
+    "innovatech-utils": {
+      "tags": ["domain:innovatech", "type:util"]
     },
-    "u-users": {
-      "tags": [
-        "front"
-      ]
+    "innovatech-ui-core-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
-    "u-vehicles": {
-      "tags": [
-        "front"
-      ]
+    "innovatech-ui-core-ui": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
     },
-    "aps-u-ui": {
-      "tags": [
-        "arphase",
-        "front"
-      ]
+    "innovatech-ui-core-util": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:util"]
     },
-    "ivt-app": {
-      "tags": [
-        "mobile"
-      ]
+    "innovatech-ui-permissions-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+    },
+    "innovatech-ui-companies-ui": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+    },
+    "innovatech-ui-companies-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+    },
+    "innovatech-ui-addresses-ui": {
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+    },
+    "innovatech-api-auth-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:data"]
+    },
+    "innovatech-api-auth-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-domain": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:domain-logic"]
+    },
+    "innovatech-api-users": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-companies": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-groups": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-guarantees": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-localities": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-payment-orders": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-products-feature": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-products-utils": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
+    },
+    "innovatech-api-revision-requests": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-revisions": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-vehicles": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+    },
+    "innovatech-api-core-data": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:data"]
+    },
+    "innovatech-api-core-util": {
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
+    },
+    "musicr-api": {
+      "tags": ["domain:musicr", "domain:musicr:api", "executable:api"]
+    },
+    "musicr-store": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
+    },
+    "musicr-store-e2e": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
+      "implicitDependencies": ["musicr-store"]
+    },
+    "musicr-admin": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
+    },
+    "musicr-admin-e2e": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
+      "implicitDependencies": ["musicr-admin"]
+    },
+    "musicr-domain": {
+      "tags": ["domain:musicr", "type:domain-logic"]
+    },
+    "musicr-api-auth": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+    },
+    "musicr-ui-auth": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     }
   }
 }

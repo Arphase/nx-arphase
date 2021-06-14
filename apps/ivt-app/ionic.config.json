@@ -1,7 +1,0 @@
-{
-  "name": "ivt-app",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
