@@ -16,7 +16,8 @@ export class AutocompleteDirective implements AfterContentInit {
   constructor(private cdr: ChangeDetectorRef, @Optional() @Self() private nzFormControl: NzFormControlComponent) {}
 
   ngAfterContentInit(): void {
-    if (this.nzFormControl && this.ngControl) {
+    if (this.autocomplete && this.ngControl) {
+      this.autocomplete.nzDataSource = this.options;
       this.ngControl.valueChanges.pipe(untilDestroyed(this)).subscribe(value => {
         const filterValue = value?.toLowerCase();
         const filteredOptions = this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);

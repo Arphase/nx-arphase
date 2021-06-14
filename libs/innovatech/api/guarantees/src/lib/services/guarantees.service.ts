@@ -119,6 +119,11 @@ export class GuaranteesService {
   async getGuaranteesExcel(filterDto: GetGuaranteesFilterDto, user: Partial<User>, response: Response): Promise<void> {
     const guarantees = await (await this.getGuarantees(omit(filterDto, ['pageIndex', 'pageSize']), user)).results;
 
+    const personTypeLabels: Record<PersonTypes, string> = {
+      [PersonTypes.moral]: 'Moral',
+      [PersonTypes.physical]: 'Física',
+    };
+
     const guaranteesData: string[][] = guarantees.map(guarantee => {
       return [
         transformFolio(guarantee.id),
@@ -130,7 +135,7 @@ export class GuaranteesService {
         formatDate(guarantee.endDate),
         guarantee.amount,
         formatDate(guarantee.invoiceDate),
-        guarantee.client?.personType,
+        personTypeLabels[PersonTypes[guarantee.client?.personType]],
         guarantee.client?.physicalInfo?.name,
         guarantee.client?.physicalInfo?.lastName,
         guarantee.client?.physicalInfo?.secondLastName,
@@ -214,7 +219,7 @@ export class GuaranteesService {
     } else {
       content = getGuaranteePdfTemplate(guarantee);
       headerLogo = await tobase64('apps/innovatech/api/src/assets/img/forte-shield.png');
-      headerLogo = 'data:image/png;base64,' + headerLogo;
+      headerLogo = `data:image/png;base64,${headerLogo}`;
     }
     await generateProductPdf(content, headerLogo, response);
   }

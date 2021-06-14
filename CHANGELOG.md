@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.3](https://github.com/Arphase/nx-arphase/compare/v3.0.2...v3.0.3) (2021-06-13)
+
+
+### Bug Fixes
+
+* **arphase/ui:** set autocomplete options on directive init to make patch work ([12793e6](https://github.com/Arphase/nx-arphase/commit/12793e67c941f0ae95b7195b69d40d5d8fde63ce))
+* **innovatech/guarantees:** add person type label in Excel ([0ccfc9d](https://github.com/Arphase/nx-arphase/commit/0ccfc9d2b43e74ed25ea6aeac83bf907148954be))
+* **innovatech/guarantees:** align pdf logo shield ([fcdf743](https://github.com/Arphase/nx-arphase/commit/fcdf7437f77a52c1413eb694b7911324aa68857f))
+
 ### [3.0.2](https://github.com/Arphase/nx-arphase/compare/v3.0.1...v3.0.2) (2021-06-11)
 
 

@@ -105,7 +105,7 @@ export class ProductService {
       headerLogo = generateProductPdfDto.logo;
     } else {
       headerLogo = await tobase64('apps/innovatech/api/src/assets/img/forte-shield.png');
-      headerLogo = 'data:image/png;base64,' + headerLogo;
+      headerLogo = `data:image/png;base64,${headerLogo}`;
     }
     const content = getProductPdfTemplate(template);
 
