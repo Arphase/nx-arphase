@@ -1,6 +1,6 @@
 module.exports = {
   displayName: 'musicr-terms-and-conditions',
-  preset: '../../../jest.preset.js',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../../coverage/libs/musicr/ui/terms-and-conditions',
+  coverageDirectory: '../../../../coverage/libs/musicr/ui/terms-and-conditions',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',
