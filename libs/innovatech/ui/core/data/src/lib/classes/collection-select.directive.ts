@@ -33,11 +33,15 @@ export abstract class CollectionSelectDirective<T = any> implements AfterContent
   }
 
   @HostListener('nzOnSearch', ['$event']) nzOnSearch(text: string): void {
-    this.ivtCollectionService.queryParams$
-      .pipe(take(1))
-      .subscribe(queryParams =>
-        this.ivtCollectionService.getWithQuery({ ...queryParams, sort: this.sortValue, text, resetList: String(true) })
-      );
+    this.ivtCollectionService.queryParams$.pipe(take(1)).subscribe(queryParams =>
+      this.ivtCollectionService.getWithQuery({
+        ...queryParams,
+        sort: this.sortValue,
+        text,
+        resetList: String(true),
+        pageIndex: String(0),
+      })
+    );
   }
 
   @HostListener('nzScrollToBottom') nzScrollToBottom(): void {
