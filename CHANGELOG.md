@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.4](https://github.com/Arphase/nx-arphase/compare/v3.0.3...v3.0.4) (2021-06-16)
+
+
+### Features
+
+* **musicr/terms-and-conditions:** [#76](https://github.com/Arphase/nx-arphase/issues/76) Add terms and conditions module ([900223b](https://github.com/Arphase/nx-arphase/commit/900223b5af5379ee3b838dc8cfe90380e386fef4))
+
+
+### Bug Fixes
+
+* **innovatech/api:** parse dates to ISO 8601 ([450670c](https://github.com/Arphase/nx-arphase/commit/450670cd25262d8286913a3632397d6bfb2db15b))
+* **innovatech/ui:** set pageIndex to 0 when searching in select ([2382a5f](https://github.com/Arphase/nx-arphase/commit/2382a5f8d57d26201138830a224b930efcc6fda7))
+
 ### [3.0.3](https://github.com/Arphase/nx-arphase/compare/v3.0.2...v3.0.3) (2021-06-13)
 
 

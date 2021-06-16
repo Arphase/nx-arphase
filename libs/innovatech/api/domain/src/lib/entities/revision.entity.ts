@@ -1,3 +1,4 @@
+import { dateTransformer } from '@arphase/api';
 import { Revision, RevisionReport, RevisionStatus, Vehicle } from '@innovatech/common/domain';
 import {
   BaseEntity,
@@ -17,10 +18,10 @@ export class RevisionEntity extends BaseEntity implements Revision {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ transformer: dateTransformer })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ transformer: dateTransformer })
   updatedAt: Date;
 
   @Column()
