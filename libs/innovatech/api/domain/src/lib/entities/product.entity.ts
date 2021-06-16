@@ -1,3 +1,4 @@
+import { dateTransformer } from '@arphase/api';
 import { Guarantee, Product } from '@innovatech/common/domain';
 import {
   BaseEntity,
@@ -19,10 +20,10 @@ export class ProductEntity extends BaseEntity implements Product {
   @Column()
   price: number;
 
-  @CreateDateColumn({ select: false })
+  @CreateDateColumn({ select: false, transformer: dateTransformer })
   createdAt: Date;
 
-  @UpdateDateColumn({ select: false })
+  @UpdateDateColumn({ select: false, transformer: dateTransformer })
   updatedAt: Date;
 
   @Column({ select: false })

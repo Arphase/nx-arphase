@@ -1,3 +1,4 @@
+import { dateTransformer } from '@arphase/api';
 import {
   Company,
   Guarantee,
@@ -33,10 +34,10 @@ export class UserEntity extends BaseEntity implements User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ transformer: dateTransformer })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ transformer: dateTransformer })
   updatedAt: Date;
 
   @Column()
