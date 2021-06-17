@@ -1,4 +1,3 @@
-import { dateTransformer } from '@arphase/api';
 import {
   Client,
   Company,
@@ -41,10 +40,10 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @JoinColumn({ name: 'clientId' })
   client: Client;
 
-  @CreateDateColumn({ transformer: dateTransformer })
+  @CreateDateColumn()
   createdAt: Date;
 
-  @UpdateDateColumn({ transformer: dateTransformer })
+  @UpdateDateColumn()
   updatedAt: Date;
 
   @Column({
@@ -58,10 +57,10 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   })
   status: GuaranteeStatus | string;
 
-  @Column({ type: 'timestamp', transformer: dateTransformer })
+  @Column()
   startDate: Date;
 
-  @Column({ type: 'timestamp', transformer: dateTransformer })
+  @Column()
   endDate: Date;
 
   @Column({ nullable: true })
@@ -81,7 +80,7 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @Column({ nullable: true })
   productId: number;
 
-  @Column({ nullable: true, type: 'timestamp', transformer: dateTransformer })
+  @Column({ nullable: true })
   invoiceDate: Date;
 
   @Column({ nullable: true })
