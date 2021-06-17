@@ -1686,6 +1686,27 @@
           }
         }
       }
+    },
+    "musicr-api-domain": {
+      "root": "libs/musicr/api/domain",
+      "sourceRoot": "libs/musicr/api/domain/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/domain/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/domain"],
+          "options": {
+            "jestConfig": "libs/musicr/api/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
