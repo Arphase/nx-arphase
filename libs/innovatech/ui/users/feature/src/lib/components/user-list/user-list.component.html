@@ -64,7 +64,7 @@
           nzMd="6">{{ item.email | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzMd="6">{{ item.createdAt | date: 'dd/MM/yy' }}</td>
+          nzMd="6">{{ item.createdAt | date: 'dd/MM/yy': 'UTC' }}</td>
       <td nz-col
           nzXs="0"
           nzMd="6">{{ item.company?.businessName | empty }}</td>

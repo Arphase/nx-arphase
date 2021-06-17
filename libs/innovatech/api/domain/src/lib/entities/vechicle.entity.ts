@@ -1,4 +1,3 @@
-import { dateTransformer } from '@arphase/api';
 import {
   Company,
   Guarantee,
@@ -84,10 +83,10 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
   @Column({ nullable: true })
   userId: number;
 
-  @CreateDateColumn({ transformer: dateTransformer })
+  @CreateDateColumn()
   createdAt: Date;
 
-  @UpdateDateColumn({ transformer: dateTransformer })
+  @UpdateDateColumn()
   updatedAt: Date;
 
   @OneToMany(() => GuaranteeEntity, guarantee => guarantee.vehicle, {
