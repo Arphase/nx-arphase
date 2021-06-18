@@ -45,7 +45,7 @@ export function buildQueryParams(queryParams): HttpParams {
   }
 
   return new HttpParams({
-    fromObject: omit(params, ['dates', 'noDates', 'filter']),
+    fromObject: omit(params, ['dates', 'noDates', 'filter', 'resetList']),
   });
 }
 

@@ -57,10 +57,10 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   })
   status: GuaranteeStatus | string;
 
-  @Column({ type: 'timestamp' })
+  @Column()
   startDate: Date;
 
-  @Column({ type: 'timestamp' })
+  @Column()
   endDate: Date;
 
   @Column({ nullable: true })
@@ -80,7 +80,7 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @Column({ nullable: true })
   productId: number;
 
-  @Column({ nullable: true, type: 'timestamp' })
+  @Column({ nullable: true })
   invoiceDate: Date;
 
   @Column({ nullable: true })

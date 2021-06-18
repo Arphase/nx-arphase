@@ -197,10 +197,13 @@
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-terms-and-conditions": {
-      "tags": []
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-core": {
-      "tags": []
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+    },
+    "musicr-api-domain": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:domain-logic"]
     }
   }
 }

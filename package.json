@@ -1,6 +1,6 @@
 {
   "name": "ivt",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
@@ -29,8 +29,8 @@
     "dep-graph": "nx dep-graph",
     "analyze-bundle": "webpack-bundle-analyzer ./dist/apps/innovatech/app/stats.json",
     "help": "nx help",
-    "seed": "ts-node -r tsconfig-paths/register apps/innovatech/api/src/db/scripts/seed",
-    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config apps/innovatech/api/src/db/config/ormconfig.migrations.ts",
+    "seed": "ts-node --project tsconfig.base.json -r tsconfig-paths/register apps/innovatech/api/src/db/scripts/seed",
+    "typeorm": "ts-node  --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config apps/innovatech/api/src/db/config/ormconfig.migrations.ts",
     "typeorm:migrate": "npm run typeorm migration:generate -- -n",
     "typeorm:run": "npm run typeorm migration:run",
     "api:prod": "nx build innovatech-api --prod && node dist/apps/innovatech/api/main.js",
@@ -139,6 +139,7 @@
     "@nrwl/eslint-plugin-nx": "12.3.6",
     "@nrwl/jest": "12.3.6",
     "@nrwl/linter": "12.3.6",
+    "@nrwl/nest": "12.3.6",
     "@types/body-parser": "^1.19.0",
     "@types/cron": "^1.7.2",
     "@types/express": "^4.17.12",
