@@ -1686,6 +1686,28 @@
           }
         }
       }
+    },
+    "musicr-ui-home": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/home",
+      "sourceRoot": "libs/musicr/ui/home/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/home"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/home/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/home/src/**/*.ts", "libs/musicr/ui/home/src/**/*.html"]
+          }
+        }
+      }
     }
   }
 }
