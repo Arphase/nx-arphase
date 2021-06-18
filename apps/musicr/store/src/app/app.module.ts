@@ -10,7 +10,6 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, NzIconModule.forRoot(icons), FooterModule],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
