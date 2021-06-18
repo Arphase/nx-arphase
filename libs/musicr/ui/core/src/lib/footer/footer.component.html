@@ -1,0 +1,145 @@
+<div class="footer">
+  <h1>¿Hablamos?</h1>
+
+  <p>+(81) 153 374 77</p>
+  <p>info@musicrevolution.mx</p>
+  <p>San Pedro Garza García, N.L., México</p>
+  <img [src]="'assets/img/Isotipo_2.svg'"
+       alt="Music Revolution Logo"
+       class="logo">
+  <form nz-form
+        nzLayout="vertical"
+        [formGroup]="form">
+    <div nz-row
+         [nzGutter]="12"
+         class="d-flex flex-center">
+      <div nz-col
+           nzXs="24"
+           nzMd="12">
+        <nz-form-item>
+          <nz-form-control>
+            <input nz-input
+                   class="input"
+                   placeholder="Nombre"
+                   nzBorderless
+                   maxlength="150"
+                   autocomplete="off"
+                   formControlName="name" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col
+           nzXs="12"
+           nzMd="6">
+        <nz-form-item>
+          <nz-form-control>
+            <input nz-input
+                   class="input"
+                   placeholder="Teléfono"
+                   nzBorderless
+                   maxlength="10"
+                   mask="0000000000"
+                   autocomplete="off"
+                   formControlName="phone" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col
+           nzXs="12"
+           nzMd="6">
+        <nz-form-item>
+          <nz-form-control>
+            <input nz-input
+                   class="input"
+                   placeholder="Correo"
+                   nzBorderless
+                   type="email"
+                   formControlName="email" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col
+           nzSpan="24">
+        <nz-form-item>
+          <nz-form-control>
+            <textarea nz-input
+                      class="input"
+                      placeholder="Mensaje"
+                      nzBorderless
+                      formControlName="message"></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+
+  <div nz-row>
+    <div nz-col
+         [nzXs]="{span: 24, order: 2}"
+         [nzMd]="{span: 23, order: 1}">
+      <div nz-row
+           nzJustify="center"
+           class="links">
+        <div nz-col
+             nzXs="24"
+             nzMd="4"
+             nzLg="4">
+          <a href="">SOBRE NOSOTROS</a>
+        </div>
+        <div nz-col
+             nzXs="24"
+             nzMd="4"
+             nzLg="4">
+          <a href="">PREGUNTAS FRECUENTES</a>
+        </div>
+        <div nz-col
+             nzXs="24"
+             nzMd="4"
+             nzLg="4">
+          <a href="">TÉRMINOS Y CONDICIONES</a>
+        </div>
+        <div nz-col
+             nzXs="24"
+             nzMd="4"
+             nzLg="4">
+          <p>MUSIC REVOLITON® 2021</p>
+        </div>
+      </div>
+    </div>
+    <div nz-col
+         [nzXs]="{span: 24, order: 1}"
+         [nzMd]="{span: 1, order: 2}"
+         class="icons">
+      <div nz-row
+           nzJustify="center"
+           [nzGutter]="24">
+        <div nz-col
+             nzSpan="4">
+          <a href="http://www.facebook.com/MusicRevolution/">
+            <i nz-icon
+               nzType="facebook"
+               nzTheme="outline"></i>
+          </a>
+        </div>
+        <div nz-col
+             nzSpan="4">
+          <a href="https://www.instagram.com/music.rev/">
+            <i nz-icon
+               nzType="instagram"
+               nzTheme="outline"></i>
+          </a>
+        </div>
+        <div nz-col
+             nzSpan="4">
+          <a href="https://wa.me/5218115337477?text=Hola%20quiero%20cotizar">
+            <i nz-icon
+               nzType="whats-app"
+               nzTheme="outline"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

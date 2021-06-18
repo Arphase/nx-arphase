@@ -13,7 +13,7 @@ import { ApsValidators } from '@arphase/ui';
 import { Guarantee, isVehicleElegible, PersonTypes, UserRoles, Vehicle } from '@innovatech/common/domain';
 import { filterNil, RfcValidatorTypes } from '@innovatech/common/utils';
 import { createAddressForm } from '@innovatech/ui/addresses/ui';
-import { IvtFormComponent } from '@innovatech/ui/core/data';
+import { ApsFormComponent } from '@arphase/ui';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -65,7 +65,7 @@ export function createGuaranteeForm(): FormGroup {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
-export class GuaranteeFormComponent extends IvtFormComponent<Guarantee> implements OnChanges, AfterViewInit {
+export class GuaranteeFormComponent extends ApsFormComponent<Guarantee> implements OnChanges, AfterViewInit {
   @Input() productOptions: NzSelectOptionInterface[] = [];
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;

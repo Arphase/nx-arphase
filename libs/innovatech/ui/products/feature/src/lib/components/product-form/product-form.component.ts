@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { glossary, Product } from '@innovatech/common/domain';
 import { filterNil, sortSelectOptions } from '@innovatech/common/utils';
-import { IvtFormComponent } from '@innovatech/ui/core/data';
+import { ApsFormComponent } from '@arphase/ui';
 import { ProductDataService } from '@innovatech/ui/products/data';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -47,7 +47,7 @@ export function createProductForm(): FormGroup {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class ProductFormComponent extends IvtFormComponent<Product, ProductForm> implements OnInit, OnChanges {
+export class ProductFormComponent extends ApsFormComponent<Product, ProductForm> implements OnInit, OnChanges {
   form = createProductForm();
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();

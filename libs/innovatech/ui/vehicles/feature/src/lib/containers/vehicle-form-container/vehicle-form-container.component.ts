@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserRoles, Vehicle } from '@innovatech/common/domain';
 import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data';
-import { IvtFormContainerComponent } from '@innovatech/ui/core/data';
+import { ApsFormContainerComponent } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import {
   fromVehicles,
@@ -22,7 +22,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./vehicle-form-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VehicleFormContainerComponent extends IvtFormContainerComponent<Vehicle> implements OnDestroy {
+export class VehicleFormContainerComponent extends ApsFormContainerComponent<Vehicle> implements OnDestroy {
   form = createVehicleForm();
   successUrl = '/spa/vehicles';
   createSuccessMessage = 'El vehículo se ha creado con éxito';

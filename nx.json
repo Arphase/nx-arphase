@@ -198,6 +198,9 @@
     },
     "musicr-terms-and-conditions": {
       "tags": []
+    },
+    "musicr-ui-core": {
+      "tags": []
     }
   }
 }

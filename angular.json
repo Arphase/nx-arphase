@@ -1382,7 +1382,7 @@
             "tsConfig": "apps/musicr/store/tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "assets": ["apps/musicr/store/src/favicon.ico", "apps/musicr/store/src/assets"],
-            "styles": ["apps/musicr/store/src/styles.less"],
+            "styles": ["apps/musicr/store/src/styles.less", "libs/arphase/ui/src/styles/styles.less"],
             "scripts": []
           },
           "configurations": {
@@ -1683,6 +1683,28 @@
               "libs/musicr/ui/terms-and-conditions/src/**/*.ts",
               "libs/musicr/ui/terms-and-conditions/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "musicr-ui-core": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/core",
+      "sourceRoot": "libs/musicr/ui/core/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/core"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/core/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/core/src/**/*.ts", "libs/musicr/ui/core/src/**/*.html"]
           }
         }
       }

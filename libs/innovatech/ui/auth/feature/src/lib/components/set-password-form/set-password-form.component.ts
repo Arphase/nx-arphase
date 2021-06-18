@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ApsValidators, MessageStatus } from '@arphase/ui';
 import { specialCharactersForPassword } from '@innovatech/common/domain';
-import { IvtFormComponent } from '@innovatech/ui/core/data';
+import { ApsFormComponent } from '@arphase/ui';
 
 @Component({
   selector: 'ivt-set-password-form',
@@ -10,7 +10,7 @@ import { IvtFormComponent } from '@innovatech/ui/core/data';
   styleUrls: ['./set-password-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SetPasswordFormComponent extends IvtFormComponent<{ password: string }> {
+export class SetPasswordFormComponent extends ApsFormComponent<{ password: string }> {
   messageStatus = MessageStatus;
   specialCharacters = specialCharactersForPassword.join(' ');
 
