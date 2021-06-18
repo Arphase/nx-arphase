@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { ActivatedRoute, Router } from '@angular/router';
 import { Revision, UserRoles } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
-import { ApsFormContainerComponent, selectQueryParam } from '@innovatech/ui/core/data';
+import { IvtFormContainerComponent, selectQueryParam } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import {
   fromVehicles,
@@ -27,7 +27,7 @@ import { RevisionCollectionService } from '../../services/revision-collection.se
   styleUrls: ['./revision-form-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RevisionFormContainerComponent extends ApsFormContainerComponent<Revision> implements OnInit, OnDestroy {
+export class RevisionFormContainerComponent extends IvtFormContainerComponent<Revision> implements OnInit, OnDestroy {
   form = createRevisionForm();
   createSuccessMessage = 'La revisión se ha creado con éxito';
   updateSuccessMessage = 'La revisión se ha actualizado con éxito';

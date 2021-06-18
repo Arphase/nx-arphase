@@ -11,7 +11,7 @@ import {
   getVehiclesVehicleState,
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data';
-import { ApsFormContainerComponent } from '@innovatech/ui/core/data';
+import { IvtFormContainerComponent } from '@innovatech/ui/core/data';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
@@ -29,7 +29,7 @@ import { GuaranteeCollectionService } from '../../services/guarantee-collection.
   styleUrls: ['./guarantee-form-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<Guarantee> implements OnInit, OnDestroy {
+export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<Guarantee> implements OnInit, OnDestroy {
   form = createGuaranteeForm();
   successUrl = '/spa/guarantees';
   createSuccessMessage = 'La garantía se ha creado con éxito';

@@ -10,7 +10,8 @@
       "style": "less",
       "linter": "eslint",
       "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "e2eTestRunner": "cypress",
+      "strict": false
     },
     "@nrwl/angular:library": {
       "style": "less",
@@ -26,6 +27,9 @@
     "innovatech-app": {
       "projectType": "application",
       "schematics": {
+        "@schematics/angular:application": {
+          "strict": false
+        },
         "@schematics/angular:component": {
           "styleext": "less"
         }
@@ -651,6 +655,9 @@
       "root": "libs/innovatech/ui/auth/data",
       "sourceRoot": "libs/innovatech/ui/auth/data/src",
       "prefix": "ivt",
+      "@schematics/angular:application": {
+        "strict": false
+      },
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1370,6 +1377,11 @@
       "root": "apps/musicr/store",
       "sourceRoot": "apps/musicr/store/src",
       "prefix": "mrl",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": false
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

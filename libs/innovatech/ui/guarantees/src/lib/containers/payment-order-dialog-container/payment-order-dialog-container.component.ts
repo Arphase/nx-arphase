@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { PaymentOrder } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
-import { ApsFormContainerComponent } from '@innovatech/ui/core/data';
+import { IvtFormContainerComponent } from '@innovatech/ui/core/data';
 import { get } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -18,7 +18,7 @@ import { PaymentOrderDataService } from '../../services/payment-order-data.servi
   styleUrls: ['./payment-order-dialog-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PaymentOrderDialogContainerComponent extends ApsFormContainerComponent<PaymentOrder> {
+export class PaymentOrderDialogContainerComponent extends IvtFormContainerComponent<PaymentOrder> {
   @Input() data: number[];
   createSuccessMessage = 'Tu orden de compra se ha generado con éxito';
   updateSuccessMessage = 'Tu orden de compra se ha actualizado con éxito';

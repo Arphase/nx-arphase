@@ -17,6 +17,8 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "strictPropertyInitialization": false,
+    "noImplicitUseStrict": true,
     "paths": {
       "@innovatech/app/*": ["apps/innovatech/app/src/app/*"],
       "@innovatech/app/env/*": ["apps/innovatech/app/src/environments/*"],

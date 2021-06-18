@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { RevisionRequest, UserRoles } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
 import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data';
-import { ApsFormContainerComponent, selectQueryParam } from '@innovatech/ui/core/data';
+import { IvtFormContainerComponent, selectQueryParam } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import {
   fromVehicles,
@@ -27,7 +27,7 @@ import { RevisionRequestCollectionService } from '../../services/revision-reques
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionRequestFormContainerComponent
-  extends ApsFormContainerComponent<RevisionRequest>
+  extends IvtFormContainerComponent<RevisionRequest>
   implements OnInit, OnDestroy {
   form = createRevisionRequestForm();
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
