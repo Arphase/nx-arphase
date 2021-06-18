@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { Company, Group } from '@innovatech/common/domain';
-import { IvtFormComponent } from '@innovatech/ui/core/data';
+import { ApsFormComponent } from '@arphase/ui';
 import { startWith } from 'rxjs/operators';
 
 import { GroupFormService } from '../../services/group-form.service';
@@ -12,7 +12,7 @@ import { GroupFormService } from '../../services/group-form.service';
   styleUrls: ['./group-company-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GroupCompanyListContainerComponent extends IvtFormComponent<Group> {
+export class GroupCompanyListContainerComponent extends ApsFormComponent<Group> {
   companies$ = this.companiesForm.valueChanges.pipe(startWith(this.companiesForm.getRawValue()));
 
   get companiesForm(): FormArray {

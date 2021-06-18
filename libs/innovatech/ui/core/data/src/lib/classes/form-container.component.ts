@@ -11,7 +11,7 @@ import { of } from 'rxjs';
 import { filter, mapTo } from 'rxjs/operators';
 
 import { IvtCollectionService } from '../services/collection.service';
-import { IvtFormComponent } from './form.component';
+import { ApsFormComponent } from '@arphase/ui';
 
 @UntilDestroy()
 @Component({
@@ -20,7 +20,7 @@ import { IvtFormComponent } from './form.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtFormContainerComponent<T = any> implements ComponentCanDeactivate {
-  @ViewChild('form', { static: false }) formComponent: IvtFormComponent<T>;
+  @ViewChild('form', { static: false }) formComponent: ApsFormComponent<T>;
   loading$ = this.entityCollectionService.loadingModify$ || of();
   currentItem$ = this.entityCollectionService.currentItem$ || of();
   showSuccess$ = (this.entityCollectionService.entityActions$ || of()).pipe(

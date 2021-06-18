@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } f
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ApsColumns, ApsValidators } from '@arphase/ui';
 import { Guarantee, PaymentOrder } from '@innovatech/common/domain';
-import { IvtFormComponent } from '@innovatech/ui/core/data';
+import { ApsFormComponent } from '@arphase/ui';
 
 @Component({
   selector: 'ivt-payment-order-dialog',
@@ -10,7 +10,7 @@ import { IvtFormComponent } from '@innovatech/ui/core/data';
   styleUrls: ['./payment-order-dialog.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PaymentOrderDialogComponent extends IvtFormComponent<PaymentOrder> implements OnChanges {
+export class PaymentOrderDialogComponent extends ApsFormComponent<PaymentOrder> implements OnChanges {
   @Input() selectedIds: number[];
   columns: ApsColumns = [
     {

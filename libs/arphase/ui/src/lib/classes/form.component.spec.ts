@@ -1,11 +1,11 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
-import { IvtFormComponent } from './form.component';
+import { ApsFormComponent } from './form.component';
 
-describe('IvtFormComponent', () => {
-  let spectator: Spectator<IvtFormComponent>;
+describe('ApsFormComponent', () => {
+  let spectator: Spectator<ApsFormComponent>;
   const createComponent = createComponentFactory({
-    component: IvtFormComponent,
+    component: ApsFormComponent,
     shallow: true,
   });
 

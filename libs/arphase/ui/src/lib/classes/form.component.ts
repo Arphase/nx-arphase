@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { collectFormErrors, updateFormControlsValueAndValidity } from '../functions/forms';
+import { collectFormErrors, updateFormControlsValueAndValidity } from '@innovatech/ui/core/data';
 
 @Component({
   selector: 'ivt-form',
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtFormComponent<T = any, F = any> {
+export class ApsFormComponent<T = any, F = any> {
   @Input() form: FormGroup;
   @Input() item: T;
   @Input() loading: boolean;

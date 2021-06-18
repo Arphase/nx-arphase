@@ -15,7 +15,7 @@ export abstract class CollectionCheckboxFilterComponent<T = unknown> {
   pageIndex$ = this.ivtCollectionService.pageIndex$;
   last$ = this.ivtCollectionService.last$;
   queryParams$ = this.ivtCollectionService.queryParams$;
-  sortValue;
+  sortValue : any[];
   filterPropertyName: string;
   @Output() filterItems = new EventEmitter<QueryParams>();
 

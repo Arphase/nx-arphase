@@ -10,7 +10,8 @@
       "style": "less",
       "linter": "eslint",
       "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "e2eTestRunner": "cypress",
+      "strict": false
     },
     "@nrwl/angular:library": {
       "style": "less",
@@ -26,6 +27,9 @@
     "innovatech-app": {
       "projectType": "application",
       "schematics": {
+        "@schematics/angular:application": {
+          "strict": false
+        },
         "@schematics/angular:component": {
           "styleext": "less"
         }
@@ -651,6 +655,9 @@
       "root": "libs/innovatech/ui/auth/data",
       "sourceRoot": "libs/innovatech/ui/auth/data/src",
       "prefix": "ivt",
+      "@schematics/angular:application": {
+        "strict": false
+      },
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1370,6 +1377,11 @@
       "root": "apps/musicr/store",
       "sourceRoot": "apps/musicr/store/src",
       "prefix": "mrl",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": false
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -1382,7 +1394,7 @@
             "tsConfig": "apps/musicr/store/tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "assets": ["apps/musicr/store/src/favicon.ico", "apps/musicr/store/src/assets"],
-            "styles": ["apps/musicr/store/src/styles.less"],
+            "styles": ["apps/musicr/store/src/styles.less", "libs/arphase/ui/src/styles/styles.less"],
             "scripts": []
           },
           "configurations": {
@@ -1683,6 +1695,28 @@
               "libs/musicr/ui/terms-and-conditions/src/**/*.ts",
               "libs/musicr/ui/terms-and-conditions/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "musicr-ui-core": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/core",
+      "sourceRoot": "libs/musicr/ui/core/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/core"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/core/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/core/src/**/*.ts", "libs/musicr/ui/core/src/**/*.html"]
           }
         }
       }
