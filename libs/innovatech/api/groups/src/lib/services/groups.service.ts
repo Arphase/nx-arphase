@@ -1,3 +1,5 @@
+import { ApsCollectionResponse } from '@arphase/common';
+import { createCollectionResponse } from '@arphase/api';
 import { AuthService } from '@innovatech/api/auth/data';
 import { CommonFilterDto, filterCommonQuery } from '@innovatech/api/core/util';
 import {
@@ -7,14 +9,7 @@ import {
   ResetPasswordRepository,
   UserRepository,
 } from '@innovatech/api/domain';
-import {
-  Company,
-  createCollectionResponse,
-  Group,
-  IvtCollectionResponse,
-  Product,
-  User,
-} from '@innovatech/common/domain';
+import { Company, Group, Product, User } from '@innovatech/common/domain';
 import { generateId } from '@innovatech/common/utils';
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -53,7 +48,7 @@ export class GroupsService {
     return found;
   }
 
-  async getGroups(filterDto: Partial<CommonFilterDto>): Promise<IvtCollectionResponse<Group>> {
+  async getGroups(filterDto: Partial<CommonFilterDto>): Promise<ApsCollectionResponse<Group>> {
     const { pageSize, pageIndex, text } = filterDto;
     const query = this.groupRepository.createQueryBuilder('group');
 

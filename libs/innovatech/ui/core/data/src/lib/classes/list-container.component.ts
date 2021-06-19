@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Optional } from '@angular/core';
-import { IvtCollectionResponseInfo } from '@innovatech/common/domain';
+import { ApsCollectionResponseInfo } from '@arphase/common';
 import { filterNil } from '@innovatech/common/utils';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { EntityOp, ofEntityOp, QueryParams } from '@ngrx/data';
@@ -23,7 +23,7 @@ import { IvtDataService } from '../services/data.service';
 export class IvtListContainerComponent<T = any> {
   list$: Observable<T[]>;
   loading$: Observable<boolean>;
-  info$: Observable<IvtCollectionResponseInfo>;
+  info$: Observable<ApsCollectionResponseInfo>;
   queryParams: QueryParams;
   excelFileName: string;
   excelUrl: string;

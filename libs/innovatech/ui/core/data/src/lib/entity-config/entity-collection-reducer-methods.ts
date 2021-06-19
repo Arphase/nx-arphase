@@ -1,4 +1,4 @@
-import { IvtCollectionResponseInfo } from '@innovatech/common/domain';
+import { ApsCollectionResponseInfo } from '@arphase/common';
 import {
   EntityAction,
   EntityActionPayload,
@@ -12,7 +12,7 @@ export interface IvtEntityCollection<T> extends EntityCollection {
   queryParams: QueryParams;
   currentItem: T;
   loadingModify: boolean;
-  info: IvtCollectionResponseInfo;
+  info: ApsCollectionResponseInfo;
   hasMore: boolean;
 }
 
@@ -22,7 +22,7 @@ export interface IvtEntityAction extends EntityAction {
 
 export interface IvtActionPayload extends EntityActionPayload {
   queryParams: QueryParams;
-  info: IvtCollectionResponseInfo;
+  info: ApsCollectionResponseInfo;
 }
 
 export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectionReducerMethods<T> {

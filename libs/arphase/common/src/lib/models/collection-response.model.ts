@@ -1,9 +1,9 @@
-export interface IvtCollectionResponse<T> {
-  info: IvtCollectionResponseInfo;
+export interface ApsCollectionResponse<T> {
+  info: ApsCollectionResponseInfo;
   results: T[];
 }
 
-export interface IvtCollectionResponseInfo {
+export interface ApsCollectionResponseInfo {
   total: number;
   pageIndex: number;
   pageSize: number;

@@ -7,21 +7,21 @@ import { ProductEntity } from './product.entity';
 @Entity('subcategories')
 export class SubcategoryEntity extends BaseEntity implements Subcategory {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   name: string;
 
   @Column()
-  categoryId: number;
+  categoryId?: number;
 
   @ManyToOne(() => CategoryEntity, category => category.subcategories)
   @JoinColumn({ name: 'categoryId' })
-  category: Category;
+  category?: Category;
 
   @OneToMany(() => ProductEntity, product => product.subcategory, {
     cascade: true,
     eager: true,
   })
-  products: Product[];
+  products?: Product[];
 }

@@ -1,46 +1,9 @@
-import { DEFAULT_LIMIT_SIZE } from '@innovatech/common/domain';
+import { ApsCollectionFilterDto } from '@arphase/api';
 import { convertStringToNumberArray } from '@innovatech/common/utils';
 import { Transform } from 'class-transformer';
-import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
-export class CommonFilterDto {
-  @IsOptional()
-  @IsNotEmpty()
-  @IsNumber()
-  @Transform(({ obj, key }) => Number([obj[key]]))
-  pageSize = DEFAULT_LIMIT_SIZE;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsNumber()
-  @Transform(({ obj, key }) => Number([obj[key]]))
-  pageIndex = 1;
-
-  @IsOptional()
-  @IsNotEmpty()
-  sort: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  direction: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  startDate: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  endDate: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  dateType: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  text: string;
-
+export class CommonFilterDto extends ApsCollectionFilterDto {
   @IsOptional()
   @IsNotEmpty()
   @IsNumber()

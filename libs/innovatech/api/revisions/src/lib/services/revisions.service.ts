@@ -1,14 +1,8 @@
-import { RevisionRepository, VehicleRepository } from '@innovatech/api/domain';
-import {
-  createCollectionResponse,
-  IvtCollectionResponse,
-  Revision,
-  RevisionStatus,
-  sortDirection,
-  User,
-  VehicleStatus,
-} from '@innovatech/common/domain';
+import { createCollectionResponse } from '@arphase/api';
+import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { filterCommonQuery } from '@innovatech/api/core/util';
+import { RevisionRepository, VehicleRepository } from '@innovatech/api/domain';
+import { Revision, RevisionStatus, User, VehicleStatus } from '@innovatech/common/domain';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import dayjs from 'dayjs';
@@ -26,14 +20,14 @@ export class RevisionsService {
     private connection: Connection
   ) {}
 
-  async getRevisions(getRevisionsDto: GetRevisionsDto, user: Partial<User>): Promise<IvtCollectionResponse<Revision>> {
+  async getRevisions(getRevisionsDto: GetRevisionsDto, user: Partial<User>): Promise<ApsCollectionResponse<Revision>> {
     const { vehicleId, pageIndex, pageSize, text, status } = getRevisionsDto;
     const query = this.revisionRepository
       .createQueryBuilder('revision')
       .leftJoinAndSelect('revision.vehicle', 'vehicle')
       .leftJoinAndSelect('vehicle.company', 'company')
       .leftJoinAndSelect('vehicle.user', 'user')
-      .orderBy('revision.createdAt', sortDirection.descend);
+      .orderBy('revision.createdAt', SortDirection.descend);
 
     if (vehicleId) {
       query.andWhere('(revision.vehicleId = :id)', { id: vehicleId });
@@ -132,7 +126,7 @@ export class RevisionsService {
 
       const mostRecentRevision = await this.revisionRepository.findOne({
         vehicleId: revision.vehicleId,
-        order: { createdAt: sortDirection.descend },
+        order: { createdAt: SortDirection.descend },
       } as FindOneOptions);
 
       if (mostRecentRevision) {
