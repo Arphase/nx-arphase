@@ -1,11 +1,11 @@
-import { IvtCollectionResponse } from '../models';
+import { ApsCollectionResponse } from '@arphase/common';
 
 export function createCollectionResponse<T>(
   collection: T[],
   pageSize: number,
   pageIndex: number,
   total: number
-): IvtCollectionResponse<T> {
+): ApsCollectionResponse<T> {
   return {
     info: {
       pageSize,
@@ -13,7 +13,7 @@ export function createCollectionResponse<T>(
       total,
       pageStart: total ? (pageIndex - 1) * pageSize + 1 : 0,
       pageEnd: collection.length < total ? (pageIndex - 1) * pageSize + pageSize : total,
-      last: collection.length < pageSize,
+      last: collection.length < pageSize || !collection.length,
     },
     results: collection,
   };

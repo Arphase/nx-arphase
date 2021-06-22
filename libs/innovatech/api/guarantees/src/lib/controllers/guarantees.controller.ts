@@ -1,5 +1,6 @@
+import { ApsCollectionResponse } from '@arphase/common';
 import { GetUser, Roles, RolesGuard } from '@innovatech/api/auth/data';
-import { Guarantee, GuaranteeSummary, IvtCollectionResponse, User, UserRoles } from '@innovatech/common/domain';
+import { Guarantee, GuaranteeSummary, User, UserRoles } from '@innovatech/common/domain';
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
@@ -18,7 +19,7 @@ export class GuaranteesController {
   async getGuarantees(
     @Query() filterDto: GetGuaranteesFilterDto,
     @GetUser() user: Partial<User>
-  ): Promise<IvtCollectionResponse<Guarantee>> {
+  ): Promise<ApsCollectionResponse<Guarantee>> {
     return this.guaranteesService.getGuarantees(filterDto, user);
   }
 

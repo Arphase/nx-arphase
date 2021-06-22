@@ -1,6 +1,7 @@
+import { ApsCollectionResponse } from '@arphase/common';
 import { GetUser } from '@innovatech/api/auth/data';
 import { CommonFilterDto } from '@innovatech/api/core/util';
-import { IvtCollectionResponse, User } from '@innovatech/common/domain';
+import { User } from '@innovatech/common/domain';
 import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -15,7 +16,7 @@ export class UsersController {
   async getUsers(
     @Query() filterDto: CommonFilterDto,
     @GetUser() user: Partial<User>
-  ): Promise<IvtCollectionResponse<User>> {
+  ): Promise<ApsCollectionResponse<User>> {
     return this.usersService.getUsers(filterDto, user);
   }
 }

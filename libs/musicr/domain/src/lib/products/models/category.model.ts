@@ -1,7 +1,7 @@
 import { Subcategory } from './subcategory.model';
 
 export interface Category {
-  id: number;
+  id?: number;
   name: string;
-  subcategories: Subcategory[];
+  subcategories?: Subcategory[];
 }

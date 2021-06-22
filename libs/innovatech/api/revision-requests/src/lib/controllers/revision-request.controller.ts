@@ -1,5 +1,6 @@
+import { ApsCollectionResponse } from '@arphase/common';
 import { GetUser, Roles, RolesGuard } from '@innovatech/api/auth/data';
-import { IvtCollectionResponse, RevisionRequest, User, UserRoles } from '@innovatech/common/domain';
+import { RevisionRequest, User, UserRoles } from '@innovatech/common/domain';
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -17,7 +18,7 @@ export class RevisionRequestController {
   async getRevisionRequests(
     @Query() filterDto: GetRevisionRequestsDto,
     @GetUser() user: Partial<User>
-  ): Promise<IvtCollectionResponse<RevisionRequest>> {
+  ): Promise<ApsCollectionResponse<RevisionRequest>> {
     return this.revisionRequestsService.getRevisionRequests(filterDto, user);
   }
 

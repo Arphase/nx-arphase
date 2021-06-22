@@ -1,6 +1,8 @@
+import { createCollectionResponse } from '@arphase/api';
+import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { CommonFilterDto, filterCommonQuery } from '@innovatech/api/core/util';
 import { UserRepository } from '@innovatech/api/domain';
-import { createCollectionResponse, IvtCollectionResponse, sortDirection, User } from '@innovatech/common/domain';
+import { User } from '@innovatech/common/domain';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -8,7 +10,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class UsersService {
   constructor(@InjectRepository(UserRepository) private userRepository: UserRepository) {}
 
-  async getUsers(filterDto: CommonFilterDto, user: Partial<User>): Promise<IvtCollectionResponse<User>> {
+  async getUsers(filterDto: CommonFilterDto, user: Partial<User>): Promise<ApsCollectionResponse<User>> {
     const { text, pageIndex, pageSize } = filterDto;
     const query = this.userRepository.createQueryBuilder('user');
 
@@ -16,7 +18,7 @@ export class UsersService {
       .leftJoinAndSelect('user.company', 'company')
       .groupBy('user.id')
       .addGroupBy('company.id')
-      .orderBy('user.createdAt', sortDirection.descend);
+      .orderBy('user.createdAt', SortDirection.descend);
 
     if (text) {
       query.andWhere(

@@ -2,9 +2,9 @@ import { Category } from './category.model';
 import { Product } from './product.model';
 
 export interface Subcategory {
-  id: number;
+  id?: number;
   name: string;
-  categoryId: number;
-  category: Category;
-  products: Product[];
+  categoryId?: number;
+  category?: Category;
+  products?: Product[];
 }

@@ -1,16 +1,15 @@
+import { createCollectionResponse } from '@arphase/api';
+import { ApsCollectionResponse, SortDirection } from '@arphase/common';
+import { filterCommonQuery } from '@innovatech/api/core/util';
 import { VehicleRepository } from '@innovatech/api/domain';
 import {
-  createCollectionResponse,
   hasAccessToAllData,
-  IvtCollectionResponse,
   RevisionStatus,
-  sortDirection,
   transformFolio,
   User,
   Vehicle,
   VehicleStatus,
 } from '@innovatech/common/domain';
-import { filterCommonQuery } from '@innovatech/api/core/util';
 import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -23,13 +22,13 @@ import { UpdateVehicleDto } from '../dto/update-vehicle.dto';
 export class VehiclesService {
   constructor(@InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository) {}
 
-  async getVehicles(filterDto: GetVehiclesDto, user: Partial<User>): Promise<IvtCollectionResponse<Vehicle>> {
+  async getVehicles(filterDto: GetVehiclesDto, user: Partial<User>): Promise<ApsCollectionResponse<Vehicle>> {
     const { pageSize, pageIndex, text, status } = filterDto;
     const query = this.vehicleRepository
       .createQueryBuilder('vehicle')
       .leftJoinAndSelect('vehicle.company', 'company')
       .leftJoinAndSelect('vehicle.user', 'user')
-      .orderBy('vehicle.createdAt', sortDirection.descend);
+      .orderBy('vehicle.createdAt', SortDirection.descend);
 
     if (text) {
       query.andWhere(

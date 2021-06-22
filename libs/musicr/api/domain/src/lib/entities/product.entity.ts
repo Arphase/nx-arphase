@@ -1,5 +1,23 @@
-import { AdditionalOption, OrderProduct, PriceOption, Product, ProductComponent, ProductPhoto, Subcategory } from '@musicr/domain';
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  AdditionalOption,
+  OrderProduct,
+  PriceOption,
+  Product,
+  ProductComponent,
+  ProductPhoto,
+  Subcategory,
+} from '@musicr/domain';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 import { AdditionalOptionEntity } from './additional-option.entity';
 import { OrderProductEntity } from './order-product.entity';
@@ -13,6 +31,12 @@ export class ProductEntity extends BaseEntity implements Product {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
   @Column()
   name: string;
 
@@ -25,12 +49,12 @@ export class ProductEntity extends BaseEntity implements Product {
   @Column()
   description: string;
 
-  @Column()
-  subcategoryId: number;
+  @Column({ nullable: true })
+  subcategoryId?: number;
 
   @ManyToOne(() => SubcategoryEntity, subcategory => subcategory.products)
   @JoinColumn({ name: 'subcategoryId' })
-  subcategory: Subcategory;
+  subcategory?: Subcategory;
 
   @OneToMany(() => AdditionalOptionEntity, additionalOption => additionalOption.product, {
     cascade: true,

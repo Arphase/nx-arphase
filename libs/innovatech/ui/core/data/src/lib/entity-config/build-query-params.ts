@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { DEFAULT_LIMIT_SIZE } from '@innovatech/common/domain';
+import { DEFAULT_PAGE_SIZE } from '@arphase/common';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { omit } from 'lodash-es';
@@ -8,7 +8,7 @@ dayjs.extend(customParseFormat);
 
 export function buildQueryParams(queryParams): HttpParams {
   let params: Record<string, string | string[]> = {
-    pageSize: String(DEFAULT_LIMIT_SIZE),
+    pageSize: String(DEFAULT_PAGE_SIZE),
     pageIndex: '1',
   };
 

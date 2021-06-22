@@ -52,5 +52,7 @@ module.exports = {
     '<rootDir>/libs/musicr/ui/terms-and-conditions',
     '<rootDir>/libs/musicr/ui/core',
     '<rootDir>/libs/musicr/api/domain',
+    '<rootDir>/libs/musicr/api/products',
+    '<rootDir>/libs/arphase/common',
   ],
 };

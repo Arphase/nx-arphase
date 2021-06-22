@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Group, IvtCollectionResponse, Product } from '@innovatech/common/domain';
+import { ApsCollectionResponse } from '@arphase/common';
+import { Group, Product } from '@innovatech/common/domain';
 import { IvtDataService } from '@innovatech/ui/core/data';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Observable } from 'rxjs';
@@ -19,11 +20,11 @@ export class GroupDataService extends IvtDataService<Group> {
   getGroupProducts(groupId: number): Observable<Product[]> {
     const params = new HttpParams({ fromObject: { groupId: String(groupId) } });
     return this.http
-      .get<IvtCollectionResponse<Product>>('/ivtApi/products', { params })
+      .get<ApsCollectionResponse<Product>>('/ivtApi/products', { params })
       .pipe(map(response => response.results));
   }
 
-  assignGroupProducts(payload: { groupId: number; productIds: number[] }): Observable<IvtCollectionResponse<Product>> {
-    return this.http.put<IvtCollectionResponse<Product>>('/ivtApi/groups/assign/products', payload);
+  assignGroupProducts(payload: { groupId: number; productIds: number[] }): Observable<ApsCollectionResponse<Product>> {
+    return this.http.put<ApsCollectionResponse<Product>>('/ivtApi/groups/assign/products', payload);
   }
 }

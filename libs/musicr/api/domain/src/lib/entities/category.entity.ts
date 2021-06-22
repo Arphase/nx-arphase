@@ -6,7 +6,7 @@ import { SubcategoryEntity } from './subcategory.entity';
 @Entity('categories')
 export class CategoryEntity extends BaseEntity implements Category {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   name: string;
@@ -15,5 +15,5 @@ export class CategoryEntity extends BaseEntity implements Category {
     cascade: true,
     eager: true,
   })
-  subcategories: Subcategory[];
+  subcategories?: Subcategory[];
 }

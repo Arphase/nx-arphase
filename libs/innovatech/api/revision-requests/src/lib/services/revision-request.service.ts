@@ -1,13 +1,8 @@
-import { RevisionRequestRepository } from '@innovatech/api/domain';
-import {
-  createCollectionResponse,
-  IvtCollectionResponse,
-  RevisionRequest,
-  sortDirection,
-  User,
-  UserRoles,
-} from '@innovatech/common/domain';
+import { createCollectionResponse } from '@arphase/api';
+import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { filterCommonQuery } from '@innovatech/api/core/util';
+import { RevisionRequestRepository } from '@innovatech/api/domain';
+import { RevisionRequest, User, UserRoles } from '@innovatech/common/domain';
 import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -24,14 +19,14 @@ export class RevisionRequestService {
   async getRevisionRequests(
     filterDto: GetRevisionRequestsDto,
     user: Partial<User>
-  ): Promise<IvtCollectionResponse<RevisionRequest>> {
+  ): Promise<ApsCollectionResponse<RevisionRequest>> {
     const { pageSize, pageIndex, text, status } = filterDto;
     const query = this.revisionRequestRepository
       .createQueryBuilder('revisionRequest')
       .leftJoinAndSelect('revisionRequest.vehicle', 'vehicle')
       .leftJoinAndSelect('revisionRequest.company', 'company')
       .leftJoinAndSelect('revisionRequest.user', 'user')
-      .orderBy('revisionRequest.createdAt', sortDirection.descend);
+      .orderBy('revisionRequest.createdAt', SortDirection.descend);
 
     if (status) {
       query.andWhere('(revisionRequest.status = :status)', { status });
