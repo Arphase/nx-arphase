@@ -206,10 +206,16 @@
       "tags": ["domain:musicr", "domain:musicr:api", "type:domain-logic"]
     },
     "musicr-api-products": {
-      "tags": []
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "arphase-common": {
-      "tags": []
+      "tags": ["domain:arphase", "type:util"]
+    },
+    "musicr-api-categories": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+    },
+    "musicr-api-subcategories": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     }
   }
 }

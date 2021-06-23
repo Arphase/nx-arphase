@@ -8,7 +8,7 @@ export class CategoryEntity extends BaseEntity implements Category {
   @PrimaryGeneratedColumn()
   id?: number;
 
-  @Column()
+  @Column({ unique: true })
   name: string;
 
   @OneToMany(() => SubcategoryEntity, subcategory => subcategory.category, {

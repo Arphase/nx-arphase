@@ -1615,7 +1615,8 @@
             "outputPath": "dist/apps/musicr/api",
             "main": "apps/musicr/api/src/main.ts",
             "tsConfig": "apps/musicr/api/tsconfig.app.json",
-            "assets": ["apps/musicr/api/src/assets"]
+            "assets": ["apps/musicr/api/src/assets"],
+            "maxWorkers": 1
           },
           "configurations": {
             "production": {
@@ -1634,7 +1635,9 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "musicr-api:build"
+            "buildTarget": "musicr-api:build",
+            "inspect": true,
+            "port": 7777
           }
         },
         "lint": {
@@ -1779,6 +1782,48 @@
           "outputs": ["coverage/libs/arphase/common"],
           "options": {
             "jestConfig": "libs/arphase/common/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "musicr-api-categories": {
+      "root": "libs/musicr/api/categories",
+      "sourceRoot": "libs/musicr/api/categories/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/categories/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/categories"],
+          "options": {
+            "jestConfig": "libs/musicr/api/categories/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "musicr-api-subcategories": {
+      "root": "libs/musicr/api/subcategories",
+      "sourceRoot": "libs/musicr/api/subcategories/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/subcategories/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/subcategories"],
+          "options": {
+            "jestConfig": "libs/musicr/api/subcategories/jest.config.js",
             "passWithNoTests": true
           }
         }
