@@ -1,0 +1,11 @@
+import { OrderProductAdditionalOption } from '../../orders';
+import { Product } from './product.model';
+
+export interface AdditionalOption {
+  id: number;
+  name: string;
+  price: number;
+  productId: number;
+  product: Product;
+  orderProductAdditionalOptions: OrderProductAdditionalOption[];
+}

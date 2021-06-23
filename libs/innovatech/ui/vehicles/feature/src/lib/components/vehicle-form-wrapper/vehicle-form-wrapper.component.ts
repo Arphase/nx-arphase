@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { UserRoles, Vehicle } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
-import { IvtFormComponent } from '@innovatech/ui/core/data';
+import { ApsFormComponent } from '@arphase/ui';
 import { QueryParams } from '@ngrx/data';
 
 @Component({
@@ -11,7 +11,7 @@ import { QueryParams } from '@ngrx/data';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
-export class VehicleFormWrapperComponent extends IvtFormComponent<Vehicle> implements OnChanges {
+export class VehicleFormWrapperComponent extends ApsFormComponent<Vehicle> implements OnChanges {
   @Input() showCompanyInput: boolean;
   @Input() invalidVin: boolean;
   @Input() isEditable: boolean;

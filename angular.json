@@ -10,7 +10,8 @@
       "style": "less",
       "linter": "eslint",
       "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "e2eTestRunner": "cypress",
+      "strict": false
     },
     "@nrwl/angular:library": {
       "style": "less",
@@ -26,6 +27,9 @@
     "innovatech-app": {
       "projectType": "application",
       "schematics": {
+        "@schematics/angular:application": {
+          "strict": false
+        },
         "@schematics/angular:component": {
           "styleext": "less"
         }
@@ -651,6 +655,9 @@
       "root": "libs/innovatech/ui/auth/data",
       "sourceRoot": "libs/innovatech/ui/auth/data/src",
       "prefix": "ivt",
+      "@schematics/angular:application": {
+        "strict": false
+      },
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1370,6 +1377,11 @@
       "root": "apps/musicr/store",
       "sourceRoot": "apps/musicr/store/src",
       "prefix": "mrl",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": false
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -1382,7 +1394,7 @@
             "tsConfig": "apps/musicr/store/tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "assets": ["apps/musicr/store/src/favicon.ico", "apps/musicr/store/src/assets"],
-            "styles": ["apps/musicr/store/src/styles.less"],
+            "styles": ["apps/musicr/store/src/styles.less", "libs/arphase/ui/src/styles/styles.less"],
             "scripts": []
           },
           "configurations": {
@@ -1705,6 +1717,91 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/musicr/ui/home/src/**/*.ts", "libs/musicr/ui/home/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "musicr-ui-core": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/core",
+      "sourceRoot": "libs/musicr/ui/core/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/core"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/core/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/core/src/**/*.ts", "libs/musicr/ui/core/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "musicr-api-domain": {
+      "root": "libs/musicr/api/domain",
+      "sourceRoot": "libs/musicr/api/domain/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/domain/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/domain"],
+          "options": {
+            "jestConfig": "libs/musicr/api/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "musicr-api-products": {
+      "root": "libs/musicr/api/products",
+      "sourceRoot": "libs/musicr/api/products/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/products/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/products"],
+          "options": {
+            "jestConfig": "libs/musicr/api/products/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "arphase-common": {
+      "root": "libs/arphase/common",
+      "sourceRoot": "libs/arphase/common/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/arphase/common/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/arphase/common"],
+          "options": {
+            "jestConfig": "libs/arphase/common/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

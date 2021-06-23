@@ -12,7 +12,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { Revision, RevisionReportItems, Vehicle } from '@innovatech/common/domain';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
-import { IvtFormComponent } from '@innovatech/ui/core/data';
+import { ApsFormComponent } from '@arphase/ui';
 
 import { iconMap, reportLabels, revisionReportSections, statusOptions } from './revision-form.constants';
 
@@ -38,7 +38,7 @@ export function createRevisionForm(): FormGroup {
   styleUrls: ['./revision-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RevisionFormComponent extends IvtFormComponent<Revision> implements OnChanges, AfterViewInit {
+export class RevisionFormComponent extends ApsFormComponent<Revision> implements OnChanges, AfterViewInit {
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
   @Input() error: string;

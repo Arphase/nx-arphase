@@ -10,7 +10,7 @@ import { IvtCollectionService } from '../services';
 @UntilDestroy()
 @Directive()
 export abstract class CollectionSelectDirective<T = any> implements AfterContentInit {
-  sortValue;
+  sortValue: any[];
 
   constructor(
     protected host: NzSelectComponent,

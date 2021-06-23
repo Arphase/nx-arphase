@@ -10,7 +10,7 @@ import {
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { Vehicle, VEHICLE_VIN_LENGTH } from '@innovatech/common/domain';
-import { IvtFormComponent } from '@innovatech/ui/core/data';
+import { ApsFormComponent } from '@arphase/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { QueryParams } from '@ngrx/data';
 import { omit } from 'lodash-es';
@@ -49,7 +49,7 @@ export function createVehicleForm(vehicle?: Vehicle) {
   styleUrls: ['./vehicle-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VehicleFormComponent extends IvtFormComponent<Vehicle> implements OnChanges {
+export class VehicleFormComponent extends ApsFormComponent<Vehicle> implements OnChanges {
   @Input() companyId: number;
   @Input() showCompanyInput: boolean;
   @Input() vehicle: Vehicle;

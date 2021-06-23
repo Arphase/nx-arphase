@@ -1,5 +1,6 @@
+import { ApsCollectionResponse } from '@arphase/common';
 import { GetUser, Roles, RolesGuard } from '@innovatech/api/auth/data';
-import { IvtCollectionResponse, User, UserRoles, Vehicle } from '@innovatech/common/domain';
+import { User, UserRoles, Vehicle } from '@innovatech/common/domain';
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -17,7 +18,7 @@ export class VehiclesController {
   async getVehicles(
     @Query() filterDto: GetVehiclesDto,
     @GetUser() user: Partial<User>
-  ): Promise<IvtCollectionResponse<Vehicle>> {
+  ): Promise<ApsCollectionResponse<Vehicle>> {
     return this.vehiclesService.getVehicles(filterDto, user);
   }
 

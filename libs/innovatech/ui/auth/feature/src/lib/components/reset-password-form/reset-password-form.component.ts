@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui';
 import { User } from '@innovatech/common/domain';
-import { IvtFormComponent } from '@innovatech/ui/core/data';
+import { ApsFormComponent } from '@arphase/ui';
 
 @Component({
   selector: 'ivt-reset-password-form',
@@ -10,7 +10,7 @@ import { IvtFormComponent } from '@innovatech/ui/core/data';
   styleUrls: ['./reset-password-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResetPasswordFormComponent extends IvtFormComponent<Partial<User>> {
+export class ResetPasswordFormComponent extends ApsFormComponent<Partial<User>> {
   @Input() emailSent: boolean;
 
   constructor(private fb: FormBuilder) {

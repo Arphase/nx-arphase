@@ -1,3 +1,5 @@
+import { createCollectionResponse } from '@arphase/api';
+import { ApsCollectionResponse } from '@arphase/common';
 import { filterCommonQuery, getReadableStream, tobase64 } from '@innovatech/api/core/util';
 import {
   GuaranteeEntity,
@@ -9,11 +11,9 @@ import {
 import { generateProductPdf, getProductPdfTemplate } from '@innovatech/api/products/utils';
 import {
   Client,
-  createCollectionResponse,
   Guarantee,
   GuaranteeSummary,
   isVehicleElegible,
-  IvtCollectionResponse,
   PersonTypes,
   statusLabels,
   transformFolio,
@@ -80,7 +80,7 @@ export class GuaranteesService {
   async getGuarantees(
     filterDto: Partial<GetGuaranteesFilterDto>,
     user: Partial<User>
-  ): Promise<IvtCollectionResponse<Guarantee>> {
+  ): Promise<ApsCollectionResponse<Guarantee>> {
     const { pageSize, pageIndex } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     applyGuaranteeFilter(query, filterDto, user);

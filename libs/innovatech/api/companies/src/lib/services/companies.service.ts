@@ -1,6 +1,8 @@
+import { createCollectionResponse } from '@arphase/api';
+import { ApsCollectionResponse } from '@arphase/common';
 import { CommonFilterDto, filterCommonQuery } from '@innovatech/api/core/util';
 import { CompanyRepository } from '@innovatech/api/domain';
-import { Company, createCollectionResponse, IvtCollectionResponse, User } from '@innovatech/common/domain';
+import { Company, User } from '@innovatech/common/domain';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -8,7 +10,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class CompaniesService {
   constructor(@InjectRepository(CompanyRepository) private companyRepository: CompanyRepository) {}
 
-  async getCompanies(filterDto: CommonFilterDto, user: Partial<User>): Promise<IvtCollectionResponse<Company>> {
+  async getCompanies(filterDto: CommonFilterDto, user: Partial<User>): Promise<ApsCollectionResponse<Company>> {
     const { pageSize, pageIndex, text } = filterDto;
     const query = this.companyRepository.createQueryBuilder('company');
 
