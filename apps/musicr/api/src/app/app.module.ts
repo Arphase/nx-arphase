@@ -1,5 +1,6 @@
 import { AuthModule } from '@musicr/api/auth';
 import { CategoriesModule } from '@musicr/api/categories';
+import { ProductComponentsModule } from '@musicr/api/product-components';
 import { ProductsModule } from '@musicr/api/products';
 import { SubcategoriesModule } from '@musicr/api/subcategories';
 import { Module } from '@nestjs/common';
@@ -21,6 +22,7 @@ import { AppController } from './app.controller';
     AuthModule,
     CategoriesModule,
     ProductsModule,
+    ProductComponentsModule,
     SubcategoriesModule,
   ],
   controllers: [AppController],

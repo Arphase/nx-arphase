@@ -1,9 +1,10 @@
 import { Product, ProductComponent } from '@musicr/domain';
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { ProductEntity } from './product.entity';
 
 @Entity('productComponents')
+@Index(['order', 'productId'], { unique: true })
 export class ProductComponentEntity extends BaseEntity implements ProductComponent {
   @PrimaryGeneratedColumn()
   id: number;

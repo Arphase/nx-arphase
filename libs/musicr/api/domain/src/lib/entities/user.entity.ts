@@ -10,8 +10,8 @@ export class UserEntity extends BaseEntity implements User {
   @Column()
   firstName: string;
 
-  @Column()
-  secondName: string;
+  @Column({ nullable: true })
+  secondName?: string;
 
   @Column()
   lastName: string;
