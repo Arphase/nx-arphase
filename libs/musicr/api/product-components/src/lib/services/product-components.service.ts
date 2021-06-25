@@ -25,11 +25,15 @@ export class ProductComponentsService {
     }
 
     const preloadedProductComponents: ProductComponentEntity[] = await Promise.all(
-      productComponents.map(async component =>
-        component.id
+      productComponents.map(async component => {
+        const preloadedComponent = component.id
           ? await this.productComponentRepository.preload({ ...component })
-          : this.productComponentRepository.create({ ...component, productId })
-      )
+          : this.productComponentRepository.create({ ...component, productId });
+        if (!preloadedComponent) {
+          throw new NotFoundException(`No se encontró componente del producto con id ${component.id}`);
+        }
+        return preloadedComponent;
+      })
     );
 
     if (preloadedProductComponents.some(component => component.productId && component.productId !== productId)) {

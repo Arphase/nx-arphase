@@ -5,12 +5,12 @@ import { AuthGuard } from '@nestjs/passport';
 import { UpdateProductComponentsDto } from '../dto/update-product-components.dto';
 import { ProductComponentsService } from '../services/product-components.service';
 
-@Controller('product-components')
+@Controller('products')
 @UseGuards(AuthGuard('jwt'))
 export class ProductComponentsController {
   constructor(private productComponentsService: ProductComponentsService) {}
 
-  @Put(':id')
+  @Put(':id/components')
   updateProductComponents(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateProductComponents: UpdateProductComponentsDto
