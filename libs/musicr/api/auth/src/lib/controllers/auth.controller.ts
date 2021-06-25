@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth.service';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @Post('/signIn')
+  @Post('/sign-in')
   signIn(@Body() signInCredentialsDto: SignInCredentialsDto): Promise<User> {
     return this.authService.signIn(signInCredentialsDto);
   }

@@ -17,7 +17,6 @@ async function run() {
   const users: SignUpCredentialsDto[] = [
     {
       firstName: 'Diego',
-      secondName: '',
       lastName: 'Contreras',
       secondLastName: 'Chapa',
       email: 'diego.contreras@mailinator.com',
@@ -29,12 +28,12 @@ async function run() {
   users.forEach(async user => {
     try {
       await authService.signUp(user);
+      console.log('User added', user.email);
     } catch (error) {
       console.log(error);
     }
   });
   console.log('Seeds done!');
-  process.exit(0);
 }
 
 run();
