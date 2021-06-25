@@ -12,6 +12,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   OneToMany,
@@ -27,6 +28,7 @@ import { ProductPhotoEntity } from './product-photo.entity';
 import { SubcategoryEntity } from './subcategory.entity';
 
 @Entity('product')
+@Index(['name', 'subcategoryId'], { unique: true })
 export class ProductEntity extends BaseEntity implements Product {
   @PrimaryGeneratedColumn()
   id: number;
@@ -43,11 +45,11 @@ export class ProductEntity extends BaseEntity implements Product {
   @Column()
   price: number;
 
-  @Column()
-  disclaimer: string;
+  @Column({ nullable: true })
+  disclaimer?: string;
 
-  @Column()
-  description: string;
+  @Column({ nullable: true })
+  description?: string;
 
   @Column({ nullable: true })
   subcategoryId?: number;

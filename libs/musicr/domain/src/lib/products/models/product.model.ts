@@ -9,8 +9,8 @@ export interface Product {
   id?: number;
   name: string;
   price: number;
-  disclaimer: string;
-  description: string;
+  disclaimer?: string;
+  description?: string;
   subcategoryId?: number;
   subcategory?: Subcategory;
   additionalOptions?: AdditionalOption[];

@@ -49,7 +49,7 @@ export class PaymentOrderDialogContainerComponent extends IvtFormContainerCompon
     });
     get(paymentOrder, 'id')
       ? this.paymentOrderCollectionService.update(paymentOrder)
-      : this.paymentOrderCollectionService.add(paymentOrder);
+      : this.paymentOrderCollectionService.add(paymentOrder, { isOptimistic: false });
   }
 
   downloadPaymentOrder(id: number): void {

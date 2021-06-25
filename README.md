@@ -117,9 +117,10 @@ Run `nx e2e` to execute the end-to-end tests via [Cypress](https://www.cypress.i
 
 ### Setup
 
-Each project has a different setup, you can read about them here: 
+Each project has a different setup, you can read about them here:
 
-* [Innovatech](docs/innovatech/README.md)
+- [Innovatech](docs/innovatech/README.md)
+- [Music Revolution](docs/musicr/README.md)
 
 ### Generate a library
 

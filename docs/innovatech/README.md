@@ -18,7 +18,7 @@ alias ivt="SMTP=email-smtp.us-east-1.amazonaws.com MAIL_PORT=587 MAIL_ACCOUNT=<A
 
 3) You can now start the api with the development server command, this will synchronize your database with the entities of the backend project.
 
-4) You'll need to run the following command in order to have a username in the application `npm run seed`. When the command finished you can run the development server again and start using the app.
+4) You'll need to run the following command in order to have a username in the application `npm run innovatech:seed`. When the command finished you can run the development server again and start using the app.
 
 ### Development server
 Run `ivt nx serve innovatech-api` for a dev server. Navigate to http://localhost:3333/. The app will automatically reload if you change any of the source files.

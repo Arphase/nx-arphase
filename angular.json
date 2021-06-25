@@ -4,7 +4,7 @@
     "defaultCollection": "@nrwl/angular",
     "analytics": false
   },
-  "defaultProject": "innovatech-app",
+  "defaultProject": "musicr-store",
   "schematics": {
     "@nrwl/angular:application": {
       "style": "less",
@@ -96,16 +96,6 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
               "serviceWorker": true,
               "ngswConfigPath": "apps/innovatech/app/ngsw-config.json"
             },
@@ -123,16 +113,6 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
               "serviceWorker": true,
               "ngswConfigPath": "apps/innovatech/app/ngsw-config.json"
             }
@@ -1387,7 +1367,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/musicr/store",
+            "outputPath": "dist/musicr-store/browser",
             "index": "apps/musicr/store/src/index.html",
             "main": "apps/musicr/store/src/main.ts",
             "polyfills": "apps/musicr/store/src/polyfills.ts",
@@ -1399,48 +1379,32 @@
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
               "fileReplacements": [
                 {
                   "replace": "apps/musicr/store/src/environments/environment.ts",
                   "with": "apps/musicr/store/src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
             }
-          },
-          "defaultConfiguration": "production"
+          }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "musicr-store:build"
+          },
           "configurations": {
             "production": {
               "browserTarget": "musicr-store:build:production"
-            },
-            "development": {
-              "browserTarget": "musicr-store:build:development"
             }
-          },
-          "defaultConfiguration": "development"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -1460,6 +1424,80 @@
           "options": {
             "jestConfig": "apps/musicr/store/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/musicr-store/server",
+            "main": "apps/musicr/store/server.ts",
+            "tsConfig": "apps/musicr/store/tsconfig.server.json",
+            "externalDependencies": [
+              "@nestjs/common",
+              "@nestjs/core",
+              "@nestjs/microservices",
+              "@nestjs/microservices/microservices-module",
+              "@nestjs/websockets",
+              "@nestjs/websockets/socket-module",
+              "cache-manager",
+              "aws-sdk",
+              "pg",
+              "pg-native",
+              "sqlite3",
+              "react-native-sqlite-storage",
+              "mssql",
+              "sql.js",
+              "better-sqlite3",
+              "ioredis",
+              "redis",
+              "typeorm-aurora-data-api-driver",
+              "pg-query-strea",
+              "oracledb",
+              "mysql2",
+              "mysql",
+              "hdb-pool",
+              "@sap/hana-client",
+              "mongodb",
+              "react-native-sqlite-storage",
+              "typeorm"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/musicr/store/src/environments/environment.ts",
+                  "with": "apps/musicr/store/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": false
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "musicr-store:build",
+            "serverTarget": "musicr-store:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "musicr-store:build:production",
+              "serverTarget": "musicr-store:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "musicr-store:build:production",
+            "serverTarget": "musicr-store:server:production",
+            "routes": ["/"]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }
@@ -1512,18 +1550,6 @@
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
               "fileReplacements": [
                 {
                   "replace": "apps/musicr/admin/src/environments/environment.ts",
@@ -1615,7 +1641,8 @@
             "outputPath": "dist/apps/musicr/api",
             "main": "apps/musicr/api/src/main.ts",
             "tsConfig": "apps/musicr/api/tsconfig.app.json",
-            "assets": ["apps/musicr/api/src/assets"]
+            "assets": ["apps/musicr/api/src/assets"],
+            "maxWorkers": 1
           },
           "configurations": {
             "production": {
@@ -1634,7 +1661,9 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "musicr-api:build"
+            "buildTarget": "musicr-api:build",
+            "inspect": true,
+            "port": 7777
           }
         },
         "lint": {
@@ -1779,6 +1808,48 @@
           "outputs": ["coverage/libs/arphase/common"],
           "options": {
             "jestConfig": "libs/arphase/common/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "musicr-api-categories": {
+      "root": "libs/musicr/api/categories",
+      "sourceRoot": "libs/musicr/api/categories/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/categories/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/categories"],
+          "options": {
+            "jestConfig": "libs/musicr/api/categories/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "musicr-api-subcategories": {
+      "root": "libs/musicr/api/subcategories",
+      "sourceRoot": "libs/musicr/api/subcategories/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/subcategories/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/subcategories"],
+          "options": {
+            "jestConfig": "libs/musicr/api/subcategories/jest.config.js",
             "passWithNoTests": true
           }
         }
