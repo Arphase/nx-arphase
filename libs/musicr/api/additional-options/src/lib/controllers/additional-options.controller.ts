@@ -9,7 +9,7 @@ export class AdditionalOptionsController {
   constructor(private additionalOptionsService: AdditionalOptionsService) {}
 
   @Put()
-  updateProductComponents(
+  updateAdditionalOptions(
     @Body() updateAdditionalOptionsPayload: UpdateAdditionalOptionsDto
   ): Promise<AdditionalOption[]> {
     return this.additionalOptionsService.updateadditionalOptions(updateAdditionalOptionsPayload);

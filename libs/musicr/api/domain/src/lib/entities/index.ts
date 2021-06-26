@@ -7,7 +7,6 @@ export * from './order-product.entity';
 export * from './order.entity';
 export * from './price-option-photo.entity';
 export * from './price-option.entity';
-export * from './product-component.entity';
 export * from './product-photo.entity';
 export * from './product.entity';
 export * from './social-event.entity';

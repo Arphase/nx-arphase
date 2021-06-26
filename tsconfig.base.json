@@ -193,9 +193,6 @@
       "@musicr/api/domain": [
         "libs/musicr/api/domain/src/index.ts"
       ],
-      "@musicr/api/product-components": [
-        "libs/musicr/api/product-components/src/index.ts"
-      ],
       "@musicr/api/products/feature": [
         "libs/musicr/api/products/feature/src/index.ts"
       ],
