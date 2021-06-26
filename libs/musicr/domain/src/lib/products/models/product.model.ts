@@ -1,7 +1,6 @@
 import { OrderProduct } from '../../orders';
 import { AdditionalOption } from './additional-option.model';
 import { PriceOption } from './price-option.model';
-import { ProductPhoto } from './product-photo.model';
 import { Subcategory } from './subcategory.model';
 
 export interface Product {
@@ -11,10 +10,10 @@ export interface Product {
   disclaimer?: string;
   description?: string;
   productComponents: string[];
+  photos: number[];
   subcategoryId?: number;
   subcategory?: Subcategory;
   additionalOptions?: AdditionalOption[];
   orderProducts?: OrderProduct[];
   priceOptions?: PriceOption[];
-  productPhotos?: ProductPhoto[];
 }

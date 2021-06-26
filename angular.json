@@ -1568,6 +1568,27 @@
         }
       }
     },
+    "musicr-api-photos": {
+      "root": "libs/musicr/api/photos",
+      "sourceRoot": "libs/musicr/api/photos/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/photos/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/photos"],
+          "options": {
+            "jestConfig": "libs/musicr/api/photos/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "musicr-api-products-feature": {
       "root": "libs/musicr/api/products/feature",
       "sourceRoot": "libs/musicr/api/products/feature/src",

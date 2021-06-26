@@ -1,4 +1,4 @@
-import { AdditionalOption, OrderProduct, PriceOption, Product, ProductPhoto, Subcategory } from '@musicr/domain';
+import { AdditionalOption, OrderProduct, PriceOption, Product, Subcategory } from '@musicr/domain';
 import {
   BaseEntity,
   Column,
@@ -15,7 +15,6 @@ import {
 import { AdditionalOptionEntity } from './additional-option.entity';
 import { OrderProductEntity } from './order-product.entity';
 import { PriceOptionEntity } from './price-option.entity';
-import { ProductPhotoEntity } from './product-photo.entity';
 import { SubcategoryEntity } from './subcategory.entity';
 
 @Entity('product')
@@ -42,8 +41,11 @@ export class ProductEntity extends BaseEntity implements Product {
   @Column({ nullable: true })
   description?: string;
 
-  @Column('text', { array: true })
+  @Column('text', { array: true, default: [] })
   productComponents: string[];
+
+  @Column('integer', { array: true, default: [] })
+  photos: number[];
 
   @Column({ nullable: true })
   subcategoryId?: number;
@@ -69,10 +71,4 @@ export class ProductEntity extends BaseEntity implements Product {
     eager: true,
   })
   priceOptions: PriceOption[];
-
-  @OneToMany(() => ProductPhotoEntity, productPhoto => productPhoto.product, {
-    cascade: true,
-    eager: true,
-  })
-  productPhotos: ProductPhoto[];
 }
