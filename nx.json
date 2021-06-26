@@ -183,6 +183,9 @@
     "musicr-api": {
       "tags": ["domain:musicr", "domain:musicr:api", "executable:api"]
     },
+    "musicr-api-additional-options": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+    },
     "musicr-api-auth": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
@@ -195,8 +198,11 @@
     "musicr-api-product-components": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
-    "musicr-api-products": {
+    "musicr-api-products-feature": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+    },
+    "musicr-api-products-util": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:util"]
     },
     "musicr-api-subcategories": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]

@@ -1,5 +1,6 @@
 import { AuthModule } from '@musicr/api/auth';
-import { ProductComponentRepository, ProductRepository } from '@musicr/api/domain';
+import { ProductComponentRepository } from '@musicr/api/domain';
+import { ProductsUtilModule } from '@musicr/api/products/util';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -7,7 +8,7 @@ import { ProductComponentsController } from './controllers/product-components.co
 import { ProductComponentsService } from './services/product-components.service';
 
 @Module({
-  imports: [AuthModule, TypeOrmModule.forFeature([ProductRepository, ProductComponentRepository])],
+  imports: [AuthModule, ProductsUtilModule, TypeOrmModule.forFeature([ProductComponentRepository])],
   controllers: [ProductComponentsController],
   providers: [ProductComponentsService],
 })

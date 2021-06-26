@@ -2,16 +2,17 @@ import { UpdateProductPropertiesDto, UpdateProductPropertyDto } from '@musicr/ap
 import { Type } from 'class-transformer';
 import { IsBoolean, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 
-export class UpdateProductComponentsDto implements UpdateProductPropertiesDto {
-  @Type(() => UpdateProductComponentDto)
+export class UpdateAdditionalOptionsDto implements UpdateProductPropertiesDto {
+  @Type(() => UpdateAdditionalOptionDto)
   @ValidateNested({ each: true })
-  productComponents: UpdateProductComponentDto[];
+  additionalOptions: UpdateAdditionalOptionDto[];
 
   @IsNotEmpty()
   @IsNumber()
   productId: number;
 }
-export class UpdateProductComponentDto implements UpdateProductPropertyDto {
+
+export class UpdateAdditionalOptionDto implements UpdateProductPropertyDto {
   @IsOptional()
   @IsNumber()
   id: number;
@@ -22,7 +23,7 @@ export class UpdateProductComponentDto implements UpdateProductPropertyDto {
 
   @IsNotEmpty()
   @IsNumber()
-  order: number;
+  price: number;
 
   @IsOptional()
   @IsBoolean()
