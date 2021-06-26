@@ -1484,6 +1484,27 @@
         }
       }
     },
+    "musicr-api-additional-options": {
+      "root": "libs/musicr/api/additional-options",
+      "sourceRoot": "libs/musicr/api/additional-options/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/additional-options/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/additional-options"],
+          "options": {
+            "jestConfig": "libs/musicr/api/additional-options/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "musicr-api-auth": {
       "root": "libs/musicr/api/auth",
       "sourceRoot": "libs/musicr/api/auth/src",
@@ -1568,22 +1589,43 @@
         }
       }
     },
-    "musicr-api-products": {
-      "root": "libs/musicr/api/products",
-      "sourceRoot": "libs/musicr/api/products/src",
+    "musicr-api-products-feature": {
+      "root": "libs/musicr/api/products/feature",
+      "sourceRoot": "libs/musicr/api/products/feature/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/products/**/*.ts"]
+            "lintFilePatterns": ["libs/musicr/api/products/feature/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/products"],
+          "outputs": ["coverage/libs/musicr/api/products/feature"],
           "options": {
-            "jestConfig": "libs/musicr/api/products/jest.config.js",
+            "jestConfig": "libs/musicr/api/products/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "musicr-api-products-util": {
+      "root": "libs/musicr/api/products/util",
+      "sourceRoot": "libs/musicr/api/products/util/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/products/util/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/products/util"],
+          "options": {
+            "jestConfig": "libs/musicr/api/products/util/jest.config.js",
             "passWithNoTests": true
           }
         }

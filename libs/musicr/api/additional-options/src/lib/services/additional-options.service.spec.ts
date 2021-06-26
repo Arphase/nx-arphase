@@ -1,22 +1,22 @@
-import { ProductComponentRepository } from '@musicr/api/domain';
+import { AdditionalOptionRepository } from '@musicr/api/domain';
 import { UpdateProductArrayPropertiesService } from '@musicr/api/products/util';
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { ProductComponentsService } from './product-components.service';
+import { AdditionalOptionsService } from './additional-options.service';
 
-describe('ProductComponentsService', () => {
-  let service: ProductComponentsService;
+describe('AdditionalOptionsService', () => {
+  let service: AdditionalOptionsService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        ProductComponentsService,
-        { provide: ProductComponentRepository, useValue: {} },
+        AdditionalOptionsService,
+        { provide: AdditionalOptionRepository, useValue: {} },
         { provide: UpdateProductArrayPropertiesService, useValue: {} },
       ],
     }).compile();
 
-    service = module.get<ProductComponentsService>(ProductComponentsService);
+    service = module.get<AdditionalOptionsService>(AdditionalOptionsService);
   });
 
   it('should be defined', () => {
