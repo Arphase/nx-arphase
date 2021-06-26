@@ -23,8 +23,8 @@
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <div nz-menu>
     <div nz-menu-item>
-      <ivt-searchbar [showIcon]="false"
-                     (valueChange)="filterOptionsText($event)"></ivt-searchbar>
+      <aps-searchbar [showIcon]="false"
+                     (valueChange)="filterOptionsText($event)"></aps-searchbar>
     </div>
     <nz-empty *ngIf="!hasVisibleOptions"></nz-empty>
     <nz-checkbox-wrapper (nzOnChange)="onFilterChange($event)">

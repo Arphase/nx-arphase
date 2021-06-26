@@ -1,11 +1,11 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
-import { IvtSearchbarComponent } from './searchbar.component';
+import { ApsSearchbarComponent } from './searchbar.component';
 
-describe('IvtSearchbarComponent', () => {
-  let spectator: Spectator<IvtSearchbarComponent>;
+describe('ApsSearchbarComponent', () => {
+  let spectator: Spectator<ApsSearchbarComponent>;
   const createComponent = createComponentFactory({
-    component: IvtSearchbarComponent,
+    component: ApsSearchbarComponent,
     shallow: true,
   });
 

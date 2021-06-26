@@ -9,14 +9,14 @@ export interface ApsColumn {
 }
 
 export interface ApsColumnSizes {
-  [BoostrapGridBreakpoints.xs]?: number | string;
-  [BoostrapGridBreakpoints.sm]?: number | string;
-  [BoostrapGridBreakpoints.md]?: number | string;
-  [BoostrapGridBreakpoints.lg]?: number | string;
-  [BoostrapGridBreakpoints.xl]?: number | string;
+  [GridBreakpoints.xs]?: number | string;
+  [GridBreakpoints.sm]?: number | string;
+  [GridBreakpoints.md]?: number | string;
+  [GridBreakpoints.lg]?: number | string;
+  [GridBreakpoints.xl]?: number | string;
 }
 
-export enum BoostrapGridBreakpoints {
+export enum GridBreakpoints {
   /**
    *  Extra small < 576px
    */

@@ -22,13 +22,13 @@ export interface CheckboxOption {
 }
 
 @Component({
-  selector: 'ivt-checkbox-filter',
+  selector: 'aps-checkbox-filter',
   templateUrl: './checkbox-filter.component.html',
   styleUrls: ['./checkbox-filter.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class IvtCheckboxFilterComponent implements OnChanges {
+export class ApsCheckboxFilterComponent implements OnChanges {
   @ViewChild(CdkVirtualScrollViewport) viewport: CdkVirtualScrollViewport;
   @Input() label: string;
   @Input() options: CheckboxOption[] = [];

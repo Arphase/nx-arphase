@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   ApsAutoErrorModule,
-  IvtEmptyModule,
-  IvtPhoneModule,
-  IvtSearchbarModule,
-  IvtUppercaseModule,
+  ApsEmptyModule,
+  ApsPhoneModule,
+  ApsSearchbarModule,
+  ApsUppercaseModule,
 } from '@arphase/ui';
 import { IvtAddressFormModule } from '@innovatech/ui/addresses/ui';
 import { GroupsDataModule } from '@innovatech/ui/groups/data';
@@ -54,11 +54,11 @@ import { GroupsComponent } from './groups.component';
     ReactiveFormsModule,
     NzIconModule,
     IvtAddressFormModule,
-    IvtEmptyModule,
+    ApsEmptyModule,
     NzEmptyModule,
     NzPageHeaderModule,
-    IvtSearchbarModule,
-    IvtPhoneModule,
+    ApsSearchbarModule,
+    ApsPhoneModule,
     NzCardModule,
     NzButtonModule,
     NgxMaskModule,
@@ -74,7 +74,7 @@ import { GroupsComponent } from './groups.component';
     NzSpaceModule,
     NzDividerModule,
     NzTableModule,
-    IvtUppercaseModule,
+    ApsUppercaseModule,
     NzTransferModule,
     NzAlertModule,
     NzSpinModule,

@@ -4,26 +4,21 @@
         [nzType]="active ? 'primary' : 'default'"
         [nzDropdownMenu]="menu"
         [nzClickHide]="false">
-
   {{ mappedTitle || label }}
-
   <i *ngIf="!active; else removeFilter"
      nz-icon
      nzType="down"
-
      class="right"></i>
 
   <ng-template #removeFilter>
     <i nz-icon
        nzType="close"
-
        class="delete-icon right"
        (click)="deleteFilters(); $event.stopPropagation()"></i>
   </ng-template>
 </button>
 
 <nz-dropdown-menu #menu="nzDropdownMenu">
-
   <nz-radio-group [formControl]="control">
     <ul nz-menu>
       <li *ngFor="let option of options"

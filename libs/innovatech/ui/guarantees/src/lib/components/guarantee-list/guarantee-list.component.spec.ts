@@ -1,4 +1,4 @@
-import { IvtEmptyPipe } from '@arphase/ui';
+import { ApsEmptyPipe } from '@arphase/ui';
 import { IvtFolioPipe } from '@innovatech/ui/core/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { MockPipe } from 'ng-mocks';
@@ -11,7 +11,7 @@ describe('GuaranteeListComponent', () => {
   const createComponent = createComponentFactory({
     component: GuaranteeListComponent,
     imports: [NzDropDownModule],
-    declarations: [MockPipe(IvtFolioPipe), MockPipe(IvtEmptyPipe)],
+    declarations: [MockPipe(IvtFolioPipe), MockPipe(ApsEmptyPipe)],
     shallow: true,
   });
 

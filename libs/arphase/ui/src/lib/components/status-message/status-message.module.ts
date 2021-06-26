@@ -4,11 +4,11 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 
-import { IvtStatusMessageComponent } from './status-message.component';
+import { ApsStatusMessageComponent } from './status-message.component';
 
 @NgModule({
-  declarations: [IvtStatusMessageComponent],
+  declarations: [ApsStatusMessageComponent],
   imports: [CommonModule, NzIconModule, NzAlertModule, NzSpaceModule],
-  exports: [IvtStatusMessageComponent],
+  exports: [ApsStatusMessageComponent],
 })
-export class IvtStatusMessageModule {}
+export class ApsStatusMessageModule {}

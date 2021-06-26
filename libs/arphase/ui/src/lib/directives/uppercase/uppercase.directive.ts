@@ -5,9 +5,9 @@ import { filter } from 'rxjs/operators';
 
 @UntilDestroy()
 @Directive({
-  selector: '[ivtUppercase]',
+  selector: '[apsUppercase]',
 })
-export class IvtUppercaseDirective implements AfterViewInit {
+export class ApsUppercaseDirective implements AfterViewInit {
   constructor(@Host() private ngControl: NgControl) {}
 
   ngAfterViewInit() {
@@ -17,11 +17,7 @@ export class IvtUppercaseDirective implements AfterViewInit {
           filter(value => typeof value === 'string'),
           untilDestroyed(this)
         )
-        .subscribe(value =>
-          this.ngControl.control.patchValue(value.toUpperCase(), {
-            emitEvent: false,
-          })
-        );
+        .subscribe(value => this.ngControl.control.patchValue(value.toUpperCase(), { emitEvent: false }));
     }
   }
 }

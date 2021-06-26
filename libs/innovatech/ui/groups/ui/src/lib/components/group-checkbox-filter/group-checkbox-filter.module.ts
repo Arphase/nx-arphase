@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { GroupsDataModule } from '@innovatech/ui/groups/data';
-import { IvtCheckboxFilterModule } from '@arphase/ui';
+import { ApsCheckboxFilterModule } from '@arphase/ui';
 
 import { GroupCheckboxFilterComponent } from './group-checkbox-filter.component';
 
 @NgModule({
-  imports: [CommonModule, IvtCheckboxFilterModule, GroupsDataModule],
+  imports: [CommonModule, ApsCheckboxFilterModule, GroupsDataModule],
   declarations: [GroupCheckboxFilterComponent],
   exports: [GroupCheckboxFilterComponent],
 })
