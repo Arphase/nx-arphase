@@ -9,8 +9,8 @@ export interface Product {
   price: number;
   disclaimer?: string;
   description?: string;
-  productComponents: string[];
-  photos: number[];
+  productComponents?: string[];
+  photos?: number[];
   subcategoryId?: number;
   subcategory?: Subcategory;
   additionalOptions?: AdditionalOption[];

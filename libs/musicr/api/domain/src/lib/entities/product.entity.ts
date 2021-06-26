@@ -41,10 +41,10 @@ export class ProductEntity extends BaseEntity implements Product {
   @Column({ nullable: true })
   description?: string;
 
-  @Column('text', { array: true, default: [] })
+  @Column('text', { array: true, nullable: true })
   productComponents: string[];
 
-  @Column('integer', { array: true, default: [] })
+  @Column('int', { array: true, nullable: true })
   photos: number[];
 
   @Column({ nullable: true })

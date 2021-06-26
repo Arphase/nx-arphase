@@ -12,7 +12,7 @@ describe('ProductsService', () => {
 
   beforeEach(async () => {
     db = await dbTestConnection;
-    repository = await db.getRepository(ProductEntity);
+    repository = db.getRepository(ProductEntity);
     service = new ProductsService(repository);
   });
 
@@ -25,7 +25,7 @@ describe('ProductsService', () => {
       name: 'test',
       price: 1000,
       disclaimer: 'test disclaimer',
-      description: 'test description',
+      description: 'test description'
     };
 
     const expected: ApsCollectionResponse<Product> = {

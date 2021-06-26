@@ -1,3 +1,5 @@
+import { createConnection } from 'typeorm';
+
 import {
   AdditionalOptionEntity,
   AddressEntity,
@@ -12,8 +14,7 @@ import {
   SocialEventEntity,
   SubcategoryEntity,
   UserEntity,
-} from '@musicr/api/domain';
-import { createConnection } from 'typeorm';
+} from './entities';
 
 const entities = [
   AdditionalOptionEntity,
