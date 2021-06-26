@@ -1,15 +1,15 @@
-import { AdditionalOptionRepository, ProductComponentRepository, ProductRepository } from '@musicr/api/domain';
-import { AdditionalOption, ProductComponent } from '@musicr/domain';
+import { AdditionalOptionRepository, ProductRepository } from '@musicr/api/domain';
+import { AdditionalOption } from '@musicr/domain';
 import { ConflictException, Inject, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { Connection } from 'typeorm';
 
 import { UpdateProductPropertiesDto, UpdateProductPropertyDto } from '../dto/update-product-properties-array.dto';
 
-export type ProductProperty = ProductComponent | AdditionalOption;
+export type ProductProperty = AdditionalOption;
 
 export interface UpdateProductPropertiesOptions {
-  propertiesName: 'productComponents' | 'additionalOptions';
-  repository: ProductComponentRepository | AdditionalOptionRepository;
+  propertiesName: 'additionalOptions';
+  repository:  AdditionalOptionRepository;
   propertyLabel: string;
 }
 

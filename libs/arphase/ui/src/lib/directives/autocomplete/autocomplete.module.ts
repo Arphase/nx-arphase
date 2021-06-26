@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { AutocompleteDirective } from './autocomplete.directive';
+import { ApsAutocompleteDirective } from './autocomplete.directive';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [AutocompleteDirective],
-  exports: [AutocompleteDirective],
+  declarations: [ApsAutocompleteDirective],
+  exports: [ApsAutocompleteDirective],
 })
-export class AutocompleteModule {}
+export class ApsAutocompleteModule {}

@@ -1,4 +1,4 @@
-import { IvtEmptyPipe } from '@arphase/ui';
+import { ApsEmptyPipe } from '@arphase/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { MockPipe } from 'ng-mocks';
 
@@ -8,7 +8,7 @@ describe('GroupListComponent', () => {
   let spectator: Spectator<GroupListComponent>;
   const createComponent = createComponentFactory({
     component: GroupListComponent,
-    declarations: [MockPipe(IvtEmptyPipe)],
+    declarations: [MockPipe(ApsEmptyPipe)],
     shallow: true,
   });
 

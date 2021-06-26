@@ -1,11 +1,11 @@
 import { createPipeFactory, SpectatorPipe } from '@ngneat/spectator';
 
-import { IvtPhonePipe } from './phone.pipe';
+import { ApsPhonePipe } from './phone.pipe';
 
-describe('IvtPhonePipe', () => {
-  let spectator: SpectatorPipe<IvtPhonePipe>;
+describe('ApsPhonePipe', () => {
+  let spectator: SpectatorPipe<ApsPhonePipe>;
   const createPipe = createPipeFactory({
-    pipe: IvtPhonePipe,
+    pipe: ApsPhonePipe,
   });
 
   beforeEach(() => (spectator = createPipe()));

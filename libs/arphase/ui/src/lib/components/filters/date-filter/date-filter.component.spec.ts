@@ -2,12 +2,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
-import { IvtDateFilterComponent } from './date-filter.component';
+import { ApsDateFilterComponent } from './date-filter.component';
 
-describe('IvtDateFilterComponent', () => {
-  let spectator: Spectator<IvtDateFilterComponent>;
+describe('ApsDateFilterComponent', () => {
+  let spectator: Spectator<ApsDateFilterComponent>;
   const createComponent = createComponentFactory({
-    component: IvtDateFilterComponent,
+    component: ApsDateFilterComponent,
     imports: [ReactiveFormsModule, NzDropDownModule],
     shallow: true,
   });

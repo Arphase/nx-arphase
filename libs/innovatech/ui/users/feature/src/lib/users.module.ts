@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IvtCheckboxFilterModule, IvtEmptyModule, IvtSearchbarModule } from '@arphase/ui';
+import { ApsCheckboxFilterModule, ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui';
 import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';
@@ -24,11 +24,11 @@ import { UsersComponent } from './users.component';
   imports: [
     CommonModule,
     UsersRoutingModule,
-    IvtSearchbarModule,
+    ApsSearchbarModule,
     NzIconModule,
-    IvtCheckboxFilterModule,
+    ApsCheckboxFilterModule,
     NzEmptyModule,
-    IvtEmptyModule,
+    ApsEmptyModule,
     NzButtonModule,
     NzCardModule,
     NzGridModule,

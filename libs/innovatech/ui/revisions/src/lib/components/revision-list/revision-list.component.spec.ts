@@ -1,4 +1,4 @@
-import { IvtEmptyPipe } from '@arphase/ui';
+import { ApsEmptyPipe } from '@arphase/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { MockPipe } from 'ng-mocks';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
@@ -10,7 +10,7 @@ describe('RevisionListComponent', () => {
   const createComponent = createComponentFactory({
     component: RevisionListComponent,
     imports: [NzDropDownModule],
-    declarations: [MockPipe(IvtEmptyPipe)],
+    declarations: [MockPipe(ApsEmptyPipe)],
     shallow: true,
   });
 

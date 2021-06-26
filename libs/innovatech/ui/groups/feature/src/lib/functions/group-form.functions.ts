@@ -3,6 +3,7 @@ import { ApsValidators, setFormArrayValue } from '@arphase/ui';
 import { Company, Group, User } from '@innovatech/common/domain';
 import { generateId, RfcValidatorTypes } from '@innovatech/common/utils';
 import { createAddressForm } from '@innovatech/ui/addresses/ui';
+import { IvtValidators } from '@innovatech/ui/core/util';
 
 export function createGroupForm(group?: Group): FormGroup {
   const form = new FormGroup({
@@ -35,7 +36,7 @@ export function createCompanyForm(company?: Company): FormGroup {
     phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
     address: createAddressForm(),
     users: new FormArray([]),
-    rfc: new FormControl(null, [ApsValidators.required, ApsValidators.rfc(RfcValidatorTypes.moral)]),
+    rfc: new FormControl(null, [ApsValidators.required, IvtValidators.rfc(RfcValidatorTypes.moral)]),
     contact: new FormControl(null, ApsValidators.required),
   });
 

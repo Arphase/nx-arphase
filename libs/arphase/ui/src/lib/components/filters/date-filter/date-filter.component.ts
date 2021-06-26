@@ -9,7 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
-import { formatDate } from '@innovatech/common/utils';
+import { formatDate } from '@arphase/common';
 import dayjs from 'dayjs';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { tap } from 'rxjs/operators';
@@ -21,13 +21,13 @@ export interface Dates {
 }
 
 @Component({
-  selector: 'ivt-date-filter',
+  selector: 'aps-date-filter',
   templateUrl: './date-filter.component.html',
   styleUrls: ['./date-filter.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class IvtDateFilterComponent implements OnChanges {
+export class ApsDateFilterComponent implements OnChanges {
   @Input() dateTypeOptions: NzSelectOptionInterface[] = [];
   @Input() currentDates: Dates;
   @Input() label: string;

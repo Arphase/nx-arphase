@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateProductDto {
   @IsNotEmpty()
@@ -20,4 +20,8 @@ export class CreateProductDto {
   @IsNotEmpty()
   @IsNumber()
   subcategoryId: number;
+
+  @IsNotEmpty()
+  @IsArray()
+  productComponents: string[];
 }

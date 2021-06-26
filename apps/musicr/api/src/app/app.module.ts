@@ -1,7 +1,7 @@
 import { AdditionalOptionsModule } from '@musicr/api/additional-options';
 import { AuthModule } from '@musicr/api/auth';
 import { CategoriesModule } from '@musicr/api/categories';
-import { ProductComponentsModule } from '@musicr/api/product-components';
+import { PhotosModule } from '@musicr/api/photos';
 import { ProductsModule } from '@musicr/api/products/feature';
 import { SubcategoriesModule } from '@musicr/api/subcategories';
 import { Module } from '@nestjs/common';
@@ -9,11 +9,11 @@ import { AngularUniversalModule } from '@nestjs/ng-universal';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { AppServerModule } from '../../../store/src/app/app.server.module';
 import config from '../db/config/ormconfig';
 import { AppController } from './app.controller';
 
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 @Module({
   imports: [
     AngularUniversalModule.forRoot({
@@ -24,8 +24,8 @@ import { AppController } from './app.controller';
     AdditionalOptionsModule,
     AuthModule,
     CategoriesModule,
+    PhotosModule,
     ProductsModule,
-    ProductComponentsModule,
     SubcategoriesModule,
   ],
   controllers: [AppController],

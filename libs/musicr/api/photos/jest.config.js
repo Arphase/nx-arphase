@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'musicr-api-product-components',
+  displayName: 'musicr-api-photos',
   preset: '../../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../../coverage/libs/musicr/api/product-components',
+  coverageDirectory: '../../../../coverage/libs/musicr/api/photos',
 };

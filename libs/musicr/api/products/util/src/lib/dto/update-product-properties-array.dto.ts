@@ -1,5 +1,4 @@
 export type UpdateProductPropertiesDto = {
-  productComponents?: UpdateProductPropertyDto[];
   additionalOptions?: UpdateProductPropertyDto[];
   productId: number;
 };

@@ -2,12 +2,12 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
-import { IvtCheckboxFilterComponent } from './checkbox-filter.component';
+import { ApsCheckboxFilterComponent } from './checkbox-filter.component';
 
-describe('IvtCheckboxFilterComponent', () => {
-  let spectator: Spectator<IvtCheckboxFilterComponent>;
+describe('ApsCheckboxFilterComponent', () => {
+  let spectator: Spectator<ApsCheckboxFilterComponent>;
   const createComponent = createComponentFactory({
-    component: IvtCheckboxFilterComponent,
+    component: ApsCheckboxFilterComponent,
     imports: [NzDropDownModule, ScrollingModule],
     shallow: true,
   });

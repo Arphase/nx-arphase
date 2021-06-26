@@ -56,8 +56,8 @@ module.exports = {
     '<rootDir>/libs/arphase/common',
     '<rootDir>/libs/musicr/api/categories',
     '<rootDir>/libs/musicr/api/subcategories',
-    '<rootDir>/libs/musicr/api/product-components',
     '<rootDir>/libs/musicr/api/additional-options',
     '<rootDir>/libs/musicr/api/products/util',
+    '<rootDir>/libs/musicr/api/photos',
   ],
 };

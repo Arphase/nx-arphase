@@ -11,10 +11,10 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
-import { IvtDateFilterComponent } from './date-filter.component';
+import { ApsDateFilterComponent } from './date-filter.component';
 
 @NgModule({
-  declarations: [IvtDateFilterComponent],
+  declarations: [ApsDateFilterComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -29,6 +29,6 @@ import { IvtDateFilterComponent } from './date-filter.component';
     NzTypographyModule,
     NzTagModule,
   ],
-  exports: [IvtDateFilterComponent],
+  exports: [ApsDateFilterComponent],
 })
-export class IvtDateFilterModule {}
+export class ApsDateFilterModule {}

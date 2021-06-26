@@ -4,11 +4,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 
-import { IvtSearchbarComponent } from './searchbar.component';
+import { ApsSearchbarComponent } from './searchbar.component';
 
 @NgModule({
-  declarations: [IvtSearchbarComponent],
+  declarations: [ApsSearchbarComponent],
   imports: [CommonModule, ReactiveFormsModule, NzInputModule, NzIconModule],
-  exports: [IvtSearchbarComponent],
+  exports: [ApsSearchbarComponent],
 })
-export class IvtSearchbarModule {}
+export class ApsSearchbarModule {}

@@ -9,11 +9,11 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ApsValidators } from '@arphase/ui';
+import { ApsFormComponent, ApsValidators } from '@arphase/ui';
 import { Guarantee, isVehicleElegible, PersonTypes, UserRoles, Vehicle } from '@innovatech/common/domain';
 import { filterNil, RfcValidatorTypes } from '@innovatech/common/utils';
 import { createAddressForm } from '@innovatech/ui/addresses/ui';
-import { ApsFormComponent } from '@arphase/ui';
+import { IvtValidators } from '@innovatech/ui/core/util';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -34,7 +34,7 @@ export function createGuaranteeForm(): FormGroup {
     client: new FormGroup({
       id: new FormControl(null),
       personType: new FormControl(null, ApsValidators.required),
-      rfc: new FormControl(null, [ApsValidators.required, ApsValidators.rfc(RfcValidatorTypes.any)]),
+      rfc: new FormControl(null, [ApsValidators.required, IvtValidators.rfc(RfcValidatorTypes.any)]),
       phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
       email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
       salesPlace: new FormControl(null, ApsValidators.required),

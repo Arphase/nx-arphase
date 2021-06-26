@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApsAutoErrorModule, IvtStatusMessageModule } from '@arphase/ui';
+import { ApsAutoErrorModule, ApsStatusMessageModule } from '@arphase/ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -27,7 +27,7 @@ import { CompanyLogoComponent } from './components/company-logo/company-logo.com
     ReactiveFormsModule,
     AuthRoutingModule,
     NzCardModule,
-    IvtStatusMessageModule,
+    ApsStatusMessageModule,
     NzGridModule,
     NzButtonModule,
     NzFormModule,
