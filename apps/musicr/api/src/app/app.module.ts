@@ -2,7 +2,7 @@ import { AdditionalOptionsModule } from '@musicr/api/additional-options';
 import { AuthModule } from '@musicr/api/auth';
 import { CategoriesModule } from '@musicr/api/categories';
 import { PhotosModule } from '@musicr/api/photos';
-import { ProductsModule } from '@musicr/api/products/feature';
+import { ProductsModule } from '@musicr/api/products';
 import { SubcategoriesModule } from '@musicr/api/subcategories';
 import { Module } from '@nestjs/common';
 import { AngularUniversalModule } from '@nestjs/ng-universal';
