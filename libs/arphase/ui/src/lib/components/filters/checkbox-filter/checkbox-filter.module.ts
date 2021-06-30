@@ -8,11 +8,11 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-import { IvtSearchbarModule } from '../../searchbar';
-import { IvtCheckboxFilterComponent } from './checkbox-filter.component';
+import { ApsSearchbarModule } from '../../searchbar';
+import { ApsCheckboxFilterComponent } from './checkbox-filter.component';
 
 @NgModule({
-  declarations: [IvtCheckboxFilterComponent],
+  declarations: [ApsCheckboxFilterComponent],
   imports: [
     CommonModule,
     NzDropDownModule,
@@ -20,10 +20,10 @@ import { IvtCheckboxFilterComponent } from './checkbox-filter.component';
     NzIconModule,
     FormsModule,
     NzButtonModule,
-    IvtSearchbarModule,
+    ApsSearchbarModule,
     ScrollingModule,
     NzEmptyModule,
   ],
-  exports: [IvtCheckboxFilterComponent],
+  exports: [ApsCheckboxFilterComponent],
 })
-export class IvtCheckboxFilterModule {}
+export class ApsCheckboxFilterModule {}

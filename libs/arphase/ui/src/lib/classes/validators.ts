@@ -1,22 +1,21 @@
 import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
-import { specialCharactersForPassword } from '@innovatech/common/domain';
-import { rfcValidations, RfcValidatorTypes } from '@innovatech/common/utils';
 
 export type ApsErrorsOptions = { es: string } & Record<string, unknown>;
 export type ApsValidationErrors = Record<string, ApsErrorsOptions>;
 
 export class ApsValidators {
-  static required(control: AbstractControl): ApsValidationErrors {
+  static required(control: AbstractControl): ApsValidationErrors | null {
     if (Validators.required(control) === null) {
       return null;
     }
     return { required: { es: `El campo es requerido` } };
   }
 
-  static requiredNumber(c: AbstractControl): ApsValidationErrors {
+  static requiredNumber(c: AbstractControl): ApsValidationErrors | null {
     if (!c.value && c.value !== 0) {
       return { requiredNumber: { es: `El campo es requerido` } };
     }
+    return null;
   }
 
   static minLength(minLength: number): ValidatorFn {
@@ -55,30 +54,23 @@ export class ApsValidators {
     };
   }
 
-  static rfc(type: RfcValidatorTypes = RfcValidatorTypes.any): ValidatorFn {
-    return (control: AbstractControl): ApsValidationErrors => {
-      if (!rfcValidations[type](control.value)) {
-        return { rfc: { es: `El campo tiene un formato inválido de RFC` } };
-      }
-      return null;
-    };
-  }
-
-  static phone(c: AbstractControl): ApsValidationErrors {
+  static phone(c: AbstractControl): ApsValidationErrors | null {
     const phoneExpression = /^\d{10}$/;
     if (c.value && !phoneExpression.test(c.value)) {
       return { phone: { es: `El campo tiene un formato inválido de teléfono` } };
     }
+    return null;
   }
 
-  static email(c: AbstractControl): ApsValidationErrors {
+  static email(c: AbstractControl): ApsValidationErrors | null {
     const emailExpression = /\S+@\S+\.\S+/;
     if (c.value && !emailExpression.test(c.value)) {
       return { email: { es: `El campo tiene un formato inválido de correo` } };
     }
+    return null;
   }
 
-  static uppercase(control: AbstractControl): ApsValidationErrors {
+  static uppercase(control: AbstractControl): ApsValidationErrors | null {
     const value = String(control.value);
     if (value.toLowerCase() === value) {
       return { uppercase: { es: `El campo debe tener al menos una mayúscula` } };
@@ -86,26 +78,18 @@ export class ApsValidators {
     return null;
   }
 
-  static specialCharacter(control: AbstractControl): ApsValidationErrors {
-    const value = String(control.value);
-    if (!specialCharactersForPassword.some(character => value.includes(character))) {
-      return { specialCharacter: { es: 'El campo debe tener al menos un caracter especial' } };
-    }
-    return null;
-  }
-
-  static matchPasswords(fieldOne: string, fieldTwo: string): ValidatorFn {
-    return (control: AbstractControl): ApsValidationErrors => {
-      if (control.get(fieldOne).value !== control.get(fieldTwo).value) {
+  static matchPasswords(fieldOne: string, fieldTwo: string): ValidatorFn | null {
+    return (control: AbstractControl): ApsValidationErrors | null => {
+      if (control.get(fieldOne)?.value !== control.get(fieldTwo)?.value) {
         return { matchPasswords: { es: 'Las contraseñas no coinciden ' } };
       }
       return null;
     };
   }
 
-  static minMax(minField: string, maxField: string): ValidatorFn {
-    return (control: AbstractControl): ApsValidationErrors => {
-      if (Number(control.get(minField).value) > Number(control.get(maxField).value)) {
+  static minMax(minField: string, maxField: string): ValidatorFn | null {
+    return (control: AbstractControl): ApsValidationErrors | null => {
+      if (Number(control.get(minField)?.value) > Number(control.get(maxField)?.value)) {
         return { minMax: { es: `El campo ${minField} no puede ser mayor a ${maxField}` } };
       }
       return null;

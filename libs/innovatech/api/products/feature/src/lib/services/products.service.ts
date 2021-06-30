@@ -1,14 +1,9 @@
+import { createCollectionResponse } from '@arphase/api';
+import { ApsCollectionResponse } from '@arphase/common';
 import { filterCommonQuery, tobase64 } from '@innovatech/api/core/util';
 import { CompanyRepository, GroupRepository, ProductRepository } from '@innovatech/api/domain';
 import { generateProductPdf, getProductPdfTemplate } from '@innovatech/api/products/utils';
-import {
-  Company,
-  createCollectionResponse,
-  IvtCollectionResponse,
-  Product,
-  User,
-  UserRoles,
-} from '@innovatech/common/domain';
+import { Company, Product, User, UserRoles } from '@innovatech/common/domain';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import dayjs from 'dayjs';
@@ -28,7 +23,7 @@ export class ProductService {
     @InjectRepository(GroupRepository) private groupRepository: GroupRepository
   ) {}
 
-  async getProducts(filterDto: GetProductsDto, user: Partial<User>): Promise<IvtCollectionResponse<Product>> {
+  async getProducts(filterDto: GetProductsDto, user: Partial<User>): Promise<ApsCollectionResponse<Product>> {
     const { text, pageSize, pageIndex, groupId, year, horsePower } = filterDto;
     const query = this.productRepository.createQueryBuilder('product').addSelect('product.logo').groupBy('product.id');
 

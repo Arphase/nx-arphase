@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { IvtEmptyPipe } from './empty.pipe';
+import { ApsEmptyPipe } from './empty.pipe';
 
 @NgModule({
-  declarations: [IvtEmptyPipe],
+  declarations: [ApsEmptyPipe],
   imports: [CommonModule],
-  exports: [IvtEmptyPipe],
+  exports: [ApsEmptyPipe],
 })
-export class IvtEmptyModule {}
+export class ApsEmptyModule {}

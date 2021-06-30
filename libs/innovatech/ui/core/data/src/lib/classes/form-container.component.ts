@@ -1,17 +1,15 @@
 import { ChangeDetectionStrategy, Component, Optional, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ComponentCanDeactivate } from '@arphase/ui';
+import { ApsFormComponent, ComponentCanDeactivate } from '@arphase/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { EntityOp, ofEntityOp } from '@ngrx/data';
-import { get } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { of } from 'rxjs';
 import { filter, mapTo } from 'rxjs/operators';
 
 import { IvtCollectionService } from '../services/collection.service';
-import { IvtFormComponent } from './form.component';
 
 @UntilDestroy()
 @Component({
@@ -20,7 +18,7 @@ import { IvtFormComponent } from './form.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IvtFormContainerComponent<T = any> implements ComponentCanDeactivate {
-  @ViewChild('form', { static: false }) formComponent: IvtFormComponent<T>;
+  @ViewChild('form', { static: false }) formComponent: ApsFormComponent<T>;
   loading$ = this.entityCollectionService.loadingModify$ || of();
   currentItem$ = this.entityCollectionService.currentItem$ || of();
   showSuccess$ = (this.entityCollectionService.entityActions$ || of()).pipe(
@@ -93,7 +91,7 @@ export class IvtFormContainerComponent<T = any> implements ComponentCanDeactivat
 
   submit(item: T): void {
     this.form?.markAsUntouched();
-    get(item, 'id')
+    item['id']
       ? this.entityCollectionService.update(item, { isOptimistic: false })
       : this.entityCollectionService.add(item, { isOptimistic: false });
   }

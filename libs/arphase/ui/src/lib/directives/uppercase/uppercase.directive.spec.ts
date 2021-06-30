@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
 
-import { IvtUppercaseDirective } from './uppercase.directive';
+import { ApsUppercaseDirective } from './uppercase.directive';
 
-describe('IvtUppercaseDirective', () => {
+describe('ApsUppercaseDirective', () => {
   @Component({
     selector: 'test',
   })
@@ -12,15 +12,15 @@ describe('IvtUppercaseDirective', () => {
     form = new FormGroup({ test: new FormControl() });
   }
 
-  let spectator: SpectatorDirective<IvtUppercaseDirective>;
+  let spectator: SpectatorDirective<ApsUppercaseDirective>;
   const createDirective = createDirectiveFactory({
-    directive: IvtUppercaseDirective,
+    directive: ApsUppercaseDirective,
     host: TestHostcomponent,
     imports: [ReactiveFormsModule],
   });
 
   beforeEach(() => {
-    spectator = createDirective('<form [formGroup]="form"> <input formControlName="test" ivtUppercase /></form>');
+    spectator = createDirective('<form [formGroup]="form"> <input formControlName="test" apsUppercase /></form>');
   });
 
   it('should create', () => {

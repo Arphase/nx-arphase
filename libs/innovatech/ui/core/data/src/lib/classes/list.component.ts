@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { IvtCollectionResponseInfo } from '@innovatech/common/domain';
+import { ApsCollectionResponseInfo } from '@arphase/common';
 import { QueryParams } from '@ngrx/data';
-import { isEqual } from 'lodash-es';
 
 import { CrudEvents } from '../models/crud-events.model';
 
@@ -14,7 +13,7 @@ export class IvtListComponent<T = any> implements CrudEvents<T> {
   @Input() list: T[] = [];
   @Input() loading: boolean;
   @Input() loadingExcel: boolean;
-  @Input() info: IvtCollectionResponseInfo;
+  @Input() info: ApsCollectionResponseInfo;
   @Input() queryParams: QueryParams = {
     resetList: String(true),
     pageIndex: 1 as any,
@@ -27,6 +26,7 @@ export class IvtListComponent<T = any> implements CrudEvents<T> {
   @Output() toggle = new EventEmitter<T>();
   @Output() filterItems = new EventEmitter<unknown>();
   @Output() exportExcel = new EventEmitter<void>();
+  test;
 
   get total(): number {
     return this?.info?.total || 0;

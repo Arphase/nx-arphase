@@ -8,12 +8,12 @@ export enum MessageStatus {
 }
 
 @Component({
-  selector: 'ivt-status-message',
+  selector: 'aps-status-message',
   templateUrl: './status-message.component.html',
   styleUrls: ['./status-message.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IvtStatusMessageComponent {
+export class ApsStatusMessageComponent {
   @Input() status = MessageStatus.normal;
   @Input() message: string;
   messageStatus = MessageStatus;

@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { IvtPhonePipe } from './phone.pipe';
+import { ApsPhonePipe } from './phone.pipe';
 
 @NgModule({
-  declarations: [IvtPhonePipe],
+  declarations: [ApsPhonePipe],
   imports: [CommonModule],
-  exports: [IvtPhonePipe],
+  exports: [ApsPhonePipe],
 })
-export class IvtPhoneModule {}
+export class ApsPhoneModule {}

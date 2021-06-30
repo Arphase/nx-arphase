@@ -5,7 +5,7 @@ import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Router, RouteReuseStrategy } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthEffects, AuthState, fromAuth, TokenInterceptorService } from '@innovatech/ui/auth/data';
 import {
   AdditionalEntityCollectionReducerMethodsFactory,
@@ -15,9 +15,6 @@ import {
   INNOVATECH_CONFIGURATION,
   InnovatechConfiguration,
 } from '@innovatech/ui/core/data';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { EntityCollectionReducerMethodsFactory, EntityDataModule, PersistenceResultHandler } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
 import { routerReducer, RouterReducerState, StoreRouterConnectingModule } from '@ngrx/router-store';
@@ -57,7 +54,6 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     HttpClientModule,
     NzModalModule,
     NzMessageModule,
-    IonicModule.forRoot(),
     NgxMaskModule.forRoot(),
     NzIconModule.forRoot(icons),
     StoreModule.forRoot(reducers),
@@ -70,10 +66,7 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: INNOVATECH_CONFIGURATION, useValue: INNOVATECH_CONFIGURATION_VALUE },
     { provide: ErrorHandler, useValue: Sentry.createErrorHandler({}) },
     { provide: Sentry.TraceService, deps: [Router] },

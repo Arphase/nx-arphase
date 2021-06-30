@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Group } from '@innovatech/common/domain';
-import { IvtFormComponent } from '@innovatech/ui/core/data';
+import { ApsFormComponent } from '@arphase/ui';
 
 @Component({
   selector: 'ivt-user-form',
@@ -8,4 +8,4 @@ import { IvtFormComponent } from '@innovatech/ui/core/data';
   styleUrls: ['./user-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserFormComponent extends IvtFormComponent<Group> {}
+export class UserFormComponent extends ApsFormComponent<Group> {}

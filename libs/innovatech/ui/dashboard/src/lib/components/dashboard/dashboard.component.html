@@ -24,11 +24,11 @@
              nzAlign="middle"
              [nzGutter]="[12, 12]">
           <div nz-col>
-            <ivt-date-filter label="Fecha"
+            <aps-date-filter label="Fecha"
                              [dateTypeOptions]="dateTypeOptions"
                              [currentDates]="queryParams?.dates"
                              (filterItems)="updateDateFilter($event)">
-            </ivt-date-filter>
+            </aps-date-filter>
           </div>
           <ng-container *ivtReadPermission>
             <div nz-col>

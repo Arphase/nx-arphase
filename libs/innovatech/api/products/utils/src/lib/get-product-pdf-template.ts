@@ -1,5 +1,6 @@
+import { formatPhone } from '@arphase/common';
 import { IMAGE_ASSETS_PATH } from '@innovatech/api/core/util';
-import { Client, formatAddress, formatPhone, Guarantee, transformFolio } from '@innovatech/common/domain';
+import { Client, formatAddress, Guarantee, transformFolio } from '@innovatech/common/domain';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 

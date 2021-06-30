@@ -1,0 +1,31 @@
+import {
+  AdditionalOptionEntity,
+  AddressEntity,
+  CategoryEntity,
+  CustomerEntity,
+  OrderEntity,
+  OrderProductAdditionalOptionEntity,
+  OrderProductEntity,
+  PhotoEntity,
+  PriceOptionEntity,
+  ProductEntity,
+  SocialEventEntity,
+  SubcategoryEntity,
+  UserEntity,
+} from '@musicr/api/domain';
+
+export const ENTITIES = [
+  AdditionalOptionEntity,
+  AddressEntity,
+  CategoryEntity,
+  CustomerEntity,
+  OrderEntity,
+  OrderProductAdditionalOptionEntity,
+  OrderProductEntity,
+  PhotoEntity,
+  PriceOptionEntity,
+  ProductEntity,
+  SocialEventEntity,
+  SubcategoryEntity,
+  UserEntity,
+];

@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-  IvtCheckboxFilterModule,
-  IvtDateFilterModule,
-  IvtEmptyModule,
-  IvtRadioFilterModule,
-  IvtSearchbarModule,
+  ApsCheckboxFilterModule,
+  ApsDateFilterModule,
+  ApsEmptyModule,
+  ApsRadioFilterModule,
+  ApsSearchbarModule,
 } from '@arphase/ui';
 import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
@@ -45,9 +45,9 @@ import { VehiclesComponent } from './vehicles.component';
     VehiclesDataModule,
     ReactiveFormsModule,
     NzPageHeaderModule,
-    IvtSearchbarModule,
+    ApsSearchbarModule,
     NzEmptyModule,
-    IvtEmptyModule,
+    ApsEmptyModule,
     NzIconModule,
     NzCardModule,
     NzButtonModule,
@@ -60,9 +60,9 @@ import { VehiclesComponent } from './vehicles.component';
     NzTableModule,
     NzSpaceModule,
     NzTagModule,
-    IvtDateFilterModule,
-    IvtRadioFilterModule,
-    IvtCheckboxFilterModule,
+    ApsDateFilterModule,
+    ApsRadioFilterModule,
+    ApsCheckboxFilterModule,
     PermissionsModule,
     NzAlertModule,
     GroupCheckboxFilterModule,

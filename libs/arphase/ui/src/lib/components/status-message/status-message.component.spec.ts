@@ -1,11 +1,11 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
-import { IvtStatusMessageComponent } from './status-message.component';
+import { ApsStatusMessageComponent } from './status-message.component';
 
-describe('IvtStatusMessageComponent', () => {
-  let spectator: Spectator<IvtStatusMessageComponent>;
+describe('ApsStatusMessageComponent', () => {
+  let spectator: Spectator<ApsStatusMessageComponent>;
   const createComponent = createComponentFactory({
-    component: IvtStatusMessageComponent,
+    component: ApsStatusMessageComponent,
     shallow: true,
   });
 

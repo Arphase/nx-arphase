@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IvtDateFilterModule } from '@arphase/ui';
+import { ApsDateFilterModule } from '@arphase/ui';
 import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';
@@ -29,7 +29,7 @@ import { reducer } from './state/dashboard.reducer';
     NzCardModule,
     NzIconModule,
     NzEmptyModule,
-    IvtDateFilterModule,
+    ApsDateFilterModule,
     NzGridModule,
     NzDividerModule,
     NzSpaceModule,

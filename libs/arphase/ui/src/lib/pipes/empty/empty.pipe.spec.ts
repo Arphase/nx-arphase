@@ -1,11 +1,11 @@
 import { createPipeFactory, SpectatorPipe } from '@ngneat/spectator';
 
-import { IvtEmptyPipe } from './empty.pipe';
+import { ApsEmptyPipe } from './empty.pipe';
 
-describe('IvtEmptyPipe', () => {
-  let spectator: SpectatorPipe<IvtEmptyPipe>;
+describe('ApsEmptyPipe', () => {
+  let spectator: SpectatorPipe<ApsEmptyPipe>;
   const createPipe = createPipeFactory({
-    pipe: IvtEmptyPipe,
+    pipe: ApsEmptyPipe,
   });
 
   beforeEach(() => (spectator = createPipe()));

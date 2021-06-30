@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
+import { ApsFormComponent, updateFormControlsValueAndValidity } from '@arphase/ui';
 import { Company } from '@innovatech/common/domain';
-import { IvtFormComponent, updateFormControlsValueAndValidity } from '@innovatech/ui/core/data';
 
 import { createCompanyForm, createUserForm, patchCompanyForm } from '../../functions/group-form.functions';
 
@@ -11,7 +11,7 @@ import { createCompanyForm, createUserForm, patchCompanyForm } from '../../funct
   styleUrls: ['./company-form-dialog.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CompanyFormDialogComponent extends IvtFormComponent<Company> implements OnInit {
+export class CompanyFormDialogComponent extends ApsFormComponent<Company> implements OnInit {
   @Input() company: Company;
   form = createCompanyForm();
 

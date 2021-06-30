@@ -1,5 +1,6 @@
+import { ApsCollectionResponse } from '@arphase/common';
 import { GetUser } from '@innovatech/api/auth/data';
-import { IvtCollectionResponse, Product, User } from '@innovatech/common/domain';
+import { Product, User } from '@innovatech/common/domain';
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
@@ -19,7 +20,7 @@ export class ProductController {
   async getProducts(
     @Query() filterDto: GetProductsDto,
     @GetUser() user: Partial<User>
-  ): Promise<IvtCollectionResponse<Product>> {
+  ): Promise<ApsCollectionResponse<Product>> {
     return this.productService.getProducts(filterDto, user);
   }
 

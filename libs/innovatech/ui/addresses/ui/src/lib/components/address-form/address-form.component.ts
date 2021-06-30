@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Address } from '@innovatech/common/domain';
-import { IvtFormComponent } from '@innovatech/ui/core/data';
+import { ApsFormComponent } from '@arphase/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { filter, startWith, switchMap } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { createAddressForm, IvtAddressFormService } from './address-form.service
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [IvtAddressFormService],
 })
-export class IvtAddressFormComponent extends IvtFormComponent<Address> implements OnInit {
+export class IvtAddressFormComponent extends ApsFormComponent<Address> implements OnInit {
   form = createAddressForm();
   showAddressSelects: boolean;
   countryOptions: NzSelectOptionInterface[] = [];

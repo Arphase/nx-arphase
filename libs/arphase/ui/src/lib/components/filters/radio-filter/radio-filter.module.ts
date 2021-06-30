@@ -6,11 +6,11 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 
-import { IvtRadioFilterComponent } from './radio-filter.component';
+import { ApsRadioFilterComponent } from './radio-filter.component';
 
 @NgModule({
-  declarations: [IvtRadioFilterComponent],
+  declarations: [ApsRadioFilterComponent],
   imports: [CommonModule, ReactiveFormsModule, NzDropDownModule, NzIconModule, NzRadioModule, NzButtonModule],
-  exports: [IvtRadioFilterComponent],
+  exports: [ApsRadioFilterComponent],
 })
-export class IvtRadioFilterModule {}
+export class ApsRadioFilterModule {}
