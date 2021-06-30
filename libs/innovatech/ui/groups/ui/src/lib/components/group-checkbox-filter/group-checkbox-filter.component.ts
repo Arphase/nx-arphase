@@ -10,7 +10,7 @@ import { GroupFilterCollectionService } from '@innovatech/ui/groups/data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupCheckboxFilterComponent extends CollectionCheckboxFilterComponent<Group> {
-  sortValue = [{ key: 'user.firstName', value: 'ascend' }];
+  sortValue = [{ key: 'group.name', value: 'ascend' }];
   filterPropertyName = 'groupIds';
 
   constructor(protected groupFilterCollectionService: GroupFilterCollectionService) {
