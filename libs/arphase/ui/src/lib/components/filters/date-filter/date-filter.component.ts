@@ -11,8 +11,11 @@ import {
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { formatDate } from '@arphase/common';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { tap } from 'rxjs/operators';
+
+dayjs.extend(utc);
 
 export interface Dates {
   startDate: string;
@@ -32,7 +35,9 @@ export class ApsDateFilterComponent implements OnChanges {
   @Input() currentDates: Dates;
   @Input() label: string;
   startDate = '';
+  startDateLabel = '';
   endDate = '';
+  endDateLabel = '';
   dateType = '';
   showError = false;
   control: FormGroup;
@@ -41,11 +46,7 @@ export class ApsDateFilterComponent implements OnChanges {
 
   constructor(private fb: FormBuilder) {
     this.control = this.fb.group(
-      {
-        dateType: null,
-        startDate: null,
-        endDate: null,
-      },
+      { dateType: null, startDate: null, endDate: null },
       {
         validators: (control: AbstractControl) => {
           const { startDate, endDate, dateType } = control.value;
@@ -60,8 +61,10 @@ export class ApsDateFilterComponent implements OnChanges {
     this.control.valueChanges
       .pipe(
         tap(({ startDate, endDate, dateType }) => {
-          this.startDate = formatDate(startDate);
-          this.endDate = formatDate(endDate);
+          this.startDate = startDate ? dayjs(startDate).utc().format() : '';
+          this.startDateLabel = formatDate(startDate);
+          this.endDate = endDate ? dayjs(endDate).utc().format() : '';
+          this.endDateLabel = formatDate(endDate);
           this.dateType = dateType;
           this.setFilter();
         })
@@ -81,17 +84,15 @@ export class ApsDateFilterComponent implements OnChanges {
       this.currentDates?.endDate
     ) {
       const { startDate, endDate, dateType } = this.currentDates;
-      this.control.get('startDate').patchValue(dayjs(startDate, 'DD/MM/YY').toDate(), {
-        emitEvent: false,
-      });
-      this.control.get('endDate').patchValue(dayjs(endDate, 'DD/MM/YY').toDate(), {
-        emitEvent: false,
-      });
+      this.control.get('startDate').patchValue(startDate, { emitEvent: false });
+      this.control.get('endDate').patchValue(dayjs(endDate).toDate(), { emitEvent: false });
       this.control.get('dateType').patchValue(dateType, { emitEvent: false });
       this.startDate = startDate;
+      this.startDateLabel = formatDate(dayjs(startDate).toDate());
       this.endDate = endDate;
+      this.endDateLabel = formatDate(dayjs(endDate).toDate());
       this.dateType = dateType;
-      this.mappedTitle = `${this.startDate} - ${this.endDate}`;
+      this.mappedTitle = `${this.startDateLabel} - ${this.endDateLabel}`;
     }
   }
 
@@ -110,7 +111,7 @@ export class ApsDateFilterComponent implements OnChanges {
     }
 
     if (this.control.valid) {
-      this.mappedTitle = `${this.startDate} - ${this.endDate}`;
+      this.mappedTitle = `${this.startDateLabel} - ${this.endDateLabel}`;
 
       this.filterItems.emit({
         startDate: this.startDate,
@@ -129,10 +130,6 @@ export class ApsDateFilterComponent implements OnChanges {
     this.dateType = '';
     this.setFilter();
     this.mappedTitle = this.label;
-    this.filterItems.emit({
-      startDate: '',
-      endDate: '',
-      dateType: '',
-    });
+    this.filterItems.emit({ startDate: '', endDate: '', dateType: '' });
   }
 }
