@@ -1,7 +1,5 @@
 import { SortDirection } from '@arphase/common';
-import dayjs from 'dayjs';
 import { BaseEntity, SelectQueryBuilder } from 'typeorm';
-import { startOfDay, endOfDay } from 'date-fns';
 
 import { ApsCollectionFilterDto } from '../dto';
 
@@ -18,10 +16,7 @@ export function filterCollectionQuery(
 
   if (startDate && endDate) {
     const date = `${entityName}.${dateType || 'createdAt'}`;
-    query.andWhere(`${date} >= :startDate and ${date} <= :endDate`, {
-      startDate: startOfDay(new Date(startDate)).toISOString(),
-      endDate: endOfDay(new Date(endDate)).toISOString(),
-    });
+    query.andWhere(`${date} >= :startDate and ${date} <= :endDate`, { startDate, endDate });
   }
 
   if (pageSize && pageIndex) {
