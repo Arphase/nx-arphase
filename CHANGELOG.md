@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.1](https://github.com/Arphase/nx-arphase/compare/v3.1.0...v3.1.1) (2021-07-01)
+
+
+### Bug Fixes
+
+* **innovatech/app:** send date range filter as utc to match database records ([382e341](https://github.com/Arphase/nx-arphase/commit/382e3416c927ab723a17849d57dd86be9e05da59))
+
 ## [3.1.0](https://github.com/Arphase/nx-arphase/compare/v3.0.4...v3.1.0) (2021-06-30)
 
 
