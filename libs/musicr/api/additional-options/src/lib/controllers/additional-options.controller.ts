@@ -1,3 +1,4 @@
+import { ApsCollectionResponse } from '@arphase/common';
 import { AdditionalOption } from '@musicr/domain';
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
@@ -13,7 +14,7 @@ export class AdditionalOptionsController {
   constructor(private additionalOptionsService: AdditionalOptionsService) {}
 
   @Get()
-  getAdditionalOptions(@Query() filterDto: GetAdditionalOptionsDto): Promise<AdditionalOption[]> {
+  getAdditionalOptions(@Query() filterDto: GetAdditionalOptionsDto): Promise<ApsCollectionResponse<AdditionalOption>> {
     return this.additionalOptionsService.getAdditionalOptions(filterDto);
   }
 

@@ -198,6 +198,9 @@
     "musicr-api-photos": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
+    "musicr-api-price-options": {
+      "tags": []
+    },
     "musicr-api-products": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },

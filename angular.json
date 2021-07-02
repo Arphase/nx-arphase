@@ -1589,6 +1589,27 @@
         }
       }
     },
+    "musicr-api-price-options": {
+      "root": "libs/musicr/api/price-options",
+      "sourceRoot": "libs/musicr/api/price-options/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/price-options/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/price-options"],
+          "options": {
+            "jestConfig": "libs/musicr/api/price-options/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "musicr-api-products": {
       "root": "libs/musicr/api/products",
       "sourceRoot": "libs/musicr/api/products/src",

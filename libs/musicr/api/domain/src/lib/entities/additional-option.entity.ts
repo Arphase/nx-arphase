@@ -18,7 +18,6 @@ export class AdditionalOptionEntity extends BaseEntity implements AdditionalOpti
   @Column()
   productId: number;
 
-
   @ManyToOne(() => ProductEntity, product => product.additionalOptions)
   @JoinColumn({ name: 'productId' })
   product: Product;
