@@ -122,7 +122,8 @@
           "builder": "@nrwl/node:execute",
           "options": {
             "buildTarget": "innovatech-api:build",
-            "inspect": true
+            "inspect": true,
+            "port": 7777
           }
         },
         "lint": {

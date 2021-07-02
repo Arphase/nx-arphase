@@ -27,13 +27,11 @@ export class ApsCollectionFilterDto {
 
   @IsOptional()
   @IsNotEmpty()
-  @IsString()
-  startDate?: string;
+  startDate?: Date;
 
   @IsOptional()
   @IsNotEmpty()
-  @IsString()
-  endDate?: string;
+  endDate?: Date;
 
   @IsOptional()
   @IsNotEmpty()

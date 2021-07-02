@@ -2,9 +2,11 @@ import { HttpParams } from '@angular/common/http';
 import { DEFAULT_PAGE_SIZE } from '@arphase/common';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import { omit } from 'lodash-es';
 
 dayjs.extend(customParseFormat);
+dayjs.extend(LocalizedFormat);
 
 export function buildQueryParams(queryParams): HttpParams {
   let params: Record<string, string | string[]> = {
@@ -25,8 +27,8 @@ export function buildQueryParams(queryParams): HttpParams {
     .forEach(key => (params[key] = queryParams[key]));
 
   if (queryParams.dates && queryParams.dates.startDate && queryParams.dates.endDate) {
-    params.startDate = parseDate(queryParams.dates.startDate);
-    params.endDate = parseDate(queryParams.dates.endDate);
+    params.startDate = queryParams.dates.startDate;
+    params.endDate = queryParams.dates.endDate;
 
     if (queryParams.dates.dateType) {
       params.dateType = queryParams.dates.dateType;
@@ -47,8 +49,4 @@ export function buildQueryParams(queryParams): HttpParams {
   return new HttpParams({
     fromObject: omit(params, ['dates', 'noDates', 'filter', 'resetList']),
   });
-}
-
-function parseDate(date: string | Date): string {
-  return dayjs(date, 'DD/MM/YY').format('YYYY-MM-DD');
 }
