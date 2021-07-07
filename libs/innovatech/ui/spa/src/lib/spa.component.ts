@@ -62,7 +62,7 @@ export class SpaComponent implements OnInit {
       icon: 'user',
       header: 'Usuarios',
       path: ['users'],
-      display$: this.permissionService.hasReadPermission([UserRoles.superAdmin, UserRoles.agencyUser]),
+      display$: this.permissionService.hasReadPermission([UserRoles.superAdmin]),
     },
     {
       icon: 'car',
