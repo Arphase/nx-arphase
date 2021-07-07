@@ -45,7 +45,7 @@ export class ProductEntity extends BaseEntity implements Product {
   productComponents: string[];
 
   @Column('int', { array: true, nullable: true })
-  photos: number[];
+  photoIds: number[];
 
   @Column({ nullable: true })
   subcategoryId?: number;

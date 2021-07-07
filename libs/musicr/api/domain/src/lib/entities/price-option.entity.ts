@@ -18,6 +18,9 @@ export class PriceOptionEntity extends BaseEntity implements PriceOption {
   @Column()
   productId: number;
 
+  @Column('int', { array: true, nullable: true })
+  photoIds: number[];
+
   @ManyToOne(() => ProductEntity, product => product.priceOptions)
   @JoinColumn({ name: 'productId' })
   product: Product;

@@ -1,5 +1,6 @@
 import { OrderProduct } from '../../orders';
 import { AdditionalOption } from './additional-option.model';
+import { Photo } from './photo.model';
 import { PriceOption } from './price-option.model';
 import { Subcategory } from './subcategory.model';
 
@@ -10,7 +11,8 @@ export interface Product {
   disclaimer?: string;
   description?: string;
   productComponents?: string[];
-  photos?: number[];
+  photoIds?: number[];
+  photos?: Photo[];
   subcategoryId?: number;
   subcategory?: Subcategory;
   additionalOptions?: AdditionalOption[];

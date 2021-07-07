@@ -1590,43 +1590,43 @@
         }
       }
     },
-    "musicr-api-products-feature": {
-      "root": "libs/musicr/api/products/feature",
-      "sourceRoot": "libs/musicr/api/products/feature/src",
+    "musicr-api-price-options": {
+      "root": "libs/musicr/api/price-options",
+      "sourceRoot": "libs/musicr/api/price-options/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/products/feature/**/*.ts"]
+            "lintFilePatterns": ["libs/musicr/api/price-options/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/products/feature"],
+          "outputs": ["coverage/libs/musicr/api/price-options"],
           "options": {
-            "jestConfig": "libs/musicr/api/products/feature/jest.config.js",
+            "jestConfig": "libs/musicr/api/price-options/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "musicr-api-products-util": {
-      "root": "libs/musicr/api/products/util",
-      "sourceRoot": "libs/musicr/api/products/util/src",
+    "musicr-api-products": {
+      "root": "libs/musicr/api/products",
+      "sourceRoot": "libs/musicr/api/products/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/products/util/**/*.ts"]
+            "lintFilePatterns": ["libs/musicr/api/products/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/products/util"],
+          "outputs": ["coverage/libs/musicr/api/products"],
           "options": {
-            "jestConfig": "libs/musicr/api/products/util/jest.config.js",
+            "jestConfig": "libs/musicr/api/products/jest.config.js",
             "passWithNoTests": true
           }
         }

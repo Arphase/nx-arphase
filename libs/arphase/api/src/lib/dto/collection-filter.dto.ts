@@ -17,10 +17,12 @@ export class ApsCollectionFilterDto {
 
   @IsOptional()
   @IsNotEmpty()
+  @IsString()
   sort?: string;
 
   @IsOptional()
   @IsNotEmpty()
+  @IsString()
   direction?: string;
 
   @IsOptional()
@@ -33,6 +35,7 @@ export class ApsCollectionFilterDto {
 
   @IsOptional()
   @IsNotEmpty()
+  @IsString()
   dateType?: string;
 
   @IsOptional()
