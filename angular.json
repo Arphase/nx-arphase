@@ -1271,22 +1271,22 @@
     },
     "innovatech-ui-vehicles-ui": {
       "projectType": "library",
-      "root": "libs/innovatech/ui/vehicles/feature",
-      "sourceRoot": "libs/innovatech/ui/vehicles/feature/src",
+      "root": "libs/innovatech/ui/vehicles/ui",
+      "sourceRoot": "libs/innovatech/ui/vehicles/ui/src",
       "prefix": "ivt",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/innovatech/ui/vehicles/feature/src/**/*.ts",
-              "libs/innovatech/ui/vehicles/feature/src/**/*.html"
+              "libs/innovatech/ui/vehicles/ui/src/**/*.ts",
+              "libs/innovatech/ui/vehicles/ui/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/vehicles/feature"],
+          "outputs": ["coverage/libs/innovatech/ui/vehicles/ui"],
           "options": {
             "jestConfig": "libs/innovatech/ui/vehicles/feature/jest.config.js",
             "passWithNoTests": true

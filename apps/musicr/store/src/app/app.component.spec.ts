@@ -1,21 +1,17 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { AppComponent } from './app.component';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
-  });
+let spectator: Spectator<AppComponent>;
+const createComponent = createComponentFactory({
+  component: AppComponent,
+  imports: [RouterTestingModule],
+  shallow: true,
+});
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+beforeEach(() => (spectator = createComponent()));
+
+it('should create', () => {
+  expect(spectator.component).toBeTruthy();
 });
