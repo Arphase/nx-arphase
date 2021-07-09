@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IvtDirtyFormGuard } from '@arphase/ui';
+import { ApsDirtyFormGuard } from '@arphase/ui';
 
 import { ProductFormContainerComponent } from './containers/product-form-container/product-form-container.component';
 import { ProductListContainerComponent } from './containers/product-list-container/product-list-container.component';
@@ -19,13 +19,13 @@ export const routes: Routes = [
       {
         path: 'new',
         component: ProductFormContainerComponent,
-        canDeactivate: [IvtDirtyFormGuard],
+        canDeactivate: [ApsDirtyFormGuard],
         resolve: { resolvedProduct: ProductResolverService },
       },
       {
         path: ':id',
         component: ProductFormContainerComponent,
-        canDeactivate: [IvtDirtyFormGuard],
+        canDeactivate: [ApsDirtyFormGuard],
         resolve: { resolvedProduct: ProductResolverService },
       },
     ],

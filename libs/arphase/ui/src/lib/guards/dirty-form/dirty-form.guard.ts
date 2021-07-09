@@ -10,7 +10,7 @@ export interface ComponentCanDeactivate {
 @Injectable({
   providedIn: 'root',
 })
-export class IvtDirtyFormGuard implements CanDeactivate<ComponentCanDeactivate> {
+export class ApsDirtyFormGuard implements CanDeactivate<ComponentCanDeactivate> {
   constructor(private modalService: NzModalService) {}
 
   canDeactivate(component: ComponentCanDeactivate): boolean | Observable<boolean> {

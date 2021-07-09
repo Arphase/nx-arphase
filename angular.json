@@ -603,30 +603,6 @@
           "options": {
             "lintFilePatterns": ["apps/innovatech/app/**/*.ts"]
           }
-        },
-        "ionic-cordova-build": {
-          "builder": "@ionic/angular-toolkit:cordova-build",
-          "options": {
-            "browserTarget": "innovatech-app:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "innovatech-app:build:production"
-            }
-          }
-        },
-        "ionic-cordova-serve": {
-          "builder": "@ionic/angular-toolkit:cordova-serve",
-          "options": {
-            "cordovaBuildTarget": "innovatech-app:ionic-cordova-build",
-            "devServerTarget": "innovatech-app:serve"
-          },
-          "configurations": {
-            "production": {
-              "cordovaBuildTarget": "innovatech-app:ionic-cordova-build:production",
-              "devServerTarget": "innovatech-app:serve:production"
-            }
-          }
         }
       }
     },
@@ -1271,22 +1247,22 @@
     },
     "innovatech-ui-vehicles-ui": {
       "projectType": "library",
-      "root": "libs/innovatech/ui/vehicles/feature",
-      "sourceRoot": "libs/innovatech/ui/vehicles/feature/src",
+      "root": "libs/innovatech/ui/vehicles/ui",
+      "sourceRoot": "libs/innovatech/ui/vehicles/ui/src",
       "prefix": "ivt",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/innovatech/ui/vehicles/feature/src/**/*.ts",
-              "libs/innovatech/ui/vehicles/feature/src/**/*.html"
+              "libs/innovatech/ui/vehicles/ui/src/**/*.ts",
+              "libs/innovatech/ui/vehicles/ui/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/vehicles/feature"],
+          "outputs": ["coverage/libs/innovatech/ui/vehicles/ui"],
           "options": {
             "jestConfig": "libs/innovatech/ui/vehicles/feature/jest.config.js",
             "passWithNoTests": true
