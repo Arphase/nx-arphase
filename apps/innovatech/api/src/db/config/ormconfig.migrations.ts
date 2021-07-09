@@ -1,10 +1,10 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-import * as defaultConfig from './ormconfig';
+import defaultConfig from './ormconfig';
 
 const config: TypeOrmModuleOptions = {
   ...defaultConfig,
   migrations: ['apps/innovatech/api/src/db/migrations/**/*.ts'],
 };
 
-export = config;
+export default config;

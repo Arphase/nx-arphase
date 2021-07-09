@@ -4,7 +4,7 @@ env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
   HOST: ${{ secrets.IVT_STAGE_DB_HOST }}
-  DATABASE: ${{ secrets.IVT_STAGE_DB_DATABASE }}
+  DATABASE: ${{ secrets.IVT_STAGE_DB }}
   USERNAME: ${{ secrets.IVT_STAGE_DB_USERNAME }}
   PASSWORD: ${{ secrets.IVT_STAGE_DB_PASSWORD }}
 
