@@ -603,30 +603,6 @@
           "options": {
             "lintFilePatterns": ["apps/innovatech/app/**/*.ts"]
           }
-        },
-        "ionic-cordova-build": {
-          "builder": "@ionic/angular-toolkit:cordova-build",
-          "options": {
-            "browserTarget": "innovatech-app:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "innovatech-app:build:production"
-            }
-          }
-        },
-        "ionic-cordova-serve": {
-          "builder": "@ionic/angular-toolkit:cordova-serve",
-          "options": {
-            "cordovaBuildTarget": "innovatech-app:ionic-cordova-build",
-            "devServerTarget": "innovatech-app:serve"
-          },
-          "configurations": {
-            "production": {
-              "cordovaBuildTarget": "innovatech-app:ionic-cordova-build:production",
-              "devServerTarget": "innovatech-app:serve:production"
-            }
-          }
         }
       }
     },

@@ -1,7 +1,0 @@
-{
-  "name": "innovatech-app",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
