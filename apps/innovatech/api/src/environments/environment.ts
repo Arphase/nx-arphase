@@ -1,18 +1,18 @@
 import { Environment } from './environment.model';
 
 export const environment: Environment = {
-  production: false,
+  production: true,
   databaseConfig: {
     type: 'postgres',
-    host: 'localhost',
+    host: process.env.HOST,
     port: 5432,
-    database: 'innovatech_dev',
-    synchronize: true,
-    username: 'innovatech',
-    password: 'innovatech',
+    database: process.env.DATABASE,
+    synchronize: process.env.SYNCHRONIZE === 'true',
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD,
   },
   server: {
     port: 3333,
   },
-  environmentName: 'dev',
+  environmentName: process.env.ENVIRONMENT_NAME,
 };
