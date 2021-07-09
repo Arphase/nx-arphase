@@ -14,7 +14,7 @@ env:
 on: workflow_dispatch
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
       - uses: bahmutov/npm-install@v1
 
       - name: Build Staging UI
-        run: npx nx build innovatech-app --c=staging
+        run: npx nx build innovatech-app --c=stage
 
       - name: Deploy Staging UI
-        run: npx ts-node scripts/innovatech/ui-stage-deplo
+        run: npx ts-node scripts/innovatech/ui-deploy
