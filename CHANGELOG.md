@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.2](https://github.com/Arphase/nx-arphase/compare/v3.1.0...v3.1.2) (2021-07-09)
+
+
+### Features
+
+* **innovatech/spa:** make users module visible only to superAdmin users ([5408524](https://github.com/Arphase/nx-arphase/commit/54085243741ff30f383789165cde2bd2769b8a32))
+* **musicr/price-options:** [#103](https://github.com/Arphase/nx-arphase/issues/103) API CRUD endpoints ([b7ea745](https://github.com/Arphase/nx-arphase/commit/b7ea7451f7a3cec77a618d565b68060b9e3fe1f0))
+
 ### [3.1.1](https://github.com/Arphase/nx-arphase/compare/v3.1.0...v3.1.1) (2021-07-09)
 
 
