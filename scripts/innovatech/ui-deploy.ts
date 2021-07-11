@@ -23,47 +23,40 @@ async function run() {
       return;
     }
     (data?.Contents || []).forEach(item => {
-      s3.deleteObject({ Bucket, Key: String(item?.Key) }, (err, data) => console.log(`${item?.Key} deleted`));
+      s3.deleteObject({ Bucket, Key: String(item?.Key) }, (err, data) =>
+        err ? console.log(`${item?.Key} wasn't deleted`) : console.log(`${item?.Key} deleted`)
+      );
     });
   });
 
   const distFolderPath = path.join(__dirname, '../../dist/apps/innovatech/app');
 
   function walk(rootdir: string, callback: any, subdir: string) {
-    // is sub-directory
     const isSubdir = subdir ? true : false;
-    // absolute path
     const abspath = subdir ? path.join(rootdir, subdir) : rootdir;
 
-    // read all files in the current directory
     fs.readdirSync(abspath).forEach(filename => {
-      // full file path
       const filepath = path.join(abspath, filename);
-      // check if current path is a directory
       if (fs.statSync(filepath).isDirectory()) {
         walk(rootdir, callback, unixifyPath(path.join(subdir || '', filename || '')));
       } else {
         fs.readFile(filepath, (error, fileContent) => {
-          // if unable to read file contents, throw exception
           if (error) {
             throw error;
           }
-
-          // map the current file with the respective MIME type
           const mimeType = String(mime.lookup(filepath));
 
-          // build S3 PUT object request
           const s3Obj = {
-            // set appropriate S3 Bucket path
             Bucket: isSubdir ? `${Bucket}/${subdir}` : Bucket,
             Key: filename,
             Body: fileContent,
             ContentType: mimeType,
           };
 
-          // upload file to S3
-          s3.putObject(s3Obj, res => {
-            console.log(`Successfully uploaded '${filepath}' with MIME type '${mimeType}'`);
+          s3.putObject(s3Obj, (err, data) => {
+            err
+              ? console.log(`File '${filepath}' wasn't uploaded'`)
+              : console.log(`Successfully uploaded '${filepath}' with MIME type '${mimeType}'`);
           });
         });
       }
