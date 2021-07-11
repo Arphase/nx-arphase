@@ -1,12 +1,12 @@
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
-import { IvtDirtyFormGuard } from './dirty-form.guard';
+import { ApsDirtyFormGuard } from './dirty-form.guard';
 
-describe('IvtDirtyFormGuard', () => {
-  let spectator: SpectatorService<IvtDirtyFormGuard>;
+describe('ApsDirtyFormGuard', () => {
+  let spectator: SpectatorService<ApsDirtyFormGuard>;
   const createService = createServiceFactory({
-    service: IvtDirtyFormGuard,
+    service: ApsDirtyFormGuard,
     mocks: [NzModalService],
   });
 

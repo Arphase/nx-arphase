@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IvtDirtyFormGuard } from '@arphase/ui';
+import { ApsDirtyFormGuard } from '@arphase/ui';
 import { UserRoles } from '@innovatech/common/domain';
 import { RoleGuard } from '@innovatech/ui/auth/data';
 
@@ -25,13 +25,13 @@ export const routes: Routes = [
         data: {
           roles: [UserRoles.agencyUser],
         },
-        canDeactivate: [IvtDirtyFormGuard],
+        canDeactivate: [ApsDirtyFormGuard],
         resolve: { resolvedVehicle: RevisionRequestResolverService },
       },
       {
         path: ':id',
         component: RevisionRequestFormContainerComponent,
-        canDeactivate: [IvtDirtyFormGuard],
+        canDeactivate: [ApsDirtyFormGuard],
         resolve: { resolvedVehicle: RevisionRequestResolverService },
       },
     ],

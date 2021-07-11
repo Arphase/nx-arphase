@@ -1,0 +1,48 @@
+name: Innovatech Staging API Deploy
+
+env:
+  NX_BRANCH: ${{ github.event.number }}
+  NX_RUN_GROUP: ${{ github.run_id }}
+  HOST: ${{ secrets.IVT_STAGE_DB_HOST }}
+  DATABASE: ${{ secrets.IVT_STAGE_DB }}
+  USERNAME: ${{ secrets.IVT_STAGE_DB_USERNAME }}
+  PASSWORD: ${{ secrets.IVT_STAGE_DB_PASSWORD }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: staging
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - uses: bahmutov/npm-install@v1
+
+      - name: Run migrations
+        run: npm run typeorm:run
+
+      - name: Create zip file
+        run: zip -r Archive.zip . -x .git/\* -x .cache/\* -x node_modules/\* -x dist/\* -x .vscode/\*  -x .github/\* -x .tmp/\*
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v16
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID_EB }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY_EB }}
+          application_name: innovatech-api
+          environment_name: IVT-STAGE
+          version_label: ${{ github.event.inputs.version }}
+          region: ${{ secrets.AWS_REGION }}
+          deployment_package: Archive.zip

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IvtDirtyFormGuard } from '@arphase/ui';
+import { ApsDirtyFormGuard } from '@arphase/ui';
 
 import { VehicleFormContainerComponent } from './containers/vehicle-form-container/vehicle-form-container.component';
 import { VehicleListContainerComponent } from './containers/vehicle-list-container/vehicle-list-container.component';
@@ -19,13 +19,13 @@ export const routes: Routes = [
       {
         path: 'new',
         component: VehicleFormContainerComponent,
-        canDeactivate: [IvtDirtyFormGuard],
+        canDeactivate: [ApsDirtyFormGuard],
         resolve: { resolvedVehicle: VehicleResolverService },
       },
       {
         path: ':id',
         component: VehicleFormContainerComponent,
-        canDeactivate: [IvtDirtyFormGuard],
+        canDeactivate: [ApsDirtyFormGuard],
         resolve: { resolvedVehicle: VehicleResolverService },
       },
     ],

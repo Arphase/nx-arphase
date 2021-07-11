@@ -80,16 +80,13 @@ export class ProductService {
   }
 
   async createProduct(createProductDto: CreateProductDto): Promise<Product> {
-    const newProduct = await this.productRepository.create({
-      ...createProductDto,
-    });
+    const newProduct = await this.productRepository.create({ ...createProductDto });
     await newProduct.save();
     return newProduct;
   }
 
   async updateProduct(updateProductDto: UpdateProductDto): Promise<Product> {
-    const updatedProduct = await this.productRepository.save(updateProductDto);
-    return updatedProduct;
+    return await this.productRepository.save(updateProductDto);
   }
 
   async generateProductPdf(generateProductPdfDto: GenerateProductPdfDto, response: Response): Promise<void> {

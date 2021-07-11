@@ -196,13 +196,13 @@
       "tags": ["domain:musicr", "domain:musicr:api", "type:domain-logic"]
     },
     "musicr-api-photos": {
-      "tags": []
-    },
-    "musicr-api-products-feature": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
-    "musicr-api-products-util": {
-      "tags": ["domain:musicr", "domain:musicr:api", "type:util"]
+    "musicr-api-price-options": {
+      "tags": []
+    },
+    "musicr-api-products": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-api-subcategories": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
