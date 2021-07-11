@@ -57,8 +57,6 @@ export class AuthService {
       where: [{ email }],
     });
 
-    console.log(user);
-
     if (user && (await user.validatePassword(password))) {
       return user;
     } else {

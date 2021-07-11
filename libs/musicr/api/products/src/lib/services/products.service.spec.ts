@@ -1,5 +1,5 @@
 import { ApsCollectionResponse } from '@arphase/common';
-import { dbTestConnection, ProductEntity, ProductRepository } from '@musicr/api/domain';
+import { dbTestConnection, PhotoRepository, ProductEntity, ProductRepository } from '@musicr/api/domain';
 import { Product } from '@musicr/domain';
 import { Connection, getConnection } from 'typeorm';
 
@@ -9,11 +9,13 @@ describe('ProductsService', () => {
   let db: Connection;
   let service: ProductsService;
   let repository: ProductRepository;
+  let photoRepository: PhotoRepository;
 
   beforeEach(async () => {
     db = await dbTestConnection;
     repository = db.getRepository(ProductEntity);
-    service = new ProductsService(repository);
+    repository = db.getRepository(ProductEntity);
+    service = new ProductsService(repository, photoRepository);
   });
 
   afterEach(async () => {
@@ -25,7 +27,7 @@ describe('ProductsService', () => {
       name: 'test',
       price: 1000,
       disclaimer: 'test disclaimer',
-      description: 'test description'
+      description: 'test description',
     };
 
     const expected: ApsCollectionResponse<Product> = {
