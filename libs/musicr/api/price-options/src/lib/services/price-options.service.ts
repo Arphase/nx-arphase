@@ -1,5 +1,5 @@
 import { createCollectionResponse, filterCollectionQuery } from '@arphase/api';
-import { ApsCollectionResponse, SortDirection } from '@arphase/common';
+import { ApsCollectionResponse } from '@arphase/common';
 import { PriceOptionRepository } from '@musicr/api/domain';
 import { PriceOption } from '@musicr/domain';
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';

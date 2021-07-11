@@ -1,11 +1,11 @@
-import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsNumber, IsOptional, IsString } from 'class-validator';
 
-export class CreateProductDto {
-  @IsNotEmpty()
+export class UpdateProductDto {
+  @IsOptional()
   @IsString()
   name: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   price: number;
 
@@ -17,16 +17,15 @@ export class CreateProductDto {
   @IsString()
   description?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   subcategoryId: number;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsArray()
   productComponents: string[];
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber({}, { each: true })
   photoIds: number[];
-
 }

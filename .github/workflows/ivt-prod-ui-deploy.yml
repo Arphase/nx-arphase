@@ -32,4 +32,4 @@ jobs:
         run: npx nx build innovatech-app --prod
 
       - name: Deploy Staging UI
-        run: npx ts-node scripts/innovatech/ui-stage-deploy
+        run: npx ts-node scripts/innovatech/ui-deploy

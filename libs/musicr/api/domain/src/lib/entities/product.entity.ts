@@ -1,4 +1,4 @@
-import { AdditionalOption, OrderProduct, PriceOption, Product, Subcategory } from '@musicr/domain';
+import { AdditionalOption, OrderProduct, Photo, PriceOption, Product, Subcategory } from '@musicr/domain';
 import {
   BaseEntity,
   Column,
@@ -46,6 +46,8 @@ export class ProductEntity extends BaseEntity implements Product {
 
   @Column('int', { array: true, nullable: true })
   photoIds: number[];
+
+  photos?: Photo[];
 
   @Column({ nullable: true })
   subcategoryId?: number;
