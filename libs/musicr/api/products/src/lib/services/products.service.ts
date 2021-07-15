@@ -1,19 +1,17 @@
 import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
-import { PhotoRepository, ProductRepository } from '@musicr/api/domain';
+import { ProductRepository } from '@musicr/api/domain';
 import { Product } from '@musicr/domain';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { uniqBy } from 'lodash';
 
 import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
 
 @Injectable()
 export class ProductsService {
-  constructor(
-    @InjectRepository(ProductRepository) private productRepository: ProductRepository,
-    @InjectRepository(PhotoRepository) private photoRepository: PhotoRepository
-  ) {}
+  constructor(@InjectRepository(ProductRepository) private productRepository: ProductRepository) {}
 
   async getProducts(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Product>> {
     const { pageIndex, pageSize } = filterDto;
@@ -30,8 +28,6 @@ export class ProductsService {
 
   async getProduct(id: number): Promise<Product> {
     const product = await this.productRepository.findOne({ id });
-    const photos = await this.photoRepository.findByIds(product.photoIds);
-    product.photos = photos;
     return product;
   }
 
@@ -53,6 +49,10 @@ export class ProductsService {
   }
 
   async updateProduct(updateDto: UpdateProductDto): Promise<Product> {
-    return await this.productRepository.save(updateDto);
+    const preloadedProduct = await this.productRepository.preload(updateDto);
+    await preloadedProduct.save();
+    preloadedProduct.reload();
+    preloadedProduct.photos = uniqBy(preloadedProduct.photos, 'id');
+    return preloadedProduct;
   }
 }

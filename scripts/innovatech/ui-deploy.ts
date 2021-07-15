@@ -17,18 +17,6 @@ async function run() {
   const s3 = new S3();
   const Bucket = String(process.env.AWS_BUCKET_NAME);
 
-  s3.listObjects({ Bucket }, (err, data) => {
-    if (err) {
-      console.log('error listing bucket objects ' + err);
-      return;
-    }
-    (data?.Contents || []).forEach(item => {
-      s3.deleteObject({ Bucket, Key: String(item?.Key) }, (err, data) =>
-        err ? console.log(`${item?.Key} wasn't deleted`) : console.log(`${item?.Key} deleted`)
-      );
-    });
-  });
-
   const distFolderPath = path.join(__dirname, '../../dist/apps/innovatech/app');
 
   function walk(rootdir: string, callback: any, subdir: string) {

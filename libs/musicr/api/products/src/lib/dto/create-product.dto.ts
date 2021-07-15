@@ -1,4 +1,7 @@
-import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+
+import { AssignPhotoDto } from './assign-photo.dto';
 
 export class CreateProductDto {
   @IsNotEmpty()
@@ -25,8 +28,9 @@ export class CreateProductDto {
   @IsArray()
   productComponents: string[];
 
-  @IsNotEmpty()
-  @IsNumber({}, { each: true })
-  photoIds: number[];
-
+  @IsOptional()
+  @IsArray()
+  @ValidateNested()
+  @Type(() => AssignPhotoDto)
+  photos: AssignPhotoDto[];
 }

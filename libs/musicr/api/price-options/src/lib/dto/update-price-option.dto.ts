@@ -1,5 +1,7 @@
 import { Type } from 'class-transformer';
-import { IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+
+import { AssignPhotoDto } from './assign-photo.dto';
 
 export class UpdatePriceOptionDto {
   @IsNotEmpty()
@@ -14,7 +16,9 @@ export class UpdatePriceOptionDto {
   @IsNumber()
   price: number;
 
-  @IsNumber({}, { each: true })
   @IsOptional()
-  photoIds: number[];
+  @IsArray()
+  @ValidateNested()
+  @Type(() => AssignPhotoDto)
+  photos: AssignPhotoDto[];
 }
