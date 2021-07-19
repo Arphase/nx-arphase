@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.3](https://github.com/Arphase/nx-arphase/compare/v3.1.2...v3.1.3) (2021-07-19)
+
+
+### Features
+
+* **innovatech/revisions:** add version column in list ([9b83dfa](https://github.com/Arphase/nx-arphase/commit/9b83dfa560d953ff704473b52b09bc95e130f05e))
+* **musicr/products:** update and get entity ([4f0032b](https://github.com/Arphase/nx-arphase/commit/4f0032b46c8df7564937fe5c16fd318990bdddf1))
+
+
+### Bug Fixes
+
+* **arphase/ui:** server search correctly on checkbox filter ([e3f7a7b](https://github.com/Arphase/nx-arphase/commit/e3f7a7b8ec23b68fdfd471397d006d9f8a4c3d99))
+* **innovatech/api:** text search messing up other filters ([dad474f](https://github.com/Arphase/nx-arphase/commit/dad474f0d15fcecb2751f5c3784820bfdabe6dda))
+
 ### [3.1.2](https://github.com/Arphase/nx-arphase/compare/v3.1.0...v3.1.2) (2021-07-09)
 
 
