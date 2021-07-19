@@ -195,6 +195,9 @@
     "musicr-api-domain": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:domain-logic"]
     },
+    "musicr-api-orders": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+    },
     "musicr-api-photos": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },

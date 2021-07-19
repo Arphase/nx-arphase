@@ -1,4 +1,4 @@
-import { Address } from 'cluster';
+import { Address } from '../../addresses/models/address.model';
 
 export interface SocialEvent {
   id: number;
@@ -6,7 +6,7 @@ export interface SocialEvent {
   eventType: string;
   startDate: Date;
   endDate: Date;
-  addressId: number;
+  addressId?: number;
   address: Address;
   eventPlace: string;
   notes: string;
