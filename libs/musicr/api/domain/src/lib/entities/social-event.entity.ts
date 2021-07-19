@@ -1,6 +1,6 @@
-import { SocialEvent } from '@musicr/domain';
-import { Address } from 'cluster';
-import { BaseEntity, Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Address, SocialEvent } from '@musicr/domain';
+import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+
 import { AddressEntity } from './address.entity';
 
 @Entity('socialEvents')
@@ -20,15 +20,13 @@ export class SocialEventEntity extends BaseEntity implements SocialEvent {
   @Column()
   endDate: Date;
 
-  @Column()
-  addressId: number;
-
   @OneToOne(() => AddressEntity, {
     cascade: true,
     eager: true,
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
   })
+  @JoinColumn({ name: 'addressId' })
   address: Address;
 
   @Column()

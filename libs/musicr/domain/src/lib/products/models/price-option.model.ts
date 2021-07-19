@@ -7,8 +7,7 @@ export interface PriceOption {
   name: string;
   price: number;
   productId: number;
-  photoIds: number[];
-  photos?: Photo[];
+  photos: Photo[];
   product: Product;
   orderProducts: OrderProduct[];
 }

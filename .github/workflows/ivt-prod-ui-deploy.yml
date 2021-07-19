@@ -28,8 +28,11 @@ jobs:
 
       - uses: bahmutov/npm-install@v1
 
-      - name: Build Staging UI
+      - name: Build production app
         run: npx nx build innovatech-app --prod
 
-      - name: Deploy Staging UI
+      - name: Delete current production app
+        run: npx ts-node scripts/innovatech/ui-delete-current
+
+      - name: Deploy production app
         run: npx ts-node scripts/innovatech/ui-deploy

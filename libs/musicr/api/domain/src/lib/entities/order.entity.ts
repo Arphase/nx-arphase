@@ -4,6 +4,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -25,19 +26,14 @@ export class OrderEntity extends BaseEntity implements Order {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column()
-  customerId: number;
-
   @OneToOne(() => CustomerEntity, {
     cascade: true,
     eager: true,
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
   })
+  @JoinColumn({ name: 'customerId' })
   customer: Customer;
-
-  @Column()
-  socialEventId: number;
 
   @OneToOne(() => SocialEventEntity, {
     cascade: true,
@@ -45,6 +41,7 @@ export class OrderEntity extends BaseEntity implements Order {
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
   })
+  @JoinColumn({ name: 'socialEventId' })
   socialEvent: SocialEvent;
 
   @Column()

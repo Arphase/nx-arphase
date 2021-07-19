@@ -30,6 +30,6 @@ export class ProductsController {
 
   @Put(':id')
   async updateProduct(@Body() updateProductDto: UpdateProductDto): Promise<Product> {
-    return this.productsService.createProduct(updateProductDto);
+    return this.productsService.updateProduct(updateProductDto);
   }
 }

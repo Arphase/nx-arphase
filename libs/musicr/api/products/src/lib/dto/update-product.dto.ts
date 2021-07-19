@@ -1,4 +1,7 @@
-import { IsArray, IsNumber, IsOptional, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsArray, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+
+import { AssignPhotoDto } from './assign-photo.dto';
 
 export class UpdateProductDto {
   @IsOptional()
@@ -26,6 +29,8 @@ export class UpdateProductDto {
   productComponents: string[];
 
   @IsOptional()
-  @IsNumber({}, { each: true })
-  photoIds: number[];
+  @IsArray()
+  @ValidateNested()
+  @Type(() => AssignPhotoDto)
+  photos: AssignPhotoDto[];
 }

@@ -14,10 +14,11 @@ import {
 
 import { AdditionalOptionEntity } from './additional-option.entity';
 import { OrderProductEntity } from './order-product.entity';
+import { PhotoEntity } from './photo.entity';
 import { PriceOptionEntity } from './price-option.entity';
 import { SubcategoryEntity } from './subcategory.entity';
 
-@Entity('product')
+@Entity('products')
 @Index(['name', 'subcategoryId'], { unique: true })
 export class ProductEntity extends BaseEntity implements Product {
   @PrimaryGeneratedColumn()
@@ -44,11 +45,6 @@ export class ProductEntity extends BaseEntity implements Product {
   @Column('text', { array: true, nullable: true })
   productComponents: string[];
 
-  @Column('int', { array: true, nullable: true })
-  photoIds: number[];
-
-  photos?: Photo[];
-
   @Column({ nullable: true })
   subcategoryId?: number;
 
@@ -73,4 +69,7 @@ export class ProductEntity extends BaseEntity implements Product {
     eager: true,
   })
   priceOptions: PriceOption[];
+
+  @OneToMany(() => PhotoEntity, photo => photo.product, { eager: true })
+  photos: Photo[];
 }
