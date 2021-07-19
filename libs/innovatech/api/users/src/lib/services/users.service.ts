@@ -22,11 +22,11 @@ export class UsersService {
 
     if (text) {
       query.andWhere(
-        `LOWER(user.email) like :text OR
+        `(LOWER(user.email) like :text OR
         LOWER(user.firstName) like :text OR
         LOWER(user.lastName) like :text OR
         LOWER(user.secondLastName) like :text OR
-        LOWER(CONCAT(user.firstName, ' ', user.lastName, ' ', user.secondLastName)) like :text`,
+        LOWER(CONCAT(user.firstName, ' ', user.lastName, ' ', user.secondLastName)) like :text)`,
         { text: `%${text.toLowerCase()}%` }
       );
     }

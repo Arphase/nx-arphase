@@ -26,7 +26,6 @@ export class IvtListComponent<T = any> implements CrudEvents<T> {
   @Output() toggle = new EventEmitter<T>();
   @Output() filterItems = new EventEmitter<unknown>();
   @Output() exportExcel = new EventEmitter<void>();
-  test;
 
   get total(): number {
     return this?.info?.total || 0;

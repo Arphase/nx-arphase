@@ -117,14 +117,17 @@
           nzLg="3">{{ item?.vehicle?.model | empty }}</td>
       <td nz-col
           nzXs="0"
+          nzLg="2">{{ item?.vehicle?.version | empty }}</td>
+      <td nz-col
+          nzXs="0"
           nzLg="2">{{ item?.vehicle?.year | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="6"
-          nzLg="4">{{ item?.createdAt | date: 'dd/MM/yy'  }}</td>
+          nzLg="4">{{ item?.createdAt | date: 'dd/MM/yy' }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="6">{{ item?.observations | empty }}</td>
+          nzLg="4">{{ item?.observations | empty }}</td>
       <td nz-col
           nzXs="4"
           nzMd="2"
