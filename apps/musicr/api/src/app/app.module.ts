@@ -3,6 +3,7 @@ import { AuthModule } from '@musicr/api/auth';
 import { CategoriesModule } from '@musicr/api/categories';
 import { PhotosModule } from '@musicr/api/photos';
 import { PriceOptionsModule } from '@musicr/api/price-options';
+import { OrdersModule } from '@musicr/api/orders';
 import { ProductsModule } from '@musicr/api/products';
 import { SubcategoriesModule } from '@musicr/api/subcategories';
 import { Module } from '@nestjs/common';
@@ -25,6 +26,7 @@ import { AppController } from './app.controller';
     AdditionalOptionsModule,
     AuthModule,
     CategoriesModule,
+    OrdersModule,
     PhotosModule,
     PriceOptionsModule,
     ProductsModule,

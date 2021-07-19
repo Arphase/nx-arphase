@@ -3,6 +3,7 @@ import { ApsCollectionResponse } from '@arphase/common';
 import { PriceOptionRepository } from '@musicr/api/domain';
 import { PriceOption } from '@musicr/domain';
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { uniqBy } from 'lodash';
 
 import { CreatePriceOptionDto } from '../dto/create-price-option.dto';
 import { GetPriceOptionsDto } from '../dto/get-price-options.dto';
@@ -38,7 +39,11 @@ export class PriceOptionsService {
   }
 
   async updatePriceOption(updateDto: UpdatePriceOptionDto): Promise<PriceOption> {
-    return await this.priceOptionRepository.save(updateDto);
+    const preloadedPriceOption = await this.priceOptionRepository.preload(updateDto);
+    await preloadedPriceOption.save();
+    preloadedPriceOption.reload();
+    preloadedPriceOption.photos = uniqBy(preloadedPriceOption.photos, 'id');
+    return preloadedPriceOption;
   }
 
   async deletePriceOption(id: number): Promise<PriceOption> {

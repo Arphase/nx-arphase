@@ -60,5 +60,6 @@ module.exports = {
     '<rootDir>/libs/musicr/api/products/util',
     '<rootDir>/libs/musicr/api/photos',
     '<rootDir>/libs/musicr/api/price-options',
+    '<rootDir>/libs/musicr/api/orders',
   ],
 };
