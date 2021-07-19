@@ -1,18 +1,15 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
-  OnChanges,
   Output,
-  SimpleChanges,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { QueryParams } from '@ngrx/data';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export interface CheckboxOption {
   label: string;
@@ -28,109 +25,60 @@ export interface CheckboxOption {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class ApsCheckboxFilterComponent implements OnChanges {
+export class ApsCheckboxFilterComponent {
   @ViewChild(CdkVirtualScrollViewport) viewport: CdkVirtualScrollViewport;
   @Input() label: string;
-  @Input() options: CheckboxOption[] = [];
+  @Input() options: NzSelectOptionInterface[] = [];
   @Input() searchable: boolean;
   @Input() disabled: boolean;
   @Input() height = '25vh';
-  @Input() preselectedOptions: string;
   @Input() loading: boolean;
   @Input() last: boolean;
   @Input() pageIndex: string;
-  localOptions: CheckboxOption[] = [];
-  text: string;
-  control: FormControl;
   mappedTitle: string;
-  active = false;
+  selected = false;
+  setOfCheckedId = new Set<number>();
+  setOfCheckedLabel = new Set<string>();
   @Output() filterOptions = new EventEmitter<QueryParams>();
   @Output() filterItems = new EventEmitter<number[]>();
 
-  get hasActiveOptions(): boolean {
-    return this.localOptions?.some(option => option.checked);
+  get checkedIdsArray(): number[] {
+    return Array.from(this.setOfCheckedId);
   }
 
-  get hasVisibleOptions(): boolean {
-    return !!this.localOptions.find(option => option.visible);
+  setTitle(): void {
+    const mappedTitle = Array.from(this.setOfCheckedLabel).join(', ');
+    this.mappedTitle = mappedTitle.length > 25 ? `${mappedTitle.substring(0, 25)}...` : mappedTitle;
   }
 
-  get visibleOptions(): CheckboxOption[] {
-    return this.localOptions.filter(option => option.visible);
+  onItemChecked(option: NzSelectOptionInterface, selected: boolean): void {
+    this.updateCheckedSet(option, selected);
+    this.refreshCheckedStatus();
+    this.setTitle();
   }
 
-  constructor(private cdr: ChangeDetectorRef) {}
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.options && this.options) {
-      this.localOptions = this.mergeOptions(this.options, this.localOptions);
-    }
-
-    if (changes.preselectedOptions && this.preselectedOptions) {
-      const optionsArray = this.preselectedOptions.split(',').map(option => Number(option));
-      this.localOptions = this.localOptions.map(option => {
-        if (optionsArray.includes(option.value)) {
-          return { ...option, checked: true };
-        } else {
-          return option;
-        }
-      });
-      this.setlocalOptions();
-    }
+  refreshCheckedStatus(): void {
+    this.selected = !!this.options.length && this.options.some(item => this.setOfCheckedId.has(item.value));
+    this.filterItems.emit(this.checkedIdsArray);
   }
 
-  setTitle(selectedValues: string[]): void {
-    this.mappedTitle = selectedValues.length === 0 ? this.label : selectedValues.join(', ');
-    this.mappedTitle = this.mappedTitle.length > 25 ? `${this.mappedTitle.substring(0, 25)}...` : this.mappedTitle;
-  }
-
-  onFilterChange(event: CheckboxOption[]): void {
-    this.localOptions = this.localOptions.map(option => {
-      if (
-        event
-          .filter(eventOption => eventOption.checked)
-          .map(eventOption => eventOption.value)
-          .includes(option.value)
-      ) {
-        return { ...option, checked: true };
-      } else {
-        return option;
-      }
-    });
-    this.setlocalOptions();
-  }
-
-  setlocalOptions(): void {
-    const localOptions = this.localOptions.filter(option => option.checked);
-    const selectedValues = localOptions.map(option => option.value);
-    const selectedLabels = localOptions.map(option => option.label);
-    this.setTitle(selectedLabels);
-    this.filterItems.emit(selectedValues);
+  updateCheckedSet(option: NzSelectOptionInterface, selected: boolean): void {
+    selected ? this.setOfCheckedId.add(option.value) : this.setOfCheckedId.delete(option.value);
+    selected
+      ? this.setOfCheckedLabel.add(option.label as string)
+      : this.setOfCheckedLabel.delete(option.label as string);
   }
 
   deleteFilters(): void {
-    this.localOptions = this.localOptions.map(option => ({ ...option, checked: false }));
     this.mappedTitle = this.label;
     this.filterItems.emit([]);
-    this.cdr.detectChanges();
+    this.selected = false;
+    this.setOfCheckedId.clear();
+    this.setOfCheckedLabel.clear();
   }
 
   filterOptionsText(text: string): void {
-    this.text = text;
-    this.localOptions = this.localOptions.map(option => ({ ...option, visible: this.showOption(option) }));
-    this.filterOptions.emit({ text, pageIndex: '1' });
-  }
-
-  showOption(option: CheckboxOption): boolean {
-    return !this.text || option.label.includes(this.text);
-  }
-
-  mergeOptions(options: CheckboxOption[], localOptions: CheckboxOption[]): CheckboxOption[] {
-    const localOptionsValues = localOptions.map(option => option.value);
-    return [...localOptions, ...options.filter(option => !localOptionsValues.includes(option.value))].map(option => ({
-      ...option,
-      visible: this.showOption(option),
-    }));
+    this.filterOptions.emit({ text, pageIndex: '1', resetList: String(true) });
   }
 
   nextBatch(): void {
@@ -142,7 +90,7 @@ export class ApsCheckboxFilterComponent implements OnChanges {
     const total = this.viewport.getDataLength();
 
     if (end === total && end > 0 && total > 0) {
-      this.filterOptions.emit({ pageIndex: String(Number(this.pageIndex + 1)) });
+      this.filterOptions.emit({ pageIndex: String(Number(this.pageIndex + 1)), resetList: String(false) });
     }
   }
 }

@@ -46,3 +46,4 @@ jobs:
           version_label: ${{ github.event.inputs.version }}
           region: ${{ secrets.AWS_REGION }}
           deployment_package: Archive.zip
+          wait_for_environment_recovery: 120

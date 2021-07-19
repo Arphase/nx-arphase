@@ -27,6 +27,13 @@ export const columns: ApsColumns = [
     },
   },
   {
+    label: 'Versión',
+    prop: 'vehicle.version',
+    colSizes: {
+      lg: 2,
+    },
+  },
+  {
     label: 'Año',
     prop: 'vehicle.year',
     colSizes: {
@@ -45,7 +52,7 @@ export const columns: ApsColumns = [
     label: 'Observaciones',
     prop: 'revision.observations',
     colSizes: {
-      lg: 6,
+      lg: 4,
     },
   },
   {

@@ -1,7 +1,6 @@
 import { SortDirection } from '@arphase/common';
-import dayjs from 'dayjs';
+import { endOfDay, startOfDay } from 'date-fns';
 import { BaseEntity, SelectQueryBuilder } from 'typeorm';
-import { startOfDay, endOfDay } from 'date-fns';
 
 import { ApsCollectionFilterDto } from '../dto';
 
