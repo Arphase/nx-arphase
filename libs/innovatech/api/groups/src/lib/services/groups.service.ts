@@ -1,5 +1,5 @@
-import { ApsCollectionResponse } from '@arphase/common';
 import { createCollectionResponse } from '@arphase/api';
+import { ApsCollectionResponse } from '@arphase/common';
 import { AuthService } from '@innovatech/api/auth/data';
 import { CommonFilterDto, filterCommonQuery } from '@innovatech/api/core/util';
 import {
@@ -54,11 +54,11 @@ export class GroupsService {
 
     if (text) {
       query.andWhere(
-        `LOWER(group.name) like :name OR
-         LOWER(group.contact) like :name  OR
-         LOWER(group.email) like :name OR
-         LOWER(group.phone) like :name`,
-        { name: `%${text.toLowerCase()}%` }
+        `(LOWER(group.name) like :text OR
+         LOWER(group.contact) like :text  OR
+         LOWER(group.email) like :text OR
+         LOWER(group.phone) like :text)`,
+        { text: `%${text.toLowerCase()}%` }
       );
     }
 

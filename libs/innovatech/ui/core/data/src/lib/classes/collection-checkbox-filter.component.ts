@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { QueryParams } from '@ngrx/data';
-import { take } from 'rxjs/operators';
 
 import { IvtCollectionService } from '../services';
 
@@ -22,10 +21,7 @@ export abstract class CollectionCheckboxFilterComponent<T = unknown> implements 
   constructor(protected ivtCollectionService: IvtCollectionService<unknown>) {}
 
   ngOnInit() {
-    this.ivtCollectionService.getWithQuery({
-      sort: this.sortValue,
-      resetList: String(true),
-    });
+    this.ivtCollectionService.getWithQuery({ sort: this.sortValue, resetList: String(true) });
   }
 
   onFilterItems(ids: number[]): void {
@@ -33,12 +29,6 @@ export abstract class CollectionCheckboxFilterComponent<T = unknown> implements 
   }
 
   filterOptions(queryParams: QueryParams): void {
-    this.pageIndex$.pipe(take(1)).subscribe(pageIndex =>
-      this.ivtCollectionService.getWithQuery({
-        ...queryParams,
-        sort: this.sortValue,
-        pageIndex: String(Number(pageIndex) + 1),
-      })
-    );
+    this.ivtCollectionService.getWithQuery({ ...queryParams, sort: this.sortValue });
   }
 }
