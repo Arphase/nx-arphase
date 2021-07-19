@@ -1,12 +1,12 @@
 import 'dayjs/locale/es';
 
+import { SortDirection } from '@arphase/common';
 import { filterCommonQuery, IMAGE_ASSETS_PATH } from '@innovatech/api/core/util';
 import { GuaranteeEntity } from '@innovatech/api/domain';
 import { formatAddress, Guarantee, transformFolio, User } from '@innovatech/common/domain';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import { SelectQueryBuilder } from 'typeorm';
-import { SortDirection } from '@arphase/common';
 
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 
@@ -256,25 +256,18 @@ export function applyGuaranteeFilter(
     .orderBy('guarantee.createdAt', SortDirection.descend);
 
   if (text) {
-    if (text.length < 5) {
-      query.andWhere(
-        `guarantee.id = :number OR
+    query.andWhere(
+      `(CAST (guarantee.id AS varchar) like :text OR
+         LOWER(vehicle.vin) like :text OR
          LOWER(vehicle.motorNumber) like :text OR
-         LOWER(physicalPerson.name) like :text`,
-        { text: `%${text.toLowerCase()}%`, number: text }
-      );
-    } else {
-      query.andWhere(
-        `LOWER(vehicle.vin) like :text OR
          LOWER(guarantee.invoiceNumber) like :text OR
          LOWER(physicalPerson.name) like :text OR
          LOWER(physicalPerson.lastName) like :text OR
          LOWER(physicalPerson.secondLastName) like :text OR
          LOWER(moralPerson.businessName) like :text OR
-         LOWER(CONCAT(physicalPerson.name, ' ', physicalPerson.lastName, ' ', physicalPerson.secondLastName)) like :text`,
-        { text: `%${text.toLowerCase()}%` }
-      );
-    }
+         LOWER(CONCAT(physicalPerson.name, ' ', physicalPerson.lastName, ' ', physicalPerson.secondLastName)) like :text)`,
+      { text: `%${text.toLowerCase()}%` }
+    );
   }
 
   if (status) {
