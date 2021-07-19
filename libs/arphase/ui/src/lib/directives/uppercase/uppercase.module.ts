@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { IvtUppercaseDirective } from './uppercase.directive';
+import { ApsUppercaseDirective } from './uppercase.directive';
 
 @NgModule({
-  declarations: [IvtUppercaseDirective],
+  declarations: [ApsUppercaseDirective],
   imports: [CommonModule],
-  exports: [IvtUppercaseDirective],
+  exports: [ApsUppercaseDirective],
 })
-export class IvtUppercaseModule {}
+export class ApsUppercaseModule {}

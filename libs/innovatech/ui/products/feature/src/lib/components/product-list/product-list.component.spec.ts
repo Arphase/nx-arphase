@@ -1,4 +1,4 @@
-import { IvtEmptyPipe } from '@arphase/ui';
+import { ApsEmptyPipe } from '@arphase/ui';
 import { IvtFolioPipe } from '@innovatech/ui/core/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { MockPipe } from 'ng-mocks';
@@ -9,7 +9,7 @@ describe('ProductListComponent', () => {
   let spectator: Spectator<ProductListComponent>;
   const createComponent = createComponentFactory({
     component: ProductListComponent,
-    declarations: [MockPipe(IvtEmptyPipe), MockPipe(IvtFolioPipe)],
+    declarations: [MockPipe(ApsEmptyPipe), MockPipe(IvtFolioPipe)],
     shallow: true,
   });
 

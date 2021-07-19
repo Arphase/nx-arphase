@@ -39,10 +39,10 @@ export class RevisionsService {
 
     if (text) {
       query.andWhere(
-        `LOWER(vehicle.vin) like :text OR
+        `(LOWER(vehicle.vin) like :text OR
            LOWER(vehicle.brand) like :text OR
            LOWER(vehicle.model) like :text OR
-           LOWER(vehicle.version) like :text
+           LOWER(vehicle.version) like :text)
           `,
         { text: `%${text.toLowerCase()}%` }
       );

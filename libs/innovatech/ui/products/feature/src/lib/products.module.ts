@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { IvtEmptyModule, IvtSearchbarModule } from '@arphase/ui';
+import { ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui';
 import { IvtFolioModule } from '@innovatech/ui/core/ui';
 import { ProductsDataModule } from '@innovatech/ui/products/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
@@ -37,7 +37,7 @@ import { ProductsComponent } from './products.component';
     ReactiveFormsModule,
     NzPageHeaderModule,
     IvtFolioModule,
-    IvtEmptyModule,
+    ApsEmptyModule,
     NzIconModule,
     NgxMaskModule,
     NzGridModule,
@@ -51,7 +51,7 @@ import { ProductsComponent } from './products.component';
     NzButtonModule,
     NzSpaceModule,
     NzUploadModule,
-    IvtSearchbarModule,
+    ApsSearchbarModule,
     NzDividerModule,
     NzTableModule,
     NzAlertModule,

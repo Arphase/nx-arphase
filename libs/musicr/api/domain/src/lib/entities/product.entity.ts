@@ -1,17 +1,10 @@
-import {
-  AdditionalOption,
-  OrderProduct,
-  PriceOption,
-  Product,
-  ProductComponent,
-  ProductPhoto,
-  Subcategory,
-} from '@musicr/domain';
+import { AdditionalOption, OrderProduct, Photo, PriceOption, Product, Subcategory } from '@musicr/domain';
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   OneToMany,
@@ -21,12 +14,12 @@ import {
 
 import { AdditionalOptionEntity } from './additional-option.entity';
 import { OrderProductEntity } from './order-product.entity';
+import { PhotoEntity } from './photo.entity';
 import { PriceOptionEntity } from './price-option.entity';
-import { ProductComponentEntity } from './product-component.entity';
-import { ProductPhotoEntity } from './product-photo.entity';
 import { SubcategoryEntity } from './subcategory.entity';
 
-@Entity('product')
+@Entity('products')
+@Index(['name', 'subcategoryId'], { unique: true })
 export class ProductEntity extends BaseEntity implements Product {
   @PrimaryGeneratedColumn()
   id: number;
@@ -43,11 +36,14 @@ export class ProductEntity extends BaseEntity implements Product {
   @Column()
   price: number;
 
-  @Column()
-  disclaimer: string;
+  @Column({ nullable: true })
+  disclaimer?: string;
 
-  @Column()
-  description: string;
+  @Column({ nullable: true })
+  description?: string;
+
+  @Column('text', { array: true, nullable: true })
+  productComponents: string[];
 
   @Column({ nullable: true })
   subcategoryId?: number;
@@ -74,15 +70,6 @@ export class ProductEntity extends BaseEntity implements Product {
   })
   priceOptions: PriceOption[];
 
-  @OneToMany(() => ProductComponentEntity, productComponent => productComponent.product, {
-    cascade: true,
-    eager: true,
-  })
-  productComponents: ProductComponent[];
-
-  @OneToMany(() => ProductPhotoEntity, productPhoto => productPhoto.product, {
-    cascade: true,
-    eager: true,
-  })
-  productPhotos: ProductPhoto[];
+  @OneToMany(() => PhotoEntity, photo => photo.product, { eager: true })
+  photos: Photo[];
 }

@@ -17,22 +17,25 @@ export class ApsCollectionFilterDto {
 
   @IsOptional()
   @IsNotEmpty()
+  @IsString()
   sort?: string;
 
   @IsOptional()
   @IsNotEmpty()
+  @IsString()
   direction?: string;
 
   @IsOptional()
   @IsNotEmpty()
-  startDate?: string;
+  startDate?: Date;
 
   @IsOptional()
   @IsNotEmpty()
-  endDate?: string;
+  endDate?: Date;
 
   @IsOptional()
   @IsNotEmpty()
+  @IsString()
   dateType?: string;
 
   @IsOptional()

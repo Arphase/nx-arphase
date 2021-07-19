@@ -8,7 +8,7 @@ import { NzFormControlComponent } from 'ng-zorro-antd/form';
 @Directive({
   selector: '[apsAutocomplete]',
 })
-export class AutocompleteDirective implements AfterContentInit {
+export class ApsAutocompleteDirective implements AfterContentInit {
   @ContentChild(NgControl, { static: true }) ngControl: FormControlName | FormControlDirective;
   @ContentChild(NzAutocompleteComponent, { static: true }) autocomplete: NzAutocompleteComponent;
   @Input() options: string[] = [];

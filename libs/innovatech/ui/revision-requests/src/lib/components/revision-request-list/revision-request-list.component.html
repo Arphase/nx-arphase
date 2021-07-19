@@ -3,7 +3,7 @@
   <div nz-col
        nzXs="18"
        nzMd="12">
-    <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
+    <aps-searchbar (valueChange)="updateSearchBarFilter($event)"></aps-searchbar>
   </div>
   <ng-container *ivtNoCreatePermission>
     <div nz-col
@@ -44,17 +44,17 @@
      nzAlign="middle"
      [nzGutter]="[12, 12]">
   <div nz-col>
-    <ivt-date-filter label="Fecha de alta"
+    <aps-date-filter label="Fecha de alta"
                      [currentDates]="queryParams?.dates"
                      (filterItems)="updateDateFilter($event)">
-    </ivt-date-filter>
+    </aps-date-filter>
   </div>
   <div nz-col>
-    <ivt-radio-filter label="Estatus"
+    <aps-radio-filter label="Estatus"
                       [options]="statusOptions"
                       [selectedOption]="queryParams?.status"
                       (filterItems)="updateStatusFilter($event)">
-    </ivt-radio-filter>
+    </aps-radio-filter>
   </div>
   <ng-container *ivtReadPermission>
     <div nz-col>
@@ -120,7 +120,7 @@
           nzLg="5">{{ item?.email | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="3">{{ item?.createdAt | date: 'dd/MM/yy': 'UTC' | empty  }}</td>
+          nzLg="3">{{ item?.createdAt | date: 'dd/MM/yy' | empty  }}</td>
       <td nz-col
           nzXs="4"
           nzMd="2">

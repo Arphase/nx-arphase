@@ -1,1 +1,1 @@
-export * from './lib/innovatech-ui-core-innovatech-ui-core-util.module';
+export * from './lib/classes';

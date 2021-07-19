@@ -2,43 +2,40 @@
         nz-button
         nzTrigger="click"
         [disabled]="disabled"
-        [nzType]="hasActiveOptions ? 'primary' : 'default'"
+        [nzType]="selected ? 'primary' : 'default'"
         [nzDropdownMenu]="menu"
         [nzClickHide]="false">
-    {{ mappedTitle || label }}
-
-  <i *ngIf="!hasActiveOptions"
+  {{ mappedTitle || label }}
+  <i *ngIf="!selected"
      nz-icon
      nzType="down"
-
      class="right"></i>
   <i nz-icon
-     *ngIf="!disabled && hasActiveOptions"
+     *ngIf="!disabled && selected"
      nzType="close"
-
      class="delete-icon right"
      (click)="deleteFilters(); $event.stopPropagation()"></i>
-
 </button>
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <div nz-menu>
     <div nz-menu-item>
-      <ivt-searchbar [showIcon]="false"
-                     (valueChange)="filterOptionsText($event)"></ivt-searchbar>
+      <aps-searchbar [showIcon]="false"
+                     (valueChange)="filterOptionsText($event)"></aps-searchbar>
     </div>
-    <nz-empty *ngIf="!hasVisibleOptions"></nz-empty>
-    <nz-checkbox-wrapper (nzOnChange)="onFilterChange($event)">
+    <nz-empty *ngIf="!options?.length"></nz-empty>
+    <nz-checkbox-wrapper>
       <cdk-virtual-scroll-viewport itemSize="32"
                                    minBufferPx="300"
                                    maxBufferPx="400"
                                    [style.height]="height"
                                    (scrolledIndexChange)="nextBatch()">
-        <ng-container *cdkVirtualFor="let option of visibleOptions">
+        <ng-container *cdkVirtualFor="let option of options">
           <div nz-menu-item
                (click)="$event.stopPropagation()">
             <label nz-checkbox
-                   [(ngModel)]="option.checked"
-                   [nzValue]="option">{{ option.label }}</label>
+                   [nzChecked]="setOfCheckedId.has(option.value)"
+                   [nzValue]="option"
+                   (nzCheckedChange)="onItemChecked(option, $event)">{{ option.label }}</label>
           </div>
         </ng-container>
       </cdk-virtual-scroll-viewport>

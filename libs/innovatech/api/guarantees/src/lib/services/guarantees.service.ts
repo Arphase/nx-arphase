@@ -1,5 +1,5 @@
 import { createCollectionResponse } from '@arphase/api';
-import { ApsCollectionResponse } from '@arphase/common';
+import { ApsCollectionResponse, formatDate } from '@arphase/common';
 import { filterCommonQuery, getReadableStream, tobase64 } from '@innovatech/api/core/util';
 import {
   GuaranteeEntity,
@@ -22,7 +22,6 @@ import {
   Vehicle,
   VehicleStatus,
 } from '@innovatech/common/domain';
-import { formatDate } from '@innovatech/common/utils';
 import {
   BadRequestException,
   ConflictException,

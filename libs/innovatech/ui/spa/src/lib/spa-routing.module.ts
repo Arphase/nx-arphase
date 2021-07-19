@@ -29,6 +29,10 @@ const routes: Routes = [
       {
         path: 'users',
         loadChildren: () => import('@innovatech/ui/users/feature').then(m => m.UsersModule),
+        canActivate: [RoleGuard],
+        data: {
+          roles: [UserRoles.superAdmin],
+        },
       },
       {
         path: 'vehicles',

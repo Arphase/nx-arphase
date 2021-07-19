@@ -10,6 +10,7 @@ module.exports = {
   transform: {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
+  testRunner: 'jasmine2',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
   coverageDirectory: '../../../../coverage/libs/innovatech/common/utils',
 };

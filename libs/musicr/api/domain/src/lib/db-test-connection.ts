@@ -1,3 +1,5 @@
+import { createConnection } from 'typeorm';
+
 import {
   AdditionalOptionEntity,
   AddressEntity,
@@ -6,16 +8,13 @@ import {
   OrderEntity,
   OrderProductAdditionalOptionEntity,
   OrderProductEntity,
+  PhotoEntity,
   PriceOptionEntity,
-  PriceOptionPhotoEntity,
-  ProductComponentEntity,
   ProductEntity,
-  ProductPhotoEntity,
   SocialEventEntity,
   SubcategoryEntity,
   UserEntity,
-} from '@musicr/api/domain';
-import { createConnection } from 'typeorm';
+} from './entities';
 
 const entities = [
   AdditionalOptionEntity,
@@ -25,11 +24,9 @@ const entities = [
   OrderEntity,
   OrderProductAdditionalOptionEntity,
   OrderProductEntity,
+  PhotoEntity,
   PriceOptionEntity,
-  PriceOptionPhotoEntity,
-  ProductComponentEntity,
   ProductEntity,
-  ProductPhotoEntity,
   SocialEventEntity,
   SubcategoryEntity,
   UserEntity,

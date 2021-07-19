@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { PaymentOrder } from '@innovatech/common/domain';
 import { filterNil } from '@innovatech/common/utils';
 import { IvtFormContainerComponent } from '@innovatech/ui/core/data';
-import { get } from 'lodash-es';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
@@ -47,9 +46,9 @@ export class PaymentOrderDialogContainerComponent extends IvtFormContainerCompon
         }))
       );
     });
-    get(paymentOrder, 'id')
+    paymentOrder.id
       ? this.paymentOrderCollectionService.update(paymentOrder)
-      : this.paymentOrderCollectionService.add(paymentOrder);
+      : this.paymentOrderCollectionService.add(paymentOrder, { isOptimistic: false });
   }
 
   downloadPaymentOrder(id: number): void {

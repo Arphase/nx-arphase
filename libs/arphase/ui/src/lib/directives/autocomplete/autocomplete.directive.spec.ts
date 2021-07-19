@@ -4,9 +4,9 @@ import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { NzFormModule } from 'ng-zorro-antd/form';
 
-import { AutocompleteDirective } from './autocomplete.directive';
+import { ApsAutocompleteDirective } from './autocomplete.directive';
 
-describe('AutocompleteDirective', () => {
+describe('ApsAutocompleteDirective', () => {
   @Component({
     selector: 'test',
   })
@@ -14,9 +14,9 @@ describe('AutocompleteDirective', () => {
     form = new FormGroup({ test: new FormControl('') });
   }
 
-  let spectator: SpectatorDirective<AutocompleteDirective>;
+  let spectator: SpectatorDirective<ApsAutocompleteDirective>;
   const createDirective = createDirectiveFactory({
-    directive: AutocompleteDirective,
+    directive: ApsAutocompleteDirective,
     host: HostComponent,
     imports: [ReactiveFormsModule, NzAutocompleteModule, NzFormModule],
   });

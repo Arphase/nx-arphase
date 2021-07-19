@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserRoles, Vehicle } from '@innovatech/common/domain';
+import { HttpStatusCodes, UserRoles, Vehicle } from '@innovatech/common/domain';
 import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data';
 import { IvtFormContainerComponent } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
@@ -44,7 +44,7 @@ export class VehicleFormContainerComponent extends IvtFormContainerComponent<Veh
     this.store.pipe(select(getVehiclesErrorState)),
   ]).pipe(
     map(([vehicle, error]) => {
-      return !!vehicle || error?.statusCode === 403;
+      return !!vehicle || error?.statusCode === HttpStatusCodes.Forbidden;
     })
   );
 

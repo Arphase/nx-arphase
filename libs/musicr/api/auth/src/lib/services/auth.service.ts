@@ -5,8 +5,8 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcryptjs';
 import { omit } from 'lodash';
-import { SignInCredentialsDto } from '../dto/sign-in-credentiails.dto';
 
+import { SignInCredentialsDto } from '../dto/sign-in-credentiails.dto';
 import { SignUpCredentialsDto } from '../dto/sign-up-credentials.dto';
 
 @Injectable()

@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { formatPhone } from '@innovatech/common/domain';
+import { formatPhone } from '@arphase/common';
 
 @Pipe({
   name: 'phone',
 })
-export class IvtPhonePipe implements PipeTransform {
+export class ApsPhonePipe implements PipeTransform {
   transform(value: string): string {
     return formatPhone(value);
   }

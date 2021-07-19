@@ -2,6 +2,57 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.3](https://github.com/Arphase/nx-arphase/compare/v3.1.2...v3.1.3) (2021-07-19)
+
+
+### Features
+
+* **innovatech/revisions:** add version column in list ([9b83dfa](https://github.com/Arphase/nx-arphase/commit/9b83dfa560d953ff704473b52b09bc95e130f05e))
+* **musicr/products:** update and get entity ([4f0032b](https://github.com/Arphase/nx-arphase/commit/4f0032b46c8df7564937fe5c16fd318990bdddf1))
+
+
+### Bug Fixes
+
+* **arphase/ui:** server search correctly on checkbox filter ([e3f7a7b](https://github.com/Arphase/nx-arphase/commit/e3f7a7b8ec23b68fdfd471397d006d9f8a4c3d99))
+* **innovatech/api:** text search messing up other filters ([dad474f](https://github.com/Arphase/nx-arphase/commit/dad474f0d15fcecb2751f5c3784820bfdabe6dda))
+
+### [3.1.2](https://github.com/Arphase/nx-arphase/compare/v3.1.0...v3.1.2) (2021-07-09)
+
+
+### Features
+
+* **innovatech/spa:** make users module visible only to superAdmin users ([5408524](https://github.com/Arphase/nx-arphase/commit/54085243741ff30f383789165cde2bd2769b8a32))
+* **musicr/price-options:** [#103](https://github.com/Arphase/nx-arphase/issues/103) API CRUD endpoints ([b7ea745](https://github.com/Arphase/nx-arphase/commit/b7ea7451f7a3cec77a618d565b68060b9e3fe1f0))
+
+### [3.1.1](https://github.com/Arphase/nx-arphase/compare/v3.1.0...v3.1.1) (2021-07-09)
+
+
+### Features
+
+* **innovatech/spa:** make users module visible only to superAdmin users ([5408524](https://github.com/Arphase/nx-arphase/commit/54085243741ff30f383789165cde2bd2769b8a32))
+* **musicr/price-options:** [#103](https://github.com/Arphase/nx-arphase/issues/103) API CRUD endpoints ([b7ea745](https://github.com/Arphase/nx-arphase/commit/b7ea7451f7a3cec77a618d565b68060b9e3fe1f0))
+
+## [3.1.0](https://github.com/Arphase/nx-arphase/compare/v3.0.4...v3.1.0) (2021-06-30)
+
+
+### Features
+
+* **musicr/additional-options:** [#99](https://github.com/Arphase/nx-arphase/issues/99) update product additional options endpoint ([707c5c9](https://github.com/Arphase/nx-arphase/commit/707c5c93f09b0193b3f5a506876ef1ad3ec85276))
+* **musicr/api:** [#84](https://github.com/Arphase/nx-arphase/issues/84) create application database entities and models ([40aee61](https://github.com/Arphase/nx-arphase/commit/40aee61a9743864ed9e16468f2a468965cafb81e))
+* **musicr/auth:** [#93](https://github.com/Arphase/nx-arphase/issues/93) add signIn endpoint and admin user seed ([faab8e1](https://github.com/Arphase/nx-arphase/commit/faab8e1280779f04cfbe9c97b96a2a2937637bd2))
+* **musicr/photos:** [#101](https://github.com/Arphase/nx-arphase/issues/101) photo upload endpoint ([c992bbd](https://github.com/Arphase/nx-arphase/commit/c992bbd07f738d03c7fe0b671c64920b9b39683d))
+* **musicr/product-components:** [#97](https://github.com/Arphase/nx-arphase/issues/97) update product components endpoint ([38e81e8](https://github.com/Arphase/nx-arphase/commit/38e81e84697ff9b665b43e29874e64f21f855e7d))
+* **musicr/products:** [#90](https://github.com/Arphase/nx-arphase/issues/90) create index controller ([214fba5](https://github.com/Arphase/nx-arphase/commit/214fba5241ff431c8ca9bf1d5bbb80d6ce892263))
+* **musicr/products:** [#95](https://github.com/Arphase/nx-arphase/issues/95) create endpoints for product basic info creation ([da06cc4](https://github.com/Arphase/nx-arphase/commit/da06cc4674cac082abe55069dffbac41f299e821))
+* **musicr/ui:** [#79](https://github.com/Arphase/nx-arphase/issues/79) Add footer module. Add responsiveness to terms and coditions ([8b80b4f](https://github.com/Arphase/nx-arphase/commit/8b80b4f05a7e0d530d8fb240d5ea7aebc7763ea9))
+
+
+### Bug Fixes
+
+* **innovatech/app:** send dates as utc instead of string ([d370b26](https://github.com/Arphase/nx-arphase/commit/d370b2641eccf94cfabc7fbf6889c6ae62ebd7b4))
+* **innovatech/app:** use UTC timestamp in Angular date pipe to avoid dates offset ([c30f779](https://github.com/Arphase/nx-arphase/commit/c30f779c1de5ccf93c6c815892f956ab152febe7))
+* **innovatech/guarantees:** load all groups in group checkbox filter ([a3d0a28](https://github.com/Arphase/nx-arphase/commit/a3d0a2855c163754ca20de99e3d65979fd7c75ff))
+
 ### [3.0.4](https://github.com/Arphase/nx-arphase/compare/v3.0.3...v3.0.4) (2021-06-16)
 
 

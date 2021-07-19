@@ -1,12 +1,12 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
-import { IvtRadioFilterComponent } from './radio-filter.component';
+import { ApsRadioFilterComponent } from './radio-filter.component';
 
-describe('IvtRadioFilterComponent', () => {
-  let spectator: Spectator<IvtRadioFilterComponent>;
+describe('ApsRadioFilterComponent', () => {
+  let spectator: Spectator<ApsRadioFilterComponent>;
   const createComponent = createComponentFactory({
-    component: IvtRadioFilterComponent,
+    component: ApsRadioFilterComponent,
     imports: [NzDropDownModule],
     shallow: true,
   });

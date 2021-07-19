@@ -12,7 +12,7 @@ describe('ProductsService', () => {
 
   beforeEach(async () => {
     db = await dbTestConnection;
-    repository = await db.getRepository(ProductEntity);
+    repository = db.getRepository(ProductEntity);
     service = new ProductsService(repository);
   });
 

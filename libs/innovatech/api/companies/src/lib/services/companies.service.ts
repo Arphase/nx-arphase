@@ -15,7 +15,7 @@ export class CompaniesService {
     const query = this.companyRepository.createQueryBuilder('company');
 
     if (text) {
-      query.andWhere(`LOWER(company.businessName) like :text`, { text: `%${text.toLowerCase()}%` });
+      query.andWhere(`(LOWER(company.businessName) like :text)`, { text: `%${text.toLowerCase()}%` });
     }
 
     filterCommonQuery('company', query, filterDto, user);

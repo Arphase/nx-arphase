@@ -3,7 +3,7 @@
   <div nz-col
        nzXs="24"
        nzMd="12">
-    <ivt-searchbar (valueChange)="updateSearchBarFilter($event)"></ivt-searchbar>
+    <aps-searchbar (valueChange)="updateSearchBarFilter($event)"></aps-searchbar>
   </div>
 </div>
 
@@ -64,7 +64,7 @@
           nzMd="6">{{ item.email | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzMd="6">{{ item.createdAt | date: 'dd/MM/yy': 'UTC' }}</td>
+          nzMd="6">{{ item.createdAt | date: 'dd/MM/yy' }}</td>
       <td nz-col
           nzXs="0"
           nzMd="6">{{ item.company?.businessName | empty }}</td>

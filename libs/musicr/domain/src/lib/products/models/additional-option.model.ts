@@ -1,4 +1,4 @@
-import { OrderProductAdditionalOption } from '../../orders';
+import { OrderProductAdditionalOption } from '../../orders/models/order-product-additional-option.model';
 import { Product } from './product.model';
 
 export interface AdditionalOption {

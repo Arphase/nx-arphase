@@ -62,7 +62,8 @@
               {
                 "sourceTag": "type:domain-logic",
                 "onlyDependOnLibsWithTags": [
-                  "type:util"
+                  "type:util",
+                  "type:domain-logic"
                 ]
               },
               {
@@ -107,7 +108,7 @@
                 "onlyDependOnLibsWithTags": [
                   "domain:musicr",
                   "domain:shared",
-                  "domain:arphase",
+                  "domain:arphase"
                 ]
               },
               {
