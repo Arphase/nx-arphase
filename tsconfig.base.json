@@ -83,7 +83,7 @@
       "@musicr/ui/auth": ["libs/musicr/ui/auth/src/index.ts"],
       "@musicr/ui/core": ["libs/musicr/ui/core/src/index.ts"],
       "@musicr/ui/terms-and-conditions": ["libs/musicr/ui/terms-and-conditions/src/index.ts"],
-      "@musicr/ui/home": ["libs/musicr/ui/home/src/index.ts"],
+      "@musicr/ui/home": ["libs/musicr/ui/home/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
