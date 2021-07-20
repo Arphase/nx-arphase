@@ -32,16 +32,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/arphase/api/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/arphase/api/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/arphase/api"
-          ],
+          "outputs": ["coverage/libs/arphase/api"],
           "options": {
             "jestConfig": "libs/arphase/api/jest.config.js",
             "passWithNoTests": true
@@ -57,16 +53,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/arphase/common/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/arphase/common/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/arphase/common"
-          ],
+          "outputs": ["coverage/libs/arphase/common"],
           "options": {
             "jestConfig": "libs/arphase/common/jest.config.js",
             "passWithNoTests": true
@@ -83,17 +75,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/arphase/ui/src/**/*.ts",
-              "libs/arphase/ui/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/arphase/ui/src/**/*.ts", "libs/arphase/ui/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/arphase/ui"
-          ],
+          "outputs": ["coverage/libs/arphase/ui"],
           "options": {
             "jestConfig": "libs/arphase/ui/jest.config.js",
             "passWithNoTests": true
@@ -114,9 +101,7 @@
             "outputPath": "dist/apps/innovatech/api",
             "main": "apps/innovatech/api/src/main.ts",
             "tsConfig": "apps/innovatech/api/tsconfig.app.json",
-            "assets": [
-              "apps/innovatech/api/src/assets"
-            ],
+            "assets": ["apps/innovatech/api/src/assets"],
             "maxWorkers": 1
           },
           "configurations": {
@@ -138,9 +123,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/innovatech/api/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/innovatech/api/**/*.ts"]
           }
         },
         "test": {
@@ -160,16 +143,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/auth/data/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/auth/data/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/auth/data"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/auth/data"],
           "options": {
             "jestConfig": "libs/innovatech/api/auth/data/jest.config.js",
             "passWithNoTests": true
@@ -185,16 +164,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/auth/feature/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/auth/feature/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/auth/feature"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/auth/feature"],
           "options": {
             "jestConfig": "libs/innovatech/api/auth/feature/jest.config.js",
             "passWithNoTests": true
@@ -210,16 +185,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/companies/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/companies/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/companies"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/companies"],
           "options": {
             "jestConfig": "libs/innovatech/api/companies/jest.config.js",
             "passWithNoTests": true
@@ -235,16 +206,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/core/data/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/core/data/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/core/data"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/core/data"],
           "options": {
             "jestConfig": "libs/innovatech/api/core/data/jest.config.js",
             "passWithNoTests": true
@@ -260,16 +227,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/core/util/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/core/util/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/core/util"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/core/util"],
           "options": {
             "jestConfig": "libs/innovatech/api/core/util/jest.config.js",
             "passWithNoTests": true
@@ -285,16 +248,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/domain/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/domain/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/domain"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/domain"],
           "options": {
             "jestConfig": "libs/innovatech/api/domain/jest.config.js",
             "passWithNoTests": true
@@ -310,16 +269,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/groups/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/groups/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/groups"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/groups"],
           "options": {
             "jestConfig": "libs/innovatech/api/groups/jest.config.js",
             "passWithNoTests": true
@@ -335,16 +290,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/guarantees/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/guarantees/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/guarantees"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/guarantees"],
           "options": {
             "jestConfig": "libs/innovatech/api/guarantees/jest.config.js",
             "passWithNoTests": true
@@ -360,16 +311,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/localities/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/localities/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/localities"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/localities"],
           "options": {
             "jestConfig": "libs/innovatech/api/localities/jest.config.js",
             "passWithNoTests": true
@@ -385,16 +332,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/payment-orders/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/payment-orders/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/payment-orders"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/payment-orders"],
           "options": {
             "jestConfig": "libs/innovatech/api/payment-orders/jest.config.js",
             "passWithNoTests": true
@@ -410,16 +353,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/products/feature/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/products/feature/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/products/feature"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/products/feature"],
           "options": {
             "jestConfig": "libs/innovatech/api/products/feature/jest.config.js",
             "passWithNoTests": true
@@ -435,16 +374,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/products/utils/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/products/utils/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/products/utils"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/products/utils"],
           "options": {
             "jestConfig": "libs/innovatech/api/products/utils/jest.config.js",
             "passWithNoTests": true
@@ -460,16 +395,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/revision-requests/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/revision-requests/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/revision-requests"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/revision-requests"],
           "options": {
             "jestConfig": "libs/innovatech/api/revision-requests/jest.config.js",
             "passWithNoTests": true
@@ -485,16 +416,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/revisions/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/revisions/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/revisions"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/revisions"],
           "options": {
             "jestConfig": "libs/innovatech/api/revisions/jest.config.js",
             "passWithNoTests": true
@@ -510,16 +437,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/users/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/users/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/users"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/users"],
           "options": {
             "jestConfig": "libs/innovatech/api/users/jest.config.js",
             "passWithNoTests": true
@@ -535,16 +458,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/api/vehicles/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/api/vehicles/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/api/vehicles"
-          ],
+          "outputs": ["coverage/libs/innovatech/api/vehicles"],
           "options": {
             "jestConfig": "libs/innovatech/api/vehicles/jest.config.js",
             "passWithNoTests": true
@@ -593,13 +512,9 @@
                 "inject": false
               }
             ],
-            "allowedCommonJsDependencies": [
-              "file-saver"
-            ],
+            "allowedCommonJsDependencies": ["file-saver"],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "libs/arphase/ui/src/styles"
-              ]
+              "includePaths": ["libs/arphase/ui/src/styles"]
             },
             "vendorChunk": true,
             "extractLicenses": false,
@@ -680,9 +595,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/innovatech/app/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/innovatech/app/**/*.ts"]
           }
         }
       }
@@ -716,9 +629,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/common/domain"
-          ],
+          "outputs": ["coverage/libs/innovatech/common/domain"],
           "options": {
             "jestConfig": "libs/innovatech/common/domain/jest.config.js",
             "passWithNoTests": true
@@ -743,9 +654,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/addresses/ui"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/addresses/ui"],
           "options": {
             "jestConfig": "libs/innovatech/ui/addresses/ui/jest.config.js",
             "passWithNoTests": true
@@ -773,9 +682,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/auth/data"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/auth/data"],
           "options": {
             "jestConfig": "libs/innovatech/ui/auth/data/jest.config.js",
             "passWithNoTests": true
@@ -800,9 +707,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/auth/feature"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/auth/feature"],
           "options": {
             "jestConfig": "libs/innovatech/ui/auth/feature/jest.config.js",
             "passWithNoTests": true
@@ -827,9 +732,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/companies/data"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/companies/data"],
           "options": {
             "jestConfig": "libs/innovatech/ui/companies/data/jest.config.js",
             "passWithNoTests": true
@@ -854,9 +757,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/companies/ui"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/companies/ui"],
           "options": {
             "jestConfig": "libs/innovatech/ui/companies/ui/jest.config.js",
             "passWithNoTests": true
@@ -881,9 +782,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/core/data"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/core/data"],
           "options": {
             "jestConfig": "libs/innovatech/ui/core/data/jest.config.js",
             "passWithNoTests": true
@@ -900,17 +799,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/ui/core/ui/src/**/*.ts",
-              "libs/innovatech/ui/core/ui/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/innovatech/ui/core/ui/src/**/*.ts", "libs/innovatech/ui/core/ui/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/core/ui"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/core/ui"],
           "options": {
             "jestConfig": "libs/innovatech/ui/core/ui/jest.config.js",
             "passWithNoTests": true
@@ -935,9 +829,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/core/util"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/core/util"],
           "options": {
             "jestConfig": "libs/innovatech/ui/core/util/jest.config.js",
             "passWithNoTests": true
@@ -954,9 +846,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/ui/dashboard/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/ui/dashboard/**/*.ts"]
           }
         },
         "test": {
@@ -985,9 +875,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/groups/data"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/groups/data"],
           "options": {
             "jestConfig": "libs/innovatech/ui/groups/data/jest.config.js",
             "passWithNoTests": true
@@ -1004,9 +892,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/ui/groups/feature/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/ui/groups/feature/**/*.ts"]
           }
         },
         "test": {
@@ -1035,9 +921,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/groups/ui"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/groups/ui"],
           "options": {
             "jestConfig": "libs/innovatech/ui/groups/ui/jest.config.js",
             "passWithNoTests": true
@@ -1054,9 +938,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/ui/guarantees/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/ui/guarantees/**/*.ts"]
           }
         },
         "test": {
@@ -1085,9 +967,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/permissions/data"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/permissions/data"],
           "options": {
             "jestConfig": "libs/innovatech/ui/permissions/data/jest.config.js",
             "passWithNoTests": true
@@ -1112,9 +992,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/products/data"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/products/data"],
           "options": {
             "jestConfig": "libs/innovatech/ui/products/data/jest.config.js",
             "passWithNoTests": true
@@ -1131,9 +1009,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/ui/products/feature/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/ui/products/feature/**/*.ts"]
           }
         },
         "test": {
@@ -1162,9 +1038,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/products/ui"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/products/ui"],
           "options": {
             "jestConfig": "libs/innovatech/ui/products/ui/jest.config.js",
             "passWithNoTests": true
@@ -1189,9 +1063,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/revision-requests"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/revision-requests"],
           "options": {
             "jestConfig": "libs/innovatech/ui/revision-requests/jest.config.js",
             "passWithNoTests": true
@@ -1216,9 +1088,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/revisions"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/revisions"],
           "options": {
             "jestConfig": "libs/innovatech/ui/revisions/jest.config.js",
             "passWithNoTests": true
@@ -1235,9 +1105,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/ui/spa/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/innovatech/ui/spa/**/*.ts"]
           }
         },
         "test": {
@@ -1266,9 +1134,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/users/data"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/users/data"],
           "options": {
             "jestConfig": "libs/innovatech/ui/users/data/jest.config.js",
             "passWithNoTests": true
@@ -1293,9 +1159,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/users"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/users"],
           "options": {
             "jestConfig": "libs/innovatech/ui/users/feature/jest.config.js",
             "passWithNoTests": true
@@ -1312,17 +1176,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/ui/users/ui/src/**/*.ts",
-              "libs/innovatech/ui/users/ui/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/innovatech/ui/users/ui/src/**/*.ts", "libs/innovatech/ui/users/ui/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/users/ui"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/users/ui"],
           "options": {
             "jestConfig": "libs/innovatech/ui/users/ui/jest.config.js",
             "passWithNoTests": true
@@ -1347,9 +1206,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/vehicles/data"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/vehicles/data"],
           "options": {
             "jestConfig": "libs/innovatech/ui/vehicles/data/jest.config.js",
             "passWithNoTests": true
@@ -1374,9 +1231,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/vehicles/feature"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/vehicles/feature"],
           "options": {
             "jestConfig": "libs/innovatech/ui/vehicles/feature/jest.config.js",
             "passWithNoTests": true
@@ -1401,9 +1256,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/ui/vehicles/ui"
-          ],
+          "outputs": ["coverage/libs/innovatech/ui/vehicles/ui"],
           "options": {
             "jestConfig": "libs/innovatech/ui/vehicles/feature/jest.config.js",
             "passWithNoTests": true
@@ -1440,9 +1293,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/innovatech/common/utils"
-          ],
+          "outputs": ["coverage/libs/innovatech/common/utils"],
           "options": {
             "jestConfig": "libs/innovatech/common/utils/jest.config.js",
             "passWithNoTests": true
@@ -1458,9 +1309,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/musicr/admin",
             "index": "apps/musicr/admin/src/index.html",
@@ -1468,13 +1317,8 @@
             "polyfills": "apps/musicr/admin/src/polyfills.ts",
             "tsConfig": "apps/musicr/admin/tsconfig.app.json",
             "inlineStyleLanguage": "less",
-            "assets": [
-              "apps/musicr/admin/src/favicon.ico",
-              "apps/musicr/admin/src/assets"
-            ],
-            "styles": [
-              "apps/musicr/admin/src/styles.less"
-            ],
+            "assets": ["apps/musicr/admin/src/favicon.ico", "apps/musicr/admin/src/assets"],
+            "styles": ["apps/musicr/admin/src/styles.less"],
             "scripts": []
           },
           "configurations": {
@@ -1519,17 +1363,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/musicr/admin/src/**/*.ts",
-              "apps/musicr/admin/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/musicr/admin/src/**/*.ts", "apps/musicr/admin/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/musicr/admin"
-          ],
+          "outputs": ["coverage/apps/musicr/admin"],
           "options": {
             "jestConfig": "apps/musicr/admin/jest.config.js",
             "passWithNoTests": true
@@ -1558,9 +1397,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/musicr/admin-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/musicr/admin-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -1572,16 +1409,12 @@
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/musicr/api",
             "main": "apps/musicr/api/src/main.ts",
             "tsConfig": "apps/musicr/api/tsconfig.app.json",
-            "assets": [
-              "apps/musicr/api/src/assets"
-            ],
+            "assets": ["apps/musicr/api/src/assets"],
             "maxWorkers": 1
           },
           "configurations": {
@@ -1609,16 +1442,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/musicr/api/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/musicr/api/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/musicr/api"
-          ],
+          "outputs": ["coverage/apps/musicr/api"],
           "options": {
             "jestConfig": "apps/musicr/api/jest.config.js",
             "passWithNoTests": true
@@ -1634,16 +1463,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/musicr/api/additional-options/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/musicr/api/additional-options/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/musicr/api/additional-options"
-          ],
+          "outputs": ["coverage/libs/musicr/api/additional-options"],
           "options": {
             "jestConfig": "libs/musicr/api/additional-options/jest.config.js",
             "passWithNoTests": true
@@ -1659,16 +1484,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/musicr/api/auth/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/musicr/api/auth/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/musicr/api/auth"
-          ],
+          "outputs": ["coverage/libs/musicr/api/auth"],
           "options": {
             "jestConfig": "libs/musicr/api/auth/jest.config.js",
             "passWithNoTests": true
@@ -1684,16 +1505,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/musicr/api/categories/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/musicr/api/categories/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/musicr/api/categories"
-          ],
+          "outputs": ["coverage/libs/musicr/api/categories"],
           "options": {
             "jestConfig": "libs/musicr/api/categories/jest.config.js",
             "passWithNoTests": true
@@ -1709,16 +1526,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/musicr/api/domain/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/musicr/api/domain/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/musicr/api/domain"
-          ],
+          "outputs": ["coverage/libs/musicr/api/domain"],
           "options": {
             "jestConfig": "libs/musicr/api/domain/jest.config.js",
             "passWithNoTests": true
@@ -1734,16 +1547,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/musicr/api/orders/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/musicr/api/orders/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/musicr/api/orders"
-          ],
+          "outputs": ["coverage/libs/musicr/api/orders"],
           "options": {
             "jestConfig": "libs/musicr/api/orders/jest.config.js",
             "passWithNoTests": true
@@ -1759,16 +1568,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/musicr/api/photos/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/musicr/api/photos/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/musicr/api/photos"
-          ],
+          "outputs": ["coverage/libs/musicr/api/photos"],
           "options": {
             "jestConfig": "libs/musicr/api/photos/jest.config.js",
             "passWithNoTests": true
@@ -1784,16 +1589,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/musicr/api/price-options/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/musicr/api/price-options/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/musicr/api/price-options"
-          ],
+          "outputs": ["coverage/libs/musicr/api/price-options"],
           "options": {
             "jestConfig": "libs/musicr/api/price-options/jest.config.js",
             "passWithNoTests": true
@@ -1831,16 +1632,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/musicr/api/products/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/musicr/api/products/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/musicr/api/products"
-          ],
+          "outputs": ["coverage/libs/musicr/api/products"],
           "options": {
             "jestConfig": "libs/musicr/api/products/jest.config.js",
             "passWithNoTests": true
@@ -1856,16 +1653,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/musicr/api/subcategories/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/musicr/api/subcategories/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/musicr/api/subcategories"
-          ],
+          "outputs": ["coverage/libs/musicr/api/subcategories"],
           "options": {
             "jestConfig": "libs/musicr/api/subcategories/jest.config.js",
             "passWithNoTests": true
@@ -1881,16 +1674,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/musicr/domain/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/musicr/domain/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/musicr/domain"
-          ],
+          "outputs": ["coverage/libs/musicr/domain"],
           "options": {
             "jestConfig": "libs/musicr/domain/jest.config.js",
             "passWithNoTests": true
@@ -1903,17 +1692,10 @@
       "root": "apps/musicr/store",
       "sourceRoot": "apps/musicr/store/src",
       "prefix": "mrl",
-      "schematics": {
-        "@schematics/angular:application": {
-          "strict": false
-        }
-      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/musicr-store/browser",
             "index": "apps/musicr/store/src/index.html",
@@ -1921,14 +1703,8 @@
             "polyfills": "apps/musicr/store/src/polyfills.ts",
             "tsConfig": "apps/musicr/store/tsconfig.app.json",
             "inlineStyleLanguage": "less",
-            "assets": [
-              "apps/musicr/store/src/favicon.ico",
-              "apps/musicr/store/src/assets"
-            ],
-            "styles": [
-              "apps/musicr/store/src/styles.less",
-              "libs/arphase/ui/src/styles/styles.less"
-            ],
+            "assets": ["apps/musicr/store/src/favicon.ico", "apps/musicr/store/src/assets"],
+            "styles": ["apps/musicr/store/src/styles.less", "libs/arphase/ui/src/styles/styles.less"],
             "scripts": []
           },
           "configurations": {
@@ -1939,26 +1715,29 @@
                   "with": "apps/musicr/store/src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "musicr-store:build"
-          },
           "configurations": {
             "production": {
               "browserTarget": "musicr-store:build:production"
+            },
+            "development": {
+              "browserTarget": "musicr-store:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -1969,17 +1748,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/musicr/store/src/**/*.ts",
-              "apps/musicr/store/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/musicr/store/src/**/*.ts", "apps/musicr/store/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/musicr/store"
-          ],
+          "outputs": ["coverage/apps/musicr/store"],
           "options": {
             "jestConfig": "apps/musicr/store/jest.config.js",
             "passWithNoTests": true
@@ -2053,9 +1827,7 @@
           "options": {
             "browserTarget": "musicr-store:build:production",
             "serverTarget": "musicr-store:server:production",
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {}
@@ -2084,9 +1856,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/musicr/store-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/musicr/store-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -2099,9 +1869,7 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/musicr/ui/terms-and-conditions"
-          ],
+          "outputs": ["coverage/libs/musicr/ui/terms-and-conditions"],
           "options": {
             "jestConfig": "libs/musicr/ui/terms-and-conditions/jest.config.js",
             "passWithNoTests": true
@@ -2127,16 +1895,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/musicr/ui/auth/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/musicr/ui/auth/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/musicr/ui/auth"
-          ],
+          "outputs": ["coverage/libs/musicr/ui/auth"],
           "options": {
             "jestConfig": "libs/musicr/ui/auth/jest.config.js",
             "passWithNoTests": true
@@ -2152,9 +1916,7 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/musicr/ui/core"
-          ],
+          "outputs": ["coverage/libs/musicr/ui/core"],
           "options": {
             "jestConfig": "libs/musicr/ui/core/jest.config.js",
             "passWithNoTests": true
@@ -2163,10 +1925,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/musicr/ui/core/src/**/*.ts",
-              "libs/musicr/ui/core/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/musicr/ui/core/src/**/*.ts", "libs/musicr/ui/core/src/**/*.html"]
           }
         }
       }
