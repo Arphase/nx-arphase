@@ -228,6 +228,9 @@
     },
     "musicr-ui-core": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+    },
+    "musicr-ui-home": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     }
   }
 }
