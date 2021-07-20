@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ivt-home',
+  selector: 'mrl-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.less'],
 })

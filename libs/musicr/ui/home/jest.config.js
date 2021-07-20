@@ -9,6 +9,10 @@ module.exports = {
     },
   },
   coverageDirectory: '../../../../coverage/libs/musicr/ui/home',
+  transform: {
+    '^.+\\.(ts|js|html)$': 'jest-preset-angular',
+  },
+  testRunner: 'jasmine2',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',
