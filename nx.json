@@ -233,17 +233,17 @@
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "valmira-admin": {
-      "tags": []
+      "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
     },
     "valmira-admin-e2e": {
       "tags": [],
       "implicitDependencies": ["valmira-admin"]
     },
     "valmira-api": {
-      "tags": []
+      "tags": ["domain:valmira", "domain:valmira:ui", "executable:api"]
     },
     "valmira-app": {
-      "tags": []
+      "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
     },
     "valmira-app-e2e": {
       "tags": [],
