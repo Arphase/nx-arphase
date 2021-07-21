@@ -231,6 +231,23 @@
     },
     "musicr-ui-home": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
+    "valmira-admin": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
+    },
+    "valmira-admin-e2e": {
+      "tags": [],
+      "implicitDependencies": ["valmira-admin"]
+    },
+    "valmira-api": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "executable:api"]
+    },
+    "valmira-app": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
+    },
+    "valmira-app-e2e": {
+      "tags": [],
+      "implicitDependencies": ["valmira-app"]
     }
   }
 }

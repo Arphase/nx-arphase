@@ -62,5 +62,8 @@ module.exports = {
     '<rootDir>/libs/musicr/api/photos',
     '<rootDir>/libs/musicr/api/price-options',
     '<rootDir>/libs/musicr/api/orders',
+    '<rootDir>/apps/valmira/api',
+    '<rootDir>/apps/valmira/app',
+    '<rootDir>/apps/valmira/admin',
   ],
 };

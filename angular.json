@@ -1602,28 +1602,6 @@
         }
       }
     },
-    "musicr-ui-home": {
-      "projectType": "library",
-      "root": "libs/musicr/ui/home",
-      "sourceRoot": "libs/musicr/ui/home/src",
-      "prefix": "mrl",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/home"],
-          "options": {
-            "jestConfig": "libs/musicr/ui/home/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/musicr/ui/home/src/**/*.ts", "libs/musicr/ui/home/src/**/*.html"]
-          }
-        }
-      }
-    },
     "musicr-api-products": {
       "root": "libs/musicr/api/products",
       "sourceRoot": "libs/musicr/api/products/src",
@@ -1708,6 +1686,14 @@
             "scripts": []
           },
           "configurations": {
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -1716,14 +1702,6 @@
                 }
               ],
               "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
             }
           }
         },
@@ -1926,6 +1904,314 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/musicr/ui/core/src/**/*.ts", "libs/musicr/ui/core/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "musicr-ui-home": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/home",
+      "sourceRoot": "libs/musicr/ui/home/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/home"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/home/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/home/src/**/*.ts", "libs/musicr/ui/home/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "valmira-admin": {
+      "projectType": "application",
+      "root": "apps/valmira/admin",
+      "sourceRoot": "apps/valmira/admin/src",
+      "prefix": "vma",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/valmira/admin",
+            "index": "apps/valmira/admin/src/index.html",
+            "main": "apps/valmira/admin/src/main.ts",
+            "polyfills": "apps/valmira/admin/src/polyfills.ts",
+            "tsConfig": "apps/valmira/admin/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/valmira/admin/src/favicon.ico", "apps/valmira/admin/src/assets"],
+            "styles": ["apps/valmira/admin/src/styles.less"],
+            "scripts": []
+          },
+          "configurations": {
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/valmira/admin/src/environments/environment.ts",
+                  "with": "apps/valmira/admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "valmira-admin:build:production"
+            },
+            "development": {
+              "browserTarget": "valmira-admin:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "valmira-admin:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/valmira/admin/src/**/*.ts", "apps/valmira/admin/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/valmira/admin"],
+          "options": {
+            "jestConfig": "apps/valmira/admin/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-admin-e2e": {
+      "root": "apps/valmira/admin-e2e",
+      "sourceRoot": "apps/valmira/admin-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/valmira/admin-e2e/cypress.json",
+            "tsConfig": "apps/valmira/admin-e2e/tsconfig.e2e.json",
+            "devServerTarget": "valmira-admin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "valmira-admin:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/valmira/admin-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "valmira-api": {
+      "root": "apps/valmira/api",
+      "sourceRoot": "apps/valmira/api/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/valmira/api",
+            "main": "apps/valmira/api/src/main.ts",
+            "tsConfig": "apps/valmira/api/tsconfig.app.json",
+            "assets": ["apps/valmira/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/valmira/api/src/environments/environment.ts",
+                  "with": "apps/valmira/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "valmira-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/valmira/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/valmira/api"],
+          "options": {
+            "jestConfig": "apps/valmira/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-app": {
+      "projectType": "application",
+      "root": "apps/valmira/app",
+      "sourceRoot": "apps/valmira/app/src",
+      "prefix": "vma",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/valmira/app",
+            "index": "apps/valmira/app/src/index.html",
+            "main": "apps/valmira/app/src/main.ts",
+            "polyfills": "apps/valmira/app/src/polyfills.ts",
+            "tsConfig": "apps/valmira/app/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/valmira/app/src/favicon.ico", "apps/valmira/app/src/assets"],
+            "styles": ["apps/valmira/app/src/styles.less"],
+            "scripts": []
+          },
+          "configurations": {
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/valmira/app/src/environments/environment.ts",
+                  "with": "apps/valmira/app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "valmira-app:build:production"
+            },
+            "development": {
+              "browserTarget": "valmira-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "valmira-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/valmira/app/src/**/*.ts", "apps/valmira/app/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/valmira/app"],
+          "options": {
+            "jestConfig": "apps/valmira/app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-app-e2e": {
+      "root": "apps/valmira/app-e2e",
+      "sourceRoot": "apps/valmira/app-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/valmira/app-e2e/cypress.json",
+            "tsConfig": "apps/valmira/app-e2e/tsconfig.e2e.json",
+            "devServerTarget": "valmira-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "valmira-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/valmira/app-e2e/**/*.{js,ts}"]
           }
         }
       }
