@@ -1,7 +1,7 @@
 import { createCollectionResponse } from '@arphase/api';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { filterCommonQuery } from '@innovatech/api/core/util';
-import { VehicleRepository } from '@innovatech/api/domain';
+import { VehicleEntity } from '@innovatech/api/domain';
 import {
   hasAccessToAllData,
   RevisionStatus,
@@ -13,6 +13,7 @@ import {
 import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 import { CreateVehicleDto } from '../dto/create-vehicle.dto';
 import { GetVehiclesDto } from '../dto/get-vehicles.dto';
@@ -20,7 +21,7 @@ import { UpdateVehicleDto } from '../dto/update-vehicle.dto';
 
 @Injectable()
 export class VehiclesService {
-  constructor(@InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository) {}
+  constructor(@InjectRepository(VehicleEntity) private vehicleRepository: Repository<VehicleEntity>) {}
 
   async getVehicles(filterDto: GetVehiclesDto, user: Partial<User>): Promise<ApsCollectionResponse<Vehicle>> {
     const { pageSize, pageIndex, text, status } = filterDto;

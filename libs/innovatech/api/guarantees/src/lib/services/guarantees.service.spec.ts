@@ -1,10 +1,12 @@
 import {
-  GuaranteeRepository,
-  MoralPersonRepository,
-  PhysicalPersonRepository,
-  VehicleRepository,
+  GuaranteeEntity,
+  MoralPersonEntity,
+  PhysicalPersonEntity,
+  TypeOrmUnitTestModule,
+  VehicleEntity,
 } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 
 import { GuaranteesService } from './guarantees.service';
@@ -14,14 +16,11 @@ describe('GuaranteesService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        GuaranteesService,
-        { provide: GuaranteeRepository, useValue: {} },
-        { provide: PhysicalPersonRepository, useValue: {} },
-        { provide: MoralPersonRepository, useValue: {} },
-        { provide: VehicleRepository, useValue: {} },
-        { provide: Connection, useValue: {} },
+      imports: [
+        TypeOrmUnitTestModule,
+        TypeOrmModule.forFeature([GuaranteeEntity, PhysicalPersonEntity, MoralPersonEntity, VehicleEntity]),
       ],
+      providers: [GuaranteesService, { provide: Connection, useValue: {} }],
     }).compile();
 
     service = module.get<GuaranteesService>(GuaranteesService);

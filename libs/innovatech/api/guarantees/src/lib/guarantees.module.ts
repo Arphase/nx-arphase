@@ -1,10 +1,5 @@
 import { AuthDataModule } from '@innovatech/api/auth/data';
-import {
-  GuaranteeRepository,
-  MoralPersonRepository,
-  PhysicalPersonRepository,
-  VehicleRepository,
-} from '@innovatech/api/domain';
+import { GuaranteeEntity, MoralPersonEntity, PhysicalPersonEntity, VehicleEntity } from '@innovatech/api/domain';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -13,7 +8,7 @@ import { GuaranteesService } from './services/guarantees.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([GuaranteeRepository, MoralPersonRepository, PhysicalPersonRepository, VehicleRepository]),
+    TypeOrmModule.forFeature([GuaranteeEntity, MoralPersonEntity, PhysicalPersonEntity, VehicleEntity]),
     AuthDataModule,
   ],
   controllers: [GuaranteesController],

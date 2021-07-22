@@ -1,5 +1,6 @@
-import { LocalityRepository } from '@innovatech/api/domain';
+import { LocalityEntity, TypeOrmUnitTestModule } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { LocalitiesService } from './localities.service';
 
@@ -8,7 +9,8 @@ describe('LocalitiesService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [LocalitiesService, { provide: LocalityRepository, useValue: {} }],
+      imports: [TypeOrmUnitTestModule, TypeOrmModule.forFeature([LocalityEntity])],
+      providers: [LocalitiesService],
     }).compile();
 
     service = module.get<LocalitiesService>(LocalitiesService);

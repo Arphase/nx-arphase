@@ -1,11 +1,5 @@
 import { AuthDataModule } from '@innovatech/api/auth/data';
-import {
-  CompanyRepository,
-  GroupRepository,
-  ProductRepository,
-  ResetPasswordRepository,
-  UserRepository,
-} from '@innovatech/api/domain';
+import { CompanyEntity, GroupEntity, ProductEntity, ResetPasswordEntity, UserEntity } from '@innovatech/api/domain';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -14,13 +8,7 @@ import { GroupsService } from './services/groups.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
-      CompanyRepository,
-      GroupRepository,
-      UserRepository,
-      ResetPasswordRepository,
-      ProductRepository,
-    ]),
+    TypeOrmModule.forFeature([CompanyEntity, GroupEntity, UserEntity, ResetPasswordEntity, ProductEntity]),
     AuthDataModule,
   ],
   controllers: [GroupsController],

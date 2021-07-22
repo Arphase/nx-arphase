@@ -1,12 +1,12 @@
 import { createCollectionResponse } from '@arphase/api';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { filterCommonQuery } from '@innovatech/api/core/util';
-import { RevisionRepository, VehicleRepository } from '@innovatech/api/domain';
+import { RevisionEntity, VehicleEntity } from '@innovatech/api/domain';
 import { Revision, RevisionStatus, User, VehicleStatus } from '@innovatech/common/domain';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import dayjs from 'dayjs';
-import { Connection, FindOneOptions } from 'typeorm';
+import { Connection, FindOneOptions, Repository } from 'typeorm';
 
 import { CreateRevisionDto } from '../dto/create-revision.dto';
 import { GetRevisionsDto } from '../dto/get-revisions.dto';
@@ -15,8 +15,8 @@ import { UpdateRevisionDto } from '../dto/update-revision.dto';
 @Injectable()
 export class RevisionsService {
   constructor(
-    @InjectRepository(RevisionRepository) private revisionRepository: RevisionRepository,
-    @InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository,
+    @InjectRepository(RevisionEntity) private revisionRepository: Repository<RevisionEntity>,
+    @InjectRepository(VehicleEntity) private vehicleRepository: Repository<VehicleEntity>,
     private connection: Connection
   ) {}
 

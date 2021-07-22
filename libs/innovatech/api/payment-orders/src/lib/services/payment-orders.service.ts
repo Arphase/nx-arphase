@@ -1,6 +1,6 @@
 import { formatDate } from '@arphase/common';
 import { getReadableStream, OUT_FILE, tobase64 } from '@innovatech/api/core/util';
-import { GuaranteeRepository, PaymentOrderRepository } from '@innovatech/api/domain';
+import { GuaranteeEntity, PaymentOrderEntity } from '@innovatech/api/domain';
 import { PaymentOrder, transformFolio } from '@innovatech/common/domain';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -8,7 +8,7 @@ import { Response } from 'express';
 import fs from 'fs';
 import { omit } from 'lodash';
 import puppeteer from 'puppeteer';
-import { Connection, getManager } from 'typeorm';
+import { Connection, getManager, Repository } from 'typeorm';
 import { promisify } from 'util';
 
 import { CreatePaymentOrderDto } from '../dto/create-payment-order.dto';
@@ -17,8 +17,8 @@ import { UpdatePaymentOrderDto } from '../dto/update-payment-order.dto';
 @Injectable()
 export class PaymentOrdersService {
   constructor(
-    @InjectRepository(PaymentOrderRepository) private paymentOrderRepository: PaymentOrderRepository,
-    @InjectRepository(GuaranteeRepository) private guaranteeRepository: GuaranteeRepository,
+    @InjectRepository(PaymentOrderEntity) private paymentOrderRepository: Repository<PaymentOrderEntity>,
+    @InjectRepository(GuaranteeEntity) private guaranteeRepository: Repository<GuaranteeEntity>,
     private connection: Connection
   ) {}
 

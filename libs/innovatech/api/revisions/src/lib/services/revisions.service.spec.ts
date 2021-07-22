@@ -1,5 +1,6 @@
-import { RevisionRepository, VehicleRepository } from '@innovatech/api/domain';
+import { RevisionEntity, TypeOrmUnitTestModule, VehicleEntity } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 
 import { RevisionsService } from './revisions.service';
@@ -9,12 +10,8 @@ describe('RevisionsService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        RevisionsService,
-        { provide: RevisionRepository, useValue: {} },
-        { provide: VehicleRepository, useValue: {} },
-        { provide: Connection, useValue: {} },
-      ],
+      imports: [TypeOrmUnitTestModule, TypeOrmModule.forFeature([RevisionEntity, VehicleEntity])],
+      providers: [RevisionsService, { provide: Connection, useValue: {} }],
     }).compile();
 
     service = module.get<RevisionsService>(RevisionsService);

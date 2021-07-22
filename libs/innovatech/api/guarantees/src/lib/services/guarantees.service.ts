@@ -1,13 +1,7 @@
 import { createCollectionResponse } from '@arphase/api';
 import { ApsCollectionResponse, formatDate } from '@arphase/common';
 import { filterCommonQuery, getReadableStream, tobase64 } from '@innovatech/api/core/util';
-import {
-  GuaranteeEntity,
-  GuaranteeRepository,
-  MoralPersonRepository,
-  PhysicalPersonRepository,
-  VehicleRepository,
-} from '@innovatech/api/domain';
+import { GuaranteeEntity, MoralPersonEntity, PhysicalPersonEntity, VehicleEntity } from '@innovatech/api/domain';
 import { generateProductPdf, getProductPdfTemplate } from '@innovatech/api/products/utils';
 import {
   Client,
@@ -33,7 +27,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import { omit } from 'lodash';
-import { Connection } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
 import * as XLSX from 'xlsx';
 
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
@@ -45,10 +39,10 @@ import { applyGuaranteeFilter, getGuaranteePdfTemplate } from './guarantees.serv
 @Injectable()
 export class GuaranteesService {
   constructor(
-    @InjectRepository(GuaranteeRepository) private guaranteeRepository: GuaranteeRepository,
-    @InjectRepository(PhysicalPersonRepository) private physicalPersonRepository: PhysicalPersonRepository,
-    @InjectRepository(MoralPersonRepository) private moralPersonRepository: MoralPersonRepository,
-    @InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository,
+    @InjectRepository(GuaranteeEntity) private guaranteeRepository: Repository<GuaranteeEntity>,
+    @InjectRepository(PhysicalPersonEntity) private physicalPersonRepository: Repository<PhysicalPersonEntity>,
+    @InjectRepository(MoralPersonEntity) private moralPersonRepository: Repository<MoralPersonEntity>,
+    @InjectRepository(VehicleEntity) private vehicleRepository: Repository<VehicleEntity>,
     private readonly connection: Connection
   ) {}
 

@@ -1,5 +1,6 @@
-import { CompanyRepository } from '@innovatech/api/domain';
+import { CompanyEntity, TypeOrmUnitTestModule } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { CompaniesService } from './companies.service';
 
@@ -8,7 +9,8 @@ describe('CompaniesService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [CompaniesService, { provide: CompanyRepository, useValue: {} }],
+      imports: [TypeOrmUnitTestModule, TypeOrmModule.forFeature([CompanyEntity])],
+      providers: [CompaniesService],
     }).compile();
 
     service = module.get<CompaniesService>(CompaniesService);

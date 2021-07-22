@@ -1,4 +1,4 @@
-import { ResetPasswordRepository, UserRepository } from '@innovatech/api/domain';
+import { ResetPasswordEntity, UserEntity } from '@innovatech/api/domain';
 import { ResetPassword, User } from '@innovatech/common/domain';
 import { generateId } from '@innovatech/common/utils';
 import {
@@ -14,7 +14,7 @@ import * as bcrypt from 'bcryptjs';
 import { omit } from 'lodash';
 import { createTransport } from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
-import { getManager } from 'typeorm';
+import { getManager, Repository } from 'typeorm';
 
 import { getNewUserEmailTemplate } from '../constants/new-user-email-template';
 import { getResetPasswordEmailTemplate } from '../constants/reset-password-email-template';
@@ -24,8 +24,8 @@ import { ResetPasswordDto } from '../dto/reset-password.dto';
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(UserRepository) private userRepository: UserRepository,
-    @InjectRepository(ResetPasswordRepository) private resetPasswordRepository: ResetPasswordRepository,
+    @InjectRepository(UserEntity) private userRepository: Repository<UserEntity>,
+    @InjectRepository(ResetPasswordEntity) private resetPasswordRepository: Repository<ResetPasswordEntity>,
     private jwtService: JwtService
   ) {}
 

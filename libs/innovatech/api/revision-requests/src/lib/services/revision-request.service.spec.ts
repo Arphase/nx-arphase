@@ -1,5 +1,6 @@
-import { RevisionRequestRepository } from '@innovatech/api/domain';
+import { RevisionRequestEntity, TypeOrmUnitTestModule } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { RevisionRequestService } from './revision-request.service';
 
@@ -8,7 +9,8 @@ describe('RevisionRequestService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [RevisionRequestService, { provide: RevisionRequestRepository, useValue: {} }],
+      imports: [TypeOrmUnitTestModule, TypeOrmModule.forFeature([RevisionRequestEntity])],
+      providers: [RevisionRequestService],
     }).compile();
 
     service = module.get<RevisionRequestService>(RevisionRequestService);

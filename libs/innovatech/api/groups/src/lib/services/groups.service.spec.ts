@@ -1,12 +1,14 @@
 import { AuthService } from '@innovatech/api/auth/data';
 import {
-  CompanyRepository,
-  GroupRepository,
-  ProductRepository,
-  ResetPasswordRepository,
-  UserRepository,
+  CompanyEntity,
+  GroupEntity,
+  ProductEntity,
+  ResetPasswordEntity,
+  TypeOrmUnitTestModule,
+  UserEntity,
 } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 
 import { GroupsService } from './groups.service';
@@ -16,16 +18,11 @@ describe('GroupsService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        GroupsService,
-        { provide: GroupRepository, useValue: {} },
-        { provide: CompanyRepository, useValue: {} },
-        { provide: UserRepository, useValue: {} },
-        { provide: ResetPasswordRepository, useValue: {} },
-        { provide: ProductRepository, useValue: {} },
-        { provide: AuthService, useValue: {} },
-        { provide: Connection, useValue: {} },
+      imports: [
+        TypeOrmUnitTestModule,
+        TypeOrmModule.forFeature([GroupEntity, CompanyEntity, UserEntity, ResetPasswordEntity, ProductEntity]),
       ],
+      providers: [GroupsService, { provide: AuthService, useValue: {} }, { provide: Connection, useValue: {} }],
     }).compile();
 
     service = module.get<GroupsService>(GroupsService);
