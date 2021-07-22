@@ -1,27 +1,9 @@
-import { Trim } from '@arphase/api';
-import { IsDateString, IsInt, IsOptional, IsString } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { IsNumber } from 'class-validator';
 
-export class UpdatePhysicalPersonDto {
-  @IsOptional()
-  @IsInt()
+import { CreatePhysicalPersonDto } from '../create-dtos/create-physical-person.dto';
+
+export class UpdatePhysicalPersonDto extends PartialType(CreatePhysicalPersonDto) {
+  @IsNumber()
   id: number;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  name: string;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  lastName: string;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  secondLastName: string;
-
-  @IsOptional()
-  @IsDateString()
-  birthDate: Date;
 }

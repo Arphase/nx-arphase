@@ -1,47 +1,9 @@
-import { Trim } from '@arphase/api';
-import { Transform } from 'class-transformer';
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { IsNumber } from 'class-validator';
 
-export class UpdateProductDto {
-  @IsNotEmpty()
+import { CreateProductDto } from './create-products.dto';
+
+export class UpdateProductDto extends PartialType(CreateProductDto) {
   @IsNumber()
   id: number;
-
-  @IsOptional()
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
-  price: number;
-
-  @IsOptional()
-  @IsString()
-  template: string;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  name: string;
-
-  @IsOptional()
-  @IsString()
-  logo: string;
-
-  @IsOptional()
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
-  minYear: number;
-
-  @IsOptional()
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
-  maxYear: number;
-
-  @IsOptional()
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
-  minHp: number;
-
-  @IsOptional()
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
-  maxHp: number;
 }
