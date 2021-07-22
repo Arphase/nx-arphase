@@ -1,23 +1,24 @@
 import { ApsCollectionResponse } from '@arphase/common';
-import { dbTestConnection, ProductEntity, ProductRepository } from '@musicr/api/domain';
+import { ProductEntity, TypeOrmUnitTestModule } from '@musicr/api/domain';
 import { Product } from '@musicr/domain';
-import { Connection, getConnection } from 'typeorm';
+import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 import { ProductsService } from './products.service';
 
 describe('ProductsService', () => {
-  let db: Connection;
   let service: ProductsService;
-  let repository: ProductRepository;
+  let repository: Repository<ProductEntity>;
 
   beforeEach(async () => {
-    db = await dbTestConnection;
-    repository = db.getRepository(ProductEntity);
-    service = new ProductsService(repository);
-  });
+    const module: TestingModule = await Test.createTestingModule({
+      imports: [TypeOrmUnitTestModule, TypeOrmModule.forFeature([ProductEntity])],
+      providers: [ProductsService],
+    }).compile();
 
-  afterEach(async () => {
-    await getConnection('test').close();
+    service = module.get<ProductsService>(ProductsService);
+    repository = module.get(getRepositoryToken(ProductEntity));
   });
 
   it('should get the products collection', async () => {

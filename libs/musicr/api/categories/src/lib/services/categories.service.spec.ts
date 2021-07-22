@@ -1,5 +1,6 @@
-import { CategoryRepository } from '@musicr/api/domain';
+import { CategoryEntity, TypeOrmUnitTestModule } from '@musicr/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { CategoriesService } from './categories.service';
 
@@ -8,7 +9,8 @@ describe('CategoriesService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [CategoriesService, { provide: CategoryRepository, useValue: {} }],
+      imports: [TypeOrmUnitTestModule, TypeOrmModule.forFeature([CategoryEntity])],
+      providers: [CategoriesService],
     }).compile();
 
     service = module.get<CategoriesService>(CategoriesService);

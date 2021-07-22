@@ -11,3 +11,5 @@ export * from './product.entity';
 export * from './social-event.entity';
 export * from './subcategory.entity';
 export * from './user.entity';
+
+export * from './db-test-connection';

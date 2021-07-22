@@ -1,13 +1,14 @@
-import { PhotoRepository } from '@musicr/api/domain';
+import { PhotoEntity } from '@musicr/api/domain';
 import { Photo } from '@musicr/domain';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { S3 } from 'aws-sdk';
+import { Repository } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class PhotosService {
-  constructor(@InjectRepository(PhotoRepository) private photoRepository: PhotoRepository) {}
+  constructor(@InjectRepository(PhotoEntity) private photoRepository: Repository<PhotoEntity>) {}
 
   async uploadPhoto(dataBuffer: Buffer, filename: string): Promise<Photo> {
     const s3 = new S3();

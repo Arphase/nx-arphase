@@ -1,17 +1,21 @@
 import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
-import { ProductRepository } from '@musicr/api/domain';
+import { ProductEntity } from '@musicr/api/domain';
 import { Product } from '@musicr/domain';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { uniqBy } from 'lodash';
+import { Repository } from 'typeorm';
 
 import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
 
 @Injectable()
 export class ProductsService {
-  constructor(@InjectRepository(ProductRepository) private productRepository: ProductRepository) {}
+  constructor(
+    @InjectRepository(ProductEntity)
+    private productRepository: Repository<ProductEntity>
+  ) {}
 
   async getProducts(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Product>> {
     const { pageIndex, pageSize } = filterDto;

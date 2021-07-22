@@ -1,10 +1,11 @@
-import { UserRepository } from '@musicr/api/domain';
+import { UserEntity } from '@musicr/api/domain';
 import { User } from '@musicr/domain';
 import { ConflictException, Injectable, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcryptjs';
 import { omit } from 'lodash';
+import { Repository } from 'typeorm';
 
 import { SignInCredentialsDto } from '../dto/sign-in-credentiails.dto';
 import { SignUpCredentialsDto } from '../dto/sign-up-credentials.dto';
@@ -12,7 +13,7 @@ import { SignUpCredentialsDto } from '../dto/sign-up-credentials.dto';
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(UserRepository) private userRepository: UserRepository,
+    @InjectRepository(UserEntity) private userRepository: Repository<UserEntity>,
     private jwtService: JwtService
   ) {}
 

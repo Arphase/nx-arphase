@@ -1,5 +1,6 @@
-import { PhotoRepository } from '@musicr/api/domain';
+import { PhotoEntity, TypeOrmUnitTestModule } from '@musicr/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { PhotosService } from './photos.service';
 
@@ -8,7 +9,8 @@ describe('PhotosService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [PhotosService, { provide: PhotoRepository, useValue: {} }],
+      imports: [TypeOrmUnitTestModule, TypeOrmModule.forFeature([PhotoEntity])],
+      providers: [PhotosService],
     }).compile();
 
     service = module.get<PhotosService>(PhotosService);

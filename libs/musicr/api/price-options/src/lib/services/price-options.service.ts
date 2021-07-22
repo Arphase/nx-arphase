@@ -1,9 +1,11 @@
 import { createCollectionResponse, filterCollectionQuery } from '@arphase/api';
 import { ApsCollectionResponse } from '@arphase/common';
-import { PriceOptionRepository } from '@musicr/api/domain';
+import { PriceOptionEntity } from '@musicr/api/domain';
 import { PriceOption } from '@musicr/domain';
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { uniqBy } from 'lodash';
+import { Repository } from 'typeorm';
 
 import { CreatePriceOptionDto } from '../dto/create-price-option.dto';
 import { GetPriceOptionsDto } from '../dto/get-price-options.dto';
@@ -11,7 +13,7 @@ import { UpdatePriceOptionDto } from '../dto/update-price-option.dto';
 
 @Injectable()
 export class PriceOptionsService {
-  constructor(@Inject(PriceOptionRepository) private priceOptionRepository: PriceOptionRepository) {}
+  constructor(@InjectRepository(PriceOptionEntity) private priceOptionRepository: Repository<PriceOptionEntity>) {}
 
   async getPriceOptions(filterDto: GetPriceOptionsDto): Promise<ApsCollectionResponse<PriceOption>> {
     const { pageIndex, pageSize, productId } = filterDto;

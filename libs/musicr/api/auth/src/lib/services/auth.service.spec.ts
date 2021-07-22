@@ -1,6 +1,7 @@
-import { UserRepository } from '@musicr/api/domain';
+import { TypeOrmUnitTestModule, UserEntity } from '@musicr/api/domain';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthService } from './auth.service';
 
@@ -9,7 +10,8 @@ describe('AuthService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AuthService, { provide: UserRepository, useValue: {} }, { provide: JwtService, useValue: {} }],
+      imports: [TypeOrmUnitTestModule, TypeOrmModule.forFeature([UserEntity])],
+      providers: [AuthService, { provide: JwtService, useValue: {} }],
     }).compile();
 
     service = module.get<AuthService>(AuthService);

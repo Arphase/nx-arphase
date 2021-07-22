@@ -1,4 +1,4 @@
-import { createConnection } from 'typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 import {
   AdditionalOptionEntity,
@@ -14,7 +14,7 @@ import {
   SocialEventEntity,
   SubcategoryEntity,
   UserEntity,
-} from './entities';
+} from '.';
 
 const entities = [
   AdditionalOptionEntity,
@@ -32,12 +32,13 @@ const entities = [
   UserEntity,
 ];
 
-export const dbTestConnection = createConnection({
+export const TypeOrmUnitTestModule = TypeOrmModule.forRoot({
   type: 'sqlite',
   database: ':memory:',
   dropSchema: true,
   entities,
   synchronize: true,
   logging: false,
-  name: 'test',
+  autoLoadEntities: true,
+  keepConnectionAlive: false,
 });
