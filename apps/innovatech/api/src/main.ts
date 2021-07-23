@@ -13,7 +13,9 @@ import { SentryInterceptor } from './sentry.inerceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
+  app.useGlobalPipes(
+    new ValidationPipe({ transform: true, whitelist: true, transformOptions: { enableImplicitConversion: true } })
+  );
   app.useGlobalInterceptors(new SentryInterceptor());
   app.use(bodyParser.json({ limit: '50mb' }));
   app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));

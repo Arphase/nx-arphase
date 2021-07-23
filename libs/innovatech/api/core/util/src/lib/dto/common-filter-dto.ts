@@ -1,12 +1,11 @@
 import { ApsCollectionFilterDto } from '@arphase/api';
 import { convertStringToNumberArray } from '@innovatech/common/utils';
 import { Transform } from 'class-transformer';
-import { IsArray, IsNumber, IsOptional } from 'class-validator';
+import { IsArray, IsNumberString, IsOptional } from 'class-validator';
 
 export class CommonFilterDto extends ApsCollectionFilterDto {
   @IsOptional()
-  @IsNumber()
-  @Transform(({ obj, key }) => Number([obj[key]]))
+  @IsNumberString()
   groupId: number;
 
   @IsOptional()

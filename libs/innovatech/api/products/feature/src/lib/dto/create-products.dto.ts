@@ -1,10 +1,8 @@
 import { Trim } from '@arphase/api';
-import { Transform } from 'class-transformer';
-import { IsNumber, IsString } from 'class-validator';
+import { IsNumberString, IsString } from 'class-validator';
 
 export class CreateProductDto {
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
+  @IsNumberString()
   price: number;
 
   @IsString()
@@ -17,19 +15,15 @@ export class CreateProductDto {
   @IsString()
   logo: string;
 
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
+  @IsNumberString()
   minYear: number;
 
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
+  @IsNumberString()
   maxYear: number;
 
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
+  @IsNumberString()
   minHp: number;
 
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
+  @IsNumberString()
   maxHp: number;
 }
