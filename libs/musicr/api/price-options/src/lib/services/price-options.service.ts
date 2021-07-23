@@ -31,8 +31,7 @@ export class PriceOptionsService {
   async createPriceOption(createDto: CreatePriceOptionDto): Promise<PriceOption> {
     try {
       const priceOption = this.priceOptionRepository.create(createDto);
-      await priceOption.save();
-      return priceOption;
+      return this.priceOptionRepository.save(priceOption);
     } catch (e) {
       if (e.code === '23503') {
         throw new NotFoundException(`Producto con id ${createDto.productId} no existe`);

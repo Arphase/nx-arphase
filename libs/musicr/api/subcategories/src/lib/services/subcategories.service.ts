@@ -32,8 +32,7 @@ export class SubcategoriesService {
     }
     try {
       const newSubcategory = this.subcategoryRepository.create({ ...subcategory });
-      await newSubcategory.save();
-      return newSubcategory;
+      return this.subcategoryRepository.save(newSubcategory);
     } catch (e) {
       if (e.code === '23503') {
         throw new NotFoundException(`La categoría con id ${subcategory.categoryId} no existe`);

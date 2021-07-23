@@ -29,9 +29,7 @@ export class CategoriesService {
       return found;
     }
     const newCategory = this.categoryRepository.create({ ...category });
-    await newCategory.save();
-
-    return newCategory;
+    return this.categoryRepository.save(newCategory);
   }
 
   async deleteCategory(id: number): Promise<Category> {

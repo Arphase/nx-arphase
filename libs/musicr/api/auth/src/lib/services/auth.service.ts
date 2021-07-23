@@ -28,7 +28,7 @@ export class AuthService {
     });
 
     try {
-      await newUser.save();
+      return this.userRepository.save(newUser);
     } catch (error) {
       if (error.code === '23505') {
         throw new ConflictException('Email already exists');
@@ -36,7 +36,6 @@ export class AuthService {
         throw new InternalServerErrorException();
       }
     }
-    return newUser;
   }
 
   async signIn(signInCredentialsDto: SignInCredentialsDto): Promise<User> {

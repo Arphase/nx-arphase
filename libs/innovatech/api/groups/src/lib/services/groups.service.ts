@@ -140,7 +140,7 @@ export class GroupsService {
     }
 
     group.products = products;
-    group.save();
+    await group.save();
     return products;
   }
 }

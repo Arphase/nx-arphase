@@ -32,8 +32,7 @@ export class AdditionalOptionsService {
   async createAdditionalOption(createDto: CreateAdditionalOptionDto): Promise<AdditionalOption> {
     try {
       const additionalOption = this.additionalOptionRepository.create(createDto);
-      await additionalOption.save();
-      return additionalOption;
+      return this.additionalOptionRepository.save(additionalOption);
     } catch (e) {
       if (e.code === '23503') {
         throw new NotFoundException(`Producto con id ${createDto.productId} no existe`);

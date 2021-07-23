@@ -12,8 +12,7 @@ export class OrdersService {
 
   async createOrder(createOrderDto: CreateOrderDto): Promise<Order> {
     const newOrder = this.orderRepository.create({ ...createOrderDto, total: this.getTotal(createOrderDto) });
-    await newOrder.save();
-    return newOrder;
+    return this.orderRepository.save(newOrder);
   }
 
   getTotal(createOrderDto: CreateOrderDto): number {

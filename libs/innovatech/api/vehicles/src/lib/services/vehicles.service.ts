@@ -54,7 +54,7 @@ export class VehiclesService {
     return createCollectionResponse(vehicles, pageSize, pageIndex, total);
   }
 
-  async getVehicle(id: number): Promise<Vehicle> {
+  async getVehicle(id: number): Promise<VehicleEntity> {
     const query = this.vehicleRepository.createQueryBuilder('vehicle');
     const found = await query.where('vehicle.id = :id', { id }).getOne();
     if (!found) {
@@ -95,8 +95,7 @@ export class VehiclesService {
       companyId: user && hasAccessToAllData(user.role) ? createVehicleDto.companyId : user.companyId,
       userId: user.id,
     });
-    await newVehicle.save();
-    return newVehicle;
+    return this.vehicleRepository.save(newVehicle);
   }
 
   async updateVehicle(updateVehcleDto: UpdateVehicleDto): Promise<Vehicle> {
@@ -107,11 +106,7 @@ export class VehiclesService {
   }
 
   async deleteVehicle(id: number): Promise<Vehicle> {
-    const vehicle = await this.vehicleRepository.findOne({ id });
-
-    if (!vehicle) {
-      throw new NotFoundException(`Vehicle with id "${id}" not found`);
-    }
+    const vehicle = await this.getVehicle(id);
 
     if (vehicle?.guarantees?.length) {
       const folios = vehicle.guarantees.map(guarantee => transformFolio(guarantee.id)).toString();
@@ -120,9 +115,7 @@ export class VehiclesService {
       );
     }
 
-    await this.vehicleRepository.delete({ id });
-
-    return vehicle;
+    return this.vehicleRepository.remove(vehicle);
   }
 
   @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)

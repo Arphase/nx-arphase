@@ -56,7 +56,7 @@ export class RevisionsService {
     return createCollectionResponse(revisions, pageSize, pageIndex, total);
   }
 
-  async getRevision(id: number): Promise<Revision> {
+  async getRevision(id: number): Promise<RevisionEntity> {
     const query = this.revisionRepository.createQueryBuilder('revision');
     const found = await query
       .leftJoinAndSelect('revision.vehicle', 'vehicle')
@@ -114,15 +114,12 @@ export class RevisionsService {
     await queryRunner.connect();
     await queryRunner.startTransaction();
 
-    const revision = await this.revisionRepository.findOne({ id });
-    if (!revision) {
-      throw new NotFoundException(`Revision with id "${id}" not found`);
-    }
+    const revision = await this.getRevision(id);
 
     await this.validateRevisionExpiration(revision);
 
     try {
-      await this.revisionRepository.delete({ id });
+      await this.revisionRepository.remove(revision);
 
       const mostRecentRevision = await this.revisionRepository.findOne({
         vehicleId: revision.vehicleId,

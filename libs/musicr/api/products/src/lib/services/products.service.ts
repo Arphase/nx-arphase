@@ -38,8 +38,7 @@ export class ProductsService {
   async createProduct(product: CreateProductDto): Promise<Product> {
     try {
       const newProduct = this.productRepository.create({ ...product });
-      await newProduct.save();
-      return newProduct;
+      return this.productRepository.save(newProduct);
     } catch (e) {
       if (e.code === '23503') {
         throw new NotFoundException(`La subcategoría con id ${product.subcategoryId} no existe`);

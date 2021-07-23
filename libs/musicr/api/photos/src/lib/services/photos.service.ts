@@ -24,7 +24,6 @@ export class PhotosService {
       key: uploadResult.Key,
       url: uploadResult.Location,
     });
-    await this.photoRepository.save(newFile);
-    return newFile;
+    return this.photoRepository.save(newFile);
   }
 }

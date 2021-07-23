@@ -74,8 +74,7 @@ export class RevisionRequestService {
       userId: user.id,
       companyId: user.companyId,
     });
-    await newRevisionRequest.save();
-    return newRevisionRequest;
+    return this.revisionRequestRepository.save(newRevisionRequest);
   }
 
   async updateRevisionRequest(

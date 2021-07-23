@@ -46,7 +46,7 @@ export class GuaranteesService {
     private readonly connection: Connection
   ) {}
 
-  async getGuaranteeById(id: number, options?: { withTemplateAndLogo: boolean }): Promise<Guarantee> {
+  async getGuaranteeById(id: number, options?: { withTemplateAndLogo: boolean }): Promise<GuaranteeEntity> {
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     query
       .leftJoinAndSelect('guarantee.client', 'client')
@@ -249,12 +249,9 @@ export class GuaranteesService {
     }
   }
 
-  async deleteGuarantee(id: number): Promise<void> {
-    const result = await this.guaranteeRepository.delete(id);
-
-    if (!result.affected) {
-      throw new NotFoundException(`Guarantee with ID "${id}" not found`);
-    }
+  async deleteGuarantee(id: number): Promise<Guarantee> {
+    const guarantee = await this.getGuaranteeById(id);
+    return this.guaranteeRepository.remove(guarantee);
   }
 
   omitInfo(

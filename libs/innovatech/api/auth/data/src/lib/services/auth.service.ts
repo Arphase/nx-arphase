@@ -40,7 +40,7 @@ export class AuthService {
     });
 
     try {
-      await newUser.save();
+      return this.userRepository.save(newUser);
     } catch (error) {
       if (error.code === '23505') {
         throw new ConflictException('Email already exists');
@@ -48,7 +48,6 @@ export class AuthService {
         throw new InternalServerErrorException();
       }
     }
-    return newUser;
   }
 
   async signIn(authCredentialsDto: AuthCredentialsDto): Promise<User> {
@@ -106,8 +105,7 @@ export class AuthService {
       passwordToken: generateId(),
       timestamp: new Date(),
     });
-    await resetPasswordEntity.save();
-    return resetPasswordEntity;
+    return this.resetPasswordRepository.save(resetPasswordEntity);
   }
 
   async sendSetPasswordEmail(
