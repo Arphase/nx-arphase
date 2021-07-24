@@ -1,37 +1,9 @@
-import { Trim } from '@arphase/api';
-import { RevisionReport, RevisionStatus } from '@innovatech/common/domain';
-import { Transform } from 'class-transformer';
-import { IsEnum, IsNotEmpty, IsNumber, IsObject, IsOptional, IsString } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { IsNumber } from 'class-validator';
 
-export class UpdateRevisionDto {
-  @IsNotEmpty()
+import { CreateRevisionDto } from './create-revision.dto';
+
+export class UpdateRevisionDto extends PartialType(CreateRevisionDto) {
   @IsNumber()
   id: number;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  observations: string;
-
-  @IsOptional()
-  @Transform(({ obj, key }) => RevisionStatus[obj[key]])
-  @IsEnum(RevisionStatus)
-  status: RevisionStatus;
-
-  @IsOptional()
-  @IsNumber()
-  vehicleId: number;
-
-  @IsOptional()
-  @IsObject()
-  report: RevisionReport;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  reviedBy: string;
-
-  @IsOptional()
-  @IsNumber()
-  kilometrage: number;
 }

@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ResetPassword, SetPasswordPayload, SignInRequest, User } from '@innovatech/common/domain';
+import { ResetPassword, User } from '@innovatech/common/domain';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { SetPasswordPayload } from '../models/set-password-payload.model';
+import { SignInRequest } from '../models/sign-in-request.model';
 import { getAuthUserStateState } from '../state/auth.selectors';
 
 @Injectable({

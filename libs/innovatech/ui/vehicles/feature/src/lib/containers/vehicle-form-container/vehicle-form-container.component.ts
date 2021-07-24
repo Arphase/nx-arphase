@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpStatusCodes, UserRoles, Vehicle } from '@innovatech/common/domain';
+import { HttpStatusCodes } from '@arphase/common';
+import { UserRoles, Vehicle } from '@innovatech/common/domain';
 import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data';
 import { IvtFormContainerComponent } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';

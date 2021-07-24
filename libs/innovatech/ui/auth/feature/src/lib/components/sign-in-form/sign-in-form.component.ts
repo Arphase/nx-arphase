@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ApsValidators } from '@arphase/ui';
-import { SignInRequest } from '@innovatech/common/domain';
-import { ApsFormComponent } from '@arphase/ui';
+import { ApsFormComponent, ApsValidators } from '@arphase/ui';
+import { SignInRequest } from '@innovatech/ui/auth/data';
 
 @Component({
   selector: 'ivt-sign-in-form',

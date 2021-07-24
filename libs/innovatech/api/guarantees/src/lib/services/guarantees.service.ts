@@ -1,13 +1,7 @@
-import { createCollectionResponse } from '@arphase/api';
+import { createCollectionResponse } from '@arphase/api/core';
 import { ApsCollectionResponse, formatDate } from '@arphase/common';
 import { filterCommonQuery, getReadableStream, tobase64 } from '@innovatech/api/core/util';
-import {
-  GuaranteeEntity,
-  GuaranteeRepository,
-  MoralPersonRepository,
-  PhysicalPersonRepository,
-  VehicleRepository,
-} from '@innovatech/api/domain';
+import { GuaranteeEntity, MoralPersonEntity, PhysicalPersonEntity, VehicleEntity } from '@innovatech/api/domain';
 import { generateProductPdf, getProductPdfTemplate } from '@innovatech/api/products/utils';
 import {
   Client,
@@ -15,7 +9,7 @@ import {
   GuaranteeSummary,
   isVehicleElegible,
   PersonTypes,
-  statusLabels,
+  guaranteeStatusLabels,
   transformFolio,
   User,
   UserRoles,
@@ -33,7 +27,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import { omit } from 'lodash';
-import { Connection } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
 import * as XLSX from 'xlsx';
 
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
@@ -45,14 +39,14 @@ import { applyGuaranteeFilter, getGuaranteePdfTemplate } from './guarantees.serv
 @Injectable()
 export class GuaranteesService {
   constructor(
-    @InjectRepository(GuaranteeRepository) private guaranteeRepository: GuaranteeRepository,
-    @InjectRepository(PhysicalPersonRepository) private physicalPersonRepository: PhysicalPersonRepository,
-    @InjectRepository(MoralPersonRepository) private moralPersonRepository: MoralPersonRepository,
-    @InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository,
+    @InjectRepository(GuaranteeEntity) private guaranteeRepository: Repository<GuaranteeEntity>,
+    @InjectRepository(PhysicalPersonEntity) private physicalPersonRepository: Repository<PhysicalPersonEntity>,
+    @InjectRepository(MoralPersonEntity) private moralPersonRepository: Repository<MoralPersonEntity>,
+    @InjectRepository(VehicleEntity) private vehicleRepository: Repository<VehicleEntity>,
     private readonly connection: Connection
   ) {}
 
-  async getGuaranteeById(id: number, options?: { withTemplateAndLogo: boolean }): Promise<Guarantee> {
+  async getGuaranteeById(id: number, options?: { withTemplateAndLogo: boolean }): Promise<GuaranteeEntity> {
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     query
       .leftJoinAndSelect('guarantee.client', 'client')
@@ -128,7 +122,7 @@ export class GuaranteesService {
         transformFolio(guarantee.id),
         formatDate(guarantee.createdAt),
         formatDate(guarantee.updatedAt),
-        statusLabels[guarantee.status],
+        guaranteeStatusLabels[guarantee.status],
         guarantee?.company?.businessName,
         formatDate(guarantee.startDate),
         formatDate(guarantee.endDate),
@@ -187,7 +181,7 @@ export class GuaranteesService {
     this.validateVehicle(vehicle, user);
     try {
       vehicle.status = VehicleStatus.hasActiveGuarantee;
-      await vehicle.save();
+      await queryRunner.manager.save(vehicle);
 
       createGuaranteeDto = this.omitInfo(createGuaranteeDto) as CreateGuaranteeDto;
       const newGuarantee = this.guaranteeRepository.create({
@@ -196,7 +190,7 @@ export class GuaranteesService {
           user && UserRoles[user.role] === UserRoles.superAdmin ? createGuaranteeDto.companyId : user.companyId,
         userId: user.id,
       });
-      await newGuarantee.save();
+      await queryRunner.manager.save(newGuarantee);
       await newGuarantee.reload();
       await queryRunner.commitTransaction();
       return newGuarantee;
@@ -255,12 +249,9 @@ export class GuaranteesService {
     }
   }
 
-  async deleteGuarantee(id: number): Promise<void> {
-    const result = await this.guaranteeRepository.delete(id);
-
-    if (!result.affected) {
-      throw new NotFoundException(`Guarantee with ID "${id}" not found`);
-    }
+  async deleteGuarantee(id: number): Promise<Guarantee> {
+    const guarantee = await this.getGuaranteeById(id);
+    return this.guaranteeRepository.remove(guarantee);
   }
 
   omitInfo(

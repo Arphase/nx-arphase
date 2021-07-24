@@ -1,12 +1,12 @@
-import { createCollectionResponse } from '@arphase/api';
+import { createCollectionResponse } from '@arphase/api/core';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { filterCommonQuery } from '@innovatech/api/core/util';
-import { RevisionRepository, VehicleRepository } from '@innovatech/api/domain';
+import { RevisionEntity, VehicleEntity } from '@innovatech/api/domain';
 import { Revision, RevisionStatus, User, VehicleStatus } from '@innovatech/common/domain';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import dayjs from 'dayjs';
-import { Connection, FindOneOptions } from 'typeorm';
+import { Connection, FindOneOptions, QueryRunner, Repository } from 'typeorm';
 
 import { CreateRevisionDto } from '../dto/create-revision.dto';
 import { GetRevisionsDto } from '../dto/get-revisions.dto';
@@ -15,8 +15,8 @@ import { UpdateRevisionDto } from '../dto/update-revision.dto';
 @Injectable()
 export class RevisionsService {
   constructor(
-    @InjectRepository(RevisionRepository) private revisionRepository: RevisionRepository,
-    @InjectRepository(VehicleRepository) private vehicleRepository: VehicleRepository,
+    @InjectRepository(RevisionEntity) private revisionRepository: Repository<RevisionEntity>,
+    @InjectRepository(VehicleEntity) private vehicleRepository: Repository<VehicleEntity>,
     private connection: Connection
   ) {}
 
@@ -56,7 +56,7 @@ export class RevisionsService {
     return createCollectionResponse(revisions, pageSize, pageIndex, total);
   }
 
-  async getRevision(id: number): Promise<Revision> {
+  async getRevision(id: number): Promise<RevisionEntity> {
     const query = this.revisionRepository.createQueryBuilder('revision');
     const found = await query
       .leftJoinAndSelect('revision.vehicle', 'vehicle')
@@ -75,9 +75,9 @@ export class RevisionsService {
 
     try {
       const newRevision = this.revisionRepository.create(createRevisionDto);
-      await newRevision.save();
+      await queryRunner.manager.save(newRevision);
       await newRevision.reload();
-      await this.updateVehicleStatus(createRevisionDto.status, newRevision.vehicleId);
+      await this.updateVehicleStatus(createRevisionDto.status, newRevision.vehicleId, queryRunner);
       await queryRunner.commitTransaction();
       return newRevision;
     } catch (err) {
@@ -97,9 +97,9 @@ export class RevisionsService {
     await this.validateRevisionExpiration(preloadedRevision);
 
     try {
-      const updatedRevision = await this.revisionRepository.save(updateRevisionDto);
+      const updatedRevision = await queryRunner.manager.save(preloadedRevision);
       await preloadedRevision.reload();
-      await this.updateVehicleStatus(updateRevisionDto.status, preloadedRevision.vehicleId);
+      await this.updateVehicleStatus(updateRevisionDto.status, preloadedRevision.vehicleId, queryRunner);
       await queryRunner.commitTransaction();
       return updatedRevision;
     } catch (err) {
@@ -114,25 +114,23 @@ export class RevisionsService {
     await queryRunner.connect();
     await queryRunner.startTransaction();
 
-    const revision = await this.revisionRepository.findOne({ id });
-    if (!revision) {
-      throw new NotFoundException(`Revision with id "${id}" not found`);
-    }
+    const revision = await this.getRevision(id);
 
     await this.validateRevisionExpiration(revision);
 
     try {
-      await this.revisionRepository.delete({ id });
-
+      await queryRunner.manager.remove(revision);
       const mostRecentRevision = await this.revisionRepository.findOne({
         vehicleId: revision.vehicleId,
         order: { createdAt: SortDirection.descend },
       } as FindOneOptions);
-
       if (mostRecentRevision) {
-        await this.updateVehicleStatus(RevisionStatus[mostRecentRevision.status], mostRecentRevision.vehicleId);
+        await this.updateVehicleStatus(
+          RevisionStatus[mostRecentRevision.status],
+          mostRecentRevision.vehicleId,
+          queryRunner
+        );
       }
-
       await queryRunner.commitTransaction();
       return revision;
     } catch (err) {
@@ -142,19 +140,19 @@ export class RevisionsService {
     }
   }
 
-  async updateVehicleStatus(status: RevisionStatus, vehicleId: number): Promise<void> {
+  async updateVehicleStatus(status: RevisionStatus, vehicleId: number, queryRunner: QueryRunner): Promise<void> {
     const statusMap: Record<RevisionStatus, VehicleStatus> = {
       [RevisionStatus.elegible]: VehicleStatus.elegible,
       [RevisionStatus.needsRepairs]: VehicleStatus.needsRevision,
       [RevisionStatus.notElegible]: VehicleStatus.notElegible,
     };
 
-    const query = this.vehicleRepository.createQueryBuilder('vehicle');
-    await query
-      .update()
-      .set({ status: statusMap[status] })
-      .where('id = :id AND status != :status', { id: vehicleId, status: VehicleStatus.hasActiveGuarantee })
-      .execute();
+    const vehicle = await this.vehicleRepository.findOne({ id: vehicleId });
+
+    if (vehicle && vehicle.status !== VehicleStatus.hasActiveGuarantee) {
+      vehicle.status = statusMap[status];
+      await queryRunner.manager.save(vehicle);
+    }
   }
 
   async validateRevisionExpiration(revision: Revision): Promise<void> {

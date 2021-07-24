@@ -19,7 +19,8 @@
     "strictPropertyInitialization": false,
     "noImplicitUseStrict": true,
     "paths": {
-      "@arphase/api": ["libs/arphase/api/src/index.ts"],
+      "@arphase/api/core": ["libs/arphase/api/core/src/index.ts"],
+      "@arphase/api/testing": ["libs/arphase/api/testing/src/index.ts"],
       "@arphase/common": ["libs/arphase/common/src/index.ts"],
       "@arphase/ui": ["libs/arphase/ui/src/index.ts"],
       "@innovatech.api/env/*": ["apps/innovatech/api/src/environments/*"],
@@ -70,6 +71,7 @@
       "@innovatech/ui/vehicles/data": ["libs/innovatech/ui/vehicles/data/src/index.ts"],
       "@innovatech/ui/vehicles/feature": ["libs/innovatech/ui/vehicles/feature/src/index.ts"],
       "@innovatech/ui/vehicles/ui": ["libs/innovatech/ui/vehicles/ui/src/index.ts"],
+      "@valmira/api/auth": ["libs/valmira/api/auth/src/index.ts"],
       "@musicr/api/additional-options": ["libs/musicr/api/additional-options/src/index.ts"],
       "@musicr/api/auth": ["libs/musicr/api/auth/src/index.ts"],
       "@musicr/api/categories": ["libs/musicr/api/categories/src/index.ts"],
@@ -84,9 +86,15 @@
       "@musicr/ui/core": ["libs/musicr/ui/core/src/index.ts"],
       "@musicr/ui/home": ["libs/musicr/ui/home/src/index.ts"],
       "@musicr/ui/terms-and-conditions": ["libs/musicr/ui/terms-and-conditions/src/index.ts"],
-      "@valmira/api/*": ["apps/valmira/api/src/app/*"],
       "@valmira/admin/*": ["apps/valmira/admin/src/app/*"],
-      "@valmira/app/*": ["apps/valmira/app/src/app/*"]
+      "@valmira/api/*": ["apps/valmira/api/src/app/*"],
+      "@valmira/api/domain": ["libs/valmira/api/domain/src/index.ts"],
+      "@valmira/app/*": ["apps/valmira/app/src/app/*"],
+      "@valmira/domain": ["libs/valmira/domain/src/index.ts"],
+      "@valmira/ui/frequent-questions": ["libs/valmira/ui/frequent-questions/src/index.ts"],
+      "@valmira/ui/landing": ["libs/valmira/ui/landing/src/index.ts"],
+      "@valmira/ui/manifest": ["libs/valmira/ui/manifest/src/index.ts"],
+      "@valmira/ui/terms-and-conditions": ["libs/valmira/ui/terms-and-conditions/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

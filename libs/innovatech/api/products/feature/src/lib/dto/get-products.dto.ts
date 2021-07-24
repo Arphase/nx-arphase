@@ -1,15 +1,12 @@
 import { CommonFilterDto } from '@innovatech/api/core/util';
-import { Transform } from 'class-transformer';
-import { IsNumber, IsOptional } from 'class-validator';
+import { IsNumberString, IsOptional } from 'class-validator';
 
 export class GetProductsDto extends CommonFilterDto {
   @IsOptional()
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
+  @IsNumberString()
   year: number;
 
   @IsOptional()
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
+  @IsNumberString()
   horsePower: number;
 }

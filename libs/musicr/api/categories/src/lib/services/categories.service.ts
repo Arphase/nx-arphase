@@ -1,15 +1,16 @@
-import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api';
+import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
-import { CategoryRepository } from '@musicr/api/domain';
+import { CategoryEntity } from '@musicr/api/domain';
 import { Category } from '@musicr/domain';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 import { CreateCategoryDto } from '../dto/create-category.dto';
 
 @Injectable()
 export class CategoriesService {
-  constructor(@InjectRepository(CategoryRepository) private categoryRepository: CategoryRepository) {}
+  constructor(@InjectRepository(CategoryEntity) private categoryRepository: Repository<CategoryEntity>) {}
 
   async getCategories(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Category>> {
     const { pageIndex, pageSize } = filterDto;
@@ -28,9 +29,7 @@ export class CategoriesService {
       return found;
     }
     const newCategory = this.categoryRepository.create({ ...category });
-    await newCategory.save();
-
-    return newCategory;
+    return this.categoryRepository.save(newCategory);
   }
 
   async deleteCategory(id: number): Promise<Category> {

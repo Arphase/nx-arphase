@@ -1,14 +1,14 @@
-import { createCollectionResponse } from '@arphase/api';
+import { createCollectionResponse } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { filterCommonQuery, tobase64 } from '@innovatech/api/core/util';
-import { CompanyRepository, GroupRepository, ProductRepository } from '@innovatech/api/domain';
+import { CompanyEntity, GroupEntity, ProductEntity } from '@innovatech/api/domain';
 import { generateProductPdf, getProductPdfTemplate } from '@innovatech/api/products/utils';
 import { Company, Product, User, UserRoles } from '@innovatech/common/domain';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import dayjs from 'dayjs';
 import { Response } from 'express';
-import { BaseEntity, SelectQueryBuilder } from 'typeorm';
+import { BaseEntity, Repository, SelectQueryBuilder } from 'typeorm';
 
 import { CreateProductDto } from '../dto/create-products.dto';
 import { GenerateProductPdfDto } from '../dto/generate-product-pdf.dto';
@@ -18,9 +18,9 @@ import { UpdateProductDto } from '../dto/update-product.dto';
 @Injectable()
 export class ProductService {
   constructor(
-    @InjectRepository(ProductRepository) private productRepository: ProductRepository,
-    @InjectRepository(CompanyRepository) private companyRepository: CompanyRepository,
-    @InjectRepository(GroupRepository) private groupRepository: GroupRepository
+    @InjectRepository(ProductEntity) private productRepository: Repository<ProductEntity>,
+    @InjectRepository(CompanyEntity) private companyRepository: Repository<CompanyEntity>,
+    @InjectRepository(GroupEntity) private groupRepository: Repository<GroupEntity>
   ) {}
 
   async getProducts(filterDto: GetProductsDto, user: Partial<User>): Promise<ApsCollectionResponse<Product>> {
@@ -81,8 +81,7 @@ export class ProductService {
 
   async createProduct(createProductDto: CreateProductDto): Promise<Product> {
     const newProduct = await this.productRepository.create({ ...createProductDto });
-    await newProduct.save();
-    return newProduct;
+    return this.productRepository.save(newProduct);
   }
 
   async updateProduct(updateProductDto: UpdateProductDto): Promise<Product> {

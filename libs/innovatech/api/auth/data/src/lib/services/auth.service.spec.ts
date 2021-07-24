@@ -1,6 +1,9 @@
-import { ResetPasswordRepository, UserRepository } from '@innovatech/api/domain';
+import { createMockRepository } from '@arphase/api/testing';
+import { ResetPasswordEntity, UserEntity } from '@innovatech/api/domain';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { Connection } from 'typeorm';
 
 import { AuthService } from './auth.service';
 
@@ -11,9 +14,10 @@ describe('AuthService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         AuthService,
-        { provide: UserRepository, useValue: {} },
-        { provide: ResetPasswordRepository, useValue: {} },
         { provide: JwtService, useValue: {} },
+        { provide: Connection, useValue: {} },
+        { provide: getRepositoryToken(UserEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(ResetPasswordEntity), useValue: createMockRepository() },
       ],
     }).compile();
 

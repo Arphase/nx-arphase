@@ -1,10 +1,7 @@
-import { ApsCollectionFilterDto } from '@arphase/api';
-import { Transform } from 'class-transformer';
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { ApsCollectionFilterDto } from '@arphase/api/core';
+import { IsNumberString } from 'class-validator';
 
 export class GetAdditionalOptionsDto extends ApsCollectionFilterDto {
-  @IsNumber()
-  @IsNotEmpty()
-  @Transform(({ obj, key }) => Number([obj[key]]))
+  @IsNumberString()
   productId?: number;
 }

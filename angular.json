@@ -16,30 +16,56 @@
     "@nrwl/angular:library": {
       "style": "less",
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "strict": false
     },
     "@nrwl/angular:component": {
+      "style": "less",
+      "changeDetection": "OnPush"
+    },
+    "@schematics/angular:component": {
       "style": "less",
       "changeDetection": "OnPush"
     }
   },
   "projects": {
-    "arphase-api": {
-      "root": "libs/arphase/api",
-      "sourceRoot": "libs/arphase/api/src",
+    "arphase-api-core": {
+      "root": "libs/arphase/api/core",
+      "sourceRoot": "libs/arphase/api/core/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/arphase/api/**/*.ts"]
+            "lintFilePatterns": ["libs/arphase/api/core/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/api"],
+          "outputs": ["coverage/libs/arphase/api/core"],
           "options": {
-            "jestConfig": "libs/arphase/api/jest.config.js",
+            "jestConfig": "libs/arphase/api/core/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "arphase-api-testing": {
+      "root": "libs/arphase/api/testing",
+      "sourceRoot": "libs/arphase/api/testing/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/arphase/api/testing/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/arphase/api/testing"],
+          "options": {
+            "jestConfig": "libs/arphase/api/testing/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -2098,6 +2124,48 @@
         }
       }
     },
+    "valmira-api-auth": {
+      "root": "libs/valmira/api/auth",
+      "sourceRoot": "libs/valmira/api/auth/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/api/auth/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/api/auth"],
+          "options": {
+            "jestConfig": "libs/valmira/api/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-api-domain": {
+      "root": "libs/valmira/api/domain",
+      "sourceRoot": "libs/valmira/api/domain/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/api/domain/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/api/domain"],
+          "options": {
+            "jestConfig": "libs/valmira/api/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-app": {
       "projectType": "application",
       "root": "apps/valmira/app",
@@ -2212,6 +2280,121 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/valmira/app-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "valmira-domain": {
+      "root": "libs/valmira/domain",
+      "sourceRoot": "libs/valmira/domain/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/domain/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/domain"],
+          "options": {
+            "jestConfig": "libs/valmira/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-frequent-questions": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/frequent-questions",
+      "sourceRoot": "libs/valmira/ui/frequent-questions/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/frequent-questions/src/**/*.ts",
+              "libs/valmira/ui/frequent-questions/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/frequent-questions"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/frequent-questions/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-landing": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/landing",
+      "sourceRoot": "libs/valmira/ui/landing/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/ui/landing/src/**/*.ts", "libs/valmira/ui/landing/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/landing"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/landing/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-manifest": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/manifest",
+      "sourceRoot": "libs/valmira/ui/manifest/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/ui/manifest/src/**/*.ts", "libs/valmira/ui/manifest/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/manifest"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/manifest/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-terms-and-conditions": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/terms-and-conditions",
+      "sourceRoot": "libs/valmira/ui/terms-and-conditions/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/terms-and-conditions/src/**/*.ts",
+              "libs/valmira/ui/terms-and-conditions/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/terms-and-conditions"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/terms-and-conditions/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

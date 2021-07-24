@@ -6,7 +6,6 @@
       "devDependencies": "*"
     },
     "tsconfig.json": "*",
-    "tslint.json": "*",
     "nx.json": "*"
   },
   "affected": {
@@ -26,7 +25,10 @@
     }
   },
   "projects": {
-    "arphase-api": {
+    "arphase-api-core": {
+      "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
+    },
+    "arphase-api-testing": {
       "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
     },
     "arphase-common": {
@@ -242,12 +244,33 @@
     "valmira-api": {
       "tags": ["domain:valmira", "domain:valmira:ui", "executable:api"]
     },
+    "valmira-api-auth": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+    },
+    "valmira-api-domain": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
+    },
     "valmira-app": {
       "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
     },
     "valmira-app-e2e": {
       "tags": [],
       "implicitDependencies": ["valmira-app"]
+    },
+    "valmira-domain": {
+      "tags": ["domain:valmira", "type:domain-logic"]
+    },
+    "valmira-ui-frequent-questions": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-landing": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-manifest": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-terms-and-conditions": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     }
   }
 }

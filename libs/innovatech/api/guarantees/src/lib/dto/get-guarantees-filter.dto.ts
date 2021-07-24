@@ -1,11 +1,10 @@
 import { CommonFilterDto } from '@innovatech/api/core/util';
 import { GuaranteeStatus } from '@innovatech/common/domain';
 import { Transform } from 'class-transformer';
-import { IsEnum, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsEnum, IsNumber, IsOptional } from 'class-validator';
 
 export class GetGuaranteesFilterDto extends CommonFilterDto {
   @IsOptional()
-  @IsNotEmpty()
   @IsNumber()
   amount: number;
 

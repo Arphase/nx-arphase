@@ -1,14 +1,15 @@
-import { createCollectionResponse } from '@arphase/api';
+import { createCollectionResponse } from '@arphase/api/core';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { CommonFilterDto, filterCommonQuery } from '@innovatech/api/core/util';
-import { UserRepository } from '@innovatech/api/domain';
+import { UserEntity } from '@innovatech/api/domain';
 import { User } from '@innovatech/common/domain';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectRepository(UserRepository) private userRepository: UserRepository) {}
+  constructor(@InjectRepository(UserEntity) private userRepository: Repository<UserEntity>) {}
 
   async getUsers(filterDto: CommonFilterDto, user: Partial<User>): Promise<ApsCollectionResponse<User>> {
     const { text, pageIndex, pageSize } = filterDto;

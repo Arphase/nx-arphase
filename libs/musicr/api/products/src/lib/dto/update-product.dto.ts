@@ -1,36 +1,9 @@
-import { Type } from 'class-transformer';
-import { IsArray, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { IsNumber } from 'class-validator';
 
-import { AssignPhotoDto } from './assign-photo.dto';
+import { CreateProductDto } from './create-product.dto';
 
-export class UpdateProductDto {
-  @IsOptional()
-  @IsString()
-  name: string;
-
-  @IsOptional()
+export class UpdateProductDto extends PartialType(CreateProductDto) {
   @IsNumber()
-  price: number;
-
-  @IsOptional()
-  @IsString()
-  disclaimer?: string;
-
-  @IsOptional()
-  @IsString()
-  description?: string;
-
-  @IsOptional()
-  @IsNumber()
-  subcategoryId: number;
-
-  @IsOptional()
-  @IsArray()
-  productComponents: string[];
-
-  @IsOptional()
-  @IsArray()
-  @ValidateNested()
-  @Type(() => AssignPhotoDto)
-  photos: AssignPhotoDto[];
+  id: number;
 }

@@ -1,43 +1,29 @@
-import { Trim } from '@arphase/api';
-import { Transform } from 'class-transformer';
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { Trim } from '@arphase/api/core';
+import { IsNumberString, IsString } from 'class-validator';
 
 export class CreateProductDto {
-  @IsNotEmpty()
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
+  @IsNumberString()
   price: number;
 
-  @IsNotEmpty()
   @IsString()
   template: string;
 
-  @IsNotEmpty()
   @IsString()
   @Trim()
   name: string;
 
-  @IsNotEmpty()
   @IsString()
   logo: string;
 
-  @IsNotEmpty()
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
+  @IsNumberString()
   minYear: number;
 
-  @IsNotEmpty()
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
+  @IsNumberString()
   maxYear: number;
 
-  @IsNotEmpty()
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
+  @IsNumberString()
   minHp: number;
 
-  @IsNotEmpty()
-  @Transform(({ obj, key }) => Number(obj[key]))
-  @IsNumber()
+  @IsNumberString()
   maxHp: number;
 }
