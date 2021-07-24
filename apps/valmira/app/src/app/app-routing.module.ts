@@ -10,6 +10,10 @@ export const routes: Routes = [
     path: 'manifest',
     loadChildren: () => import('@valmira/ui/manifest').then(m => m.ManifestModule),
   },
+  {
+    path: 'frequent-questions',
+    loadChildren: () => import('@valmira/ui/frequent-questions').then(m => m.FrequentQuestionsModule),
+  },
 ];
 
 @NgModule({

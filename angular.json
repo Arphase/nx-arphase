@@ -2242,6 +2242,31 @@
         }
       }
     },
+    "valmira-ui-frequent-questions": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/frequent-questions",
+      "sourceRoot": "libs/valmira/ui/frequent-questions/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/frequent-questions/src/**/*.ts",
+              "libs/valmira/ui/frequent-questions/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/frequent-questions"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/frequent-questions/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-ui-landing": {
       "projectType": "library",
       "root": "libs/valmira/ui/landing",

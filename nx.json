@@ -6,7 +6,6 @@
       "devDependencies": "*"
     },
     "tsconfig.json": "*",
-    "tslint.json": "*",
     "nx.json": "*"
   },
   "affected": {
@@ -251,6 +250,9 @@
     "valmira-app-e2e": {
       "tags": [],
       "implicitDependencies": ["valmira-app"]
+    },
+    "valmira-ui-frequent-questions": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-landing": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]

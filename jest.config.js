@@ -68,5 +68,6 @@ module.exports = {
     '<rootDir>/libs/arphase/api/testing',
     '<rootDir>/libs/valmira/ui/landing',
     '<rootDir>/libs/valmira/ui/manifest',
+    '<rootDir>/libs/valmira/ui/frequent-questions',
   ],
 };
