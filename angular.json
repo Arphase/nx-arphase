@@ -2145,6 +2145,27 @@
         }
       }
     },
+    "valmira-api-categories": {
+      "root": "libs/valmira/api/categories",
+      "sourceRoot": "libs/valmira/api/categories/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/api/categories/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/api/categories"],
+          "options": {
+            "jestConfig": "libs/valmira/api/categories/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-api-domain": {
       "root": "libs/valmira/api/domain",
       "sourceRoot": "libs/valmira/api/domain/src",

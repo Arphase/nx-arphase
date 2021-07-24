@@ -74,5 +74,6 @@ module.exports = {
     '<rootDir>/libs/valmira/domain',
     '<rootDir>/libs/valmira/api/auth',
     '<rootDir>/libs/valmira/api/places',
+    '<rootDir>/libs/valmira/api/categories',
   ],
 };

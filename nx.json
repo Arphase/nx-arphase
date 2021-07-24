@@ -247,6 +247,9 @@
     "valmira-api-auth": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
+    "valmira-api-categories": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+    },
     "valmira-api-domain": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
     },
