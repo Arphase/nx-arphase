@@ -2166,6 +2166,27 @@
         }
       }
     },
+    "valmira-api-places": {
+      "root": "libs/valmira/api/places",
+      "sourceRoot": "libs/valmira/api/places/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/api/places/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/api/places"],
+          "options": {
+            "jestConfig": "libs/valmira/api/places/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-app": {
       "projectType": "application",
       "root": "apps/valmira/app",

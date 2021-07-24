@@ -250,6 +250,9 @@
     "valmira-api-domain": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
     },
+    "valmira-api-places": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+    },
     "valmira-app": {
       "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
     },
