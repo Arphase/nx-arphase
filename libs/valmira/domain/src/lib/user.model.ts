@@ -1,3 +1,5 @@
+import { ResetPassword } from './reset-password.model';
+
 export interface User {
   id?: number;
   email: string;
@@ -5,6 +7,7 @@ export interface User {
   firstName: string;
   lastName: string;
   role: UserRoles;
+  resetPassword?: ResetPassword;
 }
 
 export enum UserRoles {

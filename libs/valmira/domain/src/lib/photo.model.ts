@@ -4,6 +4,6 @@ export interface Photo {
   id?: number;
   path: string;
   key: string;
-  place: Place;
-  placeId: number;
+  place?: Place;
+  placeId?: number;
 }

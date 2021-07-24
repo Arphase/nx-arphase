@@ -1,4 +1,4 @@
-import { ResetPassword, User } from '@innovatech/common/domain';
+import { ResetPassword, User } from '@valmira/domain';
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { UserEntity } from './user.entity';

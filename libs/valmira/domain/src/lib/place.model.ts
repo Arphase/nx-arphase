@@ -1,4 +1,6 @@
 import { Category } from './category.model';
+import { Photo } from './photo.model';
+import { Reservation } from './reservation.model';
 
 export interface Place {
   id?: number;
@@ -13,4 +15,6 @@ export interface Place {
   beds: number;
   category?: Category;
   categoryId?: number;
+  photos?: Photo[];
+  reservations?: Reservation[];
 }
