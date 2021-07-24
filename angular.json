@@ -16,9 +16,14 @@
     "@nrwl/angular:library": {
       "style": "less",
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "strict": false
     },
     "@nrwl/angular:component": {
+      "style": "less",
+      "changeDetection": "OnPush"
+    },
+    "@schematics/angular:component": {
       "style": "less",
       "changeDetection": "OnPush"
     }
@@ -2233,6 +2238,28 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/valmira/app-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "valmira-ui-landing": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/landing",
+      "sourceRoot": "libs/valmira/ui/landing/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/ui/landing/src/**/*.ts", "libs/valmira/ui/landing/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/landing"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/landing/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

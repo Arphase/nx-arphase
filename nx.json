@@ -251,6 +251,9 @@
     "valmira-app-e2e": {
       "tags": [],
       "implicitDependencies": ["valmira-app"]
+    },
+    "valmira-ui-landing": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     }
   }
 }
