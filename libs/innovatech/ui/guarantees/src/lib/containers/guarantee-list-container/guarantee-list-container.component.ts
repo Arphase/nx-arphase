@@ -1,7 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Guarantee, GuaranteeStatus, statusLabels, transformFolio, UserRoles } from '@innovatech/common/domain';
-import { PermissionService } from '@innovatech/ui/permissions/data';
+import {
+  Guarantee,
+  GuaranteeStatus,
+  guaranteeStatusLabels,
+  transformFolio,
+  UserRoles,
+} from '@innovatech/common/domain';
 import { IvtListContainerComponent } from '@innovatech/ui/core/data';
+import { PermissionService } from '@innovatech/ui/permissions/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
@@ -82,7 +88,7 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
       .pipe(take(1))
       .subscribe(() =>
         this.messageService.success(
-          `La garantía con folio ${transformFolio(guarantee.id)} ahora está ${statusLabels[
+          `La garantía con folio ${transformFolio(guarantee.id)} ahora está ${guaranteeStatusLabels[
             GuaranteeStatus[GuaranteeStatus[guarantee.status]]
           ].toLowerCase()}`
         )

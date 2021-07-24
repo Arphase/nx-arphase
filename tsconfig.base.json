@@ -19,7 +19,7 @@
     "strictPropertyInitialization": false,
     "noImplicitUseStrict": true,
     "paths": {
-      "@arphase/api/core": ["libs/arphase/core/src/index.ts"],
+      "@arphase/api/core": ["libs/arphase/api/core/src/index.ts"],
       "@arphase/api/testing": ["libs/arphase/api/testing/src/index.ts"],
       "@arphase/common": ["libs/arphase/common/src/index.ts"],
       "@arphase/ui": ["libs/arphase/ui/src/index.ts"],

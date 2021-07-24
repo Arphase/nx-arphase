@@ -18,6 +18,7 @@ async function run() {
   const authService = new AuthService(
     connection.getRepository(UserEntity),
     connection.getRepository(ResetPasswordEntity),
+    null,
     null
   );
   const entityManager = getManager();

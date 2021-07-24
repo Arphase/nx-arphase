@@ -11,6 +11,6 @@ export interface Place {
   weekendPrice: number;
   rooms: number;
   beds: number;
-  category: Category;
-  categoryId: number;
+  category?: Category;
+  categoryId?: number;
 }
