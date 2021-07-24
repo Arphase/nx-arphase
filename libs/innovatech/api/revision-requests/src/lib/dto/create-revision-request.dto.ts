@@ -1,4 +1,4 @@
-import { TransformEmail, Trim } from '@arphase/api';
+import { TransformEmail, Trim } from '@arphase/api/core';
 import { CreateAddressDto } from '@innovatech/api/core/util';
 import { Address } from '@innovatech/common/domain';
 import { Type } from 'class-transformer';

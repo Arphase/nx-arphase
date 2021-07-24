@@ -13,5 +13,3 @@ export * from './revision-request.entity';
 export * from './revision.entity';
 export * from './user.entity';
 export * from './vechicle.entity';
-
-export * from './db-test-connection';

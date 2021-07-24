@@ -1,4 +1,4 @@
-import { createCollectionResponse } from '@arphase/api';
+import { createCollectionResponse } from '@arphase/api/core';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { filterCommonQuery } from '@innovatech/api/core/util';
 import { RevisionRequestEntity } from '@innovatech/api/domain';

@@ -1,6 +1,7 @@
-import { GuaranteeEntity, PaymentOrderEntity, TypeOrmUnitTestModule } from '@innovatech/api/domain';
+import { createMockRepository } from '@arphase/api/testing';
+import { GuaranteeEntity, PaymentOrderEntity } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 
 import { PaymentOrdersService } from './payment-orders.service';
@@ -10,8 +11,12 @@ describe('PaymentOrdersService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [TypeOrmUnitTestModule, TypeOrmModule.forFeature([PaymentOrderEntity, GuaranteeEntity])],
-      providers: [PaymentOrdersService, { provide: Connection, useValue: {} }],
+      providers: [
+        PaymentOrdersService,
+        { provide: Connection, useValue: {} },
+        { provide: getRepositoryToken(PaymentOrderEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(GuaranteeEntity), useValue: createMockRepository() },
+      ],
     }).compile();
 
     service = module.get<PaymentOrdersService>(PaymentOrdersService);

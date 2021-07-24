@@ -1,4 +1,4 @@
-import { createCollectionResponse, filterCollectionQuery } from '@arphase/api';
+import { createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { AdditionalOptionEntity } from '@musicr/api/domain';
 import { AdditionalOption } from '@musicr/domain';

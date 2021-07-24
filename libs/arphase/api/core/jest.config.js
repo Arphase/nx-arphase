@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'arphase-api',
-  preset: '../../../jest.preset.js',
+  displayName: 'arphase-api-core',
+  preset: '../../../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../coverage/libs/arphase/api',
+  coverageDirectory: '../../../../coverage/libs/arphase/core',
 };

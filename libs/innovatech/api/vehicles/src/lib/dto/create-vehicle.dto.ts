@@ -1,4 +1,4 @@
-import { Trim } from '@arphase/api';
+import { Trim } from '@arphase/api/core';
 import { VEHICLE_VIN_LENGTH } from '@innovatech/common/domain';
 import { IsNumber, IsOptional, IsString, Length } from 'class-validator';
 

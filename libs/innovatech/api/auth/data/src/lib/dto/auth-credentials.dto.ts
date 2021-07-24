@@ -1,4 +1,4 @@
-import { TransformEmail, Trim } from '@arphase/api';
+import { TransformEmail, Trim } from '@arphase/api/core';
 import { UserRoles } from '@innovatech/common/domain';
 import { IsEmail, IsEnum, IsOptional, IsString } from 'class-validator';
 

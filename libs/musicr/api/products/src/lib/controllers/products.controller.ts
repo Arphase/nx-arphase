@@ -1,4 +1,4 @@
-import { ApsCollectionFilterDto } from '@arphase/api';
+import { ApsCollectionFilterDto } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Product } from '@musicr/domain';
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';

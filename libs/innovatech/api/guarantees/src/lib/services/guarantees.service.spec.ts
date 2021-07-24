@@ -1,12 +1,7 @@
-import {
-  GuaranteeEntity,
-  MoralPersonEntity,
-  PhysicalPersonEntity,
-  TypeOrmUnitTestModule,
-  VehicleEntity,
-} from '@innovatech/api/domain';
+import { createMockRepository } from '@arphase/api/testing';
+import { GuaranteeEntity, MoralPersonEntity, PhysicalPersonEntity, VehicleEntity } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 
 import { GuaranteesService } from './guarantees.service';
@@ -16,11 +11,14 @@ describe('GuaranteesService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypeOrmUnitTestModule,
-        TypeOrmModule.forFeature([GuaranteeEntity, PhysicalPersonEntity, MoralPersonEntity, VehicleEntity]),
+      providers: [
+        GuaranteesService,
+        { provide: Connection, useValue: {} },
+        { provide: getRepositoryToken(GuaranteeEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(PhysicalPersonEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(MoralPersonEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(VehicleEntity), useValue: createMockRepository() },
       ],
-      providers: [GuaranteesService, { provide: Connection, useValue: {} }],
     }).compile();
 
     service = module.get<GuaranteesService>(GuaranteesService);

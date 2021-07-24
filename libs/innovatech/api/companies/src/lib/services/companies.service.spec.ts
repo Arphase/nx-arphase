@@ -1,6 +1,7 @@
-import { CompanyEntity, TypeOrmUnitTestModule } from '@innovatech/api/domain';
+import { createMockRepository } from '@arphase/api/testing';
+import { CompanyEntity } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { getRepositoryToken } from '@nestjs/typeorm';
 
 import { CompaniesService } from './companies.service';
 
@@ -9,8 +10,7 @@ describe('CompaniesService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [TypeOrmUnitTestModule, TypeOrmModule.forFeature([CompanyEntity])],
-      providers: [CompaniesService],
+      providers: [CompaniesService, { provide: getRepositoryToken(CompanyEntity), useValue: createMockRepository() }],
     }).compile();
 
     service = module.get<CompaniesService>(CompaniesService);

@@ -48,7 +48,7 @@ module.exports = {
     '<rootDir>/apps/musicr/store',
     '<rootDir>/apps/musicr/admin',
     '<rootDir>/apps/musicr/api',
-    '<rootDir>/libs/arphase/api',
+    '<rootDir>/libs/arphase/core',
     '<rootDir>/libs/musicr/ui/terms-and-conditions',
     '<rootDir>/libs/musicr/ui/home',
     '<rootDir>/libs/musicr/ui/core',
@@ -65,5 +65,6 @@ module.exports = {
     '<rootDir>/apps/valmira/api',
     '<rootDir>/apps/valmira/app',
     '<rootDir>/apps/valmira/admin',
+    '<rootDir>/libs/arphase/api/testing',
   ],
 };

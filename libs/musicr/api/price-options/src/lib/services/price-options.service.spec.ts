@@ -1,6 +1,7 @@
-import { PriceOptionEntity, TypeOrmUnitTestModule } from '@musicr/api/domain';
+import { createMockRepository } from '@arphase/api/testing';
+import { PriceOptionEntity } from '@musicr/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { getRepositoryToken } from '@nestjs/typeorm';
 
 import { PriceOptionsService } from './price-options.service';
 
@@ -9,8 +10,10 @@ describe('PriceOptionsService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [TypeOrmUnitTestModule, TypeOrmModule.forFeature([PriceOptionEntity])],
-      providers: [PriceOptionsService],
+      providers: [
+        PriceOptionsService,
+        { provide: getRepositoryToken(PriceOptionEntity), useValue: createMockRepository() },
+      ],
     }).compile();
 
     service = module.get<PriceOptionsService>(PriceOptionsService);

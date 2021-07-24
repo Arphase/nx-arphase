@@ -1,4 +1,4 @@
-import { Trim } from '@arphase/api';
+import { Trim } from '@arphase/api/core';
 import { RevisionReport, RevisionStatus } from '@innovatech/common/domain';
 import { Transform } from 'class-transformer';
 import { IsEnum, IsNumber, IsObject, IsString } from 'class-validator';

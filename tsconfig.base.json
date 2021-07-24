@@ -19,7 +19,8 @@
     "strictPropertyInitialization": false,
     "noImplicitUseStrict": true,
     "paths": {
-      "@arphase/api": ["libs/arphase/api/src/index.ts"],
+      "@arphase/api/core": ["libs/arphase/core/src/index.ts"],
+      "@arphase/api/testing": ["libs/arphase/api/testing/src/index.ts"],
       "@arphase/common": ["libs/arphase/common/src/index.ts"],
       "@arphase/ui": ["libs/arphase/ui/src/index.ts"],
       "@innovatech.api/env/*": ["apps/innovatech/api/src/environments/*"],
@@ -84,8 +85,8 @@
       "@musicr/ui/core": ["libs/musicr/ui/core/src/index.ts"],
       "@musicr/ui/home": ["libs/musicr/ui/home/src/index.ts"],
       "@musicr/ui/terms-and-conditions": ["libs/musicr/ui/terms-and-conditions/src/index.ts"],
-      "@valmira/api/*": ["apps/valmira/api/src/app/*"],
       "@valmira/admin/*": ["apps/valmira/admin/src/app/*"],
+      "@valmira/api/*": ["apps/valmira/api/src/app/*"],
       "@valmira/app/*": ["apps/valmira/app/src/app/*"]
     }
   },

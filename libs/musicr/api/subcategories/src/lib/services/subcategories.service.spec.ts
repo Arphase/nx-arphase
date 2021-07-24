@@ -1,6 +1,7 @@
-import { SubcategoryEntity, TypeOrmUnitTestModule } from '@musicr/api/domain';
+import { createMockRepository } from '@arphase/api/testing';
+import { SubcategoryEntity } from '@musicr/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { getRepositoryToken } from '@nestjs/typeorm';
 
 import { SubcategoriesService } from './subcategories.service';
 
@@ -9,8 +10,10 @@ describe('SubcategoriesService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [TypeOrmUnitTestModule, TypeOrmModule.forFeature([SubcategoryEntity])],
-      providers: [SubcategoriesService],
+      providers: [
+        SubcategoriesService,
+        { provide: getRepositoryToken(SubcategoryEntity), useValue: createMockRepository() },
+      ],
     }).compile();
 
     service = module.get<SubcategoriesService>(SubcategoriesService);

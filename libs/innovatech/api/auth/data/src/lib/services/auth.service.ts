@@ -14,7 +14,7 @@ import * as bcrypt from 'bcryptjs';
 import { omit } from 'lodash';
 import { createTransport } from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
-import { getManager, Repository } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
 
 import { getNewUserEmailTemplate } from '../constants/new-user-email-template';
 import { getResetPasswordEmailTemplate } from '../constants/reset-password-email-template';
@@ -26,7 +26,8 @@ export class AuthService {
   constructor(
     @InjectRepository(UserEntity) private userRepository: Repository<UserEntity>,
     @InjectRepository(ResetPasswordEntity) private resetPasswordRepository: Repository<ResetPasswordEntity>,
-    private jwtService: JwtService
+    private jwtService: JwtService,
+    private readonly connection: Connection
   ) {}
 
   async signUp(signUpCredentialsDto: SignUpCredentialsDto): Promise<User> {
@@ -75,13 +76,22 @@ export class AuthService {
       throw new NotFoundException(`User not found`);
     }
 
-    await getManager().transaction(async transactionalEntityManager => {
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
       userFromDb.salt = await bcrypt.genSalt();
       userFromDb.password = await bcrypt.hash(password, userFromDb.salt);
-      await transactionalEntityManager.save(userFromDb);
-      await transactionalEntityManager.remove(resetPasswordEntity);
-    });
-    return userFromDb;
+      await queryRunner.manager.save(userFromDb);
+      await queryRunner.manager.remove(resetPasswordEntity);
+      return userFromDb;
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+      throw new InternalServerErrorException({ ...err, message: err.detail });
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   async validateUserPassword(authCredentialsDto: AuthCredentialsDto): Promise<User> {

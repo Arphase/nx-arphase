@@ -1,4 +1,4 @@
-import { createCollectionResponse } from '@arphase/api';
+import { createCollectionResponse } from '@arphase/api/core';
 import { ApsCollectionResponse, formatDate } from '@arphase/common';
 import { filterCommonQuery, getReadableStream, tobase64 } from '@innovatech/api/core/util';
 import { GuaranteeEntity, MoralPersonEntity, PhysicalPersonEntity, VehicleEntity } from '@innovatech/api/domain';
@@ -181,7 +181,7 @@ export class GuaranteesService {
     this.validateVehicle(vehicle, user);
     try {
       vehicle.status = VehicleStatus.hasActiveGuarantee;
-      await vehicle.save();
+      await queryRunner.manager.save(vehicle);
 
       createGuaranteeDto = this.omitInfo(createGuaranteeDto) as CreateGuaranteeDto;
       const newGuarantee = this.guaranteeRepository.create({
@@ -190,7 +190,7 @@ export class GuaranteesService {
           user && UserRoles[user.role] === UserRoles.superAdmin ? createGuaranteeDto.companyId : user.companyId,
         userId: user.id,
       });
-      await newGuarantee.save();
+      await queryRunner.manager.save(newGuarantee);
       await newGuarantee.reload();
       await queryRunner.commitTransaction();
       return newGuarantee;

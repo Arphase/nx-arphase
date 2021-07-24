@@ -1,4 +1,4 @@
-import { Trim } from '@arphase/api';
+import { Trim } from '@arphase/api/core';
 import { Type } from 'class-transformer';
 import {
   IsArray,

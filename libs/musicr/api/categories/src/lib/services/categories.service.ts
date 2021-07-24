@@ -1,4 +1,4 @@
-import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api';
+import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { CategoryEntity } from '@musicr/api/domain';
 import { Category } from '@musicr/domain';

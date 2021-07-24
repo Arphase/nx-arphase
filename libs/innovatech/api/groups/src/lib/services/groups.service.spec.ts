@@ -1,14 +1,8 @@
+import { createMockRepository } from '@arphase/api/testing';
 import { AuthService } from '@innovatech/api/auth/data';
-import {
-  CompanyEntity,
-  GroupEntity,
-  ProductEntity,
-  ResetPasswordEntity,
-  TypeOrmUnitTestModule,
-  UserEntity,
-} from '@innovatech/api/domain';
+import { CompanyEntity, GroupEntity, ProductEntity, ResetPasswordEntity, UserEntity } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 
 import { GroupsService } from './groups.service';
@@ -18,11 +12,16 @@ describe('GroupsService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypeOrmUnitTestModule,
-        TypeOrmModule.forFeature([GroupEntity, CompanyEntity, UserEntity, ResetPasswordEntity, ProductEntity]),
+      providers: [
+        GroupsService,
+        { provide: AuthService, useValue: {} },
+        { provide: Connection, useValue: {} },
+        { provide: getRepositoryToken(GroupEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(CompanyEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(UserEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(ResetPasswordEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(ProductEntity), useValue: createMockRepository() },
       ],
-      providers: [GroupsService, { provide: AuthService, useValue: {} }, { provide: Connection, useValue: {} }],
     }).compile();
 
     service = module.get<GroupsService>(GroupsService);

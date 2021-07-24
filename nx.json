@@ -26,8 +26,11 @@
     }
   },
   "projects": {
-    "arphase-api": {
+    "arphase-api-core": {
       "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
+    },
+    "arphase-api-testing": {
+      "tags": []
     },
     "arphase-common": {
       "tags": ["domain:arphase", "type:util"]

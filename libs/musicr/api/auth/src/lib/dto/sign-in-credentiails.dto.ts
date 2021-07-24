@@ -1,4 +1,4 @@
-import { TransformEmail } from '@arphase/api';
+import { TransformEmail } from '@arphase/api/core';
 import { IsEmail, IsString } from 'class-validator';
 
 export class SignInCredentialsDto {

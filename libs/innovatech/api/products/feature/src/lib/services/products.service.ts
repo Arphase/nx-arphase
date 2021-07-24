@@ -1,4 +1,4 @@
-import { createCollectionResponse } from '@arphase/api';
+import { createCollectionResponse } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { filterCommonQuery, tobase64 } from '@innovatech/api/core/util';
 import { CompanyEntity, GroupEntity, ProductEntity } from '@innovatech/api/domain';

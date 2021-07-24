@@ -1,4 +1,4 @@
-import { createCollectionResponse } from '@arphase/api';
+import { createCollectionResponse } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { AuthService } from '@innovatech/api/auth/data';
 import { CommonFilterDto, filterCommonQuery } from '@innovatech/api/core/util';

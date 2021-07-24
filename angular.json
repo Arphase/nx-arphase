@@ -24,22 +24,43 @@
     }
   },
   "projects": {
-    "arphase-api": {
-      "root": "libs/arphase/api",
-      "sourceRoot": "libs/arphase/api/src",
+    "arphase-api-core": {
+      "root": "libs/arphase/core",
+      "sourceRoot": "libs/arphase/core/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/arphase/api/**/*.ts"]
+            "lintFilePatterns": ["libs/arphase/core/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/api"],
+          "outputs": ["coverage/libs/arphase/core"],
           "options": {
-            "jestConfig": "libs/arphase/api/jest.config.js",
+            "jestConfig": "libs/arphase/core/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "arphase-api-testing": {
+      "root": "libs/arphase/api/testing",
+      "sourceRoot": "libs/arphase/api/testing/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/arphase/api/testing/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/arphase/api/testing"],
+          "options": {
+            "jestConfig": "libs/arphase/api/testing/jest.config.js",
             "passWithNoTests": true
           }
         }

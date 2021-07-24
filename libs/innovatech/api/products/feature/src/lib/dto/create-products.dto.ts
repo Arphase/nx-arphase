@@ -1,4 +1,4 @@
-import { Trim } from '@arphase/api';
+import { Trim } from '@arphase/api/core';
 import { IsNumberString, IsString } from 'class-validator';
 
 export class CreateProductDto {

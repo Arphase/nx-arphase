@@ -1,4 +1,4 @@
-import { TransformEmail, Trim } from '@arphase/api';
+import { TransformEmail, Trim } from '@arphase/api/core';
 import { IsEmail, IsOptional, IsString } from 'class-validator';
 
 export class SignUpCredentialsDto {

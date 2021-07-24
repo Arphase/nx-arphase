@@ -1,4 +1,4 @@
-import { ApsCollectionFilterDto } from '@arphase/api';
+import { ApsCollectionFilterDto } from '@arphase/api/core';
 import { convertStringToNumberArray } from '@innovatech/common/utils';
 import { Transform } from 'class-transformer';
 import { IsArray, IsNumberString, IsOptional } from 'class-validator';

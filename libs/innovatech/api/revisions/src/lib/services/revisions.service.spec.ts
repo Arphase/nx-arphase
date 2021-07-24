@@ -1,6 +1,7 @@
-import { RevisionEntity, TypeOrmUnitTestModule, VehicleEntity } from '@innovatech/api/domain';
+import { createMockRepository } from '@arphase/api/testing';
+import { RevisionEntity, VehicleEntity } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 
 import { RevisionsService } from './revisions.service';
@@ -10,8 +11,12 @@ describe('RevisionsService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [TypeOrmUnitTestModule, TypeOrmModule.forFeature([RevisionEntity, VehicleEntity])],
-      providers: [RevisionsService, { provide: Connection, useValue: {} }],
+      providers: [
+        RevisionsService,
+        { provide: Connection, useValue: {} },
+        { provide: getRepositoryToken(RevisionEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(VehicleEntity), useValue: createMockRepository() },
+      ],
     }).compile();
 
     service = module.get<RevisionsService>(RevisionsService);
