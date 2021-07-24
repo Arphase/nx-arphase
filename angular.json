@@ -2263,6 +2263,28 @@
           }
         }
       }
+    },
+    "valmira-ui-manifest": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/manifest",
+      "sourceRoot": "libs/valmira/ui/manifest/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/ui/manifest/src/**/*.ts", "libs/valmira/ui/manifest/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/manifest"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/manifest/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
