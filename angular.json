@@ -2310,6 +2310,31 @@
           }
         }
       }
+    },
+    "valmira-ui-terms-and-conditions": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/terms-and-conditions",
+      "sourceRoot": "libs/valmira/ui/terms-and-conditions/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/terms-and-conditions/src/**/*.ts",
+              "libs/valmira/ui/terms-and-conditions/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/terms-and-conditions"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/terms-and-conditions/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

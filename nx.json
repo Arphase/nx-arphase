@@ -259,6 +259,9 @@
     },
     "valmira-ui-manifest": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-terms-and-conditions": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     }
   }
 }

@@ -69,5 +69,6 @@ module.exports = {
     '<rootDir>/libs/valmira/ui/landing',
     '<rootDir>/libs/valmira/ui/manifest',
     '<rootDir>/libs/valmira/ui/frequent-questions',
+    '<rootDir>/libs/valmira/ui/terms-and-conditions',
   ],
 };

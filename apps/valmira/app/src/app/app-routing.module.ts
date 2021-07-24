@@ -14,6 +14,10 @@ export const routes: Routes = [
     path: 'frequent-questions',
     loadChildren: () => import('@valmira/ui/frequent-questions').then(m => m.FrequentQuestionsModule),
   },
+  {
+    path: 'terms-and-conditions',
+    loadChildren: () => import('@valmira/ui/terms-and-conditions').then(m => m.TermsAndConditionsModule),
+  },
 ];
 
 @NgModule({
