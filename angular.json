@@ -30,21 +30,21 @@
   },
   "projects": {
     "arphase-api-core": {
-      "root": "libs/arphase/core",
-      "sourceRoot": "libs/arphase/core/src",
+      "root": "libs/arphase/api/core",
+      "sourceRoot": "libs/arphase/api/core/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/arphase/core/**/*.ts"]
+            "lintFilePatterns": ["libs/arphase/api/core/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/core"],
+          "outputs": ["coverage/libs/arphase/api/core"],
           "options": {
-            "jestConfig": "libs/arphase/core/jest.config.js",
+            "jestConfig": "libs/arphase/api/core/jest.config.js",
             "passWithNoTests": true
           }
         }
