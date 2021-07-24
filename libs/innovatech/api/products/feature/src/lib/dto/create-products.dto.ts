@@ -1,8 +1,8 @@
 import { Trim } from '@arphase/api/core';
-import { IsNumberString, IsString } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
 export class CreateProductDto {
-  @IsNumberString()
+  @IsNumber()
   price: number;
 
   @IsString()
@@ -15,15 +15,15 @@ export class CreateProductDto {
   @IsString()
   logo: string;
 
-  @IsNumberString()
+  @IsNumber()
   minYear: number;
 
-  @IsNumberString()
+  @IsNumber()
   maxYear: number;
 
-  @IsNumberString()
+  @IsNumber()
   minHp: number;
 
-  @IsNumberString()
+  @IsNumber()
   maxHp: number;
 }

@@ -1,14 +1,14 @@
 import { DEFAULT_PAGE_SIZE } from '@arphase/common';
-import { IsNumberString, IsOptional, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class ApsCollectionFilterDto {
   @IsOptional()
-  @IsNumberString()
-  pageSize? = DEFAULT_PAGE_SIZE;
+  @IsNumber()
+  pageSize?: number = DEFAULT_PAGE_SIZE;
 
   @IsOptional()
-  @IsNumberString()
-  pageIndex? = 1;
+  @IsNumber()
+  pageIndex?: number = 1;
 
   @IsOptional()
   @IsString()

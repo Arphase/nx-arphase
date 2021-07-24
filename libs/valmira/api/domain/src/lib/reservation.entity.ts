@@ -9,12 +9,14 @@ import {
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 import { CustomerEntity } from './customer.entity';
@@ -26,6 +28,12 @@ import { ReservationAdditionalProductEntity } from './reservation-additional-pro
 export class ReservationEntity extends BaseEntity implements Reservation {
   @PrimaryGeneratedColumn()
   id?: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @Column()
   startDate: Date;
