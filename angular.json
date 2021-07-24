@@ -2124,6 +2124,27 @@
         }
       }
     },
+    "valmira-api-domain": {
+      "root": "libs/valmira/api/domain",
+      "sourceRoot": "libs/valmira/api/domain/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/api/domain/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/api/domain"],
+          "options": {
+            "jestConfig": "libs/valmira/api/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-app": {
       "projectType": "application",
       "root": "apps/valmira/app",
@@ -2238,6 +2259,27 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/valmira/app-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "valmira-domain": {
+      "root": "libs/valmira/domain",
+      "sourceRoot": "libs/valmira/domain/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/domain/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/domain"],
+          "options": {
+            "jestConfig": "libs/valmira/domain/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

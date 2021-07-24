@@ -244,12 +244,18 @@
     "valmira-api": {
       "tags": ["domain:valmira", "domain:valmira:ui", "executable:api"]
     },
+    "valmira-api-domain": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
+    },
     "valmira-app": {
       "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
     },
     "valmira-app-e2e": {
       "tags": [],
       "implicitDependencies": ["valmira-app"]
+    },
+    "valmira-domain": {
+      "tags": ["domain:valmira", "type:domain-logic"]
     },
     "valmira-ui-frequent-questions": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
