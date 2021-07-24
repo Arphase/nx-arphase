@@ -22,7 +22,7 @@ export class PlaceEntity extends BaseEntity implements Place {
   @Column()
   area: number;
 
-  @Column({ array: true })
+  @Column('text', { array: true, nullable: true })
   services: string[];
 
   @Column()

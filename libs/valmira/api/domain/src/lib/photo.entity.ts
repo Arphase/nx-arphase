@@ -1,7 +1,7 @@
 import { Photo, Place } from '@valmira/domain';
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { PlaceEntity } from './place.entity.';
+import { PlaceEntity } from './place.entity';
 
 @Entity('photos')
 export class PhotoEntity extends BaseEntity implements Photo {

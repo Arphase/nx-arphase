@@ -18,8 +18,16 @@ export class UserEntity extends BaseEntity implements User {
   @Column()
   email: string;
 
-  @Column()
-  role: UserRoles;
+  @Column({
+    type: 'enum',
+    enum: UserRoles,
+    transformer: {
+      to: value => value,
+      from: value => UserRoles[value],
+    },
+    default: UserRoles.superAdmin,
+  })
+  role: UserRoles | string;
 
   @Column()
   password: string;

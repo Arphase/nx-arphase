@@ -72,5 +72,6 @@ module.exports = {
     '<rootDir>/libs/valmira/ui/terms-and-conditions',
     '<rootDir>/libs/valmira/api/domain',
     '<rootDir>/libs/valmira/domain',
+    '<rootDir>/libs/valmira/api/auth',
   ],
 };

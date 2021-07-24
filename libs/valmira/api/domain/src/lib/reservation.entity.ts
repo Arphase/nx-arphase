@@ -18,7 +18,7 @@ import {
 } from 'typeorm';
 
 import { CustomerEntity } from './customer.entity';
-import { PlaceEntity } from './place.entity.';
+import { PlaceEntity } from './place.entity';
 import { PromocodeEntity } from './promocode.entity';
 import { ReservationAdditionalProductEntity } from './reservation-additional-product.entity';
 

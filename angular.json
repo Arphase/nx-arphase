@@ -2124,6 +2124,27 @@
         }
       }
     },
+    "valmira-api-auth": {
+      "root": "libs/valmira/api/auth",
+      "sourceRoot": "libs/valmira/api/auth/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/api/auth/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/api/auth"],
+          "options": {
+            "jestConfig": "libs/valmira/api/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-api-domain": {
       "root": "libs/valmira/api/domain",
       "sourceRoot": "libs/valmira/api/domain/src",

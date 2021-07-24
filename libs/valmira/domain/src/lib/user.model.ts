@@ -6,8 +6,9 @@ export interface User {
   password: string;
   firstName: string;
   lastName: string;
-  role: UserRoles;
+  role: UserRoles | string;
   resetPassword?: ResetPassword;
+  token?: string;
 }
 
 export enum UserRoles {

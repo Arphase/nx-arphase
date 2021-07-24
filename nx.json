@@ -29,7 +29,7 @@
       "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
     },
     "arphase-api-testing": {
-      "tags": []
+      "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
     },
     "arphase-common": {
       "tags": ["domain:arphase", "type:util"]
@@ -243,6 +243,9 @@
     },
     "valmira-api": {
       "tags": ["domain:valmira", "domain:valmira:ui", "executable:api"]
+    },
+    "valmira-api-auth": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
     "valmira-api-domain": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
