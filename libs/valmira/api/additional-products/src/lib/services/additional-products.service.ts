@@ -21,9 +21,9 @@ export class AdditionalProductsService {
 
     filterCollectionQuery('additionalProduct', query, filterDto);
 
-    const products = await query.getMany();
+    const additionalProducts = await query.getMany();
     const total = await query.getCount();
-    return createCollectionResponse<AdditionalProduct>(products, pageSize, pageIndex, total);
+    return createCollectionResponse<AdditionalProduct>(additionalProducts, pageSize, pageIndex, total);
   }
 
   async getAdditionalProduct(id: number): Promise<AdditionalProduct> {

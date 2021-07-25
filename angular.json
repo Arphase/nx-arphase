@@ -2229,6 +2229,27 @@
         }
       }
     },
+    "valmira-api-promocodes": {
+      "root": "libs/valmira/api/promocodes",
+      "sourceRoot": "libs/valmira/api/promocodes/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/api/promocodes/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/api/promocodes"],
+          "options": {
+            "jestConfig": "libs/valmira/api/promocodes/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-api-reservations": {
       "root": "libs/valmira/api/reservations",
       "sourceRoot": "libs/valmira/api/reservations/src",
