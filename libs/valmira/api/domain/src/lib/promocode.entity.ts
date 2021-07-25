@@ -1,5 +1,13 @@
 import { Promocode, Reservation } from '@valmira/domain';
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 import { ReservationEntity } from './reservation.entity';
 
@@ -7,6 +15,12 @@ import { ReservationEntity } from './reservation.entity';
 export class PromocodeEntity extends BaseEntity implements Promocode {
   @PrimaryGeneratedColumn()
   id?: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @Column()
   name: string;
@@ -20,9 +34,6 @@ export class PromocodeEntity extends BaseEntity implements Promocode {
   @Column()
   amount: number;
 
-  @OneToMany(() => ReservationEntity, reservation => reservation.promocode, {
-    cascade: true,
-    eager: true,
-  })
+  @OneToMany(() => ReservationEntity, reservation => reservation.promocode)
   reservations?: Reservation[];
 }

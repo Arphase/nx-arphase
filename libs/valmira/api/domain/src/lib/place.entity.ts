@@ -1,5 +1,15 @@
 import { Category, Photo, Place, Reservation } from '@valmira/domain';
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 import { CategoryEntity } from './category.entity';
 import { PhotoEntity } from './photo.entity';
@@ -9,6 +19,12 @@ import { ReservationEntity } from './reservation.entity';
 export class PlaceEntity extends BaseEntity implements Place {
   @PrimaryGeneratedColumn()
   id?: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @Column()
   name: string;

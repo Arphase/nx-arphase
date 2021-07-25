@@ -16,11 +16,7 @@ export class AdditionalProductEntity extends BaseEntity implements AdditionalPro
 
   @OneToMany(
     () => ReservationAdditionalProductEntity,
-    reservationAdditionalProduct => reservationAdditionalProduct.additionalProduct,
-    {
-      cascade: true,
-      eager: true,
-    }
+    reservationAdditionalProduct => reservationAdditionalProduct.additionalProduct
   )
   reservationAdditionalProducts?: ReservationAdditionalProduct[];
 }

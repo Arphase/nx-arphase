@@ -9,12 +9,14 @@ import {
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 import { CustomerEntity } from './customer.entity';
@@ -26,6 +28,12 @@ import { ReservationAdditionalProductEntity } from './reservation-additional-pro
 export class ReservationEntity extends BaseEntity implements Reservation {
   @PrimaryGeneratedColumn()
   id?: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @Column()
   startDate: Date;
@@ -44,8 +52,8 @@ export class ReservationEntity extends BaseEntity implements Reservation {
   })
   status: ReservationStatus | string;
 
-  @Column()
-  paymentId: string;
+  @Column({ nullable: true })
+  paymentId?: string;
 
   @Column()
   total: number;
@@ -75,11 +83,7 @@ export class ReservationEntity extends BaseEntity implements Reservation {
 
   @OneToMany(
     () => ReservationAdditionalProductEntity,
-    reservationAdditionalProduct => reservationAdditionalProduct.reservation,
-    {
-      cascade: true,
-      eager: true,
-    }
+    reservationAdditionalProduct => reservationAdditionalProduct.reservation
   )
   reservationAdditionalProducts?: ReservationAdditionalProduct[];
 }
