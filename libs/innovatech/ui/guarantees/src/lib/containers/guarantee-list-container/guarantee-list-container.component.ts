@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ApsListContainerComponent } from '@arphase/ui';
 import {
   Guarantee,
   GuaranteeStatus,
@@ -6,7 +7,6 @@ import {
   transformFolio,
   UserRoles,
 } from '@innovatech/common/domain';
-import { IvtListContainerComponent } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -25,7 +25,7 @@ import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-co
   styleUrls: ['./guarantee-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeListContainerComponent extends IvtListContainerComponent<Guarantee> {
+export class GuaranteeListContainerComponent extends ApsListContainerComponent<Guarantee> {
   clearSelectedSubject = new BehaviorSubject<boolean>(false);
   clearSelected$ = this.clearSelectedSubject.asObservable();
   excelFileName = 'Garantias';

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ApsListComponent } from '@arphase/ui';
 import { RevisionRequest, RevisionRequestStatus, UserRoles } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
-import { IvtListComponent } from '@innovatech/ui/core/data';
 
 import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './revision-request-list.constants';
 
@@ -12,7 +12,7 @@ import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './rev
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin, UserRoles.repairman] }],
 })
-export class RevisionRequestListComponent extends IvtListComponent<RevisionRequest> {
+export class RevisionRequestListComponent extends ApsListComponent<RevisionRequest> {
   statusLabels = statusLabels;
   iconMaps = iconMaps;
   colorMaps = colorMaps;

@@ -7,6 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { ApsListComponent } from '@arphase/ui';
 import {
   Guarantee,
   guaranteeDateTypeOptions,
@@ -14,7 +15,6 @@ import {
   guaranteeStatusLabels,
   UserRoles,
 } from '@innovatech/common/domain';
-import { IvtListComponent } from '@innovatech/ui/core/data';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 
 import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.constants';
@@ -26,7 +26,7 @@ import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.co
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
-export class GuaranteeListComponent extends IvtListComponent<Guarantee> implements OnChanges {
+export class GuaranteeListComponent extends ApsListComponent<Guarantee> implements OnChanges {
   @Input() clearSelected: boolean;
   @Input() canModifyPaymentOrders: boolean;
   dateTypeOptions = guaranteeDateTypeOptions;

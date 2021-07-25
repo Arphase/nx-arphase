@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ApsDataService, saveFile } from '@arphase/ui';
 import { Product } from '@innovatech/common/domain';
-import { saveFile } from '@innovatech/common/utils';
-import { IvtDataService } from '@innovatech/ui/core/data';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -10,7 +9,7 @@ import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class ProductDataService extends IvtDataService<Product> {
+export class ProductDataService extends ApsDataService<Product> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('Product', http, httpUrlGenerator);
     this.entityUrl = `/ivtApi/products/`;

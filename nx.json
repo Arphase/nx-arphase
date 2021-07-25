@@ -275,6 +275,15 @@
     "valmira-domain": {
       "tags": ["domain:valmira", "type:domain-logic"]
     },
+    "valmira-ui-auth-data": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+    },
+    "valmira-ui-auth-feature": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-core": {
+      "tags": []
+    },
     "valmira-ui-frequent-questions": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },

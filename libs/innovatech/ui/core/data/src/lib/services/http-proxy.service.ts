@@ -12,9 +12,7 @@ export class HttpProxyService implements HttpInterceptor {
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (req.url.includes('/ivtApi')) {
-      const apiRequest = req.clone({
-        url: req.url.replace('/ivtApi', this.config.apiUrl),
-      });
+      const apiRequest = req.clone({ url: req.url.replace('/ivtApi', this.config.apiUrl) });
       return next.handle(apiRequest);
     } else {
       return next.handle(req);

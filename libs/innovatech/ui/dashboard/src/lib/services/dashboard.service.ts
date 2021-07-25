@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { buildQueryParams } from '@arphase/ui';
 import { GuaranteeSummary } from '@innovatech/common/domain';
-import { buildQueryParams } from '@innovatech/ui/core/data';
 import { QueryParams } from '@ngrx/data';
 import { Observable } from 'rxjs';
 

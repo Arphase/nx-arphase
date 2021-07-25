@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ApsListContainerComponent } from '@arphase/ui';
 import { Product } from '@innovatech/common/domain';
 import { ProductCollectionService, ProductDataService } from '@innovatech/ui/products/data';
-import { IvtListContainerComponent } from '@innovatech/ui/core/data';
 
 @Component({
   selector: 'ivt-product-list-container',
@@ -9,7 +9,7 @@ import { IvtListContainerComponent } from '@innovatech/ui/core/data';
   styleUrls: ['./product-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductListContainerComponent extends IvtListContainerComponent<Product> {
+export class ProductListContainerComponent extends ApsListContainerComponent<Product> {
   constructor(
     protected productCollectionService: ProductCollectionService,
     protected productDataService: ProductDataService

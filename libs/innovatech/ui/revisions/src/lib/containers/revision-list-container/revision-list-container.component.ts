@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ApsListContainerComponent } from '@arphase/ui';
 import { Revision, UserRoles } from '@innovatech/common/domain';
 import { PermissionService } from '@innovatech/ui/permissions/data';
-import { IvtListContainerComponent } from '@innovatech/ui/core/data';
 import dayjs from 'dayjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -15,7 +15,7 @@ import { RevisionDataService } from '../../services/revision-data.service';
   styleUrls: ['./revision-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RevisionListContainerComponent extends IvtListContainerComponent<Revision> {
+export class RevisionListContainerComponent extends ApsListContainerComponent<Revision> {
   canCreateRevision$ = this.permissionService.hasUpdatePermission([UserRoles.superAdmin, UserRoles.repairman]);
 
   constructor(

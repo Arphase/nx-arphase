@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ApsCollectionCheckboxFilterComponent } from '@arphase/ui';
 import { Group } from '@innovatech/common/domain';
-import { CollectionCheckboxFilterComponent } from '@innovatech/ui/core/data';
 import { GroupFilterCollectionService } from '@innovatech/ui/groups/data';
 
 @Component({
@@ -9,7 +9,7 @@ import { GroupFilterCollectionService } from '@innovatech/ui/groups/data';
   styleUrls: ['./group-checkbox-filter.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GroupCheckboxFilterComponent extends CollectionCheckboxFilterComponent<Group> {
+export class GroupCheckboxFilterComponent extends ApsCollectionCheckboxFilterComponent<Group> {
   sortValue = [{ key: 'group.name', value: 'ascend' }];
   filterPropertyName = 'groupIds';
 

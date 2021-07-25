@@ -1,14 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ApsDataService } from '@arphase/ui';
 import { Vehicle } from '@innovatech/common/domain';
-import { IvtDataService } from '@innovatech/ui/core/data';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class VehicleDataService extends IvtDataService<Vehicle> {
+export class VehicleDataService extends ApsDataService<Vehicle> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('Vehicle', http, httpUrlGenerator);
     this.entityUrl = `/ivtApi/vehicles/`;
