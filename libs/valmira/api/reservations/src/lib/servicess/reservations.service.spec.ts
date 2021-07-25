@@ -1,4 +1,8 @@
+import { createMockRepository } from '@arphase/api/testing';
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { ReservationEntity } from '@valmira/api/domain';
+
 import { ReservationsService } from './reservations.service';
 
 describe('ReservationsService', () => {
@@ -6,7 +10,10 @@ describe('ReservationsService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ReservationsService],
+      providers: [
+        ReservationsService,
+        { provide: getRepositoryToken(ReservationEntity), useValue: createMockRepository() },
+      ],
     }).compile();
 
     service = module.get<ReservationsService>(ReservationsService);
