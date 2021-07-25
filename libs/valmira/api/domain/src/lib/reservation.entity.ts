@@ -52,8 +52,8 @@ export class ReservationEntity extends BaseEntity implements Reservation {
   })
   status: ReservationStatus | string;
 
-  @Column()
-  paymentId: string;
+  @Column({ nullable: true })
+  paymentId?: string;
 
   @Column()
   total: number;

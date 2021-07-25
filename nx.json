@@ -256,6 +256,9 @@
     "valmira-api-places": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
+    "valmira-api-reservations": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+    },
     "valmira-app": {
       "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
     },

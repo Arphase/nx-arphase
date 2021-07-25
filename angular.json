@@ -2208,6 +2208,27 @@
         }
       }
     },
+    "valmira-api-reservations": {
+      "root": "libs/valmira/api/reservations",
+      "sourceRoot": "libs/valmira/api/reservations/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/api/reservations/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/api/reservations"],
+          "options": {
+            "jestConfig": "libs/valmira/api/reservations/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-app": {
       "projectType": "application",
       "root": "apps/valmira/app",
