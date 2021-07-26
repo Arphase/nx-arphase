@@ -1,8 +1,8 @@
 import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ApsListComponent } from '@arphase/ui';
 import { guaranteeDateTypeOptions, UserRoles } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
-import { IvtListComponent } from '@innovatech/ui/core/data';
 
 @Component({
   selector: 'ivt-dashboard',
@@ -11,7 +11,7 @@ import { IvtListComponent } from '@innovatech/ui/core/data';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [CurrencyPipe, { provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
-export class DashboardComponent extends IvtListComponent<number[]> {
+export class DashboardComponent extends ApsListComponent<number[]> {
   @Input() data: { name: string; value: string }[];
   @Input() isEmpty: boolean;
   dateTypeOptions = guaranteeDateTypeOptions;

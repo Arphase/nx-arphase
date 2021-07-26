@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ApsListComponent } from '@arphase/ui';
 import { Product, UserRoles } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
-import { IvtListComponent } from '@innovatech/ui/core/data';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 import { columns } from './user-list.constants';
@@ -13,7 +13,7 @@ import { columns } from './user-list.constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
-export class UserListComponent extends IvtListComponent<Product> {
+export class UserListComponent extends ApsListComponent<Product> {
   @Input() groupOptions: NzSelectOptionInterface[] = [];
   @Input() companyOptions: NzSelectOptionInterface[] = [];
   columns = columns;

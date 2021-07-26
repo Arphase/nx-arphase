@@ -1,7 +1,7 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApsHttpErrorResponse, HttpStatusCodes } from '@arphase/common';
-import { LoadingService } from '@innovatech/ui/core/data';
+import { LoadingService } from '@arphase/ui';
 import { Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Observable, throwError } from 'rxjs';

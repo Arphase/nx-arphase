@@ -15,6 +15,4 @@ const entityMetadata: EntityMetadataMap = {
   Vehicle: {},
 };
 
-export const entityConfig = {
-  entityMetadata,
-};
+export const entityConfig = { entityMetadata };

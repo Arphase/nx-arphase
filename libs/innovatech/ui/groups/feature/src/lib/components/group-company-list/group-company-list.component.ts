@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ApsListComponent } from '@arphase/ui';
 import { Company } from '@innovatech/common/domain';
-import { IvtListComponent } from '@innovatech/ui/core/data';
 
 import { columns } from './group-company-list.constants';
 
@@ -10,6 +10,6 @@ import { columns } from './group-company-list.constants';
   styleUrls: ['./group-company-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GroupCompanyListComponent extends IvtListComponent<Company> {
+export class GroupCompanyListComponent extends ApsListComponent<Company> {
   columns = columns;
 }

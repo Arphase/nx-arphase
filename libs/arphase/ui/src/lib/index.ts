@@ -1,6 +1,7 @@
 export * from './classes';
 export * from './components';
 export * from './directives';
+export * from './entity-config';
 export * from './functions';
 export * from './guards';
 export * from './models';

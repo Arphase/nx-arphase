@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ApsListComponent } from '@arphase/ui';
 import { isVehicleElegible, UserRoles, Vehicle, VehicleStatus } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
-import { IvtListComponent } from '@innovatech/ui/core/data';
 
 import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './vehicle-list.constants';
 
@@ -12,7 +12,7 @@ import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './veh
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
-export class VehicleListComponent extends IvtListComponent<Vehicle> {
+export class VehicleListComponent extends ApsListComponent<Vehicle> {
   @Input() canCreateReviewRequest: boolean;
   @Input() canManageRevisions: boolean;
   columns = columns;

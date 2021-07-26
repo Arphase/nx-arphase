@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { LoadingService } from '@innovatech/ui/core/data';
+import { LoadingService } from '@arphase/ui';
 import { fromGroups, getGroupsProductsState } from '@innovatech/ui/groups/data';
 import { ProductCollectionService } from '@innovatech/ui/products/data';
 import { Actions, ofType } from '@ngrx/effects';

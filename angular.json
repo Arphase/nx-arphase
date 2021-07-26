@@ -499,14 +499,6 @@
     },
     "innovatech-app": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:application": {
-          "strict": false
-        },
-        "@schematics/angular:component": {
-          "styleext": "less"
-        }
-      },
       "root": "apps/innovatech/app/",
       "sourceRoot": "apps/innovatech/app/src",
       "prefix": "ivt",
@@ -1973,7 +1965,10 @@
             "tsConfig": "apps/valmira/admin/tsconfig.app.json",
             "aot": true,
             "assets": ["apps/valmira/admin/src/favicon.ico", "apps/valmira/admin/src/assets"],
-            "styles": ["apps/valmira/admin/src/styles.less"],
+            "styles": [
+              "apps/valmira/admin/src/styles.less",
+              "libs/arphase/ui/src/styles/themes/base.less"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -2405,6 +2400,75 @@
           "outputs": ["coverage/libs/valmira/domain"],
           "options": {
             "jestConfig": "libs/valmira/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-auth-data": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/auth/data",
+      "sourceRoot": "libs/valmira/ui/auth/data/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/ui/auth/data/src/**/*.ts", "libs/valmira/ui/auth/data/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/auth/data"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/auth/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-auth-feature": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/auth/feature",
+      "sourceRoot": "libs/valmira/ui/auth/feature/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/auth/feature/src/**/*.ts",
+              "libs/valmira/ui/auth/feature/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/auth/feature"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/auth/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-core": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/core",
+      "sourceRoot": "libs/valmira/ui/core/src",
+      "prefix": "ivt",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/ui/core/src/**/*.ts", "libs/valmira/ui/core/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/core"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/core/jest.config.js",
             "passWithNoTests": true
           }
         }

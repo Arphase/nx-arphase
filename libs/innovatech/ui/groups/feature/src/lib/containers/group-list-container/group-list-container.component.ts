@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ApsListContainerComponent } from '@arphase/ui';
 import { Group } from '@innovatech/common/domain';
 import { GroupCollectionService, GroupDataService } from '@innovatech/ui/groups/data';
-import { IvtListContainerComponent } from '@innovatech/ui/core/data';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { AssignProductsModalContainerComponent } from '../assign-products-modal-container/assign-products-modal-container.component';
@@ -12,7 +12,7 @@ import { AssignProductsModalContainerComponent } from '../assign-products-modal-
   styleUrls: ['./group-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GroupListContainerComponent extends IvtListContainerComponent<Group> {
+export class GroupListContainerComponent extends ApsListContainerComponent<Group> {
   constructor(
     protected groupCollectionService: GroupCollectionService,
     protected groupDataService: GroupDataService,

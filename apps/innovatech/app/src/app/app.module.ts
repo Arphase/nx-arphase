@@ -6,10 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
+import {
+  ApsAdditionalEntityCollectionReducerMethodsFactory,
+  ApsAdditionalPropertyPersistenceResultHandler,
+} from '@arphase/ui';
 import { AuthEffects, AuthState, fromAuth, TokenInterceptorService } from '@innovatech/ui/auth/data';
 import {
-  AdditionalEntityCollectionReducerMethodsFactory,
-  AdditionalPropertyPersistenceResultHandler,
   entityConfig,
   HttpProxyService,
   INNOVATECH_CONFIGURATION,
@@ -80,11 +82,11 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     { provide: HTTP_INTERCEPTORS, useClass: HttpProxyService, multi: true },
     {
       provide: EntityCollectionReducerMethodsFactory,
-      useClass: AdditionalEntityCollectionReducerMethodsFactory,
+      useClass: ApsAdditionalEntityCollectionReducerMethodsFactory,
     },
     {
       provide: PersistenceResultHandler,
-      useClass: AdditionalPropertyPersistenceResultHandler,
+      useClass: ApsAdditionalPropertyPersistenceResultHandler,
     },
   ],
   bootstrap: [AppComponent],
