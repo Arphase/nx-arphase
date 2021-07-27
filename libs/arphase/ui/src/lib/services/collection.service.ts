@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { filterNil } from '@innovatech/common/utils';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ApsEntityCollection } from '../entity-config/entity-collection-reducer-methods';
+import { filterNil } from '../operators/filter-nil';
 
 @Injectable()
 export class ApsCollectionService<T> extends EntityCollectionServiceBase<T> {

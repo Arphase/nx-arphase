@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ApsCollectionService } from '@arphase/ui';
+import { ApsCollectionService, mapToSelectOptions } from '@arphase/ui';
 import { Product } from '@innovatech/common/domain';
-import { mapToSelectOptions } from '@innovatech/common/utils';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
 @Injectable({
