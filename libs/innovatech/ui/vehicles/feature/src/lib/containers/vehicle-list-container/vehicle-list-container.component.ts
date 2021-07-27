@@ -18,7 +18,7 @@ import { statusLabels } from '../../components/vehicle-list/vehicle-list.constan
 })
 export class VehicleListContainerComponent extends ApsListContainerComponent<Vehicle> {
   canCreateReviewRequest$ = this.permissionsService.hasUpdatePermission([UserRoles.agencyUser]);
-  canManageRevisions$ = this.permissionsService.hasUpdatePermission([UserRoles.superAdmin]);
+  showGroupFilters$ = this.permissionsService.hasUpdatePermission([UserRoles.superAdmin, UserRoles.repairman]);
 
   constructor(
     protected vehicleCollectionService: VehicleCollectionService,

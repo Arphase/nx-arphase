@@ -14,7 +14,7 @@ import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './veh
 })
 export class VehicleListComponent extends ApsListComponent<Vehicle> {
   @Input() canCreateReviewRequest: boolean;
-  @Input() canManageRevisions: boolean;
+  @Input() showGroupFilters: boolean;
   columns = columns;
   vehicleStatus = VehicleStatus;
   colorMaps = colorMaps;

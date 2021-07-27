@@ -54,13 +54,16 @@
                       [selectedOption]="queryParams?.status"
                       (filterItems)="updateStatusFilter($event)"></aps-radio-filter>
   </div>
-  <div nz-col>
-    <ivt-group-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-group-checkbox-filter>
-  </div>
-  <div nz-col>
-    <ivt-company-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-company-checkbox-filter>
-  </div>
-  <div nz-col>
+  <ng-container *ngIf="canCreateRevision">
+    <div nz-col>
+      <ivt-group-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-group-checkbox-filter>
+    </div>
+    <div nz-col>
+      <ivt-company-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-company-checkbox-filter>
+    </div>
+  </ng-container>
+  <div nz-col
+       *ivtReadPermission>
     <ivt-user-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-user-checkbox-filter>
   </div>
   <div *ngIf="total"
