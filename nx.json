@@ -282,7 +282,7 @@
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-core": {
-      "tags": []
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:util"]
     },
     "valmira-ui-frequent-questions": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
@@ -291,6 +291,9 @@
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-manifest": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-spa": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-terms-and-conditions": {

@@ -1,5 +1,9 @@
 @import '~ng-zorro-antd/ng-zorro-antd';
 @primary-color: #1d2b15;
+@layout-header-background: @primary-color;
+@layout-sider-background: @primary-color;
+@backgroung-color: #eae1d3;
+@layout-body-background: @backgroung-color;
 
 @font-face {
   font-family: 'Beatrice';
@@ -7,6 +11,6 @@
 }
 
 html body {
-  background-color: #eae1d3;
+  background-color: @backgroung-color !important;
   font-family: Beatrice;
 }

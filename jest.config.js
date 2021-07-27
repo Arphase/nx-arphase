@@ -81,5 +81,6 @@ module.exports = {
     '<rootDir>/libs/valmira/ui/auth/data',
     '<rootDir>/libs/valmira/ui/auth/feature',
     '<rootDir>/libs/valmira/ui/core',
+    '<rootDir>/libs/valmira/ui/spa',
   ],
 };
