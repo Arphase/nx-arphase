@@ -25,8 +25,8 @@ export class VehicleListContainerComponent extends ApsListContainerComponent<Veh
     protected vehicleDataService: VehicleDataService,
     protected modal: NzModalService,
     protected messageService: NzMessageService,
-    protected router: Router,
-    protected permissionsService: PermissionService
+    private router: Router,
+    private permissionsService: PermissionService
   ) {
     super(vehicleCollectionService, vehicleDataService, modal, messageService);
   }

@@ -293,6 +293,9 @@
     "valmira-ui-manifest": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
+    "valmira-ui-places": {
+      "tags": []
+    },
     "valmira-ui-spa": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },

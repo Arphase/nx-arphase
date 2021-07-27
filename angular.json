@@ -2540,6 +2540,28 @@
         }
       }
     },
+    "valmira-ui-places": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/places",
+      "sourceRoot": "libs/valmira/ui/places/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/ui/places/src/**/*.ts", "libs/valmira/ui/places/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/places"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/places/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-ui-spa": {
       "projectType": "library",
       "root": "libs/valmira/ui/spa",

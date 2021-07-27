@@ -1,4 +1,4 @@
 import { IconDefinition } from '@ant-design/icons-angular';
-import { HomeOutline, MenuFoldOutline } from '@ant-design/icons-angular/icons';
+import { HomeOutline, MenuFoldOutline, PlusCircleOutline } from '@ant-design/icons-angular/icons';
 
-export const icons: IconDefinition[] = [HomeOutline, MenuFoldOutline];
+export const icons: IconDefinition[] = [HomeOutline, MenuFoldOutline, PlusCircleOutline];

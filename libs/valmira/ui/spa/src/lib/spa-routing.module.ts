@@ -7,6 +7,17 @@ const routes: Routes = [
   {
     path: '',
     component: SpaComponent,
+    children: [
+      {
+        path: 'places',
+        loadChildren: () => import('@valmira/ui/places').then(m => m.PlacesModule),
+      },
+      {
+        path: '',
+        redirectTo: 'places',
+        pathMatch: 'full',
+      },
+    ],
   },
 ];
 @NgModule({
