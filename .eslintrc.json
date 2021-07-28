@@ -126,6 +126,30 @@
                   "domain:musicr",
                   "domain:musicr:api"
                 ]
+              },
+              {
+                "sourceTag": "domain:valmira",
+                "onlyDependOnLibsWithTags": [
+                  "domain:valmira",
+                  "domain:shared",
+                  "domain:arphase"
+                ]
+              },
+              {
+                "sourceTag": "domain:valmira:ui",
+                "onlyDependOnLibsWithTags": [
+                  "domain:arphase",
+                  "domain:valmira",
+                  "domain:valmira:ui"
+                ]
+              },
+              {
+                "sourceTag": "domain:valmira:api",
+                "onlyDependOnLibsWithTags": [
+                  "domain:arphase",
+                  "domain:valmira",
+                  "domain:valmira:api"
+                ]
               }
             ]
           }

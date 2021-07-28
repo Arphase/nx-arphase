@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApsColumns } from '@arphase/ui';
+import { ApsColumns, ApsListComponent } from '@arphase/ui';
 import { Product } from '@innovatech/common/domain';
-import { IvtListComponent } from '@innovatech/ui/core/data';
 
 @Component({
   selector: 'ivt-product-list',
@@ -9,7 +8,7 @@ import { IvtListComponent } from '@innovatech/ui/core/data';
   styleUrls: ['./product-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductListComponent extends IvtListComponent<Product> {
+export class ProductListComponent extends ApsListComponent<Product> {
   columns: ApsColumns = [
     {
       label: 'Folio',

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IvtDataService } from '@innovatech/ui/core/data';
+import { ApsDataService } from '@arphase/ui';
 import { EntityDataService } from '@ngrx/data';
 
 import { CompanyDataService } from './services/company-data.service';
@@ -15,7 +15,7 @@ export class CompaniesDataModule {
     companyDataService: CompanyDataService,
     companyFilterDataService: CompanyFilterDataService
   ) {
-    const services: Record<string, IvtDataService<unknown>> = {
+    const services: Record<string, ApsDataService<unknown>> = {
       Company: companyDataService,
       CompanyFilter: companyFilterDataService,
     };

@@ -1,20 +1,14 @@
-import { createCollectionResponse } from '@arphase/api';
+import { createCollectionResponse } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { AuthService } from '@innovatech/api/auth/data';
 import { CommonFilterDto, filterCommonQuery } from '@innovatech/api/core/util';
-import {
-  CompanyRepository,
-  GroupRepository,
-  ProductRepository,
-  ResetPasswordRepository,
-  UserRepository,
-} from '@innovatech/api/domain';
+import { CompanyEntity, GroupEntity, ProductEntity, ResetPasswordEntity, UserEntity } from '@innovatech/api/domain';
 import { Company, Group, Product, User } from '@innovatech/common/domain';
 import { generateId } from '@innovatech/common/utils';
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { omit } from 'lodash';
-import { Connection } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
 
 import { AssignProductsDto } from '../dto/assign-products.dto';
 import { CreateGroupDto } from '../dto/create-group.dto';
@@ -23,11 +17,11 @@ import { UpdateGroupDto } from '../dto/update-group.dto';
 @Injectable()
 export class GroupsService {
   constructor(
-    @InjectRepository(GroupRepository) private groupRepository: GroupRepository,
-    @InjectRepository(CompanyRepository) private companyRepository: CompanyRepository,
-    @InjectRepository(UserRepository) private userRepository: UserRepository,
-    @InjectRepository(ResetPasswordRepository) private resetPasswordRepository: ResetPasswordRepository,
-    @InjectRepository(ProductRepository) private productRepository: ProductRepository,
+    @InjectRepository(GroupEntity) private groupRepository: Repository<GroupEntity>,
+    @InjectRepository(CompanyEntity) private companyRepository: Repository<CompanyEntity>,
+    @InjectRepository(UserEntity) private userRepository: Repository<UserEntity>,
+    @InjectRepository(ResetPasswordEntity) private resetPasswordRepository: Repository<ResetPasswordEntity>,
+    @InjectRepository(ProductEntity) private productRepository: Repository<ProductEntity>,
     private connection: Connection,
     private authService: AuthService
   ) {}
@@ -146,7 +140,7 @@ export class GroupsService {
     }
 
     group.products = products;
-    group.save();
+    await group.save();
     return products;
   }
 }

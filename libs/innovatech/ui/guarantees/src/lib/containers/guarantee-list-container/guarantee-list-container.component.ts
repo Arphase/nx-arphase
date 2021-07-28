@@ -1,7 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Guarantee, GuaranteeStatus, statusLabels, transformFolio, UserRoles } from '@innovatech/common/domain';
+import { ApsListContainerComponent } from '@arphase/ui';
+import {
+  Guarantee,
+  GuaranteeStatus,
+  guaranteeStatusLabels,
+  transformFolio,
+  UserRoles,
+} from '@innovatech/common/domain';
 import { PermissionService } from '@innovatech/ui/permissions/data';
-import { IvtListContainerComponent } from '@innovatech/ui/core/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
@@ -19,7 +25,7 @@ import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-co
   styleUrls: ['./guarantee-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeListContainerComponent extends IvtListContainerComponent<Guarantee> {
+export class GuaranteeListContainerComponent extends ApsListContainerComponent<Guarantee> {
   clearSelectedSubject = new BehaviorSubject<boolean>(false);
   clearSelected$ = this.clearSelectedSubject.asObservable();
   excelFileName = 'Garantias';
@@ -82,7 +88,7 @@ export class GuaranteeListContainerComponent extends IvtListContainerComponent<G
       .pipe(take(1))
       .subscribe(() =>
         this.messageService.success(
-          `La garantía con folio ${transformFolio(guarantee.id)} ahora está ${statusLabels[
+          `La garantía con folio ${transformFolio(guarantee.id)} ahora está ${guaranteeStatusLabels[
             GuaranteeStatus[GuaranteeStatus[guarantee.status]]
           ].toLowerCase()}`
         )

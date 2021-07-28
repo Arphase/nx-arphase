@@ -1,0 +1,72 @@
+import { registerLocaleData } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import es from '@angular/common/locales/es';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  ApsAdditionalEntityCollectionReducerMethodsFactory,
+  ApsAdditionalPropertyPersistenceResultHandler,
+} from '@arphase/ui';
+import { EntityCollectionReducerMethodsFactory, EntityDataModule, PersistenceResultHandler } from '@ngrx/data';
+import { EffectsModule } from '@ngrx/effects';
+import { routerReducer, RouterReducerState, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { ActionReducerMap, StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AuthEffects, AuthState, fromAuth } from '@valmira/ui/auth/data';
+import { entityConfig, HttpProxyService, VALMIRA_CONFIGURATION, ValmiraConfiguration } from '@valmira/ui/core';
+import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NgxMaskModule } from 'ngx-mask';
+
+import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { icons } from './icons';
+
+registerLocaleData(es);
+
+const VALMIRA_CONFIGURATION_VALUE: ValmiraConfiguration = {
+  apiUrl: environment.apiUrl,
+  version: environment.version,
+};
+
+export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducerState }> = {
+  auth: fromAuth.reducer,
+  router: routerReducer,
+};
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      name: 'Valmira',
+      maxAge: 25,
+    }),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+    NzIconModule.forRoot(icons),
+    EntityDataModule.forRoot(entityConfig),
+    NgxMaskModule.forRoot(),
+  ],
+  providers: [
+    { provide: VALMIRA_CONFIGURATION, useValue: VALMIRA_CONFIGURATION_VALUE },
+    { provide: NZ_I18N, useValue: es_ES },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpProxyService, multi: true },
+    {
+      provide: EntityCollectionReducerMethodsFactory,
+      useClass: ApsAdditionalEntityCollectionReducerMethodsFactory,
+    },
+    {
+      provide: PersistenceResultHandler,
+      useClass: ApsAdditionalPropertyPersistenceResultHandler,
+    },
+  ],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}

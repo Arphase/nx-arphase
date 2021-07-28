@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IvtDataService } from '@innovatech/ui/core/data';
+import { ApsDataService } from '@arphase/ui';
 import { EntityDataService } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -18,7 +18,7 @@ export class GroupsDataModule {
     groupDataService: GroupDataService,
     groupFilterDataService: GroupFilterDataService
   ) {
-    const services: Record<string, IvtDataService<unknown>> = {
+    const services: Record<string, ApsDataService<unknown>> = {
       Group: groupDataService,
       GroupFilter: groupFilterDataService,
     };

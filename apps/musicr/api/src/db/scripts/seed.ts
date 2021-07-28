@@ -1,5 +1,5 @@
 import { AuthService, SignUpCredentialsDto } from '@musicr/api/auth';
-import { UserRepository } from '@musicr/api/domain';
+import { UserEntity } from '@musicr/api/domain';
 import { ConnectionOptions, createConnection } from 'typeorm';
 
 import config from '../config/ormconfig';
@@ -12,7 +12,7 @@ async function run() {
   };
 
   const connection = await createConnection(opt as ConnectionOptions);
-  const authService = new AuthService(connection.getCustomRepository(UserRepository), null);
+  const authService = new AuthService(connection.getRepository(UserEntity), null);
 
   const users: SignUpCredentialsDto[] = [
     {

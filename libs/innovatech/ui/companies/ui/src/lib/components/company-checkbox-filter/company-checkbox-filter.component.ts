@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ApsCollectionCheckboxFilterComponent } from '@arphase/ui';
 import { Company } from '@innovatech/common/domain';
 import { CompanyFilterCollectionService } from '@innovatech/ui/companies/data';
-import { CollectionCheckboxFilterComponent } from '@innovatech/ui/core/data';
 
 @Component({
   selector: 'ivt-company-checkbox-filter',
@@ -9,7 +9,7 @@ import { CollectionCheckboxFilterComponent } from '@innovatech/ui/core/data';
   styleUrls: ['./company-checkbox-filter.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CompanyCheckboxFilterComponent extends CollectionCheckboxFilterComponent<Company> {
+export class CompanyCheckboxFilterComponent extends ApsCollectionCheckboxFilterComponent<Company> {
   sortValue = [{ key: 'company.businessName', value: 'ascend' }];
   filterPropertyName = 'companyIds';
   constructor(protected companyFilterCollectionService: CompanyFilterCollectionService) {

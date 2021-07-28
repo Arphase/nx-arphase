@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SignInRequest } from '@innovatech/common/domain';
-import { fromAuth } from '@innovatech/ui/auth/data';
-import { LoadingService } from '@innovatech/ui/core/data';
+import { LoadingService } from '@arphase/ui';
+import { fromAuth, SignInRequest } from '@innovatech/ui/auth/data';
 import { Store } from '@ngrx/store';
 
 @Component({

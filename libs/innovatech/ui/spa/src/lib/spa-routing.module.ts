@@ -21,18 +21,14 @@ const routes: Routes = [
       {
         path: 'groups',
         canActivate: [RoleGuard],
-        data: {
-          roles: [UserRoles.superAdmin],
-        },
+        data: { roles: [UserRoles.superAdmin] },
         loadChildren: () => import('@innovatech/ui/groups/feature').then(m => m.GroupsModule),
       },
       {
         path: 'users',
         loadChildren: () => import('@innovatech/ui/users/feature').then(m => m.UsersModule),
         canActivate: [RoleGuard],
-        data: {
-          roles: [UserRoles.superAdmin],
-        },
+        data: { roles: [UserRoles.superAdmin] },
       },
       {
         path: 'vehicles',
@@ -50,9 +46,7 @@ const routes: Routes = [
         path: 'products',
         loadChildren: () => import('@innovatech/ui/products/feature').then(m => m.ProductsModule),
         canActivate: [RoleGuard],
-        data: {
-          roles: [UserRoles.superAdmin],
-        },
+        data: { roles: [UserRoles.superAdmin] },
       },
       {
         path: '',

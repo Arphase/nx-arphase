@@ -1,8 +1,7 @@
-import { TransformEmail, Trim } from '@arphase/api';
-import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { TransformEmail, Trim } from '@arphase/api/core';
+import { IsEmail, IsOptional, IsString } from 'class-validator';
 
 export class SignUpCredentialsDto {
-  @IsNotEmpty()
   @IsString()
   @Trim()
   firstName: string;
@@ -12,17 +11,14 @@ export class SignUpCredentialsDto {
   @Trim()
   secondName?: string;
 
-  @IsNotEmpty()
   @IsString()
   @Trim()
   lastName: string;
 
-  @IsNotEmpty()
   @IsString()
   @Trim()
   secondLastName: string;
 
-  @IsNotEmpty()
   @IsEmail()
   @TransformEmail()
   email: string;

@@ -1,7 +1,7 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpStatusCodes, IvtHttpErrorResponse } from '@innovatech/common/domain';
-import { LoadingService } from '@innovatech/ui/core/data';
+import { ApsHttpErrorResponse, HttpStatusCodes } from '@arphase/common';
+import { LoadingService } from '@arphase/ui';
 import { Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Observable, throwError } from 'rxjs';
@@ -41,7 +41,7 @@ export class TokenInterceptorService implements HttpInterceptor {
     );
   }
 
-  handleError(error: IvtHttpErrorResponse): void {
+  handleError(error: ApsHttpErrorResponse): void {
     if (error.statusCode === HttpStatusCodes.Unauthorized) {
       this.store.dispatch(logout());
     }

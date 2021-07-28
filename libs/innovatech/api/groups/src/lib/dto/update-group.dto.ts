@@ -1,34 +1,14 @@
-import { TransformEmail, Trim } from '@arphase/api';
-import { IsRfc, UpdateAddressDto } from '@innovatech/api/core/util';
-import { Address, Company, User, UserRoles } from '@innovatech/common/domain';
-import { RfcValidatorTypes } from '@innovatech/common/utils';
-import { Transform, Type } from 'class-transformer';
-import { IsArray, IsEmail, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { UpdateAddressDto } from '@innovatech/api/core/util';
+import { Address, Company, User } from '@innovatech/common/domain';
+import { PartialType } from '@nestjs/mapped-types';
+import { Type } from 'class-transformer';
+import { IsArray, IsNumber, IsOptional, ValidateNested } from 'class-validator';
 
-export class UpdateGroupDto {
-  @IsNotEmpty()
-  @IsInt()
+import { CreateCompanyDto, CreateGroupDto, CreateUserDto } from './create-group.dto';
+
+export class UpdateGroupDto extends PartialType(CreateGroupDto) {
+  @IsNumber()
   id: number;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  name: string;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  contact: string;
-
-  @IsOptional()
-  @IsEmail()
-  @TransformEmail()
-  email: string;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  phone: string;
 
   @IsOptional()
   @IsArray()
@@ -37,88 +17,23 @@ export class UpdateGroupDto {
   companies: Company[];
 }
 
-export class UpdateCompanyDto {
-  @IsOptional()
+export class UpdateCompanyDto extends PartialType(CreateCompanyDto) {
+  @IsNumber()
   id: number;
 
   @IsOptional()
-  @IsString()
-  @Trim()
-  businessName: string;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  @IsRfc(RfcValidatorTypes.any, { message: 'RFC tiene formato incorrecto' })
-  rfc: string;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  contact: string;
-
-  @IsOptional()
-  @IsEmail()
-  @TransformEmail()
-  email: string;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  phone: string;
-
   @ValidateNested()
   @Type(() => UpdateAddressDto)
   address: Address;
 
-  @IsArray()
   @IsOptional()
+  @IsArray()
   @ValidateNested()
   @Type(() => UpdateUserDto)
   users: User[];
 }
 
-export class UpdateUserDto {
-  @IsOptional()
+export class UpdateUserDto extends PartialType(CreateUserDto) {
+  @IsNumber()
   id: number;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  @Trim()
-  firstName: string;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  secondName: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  @Trim()
-  lastName: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  @Trim()
-  secondLastName: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsEmail()
-  @TransformEmail()
-  email: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  @Trim()
-  phone: string;
-
-  @IsOptional()
-  @Transform(({ obj, key }) => UserRoles[obj[key]])
-  @IsEnum(UserRoles)
-  role: UserRoles | string;
 }

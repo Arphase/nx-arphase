@@ -1,5 +1,7 @@
-import { CompanyRepository, GroupRepository, ProductRepository } from '@innovatech/api/domain';
+import { createMockRepository } from '@arphase/api/testing';
+import { CompanyEntity, GroupEntity, ProductEntity } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
 
 import { ProductService } from './products.service';
 
@@ -10,9 +12,9 @@ describe('ProductService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         ProductService,
-        { provide: ProductRepository, useValue: {} },
-        { provide: CompanyRepository, useValue: {} },
-        { provide: GroupRepository, useValue: {} },
+        { provide: getRepositoryToken(ProductEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(CompanyEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(GroupEntity), useValue: createMockRepository() },
       ],
     }).compile();
 

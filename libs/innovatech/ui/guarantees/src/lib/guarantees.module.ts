@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   ApsAutoErrorModule,
   ApsCheckboxFilterModule,
+  ApsDataService,
   ApsDateFilterModule,
   ApsEmptyModule,
   ApsRadioFilterModule,
@@ -12,7 +13,6 @@ import {
 } from '@arphase/ui';
 import { IvtAddressFormModule } from '@innovatech/ui/addresses/ui';
 import { CompanyCheckboxFilterModule, CompanySelectModule } from '@innovatech/ui/companies/ui';
-import { IvtDataService } from '@innovatech/ui/core/data';
 import { IvtFolioModule } from '@innovatech/ui/core/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';
@@ -125,7 +125,7 @@ export class GuaranteesModule {
     guaranteeDataService: GuaranteeDataService,
     paymentOrderDataService: PaymentOrderDataService
   ) {
-    const services: Record<string, IvtDataService<unknown>> = {
+    const services: Record<string, ApsDataService<unknown>> = {
       Guarantee: guaranteeDataService,
       PaymentOrder: paymentOrderDataService,
     };

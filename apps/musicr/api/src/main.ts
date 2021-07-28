@@ -6,7 +6,9 @@ import { AppModule } from './app/app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  app.useGlobalPipes(
+    new ValidationPipe({ transform: true, whitelist: true, transformOptions: { enableImplicitConversion: true } })
+  );
   app.setGlobalPrefix('api');
   config.update({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,

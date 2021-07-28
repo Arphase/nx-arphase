@@ -1,24 +1,8 @@
-import { Type } from 'class-transformer';
-import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsNumber } from 'class-validator';
+import { CreatePriceOptionDto } from './create-price-option.dto';
+import { PartialType } from '@nestjs/mapped-types';
 
-import { AssignPhotoDto } from './assign-photo.dto';
-
-export class UpdatePriceOptionDto {
-  @IsNotEmpty()
+export class UpdatePriceOptionDto extends PartialType(CreatePriceOptionDto) {
   @IsNumber()
   id: number;
-
-  @IsOptional()
-  @IsString()
-  name: string;
-
-  @IsOptional()
-  @IsNumber()
-  price: number;
-
-  @IsOptional()
-  @IsArray()
-  @ValidateNested()
-  @Type(() => AssignPhotoDto)
-  photos: AssignPhotoDto[];
 }

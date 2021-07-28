@@ -1,4 +1,4 @@
-import { PhotoRepository, ProductRepository } from '@musicr/api/domain';
+import { ProductEntity } from '@musicr/api/domain';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -6,7 +6,7 @@ import { ProductsController } from './controllers/products.controller';
 import { ProductsService } from './services/products.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PhotoRepository, ProductRepository])],
+  imports: [TypeOrmModule.forFeature([ProductEntity])],
   controllers: [ProductsController],
   providers: [ProductsService],
 })

@@ -1,15 +1,16 @@
-import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api';
+import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
-import { SubcategoryRepository } from '@musicr/api/domain';
+import { SubcategoryEntity } from '@musicr/api/domain';
 import { Subcategory } from '@musicr/domain';
-import { BadRequestException, Delete, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 import { CreateSubcategoryDto } from '../dto/create-subcategory.dto';
 
 @Injectable()
 export class SubcategoriesService {
-  constructor(@InjectRepository(SubcategoryRepository) private subcategoryRepository: SubcategoryRepository) {}
+  constructor(@InjectRepository(SubcategoryEntity) private subcategoryRepository: Repository<SubcategoryEntity>) {}
 
   async getSubcategories(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Subcategory>> {
     const { pageIndex, pageSize } = filterDto;
@@ -31,8 +32,7 @@ export class SubcategoriesService {
     }
     try {
       const newSubcategory = this.subcategoryRepository.create({ ...subcategory });
-      await newSubcategory.save();
-      return newSubcategory;
+      return this.subcategoryRepository.save(newSubcategory);
     } catch (e) {
       if (e.code === '23503') {
         throw new NotFoundException(`La categoría con id ${subcategory.categoryId} no existe`);

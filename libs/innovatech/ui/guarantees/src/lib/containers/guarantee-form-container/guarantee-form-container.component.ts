@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApsFormContainerComponent, filterNil } from '@arphase/ui';
 import { Guarantee, UserRoles } from '@innovatech/common/domain';
-import { filterNil } from '@innovatech/common/utils';
 import { selectQueryParam } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import { ProductCollectionService } from '@innovatech/ui/products/data';
@@ -11,7 +11,6 @@ import {
   getVehiclesVehicleState,
   VehicleCollectionService,
 } from '@innovatech/ui/vehicles/data';
-import { IvtFormContainerComponent } from '@innovatech/ui/core/data';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash-es';
@@ -29,7 +28,7 @@ import { GuaranteeCollectionService } from '../../services/guarantee-collection.
   styleUrls: ['./guarantee-form-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuaranteeFormContainerComponent extends IvtFormContainerComponent<Guarantee> implements OnInit, OnDestroy {
+export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<Guarantee> implements OnInit, OnDestroy {
   form = createGuaranteeForm();
   successUrl = '/spa/guarantees';
   createSuccessMessage = 'La garantía se ha creado con éxito';

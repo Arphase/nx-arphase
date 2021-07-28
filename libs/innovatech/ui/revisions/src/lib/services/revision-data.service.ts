@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ApsDataService } from '@arphase/ui';
 import { Revision } from '@innovatech/common/domain';
-import { IvtDataService } from '@innovatech/ui/core/data';
 import { HttpUrlGenerator } from '@ngrx/data';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RevisionDataService extends IvtDataService<Revision> {
+export class RevisionDataService extends ApsDataService<Revision> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('Revision', http, httpUrlGenerator);
     this.entityUrl = `/ivtApi/revisions/`;

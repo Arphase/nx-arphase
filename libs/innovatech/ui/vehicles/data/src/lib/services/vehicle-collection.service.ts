@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
+import { ApsCollectionService } from '@arphase/ui';
 import { Vehicle } from '@innovatech/common/domain';
-import { IvtCollectionService } from '@innovatech/ui/core/data';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
 @Injectable({
   providedIn: 'root',
 })
-export class VehicleCollectionService extends IvtCollectionService<Vehicle> {
+export class VehicleCollectionService extends ApsCollectionService<Vehicle> {
   constructor(protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Vehicle', serviceElementsFactory);
   }

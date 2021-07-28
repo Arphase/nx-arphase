@@ -1,57 +1,31 @@
-import { TransformEmail, Trim } from '@arphase/api';
-import { IsRfc, UpdateAddressDto } from '@innovatech/api/core/util';
+import { UpdateAddressDto } from '@innovatech/api/core/util';
 import { Address, MoralPerson, PersonTypes, PhysicalPerson } from '@innovatech/common/domain';
-import { RfcValidatorTypes } from '@innovatech/common/utils';
-import { Transform, Type } from 'class-transformer';
-import { IsEmail, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, ValidateIf, ValidateNested } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { Type } from 'class-transformer';
+import { IsNumber, IsOptional, ValidateIf, ValidateNested } from 'class-validator';
 
+import { CreateClientDto } from '../create-dtos/create-client.dto';
 import { UpdateMoralPersonDto } from './update-moral-person.dto';
 import { UpdatePhysicalPersonDto } from './update-physical-person.dto';
 
-export class UpdateClientDto {
-  @IsNotEmpty()
-  @IsInt()
+export class UpdateClientDto extends PartialType(CreateClientDto) {
+  @IsNumber()
   id: number;
 
-  @IsNotEmpty()
-  @Transform(({ obj, key }) => PersonTypes[obj[key]])
-  @IsEnum(PersonTypes)
-  personType: PersonTypes;
-
   @IsOptional()
-  @ValidateIf(client => client.personType === PersonTypes.physical)
+  @ValidateIf(client => client.personType === PersonTypes[PersonTypes.physical])
   @ValidateNested()
   @Type(() => UpdatePhysicalPersonDto)
   physicalInfo: PhysicalPerson;
 
   @IsOptional()
-  @ValidateIf(client => client.personType === PersonTypes.moral)
+  @ValidateIf(client => client.personType === PersonTypes[PersonTypes.moral])
   @ValidateNested()
   @Type(() => UpdateMoralPersonDto)
   moralInfo: MoralPerson;
 
   @IsOptional()
-  @IsString()
-  @IsRfc(RfcValidatorTypes.any, { message: 'RFC tiene formato incorrecto' })
-  rfc: string;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  phone: string;
-
-  @IsOptional()
-  @IsEmail()
-  @TransformEmail()
-  email: string;
-
-  @IsOptional()
   @ValidateNested()
   @Type(() => UpdateAddressDto)
   address: Address;
-
-  @IsOptional()
-  @IsString()
-  @Trim()
-  salesPlace: string;
 }

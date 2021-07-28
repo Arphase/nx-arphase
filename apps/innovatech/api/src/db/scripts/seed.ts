@@ -1,5 +1,5 @@
 import { AuthService, SignUpCredentialsDto } from '@innovatech/api/auth/data';
-import { ResetPasswordRepository, UserRepository } from '@innovatech/api/domain';
+import { ResetPasswordEntity, UserEntity } from '@innovatech/api/domain';
 import { UserRoles } from '@innovatech/common/domain';
 import fs from 'fs';
 import path from 'path';
@@ -16,8 +16,9 @@ async function run() {
 
   const connection = await createConnection(opt as ConnectionOptions);
   const authService = new AuthService(
-    connection.getCustomRepository(UserRepository),
-    connection.getCustomRepository(ResetPasswordRepository),
+    connection.getRepository(UserEntity),
+    connection.getRepository(ResetPasswordEntity),
+    null,
     null
   );
   const entityManager = getManager();

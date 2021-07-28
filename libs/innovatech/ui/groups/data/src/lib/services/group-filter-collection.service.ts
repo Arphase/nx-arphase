@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
+import { ApsCollectionService, filterNilArray, mapToSelectOptions, sortSelectOptionsAlphabetical } from '@arphase/ui';
 import { Group } from '@innovatech/common/domain';
-import { filterNilArray, mapToSelectOptions, sortSelectOptionsAlphabetical } from '@innovatech/common/utils';
-import { IvtCollectionService } from '@innovatech/ui/core/data';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GroupFilterCollectionService extends IvtCollectionService<Group> {
+export class GroupFilterCollectionService extends ApsCollectionService<Group> {
   options$ = this.entities$.pipe(
     filterNilArray(),
     mapToSelectOptions(group => ({

@@ -6,7 +6,6 @@
       "devDependencies": "*"
     },
     "tsconfig.json": "*",
-    "tslint.json": "*",
     "nx.json": "*"
   },
   "affected": {
@@ -26,7 +25,10 @@
     }
   },
   "projects": {
-    "arphase-api": {
+    "arphase-api-core": {
+      "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
+    },
+    "arphase-api-testing": {
       "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
     },
     "arphase-common": {
@@ -228,6 +230,83 @@
     },
     "musicr-ui-core": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+    },
+    "musicr-ui-home": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
+    "valmira-admin": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
+    },
+    "valmira-admin-e2e": {
+      "tags": [],
+      "implicitDependencies": ["valmira-admin"]
+    },
+    "valmira-api": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "executable:api"]
+    },
+    "valmira-api-additional-products": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+    },
+    "valmira-api-auth": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+    },
+    "valmira-api-categories": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+    },
+    "valmira-api-domain": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
+    },
+    "valmira-api-places": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+    },
+    "valmira-api-promocodes": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+    },
+    "valmira-api-reservations": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+    },
+    "valmira-app": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
+    },
+    "valmira-app-e2e": {
+      "tags": [],
+      "implicitDependencies": ["valmira-app"]
+    },
+    "valmira-domain": {
+      "tags": ["domain:valmira", "type:domain-logic"]
+    },
+    "valmira-ui-auth-data": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+    },
+    "valmira-ui-auth-feature": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-categories-data": {
+      "tags": []
+    },
+    "valmira-ui-categories-ui": {
+      "tags": []
+    },
+    "valmira-ui-core": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:util"]
+    },
+    "valmira-ui-frequent-questions": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-landing": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-manifest": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-places": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-spa": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-terms-and-conditions": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     }
   }
 }

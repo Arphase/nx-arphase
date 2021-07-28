@@ -1,12 +1,10 @@
-import { Guarantee } from '@innovatech/common/domain';
-import { IsArray, IsInt, IsNotEmpty } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
-export class UpdatePaymentOrderDto {
+import { CreatePaymentOrderDto } from './create-payment-order.dto';
+
+export class UpdatePaymentOrderDto extends PartialType(CreatePaymentOrderDto) {
   @IsNotEmpty()
-  @IsInt()
+  @IsNumber()
   id: number;
-
-  @IsNotEmpty()
-  @IsArray()
-  guarantees: Partial<Guarantee>[];
 }

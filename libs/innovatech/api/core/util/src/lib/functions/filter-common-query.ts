@@ -1,4 +1,4 @@
-import { filterCollectionQuery } from '@arphase/api';
+import { filterCollectionQuery } from '@arphase/api/core';
 import { hasAccessToAllData, User } from '@innovatech/common/domain';
 import { BaseEntity, SelectQueryBuilder } from 'typeorm';
 

@@ -62,7 +62,7 @@ export class GuaranteesController {
   }
 
   @Delete(':id')
-  deleteGuarantee(@Param('id', ParseIntPipe) id: number): Promise<void> {
+  deleteGuarantee(@Param('id', ParseIntPipe) id: number): Promise<Guarantee> {
     return this.guaranteesService.deleteGuarantee(id);
   }
 }

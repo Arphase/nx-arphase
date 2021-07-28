@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
+import { ApsCollectionService, filterNilArray, mapToSelectOptions } from '@arphase/ui';
 import { Company } from '@innovatech/common/domain';
-import { filterNilArray, mapToSelectOptions } from '@innovatech/common/utils';
-import { IvtCollectionService } from '@innovatech/ui/core/data';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CompanyCollectionService extends IvtCollectionService<Company> {
+export class CompanyCollectionService extends ApsCollectionService<Company> {
   options$ = this.entities$.pipe(
     filterNilArray(),
-    mapToSelectOptions(company => ({
-      label: `${company.businessName}`,
-      value: company.id,
-    }))
+    mapToSelectOptions(company => ({ label: `${company.businessName}`, value: company.id }))
   );
   constructor(protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Company', serviceElementsFactory);

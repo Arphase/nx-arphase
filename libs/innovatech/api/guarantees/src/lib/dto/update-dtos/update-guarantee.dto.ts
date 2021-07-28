@@ -1,63 +1,17 @@
-import { Trim } from '@arphase/api';
-import { Client, GuaranteeStatus } from '@innovatech/common/domain';
-import { Transform, Type } from 'class-transformer';
-import {
-  IsDateString,
-  IsEnum,
-  IsInt,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-  ValidateNested,
-} from 'class-validator';
+import { Client } from '@innovatech/common/domain';
+import { PartialType } from '@nestjs/mapped-types';
+import { Type } from 'class-transformer';
+import { IsNumber, IsOptional, ValidateNested } from 'class-validator';
 
+import { CreateGuaranteeDto } from '../create-dtos/create-guarantee.dto';
 import { UpdateClientDto } from './update-client.dto';
 
-export class UpdateGuaranteeDto {
-  @IsNotEmpty()
-  @IsInt()
+export class UpdateGuaranteeDto extends PartialType(CreateGuaranteeDto) {
+  @IsNumber()
   id: number;
 
   @IsOptional()
   @ValidateNested()
   @Type(() => UpdateClientDto)
   client: Client;
-
-  @IsOptional()
-  @IsNumber()
-  vehicleId: number;
-
-  @IsOptional()
-  @Transform(({ obj, key }) => GuaranteeStatus[obj[key]])
-  @IsEnum(GuaranteeStatus)
-  status: GuaranteeStatus;
-
-  @IsOptional()
-  @IsDateString()
-  startDate: Date;
-
-  @IsOptional()
-  @IsDateString()
-  endDate: Date;
-
-  @IsOptional()
-  @IsNumber()
-  amount: number;
-
-  @IsOptional()
-  @IsNumber()
-  productId: number;
-
-  @IsOptional()
-  @IsNumber()
-  kilometrageStart: number;
-
-  @IsOptional()
-  @IsNumber()
-  kilometrageEnd: number;
-
-  @IsOptional()
-  @IsNumber()
-  companyId: number;
 }

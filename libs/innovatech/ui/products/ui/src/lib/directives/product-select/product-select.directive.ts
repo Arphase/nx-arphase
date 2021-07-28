@@ -1,7 +1,7 @@
 import { AfterContentInit, ChangeDetectorRef, Directive, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NgControl } from '@angular/forms';
+import { ApsCollectionSelectDirective } from '@arphase/ui';
 import { Product } from '@innovatech/common/domain';
-import { CollectionSelectDirective } from '@innovatech/ui/core/data';
 import { ProductCollectionService } from '@innovatech/ui/products/data';
 import { NzSelectComponent } from 'ng-zorro-antd/select';
 import { take } from 'rxjs/operators';
@@ -9,7 +9,10 @@ import { take } from 'rxjs/operators';
 @Directive({
   selector: '[ivtProductSelect]',
 })
-export class ProductSelectDirective extends CollectionSelectDirective<Product> implements OnChanges, AfterContentInit {
+export class ProductSelectDirective
+  extends ApsCollectionSelectDirective<Product>
+  implements OnChanges, AfterContentInit
+{
   @Input() year: string;
   @Input() horsePower: string;
   sortValue = [{ key: 'product.name', value: 'ascend' }] as any;

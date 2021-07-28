@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RevisionRequest, RevisionRequestStatus } from '@innovatech/common/domain';
-import { IvtListContainerComponent } from '@innovatech/ui/core/data';
+import { ApsListContainerComponent } from '@arphase/ui';
+import { RevisionRequest, RevisionRequestStatus, UserRoles } from '@innovatech/common/domain';
+import { PermissionService } from '@innovatech/ui/permissions/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { take } from 'rxjs/operators';
 
@@ -14,11 +15,13 @@ import { RevisionRequestDataService } from '../../services/revision-request-data
   styleUrls: ['./revision-request-list-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RevisionRequestListContainerComponent extends IvtListContainerComponent<RevisionRequest> {
+export class RevisionRequestListContainerComponent extends ApsListContainerComponent<RevisionRequest> {
+  showUsersFilter$ = this.permissionService.hasReadPermission([UserRoles.superAdmin]);
   constructor(
     protected revisionRequestCollecitonService: RevisionRequestCollectionService,
     protected revisionRequestDataService: RevisionRequestDataService,
-    protected messageService: NzMessageService
+    protected messageService: NzMessageService,
+    private permissionService: PermissionService
   ) {
     super(revisionRequestCollecitonService, revisionRequestDataService, null, messageService);
   }

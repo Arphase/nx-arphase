@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ApsListComponent } from '@arphase/ui';
 import { Revision, RevisionStatus, UserRoles } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
-import { IvtListComponent } from '@innovatech/ui/core/data';
 import dayjs from 'dayjs';
 
 import { revisionStatusLabels, statusOptions } from '../revision-form/revision-form.constants';
@@ -14,7 +14,7 @@ import { colorMaps, columns, iconMaps } from './revision-list.constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
-export class RevisionListComponent extends IvtListComponent<Revision> {
+export class RevisionListComponent extends ApsListComponent<Revision> {
   @Input() canCreateRevision: boolean;
   columns = columns;
   statusLabels = revisionStatusLabels;

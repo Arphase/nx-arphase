@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { ApsListComponent } from '@arphase/ui';
 import { Group } from '@innovatech/common/domain';
-import { IvtListComponent } from '@innovatech/ui/core/data';
 
 import { columns } from './group-list.constants';
 
@@ -10,7 +10,7 @@ import { columns } from './group-list.constants';
   styleUrls: ['./group-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GroupListComponent extends IvtListComponent<Group> {
+export class GroupListComponent extends ApsListComponent<Group> {
   columns = columns;
   @Output() assignProducts = new EventEmitter<Group>();
 }

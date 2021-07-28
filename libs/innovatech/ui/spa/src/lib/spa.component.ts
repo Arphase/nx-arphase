@@ -1,29 +1,12 @@
-import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import { Themes, ThemeService } from '@arphase/ui';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { MenuItem } from '@arphase/ui';
 import { UserRoles } from '@innovatech/common/domain';
 import { fromAuth, getAuthUserEmailState, getAuthUserNameState } from '@innovatech/ui/auth/data';
 import { INNOVATECH_CONFIGURATION, InnovatechConfiguration } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
-import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-
-interface MenuItem {
-  icon?: string;
-  header?: string;
-  display$?: Observable<boolean>;
-  enabled?: boolean;
-  path?: string | string[];
-  children?: ChildMenuItem[];
-}
-interface ChildMenuItem {
-  label?: string;
-  enabled?: boolean;
-  path?: string[];
-}
 
 @Component({
   selector: 'ivt-spa',
@@ -32,7 +15,6 @@ interface ChildMenuItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpaComponent implements OnInit {
-  isCollapsed: boolean;
   menuItems: MenuItem[] = [
     {
       icon: 'pie-chart',
@@ -98,34 +80,13 @@ export class SpaComponent implements OnInit {
   name$ = this.store.pipe(select(getAuthUserNameState));
   email$ = this.store.pipe(select(getAuthUserEmailState));
   version = this.config.version;
-  mobileQuery: MediaQueryList;
-  darkModeChecked = this.themeService.currentTheme === Themes.dark;
-  themeOptions: NzSelectOptionInterface[] = [
-    {
-      label: 'Claro',
-      value: Themes.default,
-    },
-    {
-      label: 'Oscuro',
-      value: Themes.dark,
-    },
-  ];
-  private _mobileQueryListener: () => void;
 
   constructor(
     private store: Store,
     private permissionService: PermissionService,
     @Inject(INNOVATECH_CONFIGURATION) private config: InnovatechConfiguration,
-    private cdr: ChangeDetectorRef,
-    private media: MediaMatcher,
-    private themeService: ThemeService,
     private actions$: Actions
-  ) {
-    this.mobileQuery = this.media.matchMedia('(max-width: 769px)');
-    this._mobileQueryListener = () => this.cdr.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-    this.isCollapsed = this.mobileQuery.matches;
-  }
+  ) {}
 
   ngOnInit() {
     this.actions$.pipe(ofType(fromAuth.actions.loadUserFromStorage), take(1)).subscribe(({ user }) => {
@@ -133,17 +94,6 @@ export class SpaComponent implements OnInit {
         this.store.dispatch(fromAuth.actions.logout());
       }
     });
-  }
-
-  toggleIsCollapsed(): void {
-    this.isCollapsed = !this.isCollapsed;
-    setTimeout(() => {
-      window.dispatchEvent(new Event('resize'));
-    }, 500);
-  }
-
-  toggleDarkMode(): void {
-    this.themeService.loadTheme(this.darkModeChecked ? Themes.dark : Themes.default);
   }
 
   logout(): void {

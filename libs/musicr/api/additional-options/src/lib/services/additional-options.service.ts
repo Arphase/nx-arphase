@@ -1,8 +1,10 @@
-import { createCollectionResponse, filterCollectionQuery } from '@arphase/api';
+import { createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
-import { AdditionalOptionRepository } from '@musicr/api/domain';
+import { AdditionalOptionEntity } from '@musicr/api/domain';
 import { AdditionalOption } from '@musicr/domain';
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 import { CreateAdditionalOptionDto } from '../dto/create-additional-option.dto';
 import { GetAdditionalOptionsDto } from '../dto/get-additional-options.dto';
@@ -10,7 +12,9 @@ import { UpdateAdditionalOptionDto } from '../dto/update-additional-option.dto';
 
 @Injectable()
 export class AdditionalOptionsService {
-  constructor(@Inject(AdditionalOptionRepository) private additionalOptionRepository: AdditionalOptionRepository) {}
+  constructor(
+    @InjectRepository(AdditionalOptionEntity) private additionalOptionRepository: Repository<AdditionalOptionEntity>
+  ) {}
 
   async getAdditionalOptions(filterDto: GetAdditionalOptionsDto): Promise<ApsCollectionResponse<AdditionalOption>> {
     const { pageIndex, pageSize, productId } = filterDto;
@@ -28,8 +32,7 @@ export class AdditionalOptionsService {
   async createAdditionalOption(createDto: CreateAdditionalOptionDto): Promise<AdditionalOption> {
     try {
       const additionalOption = this.additionalOptionRepository.create(createDto);
-      await additionalOption.save();
-      return additionalOption;
+      return this.additionalOptionRepository.save(additionalOption);
     } catch (e) {
       if (e.code === '23503') {
         throw new NotFoundException(`Producto con id ${createDto.productId} no existe`);

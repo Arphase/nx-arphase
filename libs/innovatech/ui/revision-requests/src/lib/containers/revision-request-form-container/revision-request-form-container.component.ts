@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApsFormContainerComponent, filterNil } from '@arphase/ui';
 import { RevisionRequest, UserRoles } from '@innovatech/common/domain';
-import { filterNil } from '@innovatech/common/utils';
 import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data';
-import { IvtFormContainerComponent, selectQueryParam } from '@innovatech/ui/core/data';
+import { selectQueryParam } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import {
   fromVehicles,
@@ -27,8 +27,9 @@ import { RevisionRequestCollectionService } from '../../services/revision-reques
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionRequestFormContainerComponent
-  extends IvtFormContainerComponent<RevisionRequest>
-  implements OnInit, OnDestroy {
+  extends ApsFormContainerComponent<RevisionRequest>
+  implements OnInit, OnDestroy
+{
   form = createRevisionRequestForm();
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
   vehicle$ = this.vehicleCollectionService.currentItem$;
