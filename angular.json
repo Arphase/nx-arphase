@@ -2449,6 +2449,56 @@
         }
       }
     },
+    "valmira-ui-categories-data": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/categories/data",
+      "sourceRoot": "libs/valmira/ui/categories/data/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/categories/data/src/**/*.ts",
+              "libs/valmira/ui/categories/data/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/categories/data"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/categories/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-categories-ui": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/categories/ui",
+      "sourceRoot": "libs/valmira/ui/categories/ui/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/categories/ui/src/**/*.ts",
+              "libs/valmira/ui/categories/ui/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/categories/ui"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/categories/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-ui-core": {
       "projectType": "library",
       "root": "libs/valmira/ui/core",

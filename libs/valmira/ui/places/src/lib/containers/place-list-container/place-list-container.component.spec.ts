@@ -1,25 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
+import { PlaceCollectionService } from '../../services/place-collection.service';
+import { PlaceDataService } from '../../services/place-data.service';
 import { PlaceListContainerComponent } from './place-list-container.component';
 
 describe('PlaceListContainerComponent', () => {
-  let component: PlaceListContainerComponent;
-  let fixture: ComponentFixture<PlaceListContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ PlaceListContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<PlaceListContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: PlaceListContainerComponent,
+    shallow: true,
+    mocks: [PlaceCollectionService, PlaceDataService],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PlaceListContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

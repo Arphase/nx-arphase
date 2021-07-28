@@ -1,7 +1,8 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Themes, ThemeService } from '@arphase/ui';
 import { Observable } from 'rxjs';
+
+import { Themes, ThemeService } from '../../services/theme.service';
 
 export interface MenuItem {
   icon?: string;

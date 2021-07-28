@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApsFormContainerComponent } from '@arphase/ui';
+import { ApsFormContainerComponent, filterNil } from '@arphase/ui';
 import { Revision, UserRoles } from '@innovatech/common/domain';
 import { selectQueryParam } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
@@ -76,7 +76,4 @@ export class RevisionFormContainerComponent extends ApsFormContainerComponent<Re
     this.vehicleCollectionService.removeOneFromCache(null);
     this.store.dispatch(fromVehicles.actions.clearVehiclesState());
   }
-}
-function filterNil(): import('rxjs').OperatorFunction<string, unknown> {
-  throw new Error('Function not implemented.');
 }

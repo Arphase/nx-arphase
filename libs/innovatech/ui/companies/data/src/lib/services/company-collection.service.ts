@@ -9,10 +9,7 @@ import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 export class CompanyCollectionService extends ApsCollectionService<Company> {
   options$ = this.entities$.pipe(
     filterNilArray(),
-    mapToSelectOptions(company => ({
-      label: `${company.businessName}`,
-      value: company.id,
-    }))
+    mapToSelectOptions(company => ({ label: `${company.businessName}`, value: company.id }))
   );
   constructor(protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Company', serviceElementsFactory);

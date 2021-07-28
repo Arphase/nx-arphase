@@ -1,25 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ApsEmptyPipe } from '@arphase/ui';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { MockPipe } from 'ng-mocks';
 
 import { PlaceListComponent } from './place-list.component';
 
 describe('PlaceListComponent', () => {
-  let component: PlaceListComponent;
-  let fixture: ComponentFixture<PlaceListComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ PlaceListComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<PlaceListComponent>;
+  const createComponent = createComponentFactory({
+    component: PlaceListComponent,
+    declarations: [MockPipe(ApsEmptyPipe)],
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PlaceListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

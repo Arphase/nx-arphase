@@ -17,6 +17,7 @@ import { AuthEffects, AuthState, fromAuth } from '@valmira/ui/auth/data';
 import { entityConfig, HttpProxyService, VALMIRA_CONFIGURATION, ValmiraConfiguration } from '@valmira/ui/core';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -51,6 +52,7 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     NzIconModule.forRoot(icons),
     EntityDataModule.forRoot(entityConfig),
+    NgxMaskModule.forRoot(),
   ],
   providers: [
     { provide: VALMIRA_CONFIGURATION, useValue: VALMIRA_CONFIGURATION_VALUE },

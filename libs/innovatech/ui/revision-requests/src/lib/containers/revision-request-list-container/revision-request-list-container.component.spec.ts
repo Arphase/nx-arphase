@@ -1,3 +1,4 @@
+import { PermissionService } from '@innovatech/ui/permissions/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
@@ -10,7 +11,7 @@ describe('RevisionRequestListContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: RevisionRequestListContainerComponent,
     shallow: true,
-    mocks: [RevisionRequestCollectionService, RevisionRequestDataService, NzMessageService],
+    mocks: [RevisionRequestCollectionService, RevisionRequestDataService, NzMessageService, PermissionService],
   });
 
   beforeEach(() => (spectator = createComponent()));

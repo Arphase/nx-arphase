@@ -281,6 +281,12 @@
     "valmira-ui-auth-feature": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
+    "valmira-ui-categories-data": {
+      "tags": []
+    },
+    "valmira-ui-categories-ui": {
+      "tags": []
+    },
     "valmira-ui-core": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:util"]
     },
@@ -294,7 +300,7 @@
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-places": {
-      "tags": []
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-spa": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]

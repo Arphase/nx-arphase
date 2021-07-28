@@ -1,25 +1,29 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { Action } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
+import { VALMIRA_CONFIGURATION } from '@valmira/ui/core';
+import { Observable } from 'rxjs';
 
 import { SpaComponent } from './spa.component';
 
 describe('SpaComponent', () => {
-  let component: SpaComponent;
-  let fixture: ComponentFixture<SpaComponent>;
+  let spectator: Spectator<SpaComponent>;
+  // eslint-disable-next-line prefer-const
+  let actions$ = new Observable<Action>();
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ SpaComponent ]
-    })
-    .compileComponents();
+  const createComponent = createComponentFactory({
+    component: SpaComponent,
+    shallow: true,
+    providers: [
+      provideMockStore(),
+      provideMockActions(() => actions$),
+      { provide: VALMIRA_CONFIGURATION, useValue: {} },
+    ],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SpaComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

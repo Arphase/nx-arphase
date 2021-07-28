@@ -32,8 +32,8 @@ export class SpaComponent implements OnInit {
 
   constructor(
     private store: Store,
-    @Inject(VALMIRA_CONFIGURATION) private config: ValmiraConfiguration,
-    private actions$: Actions
+    private actions$: Actions,
+    @Inject(VALMIRA_CONFIGURATION) private config: ValmiraConfiguration
   ) {}
 
   ngOnInit() {
