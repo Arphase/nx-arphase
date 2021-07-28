@@ -2,13 +2,16 @@ import { UpdateAddressDto } from '@innovatech/api/core/util';
 import { Address, MoralPerson, PersonTypes, PhysicalPerson } from '@innovatech/common/domain';
 import { PartialType } from '@nestjs/mapped-types';
 import { Type } from 'class-transformer';
-import { IsOptional, ValidateIf, ValidateNested } from 'class-validator';
+import { IsNumber, IsOptional, ValidateIf, ValidateNested } from 'class-validator';
 
 import { CreateClientDto } from '../create-dtos/create-client.dto';
 import { UpdateMoralPersonDto } from './update-moral-person.dto';
 import { UpdatePhysicalPersonDto } from './update-physical-person.dto';
 
 export class UpdateClientDto extends PartialType(CreateClientDto) {
+  @IsNumber()
+  id: number;
+
   @IsOptional()
   @ValidateIf(client => client.personType === PersonTypes[PersonTypes.physical])
   @ValidateNested()

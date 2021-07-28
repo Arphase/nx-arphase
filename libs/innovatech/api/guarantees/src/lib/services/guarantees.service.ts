@@ -6,10 +6,10 @@ import { generateProductPdf, getProductPdfTemplate } from '@innovatech/api/produ
 import {
   Client,
   Guarantee,
+  guaranteeStatusLabels,
   GuaranteeSummary,
   isVehicleElegible,
   PersonTypes,
-  guaranteeStatusLabels,
   transformFolio,
   User,
   UserRoles,
