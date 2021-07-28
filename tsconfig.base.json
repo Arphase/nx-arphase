@@ -71,7 +71,7 @@
       "@innovatech/ui/vehicles/data": ["libs/innovatech/ui/vehicles/data/src/index.ts"],
       "@innovatech/ui/vehicles/feature": ["libs/innovatech/ui/vehicles/feature/src/index.ts"],
       "@innovatech/ui/vehicles/ui": ["libs/innovatech/ui/vehicles/ui/src/index.ts"],
-      "@valmira/ui/core": ["libs/valmira/ui/core/src/index.ts"],
+      "@valmira/ui/categories/data": ["libs/valmira/ui/categories/data/src/index.ts"],
       "@musicr/api/additional-options": ["libs/musicr/api/additional-options/src/index.ts"],
       "@musicr/api/auth": ["libs/musicr/api/auth/src/index.ts"],
       "@musicr/api/categories": ["libs/musicr/api/categories/src/index.ts"],
@@ -98,9 +98,13 @@
       "@valmira/domain": ["libs/valmira/domain/src/index.ts"],
       "@valmira/ui/auth/data": ["libs/valmira/ui/auth/data/src/index.ts"],
       "@valmira/ui/auth/feature": ["libs/valmira/ui/auth/feature/src/index.ts"],
+      "@valmira/ui/categories/ui": ["libs/valmira/ui/categories/ui/src/index.ts"],
+      "@valmira/ui/core": ["libs/valmira/ui/core/src/index.ts"],
       "@valmira/ui/frequent-questions": ["libs/valmira/ui/frequent-questions/src/index.ts"],
       "@valmira/ui/landing": ["libs/valmira/ui/landing/src/index.ts"],
       "@valmira/ui/manifest": ["libs/valmira/ui/manifest/src/index.ts"],
+      "@valmira/ui/places": ["libs/valmira/ui/places/src/index.ts"],
+      "@valmira/ui/spa": ["libs/valmira/ui/spa/src/index.ts"],
       "@valmira/ui/terms-and-conditions": ["libs/valmira/ui/terms-and-conditions/src/index.ts"]
     }
   },

@@ -1965,10 +1965,7 @@
             "tsConfig": "apps/valmira/admin/tsconfig.app.json",
             "aot": true,
             "assets": ["apps/valmira/admin/src/favicon.ico", "apps/valmira/admin/src/assets"],
-            "styles": [
-              "apps/valmira/admin/src/styles.less",
-              "libs/arphase/ui/src/styles/themes/base.less"
-            ],
+            "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/src/styles/themes/base.less"],
             "scripts": []
           },
           "configurations": {
@@ -2452,11 +2449,61 @@
         }
       }
     },
+    "valmira-ui-categories-data": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/categories/data",
+      "sourceRoot": "libs/valmira/ui/categories/data/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/categories/data/src/**/*.ts",
+              "libs/valmira/ui/categories/data/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/categories/data"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/categories/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-categories-ui": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/categories/ui",
+      "sourceRoot": "libs/valmira/ui/categories/ui/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/categories/ui/src/**/*.ts",
+              "libs/valmira/ui/categories/ui/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/categories/ui"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/categories/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-ui-core": {
       "projectType": "library",
       "root": "libs/valmira/ui/core",
       "sourceRoot": "libs/valmira/ui/core/src",
-      "prefix": "ivt",
+      "prefix": "vma",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -2538,6 +2585,50 @@
           "outputs": ["coverage/libs/valmira/ui/manifest"],
           "options": {
             "jestConfig": "libs/valmira/ui/manifest/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-places": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/places",
+      "sourceRoot": "libs/valmira/ui/places/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/ui/places/src/**/*.ts", "libs/valmira/ui/places/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/places"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/places/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-spa": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/spa",
+      "sourceRoot": "libs/valmira/ui/spa/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/ui/spa/src/**/*.ts", "libs/valmira/ui/spa/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/spa"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/spa/jest.config.js",
             "passWithNoTests": true
           }
         }

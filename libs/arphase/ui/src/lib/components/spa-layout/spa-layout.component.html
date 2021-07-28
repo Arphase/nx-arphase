@@ -1,0 +1,67 @@
+<nz-layout>
+  <nz-header class="d-flex">
+    <i class="trigger text-white"
+       nz-icon
+       [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+       (click)="toggleIsCollapsed()"></i>
+    <img [src]="options.logoUrl"
+         alt="Company Logo"
+         class="logo">
+    <div class="spacer"></div>
+    <div class="flex-center">
+      <aps-profile-menu [name]="name"
+                        [email]="email"
+                        (logout)="logout.emit()"></aps-profile-menu>
+    </div>
+  </nz-header>
+  <nz-layout>
+    <nz-sider nzCollapsible
+              [(nzCollapsed)]="isCollapsed"
+              [nzTrigger]="null"
+              [ngClass]="{ 'm-80': mobileQuery.matches && isCollapsed, 'absolute': mobileQuery.matches }">
+      <ul nz-menu
+          nzTheme="dark"
+          nzMode="inline">
+        <ng-container *ngFor="let item of menuItems">
+          <li *ngIf="(item.display$ | async) || !item.display$"
+              class="mt-0"
+              nz-menu-item
+              nzMatchRouter
+              nz-tooltip
+              [nzTooltipTitle]="mobileQuery.matches ? '' : item.header"
+              nzTooltipPlacement="right"
+              [routerLink]="item.path"
+              (click)="isCollapsed = mobileQuery.matches ? true : isCollapsed">
+            <i nz-icon
+               [nzType]="item.icon"></i>
+            <span>{{ item.header }}</span>
+          </li>
+        </ng-container>
+      </ul>
+      <div [hidden]="isCollapsed"
+           class="flex-center mt-auto">
+        <p class="text-white flex-center">
+          <ng-container *ngIf="options.show.darkModeToggle">
+            <i nz-icon
+               [style.font-size]="'20px'"
+               [style.margin-right]="'8px'"
+               [nzType]="darkModeChecked ? 'eye-invisible': 'eye'"></i>
+            <nz-switch [(ngModel)]="darkModeChecked"
+                       (ngModelChange)="toggleDarkMode()"></nz-switch>
+          </ng-container>
+        </p>
+      </div>
+      <div [hidden]="isCollapsed"
+           class="version text-white">
+        Versión {{ version }}
+      </div>
+    </nz-sider>
+    <nz-content>
+      <div *ngIf="mobileQuery.matches && !isCollapsed"
+           class="backdrop"
+           (click)="isCollapsed = true">
+      </div>
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

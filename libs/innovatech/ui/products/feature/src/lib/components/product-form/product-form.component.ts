@@ -1,10 +1,8 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ApsValidators } from '@arphase/ui';
+import { ApsFormComponent, ApsValidators, filterNil, sortSelectOptions } from '@arphase/ui';
 import { glossary, Product } from '@innovatech/common/domain';
-import { filterNil, sortSelectOptions } from '@innovatech/common/utils';
-import { ApsFormComponent } from '@arphase/ui';
 import { ProductDataService } from '@innovatech/ui/products/data';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzModalService } from 'ng-zorro-antd/modal';

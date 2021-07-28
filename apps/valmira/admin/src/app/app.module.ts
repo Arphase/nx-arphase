@@ -8,18 +8,21 @@ import {
   ApsAdditionalEntityCollectionReducerMethodsFactory,
   ApsAdditionalPropertyPersistenceResultHandler,
 } from '@arphase/ui';
-import { EntityCollectionReducerMethodsFactory, PersistenceResultHandler } from '@ngrx/data';
+import { EntityCollectionReducerMethodsFactory, EntityDataModule, PersistenceResultHandler } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
 import { routerReducer, RouterReducerState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthEffects, AuthState, fromAuth } from '@valmira/ui/auth/data';
-import { HttpProxyService, VALMIRA_CONFIGURATION, ValmiraConfiguration } from '@valmira/ui/core';
+import { entityConfig, HttpProxyService, VALMIRA_CONFIGURATION, ValmiraConfiguration } from '@valmira/ui/core';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { icons } from './icons';
 
 registerLocaleData(es);
 
@@ -47,6 +50,9 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     }),
     EffectsModule.forRoot([AuthEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+    NzIconModule.forRoot(icons),
+    EntityDataModule.forRoot(entityConfig),
+    NgxMaskModule.forRoot(),
   ],
   providers: [
     { provide: VALMIRA_CONFIGURATION, useValue: VALMIRA_CONFIGURATION_VALUE },

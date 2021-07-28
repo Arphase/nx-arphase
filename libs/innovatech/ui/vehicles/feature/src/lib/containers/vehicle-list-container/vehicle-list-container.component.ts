@@ -18,15 +18,15 @@ import { statusLabels } from '../../components/vehicle-list/vehicle-list.constan
 })
 export class VehicleListContainerComponent extends ApsListContainerComponent<Vehicle> {
   canCreateReviewRequest$ = this.permissionsService.hasUpdatePermission([UserRoles.agencyUser]);
-  canManageRevisions$ = this.permissionsService.hasUpdatePermission([UserRoles.superAdmin]);
+  showGroupFilters$ = this.permissionsService.hasUpdatePermission([UserRoles.superAdmin, UserRoles.repairman]);
 
   constructor(
     protected vehicleCollectionService: VehicleCollectionService,
     protected vehicleDataService: VehicleDataService,
     protected modal: NzModalService,
     protected messageService: NzMessageService,
-    protected router: Router,
-    protected permissionsService: PermissionService
+    private router: Router,
+    private permissionsService: PermissionService
   ) {
     super(vehicleCollectionService, vehicleDataService, modal, messageService);
   }

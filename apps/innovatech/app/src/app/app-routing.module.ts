@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '@innovatech/ui/auth/data';
+import { AuthGuard, SpaGuard } from '@innovatech/ui/auth/data';
 
 export const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('@innovatech/ui/auth/feature').then(m => m.AuthModule),
+    canActivate: [SpaGuard],
   },
   {
     path: 'spa',

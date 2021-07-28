@@ -46,15 +46,13 @@
   <div nz-col>
     <aps-date-filter label="Fecha de alta"
                      [currentDates]="queryParams?.dates"
-                     (filterItems)="updateDateFilter($event)">
-    </aps-date-filter>
+                     (filterItems)="updateDateFilter($event)"></aps-date-filter>
   </div>
   <div nz-col>
     <aps-radio-filter label="Estatus"
                       [options]="statusOptions"
                       [selectedOption]="queryParams?.status"
-                      (filterItems)="updateStatusFilter($event)">
-    </aps-radio-filter>
+                      (filterItems)="updateStatusFilter($event)"></aps-radio-filter>
   </div>
   <ng-container *ivtReadPermission>
     <div nz-col>
@@ -64,7 +62,8 @@
       <ivt-company-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-company-checkbox-filter>
     </div>
   </ng-container>
-  <div nz-col>
+  <div *ngIf="showUsersFilter"
+       nz-col>
     <ivt-user-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-user-checkbox-filter>
   </div>
   <div *ngIf="total"
@@ -120,7 +119,7 @@
           nzLg="5">{{ item?.email | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="3">{{ item?.createdAt | date: 'dd/MM/yy' | empty  }}</td>
+          nzLg="3">{{ item?.createdAt | date: 'dd/MM/yy' | empty }}</td>
       <td nz-col
           nzXs="4"
           nzMd="2">

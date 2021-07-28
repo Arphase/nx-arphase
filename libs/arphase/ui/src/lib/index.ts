@@ -5,5 +5,6 @@ export * from './entity-config';
 export * from './functions';
 export * from './guards';
 export * from './models';
+export * from './operators';
 export * from './pipes';
 export * from './services';

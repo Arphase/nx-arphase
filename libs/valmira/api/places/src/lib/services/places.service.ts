@@ -14,7 +14,10 @@ export class PlacesService {
 
   async getPlaces(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Place>> {
     const { pageIndex, pageSize } = filterDto;
-    const query = this.placeRepository.createQueryBuilder('place').orderBy('place.createdAt', SortDirection.descend);
+    const query = this.placeRepository
+      .createQueryBuilder('place')
+      .leftJoinAndSelect('place.category', 'category')
+      .orderBy('place.createdAt', SortDirection.descend);
 
     filterCollectionQuery('place', query, filterDto);
 
