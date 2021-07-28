@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/Arphase/nx-arphase/compare/v3.1.3...v3.2.0) (2021-07-28)
+
+
+### Features
+
+* **innovatech/ui:** display group and company filters to all users ([3c7043d](https://github.com/Arphase/nx-arphase/commit/3c7043d0bb1fea61bcd6128a189d14f424973ff7))
+* **innovatech/ui:** don't show users filter for repairman user role ([58a40d2](https://github.com/Arphase/nx-arphase/commit/58a40d278f3272402ec26d114203bdebf251a80e))
+* **musicr/orders:** [#110](https://github.com/Arphase/nx-arphase/issues/110) create orders without products ([eb2ed8f](https://github.com/Arphase/nx-arphase/commit/eb2ed8f66d70e44f9c1cc8ce453c2a97e93606a0))
+* **musicr/ui:** [#86](https://github.com/Arphase/nx-arphase/issues/86) Add home page ([839d927](https://github.com/Arphase/nx-arphase/commit/839d927bf7ef7d21667cefa6a91de6c3c37ba673))
+* **places:** [#137](https://github.com/Arphase/nx-arphase/issues/137) create form ([375932f](https://github.com/Arphase/nx-arphase/commit/375932fbeeedd74027a17428ca226a9715320275))
+* **valmira/additional-products:** [#141](https://github.com/Arphase/nx-arphase/issues/141) [#142](https://github.com/Arphase/nx-arphase/issues/142) list, get, create, and update endpoints ([d1042a4](https://github.com/Arphase/nx-arphase/commit/d1042a4d2991ee42d4155e58085de76b4d2d39d8))
+* **valmira/auth:** [#135](https://github.com/Arphase/nx-arphase/issues/135) sign in endpoint ([81d84d8](https://github.com/Arphase/nx-arphase/commit/81d84d833fd1dc1d3594912929d9d452e8f92c4b))
+* **valmira/auth:** [#135](https://github.com/Arphase/nx-arphase/issues/135) sign in form ([320501c](https://github.com/Arphase/nx-arphase/commit/320501cfee28766b0667f53fd9bc179ec26e2810))
+* **valmira/categories:** create endpoint ([51e99b1](https://github.com/Arphase/nx-arphase/commit/51e99b1c463c3bd13a1891eb8338ca2c8dcc402f))
+* **valmira/domain:** create database entities ([36e3bc7](https://github.com/Arphase/nx-arphase/commit/36e3bc7ad3e114e1951adb892730d43b331b7da9))
+* **valmira/domain:** create domain interfaces ([94160d9](https://github.com/Arphase/nx-arphase/commit/94160d98b72560b49317d3c0199a978326271602))
+* **valmira/places:** [#137](https://github.com/Arphase/nx-arphase/issues/137) create endpoint ([88d9ec5](https://github.com/Arphase/nx-arphase/commit/88d9ec593c6035eb087f7c7cdc702cd1154e470f))
+* **valmira/places:** [#138](https://github.com/Arphase/nx-arphase/issues/138) collection endpoint ([921e2a2](https://github.com/Arphase/nx-arphase/commit/921e2a2c9caa06e6da0bafa22f7325ea153fb969))
+* **valmira/places:** [#138](https://github.com/Arphase/nx-arphase/issues/138) first version of list ([70b4015](https://github.com/Arphase/nx-arphase/commit/70b4015c28db760e278e58e994c1e043b04c3cbd))
+* **valmira/promocodes:** [#143](https://github.com/Arphase/nx-arphase/issues/143) [#144](https://github.com/Arphase/nx-arphase/issues/144) list, get, create, and update endpoints ([efe1fb2](https://github.com/Arphase/nx-arphase/commit/efe1fb226bfd76b38886282341ad407e2b6721a2))
+* **valmira/reservations:** create endpoint ([a195661](https://github.com/Arphase/nx-arphase/commit/a19566160d6c38123cbde65ebf36ce67afaf6e5c))
+* **valmira/spa:** create layout of admin app spa ([55393d7](https://github.com/Arphase/nx-arphase/commit/55393d77ce33335c56ee7cf58f760618c5380bc3))
+
+
+### Bug Fixes
+
+* **app:** Remove unnecesary config on tsconfig files ([905b26e](https://github.com/Arphase/nx-arphase/commit/905b26e5f6257d0a4a696387ca67a0d3be111826))
+
 ### [3.1.3](https://github.com/Arphase/nx-arphase/compare/v3.1.2...v3.1.3) (2021-07-19)
 
 
