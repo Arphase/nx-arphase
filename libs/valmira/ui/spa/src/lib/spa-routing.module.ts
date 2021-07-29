@@ -13,6 +13,10 @@ const routes: Routes = [
         loadChildren: () => import('@valmira/ui/places').then(m => m.PlacesModule),
       },
       {
+        path: 'promocodes',
+        loadChildren: () => import('@valmira/ui/promocodes').then(m => m.PromocodesModule),
+      },
+      {
         path: '',
         redirectTo: 'places',
         pathMatch: 'full',
