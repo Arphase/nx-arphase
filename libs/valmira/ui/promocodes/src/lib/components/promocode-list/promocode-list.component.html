@@ -1,0 +1,98 @@
+<div nz-row
+     [nzGutter]="12">
+  <div nz-col
+       nzXs="18"
+       nzMd="12">
+    <aps-searchbar (valueChange)="updateSearchBarFilter($event)"></aps-searchbar>
+  </div>
+  <div nz-col
+       nzXs="0"
+       nzMd="24"
+       nzFlex="auto">
+    <div class="flex-end">
+      <button nz-button
+              [routerLink]="['new']"
+              type="button"
+              nzType="primary">
+        Nuevo promocode
+      </button>
+    </div>
+  </div>
+
+  <div nz-col
+       nzXs="24"
+       nzMd="0"
+       nzFlex="auto">
+    <div class="flex-end">
+      <button nz-button
+              [routerLink]="['new']"
+              type="button"
+              nzType="primary"
+              nzShape="circle">
+        <i nz-icon
+           nzType="plus-circle"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<nz-divider></nz-divider>
+
+<div nz-row
+     nzAlign="middle"
+     [nzGutter]="[12, 12]">
+  <div *ngIf="total"
+       nz-col
+       nzFlex="auto"
+       class="flex-end">
+    {{ pageStart }}-{{ pageEnd }} de {{ total }}
+  </div>
+</div>
+
+<nz-divider></nz-divider>
+
+<nz-table #table
+          nzSize="small"
+          [nzData]="list"
+          [nzFrontPagination]="false"
+          [nzTotal]="total"
+          [nzPageIndex]="pageIndex"
+          [nzLoading]="loading"
+          [nzShowSizeChanger]="true"
+          (nzQueryParams)="filterItems.emit($event)">
+  <thead>
+    <tr nz-row>
+      <th *ngFor="let column of columns"
+          [nzSortFn]="column.sortFn || true"
+          [nzColumnKey]="column.prop"
+          nz-col
+          [nzXs]="column.colSizes?.xs || 0"
+          [nzSm]="column.colSizes?.sm || 0"
+          [nzMd]="column.colSizes?.md || 0"
+          [nzLg]="column.colSizes?.lg"
+          [nzXl]="column.colSizes?.xl">
+        {{ column.label }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of table.data"
+        nz-row>
+      <td nz-col
+          nzXs="16"
+          nzMd="8"
+          nzLg="6">{{ item?.name | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzMd="6"
+          nzLg="6">{{ item?.startDate | date: 'dd/MM/yy' | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzLg="6">{{ item?.endDate | date: 'dd/MM/yy' | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzMd="5"
+          nzLg="6">{{ item?.amount | currency | empty }}</td>
+    </tr>
+  </tbody>
+</nz-table>

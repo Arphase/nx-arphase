@@ -2,6 +2,7 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import {
   ArrowLeftOutline,
   DeleteOutline,
+  DollarOutline,
   HomeOutline,
   MenuFoldOutline,
   PlusCircleOutline,
@@ -13,4 +14,5 @@ export const icons: IconDefinition[] = [
   PlusCircleOutline,
   ArrowLeftOutline,
   DeleteOutline,
+  DollarOutline,
 ];

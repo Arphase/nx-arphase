@@ -2612,6 +2612,28 @@
         }
       }
     },
+    "valmira-ui-promocodes": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/promocodes",
+      "sourceRoot": "libs/valmira/ui/promocodes/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/ui/promocodes/src/**/*.ts", "libs/valmira/ui/promocodes/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/promocodes"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/promocodes/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-ui-spa": {
       "projectType": "library",
       "root": "libs/valmira/ui/spa",

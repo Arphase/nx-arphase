@@ -85,5 +85,6 @@ module.exports = {
     '<rootDir>/libs/valmira/ui/places',
     '<rootDir>/libs/valmira/ui/categories/ui',
     '<rootDir>/libs/valmira/ui/categories/data',
+    '<rootDir>/libs/valmira/ui/promocodes',
   ],
 };
