@@ -2,4 +2,5 @@
                     [loading]="loading$ | async"
                     [info]="info$ | async"
                     [queryParams]="queryParams"
-                    (filterItems)="filterItems($event)"></vma-promocode-list>
+                    (filterItems)="filterItems($event)"
+                    (delete)="deleteItem($event)"></vma-promocode-list>

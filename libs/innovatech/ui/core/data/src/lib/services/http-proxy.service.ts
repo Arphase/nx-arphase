@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 
 import { INNOVATECH_CONFIGURATION, InnovatechConfiguration } from '../config';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class HttpProxyService implements HttpInterceptor {
   constructor(@Inject(INNOVATECH_CONFIGURATION) public config: InnovatechConfiguration) {}
 

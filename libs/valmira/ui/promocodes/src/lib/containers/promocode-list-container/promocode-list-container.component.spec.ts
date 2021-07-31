@@ -1,4 +1,6 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { PromocodeCollectionService } from '../../services/promocode-collection.service';
 import { PromocodeDataService } from '../../services/promocode-data.service';
@@ -9,7 +11,7 @@ describe('PromocodeListContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: PromocodeListContainerComponent,
     shallow: true,
-    mocks: [PromocodeCollectionService, PromocodeDataService],
+    mocks: [PromocodeCollectionService, PromocodeDataService, NzModalService, NzMessageService],
   });
 
   beforeEach(() => (spectator = createComponent()));

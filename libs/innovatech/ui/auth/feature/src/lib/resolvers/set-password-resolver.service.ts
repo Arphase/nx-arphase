@@ -6,9 +6,7 @@ import { Action, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class SetPasswordResolverService implements Resolve<Action> {
   constructor(private store: Store, private actions$: Actions, private router: Router) {}
 

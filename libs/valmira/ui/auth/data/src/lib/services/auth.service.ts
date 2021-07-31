@@ -7,9 +7,7 @@ import { map, Observable } from 'rxjs';
 import { SignInPayload } from '../models';
 import { getAuthUserStateState } from '../state/auth.selectors';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   constructor(private store: Store, private http: HttpClient) {}
 
@@ -24,10 +22,10 @@ export class AuthService {
     );
   }
 
-  // getToken(): Observable<string> {
-  //   return this.store.pipe(
-  //     select(getAuthUserStateState),
-  //     map(user => user?.token)
-  //   );
-  // }
+  getToken(): Observable<string> {
+    return this.store.pipe(
+      select(getAuthUserStateState),
+      map(user => user?.token)
+    );
+  }
 }

@@ -7,9 +7,7 @@ export interface ComponentCanDeactivate {
   canDeactivate: () => boolean | Observable<boolean>;
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ApsDirtyFormGuard implements CanDeactivate<ComponentCanDeactivate> {
   constructor(private modalService: NzModalService) {}
 

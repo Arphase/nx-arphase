@@ -3,9 +3,7 @@ import { ApsCollectionService, filterNilArray, mapToSelectOptions } from '@arpha
 import { Company } from '@innovatech/common/domain';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class CompanyCollectionService extends ApsCollectionService<Company> {
   options$ = this.entities$.pipe(
     filterNilArray(),

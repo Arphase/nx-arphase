@@ -5,9 +5,7 @@ export enum Themes {
   dark = 'dark',
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ThemeService {
   currentTheme =
     localStorage.getItem('theme') === Themes.dark || localStorage.getItem('theme') === Themes.dark

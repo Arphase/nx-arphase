@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApsAutoErrorModule, ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui';
+import { ApsAutoErrorModule, ApsDateFilterModule, ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui';
 import { EntityDataService } from '@ngrx/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -13,6 +13,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
@@ -44,9 +45,11 @@ import { PromocodeDataService } from './services/promocode-data.service';
     NzIconModule,
     NzMessageModule,
     NzAlertModule,
+    NzModalModule,
     ApsSearchbarModule,
     ApsAutoErrorModule,
     ApsEmptyModule,
+    ApsDateFilterModule,
     NgxMaskModule,
   ],
   declarations: [

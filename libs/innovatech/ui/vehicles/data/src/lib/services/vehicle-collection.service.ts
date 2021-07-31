@@ -3,9 +3,7 @@ import { ApsCollectionService } from '@arphase/ui';
 import { Vehicle } from '@innovatech/common/domain';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class VehicleCollectionService extends ApsCollectionService<Vehicle> {
   constructor(protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Vehicle', serviceElementsFactory);

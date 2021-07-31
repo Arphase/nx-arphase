@@ -3,9 +3,7 @@ import { ApsCollectionService } from '@arphase/ui';
 import { PaymentOrder } from '@innovatech/common/domain';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class PaymentOrderCollectionService extends ApsCollectionService<PaymentOrder> {
   constructor(protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('PaymentOrder', serviceElementsFactory);

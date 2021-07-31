@@ -4,9 +4,7 @@ import { map, take } from 'rxjs/operators';
 
 import { AuthService } from '../services/auth.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class SpaGuard implements CanActivate {
   spaUrlTruee = this.router.parseUrl('/spa');
 
