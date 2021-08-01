@@ -4,9 +4,7 @@ import { ApsDataService } from '@arphase/ui';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Category } from '@valmira/domain';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class CategoryDataService extends ApsDataService<Category> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('Category', http, httpUrlGenerator);

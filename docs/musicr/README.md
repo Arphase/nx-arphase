@@ -1,4 +1,4 @@
-# Innovatech
+# Music Revolution
 
 ## Backend
 

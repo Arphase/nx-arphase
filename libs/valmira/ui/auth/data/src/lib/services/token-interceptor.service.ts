@@ -10,7 +10,7 @@ import { catchError, finalize, switchMap, take } from 'rxjs/operators';
 import { logout } from '../state/auth.actions';
 import { AuthService } from './auth.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TokenInterceptorService implements HttpInterceptor {
   constructor(
     private loadingService: LoadingService,
@@ -18,6 +18,7 @@ export class TokenInterceptorService implements HttpInterceptor {
     private messageService: NzMessageService,
     private store: Store
   ) {}
+
   intercept(request: HttpRequest<null>, next: HttpHandler): Observable<HttpEvent<null>> {
     return this.authService.getToken().pipe(
       take(1),

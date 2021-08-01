@@ -7,9 +7,7 @@ import { map } from 'rxjs/operators';
 
 import { getAuthUserRoleState } from '../state/auth.selectors';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class RoleGuard implements CanActivate {
   spaUrlTree = this.router.parseUrl('/spa');
 

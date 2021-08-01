@@ -4,9 +4,7 @@ import { ApsDataService } from '@arphase/ui';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Place } from '@valmira/domain';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class PlaceDataService extends ApsDataService<Place> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('Place', http, httpUrlGenerator);

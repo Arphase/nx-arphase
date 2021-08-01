@@ -85,15 +85,13 @@
     <aps-date-filter label="Fecha"
                      [dateTypeOptions]="dateTypeOptions"
                      [currentDates]="queryParams?.dates"
-                     (filterItems)="updateDateFilter($event)">
-    </aps-date-filter>
+                     (filterItems)="updateDateFilter($event)"></aps-date-filter>
   </div>
   <div nz-col>
     <aps-radio-filter label="Estatus"
                       [options]="statusOptions"
                       [selectedOption]="queryParams?.status"
-                      (filterItems)="updateStatusFilter($event)">
-    </aps-radio-filter>
+                      (filterItems)="updateStatusFilter($event)"></aps-radio-filter>
   </div>
   <ng-container *ivtReadPermission>
     <div nz-col>

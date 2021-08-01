@@ -282,10 +282,10 @@
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-categories-data": {
-      "tags": []
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
     },
     "valmira-ui-categories-ui": {
-      "tags": []
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:ui"]
     },
     "valmira-ui-core": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:util"]

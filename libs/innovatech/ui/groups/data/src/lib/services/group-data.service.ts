@@ -7,9 +7,7 @@ import { HttpUrlGenerator } from '@ngrx/data';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class GroupDataService extends ApsDataService<Group> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('Group', http, httpUrlGenerator);

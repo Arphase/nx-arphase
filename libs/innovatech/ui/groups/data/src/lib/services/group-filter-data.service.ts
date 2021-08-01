@@ -4,9 +4,7 @@ import { ApsDataService } from '@arphase/ui';
 import { Group } from '@innovatech/common/domain';
 import { HttpUrlGenerator } from '@ngrx/data';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class GroupFilterDataService extends ApsDataService<Group> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('GroupFilter', http, httpUrlGenerator);

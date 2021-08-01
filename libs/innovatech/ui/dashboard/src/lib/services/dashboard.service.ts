@@ -5,9 +5,7 @@ import { GuaranteeSummary } from '@innovatech/common/domain';
 import { QueryParams } from '@ngrx/data';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class DashboardService {
   constructor(private http: HttpClient) {}
 

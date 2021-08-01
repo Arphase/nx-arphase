@@ -4,9 +4,7 @@ import { ApsDataService } from '@arphase/ui';
 import { RevisionRequest } from '@innovatech/common/domain';
 import { HttpUrlGenerator } from '@ngrx/data';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class RevisionRequestDataService extends ApsDataService<RevisionRequest> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('RevisionRequest', http, httpUrlGenerator);

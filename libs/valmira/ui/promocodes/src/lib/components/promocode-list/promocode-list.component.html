@@ -41,6 +41,10 @@
 <div nz-row
      nzAlign="middle"
      [nzGutter]="[12, 12]">
+  <aps-date-filter label="Fecha"
+                   [dateTypeOptions]="dateTypeOptions"
+                   [currentDates]="queryParams?.dates"
+                   (filterItems)="updateDateFilter($event)"></aps-date-filter>
   <div *ngIf="total"
        nz-col
        nzFlex="auto"
@@ -81,18 +85,45 @@
       <td nz-col
           nzXs="16"
           nzMd="8"
-          nzLg="6">{{ item?.name | empty }}</td>
+          nzLg="4">{{ item?.name | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzMd="6"
-          nzLg="6">{{ item?.startDate | date: 'dd/MM/yy' | empty }}</td>
+          nzMd="4"
+          nzLg="4">{{ item?.startDate | date: 'dd/MM/yy' | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="6">{{ item?.endDate | date: 'dd/MM/yy' | empty }}</td>
+          nzLg="4">{{ item?.endDate | date: 'dd/MM/yy' | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzMd="5"
-          nzLg="6">{{ item?.amount | currency | empty }}</td>
+          nzLg="4">{{ item?.createdAt | date: 'dd/MM/yy' | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzMd="4"
+          nzLg="4">{{ item?.amount | currency | empty }}</td>
+      <td nz-col
+          nzSpan="4"
+          class="flex-end">
+        <button nz-button
+                nzType="text"
+                type="button"
+                nz-tooltip
+                nzTooltipTitle="Editar promocode"
+                [routerLink]="[item.id]">
+          <i nz-icon
+             nzType="edit"
+             nzTheme="outline"></i>
+        </button>
+        <button nz-button
+                nzType="text"
+                type="button"
+                nz-tooltip
+                nzTooltipTitle="Eliminar promocode"
+                (click)="delete.emit(item)">
+          <i nz-icon
+             nzType="delete"
+             nzTheme="outline"></i>
+        </button>
+      </td>
     </tr>
   </tbody>
 </nz-table>

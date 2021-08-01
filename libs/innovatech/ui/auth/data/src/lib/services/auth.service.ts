@@ -9,9 +9,7 @@ import { SetPasswordPayload } from '../models/set-password-payload.model';
 import { SignInRequest } from '../models/sign-in-request.model';
 import { getAuthUserStateState } from '../state/auth.selectors';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   constructor(private store: Store, private http: HttpClient) {}
 

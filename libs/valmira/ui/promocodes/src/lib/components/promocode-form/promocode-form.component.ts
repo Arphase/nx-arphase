@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui';
 import { Promocode } from '@valmira/domain';
@@ -22,8 +22,14 @@ export function createPromocodeForm(): FormGroup {
   styleUrls: ['./promocode-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PromocodeFormComponent extends ApsFormComponent<Promocode> {
+export class PromocodeFormComponent extends ApsFormComponent<Promocode> implements OnChanges {
   get showDatesError(): boolean {
     return !!this.form?.errors && this.form?.get('startDate')?.touched && this.form?.get('endDate')?.touched;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.item && this.item) {
+      this.form.patchValue(this.item);
+    }
   }
 }
