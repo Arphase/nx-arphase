@@ -1,5 +1,13 @@
 import { AdditionalProduct, ReservationAdditionalProduct } from '@valmira/domain';
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 import { ReservationAdditionalProductEntity } from './reservation-additional-product.entity';
 
@@ -8,8 +16,17 @@ export class AdditionalProductEntity extends BaseEntity implements AdditionalPro
   @PrimaryGeneratedColumn()
   id?: number;
 
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
   @Column({ unique: true })
   name: string;
+
+  @Column()
+  description: string;
 
   @Column()
   price: number;

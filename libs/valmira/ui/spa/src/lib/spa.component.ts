@@ -30,6 +30,11 @@ export class SpaComponent implements OnInit {
       header: 'Promocodes',
       path: ['promocodes'],
     },
+    {
+      icon: 'shopping',
+      header: 'Productos',
+      path: ['additional-products'],
+    },
   ];
   name$ = this.store.pipe(select(fromAuth.selectors.getAuthUserNameState));
   email$ = this.store.pipe(select(fromAuth.selectors.getAuthUserEmailState));
