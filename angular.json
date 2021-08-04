@@ -2402,6 +2402,31 @@
         }
       }
     },
+    "valmira-ui-additional-products": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/additional-products",
+      "sourceRoot": "libs/valmira/ui/additional-products/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/additional-products/src/**/*.ts",
+              "libs/valmira/ui/additional-products/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/additional-products"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/additional-products/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-ui-auth-data": {
       "projectType": "library",
       "root": "libs/valmira/ui/auth/data",

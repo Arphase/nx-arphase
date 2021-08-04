@@ -6,4 +6,7 @@ export class CreateAdditionalProductDto {
 
   @IsNumber()
   price: number;
+
+  @IsString()
+  description: string;
 }

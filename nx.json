@@ -275,6 +275,9 @@
     "valmira-domain": {
       "tags": ["domain:valmira", "type:domain-logic"]
     },
+    "valmira-ui-additional-products": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
     "valmira-ui-auth-data": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
     },
