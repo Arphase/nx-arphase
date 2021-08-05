@@ -2659,6 +2659,31 @@
         }
       }
     },
+    "valmira-ui-reservations": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/reservations",
+      "sourceRoot": "libs/valmira/ui/reservations/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/reservations/src/**/*.ts",
+              "libs/valmira/ui/reservations/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/reservations"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/reservations/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-ui-spa": {
       "projectType": "library",
       "root": "libs/valmira/ui/spa",

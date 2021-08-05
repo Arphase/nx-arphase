@@ -308,6 +308,9 @@
     "valmira-ui-promocodes": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
+    "valmira-ui-reservations": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
     "valmira-ui-spa": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
