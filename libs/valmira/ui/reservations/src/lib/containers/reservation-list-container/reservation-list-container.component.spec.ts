@@ -1,25 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
+import { ReservationCollectionService } from '../../services/reservation-collection.service';
+import { ReservationDataService } from '../../services/reservation-data.service';
 import { ReservationListContainerComponent } from './reservation-list-container.component';
 
 describe('ReservationListContainerComponent', () => {
-  let component: ReservationListContainerComponent;
-  let fixture: ComponentFixture<ReservationListContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ReservationListContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<ReservationListContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: ReservationListContainerComponent,
+    shallow: true,
+    mocks: [ReservationCollectionService, ReservationDataService, NzModalService, NzMessageService],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ReservationListContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

@@ -1,25 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ApsEmptyPipe } from '@arphase/ui';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { MockPipe } from 'ng-mocks';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 import { ReservationListComponent } from './reservation-list.component';
 
 describe('ReservationListComponent', () => {
-  let component: ReservationListComponent;
-  let fixture: ComponentFixture<ReservationListComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ReservationListComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<ReservationListComponent>;
+  const createComponent = createComponentFactory({
+    component: ReservationListComponent,
+    imports: [NzDropDownModule],
+    declarations: [MockPipe(ApsEmptyPipe)],
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ReservationListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });
