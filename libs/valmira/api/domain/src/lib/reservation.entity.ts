@@ -14,7 +14,6 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -68,16 +67,15 @@ export class ReservationEntity extends BaseEntity implements Reservation {
   @Column({ nullable: true })
   promocodeId?: number;
 
-  @ManyToOne(() => PromocodeEntity, promocode => promocode.reservations)
+  @ManyToOne(() => PromocodeEntity, promocode => promocode.reservations, { eager: true })
   @JoinColumn({ name: 'promocodeId' })
   promocode?: Promocode;
 
-  @OneToOne(() => CustomerEntity, { cascade: true, eager: true })
+  @ManyToOne(() => CustomerEntity, customer => customer.reservations, { cascade: true, eager: true })
   @JoinColumn({ name: 'customerId' })
   customer: Customer;
 
   @OneToMany(() => ReservationAdditionalProductEntity, additionalProducts => additionalProducts.reservation, {
-    cascade: true,
     eager: true,
   })
   additionalProducts?: ReservationAdditionalProduct[];

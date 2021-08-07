@@ -35,7 +35,7 @@ export class ReservationsService {
     return createCollectionResponse<Reservation>(promcodes, pageSize, pageIndex, total);
   }
 
-  async getReservation(id: number): Promise<Reservation> {
+  async getReservation(id: number): Promise<ReservationEntity> {
     const promocode = await this.reservationRepository.findOne({ id });
     if (!promocode) {
       throw new NotFoundException(`Reservation with id ${id} not found`);
@@ -107,5 +107,10 @@ export class ReservationsService {
     await updatedReservation.save();
     await updatedReservation.reload();
     return updatedReservation;
+  }
+
+  async deleteReservation(id: number): Promise<Reservation> {
+    const reservation = await this.getReservation(id);
+    return this.reservationRepository.remove(reservation);
   }
 }
