@@ -31,7 +31,7 @@ describe('GetReservationTotal', () => {
       promocode: {
         amount: 500,
       },
-      reservationAdditionalProducts: [
+      additionalProducts: [
         {
           amount: 3,
           additionalProduct: {

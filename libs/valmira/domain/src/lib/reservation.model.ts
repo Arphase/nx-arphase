@@ -19,7 +19,7 @@ export interface Reservation {
   nights?: number;
   days?: number;
   discount?: number;
-  reservationAdditionalProducts?: ReservationAdditionalProduct[];
+  additionalProducts?: ReservationAdditionalProduct[];
 }
 
 export enum ReservationStatus {

@@ -72,18 +72,13 @@ export class ReservationEntity extends BaseEntity implements Reservation {
   @JoinColumn({ name: 'promocodeId' })
   promocode?: Promocode;
 
-  @OneToOne(() => CustomerEntity, {
-    cascade: true,
-    eager: true,
-    onUpdate: 'CASCADE',
-    onDelete: 'CASCADE',
-  })
+  @OneToOne(() => CustomerEntity, { cascade: true, eager: true })
   @JoinColumn({ name: 'customerId' })
   customer: Customer;
 
-  @OneToMany(
-    () => ReservationAdditionalProductEntity,
-    reservationAdditionalProduct => reservationAdditionalProduct.reservation
-  )
-  reservationAdditionalProducts?: ReservationAdditionalProduct[];
+  @OneToMany(() => ReservationAdditionalProductEntity, additionalProducts => additionalProducts.reservation, {
+    cascade: true,
+    eager: true,
+  })
+  additionalProducts?: ReservationAdditionalProduct[];
 }

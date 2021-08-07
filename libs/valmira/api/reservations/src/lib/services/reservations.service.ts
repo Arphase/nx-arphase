@@ -43,14 +43,15 @@ export class ReservationsService {
     return promocode;
   }
 
-  createReservation(createReservationDto: CreateReservationDto): Promise<Reservation> {
-    const reservation = this.reservationRepository.create({ ...createReservationDto, total: 0 });
+  async createReservation(createReservationDto: CreateReservationDto): Promise<Reservation> {
+    const previewReservation = await this.previewReservation(createReservationDto);
+    const reservation = this.reservationRepository.create(previewReservation);
     return this.reservationRepository.save(reservation);
   }
 
   async previewReservation(reservationPreviewDto: ReservationPreviewDto): Promise<Partial<Reservation>> {
     const { placeId, promocodeId } = reservationPreviewDto;
-    let { reservationAdditionalProducts } = reservationPreviewDto;
+    let { additionalProducts } = reservationPreviewDto;
     const place = await this.placeRepository.findOne(placeId);
     let promocode: Promocode;
     if (!place) {
@@ -62,19 +63,23 @@ export class ReservationsService {
         throw new NotFoundException('Código de descuento no existe');
       }
     }
-    if (reservationAdditionalProducts?.length) {
-      const additionalProducts = await this.additionalProductRepository.findByIds(
-        reservationAdditionalProducts.map(product => product.additionalProductId)
+    if (additionalProducts?.length) {
+      const additionalProductEntities = await this.additionalProductRepository.findByIds(
+        additionalProducts.map(product => product.additionalProductId)
       );
-      if (additionalProducts.length !== reservationAdditionalProducts.length) {
+      if (additionalProducts.length !== additionalProductEntities.length) {
         throw new NotFoundException('No se encontraron todos los productos adicionales');
       }
-      reservationAdditionalProducts = reservationAdditionalProducts.map(product => ({
-        ...product,
-        additionalProduct: additionalProducts.find(
+      additionalProducts = additionalProducts.map(product => {
+        const additionalProduct = additionalProductEntities.find(
           additionalProduct => additionalProduct.id === product.additionalProductId
-        ),
-      }));
+        );
+        return {
+          ...product,
+          additionalProduct,
+          price: additionalProduct.price,
+        };
+      });
     }
     const { pricePerNight, nights, days } = getReservationDaysInfo({ ...reservationPreviewDto, place });
     return {
@@ -85,13 +90,13 @@ export class ReservationsService {
       nights,
       promocode,
       discount: promocode?.amount ? promocode.amount : 0,
-      reservationAdditionalProducts,
+      additionalProducts,
       total: getReservationTotal({
         ...reservationPreviewDto,
         pricePerNight,
         promocode,
         nights,
-        reservationAdditionalProducts,
+        additionalProducts,
       }),
     };
   }

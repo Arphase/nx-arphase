@@ -25,7 +25,7 @@ export class ReservationAdditionalProductEntity extends BaseEntity implements Re
   @Column()
   reservationId: number;
 
-  @ManyToOne(() => ReservationEntity, reservation => reservation.reservationAdditionalProducts)
+  @ManyToOne(() => ReservationEntity, reservation => reservation.additionalProducts)
   @JoinColumn({ name: 'reservationId' })
   reservation: Reservation;
 }

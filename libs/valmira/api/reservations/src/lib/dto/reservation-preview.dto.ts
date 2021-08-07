@@ -19,7 +19,7 @@ export class ReservationPreviewDto {
   @IsArray()
   @ValidateNested()
   @Type(() => ReservationAdditionalProductPreviewDto)
-  reservationAdditionalProducts: ReservationAdditionalProduct[];
+  additionalProducts: ReservationAdditionalProduct[];
 }
 
 export class ReservationAdditionalProductPreviewDto {
