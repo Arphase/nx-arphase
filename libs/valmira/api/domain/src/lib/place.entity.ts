@@ -66,9 +66,6 @@ export class PlaceEntity extends BaseEntity implements Place {
   })
   photos?: Photo[];
 
-  @OneToMany(() => ReservationEntity, reservation => reservation.place, {
-    cascade: true,
-    eager: true,
-  })
+  @OneToMany(() => ReservationEntity, reservation => reservation.place)
   reservations?: Reservation[];
 }

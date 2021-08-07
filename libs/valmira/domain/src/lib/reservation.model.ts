@@ -11,10 +11,11 @@ export interface Reservation {
   total: number;
   paymentId?: string;
   placeId: number;
-  place: Place;
+  place?: Place;
   customer: Customer;
   promocodeId?: number;
   promocode?: Promocode;
+  pricePerNight?: number;
   reservationAdditionalProducts?: ReservationAdditionalProduct[];
 }
 
