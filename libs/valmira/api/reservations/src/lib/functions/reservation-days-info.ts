@@ -1,8 +1,6 @@
-import { DeepPartial } from '@arphase/common';
+import { DeepPartial, getDateRangeArray } from '@arphase/common';
 import { Reservation } from '@valmira/domain';
 import dayjs from 'dayjs';
-
-import { getDateRangeArray } from './date-range-array';
 
 /**
  * Gets price per night and total of nights of a reservation
