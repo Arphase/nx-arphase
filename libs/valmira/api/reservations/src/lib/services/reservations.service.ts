@@ -2,20 +2,23 @@ import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery
 import { ApsCollectionResponse } from '@arphase/common';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PlaceEntity, ReservationEntity } from '@valmira/api/domain';
-import { Reservation } from '@valmira/domain';
+import { AdditionalProductEntity, PlaceEntity, PromocodeEntity, ReservationEntity } from '@valmira/api/domain';
+import { Promocode, Reservation } from '@valmira/domain';
 import { Repository } from 'typeorm';
 
 import { CreateReservationDto } from '../dto/create-reservation.dto';
 import { ReservationPreviewDto } from '../dto/reservation-preview.dto';
 import { UpdateReservationDto } from '../dto/update-reservation-dto';
-import { getPricePerNight } from '../functions/price-per-night';
+import { getReservationDaysInfo } from '../functions/reservation-days-info';
+import { getReservationTotal } from '../functions/reservation-total';
 
 @Injectable()
 export class ReservationsService {
   constructor(
     @InjectRepository(ReservationEntity) private reservationRepository: Repository<ReservationEntity>,
-    @InjectRepository(PlaceEntity) private placeRepository: Repository<PlaceEntity>
+    @InjectRepository(PlaceEntity) private placeRepository: Repository<PlaceEntity>,
+    @InjectRepository(PromocodeEntity) private promocodeRepository: Repository<PromocodeEntity>,
+    @InjectRepository(AdditionalProductEntity) private additionalProductRepository: Repository<AdditionalProductEntity>
   ) {}
 
   async getReservations(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Reservation>> {
@@ -46,20 +49,51 @@ export class ReservationsService {
   }
 
   async previewReservation(reservationPreviewDto: ReservationPreviewDto): Promise<Partial<Reservation>> {
-    const place = await this.placeRepository.findOne(reservationPreviewDto.placeId);
+    const { placeId, promocodeId } = reservationPreviewDto;
+    let { reservationAdditionalProducts } = reservationPreviewDto;
+    const place = await this.placeRepository.findOne(placeId);
+    let promocode: Promocode;
     if (!place) {
-      throw new NotFoundException('Este alojamiento no existe');
+      throw new NotFoundException('Alojamiento no existe');
     }
+    if (promocodeId) {
+      promocode = await this.promocodeRepository.findOne(promocodeId);
+      if (!promocode) {
+        throw new NotFoundException('Código de descuento no existe');
+      }
+    }
+    if (reservationAdditionalProducts?.length) {
+      const additionalProducts = await this.additionalProductRepository.findByIds(
+        reservationAdditionalProducts.map(product => product.additionalProductId)
+      );
+      if (additionalProducts.length !== reservationAdditionalProducts.length) {
+        throw new NotFoundException('No se encontraron todos los productos adicionales');
+      }
+      reservationAdditionalProducts = reservationAdditionalProducts.map(product => ({
+        ...product,
+        additionalProduct: additionalProducts.find(
+          additionalProduct => additionalProduct.id === product.additionalProductId
+        ),
+      }));
+    }
+    const { pricePerNight, nights, days } = getReservationDaysInfo({ ...reservationPreviewDto, place });
     return {
       ...reservationPreviewDto,
       place,
-      pricePerNight: getPricePerNight({ ...reservationPreviewDto, place }),
-      total: this.getTotal(reservationPreviewDto),
+      pricePerNight,
+      days,
+      nights,
+      promocode,
+      discount: promocode?.amount ? promocode.amount : 0,
+      reservationAdditionalProducts,
+      total: getReservationTotal({
+        ...reservationPreviewDto,
+        pricePerNight,
+        promocode,
+        nights,
+        reservationAdditionalProducts,
+      }),
     };
-  }
-
-  getTotal(reservation: Partial<Reservation>): number {
-    return 0;
   }
 
   async updateReservation(updateReservationDto: UpdateReservationDto): Promise<Reservation> {

@@ -1,4 +1,6 @@
-import { IsDate, IsNumber } from 'class-validator';
+import { ReservationAdditionalProduct } from '@valmira/domain';
+import { Type } from 'class-transformer';
+import { IsArray, IsDate, IsNumber, IsOptional, ValidateNested } from 'class-validator';
 
 export class ReservationPreviewDto {
   @IsDate()
@@ -9,4 +11,21 @@ export class ReservationPreviewDto {
 
   @IsNumber()
   placeId: number;
+
+  @IsNumber()
+  @IsOptional()
+  promocodeId: number;
+
+  @IsArray()
+  @ValidateNested()
+  @Type(() => ReservationAdditionalProductPreviewDto)
+  reservationAdditionalProducts: ReservationAdditionalProduct[];
+}
+
+export class ReservationAdditionalProductPreviewDto {
+  @IsNumber()
+  amount: number;
+
+  @IsNumber()
+  additionalProductId: number;
 }

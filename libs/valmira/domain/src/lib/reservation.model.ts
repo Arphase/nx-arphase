@@ -16,6 +16,9 @@ export interface Reservation {
   promocodeId?: number;
   promocode?: Promocode;
   pricePerNight?: number;
+  nights?: number;
+  days?: number;
+  discount?: number;
   reservationAdditionalProducts?: ReservationAdditionalProduct[];
 }
 
