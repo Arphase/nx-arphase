@@ -28,6 +28,7 @@ export class ApsListContainerComponent<T = any> {
   excelUrl: string;
   deleteConfirmMessage: string;
   deleteSuccessMessage: string;
+  updateSuccessMessage: string;
   loadingExcel$: Observable<boolean>;
   loadingSubject = new BehaviorSubject<boolean>(false);
   ivtLoading$ = this.loadingSubject.asObservable();
@@ -87,6 +88,13 @@ export class ApsListContainerComponent<T = any> {
     };
 
     this.entityDataService.exportExcel(payload).pipe(take(1)).subscribe();
+  }
+
+  updateItem(item: T): void {
+    this.entityCollectionService
+      .update(item)
+      .pipe(take(1))
+      .subscribe(() => this.messageService.success(this.updateSuccessMessage));
   }
 
   deleteItem(item: T): void {

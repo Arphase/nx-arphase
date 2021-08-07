@@ -9,6 +9,10 @@ const routes: Routes = [
     component: SpaComponent,
     children: [
       {
+        path: 'reservations',
+        loadChildren: () => import('@valmira/ui/reservations').then(m => m.ReservationsModule),
+      },
+      {
         path: 'places',
         loadChildren: () => import('@valmira/ui/places').then(m => m.PlacesModule),
       },

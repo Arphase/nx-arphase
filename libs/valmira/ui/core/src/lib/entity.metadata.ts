@@ -5,6 +5,7 @@ const entityMetadata: EntityMetadataMap = {
   Category: {},
   Place: {},
   Promocode: {},
+  Reservation: {},
 };
 
 export const entityConfig = { entityMetadata };

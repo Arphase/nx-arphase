@@ -21,6 +21,11 @@ export class SpaComponent implements OnInit {
   };
   menuItems: MenuItem[] = [
     {
+      icon: 'pushpin',
+      header: 'Reservaciones',
+      path: ['reservations'],
+    },
+    {
       icon: 'home',
       header: 'Alojamientos',
       path: ['places'],
