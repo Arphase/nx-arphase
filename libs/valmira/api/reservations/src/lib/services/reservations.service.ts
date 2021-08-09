@@ -1,9 +1,11 @@
 import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AdditionalProductEntity, PlaceEntity, PromocodeEntity, ReservationEntity } from '@valmira/api/domain';
+import { PlacesService } from '@valmira/api/places';
 import { Promocode, Reservation } from '@valmira/domain';
+import dayjs from 'dayjs';
 import { Repository } from 'typeorm';
 
 import { CreateReservationDto } from '../dto/create-reservation.dto';
@@ -18,7 +20,8 @@ export class ReservationsService {
     @InjectRepository(ReservationEntity) private reservationRepository: Repository<ReservationEntity>,
     @InjectRepository(PlaceEntity) private placeRepository: Repository<PlaceEntity>,
     @InjectRepository(PromocodeEntity) private promocodeRepository: Repository<PromocodeEntity>,
-    @InjectRepository(AdditionalProductEntity) private additionalProductRepository: Repository<AdditionalProductEntity>
+    @InjectRepository(AdditionalProductEntity) private additionalProductRepository: Repository<AdditionalProductEntity>,
+    private placesService: PlacesService
   ) {}
 
   async getReservations(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Reservation>> {
@@ -50,12 +53,19 @@ export class ReservationsService {
   }
 
   async previewReservation(reservationPreviewDto: ReservationPreviewDto): Promise<Partial<Reservation>> {
-    const { placeId, promocodeId } = reservationPreviewDto;
+    const { placeId, promocodeId, startDate, endDate } = reservationPreviewDto;
     let { additionalProducts } = reservationPreviewDto;
     const place = await this.placeRepository.findOne(placeId);
     let promocode: Promocode;
     if (!place) {
       throw new NotFoundException('Alojamiento no existe');
+    }
+    const occupiedDates = await this.placesService.getOccupiedDates(placeId, {
+      startDate: dayjs(startDate).add(1, 'day').toDate(),
+      endDate: dayjs(endDate).subtract(1, 'day').toDate(),
+    });
+    if (occupiedDates.length) {
+      throw new ConflictException('Esta cabaña ya ha sido reservada para las fechas que seleccionó');
     }
     if (promocodeId) {
       promocode = await this.promocodeRepository.findOne(promocodeId);

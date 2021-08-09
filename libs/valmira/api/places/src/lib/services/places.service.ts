@@ -9,7 +9,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlaceEntity, ReservationEntity } from '@valmira/api/domain';
 import { Place } from '@valmira/domain';
-import { Repository } from 'typeorm';
+import { Repository, UsingJoinColumnOnlyOnOneSideAllowedError } from 'typeorm';
 
 import { CreatePlaceDto } from '../dto/create-place.dto';
 import { OccupiedDatesDto } from '../dto/occupied-dates.dto';
@@ -63,6 +63,7 @@ export class PlacesService {
       .andWhere('(reservation.placeId = :placeId)', { placeId: id })
       .orderBy('reservation.startDate', SortDirection.ascend);
     const reservations = await query.getMany();
+    console.log(reservations);
     return getOccupiedDates(reservations);
   }
 
