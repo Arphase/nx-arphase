@@ -2,13 +2,11 @@ import { ApsCollectionFilterDto } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Subcategory } from '@musicr/domain';
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 
 import { CreateSubcategoryDto } from '../dto/create-subcategory.dto';
 import { SubcategoriesService } from '../services/subcategories.service';
 
 @Controller('subcategories')
-@UseGuards(AuthGuard('jwt'))
 export class SubcategoriesController {
   constructor(private subcategoriesService: SubcategoriesService) {}
 

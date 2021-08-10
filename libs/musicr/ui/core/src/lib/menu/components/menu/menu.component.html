@@ -5,30 +5,21 @@
     </div>
     <div nz-col nzSpan="12">
       <ul nz-menu nzMode="horizontal">
-        <li nz-submenu nzTitle="ENTRETENIMIENTO">
+        <li *ngFor="let category of categories" nz-submenu nzTitle="{{ category.name }}">
           <ul>
-            <li nz-menu-item>DJ, LUCES Y SONIDO PROFESIONAL</li>
-            <li nz-menu-item>PISTAS DE BAILE</li>
-            <li nz-menu-item>PIROTECNIA Y EFECTOS</li>
-            <li nz-menu-item>ANIMACIÓN</li>
-          </ul>
-        </li>
-        <li nz-submenu nzTitle="MOBILIARIO">
-          <ul>
-            <li nz-menu-item>SALAS LOUNGE</li>
-            <li nz-menu-item>MESAS Y SILLAS</li>
-            <li nz-menu-item>MESAS ALTAS</li>
-            <li nz-menu-item>BAÑOS</li>
-            <li nz-menu-item>CALENTADORES</li>
-            <li nz-menu-item>TOLDOS</li>
-          </ul>
-        </li>
-        <li nz-submenu nzTitle="PERSONAL DE SERVICIO">
-          <ul>
-            <li nz-menu-item>BARTENDER</li>
-            <li nz-menu-item>FOTÓGRAFO</li>
-            <li nz-menu-item>GUARDIA DE SEGURIDAD</li>
-            <li nz-menu-item>MESERO</li>
+            <li
+              *ngFor="let subcategory of category.subcategories"
+              nz-menu-item
+              (click)="goToCatalog(subcategory.id, true)"
+            >
+              {{ subcategory.name | uppercase }}
+            </li>
+            <li
+              nz-menu-item
+              (click)="goToCatalog(category.id, false)"
+            >
+              Ver todos
+            </li>
           </ul>
         </li>
       </ul>
@@ -83,30 +74,16 @@
   >
     <ng-container *nzDrawerContent>
       <ul nz-menu nzMode="inline" nzTheme="dark">
-        <li nz-submenu [(nzOpen)]="openMap.sub1" (nzOpenChange)="openHandler('sub1')" nzTitle="Entretenimiento">
+        <li
+          *ngFor="let category of categories"
+          nz-submenu
+          [(nzOpen)]="openMap[category.id.toString()]"
+          (nzOpenChange)="openHandler(category.id)"
+          nz-submenu
+          nzTitle="{{ category.name }}"
+        >
           <ul>
-            <li nz-menu-item>DJ, Luces y Sonido profesional</li>
-            <li nz-menu-item>Pistas de baile</li>
-            <li nz-menu-item>Pirotecnia y Efectos</li>
-            <li nz-menu-item>Animación</li>
-          </ul>
-        </li>
-        <li nz-submenu [(nzOpen)]="openMap.sub2" (nzOpenChange)="openHandler('sub2')" nzTitle="Mobiliario">
-          <ul>
-            <li nz-menu-item>Salas lounge</li>
-            <li nz-menu-item>Mesas y Sillas</li>
-            <li nz-menu-item>Mesas altas</li>
-            <li nz-menu-item>Baños</li>
-            <li nz-menu-item>Calentadores</li>
-            <li nz-menu-item>Toldos</li>
-          </ul>
-        </li>
-        <li nz-submenu [(nzOpen)]="openMap.sub3" (nzOpenChange)="openHandler('sub3')" nzTitle="Personal de servicio">
-          <ul>
-            <li nz-menu-item>Bartender</li>
-            <li nz-menu-item>Fotógrafo</li>
-            <li nz-menu-item>Guardia de seguridad</li>
-            <li nz-menu-item>Mesero</li>
+            <li *ngFor="let subcategory of category.subcategories" nz-menu-item>{{ subcategory.name | uppercase }}</li>
           </ul>
         </li>
       </ul>
@@ -147,12 +124,12 @@
   <div nz-row>
     <div nz-col nzSpan="2">
       <button nz-button nzType="text" (click)="closeMenu()">
-        <i nz-icon nzType="close" nzTheme="outline" style="color: white;"></i>
+        <i nz-icon nzType="close" nzTheme="outline" style="color: white"></i>
       </button>
     </div>
-    <div nz-col nzSpan="2" style="margin-left: auto;">
+    <div nz-col nzSpan="2" style="margin-left: auto">
       <button nz-button nzType="text" (click)="openMenu()">
-        <i nz-icon nzType="shopping" nzTheme="outline" style="color: white;"></i>
+        <i nz-icon nzType="shopping" nzTheme="outline" style="color: white"></i>
       </button>
     </div>
   </div>

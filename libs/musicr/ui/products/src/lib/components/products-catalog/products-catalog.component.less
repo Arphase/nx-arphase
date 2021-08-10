@@ -1,0 +1,163 @@
+h4 {
+  font-family: 'right-grotesk-wide-medium';
+  font-size: 20px;
+  @media only screen and (max-width: 768px) {
+    font-size: 24px;
+    line-height: 24.24px;
+  }
+}
+
+.center {
+  text-align: center;
+  width: 100vw;
+  overflow-x: hidden;
+  min-height: 100vh;
+  // Styles for footer
+  background-color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.space {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.scroll-over {
+  top: -320px;
+  @media only screen and (max-width: 768px) {
+    top: -96px;
+  }
+}
+
+.scroll-over-2 {
+  top: -200px;
+  @media only screen and (max-width: 768px) {
+    top: -60px;
+  }
+}
+
+.scroll-spacing {
+  margin-top: 320px;
+  margin-bottom: 160px;
+  @media only screen and (max-width: 768px) {
+    margin-top: 160px;
+    margin-bottom: 48px;
+  }
+}
+
+.m-scroll-left {
+  width: 210%;
+  display: flex;
+  left: -10%;
+  position: relative;
+  height: 48px;
+  margin: auto;
+  background-color: #F0F0F0;
+  overflow: hidden;
+  z-index: 1;
+
+  &__title {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    transition: all 1s ease;
+
+    & > div {
+      display: flex;
+    }
+    & .t-10 {
+      animation: scrollTextLeft 20s infinite linear;
+    }
+    p {
+      margin: 0;
+      font-size: 24px;
+      transition: all 2s ease;
+      @media only screen and (max-width: 768px) {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.m-scroll-right {
+  width: 210%;
+  display: flex;
+  left: -10%;
+  position: relative;
+  height: 40px;
+  margin: auto;
+  background-color: #F0F0F0;
+  overflow: hidden;
+  z-index: 1;
+
+  &__title {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    transition: all 1s ease;
+
+    & > div {
+      display: flex;
+      animation: scrollTextRight 20s infinite linear;
+    }
+    p {
+      margin: 0;
+      font-size: 24px;
+      transition: all 2s ease;
+      @media only screen and (max-width: 768px) {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@keyframes scrollTextLeft {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollTextRight {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.rotate-15 {
+  transform: rotate(2.48deg);
+}
+
+.rotate-9 {
+  transform: rotate(-5deg);
+}
+
+
+.fav-img {
+  max-height: 312px;
+  @media only screen and (max-width: 768px) {
+    max-height: 176.61px;
+  }
+}
+
+.fav-text {
+  text-align: left;
+}

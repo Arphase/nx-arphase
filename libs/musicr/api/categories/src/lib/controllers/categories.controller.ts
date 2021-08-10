@@ -2,13 +2,11 @@ import { ApsCollectionFilterDto } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Category } from '@musicr/domain';
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 
 import { CreateCategoryDto } from '../dto/create-category.dto';
 import { CategoriesService } from '../services/categories.service';
 
 @Controller('categories')
-@UseGuards(AuthGuard('jwt'))
 export class CategoriesController {
   constructor(private categoriesService: CategoriesService) {}
 

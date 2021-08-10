@@ -234,6 +234,9 @@
     "musicr-ui-home": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
+    "musicr-ui-products": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
     "valmira-admin": {
       "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
     },

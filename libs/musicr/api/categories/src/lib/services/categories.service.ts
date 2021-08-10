@@ -18,7 +18,7 @@ export class CategoriesService {
 
     filterCollectionQuery('category', query, filterDto);
 
-    const categories = await query.getMany();
+    const categories = await query.leftJoinAndSelect('category.subcategories', 'subcategories').getMany();
     const total = await query.getCount();
     return createCollectionResponse<Category>(categories, pageSize, pageIndex, total);
   }

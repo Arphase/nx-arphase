@@ -85,6 +85,7 @@
       "@musicr/ui/auth": ["libs/musicr/ui/auth/src/index.ts"],
       "@musicr/ui/core": ["libs/musicr/ui/core/src/index.ts"],
       "@musicr/ui/home": ["libs/musicr/ui/home/src/index.ts"],
+      "@musicr/ui/products": ["libs/musicr/ui/products/src/index.ts"],
       "@musicr/ui/terms-and-conditions": ["libs/musicr/ui/terms-and-conditions/src/index.ts"],
       "@valmira/admin/*": ["apps/valmira/admin/src/app/*"],
       "@valmira/api/additional-products": ["libs/valmira/api/additional-products/src/index.ts"],

@@ -13,7 +13,7 @@ import {
 } from '@innovatech/ui/vehicles/data';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { select, Store } from '@ngrx/store';
-import { omit } from 'lodash-es';
+import { omit } from 'lodash';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { createRevisionRequestForm } from '../../components/revision-request-form/revision-request-form.component';
