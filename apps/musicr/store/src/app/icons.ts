@@ -8,7 +8,8 @@ import {
   MenuOutline,
   SearchOutline,
   ShoppingOutline,
-  CloseOutline
+  CloseOutline,
+  ArrowLeftOutline
 } from '@ant-design/icons-angular/icons';
 
 export const icons: IconDefinition[] = [
@@ -20,5 +21,6 @@ export const icons: IconDefinition[] = [
   MenuOutline,
   SearchOutline,
   ShoppingOutline,
-  CloseOutline
+  CloseOutline,
+  ArrowLeftOutline
 ];

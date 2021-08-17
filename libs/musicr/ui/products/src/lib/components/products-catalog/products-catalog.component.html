@@ -57,7 +57,7 @@
   </div>
   <div class="space">
     <div nz-row>
-      <div nz-col nzXs="12" nzMd="6" nzLg="6" *ngFor="let product of products">
+      <div nz-col nzXs="12" nzMd="6" nzLg="6" *ngFor="let product of products" (click)="goToDetail(product.id)">
         <div>
           <!-- <img [src]="product.img" [alt]="product.name" class="fav-img" /> -->
         </div>

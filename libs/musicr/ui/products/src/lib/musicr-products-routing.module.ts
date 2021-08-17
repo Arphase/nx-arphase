@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ProductDetailContainerComponent } from './containers/product-detail-container/product-detail-container.component';
 import { ProductsCatalogContainerComponent } from './containers/products-catalog-container/products-catalog-container.component';
 import { ProductsComponent } from './products.component';
-
 
 const routes: Routes = [
   {
@@ -16,7 +16,11 @@ const routes: Routes = [
       {
         path: 'subcategory/:id',
         component: ProductsCatalogContainerComponent,
-      }
+      },
+      {
+        path: 'product/:id',
+        component: ProductDetailContainerComponent,
+      },
     ],
   },
 ];
