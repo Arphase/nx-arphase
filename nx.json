@@ -278,6 +278,9 @@
     "valmira-domain": {
       "tags": ["domain:valmira", "type:domain-logic"]
     },
+    "valmira-ui-additional-products": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
     "valmira-ui-auth-data": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
     },
@@ -306,6 +309,9 @@
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-promocodes": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-reservations": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-spa": {

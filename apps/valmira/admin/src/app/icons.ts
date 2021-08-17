@@ -6,7 +6,10 @@ import {
   HomeOutline,
   MenuFoldOutline,
   MenuUnfoldOutline,
+  MoreOutline,
   PlusCircleOutline,
+  PushpinOutline,
+  ShoppingOutline,
 } from '@ant-design/icons-angular/icons';
 
 export const icons: IconDefinition[] = [
@@ -17,4 +20,7 @@ export const icons: IconDefinition[] = [
   DeleteOutline,
   DollarOutline,
   MenuUnfoldOutline,
+  ShoppingOutline,
+  PushpinOutline,
+  MoreOutline,
 ];

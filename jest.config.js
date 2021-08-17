@@ -87,5 +87,7 @@ module.exports = {
     '<rootDir>/libs/valmira/ui/categories/data',
     '<rootDir>/libs/valmira/ui/promocodes',
     '<rootDir>/libs/musicr/ui/products',
+    '<rootDir>/libs/valmira/ui/additional-products',
+    '<rootDir>/libs/valmira/ui/reservations',
   ],
 };

@@ -1,9 +1,10 @@
 import { ApsCollectionFilterDto } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
 import { Place } from '@valmira/domain';
 
 import { CreatePlaceDto } from '../dto/create-place.dto';
+import { OccupiedDatesDto } from '../dto/occupied-dates.dto';
 import { PlacesService } from '../services/places.service';
 
 @Controller('places')
@@ -13,6 +14,11 @@ export class PlacesController {
   @Get()
   async getPlaces(@Query() filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Place>> {
     return this.placesService.getPlaces(filterDto);
+  }
+
+  @Get(':id/occupied-dates')
+  async getDisabledDates(@Param('id', ParseIntPipe) id: number, @Query() filterDto: OccupiedDatesDto): Promise<Date[]> {
+    return this.placesService.getOccupiedDates(id, filterDto);
   }
 
   @Post()
