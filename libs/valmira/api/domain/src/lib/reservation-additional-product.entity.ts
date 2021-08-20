@@ -18,17 +18,16 @@ export class ReservationAdditionalProductEntity extends BaseEntity implements Re
   @Column()
   additionalProductId: number;
 
-  @ManyToOne(() => AdditionalProductEntity, additionalProduct => additionalProduct.reservationAdditionalProducts)
+  @ManyToOne(() => AdditionalProductEntity, additionalProduct => additionalProduct.reservationAdditionalProducts, {
+    eager: true,
+  })
   @JoinColumn({ name: 'additionalProductId' })
   additionalProduct: AdditionalProduct;
 
   @Column()
   reservationId: number;
 
-  @ManyToOne(() => ReservationEntity, reservation => reservation.additionalProducts, {
-    cascade: true,
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => ReservationEntity, reservation => reservation.additionalProducts)
   @JoinColumn({ name: 'reservationId' })
   reservation: Reservation;
 }

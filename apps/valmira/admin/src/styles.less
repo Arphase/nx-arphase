@@ -8,10 +8,19 @@
 
 @font-face {
   font-family: 'Beatrice';
-  src: url('/assets/fonts/Beatrice-Light.woff') format('opentype');
+  src: url('/assets/fonts/beatrice-light.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Beatrice';
+  src: url('/assets/fonts/beatrice-bold.otf') format('opentype');
+  font-weight: bold;
 }
 
 html body {
   background-color: @backgroung-color !important;
   font-family: Beatrice;
+}
+
+.text-primary {
+  color: @primary-color;
 }

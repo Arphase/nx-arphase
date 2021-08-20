@@ -3,4 +3,5 @@
                       [info]="info$ | async"
                       [queryParams]="queryParams"
                       (filterItems)="filterItems($event)"
-                      (edit)="updateItem($event)"></vma-reservation-list>
+                      (edit)="updateItem($event)"
+                      (showDetail)="onShowDetail($event)"></vma-reservation-list>

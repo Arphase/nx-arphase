@@ -2,6 +2,7 @@ import { createMockRepository } from '@arphase/api/testing';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { AdditionalProductEntity, PlaceEntity, PromocodeEntity, ReservationEntity } from '@valmira/api/domain';
+import { PlacesService } from '@valmira/api/places';
 
 import { ReservationsService } from './reservations.service';
 
@@ -16,6 +17,7 @@ describe('ReservationsService', () => {
         { provide: getRepositoryToken(PlaceEntity), useValue: createMockRepository() },
         { provide: getRepositoryToken(PromocodeEntity), useValue: createMockRepository() },
         { provide: getRepositoryToken(AdditionalProductEntity), useValue: createMockRepository() },
+        { provide: PlacesService, useValue: {} },
       ],
     }).compile();
 
