@@ -1,5 +1,6 @@
-import { Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Controller, Delete, Param, ParseIntPipe, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Photo } from '@valmira/domain';
 import { Express } from 'express';
 import { Multer } from 'multer';
 
@@ -11,7 +12,12 @@ export class PhotosController {
 
   @Post()
   @UseInterceptors(FileInterceptor('file'))
-  async addAvatar(@UploadedFile() file: Express.Multer.File) {
+  async uploadPhoto(@UploadedFile() file: Express.Multer.File): Promise<Photo> {
     return this.photosService.uploadPhoto(file.buffer, file.originalname);
+  }
+
+  @Delete(':id')
+  async deletePhoto(@Param('id', ParseIntPipe) id: number): Promise<Photo> {
+    return this.photosService.deletePhoto(id);
   }
 }

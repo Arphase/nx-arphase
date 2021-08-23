@@ -1,4 +1,5 @@
 <vma-place-form [form]="form"
                 [loading]="loading$ | async"
                 [item]="currentItem$ | async"
+                (removePhoto)="removePhoto($event)"
                 (submitForm)="submit($event)"></vma-place-form>

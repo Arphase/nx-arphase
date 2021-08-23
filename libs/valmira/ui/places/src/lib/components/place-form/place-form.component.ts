@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Inject, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Inject,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators, getBase64, setFormArrayValue } from '@arphase/ui';
 import { Place } from '@valmira/domain';
@@ -32,6 +40,20 @@ export class PlaceFormComponent extends ApsFormComponent<Place> implements OnCha
   previewImage: string | undefined = '';
   previewVisible = false;
   photosUrl: string;
+  @Output() removePhoto = new EventEmitter<number>();
+
+  handlePreview = async (file: NzUploadFile) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+    this.previewImage = file.url || file.preview;
+    this.previewVisible = true;
+  };
+
+  onRemovePhoto = async (file: NzUploadFile) => {
+    this.removePhoto.emit(Number(file.uid) || file.response.id);
+    return true;
+  };
 
   get servicesFormArray(): FormArray {
     return this.form.get('services') as FormArray;
@@ -62,15 +84,6 @@ export class PlaceFormComponent extends ApsFormComponent<Place> implements OnCha
   removeService(index: number): void {
     this.servicesFormArray.removeAt(index);
   }
-
-  handlePreview = async (file: NzUploadFile) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
-    }
-    this.previewImage = file.url || file.preview;
-    this.previewVisible = true;
-    console.log(this.fileList);
-  };
 
   transformFromForm(values: Place): Place {
     return {

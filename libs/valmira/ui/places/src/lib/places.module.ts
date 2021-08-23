@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui';
 import { EntityDataService } from '@ngrx/data';
 import { CategorySelectModule } from '@valmira/ui/categories/ui';
@@ -32,11 +32,13 @@ import { PlaceFormContainerComponent } from './containers/place-form-container/p
 import { PlaceListContainerComponent } from './containers/place-list-container/place-list-container.component';
 import { PlacesRoutingModule } from './places-routing.module';
 import { PlacesComponent } from './places.component';
+import { PhotoDataService } from './services/photo-data.service';
 import { PlaceDataService } from './services/place-data.service';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     PlacesRoutingModule,
     ReactiveFormsModule,
     NzPageHeaderModule,
@@ -73,7 +75,12 @@ import { PlaceDataService } from './services/place-data.service';
   ],
 })
 export class PlacesModule {
-  constructor(entityDataService: EntityDataService, placeDataService: PlaceDataService) {
+  constructor(
+    entityDataService: EntityDataService,
+    photoDataService: PhotoDataService,
+    placeDataService: PlaceDataService
+  ) {
+    entityDataService.registerService('Photo', photoDataService);
     entityDataService.registerService('Place', placeDataService);
   }
 }
