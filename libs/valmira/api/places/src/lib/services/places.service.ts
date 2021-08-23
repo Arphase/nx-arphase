@@ -86,7 +86,7 @@ export class PlacesService {
 
   async updatePlace(updatePlaceDto: UpdatePlaceDto): Promise<Place> {
     const place = await this.getPlace(updatePlaceDto.id);
-    updatePlaceDto.photos.map(photo => ({ ...photo, placeId: updatePlaceDto.id }));
+    (updatePlaceDto.photos || []).map(photo => ({ ...photo, placeId: updatePlaceDto.id }));
     const updatedReservation = await this.placeRepository.preload({ ...place, ...updatePlaceDto });
     await updatedReservation.save();
     await updatedReservation.reload();

@@ -93,7 +93,10 @@ export class ApsListContainerComponent<T = any> {
   updateItem(item: T): void {
     this.entityCollectionService
       .update(item)
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        filter(() => !!this.updateSuccessMessage)
+      )
       .subscribe(() => this.messageService.success(this.updateSuccessMessage));
   }
 
