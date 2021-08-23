@@ -1,16 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
+import { PlaceCollectionService } from '../services/place-collection.service';
 import { PlaceResolverService } from './place-resolver.service';
 
 describe('PlaceResolverService', () => {
-  let service: PlaceResolverService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(PlaceResolverService);
+  let spectator: SpectatorService<PlaceResolverService>;
+  const createService = createServiceFactory({
+    service: PlaceResolverService,
+    mocks: [PlaceCollectionService],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });
