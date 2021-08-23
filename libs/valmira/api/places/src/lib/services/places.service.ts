@@ -1,9 +1,4 @@
-import {
-  ApsCollectionFilterDto,
-  createCollectionResponse,
-  filterCollectionDates,
-  filterCollectionQuery,
-} from '@arphase/api/core';
+import { createCollectionResponse, filterCollectionDates, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,6 +7,7 @@ import { Place } from '@valmira/domain';
 import { Repository } from 'typeorm';
 
 import { CreatePlaceDto } from '../dto/create-place.dto';
+import { GetPlacesDto } from '../dto/get-places.dto';
 import { OccupiedDatesDto } from '../dto/occupied-dates.dto';
 import { UpdatePlaceDto } from '../dto/update-place.dto';
 import { getOccupiedDates } from '../functions/occupied-dates';
@@ -23,14 +19,18 @@ export class PlacesService {
     @InjectRepository(ReservationEntity) private reservationRepository: Repository<ReservationEntity>
   ) {}
 
-  async getPlaces(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Place>> {
-    const { pageIndex, pageSize, startDate, endDate, dateType } = filterDto;
+  async getPlaces(filterDto: GetPlacesDto): Promise<ApsCollectionResponse<Place>> {
+    const { pageIndex, pageSize, startDate, endDate, dateType, onlyActives } = filterDto;
     const query = this.placeRepository
       .createQueryBuilder('place')
       .leftJoinAndSelect('place.category', 'category')
       .orderBy('place.createdAt', SortDirection.descend);
 
     filterCollectionQuery('place', query, filterDto, { ignoreDates: dateType !== 'createdAt' });
+
+    if (onlyActives) {
+      query.andWhere('(place.active = true)');
+    }
 
     if (startDate && endDate && dateType !== 'createdAt') {
       const reservationQuery = this.reservationRepository.createQueryBuilder('reservation');

@@ -1,9 +1,9 @@
-import { ApsCollectionFilterDto } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 import { Place } from '@valmira/domain';
 
 import { CreatePlaceDto } from '../dto/create-place.dto';
+import { GetPlacesDto } from '../dto/get-places.dto';
 import { OccupiedDatesDto } from '../dto/occupied-dates.dto';
 import { UpdatePlaceDto } from '../dto/update-place.dto';
 import { PlacesService } from '../services/places.service';
@@ -13,7 +13,7 @@ export class PlacesController {
   constructor(private placesService: PlacesService) {}
 
   @Get()
-  async getPlaces(@Query() filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Place>> {
+  async getPlaces(@Query() filterDto: GetPlacesDto): Promise<ApsCollectionResponse<Place>> {
     return this.placesService.getPlaces(filterDto);
   }
 
