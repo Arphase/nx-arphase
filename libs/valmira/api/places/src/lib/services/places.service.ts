@@ -5,14 +5,15 @@ import {
   filterCollectionQuery,
 } from '@arphase/api/core';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlaceEntity, ReservationEntity } from '@valmira/api/domain';
 import { Place } from '@valmira/domain';
-import { Repository, UsingJoinColumnOnlyOnOneSideAllowedError } from 'typeorm';
+import { Repository } from 'typeorm';
 
 import { CreatePlaceDto } from '../dto/create-place.dto';
 import { OccupiedDatesDto } from '../dto/occupied-dates.dto';
+import { UpdatePlaceDto } from '../dto/update-place.dto';
 import { getOccupiedDates } from '../functions/occupied-dates';
 
 @Injectable()
@@ -55,6 +56,14 @@ export class PlacesService {
     return createCollectionResponse<Place>(places, pageSize, pageIndex, total);
   }
 
+  async getPlace(id: number): Promise<PlaceEntity> {
+    const place = await this.placeRepository.findOne({ id });
+    if (!place) {
+      throw new NotFoundException(`Place with id ${id} not found`);
+    }
+    return place;
+  }
+
   async getOccupiedDates(id: number, filterDto: OccupiedDatesDto): Promise<Date[]> {
     const query = this.reservationRepository.createQueryBuilder('reservation');
     filterCollectionDates('reservation', query, { ...filterDto, dateType: 'startDate' }, { logicalOperator: 'or' });
@@ -69,6 +78,18 @@ export class PlacesService {
 
   async createPlace(createPlaceDto: CreatePlaceDto): Promise<Place> {
     const place = this.placeRepository.create(createPlaceDto);
-    return this.placeRepository.save(place);
+    const newPlace = await this.placeRepository.save(place);
+    const photos = createPlaceDto.photos.map(photo => ({ ...photo, placeId: newPlace.id }));
+    newPlace.photos = photos;
+    return newPlace.save();
+  }
+
+  async updatePlace(updatePlaceDto: UpdatePlaceDto): Promise<Place> {
+    const place = await this.getPlace(updatePlaceDto.id);
+    updatePlaceDto.photos.map(photo => ({ ...photo, placeId: updatePlaceDto.id }));
+    const updatedReservation = await this.placeRepository.preload({ ...place, ...updatePlaceDto });
+    await updatedReservation.save();
+    await updatedReservation.reload();
+    return updatedReservation;
   }
 }

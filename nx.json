@@ -256,6 +256,9 @@
     "valmira-api-domain": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
     },
+    "valmira-api-photos": {
+      "tags": []
+    },
     "valmira-api-places": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },

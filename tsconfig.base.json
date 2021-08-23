@@ -23,8 +23,6 @@
       "@arphase/api/testing": ["libs/arphase/api/testing/src/index.ts"],
       "@arphase/common": ["libs/arphase/common/src/index.ts"],
       "@arphase/ui": ["libs/arphase/ui/src/index.ts"],
-      "@innovatech.api/env/*": ["apps/innovatech/api/src/environments/*"],
-      "@innovatech/api/*": ["apps/innovatech/api/src/app/*"],
       "@innovatech/api/auth/data": ["libs/innovatech/api/auth/data/src/index.ts"],
       "@innovatech/api/auth/feature": ["libs/innovatech/api/auth/feature/src/index.ts"],
       "@innovatech/api/companies": ["libs/innovatech/api/companies/src/index.ts"],
@@ -71,7 +69,7 @@
       "@innovatech/ui/vehicles/data": ["libs/innovatech/ui/vehicles/data/src/index.ts"],
       "@innovatech/ui/vehicles/feature": ["libs/innovatech/ui/vehicles/feature/src/index.ts"],
       "@innovatech/ui/vehicles/ui": ["libs/innovatech/ui/vehicles/ui/src/index.ts"],
-      "@valmira/ui/reservations": ["libs/valmira/ui/reservations/src/index.ts"],
+      "@valmira/api/photos": ["libs/valmira/api/photos/src/index.ts"],
       "@musicr/api/additional-options": ["libs/musicr/api/additional-options/src/index.ts"],
       "@musicr/api/auth": ["libs/musicr/api/auth/src/index.ts"],
       "@musicr/api/categories": ["libs/musicr/api/categories/src/index.ts"],
@@ -107,6 +105,7 @@
       "@valmira/ui/manifest": ["libs/valmira/ui/manifest/src/index.ts"],
       "@valmira/ui/places": ["libs/valmira/ui/places/src/index.ts"],
       "@valmira/ui/promocodes": ["libs/valmira/ui/promocodes/src/index.ts"],
+      "@valmira/ui/reservations": ["libs/valmira/ui/reservations/src/index.ts"],
       "@valmira/ui/spa": ["libs/valmira/ui/spa/src/index.ts"],
       "@valmira/ui/terms-and-conditions": ["libs/valmira/ui/terms-and-conditions/src/index.ts"]
     }

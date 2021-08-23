@@ -31,14 +31,14 @@ export class PlaceListComponent extends ApsListComponent<Place> {
     {
       label: 'Capacidad',
       prop: 'place.capacity',
-      colSizes: { lg: 3 },
+      colSizes: { lg: 2 },
     },
     {
       label: 'Cuartos',
       prop: 'place.rooms',
       colSizes: {
         md: 5,
-        lg: 3,
+        lg: 2,
       },
     },
     {
@@ -46,13 +46,13 @@ export class PlaceListComponent extends ApsListComponent<Place> {
       prop: 'place.beds',
       colSizes: {
         md: 4,
-        lg: 4,
+        lg: 2,
       },
     },
     {
       label: 'Categoría',
       prop: 'category.name',
-      colSizes: { lg: 4 },
+      colSizes: { lg: 8 },
     },
   ];
 }

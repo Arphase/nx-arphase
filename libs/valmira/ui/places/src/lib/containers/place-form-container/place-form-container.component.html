@@ -1,3 +1,4 @@
 <vma-place-form [form]="form"
                 [loading]="loading$ | async"
+                [item]="currentItem$ | async"
                 (submitForm)="submit($event)"></vma-place-form>

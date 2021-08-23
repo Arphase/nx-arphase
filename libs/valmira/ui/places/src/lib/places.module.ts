@@ -15,12 +15,15 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { PlaceFormComponent } from './components/place-form/place-form.component';
@@ -55,6 +58,9 @@ import { PlaceDataService } from './services/place-data.service';
     NzFormModule,
     NzCollapseModule,
     NzSelectModule,
+    NzUploadModule,
+    NzModalModule,
+    NzSwitchModule,
     NgxMaskModule,
     CategorySelectModule,
   ],

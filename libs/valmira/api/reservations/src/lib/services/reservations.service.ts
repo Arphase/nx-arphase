@@ -39,11 +39,11 @@ export class ReservationsService {
   }
 
   async getReservation(id: number): Promise<ReservationEntity> {
-    const promocode = await this.reservationRepository.findOne({ id });
-    if (!promocode) {
+    const reservation = await this.reservationRepository.findOne({ id });
+    if (!reservation) {
       throw new NotFoundException(`Reservation with id ${id} not found`);
     }
-    return promocode;
+    return reservation;
   }
 
   async createReservation(createReservationDto: CreateReservationDto): Promise<Reservation> {
