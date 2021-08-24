@@ -1963,10 +1963,16 @@
             "main": "apps/valmira/admin/src/main.ts",
             "polyfills": "apps/valmira/admin/src/polyfills.ts",
             "tsConfig": "apps/valmira/admin/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/valmira/admin/src/favicon.ico", "apps/valmira/admin/src/assets"],
-            "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/src/styles/themes/base.less"],
-            "scripts": []
+            "assets": [
+              "apps/valmira/admin/src/favicon.ico",
+              "apps/valmira/admin/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/src/styles/themes/base.less"]
           },
           "configurations": {
             "development": {
