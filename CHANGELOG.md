@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/Arphase/nx-arphase/compare/v3.2.0...v3.3.0) (2021-08-24)
+
+
+### Features
+
+* **musicr/ui:** Add menu component ([872257a](https://github.com/Arphase/nx-arphase/commit/872257a0d1d3f88edfa813d8424db092af2d3c46))
+* **valmira/additional-products:** [#141](https://github.com/Arphase/nx-arphase/issues/141) CRUD on admin app ([e8198aa](https://github.com/Arphase/nx-arphase/commit/e8198aa263a50b6e5d324ed15d28efa9374aa6b1))
+* **valmira/places:** add filter for only active places in collection ([adf5bfc](https://github.com/Arphase/nx-arphase/commit/adf5bfc04266837acafd7241f5e9024bed648cac))
+* **valmira/places:** add photos ([efc7c8a](https://github.com/Arphase/nx-arphase/commit/efc7c8acfc8e1cd20060b11f170a8fcd1a284afc))
+* **valmira/places:** delete photo ([760500b](https://github.com/Arphase/nx-arphase/commit/760500b991c610eda75bee2b2ba415625a97e010))
+* **valmira/places:** endpoint to return occupied dates of a place depending on active reservations ([afd9d04](https://github.com/Arphase/nx-arphase/commit/afd9d0480cb21e3186ba4cc51f1339872eb7d3a4))
+* **valmira/places:** exclude places that have a reservation in collection query ([ba0e970](https://github.com/Arphase/nx-arphase/commit/ba0e970372bcccbc1d3b50823e865e80df8c0832))
+* **valmira/places:** toggle active status ([2e03497](https://github.com/Arphase/nx-arphase/commit/2e0349730a82100a26e7f6518159f9d965f7c019))
+* **valmira/promocodes:** [#143](https://github.com/Arphase/nx-arphase/issues/143) create form ([ba634cd](https://github.com/Arphase/nx-arphase/commit/ba634cdefb500253c9a084bb4885ff2886c76a71))
+* **valmira/promocodes:** [#144](https://github.com/Arphase/nx-arphase/issues/144) list filters, update and delete items ([998c7b0](https://github.com/Arphase/nx-arphase/commit/998c7b0bda47f0dcb3db9ddfd30c7c6026706d89))
+* **valmira/reservations:** [#124](https://github.com/Arphase/nx-arphase/issues/124) show detail ([2156b05](https://github.com/Arphase/nx-arphase/commit/2156b05735edc4bb3bb0dc0311ae89c41fcb335b))
+* **valmira/reservations:** [#125](https://github.com/Arphase/nx-arphase/issues/125) calculate price per night in preview reservation endpoint ([a8e53f3](https://github.com/Arphase/nx-arphase/commit/a8e53f3db663e30b166ef86c7dc342fb35af6862))
+* **valmira/reservations:** [#137](https://github.com/Arphase/nx-arphase/issues/137) calculate reservation total with promocodes and additional products ([5e808e1](https://github.com/Arphase/nx-arphase/commit/5e808e153f50b2cbb6be373568b6921601b4ce89))
+* **valmira/reservations:** [#139](https://github.com/Arphase/nx-arphase/issues/139) list ([a660c8b](https://github.com/Arphase/nx-arphase/commit/a660c8b10451e76f20a04a2bc56c2dda9a391f47))
+* **valmira/reservations:** create ([bbf29ce](https://github.com/Arphase/nx-arphase/commit/bbf29cee74d4ae70f0fa2ea4702ddfc128d6f058))
+* **valmira/reservations:** reserve place only if there is not another place reserved for those dates ([2770ce2](https://github.com/Arphase/nx-arphase/commit/2770ce20d1077b552f5f27465288fbc2f933756d))
+
+
+### Bug Fixes
+
+* **innovatech/spa:** include routing module ([6122625](https://github.com/Arphase/nx-arphase/commit/61226252c81b837a75a3dcda09ade590dea6cbdd))
+
 ## [3.2.0](https://github.com/Arphase/nx-arphase/compare/v3.1.3...v3.2.0) (2021-07-28)
 
 
