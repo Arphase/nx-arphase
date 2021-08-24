@@ -56,15 +56,21 @@
     </div>
   </div>
   <div class="space">
-    <div nz-row>
-      <div nz-col nzXs="12" nzMd="6" nzLg="6" *ngFor="let product of products" (click)="goToDetail(product.id)">
-        <div>
-          <!-- <img [src]="product.img" [alt]="product.name" class="fav-img" /> -->
-        </div>
-        <div class="fav-text">
-          <h4>{{ product.name }}</h4>
-          <p>{{ product.price | currency }}</p>
-        </div>
+    <div nz-row [nzGutter]="16">
+      <div
+        nz-col
+        nzXs="12"
+        nzMd="6"
+        nzLg="6"
+        *ngFor="let product of products"
+        [routerLink]="['../..', 'product', product.id]"
+      >
+      <nz-card nzHoverable nzBorderless class="product-card"  [nzCover]="coverTemplate">
+        <nz-card-meta [nzTitle]="product.name" [nzDescription]="product.price | currency"></nz-card-meta>
+      </nz-card>
+      <ng-template #coverTemplate>
+        <img [src]="product.photos[0]?.url" [alt]="product.name"/>
+      </ng-template>
       </div>
     </div>
   </div>

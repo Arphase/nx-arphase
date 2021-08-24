@@ -15,6 +15,11 @@ export class SubcategoriesController {
     return this.subcategoriesService.getSubcategories(filterDto);
   }
 
+  @Get(':id')
+  async getSubCategory(@Param('id', ParseIntPipe) id: number): Promise<Subcategory> {
+    return this.subcategoriesService.getSubCategory(id);
+  }
+
   @Post()
   async createSubcategory(@Body() createCategoryDto: CreateSubcategoryDto): Promise<Subcategory> {
     return this.subcategoriesService.createSubcategory(createCategoryDto);

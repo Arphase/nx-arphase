@@ -23,6 +23,11 @@ export class CategoriesService {
     return createCollectionResponse<Category>(categories, pageSize, pageIndex, total);
   }
 
+  async getCategory(id: number): Promise<Category> {
+    const category = await this.categoryRepository.findOne({ id });
+    return category;
+  }
+
   async createCategory(category: CreateCategoryDto): Promise<Category> {
     const found = await this.categoryRepository.findOne(category);
     if (found) {

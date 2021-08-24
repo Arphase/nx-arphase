@@ -1,25 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Spectator, createComponentFactory } from '@ngneat/spectator';
 import { ProductDetailContainerComponent } from './product-detail-container.component';
 
 describe('ProductDetailContainerComponent', () => {
-  let component: ProductDetailContainerComponent;
-  let fixture: ComponentFixture<ProductDetailContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ProductDetailContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<ProductDetailContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: ProductDetailContainerComponent,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProductDetailContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

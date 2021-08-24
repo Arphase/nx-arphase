@@ -1,5 +1,4 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { Product } from '@musicr/domain';
 
 @Component({
@@ -12,9 +11,4 @@ export class ProductsCatalogComponent {
   @Input() products: Product[];
   @Input() title: string;
 
-  constructor(private router: Router) {}
-
-  goToDetail(id: number) {
-    this.router.navigateByUrl(`products-catalog/product/${id}`);
-  }
 }

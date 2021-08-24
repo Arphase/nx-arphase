@@ -21,10 +21,14 @@ h4 {
 .space {
   margin-left: 40px;
   margin-right: 40px;
+  @media only screen and (max-width: 768px) {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
 }
 
 .scroll-over {
-  top: -320px;
+  top: -200px;
   @media only screen and (max-width: 768px) {
     top: -96px;
   }
@@ -38,11 +42,9 @@ h4 {
 }
 
 .scroll-spacing {
-  margin-top: 320px;
-  margin-bottom: 160px;
+  margin-top: 200px;
   @media only screen and (max-width: 768px) {
     margin-top: 160px;
-    margin-bottom: 48px;
   }
 }
 
@@ -53,7 +55,7 @@ h4 {
   position: relative;
   height: 48px;
   margin: auto;
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   overflow: hidden;
   z-index: 1;
 
@@ -93,7 +95,7 @@ h4 {
   position: relative;
   height: 40px;
   margin: auto;
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   overflow: hidden;
   z-index: 1;
 
@@ -144,20 +146,19 @@ h4 {
 
 .rotate-15 {
   transform: rotate(2.48deg);
+  @media only screen and (max-width: 768px) {
+    transform: rotate(8deg);
+  }
 }
 
 .rotate-9 {
   transform: rotate(-5deg);
-}
-
-
-.fav-img {
-  max-height: 312px;
   @media only screen and (max-width: 768px) {
-    max-height: 176.61px;
+    transform: rotate(-20deg);
   }
 }
 
-.fav-text {
+.product-card {
+  width: 100%;
   text-align: left;
 }

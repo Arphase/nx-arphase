@@ -43,5 +43,6 @@ export class MenuComponent implements OnChanges {
     isSubCategory
       ? this.router.navigateByUrl(`/products-catalog/subcategory/${catalogId}`)
       : this.router.navigateByUrl(`/products-catalog/category/${catalogId}`);
+      this.closeMenu();
   }
 }

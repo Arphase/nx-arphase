@@ -1,25 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { Spectator, createComponentFactory } from '@ngneat/spectator';
 import { MenuContainerComponent } from './menu-container.component';
 
 describe('MenuContainerComponent', () => {
-  let component: MenuContainerComponent;
-  let fixture: ComponentFixture<MenuContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ MenuContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<MenuContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: MenuContainerComponent,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MenuContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

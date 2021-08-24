@@ -1,55 +1,49 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { Product } from '@musicr/domain';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { ApsCollectionResponse } from '@arphase/common';
+import { filterNil } from '@arphase/ui';
+import { Category, Product, Subcategory } from '@musicr/domain';
+import { BehaviorSubject, map, forkJoin, Observable, switchMap, tap, filter, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsCatalogService {
-  id: number;
-  isSubCategory: boolean;
   productsSubject = new BehaviorSubject<Product[]>([]);
   products$ = this.productsSubject.asObservable();
   titleSubject = new BehaviorSubject<string>(null);
   title$ = this.titleSubject.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.id = Number(event.url.substring(event.url.indexOf('category/') + 9));
-        this.isSubCategory = event.url.includes('sub');
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd),
+        switchMap(event => {
+          if (event instanceof NavigationEnd) {
+            const id = Number(event.url.substring(event.url.indexOf('category/') + 9));
+            const isSubCategory = event.url.includes('sub');
 
-        this.getTitle()
-          .pipe(
-            map(response => response.results[0].name),
-            tap(title => {
-              this.titleSubject.next(title);
-            })
-          )
-          .subscribe();
-        this.getProducts()
-          .pipe(
-            map(response => response.results),
-            tap(products => {
-              this.productsSubject.next(products);
-            })
-          )
-          .subscribe();
-      }
-    });
+            const title = this.getTitle(id, isSubCategory);
+            const products = this.getProducts(id, isSubCategory);
+            return forkJoin([title, products]);
+          }
+        }),
+      )
+      .subscribe(response => {
+        this.titleSubject.next(response[0].name);
+        this.productsSubject.next(response[1].results);
+      });
   }
 
-  getProducts() {
-    const params = this.isSubCategory ? { subcategoryId: this.id } : { categoryId: this.id };
-    return this.http.get<any>(`/mrlApi/products/`, { params });
+  getProducts(id: number, isSubCategory: boolean): Observable<ApsCollectionResponse<Product>> {
+    const params = isSubCategory ? { subcategoryId: id } : { categoryId: id };
+    return this.http.get<ApsCollectionResponse<Product>>(`/mrlApi/products/`, { params });
   }
 
-  getTitle() {
-    const params = { id: this.id };
-    return this.isSubCategory
-      ? this.http.get<any>(`/mrlApi/subcategories/`, { params })
-      : this.http.get<any>(`/mrlApi/categories/`, { params });
+  getTitle(id: number, isSubCategory: boolean): Observable<Category | Subcategory> {
+    return isSubCategory
+      ? this.http.get<Subcategory>(`/mrlApi/subcategories/${id}`)
+      : this.http.get<Category>(`/mrlApi/categories/${id}`);
   }
 }

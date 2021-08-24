@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Location } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Product } from '@musicr/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
@@ -13,7 +14,9 @@ export class ProductDetailComponent {
   @Input() priceOptions: NzSelectOptionInterface[] = [];
   total: number;
 
+  constructor(private location: Location) {}
+
   onBack(): void {
-    console.log('onBack');
+    this.location.back();
   }
 }

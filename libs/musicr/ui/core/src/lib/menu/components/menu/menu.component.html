@@ -1,5 +1,5 @@
 <nz-affix class="desktop-menu">
-  <div nz-row nzJustify="space-around" nzAlign="middle" style="padding: 16px">
+  <div nz-row nzJustify="space-around" nzAlign="middle" class="padding-16">
     <div nz-col nzSpan="5">
       <a href="home"><img alt="Music Revolution logo" src="assets/img/Logo_Mobile_1.svg" /></a>
     </div>
@@ -14,12 +14,7 @@
             >
               {{ subcategory.name | uppercase }}
             </li>
-            <li
-              nz-menu-item
-              (click)="goToCatalog(category.id, false)"
-            >
-              Ver todos
-            </li>
+            <li nz-menu-item (click)="goToCatalog(category.id, false)">VER TODOS</li>
           </ul>
         </li>
       </ul>
@@ -42,7 +37,7 @@
 </nz-affix>
 
 <nz-affix class="mobile-menu">
-  <div nz-row nzJustify="space-around" nzAlign="middle" style="padding: 16px">
+  <div nz-row nzJustify="space-around" nzAlign="middle" class="padding-16">
     <div nz-col nzSpan="5">
       <button nz-button nzType="text" (click)="openMenu()"><i nz-icon nzType="menu" nzTheme="outline"></i></button>
     </div>
@@ -77,13 +72,20 @@
         <li
           *ngFor="let category of categories"
           nz-submenu
-          [(nzOpen)]="openMap[category.id.toString()]"
-          (nzOpenChange)="openHandler(category.id)"
           nz-submenu
           nzTitle="{{ category.name }}"
+          (nzOpenChange)="openHandler(category.id)"
+          [(nzOpen)]="openMap[category.id.toString()]"
         >
           <ul>
-            <li *ngFor="let subcategory of category.subcategories" nz-menu-item>{{ subcategory.name | uppercase }}</li>
+            <li
+              *ngFor="let subcategory of category.subcategories"
+              nz-menu-item
+              (click)="goToCatalog(subcategory.id, true)"
+            >
+              {{ subcategory.name | uppercase }}
+            </li>
+            <li nz-menu-item (click)="goToCatalog(category.id, false)">VER TODOS</li>
           </ul>
         </li>
       </ul>
@@ -124,12 +126,12 @@
   <div nz-row>
     <div nz-col nzSpan="2">
       <button nz-button nzType="text" (click)="closeMenu()">
-        <i nz-icon nzType="close" nzTheme="outline" style="color: white"></i>
+        <i nz-icon nzType="close" nzTheme="outline" class="white-icon"></i>
       </button>
     </div>
-    <div nz-col nzSpan="2" style="margin-left: auto">
+    <div nz-col nzSpan="2" nzOffset="20">
       <button nz-button nzType="text" (click)="openMenu()">
-        <i nz-icon nzType="shopping" nzTheme="outline" style="color: white"></i>
+        <i nz-icon nzType="shopping" nzTheme="outline" class="white-icon"></i>
       </button>
     </div>
   </div>

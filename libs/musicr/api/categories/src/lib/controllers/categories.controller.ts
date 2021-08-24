@@ -15,6 +15,11 @@ export class CategoriesController {
     return this.categoriesService.getCategories(filterDto);
   }
 
+  @Get(':id')
+  async getCategory(@Param('id', ParseIntPipe) id: number): Promise<Category> {
+    return this.categoriesService.getCategory(id);
+  }
+
   @Post()
   async createCategory(@Body() createCategoryDto: CreateCategoryDto): Promise<Category> {
     return this.categoriesService.createCategory(createCategoryDto);
