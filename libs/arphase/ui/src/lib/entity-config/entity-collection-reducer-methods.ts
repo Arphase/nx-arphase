@@ -13,7 +13,6 @@ export interface ApsEntityCollection<T> extends EntityCollection {
   currentItem: T;
   loadingModify: boolean;
   info: ApsCollectionResponseInfo;
-  hasMore: boolean;
 }
 
 export interface ApsEntityAction extends EntityAction {

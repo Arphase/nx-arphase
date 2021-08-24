@@ -53,6 +53,9 @@ export class PlaceEntity extends BaseEntity implements Place {
   @Column()
   beds: number;
 
+  @Column({ default: false })
+  active: boolean;
+
   @Column()
   categoryId: number;
 

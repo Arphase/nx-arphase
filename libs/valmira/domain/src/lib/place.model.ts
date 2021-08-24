@@ -13,6 +13,7 @@ export interface Place {
   weekendPrice: number;
   rooms: number;
   beds: number;
+  active: boolean;
   category?: Category;
   categoryId?: number;
   photos?: Photo[];

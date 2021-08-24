@@ -1,4 +1,6 @@
-import { IsNumber, IsString } from 'class-validator';
+import { Photo } from '@valmira/domain';
+import { Type } from 'class-transformer';
+import { IsArray, IsBoolean, IsNumber, IsString, ValidateNested } from 'class-validator';
 
 export class CreatePlaceDto {
   @IsString()
@@ -9,6 +11,9 @@ export class CreatePlaceDto {
 
   @IsNumber()
   capacity: number;
+
+  @IsBoolean()
+  active: boolean;
 
   @IsNumber()
   area: number;
@@ -30,4 +35,20 @@ export class CreatePlaceDto {
 
   @IsString({ each: true })
   services: string[];
+
+  @IsArray()
+  @ValidateNested()
+  @Type(() => CreatePlacePhotoDto)
+  photos: Photo[];
+}
+
+export class CreatePlacePhotoDto {
+  @IsNumber()
+  id: number;
+
+  @IsString()
+  key: string;
+
+  @IsString()
+  path: string;
 }

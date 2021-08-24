@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PlaceFormContainerComponent } from './containers/place-form-container/place-form-container.component';
 import { PlaceListContainerComponent } from './containers/place-list-container/place-list-container.component';
 import { PlacesComponent } from './places.component';
+import { PlaceResolverService } from './resolvers/place-resolver.service';
 
 export const routes: Routes = [
   {
@@ -17,6 +18,11 @@ export const routes: Routes = [
       {
         path: 'new',
         component: PlaceFormContainerComponent,
+      },
+      {
+        path: ':id',
+        component: PlaceFormContainerComponent,
+        resolve: { resolvedItem: PlaceResolverService },
       },
     ],
   },

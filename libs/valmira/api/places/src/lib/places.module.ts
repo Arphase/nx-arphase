@@ -10,5 +10,6 @@ import { PlacesService } from './services/places.service';
   imports: [AuthModule, TypeOrmModule.forFeature([PlaceEntity, ReservationEntity])],
   controllers: [PlacesController],
   providers: [PlacesService],
+  exports: [PlacesService],
 })
 export class PlacesModule {}

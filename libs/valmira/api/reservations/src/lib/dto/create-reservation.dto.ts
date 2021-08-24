@@ -28,6 +28,10 @@ export class CreateReservationDto {
 }
 
 export class CreateCustomerDto {
+  @IsOptional()
+  @IsNumber()
+  id: number;
+
   @IsString()
   firstName: string;
 

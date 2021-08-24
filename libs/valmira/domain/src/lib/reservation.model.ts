@@ -5,6 +5,8 @@ import { ReservationAdditionalProduct } from './reservation-additional-product.m
 
 export interface Reservation {
   id?: number;
+  createdAt: Date;
+  updatedAt: Date;
   startDate: Date;
   endDate: Date;
   status: ReservationStatus | string;
