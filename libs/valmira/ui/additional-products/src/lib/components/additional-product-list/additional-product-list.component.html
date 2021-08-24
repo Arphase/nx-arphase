@@ -79,7 +79,7 @@
     <tr *ngFor="let item of table.data"
         nz-row>
       <td nz-col
-          nzXs="16"
+          nzXs="20"
           nzMd="6"
           nzLg="6">{{ item?.name | empty }}</td>
       <td nz-col
@@ -95,7 +95,8 @@
           nzMd="4"
           nzLg="4">{{ item?.createdAt | date: 'dd/MM/yy' | empty }}</td>
       <td nz-col
-          nzSpan="4"
+          nzXs="4"
+          nzLg="4"
           class="flex-end">
         <button nz-button
                 nzType="text"

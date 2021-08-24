@@ -1,5 +1,4 @@
 export * from './lib/additional-product.model';
-export * from './lib/category.model';
 export * from './lib/customer.model';
 export * from './lib/photo.model';
 export * from './lib/place.model';

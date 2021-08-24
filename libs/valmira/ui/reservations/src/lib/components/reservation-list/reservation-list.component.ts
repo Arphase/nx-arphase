@@ -40,19 +40,25 @@ export class ReservationListComponent extends ApsListComponent<Reservation> {
       label: 'Reserva',
       prop: 'reservation.createdAt',
       colSizes: {
-        md: 4,
         lg: 4,
       },
     },
     {
       label: 'Importe',
       prop: 'reservation.total',
-      colSizes: { lg: 4 },
+      colSizes: {
+        md: 4,
+        lg: 4,
+      },
     },
     {
       label: 'Estatus',
       prop: 'reservation.status',
-      colSizes: { lg: 4 },
+      colSizes: {
+        xs: 8,
+        md: 4,
+        lg: 4,
+      },
     },
   ];
 

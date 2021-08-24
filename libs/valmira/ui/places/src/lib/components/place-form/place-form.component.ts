@@ -9,8 +9,9 @@ import {
 } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators, getBase64, setFormArrayValue } from '@arphase/ui';
-import { Place } from '@valmira/domain';
+import { Place, PlaceCategories } from '@valmira/domain';
 import { VALMIRA_CONFIGURATION, ValmiraConfiguration } from '@valmira/ui/core';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 
 export function createPlaceForm(): FormGroup {
@@ -25,7 +26,7 @@ export function createPlaceForm(): FormGroup {
     rooms: new FormControl(null, ApsValidators.required),
     beds: new FormControl(null, ApsValidators.required),
     services: new FormArray([]),
-    categoryId: new FormControl(null, ApsValidators.required),
+    category: new FormControl(null, ApsValidators.required),
   });
 }
 
@@ -40,6 +41,20 @@ export class PlaceFormComponent extends ApsFormComponent<Place> implements OnCha
   previewImage: string | undefined = '';
   previewVisible = false;
   photosUrl: string;
+  categoryOptions: NzSelectOptionInterface[] = [
+    {
+      label: 'Premium',
+      value: PlaceCategories[PlaceCategories.premium],
+    },
+    {
+      label: 'Parejas',
+      value: PlaceCategories[PlaceCategories.couple],
+    },
+    {
+      label: 'Niños',
+      value: PlaceCategories[PlaceCategories.kids],
+    },
+  ];
   @Output() removePhoto = new EventEmitter<number>();
 
   handlePreview = async (file: NzUploadFile) => {
