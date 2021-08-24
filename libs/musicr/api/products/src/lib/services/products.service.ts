@@ -25,7 +25,7 @@ export class ProductsService {
 
     filterCollectionQuery('product', query, filterDto);
 
-    const products = await query.getMany();
+    const products = await query.leftJoinAndSelect('product.photos', 'photos').getMany();
     const total = await query.getCount();
     return createCollectionResponse<Product>(products, pageSize, pageIndex, total);
   }

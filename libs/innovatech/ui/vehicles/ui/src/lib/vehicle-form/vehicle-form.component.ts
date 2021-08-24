@@ -13,7 +13,7 @@ import { Vehicle, VEHICLE_VIN_LENGTH } from '@innovatech/common/domain';
 import { ApsFormComponent } from '@arphase/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { QueryParams } from '@ngrx/data';
-import { omit } from 'lodash-es';
+import { omit } from 'lodash';
 import { filter } from 'rxjs/operators';
 
 export function createVehicleForm(vehicle?: Vehicle) {
