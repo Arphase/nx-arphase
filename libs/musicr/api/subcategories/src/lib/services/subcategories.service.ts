@@ -25,6 +25,11 @@ export class SubcategoriesService {
     return createCollectionResponse<Subcategory>(subcategories, pageSize, pageIndex, total);
   }
 
+  async getSubCategory(id: number): Promise<Subcategory> {
+    const subcategory = await this.subcategoryRepository.findOne({ id });
+    return subcategory;
+  }
+
   async createSubcategory(subcategory: CreateSubcategoryDto): Promise<Subcategory> {
     const found = await this.subcategoryRepository.findOne(subcategory);
     if (found) {

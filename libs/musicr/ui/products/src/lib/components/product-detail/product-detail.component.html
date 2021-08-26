@@ -1,0 +1,38 @@
+<div class="center">
+  <div nz-row class="margin-top-64">
+    <div nz-col nzXs="24" nzLg="12">
+      <div class="product-photo">
+        <img [src]="product?.photos[0]?.url" alt="Foto del producto" />
+        <button nz-button class="img-icon" nzType="text" (click)="onBack()">
+          <i nz-icon nzType="arrow-left" nzTheme="outline"></i>
+        </button>
+      </div>
+    </div>
+    <div class="space" nz-col nzXs="24" nzLg="12">
+      <nz-page-header class="site-page-header" (nzBack)="onBack()" nzBackIcon></nz-page-header>
+      <h1>{{ product?.name }}</h1>
+      <div nz-row class="disclaimer">
+        <div nz-col nzXs="2" nzLg="1">
+          <i nz-icon nzType="check-circle" nzTheme="outline"></i>
+        </div>
+        <div nz-col nzXs="22" nzLg="23">{{ product?.disclaimer }}</div>
+      </div>
+      <h2>Incluye</h2>
+      <nz-divider></nz-divider>
+      <div *ngFor="let productComponent of product?.productComponents">
+        {{ productComponent }}
+        <nz-divider class="no-margin"></nz-divider>
+      </div>
+
+      <nz-select *ngIf="priceOptions?.length" apsAutoSelect formControlName="amount" [nzOptions]="priceOptions">
+      </nz-select>
+      <h2 class="total-price">{{ product?.price | currency }}</h2>
+      <button nz-button type="button" class="cart-button">Agregar al carrito</button>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="24" class="disclaimer">
+      <p>Servicios Relacionados</p>
+    </div>
+  </div>
+</div>

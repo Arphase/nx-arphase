@@ -9,7 +9,6 @@ import { UpdateProductDto } from '../dto/update-product.dto';
 import { ProductsService } from '../services/products.service';
 
 @Controller('products')
-@UseGuards(AuthGuard('jwt'))
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
