@@ -1,6 +1,5 @@
 import {
   AdditionalProductEntity,
-  CategoryEntity,
   CustomerEntity,
   PhotoEntity,
   PlaceEntity,
@@ -13,7 +12,6 @@ import {
 
 export const ENTITIES = [
   AdditionalProductEntity,
-  CategoryEntity,
   CustomerEntity,
   PhotoEntity,
   PlaceEntity,

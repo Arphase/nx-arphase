@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from '@valmira/api/domain';
+import { ResetPasswordEntity, UserEntity } from '@valmira/api/domain';
 
 import { AuthController } from './controllers/auth.controller';
 import { JwtStrategy } from './jwt.strategy';
@@ -15,7 +15,7 @@ import { AuthService } from './services/auth.service';
       signOptions: { expiresIn: Number(process.env.JWT_EXPIRATION) },
     }),
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    TypeOrmModule.forFeature([UserEntity]),
+    TypeOrmModule.forFeature([ResetPasswordEntity, UserEntity]),
   ],
   controllers: [AuthController],
   providers: [JwtStrategy, AuthService],
