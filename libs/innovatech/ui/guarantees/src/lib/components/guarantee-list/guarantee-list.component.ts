@@ -28,7 +28,7 @@ import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.co
 })
 export class GuaranteeListComponent extends ApsListComponent<Guarantee> implements OnChanges {
   @Input() clearSelected: boolean;
-  @Input() canModifyPaymentOrders: boolean;
+  @Input() canCreateGuarantee: boolean;
   dateTypeOptions = guaranteeDateTypeOptions;
   statusOptions = statusOptions;
   checked = false;
@@ -50,7 +50,7 @@ export class GuaranteeListComponent extends ApsListComponent<Guarantee> implemen
   }
 
   get showPaymentOrderButton(): boolean {
-    return (this.checked || this.indeterminate) && this.canModifyPaymentOrders;
+    return this.checked || this.indeterminate;
   }
 
   ngOnChanges(changes: SimpleChanges) {
