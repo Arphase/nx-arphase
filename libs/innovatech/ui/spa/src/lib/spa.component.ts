@@ -26,7 +26,11 @@ export class SpaComponent implements OnInit {
       icon: 'file-text',
       header: 'Garantías',
       path: ['guarantees'],
-      display$: this.permissionService.hasReadPermission([UserRoles.superAdmin, UserRoles.agencyUser]),
+      display$: this.permissionService.hasReadPermission([
+        UserRoles.superAdmin,
+        UserRoles.agencyUser,
+        UserRoles.repairman,
+      ]),
     },
     {
       icon: 'usergroup-add',

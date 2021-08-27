@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ApsDirtyFormGuard } from '@arphase/ui';
+import { UserRoles } from '@innovatech/common/domain';
+import { RoleGuard } from '@innovatech/ui/auth/data';
 
 import { GuaranteeFormContainerComponent } from './containers/guarantee-form-container/guarantee-form-container.component';
 import { GuaranteeListContainerComponent } from './containers/guarantee-list-container/guarantee-list-container.component';
@@ -19,6 +21,8 @@ export const routes: Routes = [
       {
         path: 'new',
         component: GuaranteeFormContainerComponent,
+        canActivate: [RoleGuard],
+        data: { roles: [UserRoles.superAdmin, UserRoles.agencyUser] },
         canDeactivate: [ApsDirtyFormGuard],
         resolve: { resolvedGuarantee: GuaranteeResolverService },
       },
