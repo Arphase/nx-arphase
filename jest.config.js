@@ -90,5 +90,6 @@ module.exports = {
     '<rootDir>/libs/valmira/ui/additional-products',
     '<rootDir>/libs/valmira/ui/reservations',
     '<rootDir>/libs/valmira/api/photos',
+    '<rootDir>/libs/valmira/ui/categories/feature',
   ],
 };

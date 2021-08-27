@@ -6,5 +6,3 @@ export interface ResetPassword {
   passwordToken: string;
   timestamp: Date;
 }
-
-export const specialCharactersForPassword = ['@', '!', '#', '$', '%', '?', '_'];

@@ -1985,10 +1985,16 @@
             "main": "apps/valmira/admin/src/main.ts",
             "polyfills": "apps/valmira/admin/src/polyfills.ts",
             "tsConfig": "apps/valmira/admin/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/valmira/admin/src/favicon.ico", "apps/valmira/admin/src/assets"],
-            "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/src/styles/themes/base.less"],
-            "scripts": []
+            "assets": [
+              "apps/valmira/admin/src/favicon.ico",
+              "apps/valmira/admin/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/src/styles/themes/base.less"]
           },
           "configurations": {
             "development": {
@@ -2175,27 +2181,6 @@
           "outputs": ["coverage/libs/valmira/api/auth"],
           "options": {
             "jestConfig": "libs/valmira/api/auth/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "valmira-api-categories": {
-      "root": "libs/valmira/api/categories",
-      "sourceRoot": "libs/valmira/api/categories/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/valmira/api/categories/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/api/categories"],
-          "options": {
-            "jestConfig": "libs/valmira/api/categories/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -2512,56 +2497,6 @@
           "outputs": ["coverage/libs/valmira/ui/auth/feature"],
           "options": {
             "jestConfig": "libs/valmira/ui/auth/feature/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "valmira-ui-categories-data": {
-      "projectType": "library",
-      "root": "libs/valmira/ui/categories/data",
-      "sourceRoot": "libs/valmira/ui/categories/data/src",
-      "prefix": "vma",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/valmira/ui/categories/data/src/**/*.ts",
-              "libs/valmira/ui/categories/data/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/categories/data"],
-          "options": {
-            "jestConfig": "libs/valmira/ui/categories/data/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "valmira-ui-categories-ui": {
-      "projectType": "library",
-      "root": "libs/valmira/ui/categories/ui",
-      "sourceRoot": "libs/valmira/ui/categories/ui/src",
-      "prefix": "vma",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/valmira/ui/categories/ui/src/**/*.ts",
-              "libs/valmira/ui/categories/ui/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/categories/ui"],
-          "options": {
-            "jestConfig": "libs/valmira/ui/categories/ui/jest.config.js",
             "passWithNoTests": true
           }
         }

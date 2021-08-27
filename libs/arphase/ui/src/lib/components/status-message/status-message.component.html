@@ -1,13 +1,4 @@
-<nz-alert *ngIf="error"
-          nzType="error"
-          [nzMessage]="message"
-          nzShowIcon></nz-alert>
-<nz-alert *ngIf="success"
-          nzType="success"
-          [nzMessage]="message"
-          nzShowIcon></nz-alert>
-<nz-alert *ngIf="normal"
-          nzType="info"
+<nz-alert [nzType]="status"
           [nzMessage]="message"
           nzShowIcon></nz-alert>
 

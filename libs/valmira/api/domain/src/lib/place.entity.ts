@@ -1,17 +1,14 @@
-import { Category, Photo, Place, Reservation } from '@valmira/domain';
+import { Photo, Place, PlaceCategories, Reservation } from '@valmira/domain';
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
-  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-import { CategoryEntity } from './category.entity';
 import { PhotoEntity } from './photo.entity';
 import { ReservationEntity } from './reservation.entity';
 
@@ -56,12 +53,15 @@ export class PlaceEntity extends BaseEntity implements Place {
   @Column({ default: false })
   active: boolean;
 
-  @Column()
-  categoryId: number;
-
-  @ManyToOne(() => CategoryEntity, category => category.places)
-  @JoinColumn({ name: 'categoryId' })
-  category: Category;
+  @Column({
+    type: 'enum',
+    enum: PlaceCategories,
+    transformer: {
+      to: value => value,
+      from: value => PlaceCategories[value],
+    },
+  })
+  category: PlaceCategories | string;
 
   @OneToMany(() => PhotoEntity, photo => photo.place, {
     cascade: true,

@@ -1,5 +1,4 @@
 export * from './lib/additional-product.entity';
-export * from './lib/category.entity';
 export * from './lib/customer.entity';
 export * from './lib/photo.entity';
 export * from './lib/place.entity';

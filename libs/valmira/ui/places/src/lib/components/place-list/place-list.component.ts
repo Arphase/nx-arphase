@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsColumns, ApsListComponent } from '@arphase/ui';
-import { Place } from '@valmira/domain';
+import { Place, PlaceCategories } from '@valmira/domain';
 
 @Component({
   selector: 'vma-place-list',
@@ -14,7 +14,7 @@ export class PlaceListComponent extends ApsListComponent<Place> {
       label: 'Nombre',
       prop: 'place.name',
       colSizes: {
-        xs: 16,
+        xs: 24,
         md: 8,
         lg: 4,
       },
@@ -22,23 +22,19 @@ export class PlaceListComponent extends ApsListComponent<Place> {
     {
       label: 'Descripción',
       prop: 'place.description',
-      colSizes: {
-        xs: 0,
-        md: 6,
-        lg: 6,
-      },
+      colSizes: { lg: 6 },
     },
     {
       label: 'Capacidad',
       prop: 'place.capacity',
-      colSizes: { lg: 2 },
+      colSizes: { lg: 3 },
     },
     {
       label: 'Cuartos',
       prop: 'place.rooms',
       colSizes: {
         md: 5,
-        lg: 2,
+        lg: 3,
       },
     },
     {
@@ -46,13 +42,22 @@ export class PlaceListComponent extends ApsListComponent<Place> {
       prop: 'place.beds',
       colSizes: {
         md: 4,
-        lg: 2,
+        lg: 3,
       },
     },
     {
       label: 'Categoría',
       prop: 'category.name',
-      colSizes: { lg: 8 },
+      colSizes: {
+        md: 7,
+        lg: 5,
+      },
     },
   ];
+
+  categoryLabels: Record<string, string> = {
+    [PlaceCategories[PlaceCategories.premium]]: 'Premium',
+    [PlaceCategories[PlaceCategories.couple]]: 'Pareja',
+    [PlaceCategories[PlaceCategories.kids]]: 'Niños',
+  };
 }

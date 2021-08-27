@@ -84,24 +84,26 @@
           nzLg="4">{{ item?.name | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzMd="6"
           nzLg="6">{{ item?.description | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="2">{{ item?.capacity | empty }}</td>
+          nzLg="3">{{ item?.capacity | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="5"
-          nzLg="2">{{ item?.rooms | empty }}</td>
-      <td nz-col
-          nzXs="0"
-          nzLg="2">{{ item?.beds | empty }}</td>
+          nzLg="3">{{ item?.rooms | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="4"
-          nzLg="4">{{ item?.category?.name | empty }}</td>
+          nzLg="3">{{ item?.beds | empty }}</td>
       <td nz-col
-          nzSpan="4"
+          nzXs="0"
+          nzMd="4"
+          nzLg="3">{{ categoryLabels[item?.category] | empty }}</td>
+      <td nz-col
+          nzXs="8"
+          nzMd="3"
+          nzLg="2"
           class="flex-end">
         <nz-switch class="mr-2"
                    nz-tooltip
