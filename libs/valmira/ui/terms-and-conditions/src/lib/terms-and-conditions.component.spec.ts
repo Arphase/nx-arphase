@@ -1,25 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { TermsAndConditionsComponent } from './terms-and-conditions.component';
 
 describe('TermsAndConditionsComponent', () => {
-  let component: TermsAndConditionsComponent;
-  let fixture: ComponentFixture<TermsAndConditionsComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ TermsAndConditionsComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<TermsAndConditionsComponent>;
+  const createComponent = createComponentFactory({
+    component: TermsAndConditionsComponent,
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TermsAndConditionsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });
