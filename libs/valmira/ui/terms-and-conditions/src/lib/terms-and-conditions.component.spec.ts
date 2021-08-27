@@ -2,7 +2,7 @@ import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { TermsAndConditionsComponent } from './terms-and-conditions.component';
 
-describe('TermsAndConditionsComponent', () => {
+describe('ApsTermsAndConditionsComponent', () => {
   let spectator: Spectator<TermsAndConditionsComponent>;
   const createComponent = createComponentFactory({
     component: TermsAndConditionsComponent,
