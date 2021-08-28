@@ -16,13 +16,12 @@
 @font-face {
   font-family: 'Ogg';
   src: url('assets/fonts/Ogg-Roman.otf') format('opentype');
-  font-style: italic;
   font-display: swap;
 }
 
 html body {
   font-family: Grotesk;
-  background-color: #ebe8e4;
+  background-color: #cdc8c4;
 }
 
 .flower-2 {
@@ -34,6 +33,10 @@ html body {
 }
 
 h1 {
+  font-family: Ogg;
+}
+
+.date {
   font-family: Ogg;
 }
 

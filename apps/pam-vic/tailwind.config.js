@@ -1,6 +1,6 @@
 module.exports = {
   purge: {
-    enabled: true,
+    enabled: process.env.NODE_ENV === 'production',
     content: ['./apps/pam-vic/src/**/*.html']
   },
   darkMode: false, // or 'media' or 'class'

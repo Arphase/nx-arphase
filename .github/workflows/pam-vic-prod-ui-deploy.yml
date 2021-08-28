@@ -1,7 +1,4 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Innovatech Production UI Deploy
+name: Pam Vic Prod UI Deploy
 
 env:
   NX_BRANCH: ${{ github.event.number }}
@@ -9,7 +6,7 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: ${{ secrets.AWS_REGION }}
-  AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME_PROD }}
+  AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME_PAM_VIC }}
 
 on: workflow_dispatch
 
@@ -19,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: master
+          ref: staging
           fetch-depth: 0
 
       - uses: actions/setup-node@v1
@@ -28,11 +25,11 @@ jobs:
 
       - uses: bahmutov/npm-install@v1
 
-      - name: Build production app
-        run: npx nx build innovatech-app --prod
+      - name: Build staging app
+        run: export NODE_ENV=production && npx nx build pam-vic --prod
 
-      - name: Delete current production app
+      - name: Delete current staging app
         run: npx ts-node scripts/ui-delete-current
 
-      - name: Deploy production app
+      - name: Deploy staging app
         run: npx ts-node scripts/ui-deploy
