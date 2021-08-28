@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Grotesk';
+  src: url('assets/fonts/FoundersGrotesk-Light.otf') format('opentype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Grotesk';
+  src: url('assets/fonts/FoundersGrotesk-LightItalic.otf') format('opentype');
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Ogg';
+  src: url('assets/fonts/Ogg-Roman.otf') format('opentype');
+  font-style: italic;
+  font-display: swap;
+}
+
+html body {
+  font-family: Grotesk;
+  background-color: #ebe8e4;
+}
+
+.flower-2 {
+  margin-right: -120px;
+}
+
+.flower-3 {
+  margin-left: -120px;
+}
+
+h1 {
+  font-family: Ogg;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+  animation: pulse 3s linear infinite;
+}
+
+@keyframes swing {
+  20% {
+    transform: rotate3d(0, 0, 1, 15deg);
+  }
+
+  40% {
+    transform: rotate3d(0, 0, 1, -10deg);
+  }
+
+  60% {
+    transform: rotate3d(0, 0, 1, 5deg);
+  }
+
+  80% {
+    transform: rotate3d(0, 0, 1, -5deg);
+  }
+
+  to {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+}
+
+.swing {
+  transform-origin: top center;
+  animation: swing 3s linear infinite;
+}

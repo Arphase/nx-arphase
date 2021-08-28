@@ -26,6 +26,17 @@
     "@schematics/angular:component": {
       "style": "less",
       "changeDetection": "OnPush"
+    },
+    "@nrwl/web:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/web:library": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
     }
   },
   "projects": {
@@ -1772,11 +1783,9 @@
               "aws-sdk",
               "pg",
               "pg-native",
-              "sqlite3",
               "react-native-sqlite-storage",
               "mssql",
               "sql.js",
-              "better-sqlite3",
               "ioredis",
               "redis",
               "typeorm-aurora-data-api-driver",
@@ -1966,6 +1975,101 @@
           "options": {
             "jestConfig": "libs/musicr/ui/products/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pam-vic": {
+      "projectType": "application",
+      "root": "apps/pam-vic",
+      "sourceRoot": "apps/pam-vic/src",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/pam-vic",
+            "index": "apps/pam-vic/src/index.html",
+            "main": "apps/pam-vic/src/main.ts",
+            "polyfills": "apps/pam-vic/src/polyfills.ts",
+            "tsConfig": "apps/pam-vic/tsconfig.app.json",
+            "assets": ["apps/pam-vic/src/favicon.ico", "apps/pam-vic/src/assets"],
+            "styles": ["apps/pam-vic/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pam-vic/src/environments/environment.ts",
+                  "with": "apps/pam-vic/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "pam-vic:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "pam-vic:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/pam-vic/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/pam-vic"],
+          "options": {
+            "jestConfig": "apps/pam-vic/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pam-vic-e2e": {
+      "root": "apps/pam-vic-e2e",
+      "sourceRoot": "apps/pam-vic-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/pam-vic-e2e/cypress.json",
+            "devServerTarget": "pam-vic:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "pam-vic:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/pam-vic-e2e/**/*.{js,ts}"]
           }
         }
       }
