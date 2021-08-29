@@ -29,7 +29,7 @@ jobs:
         run: npx nx build innovatech-app --c=stage
 
       - name: Delete current staging app
-        run: npx ts-node scripts/innovatech/ui-delete-current
+        run: npx ts-node scripts/ui-delete-current
 
       - name: Deploy staging app
-        run: npx ts-node scripts/innovatech/ui-deploy
+        run: npx ts-node scripts/ui-deploy

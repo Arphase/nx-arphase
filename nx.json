@@ -237,6 +237,13 @@
     "musicr-ui-products": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
+    "pam-vic": {
+      "tags": []
+    },
+    "pam-vic-e2e": {
+      "tags": [],
+      "implicitDependencies": ["pam-vic"]
+    },
     "valmira-admin": {
       "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
     },
