@@ -17,7 +17,7 @@ async function run() {
   const s3 = new S3();
   const Bucket = String(process.env.AWS_BUCKET_NAME);
 
-  const distFolderPath = path.join(__dirname, '../../dist/apps/innovatech/app');
+  const distFolderPath = path.join(__dirname, process.env.DIST_APP_DIR);
 
   function walk(rootdir: string, callback: any, subdir: string) {
     const isSubdir = subdir ? true : false;
