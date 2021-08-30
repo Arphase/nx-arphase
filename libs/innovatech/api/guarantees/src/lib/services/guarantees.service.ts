@@ -196,7 +196,7 @@ export class GuaranteesService {
       return newGuarantee;
     } catch (err) {
       await queryRunner.rollbackTransaction();
-      throw new BadRequestException(err.message);
+      throw new InternalServerErrorException({ ...err, message: err.detail });
     } finally {
       await queryRunner.release();
     }

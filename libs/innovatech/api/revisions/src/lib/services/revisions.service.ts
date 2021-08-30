@@ -3,7 +3,7 @@ import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { filterCommonQuery } from '@innovatech/api/core/util';
 import { RevisionEntity, VehicleEntity } from '@innovatech/api/domain';
 import { Revision, RevisionStatus, User, VehicleStatus } from '@innovatech/common/domain';
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import dayjs from 'dayjs';
 import { Connection, FindOneOptions, QueryRunner, Repository } from 'typeorm';
@@ -76,12 +76,13 @@ export class RevisionsService {
     try {
       const newRevision = this.revisionRepository.create(createRevisionDto);
       await queryRunner.manager.save(newRevision);
-      await newRevision.reload();
       await this.updateVehicleStatus(createRevisionDto.status, newRevision.vehicleId, queryRunner);
       await queryRunner.commitTransaction();
+      await newRevision.reload();
       return newRevision;
     } catch (err) {
       await queryRunner.rollbackTransaction();
+      throw new InternalServerErrorException({ ...err, message: err.detail });
     } finally {
       await queryRunner.release();
     }
@@ -104,6 +105,7 @@ export class RevisionsService {
       return updatedRevision;
     } catch (err) {
       await queryRunner.rollbackTransaction();
+      throw new InternalServerErrorException({ ...err, message: err.detail });
     } finally {
       await queryRunner.release();
     }
@@ -135,6 +137,7 @@ export class RevisionsService {
       return revision;
     } catch (err) {
       await queryRunner.rollbackTransaction();
+      throw new InternalServerErrorException({ ...err, message: err.detail });
     } finally {
       await queryRunner.release();
     }
