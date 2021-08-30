@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.2](https://github.com/Arphase/nx-arphase/compare/v3.3.1...v3.3.2) (2021-08-30)
+
+
+### Features
+
+* **pam-vic:** apply new colors and sizes ([a78d29a](https://github.com/Arphase/nx-arphase/commit/a78d29ae7fa9f73913812e04a2a1497315b9ffcd))
+* **pam-vic:** project setup ([0282247](https://github.com/Arphase/nx-arphase/commit/028224717397da3cfd3b21628b7acfbca78fdc53))
+
 ### [3.3.1](https://github.com/Arphase/nx-arphase/compare/v3.3.0...v3.3.1) (2021-08-27)
 
 
