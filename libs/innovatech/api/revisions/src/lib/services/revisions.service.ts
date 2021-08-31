@@ -99,9 +99,9 @@ export class RevisionsService {
 
     try {
       const updatedRevision = await queryRunner.manager.save(preloadedRevision);
-      await preloadedRevision.reload();
       await this.updateVehicleStatus(updateRevisionDto.status, preloadedRevision.vehicleId, queryRunner);
       await queryRunner.commitTransaction();
+      await preloadedRevision.reload();
       return updatedRevision;
     } catch (err) {
       await queryRunner.rollbackTransaction();

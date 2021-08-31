@@ -191,8 +191,8 @@ export class GuaranteesService {
         userId: user.id,
       });
       await queryRunner.manager.save(newGuarantee);
-      await newGuarantee.reload();
       await queryRunner.commitTransaction();
+      await newGuarantee.reload();
       return newGuarantee;
     } catch (err) {
       await queryRunner.rollbackTransaction();
@@ -238,8 +238,8 @@ export class GuaranteesService {
         this.validateVehicle(vehicle, user);
       }
       await preloadedGuarantee.save();
-      await preloadedGuarantee.reload();
       await queryRunner.commitTransaction();
+      await preloadedGuarantee.reload();
       return preloadedGuarantee;
     } catch (err) {
       await queryRunner.rollbackTransaction();
