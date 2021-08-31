@@ -21,7 +21,7 @@
 
 html body {
   font-family: Grotesk;
-  background-color: #cdc8c4;
+  background-color: #dfdcd5;
 }
 
 .flower-2 {
@@ -82,5 +82,5 @@ h1 {
 
 .swing {
   transform-origin: top center;
-  animation: swing 3s linear infinite;
+  animation: swing 8s linear infinite;
 }
