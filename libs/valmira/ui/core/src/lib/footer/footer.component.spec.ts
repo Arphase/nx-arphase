@@ -1,11 +1,12 @@
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { LandingComponent } from './landing.component';
 
-describe('LandingComponent', () => {
-  let spectator: Spectator<LandingComponent>;
+import { FooterComponent } from './footer.component';
+import { Spectator, createComponentFactory } from '@ngneat/spectator';
+
+describe('FooterComponent', () => {
+  let spectator: Spectator<FooterComponent>;
   const createComponent = createComponentFactory({
-    component: LandingComponent,
+    component: FooterComponent,
     shallow: true,
   });
 

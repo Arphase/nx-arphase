@@ -1,0 +1,154 @@
+h1 {
+  font-size: 81px;
+  @media only screen and (max-width: 768px) {
+    font-size: 24px;
+  }
+}
+
+h2 {
+  font-size: 54px;
+}
+
+h3 {
+  font-size: 36px;
+}
+
+div {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+p {
+  font-size: 16px;
+}
+
+hr {
+  margin: 96px;
+}
+
+.italic {
+  color: #b7400b;
+}
+
+.sun {
+  min-width: 88px;
+  right: 50px;
+  @media only screen and (max-width: 768px) {
+    font-size: 24px;
+    line-height: 24.24px;
+    margin-left: auto;
+    margin-right: auto;
+    right: 0;
+  }
+}
+
+.pine {
+  min-width: 96px;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.pine-2 {
+  margin: 200px 0;
+}
+
+.pines {
+  min-width: 85px;
+  float: right;
+  margin: 105px 104px;
+  position: absolute;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.mobile-icon {
+  margin-bottom: 20px;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.leaf {
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.container {
+  position: relative;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.float {
+  vertical-align: middle;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #eae1d3;
+  @media only screen and (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.midrow {
+  bottom: -175px;
+  margin-bottom: 50px;
+  @media only screen and (max-width: 768px) {
+    bottom: 0;
+  }
+}
+
+.subfooter {
+  padding: 150px 0;
+  text-align: center;
+  background-color: #cbc6b7;
+  @media only screen and (max-width: 768px) {
+    background-color: #b7400b;
+    h2 {
+      color: #eae1d3;
+    }
+  }
+}
+
+.footer {
+  padding: 150px 0;
+  background-color: #1d2b15;
+  color: #eae1d3 !important;
+}
+
+.circle {
+  height: 250px;
+  width: $height * 2;
+  background-color: #cbc6b7;
+  border-top-left-radius: $height + 10px;
+  border-top-right-radius: $height + 10px;
+  border: 10px solid #cbc6b7;
+  border-bottom: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5px;
+  position: absolute;
+  bottom: 0px;
+  right: 4vw;
+  color: #1d2b15;
+  @media only screen and (max-width: 768px) {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -30px;
+    position: relative;
+    right: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: $height + 10px;
+    border-bottom-right-radius: $height + 10px;
+  }
+}
