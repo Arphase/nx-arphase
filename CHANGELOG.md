@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.3](https://github.com/Arphase/nx-arphase/compare/v3.3.2...v3.3.3) (2021-08-31)
+
+
+### Bug Fixes
+
+* **innovatech/guarantees:** reload entity after save ([8395f2e](https://github.com/Arphase/nx-arphase/commit/8395f2eea85bbb82a7e095693e90320a52699158))
+* **innovatech/revisions:** reload entity after save ([b97dcde](https://github.com/Arphase/nx-arphase/commit/b97dcde46bc57cd4ed3bfb7ab0f99ddf2c5aa130))
+
 ### [3.3.2](https://github.com/Arphase/nx-arphase/compare/v3.3.1...v3.3.2) (2021-08-30)
 
 
