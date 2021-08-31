@@ -8,7 +8,7 @@ describe('AppComponent', () => {
   const createComponent = createComponentFactory({
     imports: [RouterTestingModule],
     component: AppComponent,
-    schemas: [NO_ERRORS_SCHEMA],
+    shallow: true,
   });
 
   beforeEach(() => (spectator = createComponent()));

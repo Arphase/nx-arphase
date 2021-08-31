@@ -7,7 +7,7 @@ describe('FooterComponent', () => {
   let spectator: Spectator<FooterComponent>;
   const createComponent = createComponentFactory({
     component: FooterComponent,
-    schemas: [NO_ERRORS_SCHEMA],
+    shallow: true,
   });
 
   beforeEach(() => (spectator = createComponent()));

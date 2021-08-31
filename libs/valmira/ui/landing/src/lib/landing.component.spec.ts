@@ -6,7 +6,7 @@ describe('LandingComponent', () => {
   let spectator: Spectator<LandingComponent>;
   const createComponent = createComponentFactory({
     component: LandingComponent,
-    schemas: [NO_ERRORS_SCHEMA],
+    shallow: true,
   });
 
   beforeEach(() => (spectator = createComponent()));

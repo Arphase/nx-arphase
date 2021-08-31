@@ -7,7 +7,7 @@ describe('ApsFormContainerComponent', () => {
   let spectator: Spectator<MenuComponent>;
   const createComponent = createComponentFactory({
     component: MenuComponent,
-    schemas: [NO_ERRORS_SCHEMA],
+    shallow: true,
   });
 
   beforeEach(() => (spectator = createComponent()));
