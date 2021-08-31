@@ -1,27 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { FooterComponent } from './footer.component';
+import { Spectator, createComponentFactory } from '@ngneat/spectator';
 
 describe('FooterComponent', () => {
-  let component: FooterComponent;
-  let fixture: ComponentFixture<FooterComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ FooterComponent ],
-      schemas:[NO_ERRORS_SCHEMA]
-    })
-    .compileComponents();
+  let spectator: Spectator<FooterComponent>;
+  const createComponent = createComponentFactory({
+    component: FooterComponent,
+    schemas: [NO_ERRORS_SCHEMA],
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FooterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });
