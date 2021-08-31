@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.3](https://github.com/Arphase/nx-arphase/compare/v3.3.2...v3.3.3) (2021-08-31)
+
+
+### Bug Fixes
+
+* **innovatech/guarantees:** reload entity after save ([8395f2e](https://github.com/Arphase/nx-arphase/commit/8395f2eea85bbb82a7e095693e90320a52699158))
+* **innovatech/revisions:** reload entity after save ([b97dcde](https://github.com/Arphase/nx-arphase/commit/b97dcde46bc57cd4ed3bfb7ab0f99ddf2c5aa130))
+
+### [3.3.2](https://github.com/Arphase/nx-arphase/compare/v3.3.1...v3.3.2) (2021-08-30)
+
+
+### Features
+
+* **pam-vic:** apply new colors and sizes ([a78d29a](https://github.com/Arphase/nx-arphase/commit/a78d29ae7fa9f73913812e04a2a1497315b9ffcd))
+* **pam-vic:** project setup ([0282247](https://github.com/Arphase/nx-arphase/commit/028224717397da3cfd3b21628b7acfbca78fdc53))
+
+### [3.3.1](https://github.com/Arphase/nx-arphase/compare/v3.3.0...v3.3.1) (2021-08-27)
+
+
+### Features
+
+* **innovatech/guarantees:** allow repairman users to see guarantees module ([0d7e02a](https://github.com/Arphase/nx-arphase/commit/0d7e02a7a1750012fa7143747e33665b95526012))
+* **musicr/ui:** [#152](https://github.com/Arphase/nx-arphase/issues/152) Add products catalog. Recieve menu categories from endpoint ([0d9e94e](https://github.com/Arphase/nx-arphase/commit/0d9e94ed438927dd48bb84e6beb375b35a310cbb))
+* **musicr/ui:** Add products catalog and details ([89ea163](https://github.com/Arphase/nx-arphase/commit/89ea16364b2d80c46404a898d32e6e65fb30ab43))
+* **musicr/ui:** Styles for mobile. Change tests to spectator ([effe36f](https://github.com/Arphase/nx-arphase/commit/effe36fcbd5b43052be6674e834713d50586e210))
+* **valmira/auth:** [#136](https://github.com/Arphase/nx-arphase/issues/136) reset password ([046a88b](https://github.com/Arphase/nx-arphase/commit/046a88b080d5f4253bbf9cddf5b0fb72bf0c5e50))
+* **valmira/places:** set category as enum ([0451c20](https://github.com/Arphase/nx-arphase/commit/0451c20f97c41032e8bccd9db701a2458cda3089))
+
 ## [3.3.0](https://github.com/Arphase/nx-arphase/compare/v3.2.0...v3.3.0) (2021-08-24)
 
 

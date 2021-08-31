@@ -8,12 +8,14 @@
             nzSpan="24"
             nzSize="middle">
     <nz-page-header nzBackIcon
-                    [nzTitle]="item?.id ? 'Editar Alojamiento' : 'Nuevo Alojamiento'"
+                    [nzTitle]="item?.id ? 'Editar producto' : 'Nuevo producto'"
                     [routerLink]="['..']"></nz-page-header>
     <div nz-row
          [nzGutter]="12">
       <div nz-col
-           nzSpan="12">
+           nzXs="24"
+           nzMd="12"
+           nzLg="12">
         <nz-form-item>
           <nz-form-label nzRequired>Nombre</nz-form-label>
           <nz-form-control apsAutoError>
@@ -23,7 +25,9 @@
         </nz-form-item>
       </div>
       <div nz-col
-           nzSpan="12">
+           nzXs="24"
+           nzMd="12"
+           nzLg="12">
         <nz-form-item>
           <nz-form-label nzRequired>Precio</nz-form-label>
           <nz-form-control apsAutoError>

@@ -237,6 +237,13 @@
     "musicr-ui-products": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
+    "pam-vic": {
+      "tags": []
+    },
+    "pam-vic-e2e": {
+      "tags": [],
+      "implicitDependencies": ["pam-vic"]
+    },
     "valmira-admin": {
       "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
     },
@@ -251,9 +258,6 @@
       "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
     "valmira-api-auth": {
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
-    },
-    "valmira-api-categories": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
     "valmira-api-domain": {
@@ -289,12 +293,6 @@
     },
     "valmira-ui-auth-feature": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-categories-data": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
-    },
-    "valmira-ui-categories-ui": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:ui"]
     },
     "valmira-ui-core": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:util"]

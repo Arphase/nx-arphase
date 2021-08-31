@@ -1,5 +1,5 @@
 import { AuthService, SignUpCredentialsDto } from '@valmira/api/auth';
-import { UserEntity } from '@valmira/api/domain';
+import { ResetPasswordEntity, UserEntity } from '@valmira/api/domain';
 import { ConnectionOptions, createConnection } from 'typeorm';
 
 import config from '../config/ormconfig';
@@ -12,7 +12,12 @@ async function run() {
   };
 
   const connection = await createConnection(opt as ConnectionOptions);
-  const authService = new AuthService(connection.getRepository(UserEntity), null);
+  const authService = new AuthService(
+    connection.getRepository(UserEntity),
+    connection.getRepository(ResetPasswordEntity),
+    null,
+    null
+  );
 
   const users: SignUpCredentialsDto[] = [
     {

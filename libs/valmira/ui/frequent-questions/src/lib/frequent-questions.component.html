@@ -1,1 +1,74 @@
-<p>frequent-questions works!</p>
+<div nz-row
+     nzJustify="space-around"
+     class="menu">
+  <div nz-col
+       nzSpan="20">
+    <h3>VALMIRA</h3>
+  </div>
+  <div nz-col
+       nzSpan="1">MENÚ</div>
+</div>
+<div class="contenido">
+  <div class="text">
+    <div nz-row>
+      <div nz-col>
+        <h2>Preguntras<br> Frecuentes</h2>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col
+           nzSpan="24">
+        <nz-collapse nzExpandIconPosition="right"
+                     nzGhost
+                     *ngFor="let question of FrequentQuestions">
+          <nz-divider></nz-divider>
+          <nz-collapse-panel #expansionPanel
+                             [nzHeader]="question.question"
+                             [nzActive]="false"
+                             [nzExpandedIcon]="expandedIcon">
+            <ng-template #expandedIcon
+                         let-active>
+              {{ active }}
+              <i nz-icon
+                 [nzType]="expansionPanel.nzActive ? 'minus' : 'plus'"
+                 class="ant-collapse-arrow"></i>
+            </ng-template>
+            <div nz-col
+                 nzSpan="24">
+              <p>{{question.answer}}</p>
+
+            </div>
+          </nz-collapse-panel>
+          <nz-divider></nz-divider>
+        </nz-collapse>
+      </div>
+    </div>
+  </div>
+  <div class="images">
+    <img src="assets/img/moon.svg"
+         alt="moon"
+         class="moon">
+    <img src="assets/img/circle.svg"
+         alt="circle"
+         class="circle">
+    <img src="assets/img/grass.svg"
+         alt="grass"
+         class="grass">
+    <img src="assets/img/pine-tree.svg"
+         alt="pine tree1"
+         class="pine-tree1">
+    <img src="assets/img/pine-tree.svg"
+         alt="pine tree2"
+         class="pine-tree2">
+    <img src="assets/img/pine-tree-clear.svg"
+         alt="pine-tree-clear"
+         class="pine-tree-clear">
+  </div>
+</div>
+<div nz-row
+     class="footer">
+  <div nz-col
+       nzSpan="24">
+    <h1>Reserva tu alojamiento.</h1>
+  </div>
+</div>

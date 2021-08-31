@@ -63,6 +63,7 @@
           nzLg="4">{{ item?.startDate | date: 'dd/MM/yy' | empty }}</td>
       <td nz-col
           nzXs="0"
+          nzMd="4"
           nzLg="4">{{ item?.endDate | date: 'dd/MM/yy' | empty }}</td>
       <td nz-col
           nzXs="0"
@@ -72,7 +73,7 @@
           nzMd="4"
           nzLg="4">{{ item?.total | currency | empty }}</td>
       <td nz-col
-          nzXs="0"
+          nzXs="4"
           nzMd="2"
           nzLg="2">
         <nz-tag nz-tooltip
@@ -84,8 +85,9 @@
         </nz-tag>
       </td>
       <td nz-col
-          nzXs="3"
-          nzMd="2">
+          nzXs="4"
+          nzMd="2"
+          class="flex-end">
         <button nz-button
                 nz-dropdown
                 [nzDropdownMenu]="menu"

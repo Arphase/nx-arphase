@@ -85,13 +85,14 @@
       <td nz-col
           nzXs="16"
           nzMd="8"
-          nzLg="4">{{ item?.name | empty }}</td>
+          nzLg="5">{{ item?.name | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzMd="4"
+          nzMd="5"
           nzLg="4">{{ item?.startDate | date: 'dd/MM/yy' | empty }}</td>
       <td nz-col
           nzXs="0"
+          nzMd="5"
           nzLg="4">{{ item?.endDate | date: 'dd/MM/yy' | empty }}</td>
       <td nz-col
           nzXs="0"
@@ -101,7 +102,9 @@
           nzMd="4"
           nzLg="4">{{ item?.amount | currency | empty }}</td>
       <td nz-col
-          nzSpan="4"
+          nzXs="8"
+          nzMd="2"
+          nzLg="3"
           class="flex-end">
         <button nz-button
                 nzType="text"

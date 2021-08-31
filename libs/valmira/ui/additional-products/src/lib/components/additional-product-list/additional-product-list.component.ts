@@ -14,25 +14,34 @@ export class AdditionalProductListComponent extends ApsListComponent<AdditionalP
       label: 'Nombre',
       prop: 'additionalProduct.name',
       colSizes: {
-        xs: 16,
-        md: 4,
+        xs: 24,
+        md: 6,
         lg: 6,
       },
     },
     {
       label: 'Precio',
       prop: 'additionalProduct.price',
-      colSizes: { lg: 4 },
+      colSizes: {
+        md: 4,
+        lg: 4,
+      },
     },
     {
       label: 'Descripción',
       prop: 'additionalProduct.descripton',
-      colSizes: { lg: 6 },
+      colSizes: {
+        md: 6,
+        lg: 6,
+      },
     },
     {
       label: 'Fecha creación',
       prop: 'additionalProduct.createdAt',
-      colSizes: { lg: 8 },
+      colSizes: {
+        md: 8,
+        lg: 8,
+      },
     },
   ];
 }
