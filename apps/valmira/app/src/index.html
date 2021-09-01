@@ -13,7 +13,26 @@
 </head>
 
 <body>
-  <vma-root></vma-root>
+  <div id="container">
+    <img src="assets/img/logo.svg"
+         alt="logo"
+         class="loader">
+  </div>
+  <style>
+    #container {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+      .loader {
+        display: block;
+      }
+  </style>
 </body>
 
 </html>
