@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.4](https://github.com/Arphase/nx-arphase/compare/v3.3.3...v3.3.4) (2021-09-01)
+
+
+### Features
+
+* **valmira/frequent-questions:** [#121](https://github.com/Arphase/nx-arphase/issues/121) add frequent-questions images and header ([9150b62](https://github.com/Arphase/nx-arphase/commit/9150b62179d3c463af32e64bac5c9164a8a4b86d))
+* **valmira/landing-page:** [#118](https://github.com/Arphase/nx-arphase/issues/118) Landing Page ([38f4309](https://github.com/Arphase/nx-arphase/commit/38f430995ace297f4d8f75e26dcbcae769befd5c))
+* **valmira/landing-page:** [#118](https://github.com/Arphase/nx-arphase/issues/118) Merge with staging ([4638e5b](https://github.com/Arphase/nx-arphase/commit/4638e5b4fa125cd1bf7b03c1aefb56eae95127b0))
+* **valmira/landing-page:** [#118](https://github.com/Arphase/nx-arphase/issues/118) Unit test fix ([54ba445](https://github.com/Arphase/nx-arphase/commit/54ba445f49d1e5e785b049d28d0ff37ef249f6a0))
+* **valmira/landing-page:** [#118](https://github.com/Arphase/nx-arphase/issues/118) Unit test fixes ([242d943](https://github.com/Arphase/nx-arphase/commit/242d94332c98525f443b9cf81cf2ae9316e697ff))
+* **valmira/landing-page:** [#118](https://github.com/Arphase/nx-arphase/issues/118) Use spectator for unit tests ([0531ab2](https://github.com/Arphase/nx-arphase/commit/0531ab2afde930ac41fcdf3b909bc16b46fb9389))
+* **valmira/terms and conditions:** [#122](https://github.com/Arphase/nx-arphase/issues/122) add terms and conditions ([7ab51f3](https://github.com/Arphase/nx-arphase/commit/7ab51f30b944666090e6e1e176f2220b2d2cae6c))
+
+
+### Bug Fixes
+
+* **arphase/api:** filter dates correctly ([cfbd68f](https://github.com/Arphase/nx-arphase/commit/cfbd68f73d589d75b42dba180f0709ab4350ac5e))
+* **valmira/terms and conditions:** [#122](https://github.com/Arphase/nx-arphase/issues/122) fix unit test ([519aa9b](https://github.com/Arphase/nx-arphase/commit/519aa9b3630f0d1afb61b7eb136e7a9ed6d786d7))
+* **valmira/terms and conditions:** [#122](https://github.com/Arphase/nx-arphase/issues/122) fix unit test ([8a5e9b9](https://github.com/Arphase/nx-arphase/commit/8a5e9b978eef9ce1c6e7c37f906a77602f952ece))
+
 ### [3.3.3](https://github.com/Arphase/nx-arphase/compare/v3.3.2...v3.3.3) (2021-08-31)
 
 
