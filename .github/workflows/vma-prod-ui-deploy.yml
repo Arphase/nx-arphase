@@ -1,4 +1,4 @@
-name: Innovatech Staging UI Deploy
+name: Valmira Production UI Deploy
 
 env:
   NX_BRANCH: ${{ github.event.number }}
@@ -6,8 +6,8 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: ${{ secrets.AWS_REGION }}
-  AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME_STAGE }}
-  DIST_APP_DIR: ${{ secrets.IVT_DIST_APP_DIR }}
+  AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME_VMA_PROD }}
+  DIST_APP_DIR: ${{ secrets.VMA_DIST_APP_DIR }}
 
 on: workflow_dispatch
 
@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: staging
+          ref: master
           fetch-depth: 0
 
       - uses: actions/setup-node@v1
@@ -27,7 +27,7 @@ jobs:
       - uses: bahmutov/npm-install@v1
 
       - name: Build app
-        run: npx nx build innovatech-app --c=stage
+        run: npx nx build valmira-app --c=prod
 
       - name: Delete current app
         run: npx ts-node scripts/ui-delete-current
