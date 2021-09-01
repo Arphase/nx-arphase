@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { SignInPayload } from '@arphase/ui/auth';
 import { LoadingService } from '@arphase/ui/core';
-import { fromAuth, SignInRequest } from '@innovatech/ui/auth/data';
+import { fromAuth } from '@innovatech/ui/auth/data';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -14,7 +15,7 @@ export class SignInFormContainerComponent {
 
   constructor(private store: Store, private loadingService: LoadingService) {}
 
-  submit(payload: SignInRequest): void {
+  submit(payload: SignInPayload): void {
     this.store.dispatch(fromAuth.actions.signIn({ payload }));
   }
 }

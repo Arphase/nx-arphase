@@ -93,5 +93,6 @@ module.exports = {
     '<rootDir>/libs/valmira/ui/categories/feature',
     '<rootDir>/apps/pam-vic',
     '<rootDir>/libs/arphase/ui/core/auth',
+    '<rootDir>/libs/musicr/ui/auth/feature',
   ],
 };

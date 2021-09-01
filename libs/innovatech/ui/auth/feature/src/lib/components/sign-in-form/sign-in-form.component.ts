@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
-import { SignInRequest } from '@innovatech/ui/auth/data';
+import { createSignInForm, SignInPayload } from '@arphase/ui/auth';
+import { ApsFormComponent } from '@arphase/ui/core';
 
 @Component({
   selector: 'ivt-sign-in-form',
@@ -9,12 +8,6 @@ import { SignInRequest } from '@innovatech/ui/auth/data';
   styleUrls: ['./sign-in-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignInFormComponent extends ApsFormComponent<SignInRequest> {
-  constructor(private fb: FormBuilder) {
-    super();
-    this.form = this.fb.group({
-      email: [null, [ApsValidators.required, ApsValidators.email]],
-      password: [null, ApsValidators.required],
-    });
-  }
+export class SignInFormComponent extends ApsFormComponent<SignInPayload> {
+  form = createSignInForm();
 }

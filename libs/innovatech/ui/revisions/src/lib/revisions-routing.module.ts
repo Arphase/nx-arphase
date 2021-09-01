@@ -29,7 +29,7 @@ export const routes: Routes = [
         resolve: { resolvedRevision: RevisionResolverService },
       },
       {
-        path: ':revisionId',
+        path: ':id',
         component: RevisionFormContainerComponent,
         canDeactivate: [ApsDirtyFormGuard],
         resolve: { resolvedRevision: RevisionResolverService },

@@ -125,24 +125,24 @@
         }
       }
     },
-    "arphase-ui-core-auth": {
+    "arphase-ui-auth": {
       "projectType": "library",
-      "root": "libs/arphase/ui/core/auth",
-      "sourceRoot": "libs/arphase/ui/core/auth/src",
+      "root": "libs/arphase/ui/auth",
+      "sourceRoot": "libs/arphase/ui/auth/src",
       "prefix": "ivt",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/ui/core/auth"],
+          "outputs": ["coverage/libs/arphase/ui/auth"],
           "options": {
-            "jestConfig": "libs/arphase/ui/core/auth/jest.config.js",
+            "jestConfig": "libs/arphase/ui/auth/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/arphase/ui/core/auth/src/**/*.ts", "libs/arphase/ui/core/auth/src/**/*.html"]
+            "lintFilePatterns": ["libs/arphase/ui/auth/src/**/*.ts", "libs/arphase/ui/auth/src/**/*.html"]
           }
         }
       }
@@ -1368,9 +1368,16 @@
             "polyfills": "apps/musicr/admin/src/polyfills.ts",
             "tsConfig": "apps/musicr/admin/tsconfig.app.json",
             "inlineStyleLanguage": "less",
-            "assets": ["apps/musicr/admin/src/favicon.ico", "apps/musicr/admin/src/assets"],
-            "styles": ["apps/musicr/admin/src/styles.less"],
-            "scripts": []
+            "assets": [
+              "apps/musicr/admin/src/favicon.ico",
+              "apps/musicr/admin/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": ["apps/musicr/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
             "production": {
@@ -1913,24 +1920,46 @@
         }
       }
     },
-    "musicr-ui-auth": {
-      "root": "libs/musicr/ui/auth",
-      "sourceRoot": "libs/musicr/ui/auth/src",
+    "musicr-ui-auth-data": {
+      "root": "libs/musicr/ui/auth/data",
+      "sourceRoot": "libs/musicr/ui/auth/data/src",
       "projectType": "library",
       "prefix": "mrl",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/auth/**/*.ts"]
+            "lintFilePatterns": ["libs/musicr/ui/auth/data/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/auth"],
+          "outputs": ["coverage/libs/musicr/ui/auth/data"],
           "options": {
-            "jestConfig": "libs/musicr/ui/auth/jest.config.js",
+            "jestConfig": "libs/musicr/ui/auth/data/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "musicr-ui-auth-feature": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/auth/feature",
+      "sourceRoot": "libs/musicr/ui/auth/feature/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/auth/feature"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/auth/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/auth/feature/src/**/*.ts", "libs/musicr/ui/auth/feature/src/**/*.html"]
           }
         }
       }
