@@ -40,11 +40,11 @@ export function filterCollectionDates(
   const { ignoreDates, logicalOperator } = options;
   if (startDate && endDate && !ignoreDates) {
     const date = `${entityName}.${dateType || 'createdAt'}`;
-    logicalOperator === 'and'
-      ? query.andWhere
-      : query.orWhere(`${date} >= :startDate and ${date} <= :endDate`, {
-          startDate: startOfDay(new Date(startDate)).toISOString(),
-          endDate: endOfDay(new Date(endDate)).toISOString(),
-        });
+    const expression = `${date} >= :startDate and ${date} <= :endDate`;
+    const params = {
+      startDate: startOfDay(new Date(startDate)).toISOString(),
+      endDate: endOfDay(new Date(endDate)).toISOString(),
+    };
+    logicalOperator === 'and' ? query.andWhere(expression, params) : query.orWhere(expression, params);
   }
 }
