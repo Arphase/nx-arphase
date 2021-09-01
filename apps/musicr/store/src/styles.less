@@ -12,10 +12,65 @@ body {
   /* put on top */
   position: relative;
   z-index: 1;
-
 }
 
 .ant-carousel {
   min-height: 320px !important;
   max-height: 320px !important;
+}
+.ant-affix {
+  width: 100vw !important;
+  background-color: white !important;
+}
+
+.ant-drawer-header,
+.ant-drawer-body {
+  background-color: black !important;
+  border-bottom: none !important;
+}
+
+.ant-menu {
+  @media only screen and (max-width: 768px) {
+    background-color: black !important;
+  }
+}
+
+.ant-menu-submenu {
+  font-family: 'right-grotesk-medium';
+  @media only screen and (max-width: 768px) {
+    font-size: 24px;
+    border-bottom: 1px solid rgb(255, 255, 2255, 0.5) !important;
+  }
+}
+
+.ant-menu-submenu-title:hover,
+.ant-menu-item:hover,
+.ant-menu-submenu:hover,
+.ant-menu-item-active,
+.ant-menu-submenu-active,
+.ant-menu-item-open,
+.ant-menu-submenu-open,
+.ant-menu-item-selected,
+.ant-menu-submenu-selected {
+  color: black !important;
+  background-color: #e0e0e0 !important;
+
+  @media only screen and (max-width: 768px) {
+    color: white !important;
+    background-color: #0e0e0e !important;
+  }
+}
+
+.ant-menu-submenu:hover::after,
+.ant-menu-submenu-selected::after,
+.ant-menu-submenu-open::after {
+  border-bottom: 2px solid #0e0e0e !important;
+}
+
+.ant-menu-horizontal {
+  border-bottom: none !important;
+}
+
+.ant-page-header {
+  padding: 0 !important;
 }

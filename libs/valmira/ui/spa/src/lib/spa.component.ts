@@ -21,9 +21,24 @@ export class SpaComponent implements OnInit {
   };
   menuItems: MenuItem[] = [
     {
+      icon: 'pushpin',
+      header: 'Reservaciones',
+      path: ['reservations'],
+    },
+    {
       icon: 'home',
       header: 'Alojamientos',
       path: ['places'],
+    },
+    {
+      icon: 'dollar',
+      header: 'Promocodes',
+      path: ['promocodes'],
+    },
+    {
+      icon: 'shopping',
+      header: 'Productos',
+      path: ['additional-products'],
     },
   ];
   name$ = this.store.pipe(select(fromAuth.selectors.getAuthUserNameState));

@@ -24,9 +24,7 @@ export class TokenInterceptorService implements HttpInterceptor {
       switchMap(token => {
         this.loadingService.show(request.method);
         request = request.clone({
-          setHeaders: {
-            Authorization: `Bearer ${token}`,
-          },
+          setHeaders: { Authorization: `Bearer ${token}` },
         });
         return next.handle(request).pipe(
           catchError((error: HttpErrorResponse) => {

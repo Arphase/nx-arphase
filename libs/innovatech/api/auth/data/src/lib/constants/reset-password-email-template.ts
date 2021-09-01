@@ -1,25 +1,6 @@
 export function getResetPasswordEmailTemplate(redirectUrl: string): string {
   return `
-  <!doctype html>
-  <html lang="en-US">
-
-  <head>
-    <meta content="text/html; charset=utf-8"
-          http-equiv="Content-Type" />
-    <title>Crear contraseña</title>
-    <meta name="description"
-          content="Reset Password Email Template.">
-    <style type="text/css">
-      a:hover {
-        text-decoration: underline !important;
-      }
-      img {
-        max-width: 350px;
-      }
-    </style>
-  </head>
-
-  <body marginheight="0"
+    <div marginheight="0"
         topmargin="0"
         marginwidth="0"
         style="margin: 0px; background-color: #f2f3f8;"
@@ -57,7 +38,7 @@ export function getResetPasswordEmailTemplate(redirectUrl: string): string {
                   </tr>
                   <tr>
                     <td style="padding:0 35px;">
-                    <img src="cid:unique@kreata.ee"/>
+                    <img src="cid:logo"/>
                       <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;">
                         Restablecer Contraseña
                       </h1>
@@ -99,8 +80,7 @@ export function getResetPasswordEmailTemplate(redirectUrl: string): string {
         </td>
       </tr>
     </table>
-    <!--/100% body table-->
-  </body>
-  </html>
+    <!--/100% div table-->
+  </div>
   `;
 }

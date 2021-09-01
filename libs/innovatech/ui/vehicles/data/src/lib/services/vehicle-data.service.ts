@@ -5,9 +5,7 @@ import { Vehicle } from '@innovatech/common/domain';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class VehicleDataService extends ApsDataService<Vehicle> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('Vehicle', http, httpUrlGenerator);

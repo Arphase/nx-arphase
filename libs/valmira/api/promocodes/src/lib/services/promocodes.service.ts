@@ -1,6 +1,6 @@
 import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PromocodeEntity } from '@valmira/api/domain';
 import { Promocode } from '@valmira/domain';
@@ -14,8 +14,12 @@ export class PromocodesService {
   constructor(@InjectRepository(PromocodeEntity) private promocodeRepository: Repository<PromocodeEntity>) {}
 
   async getPromocodes(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Promocode>> {
-    const { pageIndex, pageSize } = filterDto;
+    const { pageIndex, pageSize, text } = filterDto;
     const query = this.promocodeRepository.createQueryBuilder('promocode');
+
+    if (text) {
+      query.andWhere(`(LOWER(promocode.name) like :text)`, { text: `%${text.toLowerCase()}%` });
+    }
 
     filterCollectionQuery('promocode', query, filterDto);
 
@@ -24,7 +28,7 @@ export class PromocodesService {
     return createCollectionResponse<Promocode>(promcodes, pageSize, pageIndex, total);
   }
 
-  async getPromocode(id: number): Promise<Promocode> {
+  async getPromocode(id: number): Promise<PromocodeEntity> {
     const promocode = await this.promocodeRepository.findOne({ id });
     if (!promocode) {
       throw new NotFoundException(`Promocode with id ${id} not found`);
@@ -40,5 +44,19 @@ export class PromocodesService {
   async updatePromocode(updatePromocodeDto: UpdatePromocodeDto): Promise<Promocode> {
     const promocode = await this.getPromocode(updatePromocodeDto.id);
     return this.promocodeRepository.save({ ...promocode, ...updatePromocodeDto });
+  }
+
+  async deletePromocode(id: number): Promise<Promocode> {
+    const promocode = await this.getPromocode(id);
+    try {
+      await this.promocodeRepository.remove(promocode);
+      return promocode;
+    } catch (e) {
+      if (e.code === '23503') {
+        throw new ConflictException(
+          'No se puede eliminar el promocode porque existen reservaciones con este promocode'
+        );
+      }
+    }
   }
 }

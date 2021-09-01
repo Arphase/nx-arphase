@@ -1,5 +1,7 @@
-import { Customer } from '@valmira/domain';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Customer, Reservation } from '@valmira/domain';
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+
+import { ReservationEntity } from './reservation.entity';
 
 @Entity('customers')
 export class CustomerEntity extends BaseEntity implements Customer {
@@ -12,9 +14,12 @@ export class CustomerEntity extends BaseEntity implements Customer {
   @Column()
   lastName: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
   phone: string;
+
+  @OneToMany(() => ReservationEntity, reservation => reservation.customer)
+  reservations?: Reservation[];
 }

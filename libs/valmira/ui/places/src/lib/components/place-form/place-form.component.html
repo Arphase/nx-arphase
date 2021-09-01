@@ -17,7 +17,9 @@
         <div nz-row
              [nzGutter]="12">
           <div nz-col
-               nzSpan="12">
+               nzXs="24"
+               nzMd="12"
+               nzLg="12">
             <nz-form-item>
               <nz-form-label nzRequired>Nombre</nz-form-label>
               <nz-form-control apsAutoError>
@@ -27,13 +29,14 @@
             </nz-form-item>
           </div>
           <div nz-col
-               nzSpan="12">
+               nzXs="24"
+               nzMd="12"
+               nzLg="12">
             <nz-form-item>
               <nz-form-label nzRequired>Categoría</nz-form-label>
               <nz-form-control apsAutoError>
-                <nz-select vmaCategorySelect
-                           formControlName="categoryId">
-                </nz-select>
+                <nz-select formControlName="category"
+                           [nzOptions]="categoryOptions"></nz-select>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -55,7 +58,9 @@
         <div nz-row
              [nzGutter]="12">
           <div nz-col
-               nzSpan="6">
+               nzXs="24"
+               nzMd="12"
+               nzLg="6">
             <nz-form-item>
               <nz-form-label nzRequired>Huéspedes</nz-form-label>
               <nz-form-control apsAutoError>
@@ -66,7 +71,9 @@
             </nz-form-item>
           </div>
           <div nz-col
-               nzSpan="6">
+               nzXs="24"
+               nzMd="12"
+               nzLg="6">
             <nz-form-item>
               <nz-form-label nzRequired>Area</nz-form-label>
               <nz-form-control apsAutoError>
@@ -77,7 +84,9 @@
             </nz-form-item>
           </div>
           <div nz-col
-               nzSpan="6">
+               nzXs="24"
+               nzMd="12"
+               nzLg="6">
             <nz-form-item>
               <nz-form-label nzRequired>Cuartos</nz-form-label>
               <nz-form-control apsAutoError>
@@ -88,7 +97,9 @@
             </nz-form-item>
           </div>
           <div nz-col
-               nzSpan="6">
+               nzXs="24"
+               nzMd="12"
+               nzLg="6">
             <nz-form-item>
               <nz-form-label nzRequired>Camas</nz-form-label>
               <nz-form-control apsAutoError>
@@ -103,7 +114,9 @@
         <div nz-row
              [nzGutter]="12">
           <div nz-col
-               nzSpan="12">
+               nzXs="24"
+               nzMd="12"
+               nzLg="12">
             <nz-form-item>
               <nz-form-label nzRequired>Precio (Lunes a Jueves)</nz-form-label>
               <nz-form-control apsAutoError>
@@ -115,7 +128,9 @@
             </nz-form-item>
           </div>
           <div nz-col
-               nzSpan="12">
+               nzXs="24"
+               nzMd="12"
+               nzLg="12">
             <nz-form-item>
               <nz-form-label nzRequired>Precio (Viernes a Domingo)</nz-form-label>
               <nz-form-control apsAutoError>
@@ -173,6 +188,35 @@
               Agregar nuevo servicio
             </button>
           </div>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Galería"
+                         [nzActive]="true">
+        <div class="clearfix">
+          <nz-upload nzListType="picture-card"
+                     nzAccept="image/png"
+                     [(nzFileList)]="fileList"
+                     [nzAction]="photosUrl"
+                     [nzPreview]="handlePreview"
+                     [nzRemove]="onRemovePhoto">
+            <div>
+              <i nz-icon
+                 nzType="plus"></i>
+              <div style="margin-top: 8px">Subir</div>
+            </div>
+          </nz-upload>
+          <nz-modal [nzVisible]="previewVisible"
+                    [nzContent]="modalContent"
+                    [nzFooter]="null"
+                    (nzOnCancel)="previewVisible = false">
+            <ng-template #modalContent>
+              <img [src]="previewImage"
+                   [ngStyle]="{ width: '100%' }" />
+            </ng-template>
+          </nz-modal>
         </div>
       </nz-collapse-panel>
     </nz-collapse>

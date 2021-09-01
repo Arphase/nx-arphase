@@ -85,6 +85,7 @@ export class AuthService {
       userFromDb.password = await bcrypt.hash(password, userFromDb.salt);
       await queryRunner.manager.save(userFromDb);
       await queryRunner.manager.remove(resetPasswordEntity);
+      queryRunner.commitTransaction();
       return userFromDb;
     } catch (err) {
       await queryRunner.rollbackTransaction();
@@ -141,6 +142,7 @@ export class AuthService {
           {
             filename: 'logo.png',
             path: __dirname + '/assets/img/logo.png',
+            cid: 'logo',
           },
         ],
         html: getNewUserEmailTemplate(
@@ -170,7 +172,7 @@ export class AuthService {
     }
     const tokenEntity = await this.createResetPasswordToken(userFromDb.id);
 
-    if (tokenEntity && tokenEntity.passwordToken) {
+    if (tokenEntity?.passwordToken) {
       const transporter = createTransport({
         host: process.env.SMTP,
         port: Number(process.env.MAIL_PORT),
@@ -189,6 +191,7 @@ export class AuthService {
           {
             filename: 'logo.png',
             path: __dirname + '/assets/img/logo.png',
+            cid: 'logo',
           },
         ],
         html: getResetPasswordEmailTemplate(

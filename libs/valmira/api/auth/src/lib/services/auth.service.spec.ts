@@ -2,7 +2,8 @@ import { createMockRepository } from '@arphase/api/testing';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { UserEntity } from '@valmira/api/domain';
+import { ResetPasswordEntity, UserEntity } from '@valmira/api/domain';
+import { Connection } from 'typeorm';
 
 import { AuthService } from './auth.service';
 
@@ -13,8 +14,10 @@ describe('AuthService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         AuthService,
-        { provide: JwtService, useValue: {} },
+        { provide: getRepositoryToken(ResetPasswordEntity), useValue: createMockRepository() },
         { provide: getRepositoryToken(UserEntity), useValue: createMockRepository() },
+        { provide: JwtService, useValue: {} },
+        { provide: Connection, useValue: {} },
       ],
     }).compile();
 

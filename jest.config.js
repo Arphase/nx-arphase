@@ -85,5 +85,12 @@ module.exports = {
     '<rootDir>/libs/valmira/ui/places',
     '<rootDir>/libs/valmira/ui/categories/ui',
     '<rootDir>/libs/valmira/ui/categories/data',
+    '<rootDir>/libs/valmira/ui/promocodes',
+    '<rootDir>/libs/musicr/ui/products',
+    '<rootDir>/libs/valmira/ui/additional-products',
+    '<rootDir>/libs/valmira/ui/reservations',
+    '<rootDir>/libs/valmira/api/photos',
+    '<rootDir>/libs/valmira/ui/categories/feature',
+    '<rootDir>/apps/pam-vic',
   ],
 };

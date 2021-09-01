@@ -3,7 +3,7 @@ import { DEFAULT_PAGE_SIZE } from '@arphase/common';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
-import { omit } from 'lodash-es';
+import { omit } from 'lodash';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(LocalizedFormat);

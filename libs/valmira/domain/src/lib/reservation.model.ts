@@ -5,17 +5,23 @@ import { ReservationAdditionalProduct } from './reservation-additional-product.m
 
 export interface Reservation {
   id?: number;
+  createdAt: Date;
+  updatedAt: Date;
   startDate: Date;
   endDate: Date;
   status: ReservationStatus | string;
   total: number;
   paymentId?: string;
   placeId: number;
-  place: Place;
+  place?: Place;
   customer: Customer;
   promocodeId?: number;
   promocode?: Promocode;
-  reservationAdditionalProducts?: ReservationAdditionalProduct[];
+  pricePerNight?: number;
+  nights?: number;
+  days?: number;
+  discount?: number;
+  additionalProducts?: ReservationAdditionalProduct[];
 }
 
 export enum ReservationStatus {

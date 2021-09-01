@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui';
 import { EntityDataService } from '@ngrx/data';
-import { CategorySelectModule } from '@valmira/ui/categories/ui';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -15,12 +14,15 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { PlaceFormComponent } from './components/place-form/place-form.component';
@@ -29,11 +31,13 @@ import { PlaceFormContainerComponent } from './containers/place-form-container/p
 import { PlaceListContainerComponent } from './containers/place-list-container/place-list-container.component';
 import { PlacesRoutingModule } from './places-routing.module';
 import { PlacesComponent } from './places.component';
+import { PhotoDataService } from './services/photo-data.service';
 import { PlaceDataService } from './services/place-data.service';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     PlacesRoutingModule,
     ReactiveFormsModule,
     NzPageHeaderModule,
@@ -55,8 +59,10 @@ import { PlaceDataService } from './services/place-data.service';
     NzFormModule,
     NzCollapseModule,
     NzSelectModule,
+    NzUploadModule,
+    NzModalModule,
+    NzSwitchModule,
     NgxMaskModule,
-    CategorySelectModule,
   ],
   declarations: [
     PlaceListContainerComponent,
@@ -67,7 +73,12 @@ import { PlaceDataService } from './services/place-data.service';
   ],
 })
 export class PlacesModule {
-  constructor(entityDataService: EntityDataService, placeDataService: PlaceDataService) {
+  constructor(
+    entityDataService: EntityDataService,
+    photoDataService: PhotoDataService,
+    placeDataService: PlaceDataService
+  ) {
+    entityDataService.registerService('Photo', photoDataService);
     entityDataService.registerService('Place', placeDataService);
   }
 }

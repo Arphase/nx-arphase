@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { specialCharactersForPassword } from '@arphase/common';
 import { ApsFormComponent, ApsValidators, MessageStatus } from '@arphase/ui';
-import { specialCharactersForPassword } from '@innovatech/common/domain';
-import { IvtValidators } from '@innovatech/ui/core/util';
 
 @Component({
   selector: 'ivt-set-password-form',
@@ -46,7 +45,7 @@ export class SetPasswordFormComponent extends ApsFormComponent<{ password: strin
       {
         password: [
           null,
-          [ApsValidators.required, ApsValidators.minLength(8), ApsValidators.uppercase, IvtValidators.specialCharacter],
+          [ApsValidators.required, ApsValidators.minLength(8), ApsValidators.uppercase, ApsValidators.specialCharacter],
         ],
         passwordConfirm: [null, ApsValidators.required],
       },
@@ -56,7 +55,7 @@ export class SetPasswordFormComponent extends ApsFormComponent<{ password: strin
 
   getErrorStatus(dirty: boolean, hasError: boolean): MessageStatus {
     if (!dirty) {
-      return MessageStatus.normal;
+      return MessageStatus.info;
     }
     return hasError ? MessageStatus.error : MessageStatus.success;
   }

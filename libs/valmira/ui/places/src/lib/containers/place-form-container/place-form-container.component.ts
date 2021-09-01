@@ -5,6 +5,7 @@ import { Place } from '@valmira/domain';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { createPlaceForm } from '../../components/place-form/place-form.component';
+import { PhotoCollectionService } from '../../services/photo-collection.service';
 import { PlaceCollectionService } from '../../services/place-collection.service';
 
 @Component({
@@ -20,8 +21,13 @@ export class PlaceFormContainerComponent extends ApsFormContainerComponent<Place
   constructor(
     protected placeCollectionService: PlaceCollectionService,
     protected router: Router,
-    protected messageService: NzMessageService
+    protected messageService: NzMessageService,
+    private photoCollectionService: PhotoCollectionService
   ) {
     super(placeCollectionService, router, messageService);
+  }
+
+  removePhoto(id: number): void {
+    this.photoCollectionService.delete(id);
   }
 }

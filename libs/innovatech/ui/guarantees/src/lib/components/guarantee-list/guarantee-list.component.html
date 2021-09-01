@@ -23,7 +23,8 @@
        nzMd="0"
        nzFlex="auto">
     <div class="flex-end">
-      <button nz-button
+      <button *ngIf="canCreateGuarantee"
+              nz-button
               [routerLink]="['new']"
               type="button"
               nzType="primary"
@@ -40,40 +41,46 @@
        nzFlex="auto">
     <div class="flex-end">
       <nz-space>
-        <div *nzSpaceItem>
-          <button *ngIf="showPaymentOrderButton"
+        <ng-container *ivtCreatePermission>
+          <div *nzSpaceItem>
+            <button *ngIf="showPaymentOrderButton"
+                    nz-button
+                    type="button"
+                    nzType="primary"
+                    (click)="createPaymentOrder.emit(checkedIdsArray)">
+              Generar orden de pago
+            </button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="canCreateGuarantee">
+          <button *nzSpaceItem
                   nz-button
+                  [routerLink]="['new']"
                   type="button"
-                  nzType="primary"
-                  (click)="createPaymentOrder.emit(checkedIdsArray)">
-            Generar orden de pago
+                  nzType="primary">
+            Nueva garantía
           </button>
-        </div>
-        <button *nzSpaceItem
-                nz-button
-                [routerLink]="['new']"
-                type="button"
-                nzType="primary">
-          Nueva garantía
-        </button>
+        </ng-container>
       </nz-space>
     </div>
   </div>
 
-  <div *ngIf="showPaymentOrderButton"
-       nz-col
-       nzXs="24"
-       nzMd="0"
-       nzFlex="auto">
-    <div class="flex-end">
-      <button nz-button
-              type="button"
-              nzType="primary"
-              (click)="createPaymentOrder.emit(checkedIdsArray)">
-        Generar orden de pago
-      </button>
+  <ng-container *ivtCreatePermission>
+    <div *ngIf="showPaymentOrderButton"
+         nz-col
+         nzXs="24"
+         nzMd="0"
+         nzFlex="auto">
+      <div class="flex-end">
+        <button nz-button
+                type="button"
+                nzType="primary"
+                (click)="createPaymentOrder.emit(checkedIdsArray)">
+          Generar orden de pago
+        </button>
+      </div>
     </div>
-  </div>
+  </ng-container>
 </div>
 
 <nz-divider></nz-divider>
@@ -85,15 +92,13 @@
     <aps-date-filter label="Fecha"
                      [dateTypeOptions]="dateTypeOptions"
                      [currentDates]="queryParams?.dates"
-                     (filterItems)="updateDateFilter($event)">
-    </aps-date-filter>
+                     (filterItems)="updateDateFilter($event)"></aps-date-filter>
   </div>
   <div nz-col>
     <aps-radio-filter label="Estatus"
                       [options]="statusOptions"
                       [selectedOption]="queryParams?.status"
-                      (filterItems)="updateStatusFilter($event)">
-    </aps-radio-filter>
+                      (filterItems)="updateStatusFilter($event)"></aps-radio-filter>
   </div>
   <ng-container *ivtReadPermission>
     <div nz-col>
@@ -208,8 +213,7 @@
                   nzTrigger="click"
                   nzSize="small">
             <i nz-icon
-               nzType="more"></i>
-          </button>
+               nzType="more"></i></button>
         </td>
         <nz-dropdown-menu #menu="nzDropdownMenu">
           <ul nz-menu>

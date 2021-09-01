@@ -3,9 +3,7 @@ import { ApsCollectionService } from '@arphase/ui';
 import { Revision } from '@innovatech/common/domain';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class RevisionCollectionService extends ApsCollectionService<Revision> {
   constructor(protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Revision', serviceElementsFactory);

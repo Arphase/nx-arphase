@@ -1,4 +1,3 @@
-import { Category } from './category.model';
 import { Photo } from './photo.model';
 import { Reservation } from './reservation.model';
 
@@ -13,8 +12,14 @@ export interface Place {
   weekendPrice: number;
   rooms: number;
   beds: number;
-  category?: Category;
-  categoryId?: number;
+  active: boolean;
+  category: PlaceCategories | string;
   photos?: Photo[];
   reservations?: Reservation[];
+}
+
+export enum PlaceCategories {
+  premium = 1,
+  couple = 2,
+  kids = 3,
 }

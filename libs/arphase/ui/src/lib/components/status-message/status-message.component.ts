@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 export enum MessageStatus {
-  normal,
-  warning,
-  error,
-  success,
+  info = 'info',
+  warning = 'warning',
+  error = 'error',
+  success = 'success',
 }
 
 @Component({
@@ -14,23 +14,7 @@ export enum MessageStatus {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApsStatusMessageComponent {
-  @Input() status = MessageStatus.normal;
+  @Input() status = MessageStatus.warning;
   @Input() message: string;
   messageStatus = MessageStatus;
-
-  get normal(): boolean {
-    return this.status === MessageStatus.normal;
-  }
-
-  get warning(): boolean {
-    return this.status === MessageStatus.warning;
-  }
-
-  get error(): boolean {
-    return this.status === MessageStatus.error;
-  }
-
-  get success(): boolean {
-    return this.status === MessageStatus.success;
-  }
 }

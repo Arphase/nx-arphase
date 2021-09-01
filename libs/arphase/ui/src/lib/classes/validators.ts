@@ -1,4 +1,6 @@
 import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
+import { specialCharactersForPassword } from '@arphase/common';
+import dayjs from 'dayjs';
 
 export type ApsErrorsOptions = { es: string } & Record<string, unknown>;
 export type ApsValidationErrors = Record<string, ApsErrorsOptions>;
@@ -94,5 +96,25 @@ export class ApsValidators {
       }
       return null;
     };
+  }
+
+  static dateLessThan(startDateField: string, endDateField: string): ValidatorFn {
+    function validator(c: AbstractControl): { [key: string]: boolean } | null {
+      const startDate = c.get(startDateField).value;
+      const endDate = c.get(endDateField).value;
+      if (startDate && endDate && dayjs(startDate).isAfter(endDate)) {
+        return { dateLessThan: true };
+      }
+      return null;
+    }
+    return validator;
+  }
+
+  static specialCharacter(control: AbstractControl): ApsValidationErrors | null {
+    const value = String(control.value);
+    if (!specialCharactersForPassword.some(character => value.includes(character))) {
+      return { specialCharacter: { es: 'El campo debe tener al menos un caracter especial' } };
+    }
+    return null;
   }
 }

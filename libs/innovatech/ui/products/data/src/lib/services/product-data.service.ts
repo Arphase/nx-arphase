@@ -6,9 +6,7 @@ import { HttpUrlGenerator } from '@ngrx/data';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ProductDataService extends ApsDataService<Product> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('Product', http, httpUrlGenerator);

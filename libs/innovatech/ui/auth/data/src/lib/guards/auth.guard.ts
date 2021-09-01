@@ -4,9 +4,7 @@ import { map, take } from 'rxjs/operators';
 
 import { AuthService } from '../services/auth.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   loginUrlTree = this.router.parseUrl('/auth');
 

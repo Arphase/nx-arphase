@@ -234,6 +234,16 @@
     "musicr-ui-home": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
+    "musicr-ui-products": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
+    "pam-vic": {
+      "tags": []
+    },
+    "pam-vic-e2e": {
+      "tags": [],
+      "implicitDependencies": ["pam-vic"]
+    },
     "valmira-admin": {
       "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
     },
@@ -250,11 +260,11 @@
     "valmira-api-auth": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
-    "valmira-api-categories": {
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
-    },
     "valmira-api-domain": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
+    },
+    "valmira-api-photos": {
+      "tags": []
     },
     "valmira-api-places": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
@@ -275,17 +285,14 @@
     "valmira-domain": {
       "tags": ["domain:valmira", "type:domain-logic"]
     },
+    "valmira-ui-additional-products": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
     "valmira-ui-auth-data": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
     },
     "valmira-ui-auth-feature": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-categories-data": {
-      "tags": []
-    },
-    "valmira-ui-categories-ui": {
-      "tags": []
     },
     "valmira-ui-core": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:util"]
@@ -300,6 +307,12 @@
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-places": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-promocodes": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-reservations": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-spa": {

@@ -1,15 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { User } from '@valmira/domain';
+import { ResetPassword, User } from '@valmira/domain';
 import { map, Observable } from 'rxjs';
 
-import { SignInPayload } from '../models';
+import { SetPasswordPayload, SignInPayload } from '../models';
 import { getAuthUserStateState } from '../state/auth.selectors';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   constructor(private store: Store, private http: HttpClient) {}
 
@@ -24,10 +22,22 @@ export class AuthService {
     );
   }
 
-  // getToken(): Observable<string> {
-  //   return this.store.pipe(
-  //     select(getAuthUserStateState),
-  //     map(user => user?.token)
-  //   );
-  // }
+  getToken(): Observable<string> {
+    return this.store.pipe(
+      select(getAuthUserStateState),
+      map(user => user?.token)
+    );
+  }
+
+  setPassword(payload: SetPasswordPayload): Observable<User> {
+    return this.http.post<User>(`/vmaApi/auth/set-password`, payload);
+  }
+
+  validateToken(payload: Partial<SetPasswordPayload>): Observable<ResetPassword> {
+    return this.http.get<ResetPassword>(`/vmaApi/auth/validate-token/${payload.passwordToken}`);
+  }
+
+  sendPasswordEmail(payload: Partial<User>): Observable<void> {
+    return this.http.post<void>(`/vmaApi/auth/email-password`, payload);
+  }
 }

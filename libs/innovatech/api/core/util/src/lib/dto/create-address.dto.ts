@@ -1,5 +1,5 @@
 import { Trim } from '@arphase/api/core';
-import { IsNumberString, IsString } from 'class-validator';
+import { IsNumberString, IsOptional, IsString } from 'class-validator';
 
 export class CreateAddressDto {
   @IsNumberString()
@@ -30,6 +30,7 @@ export class CreateAddressDto {
   @Trim()
   externalNumber: string;
 
+  @IsOptional()
   @IsString()
   @Trim()
   internalNumber: string;

@@ -7,9 +7,7 @@ import { saveAs } from 'file-saver';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class PaymentOrderDataService extends ApsDataService<PaymentOrder> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('PaymentOrder', http, httpUrlGenerator);

@@ -7,6 +7,10 @@ export const routes: Routes = [
     loadChildren: () => import('@musicr/ui/home').then(m => m.MusicrHomeModule),
   },
   {
+    path: 'products-catalog',
+    loadChildren: () => import('@musicr/ui/products').then(m => m.MusicrProductsModule),
+  },
+  {
     path: 'terms-and-conditions',
     loadChildren: () => import('@musicr/ui/terms-and-conditions').then(m => m.MusicrTermsAndConditionsModule),
   },

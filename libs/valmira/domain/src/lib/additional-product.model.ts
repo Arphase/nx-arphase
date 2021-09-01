@@ -3,6 +3,9 @@ import { ReservationAdditionalProduct } from './reservation-additional-product.m
 export interface AdditionalProduct {
   id?: number;
   name: string;
+  description: string;
   price: number;
-  reservationAdditionalProducts?: ReservationAdditionalProduct[];
+  createdAt: Date;
+  updatedAt: Date;
+  additionalProducts?: ReservationAdditionalProduct[];
 }

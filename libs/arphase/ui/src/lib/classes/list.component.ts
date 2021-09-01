@@ -49,4 +49,8 @@ export class ApsListComponent<T = any> implements CrudEvents<T> {
   updateDateFilter(dates): void {
     this.filterItems.emit({ dates });
   }
+
+  onToggleStatusChange(item: T, active: boolean): void {
+    this.edit.emit({ ...item, active });
+  }
 }

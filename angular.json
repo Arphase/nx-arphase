@@ -26,6 +26,17 @@
     "@schematics/angular:component": {
       "style": "less",
       "changeDetection": "OnPush"
+    },
+    "@nrwl/web:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/web:library": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
     }
   },
   "projects": {
@@ -1772,11 +1783,9 @@
               "aws-sdk",
               "pg",
               "pg-native",
-              "sqlite3",
               "react-native-sqlite-storage",
               "mssql",
               "sql.js",
-              "better-sqlite3",
               "ioredis",
               "redis",
               "typeorm-aurora-data-api-driver",
@@ -1948,6 +1957,123 @@
         }
       }
     },
+    "musicr-ui-products": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/products",
+      "sourceRoot": "libs/musicr/ui/products/src",
+      "prefix": "mrl",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/products/src/**/*.ts", "libs/musicr/ui/products/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/products"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/products/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pam-vic": {
+      "projectType": "application",
+      "root": "apps/pam-vic",
+      "sourceRoot": "apps/pam-vic/src",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/pam-vic",
+            "index": "apps/pam-vic/src/index.html",
+            "main": "apps/pam-vic/src/main.ts",
+            "polyfills": "apps/pam-vic/src/polyfills.ts",
+            "tsConfig": "apps/pam-vic/tsconfig.app.json",
+            "assets": ["apps/pam-vic/src/favicon.ico", "apps/pam-vic/src/assets"],
+            "styles": ["apps/pam-vic/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pam-vic/src/environments/environment.ts",
+                  "with": "apps/pam-vic/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "pam-vic:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "pam-vic:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/pam-vic/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/pam-vic"],
+          "options": {
+            "jestConfig": "apps/pam-vic/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pam-vic-e2e": {
+      "root": "apps/pam-vic-e2e",
+      "sourceRoot": "apps/pam-vic-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/pam-vic-e2e/cypress.json",
+            "devServerTarget": "pam-vic:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "pam-vic:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/pam-vic-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
     "valmira-admin": {
       "projectType": "application",
       "root": "apps/valmira/admin",
@@ -1963,10 +2089,16 @@
             "main": "apps/valmira/admin/src/main.ts",
             "polyfills": "apps/valmira/admin/src/polyfills.ts",
             "tsConfig": "apps/valmira/admin/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/valmira/admin/src/favicon.ico", "apps/valmira/admin/src/assets"],
-            "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/src/styles/themes/base.less"],
-            "scripts": []
+            "assets": [
+              "apps/valmira/admin/src/favicon.ico",
+              "apps/valmira/admin/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/src/styles/themes/base.less"]
           },
           "configurations": {
             "development": {
@@ -2158,27 +2290,6 @@
         }
       }
     },
-    "valmira-api-categories": {
-      "root": "libs/valmira/api/categories",
-      "sourceRoot": "libs/valmira/api/categories/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/valmira/api/categories/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/api/categories"],
-          "options": {
-            "jestConfig": "libs/valmira/api/categories/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "valmira-api-domain": {
       "root": "libs/valmira/api/domain",
       "sourceRoot": "libs/valmira/api/domain/src",
@@ -2195,6 +2306,27 @@
           "outputs": ["coverage/libs/valmira/api/domain"],
           "options": {
             "jestConfig": "libs/valmira/api/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-api-photos": {
+      "root": "libs/valmira/api/photos",
+      "sourceRoot": "libs/valmira/api/photos/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/api/photos/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/api/photos"],
+          "options": {
+            "jestConfig": "libs/valmira/api/photos/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -2402,6 +2534,31 @@
         }
       }
     },
+    "valmira-ui-additional-products": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/additional-products",
+      "sourceRoot": "libs/valmira/ui/additional-products/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/additional-products/src/**/*.ts",
+              "libs/valmira/ui/additional-products/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/additional-products"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/additional-products/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-ui-auth-data": {
       "projectType": "library",
       "root": "libs/valmira/ui/auth/data",
@@ -2444,56 +2601,6 @@
           "outputs": ["coverage/libs/valmira/ui/auth/feature"],
           "options": {
             "jestConfig": "libs/valmira/ui/auth/feature/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "valmira-ui-categories-data": {
-      "projectType": "library",
-      "root": "libs/valmira/ui/categories/data",
-      "sourceRoot": "libs/valmira/ui/categories/data/src",
-      "prefix": "vma",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/valmira/ui/categories/data/src/**/*.ts",
-              "libs/valmira/ui/categories/data/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/categories/data"],
-          "options": {
-            "jestConfig": "libs/valmira/ui/categories/data/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "valmira-ui-categories-ui": {
-      "projectType": "library",
-      "root": "libs/valmira/ui/categories/ui",
-      "sourceRoot": "libs/valmira/ui/categories/ui/src",
-      "prefix": "vma",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/valmira/ui/categories/ui/src/**/*.ts",
-              "libs/valmira/ui/categories/ui/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/categories/ui"],
-          "options": {
-            "jestConfig": "libs/valmira/ui/categories/ui/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -2607,6 +2714,53 @@
           "outputs": ["coverage/libs/valmira/ui/places"],
           "options": {
             "jestConfig": "libs/valmira/ui/places/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-promocodes": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/promocodes",
+      "sourceRoot": "libs/valmira/ui/promocodes/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/ui/promocodes/src/**/*.ts", "libs/valmira/ui/promocodes/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/promocodes"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/promocodes/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-reservations": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/reservations",
+      "sourceRoot": "libs/valmira/ui/reservations/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/reservations/src/**/*.ts",
+              "libs/valmira/ui/reservations/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/reservations"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/reservations/jest.config.js",
             "passWithNoTests": true
           }
         }

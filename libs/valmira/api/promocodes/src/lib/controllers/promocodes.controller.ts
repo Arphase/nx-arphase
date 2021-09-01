@@ -1,6 +1,6 @@
 import { ApsCollectionFilterDto } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 import { Promocode } from '@valmira/domain';
 
 import { CreatePromocodeDto } from '../dto/create-promocode.dto';
@@ -29,5 +29,10 @@ export class PromocodesController {
   @Put(':id')
   async updateAdditionalProduct(@Body() updatePromocodeDto: UpdatePromocodeDto): Promise<Promocode> {
     return this.promocodesService.updatePromocode(updatePromocodeDto);
+  }
+
+  @Delete(':id')
+  deletePromocode(@Param('id', ParseIntPipe) id: number): Promise<Promocode> {
+    return this.promocodesService.deletePromocode(id);
   }
 }
