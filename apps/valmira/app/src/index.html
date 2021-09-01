@@ -11,28 +11,29 @@
         type="image/x-icon"
         href="favicon.ico" />
 </head>
+<vma-root>
+  <body>
+    <div id="container">
+      <img src="assets/img/logo.svg"
+           alt="logo"
+           class="loader">
+    </div>
+    <style>
+      #container {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-<body>
-  <div id="container">
-    <img src="assets/img/logo.svg"
-         alt="logo"
-         class="loader">
-  </div>
-  <style>
-    #container {
-      width: 100vw;
-      height: 100vh;
-      position: fixed;
-      left: 0;
-      top: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
       .loader {
         display: block;
       }
-  </style>
-</body>
-
+    </style>
+    </vma-root>
+  </body>
 </html>
