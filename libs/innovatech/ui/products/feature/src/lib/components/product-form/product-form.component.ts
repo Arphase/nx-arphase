@@ -1,7 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ApsFormComponent, ApsValidators, filterNil, getBase64, sortSelectOptions } from '@arphase/ui';
+import { ApsFormComponent, ApsValidators, filterNil, getBase64, sortSelectOptions } from '@arphase/ui/core';
 import { glossary, Product } from '@innovatech/common/domain';
 import { ProductDataService } from '@innovatech/ui/products/data';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';

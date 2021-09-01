@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ApsValidators } from '@arphase/ui';
+import { ApsValidators } from '@arphase/ui/core';
 import { User } from '@innovatech/common/domain';
-import { ApsFormComponent } from '@arphase/ui';
+import { ApsFormComponent } from '@arphase/ui/core';
 
 @Component({
   selector: 'ivt-reset-password-form',

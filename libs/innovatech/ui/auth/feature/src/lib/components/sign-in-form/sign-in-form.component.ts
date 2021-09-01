@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ApsFormComponent, ApsValidators } from '@arphase/ui';
+import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { SignInRequest } from '@innovatech/ui/auth/data';
 
 @Component({

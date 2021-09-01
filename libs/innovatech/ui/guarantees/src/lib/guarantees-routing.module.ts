@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApsDirtyFormGuard } from '@arphase/ui';
+import { ApsDirtyFormGuard } from '@arphase/ui/core';
 import { UserRoles } from '@innovatech/common/domain';
 import { RoleGuard } from '@innovatech/ui/auth/data';
 

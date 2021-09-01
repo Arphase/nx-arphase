@@ -3,7 +3,7 @@ module.exports = {
     '<rootDir>/apps/innovatech/app',
     '<rootDir>/libs/ui/u-revisions',
     '<rootDir>/libs/ui/u-revision-requests',
-    '<rootDir>/libs/arphase/ui',
+    '<rootDir>/libs/arphase/ui/core',
     '<rootDir>/libs/innovatech/common/domain',
     '<rootDir>/libs/innovatech/common/utils',
     '<rootDir>/libs/innovatech/ui/vehicles/feature',
@@ -92,5 +92,6 @@ module.exports = {
     '<rootDir>/libs/valmira/api/photos',
     '<rootDir>/libs/valmira/ui/categories/feature',
     '<rootDir>/apps/pam-vic',
+    '<rootDir>/libs/arphase/ui/core/auth',
   ],
 };

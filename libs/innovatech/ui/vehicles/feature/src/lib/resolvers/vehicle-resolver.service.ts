@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApsEntityResolverService } from '@arphase/ui';
+import { ApsEntityResolverService } from '@arphase/ui/core';
 import { Vehicle } from '@innovatech/common/domain';
 import { VehicleCollectionService } from '@innovatech/ui/vehicles/data';
 

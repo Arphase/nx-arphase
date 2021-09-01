@@ -1,7 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { UserRoles, Vehicle } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
-import { ApsFormComponent } from '@arphase/ui';
+import { ApsFormComponent } from '@arphase/ui/core';
 import { QueryParams } from '@ngrx/data';
 
 @Component({

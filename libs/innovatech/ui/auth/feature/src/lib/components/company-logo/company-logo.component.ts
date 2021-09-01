@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Themes, ThemeService } from '@arphase/ui';
+import { Themes, ThemeService } from '@arphase/ui/core';
 
 @Component({
   selector: 'ivt-company-logo',

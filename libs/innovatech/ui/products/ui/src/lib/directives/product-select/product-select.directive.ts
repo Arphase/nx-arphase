@@ -1,6 +1,6 @@
 import { AfterContentInit, ChangeDetectorRef, Directive, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { ApsCollectionSelectDirective } from '@arphase/ui';
+import { ApsCollectionSelectDirective } from '@arphase/ui/core';
 import { Product } from '@innovatech/common/domain';
 import { ProductCollectionService } from '@innovatech/ui/products/data';
 import { NzSelectComponent } from 'ng-zorro-antd/select';

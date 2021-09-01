@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApsEntityResolverService } from '@arphase/ui';
+import { ApsEntityResolverService } from '@arphase/ui/core';
 import { Promocode } from '@valmira/domain';
 
 import { PromocodeCollectionService } from '../services/promocode-collection.service';

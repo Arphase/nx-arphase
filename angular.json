@@ -103,24 +103,46 @@
         }
       }
     },
-    "arphase-ui": {
+    "arphase-ui-core": {
       "projectType": "library",
-      "root": "libs/arphase/ui",
-      "sourceRoot": "libs/arphase/ui/src",
+      "root": "libs/arphase/ui/core",
+      "sourceRoot": "libs/arphase/ui/core/src",
       "prefix": "aps",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/arphase/ui/src/**/*.ts", "libs/arphase/ui/src/**/*.html"]
+            "lintFilePatterns": ["libs/arphase/ui/core/src/**/*.ts", "libs/arphase/ui/core/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/ui"],
+          "outputs": ["coverage/libs/arphase/ui/core"],
           "options": {
-            "jestConfig": "libs/arphase/ui/jest.config.js",
+            "jestConfig": "libs/arphase/ui/core/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "arphase-ui-core-auth": {
+      "projectType": "library",
+      "root": "libs/arphase/ui/core/auth",
+      "sourceRoot": "libs/arphase/ui/core/auth/src",
+      "prefix": "ivt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/arphase/ui/core/auth"],
+          "options": {
+            "jestConfig": "libs/arphase/ui/core/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/arphase/ui/core/auth/src/**/*.ts", "libs/arphase/ui/core/auth/src/**/*.html"]
           }
         }
       }
@@ -529,21 +551,21 @@
             ],
             "styles": [
               "apps/innovatech/app/src/styles.less",
-              "libs/arphase/ui/src/styles/styles.less",
+              "libs/arphase/ui/core/src/styles/styles.less",
               {
-                "input": "libs/arphase/ui/src/styles/default.less",
+                "input": "libs/arphase/ui/core/src/styles/default.less",
                 "bundleName": "default",
                 "inject": false
               },
               {
-                "input": "libs/arphase/ui/src/styles/dark.less",
+                "input": "libs/arphase/ui/core/src/styles/dark.less",
                 "bundleName": "dark",
                 "inject": false
               }
             ],
             "allowedCommonJsDependencies": ["file-saver"],
             "stylePreprocessorOptions": {
-              "includePaths": ["libs/arphase/ui/src/styles"]
+              "includePaths": ["libs/arphase/ui/core/src/styles"]
             },
             "vendorChunk": true,
             "extractLicenses": false,
@@ -1711,7 +1733,7 @@
             "tsConfig": "apps/musicr/store/tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "assets": ["apps/musicr/store/src/favicon.ico", "apps/musicr/store/src/assets"],
-            "styles": ["apps/musicr/store/src/styles.less", "libs/arphase/ui/src/styles/styles.less"],
+            "styles": ["apps/musicr/store/src/styles.less", "libs/arphase/ui/core/src/styles/styles.less"],
             "scripts": []
           },
           "configurations": {
@@ -2098,7 +2120,7 @@
                 "output": "/assets/"
               }
             ],
-            "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/src/styles/themes/base.less"]
+            "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
             "development": {

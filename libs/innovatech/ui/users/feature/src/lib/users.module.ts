@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ApsCheckboxFilterModule, ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui';
+import { ApsCheckboxFilterModule, ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui/core';
 import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';

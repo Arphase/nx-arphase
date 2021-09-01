@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'arphase-ui',
-  preset: '../../../jest.preset.js',
+  displayName: 'arphase-ui-core',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../coverage/libs/arphase/ui/arphase-ui',
+  coverageDirectory: '../../../../coverage/libs/arphase/ui/core/core',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

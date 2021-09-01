@@ -10,7 +10,7 @@ import {
   ApsRadioFilterModule,
   ApsSearchbarModule,
   ApsUppercaseModule,
-} from '@arphase/ui';
+} from '@arphase/ui/core';
 import { IvtAddressFormModule } from '@innovatech/ui/addresses/ui';
 import { CompanyCheckboxFilterModule, CompanySelectModule } from '@innovatech/ui/companies/ui';
 import { IvtFolioModule } from '@innovatech/ui/core/ui';

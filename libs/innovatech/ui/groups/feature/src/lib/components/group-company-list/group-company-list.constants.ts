@@ -1,4 +1,4 @@
-import { ApsColumns } from '@arphase/ui';
+import { ApsColumns } from '@arphase/ui/core';
 import { Company } from '@innovatech/common/domain';
 
 export const columns: ApsColumns = [

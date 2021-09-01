@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { LoadingService } from '@arphase/ui';
+import { LoadingService } from '@arphase/ui/core';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { User } from '@valmira/domain';

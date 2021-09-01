@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApsListContainerComponent } from '@arphase/ui';
+import { ApsListContainerComponent } from '@arphase/ui/core';
 import { UserRoles, Vehicle, VehicleStatus } from '@innovatech/common/domain';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import { VehicleCollectionService, VehicleDataService } from '@innovatech/ui/vehicles/data';

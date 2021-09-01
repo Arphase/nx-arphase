@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { ApsCollectionResponse } from '@arphase/common';
-import { filterNil } from '@arphase/ui';
+import { filterNil } from '@arphase/ui/core';
 import { Category, Product, Subcategory } from '@musicr/domain';
 import { BehaviorSubject, map, forkJoin, Observable, switchMap, tap, filter, take } from 'rxjs';
 
@@ -28,7 +28,7 @@ export class ProductsCatalogService {
             const products = this.getProducts(id, isSubCategory);
             return forkJoin([title, products]);
           }
-        }),
+        })
       )
       .subscribe(response => {
         this.titleSubject.next(response[0].name);

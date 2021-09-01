@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { specialCharactersForPassword } from '@arphase/common';
-import { ApsFormComponent, ApsValidators, MessageStatus } from '@arphase/ui';
+import { ApsFormComponent, ApsValidators, MessageStatus } from '@arphase/ui/core';
 
 @Component({
   selector: 'vma-set-password-form',

@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   ApsAdditionalEntityCollectionReducerMethodsFactory,
   ApsAdditionalPropertyPersistenceResultHandler,
-} from '@arphase/ui';
+} from '@arphase/ui/core';
 import { EntityCollectionReducerMethodsFactory, EntityDataModule, PersistenceResultHandler } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
 import { routerReducer, RouterReducerState, StoreRouterConnectingModule } from '@ngrx/router-store';

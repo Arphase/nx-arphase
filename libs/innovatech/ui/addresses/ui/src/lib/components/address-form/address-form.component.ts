@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Address } from '@innovatech/common/domain';
-import { ApsFormComponent } from '@arphase/ui';
+import { ApsFormComponent } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { filter, startWith, switchMap } from 'rxjs/operators';
@@ -38,13 +38,8 @@ export class IvtAddressFormComponent extends ApsFormComponent<Address> implement
         switchMap(zipcode => this.addressFormService.getLocalities(zipcode))
       )
       .subscribe(zipCodeResponse => {
-        const {
-          showAddressSelects,
-          countryOptions,
-          stateOptions,
-          cityOptions,
-          suburbOptions,
-        } = this.addressFormService.mapLocalities(zipCodeResponse);
+        const { showAddressSelects, countryOptions, stateOptions, cityOptions, suburbOptions } =
+          this.addressFormService.mapLocalities(zipCodeResponse);
         this.showAddressSelects = showAddressSelects;
         this.countryOptions = countryOptions;
         this.stateOptions = stateOptions;

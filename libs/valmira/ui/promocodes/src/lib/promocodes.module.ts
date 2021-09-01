@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApsAutoErrorModule, ApsDateFilterModule, ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui';
+import { ApsAutoErrorModule, ApsDateFilterModule, ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui/core';
 import { EntityDataService } from '@ngrx/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApsListContainerComponent } from '@arphase/ui';
+import { ApsListContainerComponent } from '@arphase/ui/core';
 import { Group } from '@innovatech/common/domain';
 import { GroupCollectionService, GroupDataService } from '@innovatech/ui/groups/data';
 import { NzModalService } from 'ng-zorro-antd/modal';

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { LoadingService } from '@arphase/ui';
+import { LoadingService } from '@arphase/ui/core';
 import { Store } from '@ngrx/store';
 import { fromAuth, SignInPayload } from '@valmira/ui/auth/data';
 
