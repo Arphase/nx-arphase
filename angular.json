@@ -1921,23 +1921,23 @@
       }
     },
     "musicr-ui-auth-data": {
+      "projectType": "library",
       "root": "libs/musicr/ui/auth/data",
       "sourceRoot": "libs/musicr/ui/auth/data/src",
-      "projectType": "library",
       "prefix": "mrl",
       "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/musicr/ui/auth/data/**/*.ts"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/musicr/ui/auth/data"],
           "options": {
             "jestConfig": "libs/musicr/ui/auth/data/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/auth/data/src/**/*.ts", "libs/musicr/ui/auth/data/src/**/*.html"]
           }
         }
       }
