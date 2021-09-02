@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import {
   ApsAdditionalEntityCollectionReducerMethodsFactory,
   ApsAdditionalPropertyPersistenceResultHandler,
-} from '@arphase/ui';
+} from '@arphase/ui/core';
 import { AuthEffects, AuthState, fromAuth, TokenInterceptorService } from '@innovatech/ui/auth/data';
 import {
   entityConfig,

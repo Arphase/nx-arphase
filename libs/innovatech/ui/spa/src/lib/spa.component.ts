@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
-import { MenuItem } from '@arphase/ui';
+import { MenuItem } from '@arphase/ui/core';
 import { UserRoles } from '@innovatech/common/domain';
 import { fromAuth, getAuthUserEmailState, getAuthUserNameState } from '@innovatech/ui/auth/data';
 import { INNOVATECH_CONFIGURATION, InnovatechConfiguration } from '@innovatech/ui/core/data';

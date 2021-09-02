@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SetPasswordGuard, SpaGuard } from '@valmira/ui/auth/data';
+import { DeleteLocalStorageGuard } from '@arphase/ui/auth';
+import { SpaGuard } from '@valmira/ui/auth/data';
 
 import { ExpiredTokenComponent } from './components/expired-token/expired-token.component';
 import { ResetPasswordFormContainerComponent } from './containers/reset-password-form-container/reset-password-form-container.component';
@@ -21,7 +22,7 @@ export const routes: Routes = [
   {
     path: 'set-password/:passwordToken/:userId',
     component: SetPasswordFormContainerComponent,
-    canActivate: [SetPasswordGuard],
+    canActivate: [DeleteLocalStorageGuard],
     resolve: { resolvedActions: SetPasswordResolverService },
   },
   {

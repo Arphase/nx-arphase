@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ApsListComponent } from '@arphase/ui';
+import { ApsListComponent } from '@arphase/ui/core';
 import { RevisionRequest, RevisionRequestStatus, UserRoles } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 

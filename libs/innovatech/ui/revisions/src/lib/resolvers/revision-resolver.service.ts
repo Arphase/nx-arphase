@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApsEntityResolverService } from '@arphase/ui';
+import { ApsEntityResolverService } from '@arphase/ui/core';
 import { Revision } from '@innovatech/common/domain';
 
 import { RevisionCollectionService } from '../services/revision-collection.service';

@@ -1,6 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { ApsListComponent } from '@arphase/ui';
+import { ApsListComponent } from '@arphase/ui/core';
 import { guaranteeDateTypeOptions, UserRoles } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
-import { ApsListComponent } from '@arphase/ui';
+import { ApsListComponent } from '@arphase/ui/core';
 import { Group } from '@innovatech/common/domain';
 
 import { columns } from './group-list.constants';

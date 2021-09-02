@@ -8,7 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ApsFormComponent, ApsValidators, getBase64, setFormArrayValue } from '@arphase/ui';
+import { ApsFormComponent, ApsValidators, getBase64, setFormArrayValue } from '@arphase/ui/core';
 import { Place, PlaceCategories } from '@valmira/domain';
 import { VALMIRA_CONFIGURATION, ValmiraConfiguration } from '@valmira/ui/core';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';

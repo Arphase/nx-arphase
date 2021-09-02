@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApsColumns, ApsListComponent } from '@arphase/ui';
+import { ApsColumns, ApsListComponent } from '@arphase/ui/core';
 import { Promocode } from '@valmira/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 

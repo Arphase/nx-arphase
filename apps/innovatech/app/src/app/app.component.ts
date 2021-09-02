@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ThemeService } from '@arphase/ui';
+import { ThemeService } from '@arphase/ui/core';
 
 @Component({
   selector: 'app-root',

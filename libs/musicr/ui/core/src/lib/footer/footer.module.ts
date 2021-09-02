@@ -6,7 +6,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { ApsAutoErrorModule } from '@arphase/ui';
+import { ApsAutoErrorModule } from '@arphase/ui/core';
 
 @NgModule({
   declarations: [FooterComponent],

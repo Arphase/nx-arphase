@@ -1,6 +1,6 @@
 import { INNOVATECH_CONFIGURATION } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
-import { ThemeService } from '@arphase/ui';
+import { ThemeService } from '@arphase/ui/core';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';

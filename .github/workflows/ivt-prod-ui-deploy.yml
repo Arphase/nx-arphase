@@ -29,11 +29,11 @@ jobs:
 
       - uses: bahmutov/npm-install@v1
 
-      - name: Build production app
+      - name: Build app
         run: npx nx build innovatech-app --prod
 
-      - name: Delete current production app
+      - name: Delete current app
         run: npx ts-node scripts/ui-delete-current
 
-      - name: Deploy production app
+      - name: Deploy app
         run: npx ts-node scripts/ui-deploy

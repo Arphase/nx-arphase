@@ -1,5 +1,5 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ApsValidators, setFormArrayValue } from '@arphase/ui';
+import { ApsValidators, setFormArrayValue } from '@arphase/ui/core';
 import { Company, Group, User } from '@innovatech/common/domain';
 import { generateId, RfcValidatorTypes } from '@innovatech/common/utils';
 import { createAddressForm } from '@innovatech/ui/addresses/ui';

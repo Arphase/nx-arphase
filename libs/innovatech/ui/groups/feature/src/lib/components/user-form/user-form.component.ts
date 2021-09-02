@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Group } from '@innovatech/common/domain';
-import { ApsFormComponent } from '@arphase/ui';
+import { ApsFormComponent } from '@arphase/ui/core';
 
 @Component({
   selector: 'ivt-user-form',

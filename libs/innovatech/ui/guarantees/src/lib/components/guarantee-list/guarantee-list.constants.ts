@@ -1,4 +1,4 @@
-import { ApsColumns } from '@arphase/ui';
+import { ApsColumns } from '@arphase/ui/core';
 import { GuaranteeStatus } from '@innovatech/common/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 

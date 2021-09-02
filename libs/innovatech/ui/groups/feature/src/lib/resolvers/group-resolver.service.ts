@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApsEntityResolverService } from '@arphase/ui';
+import { ApsEntityResolverService } from '@arphase/ui/core';
 import { Group } from '@innovatech/common/domain';
 import { GroupCollectionService } from '@innovatech/ui/groups/data';
 

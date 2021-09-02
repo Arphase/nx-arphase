@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Product } from '@musicr/domain';
 import { BehaviorSubject, filter, map, Observable, switchMap, take, tap } from 'rxjs';
-import { filterNil, filterNilArray, mapToSelectOptions } from '@arphase/ui';
+import { filterNil, filterNilArray, mapToSelectOptions } from '@arphase/ui/core';
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApsListContainerComponent } from '@arphase/ui';
+import { ApsListContainerComponent } from '@arphase/ui/core';
 import { Product } from '@innovatech/common/domain';
 import { ProductCollectionService, ProductDataService } from '@innovatech/ui/products/data';
 

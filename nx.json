@@ -34,7 +34,10 @@
     "arphase-common": {
       "tags": ["domain:arphase", "type:util"]
     },
-    "arphase-ui": {
+    "arphase-ui-core": {
+      "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
+    },
+    "arphase-ui-auth": {
       "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
     },
     "innovatech-api": {
@@ -225,7 +228,10 @@
     "musicr-terms-and-conditions": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
-    "musicr-ui-auth": {
+    "musicr-ui-auth-data": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:data"]
+    },
+    "musicr-ui-auth-feature": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-ui-core": {
@@ -238,7 +244,7 @@
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "pam-vic": {
-      "tags": []
+      "tags": ["domain:pam-vic", "executable:ui"]
     },
     "pam-vic-e2e": {
       "tags": [],

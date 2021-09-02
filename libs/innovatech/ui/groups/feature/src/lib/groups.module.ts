@@ -7,7 +7,7 @@ import {
   ApsPhoneModule,
   ApsSearchbarModule,
   ApsUppercaseModule,
-} from '@arphase/ui';
+} from '@arphase/ui/core';
 import { IvtAddressFormModule } from '@innovatech/ui/addresses/ui';
 import { GroupsDataModule } from '@innovatech/ui/groups/data';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';

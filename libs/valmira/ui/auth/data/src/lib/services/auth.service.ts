@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SignInPayload } from '@arphase/ui/auth';
 import { select, Store } from '@ngrx/store';
 import { ResetPassword, User } from '@valmira/domain';
 import { map, Observable } from 'rxjs';
 
-import { SetPasswordPayload, SignInPayload } from '../models';
+import { SetPasswordPayload } from '../models';
 import { getAuthUserStateState } from '../state/auth.selectors';
 
 @Injectable({ providedIn: 'root' })

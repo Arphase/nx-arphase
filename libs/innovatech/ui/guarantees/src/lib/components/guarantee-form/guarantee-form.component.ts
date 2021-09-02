@@ -9,7 +9,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ApsFormComponent, ApsValidators, filterNil } from '@arphase/ui';
+import { ApsFormComponent, ApsValidators, filterNil } from '@arphase/ui/core';
 import { Guarantee, isVehicleElegible, PersonTypes, UserRoles, Vehicle } from '@innovatech/common/domain';
 import { RfcValidatorTypes } from '@innovatech/common/utils';
 import { createAddressForm } from '@innovatech/ui/addresses/ui';

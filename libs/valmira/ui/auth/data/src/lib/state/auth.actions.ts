@@ -1,7 +1,8 @@
+import { SignInPayload } from '@arphase/ui/auth';
 import { createAction, props } from '@ngrx/store';
 import { User } from '@valmira/domain';
 
-import { SetPasswordPayload, SignInPayload } from '../models';
+import { SetPasswordPayload } from '../models';
 
 export const signIn = createAction('[Auth] Sign in', props<{ payload: SignInPayload }>());
 

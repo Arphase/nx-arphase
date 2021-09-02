@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui';
+import { ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui/core';
 import { IvtFolioModule } from '@innovatech/ui/core/ui';
 import { ProductsDataModule } from '@innovatech/ui/products/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';

@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { ApsFormComponent, ApsValidators } from '@arphase/ui';
-import { SignInPayload } from '@valmira/ui/auth/data';
+import { createSignInForm, SignInPayload } from '@arphase/ui/auth';
+import { ApsFormComponent } from '@arphase/ui/core';
 
 @Component({
   selector: 'vma-sign-in-form',
@@ -10,11 +9,5 @@ import { SignInPayload } from '@valmira/ui/auth/data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInFormComponent extends ApsFormComponent<SignInPayload> {
-  constructor(private fb: FormBuilder) {
-    super();
-    this.form = this.fb.group({
-      email: [null, [ApsValidators.required, ApsValidators.email]],
-      password: [null, ApsValidators.required],
-    });
-  }
+  form = createSignInForm();
 }

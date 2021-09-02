@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
-import { MenuItem, SpaLayoutOptions } from '@arphase/ui';
+import { MenuItem, SpaLayoutOptions } from '@arphase/ui/core';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { fromAuth } from '@valmira/ui/auth/data';

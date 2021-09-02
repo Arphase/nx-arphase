@@ -7,7 +7,7 @@ import {
   ApsEmptyModule,
   ApsRadioFilterModule,
   ApsSearchbarModule,
-} from '@arphase/ui';
+} from '@arphase/ui/core';
 import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';
