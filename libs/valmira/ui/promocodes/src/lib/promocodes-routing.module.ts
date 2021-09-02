@@ -18,6 +18,7 @@ export const routes: Routes = [
       {
         path: 'new',
         component: PromocodeFormContainerComponent,
+        resolve: { resolvedPromocode: PromocodeResolverService },
       },
       {
         path: ':id',

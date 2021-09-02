@@ -7,14 +7,19 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { CreateCategoryDto } from '../dto/create-category.dto';
+import { UpdateCategoryDto } from '../dto/update-category.dto';
 
 @Injectable()
 export class CategoriesService {
   constructor(@InjectRepository(CategoryEntity) private categoryRepository: Repository<CategoryEntity>) {}
 
   async getCategories(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Category>> {
-    const { pageIndex, pageSize } = filterDto;
+    const { pageIndex, pageSize, text } = filterDto;
     const query = this.categoryRepository.createQueryBuilder('category').orderBy('category.name', SortDirection.ascend);
+
+    if (text) {
+      query.andWhere(`(LOWER(category.name) like :text)`, { text: `%${text.toLowerCase()}%` });
+    }
 
     filterCollectionQuery('category', query, filterDto);
 
@@ -25,6 +30,9 @@ export class CategoriesService {
 
   async getCategory(id: number): Promise<Category> {
     const category = await this.categoryRepository.findOne({ id });
+    if (!category) {
+      throw new NotFoundException(`Category with id ${id} not found`);
+    }
     return category;
   }
 
@@ -35,6 +43,11 @@ export class CategoriesService {
     }
     const newCategory = this.categoryRepository.create({ ...category });
     return this.categoryRepository.save(newCategory);
+  }
+
+  async updateCategory(updateCategoryDto: UpdateCategoryDto): Promise<Category> {
+    const category = await this.getCategory(updateCategoryDto.id);
+    return this.categoryRepository.save({ ...category, ...updateCategoryDto });
   }
 
   async deleteCategory(id: number): Promise<Category> {

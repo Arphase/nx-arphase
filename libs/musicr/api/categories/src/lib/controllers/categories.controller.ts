@@ -1,9 +1,10 @@
 import { ApsCollectionFilterDto } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Category } from '@musicr/domain';
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 
 import { CreateCategoryDto } from '../dto/create-category.dto';
+import { UpdateCategoryDto } from '../dto/update-category.dto';
 import { CategoriesService } from '../services/categories.service';
 
 @Controller('categories')
@@ -23,6 +24,11 @@ export class CategoriesController {
   @Post()
   async createCategory(@Body() createCategoryDto: CreateCategoryDto): Promise<Category> {
     return this.categoriesService.createCategory(createCategoryDto);
+  }
+
+  @Put(':id')
+  updateCategory(@Body() updateCategoryDto: UpdateCategoryDto): Promise<Category> {
+    return this.categoriesService.updateCategory(updateCategoryDto);
   }
 
   @Delete(':id')

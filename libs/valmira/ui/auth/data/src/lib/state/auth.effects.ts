@@ -9,7 +9,7 @@ import * as AuthActions from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
-  getAllPermissions$ = createEffect(() =>
+  loadUserFromStorage$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ROOT_EFFECTS_INIT),
       map(() => {

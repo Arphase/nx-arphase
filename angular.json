@@ -103,28 +103,6 @@
         }
       }
     },
-    "arphase-ui-core": {
-      "projectType": "library",
-      "root": "libs/arphase/ui/core",
-      "sourceRoot": "libs/arphase/ui/core/src",
-      "prefix": "aps",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/arphase/ui/core/src/**/*.ts", "libs/arphase/ui/core/src/**/*.html"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/ui/core"],
-          "options": {
-            "jestConfig": "libs/arphase/ui/core/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "arphase-ui-auth": {
       "projectType": "library",
       "root": "libs/arphase/ui/auth",
@@ -143,6 +121,28 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/arphase/ui/auth/src/**/*.ts", "libs/arphase/ui/auth/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "arphase-ui-core": {
+      "projectType": "library",
+      "root": "libs/arphase/ui/core",
+      "sourceRoot": "libs/arphase/ui/core/src",
+      "prefix": "aps",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/arphase/ui/core/src/**/*.ts", "libs/arphase/ui/core/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/arphase/ui/core"],
+          "options": {
+            "jestConfig": "libs/arphase/ui/core/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
@@ -1964,6 +1964,81 @@
         }
       }
     },
+    "musicr-ui-categories-data": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/categories/data",
+      "sourceRoot": "libs/musicr/ui/categories/data/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/categories/data"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/categories/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/musicr/ui/categories/data/src/**/*.ts",
+              "libs/musicr/ui/categories/data/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "musicr-ui-categories-feature": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/categories/feature",
+      "sourceRoot": "libs/musicr/ui/categories/feature/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/categories/feature"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/categories/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/musicr/ui/categories/feature/src/**/*.ts",
+              "libs/musicr/ui/categories/feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "musicr-ui-categories-ui": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/categories/ui",
+      "sourceRoot": "libs/musicr/ui/categories/ui/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/categories/ui"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/categories/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/musicr/ui/categories/ui/src/**/*.ts",
+              "libs/musicr/ui/categories/ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "musicr-ui-core": {
       "projectType": "library",
       "root": "libs/musicr/ui/core",
@@ -2026,6 +2101,28 @@
           "options": {
             "jestConfig": "libs/musicr/ui/products/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "musicr-ui-spa": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/spa",
+      "sourceRoot": "libs/musicr/ui/spa/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/spa"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/spa/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/spa/src/**/*.ts", "libs/musicr/ui/spa/src/**/*.html"]
           }
         }
       }

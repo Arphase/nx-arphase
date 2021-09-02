@@ -9,3 +9,5 @@ export const signInSuccess = createAction('[Auth] Sign in success', props<{ user
 export const signInFailed = createAction('[Auth] Sign in failed');
 
 export const logout = createAction('[Auth] logout');
+
+export const loadUserFromStorage = createAction('[Auth] load user from storage', props<{ user: User }>());
