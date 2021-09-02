@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApsColumns, ApsListComponent } from '@arphase/ui';
+import { ApsColumns, ApsListComponent } from '@arphase/ui/core';
 import { AdditionalProduct } from '@valmira/domain';
 
 @Component({

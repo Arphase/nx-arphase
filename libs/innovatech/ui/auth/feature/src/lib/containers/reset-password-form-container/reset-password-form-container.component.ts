@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { LoadingService } from '@arphase/ui';
+import { LoadingService } from '@arphase/ui/core';
 import { User } from '@innovatech/common/domain';
 import { fromAuth } from '@innovatech/ui/auth/data';
 import { Actions, ofType } from '@ngrx/effects';

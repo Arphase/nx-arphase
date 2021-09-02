@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ApsCollectionService } from '@arphase/ui';
+import { ApsCollectionService } from '@arphase/ui/core';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { Promocode } from '@valmira/domain';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PromocodeCollectionService extends ApsCollectionService<Promocode> {
   constructor(protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {

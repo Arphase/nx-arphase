@@ -1,4 +1,4 @@
-import { ThemeService } from '@arphase/ui';
+import { ThemeService } from '@arphase/ui/core';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { AppComponent } from './app.component';

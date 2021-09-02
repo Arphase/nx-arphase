@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApsCollectionCheckboxFilterComponent } from '@arphase/ui';
+import { ApsCollectionCheckboxFilterComponent } from '@arphase/ui/core';
 import { User } from '@innovatech/common/domain';
 import { UserFilterCollectionService } from '@innovatech/ui/users/data';
 

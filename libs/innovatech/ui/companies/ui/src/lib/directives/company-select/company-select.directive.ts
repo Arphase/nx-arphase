@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Directive } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { ApsCollectionSelectDirective } from '@arphase/ui';
+import { ApsCollectionSelectDirective } from '@arphase/ui/core';
 import { Company } from '@innovatech/common/domain';
 import { CompanyFilterCollectionService } from '@innovatech/ui/companies/data';
 import { UntilDestroy } from '@ngneat/until-destroy';

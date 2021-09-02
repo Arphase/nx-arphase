@@ -9,10 +9,10 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ApsValidators } from '@arphase/ui';
+import { ApsValidators } from '@arphase/ui/core';
 import { RevisionRequest, Vehicle } from '@innovatech/common/domain';
 import { createAddressForm } from '@innovatech/ui/addresses/ui';
-import { ApsFormComponent } from '@arphase/ui';
+import { ApsFormComponent } from '@arphase/ui/core';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
 
 export function createRevisionRequestForm(): FormGroup {
@@ -35,7 +35,8 @@ export function createRevisionRequestForm(): FormGroup {
 })
 export class RevisionRequestFormComponent
   extends ApsFormComponent<RevisionRequest>
-  implements OnChanges, AfterViewInit {
+  implements OnChanges, AfterViewInit
+{
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
   @Input() error: string;

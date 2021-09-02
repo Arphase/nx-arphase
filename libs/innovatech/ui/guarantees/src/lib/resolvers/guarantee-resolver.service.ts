@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApsEntityResolverService } from '@arphase/ui';
+import { ApsEntityResolverService } from '@arphase/ui/core';
 import { Guarantee } from '@innovatech/common/domain';
 
 import { GuaranteeCollectionService } from '../services/guarantee-collection.service';

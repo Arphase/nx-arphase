@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApsDirtyFormGuard } from '@arphase/ui';
+import { ApsDirtyFormGuard } from '@arphase/ui/core';
 import { UserRoles } from '@innovatech/common/domain';
 import { RoleGuard } from '@innovatech/ui/auth/data';
 
@@ -29,7 +29,7 @@ export const routes: Routes = [
         resolve: { resolvedRevision: RevisionResolverService },
       },
       {
-        path: ':revisionId',
+        path: ':id',
         component: RevisionFormContainerComponent,
         canDeactivate: [ApsDirtyFormGuard],
         resolve: { resolvedRevision: RevisionResolverService },

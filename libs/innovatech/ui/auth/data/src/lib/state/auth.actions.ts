@@ -1,10 +1,10 @@
+import { SignInPayload } from '@arphase/ui/auth';
 import { User } from '@innovatech/common/domain';
 import { createAction, props } from '@ngrx/store';
 
 import { SetPasswordPayload } from '../models/set-password-payload.model';
-import { SignInRequest } from '../models/sign-in-request.model';
 
-export const signIn = createAction('[Auth] Sign in', props<{ payload: SignInRequest }>());
+export const signIn = createAction('[Auth] Sign in', props<{ payload: SignInPayload }>());
 
 export const signInSuccess = createAction('[Auth] Sign in success', props<{ user: User }>());
 
@@ -20,7 +20,7 @@ export const validateTokenFailed = createAction('[Auth] Validate token failed');
 
 export const setPassword = createAction('[Auth] Set password', props<{ payload: SetPasswordPayload }>());
 
-export const setPasswordSuccess = createAction('[Auth] Set password success', props<{ payload: SignInRequest }>());
+export const setPasswordSuccess = createAction('[Auth] Set password success', props<{ payload: SignInPayload }>());
 
 export const setPasswordFailed = createAction('[Auth] Set password failed');
 

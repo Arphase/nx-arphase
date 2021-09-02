@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ApsFormComponent, ApsValidators } from '@arphase/ui';
+import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 
 @Component({
   selector: 'mrl-footer',
@@ -11,10 +11,10 @@ export class FooterComponent extends ApsFormComponent {
   constructor(private fb: FormBuilder) {
     super();
     this.form = this.fb.group({
-      name:[null, ApsValidators.required],
-      phone:[null, ApsValidators.required],
+      name: [null, ApsValidators.required],
+      phone: [null, ApsValidators.required],
       email: [null, [ApsValidators.required, ApsValidators.email]],
-      message:[null, ApsValidators.required]
+      message: [null, ApsValidators.required],
     });
   }
 }

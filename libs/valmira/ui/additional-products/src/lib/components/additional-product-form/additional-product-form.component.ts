@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ApsFormComponent, ApsValidators } from '@arphase/ui';
+import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { AdditionalProduct } from '@valmira/domain';
 
 export function createAdditionalProductForm(): FormGroup {

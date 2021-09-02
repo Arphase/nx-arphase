@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpStatusCodes } from '@arphase/common';
-import { ApsFormContainerComponent } from '@arphase/ui';
+import { ApsFormContainerComponent } from '@arphase/ui/core';
 import { UserRoles, Vehicle } from '@innovatech/common/domain';
 import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';

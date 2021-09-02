@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApsEntityResolverService } from '@arphase/ui';
+import { ApsEntityResolverService } from '@arphase/ui/core';
 import { Place } from '@valmira/domain';
 
 import { PlaceCollectionService } from '../services/place-collection.service';

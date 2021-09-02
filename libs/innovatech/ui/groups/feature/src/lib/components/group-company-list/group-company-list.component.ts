@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApsListComponent } from '@arphase/ui';
+import { ApsListComponent } from '@arphase/ui/core';
 import { Company } from '@innovatech/common/domain';
 
 import { columns } from './group-company-list.constants';

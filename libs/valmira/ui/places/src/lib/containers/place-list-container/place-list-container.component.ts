@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApsListContainerComponent } from '@arphase/ui';
+import { ApsListContainerComponent } from '@arphase/ui/core';
 import { Place } from '@valmira/domain';
 
 import { PlaceCollectionService } from '../../services/place-collection.service';

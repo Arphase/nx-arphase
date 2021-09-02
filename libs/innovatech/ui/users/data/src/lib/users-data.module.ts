@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ApsDataService } from '@arphase/ui';
+import { ApsDataService } from '@arphase/ui/core';
 import { EntityDataService } from '@ngrx/data';
 
 import { UserFilterDataService } from './services';
