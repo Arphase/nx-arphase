@@ -14,6 +14,9 @@ export class SubcategoryEntity extends BaseEntity implements Subcategory {
   name: string;
 
   @Column()
+  description: string;
+
+  @Column()
   categoryId?: number;
 
   @ManyToOne(() => CategoryEntity, category => category.subcategories)

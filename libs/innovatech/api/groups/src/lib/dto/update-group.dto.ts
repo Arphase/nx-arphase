@@ -18,6 +18,7 @@ export class UpdateGroupDto extends PartialType(CreateGroupDto) {
 }
 
 export class UpdateCompanyDto extends PartialType(CreateCompanyDto) {
+  @IsOptional()
   @IsNumber()
   id: number;
 
@@ -34,6 +35,7 @@ export class UpdateCompanyDto extends PartialType(CreateCompanyDto) {
 }
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
+  @IsOptional()
   @IsNumber()
   id: number;
 }

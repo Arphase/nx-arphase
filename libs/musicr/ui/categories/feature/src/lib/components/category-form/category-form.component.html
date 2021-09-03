@@ -1,0 +1,62 @@
+<form nz-form
+      nz-row
+      nzLayout="vertical"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+  <nz-space nzDirection="vertical"
+            nz-col
+            nzSpan="24"
+            nzSize="middle">
+    <nz-page-header nzBackIcon
+                    [nzTitle]="item?.id ? 'Editar Categoría' : 'Nueva Categoría'"
+                    [routerLink]="['..']"></nz-page-header>
+    <div nz-row>
+      <div nz-col
+           nzSpan="24">
+        <nz-form-item>
+          <nz-form-label nzRequired>Nombre</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   formControlName="name" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row>
+      <div nz-col
+           nzSpan="24">
+        <nz-form-item>
+          <nz-form-label nzRequired>Descripción</nz-form-label>
+          <nz-form-control apsAutoError>
+            <textarea nz-input
+                      formControlName="description"></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div *nzSpaceItem
+         nz-row>
+      <div nz-col
+           nzSpan="24"
+           class="flex-end">
+        <nz-space>
+          <button *nzSpaceItem
+                  nz-button
+                  type="button"
+                  [routerLink]="['..']">
+            Cancelar
+          </button>
+          <button *nzSpaceItem
+                  nz-button
+                  type="submit"
+                  nzType="primary"
+                  [nzLoading]="loading">
+            Guardar
+          </button>
+        </nz-space>
+      </div>
+    </div>
+  </nz-space>
+</form>

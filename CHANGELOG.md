@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.5](https://github.com/Arphase/nx-arphase/compare/v3.3.4...v3.3.5) (2021-09-02)
+
+
+### Features
+
+* **loader screen:** [#117](https://github.com/Arphase/nx-arphase/issues/117) add loader screen ([57ff845](https://github.com/Arphase/nx-arphase/commit/57ff845e8f1319d505069fc02b2e57df398fefab))
+* **musicr/auth:** [#91](https://github.com/Arphase/nx-arphase/issues/91) sign in form ([2f5a4cc](https://github.com/Arphase/nx-arphase/commit/2f5a4ccf55e168884d39edbdb9749479421e50b6))
+* **musicr/categories:** Create, list, update and delete ([7c1ca70](https://github.com/Arphase/nx-arphase/commit/7c1ca709a63cc5ab7a89de5c692969792f99093e))
+* **valmira/app:** [#117](https://github.com/Arphase/nx-arphase/issues/117) add loader screen ([b0648fa](https://github.com/Arphase/nx-arphase/commit/b0648fa274aa145f19df99573c8f1c79a8c9f5b6))
+
 ### [3.3.4](https://github.com/Arphase/nx-arphase/compare/v3.3.3...v3.3.4) (2021-09-01)
 
 ### Features
