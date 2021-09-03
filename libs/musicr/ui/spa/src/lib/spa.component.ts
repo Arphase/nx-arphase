@@ -25,6 +25,11 @@ export class SpaComponent implements OnInit {
       header: 'Categorías',
       path: ['categories'],
     },
+    {
+      icon: 'partition',
+      header: 'Subcategorías',
+      path: ['subcategories'],
+    },
   ];
   name$ = this.store.pipe(select(fromAuth.selectors.getAuthUserNameState));
   email$ = this.store.pipe(select(fromAuth.selectors.getAuthUserEmailState));

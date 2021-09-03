@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {
   ApsAutoErrorModule,
   ApsEmptyModule,
+  ApsFeatureLayoutModule,
   ApsPhoneModule,
   ApsSearchbarModule,
   ApsUppercaseModule,
@@ -44,7 +45,6 @@ import { GroupCompanyListContainerComponent } from './containers/group-company-l
 import { GroupFormContainerComponent } from './containers/group-form-container/group-form-container.component';
 import { GroupListContainerComponent } from './containers/group-list-container/group-list-container.component';
 import { GroupsRoutingModule } from './groups-routing.module';
-import { GroupsComponent } from './groups.component';
 
 @NgModule({
   imports: [
@@ -59,6 +59,7 @@ import { GroupsComponent } from './groups.component';
     NzPageHeaderModule,
     ApsSearchbarModule,
     ApsPhoneModule,
+    ApsFeatureLayoutModule,
     NzCardModule,
     NzButtonModule,
     NgxMaskModule,
@@ -82,7 +83,6 @@ import { GroupsComponent } from './groups.component';
     GroupsDataModule,
   ],
   declarations: [
-    GroupsComponent,
     GroupCompanyListComponent,
     GroupListComponent,
     GroupListContainerComponent,

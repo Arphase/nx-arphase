@@ -13,6 +13,10 @@ const routes: Routes = [
         loadChildren: () => import('@musicr/ui/categories/feature').then(m => m.CategoriesModule),
       },
       {
+        path: 'subcategories',
+        loadChildren: () => import('@musicr/ui/subcategories/feature').then(m => m.SubcategoriesModule),
+      },
+      {
         path: '',
         redirectTo: 'categories',
         pathMatch: 'full',

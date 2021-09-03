@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ApsCheckboxFilterModule, ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui/core';
+import { ApsCheckboxFilterModule, ApsEmptyModule, ApsFeatureLayoutModule, ApsSearchbarModule } from '@arphase/ui/core';
 import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';
@@ -18,7 +18,6 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserListContainerComponent } from './containers/user-list-container/user-list-container.component';
 import { UsersRoutingModule } from './users-routing.module';
-import { UsersComponent } from './users.component';
 
 @NgModule({
   imports: [
@@ -29,6 +28,7 @@ import { UsersComponent } from './users.component';
     ApsCheckboxFilterModule,
     NzEmptyModule,
     ApsEmptyModule,
+    ApsFeatureLayoutModule,
     NzButtonModule,
     NzCardModule,
     NzGridModule,
@@ -41,6 +41,6 @@ import { UsersComponent } from './users.component';
     GroupCheckboxFilterModule,
     CompanyCheckboxFilterModule,
   ],
-  declarations: [UserListContainerComponent, UsersComponent, UserListComponent],
+  declarations: [UserListContainerComponent, UserListComponent],
 })
 export class UsersModule {}

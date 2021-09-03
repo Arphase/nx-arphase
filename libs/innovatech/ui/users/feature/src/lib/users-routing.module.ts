@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ApsFeatureLayoutComponent } from '@arphase/ui/core';
 
 import { UserListContainerComponent } from './containers/user-list-container/user-list-container.component';
-import { UsersComponent } from './users.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: UsersComponent,
+    component: ApsFeatureLayoutComponent,
+    data: { title: 'Usuarios' },
     children: [
       {
         path: '',

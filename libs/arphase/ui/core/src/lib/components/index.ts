@@ -1,3 +1,4 @@
+export * from './feature-layout';
 export * from './filters';
 export * from './searchbar';
 export * from './spa-layout';

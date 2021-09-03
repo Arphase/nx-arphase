@@ -2127,6 +2127,81 @@
         }
       }
     },
+    "musicr-ui-subcategories-data": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/subcategories/data",
+      "sourceRoot": "libs/musicr/ui/subcategories/data/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/subcategories/data"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/subcategories/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/musicr/ui/subcategories/data/src/**/*.ts",
+              "libs/musicr/ui/subcategories/data/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "musicr-ui-subcategories-feature": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/subcategories/feature",
+      "sourceRoot": "libs/musicr/ui/subcategories/feature/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/subcategories/feature"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/subcategories/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/musicr/ui/subcategories/feature/src/**/*.ts",
+              "libs/musicr/ui/subcategories/feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "musicr-ui-subcategories-ui": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/subcategories/ui",
+      "sourceRoot": "libs/musicr/ui/subcategories/ui/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/subcategories/ui"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/subcategories/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/musicr/ui/subcategories/ui/src/**/*.ts",
+              "libs/musicr/ui/subcategories/ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "pam-vic": {
       "projectType": "application",
       "root": "apps/pam-vic",

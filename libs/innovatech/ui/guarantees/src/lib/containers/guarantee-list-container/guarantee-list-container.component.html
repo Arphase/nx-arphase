@@ -4,6 +4,7 @@
                     [loading]="loading$ | async"
                     [info]="info$ | async"
                     [canCreateGuarantee]="canCreateGuarantee$ | async"
+                    [showGroupFilters]="showGroupFilters$ | async"
                     [queryParams]="queryParams"
                     (filterItems)="filterItems($event)"
                     (exportExcel)="exportExcel()"

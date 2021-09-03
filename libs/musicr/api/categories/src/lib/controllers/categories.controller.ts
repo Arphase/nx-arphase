@@ -27,7 +27,7 @@ export class CategoriesController {
   }
 
   @Put(':id')
-  updateCategory(@Body() updateCategoryDto: UpdateCategoryDto): Promise<Category> {
+  async updateCategory(@Body() updateCategoryDto: UpdateCategoryDto): Promise<Category> {
     return this.categoriesService.updateCategory(updateCategoryDto);
   }
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoriesComponent } from './categories.component';
+import { ApsFeatureLayoutComponent } from '@arphase/ui/core';
 
 import { CategoryFormContainerComponent } from './containers/category-form-container/category-form-container.component';
 import { CategoryListContainerComponent } from './containers/category-list-container/category-list-container.component';
@@ -9,7 +9,8 @@ import { CategoryResolverService } from './resolvers/category-resolver.service';
 export const routes: Routes = [
   {
     path: '',
-    component: CategoriesComponent,
+    component: ApsFeatureLayoutComponent,
+    data: { title: 'Categorías' },
     children: [
       {
         path: '',

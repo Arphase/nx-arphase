@@ -98,5 +98,8 @@ module.exports = {
     '<rootDir>/libs/musicr/ui/categories/data',
     '<rootDir>/libs/musicr/ui/categories/ui',
     '<rootDir>/libs/musicr/ui/spa',
+    '<rootDir>/libs/musicr/ui/subcategories/ui',
+    '<rootDir>/libs/musicr/ui/subcategories/data',
+    '<rootDir>/libs/musicr/ui/subcategories/feature',
   ],
 };

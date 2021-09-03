@@ -1,7 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApsAutoErrorModule, ApsDateFilterModule, ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui/core';
+import {
+  ApsAutoErrorModule,
+  ApsDateFilterModule,
+  ApsEmptyModule,
+  ApsFeatureLayoutModule,
+  ApsSearchbarModule,
+} from '@arphase/ui/core';
 import { EntityDataService } from '@ngrx/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -24,7 +30,6 @@ import { PromocodeListComponent } from './components/promocode-list/promocode-li
 import { PromocodeFormContainerComponent } from './containers/promocode-form-container/promocode-form-container.component';
 import { PromocodeListContainerComponent } from './containers/promocode-list-container/promocode-list-container.component';
 import { PromocodesRoutingModule } from './promocodes-routing.module';
-import { PromocodesComponent } from './promocodes.component';
 import { PromocodeDataService } from './services/promocode-data.service';
 
 @NgModule({
@@ -50,6 +55,7 @@ import { PromocodeDataService } from './services/promocode-data.service';
     ApsAutoErrorModule,
     ApsEmptyModule,
     ApsDateFilterModule,
+    ApsFeatureLayoutModule,
     NgxMaskModule,
   ],
   declarations: [
@@ -57,7 +63,6 @@ import { PromocodeDataService } from './services/promocode-data.service';
     PromocodeListContainerComponent,
     PromocodeListComponent,
     PromocodeFormComponent,
-    PromocodesComponent,
   ],
 })
 export class PromocodesModule {
