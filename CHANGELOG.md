@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.6](https://github.com/Arphase/nx-arphase/compare/v3.3.5...v3.3.6) (2021-09-03)
+
+
+### Features
+
+* **musicr/subcategories:** [#176](https://github.com/Arphase/nx-arphase/issues/176) CRUD in admin app ([4b0fb0e](https://github.com/Arphase/nx-arphase/commit/4b0fb0ee06eee294c53bdb55553df82712cde621))
+
 ### [3.3.5](https://github.com/Arphase/nx-arphase/compare/v3.3.4...v3.3.5) (2021-09-02)
 
 
