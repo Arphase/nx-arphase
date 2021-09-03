@@ -1,16 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { SubcategoryCollectionService } from '@musicr/ui/subcategories/data';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
 import { SubcategoryResolverService } from './subcategory-resolver.service';
 
 describe('SubcategoryResolverService', () => {
-  let service: SubcategoryResolverService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(SubcategoryResolverService);
+  let spectator: SpectatorService<SubcategoryResolverService>;
+  const createService = createServiceFactory({
+    service: SubcategoryResolverService,
+    mocks: [SubcategoryCollectionService],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });
