@@ -1,5 +1,5 @@
 <div nz-row
-     [nzGutter]="12">
+     nzGutter="12">
   <div nz-col
        nzXs="18"
        nzMd="12">
@@ -62,8 +62,7 @@
       <ivt-company-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-company-checkbox-filter>
     </div>
   </ng-container>
-  <div nz-col
-       *ivtReadPermission>
+  <div nz-col>
     <ivt-user-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-user-checkbox-filter>
   </div>
   <div *ngIf="total"

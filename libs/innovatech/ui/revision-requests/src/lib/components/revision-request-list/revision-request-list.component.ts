@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsListComponent } from '@arphase/ui/core';
 import { RevisionRequest, RevisionRequestStatus, UserRoles } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
@@ -13,7 +13,6 @@ import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './rev
   providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin, UserRoles.repairman] }],
 })
 export class RevisionRequestListComponent extends ApsListComponent<RevisionRequest> {
-  @Input() showUsersFilter: boolean;
   statusLabels = statusLabels;
   iconMaps = iconMaps;
   colorMaps = colorMaps;

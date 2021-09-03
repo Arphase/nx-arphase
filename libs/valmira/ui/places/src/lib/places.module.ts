@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui/core';
+import { ApsEmptyModule, ApsFeatureLayoutModule, ApsSearchbarModule } from '@arphase/ui/core';
 import { EntityDataService } from '@ngrx/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -30,7 +30,6 @@ import { PlaceListComponent } from './components/place-list/place-list.component
 import { PlaceFormContainerComponent } from './containers/place-form-container/place-form-container.component';
 import { PlaceListContainerComponent } from './containers/place-list-container/place-list-container.component';
 import { PlacesRoutingModule } from './places-routing.module';
-import { PlacesComponent } from './places.component';
 import { PhotoDataService } from './services/photo-data.service';
 import { PlaceDataService } from './services/place-data.service';
 
@@ -43,6 +42,7 @@ import { PlaceDataService } from './services/place-data.service';
     NzPageHeaderModule,
     ApsSearchbarModule,
     ApsEmptyModule,
+    ApsFeatureLayoutModule,
     NzIconModule,
     NzCardModule,
     NzButtonModule,
@@ -64,13 +64,7 @@ import { PlaceDataService } from './services/place-data.service';
     NzSwitchModule,
     NgxMaskModule,
   ],
-  declarations: [
-    PlaceListContainerComponent,
-    PlaceListComponent,
-    PlacesComponent,
-    PlaceFormComponent,
-    PlaceFormContainerComponent,
-  ],
+  declarations: [PlaceListContainerComponent, PlaceListComponent, PlaceFormComponent, PlaceFormContainerComponent],
 })
 export class PlacesModule {
   constructor(

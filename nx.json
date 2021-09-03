@@ -235,13 +235,13 @@
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-ui-categories-data": {
-      "tags": []
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
     },
     "musicr-ui-categories-feature": {
-      "tags": []
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-categories-ui": {
-      "tags": []
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
     },
     "musicr-ui-core": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
@@ -253,7 +253,16 @@
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-spa": {
-      "tags": []
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
+    "musicr-ui-subcategories-data": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
+    },
+    "musicr-ui-subcategories-feature": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
+    "musicr-ui-subcategories-ui": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
     },
     "pam-vic": {
       "tags": ["domain:pam-vic", "executable:ui"]

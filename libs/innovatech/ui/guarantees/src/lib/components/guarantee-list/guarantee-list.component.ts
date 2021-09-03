@@ -29,6 +29,7 @@ import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.co
 export class GuaranteeListComponent extends ApsListComponent<Guarantee> implements OnChanges {
   @Input() clearSelected: boolean;
   @Input() canCreateGuarantee: boolean;
+  @Input() showGroupFilters: boolean;
   dateTypeOptions = guaranteeDateTypeOptions;
   statusOptions = statusOptions;
   checked = false;

@@ -100,7 +100,7 @@
                       [selectedOption]="queryParams?.status"
                       (filterItems)="updateStatusFilter($event)"></aps-radio-filter>
   </div>
-  <ng-container *ivtReadPermission>
+  <ng-container *ngIf="showGroupFilters">
     <div nz-col>
       <ivt-group-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-group-checkbox-filter>
     </div>
