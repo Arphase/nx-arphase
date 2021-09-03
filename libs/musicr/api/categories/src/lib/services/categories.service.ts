@@ -15,7 +15,10 @@ export class CategoriesService {
 
   async getCategories(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Category>> {
     const { pageIndex, pageSize, text } = filterDto;
-    const query = this.categoryRepository.createQueryBuilder('category').orderBy('category.name', SortDirection.ascend);
+    const query = this.categoryRepository
+      .createQueryBuilder('category')
+      .leftJoinAndSelect('category.subcategories', 'subcategories')
+      .orderBy('category.name', SortDirection.ascend);
 
     if (text) {
       query.andWhere(`(LOWER(category.name) like :text)`, { text: `%${text.toLowerCase()}%` });
@@ -23,7 +26,7 @@ export class CategoriesService {
 
     filterCollectionQuery('category', query, filterDto);
 
-    const categories = await query.leftJoinAndSelect('category.subcategories', 'subcategories').getMany();
+    const categories = await query.getMany();
     const total = await query.getCount();
     return createCollectionResponse<Category>(categories, pageSize, pageIndex, total);
   }

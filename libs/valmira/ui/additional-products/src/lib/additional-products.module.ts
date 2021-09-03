@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApsAutoErrorModule, ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui/core';
+import { ApsAutoErrorModule, ApsEmptyModule, ApsFeatureLayoutModule, ApsSearchbarModule } from '@arphase/ui/core';
 import { EntityDataService } from '@ngrx/data';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -18,7 +18,6 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { AdditionalProductsRoutingModule } from './additional-products-routing.module';
-import { AdditionalProductsComponent } from './additional-products.component';
 import { AdditionalProductFormComponent } from './components/additional-product-form/additional-product-form.component';
 import { AdditionalProductListComponent } from './components/additional-product-list/additional-product-list.component';
 import { AdditionalProductFormContainerComponent } from './containers/additional-product-form-container/additional-product-form-container.component';
@@ -44,11 +43,11 @@ import { AdditionalProductDataService } from './services/additional-product-data
     NzMessageModule,
     ApsSearchbarModule,
     ApsAutoErrorModule,
+    ApsFeatureLayoutModule,
     ApsEmptyModule,
     NgxMaskModule,
   ],
   declarations: [
-    AdditionalProductsComponent,
     AdditionalProductFormContainerComponent,
     AdditionalProductListContainerComponent,
     AdditionalProductListComponent,

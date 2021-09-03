@@ -15,7 +15,7 @@ export class ProductSelectDirective
 {
   @Input() year: string;
   @Input() horsePower: string;
-  sortValue = [{ key: 'product.name', value: 'ascend' }] as any;
+  sortValue = [{ key: 'product.name', value: 'ascend' }];
 
   constructor(
     protected host: NzSelectComponent,
@@ -42,7 +42,8 @@ export class ProductSelectDirective
       this.productCollectionService.queryParams$.pipe(take(1)).subscribe(queryParams =>
         this.productCollectionService.getWithQuery({
           ...queryParams,
-          sort: this.sortValue,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          sort: this.sortValue as any,
           year: this.year,
           horsePower: this.horsePower,
           resetList: String(true),

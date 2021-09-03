@@ -5,7 +5,7 @@ import { CategoryCollectionService } from '@musicr/ui/categories/data';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryResolverService extends ApsEntityResolverService<Category> {
-  constructor(protected promocodeCollectionService: CategoryCollectionService) {
-    super(promocodeCollectionService);
+  constructor(protected categoryCollectionService: CategoryCollectionService) {
+    super(categoryCollectionService);
   }
 }

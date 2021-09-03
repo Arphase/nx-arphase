@@ -7,16 +7,22 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { CreateSubcategoryDto } from '../dto/create-subcategory.dto';
+import { UpdateSubcategoryDto } from '../dto/update-subcategory.dto';
 
 @Injectable()
 export class SubcategoriesService {
   constructor(@InjectRepository(SubcategoryEntity) private subcategoryRepository: Repository<SubcategoryEntity>) {}
 
   async getSubcategories(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Subcategory>> {
-    const { pageIndex, pageSize } = filterDto;
+    const { pageIndex, pageSize, text } = filterDto;
     const query = this.subcategoryRepository
       .createQueryBuilder('subcategory')
+      .leftJoinAndSelect('subcategory.category', 'category')
       .orderBy('subcategory.name', SortDirection.ascend);
+
+    if (text) {
+      query.andWhere(`(LOWER(subcategory.name) like :text)`, { text: `%${text.toLowerCase()}%` });
+    }
 
     filterCollectionQuery('subcategory', query, filterDto);
 
@@ -27,6 +33,9 @@ export class SubcategoriesService {
 
   async getSubCategory(id: number): Promise<Subcategory> {
     const subcategory = await this.subcategoryRepository.findOne({ id });
+    if (!subcategory) {
+      throw new NotFoundException(`Subategory with id ${id} not found`);
+    }
     return subcategory;
   }
 
@@ -43,6 +52,11 @@ export class SubcategoriesService {
         throw new NotFoundException(`La categoría con id ${subcategory.categoryId} no existe`);
       }
     }
+  }
+
+  async updateSubcategory(updateSubcategoryDto: UpdateSubcategoryDto): Promise<Subcategory> {
+    const category = await this.getSubCategory(updateSubcategoryDto.id);
+    return this.subcategoryRepository.save({ ...category, ...updateSubcategoryDto });
   }
 
   async deleteSubcategory(id: number): Promise<Subcategory> {

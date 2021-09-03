@@ -6,6 +6,7 @@ import {
   ApsCheckboxFilterModule,
   ApsDateFilterModule,
   ApsEmptyModule,
+  ApsFeatureLayoutModule,
   ApsRadioFilterModule,
   ApsSearchbarModule,
 } from '@arphase/ui/core';
@@ -42,7 +43,6 @@ import { RevisionListComponent } from './components/revision-list/revision-list.
 import { RevisionFormContainerComponent } from './containers/revision-form-container/revision-form-container.component';
 import { RevisionListContainerComponent } from './containers/revision-list-container/revision-list-container.component';
 import { RevisionsRoutingModule } from './revisions-routing.module';
-import { RevisionsComponent } from './revisions.component';
 import { RevisionDataService } from './services/revision-data.service';
 
 @NgModule({
@@ -78,6 +78,7 @@ import { RevisionDataService } from './services/revision-data.service';
     ApsDateFilterModule,
     ApsCheckboxFilterModule,
     ApsRadioFilterModule,
+    ApsFeatureLayoutModule,
     PermissionsModule,
     NzRadioModule,
     GroupCheckboxFilterModule,
@@ -89,7 +90,6 @@ import { RevisionDataService } from './services/revision-data.service';
     RevisionListComponent,
     RevisionListContainerComponent,
     RevisionFormContainerComponent,
-    RevisionsComponent,
   ],
 })
 export class RevisionsModule {

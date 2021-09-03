@@ -1,9 +1,10 @@
 import { ApsCollectionFilterDto } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Subcategory } from '@musicr/domain';
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 
 import { CreateSubcategoryDto } from '../dto/create-subcategory.dto';
+import { UpdateSubcategoryDto } from '../dto/update-subcategory.dto';
 import { SubcategoriesService } from '../services/subcategories.service';
 
 @Controller('subcategories')
@@ -23,6 +24,11 @@ export class SubcategoriesController {
   @Post()
   async createSubcategory(@Body() createCategoryDto: CreateSubcategoryDto): Promise<Subcategory> {
     return this.subcategoriesService.createSubcategory(createCategoryDto);
+  }
+
+  @Put(':id')
+  async updateSubcategory(@Body() updateSubcategoryDto: UpdateSubcategoryDto): Promise<Subcategory> {
+    return this.subcategoriesService.updateSubcategory(updateSubcategoryDto);
   }
 
   @Delete(':id')

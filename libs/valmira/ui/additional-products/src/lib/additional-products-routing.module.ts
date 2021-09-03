@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ApsFeatureLayoutComponent } from '@arphase/ui/core';
 
-import { AdditionalProductsComponent } from './additional-products.component';
 import { AdditionalProductFormContainerComponent } from './containers/additional-product-form-container/additional-product-form-container.component';
 import { AdditionalProductListContainerComponent } from './containers/additional-product-list-container/additional-product-list-container.component';
 import { AdditionalProductResolverService } from './resolvers/additional-product-resolver.service';
@@ -9,7 +9,8 @@ import { AdditionalProductResolverService } from './resolvers/additional-product
 export const routes: Routes = [
   {
     path: '',
-    component: AdditionalProductsComponent,
+    component: ApsFeatureLayoutComponent,
+    data: { title: 'Productos Adicionales' },
     children: [
       {
         path: '',

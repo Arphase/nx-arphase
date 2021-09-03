@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ApsDateFilterModule, ApsEmptyModule, ApsPhoneModule, ApsSearchbarModule } from '@arphase/ui/core';
+import {
+  ApsDateFilterModule,
+  ApsEmptyModule,
+  ApsFeatureLayoutModule,
+  ApsPhoneModule,
+  ApsSearchbarModule,
+} from '@arphase/ui/core';
 import { EntityDataService } from '@ngrx/data';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -21,7 +27,6 @@ import { ReservationListComponent } from './components/reservation-list/reservat
 import { ReservationDetailContainerComponent } from './containers/reservation-detail-container/reservation-detail-container.component';
 import { ReservationListContainerComponent } from './containers/reservation-list-container/reservation-list-container.component';
 import { ReservationsRoutingModule } from './reservations-routing.module';
-import { ReservationsComponent } from './reservations.component';
 import { ReservationDataService } from './services/reservation-data.service';
 
 @NgModule({
@@ -45,11 +50,11 @@ import { ReservationDataService } from './services/reservation-data.service';
     ApsDateFilterModule,
     ApsEmptyModule,
     ApsPhoneModule,
+    ApsFeatureLayoutModule,
   ],
   declarations: [
     ReservationListComponent,
     ReservationListContainerComponent,
-    ReservationsComponent,
     ReservationDetailContainerComponent,
     ReservationDetailComponent,
   ],

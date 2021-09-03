@@ -30,6 +30,7 @@ export class GuaranteeListContainerComponent extends ApsListContainerComponent<G
   clearSelected$ = this.clearSelectedSubject.asObservable();
   excelFileName = 'Garantias';
   canCreateGuarantee$ = this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.agencyUser]);
+  showGroupFilters$ = this.permissionService.hasUpdatePermission([UserRoles.superAdmin, UserRoles.repairman]);
 
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,

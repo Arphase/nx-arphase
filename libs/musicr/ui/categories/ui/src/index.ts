@@ -1,1 +1,1 @@
-export * from './lib/musicr-ui-categories-ui.module';
+export * from './lib/category-select/category-select.module';

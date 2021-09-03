@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApsAutoErrorModule, ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui/core';
+import { ApsAutoErrorModule, ApsEmptyModule, ApsFeatureLayoutModule, ApsSearchbarModule } from '@arphase/ui/core';
 import { CategoriesDataModule } from '@musicr/ui/categories/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -15,11 +15,11 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
 
 import { CategoriesRoutingModule } from './categories-routing.module';
-import { CategoriesComponent } from './categories.component';
 import { CategoryFormComponent } from './components/category-form/category-form.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { CategoryFormContainerComponent } from './containers/category-form-container/category-form-container.component';
@@ -48,9 +48,9 @@ import { CategoryListContainerComponent } from './containers/category-list-conta
     ApsSearchbarModule,
     ApsAutoErrorModule,
     ApsEmptyModule,
+    ApsFeatureLayoutModule,
   ],
   declarations: [
-    CategoriesComponent,
     CategoryListContainerComponent,
     CategoryFormContainerComponent,
     CategoryFormComponent,
