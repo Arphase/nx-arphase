@@ -121,8 +121,9 @@
               <nz-form-label nzRequired>Precio (Lunes a Jueves)</nz-form-label>
               <nz-form-control apsAutoError>
                 <input nz-input
-                       prefix="$ "
-                       mask="0*.00"
+                       prefix="$"
+                       mask="separator.2"
+                       thousandSeparator=","
                        formControlName="weeklyPrice" />
               </nz-form-control>
             </nz-form-item>
@@ -135,8 +136,9 @@
               <nz-form-label nzRequired>Precio (Viernes a Domingo)</nz-form-label>
               <nz-form-control apsAutoError>
                 <input nz-input
-                       prefix="$ "
-                       mask="0*.00"
+                       prefix="$"
+                       mask="separator.2"
+                       thousandSeparator=","
                        formControlName="weekendPrice" />
               </nz-form-control>
             </nz-form-item>

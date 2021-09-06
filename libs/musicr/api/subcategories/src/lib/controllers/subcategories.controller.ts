@@ -1,9 +1,9 @@
-import { ApsCollectionFilterDto } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Subcategory } from '@musicr/domain';
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 
 import { CreateSubcategoryDto } from '../dto/create-subcategory.dto';
+import { GetSubcategoriesDto } from '../dto/get-subcategories.dto';
 import { UpdateSubcategoryDto } from '../dto/update-subcategory.dto';
 import { SubcategoriesService } from '../services/subcategories.service';
 
@@ -12,7 +12,7 @@ export class SubcategoriesController {
   constructor(private subcategoriesService: SubcategoriesService) {}
 
   @Get()
-  async getSubcategories(@Query() filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Subcategory>> {
+  async getSubcategories(@Query() filterDto: GetSubcategoriesDto): Promise<ApsCollectionResponse<Subcategory>> {
     return this.subcategoriesService.getSubcategories(filterDto);
   }
 

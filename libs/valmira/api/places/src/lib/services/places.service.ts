@@ -69,7 +69,6 @@ export class PlacesService {
       .andWhere('(reservation.placeId = :placeId)', { placeId: id })
       .orderBy('reservation.startDate', SortDirection.ascend);
     const reservations = await query.getMany();
-    console.log(reservations);
     return getOccupiedDates(reservations);
   }
 
