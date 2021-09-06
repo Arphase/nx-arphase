@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.4.0](https://github.com/Arphase/nx-arphase/compare/v3.3.6...v3.4.0) (2021-09-06)
+
+
+### Features
+
+* **admin-products:** [#179](https://github.com/Arphase/nx-arphase/issues/179) read, create, update, and delete ([fdaf37e](https://github.com/Arphase/nx-arphase/commit/fdaf37e96b77bdec0c6998ccadacdca124c5703c))
+
+
+### Bug Fixes
+
+* **innovatech/payment-orders:** create dto missing fields ([509aa27](https://github.com/Arphase/nx-arphase/commit/509aa27dfe61da97a761aa7498ba424f90b9b616))
+
 ### [3.3.6](https://github.com/Arphase/nx-arphase/compare/v3.3.5...v3.3.6) (2021-09-03)
 
 

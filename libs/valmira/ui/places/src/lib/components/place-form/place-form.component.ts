@@ -25,8 +25,8 @@ export function createPlaceForm(): FormGroup {
     weekendPrice: new FormControl(null, ApsValidators.required),
     rooms: new FormControl(null, ApsValidators.required),
     beds: new FormControl(null, ApsValidators.required),
-    services: new FormArray([]),
     category: new FormControl(null, ApsValidators.required),
+    services: new FormArray([]),
   });
 }
 
