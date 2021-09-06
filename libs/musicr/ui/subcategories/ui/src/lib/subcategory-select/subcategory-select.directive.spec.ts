@@ -24,7 +24,7 @@ describe('SubcategorySelectDirective', () => {
 
   beforeEach(() => {
     spectator = createDirective(
-      `<form [formGroup]="form"><nz-select formControlName="test" mrlCategorySelect></nz-select></form>`
+      `<form [formGroup]="form"><nz-select formControlName="test" mrlSubcategorySelect></nz-select></form>`
     );
   });
 
