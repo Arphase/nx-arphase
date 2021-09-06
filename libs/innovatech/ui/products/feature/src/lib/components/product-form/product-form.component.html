@@ -33,8 +33,9 @@
           <nz-form-label nzRequired>Precio</nz-form-label>
           <nz-form-control apsAutoError>
             <input nz-input
-                   prefix="$ "
-                   mask="0*.00"
+                   prefix="$"
+                   mask="separator.2"
+                   thousandSeparator=","
                    formControlName="price" />
           </nz-form-control>
         </nz-form-item>

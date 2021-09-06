@@ -228,6 +228,9 @@
     "musicr-terms-and-conditions": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
+    "musicr-ui-admin-products": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
     "musicr-ui-auth-data": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:data"]
     },

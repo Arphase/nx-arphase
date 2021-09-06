@@ -1,4 +1,4 @@
-import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
+import { createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { SubcategoryEntity } from '@musicr/api/domain';
 import { Subcategory } from '@musicr/domain';
@@ -7,14 +7,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { CreateSubcategoryDto } from '../dto/create-subcategory.dto';
+import { GetSubcategoriesDto } from '../dto/get-subcategories.dto';
 import { UpdateSubcategoryDto } from '../dto/update-subcategory.dto';
 
 @Injectable()
 export class SubcategoriesService {
   constructor(@InjectRepository(SubcategoryEntity) private subcategoryRepository: Repository<SubcategoryEntity>) {}
 
-  async getSubcategories(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Subcategory>> {
-    const { pageIndex, pageSize, text } = filterDto;
+  async getSubcategories(filterDto: GetSubcategoriesDto): Promise<ApsCollectionResponse<Subcategory>> {
+    const { pageIndex, pageSize, text, categoryId } = filterDto;
     const query = this.subcategoryRepository
       .createQueryBuilder('subcategory')
       .leftJoinAndSelect('subcategory.category', 'category')
@@ -22,6 +23,10 @@ export class SubcategoriesService {
 
     if (text) {
       query.andWhere(`(LOWER(subcategory.name) like :text)`, { text: `%${text.toLowerCase()}%` });
+    }
+
+    if (categoryId) {
+      query.andWhere(`(category.id = :categoryId)`, { categoryId });
     }
 
     filterCollectionQuery('subcategory', query, filterDto);
