@@ -23,9 +23,6 @@ export class SubcategoryEntity extends BaseEntity implements Subcategory {
   @JoinColumn({ name: 'categoryId' })
   category?: Category;
 
-  @OneToMany(() => ProductEntity, product => product.subcategory, {
-    cascade: true,
-    eager: true,
-  })
+  @OneToMany(() => ProductEntity, product => product.subcategory, { cascade: true })
   products?: Product[];
 }

@@ -7,6 +7,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { BehaviorSubject } from 'rxjs';
 
 import { createProductForm } from '../../components/product-form/product-form.component';
+import { PhotoCollectionService } from '../../services/photo-collection.service';
 import { ProductCollectionService } from '../../services/product-collection.service';
 
 @Component({
@@ -28,12 +29,17 @@ export class ProductFormContainerComponent extends ApsFormContainerComponent<Pro
     protected productCollectionService: ProductCollectionService,
     protected router: Router,
     protected messageService: NzMessageService,
-    private subcategoryFilterCollectionService: SubcategoryFilterCollectionService
+    private subcategoryFilterCollectionService: SubcategoryFilterCollectionService,
+    private photoCollectionService: PhotoCollectionService
   ) {
     super(productCollectionService, router, messageService);
   }
 
   onCategoryChanges(categoryId: number): void {
     this.subcategoryFilterCollectionService.getWithQuery({ resetList: String(true), categoryId: String(categoryId) });
+  }
+
+  removePhoto(id: number): void {
+    this.photoCollectionService.delete(id);
   }
 }

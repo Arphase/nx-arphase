@@ -5,6 +5,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { AdditionalOptionCollectionService } from '../../services/additional-option-collection.service';
+import { PhotoCollectionService } from '../../services/photo-collection.service';
 import { ProductCollectionService } from '../../services/product-collection.service';
 import { ProductFormContainerComponent } from './product-form-container.component';
 
@@ -20,6 +21,7 @@ describe('ProductFormContainerComponent', () => {
       SubcategoryFilterCollectionService,
       AdditionalOptionCollectionService,
       NzModalService,
+      PhotoCollectionService,
     ],
   });
 

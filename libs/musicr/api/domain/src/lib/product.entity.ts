@@ -48,7 +48,7 @@ export class ProductEntity extends BaseEntity implements Product {
   @Column({ nullable: true })
   subcategoryId?: number;
 
-  @ManyToOne(() => SubcategoryEntity, subcategory => subcategory.products)
+  @ManyToOne(() => SubcategoryEntity, subcategory => subcategory.products, { eager: true })
   @JoinColumn({ name: 'subcategoryId' })
   subcategory?: Subcategory;
 

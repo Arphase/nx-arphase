@@ -1,8 +1,6 @@
-import { AdditionalOption } from '@musicr/domain';
+import { AdditionalOption, Photo } from '@musicr/domain';
 import { Type } from 'class-transformer';
 import { IsArray, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
-
-import { AssignPhotoDto } from './assign-photo.dto';
 
 export class CreateProductDto {
   @IsString()
@@ -25,16 +23,27 @@ export class CreateProductDto {
   @IsArray()
   productComponents: string[];
 
+  @IsOptional()
+  @IsArray()
+  @ValidateNested()
+  @Type(() => CreateProductPhotoDto)
+  photos: Photo[];
+
   @IsArray()
   @ValidateNested()
   @Type(() => CreateAdditionalOptionDto)
   additionalOptions: AdditionalOption[];
+}
 
-  @IsOptional()
-  @IsArray()
-  @ValidateNested()
-  @Type(() => AssignPhotoDto)
-  photos: AssignPhotoDto[];
+export class CreateProductPhotoDto {
+  @IsNumber()
+  id: number;
+
+  @IsString()
+  key: string;
+
+  @IsString()
+  url: string;
 }
 
 export class CreateAdditionalOptionDto {

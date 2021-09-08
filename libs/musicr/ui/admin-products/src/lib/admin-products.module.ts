@@ -27,6 +27,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { AdminProductsroutingModule } from './admin-products-routing.module';
@@ -37,6 +38,7 @@ import { AdditionalOptionsFormContainerComponent } from './containers/additional
 import { ProductFormContainerComponent } from './containers/product-form-container/product-form-container.component';
 import { ProductListContainerComponent } from './containers/product-list-container/product-list-container.component';
 import { AdditionalOptionDataService } from './services/additional-option-data.service';
+import { PhotoDataService } from './services/photo-data.service';
 import { ProductDataService } from './services/product-data.service';
 
 @NgModule({
@@ -64,6 +66,7 @@ import { ProductDataService } from './services/product-data.service';
     NzSpaceModule,
     NzTableModule,
     NzToolTipModule,
+    NzUploadModule,
     ReactiveFormsModule,
     SubcategoriesDataModule,
     SubcategorySelectModule,
@@ -81,10 +84,12 @@ export class AdminProductsModule {
   constructor(
     entityDataService: EntityDataService,
     additionalOptionDataService: AdditionalOptionDataService,
+    photoDataService: PhotoDataService,
     productDataService: ProductDataService
   ) {
     const services: Record<string, ApsDataService<unknown>> = {
       AdditionalOption: additionalOptionDataService,
+      Photo: photoDataService,
       Product: productDataService,
     };
     entityDataService.registerServices(services);
