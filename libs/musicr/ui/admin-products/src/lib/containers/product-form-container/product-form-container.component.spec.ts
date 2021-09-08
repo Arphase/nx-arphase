@@ -2,7 +2,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SubcategoryFilterCollectionService } from '@musicr/ui/subcategories/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
+import { AdditionalOptionCollectionService } from '../../services/additional-option-collection.service';
 import { ProductCollectionService } from '../../services/product-collection.service';
 import { ProductFormContainerComponent } from './product-form-container.component';
 
@@ -12,7 +14,13 @@ describe('ProductFormContainerComponent', () => {
     component: ProductFormContainerComponent,
     imports: [RouterTestingModule],
     shallow: true,
-    mocks: [ProductCollectionService, NzMessageService, SubcategoryFilterCollectionService],
+    mocks: [
+      ProductCollectionService,
+      NzMessageService,
+      SubcategoryFilterCollectionService,
+      AdditionalOptionCollectionService,
+      NzModalService,
+    ],
   });
 
   beforeEach(() => (spectator = createComponent()));

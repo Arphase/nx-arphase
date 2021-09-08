@@ -15,6 +15,7 @@ export function createProductForm(): FormGroup {
     categoryId: new FormControl(null, ApsValidators.required),
     subcategoryId: new FormControl(null, ApsValidators.required),
     productComponents: new FormArray([]),
+    additionalOptions: new FormArray([]),
   });
 }
 
@@ -31,6 +32,10 @@ export class ProductFormComponent extends ApsFormComponent<Product> implements O
 
   get productComponentsFormArray(): FormArray {
     return this.form?.get('productComponents') as FormArray;
+  }
+
+  get additionalOptionsFormArray(): FormArray {
+    return this.form?.get('additionalOptions') as FormArray;
   }
 
   ngOnChanges(changes: SimpleChanges) {
