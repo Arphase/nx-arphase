@@ -1,12 +1,10 @@
 import { Order } from '@musicr/domain';
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Body, Controller, Post } from '@nestjs/common';
 
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { OrdersService } from '../services/orders.service';
 
 @Controller('orders')
-@UseGuards(AuthGuard('jwt'))
 export class OrdersController {
   constructor(private ordersService: OrdersService) {}
 

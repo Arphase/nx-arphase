@@ -3,7 +3,7 @@ import { OrderProduct } from './order-product.model';
 import { SocialEvent } from './social-event.model';
 
 export interface Order {
-  id: number;
+  id?: number;
   customerId?: number;
   customer: Customer;
   socialEventId?: number;

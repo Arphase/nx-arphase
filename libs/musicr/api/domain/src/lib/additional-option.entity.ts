@@ -24,11 +24,7 @@ export class AdditionalOptionEntity extends BaseEntity implements AdditionalOpti
 
   @OneToMany(
     () => OrderProductAdditionalOptionEntity,
-    orderProductAdditionalOptionEntity => orderProductAdditionalOptionEntity.additionalOption,
-    {
-      cascade: true,
-      eager: true,
-    }
+    orderProductAdditionalOptionEntity => orderProductAdditionalOptionEntity.additionalOption
   )
   orderProductAdditionalOptions: OrderProductAdditionalOption[];
 }
