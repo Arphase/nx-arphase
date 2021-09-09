@@ -2108,6 +2108,28 @@
         }
       }
     },
+    "musicr-ui-orders": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/orders",
+      "sourceRoot": "libs/musicr/ui/orders/src",
+      "prefix": "ivt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/orders"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/orders/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/orders/src/**/*.ts", "libs/musicr/ui/orders/src/**/*.html"]
+          }
+        }
+      }
+    },
     "musicr-ui-products": {
       "projectType": "library",
       "root": "libs/musicr/ui/products",

@@ -9,6 +9,14 @@ const routes: Routes = [
     component: SpaComponent,
     children: [
       {
+        path: 'orders',
+        loadChildren: () => import('@musicr/ui/orders').then(m => m.OrdersModule),
+      },
+      {
+        path: 'products',
+        loadChildren: () => import('@musicr/ui/admin-products').then(m => m.AdminProductsModule),
+      },
+      {
         path: 'categories',
         loadChildren: () => import('@musicr/ui/categories/feature').then(m => m.CategoriesModule),
       },
@@ -17,12 +25,8 @@ const routes: Routes = [
         loadChildren: () => import('@musicr/ui/subcategories/feature').then(m => m.SubcategoriesModule),
       },
       {
-        path: 'products',
-        loadChildren: () => import('@musicr/ui/admin-products').then(m => m.AdminProductsModule),
-      },
-      {
         path: '',
-        redirectTo: 'categories',
+        redirectTo: 'orders',
         pathMatch: 'full',
       },
     ],

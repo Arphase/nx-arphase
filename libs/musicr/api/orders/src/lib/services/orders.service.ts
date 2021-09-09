@@ -1,3 +1,10 @@
+import {
+  ApsCollectionFilterDto,
+  createCollectionResponse,
+  filterCollectionDates,
+  filterCollectionQuery,
+} from '@arphase/api/core';
+import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { AdditionalOptionEntity, OrderEntity, PriceOptionEntity, ProductEntity } from '@musicr/api/domain';
 import { Order } from '@musicr/domain';
 import { Injectable } from '@nestjs/common';
@@ -20,6 +27,25 @@ export class OrdersService {
     @InjectRepository(PriceOptionEntity) private priceOptionRepository: Repository<PriceOptionEntity>,
     @InjectRepository(AdditionalOptionEntity) private additionalOptionRepository: Repository<AdditionalOptionEntity>
   ) {}
+
+  async getOrders(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Order>> {
+    const { pageIndex, pageSize, dateType } = filterDto;
+    const query = this.orderRepository
+      .createQueryBuilder('order')
+      .leftJoinAndSelect('order.customer', 'customer')
+      .leftJoinAndSelect('order.socialEvent', 'socialEvent')
+      .orderBy('order.createdAt', SortDirection.descend);
+
+    filterCollectionQuery('order', query, filterDto, { ignoreDates: dateType === 'startDate' });
+
+    if (dateType === 'startDate') {
+      filterCollectionDates('socialEvent', query, filterDto);
+    }
+
+    const products = await query.getMany();
+    const total = await query.getCount();
+    return createCollectionResponse<Order>(products, pageSize, pageIndex, total);
+  }
 
   async createOrder(createOrderDto: CreateOrderDto): Promise<Order> {
     const { productIds, priceOptionIds, additionalOptionIds } = getAllItemIdsWithPrices(createOrderDto);
