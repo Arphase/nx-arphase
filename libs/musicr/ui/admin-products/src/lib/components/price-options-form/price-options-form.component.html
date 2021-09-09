@@ -1,0 +1,36 @@
+<nz-collapse>
+  <nz-collapse-panel nzHeader="Opciones de Precio"
+                     [nzActive]="true">
+    <div *ngIf="formArray?.controls?.length"
+         nz-row
+         nzGutter="12">
+      <div nz-col
+           nzXs="10"
+           nzMd="11">
+        Nombre
+      </div>
+      <div nz-col
+           nzXs="10"
+           nzMd="11">
+        Precio
+      </div>
+    </div>
+    <mrl-price-option-form *ngFor="let priceOptionForm of formArray?.controls; let index = index;"
+                           [form]="priceOptionForm"
+                           (removePhoto)="removePhoto.emit($event)"
+                           (deleteItem)="removePriceOption(index)"></mrl-price-option-form>
+    <div nz-row
+         nzGutter="12">
+      <div nz-col
+           nzSpan="24">
+        <button nz-button
+                nzType="primary"
+                type="button"
+                [disabled]="formArray?.invalid"
+                (click)="addPriceOption()">
+          Agregar nueva opción de precio
+        </button>
+      </div>
+    </div>
+  </nz-collapse-panel>
+</nz-collapse>

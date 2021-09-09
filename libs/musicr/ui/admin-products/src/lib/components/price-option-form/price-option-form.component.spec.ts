@@ -1,12 +1,12 @@
 import { MUSIC_REVOLUTION_CONFIGURATION } from '@musicr/ui/core';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
-import { ProductFormComponent } from './product-form.component';
+import { PriceOptionFormComponent } from './price-option-form.component';
 
-describe('ProductFormComponent', () => {
-  let spectator: Spectator<ProductFormComponent>;
+describe('PriceOptionFormComponent', () => {
+  let spectator: Spectator<PriceOptionFormComponent>;
   const createComponent = createComponentFactory({
-    component: ProductFormComponent,
+    component: PriceOptionFormComponent,
     providers: [{ provide: MUSIC_REVOLUTION_CONFIGURATION, useValue: {} }],
     shallow: true,
   });

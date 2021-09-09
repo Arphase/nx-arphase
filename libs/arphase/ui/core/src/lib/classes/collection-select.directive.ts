@@ -3,7 +3,7 @@ import { NgControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzSelectComponent } from 'ng-zorro-antd/select';
 import { combineLatest } from 'rxjs';
-import { filter, take } from 'rxjs/operators';
+import { filter, switchMap, take } from 'rxjs/operators';
 
 import { ApsCollectionService } from '../services';
 
@@ -22,6 +22,8 @@ export abstract class ApsCollectionSelectDirective<T = any> implements AfterCont
   ngAfterContentInit() {
     this.host.nzShowSearch = true;
     this.host.nzServerSearch = true;
+    this.host.nzAllowClear = true;
+    const value = this.ngControl?.control?.value;
     this.collectionService.options$.pipe(untilDestroyed(this)).subscribe(options => {
       this.host.nzOptions = options;
       this.host.ngOnChanges({ nzOptions: new SimpleChange([], options, false) });
@@ -30,6 +32,18 @@ export abstract class ApsCollectionSelectDirective<T = any> implements AfterCont
         this.cdr.detectChanges();
       }
     });
+    if (value) {
+      this.collectionService.entityMap$
+        .pipe(
+          take(1),
+          filter(entityMap => !entityMap[value]),
+          switchMap(() => this.collectionService.getByKey(value))
+        )
+        .subscribe(() => {
+          this.ngControl?.control.updateValueAndValidity();
+          this.cdr.detectChanges();
+        });
+    }
   }
 
   @HostListener('nzOnSearch', ['$event']) nzOnSearch(text: string): void {
