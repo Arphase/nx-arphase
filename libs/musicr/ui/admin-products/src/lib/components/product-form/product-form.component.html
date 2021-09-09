@@ -171,6 +171,10 @@
       </nz-collapse-panel>
     </nz-collapse>
 
+    <mrl-price-options-form-container *nzSpaceItem
+                                      [form]="priceOptionsFormArray"
+                                      [item]="item?.priceOptions"></mrl-price-options-form-container>
+
     <mrl-additional-options-form-container *nzSpaceItem
                                            [form]="additionalOptionsFormArray"
                                            [item]="item?.additionalOptions"></mrl-additional-options-form-container>

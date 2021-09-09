@@ -46,6 +46,20 @@ export class CreateProductPhotoDto {
   url: string;
 }
 
+export class CreatePriceOptionDto {
+  @IsString()
+  name: string;
+
+  @IsString()
+  price: string;
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested()
+  @Type(() => CreateProductPhotoDto)
+  photos: Photo[];
+}
+
 export class CreateAdditionalOptionDto {
   @IsString()
   name: string;

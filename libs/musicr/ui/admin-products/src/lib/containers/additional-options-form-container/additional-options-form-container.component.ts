@@ -30,10 +30,7 @@ export class AdditionalOptionsFormContainerComponent extends ApsFormContainerCom
 
     this.additionalOptionCollectionService.entityActions$
       .pipe(ofEntityOp(EntityOp.SAVE_DELETE_ONE_SUCCESS), take(1))
-      .subscribe(() => {
-        console.log(index);
-        this.deletetedItemIndexSubject.next(index);
-      });
+      .subscribe(() => this.deletetedItemIndexSubject.next(index));
 
     this.modal
       .confirm({ nzContent: `¿Desea eliminar la opción adicional ${name}?`, nzOnOk: () => true })

@@ -15,6 +15,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { distinctUntilChanged } from 'rxjs';
 
+import { mapPhotoFileArray } from '../../functions/map-file-photo-array';
+
 export function createProductForm(): FormGroup {
   return new FormGroup({
     id: new FormControl(null),
@@ -26,6 +28,7 @@ export function createProductForm(): FormGroup {
     subcategoryId: new FormControl(null, ApsValidators.required),
     productComponents: new FormArray([]),
     additionalOptions: new FormArray([]),
+    priceOptions: new FormArray([]),
   });
 }
 
@@ -64,6 +67,10 @@ export class ProductFormComponent extends ApsFormComponent<Product> implements O
 
   get additionalOptionsFormArray(): FormArray {
     return this.form?.get('additionalOptions') as FormArray;
+  }
+
+  get priceOptionsFormArray(): FormArray {
+    return this.form?.get('priceOptions') as FormArray;
   }
 
   constructor(@Inject(MUSIC_REVOLUTION_CONFIGURATION) private config: MusicRevolutionConfiguration) {
@@ -105,20 +112,7 @@ export class ProductFormComponent extends ApsFormComponent<Product> implements O
   transformFromForm(values: Product): Product {
     return {
       ...values,
-      photos: this.fileList.map(file => {
-        const mappedFile = file.response
-          ? {
-              id: file.response.id,
-              key: file.response.key,
-              url: file.response.url,
-            }
-          : {
-              id: file.uid,
-              key: file.name,
-              url: file.url,
-            };
-        return mappedFile;
-      }),
+      photos: mapPhotoFileArray(this.fileList),
     };
   }
 }

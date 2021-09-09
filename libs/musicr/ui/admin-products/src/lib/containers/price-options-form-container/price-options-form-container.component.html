@@ -1,0 +1,6 @@
+<mrl-price-options-form [loading]="loading$ | async"
+                        [deletedItemIndex]="deletedItemIndex$ | async"
+                        [form]="form"
+                        [item]="item"
+                        (removePhoto)="removePhoto($event)"
+                        (deleteItem)="deleteItem($event)"></mrl-price-options-form>

@@ -32,14 +32,18 @@ import { NgxMaskModule } from 'ngx-mask';
 
 import { AdminProductsroutingModule } from './admin-products-routing.module';
 import { AdditionalOptionsFormComponent } from './components/additional-options-form/additional-options-form.component';
+import { PriceOptionsFormComponent } from './components/price-options-form/price-options-form.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { AdditionalOptionsFormContainerComponent } from './containers/additional-options-form-container/additional-options-form-container.component';
+import { PriceOptionsFormContainerComponent } from './containers/price-options-form-container/price-options-form-container.component';
 import { ProductFormContainerComponent } from './containers/product-form-container/product-form-container.component';
 import { ProductListContainerComponent } from './containers/product-list-container/product-list-container.component';
 import { AdditionalOptionDataService } from './services/additional-option-data.service';
 import { PhotoDataService } from './services/photo-data.service';
+import { PriceOptionDataService } from './services/price-option-data.service';
 import { ProductDataService } from './services/product-data.service';
+import { PriceOptionFormComponent } from './components/price-option-form/price-option-form.component';
 
 @NgModule({
   imports: [
@@ -78,6 +82,9 @@ import { ProductDataService } from './services/product-data.service';
     ProductListComponent,
     AdditionalOptionsFormContainerComponent,
     AdditionalOptionsFormComponent,
+    PriceOptionsFormComponent,
+    PriceOptionsFormContainerComponent,
+    PriceOptionFormComponent,
   ],
 })
 export class AdminProductsModule {
@@ -85,11 +92,13 @@ export class AdminProductsModule {
     entityDataService: EntityDataService,
     additionalOptionDataService: AdditionalOptionDataService,
     photoDataService: PhotoDataService,
+    priceOptionDataService: PriceOptionDataService,
     productDataService: ProductDataService
   ) {
     const services: Record<string, ApsDataService<unknown>> = {
       AdditionalOption: additionalOptionDataService,
       Photo: photoDataService,
+      PriceOption: priceOptionDataService,
       Product: productDataService,
     };
     entityDataService.registerServices(services);
