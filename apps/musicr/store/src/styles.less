@@ -23,10 +23,14 @@ body {
   background-color: white !important;
 }
 
-.ant-drawer-header,
-.ant-drawer-body {
-  background-color: black !important;
-  border-bottom: none !important;
+.menu {
+  .ant-drawer-header,
+  .ant-drawer-body {
+    @media only screen and (max-width: 768px) {
+      background-color: black !important;
+      border-bottom: none !important;
+    }
+  }
 }
 
 .ant-menu {

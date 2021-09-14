@@ -1,19 +1,25 @@
-import { Component, ChangeDetectionStrategy, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, SimpleChanges, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from '@musicr/domain';
-
+import { NzDrawerService } from 'ng-zorro-antd/drawer';
+import { CartComponent } from '@musicr/ui/cart';
 @Component({
   selector: 'mrl-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MenuComponent implements OnChanges {
+export class MenuComponent implements OnInit, OnChanges {
   @Input() categories: Category[];
   visible = false;
   openMap = {};
+  innerWidth: number;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private drawerService: NzDrawerService ) {}
+
+  ngOnInit() {
+    this.innerWidth = window.innerWidth;
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.categories && this.categories) {
@@ -43,6 +49,14 @@ export class MenuComponent implements OnChanges {
     isSubCategory
       ? this.router.navigateByUrl(`/products-catalog/subcategory/${catalogId}`)
       : this.router.navigateByUrl(`/products-catalog/category/${catalogId}`);
-      this.closeMenu();
+    this.closeMenu();
+  }
+
+  openCart(): void {
+    const drawerRef = this.drawerService.create<CartComponent>({
+      nzWidth: this.innerWidth > 768 ? '50vw' : '100vw',
+      nzContent: CartComponent,
+
+    });
   }
 }

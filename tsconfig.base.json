@@ -86,6 +86,8 @@
       "@musicr/ui/categories/data": ["libs/musicr/ui/categories/data/src/index.ts"],
       "@musicr/ui/categories/feature": ["libs/musicr/ui/categories/feature/src/index.ts"],
       "@musicr/ui/categories/ui": ["libs/musicr/ui/categories/ui/src/index.ts"],
+      "@musicr/ui/auth": ["libs/musicr/ui/auth/src/index.ts"],
+      "@musicr/ui/cart": ["libs/musicr/ui/cart/src/index.ts"],
       "@musicr/ui/core": ["libs/musicr/ui/core/src/index.ts"],
       "@musicr/ui/home": ["libs/musicr/ui/home/src/index.ts"],
       "@musicr/ui/products": ["libs/musicr/ui/products/src/index.ts"],

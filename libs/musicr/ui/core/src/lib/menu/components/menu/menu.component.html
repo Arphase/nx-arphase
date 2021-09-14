@@ -27,7 +27,7 @@
           </button>
         </div>
         <div nz-col nzSpan="4">
-          <button nz-button nzType="text" (click)="openMenu()">
+          <button nz-button nzType="text" (click)="openCart()">
             <i nz-icon nzType="shopping" nzTheme="outline"></i>
           </button>
         </div>
@@ -52,7 +52,7 @@
           </button>
         </div>
         <div nz-col nzSpan="10">
-          <button nz-button nzType="text" (click)="openMenu()">
+          <button nz-button nzType="text" (click)="openCart()">
             <i nz-icon nzType="shopping" nzTheme="outline"></i>
           </button>
         </div>
@@ -60,11 +60,12 @@
     </div>
   </div>
   <nz-drawer
-    [nzClosable]="false"
-    [nzVisible]="visible"
     nzPlacement="left"
-    [nzTitle]="drawerTitle"
+    nzWrapClassName="menu"
     nzWidth="100vw"
+    [nzTitle]="drawerTitle"
+    [nzVisible]="visible"
+    [nzClosable]="false"
     (nzOnClose)="closeMenu()"
   >
     <ng-container *nzDrawerContent>

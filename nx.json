@@ -246,6 +246,9 @@
     "musicr-ui-categories-ui": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
     },
+    "musicr-ui-cart": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+    },
     "musicr-ui-core": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
     },
