@@ -107,7 +107,7 @@
       "projectType": "library",
       "root": "libs/arphase/ui/auth",
       "sourceRoot": "libs/arphase/ui/auth/src",
-      "prefix": "ivt",
+      "prefix": "aps",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",

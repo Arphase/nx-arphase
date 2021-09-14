@@ -1,3 +1,5 @@
+import { ResetPassword } from './reset-password.model';
+
 export interface User {
   id: number;
   firstName: string;
@@ -8,4 +10,5 @@ export interface User {
   password?: string;
   salt?: string;
   token?: string;
+  resetPassword?: ResetPassword;
 }
