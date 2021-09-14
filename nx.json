@@ -252,6 +252,9 @@
     "musicr-ui-home": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
+    "musicr-ui-orders": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
     "musicr-ui-products": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },

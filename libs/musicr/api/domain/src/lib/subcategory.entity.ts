@@ -19,7 +19,7 @@ export class SubcategoryEntity extends BaseEntity implements Subcategory {
   @Column()
   categoryId?: number;
 
-  @ManyToOne(() => CategoryEntity, category => category.subcategories)
+  @ManyToOne(() => CategoryEntity, category => category.subcategories, { eager: true })
   @JoinColumn({ name: 'categoryId' })
   category?: Category;
 
