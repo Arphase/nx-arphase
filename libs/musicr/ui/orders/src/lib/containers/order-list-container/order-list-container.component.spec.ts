@@ -1,4 +1,5 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { OrderCollectionService } from '../../services/order-collection.service';
 import { OrderDataService } from '../../services/order-data.service';
@@ -9,7 +10,7 @@ describe('OrderListContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: OrderListContainerComponent,
     shallow: true,
-    mocks: [OrderCollectionService, OrderDataService],
+    mocks: [OrderCollectionService, OrderDataService, NzModalService],
   });
 
   beforeEach(() => (spectator = createComponent()));

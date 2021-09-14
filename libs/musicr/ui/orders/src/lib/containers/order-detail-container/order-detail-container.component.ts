@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { OrderCollectionService } from '../../services/order-collection.service';
 
 @Component({
   selector: 'mrl-order-detail-container',
@@ -6,8 +8,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./order-detail-container.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OrderDetailContainerComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class OrderDetailContainerComponent {
+  currentItem$ = this.orderCollectionService.currentItem$;
+  constructor(private orderCollectionService: OrderCollectionService) {}
 }

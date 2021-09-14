@@ -1,1 +1,277 @@
-<p>order-detail works!</p>
+<div nz-row>
+  <nz-space nz-col
+            nzSpan="24"
+            nzDirection="vertical"
+            nz-col
+            nzSpan="24"
+            nzSize="middle">
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Cliente"
+                         [nzActive]="true">
+        <div nz-row>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="8">
+            <p><strong>Nombre</strong> </p>
+            <span>{{ customer?.firstName }} {{ customer?.lastName }}</span>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="8">
+            <p><strong>Correo</strong></p>
+            <span>{{ customer?.email }}</span>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="8">
+            <p><strong>Teléfono</strong></p>
+            <span>{{ customer?.phone | phone }}</span>
+          </div>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Evento"
+                         [nzActive]="true">
+        <div nz-row>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="8">
+            <p><strong>Nombre</strong> </p>
+            <span>{{ socialEvent?.name }}</span>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="8">
+            <p><strong>Tipo de evento</strong></p>
+            <span>{{ socialEvent?.eventType }}</span>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="8">
+            <p><strong>Lugar del evento</strong></p>
+            <span>{{ socialEvent?.eventPlace }}</span>
+          </div>
+        </div>
+        <div nz-row>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="8">
+            <p><strong>Inicio</strong> </p>
+            <ul>
+              <li>Fecha: {{ socialEvent?.startDate | date: 'fullDate' }}</li>
+              <li>Hora: {{ socialEvent?.startDate | date: 'shortTime' }}</li>
+            </ul>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="8">
+            <p><strong>Fin</strong></p>
+            <ul>
+              <li>Fecha: {{ socialEvent?.endDate | date: 'fullDate' }}</li>
+              <li>Hora: {{ socialEvent?.endDate | date: 'shortTime' }}</li>
+            </ul>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="8">
+            <p><strong>¿Requiere ensamblaje?</strong></p>
+            <span>{{ socialEvent?.requiredAssembly ? 'Si' : 'No' }}</span>
+          </div>
+        </div>
+
+        <ng-container *ngIf="socialEvent?.notes">
+          <nz-divider nzText="Notas"
+                      nzOrientation="center"></nz-divider>
+          <div nz-row>
+            <div nz-col
+                 nzSpan="24">
+              {{ socialEvent?.notes }}
+            </div>
+          </div>
+        </ng-container>
+
+        <nz-divider nzText="Dirección"
+                    nzOrientation="center"></nz-divider>
+        <div nz-row>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="6">
+            <p><strong>Código postal</strong></p>
+            <span>{{ address?.zipcode }}</span>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="6">
+            <p><strong>País</strong></p>
+            <span>{{ address?.country }}</span>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="6">
+            <p><strong>Estado</strong></p>
+            <span>{{ address?.state }}</span>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="6">
+            <p><strong>Ciudad</strong></p>
+            <span>{{ address?.city }}</span>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="6">
+            <p><strong>Colonia</strong></p>
+            <span>{{ address?.suburb }}</span>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="6">
+            <p><strong>Calle</strong></p>
+            <span>{{ address?.street }}</span>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="6">
+            <p><strong>Número exterior</strong></p>
+            <span>{{ address?.externalNumber }}</span>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="12"
+               nzLg="6">
+            <p><strong>Número interior</strong></p>
+            <span>{{ address?.internalNumber | empty }}</span>
+          </div>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Productos"
+                         [nzActive]="true">
+        <div nz-row>
+          <div nz-col
+               nzXs="6"
+               nzMd="0">
+            <strong>Cant.</strong>
+          </div>
+          <div nz-col
+               nzXs="0"
+               nzMd="6"
+               nzLg="2">
+            <strong>Cantidad</strong>
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="12"
+               nzLg="6">
+            <strong>Producto</strong>
+          </div>
+          <div nz-col
+               nzXs="0"
+               nzLg="6">
+            <strong>Opción de precio</strong>
+          </div>
+          <div nz-col
+               nzXs="6"
+               nzMd="6"
+               nzLg="4">
+            <strong>Precio</strong>
+          </div>
+          <div nz-col
+               nzXs="0"
+               nzLg="6">
+            <strong>Total productos adicionales</strong>
+          </div>
+        </div>
+
+        <div *ngFor="let product of products"
+             nz-row>
+          <div nz-col
+               nzXs="6"
+               nzMd="6"
+               nzLg="2">
+            {{ product?.amount }}
+          </div>
+          <div nz-col
+               nzXs="12"
+               nzMd="12"
+               nzLg="6">
+            {{ product?.product?.name }}
+          </div>
+          <div nz-col
+               nzXs="0"
+               nzLg="6">
+            {{ product?.priceOption?.name | empty }}
+          </div>
+          <div nz-col
+               nzXs="6"
+               nzMd="6"
+               nzLg="4">
+            {{ product?.price | currency }}
+          </div>
+          <div nz-col
+               nzXs="0"
+               nzLg="6">
+            {{ product?.orderProductAdditionalOptions | additionalOptionsTotal | currency }}
+            <i nz-icon
+               nz-popover
+               nzPopoverTitle="Detalle"
+               [nzPopoverContent]="additionalProducts"
+               nzType="question-circle"
+               nzTheme="outline"></i>
+          </div>
+          <ng-template #additionalProducts>
+            <div nz-row>
+              <div nz-col
+                   nzLg="14">
+                <strong>Producto</strong>
+              </div>
+              <div nz-col
+                   nzLg="10">
+                <strong>Precio</strong>
+              </div>
+            </div>
+            <div *ngFor="let option of product.orderProductAdditionalOptions"
+                 nz-row>
+              <div nz-col
+                   nzSpan="14">
+                {{ option.additionalOption?.name }}
+              </div>
+              <div nz-col
+                   nzSpan="10">
+                {{ option.price | currency }}
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+    <div *nzSpaceItem
+         nz-row
+         class="total-row">
+      <div nz-col
+           nzSpan="24"
+           class="flex-end">
+        <h3 class="text-white"><strong>Total:</strong> {{ item?.total | currency }}</h3>
+      </div>
+    </div>
+  </nz-space>
+</div>

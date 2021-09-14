@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Address, Customer, Order, OrderProduct, SocialEvent } from '@musicr/domain';
 
 @Component({
   selector: 'mrl-order-detail',
@@ -6,8 +7,22 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./order-detail.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OrderDetailComponent implements OnInit {
-  constructor() {}
+export class OrderDetailComponent {
+  @Input() item: Order;
 
-  ngOnInit(): void {}
+  get customer(): Customer {
+    return this.item?.customer;
+  }
+
+  get socialEvent(): SocialEvent {
+    return this.item?.socialEvent;
+  }
+
+  get address(): Address {
+    return this.socialEvent?.address;
+  }
+
+  get products(): OrderProduct[] {
+    return this.item?.orderProducts || [];
+  }
 }

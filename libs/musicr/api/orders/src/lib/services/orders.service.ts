@@ -7,7 +7,7 @@ import {
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { AdditionalOptionEntity, OrderEntity, PriceOptionEntity, ProductEntity } from '@musicr/api/domain';
 import { Order } from '@musicr/domain';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { keyBy } from 'lodash';
 import { Repository } from 'typeorm';
@@ -45,6 +45,14 @@ export class OrdersService {
     const products = await query.getMany();
     const total = await query.getCount();
     return createCollectionResponse<Order>(products, pageSize, pageIndex, total);
+  }
+
+  async getOrder(id: number): Promise<Order> {
+    const order = await this.orderRepository.findOne({ id });
+    if (!order) {
+      throw new NotFoundException(`Order with id ${id} not found`);
+    }
+    return order;
   }
 
   async createOrder(createOrderDto: CreateOrderDto): Promise<Order> {
