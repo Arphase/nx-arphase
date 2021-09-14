@@ -8,6 +8,7 @@ export * from './order-product.entity';
 export * from './order.entity';
 export * from './price-option.entity';
 export * from './product.entity';
+export * from './reset-password.entity';
 export * from './social-event.entity';
 export * from './subcategory.entity';
 export * from './user.entity';
