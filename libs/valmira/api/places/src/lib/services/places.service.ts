@@ -21,7 +21,10 @@ export class PlacesService {
 
   async getPlaces(filterDto: GetPlacesDto): Promise<ApsCollectionResponse<Place>> {
     const { pageIndex, pageSize, startDate, endDate, dateType, onlyActives } = filterDto;
-    const query = this.placeRepository.createQueryBuilder('place').orderBy('place.createdAt', SortDirection.descend);
+    const query = this.placeRepository
+      .createQueryBuilder('place')
+      .leftJoinAndSelect('place.photos', 'photos')
+      .orderBy('place.createdAt', SortDirection.descend);
 
     filterCollectionQuery('place', query, filterDto, { ignoreDates: dateType !== 'createdAt' });
 
@@ -45,7 +48,9 @@ export class PlacesService {
       );
       const reservations = await reservationQuery.getMany();
       const excludedPlacesIds = reservations.map(reservation => reservation.placeId);
-      query.andWhere('(place.id NOT IN (:...excludedPlacesIds))', { excludedPlacesIds });
+      if (excludedPlacesIds.length) {
+        query.andWhere('place.id NOT IN (:...excludedPlacesIds)', { excludedPlacesIds });
+      }
     }
 
     const places = await query.getMany();
