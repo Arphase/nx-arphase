@@ -7,6 +7,10 @@ export const routes: Routes = [
     loadChildren: () => import('@valmira/ui/landing').then(m => m.LandingModule),
   },
   {
+    path: 'search',
+    loadChildren: () => import('@valmira/ui/place-search').then(m => m.PlaceSearchModule),
+  },
+  {
     path: 'manifest',
     loadChildren: () => import('@valmira/ui/manifest').then(m => m.ManifestModule),
   },
