@@ -23,7 +23,7 @@ export class ProductDetailComponent {
 
   addItem(): void {
     const item = {
-      ...this.product,
+      product: this.product,
       amount: this.amount,
     };
     this.cartService.addItem(item);

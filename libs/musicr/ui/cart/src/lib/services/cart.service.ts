@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, take, tap } from 'rxjs';
+import { OrderProduct } from '@musicr/domain';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  cartItemsSubject = new BehaviorSubject<any[]>([]);
+  cartItemsSubject = new BehaviorSubject<OrderProduct[]>([]);
   cartItems$ = this.cartItemsSubject.asObservable();
 
   increaseItemAmount(index): void {
     this.cartItems$
       .pipe(
+        take(1),
         map(cartItems => {
           cartItems[index].amount += 1;
+          this.cartItemsSubject.next(cartItems);
         })
       )
       .subscribe();
@@ -21,8 +24,10 @@ export class CartService {
   decreaseItemAmount(index): void {
     this.cartItems$
       .pipe(
-        map(cartItems => {
+        take(1),
+        tap(cartItems => {
           cartItems[index].amount -= 1;
+          this.cartItemsSubject.next(cartItems);
         })
       )
       .subscribe();
@@ -31,10 +36,10 @@ export class CartService {
   addItem(item): void {
     this.cartItems$
       .pipe(
-        map(cartItems => {
+        take(1),
+        tap(cartItems => {
           cartItems.push(item);
-          console.log(cartItems);
-          return cartItems;
+          this.cartItemsSubject.next(cartItems);
         })
       )
       .subscribe();
@@ -43,8 +48,10 @@ export class CartService {
   removeItem(index): void {
     this.cartItems$
       .pipe(
-        map(cartItems => {
+        take(1),
+        tap(cartItems => {
           cartItems.splice(index, 1);
+          this.cartItemsSubject.next(cartItems);
         })
       )
       .subscribe();

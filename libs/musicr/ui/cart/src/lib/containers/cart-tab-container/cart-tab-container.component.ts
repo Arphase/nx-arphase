@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-// import { Product } from '@musicr/domain'
 
 @Component({
   selector: 'mrl-cart-tab-container',
@@ -13,15 +12,15 @@ export class CartTabContainerComponent {
 
   constructor(private cartService: CartService) {}
 
-  increaseItemAmount(index: number) {
+  increaseItemAmount(index: number): void {
     this.cartService.increaseItemAmount(index);
   }
 
-  decreaseItemAmount(index: number) {
+  decreaseItemAmount(index: number): void {
     this.cartService.decreaseItemAmount(index);
   }
 
-  removeItem(index: number) {
+  removeItem(index: number): void {
     this.cartService.removeItem(index);
   }
 }

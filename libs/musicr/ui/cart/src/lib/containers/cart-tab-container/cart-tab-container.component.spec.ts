@@ -1,25 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { CartTabContainerComponent } from './cart-tab-container.component';
 
 describe('CartTabContainerComponent', () => {
-  let component: CartTabContainerComponent;
-  let fixture: ComponentFixture<CartTabContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ CartTabContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<CartTabContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: CartTabContainerComponent,
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CartTabContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  beforeEach(() => (spectator = createComponent()));
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

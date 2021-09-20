@@ -1,25 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { PaymentMethodTabContainerComponent } from './payment-method-tab-container.component';
 
 describe('PaymentMethodTabContainerComponent', () => {
-  let component: PaymentMethodTabContainerComponent;
-  let fixture: ComponentFixture<PaymentMethodTabContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ PaymentMethodTabContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<PaymentMethodTabContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: PaymentMethodTabContainerComponent,
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PaymentMethodTabContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  beforeEach(() => (spectator = createComponent()));
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import { SpectatorService, createServiceFactory } from '@ngneat/spectator';
 
 import { CartService } from './cart.service';
 
 describe('CartService', () => {
-  let service: CartService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(CartService);
+  let spectator: SpectatorService<CartService>;
+  const createService = createServiceFactory({
+    service: CartService,
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

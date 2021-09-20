@@ -2068,7 +2068,7 @@
       "projectType": "library",
       "root": "libs/musicr/ui/cart",
       "sourceRoot": "libs/musicr/ui/cart/src",
-      "prefix": "ivt",
+      "prefix": "mrl",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
