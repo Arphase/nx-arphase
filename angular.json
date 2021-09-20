@@ -26,6 +26,17 @@
     "@schematics/angular:component": {
       "style": "less",
       "changeDetection": "OnPush"
+    },
+    "@nrwl/web:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/web:library": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
     }
   },
   "projects": {
@@ -92,23 +103,45 @@
         }
       }
     },
-    "arphase-ui": {
+    "arphase-ui-auth": {
       "projectType": "library",
-      "root": "libs/arphase/ui",
-      "sourceRoot": "libs/arphase/ui/src",
+      "root": "libs/arphase/ui/auth",
+      "sourceRoot": "libs/arphase/ui/auth/src",
+      "prefix": "aps",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/arphase/ui/auth"],
+          "options": {
+            "jestConfig": "libs/arphase/ui/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/arphase/ui/auth/src/**/*.ts", "libs/arphase/ui/auth/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "arphase-ui-core": {
+      "projectType": "library",
+      "root": "libs/arphase/ui/core",
+      "sourceRoot": "libs/arphase/ui/core/src",
       "prefix": "aps",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/arphase/ui/src/**/*.ts", "libs/arphase/ui/src/**/*.html"]
+            "lintFilePatterns": ["libs/arphase/ui/core/src/**/*.ts", "libs/arphase/ui/core/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/ui"],
+          "outputs": ["coverage/libs/arphase/ui/core"],
           "options": {
-            "jestConfig": "libs/arphase/ui/jest.config.js",
+            "jestConfig": "libs/arphase/ui/core/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -518,21 +551,21 @@
             ],
             "styles": [
               "apps/innovatech/app/src/styles.less",
-              "libs/arphase/ui/src/styles/styles.less",
+              "libs/arphase/ui/core/src/styles/styles.less",
               {
-                "input": "libs/arphase/ui/src/styles/default.less",
+                "input": "libs/arphase/ui/core/src/styles/default.less",
                 "bundleName": "default",
                 "inject": false
               },
               {
-                "input": "libs/arphase/ui/src/styles/dark.less",
+                "input": "libs/arphase/ui/core/src/styles/dark.less",
                 "bundleName": "dark",
                 "inject": false
               }
             ],
             "allowedCommonJsDependencies": ["file-saver"],
             "stylePreprocessorOptions": {
-              "includePaths": ["libs/arphase/ui/src/styles"]
+              "includePaths": ["libs/arphase/ui/core/src/styles"]
             },
             "vendorChunk": true,
             "extractLicenses": false,
@@ -1335,9 +1368,16 @@
             "polyfills": "apps/musicr/admin/src/polyfills.ts",
             "tsConfig": "apps/musicr/admin/tsconfig.app.json",
             "inlineStyleLanguage": "less",
-            "assets": ["apps/musicr/admin/src/favicon.ico", "apps/musicr/admin/src/assets"],
-            "styles": ["apps/musicr/admin/src/styles.less"],
-            "scripts": []
+            "assets": [
+              "apps/musicr/admin/src/favicon.ico",
+              "apps/musicr/admin/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": ["apps/musicr/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
             "production": {
@@ -1700,7 +1740,7 @@
             "tsConfig": "apps/musicr/store/tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "assets": ["apps/musicr/store/src/favicon.ico", "apps/musicr/store/src/assets"],
-            "styles": ["apps/musicr/store/src/styles.less", "libs/arphase/ui/src/styles/styles.less"],
+            "styles": ["apps/musicr/store/src/styles.less", "libs/arphase/ui/core/src/styles/styles.less"],
             "scripts": []
           },
           "configurations": {
@@ -1772,11 +1812,9 @@
               "aws-sdk",
               "pg",
               "pg-native",
-              "sqlite3",
               "react-native-sqlite-storage",
               "mssql",
               "sql.js",
-              "better-sqlite3",
               "ioredis",
               "redis",
               "typeorm-aurora-data-api-driver",
@@ -1882,24 +1920,146 @@
         }
       }
     },
-    "musicr-ui-auth": {
-      "root": "libs/musicr/ui/auth",
-      "sourceRoot": "libs/musicr/ui/auth/src",
+    "musicr-ui-admin-products": {
       "projectType": "library",
+      "root": "libs/musicr/ui/admin-products",
+      "sourceRoot": "libs/musicr/ui/admin-products/src",
       "prefix": "mrl",
       "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/admin-products"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/admin-products/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/auth/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/musicr/ui/admin-products/src/**/*.ts",
+              "libs/musicr/ui/admin-products/src/**/*.html"
+            ]
           }
-        },
+        }
+      }
+    },
+    "musicr-ui-auth-data": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/auth/data",
+      "sourceRoot": "libs/musicr/ui/auth/data/src",
+      "prefix": "mrl",
+      "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/auth"],
+          "outputs": ["coverage/libs/musicr/ui/auth/data"],
           "options": {
-            "jestConfig": "libs/musicr/ui/auth/jest.config.js",
+            "jestConfig": "libs/musicr/ui/auth/data/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/auth/data/src/**/*.ts", "libs/musicr/ui/auth/data/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "musicr-ui-auth-feature": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/auth/feature",
+      "sourceRoot": "libs/musicr/ui/auth/feature/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/auth/feature"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/auth/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/auth/feature/src/**/*.ts", "libs/musicr/ui/auth/feature/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "musicr-ui-categories-data": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/categories/data",
+      "sourceRoot": "libs/musicr/ui/categories/data/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/categories/data"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/categories/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/musicr/ui/categories/data/src/**/*.ts",
+              "libs/musicr/ui/categories/data/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "musicr-ui-categories-feature": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/categories/feature",
+      "sourceRoot": "libs/musicr/ui/categories/feature/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/categories/feature"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/categories/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/musicr/ui/categories/feature/src/**/*.ts",
+              "libs/musicr/ui/categories/feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "musicr-ui-categories-ui": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/categories/ui",
+      "sourceRoot": "libs/musicr/ui/categories/ui/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/categories/ui"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/categories/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/musicr/ui/categories/ui/src/**/*.ts",
+              "libs/musicr/ui/categories/ui/src/**/*.html"
+            ]
           }
         }
       }
@@ -1948,6 +2108,242 @@
         }
       }
     },
+    "musicr-ui-orders": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/orders",
+      "sourceRoot": "libs/musicr/ui/orders/src",
+      "prefix": "ivt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/orders"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/orders/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/orders/src/**/*.ts", "libs/musicr/ui/orders/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "musicr-ui-products": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/products",
+      "sourceRoot": "libs/musicr/ui/products/src",
+      "prefix": "mrl",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/products/src/**/*.ts", "libs/musicr/ui/products/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/products"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/products/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "musicr-ui-spa": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/spa",
+      "sourceRoot": "libs/musicr/ui/spa/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/spa"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/spa/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/spa/src/**/*.ts", "libs/musicr/ui/spa/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "musicr-ui-subcategories-data": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/subcategories/data",
+      "sourceRoot": "libs/musicr/ui/subcategories/data/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/subcategories/data"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/subcategories/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/musicr/ui/subcategories/data/src/**/*.ts",
+              "libs/musicr/ui/subcategories/data/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "musicr-ui-subcategories-feature": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/subcategories/feature",
+      "sourceRoot": "libs/musicr/ui/subcategories/feature/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/subcategories/feature"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/subcategories/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/musicr/ui/subcategories/feature/src/**/*.ts",
+              "libs/musicr/ui/subcategories/feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "musicr-ui-subcategories-ui": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/subcategories/ui",
+      "sourceRoot": "libs/musicr/ui/subcategories/ui/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/subcategories/ui"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/subcategories/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/musicr/ui/subcategories/ui/src/**/*.ts",
+              "libs/musicr/ui/subcategories/ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "pam-vic": {
+      "projectType": "application",
+      "root": "apps/pam-vic",
+      "sourceRoot": "apps/pam-vic/src",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/pam-vic",
+            "index": "apps/pam-vic/src/index.html",
+            "main": "apps/pam-vic/src/main.ts",
+            "polyfills": "apps/pam-vic/src/polyfills.ts",
+            "tsConfig": "apps/pam-vic/tsconfig.app.json",
+            "assets": ["apps/pam-vic/src/favicon.ico", "apps/pam-vic/src/assets"],
+            "styles": ["apps/pam-vic/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pam-vic/src/environments/environment.ts",
+                  "with": "apps/pam-vic/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "pam-vic:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "pam-vic:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/pam-vic/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/pam-vic"],
+          "options": {
+            "jestConfig": "apps/pam-vic/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pam-vic-e2e": {
+      "root": "apps/pam-vic-e2e",
+      "sourceRoot": "apps/pam-vic-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/pam-vic-e2e/cypress.json",
+            "devServerTarget": "pam-vic:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "pam-vic:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/pam-vic-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
     "valmira-admin": {
       "projectType": "application",
       "root": "apps/valmira/admin",
@@ -1963,10 +2359,16 @@
             "main": "apps/valmira/admin/src/main.ts",
             "polyfills": "apps/valmira/admin/src/polyfills.ts",
             "tsConfig": "apps/valmira/admin/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/valmira/admin/src/favicon.ico", "apps/valmira/admin/src/assets"],
-            "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/src/styles/themes/base.less"],
-            "scripts": []
+            "assets": [
+              "apps/valmira/admin/src/favicon.ico",
+              "apps/valmira/admin/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
             "development": {
@@ -2158,27 +2560,6 @@
         }
       }
     },
-    "valmira-api-categories": {
-      "root": "libs/valmira/api/categories",
-      "sourceRoot": "libs/valmira/api/categories/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/valmira/api/categories/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/api/categories"],
-          "options": {
-            "jestConfig": "libs/valmira/api/categories/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "valmira-api-domain": {
       "root": "libs/valmira/api/domain",
       "sourceRoot": "libs/valmira/api/domain/src",
@@ -2195,6 +2576,27 @@
           "outputs": ["coverage/libs/valmira/api/domain"],
           "options": {
             "jestConfig": "libs/valmira/api/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-api-photos": {
+      "root": "libs/valmira/api/photos",
+      "sourceRoot": "libs/valmira/api/photos/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/api/photos/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/api/photos"],
+          "options": {
+            "jestConfig": "libs/valmira/api/photos/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -2279,11 +2681,32 @@
             "polyfills": "apps/valmira/app/src/polyfills.ts",
             "tsConfig": "apps/valmira/app/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/valmira/app/src/favicon.ico", "apps/valmira/app/src/assets"],
-            "styles": ["apps/valmira/app/src/styles.less"],
-            "scripts": []
+            "assets": [
+              "apps/valmira/app/src/favicon.ico",
+              "apps/valmira/app/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": ["apps/valmira/app/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
+            "stage": {
+              "sourceMap": {
+                "scripts": true,
+                "styles": true,
+                "vendor": true,
+                "hidden": false
+              },
+              "optimization": true,
+              "outputHashing": "all",
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -2402,6 +2825,31 @@
         }
       }
     },
+    "valmira-ui-additional-products": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/additional-products",
+      "sourceRoot": "libs/valmira/ui/additional-products/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/additional-products/src/**/*.ts",
+              "libs/valmira/ui/additional-products/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/additional-products"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/additional-products/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-ui-auth-data": {
       "projectType": "library",
       "root": "libs/valmira/ui/auth/data",
@@ -2444,56 +2892,6 @@
           "outputs": ["coverage/libs/valmira/ui/auth/feature"],
           "options": {
             "jestConfig": "libs/valmira/ui/auth/feature/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "valmira-ui-categories-data": {
-      "projectType": "library",
-      "root": "libs/valmira/ui/categories/data",
-      "sourceRoot": "libs/valmira/ui/categories/data/src",
-      "prefix": "vma",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/valmira/ui/categories/data/src/**/*.ts",
-              "libs/valmira/ui/categories/data/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/categories/data"],
-          "options": {
-            "jestConfig": "libs/valmira/ui/categories/data/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "valmira-ui-categories-ui": {
-      "projectType": "library",
-      "root": "libs/valmira/ui/categories/ui",
-      "sourceRoot": "libs/valmira/ui/categories/ui/src",
-      "prefix": "vma",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/valmira/ui/categories/ui/src/**/*.ts",
-              "libs/valmira/ui/categories/ui/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/categories/ui"],
-          "options": {
-            "jestConfig": "libs/valmira/ui/categories/ui/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -2590,23 +2988,98 @@
         }
       }
     },
-    "valmira-ui-places": {
+    "valmira-ui-place-detail": {
       "projectType": "library",
-      "root": "libs/valmira/ui/places",
-      "sourceRoot": "libs/valmira/ui/places/src",
+      "root": "libs/valmira/ui/place-detail",
+      "sourceRoot": "libs/valmira/ui/place-detail/src",
+      "prefix": "vma",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/place-detail"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/place-detail/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/place-detail/src/**/*.ts",
+              "libs/valmira/ui/place-detail/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "valmira-ui-place-search": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/place-search",
+      "sourceRoot": "libs/valmira/ui/place-search/src",
+      "prefix": "vma",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/place-search"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/place-search/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/place-search/src/**/*.ts",
+              "libs/valmira/ui/place-search/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "valmira-ui-places-data": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/places/data",
+      "sourceRoot": "libs/valmira/ui/places/data/src",
+      "prefix": "vma",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/places/data"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/places/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/ui/places/data/src/**/*.ts", "libs/valmira/ui/places/data/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "valmira-ui-places-feature": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/places/feature",
+      "sourceRoot": "libs/valmira/ui/places/feature/src",
       "prefix": "vma",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/ui/places/src/**/*.ts", "libs/valmira/ui/places/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/valmira/ui/places/feature/src/**/*.ts",
+              "libs/valmira/ui/places/feature/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/places"],
+          "outputs": ["coverage/libs/valmira/ui/places/feature"],
           "options": {
-            "jestConfig": "libs/valmira/ui/places/jest.config.js",
+            "jestConfig": "libs/valmira/ui/places/feature/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -2629,6 +3102,31 @@
           "outputs": ["coverage/libs/valmira/ui/promocodes"],
           "options": {
             "jestConfig": "libs/valmira/ui/promocodes/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-reservations": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/reservations",
+      "sourceRoot": "libs/valmira/ui/reservations/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/reservations/src/**/*.ts",
+              "libs/valmira/ui/reservations/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/reservations"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/reservations/jest.config.js",
             "passWithNoTests": true
           }
         }

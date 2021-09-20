@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 
 import { VALMIRA_CONFIGURATION, ValmiraConfiguration } from '../config';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class HttpProxyService implements HttpInterceptor {
   constructor(@Inject(VALMIRA_CONFIGURATION) public config: ValmiraConfiguration) {}
 

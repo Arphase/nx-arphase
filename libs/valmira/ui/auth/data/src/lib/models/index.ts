@@ -1,1 +1,1 @@
-export * from './sign-in-payload.model';
+export * from './set-password-payload.model';

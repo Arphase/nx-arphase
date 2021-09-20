@@ -21,6 +21,9 @@ export class ProductsService {
     const { pageIndex, pageSize } = filterDto;
     const query = this.productRepository
       .createQueryBuilder('product')
+      .leftJoinAndSelect('product.subcategory', 'subcategory')
+      .leftJoinAndSelect('subcategory.category', 'category')
+      .leftJoinAndSelect('product.photos', 'photos')
       .orderBy('product.createdAt', SortDirection.descend);
 
     filterCollectionQuery('product', query, filterDto);
@@ -30,8 +33,11 @@ export class ProductsService {
     return createCollectionResponse<Product>(products, pageSize, pageIndex, total);
   }
 
-  async getProduct(id: number): Promise<Product> {
+  async getProduct(id: number): Promise<ProductEntity> {
     const product = await this.productRepository.findOne({ id });
+    if (!product) {
+      throw new NotFoundException(`Product with id ${id} not found`);
+    }
     return product;
   }
 
@@ -57,5 +63,19 @@ export class ProductsService {
     preloadedProduct.reload();
     preloadedProduct.photos = uniqBy(preloadedProduct.photos, 'id');
     return preloadedProduct;
+  }
+
+  async deleteProduct(id: number): Promise<Product> {
+    const product = await this.getProduct(id);
+    try {
+      await this.productRepository.remove(product);
+      return product;
+    } catch (e) {
+      if (e.code === '23503') {
+        throw new ConflictException(
+          'No se puede eliminar el promocode porque existen reservaciones con este promocode'
+        );
+      }
+    }
   }
 }

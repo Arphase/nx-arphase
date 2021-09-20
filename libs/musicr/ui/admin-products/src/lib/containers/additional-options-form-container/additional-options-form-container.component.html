@@ -1,0 +1,5 @@
+<mrl-additional-options-form [loading]="loading$ | async"
+                             [deletedItemIndex]="deletedItemIndex$ | async"
+                             [form]="form"
+                             [item]="item"
+                             (deleteItem)="deleteItem($event)"></mrl-additional-options-form>

@@ -4,7 +4,7 @@ import { PriceOption } from './price-option.model';
 import { Product } from './product.model';
 
 export interface OrderProduct {
-  id: number;
+  id?: number;
   orderId: number;
   order: Order;
   productId: number;

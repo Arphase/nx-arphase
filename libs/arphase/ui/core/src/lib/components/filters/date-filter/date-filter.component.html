@@ -1,0 +1,68 @@
+<button nz-button
+        nz-dropdown
+        [nzType]="showActiveStatus ? 'primary' : 'default'"
+        [nzDropdownMenu]="menu"
+        [nzClickHide]="false"
+        nzTrigger="click">
+  {{ mappedTitle }}
+  <i *ngIf="!showActiveStatus"
+     nz-icon
+     nzType="down"
+     class="right"></i>
+
+  <i nz-icon
+     *ngIf="showActiveStatus"
+     nzType="close"
+     class="delete-icon right"
+     (click)="deleteFilters(); $event.stopPropagation()"></i>
+</button>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu
+      nz-form
+      nzLayout="vertical"
+      [formGroup]="control"
+      (click)="$event.stopPropagation()">
+    <li *ngIf="dateTypeOptions.length"
+        nz-menu-item>
+      <nz-radio-group formControlName="dateType">
+        <label *ngFor="let option of dateTypeOptions"
+               nz-radio
+               [nzValue]="option.value">{{ option.label }}</label>
+      </nz-radio-group>
+    </li>
+
+    <li nz-menu-item
+        nz-row
+        nzGutter="12">
+      <div nz-col
+           nzSpan="12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Fecha inicial</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-date-picker ngDefaultControl
+                            formControlName="startDate"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col
+           nzSpan="12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Fecha final</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-date-picker ngDefaultControl
+                            formControlName="endDate"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </li>
+    <li *ngIf="showError"
+        nz-menu-item>
+      <nz-tag nzColor="error">
+        <i nz-icon
+           nzType="close-circle"></i>
+        <span>Rango de fechas inválido</span>
+      </nz-tag>
+    </li>
+  </ul>
+</nz-dropdown-menu>

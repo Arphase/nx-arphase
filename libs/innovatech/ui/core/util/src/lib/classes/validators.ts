@@ -1,6 +1,6 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-import { ApsValidationErrors } from '@arphase/ui';
-import { specialCharactersForPassword } from '@innovatech/common/domain';
+import { specialCharactersForPassword } from '@arphase/common';
+import { ApsValidationErrors } from '@arphase/ui/core';
 import { rfcValidations, RfcValidatorTypes } from '@innovatech/common/utils';
 
 export class IvtValidators {
@@ -11,13 +11,5 @@ export class IvtValidators {
       }
       return null;
     };
-  }
-
-  static specialCharacter(control: AbstractControl): ApsValidationErrors | null {
-    const value = String(control.value);
-    if (!specialCharactersForPassword.some(character => value.includes(character))) {
-      return { specialCharacter: { es: 'El campo debe tener al menos un caracter especial' } };
-    }
-    return null;
   }
 }

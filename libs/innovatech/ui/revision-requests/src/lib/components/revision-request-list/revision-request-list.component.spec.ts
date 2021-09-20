@@ -1,4 +1,4 @@
-import { ApsEmptyPipe, ApsPhonePipe } from '@arphase/ui';
+import { ApsEmptyPipe, ApsPhonePipe } from '@arphase/ui/core';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { MockPipe } from 'ng-mocks';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';

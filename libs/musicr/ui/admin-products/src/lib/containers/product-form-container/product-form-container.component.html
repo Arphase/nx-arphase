@@ -1,0 +1,5 @@
+<mrl-product-form [form]="form"
+                  [item]="currentItem$ | async"
+                  (removePhoto)="removePhoto($event)"
+                  (categoryChanges)="onCategoryChanges($event)"
+                  (submitForm)="submit($event)"></mrl-product-form>

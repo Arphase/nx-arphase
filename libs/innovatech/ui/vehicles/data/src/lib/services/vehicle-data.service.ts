@@ -1,13 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApsDataService } from '@arphase/ui';
+import { ApsDataService } from '@arphase/ui/core';
 import { Vehicle } from '@innovatech/common/domain';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class VehicleDataService extends ApsDataService<Vehicle> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('Vehicle', http, httpUrlGenerator);

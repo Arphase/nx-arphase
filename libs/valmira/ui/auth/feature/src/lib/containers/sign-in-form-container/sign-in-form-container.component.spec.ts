@@ -1,4 +1,4 @@
-import { LoadingService } from '@arphase/ui';
+import { LoadingService } from '@arphase/ui/core';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockStore } from '@ngrx/store/testing';
 

@@ -2,197 +2,271 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [3.2.0](https://github.com/Arphase/nx-arphase/compare/v3.1.3...v3.2.0) (2021-07-28)
+## [3.4.0](https://github.com/Arphase/nx-arphase/compare/v3.3.6...v3.4.0) (2021-09-06)
 
 
 ### Features
 
-* **innovatech/ui:** display group and company filters to all users ([3c7043d](https://github.com/Arphase/nx-arphase/commit/3c7043d0bb1fea61bcd6128a189d14f424973ff7))
-* **innovatech/ui:** don't show users filter for repairman user role ([58a40d2](https://github.com/Arphase/nx-arphase/commit/58a40d278f3272402ec26d114203bdebf251a80e))
-* **musicr/orders:** [#110](https://github.com/Arphase/nx-arphase/issues/110) create orders without products ([eb2ed8f](https://github.com/Arphase/nx-arphase/commit/eb2ed8f66d70e44f9c1cc8ce453c2a97e93606a0))
-* **musicr/ui:** [#86](https://github.com/Arphase/nx-arphase/issues/86) Add home page ([839d927](https://github.com/Arphase/nx-arphase/commit/839d927bf7ef7d21667cefa6a91de6c3c37ba673))
-* **places:** [#137](https://github.com/Arphase/nx-arphase/issues/137) create form ([375932f](https://github.com/Arphase/nx-arphase/commit/375932fbeeedd74027a17428ca226a9715320275))
-* **valmira/additional-products:** [#141](https://github.com/Arphase/nx-arphase/issues/141) [#142](https://github.com/Arphase/nx-arphase/issues/142) list, get, create, and update endpoints ([d1042a4](https://github.com/Arphase/nx-arphase/commit/d1042a4d2991ee42d4155e58085de76b4d2d39d8))
-* **valmira/auth:** [#135](https://github.com/Arphase/nx-arphase/issues/135) sign in endpoint ([81d84d8](https://github.com/Arphase/nx-arphase/commit/81d84d833fd1dc1d3594912929d9d452e8f92c4b))
-* **valmira/auth:** [#135](https://github.com/Arphase/nx-arphase/issues/135) sign in form ([320501c](https://github.com/Arphase/nx-arphase/commit/320501cfee28766b0667f53fd9bc179ec26e2810))
-* **valmira/categories:** create endpoint ([51e99b1](https://github.com/Arphase/nx-arphase/commit/51e99b1c463c3bd13a1891eb8338ca2c8dcc402f))
-* **valmira/domain:** create database entities ([36e3bc7](https://github.com/Arphase/nx-arphase/commit/36e3bc7ad3e114e1951adb892730d43b331b7da9))
-* **valmira/domain:** create domain interfaces ([94160d9](https://github.com/Arphase/nx-arphase/commit/94160d98b72560b49317d3c0199a978326271602))
-* **valmira/places:** [#137](https://github.com/Arphase/nx-arphase/issues/137) create endpoint ([88d9ec5](https://github.com/Arphase/nx-arphase/commit/88d9ec593c6035eb087f7c7cdc702cd1154e470f))
-* **valmira/places:** [#138](https://github.com/Arphase/nx-arphase/issues/138) collection endpoint ([921e2a2](https://github.com/Arphase/nx-arphase/commit/921e2a2c9caa06e6da0bafa22f7325ea153fb969))
-* **valmira/places:** [#138](https://github.com/Arphase/nx-arphase/issues/138) first version of list ([70b4015](https://github.com/Arphase/nx-arphase/commit/70b4015c28db760e278e58e994c1e043b04c3cbd))
-* **valmira/promocodes:** [#143](https://github.com/Arphase/nx-arphase/issues/143) [#144](https://github.com/Arphase/nx-arphase/issues/144) list, get, create, and update endpoints ([efe1fb2](https://github.com/Arphase/nx-arphase/commit/efe1fb226bfd76b38886282341ad407e2b6721a2))
-* **valmira/reservations:** create endpoint ([a195661](https://github.com/Arphase/nx-arphase/commit/a19566160d6c38123cbde65ebf36ce67afaf6e5c))
-* **valmira/spa:** create layout of admin app spa ([55393d7](https://github.com/Arphase/nx-arphase/commit/55393d77ce33335c56ee7cf58f760618c5380bc3))
+* **admin-products:** [#179](https://github.com/Arphase/nx-arphase/issues/179) read, create, update, and delete ([fdaf37e](https://github.com/Arphase/nx-arphase/commit/fdaf37e96b77bdec0c6998ccadacdca124c5703c))
 
 
 ### Bug Fixes
 
-* **app:** Remove unnecesary config on tsconfig files ([905b26e](https://github.com/Arphase/nx-arphase/commit/905b26e5f6257d0a4a696387ca67a0d3be111826))
+* **innovatech/payment-orders:** create dto missing fields ([509aa27](https://github.com/Arphase/nx-arphase/commit/509aa27dfe61da97a761aa7498ba424f90b9b616))
+
+### [3.3.6](https://github.com/Arphase/nx-arphase/compare/v3.3.5...v3.3.6) (2021-09-03)
+
+
+### Features
+
+* **musicr/subcategories:** [#176](https://github.com/Arphase/nx-arphase/issues/176) CRUD in admin app ([4b0fb0e](https://github.com/Arphase/nx-arphase/commit/4b0fb0ee06eee294c53bdb55553df82712cde621))
+
+### [3.3.5](https://github.com/Arphase/nx-arphase/compare/v3.3.4...v3.3.5) (2021-09-02)
+
+
+### Features
+
+* **loader screen:** [#117](https://github.com/Arphase/nx-arphase/issues/117) add loader screen ([57ff845](https://github.com/Arphase/nx-arphase/commit/57ff845e8f1319d505069fc02b2e57df398fefab))
+* **musicr/auth:** [#91](https://github.com/Arphase/nx-arphase/issues/91) sign in form ([2f5a4cc](https://github.com/Arphase/nx-arphase/commit/2f5a4ccf55e168884d39edbdb9749479421e50b6))
+* **musicr/categories:** Create, list, update and delete ([7c1ca70](https://github.com/Arphase/nx-arphase/commit/7c1ca709a63cc5ab7a89de5c692969792f99093e))
+* **valmira/app:** [#117](https://github.com/Arphase/nx-arphase/issues/117) add loader screen ([b0648fa](https://github.com/Arphase/nx-arphase/commit/b0648fa274aa145f19df99573c8f1c79a8c9f5b6))
+
+### [3.3.4](https://github.com/Arphase/nx-arphase/compare/v3.3.3...v3.3.4) (2021-09-01)
+
+### Features
+
+- **valmira/frequent-questions:** [#121](https://github.com/Arphase/nx-arphase/issues/121) add frequent-questions images and header ([9150b62](https://github.com/Arphase/nx-arphase/commit/9150b62179d3c463af32e64bac5c9164a8a4b86d))
+- **valmira/landing-page:** [#118](https://github.com/Arphase/nx-arphase/issues/118) Landing Page ([38f4309](https://github.com/Arphase/nx-arphase/commit/38f430995ace297f4d8f75e26dcbcae769befd5c))
+- **valmira/landing-page:** [#118](https://github.com/Arphase/nx-arphase/issues/118) Merge with staging ([4638e5b](https://github.com/Arphase/nx-arphase/commit/4638e5b4fa125cd1bf7b03c1aefb56eae95127b0))
+- **valmira/landing-page:** [#118](https://github.com/Arphase/nx-arphase/issues/118) Unit test fix ([54ba445](https://github.com/Arphase/nx-arphase/commit/54ba445f49d1e5e785b049d28d0ff37ef249f6a0))
+- **valmira/landing-page:** [#118](https://github.com/Arphase/nx-arphase/issues/118) Unit test fixes ([242d943](https://github.com/Arphase/nx-arphase/commit/242d94332c98525f443b9cf81cf2ae9316e697ff))
+- **valmira/landing-page:** [#118](https://github.com/Arphase/nx-arphase/issues/118) Use spectator for unit tests ([0531ab2](https://github.com/Arphase/nx-arphase/commit/0531ab2afde930ac41fcdf3b909bc16b46fb9389))
+- **valmira/terms and conditions:** [#122](https://github.com/Arphase/nx-arphase/issues/122) add terms and conditions ([7ab51f3](https://github.com/Arphase/nx-arphase/commit/7ab51f30b944666090e6e1e176f2220b2d2cae6c))
+
+### Bug Fixes
+
+- **arphase/api:** filter dates correctly ([cfbd68f](https://github.com/Arphase/nx-arphase/commit/cfbd68f73d589d75b42dba180f0709ab4350ac5e))
+- **valmira/terms and conditions:** [#122](https://github.com/Arphase/nx-arphase/issues/122) fix unit test ([519aa9b](https://github.com/Arphase/nx-arphase/commit/519aa9b3630f0d1afb61b7eb136e7a9ed6d786d7))
+- **valmira/terms and conditions:** [#122](https://github.com/Arphase/nx-arphase/issues/122) fix unit test ([8a5e9b9](https://github.com/Arphase/nx-arphase/commit/8a5e9b978eef9ce1c6e7c37f906a77602f952ece))
+
+### [3.3.3](https://github.com/Arphase/nx-arphase/compare/v3.3.2...v3.3.3) (2021-08-31)
+
+### Bug Fixes
+
+- **innovatech/guarantees:** reload entity after save ([8395f2e](https://github.com/Arphase/nx-arphase/commit/8395f2eea85bbb82a7e095693e90320a52699158))
+- **innovatech/revisions:** reload entity after save ([b97dcde](https://github.com/Arphase/nx-arphase/commit/b97dcde46bc57cd4ed3bfb7ab0f99ddf2c5aa130))
+
+### [3.3.2](https://github.com/Arphase/nx-arphase/compare/v3.3.1...v3.3.2) (2021-08-30)
+
+### Features
+
+- **pam-vic:** apply new colors and sizes ([a78d29a](https://github.com/Arphase/nx-arphase/commit/a78d29ae7fa9f73913812e04a2a1497315b9ffcd))
+- **pam-vic:** project setup ([0282247](https://github.com/Arphase/nx-arphase/commit/028224717397da3cfd3b21628b7acfbca78fdc53))
+
+### [3.3.1](https://github.com/Arphase/nx-arphase/compare/v3.3.0...v3.3.1) (2021-08-27)
+
+### Features
+
+- **innovatech/guarantees:** allow repairman users to see guarantees module ([0d7e02a](https://github.com/Arphase/nx-arphase/commit/0d7e02a7a1750012fa7143747e33665b95526012))
+- **musicr/ui:** [#152](https://github.com/Arphase/nx-arphase/issues/152) Add products catalog. Recieve menu categories from endpoint ([0d9e94e](https://github.com/Arphase/nx-arphase/commit/0d9e94ed438927dd48bb84e6beb375b35a310cbb))
+- **musicr/ui:** Add products catalog and details ([89ea163](https://github.com/Arphase/nx-arphase/commit/89ea16364b2d80c46404a898d32e6e65fb30ab43))
+- **musicr/ui:** Styles for mobile. Change tests to spectator ([effe36f](https://github.com/Arphase/nx-arphase/commit/effe36fcbd5b43052be6674e834713d50586e210))
+- **valmira/auth:** [#136](https://github.com/Arphase/nx-arphase/issues/136) reset password ([046a88b](https://github.com/Arphase/nx-arphase/commit/046a88b080d5f4253bbf9cddf5b0fb72bf0c5e50))
+- **valmira/places:** set category as enum ([0451c20](https://github.com/Arphase/nx-arphase/commit/0451c20f97c41032e8bccd9db701a2458cda3089))
+
+## [3.3.0](https://github.com/Arphase/nx-arphase/compare/v3.2.0...v3.3.0) (2021-08-24)
+
+### Features
+
+- **musicr/ui:** Add menu component ([872257a](https://github.com/Arphase/nx-arphase/commit/872257a0d1d3f88edfa813d8424db092af2d3c46))
+- **valmira/additional-products:** [#141](https://github.com/Arphase/nx-arphase/issues/141) CRUD on admin app ([e8198aa](https://github.com/Arphase/nx-arphase/commit/e8198aa263a50b6e5d324ed15d28efa9374aa6b1))
+- **valmira/places:** add filter for only active places in collection ([adf5bfc](https://github.com/Arphase/nx-arphase/commit/adf5bfc04266837acafd7241f5e9024bed648cac))
+- **valmira/places:** add photos ([efc7c8a](https://github.com/Arphase/nx-arphase/commit/efc7c8acfc8e1cd20060b11f170a8fcd1a284afc))
+- **valmira/places:** delete photo ([760500b](https://github.com/Arphase/nx-arphase/commit/760500b991c610eda75bee2b2ba415625a97e010))
+- **valmira/places:** endpoint to return occupied dates of a place depending on active reservations ([afd9d04](https://github.com/Arphase/nx-arphase/commit/afd9d0480cb21e3186ba4cc51f1339872eb7d3a4))
+- **valmira/places:** exclude places that have a reservation in collection query ([ba0e970](https://github.com/Arphase/nx-arphase/commit/ba0e970372bcccbc1d3b50823e865e80df8c0832))
+- **valmira/places:** toggle active status ([2e03497](https://github.com/Arphase/nx-arphase/commit/2e0349730a82100a26e7f6518159f9d965f7c019))
+- **valmira/promocodes:** [#143](https://github.com/Arphase/nx-arphase/issues/143) create form ([ba634cd](https://github.com/Arphase/nx-arphase/commit/ba634cdefb500253c9a084bb4885ff2886c76a71))
+- **valmira/promocodes:** [#144](https://github.com/Arphase/nx-arphase/issues/144) list filters, update and delete items ([998c7b0](https://github.com/Arphase/nx-arphase/commit/998c7b0bda47f0dcb3db9ddfd30c7c6026706d89))
+- **valmira/reservations:** [#124](https://github.com/Arphase/nx-arphase/issues/124) show detail ([2156b05](https://github.com/Arphase/nx-arphase/commit/2156b05735edc4bb3bb0dc0311ae89c41fcb335b))
+- **valmira/reservations:** [#125](https://github.com/Arphase/nx-arphase/issues/125) calculate price per night in preview reservation endpoint ([a8e53f3](https://github.com/Arphase/nx-arphase/commit/a8e53f3db663e30b166ef86c7dc342fb35af6862))
+- **valmira/reservations:** [#137](https://github.com/Arphase/nx-arphase/issues/137) calculate reservation total with promocodes and additional products ([5e808e1](https://github.com/Arphase/nx-arphase/commit/5e808e153f50b2cbb6be373568b6921601b4ce89))
+- **valmira/reservations:** [#139](https://github.com/Arphase/nx-arphase/issues/139) list ([a660c8b](https://github.com/Arphase/nx-arphase/commit/a660c8b10451e76f20a04a2bc56c2dda9a391f47))
+- **valmira/reservations:** create ([bbf29ce](https://github.com/Arphase/nx-arphase/commit/bbf29cee74d4ae70f0fa2ea4702ddfc128d6f058))
+- **valmira/reservations:** reserve place only if there is not another place reserved for those dates ([2770ce2](https://github.com/Arphase/nx-arphase/commit/2770ce20d1077b552f5f27465288fbc2f933756d))
+
+### Bug Fixes
+
+- **innovatech/spa:** include routing module ([6122625](https://github.com/Arphase/nx-arphase/commit/61226252c81b837a75a3dcda09ade590dea6cbdd))
+
+## [3.2.0](https://github.com/Arphase/nx-arphase/compare/v3.1.3...v3.2.0) (2021-07-28)
+
+### Features
+
+- **innovatech/ui:** display group and company filters to all users ([3c7043d](https://github.com/Arphase/nx-arphase/commit/3c7043d0bb1fea61bcd6128a189d14f424973ff7))
+- **innovatech/ui:** don't show users filter for repairman user role ([58a40d2](https://github.com/Arphase/nx-arphase/commit/58a40d278f3272402ec26d114203bdebf251a80e))
+- **musicr/orders:** [#110](https://github.com/Arphase/nx-arphase/issues/110) create orders without products ([eb2ed8f](https://github.com/Arphase/nx-arphase/commit/eb2ed8f66d70e44f9c1cc8ce453c2a97e93606a0))
+- **musicr/ui:** [#86](https://github.com/Arphase/nx-arphase/issues/86) Add home page ([839d927](https://github.com/Arphase/nx-arphase/commit/839d927bf7ef7d21667cefa6a91de6c3c37ba673))
+- **places:** [#137](https://github.com/Arphase/nx-arphase/issues/137) create form ([375932f](https://github.com/Arphase/nx-arphase/commit/375932fbeeedd74027a17428ca226a9715320275))
+- **valmira/additional-products:** [#141](https://github.com/Arphase/nx-arphase/issues/141) [#142](https://github.com/Arphase/nx-arphase/issues/142) list, get, create, and update endpoints ([d1042a4](https://github.com/Arphase/nx-arphase/commit/d1042a4d2991ee42d4155e58085de76b4d2d39d8))
+- **valmira/auth:** [#135](https://github.com/Arphase/nx-arphase/issues/135) sign in endpoint ([81d84d8](https://github.com/Arphase/nx-arphase/commit/81d84d833fd1dc1d3594912929d9d452e8f92c4b))
+- **valmira/auth:** [#135](https://github.com/Arphase/nx-arphase/issues/135) sign in form ([320501c](https://github.com/Arphase/nx-arphase/commit/320501cfee28766b0667f53fd9bc179ec26e2810))
+- **valmira/categories:** create endpoint ([51e99b1](https://github.com/Arphase/nx-arphase/commit/51e99b1c463c3bd13a1891eb8338ca2c8dcc402f))
+- **valmira/domain:** create database entities ([36e3bc7](https://github.com/Arphase/nx-arphase/commit/36e3bc7ad3e114e1951adb892730d43b331b7da9))
+- **valmira/domain:** create domain interfaces ([94160d9](https://github.com/Arphase/nx-arphase/commit/94160d98b72560b49317d3c0199a978326271602))
+- **valmira/places:** [#137](https://github.com/Arphase/nx-arphase/issues/137) create endpoint ([88d9ec5](https://github.com/Arphase/nx-arphase/commit/88d9ec593c6035eb087f7c7cdc702cd1154e470f))
+- **valmira/places:** [#138](https://github.com/Arphase/nx-arphase/issues/138) collection endpoint ([921e2a2](https://github.com/Arphase/nx-arphase/commit/921e2a2c9caa06e6da0bafa22f7325ea153fb969))
+- **valmira/places:** [#138](https://github.com/Arphase/nx-arphase/issues/138) first version of list ([70b4015](https://github.com/Arphase/nx-arphase/commit/70b4015c28db760e278e58e994c1e043b04c3cbd))
+- **valmira/promocodes:** [#143](https://github.com/Arphase/nx-arphase/issues/143) [#144](https://github.com/Arphase/nx-arphase/issues/144) list, get, create, and update endpoints ([efe1fb2](https://github.com/Arphase/nx-arphase/commit/efe1fb226bfd76b38886282341ad407e2b6721a2))
+- **valmira/reservations:** create endpoint ([a195661](https://github.com/Arphase/nx-arphase/commit/a19566160d6c38123cbde65ebf36ce67afaf6e5c))
+- **valmira/spa:** create layout of admin app spa ([55393d7](https://github.com/Arphase/nx-arphase/commit/55393d77ce33335c56ee7cf58f760618c5380bc3))
+
+### Bug Fixes
+
+- **app:** Remove unnecesary config on tsconfig files ([905b26e](https://github.com/Arphase/nx-arphase/commit/905b26e5f6257d0a4a696387ca67a0d3be111826))
 
 ### [3.1.3](https://github.com/Arphase/nx-arphase/compare/v3.1.2...v3.1.3) (2021-07-19)
 
-
 ### Features
 
-* **innovatech/revisions:** add version column in list ([9b83dfa](https://github.com/Arphase/nx-arphase/commit/9b83dfa560d953ff704473b52b09bc95e130f05e))
-* **musicr/products:** update and get entity ([4f0032b](https://github.com/Arphase/nx-arphase/commit/4f0032b46c8df7564937fe5c16fd318990bdddf1))
-
+- **innovatech/revisions:** add version column in list ([9b83dfa](https://github.com/Arphase/nx-arphase/commit/9b83dfa560d953ff704473b52b09bc95e130f05e))
+- **musicr/products:** update and get entity ([4f0032b](https://github.com/Arphase/nx-arphase/commit/4f0032b46c8df7564937fe5c16fd318990bdddf1))
 
 ### Bug Fixes
 
-* **arphase/ui:** server search correctly on checkbox filter ([e3f7a7b](https://github.com/Arphase/nx-arphase/commit/e3f7a7b8ec23b68fdfd471397d006d9f8a4c3d99))
-* **innovatech/api:** text search messing up other filters ([dad474f](https://github.com/Arphase/nx-arphase/commit/dad474f0d15fcecb2751f5c3784820bfdabe6dda))
+- **arphase/ui/core:** server search correctly on checkbox filter ([e3f7a7b](https://github.com/Arphase/nx-arphase/commit/e3f7a7b8ec23b68fdfd471397d006d9f8a4c3d99))
+- **innovatech/api:** text search messing up other filters ([dad474f](https://github.com/Arphase/nx-arphase/commit/dad474f0d15fcecb2751f5c3784820bfdabe6dda))
 
 ### [3.1.2](https://github.com/Arphase/nx-arphase/compare/v3.1.0...v3.1.2) (2021-07-09)
 
-
 ### Features
 
-* **innovatech/spa:** make users module visible only to superAdmin users ([5408524](https://github.com/Arphase/nx-arphase/commit/54085243741ff30f383789165cde2bd2769b8a32))
-* **musicr/price-options:** [#103](https://github.com/Arphase/nx-arphase/issues/103) API CRUD endpoints ([b7ea745](https://github.com/Arphase/nx-arphase/commit/b7ea7451f7a3cec77a618d565b68060b9e3fe1f0))
+- **innovatech/spa:** make users module visible only to superAdmin users ([5408524](https://github.com/Arphase/nx-arphase/commit/54085243741ff30f383789165cde2bd2769b8a32))
+- **musicr/price-options:** [#103](https://github.com/Arphase/nx-arphase/issues/103) API CRUD endpoints ([b7ea745](https://github.com/Arphase/nx-arphase/commit/b7ea7451f7a3cec77a618d565b68060b9e3fe1f0))
 
 ### [3.1.1](https://github.com/Arphase/nx-arphase/compare/v3.1.0...v3.1.1) (2021-07-09)
 
-
 ### Features
 
-* **innovatech/spa:** make users module visible only to superAdmin users ([5408524](https://github.com/Arphase/nx-arphase/commit/54085243741ff30f383789165cde2bd2769b8a32))
-* **musicr/price-options:** [#103](https://github.com/Arphase/nx-arphase/issues/103) API CRUD endpoints ([b7ea745](https://github.com/Arphase/nx-arphase/commit/b7ea7451f7a3cec77a618d565b68060b9e3fe1f0))
+- **innovatech/spa:** make users module visible only to superAdmin users ([5408524](https://github.com/Arphase/nx-arphase/commit/54085243741ff30f383789165cde2bd2769b8a32))
+- **musicr/price-options:** [#103](https://github.com/Arphase/nx-arphase/issues/103) API CRUD endpoints ([b7ea745](https://github.com/Arphase/nx-arphase/commit/b7ea7451f7a3cec77a618d565b68060b9e3fe1f0))
 
 ## [3.1.0](https://github.com/Arphase/nx-arphase/compare/v3.0.4...v3.1.0) (2021-06-30)
 
-
 ### Features
 
-* **musicr/additional-options:** [#99](https://github.com/Arphase/nx-arphase/issues/99) update product additional options endpoint ([707c5c9](https://github.com/Arphase/nx-arphase/commit/707c5c93f09b0193b3f5a506876ef1ad3ec85276))
-* **musicr/api:** [#84](https://github.com/Arphase/nx-arphase/issues/84) create application database entities and models ([40aee61](https://github.com/Arphase/nx-arphase/commit/40aee61a9743864ed9e16468f2a468965cafb81e))
-* **musicr/auth:** [#93](https://github.com/Arphase/nx-arphase/issues/93) add signIn endpoint and admin user seed ([faab8e1](https://github.com/Arphase/nx-arphase/commit/faab8e1280779f04cfbe9c97b96a2a2937637bd2))
-* **musicr/photos:** [#101](https://github.com/Arphase/nx-arphase/issues/101) photo upload endpoint ([c992bbd](https://github.com/Arphase/nx-arphase/commit/c992bbd07f738d03c7fe0b671c64920b9b39683d))
-* **musicr/product-components:** [#97](https://github.com/Arphase/nx-arphase/issues/97) update product components endpoint ([38e81e8](https://github.com/Arphase/nx-arphase/commit/38e81e84697ff9b665b43e29874e64f21f855e7d))
-* **musicr/products:** [#90](https://github.com/Arphase/nx-arphase/issues/90) create index controller ([214fba5](https://github.com/Arphase/nx-arphase/commit/214fba5241ff431c8ca9bf1d5bbb80d6ce892263))
-* **musicr/products:** [#95](https://github.com/Arphase/nx-arphase/issues/95) create endpoints for product basic info creation ([da06cc4](https://github.com/Arphase/nx-arphase/commit/da06cc4674cac082abe55069dffbac41f299e821))
-* **musicr/ui:** [#79](https://github.com/Arphase/nx-arphase/issues/79) Add footer module. Add responsiveness to terms and coditions ([8b80b4f](https://github.com/Arphase/nx-arphase/commit/8b80b4f05a7e0d530d8fb240d5ea7aebc7763ea9))
-
+- **musicr/additional-options:** [#99](https://github.com/Arphase/nx-arphase/issues/99) update product additional options endpoint ([707c5c9](https://github.com/Arphase/nx-arphase/commit/707c5c93f09b0193b3f5a506876ef1ad3ec85276))
+- **musicr/api:** [#84](https://github.com/Arphase/nx-arphase/issues/84) create application database entities and models ([40aee61](https://github.com/Arphase/nx-arphase/commit/40aee61a9743864ed9e16468f2a468965cafb81e))
+- **musicr/auth:** [#93](https://github.com/Arphase/nx-arphase/issues/93) add signIn endpoint and admin user seed ([faab8e1](https://github.com/Arphase/nx-arphase/commit/faab8e1280779f04cfbe9c97b96a2a2937637bd2))
+- **musicr/photos:** [#101](https://github.com/Arphase/nx-arphase/issues/101) photo upload endpoint ([c992bbd](https://github.com/Arphase/nx-arphase/commit/c992bbd07f738d03c7fe0b671c64920b9b39683d))
+- **musicr/product-components:** [#97](https://github.com/Arphase/nx-arphase/issues/97) update product components endpoint ([38e81e8](https://github.com/Arphase/nx-arphase/commit/38e81e84697ff9b665b43e29874e64f21f855e7d))
+- **musicr/products:** [#90](https://github.com/Arphase/nx-arphase/issues/90) create index controller ([214fba5](https://github.com/Arphase/nx-arphase/commit/214fba5241ff431c8ca9bf1d5bbb80d6ce892263))
+- **musicr/products:** [#95](https://github.com/Arphase/nx-arphase/issues/95) create endpoints for product basic info creation ([da06cc4](https://github.com/Arphase/nx-arphase/commit/da06cc4674cac082abe55069dffbac41f299e821))
+- **musicr/ui:** [#79](https://github.com/Arphase/nx-arphase/issues/79) Add footer module. Add responsiveness to terms and coditions ([8b80b4f](https://github.com/Arphase/nx-arphase/commit/8b80b4f05a7e0d530d8fb240d5ea7aebc7763ea9))
 
 ### Bug Fixes
 
-* **innovatech/app:** send dates as utc instead of string ([d370b26](https://github.com/Arphase/nx-arphase/commit/d370b2641eccf94cfabc7fbf6889c6ae62ebd7b4))
-* **innovatech/app:** use UTC timestamp in Angular date pipe to avoid dates offset ([c30f779](https://github.com/Arphase/nx-arphase/commit/c30f779c1de5ccf93c6c815892f956ab152febe7))
-* **innovatech/guarantees:** load all groups in group checkbox filter ([a3d0a28](https://github.com/Arphase/nx-arphase/commit/a3d0a2855c163754ca20de99e3d65979fd7c75ff))
+- **innovatech/app:** send dates as utc instead of string ([d370b26](https://github.com/Arphase/nx-arphase/commit/d370b2641eccf94cfabc7fbf6889c6ae62ebd7b4))
+- **innovatech/app:** use UTC timestamp in Angular date pipe to avoid dates offset ([c30f779](https://github.com/Arphase/nx-arphase/commit/c30f779c1de5ccf93c6c815892f956ab152febe7))
+- **innovatech/guarantees:** load all groups in group checkbox filter ([a3d0a28](https://github.com/Arphase/nx-arphase/commit/a3d0a2855c163754ca20de99e3d65979fd7c75ff))
 
 ### [3.0.4](https://github.com/Arphase/nx-arphase/compare/v3.0.3...v3.0.4) (2021-06-16)
 
-
 ### Features
 
-* **musicr/terms-and-conditions:** [#76](https://github.com/Arphase/nx-arphase/issues/76) Add terms and conditions module ([900223b](https://github.com/Arphase/nx-arphase/commit/900223b5af5379ee3b838dc8cfe90380e386fef4))
-
+- **musicr/terms-and-conditions:** [#76](https://github.com/Arphase/nx-arphase/issues/76) Add terms and conditions module ([900223b](https://github.com/Arphase/nx-arphase/commit/900223b5af5379ee3b838dc8cfe90380e386fef4))
 
 ### Bug Fixes
 
-* **innovatech/api:** parse dates to ISO 8601 ([450670c](https://github.com/Arphase/nx-arphase/commit/450670cd25262d8286913a3632397d6bfb2db15b))
-* **innovatech/ui:** set pageIndex to 0 when searching in select ([2382a5f](https://github.com/Arphase/nx-arphase/commit/2382a5f8d57d26201138830a224b930efcc6fda7))
+- **innovatech/api:** parse dates to ISO 8601 ([450670c](https://github.com/Arphase/nx-arphase/commit/450670cd25262d8286913a3632397d6bfb2db15b))
+- **innovatech/ui:** set pageIndex to 0 when searching in select ([2382a5f](https://github.com/Arphase/nx-arphase/commit/2382a5f8d57d26201138830a224b930efcc6fda7))
 
 ### [3.0.3](https://github.com/Arphase/nx-arphase/compare/v3.0.2...v3.0.3) (2021-06-13)
 
-
 ### Bug Fixes
 
-* **arphase/ui:** set autocomplete options on directive init to make patch work ([12793e6](https://github.com/Arphase/nx-arphase/commit/12793e67c941f0ae95b7195b69d40d5d8fde63ce))
-* **innovatech/guarantees:** add person type label in Excel ([0ccfc9d](https://github.com/Arphase/nx-arphase/commit/0ccfc9d2b43e74ed25ea6aeac83bf907148954be))
-* **innovatech/guarantees:** align pdf logo shield ([fcdf743](https://github.com/Arphase/nx-arphase/commit/fcdf7437f77a52c1413eb694b7911324aa68857f))
+- **arphase/ui/core:** set autocomplete options on directive init to make patch work ([12793e6](https://github.com/Arphase/nx-arphase/commit/12793e67c941f0ae95b7195b69d40d5d8fde63ce))
+- **innovatech/guarantees:** add person type label in Excel ([0ccfc9d](https://github.com/Arphase/nx-arphase/commit/0ccfc9d2b43e74ed25ea6aeac83bf907148954be))
+- **innovatech/guarantees:** align pdf logo shield ([fcdf743](https://github.com/Arphase/nx-arphase/commit/fcdf7437f77a52c1413eb694b7911324aa68857f))
 
 ### [3.0.2](https://github.com/Arphase/nx-arphase/compare/v3.0.1...v3.0.2) (2021-06-11)
 
-
 ### Features
 
-* **innovatech/app:** avoid doing multiple http requests on lists ([5cd3413](https://github.com/Arphase/nx-arphase/commit/5cd341337818517d0e7efdd46ce23b6ae1f71dfc))
+- **innovatech/app:** avoid doing multiple http requests on lists ([5cd3413](https://github.com/Arphase/nx-arphase/commit/5cd341337818517d0e7efdd46ce23b6ae1f71dfc))
 
 ### [3.0.1](https://github.com/Arphase/nx-arphase/compare/v3.0.0...v3.0.1) (2021-06-09)
 
-
 ### Features
 
-* **innovatech/api:** [#70](https://github.com/Arphase/nx-arphase/issues/70) make lowercase emails ([ffff596](https://github.com/Arphase/nx-arphase/commit/ffff59645d80d89e45d8057cbcef5feff4c3cca4))
-* **innovatech/api:** [#74](https://github.com/Arphase/nx-arphase/issues/74) trim string properties in dtos ([a49be6f](https://github.com/Arphase/nx-arphase/commit/a49be6fcc402a61809e805379bea49c4acd2af8a))
-* **innovatech/auth:** [#75](https://github.com/Arphase/nx-arphase/issues/75) delete rfc property from user model ([4276884](https://github.com/Arphase/nx-arphase/commit/4276884a32f8456fca0f111b6b94bb46fece4d74))
-* **innovatech/guarantees:** [#61](https://github.com/Arphase/nx-arphase/issues/61) delete property productType from guarantees model ([e699111](https://github.com/Arphase/nx-arphase/commit/e6991111da2bb7a5b69c08b220a9026dbd55fd4c))
-* **innovatech/payment-orders:** [#49](https://github.com/Arphase/nx-arphase/issues/49) delete property distributor ([1940206](https://github.com/Arphase/nx-arphase/commit/19402066a5461868cada6851afb396421ee569d3))
-* **musicr:** add initial project setup ([91f30ce](https://github.com/Arphase/nx-arphase/commit/91f30ce32093de7baa0f3546ff42b14a76e1f27e))
-
+- **innovatech/api:** [#70](https://github.com/Arphase/nx-arphase/issues/70) make lowercase emails ([ffff596](https://github.com/Arphase/nx-arphase/commit/ffff59645d80d89e45d8057cbcef5feff4c3cca4))
+- **innovatech/api:** [#74](https://github.com/Arphase/nx-arphase/issues/74) trim string properties in dtos ([a49be6f](https://github.com/Arphase/nx-arphase/commit/a49be6fcc402a61809e805379bea49c4acd2af8a))
+- **innovatech/auth:** [#75](https://github.com/Arphase/nx-arphase/issues/75) delete rfc property from user model ([4276884](https://github.com/Arphase/nx-arphase/commit/4276884a32f8456fca0f111b6b94bb46fece4d74))
+- **innovatech/guarantees:** [#61](https://github.com/Arphase/nx-arphase/issues/61) delete property productType from guarantees model ([e699111](https://github.com/Arphase/nx-arphase/commit/e6991111da2bb7a5b69c08b220a9026dbd55fd4c))
+- **innovatech/payment-orders:** [#49](https://github.com/Arphase/nx-arphase/issues/49) delete property distributor ([1940206](https://github.com/Arphase/nx-arphase/commit/19402066a5461868cada6851afb396421ee569d3))
+- **musicr:** add initial project setup ([91f30ce](https://github.com/Arphase/nx-arphase/commit/91f30ce32093de7baa0f3546ff42b14a76e1f27e))
 
 ### Bug Fixes
 
-* **innovatech/api:** [#69](https://github.com/Arphase/nx-arphase/issues/69) make text searches no case sensitive ([fd3ac27](https://github.com/Arphase/nx-arphase/commit/fd3ac27b30fe0c440f0bab5c9e57b9220c66d583))
-* **innovatech/guarantees:** [#73](https://github.com/Arphase/nx-arphase/issues/73)  don't load logo and template on guarantee list ([c9dffd5](https://github.com/Arphase/nx-arphase/commit/c9dffd56e7acc491c2c1214ea3c3c663bdd6096e))
+- **innovatech/api:** [#69](https://github.com/Arphase/nx-arphase/issues/69) make text searches no case sensitive ([fd3ac27](https://github.com/Arphase/nx-arphase/commit/fd3ac27b30fe0c440f0bab5c9e57b9220c66d583))
+- **innovatech/guarantees:** [#73](https://github.com/Arphase/nx-arphase/issues/73) don't load logo and template on guarantee list ([c9dffd5](https://github.com/Arphase/nx-arphase/commit/c9dffd56e7acc491c2c1214ea3c3c663bdd6096e))
 
 ## [3.0.0](https://github.com/Arphase/nx-arphase/compare/v2.5.5...v3.0.0) (2021-06-05)
 
-
 ### Features
 
-* **app:** add collection select directives ([dedafde](https://github.com/Arphase/nx-arphase/commit/dedafded9940e8ceaabd78d40687498f12738e0b))
-* **arphase:** add autocomplete directive ([d28ab1b](https://github.com/Arphase/nx-arphase/commit/d28ab1b8690e9f9f1fc6b06847ed89ea3d0b6862))
+- **app:** add collection select directives ([dedafde](https://github.com/Arphase/nx-arphase/commit/dedafded9940e8ceaabd78d40687498f12738e0b))
+- **arphase:** add autocomplete directive ([d28ab1b](https://github.com/Arphase/nx-arphase/commit/d28ab1b8690e9f9f1fc6b06847ed89ea3d0b6862))
 
 ### [2.5.5](https://github.com/Arphase/nx-arphase/compare/v2.5.4...v2.5.5) (2021-05-11)
 
-
 ### Bug Fixes
 
-* **vehicles:** [#67](https://github.com/Arphase/nx-arphase/issues/67) allow repairman to select company on vehicle create ([35d4e78](https://github.com/Arphase/nx-arphase/commit/35d4e7881dfa320c204df6762c483c0fb93736df))
+- **vehicles:** [#67](https://github.com/Arphase/nx-arphase/issues/67) allow repairman to select company on vehicle create ([35d4e78](https://github.com/Arphase/nx-arphase/commit/35d4e7881dfa320c204df6762c483c0fb93736df))
 
 ### [2.5.4](https://github.com/Arphase/nx-arphase/compare/v2.5.3...v2.5.4) (2021-05-10)
 
-
 ### Features
 
-* **auth:** [#64](https://github.com/Arphase/nx-arphase/issues/64) add repairman role in users ([d50af11](https://github.com/Arphase/nx-arphase/commit/d50af11556f6b3b6ab154dccbf847680536c58f9))
+- **auth:** [#64](https://github.com/Arphase/nx-arphase/issues/64) add repairman role in users ([d50af11](https://github.com/Arphase/nx-arphase/commit/d50af11556f6b3b6ab154dccbf847680536c58f9))
 
 ### [2.5.3](https://github.com/Arphase/nx-arphase/compare/v2.5.2...v2.5.3) (2021-05-04)
 
-
 ### Features
 
-* **auth:** persist theme after logout ([18b177c](https://github.com/Arphase/nx-arphase/commit/18b177c7afc20641e321ab0a36fe10bfc8f9abbb))
-* **groups:** add loading state to assign products modal ([b5638a4](https://github.com/Arphase/nx-arphase/commit/b5638a4f845c48dc697012bda4c5cf1cbb50b6b2))
-* **grupos:** disable users who has set his password in form ([4d5dfad](https://github.com/Arphase/nx-arphase/commit/4d5dfad469ed36fe5bc2827da18535d92b5ac039))
-* **payment-orders:** add company businessName to PDF ([5fb4309](https://github.com/Arphase/nx-arphase/commit/5fb4309b1dbc5d7619d80a4537589862f353d258))
-* **revision-requests:** add createdAt column on list ([b4319ad](https://github.com/Arphase/nx-arphase/commit/b4319adc53235712387f2f00eda3ff05cc461838))
-* **vehicles:** cascade delete revisions and revision requests ([bc81ba5](https://github.com/Arphase/nx-arphase/commit/bc81ba5ed8c220aa673a0859da77172b89f85f07))
-
+- **auth:** persist theme after logout ([18b177c](https://github.com/Arphase/nx-arphase/commit/18b177c7afc20641e321ab0a36fe10bfc8f9abbb))
+- **groups:** add loading state to assign products modal ([b5638a4](https://github.com/Arphase/nx-arphase/commit/b5638a4f845c48dc697012bda4c5cf1cbb50b6b2))
+- **grupos:** disable users who has set his password in form ([4d5dfad](https://github.com/Arphase/nx-arphase/commit/4d5dfad469ed36fe5bc2827da18535d92b5ac039))
+- **payment-orders:** add company businessName to PDF ([5fb4309](https://github.com/Arphase/nx-arphase/commit/5fb4309b1dbc5d7619d80a4537589862f353d258))
+- **revision-requests:** add createdAt column on list ([b4319ad](https://github.com/Arphase/nx-arphase/commit/b4319adc53235712387f2f00eda3ff05cc461838))
+- **vehicles:** cascade delete revisions and revision requests ([bc81ba5](https://github.com/Arphase/nx-arphase/commit/bc81ba5ed8c220aa673a0859da77172b89f85f07))
 
 ### Bug Fixes
 
-* **guarantees:** save company in cache when editing item ([5bb9bfc](https://github.com/Arphase/nx-arphase/commit/5bb9bfc0dddf9a54d14018d2ec48ccb8e8729641))
-* **revisions:** parse date correctly on delete modal ([5fd747a](https://github.com/Arphase/nx-arphase/commit/5fd747a00738c9889674bcc9a61a61d9cd72fdd6))
+- **guarantees:** save company in cache when editing item ([5bb9bfc](https://github.com/Arphase/nx-arphase/commit/5bb9bfc0dddf9a54d14018d2ec48ccb8e8729641))
+- **revisions:** parse date correctly on delete modal ([5fd747a](https://github.com/Arphase/nx-arphase/commit/5fd747a00738c9889674bcc9a61a61d9cd72fdd6))
 
 ### [2.5.2](https://github.com/Arphase/nx-arphase/compare/v2.5.1...v2.5.2) (2021-05-03)
 
-
 ### Features
 
-* **app:** display table info only if collection has entities ([0605091](https://github.com/Arphase/nx-arphase/commit/06050911659b0019a3aab0bf1596fd67752aa54a))
-
+- **app:** display table info only if collection has entities ([0605091](https://github.com/Arphase/nx-arphase/commit/06050911659b0019a3aab0bf1596fd67752aa54a))
 
 ### Bug Fixes
 
-* **auth:** [#58](https://github.com/Arphase/nx-arphase/issues/58) add styles for input auto fill in dark mode ([1900d88](https://github.com/Arphase/nx-arphase/commit/1900d88eed13cbf611699c65f3ea027ed1c7a674))
-* **guarantees:** remove required productType in create dto ([cef61b6](https://github.com/Arphase/nx-arphase/commit/cef61b64ef79ccce559c916e7131393e013997a9))
+- **auth:** [#58](https://github.com/Arphase/nx-arphase/issues/58) add styles for input auto fill in dark mode ([1900d88](https://github.com/Arphase/nx-arphase/commit/1900d88eed13cbf611699c65f3ea027ed1c7a674))
+- **guarantees:** remove required productType in create dto ([cef61b6](https://github.com/Arphase/nx-arphase/commit/cef61b64ef79ccce559c916e7131393e013997a9))
 
 ### [2.5.1](https://github.com/Arphase/nx-arphase/compare/v2.5.0...v2.5.1) (2021-04-26)
 
-
 ### Features
 
-* **products:** format data from glossary in PDF transform ([175b0ef](https://github.com/Arphase/nx-arphase/commit/175b0efff886ee64a1e7713cbd4dbbe0aba90bb8))
-* **revisions:** add kilometrage property ([b3035aa](https://github.com/Arphase/nx-arphase/commit/b3035aac20e78c1abb66eca3692ab3381551e2f6))
-
+- **products:** format data from glossary in PDF transform ([175b0ef](https://github.com/Arphase/nx-arphase/commit/175b0efff886ee64a1e7713cbd4dbbe0aba90bb8))
+- **revisions:** add kilometrage property ([b3035aa](https://github.com/Arphase/nx-arphase/commit/b3035aac20e78c1abb66eca3692ab3381551e2f6))
 
 ### Bug Fixes
 
-* **revisions:** add correct icon for warning in report ([61e7012](https://github.com/Arphase/nx-arphase/commit/61e7012ed499e7bfb4652826fa11521186bfd988))
+- **revisions:** add correct icon for warning in report ([61e7012](https://github.com/Arphase/nx-arphase/commit/61e7012ed499e7bfb4652826fa11521186bfd988))
 
 ## [2.5.0](https://github.com/Arphase/nx-arphase/compare/v2.4.4...v2.5.0) (2021-04-20)
 

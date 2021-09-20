@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApsEmptyModule, ApsSearchbarModule } from '@arphase/ui';
+import { ApsEmptyModule, ApsFeatureLayoutModule, ApsSearchbarModule } from '@arphase/ui/core';
 import { IvtFolioModule } from '@innovatech/ui/core/ui';
 import { ProductsDataModule } from '@innovatech/ui/products/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
@@ -28,7 +28,6 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductFormContainerComponent } from './containers/product-form-container/product-form-container.component';
 import { ProductListContainerComponent } from './containers/product-list-container/product-list-container.component';
 import { ProductsRoutingModule } from './products-routing.module';
-import { ProductsComponent } from './products.component';
 
 @NgModule({
   imports: [
@@ -52,6 +51,7 @@ import { ProductsComponent } from './products.component';
     NzSpaceModule,
     NzUploadModule,
     ApsSearchbarModule,
+    ApsFeatureLayoutModule,
     NzDividerModule,
     NzTableModule,
     NzAlertModule,
@@ -61,7 +61,6 @@ import { ProductsComponent } from './products.component';
   declarations: [
     ProductFormComponent,
     ProductFormContainerComponent,
-    ProductsComponent,
     ProductListComponent,
     ProductListContainerComponent,
   ],

@@ -30,7 +30,7 @@ export class GroupsService {
     const query = this.groupRepository.createQueryBuilder('group');
     query
       .leftJoinAndSelect('group.companies', 'company')
-      .leftJoinAndSelect('company.address', 'adress')
+      .leftJoinAndSelect('company.address', 'address')
       .leftJoinAndSelect('company.users', 'user');
 
     const found = await query.where('group.id = :id', { id }).getOne();

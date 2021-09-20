@@ -48,7 +48,7 @@ export class ProductEntity extends BaseEntity implements Product {
   @Column({ nullable: true })
   subcategoryId?: number;
 
-  @ManyToOne(() => SubcategoryEntity, subcategory => subcategory.products)
+  @ManyToOne(() => SubcategoryEntity, subcategory => subcategory.products, { eager: true })
   @JoinColumn({ name: 'subcategoryId' })
   subcategory?: Subcategory;
 
@@ -58,10 +58,7 @@ export class ProductEntity extends BaseEntity implements Product {
   })
   additionalOptions: AdditionalOption[];
 
-  @OneToMany(() => OrderProductEntity, orderProduct => orderProduct.product, {
-    cascade: true,
-    eager: true,
-  })
+  @OneToMany(() => OrderProductEntity, orderProduct => orderProduct.product)
   orderProducts: OrderProduct[];
 
   @OneToMany(() => PriceOptionEntity, priceOption => priceOption.product, {

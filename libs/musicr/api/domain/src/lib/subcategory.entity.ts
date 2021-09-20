@@ -14,15 +14,15 @@ export class SubcategoryEntity extends BaseEntity implements Subcategory {
   name: string;
 
   @Column()
+  description: string;
+
+  @Column()
   categoryId?: number;
 
-  @ManyToOne(() => CategoryEntity, category => category.subcategories)
+  @ManyToOne(() => CategoryEntity, category => category.subcategories, { eager: true })
   @JoinColumn({ name: 'categoryId' })
   category?: Category;
 
-  @OneToMany(() => ProductEntity, product => product.subcategory, {
-    cascade: true,
-    eager: true,
-  })
+  @OneToMany(() => ProductEntity, product => product.subcategory, { cascade: true })
   products?: Product[];
 }

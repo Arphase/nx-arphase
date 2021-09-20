@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApsListContainerComponent } from '@arphase/ui';
+import { ApsListContainerComponent } from '@arphase/ui/core';
 import {
   Guarantee,
   GuaranteeStatus,
@@ -29,7 +29,8 @@ export class GuaranteeListContainerComponent extends ApsListContainerComponent<G
   clearSelectedSubject = new BehaviorSubject<boolean>(false);
   clearSelected$ = this.clearSelectedSubject.asObservable();
   excelFileName = 'Garantias';
-  canModifyPaymentOrders$ = this.permissionService.hasCreatePermission([UserRoles.superAdmin]);
+  canCreateGuarantee$ = this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.agencyUser]);
+  showGroupFilters$ = this.permissionService.hasUpdatePermission([UserRoles.superAdmin, UserRoles.repairman]);
 
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,

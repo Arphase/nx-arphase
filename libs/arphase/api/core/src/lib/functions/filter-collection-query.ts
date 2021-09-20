@@ -2,28 +2,49 @@ import { SortDirection } from '@arphase/common';
 import { endOfDay, startOfDay } from 'date-fns';
 import { BaseEntity, SelectQueryBuilder } from 'typeorm';
 
-import { ApsCollectionFilterDto } from '../dto';
+import { ApsCollectionFilterDto } from '../dto/collection-filter.dto';
+
+interface filterCollectionQueryOptions {
+  ignoreSort?: boolean;
+  ignoreDates?: boolean;
+  logicalOperator?: 'and' | 'or';
+}
 
 export function filterCollectionQuery(
   entityName: string,
   query: SelectQueryBuilder<BaseEntity>,
-  filterDto: Partial<ApsCollectionFilterDto>
+  filterDto: Partial<ApsCollectionFilterDto>,
+  options: filterCollectionQueryOptions = { ignoreSort: false, ignoreDates: false, logicalOperator: 'and' }
 ): void {
-  const { startDate, endDate, dateType, sort, direction, pageIndex, pageSize } = filterDto;
+  const { sort, direction, pageIndex, pageSize } = filterDto;
+  const { ignoreSort } = options;
 
-  if (sort && direction) {
+  filterCollectionDates(entityName, query, filterDto, options);
+
+  if (sort && direction && !ignoreSort) {
     query.orderBy(`${sort}`, SortDirection[direction]);
-  }
-
-  if (startDate && endDate) {
-    const date = `${entityName}.${dateType || 'createdAt'}`;
-    query.andWhere(`${date} >= :startDate and ${date} <= :endDate`, {
-      startDate: startOfDay(new Date(startDate)).toISOString(),
-      endDate: endOfDay(new Date(endDate)).toISOString(),
-    });
   }
 
   if (pageSize && pageIndex) {
     query.take(pageSize).skip(pageSize * (pageIndex - 1));
+  }
+}
+
+export function filterCollectionDates(
+  entityName: string,
+  query: SelectQueryBuilder<BaseEntity>,
+  filterDto: Partial<ApsCollectionFilterDto>,
+  options: filterCollectionQueryOptions = { ignoreSort: false, ignoreDates: false }
+): void {
+  const { startDate, endDate, dateType } = filterDto;
+  const { ignoreDates, logicalOperator } = options;
+  if (startDate && endDate && !ignoreDates) {
+    const date = `${entityName}.${dateType || 'createdAt'}`;
+    const expression = `${date} >= :startDate and ${date} <= :endDate`;
+    const params = {
+      startDate: startOfDay(new Date(startDate)).toISOString(),
+      endDate: endOfDay(new Date(endDate)).toISOString(),
+    };
+    logicalOperator === 'and' ? query.andWhere(expression, params) : query.orWhere(expression, params);
   }
 }

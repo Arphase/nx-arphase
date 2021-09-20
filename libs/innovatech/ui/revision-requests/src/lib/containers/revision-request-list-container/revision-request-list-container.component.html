@@ -1,7 +1,6 @@
 <ivt-revision-request-list [list]="list$ | async"
                            [loading]="loading$ | async"
                            [info]="info$ | async"
-                           [showUsersFilter]="showUsersFilter$ | async"
                            [queryParams]="queryParams"
                            (edit)="changeStatus($event)"
                            (filterItems)="filterItems($event)"></ivt-revision-request-list>

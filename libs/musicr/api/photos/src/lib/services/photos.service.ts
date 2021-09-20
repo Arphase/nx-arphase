@@ -1,6 +1,6 @@
 import { PhotoEntity } from '@musicr/api/domain';
 import { Photo } from '@musicr/domain';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { S3 } from 'aws-sdk';
 import { Repository } from 'typeorm';
@@ -25,5 +25,23 @@ export class PhotosService {
       url: uploadResult.Location,
     });
     return this.photoRepository.save(newFile);
+  }
+
+  async deletePhoto(id: number): Promise<Photo> {
+    const photo = await this.photoRepository.findOne({ id });
+    if (!photo) {
+      throw new NotFoundException(`Photo with id ${id} not found`);
+    }
+    const s3 = new S3();
+    const result = await s3
+      .deleteObject({
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: photo.key,
+      })
+      .promise();
+    if (result.$response.data) {
+      await this.photoRepository.softRemove(photo);
+    }
+    return photo;
   }
 }

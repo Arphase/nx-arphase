@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { filterNil } from '@arphase/ui';
+import { filterNil } from '@arphase/ui/core';
 import { GuaranteeStatus } from '@innovatech/common/domain';
 import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
-import { keyBy } from 'lodash-es';
+import { keyBy } from 'lodash';
 import { map, take } from 'rxjs/operators';
 
 import { getGuaranteeSummary } from '../../state/dashboard.actions';

@@ -10,21 +10,11 @@ export class AuthController {
     return this.authService.signIn(authCredentialsDto);
   }
 
-  /**
-   * Sends the user an email to set his password
-   * @param email User email
-   * @returns response data about email status
-   */
   @Post('/emailPassword')
   sendEmailResetPassword(@Body() user: Partial<User>): Promise<Record<string, boolean>> {
     return this.authService.sendResetPasswordEmail(user.email);
   }
 
-  /**
-   * Sets the usser password with a password token sent by email
-   * @param resetPassword contains email, password, and token
-   * @returns new passord
-   */
   @Post('/setPassword')
   setNewPassord(@Body() resetPassword: ResetPasswordDto): Promise<User> {
     return this.authService.setPassword(resetPassword);

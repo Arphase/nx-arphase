@@ -1,17 +1,15 @@
 import { ChangeDetectorRef, Directive } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { ApsCollectionSelectDirective } from '@arphase/ui';
+import { ApsCollectionSelectDirective } from '@arphase/ui/core';
 import { Company } from '@innovatech/common/domain';
 import { CompanyFilterCollectionService } from '@innovatech/ui/companies/data';
-import { UntilDestroy } from '@ngneat/until-destroy';
 import { NzSelectComponent } from 'ng-zorro-antd/select';
 
-@UntilDestroy()
 @Directive({
   selector: '[ivtCompanySelect]',
 })
 export class CompanySelectDirective extends ApsCollectionSelectDirective<Company> {
-  sortValue = [{ key: 'company.businessName', value: 'ascend' }] as any;
+  sortValue = [{ key: 'company.businessName', value: 'ascend' }];
   constructor(
     protected host: NzSelectComponent,
     protected companyFilterCollectionService: CompanyFilterCollectionService,

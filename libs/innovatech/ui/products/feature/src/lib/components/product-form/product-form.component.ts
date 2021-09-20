@@ -1,13 +1,13 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ApsFormComponent, ApsValidators, filterNil, sortSelectOptions } from '@arphase/ui';
+import { ApsFormComponent, ApsValidators, filterNil, getBase64, sortSelectOptions } from '@arphase/ui/core';
 import { glossary, Product } from '@innovatech/common/domain';
 import { ProductDataService } from '@innovatech/ui/products/data';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzUploadChangeParam, NzUploadFile, NzUploadXHRArgs } from 'ng-zorro-antd/upload';
-import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
 import { ProductForm } from '../../models/product-form.model';
@@ -129,15 +129,13 @@ export class ProductFormComponent extends ApsFormComponent<Product, ProductForm>
     }
   }
 
-  saveFile(event: NzUploadChangeParam): void {
+  async saveFile(event: NzUploadChangeParam): Promise<void> {
     const { file } = event;
     if (file.status === 'removed') {
       this.form.get('logo').patchValue('');
       return;
     }
-    readFileAsDataUrl(file.originFileObj)
-      .pipe(take(1))
-      .subscribe(convertedFile => this.form.get('logo').patchValue(convertedFile));
+    this.form.get('logo').patchValue(await getBase64(file.originFileObj));
   }
 
   downloadTemplatePreview(): void {
@@ -163,16 +161,6 @@ export class ProductFormComponent extends ApsFormComponent<Product, ProductForm>
       maxHp: form.hpValidations.maxHp,
     };
   }
-}
-
-export function readFileAsDataUrl(file: File): Observable<string> {
-  const subject = new Subject<string>();
-  const reader = new FileReader();
-  reader.onload = () => subject.next(reader.result as string);
-  reader.onerror = error => subject.error(error);
-  reader.onloadend = () => subject.complete();
-  reader.readAsDataURL(file);
-  return subject.asObservable();
 }
 
 export function dataURLtoFile(dataurl: string, filename: string): File {

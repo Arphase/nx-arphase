@@ -1,6 +1,6 @@
 import { AfterContentInit, ChangeDetectorRef, Directive, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { ApsCollectionSelectDirective } from '@arphase/ui';
+import { ApsCollectionSelectDirective } from '@arphase/ui/core';
 import { Product } from '@innovatech/common/domain';
 import { ProductCollectionService } from '@innovatech/ui/products/data';
 import { NzSelectComponent } from 'ng-zorro-antd/select';
@@ -15,7 +15,7 @@ export class ProductSelectDirective
 {
   @Input() year: string;
   @Input() horsePower: string;
-  sortValue = [{ key: 'product.name', value: 'ascend' }] as any;
+  sortValue = [{ key: 'product.name', value: 'ascend' }];
 
   constructor(
     protected host: NzSelectComponent,
@@ -42,7 +42,8 @@ export class ProductSelectDirective
       this.productCollectionService.queryParams$.pipe(take(1)).subscribe(queryParams =>
         this.productCollectionService.getWithQuery({
           ...queryParams,
-          sort: this.sortValue,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          sort: this.sortValue as any,
           year: this.year,
           horsePower: this.horsePower,
           resetList: String(true),

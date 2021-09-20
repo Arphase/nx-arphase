@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApsListContainerComponent } from '@arphase/ui';
+import { ApsListContainerComponent } from '@arphase/ui/core';
 import { Revision, UserRoles } from '@innovatech/common/domain';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import dayjs from 'dayjs';

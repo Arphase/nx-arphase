@@ -11,9 +11,9 @@ export class CategoryEntity extends BaseEntity implements Category {
   @Column({ unique: true })
   name: string;
 
-  @OneToMany(() => SubcategoryEntity, subcategory => subcategory.category, {
-    cascade: true,
-    eager: true,
-  })
+  @Column()
+  description: string;
+
+  @OneToMany(() => SubcategoryEntity, subcategory => subcategory.category)
   subcategories?: Subcategory[];
 }

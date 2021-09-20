@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApsDirtyFormGuard } from '@arphase/ui';
+import { ApsDirtyFormGuard, ApsFeatureLayoutComponent } from '@arphase/ui/core';
 import { UserRoles } from '@innovatech/common/domain';
 import { RoleGuard } from '@innovatech/ui/auth/data';
 
 import { RevisionRequestFormContainerComponent } from './containers/revision-request-form-container/revision-request-form-container.component';
 import { RevisionRequestListContainerComponent } from './containers/revision-request-list-container/revision-request-list-container.component';
 import { RevisionRequestResolverService } from './resolvers/revision-request-resolver.service';
-import { RevisionRequestsComponent } from './revision-requests.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: RevisionRequestsComponent,
+    component: ApsFeatureLayoutComponent,
+    data: { title: 'Solicitudes de Revisión' },
     children: [
       {
         path: '',

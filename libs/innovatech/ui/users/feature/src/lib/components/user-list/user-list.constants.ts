@@ -1,4 +1,4 @@
-import { ApsColumns } from '@arphase/ui';
+import { ApsColumns } from '@arphase/ui/core';
 
 export const columns: ApsColumns = [
   {

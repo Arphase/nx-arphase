@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApsAutoErrorModule } from '@arphase/ui';
+import { ArphaseUiAuthModule } from '@arphase/ui/auth';
+import { ApsAutoErrorModule, ApsStatusMessageModule } from '@arphase/ui/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -10,7 +11,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 import { AuthRoutingModule } from './auth-routing.module';
-import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
+import { ResetPasswordFormContainerComponent } from './containers/reset-password-form-container/reset-password-form-container.component';
+import { SetPasswordFormContainerComponent } from './containers/set-password-form-container/set-password-form-container.component';
 import { SignInFormContainerComponent } from './containers/sign-in-form-container/sign-in-form-container.component';
 
 @NgModule({
@@ -25,7 +27,9 @@ import { SignInFormContainerComponent } from './containers/sign-in-form-containe
     NzInputModule,
     NzSpaceModule,
     ApsAutoErrorModule,
+    ApsStatusMessageModule,
+    ArphaseUiAuthModule,
   ],
-  declarations: [SignInFormContainerComponent, SignInFormComponent],
+  declarations: [SignInFormContainerComponent, ResetPasswordFormContainerComponent, SetPasswordFormContainerComponent],
 })
 export class AuthModule {}

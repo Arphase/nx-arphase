@@ -1,4 +1,4 @@
-# Innovatech
+# Music Revolution
 
 ## Backend
 
@@ -10,6 +10,13 @@ These is the info you need to set up:
 - Database: musicr
 - username: musicr
 - password: musicr
+
+Comands:
+```
+createdb musicr
+createuser musicr
+psql -c "ALTER USER musicr WITH PASSWORD 'musicr'"
+```
 
 2) Create an alias in your terminal to set the following environment variables:
 ```

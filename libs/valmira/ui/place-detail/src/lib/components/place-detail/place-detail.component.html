@@ -1,0 +1,29 @@
+{{ currentPlace | json }}
+
+<form nz-row
+      nzGutter="12"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+  <div nz-col
+       nzSpan="4">
+    <nz-form-item>
+      <nz-form-control>
+        <nz-date-picker ngDefaultControl
+                        [nzDisabledDate]="disableStartDate"
+                        [nzPlaceHolder]="'Fecha de llegada' | uppercase"
+                        formControlName="startDate"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div nz-col
+       nzSpan="4">
+    <nz-form-item>
+      <nz-form-control>
+        <nz-date-picker ngDefaultControl
+                        [nzDisabledDate]="disableEndDate"
+                        [nzPlaceHolder]="'Fecha de salida' | uppercase"
+                        formControlName="endDate"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+</form>

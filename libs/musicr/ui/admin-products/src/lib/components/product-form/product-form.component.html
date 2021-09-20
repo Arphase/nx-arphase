@@ -1,0 +1,205 @@
+<form nz-form
+      nz-row
+      nzLayout="vertical"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+  <nz-space nzDirection="vertical"
+            nz-col
+            nzSpan="24"
+            nzSize="middle">
+    <nz-page-header nzBackIcon
+                    [nzTitle]="item?.id ? 'Editar Producto' : 'Nuevo Producto'"
+                    [routerLink]="['..']"></nz-page-header>
+    <div nz-row
+         nzGutter="12">
+      <div nz-col
+           nzMd="24"
+           nzLg="12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Nombre</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   formControlName="name" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col
+           nzMd="24"
+           nzLg="12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Precio</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   prefix="$"
+                   mask="separator.2"
+                   thousandSeparator=","
+                   formControlName="price" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row
+         nzGutter="12">
+      <div nz-col
+           nzMd="24"
+           nzLg="12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Categoría</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-select mrlCategorySelect
+                       formControlName="categoryId">
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col
+           nzMd="24"
+           nzLg="12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Subcategoría</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-select mrlSubcategorySelect
+                       formControlName="subcategoryId">
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row>
+      <div nz-col
+           nzSpan="24">
+        <nz-form-item>
+          <nz-form-label>Descripción</nz-form-label>
+          <nz-form-control apsAutoError>
+            <textarea nz-input
+                      formControlName="description"></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row>
+      <div nz-col
+           nzSpan="24">
+        <nz-form-item>
+          <nz-form-label>Disclaimer</nz-form-label>
+          <nz-form-control apsAutoError>
+            <textarea nz-input
+                      formControlName="disclaimer"></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Galería"
+                         [nzActive]="true">
+        <div class="clearfix">
+          <nz-upload nzListType="picture-card"
+                     nzAccept="image/png"
+                     [(nzFileList)]="fileList"
+                     [nzAction]="photosUrl"
+                     [nzPreview]="handlePreview"
+                     [nzRemove]="onRemovePhoto">
+            <div>
+              <i nz-icon
+                 nzType="plus"></i>
+              <div style="margin-top: 8px">Subir</div>
+            </div>
+          </nz-upload>
+          <nz-modal [nzVisible]="previewVisible"
+                    [nzContent]="modalContent"
+                    [nzFooter]="null"
+                    (nzOnCancel)="previewVisible = false">
+            <ng-template #modalContent>
+              <img [src]="previewImage"
+                   [ngStyle]="{ width: '100%' }" />
+            </ng-template>
+          </nz-modal>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Componentes"
+                         [nzActive]="true">
+        <div *ngFor="let componentControl of productComponentsFormArray.controls; let index = index;"
+             nz-row
+             nzGutter="12">
+          <div nz-col
+               nzXs="20"
+               nzMd="22">
+            <nz-form-item>
+              <nz-form-control apsAutoError>
+                <input nz-input
+                       [formControl]="componentControl" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col
+               nzXs="4"
+               nzMd="2">
+            <button nz-button
+                    nzType="text"
+                    nz-tooltip
+                    nzTooltipTitle="Eliminar componente"
+                    type="button"
+                    (click)="removeComponent(index)">
+              <i nz-icon
+                 nzType="delete"></i>
+            </button>
+          </div>
+        </div>
+
+        <div nz-row
+             nzGutter="12">
+          <div nz-col
+               nzSpan="24">
+            <button nz-button
+                    nzType="primary"
+                    type="button"
+                    [disabled]="productComponentsFormArray.invalid"
+                    (click)="addComponent()">
+              Agregar nuevo componente
+            </button>
+          </div>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+
+    <mrl-price-options-form-container *nzSpaceItem
+                                      [form]="priceOptionsFormArray"
+                                      [item]="item?.priceOptions"></mrl-price-options-form-container>
+
+    <mrl-additional-options-form-container *nzSpaceItem
+                                           [form]="additionalOptionsFormArray"
+                                           [item]="item?.additionalOptions"></mrl-additional-options-form-container>
+
+    <div *nzSpaceItem
+         nz-row>
+      <div nz-col
+           nzSpan="24"
+           class="flex-end">
+        <nz-space>
+          <button *nzSpaceItem
+                  nz-button
+                  type="button"
+                  [routerLink]="['..']">
+            Cancelar
+          </button>
+          <button *nzSpaceItem
+                  nz-button
+                  type="submit"
+                  nzType="primary"
+                  [nzLoading]="loading">
+            Guardar
+          </button>
+        </nz-space>
+      </div>
+    </div>
+  </nz-space>
+</form>

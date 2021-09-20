@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApsDirtyFormGuard } from '@arphase/ui';
+import { ApsDirtyFormGuard, ApsFeatureLayoutComponent } from '@arphase/ui/core';
 import { UserRoles } from '@innovatech/common/domain';
 import { RoleGuard } from '@innovatech/ui/auth/data';
 
 import { RevisionFormContainerComponent } from './containers/revision-form-container/revision-form-container.component';
 import { RevisionListContainerComponent } from './containers/revision-list-container/revision-list-container.component';
 import { RevisionResolverService } from './resolvers/revision-resolver.service';
-import { RevisionsComponent } from './revisions.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: RevisionsComponent,
+    component: ApsFeatureLayoutComponent,
+    data: { title: 'Revisiones' },
     children: [
       {
         path: '',
@@ -29,7 +29,7 @@ export const routes: Routes = [
         resolve: { resolvedRevision: RevisionResolverService },
       },
       {
-        path: ':revisionId',
+        path: ':id',
         component: RevisionFormContainerComponent,
         canDeactivate: [ApsDirtyFormGuard],
         resolve: { resolvedRevision: RevisionResolverService },

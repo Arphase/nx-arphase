@@ -1,15 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApsCollectionResponse } from '@arphase/common';
-import { ApsDataService } from '@arphase/ui';
+import { ApsDataService } from '@arphase/ui/core';
 import { Group, Product } from '@innovatech/common/domain';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class GroupDataService extends ApsDataService<Group> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('Group', http, httpUrlGenerator);

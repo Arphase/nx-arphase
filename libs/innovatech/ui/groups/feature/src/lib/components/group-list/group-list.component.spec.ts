@@ -1,4 +1,4 @@
-import { ApsEmptyPipe } from '@arphase/ui';
+import { ApsEmptyPipe } from '@arphase/ui/core';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { MockPipe } from 'ng-mocks';
 

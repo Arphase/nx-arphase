@@ -6,10 +6,11 @@ import {
   ApsCheckboxFilterModule,
   ApsDateFilterModule,
   ApsEmptyModule,
+  ApsFeatureLayoutModule,
   ApsPhoneModule,
   ApsRadioFilterModule,
   ApsSearchbarModule,
-} from '@arphase/ui';
+} from '@arphase/ui/core';
 import { IvtAddressFormModule } from '@innovatech/ui/addresses/ui';
 import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
@@ -40,7 +41,6 @@ import { RevisionRequestListComponent } from './components/revision-request-list
 import { RevisionRequestFormContainerComponent } from './containers/revision-request-form-container/revision-request-form-container.component';
 import { RevisionRequestListContainerComponent } from './containers/revision-request-list-container/revision-request-list-container.component';
 import { RevisionRequestsRoutingModule } from './revision-requests-routing.module';
-import { RevisionRequestsComponent } from './revision-requests.component';
 import { RevisionRequestDataService } from './services/revision-request-data.service';
 
 @NgModule({
@@ -74,13 +74,13 @@ import { RevisionRequestDataService } from './services/revision-request-data.ser
     ApsDateFilterModule,
     ApsCheckboxFilterModule,
     ApsRadioFilterModule,
+    ApsFeatureLayoutModule,
     PermissionsModule,
     GroupCheckboxFilterModule,
     CompanyCheckboxFilterModule,
     UserCheckboxFilterModule,
   ],
   declarations: [
-    RevisionRequestsComponent,
     RevisionRequestListContainerComponent,
     RevisionRequestFormContainerComponent,
     RevisionRequestFormComponent,

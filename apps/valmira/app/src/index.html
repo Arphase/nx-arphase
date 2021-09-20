@@ -3,17 +3,32 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>ValmiraApp</title>
+  <title>Valmira - Glamping</title>
   <base href="/" />
   <meta name="viewport"
         content="width=device-width, initial-scale=1" />
   <link rel="icon"
         type="image/x-icon"
-        href="favicon.ico" />
+        href="assets/img/logo.svg" />
 </head>
-
-<body>
-  <vma-root></vma-root>
-</body>
-
+<vma-root>
+  <body>
+    <div id="container">
+      <img src="assets/img/logo.svg"
+           alt="logo">
+    </div>
+    <style>
+      #container {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+    </vma-root>
+  </body>
 </html>

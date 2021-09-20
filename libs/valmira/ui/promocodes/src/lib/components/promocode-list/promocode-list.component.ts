@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApsColumns, ApsListComponent } from '@arphase/ui';
+import { ApsColumns, ApsListComponent } from '@arphase/ui/core';
 import { Promocode } from '@valmira/domain';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 @Component({
   selector: 'vma-promocode-list',
@@ -14,31 +15,47 @@ export class PromocodeListComponent extends ApsListComponent<Promocode> {
       label: 'Nombre',
       prop: 'promocode.name',
       colSizes: {
-        xs: 16,
+        xs: 24,
         md: 8,
-        lg: 6,
+        lg: 5,
       },
     },
     {
-      label: 'Fecha inicial',
+      label: 'Fecha inicio',
       prop: 'promocode.startDate',
       colSizes: {
         md: 5,
-        lg: 6,
+        lg: 4,
       },
     },
     {
-      label: 'Fecha final',
+      label: 'Fecha fin',
       prop: 'promocode.endDate',
       colSizes: {
-        md: 4,
-        lg: 6,
+        md: 5,
+        lg: 4,
+      },
+    },
+    {
+      label: 'Fecha captura',
+      prop: 'promocode.createdAt',
+      colSizes: {
+        lg: 4,
       },
     },
     {
       label: 'Cantidad',
       prop: 'promocode.amount',
-      colSizes: { lg: 6 },
+      colSizes: {
+        md: 6,
+        lg: 7,
+      },
     },
+  ];
+
+  dateTypeOptions: NzSelectOptionInterface[] = [
+    { label: 'Inicio', value: 'startDate' },
+    { label: 'Fin', value: 'endDate' },
+    { label: 'Captura', value: 'createdAt' },
   ];
 }

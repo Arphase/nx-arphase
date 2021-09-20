@@ -1,0 +1,7 @@
+<vma-reservation-list [list]="list$ | async"
+                      [loading]="loading$ | async"
+                      [info]="info$ | async"
+                      [queryParams]="queryParams"
+                      (filterItems)="filterItems($event)"
+                      (edit)="updateItem($event)"
+                      (showDetail)="onShowDetail($event)"></vma-reservation-list>

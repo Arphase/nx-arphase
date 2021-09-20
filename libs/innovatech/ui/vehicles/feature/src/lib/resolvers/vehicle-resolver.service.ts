@@ -1,20 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { ApsEntityResolverService } from '@arphase/ui/core';
 import { Vehicle } from '@innovatech/common/domain';
 import { VehicleCollectionService } from '@innovatech/ui/vehicles/data';
-import { Observable, of } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class VehicleResolverService implements Resolve<Vehicle> {
-  constructor(private vehicleCollectionService: VehicleCollectionService) {}
-  resolve(route: ActivatedRouteSnapshot): Observable<Vehicle> {
-    const id = Number(route.paramMap.get('id'));
-    let vehicle$: Observable<Vehicle | null> = of(null);
-    id
-      ? (vehicle$ = this.vehicleCollectionService.getByKey(id))
-      : this.vehicleCollectionService.removeOneFromCache(null);
-    return vehicle$;
+@Injectable({ providedIn: 'root' })
+export class VehicleResolverService extends ApsEntityResolverService<Vehicle> {
+  constructor(protected vehicleCollectionService: VehicleCollectionService) {
+    super(vehicleCollectionService);
   }
 }

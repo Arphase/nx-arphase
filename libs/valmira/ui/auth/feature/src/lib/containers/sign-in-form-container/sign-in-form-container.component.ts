@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { LoadingService } from '@arphase/ui';
+import { SignInPayload } from '@arphase/ui/auth';
+import { LoadingService } from '@arphase/ui/core';
 import { Store } from '@ngrx/store';
-import { fromAuth, SignInPayload } from '@valmira/ui/auth/data';
+import { fromAuth } from '@valmira/ui/auth/data';
 
 @Component({
   selector: 'vma-sign-in-form-container',

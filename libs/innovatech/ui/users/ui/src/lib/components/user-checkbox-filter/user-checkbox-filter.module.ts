@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { UsersDataModule } from '@innovatech/ui/users/data';
-import { ApsCheckboxFilterModule } from '@arphase/ui';
+import { ApsCheckboxFilterModule } from '@arphase/ui/core';
 
 import { UserCheckboxFilterComponent } from './user-checkbox-filter.component';
 

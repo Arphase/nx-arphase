@@ -7,6 +7,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: ${{ secrets.AWS_REGION }}
   AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME_STAGE }}
+  DIST_APP_DIR: ${{ secrets.IVT_DIST_APP_DIR }}
 
 on: workflow_dispatch
 
@@ -25,11 +26,11 @@ jobs:
 
       - uses: bahmutov/npm-install@v1
 
-      - name: Build staging app
+      - name: Build app
         run: npx nx build innovatech-app --c=stage
 
-      - name: Delete current staging app
-        run: npx ts-node scripts/innovatech/ui-delete-current
+      - name: Delete current app
+        run: npx ts-node scripts/ui-delete-current
 
-      - name: Deploy staging app
-        run: npx ts-node scripts/innovatech/ui-deploy
+      - name: Deploy app
+        run: npx ts-node scripts/ui-deploy

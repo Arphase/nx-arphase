@@ -8,12 +8,13 @@
             nzSpan="24"
             nzSize="middle">
     <nz-page-header nzBackIcon
-                    [nzTitle]="item?.id ? 'Editar Alojamiento' : 'Nuevo Alojamiento'"
+                    [nzTitle]="item?.id ? 'Editar Promocode' : 'Nuevo Promocode'"
                     [routerLink]="['..']"></nz-page-header>
     <div nz-row
-         [nzGutter]="12">
+         nzGutter="12">
       <div nz-col
-           nzSpan="12">
+           nzXs="24"
+           nzLg="12">
         <nz-form-item>
           <nz-form-label nzRequired>Nombre</nz-form-label>
           <nz-form-control apsAutoError>
@@ -23,13 +24,15 @@
         </nz-form-item>
       </div>
       <div nz-col
-           nzSpan="12">
+           nzXs="24"
+           nzLg="12">
         <nz-form-item>
           <nz-form-label nzRequired>Precio</nz-form-label>
           <nz-form-control apsAutoError>
             <input nz-input
-                   prefix="$ "
-                   mask="0*.00"
+                   prefix="$"
+                   mask="separator.2"
+                   thousandSeparator=","
                    formControlName="amount" />
           </nz-form-control>
         </nz-form-item>
@@ -37,7 +40,7 @@
     </div>
 
     <div nz-row
-         [nzGutter]="12">
+         nzGutter="12">
       <div nz-col
            nzXs="24"
            nzLg="12">

@@ -1,0 +1,36 @@
+name: Pam Vic Prod UI Deploy
+
+env:
+  NX_BRANCH: ${{ github.event.number }}
+  NX_RUN_GROUP: ${{ github.run_id }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME_PAM_VIC }}
+  DIST_APP_DIR: ${{ secrets.PAM_VIC_DIST_APP_DIR }}
+
+on: workflow_dispatch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: staging
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - uses: bahmutov/npm-install@v1
+
+      - name: Build app
+        run: export NODE_ENV=production && npx nx build pam-vic --prod
+
+      - name: Delete current app
+        run: npx ts-node scripts/ui-delete-current
+
+      - name: Deploy app
+        run: npx ts-node scripts/ui-deploy

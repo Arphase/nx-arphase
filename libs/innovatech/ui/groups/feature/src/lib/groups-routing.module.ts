@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApsDirtyFormGuard } from '@arphase/ui';
+import { ApsDirtyFormGuard, ApsFeatureLayoutComponent } from '@arphase/ui/core';
 
 import { GroupFormContainerComponent } from './containers/group-form-container/group-form-container.component';
 import { GroupListContainerComponent } from './containers/group-list-container/group-list-container.component';
-import { GroupsComponent } from './groups.component';
 import { GroupResolverService } from './resolvers/group-resolver.service';
 
 export const routes: Routes = [
   {
     path: '',
-    component: GroupsComponent,
+    component: ApsFeatureLayoutComponent,
+    data: { title: 'Grupos' },
     children: [
       {
         path: '',

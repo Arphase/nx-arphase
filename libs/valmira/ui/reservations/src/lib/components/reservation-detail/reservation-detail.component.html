@@ -1,0 +1,147 @@
+<nz-divider nzText="Datos generales"
+            nzOrientation="left"></nz-divider>
+
+<div nz-row>
+  <div nz-col
+       nzXs="24"
+       nzMd="12"
+       nzLg="8">
+    <p><strong>Fecha de reserva</strong> </p>
+    <span>{{ item?.createdAt | date: 'dd/MM/yy' }}</span>
+  </div>
+  <div nz-col
+       nzXs="24"
+       nzMd="12"
+       nzLg="8">
+    <p><strong>Check in</strong></p>
+    <span>{{ item?.startDate | date: 'dd/MM/yy' }}</span>
+  </div>
+  <div nz-col
+       nzXs="24"
+       nzMd="12"
+       nzLg="8">
+    <p><strong>Check out</strong></p>
+    <span>{{ item?.endDate | date: 'dd/MM/yy' }}</span>
+  </div>
+</div>
+
+
+<nz-divider nzText="Cliente"
+            nzOrientation="left"></nz-divider>
+<div nz-row>
+  <div nz-col
+       nzXs="24"
+       nzMd="12"
+       nzLg="8">
+    <p><strong>Nombre</strong> </p>
+    <span>{{ customer?.firstName }} {{ customer?.lastName }}</span>
+  </div>
+  <div nz-col
+       nzXs="24"
+       nzMd="12"
+       nzLg="8">
+    <p><strong>Correo</strong></p>
+    <span>{{ customer?.email }}</span>
+  </div>
+  <div nz-col
+       nzXs="24"
+       nzMd="12"
+       nzLg="8">
+    <p><strong>Teléfono</strong></p>
+    <span>{{ customer?.phone | phone }}</span>
+  </div>
+</div>
+
+
+<nz-divider nzText="Alojamiento"
+            nzOrientation="left"></nz-divider>
+<div nz-row>
+  <div nz-col
+       nzXs="24"
+       nzMd="12"
+       nzLg="8">
+    <p><strong>Nombre</strong> </p>
+    <span>{{ place?.name }}</span>
+  </div>
+  <div nz-col
+       nzXs="24"
+       nzMd="12"
+       nzLg="8">
+    <p><strong>Descripción</strong></p>
+    <span>{{ place?.description }}</span>
+  </div>
+  <div nz-col
+       nzXs="24"
+       nzMd="12"
+       nzLg="8">
+    <p><strong>Huéspedes</strong></p>
+    <span>{{ place?.capacity }}</span>
+  </div>
+</div>
+
+<ng-container *ngIf="promocode">
+  <nz-divider nzText="Promocode"
+              nzOrientation="left"></nz-divider>
+  <div nz-row>
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="8">
+      <p><strong>Nombre</strong> </p>
+      <span>{{ promocode?.name }}</span>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="8">
+      <p><strong>Monto</strong></p>
+      <span>{{ promocode?.amount | currency }}</span>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="additionalProducts?.length">
+  <nz-divider nzText="Productos adicionales"
+              nzOrientation="left"></nz-divider>
+  <div *ngFor="let additionalProduct of additionalProducts"
+       nz-row>
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
+      <p><strong>Nombre</strong> </p>
+      <span>{{ additionalProduct.additionalProduct.name }}</span>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
+      <p><strong>Cantidad</strong></p>
+      <span>{{ additionalProduct.amount }}</span>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
+      <p><strong>Precio</strong></p>
+      <span>{{ additionalProduct.price | currency }}</span>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
+      <p><strong>Total</strong></p>
+      <span>{{ (additionalProduct.price * additionalProduct.amount) | currency }}</span>
+    </div>
+  </div>
+</ng-container>
+
+
+<div *nzModalFooter>
+  <div nz-row>
+    <div nz-col
+         nzSpan="24">
+      <h4 class="text-primary">Total: <strong>{{ item?.total | currency }}</strong></h4>
+    </div>
+  </div>
+</div>

@@ -1,21 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SignInPayload } from '@arphase/ui/auth';
 import { ResetPassword, User } from '@innovatech/common/domain';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { SetPasswordPayload } from '../models/set-password-payload.model';
-import { SignInRequest } from '../models/sign-in-request.model';
 import { getAuthUserStateState } from '../state/auth.selectors';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   constructor(private store: Store, private http: HttpClient) {}
 
-  signIn(payload: SignInRequest): Observable<User> {
+  signIn(payload: SignInPayload): Observable<User> {
     return this.http.post<User>(`/ivtApi/auth/signIn`, payload);
   }
 

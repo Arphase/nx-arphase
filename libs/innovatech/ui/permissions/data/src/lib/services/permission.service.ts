@@ -1,5 +1,5 @@
 import { Injectable, InjectionToken } from '@angular/core';
-import { filterNil } from '@arphase/ui';
+import { filterNil } from '@arphase/ui/core';
 import { UserRoles } from '@innovatech/common/domain';
 import { getAuthUserRoleState } from '@innovatech/ui/auth/data';
 import { select, Store } from '@ngrx/store';
@@ -10,9 +10,7 @@ export const REQUIRED_ROLES = new InjectionToken<UserRoles[]>(
   'Required Roles which the user must have to complete an action (CRUD privileges)'
 );
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class PermissionService {
   userRole$ = this.store.pipe(select(getAuthUserRoleState));
 

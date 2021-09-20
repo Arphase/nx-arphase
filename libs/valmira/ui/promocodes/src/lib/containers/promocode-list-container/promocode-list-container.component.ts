@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApsListContainerComponent } from '@arphase/ui';
+import { ApsListContainerComponent } from '@arphase/ui/core';
 import { Promocode } from '@valmira/domain';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { PromocodeCollectionService } from '../../services/promocode-collection.service';
 import { PromocodeDataService } from '../../services/promocode-data.service';
@@ -14,8 +16,17 @@ import { PromocodeDataService } from '../../services/promocode-data.service';
 export class PromocodeListContainerComponent extends ApsListContainerComponent<Promocode> {
   constructor(
     protected promocodeCollectionService: PromocodeCollectionService,
-    protected promocodeDataService: PromocodeDataService
+    protected promocodeDataService: PromocodeDataService,
+    protected modal: NzModalService,
+    protected messageService: NzMessageService
   ) {
-    super(promocodeCollectionService, promocodeDataService);
+    super(promocodeCollectionService, promocodeDataService, modal, messageService);
+  }
+
+  deleteItem(item: Promocode): void {
+    const { name } = item;
+    this.deleteConfirmMessage = `¿Desea eliminar el promocode ${name}?`;
+    this.deleteSuccessMessage = `El promocode ${name} se ha eliminado`;
+    super.deleteItem(item);
   }
 }

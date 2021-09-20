@@ -1,0 +1,74 @@
+<nz-collapse>
+  <nz-collapse-panel nzHeader="Opciones Adicionales"
+                     [nzActive]="true">
+    <div *ngIf="formArray?.controls?.length"
+         nz-row
+         nzGutter="12">
+      <div nz-col
+           nzXs="10"
+           nzMd="11">
+        Nombre
+      </div>
+      <div nz-col
+           nzXs="10"
+           nzMd="11">
+        Precio
+      </div>
+    </div>
+    <div *ngFor="let additionalOptionForm of formArray?.controls; let index = index;"
+         nz-row
+         nzGutter="12"
+         [formGroup]="additionalOptionForm">
+      <div nz-col
+           nzXs="10"
+           nzMd="11">
+        <nz-form-item>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   formControlName="name" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col
+           nzXs="10"
+           nzMd="11">
+        <nz-form-item>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   prefix="$"
+                   mask="separator.2"
+                   thousandSeparator=","
+                   formControlName="price" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col
+           nzXs="4"
+           nzMd="2">
+        <button nz-button
+                nzType="text"
+                nz-tooltip
+                nzTooltipTitle="Eliminar opción adicional"
+                type="button"
+                (click)="removeAdditionalOption(index)">
+          <i nz-icon
+             nzType="delete"></i>
+        </button>
+      </div>
+    </div>
+
+    <div nz-row
+         nzGutter="12">
+      <div nz-col
+           nzSpan="24">
+        <button nz-button
+                nzType="primary"
+                type="button"
+                [disabled]="formArray?.invalid"
+                (click)="addAdditionalOption()">
+          Agregar nueva opción adicional
+        </button>
+      </div>
+    </div>
+  </nz-collapse-panel>
+</nz-collapse>

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LoadingService } from '@arphase/ui';
+import { LoadingService } from '@arphase/ui/core';
 import { fromAuth, SetPasswordPayload } from '@innovatech/ui/auth/data';
 import { Store } from '@ngrx/store';
 

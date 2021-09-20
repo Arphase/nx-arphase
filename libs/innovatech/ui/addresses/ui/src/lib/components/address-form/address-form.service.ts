@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ApsValidators, sortSelectOptions, sortStringOptions } from '@arphase/ui';
+import { ApsValidators, sortSelectOptions, sortStringOptions } from '@arphase/ui/core';
 import { Locality } from '@innovatech/common/domain';
-import { uniq, uniqBy } from 'lodash-es';
+import { uniq, uniqBy } from 'lodash';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';

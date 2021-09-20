@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApsDirtyFormGuard } from '@arphase/ui';
+import { ApsDirtyFormGuard, ApsFeatureLayoutComponent } from '@arphase/ui/core';
 
 import { ProductFormContainerComponent } from './containers/product-form-container/product-form-container.component';
 import { ProductListContainerComponent } from './containers/product-list-container/product-list-container.component';
-import { ProductsComponent } from './products.component';
 import { ProductResolverService } from './resolvers/product-resolver.service';
 
 export const routes: Routes = [
   {
     path: '',
-    component: ProductsComponent,
+    component: ApsFeatureLayoutComponent,
+    data: { title: 'Productos' },
     children: [
       {
         path: '',

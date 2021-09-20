@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
-import { MenuItem, SpaLayoutOptions } from '@arphase/ui';
+import { MenuItem, SpaLayoutOptions } from '@arphase/ui/core';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { fromAuth } from '@valmira/ui/auth/data';
@@ -21,6 +21,11 @@ export class SpaComponent implements OnInit {
   };
   menuItems: MenuItem[] = [
     {
+      icon: 'pushpin',
+      header: 'Reservaciones',
+      path: ['reservations'],
+    },
+    {
       icon: 'home',
       header: 'Alojamientos',
       path: ['places'],
@@ -29,6 +34,11 @@ export class SpaComponent implements OnInit {
       icon: 'dollar',
       header: 'Promocodes',
       path: ['promocodes'],
+    },
+    {
+      icon: 'shopping',
+      header: 'Productos',
+      path: ['additional-products'],
     },
   ];
   name$ = this.store.pipe(select(fromAuth.selectors.getAuthUserNameState));
