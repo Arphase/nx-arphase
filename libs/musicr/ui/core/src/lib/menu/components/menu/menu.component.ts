@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit, OnChanges {
   openMap = {};
   innerWidth: number;
 
-  constructor(private router: Router, private drawerService: NzDrawerService ) {}
+  constructor(private router: Router, private drawerService: NzDrawerService) {}
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
@@ -45,7 +45,7 @@ export class MenuComponent implements OnInit, OnChanges {
     });
   }
 
-  goToCatalog(catalogId: number, isSubCategory: boolean) {
+  goToCatalog(catalogId: number, isSubCategory: boolean): void {
     isSubCategory
       ? this.router.navigateByUrl(`/products-catalog/subcategory/${catalogId}`)
       : this.router.navigateByUrl(`/products-catalog/category/${catalogId}`);
@@ -56,7 +56,6 @@ export class MenuComponent implements OnInit, OnChanges {
     const drawerRef = this.drawerService.create<CartComponent>({
       nzWidth: this.innerWidth > 768 ? '50vw' : '100vw',
       nzContent: CartComponent,
-
     });
   }
 }
