@@ -10,6 +10,11 @@ import {
   ArrowLeftOutline,
   StarFill,
   WhatsAppOutline,
+  MinusOutline,
+  PlusOutline,
+  LikeOutline,
+  CreditCardOutline,
+  FormOutline
 } from '@ant-design/icons-angular/icons';
 
 export const icons: IconDefinition[] = [
@@ -22,5 +27,10 @@ export const icons: IconDefinition[] = [
   SearchOutline,
   ShoppingOutline,
   CloseOutline,
-  ArrowLeftOutline
+  ArrowLeftOutline,
+  MinusOutline,
+  PlusOutline,
+  LikeOutline,
+  CreditCardOutline,
+  FormOutline
 ];

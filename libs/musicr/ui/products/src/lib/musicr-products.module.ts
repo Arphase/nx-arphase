@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
 import { ProductsCatalogContainerComponent } from './containers/products-catalog-container/products-catalog-container.component';
 import { MusicrProductsRoutingModule } from './musicr-products-routing.module';
@@ -13,10 +14,12 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     MusicrProductsRoutingModule,
     NzGridModule,
     NzIconModule,
@@ -24,7 +27,8 @@ import { NzCardModule } from 'ng-zorro-antd/card';
     NzSelectModule,
     NzPageHeaderModule,
     NzButtonModule,
-    NzCardModule
+    NzCardModule,
+    NzInputNumberModule,
   ],
   declarations: [
     ProductsCatalogComponent,
