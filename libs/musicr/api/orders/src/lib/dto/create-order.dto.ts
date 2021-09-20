@@ -3,6 +3,7 @@ import { Type } from 'class-transformer';
 import {
   IsArray,
   IsBoolean,
+  IsDate,
   IsEmail,
   IsNumber,
   IsNumberString,
@@ -68,8 +69,10 @@ export class CreateSocialEventDto {
   @IsString()
   eventType: string;
 
+  @IsDate()
   startDate: Date;
 
+  @IsDate()
   endDate: Date;
 
   @ValidateNested()

@@ -82,7 +82,7 @@ module.exports = {
     '<rootDir>/libs/valmira/ui/auth/feature',
     '<rootDir>/libs/valmira/ui/core',
     '<rootDir>/libs/valmira/ui/spa',
-    '<rootDir>/libs/valmira/ui/places',
+    '<rootDir>/libs/valmira/ui/places/feature',
     '<rootDir>/libs/valmira/ui/categories/ui',
     '<rootDir>/libs/valmira/ui/categories/data',
     '<rootDir>/libs/valmira/ui/promocodes',
@@ -103,5 +103,8 @@ module.exports = {
     '<rootDir>/libs/musicr/ui/subcategories/feature',
     '<rootDir>/libs/musicr/ui/admin-products',
     '<rootDir>/libs/musicr/ui/cart',
+    '<rootDir>/libs/musicr/ui/orders',
+    '<rootDir>/libs/valmira/ui/place-search',
+    '<rootDir>/libs/valmira/ui/places/data',
   ],
 };

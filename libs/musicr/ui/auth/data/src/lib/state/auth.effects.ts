@@ -62,5 +62,48 @@ export class AuthEffects {
     { dispatch: false }
   );
 
+  setPassword$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.setPassword),
+      mergeMap(({ payload }) =>
+        this.authService.setPassword(payload).pipe(
+          map(user => AuthActions.setPasswordSuccess({ payload: { email: user.email, password: payload.password } })),
+          catchError(() => of(AuthActions.setPasswordFailed()))
+        )
+      )
+    )
+  );
+
+  setPasswordSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.setPasswordSuccess),
+      map(({ payload }) => AuthActions.signIn({ payload: { email: payload.email, password: payload.password } }))
+    )
+  );
+
+  validateToken$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.validateToken),
+      mergeMap(({ payload }) =>
+        this.authService.validateToken(payload).pipe(
+          map(() => AuthActions.validateTokenSuccess()),
+          catchError(() => of(AuthActions.validateTokenFailed()))
+        )
+      )
+    )
+  );
+
+  sendPasswordEmail$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.sendPasswordEmail),
+      mergeMap(({ payload }) =>
+        this.authService.sendPasswordEmail(payload).pipe(
+          map(() => AuthActions.sendPasswordEmailSuccess()),
+          catchError(() => of(AuthActions.sendPasswordEmailFailed()))
+        )
+      )
+    )
+  );
+
   constructor(private actions$: Actions, private authService: AuthService, private router: Router) {}
 }
