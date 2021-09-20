@@ -2988,6 +2988,31 @@
         }
       }
     },
+    "valmira-ui-place-detail": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/place-detail",
+      "sourceRoot": "libs/valmira/ui/place-detail/src",
+      "prefix": "vma",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/place-detail"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/place-detail/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/place-detail/src/**/*.ts",
+              "libs/valmira/ui/place-detail/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "valmira-ui-place-search": {
       "projectType": "library",
       "root": "libs/valmira/ui/place-search",
