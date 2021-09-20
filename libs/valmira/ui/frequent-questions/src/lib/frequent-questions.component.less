@@ -1,8 +1,3 @@
-.menu {
-  max-width: 1440px;
-  margin: 32px auto 0px;
-}
-
 .contenido {
   display: flex;
   justify-content: space-between;
@@ -10,18 +5,26 @@
   max-width: 1440px;
   margin: auto;
   font-size: 30px;
+  padding-left: 104px;
   .text {
-    width: 100%;
+    width: auto;
     padding-right: 100px;
+    .top-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     .ant-collapse-arrow {
       background: #cbc6b7;
       padding: 2px;
       border-radius: 20px;
     }
+    .mobile-flex {
+      display: flex;
+      justify-content: space-between;
+    }
     h2 {
-      margin-left: 100px;
       margin-bottom: 119px;
-      margin-right: 0%;
       margin-top: 142px;
       font-size: 81px;
       line-height: 118.6%;
@@ -32,9 +35,35 @@
       margin-top: 0px;
       margin-bottom: 0px;
     }
+  }
 
-    nz-collapse {
-      margin-left: 104px;
+  .top-mobile-images {
+    display: none;
+    row-gap: 8px;
+    grid-template-columns: repeat(2, 50%);
+    img {
+      width: 40px;
+    }
+    img:first-child {
+      top: -24px;
+      left: -24px;
+      position: relative;
+    }
+  }
+
+  .bottom-mobile-images {
+    display: none;
+    row-gap: 8px;
+    grid-template-columns: repeat(2, 50%);
+    width: 88px;
+    padding-top: 32px;
+    img {
+      width: 40px;
+    }
+    img:nth-child(2) {
+      top: 16px;
+      left: 64px;
+      position: relative;
     }
   }
 
@@ -58,13 +87,37 @@
   }
 }
 
-.footer {
-  background-color: #cbc6b7;
-  position: absolute;
-  width: 100%;
-  height: 296px;
-  font-style: italic;
+.subfooter {
+  padding: 150px 0;
   text-align: center;
-  padding: 120px;
-  margin-top: 68px;
+  background-color: #cbc6b7;
+}
+
+@media (max-width: 1080px) {
+  .contenido {
+    padding: 32px;
+    display: block;
+    .top-mobile-images {
+      display: grid;
+    }
+    .bottom-mobile-images {
+      display: grid;
+    }
+    .images {
+      display: none;
+    }
+    .text {
+      padding-right: 0px;
+      h2 {
+        font-size: 24px;
+        margin: 48px 0px;
+      }
+    }
+  }
+  .subfooter {
+    background-color: #b7400b;
+    h2 {
+      color: #eae1d3;
+    }
+  }
 }
