@@ -35,9 +35,7 @@ export class UserEntity extends BaseEntity implements User {
   @Column()
   salt: string;
 
-  @OneToMany(() => ResetPasswordEntity, resetPassword => resetPassword.user, {
-    cascade: true,
-  })
+  @OneToMany(() => ResetPasswordEntity, resetPassword => resetPassword.user, { cascade: true })
   resetPassword?: ResetPassword;
 
   async validatePassword(password: string): Promise<boolean> {

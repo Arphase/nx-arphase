@@ -1,0 +1,6 @@
+<mrl-order-list [list]="list$ | async"
+                [loading]="loading$ | async"
+                [info]="info$ | async"
+                [queryParams]="queryParams"
+                (showDetail)="onShowDetail($event)"
+                (filterItems)="filterItems($event)"></mrl-order-list>

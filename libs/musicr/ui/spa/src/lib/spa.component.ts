@@ -21,6 +21,16 @@ export class SpaComponent implements OnInit {
   };
   menuItems: MenuItem[] = [
     {
+      icon: 'carry-out',
+      header: 'Órdenes',
+      path: ['orders'],
+    },
+    {
+      icon: 'barcode',
+      header: 'Productos',
+      path: ['products'],
+    },
+    {
       icon: 'pushpin',
       header: 'Categorías',
       path: ['categories'],
@@ -29,11 +39,6 @@ export class SpaComponent implements OnInit {
       icon: 'partition',
       header: 'Subcategorías',
       path: ['subcategories'],
-    },
-    {
-      icon: 'barcode',
-      header: 'Productos',
-      path: ['products'],
     },
   ];
   name$ = this.store.pipe(select(fromAuth.selectors.getAuthUserNameState));

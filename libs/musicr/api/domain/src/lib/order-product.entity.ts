@@ -21,14 +21,14 @@ export class OrderProductEntity extends BaseEntity implements OrderProduct {
   @Column()
   productId: number;
 
-  @ManyToOne(() => ProductEntity, product => product.orderProducts)
+  @ManyToOne(() => ProductEntity, product => product.orderProducts, { cascade: true, eager: true })
   @JoinColumn({ name: 'productId' })
   product: Product;
 
   @Column({ nullable: true })
   priceOptionId?: number;
 
-  @ManyToOne(() => PriceOptionEntity, priceOption => priceOption.orderProducts)
+  @ManyToOne(() => PriceOptionEntity, priceOption => priceOption.orderProducts, { eager: true })
   @JoinColumn({ name: 'priceOptionId' })
   priceOption: PriceOption;
 

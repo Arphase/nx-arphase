@@ -1,14 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { ApsCollectionResponse } from '@arphase/common';
-import { filterNil } from '@arphase/ui/core';
 import { Category, Product, Subcategory } from '@musicr/domain';
-import { BehaviorSubject, map, forkJoin, Observable, switchMap, tap, filter, take } from 'rxjs';
+import { BehaviorSubject, filter, forkJoin, Observable, switchMap } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ProductsCatalogService {
   productsSubject = new BehaviorSubject<Product[]>([]);
   products$ = this.productsSubject.asObservable();
@@ -23,7 +20,6 @@ export class ProductsCatalogService {
           if (event instanceof NavigationEnd) {
             const id = Number(event.url.substring(event.url.indexOf('category/') + 9));
             const isSubCategory = event.url.includes('sub');
-
             const title = this.getTitle(id, isSubCategory);
             const products = this.getProducts(id, isSubCategory);
             return forkJoin([title, products]);

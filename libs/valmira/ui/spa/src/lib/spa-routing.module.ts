@@ -14,7 +14,7 @@ const routes: Routes = [
       },
       {
         path: 'places',
-        loadChildren: () => import('@valmira/ui/places').then(m => m.PlacesModule),
+        loadChildren: () => import('@valmira/ui/places/feature').then(m => m.PlacesModule),
       },
       {
         path: 'promocodes',
