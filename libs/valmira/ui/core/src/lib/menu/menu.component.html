@@ -1,46 +1,72 @@
 <nz-header>
   <nz-affix>
-    <img [src]="'assets/img/logo.svg'" class="logo" />
-    <ul nz-menu nzMode="horizontal">
+    <img [src]="'assets/img/logo.svg'"
+         class="logo" />
+    <ul nz-menu
+        nzMode="horizontal">
       <li nz-menu-item>PERFIL</li>
-      <li nz-menu-item (click)="openMenu()">MENU</li>
+      <li nz-menu-item
+          (click)="openMenu()">MENU</li>
     </ul>
-    <nz-drawer
-      [nzClosable]="false"
-      [nzVisible]="visible"
-      nzPlacement="left"
-      [nzTitle]="drawerTitle"
-      [nzPlacement]="'right'"
-      nzWidth="100vw"
-      (nzOnClose)="closeMenu()"
-    >
+    <nz-drawer nzPlacement="right"
+               nzWidth="100vw"
+               [nzClosable]="false"
+               [nzVisible]="visible"
+               [nzTitle]="drawerTitle"
+               (nzOnClose)="closeMenu()">
       <ng-container *nzDrawerContent>
-        <div nz-row nzJustify="center" nzAlign="middle" class="menu" [nzGutter]="[16, 16]">
-          <div *ngFor="let item of menuItems" nz-col nzSpan="24">
-            <a [href]="item.href" [ngClass]="{ hidden: item.hidden }">{{ item.name }}</a>
+        <div nz-row
+             nzJustify="center"
+             nzAlign="middle"
+             class="menu"
+             [nzGutter]="[16, 16]">
+          <div *ngFor="let item of menuItems"
+               nz-col
+               nzSpan="24">
+            <a [href]="item.href"
+               [ngClass]="{ hidden: item.hidden }">{{ item.name }}</a>
           </div>
         </div>
 
-        <div nz-row [nzGutter]="24" nzAlign="bottom" class="icons">
-          <div nz-col [nzXs]="{ offset: 0 }" [nzMd]="{ offset: 1 }" nzSpan="14">
-            <img [src]="'assets/img/logo-white.svg'" class="menu-logo" />
+        <div nz-row
+             [nzGutter]="24"
+             nzAlign="bottom"
+             class="icons">
+          <div nz-col
+               [nzXs]="{ offset: 0 }"
+               [nzMd]="{ offset: 1 }"
+               nzSpan="14">
+            <img src="assets/img/logo.svg"
+                 class="menu-logo" />
           </div>
-          <div nz-col nzSpan="3">
-            <a href="http://www.facebook.com/MusicRevolution/">
+          <div nz-col
+               nzSpan="3">
+            <a href="https://www.facebook.com/valmiraglamping/">
               <p class="menu-text">FACEBOOK</p>
-              <i nz-icon nzType="facebook" nzTheme="outline" class="menu-icon"></i>
+              <i nz-icon
+                 nzType="facebook"
+                 nzTheme="outline"
+                 class="menu-icon"></i>
             </a>
           </div>
-          <div nz-col nzSpan="3">
-            <a href="https://www.instagram.com/music.rev/">
+          <div nz-col
+               nzSpan="3">
+            <a href="https://www.instagram.com/valmiraglamping/">
               <p class="menu-text">INSTAGRAM</p>
-              <i nz-icon nzType="instagram" nzTheme="outline" class="menu-icon"></i>
+              <i nz-icon
+                 nzType="instagram"
+                 nzTheme="outline"
+                 class="menu-icon"></i>
             </a>
           </div>
-          <div nz-col nzSpan="3">
+          <div nz-col
+               nzSpan="3">
             <a href="https://wa.me/5218115337477?text=Hola%20quiero%20cotizar">
               <p class="menu-text">WHATSAPP</p>
-              <i nz-icon nzType="whats-app" nzTheme="outline" class="menu-icon"></i>
+              <i nz-icon
+                 nzType="whats-app"
+                 nzTheme="outline"
+                 class="menu-icon"></i>
             </a>
           </div>
         </div>
@@ -51,13 +77,23 @@
 
 <ng-template #drawerTitle>
   <div nz-row>
-    <div nz-col nzSpan="6" nzOffset="2">
-      <a href=""> <img [src]="'assets/img/valmira.svg'" class="logo" /> </a>
+    <div nz-col
+         nzSpan="6"
+         nzOffset="2">
+      <a href=""> <img [src]="'assets/img/valmira.svg'"
+             class="logo" /> </a>
     </div>
-    <div nz-col nzSpan="2" nzOffset="14">
-      <button nz-button nzType="text" (click)="closeMenu()">
+    <div nz-col
+         nzSpan="2"
+         nzOffset="14">
+      <button nz-button
+              nzType="text"
+              (click)="closeMenu()">
         <p class="menu-text">CERRAR</p>
-        <i nz-icon nzType="close" nzTheme="outline" class="menu-icon"></i>
+        <i nz-icon
+           nzType="close"
+           nzTheme="outline"
+           class="menu-icon"></i>
       </button>
     </div>
   </div>

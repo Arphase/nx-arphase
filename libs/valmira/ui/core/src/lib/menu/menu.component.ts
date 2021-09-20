@@ -8,7 +8,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 })
 export class MenuComponent {
   menuItems = [
-    { name: 'Reserva', href: '' },
+    { name: 'Reserva', href: 'search' },
     { name: 'Perfil', href: '', hidden: true },
     { name: 'Manifesto', href: 'manifest' },
     { name: 'Preguntas Frecuentes', href: 'frequent-questions' },
