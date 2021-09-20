@@ -105,5 +105,6 @@ module.exports = {
     '<rootDir>/libs/musicr/ui/orders',
     '<rootDir>/libs/valmira/ui/place-search',
     '<rootDir>/libs/valmira/ui/places/data',
+    '<rootDir>/libs/valmira/ui/place-detail',
   ],
 };

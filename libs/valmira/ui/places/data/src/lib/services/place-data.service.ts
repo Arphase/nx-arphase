@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ApsDataService } from '@arphase/ui/core';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Place } from '@valmira/domain';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PlaceDataService extends ApsDataService<Place> {
@@ -10,5 +11,9 @@ export class PlaceDataService extends ApsDataService<Place> {
     super('Place', http, httpUrlGenerator);
     this.entityUrl = `/vmaApi/places/`;
     this.entitiesUrl = `/vmaApi/places`;
+  }
+
+  getOccupiedDates(id: number): Observable<Date[]> {
+    return this.http.get<Date[]>(`/vmaApi/places/${id}/occupied-dates`);
   }
 }
