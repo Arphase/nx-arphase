@@ -6,4 +6,21 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./menu.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MenuComponent {}
+export class MenuComponent {
+  menuItems = [
+    { name: 'Reserva', href: '' },
+    { name: 'Perfil', href: '', hidden: true },
+    { name: 'Manifesto', href: 'manifest' },
+    { name: 'Preguntas Frecuentes', href: 'frequent-questions' },
+    { name: 'Términos y Condiciones', href: 'terms-and-conditions' },
+  ];
+  visible = false;
+
+  openMenu(): void {
+    this.visible = true;
+  }
+
+  closeMenu(): void {
+    this.visible = false;
+  }
+}

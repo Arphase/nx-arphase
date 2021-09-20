@@ -8,6 +8,10 @@ import {
   MinusOutline,
   PlusCircleOutline,
   PlusOutline,
+  FacebookOutline,
+  InstagramOutline,
+  WhatsAppOutline,
+  CloseOutline,
 } from '@ant-design/icons-angular/icons';
 
 export const icons: IconDefinition[] = [
@@ -19,4 +23,8 @@ export const icons: IconDefinition[] = [
   DollarOutline,
   MinusOutline,
   PlusOutline,
+  FacebookOutline,
+  InstagramOutline,
+  WhatsAppOutline,
+  CloseOutline,
 ];
