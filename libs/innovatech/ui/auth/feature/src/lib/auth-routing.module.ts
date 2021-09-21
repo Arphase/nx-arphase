@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DeleteLocalStorageGuard } from '@arphase/ui/auth';
+import { DeleteLocalStorageGuard, ExpiredTokenComponent } from '@arphase/ui/auth';
 import { SpaGuard } from '@innovatech/ui/auth/data';
 
-import { ExpiredTokenComponent } from './components/expired-token/expired-token.component';
 import { ResetPasswordFormContainerComponent } from './containers/reset-password-form-container/reset-password-form-container.component';
 import { SetPasswordFormContainerComponent } from './containers/set-password-form-container/set-password-form-container.component';
 import { SignInFormContainerComponent } from './containers/sign-in-form-container/sign-in-form-container.component';
@@ -11,7 +10,7 @@ import { SetPasswordResolverService } from './resolvers/set-password-resolver.se
 
 export const routes: Routes = [
   {
-    path: 'sign-in',
+    path: '',
     component: SignInFormContainerComponent,
     canActivate: [SpaGuard],
   },
@@ -29,11 +28,6 @@ export const routes: Routes = [
   {
     path: 'expired-token',
     component: ExpiredTokenComponent,
-  },
-  {
-    path: '',
-    redirectTo: 'sign-in',
-    pathMatch: 'full',
   },
 ];
 

@@ -1,7 +1,7 @@
 import { AdditionalOption, OrderProduct, OrderProductAdditionalOption } from '@musicr/domain';
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { AdditionalOptionEntity } from './additional-option.entity';
 
+import { AdditionalOptionEntity } from './additional-option.entity';
 import { OrderProductEntity } from './order-product.entity';
 
 @Entity('orderProductAdditionalOptions')
@@ -19,7 +19,9 @@ export class OrderProductAdditionalOptionEntity extends BaseEntity implements Or
   @Column()
   additionalOptionId: number;
 
-  @ManyToOne(() => AdditionalOptionEntity, additionalOption => additionalOption.orderProductAdditionalOptions)
+  @ManyToOne(() => AdditionalOptionEntity, additionalOption => additionalOption.orderProductAdditionalOptions, {
+    eager: true,
+  })
   @JoinColumn({ name: 'additionalOptionId' })
   additionalOption: AdditionalOption;
 

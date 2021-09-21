@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
-import { MenuItem } from '@arphase/ui/core';
+import { MenuItem, SpaLayoutOptions } from '@arphase/ui/core';
 import { UserRoles } from '@innovatech/common/domain';
 import { fromAuth, getAuthUserEmailState, getAuthUserNameState } from '@innovatech/ui/auth/data';
 import { INNOVATECH_CONFIGURATION, InnovatechConfiguration } from '@innovatech/ui/core/data';
@@ -15,6 +15,12 @@ import { take } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpaComponent implements OnInit {
+  options: SpaLayoutOptions = {
+    logoUrl: 'assets/img/logo-white.svg',
+    show: {
+      darkModeToggle: true,
+    },
+  };
   menuItems: MenuItem[] = [
     {
       icon: 'pie-chart',

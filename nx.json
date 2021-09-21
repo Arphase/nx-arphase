@@ -246,10 +246,16 @@
     "musicr-ui-categories-ui": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
     },
+    "musicr-ui-cart": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+    },
     "musicr-ui-core": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
     },
     "musicr-ui-home": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
+    "musicr-ui-orders": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-products": {
@@ -294,7 +300,7 @@
       "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
     },
     "valmira-api-photos": {
-      "tags": []
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
     "valmira-api-places": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
@@ -336,7 +342,16 @@
     "valmira-ui-manifest": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
-    "valmira-ui-places": {
+    "valmira-ui-place-detail": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-place-search": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-places-data": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+    },
+    "valmira-ui-places-feature": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-promocodes": {

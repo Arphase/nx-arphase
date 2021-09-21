@@ -107,7 +107,7 @@
       "projectType": "library",
       "root": "libs/arphase/ui/auth",
       "sourceRoot": "libs/arphase/ui/auth/src",
-      "prefix": "ivt",
+      "prefix": "aps",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -2064,6 +2064,28 @@
         }
       }
     },
+    "musicr-ui-cart": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/cart",
+      "sourceRoot": "libs/musicr/ui/cart/src",
+      "prefix": "mrl",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/cart/src/**/*.ts", "libs/musicr/ui/cart/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/cart"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/cart/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "musicr-ui-core": {
       "projectType": "library",
       "root": "libs/musicr/ui/core",
@@ -2104,6 +2126,28 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/musicr/ui/home/src/**/*.ts", "libs/musicr/ui/home/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "musicr-ui-orders": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/orders",
+      "sourceRoot": "libs/musicr/ui/orders/src",
+      "prefix": "ivt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/orders"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/orders/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/orders/src/**/*.ts", "libs/musicr/ui/orders/src/**/*.html"]
           }
         }
       }
@@ -2659,9 +2703,16 @@
             "polyfills": "apps/valmira/app/src/polyfills.ts",
             "tsConfig": "apps/valmira/app/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/valmira/app/src/favicon.ico", "apps/valmira/app/src/assets"],
-            "styles": ["apps/valmira/app/src/styles.less"],
-            "scripts": []
+            "assets": [
+              "apps/valmira/app/src/favicon.ico",
+              "apps/valmira/app/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": ["apps/valmira/app/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
             "stage": {
@@ -2959,23 +3010,98 @@
         }
       }
     },
-    "valmira-ui-places": {
+    "valmira-ui-place-detail": {
       "projectType": "library",
-      "root": "libs/valmira/ui/places",
-      "sourceRoot": "libs/valmira/ui/places/src",
+      "root": "libs/valmira/ui/place-detail",
+      "sourceRoot": "libs/valmira/ui/place-detail/src",
+      "prefix": "vma",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/place-detail"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/place-detail/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/place-detail/src/**/*.ts",
+              "libs/valmira/ui/place-detail/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "valmira-ui-place-search": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/place-search",
+      "sourceRoot": "libs/valmira/ui/place-search/src",
+      "prefix": "vma",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/place-search"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/place-search/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/place-search/src/**/*.ts",
+              "libs/valmira/ui/place-search/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "valmira-ui-places-data": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/places/data",
+      "sourceRoot": "libs/valmira/ui/places/data/src",
+      "prefix": "vma",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/places/data"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/places/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/valmira/ui/places/data/src/**/*.ts", "libs/valmira/ui/places/data/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "valmira-ui-places-feature": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/places/feature",
+      "sourceRoot": "libs/valmira/ui/places/feature/src",
       "prefix": "vma",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/ui/places/src/**/*.ts", "libs/valmira/ui/places/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/valmira/ui/places/feature/src/**/*.ts",
+              "libs/valmira/ui/places/feature/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/places"],
+          "outputs": ["coverage/libs/valmira/ui/places/feature"],
           "options": {
-            "jestConfig": "libs/valmira/ui/places/jest.config.js",
+            "jestConfig": "libs/valmira/ui/places/feature/jest.config.js",
             "passWithNoTests": true
           }
         }

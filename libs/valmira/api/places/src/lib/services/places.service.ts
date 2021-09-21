@@ -4,6 +4,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlaceEntity, ReservationEntity } from '@valmira/api/domain';
 import { Place } from '@valmira/domain';
+import { startOfDay } from 'date-fns';
 import { Repository } from 'typeorm';
 
 import { CreatePlaceDto } from '../dto/create-place.dto';
@@ -20,13 +21,20 @@ export class PlacesService {
   ) {}
 
   async getPlaces(filterDto: GetPlacesDto): Promise<ApsCollectionResponse<Place>> {
-    const { pageIndex, pageSize, startDate, endDate, dateType, onlyActives } = filterDto;
-    const query = this.placeRepository.createQueryBuilder('place').orderBy('place.createdAt', SortDirection.descend);
+    const { pageIndex, pageSize, startDate, endDate, dateType, onlyActives, capacity } = filterDto;
+    const query = this.placeRepository
+      .createQueryBuilder('place')
+      .leftJoinAndSelect('place.photos', 'photos')
+      .orderBy('place.createdAt', SortDirection.descend);
 
     filterCollectionQuery('place', query, filterDto, { ignoreDates: dateType !== 'createdAt' });
 
     if (onlyActives) {
       query.andWhere('(place.active = true)');
+    }
+
+    if (capacity) {
+      query.andWhere('(place.capacity >= :capacity)', { capacity });
     }
 
     if (startDate && endDate && dateType !== 'createdAt') {
@@ -45,7 +53,9 @@ export class PlacesService {
       );
       const reservations = await reservationQuery.getMany();
       const excludedPlacesIds = reservations.map(reservation => reservation.placeId);
-      query.andWhere('(place.id NOT IN (:...excludedPlacesIds))', { excludedPlacesIds });
+      if (excludedPlacesIds.length) {
+        query.andWhere('place.id NOT IN (:...excludedPlacesIds)', { excludedPlacesIds });
+      }
     }
 
     const places = await query.getMany();
@@ -61,11 +71,14 @@ export class PlacesService {
     return place;
   }
 
-  async getOccupiedDates(id: number, filterDto: OccupiedDatesDto): Promise<Date[]> {
+  async getOccupiedDates(id: number, filterDto?: OccupiedDatesDto): Promise<Date[]> {
     const query = this.reservationRepository.createQueryBuilder('reservation');
-    filterCollectionDates('reservation', query, { ...filterDto, dateType: 'startDate' }, { logicalOperator: 'or' });
-    filterCollectionDates('reservation', query, { ...filterDto, dateType: 'endDate' }, { logicalOperator: 'or' });
+    if (filterDto) {
+      filterCollectionDates('reservation', query, { ...filterDto, dateType: 'startDate' }, { logicalOperator: 'or' });
+      filterCollectionDates('reservation', query, { ...filterDto, dateType: 'endDate' }, { logicalOperator: 'or' });
+    }
     query
+      .andWhere(`(reservation.startDate >= :today)`, { today: startOfDay(new Date()).toISOString() })
       .andWhere('(reservation.placeId = :placeId)', { placeId: id })
       .orderBy('reservation.startDate', SortDirection.ascend);
     const reservations = await query.getMany();

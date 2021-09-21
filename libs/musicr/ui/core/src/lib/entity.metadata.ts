@@ -4,6 +4,7 @@ const entityMetadata: EntityMetadataMap = {
   AdditionalOption: {},
   Category: {},
   CategoryFilter: {},
+  Order: {},
   Photo: {},
   PriceOption: {},
   Product: {},

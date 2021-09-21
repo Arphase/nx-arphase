@@ -1,5 +1,5 @@
 import { createMockRepository } from '@arphase/api/testing';
-import { OrderEntity } from '@musicr/api/domain';
+import { AdditionalOptionEntity, OrderEntity, PriceOptionEntity, ProductEntity } from '@musicr/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 
@@ -10,7 +10,13 @@ describe('OrdersService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [OrdersService, { provide: getRepositoryToken(OrderEntity), useValue: createMockRepository() }],
+      providers: [
+        OrdersService,
+        { provide: getRepositoryToken(OrderEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(ProductEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(PriceOptionEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(AdditionalOptionEntity), useValue: createMockRepository() },
+      ],
     }).compile();
 
     service = module.get<OrdersService>(OrdersService);
