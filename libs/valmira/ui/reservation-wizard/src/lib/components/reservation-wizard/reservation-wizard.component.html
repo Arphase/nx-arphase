@@ -1,0 +1,17 @@
+<div nz-row>
+  <div nz-col
+       nzSpan="18">
+    <h1>Tu reservación</h1>
+    <ul>
+      <li [routerLink]="['additional-services']">SERVICIOS ADICIONALES</li>
+      <li [routerLink]="['personal-data']">DATOS PERSONALES</li>
+      <li [routerLink]="['payment-method']"> MÉTODOS DE PAGO</li>
+      <li [routerLink]="['confirmation']">CONFIRMACIÓN </li>
+    </ul>
+    <router-outlet></router-outlet>
+  </div>
+  <div nz-col
+       nzSpan="6">
+    {{ item | json }}
+  </div>
+</div>

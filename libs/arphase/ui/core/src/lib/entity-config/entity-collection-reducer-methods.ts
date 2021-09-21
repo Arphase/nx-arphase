@@ -95,7 +95,7 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
 
   protected saveUpdateOneSuccess(collection: ApsEntityCollection<T>, action: ApsEntityAction): ApsEntityCollection<T> {
     const entityCollection = super.saveUpdateOneSuccess(collection, action) as ApsEntityCollection<T>;
-    return { ...entityCollection, loadingModify: false };
+    return { ...entityCollection, currentItem: action.payload.data.changes, loadingModify: false };
   }
 
   protected saveUpdateOneError(collection: ApsEntityCollection<T>, action: ApsEntityAction): ApsEntityCollection<T> {

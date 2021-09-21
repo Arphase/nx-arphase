@@ -1,0 +1,18 @@
+<form nz-form
+      nz-row
+      nzLayout="vertical"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+  <div nz-row>
+    <div nz-col
+         nzSpan="24">
+      <button nz-button
+              type="submit"
+              nzType="primary"
+              [nzLoading]="loading"
+              nzShape="round">
+        Continuar
+      </button>
+    </div>
+  </div>
+</form>

@@ -11,6 +11,7 @@ export interface Reservation {
   endDate: Date;
   status: ReservationStatus | string;
   total: number;
+  additionalComments?: string;
   paymentId?: string;
   placeId: number;
   place?: Place;

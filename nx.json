@@ -228,6 +228,9 @@
     "musicr-terms-and-conditions": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
+    "musicr-ui-about-us": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
     "musicr-ui-admin-products": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
@@ -248,6 +251,9 @@
     },
     "musicr-ui-core": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+    },
+    "musicr-ui-frequent-questions": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-home": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
@@ -354,7 +360,13 @@
     "valmira-ui-promocodes": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
-    "valmira-ui-reservations": {
+    "valmira-ui-reservation-wizard": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-reservations-data": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+    },
+    "valmira-ui-reservations-feature": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-spa": {
