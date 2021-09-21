@@ -33,7 +33,6 @@
              [nzGutter]="24"
              nzAlign="bottom"
              class="icons">
-
           <div nz-col
                [nzXs]="{ offset: 0 }"
                [nzMd]="{ offset: 1 }"
@@ -64,7 +63,6 @@
                  class="menu-icon"></i>
             </a>
           </div>
-
           <div nz-col
                nzSpan="3">
             <a href="https://wa.me/5218115337477?text=Hola%20quiero%20cotizar">
@@ -86,10 +84,9 @@
     <div nz-col
          nzSpan="6"
          nzOffset="2">
-      <a href="">
+      <a [routerLink]="['.']">
         <img src="assets/img/valmira.svg"
              class="logo" /> </a>
-
     </div>
     <div nz-col
          nzSpan="2"

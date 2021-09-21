@@ -102,6 +102,7 @@ module.exports = {
     '<rootDir>/libs/musicr/ui/subcategories/data',
     '<rootDir>/libs/musicr/ui/subcategories/feature',
     '<rootDir>/libs/musicr/ui/admin-products',
+    '<rootDir>/libs/musicr/ui/cart',
     '<rootDir>/libs/musicr/ui/orders',
     '<rootDir>/libs/valmira/ui/place-search',
     '<rootDir>/libs/valmira/ui/places/data',

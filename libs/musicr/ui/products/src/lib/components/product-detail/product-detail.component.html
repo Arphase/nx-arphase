@@ -2,7 +2,7 @@
   <div nz-row class="margin-top-64">
     <div nz-col nzXs="24" nzLg="12">
       <div class="product-photo">
-        <img [src]="product?.photos[0]?.url" alt="Foto del producto" />
+        <img [src]="product?.photos[0]?.url" [alt]="product?.name" />
         <button nz-button class="img-icon" nzType="text" (click)="onBack()">
           <i nz-icon nzType="arrow-left" nzTheme="outline"></i>
         </button>
@@ -23,11 +23,12 @@
         {{ productComponent }}
         <nz-divider class="no-margin"></nz-divider>
       </div>
+      <nz-input-number [(ngModel)]="amount" [nzMin]="1" [nzStep]="1"></nz-input-number>
 
       <nz-select *ngIf="priceOptions?.length" apsAutoSelect formControlName="amount" [nzOptions]="priceOptions">
       </nz-select>
       <h2 class="total-price">{{ product?.price | currency }}</h2>
-      <button nz-button type="button" class="cart-button">Agregar al carrito</button>
+      <button nz-button type="button" class="cart-button" (click)="addItem()">Agregar al carrito</button>
     </div>
   </div>
   <div nz-row>
