@@ -8,6 +8,9 @@ module.exports = {
   },
   darkMode: 'class',
   theme: {
+    textColor: {
+      'primary': '#1d2b15',
+    },
     extend: {},
   },
   variants: {

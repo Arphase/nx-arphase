@@ -302,6 +302,9 @@
     "valmira-api-auth": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
+    "valmira-api-customers": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+    },
     "valmira-api-domain": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
     },
@@ -327,11 +330,11 @@
     "valmira-domain": {
       "tags": ["domain:valmira", "type:domain-logic"]
     },
-    "valmira-ui-additional-products-feature": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
     "valmira-ui-additional-products-data": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+    },
+    "valmira-ui-additional-products-feature": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-auth-data": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]

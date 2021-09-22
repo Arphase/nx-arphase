@@ -2629,6 +2629,28 @@
         }
       }
     },
+    "valmira-api-customers": {
+      "root": "libs/valmira/api/customers",
+      "sourceRoot": "libs/valmira/api/customers/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/valmira/api/customers/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/api/customers"],
+          "options": {
+            "jestConfig": "libs/valmira/api/customers/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "valmira-api-domain": {
       "root": "libs/valmira/api/domain",
       "sourceRoot": "libs/valmira/api/domain/src",
@@ -2894,31 +2916,6 @@
         }
       }
     },
-    "valmira-ui-additional-products-feature": {
-      "projectType": "library",
-      "root": "libs/valmira/ui/additional-products/feature",
-      "sourceRoot": "libs/valmira/ui/additional-products/feature/src",
-      "prefix": "vma",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/valmira/ui/additional-products/feature/src/**/*.ts",
-              "libs/valmira/ui/additional-products/feature/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/additional-products/feature"],
-          "options": {
-            "jestConfig": "libs/valmira/ui/additional-products/feature/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "valmira-ui-additional-products-data": {
       "projectType": "library",
       "root": "libs/valmira/ui/additional-products/data",
@@ -2940,6 +2937,31 @@
               "libs/valmira/ui/additional-products/data/src/**/*.ts",
               "libs/valmira/ui/additional-products/data/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "valmira-ui-additional-products-feature": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/additional-products/feature",
+      "sourceRoot": "libs/valmira/ui/additional-products/feature/src",
+      "prefix": "vma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/additional-products/feature/src/**/*.ts",
+              "libs/valmira/ui/additional-products/feature/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/additional-products/feature"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/additional-products/feature/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

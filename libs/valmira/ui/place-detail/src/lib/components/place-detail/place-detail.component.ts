@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { Place } from '@valmira/domain';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'vma-place-detail',
@@ -11,9 +11,10 @@ import dayjs, { Dayjs } from 'dayjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; endDate: Date }> {
-  @Input() currentPlace: Place;
+  @Input() place: Place;
   @Input() loading: boolean;
-  @Input() occupedDates: Dayjs[] = [];
+  @Input() occupedDates: string[] = [];
+  @Input() loadingReserve: boolean;
   form = new FormGroup(
     {
       startDate: new FormControl(null, ApsValidators.required),
@@ -39,7 +40,14 @@ export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; en
       return true;
     }
     if (this.values?.startDate) {
-      return endValue.getTime() <= this.values.startDate.getTime();
+      const startDate = this.values.startDate;
+      const nextOccupedDate = this.occupedDates.find(occupeiedDate =>
+        dayjs(occupeiedDate).subtract(1, 'day').isAfter(startDate, 'day')
+      );
+      return (
+        endValue.getTime() <= startDate.getTime() ||
+        (nextOccupedDate ? endValue.getTime() > new Date(nextOccupedDate).getTime() : false)
+      );
     }
     return false;
   };

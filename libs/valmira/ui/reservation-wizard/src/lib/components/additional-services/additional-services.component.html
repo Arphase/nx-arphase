@@ -2,8 +2,9 @@
       nzLayout="vertical"
       [formGroup]="form"
       (ngSubmit)="submit()">
-  <h2 class="text-4xl">¿Ocasión especial?</h2>
-  <p class="text-base mb-28">Complementa tu experiencia con nuestros
+  <h2 class="text-4xl text-primary">¿Ocasión especial?</h2>
+  <p class="text-base mb-28 text-primary">
+    Complementa tu experiencia con nuestros
     <span class="italic">servicions adicionales.</span>
   </p>
 
@@ -20,7 +21,7 @@
     <div nz-col
          nzSpan="14"
          class="flex-start pl-3">
-      <span class="pl-3"> {{ form.get('name')?.value }} </span>
+      <span class="pl-3 text-primary"> {{ form.get('name')?.value }} </span>
     </div>
     <div nz-col
          nzSpan="4"
@@ -47,7 +48,7 @@
     </div>
     <div nz-col
          nzSpan="5"
-         class="flex-end">
+         class="flex-end text-primary">
       {{ form.get('price')?.value | currency }}
     </div>
   </div>
@@ -56,7 +57,7 @@
     <div nz-col
          nzSpan="24">
       <button nz-button
-              class="btn-form-big"
+              class="btn-form-big mt-24"
               type="submit"
               nzType="primary"
               [nzLoading]="loading"

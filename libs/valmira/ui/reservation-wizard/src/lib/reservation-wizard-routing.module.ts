@@ -28,6 +28,11 @@ export const routes: Routes = [
         path: 'confirmation',
         component: ConfirmationContainerComponent,
       },
+      {
+        path: '',
+        redirectTo: 'additional-services',
+        pathMatch: 'full',
+      },
     ],
   },
 ];
