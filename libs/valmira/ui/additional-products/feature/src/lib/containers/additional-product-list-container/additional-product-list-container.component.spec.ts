@@ -1,9 +1,8 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { AdditionalProductCollectionService, AdditionalProductDataService } from '@valmira/ui/additional-products/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
-import { AdditionalProductCollectionService } from '../../services/additional-product-collection.service';
-import { AdditionalProductDataService } from '../../services/additional-product-data.service';
 import { AdditionalProductListContainerComponent } from './additional-product-list-container.component';
 
 describe('AdditionalProductListContainerComponent', () => {

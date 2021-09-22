@@ -1,0 +1,40 @@
+@import './variables';
+
+.ant-checkbox-inner {
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border-color: @primary-color;
+}
+
+.ant-checkbox-inner::after {
+  left: 30%;
+  z-index: 2;
+  border-color: @background-color !important;
+  border-width: 1px !important;
+}
+
+.ant-checkbox-checked::after {
+  border: none;
+}
+
+.ant-checkbox-inner::after {
+  border-color: @primary-color;
+}
+
+.ant-checkbox-wrapper::after {
+  width: 5.71428571px;
+  height: 9.14285714px;
+  position: absolute;
+  display: table;
+  border: 1px solid @primary-color;
+  border-top: 0;
+  border-left: 0;
+  transform: rotate(45deg) scale(1) translate(-50%, -50%);
+  opacity: 1;
+  transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+  content: ' ';
+  top: 48%;
+  left: 16px;
+}

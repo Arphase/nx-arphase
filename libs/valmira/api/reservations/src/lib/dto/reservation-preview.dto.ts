@@ -3,6 +3,10 @@ import { Type } from 'class-transformer';
 import { IsArray, IsDate, IsNumber, IsOptional, ValidateNested } from 'class-validator';
 
 export class ReservationPreviewDto {
+  @IsOptional()
+  @IsNumber()
+  id: number;
+
   @IsDate()
   startDate: Date;
 

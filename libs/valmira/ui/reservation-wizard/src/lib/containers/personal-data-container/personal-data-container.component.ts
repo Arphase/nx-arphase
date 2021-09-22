@@ -12,18 +12,18 @@ import { take } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonalDataContainerComponent {
-  item$ = this.reservatiionCollectionService.currentItem$;
+  item$ = this.reservationCollectionService.currentItem$;
 
   constructor(
-    private reservatiionCollectionService: ReservationCollectionService,
+    private reservationCollectionService: ReservationCollectionService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   submit(payload: Reservation) {
-    this.reservatiionCollectionService.entityActions$
+    this.reservationCollectionService.entityActions$
       .pipe(ofEntityOp(EntityOp.SAVE_UPDATE_ONE_SUCCESS), take(1))
       .subscribe(() => this.router.navigate(['..', 'payment-method'], { relativeTo: this.route }));
-    this.reservatiionCollectionService.update(payload);
+    this.reservationCollectionService.update(payload);
   }
 }

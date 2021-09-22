@@ -2011,6 +2011,28 @@
         }
       }
     },
+    "musicr-ui-cart": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/cart",
+      "sourceRoot": "libs/musicr/ui/cart/src",
+      "prefix": "mrl",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/cart/src/**/*.ts", "libs/musicr/ui/cart/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/cart"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/cart/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "musicr-ui-categories-data": {
       "projectType": "library",
       "root": "libs/musicr/ui/categories/data",
@@ -2082,28 +2104,6 @@
               "libs/musicr/ui/categories/ui/src/**/*.ts",
               "libs/musicr/ui/categories/ui/src/**/*.html"
             ]
-          }
-        }
-      }
-    },
-    "musicr-ui-cart": {
-      "projectType": "library",
-      "root": "libs/musicr/ui/cart",
-      "sourceRoot": "libs/musicr/ui/cart/src",
-      "prefix": "mrl",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/musicr/ui/cart/src/**/*.ts", "libs/musicr/ui/cart/src/**/*.html"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/cart"],
-          "options": {
-            "jestConfig": "libs/musicr/ui/cart/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -2894,27 +2894,52 @@
         }
       }
     },
-    "valmira-ui-additional-products": {
+    "valmira-ui-additional-products-feature": {
       "projectType": "library",
-      "root": "libs/valmira/ui/additional-products",
-      "sourceRoot": "libs/valmira/ui/additional-products/src",
+      "root": "libs/valmira/ui/additional-products/feature",
+      "sourceRoot": "libs/valmira/ui/additional-products/feature/src",
       "prefix": "vma",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/valmira/ui/additional-products/src/**/*.ts",
-              "libs/valmira/ui/additional-products/src/**/*.html"
+              "libs/valmira/ui/additional-products/feature/src/**/*.ts",
+              "libs/valmira/ui/additional-products/feature/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/additional-products"],
+          "outputs": ["coverage/libs/valmira/ui/additional-products/feature"],
           "options": {
-            "jestConfig": "libs/valmira/ui/additional-products/jest.config.js",
+            "jestConfig": "libs/valmira/ui/additional-products/feature/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-additional-products-data": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/additional-products/data",
+      "sourceRoot": "libs/valmira/ui/additional-products/data/src",
+      "prefix": "ivt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/additional-products/data"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/additional-products/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/additional-products/data/src/**/*.ts",
+              "libs/valmira/ui/additional-products/data/src/**/*.html"
+            ]
           }
         }
       }

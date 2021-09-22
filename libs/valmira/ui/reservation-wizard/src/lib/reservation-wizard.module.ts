@@ -2,10 +2,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui/core';
+import { AdditionalProductsDataModule } from '@valmira/ui/additional-products/data';
 import { ReservationsDataModule } from '@valmira/ui/reservations/data';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NgxMaskModule } from 'ngx-mask';
@@ -26,6 +29,7 @@ import { ReservationWizardRoutingModule } from './reservation-wizard-routing.mod
 @NgModule({
   imports: [
     ApsAutoErrorModule,
+    AdditionalProductsDataModule,
     CommonModule,
     NzButtonModule,
     NzFormModule,
@@ -35,8 +39,10 @@ import { ReservationWizardRoutingModule } from './reservation-wizard-routing.mod
     ReservationsDataModule,
     ReservationWizardRoutingModule,
     NzSpaceModule,
+    NzCheckboxModule,
     NgxMaskModule,
     NgxStripeModule,
+    NzIconModule,
   ],
   declarations: [
     AdditionalServicesComponent,

@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApsFormContainerComponent } from '@arphase/ui/core';
 import { AdditionalProduct } from '@valmira/domain';
+import { AdditionalProductCollectionService } from '@valmira/ui/additional-products/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { createAdditionalProductForm } from '../../components/additional-product-form/additional-product-form.component';
-import { AdditionalProductCollectionService } from '../../services/additional-product-collection.service';
 
 @Component({
   selector: 'vma-additional-product-form-container',

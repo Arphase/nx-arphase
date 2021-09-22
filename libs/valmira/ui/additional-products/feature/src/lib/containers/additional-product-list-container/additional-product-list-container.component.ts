@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsListContainerComponent } from '@arphase/ui/core';
 import { AdditionalProduct } from '@valmira/domain';
+import { AdditionalProductCollectionService, AdditionalProductDataService } from '@valmira/ui/additional-products/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
-
-import { AdditionalProductCollectionService } from '../../services/additional-product-collection.service';
-import { AdditionalProductDataService } from '../../services/additional-product-data.service';
 
 @Component({
   selector: 'vma-additional-product-list-container',

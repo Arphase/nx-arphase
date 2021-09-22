@@ -1,8 +1,8 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { AdditionalProductCollectionService } from '@valmira/ui/additional-products/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
-import { AdditionalProductCollectionService } from '../../services/additional-product-collection.service';
 import { AdditionalProductFormContainerComponent } from './additional-product-form-container.component';
 
 describe('AdditionalProductFormContainerComponent', () => {
