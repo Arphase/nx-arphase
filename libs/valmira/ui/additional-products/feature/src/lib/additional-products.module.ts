@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule, ApsEmptyModule, ApsFeatureLayoutModule, ApsSearchbarModule } from '@arphase/ui/core';
-import { EntityDataService } from '@ngrx/data';
+import { AdditionalProductsDataModule } from '@valmira/ui/additional-products/data';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -22,13 +22,13 @@ import { AdditionalProductFormComponent } from './components/additional-product-
 import { AdditionalProductListComponent } from './components/additional-product-list/additional-product-list.component';
 import { AdditionalProductFormContainerComponent } from './containers/additional-product-form-container/additional-product-form-container.component';
 import { AdditionalProductListContainerComponent } from './containers/additional-product-list-container/additional-product-list-container.component';
-import { AdditionalProductDataService } from './services/additional-product-data.service';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     AdditionalProductsRoutingModule,
+    AdditionalProductsDataModule,
     NzGridModule,
     NzCardModule,
     NzDividerModule,
@@ -54,8 +54,4 @@ import { AdditionalProductDataService } from './services/additional-product-data
     AdditionalProductFormComponent,
   ],
 })
-export class AdditionalProductsModule {
-  constructor(entityDataService: EntityDataService, additionalProductDataService: AdditionalProductDataService) {
-    entityDataService.registerService('AdditionalProduct', additionalProductDataService);
-  }
-}
+export class AdditionalProductsModule {}

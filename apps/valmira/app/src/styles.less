@@ -1,7 +1,10 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 @import '~ng-zorro-antd/ng-zorro-antd';
-@primary-color: #1d2b15;
-@secondary-color: #b7400b;
-@backgroung-color: #eae1d3;
+@import './styles/checkbox';
+@import './styles/reservation-wizard';
+@import './styles/variables';
 
 @font-face {
   font-family: 'Beatrice';
@@ -9,12 +12,12 @@
 }
 
 html body {
-  background-color: @backgroung-color !important;
+  background-color: @background-color !important;
   font-family: Beatrice;
 }
 
 nz-layout {
-  background: @backgroung-color !important;
+  background: @background-color !important;
 }
 
 nz-content {
@@ -23,11 +26,11 @@ nz-content {
 }
 
 nz-header {
-  background: @backgroung-color !important;
+  background: @background-color !important;
 }
 
 nz-menu {
-  background: @backgroung-color !important;
+  background: @background-color !important;
 }
 
 .ant-drawer-content {

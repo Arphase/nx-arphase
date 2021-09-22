@@ -3,6 +3,10 @@ import { Type } from 'class-transformer';
 import { IsArray, IsDate, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 
 export class CreateReservationDto {
+  @IsOptional()
+  @IsNumber()
+  id: number;
+
   @IsDate()
   startDate: Date;
 

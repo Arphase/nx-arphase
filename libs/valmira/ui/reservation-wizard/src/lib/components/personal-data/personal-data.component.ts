@@ -26,6 +26,26 @@ export class PersonalDataComponent extends ApsFormComponent<Reservation> impleme
     return this.form.get('customer') as FormGroup;
   }
 
+  get firstNameError(): boolean {
+    const control = this.customerForm?.get('firstName');
+    return control?.errors && control?.touched;
+  }
+
+  get lastNameError(): boolean {
+    const control = this.customerForm?.get('lastName');
+    return control?.errors && control?.touched;
+  }
+
+  get emailError(): boolean {
+    const control = this.customerForm?.get('email');
+    return control?.errors && control?.touched;
+  }
+
+  get phoneError(): boolean {
+    const control = this.customerForm?.get('phone');
+    return control?.errors && control?.touched;
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.item && this.item) {
       this.form.patchValue(this.item);

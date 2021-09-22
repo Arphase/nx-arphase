@@ -22,7 +22,7 @@ const routes: Routes = [
       },
       {
         path: 'additional-products',
-        loadChildren: () => import('@valmira/ui/additional-products').then(m => m.AdditionalProductsModule),
+        loadChildren: () => import('@valmira/ui/additional-products/feature').then(m => m.AdditionalProductsModule),
       },
       {
         path: '',

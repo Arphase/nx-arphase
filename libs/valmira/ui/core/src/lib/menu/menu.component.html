@@ -1,7 +1,8 @@
 <nz-header>
   <nz-affix>
-    <img src="assets/img/logo.svg"
-         class="logo" />
+    <a [routerLink]="['.']">
+      <img src="assets/img/valmira-green.svg"
+           class="logo" /> </a>
     <ul nz-menu
         nzMode="horizontal">
       <li nz-menu-item>PERFIL</li>
@@ -84,7 +85,8 @@
     <div nz-col
          nzSpan="6"
          nzOffset="2">
-      <a [routerLink]="['.']">
+      <a [routerLink]="['.']"
+         (click)="closeMenu()">
         <img src="assets/img/valmira.svg"
              class="logo" /> </a>
     </div>

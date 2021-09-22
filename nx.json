@@ -240,6 +240,9 @@
     "musicr-ui-auth-feature": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
+    "musicr-ui-cart": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+    },
     "musicr-ui-categories-data": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
     },
@@ -247,9 +250,6 @@
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-categories-ui": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
-    },
-    "musicr-ui-cart": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
     },
     "musicr-ui-core": {
@@ -329,6 +329,9 @@
     },
     "valmira-ui-additional-products": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-additional-products-data": {
+      "tags": []
     },
     "valmira-ui-auth-data": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
