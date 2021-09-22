@@ -327,11 +327,11 @@
     "valmira-domain": {
       "tags": ["domain:valmira", "type:domain-logic"]
     },
-    "valmira-ui-additional-products": {
+    "valmira-ui-additional-products-feature": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-additional-products-data": {
-      "tags": []
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
     },
     "valmira-ui-auth-data": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]

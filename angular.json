@@ -2894,7 +2894,7 @@
         }
       }
     },
-    "valmira-ui-additional-products": {
+    "valmira-ui-additional-products-feature": {
       "projectType": "library",
       "root": "libs/valmira/ui/additional-products/feature",
       "sourceRoot": "libs/valmira/ui/additional-products/feature/src",

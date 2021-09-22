@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'valmira-ui-additional-products',
+  displayName: 'valmira-ui-additional-products-feature',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
