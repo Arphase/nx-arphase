@@ -15,6 +15,10 @@ export const routes: Routes = [
     loadChildren: () => import('@valmira/ui/place-detail').then(m => m.PlaceDetailModule),
   },
   {
+    path: 'reservation',
+    loadChildren: () => import('@valmira/ui/reservation-wizard').then(m => m.ReservationWizardModule),
+  },
+  {
     path: 'manifest',
     loadChildren: () => import('@valmira/ui/manifest').then(m => m.ManifestModule),
   },

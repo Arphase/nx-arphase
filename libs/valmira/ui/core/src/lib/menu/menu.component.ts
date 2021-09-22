@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'vma-menu',
@@ -8,11 +8,11 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 })
 export class MenuComponent {
   menuItems = [
-    { name: 'Reserva', href: 'search' },
-    { name: 'Perfil', href: '', hidden: true },
-    { name: 'Manifesto', href: 'manifest' },
-    { name: 'Preguntas Frecuentes', href: 'frequent-questions' },
-    { name: 'Términos y Condiciones', href: 'terms-and-conditions' },
+    { name: 'Reserva', link: 'search' },
+    { name: 'Perfil', link: '', hidden: true },
+    { name: 'Manifesto', link: 'manifest' },
+    { name: 'Preguntas Frecuentes', link: 'frequent-questions' },
+    { name: 'Términos y Condiciones', link: 'terms-and-conditions' },
   ];
   visible = false;
 

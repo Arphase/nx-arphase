@@ -1,0 +1,36 @@
+<div nz-row>
+  <div nz-col
+       nzSpan="24">
+    <ngx-stripe-card-group [elementsOptions]="elementsOptions"
+                           containerClass="lol">
+      <div nz-row>
+        <div nz-col
+             nzSpan="24">
+          <ngx-stripe-card-number [options]="cardOptions"></ngx-stripe-card-number>
+          <div class="border-top">
+            Número de Tarjeta*
+          </div>
+        </div>
+      </div>
+      <div nz-row
+           nzGutter="12">
+        <div nz-col
+             nzSpan="12">
+          <ngx-stripe-card-expiry [options]="cardOptions"></ngx-stripe-card-expiry>
+          <div class="border-top">
+            Caducidad*
+          </div>
+        </div>
+        <div nz-col
+             nzSpan="12">
+          <ngx-stripe-card-cvc [options]="cardOptions"></ngx-stripe-card-cvc>
+          <div class="border-top">
+            CVV*
+          </div>
+        </div>
+      </div>
+    </ngx-stripe-card-group>
+  </div>
+</div>
+
+<button (click)="pay()">Pay</button>

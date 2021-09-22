@@ -60,6 +60,9 @@ export class ReservationEntity extends BaseEntity implements Reservation {
   @Column()
   placeId: number;
 
+  @Column({ nullable: true })
+  additionalComments: string;
+
   @ManyToOne(() => PlaceEntity, place => place.reservations, { eager: true })
   @JoinColumn({ name: 'placeId' })
   place: Place;

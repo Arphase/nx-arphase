@@ -16,6 +16,10 @@ export class CreateReservationDto {
   @IsOptional()
   promocodeId: number;
 
+  @IsString()
+  @IsOptional()
+  additionalComments: string;
+
   @IsNotEmpty()
   @ValidateNested()
   @Type(() => CreateCustomerDto)
