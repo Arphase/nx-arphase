@@ -47,5 +47,6 @@ export class ManifestComponent implements OnInit, OnDestroy {
     Object.keys(theme).forEach(propertyName =>
       this.themeWrapper.style.setProperty(`--${propertyName}`, theme[propertyName])
     );
+    window.removeEventListener('scroll', event => {});
   }
 }
