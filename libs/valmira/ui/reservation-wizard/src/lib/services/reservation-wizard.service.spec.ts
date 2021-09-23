@@ -1,16 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
 import { ReservationWizardService } from './reservation-wizard.service';
 
 describe('ReservationWizardService', () => {
-  let service: ReservationWizardService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ReservationWizardService);
+  let spectator: SpectatorService<ReservationWizardService>;
+  const createService = createServiceFactory({
+    service: ReservationWizardService,
+    imports: [HttpClientTestingModule],
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  beforeEach(() => (spectator = createService()));
+
+  it('should create', () => {
+    expect(spectator.service).toBeTruthy();
   });
 });

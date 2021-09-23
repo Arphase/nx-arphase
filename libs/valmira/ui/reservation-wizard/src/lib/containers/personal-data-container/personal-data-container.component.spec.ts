@@ -10,7 +10,7 @@ describe('PersonalDataContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: PersonalDataContainerComponent,
     imports: [RouterTestingModule],
-    providers: [provideMockStore],
+    providers: [provideMockStore()],
     mocks: [ReservationCollectionService],
     shallow: true,
   });
