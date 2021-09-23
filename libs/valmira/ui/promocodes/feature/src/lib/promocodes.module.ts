@@ -8,7 +8,7 @@ import {
   ApsFeatureLayoutModule,
   ApsSearchbarModule,
 } from '@arphase/ui/core';
-import { EntityDataService } from '@ngrx/data';
+import { PromocodesDataModule } from '@valmira/ui/promocodes/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -30,7 +30,6 @@ import { PromocodeListComponent } from './components/promocode-list/promocode-li
 import { PromocodeFormContainerComponent } from './containers/promocode-form-container/promocode-form-container.component';
 import { PromocodeListContainerComponent } from './containers/promocode-list-container/promocode-list-container.component';
 import { PromocodesRoutingModule } from './promocodes-routing.module';
-import { PromocodeDataService } from './services/promocode-data.service';
 
 @NgModule({
   imports: [
@@ -57,6 +56,7 @@ import { PromocodeDataService } from './services/promocode-data.service';
     ApsDateFilterModule,
     ApsFeatureLayoutModule,
     NgxMaskModule,
+    PromocodesDataModule,
   ],
   declarations: [
     PromocodeFormContainerComponent,
@@ -65,8 +65,4 @@ import { PromocodeDataService } from './services/promocode-data.service';
     PromocodeFormComponent,
   ],
 })
-export class PromocodesModule {
-  constructor(entityDataService: EntityDataService, promocodeDataService: PromocodeDataService) {
-    entityDataService.registerService('Promocode', promocodeDataService);
-  }
-}
+export class PromocodesModule {}

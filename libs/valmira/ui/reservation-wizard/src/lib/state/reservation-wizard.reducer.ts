@@ -4,14 +4,19 @@ import * as ReservationWizardActions from './reservation-wizard.actions';
 import { ReservationWizardState } from './reservation-wizard.state';
 
 export const initialState: ReservationWizardState = {
-  currentCustomer: null,
+  customer: null,
+  promocode: null,
 };
 
 const reservationWizardReducer = createReducer(
   initialState,
   on(ReservationWizardActions.getCustomerByEmailSuccess, (state, action) => ({
     ...state,
-    currentCustomer: action.customer,
+    customer: action.customer,
+  })),
+  on(ReservationWizardActions.getPromocodeByNameSuccess, (state, action) => ({
+    ...state,
+    promocode: action.promocode,
   }))
 );
 

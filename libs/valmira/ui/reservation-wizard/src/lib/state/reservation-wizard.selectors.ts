@@ -6,7 +6,6 @@ const getReservationWizardFeatureState = createFeatureSelector<ReservationWizard
 
 export const getReservationWizardState = createSelector(getReservationWizardFeatureState, state => state);
 
-export const getReservationWizardCurrentCustomer = createSelector(
-  getReservationWizardFeatureState,
-  state => state.currentCustomer
-);
+export const getReservationWizardCustomer = createSelector(getReservationWizardFeatureState, state => state.customer);
+
+export const getReservationWizardPromocode = createSelector(getReservationWizardFeatureState, state => state.promocode);

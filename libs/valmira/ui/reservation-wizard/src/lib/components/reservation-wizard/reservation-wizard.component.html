@@ -3,7 +3,7 @@
   <div nz-col
        nzSpan="18"
        class="pl-24">
-    <h1 class="text-7xl text-primary">Tu reservación</h1>
+    <h1 class="text-7xl text-primary mb-6">Tu reservación</h1>
     <ul class="flex text-sm muted cursor-pointer mb-20">
       <li routerLinkActive="text-primary"
           [routerLink]="['additional-services']">
@@ -26,6 +26,113 @@
   </div>
   <div nz-col
        nzSpan="6">
-    {{ item | json }}
+    <div class="bg-secondary p-8">
+      <img [src]="place?.photos[0]?.path"
+           alt="Foto de {{ place?.name }}">
+
+      <div class="flex items-center mb-9  mt-5">
+        <h4 class="text-primary text-4xl mr-3">{{ place?.name }}</h4>
+        <span class="category py-1 px-3">GLAMPING</span>
+      </div>
+
+      <div nz-row
+           class="pb-7 border-bottom">
+        <div nz-col
+             nzSpan="24">
+          <p>{{ place?.capacity }} HUÉSPEDES</p>
+          <p>{{ item?.startDate | date: 'MMM d, y' }} — {{ item?.endDate | date: 'MMM d, y' }}</p>
+        </div>
+      </div>
+
+      <div nz-row
+           class="pt-7 mb-5">
+        <div nz-col
+             nzSpan="16"
+             class="flex-start">
+          {{ item?.pricePerNight | currency }} X {{ item?.nights }} {{ item?.nights === 1 ? 'NOCHE': 'NOCHES'}}
+        </div>
+        <div nz-col
+             nzSpan="8"
+             class="flex-end">
+          {{ item?.pricePerNight * item?.nights | currency }}
+        </div>
+      </div>
+
+      <div *ngFor="let product of item?.additionalProducts"
+           nz-row
+           class="pt-3">
+        <div nz-col
+             nzSpan="16"
+             class="flex-start">
+          {{ product?.additionalProduct?.name }} X {{ product?.amount }}
+        </div>
+        <div nz-col
+             nzSpan="8"
+             class="flex-end">
+          {{ product?.price * product?.amount | currency }}
+        </div>
+      </div>
+
+      <div *ngIf="promocode?.id"
+           nz-row
+           class="pt-3 text-orange">
+        <div nz-col
+             nzSpan="16"
+             class="flex-start">
+          {{ promocode?.name }}
+        </div>
+        <div nz-col
+             nzSpan="8"
+             class="flex-end">
+          -{{ promocode?.amount | currency }}
+        </div>
+      </div>
+
+      <div nz-row
+           class="mt-7">
+        <div nz-col
+             nzSpan="16"
+             class="flex-start text-2xl">
+          TOTAL
+        </div>
+        <div nz-col
+             nzSpan="8"
+             class="d-flex justify-end text-2xl">
+          <span class="text-sm self-end mr-1">MXN</span> {{ item?.total | currency }}
+        </div>
+      </div>
+    </div>
+
+    <form nz-row
+          class="mt-6"
+          [formGroup]="form"
+          (ngSubmit)="submit()">
+      <div nz-col
+           nzSpan="14"
+           class="d-flex items-center">
+        <input placeholder="CÓDIGO DE DESCUENTO"
+               formControlName="promocode" />
+      </div>
+      <div nz-col
+           nzSpan="2">
+        <button nz-button
+                type="submit"
+                nzType="text"
+                [nzLoading]="loading">
+          <i nz-icon
+             class="w-6 submit-button"
+             nzType="check-circle"
+             [ngClass]="{ 'promocode-submited': promocode?.id }"></i>
+        </button>
+      </div>
+    </form>
+    <div nz-row>
+      <div nz-col
+           nzSpan="16"
+           class="border-top">
+        <span *ngIf="promocodeNotFound"
+              class="text-orange mt-1">Este código de descuento no existe o ha expirado</span>
+      </div>
+    </div>
   </div>
 </div>

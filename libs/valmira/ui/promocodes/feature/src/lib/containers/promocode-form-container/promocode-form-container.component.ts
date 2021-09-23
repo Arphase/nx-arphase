@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApsFormContainerComponent } from '@arphase/ui/core';
 import { Promocode } from '@valmira/domain';
+import { PromocodeCollectionService } from '@valmira/ui/promocodes/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { createPromocodeForm } from '../../components/promocode-form/promocode-form.component';
-import { PromocodeCollectionService } from '../../services/promocode-collection.service';
 
 @Component({
   selector: 'vma-promocode-form-container',
@@ -17,6 +17,7 @@ export class PromocodeFormContainerComponent extends ApsFormContainerComponent<P
   form = createPromocodeForm();
   createSuccessMessage = 'El código de descuento se ha creado';
   successUrl = '/spa/promocodes';
+
   constructor(
     protected promocodeCollectionService: PromocodeCollectionService,
     protected router: Router,

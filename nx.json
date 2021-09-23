@@ -366,7 +366,10 @@
     "valmira-ui-places-feature": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
-    "valmira-ui-promocodes": {
+    "valmira-ui-promocodes-data": {
+      "tags": []
+    },
+    "valmira-ui-promocodes-feature": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-reservation-wizard": {

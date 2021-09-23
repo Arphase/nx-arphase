@@ -1,8 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Actions, ofType } from '@ngrx/effects';
+import { select, Store } from '@ngrx/store';
 import { ReservationCollectionService } from '@valmira/ui/reservations/data';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, mapTo } from 'rxjs/operators';
+
+import { getPromocodeByName, getPromocodeByNameFailed } from '../../state/reservation-wizard.actions';
+import { getReservationWizardPromocode } from '../../state/reservation-wizard.selectors';
 
 @UntilDestroy()
 @Component({
@@ -13,8 +18,15 @@ import { filter, map } from 'rxjs/operators';
 })
 export class ReservationWizardContainerComponent implements OnInit {
   item$ = this.reservationCollectionService.currentItem$;
+  promocode$ = this.store.pipe(select(getReservationWizardPromocode));
+  promocodeNotFound$ = this.actions$.pipe(ofType(getPromocodeByNameFailed), mapTo(true));
 
-  constructor(private reservationCollectionService: ReservationCollectionService, private route: ActivatedRoute) {}
+  constructor(
+    private reservationCollectionService: ReservationCollectionService,
+    private route: ActivatedRoute,
+    private store: Store,
+    private actions$: Actions
+  ) {}
 
   ngOnInit() {
     this.reservationCollectionService.removeOneFromCache(null);
@@ -25,5 +37,9 @@ export class ReservationWizardContainerComponent implements OnInit {
         map(params => params.get('id'))
       )
       .subscribe(id => this.reservationCollectionService.getByKey(id));
+  }
+
+  submit(payload: { promocode: string }): void {
+    this.store.dispatch(getPromocodeByName({ name: payload.promocode }));
   }
 }

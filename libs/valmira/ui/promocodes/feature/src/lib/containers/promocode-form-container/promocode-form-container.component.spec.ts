@@ -1,8 +1,8 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { PromocodeCollectionService } from '@valmira/ui/promocodes/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
-import { PromocodeCollectionService } from '../../services/promocode-collection.service';
 import { PromocodeFormContainerComponent } from './promocode-form-container.component';
 
 describe('PromocodeFormContainerComponent', () => {
