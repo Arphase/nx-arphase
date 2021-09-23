@@ -1,0 +1,31 @@
+<div nz-row
+     class="mt-32">
+  <div nz-col
+       nzSpan="18"
+       class="pl-24">
+    <h1 class="text-7xl text-primary">Tu reservación</h1>
+    <ul class="flex text-sm muted cursor-pointer mb-20">
+      <li routerLinkActive="text-primary"
+          [routerLink]="['additional-services']">
+        <span class="mr-2 ">SERVICIOS ADICIONALES</span>
+        <span class="mr-2">></span>
+      </li>
+      <li routerLinkActive="text-primary"
+          [routerLink]="['personal-data']"><span class="mr-2">DATOS PERSONALES</span> <span class="mr-2">></span></li>
+      <li routerLinkActive="text-primary"
+          [routerLink]="['payment-method']"> <span class="mr-2">MÉTODOS DE PAGO</span> <span class="mr-2">></span></li>
+      <li routerLinkActive="text-primary"
+          [routerLink]="['confirmation']"><span class="mr-2"> CONFIRMACIÓN</span></li>
+    </ul>
+    <div nz-row>
+      <div nz-col
+           nzSpan="18">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  <div nz-col
+       nzSpan="6">
+    {{ item | json }}
+  </div>
+</div>

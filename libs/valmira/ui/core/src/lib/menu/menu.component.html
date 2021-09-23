@@ -1,7 +1,8 @@
 <nz-header>
   <nz-affix>
-    <img [src]="'assets/img/logo.svg'"
-         class="logo" />
+    <a [routerLink]="['.']">
+      <img src="assets/img/valmira-green.svg"
+           class="logo" /> </a>
     <ul nz-menu
         nzMode="horizontal">
       <li nz-menu-item>PERFIL</li>
@@ -23,8 +24,9 @@
           <div *ngFor="let item of menuItems"
                nz-col
                nzSpan="24">
-            <a [href]="item.href"
-               [ngClass]="{ hidden: item.hidden }">{{ item.name }}</a>
+            <a [routerLink]="[item.link]"
+               [ngClass]="{ hidden: item.hidden }"
+               (click)="closeMenu()">{{ item.name }}</a>
           </div>
         </div>
 
@@ -49,10 +51,13 @@
                  class="menu-icon"></i>
             </a>
           </div>
+
           <div nz-col
                nzSpan="3">
             <a href="https://www.instagram.com/valmiraglamping/">
+
               <p class="menu-text">INSTAGRAM</p>
+
               <i nz-icon
                  nzType="instagram"
                  nzTheme="outline"
@@ -80,7 +85,9 @@
     <div nz-col
          nzSpan="6"
          nzOffset="2">
-      <a href=""> <img [src]="'assets/img/valmira.svg'"
+      <a [routerLink]="['.']"
+         (click)="closeMenu()">
+        <img src="assets/img/valmira.svg"
              class="logo" /> </a>
     </div>
     <div nz-col

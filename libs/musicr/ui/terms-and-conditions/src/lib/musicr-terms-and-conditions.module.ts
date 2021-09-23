@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
+import { NgModule } from '@angular/core';
+
 import { MusicrTermsAndConditionsRoutingModule } from './musicr-terms-and-conditions-routing.module';
+import { TermsAndConditionsComponent } from './terms-and-conditions.component';
 
 @NgModule({
   imports: [CommonModule, MusicrTermsAndConditionsRoutingModule],

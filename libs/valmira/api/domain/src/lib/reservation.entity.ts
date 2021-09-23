@@ -60,6 +60,9 @@ export class ReservationEntity extends BaseEntity implements Reservation {
   @Column()
   placeId: number;
 
+  @Column({ nullable: true })
+  additionalComments: string;
+
   @ManyToOne(() => PlaceEntity, place => place.reservations, { eager: true })
   @JoinColumn({ name: 'placeId' })
   place: Place;
@@ -70,6 +73,9 @@ export class ReservationEntity extends BaseEntity implements Reservation {
   @ManyToOne(() => PromocodeEntity, promocode => promocode.reservations, { eager: true })
   @JoinColumn({ name: 'promocodeId' })
   promocode?: Promocode;
+
+  @Column({ nullable: true })
+  customerId?: number;
 
   @ManyToOne(() => CustomerEntity, customer => customer.reservations, { cascade: true, eager: true })
   @JoinColumn({ name: 'customerId' })

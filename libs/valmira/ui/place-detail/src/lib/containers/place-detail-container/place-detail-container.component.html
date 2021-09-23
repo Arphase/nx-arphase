@@ -1,3 +1,5 @@
-<vma-place-detail [currentPlace]="item$ | async"
+<vma-place-detail [place]="item$ | async"
                   [loading]="loading$ | async"
-                  [occupedDates]="occupedDates$ | async"></vma-place-detail>
+                  [occupedDates]="occupedDates$ | async"
+                  [loadingReserve]="loadingReserve$ | async"
+                  (submitForm)="submit($event)"></vma-place-detail>
