@@ -14,6 +14,7 @@
 html body {
   background-color: @background-color !important;
   font-family: Beatrice;
+  color: @primary-color;
 }
 
 nz-layout {
@@ -45,4 +46,13 @@ nz-menu {
 
 .ant-affix {
   background-color: #eae1d3;
+}
+
+.ant-picker-input > input {
+  text-align: center !important;
+  color: @primary-color;
+}
+
+.ant-picker-input > input::placeholder {
+  color: @primary-color;
 }

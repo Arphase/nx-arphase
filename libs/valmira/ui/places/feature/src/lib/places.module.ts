@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApsEmptyModule, ApsFeatureLayoutModule, ApsSearchbarModule } from '@arphase/ui/core';
 import { EntityDataService } from '@ngrx/data';
-import { PlaceDataService } from '@valmira/ui/places/data';
+import { PlacesDataModule } from '@valmira/ui/places/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -61,7 +61,7 @@ import { PhotoDataService } from './services/photo-data.service';
     NzToolTipModule,
     NzTypographyModule,
     NzUploadModule,
-    PlaceDataService,
+    PlacesDataModule,
     PlacesRoutingModule,
     ReactiveFormsModule,
   ],

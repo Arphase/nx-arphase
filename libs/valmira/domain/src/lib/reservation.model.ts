@@ -5,17 +5,18 @@ import { ReservationAdditionalProduct } from './reservation-additional-product.m
 
 export interface Reservation {
   id?: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   startDate: Date;
   endDate: Date;
-  status: ReservationStatus | string;
-  total: number;
+  status?: ReservationStatus | string;
+  total?: number;
   additionalComments?: string;
   paymentId?: string;
   placeId: number;
   place?: Place;
-  customer: Customer;
+  customerId?: number;
+  customer?: Customer;
   promocodeId?: number;
   promocode?: Promocode;
   pricePerNight?: number;

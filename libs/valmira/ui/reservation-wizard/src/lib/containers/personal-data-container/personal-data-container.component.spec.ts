@@ -1,5 +1,6 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { provideMockStore } from '@ngrx/store/testing';
 import { ReservationCollectionService } from '@valmira/ui/reservations/data';
 
 import { PersonalDataContainerComponent } from './personal-data-container.component';
@@ -9,6 +10,7 @@ describe('PersonalDataContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: PersonalDataContainerComponent,
     imports: [RouterTestingModule],
+    providers: [provideMockStore()],
     mocks: [ReservationCollectionService],
     shallow: true,
   });

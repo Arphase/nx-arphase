@@ -1,15 +1,28 @@
-import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApsFormComponent } from '@arphase/ui/core';
-import { Reservation } from '@valmira/domain';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Customer, Reservation } from '@valmira/domain';
+import { debounceTime } from 'rxjs';
 
+@UntilDestroy()
 @Component({
   selector: 'vma-personal-data',
   templateUrl: './personal-data.component.html',
   styleUrls: ['./personal-data.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PersonalDataComponent extends ApsFormComponent<Reservation> implements OnChanges {
+export class PersonalDataComponent extends ApsFormComponent<Reservation> implements OnInit, OnChanges {
+  @Input() currentCustomer: Customer;
   form = new FormGroup({
     id: new FormControl(null),
     additionalComments: new FormControl(null),
@@ -21,6 +34,7 @@ export class PersonalDataComponent extends ApsFormComponent<Reservation> impleme
       phone: new FormControl(null, Validators.required),
     }),
   });
+  @Output() emailChanges = new EventEmitter<string>();
 
   get customerForm(): FormGroup {
     return this.form.get('customer') as FormGroup;
@@ -46,9 +60,19 @@ export class PersonalDataComponent extends ApsFormComponent<Reservation> impleme
     return control?.errors && control?.touched;
   }
 
+  ngOnInit() {
+    this.customerForm
+      .get('email')
+      .valueChanges.pipe(debounceTime(1000), untilDestroyed(this))
+      .subscribe(email => this.emailChanges.emit(email));
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.item && this.item) {
       this.form.patchValue(this.item);
+    }
+    if (changes.currentCustomer && this.currentCustomer?.id) {
+      this.customerForm.get('id').patchValue(this.currentCustomer.id);
     }
   }
 }

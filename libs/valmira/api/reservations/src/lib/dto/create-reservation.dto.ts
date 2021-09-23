@@ -1,6 +1,6 @@
 import { Customer, ReservationAdditionalProduct } from '@valmira/domain';
 import { Type } from 'class-transformer';
-import { IsArray, IsDate, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsArray, IsDate, IsEmail, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 
 export class CreateReservationDto {
   @IsOptional()
@@ -24,11 +24,12 @@ export class CreateReservationDto {
   @IsOptional()
   additionalComments: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @ValidateNested()
   @Type(() => CreateCustomerDto)
   customer: Customer;
 
+  @IsOptional()
   @IsArray()
   @ValidateNested()
   @Type(() => CreateReservationAdditionalProductDto)

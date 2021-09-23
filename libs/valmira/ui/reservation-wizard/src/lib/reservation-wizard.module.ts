@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule } from '@arphase/ui/core';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { AdditionalProductsDataModule } from '@valmira/ui/additional-products/data';
 import { ReservationsDataModule } from '@valmira/ui/reservations/data';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -25,9 +27,13 @@ import { PaymentMethodContainerComponent } from './containers/payment-method-con
 import { PersonalDataContainerComponent } from './containers/personal-data-container/personal-data-container.component';
 import { ReservationWizardContainerComponent } from './containers/reservation-wizard-container/reservation-wizard-container.component';
 import { ReservationWizardRoutingModule } from './reservation-wizard-routing.module';
+import { ReservationWizardEffects } from './state/reservation-wizard.effects';
+import { reducer } from './state/reservation-wizard.reducer';
 
 @NgModule({
   imports: [
+    StoreModule.forFeature('reservationWizard', reducer),
+    EffectsModule.forFeature([ReservationWizardEffects]),
     ApsAutoErrorModule,
     AdditionalProductsDataModule,
     CommonModule,
