@@ -87,4 +87,8 @@ export class ReservationEntity extends BaseEntity implements Reservation {
     onDelete: 'CASCADE',
   })
   additionalProducts?: ReservationAdditionalProduct[];
+
+  days: number;
+  nights: number;
+  pricePerNight: number;
 }

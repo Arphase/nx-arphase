@@ -1,6 +1,6 @@
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { PromocodeCollectionService } from '@valmira/ui/promocodes/data';
 
-import { PromocodeCollectionService } from '../services/promocode-collection.service';
 import { PromocodeResolverService } from './promocode-resolver.service';
 
 describe('PromocodeResolverService', () => {

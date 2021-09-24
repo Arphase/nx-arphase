@@ -3201,23 +3201,51 @@
         }
       }
     },
-    "valmira-ui-promocodes": {
+    "valmira-ui-promocodes-data": {
       "projectType": "library",
-      "root": "libs/valmira/ui/promocodes",
-      "sourceRoot": "libs/valmira/ui/promocodes/src",
+      "root": "libs/valmira/ui/promocodes/data",
+      "sourceRoot": "libs/valmira/ui/promocodes/data/src",
+      "prefix": "vma",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/promocodes/data"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/promocodes/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/promocodes/data/src/**/*.ts",
+              "libs/valmira/ui/promocodes/data/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "valmira-ui-promocodes-feature": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/promocodes/feature",
+      "sourceRoot": "libs/valmira/ui/promocodes/feature/src",
       "prefix": "vma",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/ui/promocodes/src/**/*.ts", "libs/valmira/ui/promocodes/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/valmira/ui/promocodes/feature/src/**/*.ts",
+              "libs/valmira/ui/promocodes/feature/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/promocodes"],
+          "outputs": ["coverage/libs/valmira/ui/promocodes/feature"],
           "options": {
-            "jestConfig": "libs/valmira/ui/promocodes/jest.config.js",
+            "jestConfig": "libs/valmira/ui/promocodes/feature/jest.config.js",
             "passWithNoTests": true
           }
         }

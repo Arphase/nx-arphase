@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'valmira-ui-promocodes',
-  preset: '../../../../jest.preset.js',
+  displayName: 'valmira-ui-promocodes-feature',
+  preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../coverage/libs/valmira/ui/promocodes',
+  coverageDirectory: '../../../../../coverage/libs/valmira/ui/promocodes/feature',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

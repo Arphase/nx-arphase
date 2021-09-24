@@ -7,7 +7,7 @@ import { ReservationCollectionService } from '@valmira/ui/reservations/data';
 import { take } from 'rxjs/operators';
 
 import { getCustomerByEmail } from '../../state/reservation-wizard.actions';
-import { getReservationWizardCurrentCustomer } from '../../state/reservation-wizard.selectors';
+import { getReservationWizardCustomer } from '../../state/reservation-wizard.selectors';
 
 @Component({
   selector: 'vma-personal-data-container',
@@ -17,7 +17,7 @@ import { getReservationWizardCurrentCustomer } from '../../state/reservation-wiz
 })
 export class PersonalDataContainerComponent {
   item$ = this.reservationCollectionService.currentItem$;
-  currentCustomer$ = this.store.pipe(select(getReservationWizardCurrentCustomer));
+  customer$ = this.store.pipe(select(getReservationWizardCustomer));
   loading$ = this.reservationCollectionService.loadingModify$;
 
   constructor(

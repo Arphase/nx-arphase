@@ -51,7 +51,13 @@ export class ReservationsService {
     if (!reservation) {
       throw new NotFoundException(`Reservation with id ${id} not found`);
     }
-    return reservation;
+    const { pricePerNight, nights, days } = getReservationDaysInfo(reservation);
+    return {
+      ...reservation,
+      pricePerNight,
+      nights,
+      days,
+    } as ReservationEntity;
   }
 
   async createReservation(createReservationDto: CreateReservationDto): Promise<Reservation> {
@@ -120,7 +126,13 @@ export class ReservationsService {
     const updatedReservation = await this.reservationRepository.preload(previewReservation);
     await updatedReservation.save();
     await updatedReservation.reload();
-    return updatedReservation;
+    const { pricePerNight, nights, days } = getReservationDaysInfo(updatedReservation);
+    return {
+      ...updatedReservation,
+      pricePerNight,
+      nights,
+      days,
+    } as ReservationEntity;
   }
 
   async deleteReservation(id: number): Promise<Reservation> {

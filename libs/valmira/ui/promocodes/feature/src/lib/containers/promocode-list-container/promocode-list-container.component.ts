@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsListContainerComponent } from '@arphase/ui/core';
 import { Promocode } from '@valmira/domain';
+import { PromocodeCollectionService, PromocodeDataService } from '@valmira/ui/promocodes/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
-
-import { PromocodeCollectionService } from '../../services/promocode-collection.service';
-import { PromocodeDataService } from '../../services/promocode-data.service';
 
 @Component({
   selector: 'vma-promocode-list-container',

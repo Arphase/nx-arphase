@@ -129,6 +129,13 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
     }
   }
 
+  protected updateOne(collection: ApsEntityCollection<T>, action: ApsEntityAction): ApsEntityCollection<T> {
+    return {
+      ...(super.updateOne(collection, action) as ApsEntityCollection<T>),
+      currentItem: action.payload.data.changes,
+    };
+  }
+
   protected removeAll(collection: ApsEntityCollection<T>, action: ApsEntityAction): ApsEntityCollection<T> {
     return {
       ...collection,

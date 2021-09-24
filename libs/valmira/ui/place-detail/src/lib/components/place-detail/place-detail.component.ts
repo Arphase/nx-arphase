@@ -25,6 +25,9 @@ export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; en
 
   disableStartDate = (startValue: Date): boolean => {
     const date = dayjs(startValue);
+    if (startValue.getTime() < new Date().getTime()) {
+      return true;
+    }
     if (this.occupedDates.find(occupeiedDate => date.isSame(occupeiedDate, 'day'))) {
       return true;
     }

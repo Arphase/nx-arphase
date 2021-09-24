@@ -1,1 +1,3 @@
-<vma-reservation-wizard [item]="item$ | async"></vma-reservation-wizard>
+<vma-reservation-wizard [item]="item$ | async"
+                        [promocodeNotFound]="promocodeNotFound$ | async"
+                        (submitForm)="submit($event)"></vma-reservation-wizard>

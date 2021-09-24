@@ -22,7 +22,7 @@ import { debounceTime } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonalDataComponent extends ApsFormComponent<Reservation> implements OnInit, OnChanges {
-  @Input() currentCustomer: Customer;
+  @Input() customer: Customer;
   form = new FormGroup({
     id: new FormControl(null),
     additionalComments: new FormControl(null),
@@ -71,8 +71,8 @@ export class PersonalDataComponent extends ApsFormComponent<Reservation> impleme
     if (changes.item && this.item) {
       this.form.patchValue(this.item);
     }
-    if (changes.currentCustomer && this.currentCustomer?.id) {
-      this.customerForm.get('id').patchValue(this.currentCustomer.id);
+    if (changes.customer && this.customer?.id) {
+      this.customerForm.get('id').patchValue(this.customer.id);
     }
   }
 }

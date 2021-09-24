@@ -1,5 +1,6 @@
-import { Customer } from '@valmira/domain';
+import { Customer, Promocode } from '@valmira/domain';
 
 export interface ReservationWizardState {
-  currentCustomer: Customer;
+  customer: Customer;
+  promocode: Promocode;
 }
