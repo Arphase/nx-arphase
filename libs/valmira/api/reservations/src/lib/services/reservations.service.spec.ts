@@ -9,6 +9,7 @@ import {
   ReservationEntity,
 } from '@valmira/api/domain';
 import { PlacesService } from '@valmira/api/places';
+import { StripeModule } from 'nestjs-stripe';
 
 import { ReservationsService } from './reservations.service';
 
@@ -17,6 +18,7 @@ describe('ReservationsService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [StripeModule.forRoot({ apiKey: 'test', apiVersion: '2020-08-27' })],
       providers: [
         ReservationsService,
         { provide: getRepositoryToken(ReservationEntity), useValue: createMockRepository() },

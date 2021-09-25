@@ -11,12 +11,12 @@
      class="mt-24">
   <div nz-col
        nzSpan="14">
-    <h2 class="text-5xl text-primary">{{ place?.name }}</h2>
+    <h2 class="text-5xl text-primary mb-6">{{ place?.name }}</h2>
     <div nz-row>
       <div nz-col
            nzSpan="24">
         <span class="category mr-4 p-2"
-              text>{{ place?.category }}</span>
+              text>{{ categoryLabels[place?.category] }}</span>
         <span class="mr-4">{{ place?.area }} M <sup>2</sup></span>
         <span class="mr-4">{{ place?.capacity }} HUÉSPEDES</span>
         <span>{{ place?.beds }} {{ place?.beds === 1 ? 'CAMA' : 'CAMAS'}}</span>
@@ -48,6 +48,12 @@
   <div nz-col
        nzSpan="8"
        nzOffset="2">
+    <h5 class="text-primary text-4xl flex items-end mb-12 price-per-night">
+      <ng-container *ngIf="reservationPreview">
+        {{ reservationPreview?.pricePerNight | currency }} MXN
+        <span class="text-base">/noche</span>
+      </ng-container>
+    </h5>
     <form nz-row
           nzGutter="12"
           [formGroup]="form"
@@ -60,6 +66,7 @@
                         [nzDisabledDate]="disableStartDate"
                         nzPlaceHolder="FECHA DE LLEGADA"
                         formControlName="startDate"
+                        nzFormat="MMM d, y"
                         [nzShowToday]="false"></nz-date-picker>
       </div>
       <div nz-col
@@ -70,6 +77,7 @@
                         [nzDisabledDate]="disableEndDate"
                         nzPlaceHolder="FECHA DE SALIDA"
                         formControlName="endDate"
+                        nzFormat="MMM d, y"
                         [nzShowToday]="false"></nz-date-picker>
       </div>
 

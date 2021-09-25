@@ -1,7 +1,7 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { Customer, ReservationAdditionalProduct, ReservationStatus } from '@valmira/domain';
 import { Transform, Type } from 'class-transformer';
-import { IsArray, IsBoolean, IsEnum, IsNumber, IsOptional, ValidateNested } from 'class-validator';
+import { IsArray, IsBoolean, IsEnum, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 
 import { CreateCustomerDto, CreateReservationDto } from './create-reservation.dto';
 
@@ -18,6 +18,10 @@ export class UpdateReservationDto extends PartialType(CreateReservationDto) {
   @ValidateNested()
   @Type(() => UpdateCustomerDto)
   customer: Customer;
+
+  @IsOptional()
+  @IsString()
+  paymentId: string;
 
   @IsArray()
   @ValidateNested()

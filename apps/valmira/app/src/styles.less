@@ -3,13 +3,9 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import './styles/checkbox';
+@import './styles/datepicker';
 @import './styles/reservation-wizard';
 @import './styles/variables';
-
-:root {
-  --backgroundColor: #eae1d3;
-  --textColor: #1d2b15;
-}
 
 @font-face {
   font-family: 'Beatrice';
@@ -19,7 +15,7 @@
 html body {
   background-color: @background-color !important;
   font-family: Beatrice;
-  color: @primary-color;
+  color: var(--textColor);
 }
 
 nz-layout {
@@ -50,7 +46,7 @@ nz-menu {
 }
 
 .ant-affix {
-  background-color: #eae1d3;
+  background-color: @background-color;
 }
 
 .ant-picker-input > input {

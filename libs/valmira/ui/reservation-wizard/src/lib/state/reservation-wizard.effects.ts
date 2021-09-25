@@ -64,6 +64,18 @@ export class ReservationWizardEffects {
     { dispatch: false }
   );
 
+  createPaymentIntent$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ReservationWizardActions.createPaymentIntent),
+      mergeMap(({ reservationId }) =>
+        this.reservationWizardService.createPaymentIntent(reservationId).pipe(
+          map(({ key, reservation }) => ReservationWizardActions.createPaymentIntentSuccess({ key, reservation })),
+          catchError(() => of(ReservationWizardActions.createPaymentIntentFailed()))
+        )
+      )
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private reservationWizardService: ReservationWizardService,

@@ -7,5 +7,5 @@ export const environment: Environment = {
   version: packageJson.version,
   environmentName: 'stage',
   stripeKey:
-    'pk_live_51JV2c7ESPeV0d6H2k9moacez9zL2t5U5kIbWPqyHmFtaMz10cCWAPYhT0ojOGuThZ9kplXP6dD2amFLtJXPyvlni00vG3WRZuU',
+    'pk_test_51JV2c7ESPeV0d6H2lO0kKw1xmjjF2Weew5BJStB4VzFQvE6qVu0o3YV2EBAOcTBqV8kx1kyJaLCTrFqYXdq5CMtr00Xu0BA9Gr',
 };
