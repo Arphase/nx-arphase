@@ -3,6 +3,7 @@ import { ApsCollectionResponse } from '@arphase/common';
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 import { Reservation } from '@valmira/domain';
 
+import { CreatePaymentIntentDto } from '../dto/create-payment-intent.dto';
 import { CreateReservationDto } from '../dto/create-reservation.dto';
 import { ReservationPreviewDto } from '../dto/reservation-preview.dto';
 import { UpdateReservationDto } from '../dto/update-reservation-dto';
@@ -40,5 +41,12 @@ export class ReservationsController {
   @Delete(':id')
   deleteReservation(@Param('id', ParseIntPipe) id: number): Promise<Reservation> {
     return this.reservationsService.deleteReservation(id);
+  }
+
+  @Post('payment/intent')
+  async createPaymentIntent(
+    @Body() createPaymentIntentDto: CreatePaymentIntentDto
+  ): Promise<{ key: string; reservation: Reservation }> {
+    return this.reservationsService.createPaymentIntent(createPaymentIntentDto);
   }
 }

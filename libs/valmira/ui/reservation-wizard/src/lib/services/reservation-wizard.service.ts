@@ -24,4 +24,10 @@ export class ReservationWizardService {
   updateReservation(reservation: Partial<Reservation>): Observable<Reservation> {
     return this.http.put<Reservation>(`/vmaApi/reservations/${reservation.id}`, reservation);
   }
+
+  createPaymentIntent(reservationId: number): Observable<{ key: string; reservation: Reservation }> {
+    return this.http.post<{ key: string; reservation: Reservation }>(`/vmaApi/reservations/payment/intent`, {
+      reservationId,
+    });
+  }
 }

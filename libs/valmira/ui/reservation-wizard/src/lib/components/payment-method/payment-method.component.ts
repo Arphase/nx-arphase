@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ApsFormComponent } from '@arphase/ui/core';
-import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
+import { StripeCardElementOptions, StripeCardNumberElement, StripeElementsOptions } from '@stripe/stripe-js';
 import { StripeCardNumberComponent } from 'ngx-stripe';
 
 @Component({
@@ -11,6 +11,7 @@ import { StripeCardNumberComponent } from 'ngx-stripe';
 })
 export class PaymentMethodComponent extends ApsFormComponent {
   @ViewChild(StripeCardNumberComponent) card: StripeCardNumberComponent;
+  @Input() errorMessage: string;
   cardOptions: StripeCardElementOptions = {
     style: {
       base: {
@@ -24,10 +25,10 @@ export class PaymentMethodComponent extends ApsFormComponent {
       },
     },
   };
-
   elementsOptions: StripeElementsOptions = { locale: 'es' };
+  @Output() payReservation = new EventEmitter<StripeCardNumberElement>();
 
   pay(): void {
-    console.log(this.card.element);
+    this.payReservation.emit(this.card.element);
   }
 }

@@ -1,9 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
-import { Place } from '@valmira/domain';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Place, PlaceCategories, Reservation } from '@valmira/domain';
 import dayjs from 'dayjs';
+import { filter } from 'rxjs/operators';
 
+@UntilDestroy()
 @Component({
   selector: 'vma-place-detail',
   templateUrl: './place-detail.component.html',
@@ -15,6 +18,7 @@ export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; en
   @Input() loading: boolean;
   @Input() occupedDates: string[] = [];
   @Input() loadingReserve: boolean;
+  @Input() reservationPreview: Reservation;
   form = new FormGroup(
     {
       startDate: new FormControl(null, ApsValidators.required),
@@ -22,6 +26,22 @@ export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; en
     },
     { validators: ApsValidators.dateLessThan('startDate', 'endDate') }
   );
+  categoryLabels: Record<string, string> = {
+    [PlaceCategories[PlaceCategories.premium]]: 'Premium',
+    [PlaceCategories[PlaceCategories.couple]]: 'Pareja',
+    [PlaceCategories[PlaceCategories.kids]]: 'Niños',
+  };
+  @Output() datesChange = new EventEmitter<{ startDate: Date; endDate: Date }>();
+
+  constructor() {
+    super();
+    this.form.valueChanges
+      .pipe(
+        untilDestroyed(this),
+        filter(value => !!value.startDate && !!value.endDate)
+      )
+      .subscribe(value => this.datesChange.emit(value));
+  }
 
   disableStartDate = (startValue: Date): boolean => {
     const date = dayjs(startValue);

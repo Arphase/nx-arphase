@@ -16,10 +16,11 @@ export class ReservationPreviewDto {
   @IsNumber()
   placeId: number;
 
-  @IsNumber()
   @IsOptional()
+  @IsNumber()
   promocodeId: number;
 
+  @IsOptional()
   @IsArray()
   @ValidateNested()
   @Type(() => ReservationAdditionalProductPreviewDto)

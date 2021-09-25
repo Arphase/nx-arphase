@@ -9,6 +9,7 @@ import {
   ReservationEntity,
 } from '@valmira/api/domain';
 import { PlacesService } from '@valmira/api/places';
+import Stripe from 'stripe';
 
 import { ReservationsService } from './reservations.service';
 
@@ -24,6 +25,7 @@ describe('ReservationsService', () => {
         { provide: getRepositoryToken(PromocodeEntity), useValue: createMockRepository() },
         { provide: getRepositoryToken(AdditionalProductEntity), useValue: createMockRepository() },
         { provide: getRepositoryToken(ReservationAdditionalProductEntity), useValue: createMockRepository() },
+        { provide: Stripe, useValue: {} },
         { provide: PlacesService, useValue: {} },
       ],
     }).compile();

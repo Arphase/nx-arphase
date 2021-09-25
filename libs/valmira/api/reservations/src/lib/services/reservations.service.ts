@@ -10,10 +10,13 @@ import {
   ReservationEntity,
 } from '@valmira/api/domain';
 import { PlacesService } from '@valmira/api/places';
-import { Promocode, Reservation, ReservationAdditionalProduct } from '@valmira/domain';
+import { Promocode, Reservation, ReservationAdditionalProduct, ReservationStatus } from '@valmira/domain';
 import dayjs from 'dayjs';
+import { InjectStripe } from 'nestjs-stripe';
+import Stripe from 'stripe';
 import { Repository } from 'typeorm';
 
+import { CreatePaymentIntentDto } from '../dto/create-payment-intent.dto';
 import { CreateReservationDto } from '../dto/create-reservation.dto';
 import { ReservationPreviewDto } from '../dto/reservation-preview.dto';
 import { UpdateReservationDto } from '../dto/update-reservation-dto';
@@ -29,6 +32,7 @@ export class ReservationsService {
     @InjectRepository(AdditionalProductEntity) private additionalProductRepository: Repository<AdditionalProductEntity>,
     @InjectRepository(ReservationAdditionalProductEntity)
     private reservationAdditionalProductRepository: Repository<ReservationAdditionalProductEntity>,
+    @InjectStripe() private readonly stripeClient: Stripe,
     private placesService: PlacesService
   ) {}
 
@@ -73,7 +77,7 @@ export class ReservationsService {
    * @returns reservation with all populated data from database relations
    */
   async previewReservation(
-    reservationPreviewDto: CreateReservationDto | UpdateReservationDto | ReservationPreviewDto
+    reservationPreviewDto: CreateReservationDto | UpdateReservationDto | ReservationPreviewDto | Reservation
   ): Promise<Partial<Reservation>> {
     const { placeId, promocodeId, startDate, endDate, id } = reservationPreviewDto;
     let { additionalProducts } = reservationPreviewDto;
@@ -124,6 +128,18 @@ export class ReservationsService {
     const reservation = await this.getReservation(updateReservationDto.id);
     const previewReservation = await this.previewReservation({ ...reservation, ...updateReservationDto });
     const updatedReservation = await this.reservationRepository.preload(previewReservation);
+
+    if (updateReservationDto?.paymentId) {
+      const paymentDetails = await this.stripeClient.paymentIntents.retrieve(updateReservationDto.paymentId);
+      if (reservation.paymentId || reservation.status === ReservationStatus.paid) {
+        throw new ConflictException(`Esta reservación ya extá pagada`);
+      }
+      if (!paymentDetails) {
+        throw new ConflictException(`Este pago no existe`);
+      }
+      reservation.status = ReservationStatus.paid;
+    }
+
     await updatedReservation.save();
     await updatedReservation.reload();
     const { pricePerNight, nights, days } = getReservationDaysInfo(updatedReservation);
@@ -171,5 +187,25 @@ export class ReservationsService {
         };
       });
     return additionalProducts;
+  }
+
+  /**
+   * Creates payment intent
+   * We multiply the amount by 100, because Stripe charges the client card in cents
+   * @param payload
+   * @returns payment intent
+   */
+  async createPaymentIntent(payload: CreatePaymentIntentDto): Promise<{ key: string; reservation: Reservation }> {
+    const { reservationId } = payload;
+    const reservation = await this.getReservation(reservationId);
+    const previewReservation = await this.previewReservation(reservation);
+    if (reservation.paymentId || reservation.status === ReservationStatus.paid) {
+      throw new ConflictException(`Esta reservación ya extá pagada`);
+    }
+    const paymentIntent = await this.stripeClient.paymentIntents.create({
+      amount: previewReservation.total * 100,
+      currency: 'mxn',
+    });
+    return { key: paymentIntent.client_secret, reservation };
   }
 }

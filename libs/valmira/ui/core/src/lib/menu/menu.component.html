@@ -1,14 +1,12 @@
 <nz-header>
   <nz-affix>
     <a [routerLink]="['.']">
-      <img src="assets/img/valmira-green.svg"
+      <img [src]="(isInManifest$ | async) ? 'assets/img/valmira.svg' : 'assets/img/valmira-green.svg'"
            class="logo" /> </a>
-    <ul nz-menu
-        nzMode="horizontal">
-      <li nz-menu-item>PERFIL</li>
-      <li nz-menu-item
-          (click)="openMenu()">MENU</li>
-    </ul>
+    <a class="flex justify-end items-center menu-toggle"
+       (click)="openMenu()">
+      MENU
+    </a>
     <nz-drawer nzPlacement="right"
                nzWidth="100vw"
                [nzClosable]="false"
