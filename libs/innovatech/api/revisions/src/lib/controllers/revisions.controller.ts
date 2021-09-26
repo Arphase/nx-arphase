@@ -1,9 +1,9 @@
 import { ApsCollectionResponse } from '@arphase/common';
 import { GetUser, Roles, RolesGuard } from '@innovatech/api/auth/data';
 import { Revision, User, UserRoles } from '@innovatech/common/domain';
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-
+import { Response } from 'express';
 import { CreateRevisionDto } from '../dto/create-revision.dto';
 import { GetRevisionsDto } from '../dto/get-revisions.dto';
 import { UpdateRevisionDto } from '../dto/update-revision.dto';
@@ -25,6 +25,15 @@ export class RevisionsController {
   @Get(':id')
   async getRevision(@Param('id', ParseIntPipe) id: number): Promise<Revision> {
     return this.revisionsService.getRevision(id);
+  }
+
+  @Get('export/excel')
+  async getRevisionsExcel(
+    @Query() filterDto: GetRevisionsDto,
+    @GetUser() user: Partial<User>,
+    @Res() response: Response
+  ): Promise<void> {
+    return this.revisionsService.getRevisionsExcel(filterDto, user, response);
   }
 
   @Post()

@@ -17,6 +17,7 @@ import { RevisionDataService } from '../../services/revision-data.service';
 })
 export class RevisionListContainerComponent extends ApsListContainerComponent<Revision> {
   canCreateRevision$ = this.permissionService.hasUpdatePermission([UserRoles.superAdmin, UserRoles.repairman]);
+  excelFileName = 'Revisiones';
 
   constructor(
     protected revisionCollectionService: RevisionCollectionService,

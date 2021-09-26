@@ -1,5 +1,5 @@
 import { ApsColumns } from '@arphase/ui/core';
-import { VehicleStatus } from '@innovatech/common/domain';
+import { VehicleStatus, vehicleStatusLabels } from '@innovatech/common/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export const columns: ApsColumns = [
@@ -69,6 +69,7 @@ export const colorMaps: Record<VehicleStatus, string> = {
   [VehicleStatus.hasActiveGuarantee]: 'processing',
   [VehicleStatus.soldWidhoutGuarantee]: 'default',
 };
+
 export const iconMaps: Record<VehicleStatus, string> = {
   [VehicleStatus.elegible]: 'check-circle',
   [VehicleStatus.needsRevision]: 'exclamation-circle',
@@ -76,33 +77,26 @@ export const iconMaps: Record<VehicleStatus, string> = {
   [VehicleStatus.hasActiveGuarantee]: 'sync',
   [VehicleStatus.soldWidhoutGuarantee]: 'fall',
 };
-export const statusLabels: Record<string, string> = {
-  [VehicleStatus[VehicleStatus.notElegible]]: 'No garantizable',
-  [VehicleStatus[VehicleStatus.hasActiveGuarantee]]: 'Garantía vigente',
-  [VehicleStatus[VehicleStatus.needsRevision]]: 'Necesita revisión',
-  [VehicleStatus[VehicleStatus.elegible]]: 'Garantizable',
-  [VehicleStatus[VehicleStatus.soldWidhoutGuarantee]]: 'Vendido sin garantía',
-};
 
 export const statusOptions: NzSelectOptionInterface[] = [
   {
-    label: statusLabels[VehicleStatus[VehicleStatus.elegible]],
+    label: vehicleStatusLabels[VehicleStatus[VehicleStatus.elegible]],
     value: VehicleStatus[VehicleStatus.elegible],
   },
   {
-    label: statusLabels[VehicleStatus[VehicleStatus.hasActiveGuarantee]],
+    label: vehicleStatusLabels[VehicleStatus[VehicleStatus.hasActiveGuarantee]],
     value: VehicleStatus[VehicleStatus.hasActiveGuarantee],
   },
   {
-    label: statusLabels[VehicleStatus[VehicleStatus.needsRevision]],
+    label: vehicleStatusLabels[VehicleStatus[VehicleStatus.needsRevision]],
     value: VehicleStatus[VehicleStatus.needsRevision],
   },
   {
-    label: statusLabels[VehicleStatus[VehicleStatus.notElegible]],
+    label: vehicleStatusLabels[VehicleStatus[VehicleStatus.notElegible]],
     value: VehicleStatus[VehicleStatus.notElegible],
   },
   {
-    label: statusLabels[VehicleStatus[VehicleStatus.soldWidhoutGuarantee]],
+    label: vehicleStatusLabels[VehicleStatus[VehicleStatus.soldWidhoutGuarantee]],
     value: VehicleStatus[VehicleStatus.soldWidhoutGuarantee],
   },
 ];

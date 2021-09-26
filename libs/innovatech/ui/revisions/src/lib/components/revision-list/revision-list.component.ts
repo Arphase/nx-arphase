@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ApsListComponent } from '@arphase/ui/core';
-import { Revision, RevisionStatus, UserRoles } from '@innovatech/common/domain';
+import { Revision, RevisionStatus, revisionStatusLabels, UserRoles } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 import dayjs from 'dayjs';
 
-import { revisionStatusLabels, statusOptions } from '../revision-form/revision-form.constants';
+import { statusOptions } from '../revision-form/revision-form.constants';
 import { colorMaps, columns, iconMaps } from './revision-list.constants';
 
 @Component({

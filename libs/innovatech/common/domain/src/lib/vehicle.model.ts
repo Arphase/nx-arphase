@@ -16,8 +16,6 @@ export interface Vehicle {
   status: VehicleStatus | string;
   companyId?: number;
   company?: Company;
-  kilometrageStart?: number;
-  kilometrageEnd?: number;
   userId?: number;
   user?: User;
   createdAt: Date;
@@ -45,3 +43,11 @@ export function isVehicleElegible(vehicle: Vehicle) {
 }
 
 export const VEHICLE_VIN_LENGTH = 17;
+
+export const vehicleStatusLabels: Record<string, string> = {
+  [VehicleStatus[VehicleStatus.notElegible]]: 'No garantizable',
+  [VehicleStatus[VehicleStatus.hasActiveGuarantee]]: 'Garantía vigente',
+  [VehicleStatus[VehicleStatus.needsRevision]]: 'Necesita revisión',
+  [VehicleStatus[VehicleStatus.elegible]]: 'Garantizable',
+  [VehicleStatus[VehicleStatus.soldWidhoutGuarantee]]: 'Vendido sin garantía',
+};
