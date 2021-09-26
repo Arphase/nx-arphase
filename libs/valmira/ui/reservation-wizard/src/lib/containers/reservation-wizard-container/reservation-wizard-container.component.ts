@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { filterNil } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
+import { selectUrl } from '@valmira/ui/core';
 import { ReservationCollectionService } from '@valmira/ui/reservations/data';
 import { filter, map, mapTo } from 'rxjs/operators';
 
@@ -20,6 +22,11 @@ export class ReservationWizardContainerComponent implements OnInit {
   item$ = this.reservationCollectionService.currentItem$;
   promocode$ = this.store.pipe(select(getReservationWizardPromocode));
   promocodeNotFound$ = this.actions$.pipe(ofType(getPromocodeByNameFailed), mapTo(true));
+  isInConfirmation$ = this.store.pipe(
+    select(selectUrl),
+    filterNil(),
+    map(url => url.includes('confirmation'))
+  );
 
   constructor(
     private reservationCollectionService: ReservationCollectionService,

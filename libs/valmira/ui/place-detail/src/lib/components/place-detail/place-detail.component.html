@@ -15,8 +15,7 @@
     <div nz-row>
       <div nz-col
            nzSpan="24">
-        <span class="category mr-4 p-2"
-              text>{{ categoryLabels[place?.category] }}</span>
+        <span class="category mr-4 p-2">{{ categoryLabels[place?.category] | uppercase }}</span>
         <span class="mr-4">{{ place?.area }} M <sup>2</sup></span>
         <span class="mr-4">{{ place?.capacity }} HUÉSPEDES</span>
         <span>{{ place?.beds }} {{ place?.beds === 1 ? 'CAMA' : 'CAMAS'}}</span>

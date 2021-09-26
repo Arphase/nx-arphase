@@ -22,7 +22,8 @@
           <div *ngFor="let item of menuItems"
                nz-col
                nzSpan="24">
-            <a [routerLink]="[item.link]"
+            <a routerLinkActive="text-white"
+               [routerLink]="[item.link]"
                [ngClass]="{ hidden: item.hidden }"
                (click)="closeMenu()">{{ item.name }}</a>
           </div>

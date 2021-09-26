@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Place, PlaceCategories, Reservation } from '@valmira/domain';
+import { categoryLabels, Place, Reservation } from '@valmira/domain';
 import dayjs from 'dayjs';
 import { filter } from 'rxjs/operators';
 
@@ -26,11 +26,7 @@ export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; en
     },
     { validators: ApsValidators.dateLessThan('startDate', 'endDate') }
   );
-  categoryLabels: Record<string, string> = {
-    [PlaceCategories[PlaceCategories.premium]]: 'Premium',
-    [PlaceCategories[PlaceCategories.couple]]: 'Pareja',
-    [PlaceCategories[PlaceCategories.kids]]: 'Niños',
-  };
+  categoryLabels = categoryLabels;
   @Output() datesChange = new EventEmitter<{ startDate: Date; endDate: Date }>();
 
   constructor() {
