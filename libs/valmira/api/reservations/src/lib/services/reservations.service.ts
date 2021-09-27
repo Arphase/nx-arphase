@@ -13,6 +13,8 @@ import { PlacesService } from '@valmira/api/places';
 import { Promocode, Reservation, ReservationAdditionalProduct, ReservationStatus } from '@valmira/domain';
 import dayjs from 'dayjs';
 import { InjectStripe } from 'nestjs-stripe';
+import { createTransport } from 'nodemailer';
+import Mail from 'nodemailer/lib/mailer';
 import Stripe from 'stripe';
 import { Repository } from 'typeorm';
 
@@ -22,6 +24,7 @@ import { ReservationPreviewDto } from '../dto/reservation-preview.dto';
 import { UpdateReservationDto } from '../dto/update-reservation-dto';
 import { getReservationDaysInfo } from '../functions/reservation-days-info';
 import { getReservationTotal } from '../functions/reservation-total';
+import { getReservationConfirmEmail } from './reservations.service.constants';
 
 @Injectable()
 export class ReservationsService {
@@ -137,7 +140,8 @@ export class ReservationsService {
       if (!paymentDetails) {
         throw new ConflictException(`Este pago no existe`);
       }
-      reservation.status = ReservationStatus.paid;
+      await this.sendConfirmationEmail(reservation);
+      updatedReservation.status = ReservationStatus.paid;
     }
 
     await updatedReservation.save();
@@ -207,5 +211,38 @@ export class ReservationsService {
       currency: 'mxn',
     });
     return { key: paymentIntent.client_secret, reservation };
+  }
+
+  async sendConfirmationEmail(reservation: Reservation): Promise<void> {
+    const transporter = createTransport({
+      host: process.env.SMTP,
+      port: Number(process.env.MAIL_PORT),
+      secure: false,
+      auth: {
+        user: process.env.MAIL_ACCOUNT,
+        pass: process.env.MAIL_PASS,
+      },
+    });
+
+    const reservationUrl = `${process.env.MAIL_HOST_URL}/reservation-detail/${reservation.id}`;
+    const mailOptions: Mail.Options = {
+      from: `Valmira <${process.env.MAIL_ACCOUNT_SENDER}>`,
+      to: reservation?.customer?.email,
+      subject: `Reservación ${reservation.id} confirmada!`,
+      attachments: [
+        {
+          filename: 'valmira-green.svg',
+          path: __dirname + '/assets/img/valmira-green.svg',
+          cid: 'logo',
+        },
+        {
+          filename: 'place.png',
+          path: reservation.place?.photos[0]?.path,
+          cid: 'place',
+        },
+      ],
+      html: getReservationConfirmEmail(reservation, reservationUrl),
+    };
+    await transporter.sendMail(mailOptions);
   }
 }

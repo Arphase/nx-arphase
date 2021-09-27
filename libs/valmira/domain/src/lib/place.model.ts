@@ -23,3 +23,9 @@ export enum PlaceCategories {
   couple = 2,
   kids = 3,
 }
+
+export const categoryLabels: Record<string, string> = {
+  [PlaceCategories[PlaceCategories.premium]]: 'Premium',
+  [PlaceCategories[PlaceCategories.couple]]: 'Pareja',
+  [PlaceCategories[PlaceCategories.kids]]: 'Niños',
+};

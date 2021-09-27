@@ -17,7 +17,6 @@ import {
   VehicleStatus,
 } from '@innovatech/common/domain';
 import {
-  BadRequestException,
   ConflictException,
   ForbiddenException,
   Injectable,

@@ -1,0 +1,17 @@
+export const revisionExcelColumns: string[] = [
+  'Fecha de alta',
+  'Fecha de actualización',
+  'Estatus',
+  'Observaciones',
+  'Kilometraje',
+  'Revisado por',
+  'Marca',
+  'Modelo',
+  'Versión',
+  'Año',
+  'VIN',
+  'N° de motor',
+  'HP',
+  'Estatus del vehículo',
+  'Compañía',
+];

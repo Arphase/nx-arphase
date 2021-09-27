@@ -1,14 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApsListContainerComponent } from '@arphase/ui/core';
-import { UserRoles, Vehicle, VehicleStatus } from '@innovatech/common/domain';
+import { UserRoles, Vehicle, VehicleStatus, vehicleStatusLabels } from '@innovatech/common/domain';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import { VehicleCollectionService, VehicleDataService } from '@innovatech/ui/vehicles/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { take } from 'rxjs/operators';
-
-import { statusLabels } from '../../components/vehicle-list/vehicle-list.constants';
 
 @Component({
   selector: 'ivt-vehicle-list-container',
@@ -56,7 +54,7 @@ export class VehicleListContainerComponent extends ApsListContainerComponent<Veh
       .pipe(take(1))
       .subscribe(() =>
         this.messageService.success(
-          `El vehículo con VIN ${vehicle.vin} ahora está en estatus: ${statusLabels[
+          `El vehículo con VIN ${vehicle.vin} ahora está en estatus: ${vehicleStatusLabels[
             VehicleStatus[VehicleStatus[vehicle.status]]
           ].toLowerCase()}`
         )

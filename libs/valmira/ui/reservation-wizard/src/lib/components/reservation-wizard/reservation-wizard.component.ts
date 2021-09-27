@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApsFormComponent } from '@arphase/ui/core';
-import { Place, Promocode, Reservation } from '@valmira/domain';
+import { categoryLabels, Place, Promocode, Reservation } from '@valmira/domain';
 
 @Component({
   selector: 'vma-reservation-wizard',
@@ -12,6 +12,8 @@ import { Place, Promocode, Reservation } from '@valmira/domain';
 export class ReservationWizardComponent extends ApsFormComponent implements OnChanges {
   @Input() item: Reservation;
   @Input() promocodeNotFound: boolean;
+  @Input() isInConfirmation: boolean;
+  categoryLabels = categoryLabels;
 
   form = new FormGroup({
     promocode: new FormControl(null, Validators.required),

@@ -1,16 +1,21 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { categoryLabels, Customer, Place, Reservation } from '@valmira/domain';
 
 @Component({
   selector: 'vma-confirmation',
   templateUrl: './confirmation.component.html',
   styleUrls: ['./confirmation.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ConfirmationComponent implements OnInit {
+export class ConfirmationComponent {
+  @Input() item: Reservation;
+  categoryLabels = categoryLabels;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  get customer(): Customer {
+    return this.item?.customer;
   }
 
+  get place(): Place {
+    return this.item?.place;
+  }
 }
