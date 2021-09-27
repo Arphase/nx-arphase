@@ -1,0 +1,70 @@
+<form nz-form
+      nz-row
+      nzLayout="vertical"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+  <div nz-col
+       nzSpan="24">
+    <ng-container [formGroup]="customerForm">
+      <div nz-row
+           nzGutter="12">
+        <div nz-col
+             nzSpan="12">
+          <input placeholder="Nombre"
+                 formControlName="firstName" />
+          <label [ngClass]="{ 'error': firstNameError }">Nombre*</label>
+        </div>
+        <div nz-col
+             nzSpan="12">
+          <input placeholder="Apellido"
+                 formControlName="lastName" />
+          <label [ngClass]="{ 'error': lastNameError }">Apellido*</label>
+        </div>
+      </div>
+      <div nz-row
+           nzGutter="12">
+        <div nz-col
+             nzSpan="24">
+          <input placeholder="email@email.com"
+                 formControlName="email" />
+          <label [ngClass]="{ 'error': emailError }">Email*</label>
+        </div>
+      </div>
+      <div nz-row
+           nzGutter="12">
+        <div nz-col
+             nzSpan="24">
+          <input type="tel"
+                 mask="(00) 0000 0000"
+                 placeholder="(81) 2345 6789"
+                 formControlName="phone" />
+          <label [ngClass]="{ 'error': phoneError }">Teléfono*</label>
+        </div>
+      </div>
+    </ng-container>
+
+    <div nz-row
+         nzGutter="12">
+      <div nz-col
+           nzSpan="24">
+        <textarea placeholder="¡Hola..."
+                  formControlName="additionalComments"></textarea>
+        <label>Comentarios adicionales</label>
+      </div>
+    </div>
+
+    <div nz-row>
+      <div nz-col
+           nzSpan="24">
+        <button nz-button
+                class="btn-form-big mt-24"
+                type="submit"
+                nzType="primary"
+                [nzLoading]="loading"
+                nzShape="round">
+          CONTINUAR
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

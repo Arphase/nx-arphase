@@ -1,16 +1,27 @@
 import { createCollectionResponse } from '@arphase/api/core';
-import { ApsCollectionResponse, SortDirection } from '@arphase/common';
-import { filterCommonQuery } from '@innovatech/api/core/util';
+import { ApsCollectionResponse, formatDate, SortDirection } from '@arphase/common';
+import { filterCommonQuery, getReadableStream } from '@innovatech/api/core/util';
 import { RevisionEntity, VehicleEntity } from '@innovatech/api/domain';
-import { Revision, RevisionStatus, User, VehicleStatus } from '@innovatech/common/domain';
+import {
+  Revision,
+  RevisionStatus,
+  revisionStatusLabels,
+  User,
+  VehicleStatus,
+  vehicleStatusLabels,
+} from '@innovatech/common/domain';
 import { ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import dayjs from 'dayjs';
+import { Response } from 'express';
+import { omit } from 'lodash';
 import { Connection, FindOneOptions, QueryRunner, Repository } from 'typeorm';
+import * as XLSX from 'xlsx';
 
 import { CreateRevisionDto } from '../dto/create-revision.dto';
 import { GetRevisionsDto } from '../dto/get-revisions.dto';
 import { UpdateRevisionDto } from '../dto/update-revision.dto';
+import { revisionExcelColumns } from './revision.service.constants';
 
 @Injectable()
 export class RevisionsService {
@@ -66,6 +77,38 @@ export class RevisionsService {
       throw new NotFoundException(`Revision with id "${id}" not found`);
     }
     return found;
+  }
+
+  async getRevisionsExcel(filterDto: GetRevisionsDto, user: Partial<User>, response: Response): Promise<void> {
+    const revisions = await (await this.getRevisions(omit(filterDto, ['pageIndex', 'pageSize']), user)).results;
+
+    const revisionsData: string[][] = revisions.map(revision => {
+      return [
+        formatDate(revision.createdAt),
+        formatDate(revision.updatedAt),
+        revisionStatusLabels[revision.status],
+        revision.observations,
+        revision.kilometrage,
+        revision.reviewdBy,
+        revision?.vehicle?.brand,
+        revision?.vehicle?.model,
+        revision?.vehicle?.version,
+        revision?.vehicle?.year,
+        revision?.vehicle?.vin,
+        revision?.vehicle?.motorNumber,
+        revision?.vehicle?.horsePower,
+        vehicleStatusLabels[revision?.vehicle?.status],
+        revision?.vehicle?.company?.businessName,
+      ].map(field => (field ? String(field) : ''));
+    });
+    const data = [[...revisionExcelColumns], ...revisionsData];
+    const workSheet = XLSX.utils.aoa_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, workSheet, 'SheetJS');
+
+    const buffer: Buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+    const stream = getReadableStream(buffer);
+    stream.pipe(response);
   }
 
   async createRevision(createRevisionDto: CreateRevisionDto): Promise<Revision> {

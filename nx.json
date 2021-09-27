@@ -228,6 +228,9 @@
     "musicr-terms-and-conditions": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
+    "musicr-ui-about-us": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
     "musicr-ui-admin-products": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
@@ -236,6 +239,9 @@
     },
     "musicr-ui-auth-feature": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+    },
+    "musicr-ui-cart": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
     },
     "musicr-ui-categories-data": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
@@ -249,7 +255,13 @@
     "musicr-ui-core": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
     },
+    "musicr-ui-frequent-questions": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
     "musicr-ui-home": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
+    "musicr-ui-orders": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-products": {
@@ -290,11 +302,14 @@
     "valmira-api-auth": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
+    "valmira-api-customers": {
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+    },
     "valmira-api-domain": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
     },
     "valmira-api-photos": {
-      "tags": []
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
     "valmira-api-places": {
       "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
@@ -315,7 +330,10 @@
     "valmira-domain": {
       "tags": ["domain:valmira", "type:domain-logic"]
     },
-    "valmira-ui-additional-products": {
+    "valmira-ui-additional-products-data": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+    },
+    "valmira-ui-additional-products-feature": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-auth-data": {
@@ -336,13 +354,31 @@
     "valmira-ui-manifest": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
-    "valmira-ui-places": {
+    "valmira-ui-place-detail": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
-    "valmira-ui-promocodes": {
+    "valmira-ui-place-search": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
-    "valmira-ui-reservations": {
+    "valmira-ui-places-data": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+    },
+    "valmira-ui-places-feature": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-promocodes-data": {
+      "tags": []
+    },
+    "valmira-ui-promocodes-feature": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-reservation-wizard": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-reservations-data": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+    },
+    "valmira-ui-reservations-feature": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-spa": {

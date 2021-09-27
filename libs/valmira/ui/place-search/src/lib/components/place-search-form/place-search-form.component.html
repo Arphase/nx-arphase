@@ -1,0 +1,56 @@
+<form nz-row
+      nzGutter="12"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+  <div nz-col
+       nzSpan="4">
+    <nz-form-item>
+      <nz-form-control apsAutoError>
+        <nz-date-picker ngDefaultControl
+                        nzPlaceHolder="FECHA DE LLEGADA"
+                        formControlName="startDate"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div nz-col
+       nzSpan="4">
+    <nz-form-item>
+      <nz-form-control apsAutoError>
+        <nz-date-picker ngDefaultControl
+                        nzPlaceHolder="FECHA DE SALIDA"
+                        formControlName="endDate"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div nz-col
+       nzSpan="4">
+    <nz-form-item>
+      <nz-form-control apsAutoError>
+        <input nz-input
+               placeholder="HUÉSPEDES"
+               formControlName="capacity"
+               type="number" />
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div nz-col>
+    <button nz-button
+            nzType="text"
+            nz-tooltip
+            nzTooltipTitle="Buscar"
+            type="submit">
+      <i nz-icon
+         nzType="search"></i>
+    </button>
+  </div>
+</form>
+
+<div nz-row>
+  <div nz-col
+       nzSpan="24">
+    <nz-alert *ngIf="showDatesError"
+              nzType="error"
+              nzMessage="La fecha inicio no puede ser mayor a la fecha fin"
+              nzShowIcon></nz-alert>
+  </div>
+</div>

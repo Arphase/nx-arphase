@@ -1,0 +1,104 @@
+<h1 class="text-7xl text-center text-primary">{{ place?.name }}</h1>
+
+<div nz-row>
+  <div nz-col
+       nzSpan="24">
+    {{ place?.photos | json }}
+  </div>
+</div>
+
+<div nz-row
+     class="mt-24">
+  <div nz-col
+       nzSpan="14">
+    <h2 class="text-5xl text-primary mb-6">{{ place?.name }}</h2>
+    <div nz-row>
+      <div nz-col
+           nzSpan="24">
+        <span class="category mr-4 p-2">{{ categoryLabels[place?.category] | uppercase }}</span>
+        <span class="mr-4">{{ place?.area }} M <sup>2</sup></span>
+        <span class="mr-4">{{ place?.capacity }} HUÉSPEDES</span>
+        <span>{{ place?.beds }} {{ place?.beds === 1 ? 'CAMA' : 'CAMAS'}}</span>
+      </div>
+    </div>
+
+    <div nz-row
+         class="mt-24">
+      <div nz-col
+           nzSpan="24">
+        <p>{{ place?.description }}</p>
+      </div>
+    </div>
+
+    <h3 class="text-primary text-4xl mt-32 mb-10">Servicios</h3>
+
+
+    <div nz-row>
+      <div *ngFor="let service of place?.services"
+           nz-col
+           nzSpan="12"
+           class="flex-start mb-3">
+        <img src="assets/img/check.svg"
+             alt="check">
+        <span class="ml-4"> {{ service }} </span>
+      </div>
+    </div>
+  </div>
+  <div nz-col
+       nzSpan="8"
+       nzOffset="2">
+    <h5 class="text-primary text-4xl flex items-end mb-12 price-per-night">
+      <ng-container *ngIf="reservationPreview">
+        {{ reservationPreview?.pricePerNight | currency }} MXN
+        <span class="text-base">/noche</span>
+      </ng-container>
+    </h5>
+    <form nz-row
+          nzGutter="12"
+          [formGroup]="form"
+          (ngSubmit)="submit()">
+      <div nz-col
+           nzSpan="24">
+        <nz-date-picker class="start-date"
+                        ngDefaultControl
+                        [nzDateRender]="tplRender"
+                        [nzDisabledDate]="disableStartDate"
+                        nzPlaceHolder="FECHA DE LLEGADA"
+                        formControlName="startDate"
+                        nzFormat="MMM d, y"
+                        [nzShowToday]="false"></nz-date-picker>
+      </div>
+      <div nz-col
+           nzSpan="24">
+        <nz-date-picker class="end-date"
+                        ngDefaultControl
+                        [nzDateRender]="tplRender"
+                        [nzDisabledDate]="disableEndDate"
+                        nzPlaceHolder="FECHA DE SALIDA"
+                        formControlName="endDate"
+                        nzFormat="MMM d, y"
+                        [nzShowToday]="false"></nz-date-picker>
+      </div>
+
+      <ng-template #tplRender
+                   let-current>
+        <div class="ant-picker-cell-inner"
+             [class.red-day]="current | redDay: occupedDates">
+          {{ current.getDate() }}
+        </div>
+      </ng-template>
+
+      <div nz-col
+           nzSpan="24">
+        <button nz-button
+                class="btn-form-big mt-14"
+                type="submit"
+                nzType="primary"
+                [nzLoading]="loadingReserve"
+                nzShape="round">
+          Reservar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

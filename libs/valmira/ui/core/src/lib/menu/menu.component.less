@@ -1,12 +1,69 @@
 .logo {
   width: 120px;
   height: 31px;
-  background: rgba(107, 0, 0, 0.2);
   margin: 16px 24px 16px 0;
   float: left;
 }
-ul,
-nz-menu {
-  float: right;
-  background: #eae1d3;
+
+.menu-logo {
+  width: 88px;
+  height: 61px;
+}
+
+.menu-toggle {
+  color: var(--textColor);
+}
+
+.header-menu {
+  background-color: var(--backgroundColor);
+}
+
+.menu {
+  margin: 0 !important;
+  margin-left: 96px !important;
+  @media only screen and (max-width: 768px) {
+    margin-left: 0 !important;
+    margin-top: 20vh !important;
+  }
+  a {
+    font-size: 81px;
+    color: #c67047;
+    @media only screen and (max-width: 768px) {
+      font-size: 24px;
+    }
+  }
+  a:hover {
+    color: #ffffff;
+  }
+}
+
+.icons {
+  color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 45px;
+}
+
+.menu-text {
+  color: white;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.menu-icon {
+  font-size: 16px;
+  color: white;
+  display: none;
+  @media only screen and (max-width: 768px) {
+    display: inherit;
+  }
+}
+
+.hidden {
+  display: none;
+  @media only screen and (max-width: 768px) {
+    display: inherit;
+  }
 }

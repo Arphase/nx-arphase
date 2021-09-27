@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { ApsListComponent } from '@arphase/ui/core';
-import { isVehicleElegible, UserRoles, Vehicle, VehicleStatus } from '@innovatech/common/domain';
+import { isVehicleElegible, UserRoles, Vehicle, VehicleStatus, vehicleStatusLabels } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 
-import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './vehicle-list.constants';
+import { colorMaps, columns, iconMaps, statusOptions } from './vehicle-list.constants';
 
 @Component({
   selector: 'ivt-vehicle-list',
@@ -19,7 +19,7 @@ export class VehicleListComponent extends ApsListComponent<Vehicle> {
   vehicleStatus = VehicleStatus;
   colorMaps = colorMaps;
   iconMaps = iconMaps;
-  statusLabels = statusLabels;
+  statusLabels = vehicleStatusLabels;
   statusOptions = statusOptions;
   @Output() createGuarantee = new EventEmitter<Vehicle>();
   @Output() createRevision = new EventEmitter<Vehicle>();

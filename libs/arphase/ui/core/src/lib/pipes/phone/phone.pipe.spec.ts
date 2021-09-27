@@ -4,9 +4,7 @@ import { ApsPhonePipe } from './phone.pipe';
 
 describe('ApsPhonePipe', () => {
   let spectator: SpectatorPipe<ApsPhonePipe>;
-  const createPipe = createPipeFactory({
-    pipe: ApsPhonePipe,
-  });
+  const createPipe = createPipeFactory({ pipe: ApsPhonePipe });
 
   beforeEach(() => (spectator = createPipe()));
 

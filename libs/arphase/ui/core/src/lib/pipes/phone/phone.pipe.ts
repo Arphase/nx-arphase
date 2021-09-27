@@ -6,6 +6,6 @@ import { formatPhone } from '@arphase/common';
 })
 export class ApsPhonePipe implements PipeTransform {
   transform(value: string): string {
-    return formatPhone(value);
+    return value ? formatPhone(value) : 'N/A';
   }
 }

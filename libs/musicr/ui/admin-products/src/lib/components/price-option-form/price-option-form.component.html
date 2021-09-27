@@ -1,0 +1,70 @@
+<div nz-row
+     nzGutter="12"
+     [formGroup]="form">
+  <div nz-col
+       nzXs="10"
+       nzMd="11">
+    <nz-form-item>
+      <nz-form-control apsAutoError>
+        <input nz-input
+               formControlName="name" />
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div nz-col
+       nzXs="10"
+       nzMd="11">
+    <nz-form-item>
+      <nz-form-control apsAutoError>
+        <input nz-input
+               prefix="$"
+               mask="separator.2"
+               thousandSeparator=","
+               formControlName="price" />
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div nz-col
+       nzXs="4"
+       nzMd="2">
+    <button nz-button
+            nzType="text"
+            nz-tooltip
+            nzTooltipTitle="Eliminar opción de precio"
+            type="button"
+            (click)="deleteItem.emit()">
+      <i nz-icon
+         nzType="delete"></i>
+    </button>
+  </div>
+</div>
+
+<nz-collapse class="mb-3">
+  <nz-collapse-panel nzHeader="Galería"
+                     [nzActive]="true">
+    <div class="clearfix">
+      <nz-upload nzListType="picture-card"
+                 nzAccept="image/png"
+                 [(nzFileList)]="fileList"
+                 [nzAction]="photosUrl"
+                 [nzPreview]="handlePreview"
+                 [nzRemove]="onRemovePhoto"
+                 (nzChange)="onFilesChange()">
+        <div>
+          <i nz-icon
+             nzType="plus"></i>
+          <div style="margin-top: 8px">Subir</div>
+        </div>
+      </nz-upload>
+      <nz-modal [nzVisible]="previewVisible"
+                [nzContent]="modalContent"
+                [nzFooter]="null"
+                (nzOnCancel)="previewVisible = false">
+        <ng-template #modalContent>
+          <img [src]="previewImage"
+               [ngStyle]="{ width: '100%' }" />
+        </ng-template>
+      </nz-modal>
+    </div>
+  </nz-collapse-panel>
+</nz-collapse>

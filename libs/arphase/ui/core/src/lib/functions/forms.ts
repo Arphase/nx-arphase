@@ -46,11 +46,11 @@ export function collectFormErrors(form: FormGroup | FormArray): ValidationErrors
   return _collectFormErrors(form);
 }
 
-export function updateFormControlsValueAndValidity(formGroup: FormGroup) {
+export function updateFormControlsValueAndValidity(formGroup: FormGroup | FormArray) {
   traverseFormGroup(formGroup, control => control.updateValueAndValidity());
 }
 
-function traverseFormGroup(formGroup: FormGroup, fn: (control: AbstractControl) => void) {
+function traverseFormGroup(formGroup: FormGroup | FormArray, fn: (control: AbstractControl) => void) {
   if (!formGroup.controls) {
     fn(formGroup);
     return;

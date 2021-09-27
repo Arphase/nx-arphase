@@ -1,7 +1,9 @@
 <ivt-revision-list [list]="list$ | async"
                    [loading]="loading$ | async"
+                   [loadingExcel]="loadingExcel$ | async"
                    [info]="info$ | async"
                    [canCreateRevision]="canCreateRevision$ | async"
                    [queryParams]="queryParams"
                    (filterItems)="filterItems($event)"
+                   (exportExcel)="exportExcel()"
                    (delete)="deleteItem($event)"></ivt-revision-list>

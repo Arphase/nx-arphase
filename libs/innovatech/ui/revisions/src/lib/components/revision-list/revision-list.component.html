@@ -1,9 +1,21 @@
 <div nz-row
      nzGutter="12">
   <div nz-col
-       nzXs="18"
+       nzXs="16"
        nzMd="12">
     <aps-searchbar (valueChange)="updateSearchBarFilter($event)"></aps-searchbar>
+  </div>
+  <div nz-col
+       nzXs="2">
+    <button nz-button
+            nzType="text"
+            nz-tooltip
+            nzTooltipTitle="Exportar a Excel"
+            [nzLoading]="loadingExcel"
+            (click)="exportExcel.emit()">
+      <i nz-icon
+         nzType="export"></i>
+    </button>
   </div>
   <ng-container *ngIf="canCreateRevision">
     <div nz-col
@@ -132,7 +144,7 @@
           nzLg="1">
         <nz-tag nz-tooltip
                 nzTooltipPlacement="top"
-                [nzTooltipTitle]="statusLabels[revisionStatus[item.status]] | empty"
+                [nzTooltipTitle]="statusLabels[item.status] | empty"
                 [nzColor]="colorMaps[revisionStatus[item.status]]">
           <i nz-icon
              [nzType]="iconMaps[revisionStatus[item.status]]"></i>

@@ -1,5 +1,5 @@
-import { Component, Optional, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, Input, Optional, ViewChild } from '@angular/core';
+import { FormArray, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { EntityOp, ofEntityOp } from '@ngrx/data';
@@ -19,6 +19,8 @@ import { ApsFormComponent } from './form.component';
 })
 export class ApsFormContainerComponent<T = any> implements ComponentCanDeactivate {
   @ViewChild('form', { static: false }) formComponent: ApsFormComponent<T>;
+  @Input() item: T;
+  @Input() form: FormGroup | FormArray;
   loading$ = this.entityCollectionService.loadingModify$ || of();
   currentItem$ = this.entityCollectionService.currentItem$ || of();
   showSuccess$ = (this.entityCollectionService.entityActions$ || of()).pipe(
@@ -28,7 +30,6 @@ export class ApsFormContainerComponent<T = any> implements ComponentCanDeactivat
   successUrl: string;
   createSuccessMessage: string;
   updateSuccessMessage: string;
-  form: FormGroup;
 
   constructor(
     @Optional() protected entityCollectionService: ApsCollectionService<T>,

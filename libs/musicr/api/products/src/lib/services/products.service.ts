@@ -23,11 +23,12 @@ export class ProductsService {
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.subcategory', 'subcategory')
       .leftJoinAndSelect('subcategory.category', 'category')
+      .leftJoinAndSelect('product.photos', 'photos')
       .orderBy('product.createdAt', SortDirection.descend);
 
     filterCollectionQuery('product', query, filterDto);
 
-    const products = await query.leftJoinAndSelect('product.photos', 'photos').getMany();
+    const products = await query.getMany();
     const total = await query.getCount();
     return createCollectionResponse<Product>(products, pageSize, pageIndex, total);
   }

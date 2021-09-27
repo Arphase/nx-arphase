@@ -8,6 +8,7 @@ export * from './lib/order.model';
 export * from './lib/photo.model';
 export * from './lib/price-option.model';
 export * from './lib/product.model';
+export * from './lib/reset-password.model';
 export * from './lib/social-event.model';
 export * from './lib/subcategory.model';
 export * from './lib/user.model';

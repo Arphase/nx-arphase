@@ -1,7 +1,7 @@
 import { Address } from './address.model';
 
 export interface SocialEvent {
-  id: number;
+  id?: number;
   name: string;
   eventType: string;
   startDate: Date;

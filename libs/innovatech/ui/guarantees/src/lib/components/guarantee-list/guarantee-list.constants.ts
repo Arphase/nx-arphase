@@ -1,5 +1,5 @@
 import { ApsColumns } from '@arphase/ui/core';
-import { GuaranteeStatus } from '@innovatech/common/domain';
+import { GuaranteeStatus, guaranteeStatusLabels } from '@innovatech/common/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export const columns: ApsColumns = [
@@ -53,19 +53,19 @@ export const columns: ApsColumns = [
 
 export const statusOptions: NzSelectOptionInterface[] = [
   {
-    label: 'Pagada',
+    label: guaranteeStatusLabels[GuaranteeStatus[GuaranteeStatus.paid]],
     value: GuaranteeStatus[GuaranteeStatus.paid],
   },
   {
-    label: 'Pendiente',
+    label: guaranteeStatusLabels[GuaranteeStatus[GuaranteeStatus.outstanding]],
     value: GuaranteeStatus[GuaranteeStatus.outstanding],
   },
   {
-    label: 'Cancelada',
+    label: guaranteeStatusLabels[GuaranteeStatus[GuaranteeStatus.cancelled]],
     value: GuaranteeStatus[GuaranteeStatus.cancelled],
   },
   {
-    label: 'Caducada',
+    label: guaranteeStatusLabels[GuaranteeStatus[GuaranteeStatus.expired]],
     value: GuaranteeStatus[GuaranteeStatus.expired],
   },
 ];

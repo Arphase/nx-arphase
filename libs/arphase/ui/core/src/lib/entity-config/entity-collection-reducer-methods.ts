@@ -95,7 +95,7 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
 
   protected saveUpdateOneSuccess(collection: ApsEntityCollection<T>, action: ApsEntityAction): ApsEntityCollection<T> {
     const entityCollection = super.saveUpdateOneSuccess(collection, action) as ApsEntityCollection<T>;
-    return { ...entityCollection, loadingModify: false };
+    return { ...entityCollection, currentItem: action.payload.data.changes, loadingModify: false };
   }
 
   protected saveUpdateOneError(collection: ApsEntityCollection<T>, action: ApsEntityAction): ApsEntityCollection<T> {
@@ -127,6 +127,13 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
     } else {
       return super.removeOne(collection, action) as ApsEntityCollection<T>;
     }
+  }
+
+  protected updateOne(collection: ApsEntityCollection<T>, action: ApsEntityAction): ApsEntityCollection<T> {
+    return {
+      ...(super.updateOne(collection, action) as ApsEntityCollection<T>),
+      currentItem: action.payload.data.changes,
+    };
   }
 
   protected removeAll(collection: ApsEntityCollection<T>, action: ApsEntityAction): ApsEntityCollection<T> {

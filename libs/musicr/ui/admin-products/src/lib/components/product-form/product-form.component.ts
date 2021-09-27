@@ -1,9 +1,21 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnChanges, Output, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Inject,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ApsFormComponent, ApsValidators, filterNil, setFormArrayValue } from '@arphase/ui/core';
+import { ApsFormComponent, ApsValidators, filterNil, getBase64, setFormArrayValue } from '@arphase/ui/core';
 import { Product } from '@musicr/domain';
+import { MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { distinctUntilChanged } from 'rxjs';
+
+import { mapPhotoFileArray } from '../../functions/map-file-photo-array';
 
 export function createProductForm(): FormGroup {
   return new FormGroup({
@@ -15,6 +27,8 @@ export function createProductForm(): FormGroup {
     categoryId: new FormControl(null, ApsValidators.required),
     subcategoryId: new FormControl(null, ApsValidators.required),
     productComponents: new FormArray([]),
+    additionalOptions: new FormArray([]),
+    priceOptions: new FormArray([]),
   });
 }
 
@@ -26,16 +40,53 @@ export function createProductForm(): FormGroup {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductFormComponent extends ApsFormComponent<Product> implements OnChanges {
+  fileList: NzUploadFile[] = [];
+  previewImage: string | undefined = '';
+  previewVisible = false;
+  photosUrl: string;
   form = createProductForm();
   @Output() categoryChanges = new EventEmitter<number>();
+  @Output() removePhoto = new EventEmitter<number>();
+
+  handlePreview = async (file: NzUploadFile) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+    this.previewImage = file.url || file.preview;
+    this.previewVisible = true;
+  };
+
+  onRemovePhoto = async (file: NzUploadFile) => {
+    this.removePhoto.emit(Number(file.uid) || file.response.id);
+    return true;
+  };
 
   get productComponentsFormArray(): FormArray {
     return this.form?.get('productComponents') as FormArray;
   }
 
+  get additionalOptionsFormArray(): FormArray {
+    return this.form?.get('additionalOptions') as FormArray;
+  }
+
+  get priceOptionsFormArray(): FormArray {
+    return this.form?.get('priceOptions') as FormArray;
+  }
+
+  constructor(@Inject(MUSIC_REVOLUTION_CONFIGURATION) private config: MusicRevolutionConfiguration) {
+    super();
+    this.photosUrl = `${this.config.apiUrl}/photos`;
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.item && this.item) {
-      this.form.patchValue(this.item);
+      this.form.patchValue({ ...this.item, categoryId: this.item.subcategory.categoryId });
+      this.fileList = this.item.photos.map(photo => ({
+        uid: String(photo.id),
+        name: photo.key,
+        url: photo.url,
+        status: 'done',
+      }));
       setFormArrayValue(this.productComponentsFormArray, this.item.productComponents);
     }
 
@@ -56,5 +107,12 @@ export class ProductFormComponent extends ApsFormComponent<Product> implements O
 
   removeComponent(index: number): void {
     this.productComponentsFormArray.removeAt(index);
+  }
+
+  transformFromForm(values: Product): Product {
+    return {
+      ...values,
+      photos: mapPhotoFileArray(this.fileList),
+    };
   }
 }

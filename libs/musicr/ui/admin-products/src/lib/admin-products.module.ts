@@ -1,7 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApsAutoErrorModule, ApsEmptyModule, ApsFeatureLayoutModule, ApsSearchbarModule } from '@arphase/ui/core';
+import {
+  ApsAutoErrorModule,
+  ApsDataService,
+  ApsEmptyModule,
+  ApsFeatureLayoutModule,
+  ApsSearchbarModule,
+} from '@arphase/ui/core';
 import { CategoriesDataModule } from '@musicr/ui/categories/data';
 import { CategorySelectModule } from '@musicr/ui/categories/ui';
 import { SubcategoriesDataModule } from '@musicr/ui/subcategories/data';
@@ -21,51 +27,80 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { AdminProductsroutingModule } from './admin-products-routing.module';
+import { AdditionalOptionsFormComponent } from './components/additional-options-form/additional-options-form.component';
+import { PriceOptionsFormComponent } from './components/price-options-form/price-options-form.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { AdditionalOptionsFormContainerComponent } from './containers/additional-options-form-container/additional-options-form-container.component';
+import { PriceOptionsFormContainerComponent } from './containers/price-options-form-container/price-options-form-container.component';
 import { ProductFormContainerComponent } from './containers/product-form-container/product-form-container.component';
 import { ProductListContainerComponent } from './containers/product-list-container/product-list-container.component';
+import { AdditionalOptionDataService } from './services/additional-option-data.service';
+import { PhotoDataService } from './services/photo-data.service';
+import { PriceOptionDataService } from './services/price-option-data.service';
 import { ProductDataService } from './services/product-data.service';
+import { PriceOptionFormComponent } from './components/price-option-form/price-option-form.component';
 
 @NgModule({
   imports: [
-    CommonModule,
     AdminProductsroutingModule,
-    CategoriesDataModule,
-    SubcategoriesDataModule,
-    CategorySelectModule,
-    SubcategorySelectModule,
-    ReactiveFormsModule,
-    ApsFeatureLayoutModule,
     ApsAutoErrorModule,
-    ApsSearchbarModule,
     ApsEmptyModule,
-    NzSpaceModule,
-    NzFormModule,
-    NzPageHeaderModule,
-    NzGridModule,
-    NzInputModule,
+    ApsFeatureLayoutModule,
+    ApsSearchbarModule,
+    CategoriesDataModule,
+    CategorySelectModule,
+    CommonModule,
+    NgxMaskModule,
     NzButtonModule,
-    NzIconModule,
+    NzCollapseModule,
     NzDividerModule,
+    NzFormModule,
+    NzGridModule,
+    NzIconModule,
+    NzInputModule,
+    NzMessageModule,
+    NzModalModule,
+    NzPageHeaderModule,
+    NzSelectModule,
+    NzSpaceModule,
     NzTableModule,
     NzToolTipModule,
-    NzModalModule,
-    NzMessageModule,
-    NzSelectModule,
-    NzCollapseModule,
+    NzUploadModule,
+    ReactiveFormsModule,
+    SubcategoriesDataModule,
+    SubcategorySelectModule,
   ],
   declarations: [
     ProductListContainerComponent,
     ProductFormContainerComponent,
     ProductFormComponent,
     ProductListComponent,
+    AdditionalOptionsFormContainerComponent,
+    AdditionalOptionsFormComponent,
+    PriceOptionsFormComponent,
+    PriceOptionsFormContainerComponent,
+    PriceOptionFormComponent,
   ],
 })
 export class AdminProductsModule {
-  constructor(entityDataService: EntityDataService, productDataService: ProductDataService) {
-    entityDataService.registerService('Product', productDataService);
+  constructor(
+    entityDataService: EntityDataService,
+    additionalOptionDataService: AdditionalOptionDataService,
+    photoDataService: PhotoDataService,
+    priceOptionDataService: PriceOptionDataService,
+    productDataService: ProductDataService
+  ) {
+    const services: Record<string, ApsDataService<unknown>> = {
+      AdditionalOption: additionalOptionDataService,
+      Photo: photoDataService,
+      PriceOption: priceOptionDataService,
+      Product: productDataService,
+    };
+    entityDataService.registerServices(services);
   }
 }

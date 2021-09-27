@@ -1,5 +1,4 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { LandingComponent } from './landing.component';
 
 describe('LandingComponent', () => {
