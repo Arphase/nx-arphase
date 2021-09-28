@@ -5,6 +5,9 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
+    textColor: {
+      'primary': '#272727'
+    },
     screens: {
       '2xl': { 'max': '2000px' },
       'xl': { 'max': '1279px' },
