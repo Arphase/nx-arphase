@@ -8,15 +8,15 @@ import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export const statusOptions: NzSelectOptionInterface[] = [
   {
-    label: revisionStatusLabels[RevisionStatus.elegible],
+    label: revisionStatusLabels[RevisionStatus[RevisionStatus.elegible]],
     value: RevisionStatus[RevisionStatus.elegible],
   },
   {
-    label: revisionStatusLabels[RevisionStatus.needsRepairs],
+    label: revisionStatusLabels[RevisionStatus[RevisionStatus.needsRepairs]],
     value: RevisionStatus[RevisionStatus.needsRepairs],
   },
   {
-    label: revisionStatusLabels[RevisionStatus.notElegible],
+    label: revisionStatusLabels[RevisionStatus[RevisionStatus.notElegible]],
     value: RevisionStatus[RevisionStatus.notElegible],
   },
 ];
