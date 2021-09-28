@@ -7,21 +7,35 @@
   src: url('assets/fonts/FoundersGrotesk-Light.otf') format('opentype');
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Grotesk';
   src: url('assets/fonts/FoundersGrotesk-LightItalic.otf') format('opentype');
   font-style: italic;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Ogg';
   src: url('assets/fonts/Ogg-Roman.otf') format('opentype');
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Ogg';
+  src: url('assets/fonts/Ogg-Italic.otf') format('opentype');
+  font-style: italic;
+  font-display: swap;
+}
+
 html body {
   font-family: Grotesk;
-  background-color: #dfdcd5;
+  background-color: #ebe8e2;
+  color: #272727;
+}
+
+.flower-shadow {
+  filter: drop-shadow(15px 30px 10px rgb(0 0 0 / 0.4));
 }
 
 .flower-2 {
@@ -83,4 +97,20 @@ h1 {
 .swing {
   transform-origin: top center;
   animation: swing 8s linear infinite;
+}
+
+.font-ogg {
+  font-family: 'Ogg';
+}
+
+.font-grotesk {
+  font-family: 'Grotesk';
+}
+
+.border-top {
+  border-top: 1px solid #272727;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #272727;
 }
