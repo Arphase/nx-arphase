@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   ApsAdditionalEntityCollectionReducerMethodsFactory,
   ApsAdditionalPropertyPersistenceResultHandler,
+  LoadingInterceptorService,
 } from '@arphase/ui/core';
 import { EntityCollectionReducerMethodsFactory, EntityDataModule, PersistenceResultHandler } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
@@ -63,6 +64,7 @@ const VALMIRA_CONFIGURATION_VALUE: ValmiraConfiguration = {
     { provide: VALMIRA_CONFIGURATION, useValue: VALMIRA_CONFIGURATION_VALUE },
     { provide: NZ_I18N, useValue: es_ES },
     { provide: HTTP_INTERCEPTORS, useClass: HttpProxyService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi: true },
     {
       provide: EntityCollectionReducerMethodsFactory,
       useClass: ApsAdditionalEntityCollectionReducerMethodsFactory,

@@ -3251,6 +3251,31 @@
         }
       }
     },
+    "valmira-ui-reservation-detail": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/reservation-detail",
+      "sourceRoot": "libs/valmira/ui/reservation-detail/src",
+      "prefix": "vma",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/reservation-detail"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/reservation-detail/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/reservation-detail/src/**/*.ts",
+              "libs/valmira/ui/reservation-detail/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "valmira-ui-reservation-wizard": {
       "projectType": "library",
       "root": "libs/valmira/ui/reservation-wizard",
@@ -3322,6 +3347,31 @@
           "options": {
             "jestConfig": "libs/valmira/ui/reservations/feature/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-reservations-ui": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/reservations/ui",
+      "sourceRoot": "libs/valmira/ui/reservations/ui/src",
+      "prefix": "vma",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/reservations/ui"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/reservations/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/reservations/ui/src/**/*.ts",
+              "libs/valmira/ui/reservations/ui/src/**/*.html"
+            ]
           }
         }
       }

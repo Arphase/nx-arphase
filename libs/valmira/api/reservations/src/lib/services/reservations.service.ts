@@ -20,6 +20,7 @@ import { Repository } from 'typeorm';
 
 import { CreatePaymentIntentDto } from '../dto/create-payment-intent.dto';
 import { CreateReservationDto } from '../dto/create-reservation.dto';
+import { GetReservationDetailDto } from '../dto/get-reservation-detail-dto';
 import { ReservationPreviewDto } from '../dto/reservation-preview.dto';
 import { UpdateReservationDto } from '../dto/update-reservation-dto';
 import { getReservationDaysInfo } from '../functions/reservation-days-info';
@@ -55,6 +56,21 @@ export class ReservationsService {
 
   async getReservation(id: number): Promise<ReservationEntity> {
     const reservation = await this.reservationRepository.findOne({ id });
+    if (!reservation) {
+      throw new NotFoundException(`Reservation with id ${id} not found`);
+    }
+    const { pricePerNight, nights, days } = getReservationDaysInfo(reservation);
+    return {
+      ...reservation,
+      pricePerNight,
+      nights,
+      days,
+    } as ReservationEntity;
+  }
+
+  async getReservationDetail(filterDto: GetReservationDetailDto): Promise<ReservationEntity> {
+    const { id, email } = filterDto;
+    const reservation = await this.reservationRepository.findOne({ id, customer: { email } });
     if (!reservation) {
       throw new NotFoundException(`Reservation with id ${id} not found`);
     }
@@ -135,7 +151,7 @@ export class ReservationsService {
     if (updateReservationDto?.paymentId) {
       const paymentDetails = await this.stripeClient.paymentIntents.retrieve(updateReservationDto.paymentId);
       if (reservation.paymentId || reservation.status === ReservationStatus.paid) {
-        throw new ConflictException(`Esta reservación ya extá pagada`);
+        throw new ConflictException(`Esta reservación ya está pagada`);
       }
       if (!paymentDetails) {
         throw new ConflictException(`Este pago no existe`);
@@ -224,7 +240,7 @@ export class ReservationsService {
       },
     });
 
-    const reservationUrl = `${process.env.MAIL_HOST_URL}/reservation-detail/${reservation.id}`;
+    const reservationUrl = `${process.env.MAIL_HOST_URL}/reservation-detail/${reservation?.id}?email=${reservation?.customer?.email}`;
     const mailOptions: Mail.Options = {
       from: `Valmira <${process.env.MAIL_ACCOUNT_SENDER}>`,
       to: reservation?.customer?.email,

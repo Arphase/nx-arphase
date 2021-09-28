@@ -114,5 +114,7 @@ module.exports = {
     '<rootDir>/libs/valmira/ui/additional-products/data',
     '<rootDir>/libs/valmira/api/customers',
     '<rootDir>/libs/valmira/ui/promocodes/data',
+    '<rootDir>/libs/valmira/ui/reservations/ui',
+    '<rootDir>/libs/valmira/ui/reservation-detail',
   ],
 };

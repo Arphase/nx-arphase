@@ -14,6 +14,7 @@ import { selectUrl } from '../router/router.selectors';
 export class MenuComponent {
   menuItems = [
     { name: 'Reserva', link: 'search' },
+    { name: 'Consulta tu Reservación', link: 'reservation-detail' },
     { name: 'Manifesto', link: 'manifest' },
     { name: 'Preguntas Frecuentes', link: 'frequent-questions' },
     { name: 'Términos y Condiciones', link: 'terms-and-conditions' },
