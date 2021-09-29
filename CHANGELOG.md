@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.1](https://github.com/Arphase/nx-arphase/compare/v3.4.0...v3.4.1) (2021-09-27)
+
+
+### Features
+
+* **innovatech/revisions:** create revision Excel report ([f928f1b](https://github.com/Arphase/nx-arphase/commit/f928f1b97293db57ddc2f4e99fc1c87b386966fe))
+* **musicr/additional-options:** create, update, read, and delete ([195058d](https://github.com/Arphase/nx-arphase/commit/195058d6560dd9e3f251eb92a5ad256eac812c36))
+* **musicr/auth:** [#188](https://github.com/Arphase/nx-arphase/issues/188) set new password flow ([0ace13f](https://github.com/Arphase/nx-arphase/commit/0ace13f3269bef36c748154e5aae6b7b4ca44b49))
+* **musicr/orders:** [#184](https://github.com/Arphase/nx-arphase/issues/184) list ([93f04b2](https://github.com/Arphase/nx-arphase/commit/93f04b27929dc0584a19a29b1ab93ea6809ae436))
+* **musicr/orders:** [#184](https://github.com/Arphase/nx-arphase/issues/184) order detail page layout ([3a8b9ad](https://github.com/Arphase/nx-arphase/commit/3a8b9adb3658d5c53231affab38a877081eb6a67))
+* **musicr/orders:** save prices and calculate total of order depending on products and amounts ([f05cb8b](https://github.com/Arphase/nx-arphase/commit/f05cb8be1b1045096e190c04dfb0f6b9f7ec02f3))
+* **musicr/products:** create, update, read, delete price options ([31c0a6c](https://github.com/Arphase/nx-arphase/commit/31c0a6cb6b9fd2b394083c49cbb6d145462fce0f))
+* **musicr/products:** photo gallery ([ea31696](https://github.com/Arphase/nx-arphase/commit/ea31696b3443225f93df526240d778693248c3fb))
+* **musicr/ui:** Add cart tab ([7ea34d4](https://github.com/Arphase/nx-arphase/commit/7ea34d464e15f8a7a2957141277e69dcfdecd2ff))
+* **valmira/manifest:** [#120](https://github.com/Arphase/nx-arphase/issues/120) Manifest Page ([c9f31b8](https://github.com/Arphase/nx-arphase/commit/c9f31b8e7a9183f92119eb2a41b3df2752e66870))
+* **valmira/place-detail:** [#191](https://github.com/Arphase/nx-arphase/issues/191) module setup with place data and occupied dates ([2674be2](https://github.com/Arphase/nx-arphase/commit/2674be25ef4504e70825b63f557e4a0b82f116cf))
+* **valmira/place-search:** [#123](https://github.com/Arphase/nx-arphase/issues/123) module setup and api connection ([3fd04f1](https://github.com/Arphase/nx-arphase/commit/3fd04f1b1a13a4b8db6340e5d83f998a9e96c4e3))
+* **valmira/reservation-wizard:** [#128](https://github.com/Arphase/nx-arphase/issues/128) additional products step ([f966011](https://github.com/Arphase/nx-arphase/commit/f966011d79fc3844d4bff1c3f1525593f6c6f079))
+* **valmira/reservation-wizard:** [#129](https://github.com/Arphase/nx-arphase/issues/129) patch customer id if email exists in database ([34418b6](https://github.com/Arphase/nx-arphase/commit/34418b6009bd157082f1cb8dd01e24bdf8926311))
+* **valmira/reservation-wizard:** [#131](https://github.com/Arphase/nx-arphase/issues/131) add promocode to purchase ([3731a7b](https://github.com/Arphase/nx-arphase/commit/3731a7b15342d9f84c123b7ed55ddce6f9c0076d))
+* **valmira/reservation-wizard:** [#132](https://github.com/Arphase/nx-arphase/issues/132) accept credit card payment ([d59a3d1](https://github.com/Arphase/nx-arphase/commit/d59a3d10ddce9ef4f58c3052c5384c48255c7706))
+* **valmira/reservation-wizard:** [#133](https://github.com/Arphase/nx-arphase/issues/133) send reservation email and redirect to confirmation component ([3f16b5a](https://github.com/Arphase/nx-arphase/commit/3f16b5a77096b21dbd95b489906af35af948e5be))
+* **valmira/reservation-wizard:** module setup ([dd7e468](https://github.com/Arphase/nx-arphase/commit/dd7e46818c8a73c8e7f2a62642a6e2f5697d33d1))
+* **valmira/ui:** Add menu ([bfe50aa](https://github.com/Arphase/nx-arphase/commit/bfe50aaaa5c47da434f5e4463fa97a40d1a0a9c7))
+
+
+### Bug Fixes
+
+* **musicr/ui:** Add spectator to tests. Fix cart service subject ([27b607e](https://github.com/Arphase/nx-arphase/commit/27b607eee974bfe42f32800fe9321c8f6a35c298))
+* **valmira/frequent-questions:** [#121](https://github.com/Arphase/nx-arphase/issues/121) fix unit test ([fe8961e](https://github.com/Arphase/nx-arphase/commit/fe8961e765a713a5f3b7e62f5a5ad582f198e453))
+* **valmira/ui:** Fix comments ([2884fd1](https://github.com/Arphase/nx-arphase/commit/2884fd1a08d58797ad9ff27e1592183891967057))
+
 ## [3.4.0](https://github.com/Arphase/nx-arphase/compare/v3.3.6...v3.4.0) (2021-09-06)
 
 

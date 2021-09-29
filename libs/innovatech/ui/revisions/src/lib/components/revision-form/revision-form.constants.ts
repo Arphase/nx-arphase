@@ -1,23 +1,22 @@
-import { RevisionReportItems, RevisionReportStatus, RevisionStatus } from '@innovatech/common/domain';
+import {
+  RevisionReportItems,
+  RevisionReportStatus,
+  RevisionStatus,
+  revisionStatusLabels,
+} from '@innovatech/common/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
-
-export const revisionStatusLabels: Record<RevisionStatus, string> = {
-  [RevisionStatus.elegible]: 'En buenas condiciones',
-  [RevisionStatus.needsRepairs]: 'Necesita reparaciones',
-  [RevisionStatus.notElegible]: 'No garantizable',
-};
 
 export const statusOptions: NzSelectOptionInterface[] = [
   {
-    label: revisionStatusLabels[RevisionStatus.elegible],
+    label: revisionStatusLabels[RevisionStatus[RevisionStatus.elegible]],
     value: RevisionStatus[RevisionStatus.elegible],
   },
   {
-    label: revisionStatusLabels[RevisionStatus.needsRepairs],
+    label: revisionStatusLabels[RevisionStatus[RevisionStatus.needsRepairs]],
     value: RevisionStatus[RevisionStatus.needsRepairs],
   },
   {
-    label: revisionStatusLabels[RevisionStatus.notElegible],
+    label: revisionStatusLabels[RevisionStatus[RevisionStatus.notElegible]],
     value: RevisionStatus[RevisionStatus.notElegible],
   },
 ];

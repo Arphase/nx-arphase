@@ -51,7 +51,7 @@ export class ReservationEntity extends BaseEntity implements Reservation {
   })
   status: ReservationStatus | string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, unique: true })
   paymentId?: string;
 
   @Column()
@@ -59,6 +59,9 @@ export class ReservationEntity extends BaseEntity implements Reservation {
 
   @Column()
   placeId: number;
+
+  @Column({ nullable: true })
+  additionalComments: string;
 
   @ManyToOne(() => PlaceEntity, place => place.reservations, { eager: true })
   @JoinColumn({ name: 'placeId' })
@@ -71,6 +74,9 @@ export class ReservationEntity extends BaseEntity implements Reservation {
   @JoinColumn({ name: 'promocodeId' })
   promocode?: Promocode;
 
+  @Column({ nullable: true })
+  customerId?: number;
+
   @ManyToOne(() => CustomerEntity, customer => customer.reservations, { cascade: true, eager: true })
   @JoinColumn({ name: 'customerId' })
   customer: Customer;
@@ -81,4 +87,8 @@ export class ReservationEntity extends BaseEntity implements Reservation {
     onDelete: 'CASCADE',
   })
   additionalProducts?: ReservationAdditionalProduct[];
+
+  days: number;
+  nights: number;
+  pricePerNight: number;
 }

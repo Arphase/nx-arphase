@@ -54,3 +54,9 @@ export enum RevisionReportItems {
 }
 
 export type RevisionReport = Record<RevisionReportItems, RevisionReportStatus>;
+
+export const revisionStatusLabels: Record<string, string> = {
+  [RevisionStatus[RevisionStatus.elegible]]: 'En buenas condiciones',
+  [RevisionStatus[RevisionStatus.needsRepairs]]: 'Necesita reparaciones',
+  [RevisionStatus[RevisionStatus.notElegible]]: 'No garantizable',
+};

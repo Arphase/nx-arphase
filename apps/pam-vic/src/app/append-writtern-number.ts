@@ -1,14 +1,19 @@
 import dayjs from 'dayjs';
-import * as writtenNumber from 'written-number';
-
-writtenNumber.defaults.lang = 'es';
 
 export function run(): void {
+  calculateTime();
+  setInterval(() => calculateTime(), 60000);
+}
+
+function calculateTime(): void {
   const today = dayjs();
+  const nextDay = dayjs().endOf('day');
+  const nextHour = dayjs().endOf('hour');
   const weddingDay = dayjs(new Date(2021, 9, 23));
-  const remainingDays = weddingDay.diff(today, 'day');
-  const remainingDaysString = writtenNumber(remainingDays);
-  document.querySelector('#countdown').innerHTML = remainingDaysString;
+  const days = weddingDay.diff(today, 'day');
+  const hours = nextDay.diff(today, 'hour');
+  const minutes = nextHour.diff(today, 'minute');
+  document.querySelector('#countdown').innerHTML = `${days} días, ${hours} horas, ${minutes} minutos.`;
 }
 
 run();

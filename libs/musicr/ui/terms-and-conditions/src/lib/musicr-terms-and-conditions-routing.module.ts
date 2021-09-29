@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 
+import { TermsAndConditionsComponent } from './terms-and-conditions.component';
 
 const routes: Routes = [
   {

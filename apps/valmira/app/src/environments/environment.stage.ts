@@ -6,4 +6,6 @@ export const environment: Environment = {
   apiUrl: 'https://apistage.valmira.com',
   version: packageJson.version,
   environmentName: 'stage',
+  stripeKey:
+    'pk_test_51JV2c7ESPeV0d6H2lO0kKw1xmjjF2Weew5BJStB4VzFQvE6qVu0o3YV2EBAOcTBqV8kx1kyJaLCTrFqYXdq5CMtr00Xu0BA9Gr',
 };

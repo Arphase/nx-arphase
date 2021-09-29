@@ -78,7 +78,7 @@ export class PlacesService {
       filterCollectionDates('reservation', query, { ...filterDto, dateType: 'endDate' }, { logicalOperator: 'or' });
     }
     query
-      .andWhere(`(reservation.startDate >= :today)`, { today: startOfDay(new Date()).toISOString() })
+      .andWhere(`(reservation.endDate >= :today)`, { today: startOfDay(new Date()).toISOString() })
       .andWhere('(reservation.placeId = :placeId)', { placeId: id })
       .orderBy('reservation.startDate', SortDirection.ascend);
     const reservations = await query.getMany();

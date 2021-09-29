@@ -36,6 +36,14 @@ export class PromocodesService {
     return promocode;
   }
 
+  async getPromocodeByName(name: string): Promise<PromocodeEntity> {
+    const promocode = await this.promocodeRepository.findOne({ name });
+    if (!promocode) {
+      throw new NotFoundException(`Promocode with name ${name} not found`);
+    }
+    return promocode;
+  }
+
   createPromocode(createPromocodeDto: CreatePromocodeDto): Promise<Promocode> {
     const promocode = this.promocodeRepository.create(createPromocodeDto);
     return this.promocodeRepository.save(promocode);

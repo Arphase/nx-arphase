@@ -1,8 +1,15 @@
 import { createMockRepository } from '@arphase/api/testing';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { AdditionalProductEntity, PlaceEntity, PromocodeEntity, ReservationEntity } from '@valmira/api/domain';
+import {
+  AdditionalProductEntity,
+  PlaceEntity,
+  PromocodeEntity,
+  ReservationAdditionalProductEntity,
+  ReservationEntity,
+} from '@valmira/api/domain';
 import { PlacesService } from '@valmira/api/places';
+import { StripeModule } from 'nestjs-stripe';
 
 import { ReservationsService } from './reservations.service';
 
@@ -11,12 +18,14 @@ describe('ReservationsService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [StripeModule.forRoot({ apiKey: 'test', apiVersion: '2020-08-27' })],
       providers: [
         ReservationsService,
         { provide: getRepositoryToken(ReservationEntity), useValue: createMockRepository() },
         { provide: getRepositoryToken(PlaceEntity), useValue: createMockRepository() },
         { provide: getRepositoryToken(PromocodeEntity), useValue: createMockRepository() },
         { provide: getRepositoryToken(AdditionalProductEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(ReservationAdditionalProductEntity), useValue: createMockRepository() },
         { provide: PlacesService, useValue: {} },
       ],
     }).compile();

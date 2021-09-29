@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'vma-manifest',
@@ -7,29 +7,27 @@ import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ManifestComponent implements OnInit, OnDestroy {
-  readonly defaultColor = '#1d2b15';
-  readonly overrideColor = '#1d2b15';
+  readonly greenColor = '#1d2b15';
+  readonly beigeColor = '#eae1d3';
   themeWrapper = document.querySelector('body');
+
   ngOnInit() {
-    const textColor = this.overrideColor;
-    const backgroundColor = this.overrideColor;
-    const theme = {
-      textColor,
-      backgroundColor,
-    };
+    const textColor = this.beigeColor;
+    const backgroundColor = this.greenColor;
+    const theme = { textColor, backgroundColor };
     Object.keys(theme).forEach(propertyName =>
       this.themeWrapper.style.setProperty(`--${propertyName}`, theme[propertyName])
     );
-    let scrolls = Array.from(document.getElementsByClassName('image-scroll') as HTMLCollectionOf<HTMLElement>);
-    window.addEventListener('scroll', event => {
-      let limit = Math.max(
+    const scrolls = Array.from(document.getElementsByClassName('image-scroll') as HTMLCollectionOf<HTMLElement>);
+    window.addEventListener('scroll', () => {
+      const limit = Math.max(
         document.body.scrollHeight,
         document.body.offsetHeight,
         document.documentElement.clientHeight,
         document.documentElement.scrollHeight,
         document.documentElement.offsetHeight
       );
-      let value = (window.scrollY / limit) * 650;
+      const value = (window.scrollY / limit) * 650;
       if (screen.width > 768) {
         scrolls.forEach(scroll => {
           scroll.style.transform = `matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, ${value}, 0, 1)`;
@@ -38,8 +36,8 @@ export class ManifestComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy() {
-    const textColor = this.defaultColor;
-    const backgroundColor = this.defaultColor;
+    const textColor = this.greenColor;
+    const backgroundColor = this.beigeColor;
     const theme = {
       textColor,
       backgroundColor,
@@ -47,6 +45,6 @@ export class ManifestComponent implements OnInit, OnDestroy {
     Object.keys(theme).forEach(propertyName =>
       this.themeWrapper.style.setProperty(`--${propertyName}`, theme[propertyName])
     );
-    window.removeEventListener('scroll', event => {});
+    window.removeEventListener('scroll', () => null);
   }
 }

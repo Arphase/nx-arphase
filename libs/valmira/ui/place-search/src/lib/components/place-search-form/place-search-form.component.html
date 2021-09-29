@@ -7,7 +7,7 @@
     <nz-form-item>
       <nz-form-control apsAutoError>
         <nz-date-picker ngDefaultControl
-                        [nzPlaceHolder]="'Fecha de llegada' | uppercase"
+                        nzPlaceHolder="FECHA DE LLEGADA"
                         formControlName="startDate"></nz-date-picker>
       </nz-form-control>
     </nz-form-item>
@@ -17,7 +17,7 @@
     <nz-form-item>
       <nz-form-control apsAutoError>
         <nz-date-picker ngDefaultControl
-                        [nzPlaceHolder]="'Fecha de salida' | uppercase"
+                        nzPlaceHolder="FECHA DE SALIDA"
                         formControlName="endDate"></nz-date-picker>
       </nz-form-control>
     </nz-form-item>
@@ -27,7 +27,7 @@
     <nz-form-item>
       <nz-form-control apsAutoError>
         <input nz-input
-               [placeholder]="'Huéspedes' | uppercase"
+               placeholder="HUÉSPEDES"
                formControlName="capacity"
                type="number" />
       </nz-form-control>

@@ -1,9 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { select, Store } from '@ngrx/store';
 import { fromPlaces, PlaceCollectionService } from '@valmira/ui/places/data';
-import { filter, map } from 'rxjs/operators';
+import { ReservationCollectionService } from '@valmira/ui/reservations/data';
+import { filter, map, switchMap, take } from 'rxjs/operators';
+
+import { getReservationPreview } from '../../state/place-detail.actions';
+import { getPlaceDetailReservationPreview } from '../../state/place-detail.selectors';
 
 @UntilDestroy()
 @Component({
@@ -15,11 +19,15 @@ import { filter, map } from 'rxjs/operators';
 export class PlaceDetailContainerComponent implements OnInit {
   item$ = this.placeCollectionService.currentItem$;
   loading$ = this.placeCollectionService.loading$;
+  loadingReserve$ = this.reservationCollectionService.loadingModify$;
   occupedDates$ = this.store.pipe(select(fromPlaces.selectors.getPlacesOccupiedDates));
+  reservationPreview$ = this.store.pipe(select(getPlaceDetailReservationPreview));
 
   constructor(
+    private reservationCollectionService: ReservationCollectionService,
     private placeCollectionService: PlaceCollectionService,
     private route: ActivatedRoute,
+    private router: Router,
     private store: Store
   ) {}
 
@@ -35,5 +43,21 @@ export class PlaceDetailContainerComponent implements OnInit {
         this.placeCollectionService.getByKey(id);
         this.store.dispatch(fromPlaces.actions.getOccupiedDates({ id: Number(id) }));
       });
+  }
+
+  datesChange(payload: { startDate: Date; endDate: Date }): void {
+    this.item$
+      .pipe(take(1))
+      .subscribe(({ id }) => this.store.dispatch(getReservationPreview({ reservation: { ...payload, placeId: id } })));
+  }
+
+  submit(payload: { startDate: Date; endDate: Date }): void {
+    this.item$
+      .pipe(
+        take(1),
+        switchMap(place => this.reservationCollectionService.add({ placeId: place.id, ...payload })),
+        switchMap(() => this.reservationCollectionService.currentItem$)
+      )
+      .subscribe(({ id }) => this.router.navigateByUrl(`reservation/${id}`));
   }
 }

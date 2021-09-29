@@ -1,8 +1,12 @@
 import { Customer, ReservationAdditionalProduct } from '@valmira/domain';
 import { Type } from 'class-transformer';
-import { IsArray, IsDate, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsArray, IsDate, IsEmail, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 
 export class CreateReservationDto {
+  @IsOptional()
+  @IsNumber()
+  id: number;
+
   @IsDate()
   startDate: Date;
 
@@ -16,11 +20,16 @@ export class CreateReservationDto {
   @IsOptional()
   promocodeId: number;
 
-  @IsNotEmpty()
+  @IsString()
+  @IsOptional()
+  additionalComments: string;
+
+  @IsOptional()
   @ValidateNested()
   @Type(() => CreateCustomerDto)
   customer: Customer;
 
+  @IsOptional()
   @IsArray()
   @ValidateNested()
   @Type(() => CreateReservationAdditionalProductDto)
