@@ -1,6 +1,4 @@
-<mrl-cart-tab
-  [cartItems]="cartItems$ | async"
-  (increaseItemAmount)="increaseItemAmount($event)"
-  (decreaseItemAmount)="decreaseItemAmount($event)"
-  (removeItem)="removeItem($event)"
-></mrl-cart-tab>
+<mrl-cart-tab [cartItems]="cartItems$ | async"
+              (increaseItemAmount)="increaseItemAmount($event)"
+              (decreaseItemAmount)="decreaseItemAmount($event)"
+              (removeItem)="removeItem($event)"></mrl-cart-tab>

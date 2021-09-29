@@ -1,26 +1,55 @@
-<div *ngFor="let item of cartItems; let i = index" nz-row class="cart-item" nzGutter="16">
-  <div nz-col [nzXs]="{ span: 8, order: 1 }" [nzMd]="{ span: 4, order: 1 }">
-    <img [src]="item.product?.photos[0].url" [alt]="item.product.name" class="img" />
+<div *ngFor="let item of cartItems; let i = index"
+     nz-row
+     class="cart-item"
+     nzGutter="16">
+  <div nz-col
+       [nzXs]="{ span: 8, order: 1 }"
+       [nzMd]="{ span: 4, order: 1 }">
+    <img [src]="item.product?.photos[0].url"
+         [alt]="item.product.name"
+         class="img" />
   </div>
-  <div nz-col [nzXs]="{ span: 14, order: 2 }" [nzMd]="{ span: 10, order: 2 }">
+  <div nz-col
+       [nzXs]="{ span: 14, order: 2 }"
+       [nzMd]="{ span: 10, order: 2 }">
     <h4>{{ item.product.name }}</h4>
     <p>{{ item.product.description }}</p>
   </div>
-  <div nz-col [nzXs]="{ span: 8, order: 4, offset: 8 }" [nzMd]="{ span: 4, order: 3, offset: 0 }">
-    <button nz-button nzType="text" (click)="decreaseItemAmount.emit(i)">
-      <i nz-icon nzType="minus" nzTheme="outline"></i>
+  <div nz-col
+       [nzXs]="{ span: 8, order: 4, offset: 8 }"
+       [nzMd]="{ span: 4, order: 3, offset: 0 }">
+    <button nz-button
+            nzType="text"
+            (click)="decreaseItemAmount.emit(i)">
+      <i nz-icon
+         nzType="minus"
+         nzTheme="outline"></i>
     </button>
     <span>{{ item.amount }}</span>
-    <button nz-button nzType="text" (click)="increaseItemAmount.emit(i)">
-      <i nz-icon nzType="plus" nzTheme="outline"></i>
+    <button nz-button
+            nzType="text"
+            (click)="increaseItemAmount.emit(i)">
+      <i nz-icon
+         nzType="plus"
+         nzTheme="outline"></i>
     </button>
   </div>
-  <div nz-col class="total" [nzXs]="{ span: 8, order: 5 }" [nzMd]="{ span: 4, order: 4 }">
+  <div nz-col
+       class="total"
+       [nzXs]="{ span: 8, order: 5 }"
+       [nzMd]="{ span: 4, order: 4 }">
     <span> {{ item.product.price * item.amount | currency }} </span>
   </div>
-  <div nz-col nzSpan="2" [nzXs]="{ order: 3 }" [nzMd]="{ order: 5 }">
-    <button nz-button nzType="text" (click)="removeItem.emit(i)">
-      <i nz-icon nzType="close" nzTheme="outline"></i>
+  <div nz-col
+       nzSpan="2"
+       [nzXs]="{ order: 3 }"
+       [nzMd]="{ order: 5 }">
+    <button nz-button
+            nzType="text"
+            (click)="removeItem.emit(i)">
+      <i nz-icon
+         nzType="close"
+         nzTheme="outline"></i>
     </button>
   </div>
   <nz-divider></nz-divider>
