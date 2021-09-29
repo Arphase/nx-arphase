@@ -1,0 +1,83 @@
+h1 {
+  font-size: 81px;
+  line-height: 96px;
+  @media only screen and (max-width: 768px) {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 28px;
+  &:hover {
+    cursor: pointer;
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+
+p {
+  @media only screen and (max-width: 768px) {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+
+.logo {
+  max-width: 88px;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.search-icon {
+  max-width: 88px;
+  @media only screen and (max-width: 768px) {
+    max-width: 44px;
+  }
+}
+
+.category {
+  color: black;
+  text-align: center;
+}
+
+.selected {
+  filter: invert(12%) sepia(22%) saturate(1103%) hue-rotate(54deg) brightness(97%) contrast(91%);
+}
+
+.not-selected {
+  filter: invert(89%) sepia(12%) saturate(248%) hue-rotate(8deg) brightness(90%) contrast(86%);
+}
+
+.selected:hover {
+  filter: invert(26%) sepia(78%) saturate(2020%) hue-rotate(3deg) brightness(88%) contrast(91%);
+}
+
+.not-selected:hover {
+  filter: invert(26%) sepia(78%) saturate(2020%) hue-rotate(3deg) brightness(88%) contrast(91%);
+}
+
+.place {
+  overflow: hidden;
+  min-height: 400px;
+  width: 100%;
+  @media only screen and (max-width: 768px) {
+    min-height: 200px;
+  }
+}
+
+.image-scroll {
+  &:hover {
+    cursor: pointer;
+  }
+  max-width: 40vw;
+
+  transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  @media only screen and (max-width: 768px) {
+    max-width: 100%;
+  }
+}

@@ -57,3 +57,40 @@ nz-menu {
 .ant-picker-input > input::placeholder {
   color: @primary-color;
 }
+
+.ant-radio-button-wrapper {
+  border: none !important;
+  background-color: transparent !important;
+}
+
+.ant-radio-button-wrapper:not(:first-child)::before {
+  display: none;
+}
+
+.ant-input {
+  border-radius: 25px;
+  background-color: #cbc6b7;
+  color: @primary-color;
+}
+
+.ant-input::placeholder {
+  color: @primary-color;
+  text-align: center;
+  @media only screen and (max-width: 768px) {
+    font-size: 10px;
+  }
+}
+
+.ant-picker {
+  border-radius: 25px;
+  background-color: #cbc6b7;
+  color: @primary-color;
+
+  input::placeholder {
+    color: @primary-color;
+    text-align: center;
+    @media only screen and (max-width: 768px) {
+      font-size: 10px;
+    }
+  }
+}
