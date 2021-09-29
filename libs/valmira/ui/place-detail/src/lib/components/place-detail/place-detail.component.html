@@ -4,7 +4,7 @@
   <div nz-col
        nzSpan="24"
        class="flex overflow-x-auto">
-    <img *ngFor="let photo of place.photos; let i = index"
+    <img *ngFor="let photo of place?.photos; let i = index"
          class="mx-4"
          [src]="photo.path"
          [ngClass]="{ 'three': i%3 === 2, 'two': i%3 === 1, 'one': i%3 === 0 }">
