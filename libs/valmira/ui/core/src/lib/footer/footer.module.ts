@@ -4,10 +4,11 @@ import { FooterComponent } from './footer.component';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [FooterComponent],
-  imports: [CommonModule, NzLayoutModule, NzGridModule, NzButtonModule],
+  imports: [CommonModule, RouterModule, NzLayoutModule, NzGridModule, NzButtonModule],
   exports: [FooterComponent],
 })
 export class FooterModule {}
