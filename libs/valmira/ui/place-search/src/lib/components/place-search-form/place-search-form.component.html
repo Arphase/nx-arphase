@@ -58,3 +58,17 @@
               nzShowIcon></nz-alert>
   </div>
 </div>
+
+<nz-radio-group [(ngModel)]="radioValue">
+  <label *ngFor="let category of categoryOptions let i = index"
+         nz-radio-button
+         class="category"
+         [nzValue]="category.value"
+         [ngClass]="{ 'selected': radioValue === category.value, 'not-selected': radioValue !== category.value }">
+    <div class="grid justify-items-stretch">
+      <img [src]="category.logo"
+           class="search-icon justify-self-center">
+      <p class="mt-1">{{category.label}}</p>
+    </div>
+  </label>
+</nz-radio-group>

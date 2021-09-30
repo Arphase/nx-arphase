@@ -14,19 +14,7 @@
     <vma-place-search-form (submitForm)="filterItems.emit($event)"></vma-place-search-form>
   </div>
 
-  <nz-radio-group [(ngModel)]="radioValue">
-    <label *ngFor="let category of categories let i = index"
-           nz-radio-button
-           class="category"
-           [nzValue]="category.value"
-           [ngClass]="{ 'selected': radioValue === category.value, 'not-selected': radioValue !== category.value }">
-      <div class="grid justify-items-stretch">
-        <img [src]="category.logo"
-             class="search-icon justify-self-center">
-        <p class="mt-1">{{category.label}}</p>
-      </div>
-    </label>
-  </nz-radio-group>
+
 
   <div *ngFor="let item of list; let i = index"
        class="place my-12 md:my-32 flex"
