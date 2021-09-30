@@ -46,57 +46,12 @@ html body {
   margin-left: -120px;
 }
 
-h1 {
-  font-family: Ogg;
+.text-10xl {
+  font-size: 170px;
 }
 
-.date {
-  font-family: Ogg;
-}
-
-@keyframes pulse {
-  from {
-    transform: scale3d(1, 1, 1);
-  }
-
-  50% {
-    transform: scale3d(1.05, 1.05, 1.05);
-  }
-
-  to {
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-.pulse {
-  animation: pulse 3s linear infinite;
-}
-
-@keyframes swing {
-  20% {
-    transform: rotate3d(0, 0, 1, 15deg);
-  }
-
-  40% {
-    transform: rotate3d(0, 0, 1, -10deg);
-  }
-
-  60% {
-    transform: rotate3d(0, 0, 1, 5deg);
-  }
-
-  80% {
-    transform: rotate3d(0, 0, 1, -5deg);
-  }
-
-  to {
-    transform: rotate3d(0, 0, 1, 0deg);
-  }
-}
-
-.swing {
-  transform-origin: top center;
-  animation: swing 8s linear infinite;
+.leading-7-custom {
+  line-height: 5.5rem;
 }
 
 .font-ogg {
