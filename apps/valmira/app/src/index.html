@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      class="overflow-x-hidden">
 
 <head>
   <meta charset="utf-8" />
@@ -11,24 +12,26 @@
         type="image/x-icon"
         href="assets/img/logo.svg" />
 </head>
-<vma-root>
-  <body>
+
+<body>
+  <style>
+    #container {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <vma-root>
     <div id="container">
       <img src="assets/img/logo.svg"
            alt="logo">
     </div>
-    <style>
-      #container {
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-        left: 0;
-        top: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    </style>
-    </vma-root>
-  </body>
+  </vma-root>
+</body>
+
 </html>
