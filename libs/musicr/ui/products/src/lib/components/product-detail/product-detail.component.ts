@@ -1,7 +1,6 @@
 import { Location } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { OrderProduct, Product } from '@musicr/domain';
-import { CartService } from '@musicr/ui/cart';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 @Component({
@@ -15,8 +14,9 @@ export class ProductDetailComponent {
   @Input() priceOptions: NzSelectOptionInterface[] = [];
   amount = 1;
   total: number;
+  @Output() addItemToCart = new EventEmitter<Partial<OrderProduct>>();
 
-  constructor(private location: Location, private cartService: CartService) {}
+  constructor(private location: Location) {}
 
   onBack(): void {
     this.location.back();
@@ -28,6 +28,6 @@ export class ProductDetailComponent {
       amount: this.amount,
       productId: this.product.id,
     };
-    this.cartService.addItem(item);
+    this.addItemToCart.emit(item);
   }
 }

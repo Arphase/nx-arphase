@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { filterNil } from '@arphase/ui/core';
+import { CartService } from '@musicr/ui/cart/data';
 import { map } from 'rxjs/operators';
-
-import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'mrl-cart-tab-container',

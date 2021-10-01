@@ -102,7 +102,7 @@ module.exports = {
     '<rootDir>/libs/musicr/ui/subcategories/data',
     '<rootDir>/libs/musicr/ui/subcategories/feature',
     '<rootDir>/libs/musicr/ui/admin-products',
-    '<rootDir>/libs/musicr/ui/cart',
+    '<rootDir>/libs/musicr/ui/cart/feature',
     '<rootDir>/libs/musicr/ui/orders',
     '<rootDir>/libs/valmira/ui/place-search',
     '<rootDir>/libs/valmira/ui/places/data',
@@ -116,5 +116,6 @@ module.exports = {
     '<rootDir>/libs/valmira/ui/promocodes/data',
     '<rootDir>/libs/valmira/ui/reservations/ui',
     '<rootDir>/libs/valmira/ui/reservation-detail',
+    '<rootDir>/libs/musicr/ui/cart/data',
   ],
 };

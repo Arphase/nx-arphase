@@ -1,1 +1,3 @@
-<mrl-product-detail [product]="product$ | async" [priceOptions]="priceOptions$ | async"></mrl-product-detail>
+<mrl-product-detail [product]="product$ | async"
+                    [priceOptions]="priceOptions$ | async"
+                    (addItemToCart)="addItem($event)"></mrl-product-detail>

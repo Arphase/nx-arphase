@@ -25,7 +25,7 @@ export const routes: Routes = [
   {
     path: 'cart',
     outlet: 'cart',
-    loadChildren: () => import('@musicr/ui/cart').then(m => m.CartModule),
+    loadChildren: () => import('@musicr/ui/cart/feature').then(m => m.CartModule),
   },
 ];
 

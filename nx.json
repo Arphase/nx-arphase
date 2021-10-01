@@ -240,8 +240,11 @@
     "musicr-ui-auth-feature": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
-    "musicr-ui-cart": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+    "musicr-ui-cart-data": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
+    },
+    "musicr-ui-cart-feature": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-categories-data": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]

@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'musicr-ui-cart',
-  preset: '../../../../jest.preset.js',
+  displayName: 'musicr-ui-cart-feature',
+  preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../coverage/libs/musicr/ui/cart',
+  coverageDirectory: '../../../../../coverage/libs/musicr/ui/cart/feature',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },
