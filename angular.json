@@ -1740,7 +1740,7 @@
             "tsConfig": "apps/musicr/store/tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "assets": ["apps/musicr/store/src/favicon.ico", "apps/musicr/store/src/assets"],
-            "styles": ["apps/musicr/store/src/styles.less", "libs/arphase/ui/core/src/styles/styles.less"],
+            "styles": ["apps/musicr/store/src/styles.less"],
             "scripts": []
           },
           "configurations": {
@@ -2011,23 +2011,45 @@
         }
       }
     },
-    "musicr-ui-cart": {
+    "musicr-ui-cart-data": {
       "projectType": "library",
-      "root": "libs/musicr/ui/cart",
-      "sourceRoot": "libs/musicr/ui/cart/src",
+      "root": "libs/musicr/ui/cart/data",
+      "sourceRoot": "libs/musicr/ui/cart/data/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/cart/data"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/cart/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/cart/data/src/**/*.ts", "libs/musicr/ui/cart/data/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "musicr-ui-cart-feature": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/cart/feature",
+      "sourceRoot": "libs/musicr/ui/cart/feature/src",
       "prefix": "mrl",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/cart/src/**/*.ts", "libs/musicr/ui/cart/src/**/*.html"]
+            "lintFilePatterns": ["libs/musicr/ui/cart/feature/src/**/*.ts", "libs/musicr/ui/cart/feature/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/cart"],
+          "outputs": ["coverage/libs/musicr/ui/cart/feature"],
           "options": {
-            "jestConfig": "libs/musicr/ui/cart/jest.config.js",
+            "jestConfig": "libs/musicr/ui/cart/feature/jest.config.js",
             "passWithNoTests": true
           }
         }

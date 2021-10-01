@@ -1,0 +1,28 @@
+<h1 class="title mb-20">{{ title }}</h1>
+<div class="steps__names mb-12">
+  <button *ngFor="let step of steps"
+          type="button"
+          nzType="default"
+          class="border-0 bg-gray-400 text-black"
+          [routerLink]="step.path"
+          routerLinkActive="bg-black text-white">
+    {{ step.name | uppercase }}
+  </button>
+</div>
+<div nz-row
+     class="steps__icons">
+  <div *ngFor="let step of steps"
+       nz-col
+       nzSpan="6">
+    <button nz-button
+            type="button"
+            nzType="default"
+            class="step-icon">
+      <i nz-icon
+         [nzType]="step.icon"
+         nzTheme="outline"></i>
+    </button>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

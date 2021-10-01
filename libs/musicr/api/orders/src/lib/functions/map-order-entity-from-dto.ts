@@ -2,10 +2,11 @@ import { DeepPartial } from '@arphase/common';
 import { Order, OrderProduct } from '@musicr/domain';
 import { uniq } from 'lodash';
 
+import { CreateOrderPreviewDto } from '../dto/create-order-preview-dto';
 import { CreateOrderDto, CreateOrderProductDto } from '../dto/create-order.dto';
 
 export function mapOrderEntityFromDto(
-  createOrderDto: CreateOrderDto,
+  createOrderDto: CreateOrderDto | CreateOrderPreviewDto,
   dictonary: ItemsWithPriceDictionary
 ): DeepPartial<Order> {
   const { customer, socialEvent, orderProducts } = createOrderDto;
@@ -53,7 +54,7 @@ export type ItemsWithPriceDictionary = {
   additionalOptions: Record<number, { id: number; price: number }>;
 };
 
-export function getAllItemIdsWithPrices(createOrderDto: CreateOrderDto): ItemIdsWithPrice {
+export function getAllItemIdsWithPrices(createOrderDto: CreateOrderDto | CreateOrderPreviewDto): ItemIdsWithPrice {
   const { orderProducts } = createOrderDto;
   const productIds = [];
   const priceOptionIds = [];
@@ -62,7 +63,7 @@ export function getAllItemIdsWithPrices(createOrderDto: CreateOrderDto): ItemIds
   orderProducts.forEach(orderProduct => {
     productIds.push(orderProduct.productId);
     priceOptionIds.push(orderProduct.priceOptionId);
-    orderProduct.orderProductAdditionalOptions.forEach(orderProductAdditionalOption =>
+    (orderProduct.orderProductAdditionalOptions || []).forEach(orderProductAdditionalOption =>
       additionalOptionIds.push(orderProductAdditionalOption.additionalOptionId)
     );
   });

@@ -13,7 +13,7 @@ export class SubcategoryEntity extends BaseEntity implements Subcategory {
   @Column()
   name: string;
 
-  @Column({ default: '' })
+  @Column()
   description: string;
 
   @Column()

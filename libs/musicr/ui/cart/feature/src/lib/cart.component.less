@@ -1,0 +1,27 @@
+.title {
+  margin-top: 64px;
+  font-size: 54px;
+  line-height: 118.5%;
+  font-family: 'right-grotesk-wide-light';
+}
+
+.steps {
+  margin-bottom: 24px;
+  font-family: 'right-grotesk-wide-medium';
+  &__names {
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+  &__icons {
+    display: none;
+    @media only screen and (max-width: 768px) {
+      display: flex;
+    }
+  }
+}
+
+.step-icon {
+  width: 100%;
+  background-color: #f0f0f0;
+}

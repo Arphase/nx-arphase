@@ -4,7 +4,7 @@ import {
   filterCollectionDates,
   filterCollectionQuery,
 } from '@arphase/api/core';
-import { ApsCollectionResponse, SortDirection } from '@arphase/common';
+import { ApsCollectionResponse, DeepPartial, SortDirection } from '@arphase/common';
 import { AdditionalOptionEntity, OrderEntity, PriceOptionEntity, ProductEntity } from '@musicr/api/domain';
 import { Order } from '@musicr/domain';
 import { Injectable, NotFoundException } from '@nestjs/common';
@@ -12,6 +12,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { keyBy } from 'lodash';
 import { Repository } from 'typeorm';
 
+import { CreateOrderPreviewDto } from '../dto/create-order-preview-dto';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import {
   getAllItemIdsWithPrices,
@@ -56,6 +57,13 @@ export class OrdersService {
   }
 
   async createOrder(createOrderDto: CreateOrderDto): Promise<Order> {
+    const newOrder = this.orderRepository.create(await this.createOrderPreview(createOrderDto));
+    await this.orderRepository.save(newOrder);
+    await newOrder.reload();
+    return newOrder;
+  }
+
+  async createOrderPreview(createOrderDto: CreateOrderPreviewDto): Promise<DeepPartial<Order>> {
     const { productIds, priceOptionIds, additionalOptionIds } = getAllItemIdsWithPrices(createOrderDto);
     const products = await this.productRepository.findByIds(productIds);
     const priceOptions = await this.priceOptionRepository.findByIds(priceOptionIds);
@@ -76,9 +84,6 @@ export class OrdersService {
       ),
     };
 
-    const newOrder = this.orderRepository.create(mapOrderEntityFromDto(createOrderDto, dictionary));
-    await this.orderRepository.save(newOrder);
-    await newOrder.reload();
-    return newOrder;
+    return mapOrderEntityFromDto(createOrderDto, dictionary);
   }
 }

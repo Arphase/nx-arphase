@@ -1,8 +1,8 @@
-import { Component, ChangeDetectionStrategy, Input, SimpleChanges, OnChanges, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from '@musicr/domain';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
-import { CartComponent } from '@musicr/ui/cart';
+
 @Component({
   selector: 'mrl-menu',
   templateUrl: './menu.component.html',
@@ -12,6 +12,7 @@ import { CartComponent } from '@musicr/ui/cart';
 export class MenuComponent implements OnInit, OnChanges {
   @Input() categories: Category[];
   visible = false;
+  cartVisible = false;
   openMap = {};
   innerWidth: number;
 
@@ -53,9 +54,12 @@ export class MenuComponent implements OnInit, OnChanges {
   }
 
   openCart(): void {
-    const drawerRef = this.drawerService.create<CartComponent>({
-      nzWidth: this.innerWidth > 768 ? '50vw' : '100vw',
-      nzContent: CartComponent,
-    });
+    this.router.navigate([{ outlets: { cart: 'cart' } }]);
+    this.cartVisible = true;
+  }
+
+  closeCart(): void {
+    this.router.navigate([{ outlets: { cart: null } }]);
+    this.cartVisible = false;
   }
 }

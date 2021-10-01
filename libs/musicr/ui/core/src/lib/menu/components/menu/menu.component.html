@@ -5,10 +5,8 @@
        class="padding-16">
     <div nz-col
          nzSpan="5">
-      <a [routerLink]="['.']">
-        <img alt="Music Revolution logo"
-             src="assets/img/Logo_Mobile_1.svg" />
-      </a>
+      <a href="home"><img alt="Music Revolution logo"
+             src="assets/img/Logo_Mobile_1.svg" /></a>
     </div>
     <div nz-col
          nzSpan="12">
@@ -35,19 +33,12 @@
            nzJustify="end">
         <div nz-col
              nzSpan="4">
-          <button nz-button
-                  nzType="text"
-                  (click)="openMenu()">
-            <i nz-icon
-               nzType="search"
-               nzTheme="outline"></i>
-          </button>
         </div>
         <div nz-col
              nzSpan="4">
           <button nz-button
                   nzType="text"
-                  (click)="openMenu()">
+                  (click)="openCart()">
             <i nz-icon
                nzType="shopping"
                nzTheme="outline"></i>
@@ -86,7 +77,6 @@
                   nzType="text"
                   (click)="openMenu()">
             <i nz-icon
-               nzType="search"
                nzTheme="outline"></i>
           </button>
         </div>
@@ -94,7 +84,7 @@
              nzSpan="10">
           <button nz-button
                   nzType="text"
-                  (click)="openMenu()">
+                  (click)="openCart()">
             <i nz-icon
                nzType="shopping"
                nzTheme="outline"></i>
@@ -103,11 +93,13 @@
       </div>
     </div>
   </div>
-  <nz-drawer [nzClosable]="false"
-             [nzVisible]="visible"
-             nzPlacement="left"
-             [nzTitle]="drawerTitle"
+
+  <nz-drawer nzPlacement="left"
+             nzWrapClassName="menu"
              nzWidth="100vw"
+             [nzTitle]="drawerTitle"
+             [nzVisible]="visible"
+             [nzClosable]="false"
              (nzOnClose)="closeMenu()">
     <ng-container *nzDrawerContent>
       <ul nz-menu
@@ -213,3 +205,14 @@
          class="mobile-menu-logo" />
   </div>
 </ng-template>
+
+<nz-drawer nzPlacement="right"
+           nzWrapClassName="menu"
+           [nzWidth]="innerWidth > 768 ? '50vw' : '100vw'"
+           [nzVisible]="cartVisible"
+           [nzClosable]="false"
+           (nzOnClose)="closeCart()">
+  <ng-container *nzDrawerContent>
+    <router-outlet name="cart"></router-outlet>
+  </ng-container>
+</nz-drawer>
