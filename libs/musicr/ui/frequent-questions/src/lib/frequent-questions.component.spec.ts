@@ -1,25 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { FrequentQuestionsComponent } from './frequent-questions.component';
 
-describe('FrequentQuestionsComponent', () => {
-  let component: FrequentQuestionsComponent;
-  let fixture: ComponentFixture<FrequentQuestionsComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ FrequentQuestionsComponent ]
-    })
-    .compileComponents();
+describe('ApsFrequentQuestionsComponent', () => {
+  let spectator: Spectator<FrequentQuestionsComponent>;
+  const createComponent = createComponentFactory({
+    component: FrequentQuestionsComponent,
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FrequentQuestionsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });
