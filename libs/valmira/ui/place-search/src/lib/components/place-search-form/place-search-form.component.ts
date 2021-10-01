@@ -23,20 +23,30 @@ interface FiltersPayload extends FiltersForm {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlaceSearchFormComponent extends ApsFormComponent<FiltersForm, FiltersPayload> {
-  categoryOptions: NzSelectOptionInterface[] = [
+  categoryOptions = [
     {
-      label: 'Premium',
+      value: 0,
+      logo: 'assets/img/logo-all.svg',
+      label: 'VER TODO',
+    },
+    {
       value: PlaceCategories.premium,
+      logo: 'assets/img/logo-premium.svg',
+      label: 'PREMIUM',
     },
     {
-      label: 'Pareja',
       value: PlaceCategories.couple,
+      logo: 'assets/img/logo-couple.svg',
+      label: 'PAREJAS',
     },
     {
-      label: 'Niños',
       value: PlaceCategories.kids,
+      logo: 'assets/img/logo-kids.svg',
+      label: 'NIÑOS',
     },
   ];
+  radioValue = this.categoryOptions[0].value;
+
   form = new FormGroup(
     {
       startDate: new FormControl(null, ApsValidators.required),
