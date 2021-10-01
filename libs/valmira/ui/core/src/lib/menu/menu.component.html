@@ -1,5 +1,5 @@
 <div nz-row
-     class="header-menu px-8">
+     class="header-menu px-8 pt-8">
   <div nz-col
        nzSpan="12"
        class="flex justify-start items-center">
@@ -28,11 +28,11 @@
     <div nz-row
          nzJustify="center"
          nzAlign="middle"
-         class="menu"
-         [nzGutter]="[16, 16]">
+         class="menu">
       <div *ngFor="let item of menuItems"
            nz-col
-           nzSpan="24">
+           nzSpan="24"
+           class="pl-4 py-2">
         <a routerLinkActive="text-white"
            [routerLink]="[item.link]"
            [ngClass]="{ hidden: item.hidden }"
@@ -48,7 +48,7 @@
            [nzXs]="{ offset: 0 }"
            [nzMd]="{ offset: 1 }"
            nzSpan="14">
-        <img src="assets/img/logo.svg"
+        <img src="assets/img/logo-white.svg"
              class="menu-logo" />
       </div>
       <div nz-col
@@ -87,22 +87,23 @@
 </nz-drawer>
 
 <ng-template #drawerTitle>
-  <div nz-row>
+  <div nz-row
+       class="pt-4 px-4">
     <div nz-col
-         nzSpan="6"
-         nzOffset="2">
+         nzSpan="12"
+         class="flex items-center">
       <a [routerLink]="['.']"
          (click)="closeMenu()">
         <img src="assets/img/valmira.svg"
              class="logo" /> </a>
     </div>
     <div nz-col
-         nzSpan="2"
-         nzOffset="14">
+         nzSpan="12"
+         class="flex justify-end">
       <button nz-button
               nzType="text"
               (click)="closeMenu()">
-        <p class="menu-text">CERRAR</p>
+        <span class="menu-text">CERRAR</span>
         <i nz-icon
            nzType="close"
            nzTheme="outline"

@@ -13,6 +13,8 @@ export class ReservationWizardComponent extends ApsFormComponent implements OnCh
   @Input() item: Reservation;
   @Input() promocodeNotFound: boolean;
   @Input() isInConfirmation: boolean;
+  @Input() disablePaymentMethod: boolean;
+  @Input() disableConfirmation: boolean;
 
   form = new FormGroup({
     promocode: new FormControl(null, Validators.required),

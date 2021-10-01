@@ -31,3 +31,15 @@ p {
 .not-selected:hover {
   filter: invert(26%) sepia(78%) saturate(2020%) hue-rotate(3deg) brightness(88%) contrast(91%);
 }
+
+.ant-picker {
+  border-radius: 25px;
+  background-color: #cbc6b7;
+
+  input::placeholder {
+    text-align: center;
+    @media only screen and (max-width: 768px) {
+      font-size: 10px;
+    }
+  }
+}

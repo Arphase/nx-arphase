@@ -14,7 +14,7 @@ import { take } from 'rxjs';
 })
 export class SpaComponent implements OnInit {
   options: SpaLayoutOptions = {
-    logoUrl: 'assets/img/logo-orange.svg',
+    logoUrl: 'assets/img/logo-white.svg',
     show: {
       darkModeToggle: false,
     },

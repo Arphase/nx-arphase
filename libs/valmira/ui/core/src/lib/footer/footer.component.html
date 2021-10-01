@@ -1,4 +1,6 @@
-<div nz-row
+<div class="mt-20"></div>
+<div *ngIf="showReserveLink$ | async"
+     nz-row
      nzJustify="center"
      class="subfooter"
      [routerLink]="['search']">

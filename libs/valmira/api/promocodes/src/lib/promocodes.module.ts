@@ -10,5 +10,6 @@ import { PromocodesService } from './services/promocodes.service';
   imports: [AuthModule, TypeOrmModule.forFeature([PromocodeEntity])],
   controllers: [PromocodesController],
   providers: [PromocodesService],
+  exports: [PromocodesService],
 })
 export class PromocodesModule {}

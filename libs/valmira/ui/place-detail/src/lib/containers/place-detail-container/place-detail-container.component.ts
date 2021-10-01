@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { filterNil } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { select, Store } from '@ngrx/store';
 import { fromPlaces, PlaceCollectionService } from '@valmira/ui/places/data';
@@ -56,7 +57,8 @@ export class PlaceDetailContainerComponent implements OnInit {
       .pipe(
         take(1),
         switchMap(place => this.reservationCollectionService.add({ placeId: place.id, ...payload })),
-        switchMap(() => this.reservationCollectionService.currentItem$)
+        switchMap(() => this.reservationCollectionService.currentItem$),
+        filterNil()
       )
       .subscribe(({ id }) => this.router.navigateByUrl(`reservation/${id}`));
   }

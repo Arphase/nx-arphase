@@ -10,6 +10,7 @@ import {
   ReservationEntity,
 } from '@valmira/api/domain';
 import { PlacesService } from '@valmira/api/places';
+import { PromocodesService } from '@valmira/api/promocodes';
 import { Promocode, Reservation, ReservationAdditionalProduct, ReservationStatus } from '@valmira/domain';
 import dayjs from 'dayjs';
 import { InjectStripe } from 'nestjs-stripe';
@@ -37,7 +38,8 @@ export class ReservationsService {
     @InjectRepository(ReservationAdditionalProductEntity)
     private reservationAdditionalProductRepository: Repository<ReservationAdditionalProductEntity>,
     @InjectStripe() private readonly stripeClient: Stripe,
-    private placesService: PlacesService
+    private placesService: PlacesService,
+    private promocodeService: PromocodesService
   ) {}
 
   async getReservations(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Reservation>> {
@@ -92,6 +94,7 @@ export class ReservationsService {
   /**
    * Previews reservation
    * Note: if reservationDto id exists we skip all validations of occupiedDates
+   * We check the promocode with getPromocodeByName from promocodesService to verify expiration
    * @param reservationDto
    * @returns reservation with all populated data from database relations
    */
@@ -119,6 +122,7 @@ export class ReservationsService {
       if (!promocode) {
         throw new NotFoundException('Código de descuento no existe');
       }
+      await this.promocodeService.getPromocodeByName(promocode.name);
     }
     if (additionalProducts?.length) {
       additionalProducts = await this.getAdditionalProductsWithPrice(additionalProducts);
