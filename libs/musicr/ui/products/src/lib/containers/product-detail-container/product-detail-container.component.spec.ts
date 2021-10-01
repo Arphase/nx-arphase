@@ -10,7 +10,8 @@ describe('ProductDetailContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: ProductDetailContainerComponent,
     imports: [RouterTestingModule],
-    mocks: [ProductDetailService, CartService],
+    mocks: [CartService],
+    componentMocks: [ProductDetailService],
     shallow: true,
   });
 
