@@ -1,41 +1,74 @@
-<div style="max-width: 100%;">
-  <div nz-row>
-    <div nz-col
-         nzSpan="17">
-      <h1>Glamping extraordinario.</h1>
-    </div>
-    <div nz-col
-         nzSpan="6">
-      <img class="logo"
-           [src]="'assets/img/hoja.svg'">
-    </div>
+<div nz-row>
+  <div nz-col
+       nzSpan="17">
+    <h1>Glamping extraordinario.</h1>
   </div>
-  <div class="my-8">
-    <vma-place-search-form (submitForm)="filterItems.emit($event)"></vma-place-search-form>
-  </div>
-
-
-
-  <div *ngFor="let item of list; let i = index"
-       class="place my-12 md:my-32 flex"
-       [ngClass]="{ 'justify-start': i%3 === 2, 'justify-center': i%3 === 1, 'justify-end': i%3 === 0 }">
-    <div class="flex-col"
-         [routerLink]="['..', 'place', item.id]">
-      <div *ngIf="i%3 === 1">
-        <div class="flex justify-start">
-          <img class="logo mb-24 -ml-32"
-               [src]="i%5 === 0 ? 'assets/img/pine-2.svg' : 'assets/img/sun.svg'">
-        </div>
-      </div>
-      <img [src]="item.photos[0].path"
-           class="image-scroll">
-      <h3 class="mt-3"> {{item.name}} </h3>
-      <div *ngIf="i%3 === 1">
-        <div class="flex justify-end">
-          <img class="logo -mr-32"
-               [src]="i%5 === 0 ? 'assets/img/pines.svg' : 'assets/img/pine.svg'">
-        </div>
-      </div>
-    </div>
+  <div nz-col
+       nzSpan="6">
+    <img class="logo"
+         [src]="'assets/img/hoja.svg'">
   </div>
 </div>
+<div class="my-8">
+  <vma-place-search-form [summary]="summary"
+                         (submitForm)="filterItems.emit($event)"></vma-place-search-form>
+</div>
+
+<ng-container *ngIf="loading; else listElement">
+  <div *ngFor="let item of dummyList; let i = index"
+       class="place my-12 md:my-32 flex"
+       [ngClass]="{ 'justify-start': i%3 === 2, 'justify-center': i%3 === 1, 'justify-end': i%3 === 0 }">
+    <div *ngIf="i%3 === 1">
+      <div class="flex justify-start">
+        <img class="logo mb-24 -ml-32"
+             [src]="i%5 === 0 ? 'assets/img/pine-2.svg' : 'assets/img/sun.svg'">
+      </div>
+    </div>
+    <nz-skeleton-element class="w-full"
+                         nzType="image"
+                         [nzActive]="true"></nz-skeleton-element>
+    <div *ngIf="i%3 === 1">
+      <div class="flex justify-end">
+        <img class="logo -mr-32"
+             [src]="i%5 === 0 ? 'assets/img/pines.svg' : 'assets/img/pine.svg'">
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #listElement>
+  <ng-container *ngIf="list.length; else emptyState">
+    <div *ngFor="let item of list; let i = index"
+         class="place my-12 md:my-32 flex"
+         [ngClass]="{ 'justify-start': i%3 === 2, 'justify-center': i%3 === 1, 'justify-end': i%3 === 0 }">
+      <div class="flex-col"
+           [routerLink]="['..', 'place', item.id]">
+        <div *ngIf="i%3 === 1">
+          <div class="flex justify-start">
+            <img class="logo mb-24 -ml-32"
+                 [src]="i%5 === 0 ? 'assets/img/pine-2.svg' : 'assets/img/sun.svg'">
+          </div>
+        </div>
+        <img [src]="item.photos[0].path"
+             class="image-scroll">
+        <h3 class="mt-3">{{ item.name }}</h3>
+        <div *ngIf="i%3 === 1">
+          <div class="flex justify-end">
+            <img class="logo -mr-32"
+                 [src]="i%5 === 0 ? 'assets/img/pines.svg' : 'assets/img/pine.svg'">
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #emptyState>
+  <div nz-row>
+    <div nz-col
+         nzSpan="24"
+         class="flex justify-center items-center py-12">
+      <span class="md:text-7xl text-2xl">No hay resultados</span>
+    </div>
+  </div>
+</ng-template>
