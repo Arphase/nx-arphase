@@ -1,8 +1,9 @@
 import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Product } from '@musicr/domain';
-import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
+import { OrderProduct, Product } from '@musicr/domain';
 import { CartService } from '@musicr/ui/cart';
+import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
+
 @Component({
   selector: 'mrl-product-detail',
   templateUrl: './product-detail.component.html',
@@ -22,9 +23,10 @@ export class ProductDetailComponent {
   }
 
   addItem(): void {
-    const item = {
+    const item: Partial<OrderProduct> = {
       product: this.product,
       amount: this.amount,
+      productId: this.product.id,
     };
     this.cartService.addItem(item);
   }

@@ -1,5 +1,7 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { of } from 'rxjs';
 
+import { CartService } from '../../services/cart.service';
 import { CartTabContainerComponent } from './cart-tab-container.component';
 
 describe('CartTabContainerComponent', () => {
@@ -7,6 +9,7 @@ describe('CartTabContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: CartTabContainerComponent,
     shallow: true,
+    providers: [{ provide: CartService, useValue: { orderPreview$: of({}), cartItems$: of([]) } }],
   });
 
   beforeEach(() => (spectator = createComponent()));

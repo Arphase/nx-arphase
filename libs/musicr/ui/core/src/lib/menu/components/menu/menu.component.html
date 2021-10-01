@@ -5,10 +5,8 @@
        class="padding-16">
     <div nz-col
          nzSpan="5">
-      <a [routerLink]="['.']">
-        <img alt="Music Revolution logo"
-             src="assets/img/Logo_Mobile_1.svg" />
-      </a>
+      <a href="home"><img alt="Music Revolution logo"
+             src="assets/img/Logo_Mobile_1.svg" /></a>
     </div>
     <div nz-col
          nzSpan="12">
@@ -75,6 +73,12 @@
            nzJustify="end">
         <div nz-col
              nzSpan="10">
+          <button nz-button
+                  nzType="text"
+                  (click)="openMenu()">
+            <i nz-icon
+               nzTheme="outline"></i>
+          </button>
         </div>
         <div nz-col
              nzSpan="10">
@@ -89,11 +93,13 @@
       </div>
     </div>
   </div>
-  <nz-drawer [nzClosable]="false"
-             [nzVisible]="visible"
-             nzPlacement="left"
-             [nzTitle]="drawerTitle"
+
+  <nz-drawer nzPlacement="left"
+             nzWrapClassName="menu"
              nzWidth="100vw"
+             [nzTitle]="drawerTitle"
+             [nzVisible]="visible"
+             [nzClosable]="false"
              (nzOnClose)="closeMenu()">
     <ng-container *nzDrawerContent>
       <ul nz-menu
@@ -184,7 +190,7 @@
          nzOffset="20">
       <button nz-button
               nzType="text"
-              (click)="openCart()">
+              (click)="openMenu()">
         <i nz-icon
            nzType="shopping"
            nzTheme="outline"
@@ -199,3 +205,14 @@
          class="mobile-menu-logo" />
   </div>
 </ng-template>
+
+<nz-drawer nzPlacement="right"
+           nzWrapClassName="menu"
+           [nzWidth]="innerWidth > 768 ? '50vw' : '100vw'"
+           [nzVisible]="cartVisible"
+           [nzClosable]="false"
+           (nzOnClose)="closeCart()">
+  <ng-container *nzDrawerContent>
+    <router-outlet name="cart"></router-outlet>
+  </ng-container>
+</nz-drawer>

@@ -1,12 +1,11 @@
-<h1 class="title">
-  {{ title }}
-</h1>
-<div class="steps__names">
+<h1 class="title mb-20">{{ title }}</h1>
+<div class="steps__names mb-12">
   <button *ngFor="let step of steps"
-          nz-button
           type="button"
           nzType="default"
-          [ngClass]="{ selected: step.selected }">
+          class="border-0 bg-gray-400 text-black"
+          [routerLink]="step.path"
+          routerLinkActive="bg-black text-white">
     {{ step.name | uppercase }}
   </button>
 </div>
@@ -18,8 +17,7 @@
     <button nz-button
             type="button"
             nzType="default"
-            class="step-icon"
-            [ngClass]="{ selected: step.selected }">
+            class="step-icon">
       <i nz-icon
          [nzType]="step.icon"
          nzTheme="outline"></i>
@@ -27,6 +25,4 @@
   </div>
 </div>
 
-<div>
-  <mrl-cart-tab-container></mrl-cart-tab-container>
-</div>
+<router-outlet></router-outlet>

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'mrl-cart',
@@ -9,9 +9,9 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 export class CartComponent {
   title = 'Carrito';
   steps = [
-    { name: 'Carrito', selected: true, icon: 'shopping' },
-    { name: 'Datos del evento', selected: false, icon: 'form' },
-    { name: 'Método de pago', selected: false, icon: 'credit-card' },
-    { name: 'Confirmación', selected: false, icon: 'like' },
+    { name: 'Carrito', icon: 'shopping', path: ['products'] },
+    { name: 'Datos del evento', icon: 'form', path: ['social-event'] },
+    { name: 'Datos personales', icon: 'credit-card', path: ['personal-data'] },
+    { name: 'Confirmación', icon: 'like', path: ['confirmation'] },
   ];
 }

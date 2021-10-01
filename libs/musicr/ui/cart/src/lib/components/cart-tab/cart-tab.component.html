@@ -1,6 +1,6 @@
 <div *ngFor="let item of cartItems; let i = index"
      nz-row
-     class="cart-item"
+     class="cart-item border-b py-4"
      nzGutter="16">
   <div nz-col
        [nzXs]="{ span: 8, order: 1 }"
@@ -10,12 +10,14 @@
          class="img" />
   </div>
   <div nz-col
+       class="pt-3"
        [nzXs]="{ span: 14, order: 2 }"
        [nzMd]="{ span: 10, order: 2 }">
-    <h4>{{ item.product.name }}</h4>
-    <p>{{ item.product.description }}</p>
+    <h4 class="text-base mb-3">{{ item.product.name }}</h4>
+    <span class="text-xs">{{ item.product.description }}</span>
   </div>
   <div nz-col
+       class="flex pt-3"
        [nzXs]="{ span: 8, order: 4, offset: 8 }"
        [nzMd]="{ span: 4, order: 3, offset: 0 }">
     <button nz-button
@@ -25,7 +27,7 @@
          nzType="minus"
          nzTheme="outline"></i>
     </button>
-    <span>{{ item.amount }}</span>
+    <span class="mt-2">{{ item.amount }}</span>
     <button nz-button
             nzType="text"
             (click)="increaseItemAmount.emit(i)">
@@ -35,12 +37,13 @@
     </button>
   </div>
   <div nz-col
-       class="total"
+       class="total flex pt-3"
        [nzXs]="{ span: 8, order: 5 }"
        [nzMd]="{ span: 4, order: 4 }">
-    <span> {{ item.product.price * item.amount | currency }} </span>
+    <span class="mt-2"> {{ item.product.price * item.amount | currency }}MXN </span>
   </div>
   <div nz-col
+       class="pt-3"
        nzSpan="2"
        [nzXs]="{ order: 3 }"
        [nzMd]="{ order: 5 }">
@@ -52,5 +55,23 @@
          nzTheme="outline"></i>
     </button>
   </div>
-  <nz-divider></nz-divider>
 </div>
+
+<div nz-row>
+  <div nz-col
+       nzSpan="24"
+       class="flex items-end justify-end mt-10">
+    <span class="text-sm leading-4 mr-1">TOTAL</span>
+    <h3 class="text-2xl font-bold leading-6">{{ total | currency }} MXN</h3>
+  </div>
+
+  <div nz-row
+       class="w-full">
+    <div nz-col
+         nzSpan="24"
+         class="mt-40">
+      <button class="btn-black"
+              type="button"
+              class="btn-black">CONTIUNAR</button>
+    </div>
+  </div>

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { OrderProduct } from '@musicr/domain';
 
 @Component({
@@ -9,6 +9,7 @@ import { OrderProduct } from '@musicr/domain';
 })
 export class CartTabComponent {
   @Input() cartItems: OrderProduct[];
+  @Input() total: number;
   @Output() increaseItemAmount = new EventEmitter<number>();
   @Output() decreaseItemAmount = new EventEmitter<number>();
   @Output() removeItem = new EventEmitter<number>();

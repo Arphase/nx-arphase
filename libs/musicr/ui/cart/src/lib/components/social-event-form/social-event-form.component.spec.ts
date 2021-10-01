@@ -1,11 +1,11 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
-import { PaymentMethodTabComponent } from './payment-method-tab.component';
+import { SocialEventFormComponent } from './social-event-form.component';
 
-describe('PaymentMethodTabComponent', () => {
-  let spectator: Spectator<PaymentMethodTabComponent>;
+describe('SocialEventFormComponent', () => {
+  let spectator: Spectator<SocialEventFormComponent>;
   const createComponent = createComponentFactory({
-    component: PaymentMethodTabComponent,
+    component: SocialEventFormComponent,
     shallow: true,
   });
 

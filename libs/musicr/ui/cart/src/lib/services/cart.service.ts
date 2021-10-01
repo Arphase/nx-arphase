@@ -1,59 +1,51 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, take, tap } from 'rxjs';
-import { OrderProduct } from '@musicr/domain';
+import { DeepPartial } from '@arphase/common';
+import { Order, OrderProduct } from '@musicr/domain';
+import { BehaviorSubject, catchError, Observable, switchMap, take } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class CartService {
-  cartItemsSubject = new BehaviorSubject<OrderProduct[]>([]);
+  cartItemsSubject = new BehaviorSubject<Partial<OrderProduct>[]>([]);
   cartItems$ = this.cartItemsSubject.asObservable();
+  orderPreviewSubject = new BehaviorSubject<Order>(null);
+  orderPreview$ = this.orderPreviewSubject.asObservable();
 
-  increaseItemAmount(index): void {
+  constructor(private http: HttpClient) {
     this.cartItems$
-      .pipe(
-        take(1),
-        map(cartItems => {
-          cartItems[index].amount += 1;
-          this.cartItemsSubject.next(cartItems);
-        })
-      )
-      .subscribe();
+      .pipe(switchMap(orderProducts => this.getOrderPreview({ orderProducts })))
+      .subscribe(order => this.orderPreviewSubject.next(order));
   }
 
-  decreaseItemAmount(index): void {
-    this.cartItems$
-      .pipe(
-        take(1),
-        tap(cartItems => {
-          cartItems[index].amount -= 1;
-          this.cartItemsSubject.next(cartItems);
-        })
-      )
-      .subscribe();
+  getOrderPreview(order: DeepPartial<Order>): Observable<Order> {
+    return this.http.post<Order>(`/mrlApi/orders/preview`, order).pipe(catchError(() => this.orderPreview$));
   }
 
-  addItem(item): void {
-    this.cartItems$
-      .pipe(
-        take(1),
-        tap(cartItems => {
-          cartItems.push(item);
-          this.cartItemsSubject.next(cartItems);
-        })
-      )
-      .subscribe();
+  increaseItemAmount(index: number): void {
+    this.cartItems$.pipe(take(1)).subscribe(cartItems => {
+      cartItems[index].amount += 1;
+      this.cartItemsSubject.next(cartItems);
+    });
   }
 
-  removeItem(index): void {
-    this.cartItems$
-      .pipe(
-        take(1),
-        tap(cartItems => {
-          cartItems.splice(index, 1);
-          this.cartItemsSubject.next(cartItems);
-        })
-      )
-      .subscribe();
+  decreaseItemAmount(index: number): void {
+    this.cartItems$.pipe(take(1)).subscribe(cartItems => {
+      cartItems[index].amount -= 1;
+      this.cartItemsSubject.next(cartItems);
+    });
+  }
+
+  addItem(item: Partial<OrderProduct>): void {
+    this.cartItems$.pipe(take(1)).subscribe(cartItems => {
+      cartItems.push(item);
+      this.cartItemsSubject.next(cartItems);
+    });
+  }
+
+  removeItem(index: number): void {
+    this.cartItems$.pipe(take(1)).subscribe(cartItems => {
+      cartItems.splice(index, 1);
+      this.cartItemsSubject.next(cartItems);
+    });
   }
 }

@@ -1,4 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { filterNil } from '@arphase/ui/core';
+import { map } from 'rxjs/operators';
+
 import { CartService } from '../../services/cart.service';
 
 @Component({
@@ -9,6 +12,10 @@ import { CartService } from '../../services/cart.service';
 })
 export class CartTabContainerComponent {
   cartItems$ = this.cartService.cartItems$;
+  total$ = this.cartService.orderPreview$.pipe(
+    filterNil(),
+    map(order => order.total)
+  );
 
   constructor(private cartService: CartService) {}
 
