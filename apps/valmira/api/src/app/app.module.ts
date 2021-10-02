@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AdditionalProductsModule } from '@valmira/api/additional-products';
 import { AuthModule } from '@valmira/api/auth';
@@ -14,6 +15,7 @@ import { AppController } from './app.controller';
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     StripeModule.forRoot({ apiKey: process.env.STRIPE_SECRET_KEY, apiVersion: '2020-08-27' }),
     TypeOrmModule.forRoot(config),
     AdditionalProductsModule,

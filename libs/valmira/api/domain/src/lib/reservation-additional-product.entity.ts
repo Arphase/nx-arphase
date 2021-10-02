@@ -27,7 +27,7 @@ export class ReservationAdditionalProductEntity extends BaseEntity implements Re
   @Column()
   reservationId: number;
 
-  @ManyToOne(() => ReservationEntity, reservation => reservation.additionalProducts)
+  @ManyToOne(() => ReservationEntity, reservation => reservation.additionalProducts, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'reservationId' })
   reservation: Reservation;
 }

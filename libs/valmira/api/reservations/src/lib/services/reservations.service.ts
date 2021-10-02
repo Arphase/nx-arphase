@@ -1,6 +1,7 @@
 import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   AdditionalProductEntity,
@@ -264,5 +265,15 @@ export class ReservationsService {
       html: getReservationConfirmEmail(reservation, reservationUrl),
     };
     await transporter.sendMail(mailOptions);
+  }
+
+  @Cron(CronExpression.EVERY_30_MINUTES)
+  async updateVehicleStatusFromRevisions() {
+    const query = this.reservationRepository.createQueryBuilder('reservation');
+    query.andWhere(`(reservation.paymentId IS NULL)`);
+    const reservations = await query.getMany();
+    const hourAgo = dayjs().subtract(1, 'hour');
+    const expiredReservations = reservations.filter(reservation => dayjs(reservation.createdAt).isBefore(hourAgo));
+    await this.reservationRepository.remove(expiredReservations);
   }
 }
