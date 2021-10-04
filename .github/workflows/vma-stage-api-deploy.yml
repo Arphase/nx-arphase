@@ -3,7 +3,7 @@ name: Valmimra Staging API Deploy
 env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
-  HOST: ${{ secrets.IVT_STAGE_DB_HOST }}
+  HOST: ${{ secrets.VMA_STAGE_DB_HOST }}
   DATABASE: ${{ secrets.VMA_STAGE_DB }}
   USERNAME: ${{ secrets.VMA_STAGE_DB_USERNAME }}
   PASSWORD: ${{ secrets.VMA_STAGE_DB_PASSWORD }}
