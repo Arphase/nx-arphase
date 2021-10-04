@@ -31,6 +31,9 @@ export class AdditionalProductEntity extends BaseEntity implements AdditionalPro
   @Column()
   price: number;
 
+  @Column({ default: false })
+  active: boolean;
+
   @OneToMany(
     () => ReservationAdditionalProductEntity,
     reservationAdditionalProduct => reservationAdditionalProduct.additionalProduct

@@ -92,7 +92,12 @@
           <img [src]="category.logo"
                class="search-icon justify-self-center">
           <p class="mt-1">{{ category.label }}
-            <ng-container *ngIf="category.value">({{ summary[category.value]?.amount || 0 }})</ng-container>
+            <ng-container *ngIf="category.value">
+              ({{ summary[category.value]?.amount || 0 }})
+            </ng-container>
+            <ng-container *ngIf="!category.value">
+              ({{ summary | sumAllPlaces }})
+            </ng-container>
           </p>
         </div>
       </label>

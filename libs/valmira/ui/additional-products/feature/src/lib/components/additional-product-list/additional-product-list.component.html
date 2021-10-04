@@ -98,6 +98,10 @@
           nzXs="4"
           nzLg="4"
           class="flex-end">
+        <nz-switch nz-tooltip
+                   nzTooltipTitle="Activar/desactivar producto"
+                   [ngModel]="item?.active"
+                   (ngModelChange)="onToggleStatusChange(item, $event)"></nz-switch>
         <button nz-button
                 nzType="text"
                 type="button"

@@ -57,18 +57,25 @@ export class ReservationsService {
     return createCollectionResponse<Reservation>(promcodes, pageSize, pageIndex, total);
   }
 
-  async getReservation(id: number): Promise<ReservationEntity> {
+  async getReservation(id: number): Promise<Reservation> {
     const reservation = await this.reservationRepository.findOne({ id });
     if (!reservation) {
       throw new NotFoundException(`Reservation with id ${id} not found`);
     }
     const { pricePerNight, nights, days } = getReservationDaysInfo(reservation);
+    const additionalProducts = await this.getAdditionalProductsWithPrice(reservation.additionalProducts);
     return {
       ...reservation,
       pricePerNight,
       nights,
       days,
-    } as ReservationEntity;
+      ...getReservationTotal({
+        ...reservation,
+        pricePerNight,
+        nights,
+        additionalProducts,
+      }),
+    } as Reservation;
   }
 
   async getReservationDetail(filterDto: GetReservationDetailDto): Promise<ReservationEntity> {
@@ -138,7 +145,7 @@ export class ReservationsService {
       promocode,
       discount: promocode?.amount ? promocode.amount : 0,
       additionalProducts,
-      total: getReservationTotal({
+      ...getReservationTotal({
         ...reservationPreviewDto,
         pricePerNight,
         promocode,
@@ -174,11 +181,6 @@ export class ReservationsService {
       nights,
       days,
     } as ReservationEntity;
-  }
-
-  async deleteReservation(id: number): Promise<Reservation> {
-    const reservation = await this.getReservation(id);
-    return this.reservationRepository.remove(reservation);
   }
 
   async getAdditionalProductsWithPrice(

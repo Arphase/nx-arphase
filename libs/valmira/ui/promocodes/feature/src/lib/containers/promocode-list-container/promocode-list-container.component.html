@@ -3,4 +3,5 @@
                     [info]="info$ | async"
                     [queryParams]="queryParams"
                     (filterItems)="filterItems($event)"
+                    (edit)="updateItem($event)"
                     (delete)="deleteItem($event)"></vma-promocode-list>

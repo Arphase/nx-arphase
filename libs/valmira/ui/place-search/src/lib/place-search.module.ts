@@ -16,6 +16,7 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { PlaceSearchFormComponent } from './components/place-search-form/place-search-form.component';
 import { PlaceSearchComponent } from './components/place-search/place-search.component';
 import { PlaceSearchContainerComponent } from './containers/place-search-container/place-search-container.component';
+import { SumAllPlacesPipe } from './pipes/sum-all-places.pipe';
 import { PlaceSearchRoutingModule } from './place-search-routing.module';
 
 @NgModule({
@@ -36,6 +37,6 @@ import { PlaceSearchRoutingModule } from './place-search-routing.module';
     PlaceSearchRoutingModule,
     ReactiveFormsModule,
   ],
-  declarations: [PlaceSearchContainerComponent, PlaceSearchComponent, PlaceSearchFormComponent],
+  declarations: [PlaceSearchContainerComponent, PlaceSearchComponent, PlaceSearchFormComponent, SumAllPlacesPipe],
 })
 export class PlaceSearchModule {}

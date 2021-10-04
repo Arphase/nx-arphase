@@ -106,6 +106,10 @@
           nzMd="2"
           nzLg="3"
           class="flex-end">
+        <nz-switch nz-tooltip
+                   nzTooltipTitle="Activar/desactivar promocode"
+                   [ngModel]="item?.active"
+                   (ngModelChange)="onToggleStatusChange(item, $event)"></nz-switch>
         <button nz-button
                 nzType="text"
                 type="button"

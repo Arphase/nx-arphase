@@ -28,8 +28,9 @@ export class PlaceSearchContainerComponent extends ApsListContainerComponent<Pla
   }
 
   ngOnInit() {
-    this.placeCollectionService.getWithQuery({});
-    this.store.dispatch(fromPlaces.actions.getCategorySummary({ params: {} }));
+    const params = { pageSize: String(50), onlyActives: String(true) };
+    this.placeCollectionService.getWithQuery(params);
+    this.store.dispatch(fromPlaces.actions.getCategorySummary({ params }));
   }
 
   filterItems(queryParams?: QueryParams): void {

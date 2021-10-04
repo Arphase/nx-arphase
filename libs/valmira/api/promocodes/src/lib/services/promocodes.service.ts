@@ -59,6 +59,9 @@ export class PromocodesService {
     if (!promocode) {
       throw new NotFoundException(`Promocode with name ${name} not found or is expired`);
     }
+    if (!promocode.active) {
+      throw new ConflictException('Este código no está activo');
+    }
     return promocode;
   }
 
