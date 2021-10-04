@@ -1740,8 +1740,7 @@
             "tsConfig": "apps/musicr/store/tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "assets": ["apps/musicr/store/src/favicon.ico", "apps/musicr/store/src/assets"],
-            "styles": ["apps/musicr/store/src/styles.less"],
-            "scripts": []
+            "styles": ["apps/musicr/store/src/styles.less"]
           },
           "configurations": {
             "development": {
@@ -1864,7 +1863,9 @@
             "routes": ["/"]
           },
           "configurations": {
-            "production": {}
+            "production": {
+              "routes": ["/"]
+            }
           }
         }
       }
@@ -2788,7 +2789,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/valmira/app",
+            "outputPath": "dist/apps/valmira/browser",
             "index": "apps/valmira/app/src/index.html",
             "main": "apps/valmira/app/src/main.ts",
             "polyfills": "apps/valmira/app/src/polyfills.ts",
@@ -2887,6 +2888,90 @@
           "options": {
             "jestConfig": "apps/valmira/app/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/apps/valmira/server",
+            "main": "apps/valmira/app/server.ts",
+            "tsConfig": "apps/valmira/app/tsconfig.server.json",
+            "externalDependencies": [
+              "@nestjs/common",
+              "@nestjs/core",
+              "@nestjs/microservices",
+              "@nestjs/microservices/microservices-module",
+              "@nestjs/websockets",
+              "@nestjs/websockets/socket-module",
+              "cache-manager",
+              "class-transformer/storage",
+              "aws-sdk",
+              "pg",
+              "pg-native",
+              "react-native-sqlite-storage",
+              "mssql",
+              "sql.js",
+              "ioredis",
+              "redis",
+              "typeorm-aurora-data-api-driver",
+              "pg-query-strea",
+              "oracledb",
+              "mysql2",
+              "mysql",
+              "hdb-pool",
+              "@sap/hana-client",
+              "mongodb",
+              "react-native-sqlite-storage",
+              "typeorm"
+            ]
+          },
+          "configurations": {
+            "stage": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/valmira/app/src/environments/environment.ts",
+                  "with": "apps/valmira/app/src/environments/environment.stage.ts"
+                }
+              ]
+            },
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/valmira/app/src/environments/environment.ts",
+                  "with": "apps/valmira/app/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": false
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "valmira-app:build",
+            "serverTarget": "valmira-app:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "valmira-app:build:production",
+              "serverTarget": "valmira-app:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "valmira-app:build:production",
+            "serverTarget": "valmira-app:server:production",
+            "routes": ["/"]
+          },
+          "configurations": {
+            "production": {
+              "routes": ["/"]
+            }
           }
         }
       }

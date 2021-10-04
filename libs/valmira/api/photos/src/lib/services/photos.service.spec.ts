@@ -1,7 +1,7 @@
 import { createMockRepository } from '@arphase/api/testing';
-import { PhotoEntity } from '@musicr/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { PhotoEntity } from '@valmira/api/domain';
 
 import { PhotosService } from './photos.service';
 

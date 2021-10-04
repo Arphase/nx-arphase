@@ -123,9 +123,7 @@ export class VehiclesService {
     await this.vehicleRepository
       .createQueryBuilder('vehicle')
       .update()
-      .set({
-        status: VehicleStatus.needsRevision,
-      })
+      .set({ status: VehicleStatus.needsRevision })
       .where(
         `NOT EXISTS(
           SELECT NULL

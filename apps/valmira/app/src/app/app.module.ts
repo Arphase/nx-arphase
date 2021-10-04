@@ -43,7 +43,7 @@ const VALMIRA_CONFIGURATION_VALUE: ValmiraConfiguration = {
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'valmira' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
