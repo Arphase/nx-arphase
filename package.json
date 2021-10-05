@@ -45,7 +45,7 @@
     "typeorm:musicr:run": "npm run typeorm:musicr migration:run",
     "api:innovatech:prod": "nx build innovatech-api --prod && node dist/apps/innovatech/api/main.js",
     "api:valmira:prod": "chmod +rwx dist && node dist/apps/valmira/server/main.js",
-    "api:musicr:prod": "chmod +rwx dist && node dist/apps/valmira/server/main.js"
+    "api:musicr:prod": "chmod +rwx dist && node dist/apps/musicr/server/main.js"
   },
   "private": true,
   "dependencies": {
