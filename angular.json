@@ -1368,15 +1368,7 @@
             "polyfills": "apps/musicr/admin/src/polyfills.ts",
             "tsConfig": "apps/musicr/admin/tsconfig.app.json",
             "inlineStyleLanguage": "less",
-            "assets": [
-              "apps/musicr/admin/src/favicon.ico",
-              "apps/musicr/admin/src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/assets/"
-              }
-            ],
+            "assets": ["apps/musicr/admin/src/favicon.ico", "apps/musicr/admin/src/assets"],
             "styles": ["apps/musicr/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
@@ -2356,8 +2348,7 @@
             "polyfills": "apps/pam-vic/src/polyfills.ts",
             "tsConfig": "apps/pam-vic/tsconfig.app.json",
             "assets": ["apps/pam-vic/src/favicon.ico", "apps/pam-vic/src/assets"],
-            "styles": ["apps/pam-vic/src/styles.css"],
-            "scripts": []
+            "styles": ["apps/pam-vic/src/styles.css"]
           },
           "configurations": {
             "production": {
@@ -2451,15 +2442,7 @@
             "main": "apps/valmira/admin/src/main.ts",
             "polyfills": "apps/valmira/admin/src/polyfills.ts",
             "tsConfig": "apps/valmira/admin/tsconfig.app.json",
-            "assets": [
-              "apps/valmira/admin/src/favicon.ico",
-              "apps/valmira/admin/src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/assets/"
-              }
-            ],
+            "assets": ["apps/valmira/admin/src/favicon.ico", "apps/valmira/admin/src/assets"],
             "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
@@ -2809,15 +2792,7 @@
             "polyfills": "apps/valmira/app/src/polyfills.ts",
             "tsConfig": "apps/valmira/app/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/valmira/app/src/favicon.ico",
-              "apps/valmira/app/src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/assets/"
-              }
-            ],
+            "assets": ["apps/valmira/app/src/favicon.ico", "apps/valmira/app/src/assets"],
             "styles": ["apps/valmira/app/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
