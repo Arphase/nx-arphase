@@ -36,8 +36,14 @@ jobs:
       - name: Move Procfile
         run: mv ./apps/valmira/api/Procfile .
 
+      - name: Build browser app
+        run: export NODE_ENV=production && nx build valmira-app --prod
+
+      - name: Build server app
+        run: ng run valmira-app:server:production
+
       - name: Create zip file
-        run: zip -r Archive.zip . -x .git/\* -x .cache/\* -x node_modules/\* -x dist/\* -x .vscode/\*  -x .github/\* -x .tmp/\*
+        run: zip -r Archive.zip . -x .git/\* -x .cache/\* -x node_modules/\* -x .vscode/\*  -x .github/\* -x .tmp/\*
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v16
