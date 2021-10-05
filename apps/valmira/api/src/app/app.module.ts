@@ -21,7 +21,7 @@ import config from '../db/config/ormconfig';
     ScheduleModule.forRoot(),
     AngularUniversalModule.forRoot({
       bootstrap: AppServerModule,
-      viewsPath: join(process.cwd(), '/../browser'),
+      viewsPath: join(process.cwd(), 'dist/apps/valmira/browser'),
     }),
     StripeModule.forRoot({ apiKey: process.env.STRIPE_SECRET_KEY, apiVersion: '2020-08-27' }),
     TypeOrmModule.forRoot(config),
