@@ -2,7 +2,7 @@ import { AuthService, SignUpCredentialsDto } from '@musicr/api/auth';
 import { ResetPasswordEntity, UserEntity } from '@musicr/api/domain';
 import { ConnectionOptions, createConnection } from 'typeorm';
 
-import config from '../config/ormconfig';
+import config from '../config/ormconfig.migrations';
 
 async function run() {
   const opt = {
@@ -23,7 +23,6 @@ async function run() {
     {
       firstName: 'Diego',
       lastName: 'Contreras',
-      secondLastName: 'Chapa',
       email: 'diego.contreras@mailinator.com',
       password: 'MusicRevolution123@',
     },

@@ -19,7 +19,7 @@ import config from '../db/config/ormconfig';
   imports: [
     AngularUniversalModule.forRoot({
       bootstrap: AppServerModule,
-      viewsPath: join(process.cwd(), 'dist/musicr-store/browser'),
+      viewsPath: join(process.cwd(), 'dist/apps/musicr/browser'),
     }),
     TypeOrmModule.forRoot(config),
     AdditionalOptionsModule,

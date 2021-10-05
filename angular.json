@@ -1372,6 +1372,20 @@
             "styles": ["apps/musicr/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/musicr/admin/src/environments/environment.ts",
+                  "with": "apps/musicr/admin/src/environments/environment.stage.ts"
+                }
+              ],
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -1725,7 +1739,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/musicr-store/browser",
+            "outputPath": "dist/apps/musicr/browser",
             "index": "apps/musicr/store/src/index.html",
             "main": "apps/musicr/store/src/main.ts",
             "polyfills": "apps/musicr/store/src/polyfills.ts",
@@ -1736,6 +1750,20 @@
           },
           "configurations": {
             "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/musicr/store/src/environments/environment.ts",
+                  "with": "apps/musicr/store/src/environments/environment.stage.ts"
+                }
+              ],
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -1789,7 +1817,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/musicr-store/server",
+            "outputPath": "dist/apps/musicr/server",
             "main": "apps/musicr/store/server.ts",
             "tsConfig": "apps/musicr/store/tsconfig.server.json",
             "externalDependencies": [
@@ -1800,6 +1828,7 @@
               "@nestjs/websockets",
               "@nestjs/websockets/socket-module",
               "cache-manager",
+              "class-transformer/storage",
               "aws-sdk",
               "pg",
               "pg-native",
@@ -1821,12 +1850,29 @@
             ]
           },
           "configurations": {
+            "stage": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/musicr/store/src/environments/environment.ts",
+                  "with": "apps/musicr/store/src/environments/environment.stage.ts"
+                },
+                {
+                  "replace": "apps/musicr/api/src/environments/environment.ts",
+                  "with": "apps/musicr/api/src/environments/environment.prod.ts"
+                }
+              ]
+            },
             "production": {
               "outputHashing": "media",
               "fileReplacements": [
                 {
                   "replace": "apps/musicr/store/src/environments/environment.ts",
                   "with": "apps/musicr/store/src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "apps/musicr/api/src/environments/environment.ts",
+                  "with": "apps/musicr/api/src/environments/environment.prod.ts"
                 }
               ],
               "sourceMap": false,

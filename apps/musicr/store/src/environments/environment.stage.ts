@@ -3,7 +3,7 @@ import { Environment } from './environment.model';
 
 export const environment: Environment = {
   production: true,
-  apiUrl: 'https://apistage.musicrevolution.com',
+  apiUrl: '/api',
   version: packageJson.version,
   environmentName: 'stage',
 };

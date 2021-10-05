@@ -12,7 +12,7 @@ export class CustomerEntity extends BaseEntity implements Customer {
   @Column()
   lastName: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()

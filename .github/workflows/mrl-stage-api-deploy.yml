@@ -1,12 +1,12 @@
-name: Valmimra Staging API Deploy
+name: Music Revolution Staging API Deploy
 
 env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
-  HOST: ${{ secrets.VMA_STAGE_DB_HOST }}
-  DB: ${{ secrets.VMA_STAGE_DB }}
-  DB_USERNAME: ${{ secrets.VMA_STAGE_DB_USERNAME }}
-  DB_PASSWORD: ${{ secrets.VMA_STAGE_DB_PASSWORD }}
+  HOST: ${{ secrets.MRL_STAGE_DB_HOST }}
+  DB: ${{ secrets.MRL_STAGE_DB }}
+  DB_USERNAME: ${{ secrets.MRL_STAGE_DB_USERNAME }}
+  DB_PASSWORD: ${{ secrets.MRL_STAGE_DB_PASSWORD }}
 
 on:
   workflow_dispatch:
@@ -31,16 +31,16 @@ jobs:
       - uses: bahmutov/npm-install@v1
 
       - name: Run migrations
-        run: npm run typeorm:valmira:run
+        run: npm run typeorm:musicr:run
 
       - name: Move Procfile
-        run: mv ./apps/valmira/api/Procfile .
+        run: mv ./apps/musicr/api/Procfile .
 
       - name: Build browser app
-        run: export NODE_ENV=production && npx nx build valmira-app --c=stage
+        run: export NODE_ENV=production && npx nx build musicr-store --c=stage
 
       - name: Build server app
-        run: npx ng run valmira-app:server:production
+        run: npx ng run musicr-store:server:production
 
       - name: Create zip file
         run: zip -r Archive.zip . -x .git/\* -x .cache/\* -x node_modules/\* -x .vscode/\*  -x .github/\* -x .tmp/\*
@@ -50,8 +50,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID_EB }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY_EB }}
-          application_name: valmira
-          environment_name: VMA-STAGE
+          application_name: music-revolution
+          environment_name: MRL-STAGE
           version_label: ${{ github.event.inputs.version }}
           region: ${{ secrets.AWS_REGION }}
           deployment_package: Archive.zip
