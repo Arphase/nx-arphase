@@ -2932,6 +2932,10 @@
                 {
                   "replace": "apps/valmira/app/src/environments/environment.ts",
                   "with": "apps/valmira/app/src/environments/environment.stage.ts"
+                },
+                {
+                  "replace": "apps/valmira/api/src/environments/environment.ts",
+                  "with": "apps/valmira/api/src/environments/environment.prod.ts"
                 }
               ]
             },
@@ -2941,6 +2945,10 @@
                 {
                   "replace": "apps/valmira/app/src/environments/environment.ts",
                   "with": "apps/valmira/app/src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "apps/valmira/api/src/environments/environment.ts",
+                  "with": "apps/valmira/api/src/environments/environment.prod.ts"
                 }
               ],
               "sourceMap": false,
