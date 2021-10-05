@@ -1,9 +1,9 @@
-import { ApsCollectionFilterDto } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 import { AdditionalProduct } from '@valmira/domain';
 
 import { CreateAdditionalProductDto } from '../dto/create-additional-product.dto';
+import { GetAdditionalProductsDto } from '../dto/get-additional-products.dto';
 import { UpdateAdditionalProductDto } from '../dto/update-additional-product.dto';
 import { AdditionalProductsService } from '../services/additional-products.service';
 
@@ -12,7 +12,7 @@ export class AdditionalProductsController {
   constructor(private additionalProductsService: AdditionalProductsService) {}
 
   @Get()
-  async getProducts(@Query() filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<AdditionalProduct>> {
+  async getProducts(@Query() filterDto: GetAdditionalProductsDto): Promise<ApsCollectionResponse<AdditionalProduct>> {
     return this.additionalProductsService.getAdditionalProducts(filterDto);
   }
 

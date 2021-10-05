@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule, ApsEmptyModule, ApsFeatureLayoutModule, ApsSearchbarModule } from '@arphase/ui/core';
 import { AdditionalProductsDataModule } from '@valmira/ui/additional-products/data';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -14,6 +14,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NgxMaskModule } from 'ngx-mask';
 
@@ -25,27 +26,29 @@ import { AdditionalProductListContainerComponent } from './containers/additional
 
 @NgModule({
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    AdditionalProductsRoutingModule,
     AdditionalProductsDataModule,
-    NzGridModule,
+    AdditionalProductsRoutingModule,
+    ApsAutoErrorModule,
+    ApsEmptyModule,
+    ApsFeatureLayoutModule,
+    ApsSearchbarModule,
+    CommonModule,
+    FormsModule,
+    NgxMaskModule,
+    NzButtonModule,
     NzCardModule,
     NzDividerModule,
-    NzTableModule,
-    NzButtonModule,
-    NzIconModule,
     NzFormModule,
+    NzGridModule,
+    NzIconModule,
     NzInputModule,
-    NzSpaceModule,
-    NzPageHeaderModule,
-    NzModalModule,
+    NzSwitchModule,
     NzMessageModule,
-    ApsSearchbarModule,
-    ApsAutoErrorModule,
-    ApsFeatureLayoutModule,
-    ApsEmptyModule,
-    NgxMaskModule,
+    NzModalModule,
+    NzPageHeaderModule,
+    NzSpaceModule,
+    NzTableModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     AdditionalProductFormContainerComponent,

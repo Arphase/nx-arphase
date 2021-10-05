@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, ElementRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ApsListComponent } from '@arphase/ui/core';
-import { Place } from '@valmira/domain';
+import { Place, PlaceCategories } from '@valmira/domain';
 
 @Component({
   selector: 'vma-place-search',
@@ -9,7 +9,6 @@ import { Place } from '@valmira/domain';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlaceSearchComponent extends ApsListComponent<Place> {
-  constructor(private elementRef: ElementRef) {
-    super();
-  }
+  @Input() summary: Record<PlaceCategories, { category: PlaceCategories; amount: number }>;
+  dummyList = new Array(3);
 }

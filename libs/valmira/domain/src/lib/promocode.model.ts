@@ -5,6 +5,7 @@ export interface Promocode {
   name: string;
   startDate: Date;
   endDate: Date;
+  active: boolean;
   amount: number;
   reservations?: Reservation[];
 }

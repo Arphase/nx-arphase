@@ -31,7 +31,10 @@ jobs:
       - uses: bahmutov/npm-install@v1
 
       - name: Run migrations
-        run: npm run typeorm:run
+        run: npm run typeorm:innovatech:run
+
+      - name: Move Procfile
+        run: mv ./apps/innovatech/api/Procfile .
 
       - name: Create zip file
         run: zip -r Archive.zip . -x .git/\* -x .cache/\* -x node_modules/\* -x dist/\* -x .vscode/\*  -x .github/\* -x .tmp/\*

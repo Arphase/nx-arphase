@@ -4,7 +4,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { ReservationCollectionService } from '@valmira/ui/reservations/data';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { ReservationWizardContainerComponent } from './reservation-wizard-container.component';
 
@@ -16,8 +16,11 @@ describe('ReservationWizardContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: ReservationWizardContainerComponent,
     imports: [RouterTestingModule],
-    providers: [provideMockStore(), provideMockActions(() => actions$)],
-    mocks: [ReservationCollectionService],
+    providers: [
+      provideMockStore(),
+      provideMockActions(() => actions$),
+      { provide: ReservationCollectionService, useValue: { currentItem$: of({}), removeOneFromCache: jest.fn() } },
+    ],
     shallow: true,
   });
 

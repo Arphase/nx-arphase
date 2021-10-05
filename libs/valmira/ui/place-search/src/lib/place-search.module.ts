@@ -11,16 +11,19 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 import { PlaceSearchFormComponent } from './components/place-search-form/place-search-form.component';
 import { PlaceSearchComponent } from './components/place-search/place-search.component';
 import { PlaceSearchContainerComponent } from './containers/place-search-container/place-search-container.component';
+import { SumAllPlacesPipe } from './pipes/sum-all-places.pipe';
 import { PlaceSearchRoutingModule } from './place-search-routing.module';
 
 @NgModule({
   imports: [
-    CommonModule,
     ApsAutoErrorModule,
+    CommonModule,
+    FormsModule,
     NzAlertModule,
     NzButtonModule,
     NzDatePickerModule,
@@ -29,11 +32,11 @@ import { PlaceSearchRoutingModule } from './place-search-routing.module';
     NzIconModule,
     NzInputModule,
     NzRadioModule,
+    NzSkeletonModule,
     PlacesDataModule,
     PlaceSearchRoutingModule,
     ReactiveFormsModule,
-    FormsModule,
   ],
-  declarations: [PlaceSearchContainerComponent, PlaceSearchComponent, PlaceSearchFormComponent],
+  declarations: [PlaceSearchContainerComponent, PlaceSearchComponent, PlaceSearchFormComponent, SumAllPlacesPipe],
 })
 export class PlaceSearchModule {}

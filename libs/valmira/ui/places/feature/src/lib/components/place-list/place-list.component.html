@@ -105,8 +105,7 @@
           nzMd="3"
           nzLg="2"
           class="flex-end">
-        <nz-switch class="mr-2"
-                   nz-tooltip
+        <nz-switch nz-tooltip
                    nzTooltipTitle="Activar/desactivar alojamiento"
                    [ngModel]="item?.active"
                    (ngModelChange)="onToggleStatusChange(item, $event)"></nz-switch>

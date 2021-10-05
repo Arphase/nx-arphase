@@ -6,6 +6,7 @@
 @import './styles/datepicker';
 @import './styles/input';
 @import './styles/reservation-wizard';
+@import './styles/skeleton';
 @import './styles/variables';
 
 @font-face {
@@ -19,24 +20,7 @@ html body {
   color: var(--textColor);
 }
 
-nz-layout {
-  background: @background-color !important;
-}
-
-nz-content {
-  padding-top: 100px;
-  width: 98vw;
-}
-
-nz-header {
-  background: @background-color !important;
-}
-
-nz-menu {
-  background: @background-color !important;
-}
-
-nz-footer {
+.footer {
   background: @primary-color !important;
 }
 
@@ -83,19 +67,5 @@ nz-footer {
   text-align: center;
   @media only screen and (max-width: 768px) {
     font-size: 10px;
-  }
-}
-
-.ant-picker {
-  border-radius: 25px;
-  background-color: #cbc6b7;
-  color: @primary-color;
-
-  input::placeholder {
-    color: @primary-color;
-    text-align: center;
-    @media only screen and (max-width: 768px) {
-      font-size: 10px;
-    }
   }
 }

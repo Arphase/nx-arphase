@@ -1,45 +1,5 @@
-h1 {
-  font-size: 81px;
-  @media only screen and (max-width: 768px) {
-    font-size: 24px;
-  }
-}
-
-h2 {
-  font-size: 54px;
-}
-
-h3 {
-  font-size: 36px;
-}
-
-div {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-p {
-  font-size: 16px;
-}
-
-hr {
-  margin: 96px;
-}
-
 .italic {
   color: #b7400b;
-}
-
-.sun {
-  min-width: 88px;
-  right: 50px;
-  @media only screen and (max-width: 768px) {
-    font-size: 24px;
-    line-height: 24.24px;
-    margin-left: auto;
-    margin-right: auto;
-    right: 0;
-  }
 }
 
 .pine {
@@ -47,10 +7,6 @@ hr {
   @media only screen and (max-width: 768px) {
     display: none;
   }
-}
-
-.pine-2 {
-  margin: 200px 0;
 }
 
 .pines {
@@ -64,7 +20,6 @@ hr {
 }
 
 .mobile-icon {
-  margin-bottom: 20px;
   @media only screen and (min-width: 768px) {
     display: none;
   }
@@ -74,14 +29,6 @@ hr {
   @media only screen and (max-width: 768px) {
     display: none;
   }
-}
-
-.container {
-  position: relative;
-}
-
-.full-width {
-  width: 100%;
 }
 
 .float {
@@ -122,15 +69,16 @@ hr {
   bottom: 0px;
   right: 4vw;
   color: #1d2b15;
+
   @media only screen and (max-width: 768px) {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: -30px;
+    min-width: 100%;
+    height: 200px;
     position: relative;
     right: 0;
+    border-top-width: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    border-bottom-left-radius: $height + 10px;
-    border-bottom-right-radius: $height + 10px;
+    border-bottom-left-radius: calc($height + 10px);
+    border-bottom-right-radius: calc($height + 10px);
   }
 }

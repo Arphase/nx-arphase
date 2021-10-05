@@ -1,5 +1,5 @@
 <div nz-row
-     class="mt-32">
+     class="my-32">
   <div nz-col
        [nzSpan]="isInConfirmation ? 24 : 16">
     <h1 class="text-7xl text-primary mb-6">Tu reservación</h1>
@@ -11,10 +11,12 @@
       </li>
       <li routerLinkActive="text-primary"
           [routerLink]="['personal-data']"><span class="mr-2">DATOS PERSONALES</span> <span class="mr-2">></span></li>
-      <li routerLinkActive="text-primary"
-          [routerLink]="['payment-method']"> <span class="mr-2">MÉTODOS DE PAGO</span> <span class="mr-2">></span></li>
-      <li routerLinkActive="text-primary"
-          [routerLink]="['confirmation']"><span class="mr-2"> CONFIRMACIÓN</span></li>
+      <li [routerLinkActive]="disablePaymentMethod ? '' : 'text-primary'"
+          [routerLink]="disablePaymentMethod ? null :['payment-method']"> <span class="mr-2">MÉTODOS DE PAGO</span>
+        <span class="mr-2">></span>
+      </li>
+      <li [routerLinkActive]="disableConfirmation ? '' : 'text-primary'"
+          [routerLink]="disableConfirmation ? null : ['confirmation']"><span class="mr-2"> CONFIRMACIÓN</span></li>
     </ul>
     <div nz-row>
       <div nz-col

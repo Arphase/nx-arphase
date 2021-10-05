@@ -1,4 +1,9 @@
-import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
+import {
+  ApsCollectionFilterDto,
+  createCollectionResponse,
+  filterCollectionDates,
+  filterCollectionQuery,
+} from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -36,10 +41,26 @@ export class PromocodesService {
     return promocode;
   }
 
+  /**
+   * Gets promocode by name
+   * We are filtering the startDate and endDate because we only want to return not espired promocodes
+   * @param name
+   * @returns promocode by name
+   */
   async getPromocodeByName(name: string): Promise<PromocodeEntity> {
-    const promocode = await this.promocodeRepository.findOne({ name });
+    const query = this.promocodeRepository.createQueryBuilder('promocode');
+    query.andWhere(`(promocode.name like :name)`, { name });
+    const startDate = new Date();
+    const endDate = new Date();
+    filterCollectionDates('promocode', query, { startDate, endDate, dateType: 'startDate' });
+    filterCollectionDates('promocode', query, { startDate, endDate, dateType: 'endDate' });
+
+    const promocode = await query.getOne();
     if (!promocode) {
-      throw new NotFoundException(`Promocode with name ${name} not found`);
+      throw new NotFoundException(`Promocode with name ${name} not found or is expired`);
+    }
+    if (!promocode.active) {
+      throw new ConflictException('Este código no está activo');
     }
     return promocode;
   }

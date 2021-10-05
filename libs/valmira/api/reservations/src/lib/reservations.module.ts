@@ -9,6 +9,7 @@ import {
   ReservationEntity,
 } from '@valmira/api/domain';
 import { PlacesModule } from '@valmira/api/places';
+import { PromocodesModule } from '@valmira/api/promocodes';
 
 import { ReservationsController } from './controllers/reservations.controller';
 import { ReservationsService } from './services/reservations.service';
@@ -17,6 +18,7 @@ import { ReservationsService } from './services/reservations.service';
   imports: [
     AuthModule,
     PlacesModule,
+    PromocodesModule,
     TypeOrmModule.forFeature([
       AdditionalProductEntity,
       PromocodeEntity,

@@ -1,6 +1,7 @@
 import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   AdditionalProductEntity,
@@ -10,6 +11,7 @@ import {
   ReservationEntity,
 } from '@valmira/api/domain';
 import { PlacesService } from '@valmira/api/places';
+import { PromocodesService } from '@valmira/api/promocodes';
 import { Promocode, Reservation, ReservationAdditionalProduct, ReservationStatus } from '@valmira/domain';
 import dayjs from 'dayjs';
 import { InjectStripe } from 'nestjs-stripe';
@@ -37,7 +39,8 @@ export class ReservationsService {
     @InjectRepository(ReservationAdditionalProductEntity)
     private reservationAdditionalProductRepository: Repository<ReservationAdditionalProductEntity>,
     @InjectStripe() private readonly stripeClient: Stripe,
-    private placesService: PlacesService
+    private placesService: PlacesService,
+    private promocodeService: PromocodesService
   ) {}
 
   async getReservations(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Reservation>> {
@@ -54,18 +57,25 @@ export class ReservationsService {
     return createCollectionResponse<Reservation>(promcodes, pageSize, pageIndex, total);
   }
 
-  async getReservation(id: number): Promise<ReservationEntity> {
+  async getReservation(id: number): Promise<Reservation> {
     const reservation = await this.reservationRepository.findOne({ id });
     if (!reservation) {
       throw new NotFoundException(`Reservation with id ${id} not found`);
     }
     const { pricePerNight, nights, days } = getReservationDaysInfo(reservation);
+    const additionalProducts = await this.getAdditionalProductsWithPrice(reservation.additionalProducts);
     return {
       ...reservation,
       pricePerNight,
       nights,
       days,
-    } as ReservationEntity;
+      ...getReservationTotal({
+        ...reservation,
+        pricePerNight,
+        nights,
+        additionalProducts,
+      }),
+    } as Reservation;
   }
 
   async getReservationDetail(filterDto: GetReservationDetailDto): Promise<ReservationEntity> {
@@ -92,6 +102,7 @@ export class ReservationsService {
   /**
    * Previews reservation
    * Note: if reservationDto id exists we skip all validations of occupiedDates
+   * We check the promocode with getPromocodeByName from promocodesService to verify expiration
    * @param reservationDto
    * @returns reservation with all populated data from database relations
    */
@@ -119,6 +130,7 @@ export class ReservationsService {
       if (!promocode) {
         throw new NotFoundException('Código de descuento no existe');
       }
+      await this.promocodeService.getPromocodeByName(promocode.name);
     }
     if (additionalProducts?.length) {
       additionalProducts = await this.getAdditionalProductsWithPrice(additionalProducts);
@@ -133,7 +145,7 @@ export class ReservationsService {
       promocode,
       discount: promocode?.amount ? promocode.amount : 0,
       additionalProducts,
-      total: getReservationTotal({
+      ...getReservationTotal({
         ...reservationPreviewDto,
         pricePerNight,
         promocode,
@@ -169,11 +181,6 @@ export class ReservationsService {
       nights,
       days,
     } as ReservationEntity;
-  }
-
-  async deleteReservation(id: number): Promise<Reservation> {
-    const reservation = await this.getReservation(id);
-    return this.reservationRepository.remove(reservation);
   }
 
   async getAdditionalProductsWithPrice(
@@ -260,5 +267,15 @@ export class ReservationsService {
       html: getReservationConfirmEmail(reservation, reservationUrl),
     };
     await transporter.sendMail(mailOptions);
+  }
+
+  @Cron(CronExpression.EVERY_30_MINUTES)
+  async updateVehicleStatusFromRevisions() {
+    const query = this.reservationRepository.createQueryBuilder('reservation');
+    query.andWhere(`(reservation.paymentId IS NULL)`);
+    const reservations = await query.getMany();
+    const hourAgo = dayjs().subtract(1, 'hour');
+    const expiredReservations = reservations.filter(reservation => dayjs(reservation.createdAt).isBefore(hourAgo));
+    await this.reservationRepository.remove(expiredReservations);
   }
 }

@@ -10,27 +10,23 @@ describe('GetReservationTotal', () => {
       pricePerNight: 2500,
     };
 
-    expect(getReservationTotal(reservation)).toEqual(5000);
+    expect(getReservationTotal(reservation).total).toEqual(5000);
   });
 
   it('should return 5500 if 3 nights of 2000 were reserved and a promocode of 500 is applied', () => {
     const reservation: DeepPartial<Reservation> = {
       nights: 3,
       pricePerNight: 2000,
-      promocode: {
-        amount: 500,
-      },
+      promocode: { amount: 500 },
     };
-    expect(getReservationTotal(reservation)).toEqual(5500);
+    expect(getReservationTotal(reservation).total).toEqual(5500);
   });
 
   it('should return 10000 if 3 nights of 2500 were reserved, a promocode of 500 is applied, and 3 additional products of 1000 were purchased', () => {
     const reservation: DeepPartial<Reservation> = {
       nights: 3,
       pricePerNight: 2500,
-      promocode: {
-        amount: 500,
-      },
+      promocode: { amount: 500 },
       additionalProducts: [
         {
           amount: 3,
@@ -40,6 +36,6 @@ describe('GetReservationTotal', () => {
         },
       ],
     };
-    expect(getReservationTotal(reservation)).toEqual(10000);
+    expect(getReservationTotal(reservation).total).toEqual(10000);
   });
 });

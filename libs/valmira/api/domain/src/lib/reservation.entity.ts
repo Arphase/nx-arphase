@@ -84,7 +84,6 @@ export class ReservationEntity extends BaseEntity implements Reservation {
   @OneToMany(() => ReservationAdditionalProductEntity, additionalProducts => additionalProducts.reservation, {
     cascade: true,
     eager: true,
-    onDelete: 'CASCADE',
   })
   additionalProducts?: ReservationAdditionalProduct[];
 
