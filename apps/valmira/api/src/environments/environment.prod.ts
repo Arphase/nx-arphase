@@ -6,10 +6,10 @@ export const environment: Environment = {
     type: 'postgres',
     host: process.env.HOST,
     port: 5432,
-    database: process.env.DATABASE,
+    database: process.env.DB,
     synchronize: false,
-    username: process.env.USERNAME,
-    password: process.env.PASSWORD,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
   },
   server: {
     port: 3333,
