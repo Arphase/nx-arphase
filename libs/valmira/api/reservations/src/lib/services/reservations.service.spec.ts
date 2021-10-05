@@ -9,6 +9,7 @@ import {
   ReservationEntity,
 } from '@valmira/api/domain';
 import { PlacesService } from '@valmira/api/places';
+import { PromocodesService } from '@valmira/api/promocodes';
 import { StripeModule } from 'nestjs-stripe';
 
 import { ReservationsService } from './reservations.service';
@@ -27,6 +28,7 @@ describe('ReservationsService', () => {
         { provide: getRepositoryToken(AdditionalProductEntity), useValue: createMockRepository() },
         { provide: getRepositoryToken(ReservationAdditionalProductEntity), useValue: createMockRepository() },
         { provide: PlacesService, useValue: {} },
+        { provide: PromocodesService, useValue: {} },
       ],
     }).compile();
 

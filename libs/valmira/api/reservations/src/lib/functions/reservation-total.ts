@@ -14,7 +14,10 @@ export function getReservationTotal(reservation: DeepPartial<Reservation>): {
     total -= promocode.amount;
   }
   if (additionalProducts) {
-    productTotal = additionalProducts.reduce((sum, { amount, price }) => sum + Number(amount) * Number(price), 0);
+    productTotal = additionalProducts.reduce(
+      (sum, { amount, additionalProduct }) => sum + Number(amount) * Number(additionalProduct.price),
+      0
+    );
   }
   total += productTotal;
   return { placeTotal, productTotal, total };

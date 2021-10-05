@@ -1,4 +1,4 @@
-import { ApsPhonePipe } from '@arphase/ui/core';
+import { ApsEmptyPipe, ApsPhonePipe } from '@arphase/ui/core';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { MockPipe } from 'ng-mocks';
 
@@ -8,7 +8,7 @@ describe('ReservationDetailComponent', () => {
   let spectator: Spectator<ReservationDetailComponent>;
   const createComponent = createComponentFactory({
     component: ReservationDetailComponent,
-    declarations: [MockPipe(ApsPhonePipe)],
+    declarations: [MockPipe(ApsPhonePipe), MockPipe(ApsEmptyPipe)],
     shallow: true,
   });
 

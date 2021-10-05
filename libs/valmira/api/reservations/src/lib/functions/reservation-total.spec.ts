@@ -17,9 +17,7 @@ describe('GetReservationTotal', () => {
     const reservation: DeepPartial<Reservation> = {
       nights: 3,
       pricePerNight: 2000,
-      promocode: {
-        amount: 500,
-      },
+      promocode: { amount: 500 },
     };
     expect(getReservationTotal(reservation).total).toEqual(5500);
   });
@@ -28,9 +26,7 @@ describe('GetReservationTotal', () => {
     const reservation: DeepPartial<Reservation> = {
       nights: 3,
       pricePerNight: 2500,
-      promocode: {
-        amount: 500,
-      },
+      promocode: { amount: 500 },
       additionalProducts: [
         {
           amount: 3,
