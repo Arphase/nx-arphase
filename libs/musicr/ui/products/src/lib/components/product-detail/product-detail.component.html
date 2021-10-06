@@ -18,14 +18,14 @@
         </button>
       </div>
     </div>
-    <div class="space"
+    <div class="px-8"
          nz-col
          nzXs="24"
          nzLg="12">
       <nz-page-header class="site-page-header"
                       (nzBack)="onBack()"
                       nzBackIcon></nz-page-header>
-      <h1 class="text-5xl">{{ product?.name }}</h1>
+      <h1 class="md:mt-14 mt-4 md:text-5xl text-2xl">{{ product?.name }}</h1>
       <div nz-row
            class="disclaimer">
         <div nz-col
@@ -46,11 +46,6 @@
         <span class="text-base"> {{ productComponent }} </span>
       </div>
 
-      <nz-input-number class="mt-10"
-                       [(ngModel)]="amount"
-                       [nzMin]="1"
-                       [nzStep]="1"></nz-input-number>
-
       <nz-select *ngIf="priceOptions?.length"
                  apsAutoSelect
                  formControlName="amount"
@@ -68,7 +63,7 @@
     <div nz-col
          nzSpan="24"
          class="disclaimer">
-      <p>Servicios Relacionados</p>
+      <p class="text-xl">Servicios Relacionados</p>
     </div>
   </div>
 </div>

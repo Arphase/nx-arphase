@@ -24,9 +24,7 @@ export class MenuComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.categories && this.categories) {
-      this.categories.forEach(category => {
-        this.openMap[category.id] = false;
-      });
+      this.categories.forEach(category => (this.openMap[category.id] = false));
     }
   }
 
@@ -54,12 +52,12 @@ export class MenuComponent implements OnInit, OnChanges {
   }
 
   openCart(): void {
-    this.router.navigate([{ outlets: { cart: 'cart' } }]);
+    this.router.navigate([{ outlets: { cart: 'cart' } }], { skipLocationChange: true });
     this.cartVisible = true;
   }
 
   closeCart(): void {
-    this.router.navigate([{ outlets: { cart: null } }]);
+    this.router.navigate([{ outlets: { cart: null } }], { skipLocationChange: true });
     this.cartVisible = false;
   }
 }

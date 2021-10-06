@@ -12,7 +12,6 @@ import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 export class ProductDetailComponent {
   @Input() product: Product;
   @Input() priceOptions: NzSelectOptionInterface[] = [];
-  amount = 1;
   total: number;
   @Output() addItemToCart = new EventEmitter<Partial<OrderProduct>>();
 
@@ -25,7 +24,7 @@ export class ProductDetailComponent {
   addItem(): void {
     const item: Partial<OrderProduct> = {
       product: this.product,
-      amount: this.amount,
+      amount: 1,
       productId: this.product.id,
     };
     this.addItemToCart.emit(item);
