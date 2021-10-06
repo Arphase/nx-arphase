@@ -1,8 +1,6 @@
-<div class="center">
+<div class="md:px-10 px-4 z-10 bg-white text-center relative">
   <div class="space">
-    <h2 class="title">
-      Tenemos todo lo necesario para que tu evento sea un éxito.
-    </h2>
+    <h2 class="title">Tenemos todo lo necesario para que tu evento sea un éxito.</h2>
     <h6>Nos encargamos de la planeación y el entretenimiento, para que tú sólo te dediques a celebrar.</h6>
   </div>
 
@@ -14,10 +12,10 @@
               srcset="assets/img/Cover630kb.jpg">
       <img src="assets/img/Cover630kb.jpg"
            alt="Music Revolution Cover"
-           class="cover">
+           class="cover w-full">
     </picture>
-
   </div>
+
   <div class="m-scroll-left scroll-over rotate-23">
     <div class="m-scroll-left__title">
       <div class="t-18">
@@ -42,7 +40,7 @@
   </div>
 
   <div>
-    <img [src]="'assets/img/Isotipo_1.svg'"
+    <img src="assets/img/Isotipo_1.svg"
          alt="Music Revolution Logo"
          class="logo">
   </div>
@@ -54,9 +52,7 @@
       pero compartirlos con las personas que atesoras los vuelve
       mágicos e inolvidables.
     </p>
-    <p class="bold">
-      Estamos comprometidos con producir tus celebraciones tal como las imaginaste.
-    </p>
+    <p class="font-bold mt-8">Estamos comprometidos con producir tus celebraciones tal como las imaginaste.</p>
   </div>
 
   <h4><strong>Conoce nuestros servicios.</strong></h4>
@@ -127,40 +123,47 @@
   </div>
 
 
-  <div>
-    <div class="right-container">
-      <h3>Entretenimiento</h3>
+  <div nz-row
+       nzGutter="32"
+       class="text-left">
+    <div nz-col
+         nzSpan="12"
+         class="pt-80">
+      <h3 class="mb-2">Entretenimiento</h3>
 
-      <p>Texto sobre los servicios de entretenimiento que proveemos, detallando por encimita cuáles son. </p>
+      <p class="mb-7">DJ, sonido, luces, pistas de baile, pirotecnia fría y todo lo necesario para crear el mejor
+        ambiente en tu
+        evento.</p>
 
-      <div>
-        <img [src]="'assets/img/_0010_Pantalla LED.jpg'"
-             alt="Entretenimiento">
-      </div>
+      <img src="assets/img/_0010_Pantalla LED.jpg"
+           alt="Entretenimiento">
     </div>
 
-
-    <div class="left-container">
-      <h3>Mobiliario</h3>
-
-      <p>Texto sobre los servicios de entretenimiento que proveemos, detallando por encimita cuáles son. </p>
-
-      <div>
-        <img [src]="'assets/img/_0006_Mesa con sillas tiffany.jpg'"
-             alt="Mobiliario">
-      </div>
+    <div nz-col
+         nzSpan="12">
+      <h3 class="mb-2">Mobiliario</h3>
+      <p class="mb-7">
+        Salas lounge, mesas, sillas, calentadores, toldos y demás mobiliario para hacer posible tu evento con
+        elegancia y estilo.
+      </p>
+      <img src="assets/img/_0006_Mesa con sillas tiffany.jpg"
+           alt="Mobiliario">
     </div>
 
+    <div nz-col
+         nzSpan="12"></div>
 
-    <div class="right-container">
-      <h3>Personal de Servicio</h3>
+    <div nz-col
+         nzSpan="12"
+         class="-mt-28">
+      <h3 class="mb-2">Personal de Servicio</h3>
+      <p class="mb-7">
+        Meseros, bartenders, fotógrafos, guardias de seguridad y demás personal capacitado,
+        siempre ofreciendo la mejor experiencia.
+      </p>
 
-      <p>Texto sobre los servicios de entretenimiento que proveemos, detallando por encimita cuáles son. </p>
-
-      <div>
-        <img [src]="'assets/img/_0001_Bartender.jpg'"
-             alt="Personal de Servicio">
-      </div>
+      <img src="assets/img/_0001_Bartender.jpg"
+           alt="Personal de Servicio">
     </div>
   </div>
 
@@ -212,7 +215,7 @@
     </div>
   </div>
 
-  <div>
+  <div class="carousel-wrapper">
     <nz-carousel nzAutoPlay>
       <div nz-carousel-content
            *ngFor="let review of reviews">
@@ -252,5 +255,4 @@
       </div>
     </nz-carousel>
   </div>
-
 </div>

@@ -197,6 +197,9 @@
     "musicr-api-categories": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
+    "musicr-api-contact": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+    },
     "musicr-api-domain": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:domain-logic"]
     },
@@ -370,7 +373,7 @@
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-promocodes-data": {
-      "tags": []
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
     },
     "valmira-ui-promocodes-feature": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]

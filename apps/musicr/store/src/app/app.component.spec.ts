@@ -8,6 +8,7 @@ describe('AppComponent', () => {
   const createComponent = createComponentFactory({
     component: AppComponent,
     imports: [RouterTestingModule],
+    detectChanges: false,
     shallow: true,
   });
 

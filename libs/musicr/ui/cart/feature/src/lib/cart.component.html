@@ -2,7 +2,6 @@
 <div class="steps__names mb-12">
   <button *ngFor="let step of steps"
           type="button"
-          nzType="default"
           class="border-0 bg-gray-400 text-black"
           [routerLink]="step.path"
           routerLinkActive="bg-black text-white">

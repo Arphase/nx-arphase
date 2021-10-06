@@ -8,68 +8,59 @@
        class="logo">
   <form nz-form
         nzLayout="vertical"
-        [formGroup]="form">
+        [formGroup]="form"
+        (ngSubmit)="submit()">
     <div nz-row
          nzGutter="12"
          class="d-flex flex-center">
       <div nz-col
            nzXs="24"
+           nzMd="6">
+        <input class="input"
+               placeholder="Nombre"
+               maxlength="150"
+               autocomplete="off"
+               formControlName="name" />
+      </div>
+      <div nz-col
+           nzXs="12"
+           nzMd="6">
+        <input class="input"
+               placeholder="Teléfono"
+               type="tel"
+               mask="(00) 0000 0000"
+               autocomplete="off"
+               formControlName="phone" />
+      </div>
+      <div nz-col
+           nzXs="12"
            nzMd="12">
-        <nz-form-item>
-          <nz-form-control>
-            <input nz-input
-                   class="input"
-                   placeholder="Nombre"
-                   nzBorderless
-                   maxlength="150"
-                   autocomplete="off"
-                   formControlName="name" />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-      <div nz-col
-           nzXs="12"
-           nzMd="6">
-        <nz-form-item>
-          <nz-form-control>
-            <input nz-input
-                   class="input"
-                   placeholder="Teléfono"
-                   nzBorderless
-                   maxlength="10"
-                   mask="0000000000"
-                   autocomplete="off"
-                   formControlName="phone" />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-      <div nz-col
-           nzXs="12"
-           nzMd="6">
-        <nz-form-item>
-          <nz-form-control>
-            <input nz-input
-                   class="input"
-                   placeholder="Correo"
-                   nzBorderless
-                   type="email"
-                   formControlName="email" />
-          </nz-form-control>
-        </nz-form-item>
+        <input class="input"
+               placeholder="Correo"
+               type="email"
+               formControlName="email" />
       </div>
     </div>
     <div nz-row>
       <div nz-col
            nzSpan="24">
-        <nz-form-item>
-          <nz-form-control>
-            <textarea nz-input
-                      class="input"
-                      placeholder="Mensaje"
-                      nzBorderless
-                      formControlName="message"></textarea>
-          </nz-form-control>
-        </nz-form-item>
+        <textarea class="input"
+                  placeholder="Mensaje"
+                  formControlName="message"></textarea>
+      </div>
+    </div>
+
+    <div nz-row>
+      <div nz-col
+           nzSpan="24"
+           class="flex justify-center">
+        <button nz-button
+                nzType="text"
+                [nzLoading]="loading$ | async"
+                class="bg-transparent px-6 h-10 text-center mb-5"
+                type="submit">
+          Envíar
+        </button>
       </div>
     </div>
   </form>

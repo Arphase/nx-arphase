@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
+import { ApsFormComponent, ApsValidators, LoadingService } from '@arphase/ui/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'mrl-footer',
@@ -8,7 +11,13 @@ import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
   styleUrls: ['./footer.component.less'],
 })
 export class FooterComponent extends ApsFormComponent {
-  constructor(private fb: FormBuilder) {
+  loading$ = this.loadingService.loading$;
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private messageService: NzMessageService,
+    private loadingService: LoadingService
+  ) {
     super();
     this.form = this.fb.group({
       name: [null, ApsValidators.required],
@@ -16,5 +25,20 @@ export class FooterComponent extends ApsFormComponent {
       email: [null, [ApsValidators.required, ApsValidators.email]],
       message: [null, ApsValidators.required],
     });
+  }
+
+  submit(): void {
+    if (!this.form.valid) {
+      this.messageService.error('Los campos en la forma están incompletos.');
+    } else {
+      this.http
+        .post(`/mrlApi/contact`, this.values)
+        .pipe(take(1))
+        .subscribe(() => {
+          this.messageService.success(
+            'Se ha envíado un correo a Music Revolution, cuanto antes nos pondremos en contacto con usted.'
+          );
+        });
+    }
   }
 }
