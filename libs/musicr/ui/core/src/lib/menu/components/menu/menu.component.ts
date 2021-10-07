@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from '@musicr/domain';
-import { CartService } from '@musicr/ui/cart/data';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'mrl-menu',
@@ -18,7 +16,7 @@ export class MenuComponent implements OnInit, OnChanges {
   openMap = {};
   innerWidth: number;
 
-  constructor(private router: Router, private cartService: CartService) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
