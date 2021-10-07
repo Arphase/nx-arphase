@@ -1,1 +1,41 @@
-<p>frequent-questions works!</p>
+<div class="content">
+  <div class="center">
+    <div class="title">
+      <img src="assets/img/Isotipo_1.svg"
+           alt="Music Revolution Logo"
+           class="md:mb-3 mb-8">
+      <h2 class="font-bold md:mb-24 mb-8">Preguntas<br> Frecuentes</h2>
+    </div>
+    <div class="text">
+      <div nz-row
+           class="questions">
+        <div nz-col
+             nzSpan="24">
+          <nz-collapse *ngFor="let question of FrequentQuestions; let last = last"
+                       nzExpandIconPosition="right"
+                       nzGhost>
+            <nz-collapse-panel class="question"
+                               #expansionPanel
+                               [nzHeader]="question.question"
+                               [nzActive]="false"
+                               [nzExpandedIcon]="expandedIcon">
+              <ng-template #expandedIcon
+                           let-active>
+                {{ active }}
+                <i nz-icon
+                   [nzType]="expansionPanel.nzActive ? 'up' : 'down'"
+                   class="ant-collapse-arrow"></i>
+              </ng-template>
+              <div nz-col
+                   nzSpan="24"
+                   class="answer">
+                <p *ngFor="let paragraph of question.answer">{{paragraph}}</p>
+              </div>
+            </nz-collapse-panel>
+            <nz-divider *ngIf="!last"></nz-divider>
+          </nz-collapse>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,5 +7,6 @@ export interface AdditionalProduct {
   price: number;
   createdAt: Date;
   updatedAt: Date;
+  active: boolean;
   additionalProducts?: ReservationAdditionalProduct[];
 }

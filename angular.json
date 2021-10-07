@@ -103,6 +103,28 @@
         }
       }
     },
+    "arphase-ui-addresses": {
+      "projectType": "library",
+      "root": "libs/arphase/ui/addresses",
+      "sourceRoot": "libs/arphase/ui/addresses/src",
+      "prefix": "aps",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/arphase/ui/addresses"],
+          "options": {
+            "jestConfig": "libs/arphase/ui/addresses/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/arphase/ui/addresses/src/**/*.ts", "libs/arphase/ui/addresses/src/**/*.html"]
+          }
+        }
+      }
+    },
     "arphase-ui-auth": {
       "projectType": "library",
       "root": "libs/arphase/ui/auth",
@@ -683,31 +705,6 @@
           "outputs": ["coverage/libs/innovatech/common/domain"],
           "options": {
             "jestConfig": "libs/innovatech/common/domain/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "innovatech-ui-addresses-ui": {
-      "projectType": "library",
-      "root": "libs/innovatech/ui/addresses/ui",
-      "sourceRoot": "libs/innovatech/ui/addresses/ui/src",
-      "prefix": "ivt",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/ui/addresses/ui/src/**/*.ts",
-              "libs/innovatech/ui/addresses/ui/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/addresses/ui"],
-          "options": {
-            "jestConfig": "libs/innovatech/ui/addresses/ui/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -1368,18 +1365,24 @@
             "polyfills": "apps/musicr/admin/src/polyfills.ts",
             "tsConfig": "apps/musicr/admin/tsconfig.app.json",
             "inlineStyleLanguage": "less",
-            "assets": [
-              "apps/musicr/admin/src/favicon.ico",
-              "apps/musicr/admin/src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/assets/"
-              }
-            ],
+            "assets": ["apps/musicr/admin/src/favicon.ico", "apps/musicr/admin/src/assets"],
             "styles": ["apps/musicr/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/musicr/admin/src/environments/environment.ts",
+                  "with": "apps/musicr/admin/src/environments/environment.stage.ts"
+                }
+              ],
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -1576,6 +1579,28 @@
         }
       }
     },
+    "musicr-api-contact": {
+      "root": "libs/musicr/api/contact",
+      "sourceRoot": "libs/musicr/api/contact/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/contact/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/contact"],
+          "options": {
+            "jestConfig": "libs/musicr/api/contact/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "musicr-api-domain": {
       "root": "libs/musicr/api/domain",
       "sourceRoot": "libs/musicr/api/domain/src",
@@ -1733,18 +1758,31 @@
           "builder": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/musicr-store/browser",
+            "outputPath": "dist/apps/musicr/browser",
             "index": "apps/musicr/store/src/index.html",
             "main": "apps/musicr/store/src/main.ts",
             "polyfills": "apps/musicr/store/src/polyfills.ts",
             "tsConfig": "apps/musicr/store/tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "assets": ["apps/musicr/store/src/favicon.ico", "apps/musicr/store/src/assets"],
-            "styles": ["apps/musicr/store/src/styles.less", "libs/arphase/ui/core/src/styles/styles.less"],
-            "scripts": []
+            "styles": ["apps/musicr/store/src/styles.less"]
           },
           "configurations": {
             "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/musicr/store/src/environments/environment.ts",
+                  "with": "apps/musicr/store/src/environments/environment.stage.ts"
+                }
+              ],
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -1798,7 +1836,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/musicr-store/server",
+            "outputPath": "dist/apps/musicr/server",
             "main": "apps/musicr/store/server.ts",
             "tsConfig": "apps/musicr/store/tsconfig.server.json",
             "externalDependencies": [
@@ -1809,6 +1847,7 @@
               "@nestjs/websockets",
               "@nestjs/websockets/socket-module",
               "cache-manager",
+              "class-transformer/storage",
               "aws-sdk",
               "pg",
               "pg-native",
@@ -1830,12 +1869,29 @@
             ]
           },
           "configurations": {
+            "stage": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/musicr/store/src/environments/environment.ts",
+                  "with": "apps/musicr/store/src/environments/environment.stage.ts"
+                },
+                {
+                  "replace": "apps/musicr/api/src/environments/environment.ts",
+                  "with": "apps/musicr/api/src/environments/environment.prod.ts"
+                }
+              ]
+            },
             "production": {
               "outputHashing": "media",
               "fileReplacements": [
                 {
                   "replace": "apps/musicr/store/src/environments/environment.ts",
                   "with": "apps/musicr/store/src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "apps/musicr/api/src/environments/environment.ts",
+                  "with": "apps/musicr/api/src/environments/environment.prod.ts"
                 }
               ],
               "sourceMap": false,
@@ -1864,7 +1920,9 @@
             "routes": ["/"]
           },
           "configurations": {
-            "production": {}
+            "production": {
+              "routes": ["/"]
+            }
           }
         }
       }
@@ -2011,23 +2069,45 @@
         }
       }
     },
-    "musicr-ui-cart": {
+    "musicr-ui-cart-data": {
       "projectType": "library",
-      "root": "libs/musicr/ui/cart",
-      "sourceRoot": "libs/musicr/ui/cart/src",
+      "root": "libs/musicr/ui/cart/data",
+      "sourceRoot": "libs/musicr/ui/cart/data/src",
+      "prefix": "mrl",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/cart/data"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/cart/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/cart/data/src/**/*.ts", "libs/musicr/ui/cart/data/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "musicr-ui-cart-feature": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/cart/feature",
+      "sourceRoot": "libs/musicr/ui/cart/feature/src",
       "prefix": "mrl",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/cart/src/**/*.ts", "libs/musicr/ui/cart/src/**/*.html"]
+            "lintFilePatterns": ["libs/musicr/ui/cart/feature/src/**/*.ts", "libs/musicr/ui/cart/feature/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/cart"],
+          "outputs": ["coverage/libs/musicr/ui/cart/feature"],
           "options": {
-            "jestConfig": "libs/musicr/ui/cart/jest.config.js",
+            "jestConfig": "libs/musicr/ui/cart/feature/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -2333,8 +2413,7 @@
             "polyfills": "apps/pam-vic/src/polyfills.ts",
             "tsConfig": "apps/pam-vic/tsconfig.app.json",
             "assets": ["apps/pam-vic/src/favicon.ico", "apps/pam-vic/src/assets"],
-            "styles": ["apps/pam-vic/src/styles.css"],
-            "scripts": []
+            "styles": ["apps/pam-vic/src/styles.css"]
           },
           "configurations": {
             "production": {
@@ -2428,19 +2507,25 @@
             "main": "apps/valmira/admin/src/main.ts",
             "polyfills": "apps/valmira/admin/src/polyfills.ts",
             "tsConfig": "apps/valmira/admin/tsconfig.app.json",
-            "assets": [
-              "apps/valmira/admin/src/favicon.ico",
-              "apps/valmira/admin/src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/assets/"
-              }
-            ],
+            "assets": ["apps/valmira/admin/src/favicon.ico", "apps/valmira/admin/src/assets"],
             "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
             "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/valmira/admin/src/environments/environment.ts",
+                  "with": "apps/valmira/admin/src/environments/environment.stage.ts"
+                }
+              ],
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -2766,21 +2851,13 @@
           "builder": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/valmira/app",
+            "outputPath": "dist/apps/valmira/browser",
             "index": "apps/valmira/app/src/index.html",
             "main": "apps/valmira/app/src/main.ts",
             "polyfills": "apps/valmira/app/src/polyfills.ts",
             "tsConfig": "apps/valmira/app/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/valmira/app/src/favicon.ico",
-              "apps/valmira/app/src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/assets/"
-              }
-            ],
+            "assets": ["apps/valmira/app/src/favicon.ico", "apps/valmira/app/src/assets"],
             "styles": ["apps/valmira/app/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
@@ -2865,6 +2942,98 @@
           "options": {
             "jestConfig": "apps/valmira/app/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/apps/valmira/server",
+            "main": "apps/valmira/app/server.ts",
+            "tsConfig": "apps/valmira/app/tsconfig.server.json",
+            "externalDependencies": [
+              "@nestjs/common",
+              "@nestjs/core",
+              "@nestjs/microservices",
+              "@nestjs/microservices/microservices-module",
+              "@nestjs/websockets",
+              "@nestjs/websockets/socket-module",
+              "cache-manager",
+              "class-transformer/storage",
+              "aws-sdk",
+              "pg",
+              "pg-native",
+              "react-native-sqlite-storage",
+              "mssql",
+              "sql.js",
+              "ioredis",
+              "redis",
+              "typeorm-aurora-data-api-driver",
+              "pg-query-strea",
+              "oracledb",
+              "mysql2",
+              "mysql",
+              "hdb-pool",
+              "@sap/hana-client",
+              "mongodb",
+              "react-native-sqlite-storage",
+              "typeorm"
+            ]
+          },
+          "configurations": {
+            "stage": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/valmira/app/src/environments/environment.ts",
+                  "with": "apps/valmira/app/src/environments/environment.stage.ts"
+                },
+                {
+                  "replace": "apps/valmira/api/src/environments/environment.ts",
+                  "with": "apps/valmira/api/src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/valmira/app/src/environments/environment.ts",
+                  "with": "apps/valmira/app/src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "apps/valmira/api/src/environments/environment.ts",
+                  "with": "apps/valmira/api/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": false
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "valmira-app:build",
+            "serverTarget": "valmira-app:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "valmira-app:build:production",
+              "serverTarget": "valmira-app:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "valmira-app:build:production",
+            "serverTarget": "valmira-app:server:production",
+            "routes": ["/"]
+          },
+          "configurations": {
+            "production": {
+              "routes": ["/"]
+            }
           }
         }
       }
@@ -3251,6 +3420,31 @@
         }
       }
     },
+    "valmira-ui-reservation-detail": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/reservation-detail",
+      "sourceRoot": "libs/valmira/ui/reservation-detail/src",
+      "prefix": "vma",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/reservation-detail"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/reservation-detail/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/reservation-detail/src/**/*.ts",
+              "libs/valmira/ui/reservation-detail/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "valmira-ui-reservation-wizard": {
       "projectType": "library",
       "root": "libs/valmira/ui/reservation-wizard",
@@ -3322,6 +3516,31 @@
           "options": {
             "jestConfig": "libs/valmira/ui/reservations/feature/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "valmira-ui-reservations-ui": {
+      "projectType": "library",
+      "root": "libs/valmira/ui/reservations/ui",
+      "sourceRoot": "libs/valmira/ui/reservations/ui/src",
+      "prefix": "vma",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/valmira/ui/reservations/ui"],
+          "options": {
+            "jestConfig": "libs/valmira/ui/reservations/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/valmira/ui/reservations/ui/src/**/*.ts",
+              "libs/valmira/ui/reservations/ui/src/**/*.html"
+            ]
           }
         }
       }

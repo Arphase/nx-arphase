@@ -16,25 +16,20 @@ export class PlaceListComponent extends ApsListComponent<Place> {
       colSizes: {
         xs: 24,
         md: 8,
-        lg: 4,
+        lg: 6,
       },
-    },
-    {
-      label: 'Descripción',
-      prop: 'place.description',
-      colSizes: { lg: 6 },
     },
     {
       label: 'Capacidad',
       prop: 'place.capacity',
-      colSizes: { lg: 3 },
+      colSizes: { lg: 4 },
     },
     {
       label: 'Cuartos',
       prop: 'place.rooms',
       colSizes: {
         md: 5,
-        lg: 3,
+        lg: 4,
       },
     },
     {
@@ -42,7 +37,7 @@ export class PlaceListComponent extends ApsListComponent<Place> {
       prop: 'place.beds',
       colSizes: {
         md: 4,
-        lg: 3,
+        lg: 4,
       },
     },
     {
@@ -50,7 +45,7 @@ export class PlaceListComponent extends ApsListComponent<Place> {
       prop: 'category.name',
       colSizes: {
         md: 7,
-        lg: 5,
+        lg: 6,
       },
     },
   ];

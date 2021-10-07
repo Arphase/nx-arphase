@@ -34,6 +34,9 @@
     "arphase-common": {
       "tags": ["domain:arphase", "type:util"]
     },
+    "arphase-ui-addresses": {
+      "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
+    },
     "arphase-ui-auth": {
       "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
     },
@@ -96,9 +99,6 @@
     },
     "innovatech-domain": {
       "tags": ["domain:innovatech", "type:domain-logic"]
-    },
-    "innovatech-ui-addresses-ui": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
     },
     "innovatech-ui-auth-data": {
       "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
@@ -197,6 +197,9 @@
     "musicr-api-categories": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
+    "musicr-api-contact": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+    },
     "musicr-api-domain": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:domain-logic"]
     },
@@ -240,8 +243,11 @@
     "musicr-ui-auth-feature": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
-    "musicr-ui-cart": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+    "musicr-ui-cart-data": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
+    },
+    "musicr-ui-cart-feature": {
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-categories-data": {
       "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
@@ -367,9 +373,12 @@
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-promocodes-data": {
-      "tags": []
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
     },
     "valmira-ui-promocodes-feature": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-reservation-detail": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-reservation-wizard": {
@@ -380,6 +389,9 @@
     },
     "valmira-ui-reservations-feature": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+    },
+    "valmira-ui-reservations-ui": {
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:ui"]
     },
     "valmira-ui-spa": {
       "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]

@@ -1,4 +1,5 @@
-import { Address } from './address.model';
+import { Address } from '@arphase/common';
+
 import { Company } from './company.model';
 import { User } from './user.model';
 import { Vehicle } from './vehicle.model';

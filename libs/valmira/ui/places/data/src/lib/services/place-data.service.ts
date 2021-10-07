@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApsDataService } from '@arphase/ui/core';
-import { HttpUrlGenerator } from '@ngrx/data';
-import { Place } from '@valmira/domain';
+import { ApsDataService, buildQueryParams } from '@arphase/ui/core';
+import { HttpUrlGenerator, QueryParams } from '@ngrx/data';
+import { Place, PlaceCategorySummary } from '@valmira/domain';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -15,5 +15,10 @@ export class PlaceDataService extends ApsDataService<Place> {
 
   getOccupiedDates(id: number): Observable<Date[]> {
     return this.http.get<Date[]>(`/vmaApi/places/${id}/occupied-dates`);
+  }
+
+  getCategorySummary(queryParams: QueryParams): Observable<PlaceCategorySummary> {
+    const params = buildQueryParams(queryParams);
+    return this.http.get<PlaceCategorySummary>(`/vmaApi/places/count/category`, { params });
   }
 }

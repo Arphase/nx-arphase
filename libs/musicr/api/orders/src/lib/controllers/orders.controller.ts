@@ -1,8 +1,9 @@
 import { ApsCollectionFilterDto } from '@arphase/api/core';
-import { ApsCollectionResponse } from '@arphase/common';
+import { ApsCollectionResponse, DeepPartial } from '@arphase/common';
 import { Order } from '@musicr/domain';
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
 
+import { CreateOrderPreviewDto } from '../dto/create-order-preview-dto';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { OrdersService } from '../services/orders.service';
 
@@ -23,5 +24,10 @@ export class OrdersController {
   @Post()
   async createOrder(@Body() createOrderDto: CreateOrderDto): Promise<Order> {
     return this.ordersService.createOrder(createOrderDto);
+  }
+
+  @Post('preview')
+  async createOrderPreview(@Body() createOrderDto: CreateOrderPreviewDto): Promise<DeepPartial<Order>> {
+    return this.ordersService.createOrderPreview(createOrderDto);
   }
 }

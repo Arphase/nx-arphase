@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ApsAddressFormModule } from '@arphase/ui/addresses';
 import {
   ApsAutoErrorModule,
   ApsCheckboxFilterModule,
@@ -11,7 +12,6 @@ import {
   ApsRadioFilterModule,
   ApsSearchbarModule,
 } from '@arphase/ui/core';
-import { IvtAddressFormModule } from '@innovatech/ui/addresses/ui';
 import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';
@@ -59,7 +59,7 @@ import { RevisionRequestDataService } from './services/revision-request-data.ser
     NzAlertModule,
     VehicleFormModule,
     VehiclesDataModule,
-    IvtAddressFormModule,
+    ApsAddressFormModule,
     ApsAutoErrorModule,
     NzFormModule,
     NzInputModule,

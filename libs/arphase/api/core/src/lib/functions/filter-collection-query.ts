@@ -34,7 +34,7 @@ export function filterCollectionDates(
   entityName: string,
   query: SelectQueryBuilder<BaseEntity>,
   filterDto: Partial<ApsCollectionFilterDto>,
-  options: filterCollectionQueryOptions = { ignoreSort: false, ignoreDates: false }
+  options: filterCollectionQueryOptions = { ignoreDates: false, logicalOperator: 'and' }
 ): void {
   const { startDate, endDate, dateType } = filterDto;
   const { ignoreDates, logicalOperator } = options;

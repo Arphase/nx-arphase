@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   ApsAutoErrorModule,
   ApsDateFilterModule,
@@ -22,6 +22,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NgxMaskModule } from 'ngx-mask';
 
@@ -33,30 +34,32 @@ import { PromocodesRoutingModule } from './promocodes-routing.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    PromocodesRoutingModule,
-    NzGridModule,
-    NzCardModule,
-    NzDividerModule,
-    NzTableModule,
-    NzFormModule,
-    NzInputModule,
-    NzDatePickerModule,
-    NzSpaceModule,
-    NzPageHeaderModule,
-    NzButtonModule,
-    NzIconModule,
-    NzMessageModule,
-    NzAlertModule,
-    NzModalModule,
-    ApsSearchbarModule,
     ApsAutoErrorModule,
-    ApsEmptyModule,
     ApsDateFilterModule,
+    ApsEmptyModule,
     ApsFeatureLayoutModule,
+    ApsSearchbarModule,
+    CommonModule,
+    FormsModule,
     NgxMaskModule,
+    NzAlertModule,
+    NzButtonModule,
+    NzCardModule,
+    NzDatePickerModule,
+    NzDividerModule,
+    NzFormModule,
+    NzGridModule,
+    NzIconModule,
+    NzInputModule,
+    NzMessageModule,
+    NzModalModule,
+    NzPageHeaderModule,
+    NzSpaceModule,
+    NzSwitchModule,
+    NzTableModule,
     PromocodesDataModule,
+    PromocodesRoutingModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     PromocodeFormContainerComponent,

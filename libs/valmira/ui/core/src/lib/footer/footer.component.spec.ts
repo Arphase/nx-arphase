@@ -1,12 +1,13 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { FooterComponent } from './footer.component';
-import { Spectator, createComponentFactory } from '@ngneat/spectator';
 
 describe('FooterComponent', () => {
   let spectator: Spectator<FooterComponent>;
   const createComponent = createComponentFactory({
     component: FooterComponent,
+    providers: [provideMockStore()],
     shallow: true,
   });
 

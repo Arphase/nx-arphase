@@ -3,7 +3,7 @@ import { Environment } from './environment.model';
 
 export const environment: Environment = {
   production: true,
-  apiUrl: 'https://apistage.valmira.com',
+  apiUrl: 'http://valmira.us-east-1.elasticbeanstalk.com/api',
   version: packageJson.version,
   environmentName: 'stage',
 };

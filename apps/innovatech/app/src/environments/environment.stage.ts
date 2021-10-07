@@ -3,7 +3,7 @@ import { Environment } from './environment.model';
 
 export const environment: Environment = {
   production: true,
-  apiUrl: 'https://apistage.innovatechcorp.com',
+  apiUrl: 'http://ivt-stage.eba-mwtr49ds.us-east-1.elasticbeanstalk.com',
   version: packageJson.version,
   environmentName: 'stage',
 };

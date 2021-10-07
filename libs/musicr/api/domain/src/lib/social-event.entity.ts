@@ -1,4 +1,5 @@
-import { Address, SocialEvent } from '@musicr/domain';
+import { Address } from '@arphase/common';
+import { SocialEvent, SocialEventPlaces } from '@musicr/domain';
 import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { AddressEntity } from './address.entity';
@@ -15,10 +16,13 @@ export class SocialEventEntity extends BaseEntity implements SocialEvent {
   eventType: string;
 
   @Column()
-  startDate: Date;
+  date: Date;
 
   @Column()
-  endDate: Date;
+  startTime: Date;
+
+  @Column()
+  endTime: Date;
 
   @OneToOne(() => AddressEntity, {
     cascade: true,
@@ -29,10 +33,17 @@ export class SocialEventEntity extends BaseEntity implements SocialEvent {
   @JoinColumn({ name: 'addressId' })
   address: Address;
 
-  @Column()
-  eventPlace: string;
+  @Column({
+    type: 'enum',
+    enum: SocialEventPlaces,
+    transformer: {
+      to: value => value,
+      from: value => SocialEventPlaces[value],
+    },
+  })
+  eventPlace: SocialEventPlaces | string;
 
-  @Column()
+  @Column({ nullable: true })
   notes: string;
 
   @Column()

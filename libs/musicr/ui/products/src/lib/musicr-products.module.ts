@@ -1,25 +1,28 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
-import { ProductsCatalogContainerComponent } from './containers/products-catalog-container/products-catalog-container.component';
-import { MusicrProductsRoutingModule } from './musicr-products-routing.module';
-import { ProductDetailContainerComponent } from './containers/product-detail-container/product-detail-container.component';
-import { ProductDetailComponent } from './components/product-detail/product-detail.component';
-
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzGridModule } from 'ng-zorro-antd/grid';
-import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ApsAutoErrorModule, ApsAutoSelectModule } from '@arphase/ui/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
+import { ProductDetailContainerComponent } from './containers/product-detail-container/product-detail-container.component';
+import { ProductsCatalogContainerComponent } from './containers/products-catalog-container/products-catalog-container.component';
+import { MusicrProductsRoutingModule } from './musicr-products-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ApsAutoErrorModule,
+    ApsAutoSelectModule,
     MusicrProductsRoutingModule,
     NzGridModule,
     NzIconModule,
@@ -29,6 +32,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     NzButtonModule,
     NzCardModule,
     NzInputNumberModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     ProductsCatalogComponent,

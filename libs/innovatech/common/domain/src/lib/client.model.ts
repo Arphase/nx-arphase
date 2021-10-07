@@ -1,4 +1,5 @@
-import { Address } from './address.model';
+import { Address } from '@arphase/common';
+
 import { MoralPerson } from './moral-person.model';
 import { PhysicalPerson } from './physical-person.model';
 

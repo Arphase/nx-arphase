@@ -1,5 +1,5 @@
 <div nz-row
-     class="mt-32">
+     class="my-32">
   <div nz-col
        [nzSpan]="isInConfirmation ? 24 : 16">
     <h1 class="text-7xl text-primary mb-6">Tu reservación</h1>
@@ -11,10 +11,12 @@
       </li>
       <li routerLinkActive="text-primary"
           [routerLink]="['personal-data']"><span class="mr-2">DATOS PERSONALES</span> <span class="mr-2">></span></li>
-      <li routerLinkActive="text-primary"
-          [routerLink]="['payment-method']"> <span class="mr-2">MÉTODOS DE PAGO</span> <span class="mr-2">></span></li>
-      <li routerLinkActive="text-primary"
-          [routerLink]="['confirmation']"><span class="mr-2"> CONFIRMACIÓN</span></li>
+      <li [routerLinkActive]="disablePaymentMethod ? '' : 'text-primary'"
+          [routerLink]="disablePaymentMethod ? null :['payment-method']"> <span class="mr-2">MÉTODOS DE PAGO</span>
+        <span class="mr-2">></span>
+      </li>
+      <li [routerLinkActive]="disableConfirmation ? '' : 'text-primary'"
+          [routerLink]="disableConfirmation ? null : ['confirmation']"><span class="mr-2"> CONFIRMACIÓN</span></li>
     </ul>
     <div nz-row>
       <div nz-col
@@ -26,83 +28,7 @@
   <div *ngIf="!isInConfirmation"
        nz-col
        nzSpan="8">
-    <div class="bg-secondary p-8">
-      <img [src]="place?.photos[0]?.path"
-           alt="Foto de {{ place?.name }}">
-
-      <div class="flex items-center mb-9 mt-5">
-        <h4 class="text-primary text-4xl mr-3">{{ place?.name }}</h4>
-        <span class="category py-1 px-3">{{ categoryLabels[place?.category] | uppercase }}</span>
-      </div>
-
-      <div nz-row
-           class="pb-7 border-bottom">
-        <div nz-col
-             nzSpan="24">
-          <p>{{ place?.capacity }} HUÉSPEDES</p>
-          <p>{{ item?.startDate | date: 'MMM d, y' }} — {{ item?.endDate | date: 'MMM d, y' }}</p>
-        </div>
-      </div>
-
-      <div nz-row
-           class="pt-7 mb-5">
-        <div nz-col
-             nzSpan="16"
-             class="flex-start">
-          {{ item?.pricePerNight | currency }} X {{ item?.nights }} {{ item?.nights === 1 ? 'NOCHE': 'NOCHES'}}
-        </div>
-        <div nz-col
-             nzSpan="8"
-             class="flex-end">
-          {{ item?.pricePerNight * item?.nights | currency }}
-        </div>
-      </div>
-
-      <div *ngFor="let product of item?.additionalProducts"
-           nz-row
-           class="pt-3">
-        <div nz-col
-             nzSpan="16"
-             class="flex-start">
-          {{ product?.additionalProduct?.name }} X {{ product?.amount }}
-        </div>
-        <div nz-col
-             nzSpan="8"
-             class="flex-end">
-          {{ product?.price * product?.amount | currency }}
-        </div>
-      </div>
-
-      <div *ngIf="promocode?.id"
-           nz-row
-           class="pt-3 text-orange">
-        <div nz-col
-             nzSpan="16"
-             class="flex-start">
-          {{ promocode?.name }}
-        </div>
-        <div nz-col
-             nzSpan="8"
-             class="flex-end">
-          -{{ promocode?.amount | currency }}
-        </div>
-      </div>
-
-      <div nz-row
-           class="mt-7">
-        <div nz-col
-             nzSpan="16"
-             class="flex-start text-2xl">
-          TOTAL
-        </div>
-        <div nz-col
-             nzSpan="8"
-             class="d-flex justify-end text-2xl">
-          <span class="text-sm self-end mr-1">MXN</span> {{ item?.total | currency }}
-        </div>
-      </div>
-    </div>
-
+    <vma-reservation-card [item]="item"></vma-reservation-card>
     <form nz-row
           class="mt-6"
           [formGroup]="form"

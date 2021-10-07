@@ -1,0 +1,170 @@
+<form nz-form
+      nzLayout="vertical"
+      [formGroup]="form">
+  <div nz-row
+       nzGutter="12"
+       class="d-flex flex-center">
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
+      <nz-form-item>
+        <nz-form-label nzRequired>Código postal</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 maxlength="5"
+                 mask="00000"
+                 autocomplete="off"
+                 formControlName="zipcode" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <ng-container *ngIf="showAddressSelects">
+      <div nz-col
+           nzXs="24"
+           nzMd="12"
+           nzLg="6">
+        <nz-form-item>
+          <nz-form-label nzRequired>País</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-select apsAutoSelect
+                       formControlName="country"
+                       [nzOptions]="countryOptions"></nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col
+           nzXs="24"
+           nzMd="12"
+           nzLg="6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Estado</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-select apsAutoSelect
+                       formControlName="state"
+                       [nzOptions]="stateOptions"></nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col
+           nzXs="24"
+           nzMd="12"
+           nzLg="6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Ciudad</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-select apsAutoSelect
+                       formControlName="city"
+                       [nzOptions]="cityOptions"></nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="!showAddressSelects">
+      <div nz-col
+           nzXs="24"
+           nzMd="12"
+           nzLg="6">
+        <nz-form-item>
+          <nz-form-label nzRequired>País</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   formControlName="country" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col
+           nzXs="24"
+           nzMd="12"
+           nzLg="6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Estado</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   formControlName="state" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col
+           nzXs="24"
+           nzMd="12"
+           nzLg="6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Ciudad</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   formControlName="city" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </ng-container>
+  </div>
+
+  <div nz-row
+       nzGutter="12"
+       class="d-flex flex-center">
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
+      <nz-form-item>
+        <nz-form-label nzRequired>Colonia</nz-form-label>
+        <nz-form-control apsAutoError
+                         apsAutocomplete
+                         [options]="suburbOptions">
+          <input nz-input
+                 formControlName="suburb"
+                 [nzAutocomplete]="auto" />
+          <nz-autocomplete #auto></nz-autocomplete>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
+      <nz-form-item>
+        <nz-form-label nzRequired>Calle</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="street"
+                 maxlength="50" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
+      <nz-form-item>
+        <nz-form-label nzRequired>Número exterior</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="externalNumber"
+                 maxlength="10"
+                 autocomplete="off" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col
+         nzXs="24"
+         nzMd="12"
+         nzLg="6">
+      <nz-form-item>
+        <nz-form-label>Número interior</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 formControlName="internalNumber"
+                 maxlength="10"
+                 autocomplete="off" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>

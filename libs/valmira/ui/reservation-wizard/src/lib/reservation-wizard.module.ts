@@ -6,6 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AdditionalProductsDataModule } from '@valmira/ui/additional-products/data';
 import { ReservationsDataModule } from '@valmira/ui/reservations/data';
+import { ReservationCardModule } from '@valmira/ui/reservations/ui';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -49,6 +50,7 @@ import { reducer } from './state/reservation-wizard.reducer';
     NgxMaskModule,
     NgxStripeModule,
     NzIconModule,
+    ReservationCardModule,
   ],
   declarations: [
     AdditionalServicesComponent,

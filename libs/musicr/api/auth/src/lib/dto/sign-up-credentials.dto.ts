@@ -15,10 +15,6 @@ export class SignUpCredentialsDto {
   @Trim()
   lastName: string;
 
-  @IsString()
-  @Trim()
-  secondLastName: string;
-
   @IsEmail()
   @TransformEmail()
   email: string;

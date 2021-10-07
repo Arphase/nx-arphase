@@ -29,3 +29,10 @@ export const categoryLabels: Record<string, string> = {
   [PlaceCategories[PlaceCategories.couple]]: 'Pareja',
   [PlaceCategories[PlaceCategories.kids]]: 'Niños',
 };
+
+export interface PlaceCountByCategory {
+  status: PlaceCategories;
+  amount: number;
+}
+
+export type PlaceCategorySummary = PlaceCountByCategory[];

@@ -1,68 +1,8 @@
-<nz-affix class="desktop-menu">
+<nz-affix>
   <div nz-row
        nzJustify="space-around"
        nzAlign="middle"
-       class="padding-16">
-    <div nz-col
-         nzSpan="5">
-      <a [routerLink]="['.']">
-        <img alt="Music Revolution logo"
-             src="assets/img/Logo_Mobile_1.svg" />
-      </a>
-    </div>
-    <div nz-col
-         nzSpan="12">
-      <ul nz-menu
-          nzMode="horizontal">
-        <li *ngFor="let category of categories"
-            nz-submenu
-            nzTitle="{{ category.name }}">
-          <ul>
-            <li *ngFor="let subcategory of category.subcategories"
-                nz-menu-item
-                (click)="goToCatalog(subcategory.id, true)">
-              {{ subcategory.name | uppercase }}
-            </li>
-            <li nz-menu-item
-                (click)="goToCatalog(category.id, false)">VER TODOS</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div nz-col
-         nzSpan="5">
-      <div nz-row
-           nzJustify="end">
-        <div nz-col
-             nzSpan="4">
-          <button nz-button
-                  nzType="text"
-                  (click)="openMenu()">
-            <i nz-icon
-               nzType="search"
-               nzTheme="outline"></i>
-          </button>
-        </div>
-        <div nz-col
-             nzSpan="4">
-          <button nz-button
-                  nzType="text"
-                  (click)="openMenu()">
-            <i nz-icon
-               nzType="shopping"
-               nzTheme="outline"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</nz-affix>
-
-<nz-affix class="mobile-menu">
-  <div nz-row
-       nzJustify="space-around"
-       nzAlign="middle"
-       class="padding-16">
+       class="p-4 md:hidden flex">
     <div nz-col
          nzSpan="5">
       <button nz-button
@@ -86,39 +26,43 @@
                   nzType="text"
                   (click)="openMenu()">
             <i nz-icon
-               nzType="search"
                nzTheme="outline"></i>
           </button>
         </div>
         <div nz-col
              nzSpan="10">
-          <button nz-button
-                  nzType="text"
-                  (click)="openMenu()">
-            <i nz-icon
-               nzType="shopping"
-               nzTheme="outline"></i>
-          </button>
+          <nz-badge [nzCount]="items">
+            <button nz-button
+                    nzType="text"
+                    (click)="openCart()">
+              <i nz-icon
+                 nzType="shopping"
+                 nzTheme="outline"></i>
+            </button>
+          </nz-badge>
         </div>
       </div>
     </div>
   </div>
-  <nz-drawer [nzClosable]="false"
-             [nzVisible]="visible"
-             nzPlacement="left"
-             [nzTitle]="drawerTitle"
-             nzWidth="100vw"
-             (nzOnClose)="closeMenu()">
-    <ng-container *nzDrawerContent>
+
+  <div nz-row
+       nzJustify="space-around"
+       nzAlign="middle"
+       class="p-4 md:flex hidden">
+    <div nz-col
+         nzSpan="5">
+      <a href="home">
+        <img alt="Music Revolution logo"
+             src="assets/img/Logo_Mobile_1.svg" />
+      </a>
+    </div>
+    <div nz-col
+         nzSpan="12">
       <ul nz-menu
-          nzMode="inline"
-          nzTheme="dark">
+          nzMode="horizontal">
         <li *ngFor="let category of categories"
             nz-submenu
-            nz-submenu
-            nzTitle="{{ category.name }}"
-            (nzOpenChange)="openHandler(category.id)"
-            [(nzOpen)]="openMap[category.id.toString()]">
+            [nzTitle]="category.name">
           <ul>
             <li *ngFor="let subcategory of category.subcategories"
                 nz-menu-item
@@ -130,55 +74,110 @@
           </ul>
         </li>
       </ul>
+    </div>
+    <div nz-col
+         nzSpan="5">
       <div nz-row
-           nzJustify="center"
-           class="links"
-           [nzGutter]="[16, 16]">
+           nzJustify="end">
         <div nz-col
-             nzSpan="24">
-          <a href="">SOBRE NOSOTROS</a>
+             nzSpan="4">
         </div>
         <div nz-col
-             nzSpan="24">
-          <a href="">PREGUNTAS FRECUENTES</a>
-        </div>
-        <div nz-col
-             nzSpan="24">
-          <a href="terms-and-conditions">TÉRMINOS Y CONDICIONES</a>
+             nzSpan="4">
+          <nz-badge [nzCount]="items">
+            <button nz-button
+                    nzType="text"
+                    (click)="openCart()">
+              <i nz-icon
+                 nzType="shopping"
+                 nzTheme="outline"></i>
+            </button>
+          </nz-badge>
         </div>
       </div>
-
-      <div nz-row
-           [nzGutter]="24"
-           class="icons">
-        <div nz-col
-             nzSpan="2">
-          <a href="http://www.facebook.com/MusicRevolution/">
-            <i nz-icon
-               nzType="facebook"
-               nzTheme="outline"></i>
-          </a>
-        </div>
-        <div nz-col
-             nzSpan="2">
-          <a href="https://www.instagram.com/music.rev/">
-            <i nz-icon
-               nzType="instagram"
-               nzTheme="outline"></i>
-          </a>
-        </div>
-        <div nz-col
-             nzSpan="2">
-          <a href="https://wa.me/5218115337477?text=Hola%20quiero%20cotizar">
-            <i nz-icon
-               nzType="whats-app"
-               nzTheme="outline"></i>
-          </a>
-        </div>
-      </div>
-    </ng-container>
-  </nz-drawer>
+    </div>
+  </div>
 </nz-affix>
+
+<nz-drawer nzPlacement="left"
+           nzWrapClassName="menu"
+           nzWidth="100vw"
+           [nzTitle]="drawerTitle"
+           [nzVisible]="visible"
+           [nzClosable]="false"
+           (nzOnClose)="closeMenu()">
+  <ng-container *nzDrawerContent>
+    <ul nz-menu
+        nzMode="inline"
+        nzTheme="dark">
+      <li *ngFor="let category of categories"
+          nz-submenu
+          class="mobile-submenu"
+          [nzTitle]="category.name"
+          (nzOpenChange)="openHandler(category.id)"
+          [(nzOpen)]="openMap[category.id.toString()]">
+        <ul>
+          <li *ngFor="let subcategory of category.subcategories"
+              nz-menu-item
+              (click)="goToCatalog(subcategory.id, true)">
+            {{ subcategory.name | uppercase }}
+          </li>
+          <li nz-menu-item
+              (click)="goToCatalog(category.id, false)">VER TODOS</li>
+        </ul>
+      </li>
+    </ul>
+    <div nz-row
+         nzJustify="center"
+         class="links pt-24"
+         [nzGutter]="[16, 16]">
+      <div nz-col
+           nzSpan="24">
+        <a class="text-xs"
+           [routerLink]="['about-us']">SOBRE NOSOTROS</a>
+      </div>
+      <div nz-col
+           nzSpan="24">
+        <a class="text-xs"
+           [routerLink]="['frequent-questions']">PREGUNTAS FRECUENTES</a>
+      </div>
+      <div nz-col
+           nzSpan="24">
+        <a class="text-xs"
+           [routerLink]="['terms-and-conditions']">TÉRMINOS Y CONDICIONES</a>
+      </div>
+    </div>
+
+    <div nz-row
+         [nzGutter]="24"
+         class="icons mt-7">
+      <div nz-col
+           nzSpan="2">
+        <a href="http://www.facebook.com/MusicRevolution/">
+          <i nz-icon
+             nzType="facebook"
+             nzTheme="outline"></i>
+        </a>
+      </div>
+      <div nz-col
+           nzSpan="2">
+        <a href="https://www.instagram.com/music.rev/">
+          <i nz-icon
+             nzType="instagram"
+             nzTheme="outline"></i>
+        </a>
+      </div>
+      <div nz-col
+           nzSpan="2">
+        <a href="https://wa.me/5218115337477?text=Hola%20quiero%20cotizar">
+          <i nz-icon
+             nzType="whats-app"
+             nzTheme="outline"></i>
+        </a>
+      </div>
+    </div>
+  </ng-container>
+</nz-drawer>
 
 <ng-template #drawerTitle>
   <div nz-row>
@@ -196,14 +195,16 @@
     <div nz-col
          nzSpan="2"
          nzOffset="20">
-      <button nz-button
-              nzType="text"
-              (click)="openMenu()">
-        <i nz-icon
-           nzType="shopping"
-           nzTheme="outline"
-           class="white-icon"></i>
-      </button>
+      <nz-badge [nzCount]="items">
+        <button nz-button
+                nzType="text"
+                (click)="openCart()">
+          <i nz-icon
+             nzType="shopping"
+             nzTheme="outline"
+             class="white-icon"></i>
+        </button>
+      </nz-badge>
     </div>
   </div>
 
@@ -211,5 +212,36 @@
     <img alt="Music Revolution logo"
          src="assets/img/Isotipo_2.svg"
          class="mobile-menu-logo" />
+  </div>
+</ng-template>
+
+<nz-drawer nzPlacement="right"
+           [nzWidth]="innerWidth > 768 ? '50vw' : '100vw'"
+           [nzVisible]="cartVisible"
+           [nzTitle]="cartDrawerTitle"
+           [nzClosable]="false"
+           (nzOnClose)="closeCart()">
+  <ng-container *nzDrawerContent>
+    <router-outlet name="cart"></router-outlet>
+  </ng-container>
+</nz-drawer>
+
+<ng-template #cartDrawerTitle>
+  <div nz-row>
+    <div nz-col
+         nzSpan="22">
+      <h2 class="md:text-5xl text-4xl">Carrito</h2>
+    </div>
+    <div nz-col
+         nzSpan="2"
+         class="flex justify-end">
+      <button nz-button
+              nzType="text"
+              (click)="closeCart()">
+        <i nz-icon
+           nzType="close"
+           nzTheme="outline"></i>
+      </button>
+    </div>
   </div>
 </ng-template>

@@ -34,6 +34,9 @@ export class PromocodeEntity extends BaseEntity implements Promocode {
   @Column()
   amount: number;
 
+  @Column({ default: false })
+  active: boolean;
+
   @OneToMany(() => ReservationEntity, reservation => reservation.promocode)
   reservations?: Reservation[];
 }

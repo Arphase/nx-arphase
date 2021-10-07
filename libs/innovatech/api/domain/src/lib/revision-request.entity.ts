@@ -1,4 +1,5 @@
-import { Address, Company, RevisionRequest, RevisionRequestStatus, User, Vehicle } from '@innovatech/common/domain';
+import { Address } from '@arphase/common';
+import { Company, RevisionRequest, RevisionRequestStatus, User, Vehicle } from '@innovatech/common/domain';
 import {
   BaseEntity,
   Column,

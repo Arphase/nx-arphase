@@ -9,10 +9,9 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ApsValidators } from '@arphase/ui/core';
+import { createAddressForm } from '@arphase/ui/addresses';
+import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { RevisionRequest, Vehicle } from '@innovatech/common/domain';
-import { createAddressForm } from '@innovatech/ui/addresses/ui';
-import { ApsFormComponent } from '@arphase/ui/core';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
 
 export function createRevisionRequestForm(): FormGroup {

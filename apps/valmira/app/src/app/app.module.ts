@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   ApsAdditionalEntityCollectionReducerMethodsFactory,
   ApsAdditionalPropertyPersistenceResultHandler,
+  LoadingInterceptorService,
 } from '@arphase/ui/core';
 import { EntityCollectionReducerMethodsFactory, EntityDataModule, PersistenceResultHandler } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
@@ -22,12 +23,14 @@ import {
   ValmiraConfiguration,
 } from '@valmira/ui/core';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxStripeModule } from 'ngx-stripe';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { icons } from './icons';
 
 registerLocaleData(es);
 
@@ -42,7 +45,7 @@ const VALMIRA_CONFIGURATION_VALUE: ValmiraConfiguration = {
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'valmira' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -53,6 +56,7 @@ const VALMIRA_CONFIGURATION_VALUE: ValmiraConfiguration = {
       name: 'Valmira',
       maxAge: 25,
     }),
+    NzIconModule.forRoot(icons),
     NgxStripeModule.forRoot(environment.stripeKey),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
@@ -63,6 +67,7 @@ const VALMIRA_CONFIGURATION_VALUE: ValmiraConfiguration = {
     { provide: VALMIRA_CONFIGURATION, useValue: VALMIRA_CONFIGURATION_VALUE },
     { provide: NZ_I18N, useValue: es_ES },
     { provide: HTTP_INTERCEPTORS, useClass: HttpProxyService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi: true },
     {
       provide: EntityCollectionReducerMethodsFactory,
       useClass: ApsAdditionalEntityCollectionReducerMethodsFactory,

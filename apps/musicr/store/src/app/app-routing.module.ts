@@ -22,10 +22,15 @@ export const routes: Routes = [
     path: 'about-us',
     loadChildren: () => import('@musicr/ui/about-us').then(m => m.AboutUsModule),
   },
+  {
+    path: 'cart',
+    outlet: 'cart',
+    loadChildren: () => import('@musicr/ui/cart/feature').then(m => m.CartModule),
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top', relativeLinkResolution: 'corrected' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

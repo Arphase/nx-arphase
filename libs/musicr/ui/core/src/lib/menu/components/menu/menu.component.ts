@@ -1,8 +1,7 @@
-import { Component, ChangeDetectionStrategy, Input, SimpleChanges, OnChanges, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from '@musicr/domain';
-import { NzDrawerService } from 'ng-zorro-antd/drawer';
-import { CartComponent } from '@musicr/ui/cart';
+
 @Component({
   selector: 'mrl-menu',
   templateUrl: './menu.component.html',
@@ -11,11 +10,13 @@ import { CartComponent } from '@musicr/ui/cart';
 })
 export class MenuComponent implements OnInit, OnChanges {
   @Input() categories: Category[];
+  @Input() items: number;
   visible = false;
+  cartVisible = false;
   openMap = {};
   innerWidth: number;
 
-  constructor(private router: Router, private drawerService: NzDrawerService) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
@@ -23,9 +24,7 @@ export class MenuComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.categories && this.categories) {
-      this.categories.forEach(category => {
-        this.openMap[category.id] = false;
-      });
+      this.categories.forEach(category => (this.openMap[category.id] = false));
     }
   }
 
@@ -53,9 +52,12 @@ export class MenuComponent implements OnInit, OnChanges {
   }
 
   openCart(): void {
-    const drawerRef = this.drawerService.create<CartComponent>({
-      nzWidth: this.innerWidth > 768 ? '50vw' : '100vw',
-      nzContent: CartComponent,
-    });
+    this.router.navigate([{ outlets: { cart: 'cart' } }], { skipLocationChange: true });
+    this.cartVisible = true;
+  }
+
+  closeCart(): void {
+    this.router.navigate([{ outlets: { cart: null } }], { skipLocationChange: true });
+    this.cartVisible = false;
   }
 }

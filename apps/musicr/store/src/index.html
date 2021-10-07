@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      class="overflow-x-hidden">
 
 <head>
   <meta charset="utf-8" />
@@ -12,7 +13,30 @@
         href="assets/img/Isotipo_1.svg" />
 </head>
 
-<body>
+<body class="overflow-x-hidden">
+  <style>
+    #loader {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      background-color: #ffffff;
+    }
+
+    .logo {
+      width: 250px;
+    }
+  </style>
+  <div id="loader">
+    <img src="assets/img/Isotipo_1.svg"
+         alt="logo"
+         class="logo">
+  </div>
   <mrl-root></mrl-root>
 </body>
 

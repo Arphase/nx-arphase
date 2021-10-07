@@ -67,15 +67,15 @@
        nzXs="24"
        nzMd="12"
        nzLg="8">
-    <p><strong>Descripción</strong></p>
-    <span>{{ place?.description }}</span>
+    <p><strong>Huéspedes</strong></p>
+    <span>{{ place?.capacity }}</span>
   </div>
   <div nz-col
        nzXs="24"
        nzMd="12"
        nzLg="8">
-    <p><strong>Huéspedes</strong></p>
-    <span>{{ place?.capacity }}</span>
+    <p><strong>ID pago</strong></p>
+    <span>{{ item?.paymentId | empty }}</span>
   </div>
 </div>
 
@@ -141,7 +141,33 @@
   <div nz-row>
     <div nz-col
          nzSpan="24">
-      <h4 class="text-primary">Total: <strong>{{ item?.total | currency }}</strong></h4>
+      <span class="text-primary">Noches: <strong>{{ item?.nights }}</strong></span>
+    </div>
+    <div nz-col
+         nzSpan="24">
+      <span class="text-primary">Precio por noche: <strong>{{ item?.pricePerNight | currency }}</strong></span>
+    </div>
+    <div nz-col
+         nzSpan="24">
+      <span class="text-primary">
+        Total de alojamiento: <strong>{{ item?.placeTotal | currency }}</strong>
+      </span>
+    </div>
+    <div nz-col
+         nzSpan="24">
+      <span class="text-primary">
+        Total de productos adicionales <strong>{{ item?.productTotal | currency }}</strong>
+      </span>
+    </div>
+    <div nz-col
+         nzSpan="24">
+      <span class="text-primary">
+        Descuento: <strong class="text-orange">{{ promocode?.amount || 0 | currency }}</strong>
+      </span>
+    </div>
+    <div nz-col
+         nzSpan="24">
+      <span class="text-primary">Total: <strong>{{ item?.total | currency }}</strong></span>
     </div>
   </div>
 </div>

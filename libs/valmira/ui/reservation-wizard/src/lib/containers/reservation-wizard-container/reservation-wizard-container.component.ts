@@ -27,6 +27,8 @@ export class ReservationWizardContainerComponent implements OnInit {
     filterNil(),
     map(url => url.includes('confirmation'))
   );
+  disablePaymentMethod$ = this.item$.pipe(map(item => !item?.customer?.id));
+  disableConfirmation$ = this.item$.pipe(map(item => !item?.paymentId));
 
   constructor(
     private reservationCollectionService: ReservationCollectionService,

@@ -1,4 +1,4 @@
-import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
+import { createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -7,6 +7,7 @@ import { AdditionalProduct } from '@valmira/domain';
 import { Repository } from 'typeorm';
 
 import { CreateAdditionalProductDto } from '../dto/create-additional-product.dto';
+import { GetAdditionalProductsDto } from '../dto/get-additional-products.dto';
 import { UpdateAdditionalProductDto } from '../dto/update-additional-product.dto';
 
 @Injectable()
@@ -15,9 +16,13 @@ export class AdditionalProductsService {
     @InjectRepository(AdditionalProductEntity) private additionalProductRepository: Repository<AdditionalProductEntity>
   ) {}
 
-  async getAdditionalProducts(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<AdditionalProduct>> {
-    const { pageIndex, pageSize } = filterDto;
+  async getAdditionalProducts(filterDto: GetAdditionalProductsDto): Promise<ApsCollectionResponse<AdditionalProduct>> {
+    const { pageIndex, pageSize, onlyActives } = filterDto;
     const query = this.additionalProductRepository.createQueryBuilder('additionalProduct');
+
+    if (onlyActives) {
+      query.andWhere('(additionalProduct.active = true)');
+    }
 
     filterCollectionQuery('additionalProduct', query, filterDto);
 

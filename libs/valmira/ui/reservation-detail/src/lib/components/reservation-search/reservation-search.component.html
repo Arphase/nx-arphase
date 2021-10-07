@@ -1,0 +1,50 @@
+<div nz-row
+     class="my-32">
+  <div nz-col
+       nzSpan="16">
+    <h1 class="text-7xl text-primary mb-6">Tu reservación</h1>
+    <form nz-form
+          nz-row
+          nzLayout="vertical"
+          [formGroup]="form"
+          (ngSubmit)="submit()">
+      <div nz-col
+           nzSpan="24">
+        <div nz-row>
+          <div nz-col
+               nzSpan="24">
+            <input class="valmira-input"
+                   placeholder="XXXX"
+                   formControlName="id" />
+            <label class="valmira-label"
+                   [ngClass]="{ 'valmira-error': idError }">Código de reservación*</label>
+          </div>
+        </div>
+        <div nz-row>
+          <div nz-col
+               nzSpan="24">
+            <input class="valmira-input"
+                   placeholder="email@email.com"
+                   formControlName="email" />
+            <label class="valmira-label"
+                   [ngClass]="{ 'valmira-error': emailError }">Email*</label>
+          </div>
+        </div>
+
+        <div nz-row>
+          <div nz-col
+               nzSpan="24">
+            <button nz-button
+                    class="btn-form-big mt-24"
+                    type="submit"
+                    nzType="primary"
+                    [nzLoading]="loading"
+                    nzShape="round">
+              CONSULTA TU RESERVACIÓN
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

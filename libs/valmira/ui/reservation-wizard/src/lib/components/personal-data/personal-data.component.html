@@ -10,35 +10,43 @@
            nzGutter="12">
         <div nz-col
              nzSpan="12">
-          <input placeholder="Nombre"
+          <input class="valmira-input"
+                 placeholder="Nombre"
                  formControlName="firstName" />
-          <label [ngClass]="{ 'error': firstNameError }">Nombre*</label>
+          <label class="valmira-label"
+                 [ngClass]="{ 'valmira-error': firstNameError }">Nombre*</label>
         </div>
         <div nz-col
              nzSpan="12">
-          <input placeholder="Apellido"
+          <input class="valmira-input"
+                 placeholder="Apellido"
                  formControlName="lastName" />
-          <label [ngClass]="{ 'error': lastNameError }">Apellido*</label>
+          <label class="valmira-label"
+                 [ngClass]="{ 'valmira-error': lastNameError }">Apellido*</label>
         </div>
       </div>
       <div nz-row
            nzGutter="12">
         <div nz-col
              nzSpan="24">
-          <input placeholder="email@email.com"
+          <input class="valmira-input"
+                 placeholder="email@email.com"
                  formControlName="email" />
-          <label [ngClass]="{ 'error': emailError }">Email*</label>
+          <label class="valmira-label"
+                 [ngClass]="{ 'valmira-error': emailError }">Email*</label>
         </div>
       </div>
       <div nz-row
            nzGutter="12">
         <div nz-col
              nzSpan="24">
-          <input type="tel"
+          <input class="valmira-input"
+                 type="tel"
                  mask="(00) 0000 0000"
                  placeholder="(81) 2345 6789"
                  formControlName="phone" />
-          <label [ngClass]="{ 'error': phoneError }">Teléfono*</label>
+          <label class="valmira-label"
+                 [ngClass]="{ 'valmira-error': phoneError }">Teléfono*</label>
         </div>
       </div>
     </ng-container>
@@ -47,9 +55,10 @@
          nzGutter="12">
       <div nz-col
            nzSpan="24">
-        <textarea placeholder="¡Hola..."
+        <textarea class="valmira-input"
+                  placeholder="¡Hola..."
                   formControlName="additionalComments"></textarea>
-        <label>Comentarios adicionales</label>
+        <label class="valmira-label">Comentarios adicionales</label>
       </div>
     </div>
 

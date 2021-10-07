@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ApsAddressFormModule } from '@arphase/ui/addresses';
 import {
   ApsAutoErrorModule,
   ApsEmptyModule,
@@ -9,7 +10,6 @@ import {
   ApsSearchbarModule,
   ApsUppercaseModule,
 } from '@arphase/ui/core';
-import { IvtAddressFormModule } from '@innovatech/ui/addresses/ui';
 import { GroupsDataModule } from '@innovatech/ui/groups/data';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';
 import { ProductsDataModule } from '@innovatech/ui/products/data';
@@ -53,7 +53,7 @@ import { GroupsRoutingModule } from './groups-routing.module';
     PermissionsModule,
     ReactiveFormsModule,
     NzIconModule,
-    IvtAddressFormModule,
+    ApsAddressFormModule,
     ApsEmptyModule,
     NzEmptyModule,
     NzPageHeaderModule,

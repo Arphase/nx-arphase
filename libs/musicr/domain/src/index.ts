@@ -1,5 +1,4 @@
 export * from './lib//additional-option.model';
-export * from './lib/address.model';
 export * from './lib/category.model';
 export * from './lib/customer.model';
 export * from './lib/order-product-additional-option.model';

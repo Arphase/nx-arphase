@@ -31,7 +31,10 @@ jobs:
       - uses: bahmutov/npm-install@v1
 
       - name: Run migrations
-        run: npm run typeorm:run
+        run: npm run typeorm:innovatech:run
+
+      - name: Move Procfile
+        run: mv ./apps/innovatech/api/Procfile .
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v16

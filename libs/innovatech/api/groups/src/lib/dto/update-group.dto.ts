@@ -1,5 +1,6 @@
+import { Address } from '@arphase/common';
 import { UpdateAddressDto } from '@innovatech/api/core/util';
-import { Address, Company, User } from '@innovatech/common/domain';
+import { Company, User } from '@innovatech/common/domain';
 import { PartialType } from '@nestjs/mapped-types';
 import { Type } from 'class-transformer';
 import { IsArray, IsNumber, IsOptional, ValidateNested } from 'class-validator';

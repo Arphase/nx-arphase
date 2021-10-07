@@ -25,7 +25,7 @@ export class AdditionalServicesContainerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.additionalProductCollectionService.getWithQuery({ pageSize: String(50) });
+    this.additionalProductCollectionService.getWithQuery({ pageSize: String(50), onlyActives: String(true) });
   }
 
   submit(payload: Reservation): void {

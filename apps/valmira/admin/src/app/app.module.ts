@@ -16,12 +16,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthEffects, AuthState, fromAuth, TokenInterceptorService } from '@valmira/ui/auth/data';
 import { entityConfig, HttpProxyService, VALMIRA_CONFIGURATION, ValmiraConfiguration } from '@valmira/ui/core';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { icons } from './icons';
 
 registerLocaleData(es);
 
@@ -47,6 +49,7 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
       name: 'Valmira',
       maxAge: 25,
     }),
+    NzIconModule.forRoot(icons),
     EffectsModule.forRoot([AuthEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     EntityDataModule.forRoot(entityConfig),

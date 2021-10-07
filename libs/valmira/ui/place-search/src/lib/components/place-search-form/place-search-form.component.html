@@ -1,46 +1,68 @@
 <form nz-row
+      class="mb-6"
       nzGutter="12"
       [formGroup]="form"
       (ngSubmit)="submit()">
   <div nz-col
-       nzSpan="4">
+       nzXs="12"
+       nzMd="4">
     <nz-form-item>
       <nz-form-control apsAutoError>
         <nz-date-picker ngDefaultControl
+                        class="h-10"
                         nzPlaceHolder="FECHA DE LLEGADA"
-                        formControlName="startDate"></nz-date-picker>
+                        formControlName="startDate"
+                        [nzShowToday]="false"></nz-date-picker>
       </nz-form-control>
     </nz-form-item>
   </div>
   <div nz-col
-       nzSpan="4">
+       nzXs="12"
+       nzMd="4">
     <nz-form-item>
       <nz-form-control apsAutoError>
         <nz-date-picker ngDefaultControl
+                        class="h-10"
                         nzPlaceHolder="FECHA DE SALIDA"
-                        formControlName="endDate"></nz-date-picker>
+                        formControlName="endDate"
+                        [nzShowToday]="false"></nz-date-picker>
       </nz-form-control>
     </nz-form-item>
   </div>
   <div nz-col
-       nzSpan="4">
+       nzXs="12"
+       nzMd="4">
     <nz-form-item>
       <nz-form-control apsAutoError>
         <input nz-input
                placeholder="HUÉSPEDES"
                formControlName="capacity"
-               type="number" />
+               type="number"
+               class="h-10 md:text-right text-center" />
       </nz-form-control>
     </nz-form-item>
   </div>
-  <div nz-col>
-    <button nz-button
-            nzType="text"
+  <div nz-col
+       nzXs="12"
+       class="flex md:justify-start justify-center">
+    <button class="md:block hidden"
+            nz-button
+            nzType="primary"
             nz-tooltip
             nzTooltipTitle="Buscar"
+            nzShape="circle"
             type="submit">
       <i nz-icon
          nzType="search"></i>
+    </button>
+
+    <button class="md:hidden block h-10"
+            nz-button
+            nzType="primary"
+            nzBlock
+            nzShape="round"
+            type="submit">
+      BUSCAR
     </button>
   </div>
 </form>
@@ -52,5 +74,30 @@
               nzType="error"
               nzMessage="La fecha inicio no puede ser mayor a la fecha fin"
               nzShowIcon></nz-alert>
+  </div>
+</div>
+
+<div nz-row>
+  <div nz-col
+       nzSpan="24"
+       class="flex md:justify-start justify-center">
+    <nz-radio-group [(ngModel)]="radioValue"
+                    (ngModelChange)="submit()">
+      <label *ngFor="let category of categoryOptions let i = index"
+             nz-radio-button
+             class="category md:px-4 px-2"
+             [nzValue]="category.value"
+             [ngClass]="{ 'selected': radioValue === category.value, 'not-selected': radioValue !== category.value }">
+        <div class="grid justify-items-stretch">
+          <img [src]="category.logo"
+               class="search-icon justify-self-center">
+          <p *ngIf="summary"
+             class="mt-1">{{ category.label }}
+            <ng-container *ngIf="category.value">({{ summary[category.value]?.amount || 0 }})</ng-container>
+            <ng-container *ngIf="!category.value">({{ summary | sumAllPlaces }})</ng-container>
+          </p>
+        </div>
+      </label>
+    </nz-radio-group>
   </div>
 </div>

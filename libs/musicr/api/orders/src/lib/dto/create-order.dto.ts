@@ -70,10 +70,13 @@ export class CreateSocialEventDto {
   eventType: string;
 
   @IsDate()
-  startDate: Date;
+  date: Date;
 
   @IsDate()
-  endDate: Date;
+  startTime: Date;
+
+  @IsDate()
+  endTime: Date;
 
   @ValidateNested()
   @Type(() => CreateAddressDto)

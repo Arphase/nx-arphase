@@ -11,6 +11,11 @@ export const routes: Routes = [
     loadChildren: () => import('@valmira/ui/place-search').then(m => m.PlaceSearchModule),
   },
   {
+    path: 'reservation-detail',
+    loadChildren: () => import('@valmira/ui/reservation-detail').then(m => m.ReservationDetailModule),
+  },
+
+  {
     path: 'place',
     loadChildren: () => import('@valmira/ui/place-detail').then(m => m.PlaceDetailModule),
   },
@@ -33,7 +38,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

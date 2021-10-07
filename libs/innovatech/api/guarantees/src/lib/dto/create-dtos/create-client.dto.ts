@@ -1,6 +1,7 @@
 import { TransformEmail, Trim } from '@arphase/api/core';
+import { Address } from '@arphase/common';
 import { CreateAddressDto, IsRfc } from '@innovatech/api/core/util';
-import { Address, MoralPerson, PersonTypes, PhysicalPerson } from '@innovatech/common/domain';
+import { MoralPerson, PersonTypes, PhysicalPerson } from '@innovatech/common/domain';
 import { RfcValidatorTypes } from '@innovatech/common/utils';
 import { Transform, Type } from 'class-transformer';
 import { IsEmail, IsEnum, IsOptional, IsString, ValidateIf, ValidateNested } from 'class-validator';
