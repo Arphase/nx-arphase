@@ -20,7 +20,7 @@ export class ContactService {
     });
 
     const mailOptions: Mail.Options = {
-      from: `Valmira <${process.env.MAIL_ACCOUNT_SENDER}>`,
+      from: `Music Revolution <${process.env.MAIL_ACCOUNT_SENDER}>`,
       to: process.env.MAIL_ACCOUNT_RECEIVER,
       subject: `Solicita informes ${name}`,
       html: getContactEmail(contactCompanyDto),

@@ -1,16 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Customer, Order } from '@musicr/domain';
 
 @Component({
   selector: 'mrl-confirmation',
   templateUrl: './confirmation.component.html',
   styleUrls: ['./confirmation.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ConfirmationComponent implements OnInit {
+export class ConfirmationComponent {
+  @Input() order: Order;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  get customer(): Customer {
+    return this.order?.customer;
   }
-
 }

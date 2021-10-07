@@ -10,9 +10,9 @@ import { ProductsModule } from '@musicr/api/products';
 import { SubcategoriesModule } from '@musicr/api/subcategories';
 import { Module } from '@nestjs/common';
 import { AngularUniversalModule } from '@nestjs/ng-universal';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
-
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { AppServerModule } from '../../../store/src/app/app.server.module';
 import config from '../db/config/ormconfig';
@@ -24,6 +24,10 @@ import config from '../db/config/ormconfig';
       viewsPath: join(process.cwd(), 'dist/apps/musicr/browser'),
     }),
     TypeOrmModule.forRoot(config),
+    ThrottlerModule.forRoot({
+      ttl: 60,
+      limit: 10,
+    }),
     AdditionalOptionsModule,
     AuthModule,
     CategoriesModule,

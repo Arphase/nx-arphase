@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DeepPartial } from '@arphase/common';
 import { Customer, Order, OrderProduct, SocialEvent } from '@musicr/domain';
-import { BehaviorSubject, catchError, Observable, switchMap, take } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatest, Observable, switchMap, take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
@@ -16,6 +16,8 @@ export class CartService {
   personalData$ = this.personalDataSubject.asObservable();
   currentCustomerSubject = new BehaviorSubject<Customer>(null);
   currentCustomer$ = this.currentCustomerSubject.asObservable();
+  orderSubject = new BehaviorSubject<Order>(null);
+  order$ = this.orderPreviewSubject.asObservable();
 
   constructor(private http: HttpClient) {
     this.cartItems$
@@ -67,7 +69,15 @@ export class CartService {
     this.socialEventSubject.next(socialEvent);
   }
 
-  savePersonalData(personalData: Customer): void {
-    this.personalDataSubject.next(personalData);
+  createOrder(customer: Customer): void {
+    this.personalDataSubject.next(customer);
+    combineLatest([this.cartItems$, this.socialEvent$])
+      .pipe(
+        take(1),
+        switchMap(([orderProducts, socialEvent]) =>
+          this.http.post<Order>(`/mrlApi/orders`, { orderProducts, socialEvent, customer }).pipe(take(1))
+        )
+      )
+      .subscribe(order => this.orderSubject.next(order));
   }
 }

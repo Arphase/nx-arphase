@@ -1,5 +1,6 @@
 <div class="md:px-10 px-4 z-10 bg-white text-center relative">
-  <h2 class="title md:pt-28 pt-14">Tenemos todo lo necesario para que tu evento sea un éxito.</h2>
+  <h2 class="title md:pt-28 pt-14 mb-6 font-grotesk-wide font-bold">Tenemos todo lo necesario <br> para que tu evento
+    sea un éxito.</h2>
   <h6>Nos encargamos de la planeación y el entretenimiento, para que tú sólo te dediques a celebrar.</h6>
 
   <div>
@@ -128,12 +129,10 @@
          nzXs="24"
          nzMd="12"
          class="md:pt-80 pt-0">
-      <h3 class="mb-2">Entretenimiento</h3>
-
+      <h3 class="mb-2 font-grotesk-wide font-bold">Entretenimiento</h3>
       <p class="mb-7">DJ, sonido, luces, pistas de baile, pirotecnia fría y todo lo necesario para crear el mejor
         ambiente en tu
         evento.</p>
-
       <img src="assets/img/_0010_Pantalla LED.jpg"
            alt="Entretenimiento">
     </div>
@@ -141,7 +140,7 @@
     <div nz-col
          nzXs="24"
          nzMd="12">
-      <h3 class="mb-2">Mobiliario</h3>
+      <h3 class="mb-2 font-grotesk-wide font-bold">Mobiliario</h3>
       <p class="mb-7">
         Salas lounge, mesas, sillas, calentadores, toldos y demás mobiliario para hacer posible tu evento con
         elegancia y estilo.
@@ -154,7 +153,7 @@
          nzXs="24"
          [nzMd]="{ offset: 12, span: 12 }"
          class="md:-mt-28 mt-0">
-      <h3 class="mb-2">Personal de Servicio</h3>
+      <h3 class="mb-2 font-grotesk-wide font-bold">Personal de Servicio</h3>
       <p class="mb-7">
         Meseros, bartenders, fotógrafos, guardias de seguridad y demás personal capacitado,
         siempre ofreciendo la mejor experiencia.
@@ -214,7 +213,8 @@
   </div>
 
   <div class="carousel-wrapper">
-    <nz-carousel nzAutoPlay>
+    <nz-carousel class="recomendation-carousel"
+                 nzAutoPlay>
       <div nz-carousel-content
            *ngFor="let review of reviews">
         <div class="carousel-content">

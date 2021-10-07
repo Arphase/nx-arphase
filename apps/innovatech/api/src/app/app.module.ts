@@ -12,6 +12,7 @@ import { UsersModule } from '@innovatech/api/users';
 import { VehiclesModule } from '@innovatech/api/vehicles';
 import { Module } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import config from '../db/config/ormconfig';
@@ -21,6 +22,10 @@ import { AppController } from './app.controller';
   imports: [
     ScheduleModule.forRoot(),
     TypeOrmModule.forRoot(config),
+    ThrottlerModule.forRoot({
+      ttl: 60,
+      limit: 10,
+    }),
     AuthModule,
     AuthDataModule,
     CompaniesModule,

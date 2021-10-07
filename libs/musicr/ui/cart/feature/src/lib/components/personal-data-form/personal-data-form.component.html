@@ -61,8 +61,11 @@
     <div nz-col
          nzSpan="24"
          class="mt-5">
-      <button type="submit"
-              class="btn-black">CONTIUNAR</button>
+      <button nz-button
+              nzType="text"
+              [nzLoading]="loading"
+              type="submit"
+              class="btn-black">CONFIRMAR PEDIDO</button>
     </div>
   </div>
 </form>

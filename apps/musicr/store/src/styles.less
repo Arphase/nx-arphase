@@ -17,13 +17,28 @@
 }
 
 @font-face {
-  font-family: 'RightGrotesk';
+  font-family: 'RightGroteskWide';
+  src: url('/assets/fonts/RightGrotesk-WideRegular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'RightGroteskWide';
+  src: url('/assets/fonts/RightGrotesk-WideBold.otf') format('opentype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'RightGroteskWide';
   src: url('/assets/fonts/RightGrotesk-WideLight.otf') format('opentype');
   font-weight: lighter;
 }
 
 .font-grotesk {
   font-family: 'RightGrotesk';
+}
+
+.font-grotesk-wide {
+  font-family: 'RightGroteskWide';
 }
 
 body {
@@ -37,10 +52,6 @@ body {
   font-family: 'RightGrotesk';
 }
 
-.ant-carousel {
-  min-height: 320px !important;
-  max-height: 320px !important;
-}
 .ant-affix {
   width: 100vw !important;
   background-color: white !important;
@@ -142,4 +153,14 @@ body {
 
 .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
   color: #ffffff;
+}
+
+.slick-list {
+  @media only screen and (max-width: 768px) {
+    height: 368px !important;
+  }
+}
+
+.max-1440 {
+  max-width: 1440px;
 }
