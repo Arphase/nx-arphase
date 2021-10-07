@@ -1,11 +1,9 @@
-import { Locality } from '@innovatech/common/domain';
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Locality } from '@arphase/common';
+import { Controller, Get, Param } from '@nestjs/common';
 
 import { LocalitiesService } from '../services/localities.service';
 
 @Controller('localities')
-@UseGuards(AuthGuard('jwt'))
 export class LocalitiesController {
   constructor(private localitiesService: LocalitiesService) {}
 

@@ -1,5 +1,5 @@
+import { Locality } from '@arphase/common';
 import { LocalityEntity } from '@innovatech/api/domain';
-import { Locality } from '@innovatech/common/domain';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';

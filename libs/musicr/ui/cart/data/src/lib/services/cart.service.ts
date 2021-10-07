@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DeepPartial } from '@arphase/common';
-import { Order, OrderProduct } from '@musicr/domain';
+import { Order, OrderProduct, SocialEvent } from '@musicr/domain';
 import { BehaviorSubject, catchError, Observable, switchMap, take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -10,6 +10,8 @@ export class CartService {
   cartItems$ = this.cartItemsSubject.asObservable();
   orderPreviewSubject = new BehaviorSubject<Order>(null);
   orderPreview$ = this.orderPreviewSubject.asObservable();
+  socialEventSubject = new BehaviorSubject<SocialEvent>(null);
+  socialEvent$ = this.socialEventSubject.asObservable();
 
   constructor(private http: HttpClient) {
     this.cartItems$
@@ -47,5 +49,9 @@ export class CartService {
       cartItems.splice(index, 1);
       this.cartItemsSubject.next(cartItems);
     });
+  }
+
+  saveSocialEvent(socialEvent: SocialEvent): void {
+    this.socialEventSubject.next(socialEvent);
   }
 }

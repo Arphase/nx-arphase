@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ApsAddressFormModule } from '@arphase/ui/addresses';
 import {
   ApsAutoErrorModule,
   ApsCheckboxFilterModule,
@@ -12,7 +13,6 @@ import {
   ApsSearchbarModule,
   ApsUppercaseModule,
 } from '@arphase/ui/core';
-import { IvtAddressFormModule } from '@innovatech/ui/addresses/ui';
 import { CompanyCheckboxFilterModule, CompanySelectModule } from '@innovatech/ui/companies/ui';
 import { IvtFolioModule } from '@innovatech/ui/core/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
@@ -83,7 +83,7 @@ import { PaymentOrderDataService } from './services/payment-order-data.service';
     ApsEmptyModule,
     ApsAutoErrorModule,
     ApsFeatureLayoutModule,
-    IvtAddressFormModule,
+    ApsAddressFormModule,
     IvtFolioModule,
     NzPageHeaderModule,
     NzCollapseModule,

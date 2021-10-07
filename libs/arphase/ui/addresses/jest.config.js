@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'innovatech-ui-addresses-innovatech-ui-addreses-ui',
-  preset: '../../../../../jest.preset.js',
+  displayName: 'arphase-ui-addresses',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../../coverage/libs/innovatech/ui/addresses/ui',
+  coverageDirectory: '../../../../coverage/libs/arphase/ui/addresses',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

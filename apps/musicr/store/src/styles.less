@@ -1,23 +1,40 @@
 @import '~ng-zorro-antd/ng-zorro-antd';
-
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-/* You can add global styles to this file, and also import other style files */
+@primary-color: #000000;
+
+@font-face {
+  font-family: 'RightGrotesk';
+  src: url('/assets/fonts/RightGrotesk-Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'RightGrotesk';
+  src: url('/assets/fonts/RightGrotesk-Bold.otf') format('opentype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'RightGrotesk';
+  src: url('/assets/fonts/RightGrotesk-WideLight.otf') format('opentype');
+  font-weight: lighter;
+}
+
+.font-grotesk {
+  font-family: 'RightGrotesk';
+}
+
 body {
   margin: 0;
   max-width: 100vw;
   min-width: 100vw;
-  /* make sure to cover the screen */
   min-height: 100vh;
-
-  /* need a solid bg to hide the footer */
   background: white;
-
-  /* put on top */
   position: relative;
   z-index: 1;
+  font-family: 'RightGrotesk';
 }
 
 .ant-carousel {
@@ -27,6 +44,7 @@ body {
 .ant-affix {
   width: 100vw !important;
   background-color: white !important;
+  z-index: 20;
 }
 
 .menu {
@@ -46,7 +64,6 @@ body {
 }
 
 .ant-menu-submenu {
-  font-family: 'right-grotesk-medium';
   @media only screen and (max-width: 768px) {
     font-size: 24px;
     border-bottom: 1px solid rgb(255, 255, 2255, 0.5) !important;
@@ -91,4 +108,38 @@ body {
 
 .btn-black:hover {
   @apply bg-black text-white w-full p-3 rounded h-auto;
+}
+
+.mobile-submenu {
+  .ant-menu-submenu-title {
+    padding: 0 !important;
+  }
+  .ant-menu-item {
+    padding: 0 !important;
+  }
+}
+
+.ant-collapse-header {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.ant-collapse-content-box {
+  padding-left: 0 !important;
+}
+
+.ant-collapse-arrow {
+  right: 0 !important;
+}
+
+.ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
+  color: #ffffff;
+}
+
+.ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner:hover {
+  color: #000000;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  color: #ffffff;
 }

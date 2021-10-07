@@ -103,6 +103,28 @@
         }
       }
     },
+    "arphase-ui-addresses": {
+      "projectType": "library",
+      "root": "libs/arphase/ui/addresses",
+      "sourceRoot": "libs/arphase/ui/addresses/src",
+      "prefix": "aps",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/arphase/ui/addresses"],
+          "options": {
+            "jestConfig": "libs/arphase/ui/addresses/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/arphase/ui/addresses/src/**/*.ts", "libs/arphase/ui/addresses/src/**/*.html"]
+          }
+        }
+      }
+    },
     "arphase-ui-auth": {
       "projectType": "library",
       "root": "libs/arphase/ui/auth",
@@ -683,31 +705,6 @@
           "outputs": ["coverage/libs/innovatech/common/domain"],
           "options": {
             "jestConfig": "libs/innovatech/common/domain/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "innovatech-ui-addresses-ui": {
-      "projectType": "library",
-      "root": "libs/innovatech/ui/addresses/ui",
-      "sourceRoot": "libs/innovatech/ui/addresses/ui/src",
-      "prefix": "ivt",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/ui/addresses/ui/src/**/*.ts",
-              "libs/innovatech/ui/addresses/ui/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/addresses/ui"],
-          "options": {
-            "jestConfig": "libs/innovatech/ui/addresses/ui/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -1577,6 +1574,28 @@
           "outputs": ["coverage/libs/musicr/api/categories"],
           "options": {
             "jestConfig": "libs/musicr/api/categories/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "musicr-api-contact": {
+      "root": "libs/musicr/api/contact",
+      "sourceRoot": "libs/musicr/api/contact/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/contact/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/contact"],
+          "options": {
+            "jestConfig": "libs/musicr/api/contact/jest.config.js",
             "passWithNoTests": true
           }
         }

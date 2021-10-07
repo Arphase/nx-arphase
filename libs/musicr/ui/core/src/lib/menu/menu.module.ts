@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -18,6 +19,7 @@ import { MenuContainerComponent } from './containers/menu-container/menu-contain
     CommonModule,
     HttpClientModule,
     NzAffixModule,
+    NzBadgeModule,
     NzButtonModule,
     NzDrawerModule,
     NzGridModule,

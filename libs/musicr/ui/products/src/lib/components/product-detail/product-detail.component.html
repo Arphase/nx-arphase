@@ -1,6 +1,6 @@
 <div class="center">
   <div nz-row
-       class="margin-top-64">
+       class="md:mt-16 mt-0">
     <div nz-col
          nzXs="24"
          nzLg="12">
@@ -18,27 +18,28 @@
         </button>
       </div>
     </div>
-    <div class="space"
+    <div class="px-8"
          nz-col
          nzXs="24"
          nzLg="12">
       <nz-page-header class="site-page-header"
                       (nzBack)="onBack()"
                       nzBackIcon></nz-page-header>
-      <h1 class="text-5xl">{{ product?.name }}</h1>
-      <div nz-row
+      <h1 class="md:mt-12 mt-4 md:text-5xl text-2xl">{{ product?.name }}</h1>
+      <div *ngIf="product?.disclaimer"
+           nz-row
            class="disclaimer">
         <div nz-col
-             nzXs="2"
-             nzLg="1">
+             nzSpan="24"
+             class="flex items-center">
           <i nz-icon
              nzType="check-circle"
-             nzTheme="outline"></i>
+             nzTheme="outline"
+             class="mr-2 mt-1"></i>
+          <span>{{ product?.disclaimer }}</span>
         </div>
-        <div nz-col
-             nzXs="22"
-             nzLg="23">{{ product?.disclaimer }}</div>
       </div>
+
       <h2 class="text-2xl font-bold border-b pb-4 border-black mb-2">Incluye</h2>
 
       <div *ngFor="let productComponent of product?.productComponents"
@@ -46,18 +47,21 @@
         <span class="text-base"> {{ productComponent }} </span>
       </div>
 
-      <nz-input-number class="mt-10"
-                       [(ngModel)]="amount"
-                       [nzMin]="1"
-                       [nzStep]="1"></nz-input-number>
+      <form *ngIf="priceOptions?.length"
+            [formGroup]="form"
+            nz-row
+            class="mt-9">
+        <div nz-col
+             nzSpan="6">
+          <nz-select class="w-full"
+                     formControlName="priceOptionId"
+                     [nzOptions]="priceOptions"></nz-select>
+        </div>
+      </form>
 
-      <nz-select *ngIf="priceOptions?.length"
-                 apsAutoSelect
-                 formControlName="amount"
-                 [nzOptions]="priceOptions"></nz-select>
-
-
-      <h2 class="text-2xl font-extrabold my-12">{{ product?.price | currency }} MXN</h2>
+      <h2 class="text-2xl font-extrabold mt-10 mb-12">
+        {{ price | currency }} MXN
+      </h2>
 
       <button type="button"
               class="btn-black"
@@ -68,7 +72,7 @@
     <div nz-col
          nzSpan="24"
          class="disclaimer">
-      <p>Servicios Relacionados</p>
+      <p class="text-xl">Servicios Relacionados</p>
     </div>
   </div>
 </div>

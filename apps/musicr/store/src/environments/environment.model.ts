@@ -3,4 +3,5 @@ export interface Environment {
   apiUrl: string;
   version: string;
   environmentName: string;
+  innovatechUrl: string;
 }

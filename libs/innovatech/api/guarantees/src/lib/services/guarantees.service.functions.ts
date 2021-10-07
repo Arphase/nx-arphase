@@ -1,9 +1,9 @@
 import 'dayjs/locale/es';
 
-import { SortDirection } from '@arphase/common';
+import { formatAddress, SortDirection } from '@arphase/common';
 import { filterCommonQuery, IMAGE_ASSETS_PATH } from '@innovatech/api/core/util';
 import { GuaranteeEntity } from '@innovatech/api/domain';
-import { formatAddress, Guarantee, transformFolio, User } from '@innovatech/common/domain';
+import { Guarantee, transformFolio, User } from '@innovatech/common/domain';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import { SelectQueryBuilder } from 'typeorm';

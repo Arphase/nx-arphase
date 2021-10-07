@@ -1,1 +1,2 @@
-<p>social-event-form-container works!</p>
+<mrl-social-event-form [item]="socialEvent$ | async"
+                       (submitForm)="submit($event)"></mrl-social-event-form>

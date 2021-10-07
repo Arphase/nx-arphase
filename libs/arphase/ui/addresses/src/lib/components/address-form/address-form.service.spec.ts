@@ -1,12 +1,12 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
-import { IvtAddressFormService } from './address-form.service';
+import { ApsAddressFormService } from './address-form.service';
 
-describe('IvtAddressFormService', () => {
-  let spectator: SpectatorService<IvtAddressFormService>;
+describe('ApsAddressFormService', () => {
+  let spectator: SpectatorService<ApsAddressFormService>;
   const createService = createServiceFactory({
-    service: IvtAddressFormService,
+    service: ApsAddressFormService,
     imports: [HttpClientTestingModule],
   });
 

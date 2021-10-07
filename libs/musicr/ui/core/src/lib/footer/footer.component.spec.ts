@@ -1,13 +1,16 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { FooterComponent } from './footer.component';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 describe('FooterComponent', () => {
   let spectator: Spectator<FooterComponent>;
   const createComponent = createComponentFactory({
     component: FooterComponent,
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, HttpClientTestingModule],
+    mocks: [NzMessageService],
     shallow: true,
   });
 

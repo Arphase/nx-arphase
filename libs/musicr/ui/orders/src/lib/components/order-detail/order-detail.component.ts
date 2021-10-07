@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Address, Customer, Order, OrderProduct, SocialEvent } from '@musicr/domain';
+import { Address } from '@arphase/common';
+import { Customer, Order, OrderProduct, SocialEvent } from '@musicr/domain';
 
 @Component({
   selector: 'mrl-order-detail',

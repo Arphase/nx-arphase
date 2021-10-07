@@ -7,7 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartComponent {
-  title = 'Carrito';
   steps = [
     { name: 'Carrito', icon: 'shopping', path: ['products'] },
     { name: 'Datos del evento', icon: 'form', path: ['social-event'] },

@@ -25,7 +25,6 @@ module.exports = {
     '<rootDir>/libs/innovatech/ui/groups/data',
     '<rootDir>/libs/innovatech/ui/groups/ui',
     '<rootDir>/libs/innovatech/ui/products/ui',
-    '<rootDir>/libs/innovatech/ui/addresses/ui',
     '<rootDir>/libs/innovatech/api/auth/data',
     '<rootDir>/libs/innovatech/api/auth/feature',
     '<rootDir>/libs/innovatech/api/domain',
@@ -117,5 +116,7 @@ module.exports = {
     '<rootDir>/libs/valmira/ui/reservations/ui',
     '<rootDir>/libs/valmira/ui/reservation-detail',
     '<rootDir>/libs/musicr/ui/cart/data',
+    '<rootDir>/libs/musicr/api/contact',
+    '<rootDir>/libs/arphase/ui/addresses',
   ],
 };

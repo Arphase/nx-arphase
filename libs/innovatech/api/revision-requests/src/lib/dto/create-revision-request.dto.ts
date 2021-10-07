@@ -1,6 +1,6 @@
 import { TransformEmail, Trim } from '@arphase/api/core';
+import { Address } from '@arphase/common';
 import { CreateAddressDto } from '@innovatech/api/core/util';
-import { Address } from '@innovatech/common/domain';
 import { Type } from 'class-transformer';
 import { IsEmail, IsNumber, IsString, ValidateNested } from 'class-validator';
 
