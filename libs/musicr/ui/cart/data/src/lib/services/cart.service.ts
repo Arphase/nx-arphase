@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DeepPartial } from '@arphase/common';
-import { Order, OrderProduct, SocialEvent } from '@musicr/domain';
+import { Customer, Order, OrderProduct, SocialEvent } from '@musicr/domain';
 import { BehaviorSubject, catchError, Observable, switchMap, take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -12,6 +12,10 @@ export class CartService {
   orderPreview$ = this.orderPreviewSubject.asObservable();
   socialEventSubject = new BehaviorSubject<SocialEvent>(null);
   socialEvent$ = this.socialEventSubject.asObservable();
+  personalDataSubject = new BehaviorSubject<Customer>(null);
+  personalData$ = this.personalDataSubject.asObservable();
+  currentCustomerSubject = new BehaviorSubject<Customer>(null);
+  currentCustomer$ = this.currentCustomerSubject.asObservable();
 
   constructor(private http: HttpClient) {
     this.cartItems$
@@ -21,6 +25,14 @@ export class CartService {
 
   getOrderPreview(order: DeepPartial<Order>): Observable<Order> {
     return this.http.post<Order>(`/mrlApi/orders/preview`, order).pipe(catchError(() => this.orderPreview$));
+  }
+
+  getCustomerByEmail(email: string): void {
+    const params = new HttpParams({ fromObject: { email } });
+    this.http
+      .get<Customer>(`/mrlApi/customers/search/email`, { params })
+      .pipe(take(1))
+      .subscribe(customer => this.currentCustomerSubject.next(customer));
   }
 
   increaseItemAmount(index: number): void {
@@ -53,5 +65,9 @@ export class CartService {
 
   saveSocialEvent(socialEvent: SocialEvent): void {
     this.socialEventSubject.next(socialEvent);
+  }
+
+  savePersonalData(personalData: Customer): void {
+    this.personalDataSubject.next(personalData);
   }
 }

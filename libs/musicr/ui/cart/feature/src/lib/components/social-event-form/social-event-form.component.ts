@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Address } from '@arphase/common';
 import { createAddressForm } from '@arphase/ui/addresses';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { SocialEvent, SocialEventPlaces } from '@musicr/domain';
@@ -42,6 +43,16 @@ export class SocialEventFormComponent extends ApsFormComponent<SocialEvent> impl
       value: SocialEventPlaces[SocialEventPlaces.terrace],
     },
   ];
+  placeHolders: Address = {
+    zipcode: '66230',
+    country: 'México',
+    state: 'Nuevo León',
+    city: 'San Pedro',
+    suburb: 'Casco Urbano',
+    street: 'Porfirio Díaz',
+    externalNumber: '1000',
+    internalNumber: 'A',
+  };
 
   form = new FormGroup({
     name: new FormControl(null, ApsValidators.required),

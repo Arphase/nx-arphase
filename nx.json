@@ -200,6 +200,9 @@
     "musicr-api-contact": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
+    "musicr-api-customers": {
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+    },
     "musicr-api-domain": {
       "tags": ["domain:musicr", "domain:musicr:api", "type:domain-logic"]
     },

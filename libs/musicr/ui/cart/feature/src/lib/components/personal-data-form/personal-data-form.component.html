@@ -1,1 +1,68 @@
-<p>personal-data-form works!</p>
+<form nz-form
+      nzLayout="vertical"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+  <div nz-row
+       nzGutter="12">
+    <div nz-col
+         nzXs="24"
+         nzMd="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Nombre</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 placeholder="Nombre"
+                 formControlName="firstName" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Apellido</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 placeholder="Apellido"
+                 formControlName="lastName" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Email</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 placeholder="correo@correo.com"
+                 formControlName="email" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Teléfono</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 placeholder="81 0000 0000"
+                 type="tel"
+                 mask="(00) 0000 0000"
+                 formControlName="phone" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <div nz-row
+       class="w-full">
+    <div nz-col
+         nzSpan="24"
+         class="mt-5">
+      <button type="submit"
+              class="btn-black">CONTIUNAR</button>
+    </div>
+  </div>
+</form>

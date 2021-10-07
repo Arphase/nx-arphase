@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Address } from '@arphase/common';
 import { ApsFormComponent } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -16,6 +16,16 @@ import { ApsAddressFormService, createAddressForm } from './address-form.service
   providers: [ApsAddressFormService],
 })
 export class ApsAddressFormComponent extends ApsFormComponent<Address> implements OnInit {
+  @Input() placeholders: Address = {
+    zipcode: '',
+    country: '',
+    state: '',
+    city: '',
+    suburb: '',
+    street: '',
+    externalNumber: '',
+    internalNumber: '',
+  };
   form = createAddressForm();
   showAddressSelects: boolean;
   countryOptions: NzSelectOptionInterface[] = [];
