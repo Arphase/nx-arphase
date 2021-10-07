@@ -1,4 +1,4 @@
-import { Address } from '@innovatech/common/domain';
+import { Address } from '@arphase/common';
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('addresses')

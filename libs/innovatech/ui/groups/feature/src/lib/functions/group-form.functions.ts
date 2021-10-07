@@ -1,8 +1,8 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { createAddressForm } from '@arphase/ui/addresses';
 import { ApsValidators, setFormArrayValue } from '@arphase/ui/core';
 import { Company, Group, User } from '@innovatech/common/domain';
 import { generateId, RfcValidatorTypes } from '@innovatech/common/utils';
-import { createAddressForm } from '@innovatech/ui/addresses/ui';
 import { IvtValidators } from '@innovatech/ui/core/util';
 
 export function createGroupForm(group?: Group): FormGroup {

@@ -44,7 +44,6 @@
       "@innovatech/app/env/*": ["apps/innovatech/app/src/environments/*"],
       "@innovatech/common/domain": ["libs/innovatech/common/domain/src/index.ts"],
       "@innovatech/common/utils": ["libs/innovatech/common/utils/src/index.ts"],
-      "@innovatech/ui/addresses/ui": ["libs/innovatech/ui/addresses/ui/src/index.ts"],
       "@innovatech/ui/auth/data": ["libs/innovatech/ui/auth/data/src/index.ts"],
       "@innovatech/ui/auth/feature": ["libs/innovatech/ui/auth/feature/src/index.ts"],
       "@innovatech/ui/companies/data": ["libs/innovatech/ui/companies/data/src/index.ts"],

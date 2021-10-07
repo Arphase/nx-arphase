@@ -710,31 +710,6 @@
         }
       }
     },
-    "innovatech-ui-addresses-ui": {
-      "projectType": "library",
-      "root": "libs/innovatech/ui/addresses/ui",
-      "sourceRoot": "libs/innovatech/ui/addresses/ui/src",
-      "prefix": "ivt",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/innovatech/ui/addresses/ui/src/**/*.ts",
-              "libs/innovatech/ui/addresses/ui/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/addresses/ui"],
-          "options": {
-            "jestConfig": "libs/innovatech/ui/addresses/ui/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "innovatech-ui-auth-data": {
       "projectType": "library",
       "root": "libs/innovatech/ui/auth/data",

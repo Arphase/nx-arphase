@@ -100,9 +100,6 @@
     "innovatech-domain": {
       "tags": ["domain:innovatech", "type:domain-logic"]
     },
-    "innovatech-ui-addresses-ui": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
-    },
     "innovatech-ui-auth-data": {
       "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
