@@ -31,13 +31,15 @@
         </div>
         <div nz-col
              nzSpan="10">
-          <button nz-button
-                  nzType="text"
-                  (click)="openCart()">
-            <i nz-icon
-               nzType="shopping"
-               nzTheme="outline"></i>
-          </button>
+          <nz-badge [nzCount]="items">
+            <button nz-button
+                    nzType="text"
+                    (click)="openCart()">
+              <i nz-icon
+                 nzType="shopping"
+                 nzTheme="outline"></i>
+            </button>
+          </nz-badge>
         </div>
       </div>
     </div>
@@ -82,13 +84,15 @@
         </div>
         <div nz-col
              nzSpan="4">
-          <button nz-button
-                  nzType="text"
-                  (click)="openCart()">
-            <i nz-icon
-               nzType="shopping"
-               nzTheme="outline"></i>
-          </button>
+          <nz-badge [nzCount]="items">
+            <button nz-button
+                    nzType="text"
+                    (click)="openCart()">
+              <i nz-icon
+                 nzType="shopping"
+                 nzTheme="outline"></i>
+            </button>
+          </nz-badge>
         </div>
       </div>
     </div>
@@ -191,14 +195,16 @@
     <div nz-col
          nzSpan="2"
          nzOffset="20">
-      <button nz-button
-              nzType="text"
-              (click)="openCart()">
-        <i nz-icon
-           nzType="shopping"
-           nzTheme="outline"
-           class="white-icon"></i>
-      </button>
+      <nz-badge [nzCount]="items">
+        <button nz-button
+                nzType="text"
+                (click)="openCart()">
+          <i nz-icon
+             nzType="shopping"
+             nzTheme="outline"
+             class="white-icon"></i>
+        </button>
+      </nz-badge>
     </div>
   </div>
 

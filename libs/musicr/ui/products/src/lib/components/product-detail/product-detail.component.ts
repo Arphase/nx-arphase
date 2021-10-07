@@ -1,21 +1,56 @@
 import { Location } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ApsValidators } from '@arphase/ui/core';
 import { OrderProduct, Product } from '@musicr/domain';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
+import { filter } from 'rxjs/operators';
 
+@UntilDestroy()
 @Component({
   selector: 'mrl-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductDetailComponent {
+export class ProductDetailComponent implements OnChanges {
   @Input() product: Product;
   @Input() priceOptions: NzSelectOptionInterface[] = [];
   total: number;
+  form = new FormGroup({ priceOptionId: new FormControl(null, ApsValidators.required) });
+  price: number;
   @Output() addItemToCart = new EventEmitter<Partial<OrderProduct>>();
 
-  constructor(private location: Location) {}
+  constructor(private location: Location) {
+    this.form
+      .get('priceOptionId')
+      .valueChanges.pipe(
+        filter(() => !!this.product?.priceOptions?.length),
+        untilDestroyed(this)
+      )
+      .subscribe(
+        priceOptionId =>
+          (this.price = this.product.priceOptions.find(priceOption => priceOption.id === priceOptionId)?.price)
+      );
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.product && this.product?.id) {
+      this.price = this.product.price;
+    }
+    if (changes.priceOptions && this.priceOptions?.length) {
+      this.form.get('priceOptionId').patchValue(this.priceOptions[0].value);
+    }
+  }
 
   onBack(): void {
     this.location.back();
@@ -26,7 +61,10 @@ export class ProductDetailComponent {
       product: this.product,
       amount: 1,
       productId: this.product.id,
+      price: this.price,
     };
-    this.addItemToCart.emit(item);
+    this.priceOptions.length
+      ? this.addItemToCart.emit({ ...item, priceOptionId: this.form.get('priceOptionId').value })
+      : this.addItemToCart.emit(item);
   }
 }

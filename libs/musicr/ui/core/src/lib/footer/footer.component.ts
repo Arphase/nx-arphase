@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ApsFormComponent, ApsValidators, LoadingService } from '@arphase/ui/core';
+import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { take } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { finalize, take } from 'rxjs/operators';
 
 @Component({
   selector: 'mrl-footer',
@@ -11,13 +12,10 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./footer.component.less'],
 })
 export class FooterComponent extends ApsFormComponent {
-  loading$ = this.loadingService.loading$;
-  constructor(
-    private fb: FormBuilder,
-    private http: HttpClient,
-    private messageService: NzMessageService,
-    private loadingService: LoadingService
-  ) {
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+  loading$ = this.loadingSubject.asObservable();
+
+  constructor(private fb: FormBuilder, private http: HttpClient, private messageService: NzMessageService) {
     super();
     this.form = this.fb.group({
       name: [null, ApsValidators.required],
@@ -31,12 +29,16 @@ export class FooterComponent extends ApsFormComponent {
     if (!this.form.valid) {
       this.messageService.error('Los campos en la forma están incompletos.');
     } else {
+      this.loadingSubject.next(true);
       this.http
         .post(`/mrlApi/contact`, this.values)
-        .pipe(take(1))
+        .pipe(
+          take(1),
+          finalize(() => this.loadingSubject.next(false))
+        )
         .subscribe(() => {
           this.messageService.success(
-            'Se ha envíado un correo a Music Revolution, cuanto antes nos pondremos en contacto con usted.'
+            'Se ha enviado un correo a Music Revolution, cuanto antes nos pondremos en contacto con usted.'
           );
         });
     }

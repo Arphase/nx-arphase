@@ -41,7 +41,7 @@
          class="total flex pt-3"
          [nzXs]="{ span: 8, order: 5 }"
          [nzMd]="{ span: 4, order: 4 }">
-      <span class="mt-2"> {{ item.product.price * item.amount | currency }}MXN </span>
+      <span class="mt-2"> {{ item.price * item.amount | currency }}MXN </span>
     </div>
     <div nz-col
          class="pt-3"
@@ -72,7 +72,8 @@
            nzSpan="24"
            class="mt-40">
         <button type="button"
-                class="btn-black">CONTIUNAR</button>
+                class="btn-black"
+                [routerLink]="['..', 'social-event']">CONTIUNAR</button>
       </div>
     </div>
   </div>

@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from '@musicr/domain';
-import { NzDrawerService } from 'ng-zorro-antd/drawer';
+import { CartService } from '@musicr/ui/cart/data';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'mrl-menu',
@@ -11,12 +12,13 @@ import { NzDrawerService } from 'ng-zorro-antd/drawer';
 })
 export class MenuComponent implements OnInit, OnChanges {
   @Input() categories: Category[];
+  @Input() items: number;
   visible = false;
   cartVisible = false;
   openMap = {};
   innerWidth: number;
 
-  constructor(private router: Router, private drawerService: NzDrawerService) {}
+  constructor(private router: Router, private cartService: CartService) {}
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;

@@ -1,6 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoadingService } from '@arphase/ui/core';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
@@ -11,7 +10,7 @@ describe('FooterComponent', () => {
   const createComponent = createComponentFactory({
     component: FooterComponent,
     imports: [ReactiveFormsModule, HttpClientTestingModule],
-    mocks: [NzMessageService, LoadingService],
+    mocks: [NzMessageService],
     shallow: true,
   });
 

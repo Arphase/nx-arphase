@@ -1,16 +1,17 @@
-
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { Spectator, createComponentFactory } from '@ngneat/spectator';
+import { CartService } from '@musicr/ui/cart/data';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { of } from 'rxjs';
+
 import { MenuContainerComponent } from './menu-container.component';
 
 describe('MenuContainerComponent', () => {
   let spectator: Spectator<MenuContainerComponent>;
   const createComponent = createComponentFactory({
     component: MenuContainerComponent,
-    schemas: [NO_ERRORS_SCHEMA],
     imports: [HttpClientTestingModule],
-
+    providers: [{ provide: CartService, useValue: { cartItems$: of([]) } }],
+    shallow: true,
   });
 
   beforeEach(() => (spectator = createComponent()));
