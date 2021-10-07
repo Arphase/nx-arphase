@@ -1,4 +1,4 @@
-import { Locality } from '@innovatech/common/domain';
+import { Locality } from '@arphase/common';
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('localities')

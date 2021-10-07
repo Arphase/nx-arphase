@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Locality } from '@arphase/common';
 import { ApsValidators, sortSelectOptions, sortStringOptions } from '@arphase/ui/core';
-import { Locality } from '@innovatech/common/domain';
 import { uniq, uniqBy } from 'lodash';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable, of } from 'rxjs';
@@ -17,7 +17,7 @@ export interface MappedLocalities {
 }
 
 @Injectable()
-export class IvtAddressFormService {
+export class ApsAddressFormService {
   constructor(private http: HttpClient) {}
 
   getLocalities(zipcode: string): Observable<Locality[]> {

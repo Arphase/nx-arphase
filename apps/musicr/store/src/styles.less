@@ -3,6 +3,8 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@primary-color: #000000;
+
 @font-face {
   font-family: 'RightGrotesk';
   src: url('/assets/fonts/RightGrotesk-Medium.otf') format('opentype');
@@ -128,4 +130,12 @@ body {
 
 .ant-collapse-arrow {
   right: 0 !important;
+}
+
+.ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
+  color: #ffffff;
+}
+
+.ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner:hover {
+  color: #000000;
 }

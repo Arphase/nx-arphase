@@ -103,6 +103,28 @@
         }
       }
     },
+    "arphase-ui-addresses": {
+      "projectType": "library",
+      "root": "libs/arphase/ui/addresses",
+      "sourceRoot": "libs/arphase/ui/addresses/src",
+      "prefix": "aps",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/arphase/ui/addresses"],
+          "options": {
+            "jestConfig": "libs/arphase/ui/addresses/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/arphase/ui/addresses/src/**/*.ts", "libs/arphase/ui/addresses/src/**/*.html"]
+          }
+        }
+      }
+    },
     "arphase-ui-auth": {
       "projectType": "library",
       "root": "libs/arphase/ui/auth",

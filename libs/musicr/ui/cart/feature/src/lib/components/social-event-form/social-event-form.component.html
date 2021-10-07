@@ -1,1 +1,121 @@
-<p>social-event-form works!</p>
+<form nz-form
+      nzLayout="vertical"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+  <div nz-row
+       nzGutter="12">
+    <div nz-col
+         nzXs="24"
+         nzMd="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Nombre del evento</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 placeholder="Music Revolution Rave"
+                 autocomplete="off"
+                 formControlName="name" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Tipo de evento</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 placeholder="Fiesta de cumpleaños"
+                 autocomplete="off"
+                 formControlName="eventType" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Lugar del evento</nz-form-label>
+        <nz-form-control apsAutoError>
+          <nz-select placeholder="Seleccionar"
+                     formControlName="eventPlace"
+                     [nzOptions]="eventPlaceOptions"></nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Fecha del evento</nz-form-label>
+        <nz-form-control apsAutoError>
+          <nz-date-picker class="w-full"
+                          ngDefaultControl
+                          formControlName="date"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Hora inicio</nz-form-label>
+        <nz-form-control apsAutoError>
+          <nz-time-picker class="w-full"
+                          nzFormat="HH:mm"
+                          ngDefaultControl
+                          formControlName="startTime"></nz-time-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzXs="24"
+         nzMd="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Hora fin</nz-form-label>
+        <nz-form-control apsAutoError>
+          <nz-time-picker class="w-full"
+                          nzFormat="HH:mm"
+                          ngDefaultControl
+                          formControlName="endTime"></nz-time-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <div nz-row>
+    <div nz-col
+         nzSpan="24">
+      <nz-form-item>
+        <nz-form-label>Comentarios adicionales</nz-form-label>
+        <nz-form-control apsAutoError>
+          <textarea nz-input
+                    placeholder="Hola, me interesa..."
+                    autocomplete="off"
+                    formControlName="notes"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <aps-address-form [form]="addressForm"></aps-address-form>
+
+  <div nz-row>
+    <div nz-col
+         nzSpan="24">
+      <label nz-checkbox
+             formControlName="requiresAssembly">
+        El montaje del equipo requerirá maniobra. (Escaleras, tramos largos y/o estrechos)
+      </label>
+    </div>
+  </div>
+
+  <div nz-row
+       class="w-full">
+    <div nz-col
+         nzSpan="24"
+         class="mt-5">
+      <button type="submit"
+              class="btn-black">CONTIUNAR</button>
+    </div>
+  </div>
+</form>

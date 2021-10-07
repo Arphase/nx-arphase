@@ -193,7 +193,7 @@
          nzOffset="20">
       <button nz-button
               nzType="text"
-              (click)="openMenu()">
+              (click)="openCart()">
         <i nz-icon
            nzType="shopping"
            nzTheme="outline"
@@ -210,12 +210,32 @@
 </ng-template>
 
 <nz-drawer nzPlacement="right"
-           nzWrapClassName="menu"
            [nzWidth]="innerWidth > 768 ? '50vw' : '100vw'"
            [nzVisible]="cartVisible"
+           [nzTitle]="cartDrawerTitle"
            [nzClosable]="false"
            (nzOnClose)="closeCart()">
   <ng-container *nzDrawerContent>
     <router-outlet name="cart"></router-outlet>
   </ng-container>
 </nz-drawer>
+
+<ng-template #cartDrawerTitle>
+  <div nz-row>
+    <div nz-col
+         nzSpan="22">
+      <h2 class="md:text-5xl text-4xl">Carrito</h2>
+    </div>
+    <div nz-col
+         nzSpan="2"
+         class="flex justify-end">
+      <button nz-button
+              nzType="text"
+              (click)="closeCart()">
+        <i nz-icon
+           nzType="close"
+           nzTheme="outline"></i>
+      </button>
+    </div>
+  </div>
+</ng-template>

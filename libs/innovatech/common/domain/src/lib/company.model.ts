@@ -1,4 +1,5 @@
-import { Address } from './address.model';
+import { Address } from '@arphase/common';
+
 import { Group } from './group.model';
 import { Guarantee } from './guarantee.model';
 import { RevisionRequest } from './revision-request.model';

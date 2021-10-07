@@ -1,21 +1,21 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Address } from '@innovatech/common/domain';
+import { Address } from '@arphase/common';
 import { ApsFormComponent } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { filter, startWith, switchMap } from 'rxjs/operators';
 
-import { createAddressForm, IvtAddressFormService } from './address-form.service';
+import { ApsAddressFormService, createAddressForm } from './address-form.service';
 
 @UntilDestroy()
 @Component({
-  selector: 'ivt-address-form',
+  selector: 'aps-address-form',
   templateUrl: './address-form.component.html',
   styleUrls: ['./address-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [IvtAddressFormService],
+  providers: [ApsAddressFormService],
 })
-export class IvtAddressFormComponent extends ApsFormComponent<Address> implements OnInit {
+export class ApsAddressFormComponent extends ApsFormComponent<Address> implements OnInit {
   form = createAddressForm();
   showAddressSelects: boolean;
   countryOptions: NzSelectOptionInterface[] = [];
@@ -23,7 +23,7 @@ export class IvtAddressFormComponent extends ApsFormComponent<Address> implement
   cityOptions: NzSelectOptionInterface[] = [];
   suburbOptions: string[] = [];
 
-  constructor(private addressFormService: IvtAddressFormService, private cdr: ChangeDetectorRef) {
+  constructor(private addressFormService: ApsAddressFormService, private cdr: ChangeDetectorRef) {
     super();
   }
 

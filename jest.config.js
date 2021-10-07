@@ -118,5 +118,6 @@ module.exports = {
     '<rootDir>/libs/valmira/ui/reservation-detail',
     '<rootDir>/libs/musicr/ui/cart/data',
     '<rootDir>/libs/musicr/api/contact',
+    '<rootDir>/libs/arphase/ui/addresses',
   ],
 };
