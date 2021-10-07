@@ -34,7 +34,7 @@ jobs:
         run: npm run typeorm:innovatech:run
 
       - name: Build app
-        run: nx build innovatech-api --prod
+        run: npx nx build innovatech-api --prod
 
       - name: Move Procfile
         run: mv ./apps/innovatech/api/Procfile .
