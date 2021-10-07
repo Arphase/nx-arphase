@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.2](https://github.com/Arphase/nx-arphase/compare/v3.4.1...v3.4.2) (2021-10-07)
+
+
+### Features
+
+* **musicr/api:** setup SSR and deploy scripts ([869aeed](https://github.com/Arphase/nx-arphase/commit/869aeed227e10eca6e09a837ccb3c95a352e2cff))
+* **musicr/cart:** add social event form ([7262091](https://github.com/Arphase/nx-arphase/commit/7262091fce8205dec845905d470944534c523890))
+* **musicr/cart:** manage cart steps with router outlet ([76ca8c2](https://github.com/Arphase/nx-arphase/commit/76ca8c290953e4b36e383c45bf7f4eae1396a469))
+* **musicr/core:** send contact form email ([ebc1c7b](https://github.com/Arphase/nx-arphase/commit/ebc1c7be830b9723346004ae9de0b9b6570f6f36))
+* **musicr/frequent-questions:** [#194](https://github.com/Arphase/nx-arphase/issues/194) add frequent-questions ([50d4598](https://github.com/Arphase/nx-arphase/commit/50d45986539ec6a41c997105873b0b54bca3bf62))
+* **musicr/product-detail:** add product to cart with correct priceOption price ([9648a98](https://github.com/Arphase/nx-arphase/commit/9648a9824fe6671801cff8ceb872cc541acc3e97))
+* **musicr/store:** mobile design for home, footer, menu, terms-and-conditions, and frequent-questions ([f6d8ddc](https://github.com/Arphase/nx-arphase/commit/f6d8ddcf3407a3b2476cece6c4a12e0379e1ea5c))
+* **pam-vic:** add gift and map icons ([867c41a](https://github.com/Arphase/nx-arphase/commit/867c41ae3d0005256864706edf9f93f06eb74b1e))
+* **pam-vic:** update page with new icons, itinerary, and dress code ([25efb2b](https://github.com/Arphase/nx-arphase/commit/25efb2b83254d978c8495e9319fed2097ed3a387))
+* **valmira/api:** generate first migration ([5d02f97](https://github.com/Arphase/nx-arphase/commit/5d02f976b27c75e94b792b4b1de99ab752b7e505))
+* **valmira/api:** setup server side rendering ([232ec37](https://github.com/Arphase/nx-arphase/commit/232ec37b9c0365edd03dd37b97bd849c1dcf88eb))
+* **valmira/app:** add loader for SSR ([2476ffb](https://github.com/Arphase/nx-arphase/commit/2476ffb1357204bcdb5c4bbac29be9669cae3b88))
+* **valmira/app:** hide not active entities for customers ([1e766f3](https://github.com/Arphase/nx-arphase/commit/1e766f37473b030b668e7ead67becb45ba8b475d))
+* **valmira/landing:** apply responsive styles ([2a07a03](https://github.com/Arphase/nx-arphase/commit/2a07a031339d3d12d0e7c4006c27979cba568935))
+* **valmira/place-search:** add category count summary ([5b5e693](https://github.com/Arphase/nx-arphase/commit/5b5e693f8c6c4d5e04075cd7d56b246e417a771c))
+* **valmira/promocodes:** allow using only not expired promocodes in reservations ([24f0254](https://github.com/Arphase/nx-arphase/commit/24f02549b6b2c104bc5099f37e6340d77df36d06))
+* **valmira/reservation-detail:** [#134](https://github.com/Arphase/nx-arphase/issues/134) check reservation with id and email ([e712dc7](https://github.com/Arphase/nx-arphase/commit/e712dc746ebfe03f122d5a9634fce88a4f1afaea))
+* **valmira/reservations:** schedule job to delete expired reservations ([4023d83](https://github.com/Arphase/nx-arphase/commit/4023d83f4ebda3afd9d66bd2e3dbbdd7a66e5c50))
+* **valmira/ui:** [#119](https://github.com/Arphase/nx-arphase/issues/119) Add footer ([c5235f2](https://github.com/Arphase/nx-arphase/commit/c5235f226d771f21dfc93525bb570d8b525b0139))
+* **valmira/ui:** Add styles to place search and confirmation ([69abc0c](https://github.com/Arphase/nx-arphase/commit/69abc0cd6d15080f79df02951a68138e335352f0))
+
+
+### Bug Fixes
+
+* **innovatech/groups:** remove addressId validation to add new companies ([d9dbd8b](https://github.com/Arphase/nx-arphase/commit/d9dbd8b6b74ad5e5e85d5df6207918be86b621e7))
+* **innovatech/revisions:** display status labels in form ([18c3340](https://github.com/Arphase/nx-arphase/commit/18c33409feeb0547f858496ca65ec2b03fdfad24))
+* **pam-vic:** center content at end ([d569b0e](https://github.com/Arphase/nx-arphase/commit/d569b0e2e12493e25545d3c5c2a7383fc0dece34))
+
 ### [3.4.1](https://github.com/Arphase/nx-arphase/compare/v3.4.0...v3.4.1) (2021-09-27)
 
 
