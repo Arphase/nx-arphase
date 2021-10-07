@@ -43,7 +43,7 @@
     "typeorm:musicr": "ts-node  --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config apps/musicr/api/src/db/config/ormconfig.migrations.ts",
     "typeorm:musicr:migrate": "npm run typeorm:musicr migration:generate -- -n",
     "typeorm:musicr:run": "npm run typeorm:musicr migration:run",
-    "api:innovatech:prod": "nx build innovatech-api --prod && node dist/apps/innovatech/api/main.js",
+    "api:innovatech:prod": "chmod +rwx dist && node dist/apps/innovatech/api/main.js",
     "api:valmira:prod": "chmod +rwx dist && node dist/apps/valmira/server/main.js",
     "api:musicr:prod": "chmod +rwx dist && node dist/apps/musicr/server/main.js"
   },
