@@ -1,12 +1,12 @@
-name: Innovatech Production API Deploy
+name: Valmira Production API Deploy
 
 env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
-  HOST: ${{ secrets.IVT_PROD_DB_HOST }}
-  DATABASE: ${{ secrets.IVT_PROD_DB }}
-  USERNAME: ${{ secrets.IVT_PROD_DB_USERNAME }}
-  PASSWORD: ${{ secrets.IVT_PROD_DB_PASSWORD }}
+  HOST: ${{ secrets.VMA_PROD_DB_HOST }}
+  DATABASE: ${{ secrets.VMA_PROD_DB }}
+  USERNAME: ${{ secrets.VMA_PROD_DB_USERNAME }}
+  PASSWORD: ${{ secrets.VMA_PROD_DB_PASSWORD }}
 
 on:
   workflow_dispatch:
@@ -31,7 +31,7 @@ jobs:
       - uses: bahmutov/npm-install@v1
 
       - name: Run migrations
-        run: npm run typeorm:innovatech:run
+        run: npm run typeorm:valmira:run
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v16
@@ -39,7 +39,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID_EB }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY_EB }}
           application_name: innovatech-api
-          environment_name: IVT-PROD
+          environment_name: VMA-PROD
           version_label: ${{ github.event.inputs.version }}
           region: ${{ secrets.AWS_REGION }}
           wait_for_environment_recovery: 120

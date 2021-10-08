@@ -1,4 +1,3 @@
-import { SentryInterceptor } from '@arphase/api/core';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as Sentry from '@sentry/node';
@@ -7,6 +6,7 @@ import * as bodyParser from 'body-parser';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
+import { SentryInterceptor } from './sentry.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

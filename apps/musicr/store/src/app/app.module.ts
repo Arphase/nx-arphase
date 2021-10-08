@@ -4,6 +4,7 @@ import es from '@angular/common/locales/es';
 import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
 import { LoadingInterceptorService } from '@arphase/ui/core';
 import {
   FooterModule,
@@ -13,7 +14,6 @@ import {
   MusicRevolutionConfiguration,
 } from '@musicr/ui/core';
 import * as Sentry from '@sentry/angular';
-import { Router } from 'express';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageModule } from 'ng-zorro-antd/message';
