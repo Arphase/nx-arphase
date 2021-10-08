@@ -1798,20 +1798,6 @@
               "sourceMap": true,
               "namedChunks": true
             },
-            "stage": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/musicr/store/src/environments/environment.ts",
-                  "with": "apps/musicr/store/src/environments/environment.stage.ts"
-                }
-              ],
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            },
             "production": {
               "fileReplacements": [
                 {
@@ -2883,20 +2869,6 @@
             "styles": ["apps/valmira/app/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
-            "stage": {
-              "sourceMap": {
-                "scripts": true,
-                "styles": true,
-                "vendor": true,
-                "hidden": false
-              },
-              "optimization": true,
-              "outputHashing": "all",
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
-            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
