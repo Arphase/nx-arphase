@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.5.2](https://github.com/Arphase/nx-arphase/compare/v3.5.1...v3.5.2) (2021-10-08)
+
+
+### Bug Fixes
+
+* **valmira/app:** scroll position to top on page change ([938ddae](https://github.com/Arphase/nx-arphase/commit/938ddaedf23e29c99d8c24bb50cf055372c78b30))
+
 ### [3.5.1](https://github.com/Arphase/nx-arphase/compare/v3.5.0...v3.5.1) (2021-10-08)
 
 
