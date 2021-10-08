@@ -9,8 +9,6 @@ export interface Environment {
     username: string;
     password: string;
   };
-  server: {
-    port: number;
-  };
+  server: { port: number };
   environmentName: string;
 }

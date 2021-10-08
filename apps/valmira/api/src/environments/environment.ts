@@ -11,8 +11,6 @@ export const environment: Environment = {
     username: 'valmira',
     password: 'valmira',
   },
-  server: {
-    port: 3333,
-  },
+  server: { port: 3333 },
   environmentName: 'dev',
 };

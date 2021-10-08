@@ -11,8 +11,6 @@ export const environment: Environment = {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
   },
-  server: {
-    port: 3333,
-  },
+  server: { port: 3333 },
   environmentName: process.env.ENVIRONMENT_NAME,
 };

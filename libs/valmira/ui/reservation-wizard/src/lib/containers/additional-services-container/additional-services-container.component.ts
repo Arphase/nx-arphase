@@ -31,7 +31,7 @@ export class AdditionalServicesContainerComponent implements OnInit {
   submit(payload: Reservation): void {
     this.reservationCollectionService.entityActions$
       .pipe(ofEntityOp(EntityOp.SAVE_UPDATE_ONE_SUCCESS), take(1))
-      .subscribe(() => this.router.navigate(['..', 'personal-data'], { relativeTo: this.route }));
+      .subscribe(() => this.router.navigate(['personal-data'], { relativeTo: this.route }));
     this.reservationCollectionService.update(payload);
   }
 }

@@ -70,6 +70,6 @@ export class PaymentMethodContainerComponent {
 
     this.reservationCollectionService.currentItem$
       .pipe(take(1))
-      .subscribe(reservation => this.store.dispatch(createPaymentIntent({ reservationId: reservation.id })));
+      .subscribe(reservation => this.store.dispatch(createPaymentIntent({ reservationId: reservation?.id })));
   }
 }

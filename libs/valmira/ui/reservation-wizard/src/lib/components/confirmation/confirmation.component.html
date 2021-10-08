@@ -2,19 +2,17 @@
   <div nz-col
        nzSpan="24"
        class="bg-secondary py-12 pl-8 pr-20">
-    <div nz-row>
-      <div nz-col
-           class="pr-7">
+    <div nz-row
+         nzGutter="28">
+      <div nz-col>
         <img src="assets/img/check.svg"
              alt="check"
              class="w-12">
       </div>
-      <div nz-col
-           nzFlex="auto">
+      <div nz-col>
         <h3 class="text-4xl text-primary">
-          {{ customer?.firstName }}, Valmira te da la bienvenida.
-        </h3>
-        <h3 class="text-4xl text-primary">Tu reservación con código
+          {{ customer?.firstName }}, Valmira te da la bienvenida. <br>
+          Tu reservación con código
           <span class="text-orange">{{ item?.id }}</span>
           está confirmada.
         </h3>

@@ -32,9 +32,10 @@ export class PersonalDataContainerComponent {
   }
 
   submit(payload: Reservation) {
+    const id = this.route.snapshot.params.id;
     this.reservationCollectionService.entityActions$
       .pipe(ofEntityOp(EntityOp.SAVE_UPDATE_ONE_SUCCESS), take(1))
-      .subscribe(() => this.router.navigate(['..', 'payment-method'], { relativeTo: this.route }));
+      .subscribe(() => this.router.navigateByUrl(`/reservation/${id}/payment-method`));
     this.reservationCollectionService.update(payload);
   }
 }
