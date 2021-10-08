@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.0](https://github.com/Arphase/nx-arphase/compare/v3.4.2...v3.5.0) (2021-10-08)
+
+
+### Features
+
+* **musicr/cart:** personal data form ([d3ac8ec](https://github.com/Arphase/nx-arphase/commit/d3ac8ec1d6fd48c028d28ae16341c1d751599dcc))
+* **musicr/orders:** send email notification when creating new order ([39f356e](https://github.com/Arphase/nx-arphase/commit/39f356e6fc99922bbbdbc111e97b8fbe195315b9))
+
 ### [3.4.2](https://github.com/Arphase/nx-arphase/compare/v3.4.1...v3.4.2) (2021-10-07)
 
 
