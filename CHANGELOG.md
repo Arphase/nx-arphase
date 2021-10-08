@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.5.4](https://github.com/Arphase/nx-arphase/compare/v3.5.3...v3.5.4) (2021-10-08)
+
+
+### Features
+
+* **musicr/api:** add sentry integration ([a9aad3e](https://github.com/Arphase/nx-arphase/commit/a9aad3edc5ae44d4a90cf1c7b676e8bd208c4ea2))
+
+
+### Bug Fixes
+
+* **valmira/promocodes:** apply date query correctly ([3ed68ef](https://github.com/Arphase/nx-arphase/commit/3ed68efe3f155d5c2a6aa7b7bce342232f716fc4))
+
 ### [3.5.3](https://github.com/Arphase/nx-arphase/compare/v3.5.2...v3.5.3) (2021-10-08)
 
 
