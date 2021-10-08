@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.5.3](https://github.com/Arphase/nx-arphase/compare/v3.5.2...v3.5.3) (2021-10-08)
+
+
+### Features
+
+* **valmira/api:** add sentry integration ([3249ef0](https://github.com/Arphase/nx-arphase/commit/3249ef0bc369898e74df606361abb767d1d82e5b))
+
 ### [3.5.2](https://github.com/Arphase/nx-arphase/compare/v3.5.1...v3.5.2) (2021-10-08)
 
 
