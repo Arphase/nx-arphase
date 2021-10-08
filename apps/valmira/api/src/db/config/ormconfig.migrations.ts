@@ -1,6 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 import { ENTITIES } from './entities';
 
 const config: TypeOrmModuleOptions = {

@@ -1,9 +1,10 @@
 import { registerLocaleData } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import es from '@angular/common/locales/es';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
 import { LoadingInterceptorService } from '@arphase/ui/core';
 import {
   FooterModule,
@@ -12,6 +13,7 @@ import {
   MUSIC_REVOLUTION_CONFIGURATION,
   MusicRevolutionConfiguration,
 } from '@musicr/ui/core';
+import * as Sentry from '@sentry/angular';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageModule } from 'ng-zorro-antd/message';
@@ -46,6 +48,14 @@ const MUSIC_REVOLUTION_CONFIGURATION_VALUE: MusicRevolutionConfiguration = {
     { provide: MUSIC_REVOLUTION_CONFIGURATION, useValue: MUSIC_REVOLUTION_CONFIGURATION_VALUE },
     { provide: HTTP_INTERCEPTORS, useClass: HttpProxyService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi: true },
+    { provide: ErrorHandler, useValue: Sentry.createErrorHandler({}) },
+    { provide: Sentry.TraceService, deps: [Router] },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => null,
+      deps: [Sentry.TraceService],
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

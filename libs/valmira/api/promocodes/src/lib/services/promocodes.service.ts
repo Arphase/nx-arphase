@@ -1,14 +1,10 @@
-import {
-  ApsCollectionFilterDto,
-  createCollectionResponse,
-  filterCollectionDates,
-  filterCollectionQuery,
-} from '@arphase/api/core';
+import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PromocodeEntity } from '@valmira/api/domain';
 import { Promocode } from '@valmira/domain';
+import { endOfDay, startOfDay } from 'date-fns';
 import { Repository } from 'typeorm';
 
 import { CreatePromocodeDto } from '../dto/create-promocode.dto';
@@ -50,11 +46,10 @@ export class PromocodesService {
   async getPromocodeByName(name: string): Promise<PromocodeEntity> {
     const query = this.promocodeRepository.createQueryBuilder('promocode');
     query.andWhere(`(promocode.name like :name)`, { name });
-    const startDate = new Date();
-    const endDate = new Date();
-    filterCollectionDates('promocode', query, { startDate, endDate, dateType: 'startDate' });
-    filterCollectionDates('promocode', query, { startDate, endDate, dateType: 'endDate' });
-
+    query.andWhere(`(promocode.startDate <= :endOfToday and :startOfToday <= promocode.endDate )`, {
+      startOfToday: startOfDay(new Date()).toISOString(),
+      endOfToday: endOfDay(new Date()).toISOString(),
+    });
     const promocode = await query.getOne();
     if (!promocode) {
       throw new NotFoundException(`Promocode with name ${name} not found or is expired`);

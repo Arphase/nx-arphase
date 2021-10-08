@@ -1482,13 +1482,7 @@
             "production": {
               "optimization": true,
               "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/musicr/api/src/environments/environment.ts",
-                  "with": "apps/musicr/api/src/environments/environment.prod.ts"
-                }
-              ]
+              "inspect": false
             }
           }
         },
@@ -1853,7 +1847,6 @@
               "@nestjs/websockets",
               "@nestjs/websockets/socket-module",
               "cache-manager",
-              "class-transformer/storage",
               "aws-sdk",
               "pg",
               "pg-native",
@@ -1875,31 +1868,8 @@
             ]
           },
           "configurations": {
-            "stage": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "apps/musicr/store/src/environments/environment.ts",
-                  "with": "apps/musicr/store/src/environments/environment.stage.ts"
-                },
-                {
-                  "replace": "apps/musicr/api/src/environments/environment.ts",
-                  "with": "apps/musicr/api/src/environments/environment.prod.ts"
-                }
-              ]
-            },
             "production": {
               "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "apps/musicr/store/src/environments/environment.ts",
-                  "with": "apps/musicr/store/src/environments/environment.prod.ts"
-                },
-                {
-                  "replace": "apps/musicr/api/src/environments/environment.ts",
-                  "with": "apps/musicr/api/src/environments/environment.prod.ts"
-                }
-              ],
               "sourceMap": false,
               "optimization": false
             }
@@ -2646,13 +2616,7 @@
             "production": {
               "optimization": true,
               "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/valmira/api/src/environments/environment.ts",
-                  "with": "apps/valmira/api/src/environments/environment.prod.ts"
-                }
-              ]
+              "inspect": false
             }
           }
         },
@@ -2875,33 +2839,6 @@
               "sourceMap": true,
               "namedChunks": true
             },
-            "stage": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/valmira/app/src/environments/environment.ts",
-                  "with": "apps/valmira/app/src/environments/environment.stage.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            },
             "production": {
               "fileReplacements": [
                 {
@@ -2996,27 +2933,8 @@
             ]
           },
           "configurations": {
-            "stage": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "apps/valmira/app/src/environments/environment.ts",
-                  "with": "apps/valmira/app/src/environments/environment.stage.ts"
-                },
-                {
-                  "replace": "apps/valmira/api/src/environments/environment.ts",
-                  "with": "apps/valmira/api/src/environments/environment.prod.ts"
-                }
-              ]
-            },
             "production": {
               "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "apps/valmira/api/src/environments/environment.ts",
-                  "with": "apps/valmira/api/src/environments/environment.prod.ts"
-                }
-              ],
               "sourceMap": false,
               "optimization": false
             }

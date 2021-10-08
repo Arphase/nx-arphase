@@ -26,10 +26,7 @@ import config from '../db/config/ormconfig';
     }),
     StripeModule.forRoot({ apiKey: process.env.STRIPE_SECRET_KEY, apiVersion: '2020-08-27' }),
     TypeOrmModule.forRoot(config),
-    ThrottlerModule.forRoot({
-      ttl: 60,
-      limit: 10,
-    }),
+    ThrottlerModule.forRoot({ ttl: 60, limit: 10 }),
     AdditionalProductsModule,
     AuthModule,
     CustomersModule,
