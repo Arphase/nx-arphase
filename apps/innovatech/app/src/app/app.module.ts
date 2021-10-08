@@ -69,17 +69,9 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
-    { provide: INNOVATECH_CONFIGURATION, useValue: INNOVATECH_CONFIGURATION_VALUE },
-    { provide: ErrorHandler, useValue: Sentry.createErrorHandler({}) },
-    { provide: Sentry.TraceService, deps: [Router] },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: () => () => null,
-      deps: [Sentry.TraceService],
-      multi: true,
-    },
-    { provide: NZ_I18N, useValue: es_ES },
     { provide: HTTP_INTERCEPTORS, useClass: HttpProxyService, multi: true },
+    { provide: INNOVATECH_CONFIGURATION, useValue: INNOVATECH_CONFIGURATION_VALUE },
+    { provide: NZ_I18N, useValue: es_ES },
     {
       provide: EntityCollectionReducerMethodsFactory,
       useClass: ApsAdditionalEntityCollectionReducerMethodsFactory,
@@ -87,6 +79,14 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     {
       provide: PersistenceResultHandler,
       useClass: ApsAdditionalPropertyPersistenceResultHandler,
+    },
+    { provide: ErrorHandler, useValue: Sentry.createErrorHandler({}) },
+    { provide: Sentry.TraceService, deps: [Router] },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => null,
+      deps: [Sentry.TraceService],
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],
