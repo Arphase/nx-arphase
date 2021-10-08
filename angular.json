@@ -2875,6 +2875,33 @@
               "sourceMap": true,
               "namedChunks": true
             },
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/valmira/app/src/environments/environment.ts",
+                  "with": "apps/valmira/app/src/environments/environment.stage.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -2985,10 +3012,6 @@
             "production": {
               "outputHashing": "media",
               "fileReplacements": [
-                {
-                  "replace": "apps/valmira/app/src/environments/environment.ts",
-                  "with": "apps/valmira/app/src/environments/environment.prod.ts"
-                },
                 {
                   "replace": "apps/valmira/api/src/environments/environment.ts",
                   "with": "apps/valmira/api/src/environments/environment.prod.ts"
