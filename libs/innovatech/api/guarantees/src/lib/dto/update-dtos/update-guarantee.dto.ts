@@ -16,7 +16,7 @@ export class UpdateGuaranteeDto extends PartialType(CreateGuaranteeDto) {
   client: Client;
 
   @IsOptional()
-  @Transform(({ obj, key }) => GuaranteeStatus[obj[key]])
+  @Transform((_, obj) => GuaranteeStatus[obj['status']])
   @IsEnum(GuaranteeStatus)
   status: GuaranteeStatus;
 }

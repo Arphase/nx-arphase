@@ -8,7 +8,7 @@ export class CreateRevisionDto {
   @Trim()
   observations: string;
 
-  @Transform(({ obj, key }) => RevisionStatus[obj[key]])
+  @Transform((_, obj) => RevisionStatus[obj['status']])
   @IsEnum(RevisionStatus)
   status: RevisionStatus;
 

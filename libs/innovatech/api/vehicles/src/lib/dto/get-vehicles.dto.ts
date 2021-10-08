@@ -5,7 +5,7 @@ import { IsEnum, IsOptional } from 'class-validator';
 
 export class GetVehiclesDto extends CommonFilterDto {
   @IsOptional()
-  @Transform(({ obj, key }) => VehicleStatus[obj[key]])
+  @Transform((_, obj) => VehicleStatus[obj['status']])
   @IsEnum(VehicleStatus)
   status: VehicleStatus;
 }

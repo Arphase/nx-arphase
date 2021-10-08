@@ -13,7 +13,7 @@ export class GetPlacesDto extends ApsCollectionFilterDto {
   capacity?: number;
 
   @IsOptional()
-  @Transform(({ obj, key }) => PlaceCategories[obj[key]])
+  @Transform((_, obj) => PlaceCategories[obj['category']])
   @IsEnum(PlaceCategories)
   category: PlaceCategories;
 }

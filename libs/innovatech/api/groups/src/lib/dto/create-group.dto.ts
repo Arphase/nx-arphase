@@ -87,7 +87,7 @@ export class CreateUserDto {
   phone: string;
 
   @IsOptional()
-  @Transform(({ obj, key }) => UserRoles[obj[key]])
+  @Transform((_, obj) => UserRoles[obj['role']])
   @IsEnum(UserRoles)
-  role: UserRoles | string;
+  role: UserRoles;
 }

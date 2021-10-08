@@ -10,7 +10,7 @@ import { CreateMoralPersonDto } from './create-moral-person.dto';
 import { CreatePhysicalPersonDto } from './create-physical-person.dto';
 
 export class CreateClientDto {
-  @Transform(({ obj, key }) => PersonTypes[obj[key]])
+  @Transform((_, obj) => PersonTypes[obj['personType']])
   @IsEnum(PersonTypes)
   personType: PersonTypes;
 

@@ -1848,8 +1848,6 @@
             "main": "apps/musicr/store/server.ts",
             "tsConfig": "apps/musicr/store/tsconfig.server.json",
             "externalDependencies": [
-              "@nestjs/common",
-              "@nestjs/core",
               "@nestjs/microservices",
               "@nestjs/microservices/microservices-module",
               "@nestjs/websockets",
@@ -2945,14 +2943,11 @@
             "main": "apps/valmira/app/server.ts",
             "tsConfig": "apps/valmira/app/tsconfig.server.json",
             "externalDependencies": [
-              "@nestjs/common",
-              "@nestjs/core",
               "@nestjs/microservices",
               "@nestjs/microservices/microservices-module",
               "@nestjs/websockets",
               "@nestjs/websockets/socket-module",
               "cache-manager",
-              "class-transformer/storage",
               "aws-sdk",
               "pg",
               "pg-native",

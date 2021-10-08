@@ -84,7 +84,7 @@ export class CreateSocialEventDto {
   @Type(() => CreateAddressDto)
   address: CreateAddressDto;
 
-  @Transform(({ obj, key }) => SocialEventPlaces[obj[key]])
+  @Transform((_, obj) => SocialEventPlaces[obj['eventPlace']])
   @IsEnum(SocialEventPlaces)
   eventPlace: SocialEventPlaces;
 

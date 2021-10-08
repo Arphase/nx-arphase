@@ -9,7 +9,7 @@ export class GetGuaranteesFilterDto extends CommonFilterDto {
   amount: number;
 
   @IsOptional()
-  @Transform(({ obj, key }) => GuaranteeStatus[obj[key]])
+  @Transform((_, obj) => GuaranteeStatus[obj['status']])
   @IsEnum(GuaranteeStatus)
   status: GuaranteeStatus;
 }

@@ -9,7 +9,7 @@ export class GetRevisionsDto extends CommonFilterDto {
   vehicleId: number;
 
   @IsOptional()
-  @Transform(({ obj, key }) => RevisionStatus[obj[key]])
+  @Transform((_, obj) => RevisionStatus[obj['status']])
   @IsEnum(RevisionStatus)
   status: RevisionStatus;
 }

@@ -19,6 +19,7 @@ export const routes: Routes = [
       {
         path: 'new',
         component: PlaceFormContainerComponent,
+        resolve: { resolvedItem: PlaceResolverService },
       },
       {
         path: ':id',
