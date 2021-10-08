@@ -36,11 +36,8 @@ jobs:
       - name: Move Procfile
         run: mv ./apps/valmira/api/Procfile .
 
-      - name: Build browser app
-        run: export NODE_ENV=production && npx nx build valmira-app --c=stage
-
-      - name: Build server app
-        run: npx ng run valmira-app:server:production
+      - name: Build app
+        run: npm run build:api:valmira:prod
 
       - name: Create zip file
         run: zip -r Archive.zip . -x .git/\* -x .cache/\* -x node_modules/\* -x .vscode/\*  -x .github/\* -x .tmp/\*
