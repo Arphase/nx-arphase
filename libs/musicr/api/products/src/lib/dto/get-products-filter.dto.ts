@@ -4,9 +4,9 @@ import { IsNumber, IsOptional } from 'class-validator';
 export class GetProductsFilterDto extends ApsCollectionFilterDto {
   @IsNumber()
   @IsOptional()
-  categoryId: number;
+  categoryId?: number;
 
   @IsNumber()
   @IsOptional()
-  subcategoryId: number;
+  subcategoryId?: number;
 }
