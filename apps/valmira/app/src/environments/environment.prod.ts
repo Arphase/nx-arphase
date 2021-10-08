@@ -3,7 +3,7 @@ import { Environment } from './environment.model';
 
 export const environment: Environment = {
   production: true,
-  apiUrl: '/api',
+  apiUrl: process.env.API_URL,
   version: packageJson.version,
   environmentName: 'prod',
   stripeKey:
