@@ -76,6 +76,7 @@
     "@nestjs/passport": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
     "@nestjs/schedule": "^1.0.1",
+    "@nestjs/throttler": "^1.2.1",
     "@nestjs/typeorm": "^7.0.0",
     "@ngneat/until-destroy": "^8.1.4",
     "@ngrx/data": "^12.4.0",

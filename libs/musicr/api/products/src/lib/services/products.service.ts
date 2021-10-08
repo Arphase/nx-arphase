@@ -1,4 +1,4 @@
-import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
+import { createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { ProductEntity } from '@musicr/api/domain';
 import { Product } from '@musicr/domain';
@@ -8,6 +8,7 @@ import { uniqBy } from 'lodash';
 import { Repository } from 'typeorm';
 
 import { CreateProductDto } from '../dto/create-product.dto';
+import { GetProductsFilterDto } from '../dto/get-products-filter.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
 
 @Injectable()
@@ -17,8 +18,8 @@ export class ProductsService {
     private productRepository: Repository<ProductEntity>
   ) {}
 
-  async getProducts(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Product>> {
-    const { pageIndex, pageSize } = filterDto;
+  async getProducts(filterDto: GetProductsFilterDto): Promise<ApsCollectionResponse<Product>> {
+    const { pageIndex, pageSize, categoryId, subcategoryId } = filterDto;
     const query = this.productRepository
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.subcategory', 'subcategory')
@@ -27,6 +28,14 @@ export class ProductsService {
       .orderBy('product.createdAt', SortDirection.descend);
 
     filterCollectionQuery('product', query, filterDto);
+
+    if (categoryId) {
+      query.andWhere(`(category.id = :categoryId)`, { categoryId });
+    }
+
+    if (subcategoryId) {
+      query.andWhere(`(subcategory.id = :subcategoryId)`, { subcategoryId });
+    }
 
     const products = await query.getMany();
     const total = await query.getCount();

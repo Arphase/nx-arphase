@@ -15,7 +15,8 @@
                  maxlength="5"
                  mask="00000"
                  autocomplete="off"
-                 formControlName="zipcode" />
+                 formControlName="zipcode"
+                 [placeholder]="placeholders.zipcode" />
         </nz-form-control>
       </nz-form-item>
     </div>
@@ -71,7 +72,8 @@
           <nz-form-label nzRequired>País</nz-form-label>
           <nz-form-control apsAutoError>
             <input nz-input
-                   formControlName="country" />
+                   formControlName="country"
+                   [placeholder]="placeholders.country" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -84,7 +86,8 @@
           <nz-form-label nzRequired>Estado</nz-form-label>
           <nz-form-control apsAutoError>
             <input nz-input
-                   formControlName="state" />
+                   formControlName="state"
+                   [placeholder]="placeholders.state" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -97,7 +100,8 @@
           <nz-form-label nzRequired>Ciudad</nz-form-label>
           <nz-form-control apsAutoError>
             <input nz-input
-                   formControlName="city" />
+                   formControlName="city"
+                   [placeholder]="placeholders.city" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -118,6 +122,7 @@
                          [options]="suburbOptions">
           <input nz-input
                  formControlName="suburb"
+                 [placeholder]="placeholders.suburb"
                  [nzAutocomplete]="auto" />
           <nz-autocomplete #auto></nz-autocomplete>
         </nz-form-control>
@@ -132,7 +137,8 @@
         <nz-form-control apsAutoError>
           <input nz-input
                  formControlName="street"
-                 maxlength="50" />
+                 maxlength="50"
+                 [placeholder]="placeholders.street" />
         </nz-form-control>
       </nz-form-item>
     </div>
@@ -147,7 +153,8 @@
           <input nz-input
                  formControlName="externalNumber"
                  maxlength="10"
-                 autocomplete="off" />
+                 autocomplete="off"
+                 [placeholder]="placeholders.externalNumber" />
         </nz-form-control>
       </nz-form-item>
     </div>
@@ -162,7 +169,8 @@
           <input nz-input
                  formControlName="internalNumber"
                  maxlength="10"
-                 autocomplete="off" />
+                 autocomplete="off"
+                 [placeholder]="placeholders.internalNumber" />
         </nz-form-control>
       </nz-form-item>
     </div>

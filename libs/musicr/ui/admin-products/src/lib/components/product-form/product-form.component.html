@@ -100,7 +100,7 @@
                          [nzActive]="true">
         <div class="clearfix">
           <nz-upload nzListType="picture-card"
-                     nzAccept="image/png"
+                     [nzAccept]="allowedMimeType"
                      [(nzFileList)]="fileList"
                      [nzAction]="photosUrl"
                      [nzPreview]="handlePreview"

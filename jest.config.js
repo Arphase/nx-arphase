@@ -118,5 +118,6 @@ module.exports = {
     '<rootDir>/libs/musicr/ui/cart/data',
     '<rootDir>/libs/musicr/api/contact',
     '<rootDir>/libs/arphase/ui/addresses',
+    '<rootDir>/libs/musicr/api/customers',
   ],
 };

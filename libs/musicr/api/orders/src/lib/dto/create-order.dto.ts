@@ -1,10 +1,12 @@
 import { Trim } from '@arphase/api/core';
-import { Type } from 'class-transformer';
+import { SocialEventPlaces } from '@musicr/domain';
+import { Transform, Type } from 'class-transformer';
 import {
   IsArray,
   IsBoolean,
   IsDate,
   IsEmail,
+  IsEnum,
   IsNumber,
   IsNumberString,
   IsOptional,
@@ -82,10 +84,12 @@ export class CreateSocialEventDto {
   @Type(() => CreateAddressDto)
   address: CreateAddressDto;
 
-  @IsString()
-  eventPlace: string;
+  @Transform(({ obj, key }) => SocialEventPlaces[obj[key]])
+  @IsEnum(SocialEventPlaces)
+  eventPlace: SocialEventPlaces;
 
   @IsString()
+  @IsOptional()
   notes: string;
 
   @IsBoolean()

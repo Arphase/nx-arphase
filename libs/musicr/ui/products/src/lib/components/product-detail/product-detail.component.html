@@ -1,22 +1,26 @@
 <div class="center">
   <div nz-row
-       class="md:mt-16 mt-0">
+       class="md:mt-16 mt-0 md:px-10 px-0 max-1440 mx-auto pb-8">
     <div nz-col
          nzXs="24"
          nzLg="12">
-      <div class="product-photo">
-        <img class="w-full"
-             [src]="product?.photos[0]?.url"
-             [alt]="product?.name" />
-        <button nz-button
-                class="img-icon"
-                nzType="text"
-                (click)="onBack()">
-          <i nz-icon
-             nzType="arrow-left"
-             nzTheme="outline"></i>
-        </button>
-      </div>
+      <nz-carousel nzEffect="scrollx">
+        <div nz-carousel-content
+             *ngFor="let photo of product?.photos">
+          <img class="carousel-img"
+               [src]="photo.url"
+               [alt]="product?.name" />
+        </div>
+      </nz-carousel>
+
+      <button nz-button
+              class="img-icon"
+              nzType="text"
+              (click)="onBack()">
+        <i nz-icon
+           nzType="arrow-left"
+           nzTheme="outline"></i>
+      </button>
     </div>
     <div class="px-8"
          nz-col
@@ -25,6 +29,7 @@
       <nz-page-header class="site-page-header"
                       (nzBack)="onBack()"
                       nzBackIcon></nz-page-header>
+
       <h1 class="md:mt-12 mt-4 md:text-5xl text-2xl">{{ product?.name }}</h1>
       <div *ngIf="product?.disclaimer"
            nz-row
@@ -68,11 +73,12 @@
               (click)="addItem()">Agregar al carrito</button>
     </div>
   </div>
-  <div nz-row>
+  <!-- TODO: Check which services will be related -->
+  <!-- <div nz-row>
     <div nz-col
          nzSpan="24"
          class="disclaimer">
       <p class="text-xl">Servicios Relacionados</p>
     </div>
-  </div>
+  </div> -->
 </div>

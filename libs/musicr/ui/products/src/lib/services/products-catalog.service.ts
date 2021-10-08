@@ -34,7 +34,7 @@ export class ProductsCatalogService {
 
   getProducts(id: number, isSubCategory: boolean): Observable<ApsCollectionResponse<Product>> {
     const params = isSubCategory ? { subcategoryId: id } : { categoryId: id };
-    return this.http.get<ApsCollectionResponse<Product>>(`/mrlApi/products/`, { params });
+    return this.http.get<ApsCollectionResponse<Product>>(`/mrlApi/products`, { params });
   }
 
   getTitle(id: number, isSubCategory: boolean): Observable<Category | Subcategory> {

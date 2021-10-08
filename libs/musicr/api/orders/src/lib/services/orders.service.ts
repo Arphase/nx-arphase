@@ -10,10 +10,13 @@ import { Order } from '@musicr/domain';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { keyBy } from 'lodash';
+import { createTransport } from 'nodemailer';
+import Mail from 'nodemailer/lib/mailer';
 import { Repository } from 'typeorm';
 
 import { CreateOrderPreviewDto } from '../dto/create-order-preview-dto';
 import { CreateOrderDto } from '../dto/create-order.dto';
+import { createOrderEmail } from '../functions/create-order-email';
 import {
   getAllItemIdsWithPrices,
   ItemsWithPriceDictionary,
@@ -60,6 +63,25 @@ export class OrdersService {
     const newOrder = this.orderRepository.create(await this.createOrderPreview(createOrderDto));
     await this.orderRepository.save(newOrder);
     await newOrder.reload();
+
+    const transporter = createTransport({
+      host: process.env.SMTP,
+      port: Number(process.env.MAIL_PORT),
+      secure: false,
+      auth: {
+        user: process.env.MAIL_ACCOUNT,
+        pass: process.env.MAIL_PASS,
+      },
+    });
+
+    const mailOptions: Mail.Options = {
+      from: `Music Revolution <${process.env.MAIL_ACCOUNT_SENDER}>`,
+      to: process.env.MAIL_ACCOUNT_RECEIVER,
+      subject: `Nueva orden folio:${newOrder.id}`,
+      html: createOrderEmail(newOrder),
+    };
+    await transporter.sendMail(mailOptions);
+
     return newOrder;
   }
 
