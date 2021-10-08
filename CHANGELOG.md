@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.5.1](https://github.com/Arphase/nx-arphase/compare/v3.5.0...v3.5.1) (2021-10-08)
+
+
+### Bug Fixes
+
+* **app:** downgrade class-transformer to compile SSR apps ([02bd4a4](https://github.com/Arphase/nx-arphase/commit/02bd4a40a5c469bbdebec98111faa55e80807e3a))
+
 ## [3.5.0](https://github.com/Arphase/nx-arphase/compare/v3.4.2...v3.5.0) (2021-10-08)
 
 
