@@ -10,7 +10,6 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
@@ -41,7 +40,6 @@ import { SocialEventFormContainerComponent } from './containers/social-event-for
     NzDrawerModule,
     NzFormModule,
     NzGridModule,
-    NzIconModule,
     NzInputModule,
     NzSelectModule,
     NzTimePickerModule,

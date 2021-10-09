@@ -32,7 +32,6 @@ import { NgxMaskModule } from 'ngx-mask';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { icons } from './icons';
 
 registerLocaleData(es);
 
@@ -57,7 +56,7 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     NzModalModule,
     NzMessageModule,
     NgxMaskModule.forRoot(),
-    NzIconModule.forRoot(icons),
+    NzIconModule.forRoot(),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       name: 'Innovatech',

@@ -22,7 +22,6 @@ import { NgxMaskModule } from 'ngx-mask';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { icons } from './icons';
 
 registerLocaleData(es);
 
@@ -37,7 +36,7 @@ const MUSIC_REVOLUTION_CONFIGURATION_VALUE: MusicRevolutionConfiguration = {
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     NgxMaskModule.forRoot(),
-    NzIconModule.forRoot(icons),
+    NzIconModule.forRoot([]),
     MenuModule,
     FooterModule,
     BrowserAnimationsModule,

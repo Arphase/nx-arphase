@@ -1,7 +1,8 @@
 <div class="bg-secondary p-8">
   <img [src]="place?.photos[0]?.path"
        alt="Foto de {{ place?.name }}"
-       class="w-full">
+       class="w-full"
+       loading="lazy">
 
   <div class="flex items-center mb-9 mt-5">
     <h4 class="text-primary text-4xl mr-3">{{ place?.name }}</h4>

@@ -7,7 +7,8 @@
     <img *ngFor="let photo of place?.photos; let i = index"
          class="mx-4"
          [src]="photo.path"
-         [ngClass]="{ 'three': i%3 === 2, 'two': i%3 === 1, 'one': i%3 === 0 }">
+         [ngClass]="{ 'three': i%3 === 2, 'two': i%3 === 1, 'one': i%3 === 0 }"
+         loading="lazy">
   </div>
 </div>
 
@@ -42,7 +43,8 @@
            nzSpan="12"
            class="flex-start mb-3">
         <img src="assets/img/check.svg"
-             alt="check">
+             alt="check"
+             loading="lazy">
         <span class="ml-4"> {{ service }} </span>
       </div>
     </div>

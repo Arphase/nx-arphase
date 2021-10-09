@@ -90,7 +90,8 @@
              [ngClass]="{ 'selected': radioValue === category.value, 'not-selected': radioValue !== category.value }">
         <div class="grid justify-items-stretch">
           <img [src]="category.logo"
-               class="search-icon justify-self-center">
+               class="search-icon justify-self-center"
+               loading="lazy">
           <p *ngIf="summary"
              class="mt-1">{{ category.label }}
             <ng-container *ngIf="category.value">({{ summary[category.value]?.amount || 0 }})</ng-container>

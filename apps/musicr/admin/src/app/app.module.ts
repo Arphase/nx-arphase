@@ -30,7 +30,6 @@ import { NgxMaskModule } from 'ngx-mask';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { icons } from './icons';
 
 registerLocaleData(es);
 
@@ -56,7 +55,7 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
       name: 'Music Revolution',
       maxAge: 25,
     }),
-    NzIconModule.forRoot(icons),
+    NzIconModule.forRoot(),
     EffectsModule.forRoot([AuthEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     EntityDataModule.forRoot(entityConfig),
