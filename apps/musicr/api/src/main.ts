@@ -10,6 +10,7 @@ import { SentryInterceptor } from './sentry.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api');
   app.useGlobalPipes(
     new ValidationPipe({ transform: true, whitelist: true, transformOptions: { enableImplicitConversion: true } })
   );
@@ -22,8 +23,6 @@ async function bootstrap() {
     dsn: 'https://fa63827a958145b18f4f0f06adc9e39b@o509882.ingest.sentry.io/5999319',
     environment: environment.environmentName,
   });
-
-  app.setGlobalPrefix('api');
 
   config.update({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,

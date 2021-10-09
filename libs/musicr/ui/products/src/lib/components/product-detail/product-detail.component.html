@@ -9,7 +9,8 @@
              *ngFor="let photo of product?.photos">
           <img class="carousel-img"
                [src]="photo.url"
-               [alt]="product?.name" />
+               [alt]="product?.name"
+               loading="lazy" />
         </div>
       </nz-carousel>
 
