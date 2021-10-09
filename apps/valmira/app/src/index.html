@@ -14,7 +14,7 @@
   <script src="assets/js/env.js"></script>
 </head>
 
-<body>
+<body class="overflow-x-hidden">
   <style>
     #loader {
       width: 100vw;
@@ -28,10 +28,15 @@
       z-index: 10;
       background-color: #eae1d3;
     }
+
+    .logo {
+      width: 250px;
+    }
   </style>
   <div id="loader">
     <img src="assets/img/logo.svg"
-         alt="logo">
+         alt="logo"
+         class="logo">
   </div>
   <vma-root></vma-root>
 </body>

@@ -16,5 +16,4 @@ global['HTMLAnchorElement'] = HTMLAnchorElement;
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import '../api/src/main';
-
 export * from './src/main.server';
