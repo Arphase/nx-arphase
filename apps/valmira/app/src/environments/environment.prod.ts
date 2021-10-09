@@ -1,7 +1,11 @@
-export const environment = {
-   production: false,
-   apiUrl: 'undefined',
-   version: '3.5.4',
-   environmentName: 'undefined',
-   stripeKey: 'undefined'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import packageJson from '../../../../../package.json';
+import { Environment } from './environment.model';
+
+export const environment: Environment = {
+  production: false,
+  apiUrl: '/api',
+  version: packageJson.version,
+  environmentName: (window as any).env?.environmentName,
+  stripeKey: (window as any).env?.stripeKey,
 };

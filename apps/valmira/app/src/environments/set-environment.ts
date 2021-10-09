@@ -1,27 +1,28 @@
 import { unlinkSync, writeFile } from 'fs';
 
-import packageJson from '../../../../../package.json';
+const targetPath = './dist/apps/valmira/browser/assets/js/env.js';
 
-const targetPath = './apps/valmira/app/src/environments/environment.prod.ts';
+const envConfigFile = `(function(window) {
+  window.env = window.env || {};
+  // Environment variables
+  window['env']['production'] = ${process.env.ENVIRONMENT_NAME === 'production'};
+  window['env']['environmentName'] = '${process.env.ENVIRONMENT_NAME}';
+  window['env']['stripeKey'] = '${process.env.STRIPE_PUBLIC_KEY}';
+})(this);`;
 
-const envConfigFile = `export const environment = {
-   production: ${process.env.ENVIRONMENT_NAME === 'production'},
-   apiUrl: '${process.env.API_URL}',
-   version: '${packageJson.version}',
-   environmentName: '${process.env.ENVIRONMENT_NAME}',
-   stripeKey: '${process.env.STRIPE_PUBLIC_KEY}'
-};
-`;
-
-console.log('The file `environment.prod.ts` will be written with the following content: \n');
+console.log('The file `env.js` will be written with the following content: \n');
 console.log(envConfigFile);
 
-unlinkSync(targetPath);
+try {
+  unlinkSync(targetPath);
+} catch (e) {
+  console.log('No env.js file exists yet');
+}
 
 writeFile(targetPath, envConfigFile, function (err) {
   if (err) {
     throw console.error(err);
   } else {
-    console.log(`Angular environment.prod.ts file generated correctly at ${targetPath} \n`);
+    console.log(`Angular env.js file generated correctly at ${targetPath} \n`);
   }
 });
