@@ -8,7 +8,12 @@ describe('CartComponent', () => {
   let spectator: Spectator<CartComponent>;
   const createComponent = createComponentFactory({
     component: CartComponent,
-    providers: [{ provide: CartService, useValue: { cartItems$: of([]), socialEvent$: of({}), order$: of({}) } }],
+    providers: [
+      {
+        provide: CartService,
+        useValue: { cartItems$: of([]), socialEvent$: of({}), order$: of({}), listenToCartItemsChange: jest.fn() },
+      },
+    ],
     shallow: true,
   });
 
