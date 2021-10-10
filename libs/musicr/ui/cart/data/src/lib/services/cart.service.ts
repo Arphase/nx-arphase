@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DeepPartial } from '@arphase/common';
 import { Customer, Order, OrderProduct, SocialEvent } from '@musicr/domain';
-import { BehaviorSubject, catchError, combineLatest, Observable, switchMap, take } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatest, Observable, Subscription, switchMap, take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
@@ -18,9 +18,15 @@ export class CartService {
   currentCustomer$ = this.currentCustomerSubject.asObservable();
   orderSubject = new BehaviorSubject<Order>(null);
   order$ = this.orderPreviewSubject.asObservable();
+  listenToCartItemsSubscription: Subscription;
 
-  constructor(private http: HttpClient) {
-    this.cartItems$
+  constructor(private http: HttpClient) {}
+
+  listenToCartItemsChange(): void {
+    if (this.listenToCartItemsSubscription) {
+      this.listenToCartItemsSubscription.unsubscribe();
+    }
+    this.listenToCartItemsSubscription = this.cartItems$
       .pipe(switchMap(orderProducts => this.getOrderPreview({ orderProducts })))
       .subscribe(order => this.orderPreviewSubject.next(order));
   }

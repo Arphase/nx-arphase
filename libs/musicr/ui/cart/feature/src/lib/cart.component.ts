@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CartService } from '@musicr/ui/cart/data';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./cart.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   steps = [
     { name: 'Carrito', icon: 'shopping', path: ['products'], disabled$: of(false) },
     {
@@ -33,4 +33,8 @@ export class CartComponent {
   ];
 
   constructor(private cartService: CartService) {}
+
+  ngOnInit(): void {
+    this.cartService.listenToCartItemsChange();
+  }
 }
