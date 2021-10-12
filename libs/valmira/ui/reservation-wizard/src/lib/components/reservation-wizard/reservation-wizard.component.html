@@ -12,12 +12,22 @@
       </li>
       <li routerLinkActive="text-primary"
           [routerLink]="['personal-data']"><span class="mr-2">DATOS PERSONALES</span> <span class="mr-2">></span></li>
-      <li [routerLinkActive]="disablePaymentMethod ? '' : 'text-primary'"
-          [routerLink]="disablePaymentMethod ? [] :['payment-method']"> <span class="mr-2">MÉTODOS DE PAGO</span>
+
+      <li [hidden]="disablePaymentMethod"
+          routerLinkActive="text-primary"
+          [routerLink]="['payment-method']"> <span class="mr-2">MÉTODOS DE PAGO</span>
         <span class="mr-2">></span>
       </li>
-      <li [routerLinkActive]="disableConfirmation ? '' : 'text-primary'"
-          [routerLink]="disableConfirmation ? [] : ['confirmation']"><span class="mr-2"> CONFIRMACIÓN</span></li>
+
+      <li [hidden]="!disablePaymentMethod"> <span class="mr-2">MÉTODOS DE PAGO</span>
+        <span class="mr-2">></span>
+      </li>
+
+      <li [hidden]="disableConfirmation"
+          routerLinkActive="text-primary"
+          [routerLink]="['confirmation']"><span class="mr-2"> CONFIRMACIÓN</span></li>
+
+      <li [hidden]="!disableConfirmation"> <span class="mr-2">CONFIRMACIÓN</span></li>
     </ul>
     <div class="md:hidden flex text-sm muted cursor-pointer md:mb-20 mb-6 justify-center">
       <button type="button"
@@ -42,22 +52,42 @@
            class="text-base"></i>
       </button>
       <span class="mx-3 flex items-center">></span>
-      <button type="button"
+      <button [hidden]="disablePaymentMethod"
+              type="button"
               nzType="default"
               class="rounded-full w-8 h-8"
-              [routerLinkActive]="disablePaymentMethod ? '' : 'bg-secondary text-primary'"
-              [routerLink]="disablePaymentMethod ? [] : ['payment-method']">
+              routerLinkActive="bg-secondary text-primary"
+              [routerLink]="['payment-method']">
+        <i nz-icon
+           nzType="dollar"
+           nzTheme="outline"
+           class="text-base"></i>
+      </button>
+      <button [hidden]="!disablePaymentMethod"
+              type="button"
+              nzType="default"
+              class="rounded-full w-8 h-8">
         <i nz-icon
            nzType="dollar"
            nzTheme="outline"
            class="text-base"></i>
       </button>
       <span class="mx-3 flex items-center">></span>
-      <button type="button"
+      <button [hidden]="disableConfirmation"
+              type="button"
               nzType="default"
               class="rounded-full w-8 h-8"
-              [routerLinkActive]="disableConfirmation ? '' : 'bg-secondary text-primary'"
-              [routerLink]="disableConfirmation ? [] : ['confirmation']">
+              routerLinkActive="bg-secondary text-primary"
+              [routerLink]="['confirmation']">
+        <i nz-icon
+           nzType="carry-out"
+           nzTheme="outline"
+           class="text-base"></i>
+      </button>
+      <button [hidden]="!disableConfirmation"
+              type="button"
+              nzType="default"
+              class="rounded-full w-8 h-8">
         <i nz-icon
            nzType="carry-out"
            nzTheme="outline"
