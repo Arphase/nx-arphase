@@ -3,24 +3,23 @@
 <div nz-row>
   <div nz-col
        nzSpan="24"
-       class="md:flex block md:overflow-x-auto overflow-x-visible">
+       class="md:flex block">
     <nz-skeleton-element *ngIf="loading; else photos"
                          nzType="image"
                          [nzActive]="true"></nz-skeleton-element>
     <ng-template #photos>
       <div class="md:hidden block">
         <nz-carousel nzEffect="scrollx">
-          <div nz-carousel-content>
-            <div *ngFor="let photo of place?.photos"
-                 nz-carousel-content>
-              <img [src]="photo.path"
-                   [alt]="place?.name"
-                   loading="lazy" />
-            </div>
+          <div *ngFor="let photo of place?.photos"
+               nz-carousel-content>
+            <img [src]="photo.path"
+                 [alt]="place?.name"
+                 loading="lazy"
+                 class="carousel-img" />
           </div>
         </nz-carousel>
       </div>
-      <div class="md:block hidden">
+      <div class="md:flex hidden overflow-x-auto">
         <img *ngFor="let photo of place?.photos; let i = index"
              class="mx-4"
              [src]="photo.path"
@@ -33,7 +32,7 @@
 </div>
 
 <div nz-row
-     class="mt-24">
+     class="md:mt-24 mt-10">
   <div nz-col
        nzMd="14"
        nzXs="24"

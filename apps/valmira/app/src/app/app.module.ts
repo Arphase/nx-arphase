@@ -25,7 +25,6 @@ import {
   ValmiraConfiguration,
 } from '@valmira/ui/core';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxStripeModule } from 'ngx-stripe';
 
@@ -57,7 +56,6 @@ const VALMIRA_CONFIGURATION_VALUE: ValmiraConfiguration = {
       name: 'Valmira',
       maxAge: 25,
     }),
-    NzIconModule.forRoot([]),
     NgxStripeModule.forRoot(environment.stripeKey),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),

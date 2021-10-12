@@ -24,7 +24,6 @@ import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import * as Sentry from '@sentry/angular';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NgxMaskModule } from 'ngx-mask';
@@ -56,7 +55,6 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     NzModalModule,
     NzMessageModule,
     NgxMaskModule.forRoot(),
-    NzIconModule.forRoot([]),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       name: 'Innovatech',
