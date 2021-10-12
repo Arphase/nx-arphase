@@ -1,5 +1,14 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { ApsFormComponent } from '@arphase/ui/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { ApsFormComponent, ThemeService } from '@arphase/ui/core';
 import { StripeCardElementOptions, StripeCardNumberElement, StripeElementsOptions } from '@stripe/stripe-js';
 import { StripeCardNumberComponent } from 'ngx-stripe';
 
@@ -25,8 +34,31 @@ export class PaymentMethodComponent extends ApsFormComponent {
       },
     },
   };
+  mobileCardOptions: StripeCardElementOptions = {
+    style: {
+      base: {
+        iconColor: '#666EE8',
+        color: '#1D2B15',
+        fontWeight: '300',
+        fontSize: '24px',
+        '::placeholder': {
+          color: 'rgba(29, 43, 21, 0.4)',
+        },
+      },
+    },
+  };
   elementsOptions: StripeElementsOptions = { locale: 'es' };
+  private _mobileQueryListener: () => void;
+  mobileQuery: MediaQueryList;
+
   @Output() payReservation = new EventEmitter<StripeCardNumberElement>();
+
+  constructor(private cdr: ChangeDetectorRef, private media: MediaMatcher, private themeService: ThemeService) {
+    super();
+    this.mobileQuery = this.media.matchMedia('(max-width: 769px)');
+    this._mobileQueryListener = () => this.cdr.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
 
   pay(): void {
     this.payReservation.emit(this.card.element);

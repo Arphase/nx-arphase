@@ -1,9 +1,10 @@
 <div nz-row
-     class="my-32">
+     class="md:my-32 my-8">
   <div nz-col
-       [nzSpan]="isInConfirmation ? 24 : 16">
-    <h1 class="text-7xl text-primary mb-6">Tu reservación</h1>
-    <ul class="flex text-sm muted cursor-pointer mb-20">
+       [nzMd]="isInConfirmation ? 24 : 14"
+       nzXs="24">
+    <h1 class="md:text-7xl text-2xl text-primary mb-6">Tu reservación</h1>
+    <ul class="md:flex hidden text-sm muted cursor-pointer mb-20">
       <li routerLinkActive="text-primary"
           [routerLink]="['additional-services']">
         <span class="mr-2 ">SERVICIOS ADICIONALES</span>
@@ -12,22 +13,68 @@
       <li routerLinkActive="text-primary"
           [routerLink]="['personal-data']"><span class="mr-2">DATOS PERSONALES</span> <span class="mr-2">></span></li>
       <li [routerLinkActive]="disablePaymentMethod ? '' : 'text-primary'"
-          [routerLink]="disablePaymentMethod ? null :['payment-method']"> <span class="mr-2">MÉTODOS DE PAGO</span>
+          [routerLink]="disablePaymentMethod ? [] :['payment-method']"> <span class="mr-2">MÉTODOS DE PAGO</span>
         <span class="mr-2">></span>
       </li>
       <li [routerLinkActive]="disableConfirmation ? '' : 'text-primary'"
-          [routerLink]="disableConfirmation ? null : ['confirmation']"><span class="mr-2"> CONFIRMACIÓN</span></li>
+          [routerLink]="disableConfirmation ? [] : ['confirmation']"><span class="mr-2"> CONFIRMACIÓN</span></li>
     </ul>
-    <div nz-row>
-      <div nz-col
-           [nzSpan]="isInConfirmation ? 24 : 18">
-        <router-outlet></router-outlet>
-      </div>
+    <div class="md:hidden flex text-sm muted cursor-pointer md:mb-20 mb-6 justify-center">
+      <button type="button"
+              nzType="default"
+              class="rounded-full w-8 h-8"
+              routerLinkActive="bg-secondary text-primary"
+              [routerLink]="['additional-services']">
+        <i nz-icon
+           nzType="plus-circle"
+           nzTheme="outline"
+           class="text-base"></i>
+      </button>
+      <span class="mx-3 flex items-center">></span>
+      <button type="button"
+              nzType="default"
+              class="rounded-full w-8 h-8"
+              routerLinkActive="bg-secondary text-primary"
+              [routerLink]="['personal-data']">
+        <i nz-icon
+           nzType="form"
+           nzTheme="outline"
+           class="text-base"></i>
+      </button>
+      <span class="mx-3 flex items-center">></span>
+      <button type="button"
+              nzType="default"
+              class="rounded-full w-8 h-8"
+              [routerLinkActive]="disablePaymentMethod ? '' : 'bg-secondary text-primary'"
+              [routerLink]="disablePaymentMethod ? [] : ['payment-method']">
+        <i nz-icon
+           nzType="dollar"
+           nzTheme="outline"
+           class="text-base"></i>
+      </button>
+      <span class="mx-3 flex items-center">></span>
+      <button type="button"
+              nzType="default"
+              class="rounded-full w-8 h-8"
+              [routerLinkActive]="disableConfirmation ? '' : 'bg-secondary text-primary'"
+              [routerLink]="disableConfirmation ? [] : ['confirmation']">
+        <i nz-icon
+           nzType="carry-out"
+           nzTheme="outline"
+           class="text-base"></i>
+      </button>
     </div>
+  </div>
+  <div nz-col
+       [nzMd]="isInConfirmation ? 24 : 14"
+       nzXs="24"
+       class="md:order-none order-1">
+    <router-outlet></router-outlet>
   </div>
   <div *ngIf="!isInConfirmation"
        nz-col
-       nzSpan="8">
+       [nzMd]="{ span: 8, offset: 2 }"
+       nzXs="24">
     <vma-reservation-card [item]="item"></vma-reservation-card>
     <form nz-row
           class="mt-6"
@@ -55,7 +102,7 @@
     <div nz-row>
       <div nz-col
            nzSpan="16"
-           class="border-top">
+           class="border-top md:mb-0 mb-8">
         <span *ngIf="promocodeNotFound"
               class="text-orange mt-1">Este código de descuento no existe o ha expirado</span>
       </div>

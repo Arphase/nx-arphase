@@ -1,90 +1,126 @@
 <div class="center">
-  <div class="scroll-spacing">
-    <div class="m-scroll-left rotate-9 scroll-over">
-      <div class="m-scroll-left__title">
-        <div class="t-10">
-          <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="m-scroll-right rotate-15 scroll-over-2">
-      <div class="m-scroll-right__title">
-        <div>
-          <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="space">
+  <ng-container *ngIf="loading; else productsTemplate">
     <div nz-row
-         [nzGutter]="16">
-      <div *ngFor="let product of products"
+         [nzGutter]="[16, 16]"
+         class="px-8 py-16">
+      <div *ngFor="let product of mockArray"
            nz-col
            nzXs="12"
            nzMd="6"
-           nzLg="6"
-           [routerLink]="['../..', 'product', product.id]">
-
-        <div nz-row
-             class="mb-2">
-          <div nz-col
-               nzSpan="24">
-            <img class="w-full"
-                 [src]="product.photos[0]?.url"
-                 [alt]="product.name"
-                 loading="lazy" />
-          </div>
-        </div>
-
+           nzLg="6">
         <div nz-row>
           <div nz-col
                nzSpan="24"
-               class="text-left">
-            <h6 class="text-sm font-bold">{{ product?.name }}</h6>
-            <span class="text-xs">{{ product.price | currency }}</span>
+               class="products-catalog-skeleton mb-3">
+            <nz-skeleton-element nzType="image"
+                                 [nzActive]="true"></nz-skeleton-element>
+          </div>
+          <div nz-col
+               nzSpan="24">
+            <nz-skeleton-element nzType="input"
+                                 [nzActive]="true"
+                                 class="w-full"></nz-skeleton-element>
           </div>
         </div>
       </div>
+    </div>
+  </ng-container>
+  <ng-template #productsTemplate>
+    <div class="scroll-spacing">
+      <div class="m-scroll-left rotate-9 scroll-over">
+        <div class="m-scroll-left__title">
+          <div class="t-10">
+            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-scroll-right rotate-15 scroll-over-2">
+        <div class="m-scroll-right__title">
+          <div>
+            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="space">
+      <div nz-row
+           [nzGutter]="16">
+        <div *ngFor="let product of products"
+             nz-col
+             nzXs="12"
+             nzMd="6"
+             nzLg="6"
+             [routerLink]="['../..', 'product', product.id]">
+
+          <div nz-row
+               class="mb-2">
+            <div nz-col
+                 nzSpan="24">
+              <img class="w-full"
+                   [src]="product.photos[0]?.url"
+                   [alt]="product.name"
+                   loading="lazy" />
+            </div>
+          </div>
+
+          <div nz-row>
+            <div nz-col
+                 nzSpan="24"
+                 class="text-left">
+              <h6 class="text-sm font-bold">{{ product?.name }}</h6>
+              <span class="text-xs">{{ product.price | currency }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <div *ngIf="!loading && !products?.length"
+       nz-row>
+    <div nz-col
+         nzSpan="24"
+         class="flex justify-center items-center py-12 bg-gray">
+      <span class="text-2xl font-bold">No se encontraron resultados</span>
     </div>
   </div>
 </div>

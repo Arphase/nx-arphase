@@ -5,7 +5,7 @@ import { IsEnum, IsNumber, IsObject, IsString } from 'class-validator';
 
 export class CreateRevisionDto {
   @IsString()
-  @Trim()
+  @Trim('observations')
   observations: string;
 
   @Transform((_, obj) => RevisionStatus[obj['status']])
@@ -19,7 +19,7 @@ export class CreateRevisionDto {
   report: RevisionReport;
 
   @IsString()
-  @Trim()
+  @Trim('reviewdBy')
   reviewdBy: string;
 
   @IsNumber()

@@ -5,7 +5,8 @@
       <div nz-row>
         <div nz-col
              nzSpan="24">
-          <ngx-stripe-card-number [options]="cardOptions"></ngx-stripe-card-number>
+          <ngx-stripe-card-number [options]="mobileQuery.matches ? mobileCardOptions : cardOptions">
+          </ngx-stripe-card-number>
           <div class="border-top pt-1 mb-4">
             Número de Tarjeta*
           </div>
@@ -15,14 +16,15 @@
            nzGutter="12">
         <div nz-col
              nzSpan="12">
-          <ngx-stripe-card-expiry [options]="cardOptions"></ngx-stripe-card-expiry>
+          <ngx-stripe-card-expiry [options]="mobileQuery.matches ? mobileCardOptions : cardOptions">
+          </ngx-stripe-card-expiry>
           <div class="border-top pt-1 mb-4">
             Caducidad*
           </div>
         </div>
         <div nz-col
              nzSpan="12">
-          <ngx-stripe-card-cvc [options]="cardOptions"></ngx-stripe-card-cvc>
+          <ngx-stripe-card-cvc [options]="mobileQuery.matches ? mobileCardOptions : cardOptions"></ngx-stripe-card-cvc>
           <div class="border-top pt-1 mb-4">
             CVV*
           </div>
@@ -35,7 +37,7 @@
 <div nz-row>
   <div nz-col
        nzSpan="24"
-       class="mt-20 mb-4 error-message">
+       class="md:mt-20 mt-4 mb-4 error-message">
     <span *ngIf="errorMessage"
           class="text-orange">{{ errorMessage }}</span>
   </div>
@@ -45,7 +47,7 @@
   <div nz-col
        nzSpan="24">
     <button nz-button
-            class="btn-form-big"
+            class="btn-form-big md:mt-24 mt-10"
             nzType="primary"
             [nzLoading]="loading"
             nzShape="round"

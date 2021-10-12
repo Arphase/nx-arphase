@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingService } from '@arphase/ui/core';
 import { Customer } from '@musicr/domain';
 import { CartService } from '@musicr/ui/cart/data';
-import { take } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'mrl-personal-data-form-container',
@@ -15,6 +15,7 @@ export class PersonalDataFormContainerComponent {
   item$ = this.cartService.personalData$;
   currentCustomer$ = this.cartService.currentCustomer$;
   loading$ = this.loadingService.loadingElse$;
+  order$ = this.cartService.order$;
 
   constructor(
     private cartService: CartService,
@@ -29,7 +30,7 @@ export class PersonalDataFormContainerComponent {
 
   submit(personalData: Customer): void {
     this.cartService.order$
-      .pipe(take(1))
+      .pipe(first(order => !!order?.id))
       .subscribe(() => this.router.navigate(['..', 'confirmation'], { relativeTo: this.route }));
     this.cartService.createOrder(personalData);
   }

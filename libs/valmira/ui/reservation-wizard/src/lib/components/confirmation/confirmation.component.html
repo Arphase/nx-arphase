@@ -1,17 +1,22 @@
 <div nz-row>
   <div nz-col
        nzSpan="24"
-       class="bg-secondary py-12 pl-8 pr-20">
+       class="bg-secondary md:py-12 md:pl-8 md:pr-20 p-6">
     <div nz-row
          nzGutter="28">
-      <div nz-col>
+      <div nz-col
+           nzMd="2"
+           nzXs="24"
+           class="md:block flex justify-center md:mb-0 mb-4">
         <img src="assets/img/check.svg"
              alt="check"
-             class="w-12"
+             class="md:w-12 w-10"
              loading="lazy">
       </div>
-      <div nz-col>
-        <h3 class="text-4xl text-primary">
+      <div nz-col
+           nzMd="22"
+           nzXs="24">
+        <h3 class="md:text-4xl text-xl text-primary">
           {{ customer?.firstName }}, Valmira te da la bienvenida. <br>
           Tu reservación con código
           <span class="text-orange">{{ item?.id }}</span>
@@ -33,8 +38,8 @@
          loading="lazy">
   </div>
   <div nz-col
-       nzSpan="16"
-       nzOffset="4"
+       [nzMd]="{ span: 16, offset: 4 }"
+       nzXs="24"
        class="bg-secondary p-8">
     <div nz-row
          class="mb-5">
@@ -49,13 +54,14 @@
 
     <div nz-row>
       <div nz-col
-           nzSpan="12"
-           class="border-right">
+           nzMd="12"
+           nzXs="24"
+           class="md:pb-0 md:mb-0 md:border-r md:border-b-0 border-r-0 border-b pb-4 mb-4">
         <div nz-row>
           <div nz-col
                nzSpan="24"
                class="flex items-center mb-9">
-            <h4 class="text-5xl text-primary">{{ place?.name }}</h4>
+            <h4 class="md:text-5xl text-2xl text-primary">{{ place?.name | uppercase }}</h4>
             <span class="category ml-4 py-1 px-3">{{ categoryLabels[place?.category] | uppercase }}</span>
           </div>
         </div>
@@ -68,8 +74,9 @@
         </div>
       </div>
       <div nz-col
-           nzSpan="12"
-           class="pl-8">
+           nzMd="12"
+           nzXs="24"
+           class="md:pl-8 pl-0">
         <div *ngFor="let product of item?.additionalProducts"
              nz-row
              class="pt-3">
@@ -84,14 +91,17 @@
   </div>
 
   <div nz-col
-       nzSpan="2">
+       nzSpan="2"
+       class="md:block hidden">
     <img class="logo absolute -bottom-12 -left-12"
          src="assets/img/sun.svg"
          loading="lazy">
   </div>
 
   <div nz-col
-       nzSpan="2">
+       nzMd="2"
+       nzXs="24"
+       class="md:block md:mt-0 flex justify-center mt-8">
     <img class="logo"
          src="assets/img/hoja.svg"
          loading="lazy">

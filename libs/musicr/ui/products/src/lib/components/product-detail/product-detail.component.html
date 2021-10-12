@@ -3,16 +3,24 @@
        class="md:mt-16 mt-0 md:px-10 px-0 max-1440 mx-auto pb-8">
     <div nz-col
          nzXs="24"
-         nzLg="12">
-      <nz-carousel nzEffect="scrollx">
-        <div nz-carousel-content
-             *ngFor="let photo of product?.photos">
-          <img class="carousel-img"
-               [src]="photo.url"
-               [alt]="product?.name"
-               loading="lazy" />
-        </div>
-      </nz-carousel>
+         nzLg="12"
+         class="product-detail-skeleton">
+      <nz-skeleton-element *ngIf="loading; else photos"
+                           nzType="image"
+                           [nzActive]="true"></nz-skeleton-element>
+      <ng-template #photos>
+        <nz-carousel nzEffect="scrollx">
+          <div nz-carousel-content>
+            <div *ngFor="let photo of product?.photos"
+                 nz-carousel-content>
+              <img class="carousel-img"
+                   [src]="photo.url"
+                   [alt]="product?.name"
+                   loading="lazy" />
+            </div>
+          </div>
+        </nz-carousel>
+      </ng-template>
 
       <button nz-button
               class="img-icon"
@@ -30,48 +38,54 @@
       <nz-page-header class="site-page-header"
                       (nzBack)="onBack()"
                       nzBackIcon></nz-page-header>
-
-      <h1 class="md:mt-12 mt-4 md:text-5xl text-2xl">{{ product?.name }}</h1>
-      <div *ngIf="product?.disclaimer"
-           nz-row
-           class="disclaimer">
-        <div nz-col
-             nzSpan="24"
-             class="flex items-center">
-          <i nz-icon
-             nzType="check-circle"
-             nzTheme="outline"
-             class="mr-2 mt-1"></i>
-          <span>{{ product?.disclaimer }}</span>
+      <nz-skeleton *ngIf="loading; else productTemplate"
+                   [nzActive]="true"
+                   class="w-full"></nz-skeleton>
+      <ng-template #productTemplate>
+        <h1 class="md:mt-12 mt-4 md:text-5xl text-2xl">{{ product?.name }}</h1>
+        <div *ngIf="product?.disclaimer"
+             nz-row
+             class="disclaimer">
+          <div nz-col
+               nzSpan="24"
+               class="flex items-center">
+            <i nz-icon
+               nzType="check-circle"
+               nzTheme="outline"
+               class="mr-2 mt-1"></i>
+            <span>{{ product?.disclaimer }}</span>
+          </div>
         </div>
-      </div>
 
-      <h2 class="text-2xl font-bold border-b pb-4 border-black mb-2">Incluye</h2>
+        <ng-container *ngIf="product?.productComponent?.length">
+          <h2 class="text-2xl font-bold border-b pb-4 border-black mb-2">Incluye</h2>
 
-      <div *ngFor="let productComponent of product?.productComponents"
-           class="border-b w-full py-1">
-        <span class="text-base"> {{ productComponent }} </span>
-      </div>
+          <div *ngFor="let productComponent of product?.productComponents"
+               class="border-b w-full py-1">
+            <span class="text-base"> {{ productComponent }} </span>
+          </div>
+        </ng-container>
 
-      <form *ngIf="priceOptions?.length"
-            [formGroup]="form"
-            nz-row
-            class="mt-9">
-        <div nz-col
-             nzSpan="6">
-          <nz-select class="w-full"
-                     formControlName="priceOptionId"
-                     [nzOptions]="priceOptions"></nz-select>
-        </div>
-      </form>
+        <form *ngIf="priceOptions?.length"
+              [formGroup]="form"
+              nz-row
+              class="mt-9">
+          <div nz-col
+               nzSpan="6">
+            <nz-select class="w-full"
+                       formControlName="priceOptionId"
+                       [nzOptions]="priceOptions"></nz-select>
+          </div>
+        </form>
 
-      <h2 class="text-2xl font-extrabold mt-10 mb-12">
-        {{ price | currency }} MXN
-      </h2>
+        <h2 class="text-2xl font-extrabold mt-10 mb-12">
+          {{ price | currency }} MXN
+        </h2>
 
-      <button type="button"
-              class="btn-black"
-              (click)="addItem()">Agregar al carrito</button>
+        <button type="button"
+                class="btn-black"
+                (click)="addItem()">Agregar al carrito</button>
+      </ng-template>
     </div>
   </div>
   <!-- TODO: Check which services will be related -->

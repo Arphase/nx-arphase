@@ -3,16 +3,16 @@ import { IsEmail, IsOptional, IsString } from 'class-validator';
 
 export class SignUpCredentialsDto {
   @IsString()
-  @Trim()
+  @Trim('firstName')
   firstName: string;
 
   @IsOptional()
   @IsString()
-  @Trim()
+  @Trim('secondName')
   secondName?: string;
 
   @IsString()
-  @Trim()
+  @Trim('lastName')
   lastName: string;
 
   @IsEmail()

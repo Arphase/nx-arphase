@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Product } from '@musicr/domain';
 
 @Component({
@@ -10,5 +10,6 @@ import { Product } from '@musicr/domain';
 export class ProductsCatalogComponent {
   @Input() products: Product[];
   @Input() title: string;
-
+  @Input() loading: boolean;
+  mockArray = new Array(8);
 }

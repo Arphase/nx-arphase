@@ -29,7 +29,7 @@ export class CreateClientDto {
   rfc: string;
 
   @IsString()
-  @Trim()
+  @Trim('phone')
   phone: string;
 
   @IsEmail()
@@ -41,7 +41,7 @@ export class CreateClientDto {
   @Type(() => CreateAddressDto)
   address: Address;
 
-  @Trim()
   @IsString()
+  @Trim('salesPlace')
   salesPlace: string;
 }

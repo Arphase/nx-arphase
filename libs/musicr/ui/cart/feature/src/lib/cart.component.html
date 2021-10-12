@@ -1,27 +1,45 @@
 <div class="steps__names mb-12">
-  <button *ngFor="let step of steps"
-          type="button"
-          class="border-0 bg-gray text-black px-4 py-2"
-          [routerLink]="(step.disabled$ | async) ? null : step.path"
-          [routerLinkActive]="(step.disabled$ | async) ? '' : 'bg-black text-white'">
-    {{ step.name | uppercase }}
-  </button>
+  <ng-container *ngFor="let step of steps">
+    <button [hidden]="step.disabled$ | async"
+            type="button"
+            class="border-0 bg-gray text-black px-4 py-2"
+            [routerLink]="step.path"
+            routerLinkActive="bg-black text-white">
+      {{ step.name | uppercase }}
+    </button>
+    <button [hidden]="(step.disabled$ | async) === false"
+            type="button"
+            class="border-0 bg-gray text-black px-4 py-2">
+      {{ step.name | uppercase }}
+    </button>
+  </ng-container>
+
 </div>
 <div nz-row
      class="steps__icons mb-9">
-  <div *ngFor="let step of steps"
-       nz-col
-       nzSpan="6">
-    <button type="button"
-            nzType="default"
-            class="border-0 bg-gray text-black px-4 py-2 w-full"
-            [routerLink]="(step.disabled$ | async) ? null : step.path"
-            [routerLinkActive]="(step.disabled$ | async) ? '' : 'bg-black text-white'">
-      <i nz-icon
-         [nzType]="step.icon"
-         nzTheme="outline"></i>
-    </button>
-  </div>
+  <ng-container *ngFor="let step of steps">
+    <div nz-col
+         nzSpan="6">
+      <button [hidden]="step.disabled$ | async"
+              type="button"
+              class="border-0 bg-gray text-black px-4 py-2 w-full"
+              [routerLink]="step.path"
+              routerLinkActive="bg-black text-white">
+        <i nz-icon
+           [nzType]="step.icon"
+           nzTheme="outline"></i>
+      </button>
+      <button [hidden]="(step.disabled$ | async) === false"
+              type="button"
+              nzType="default"
+              class="border-0 bg-gray text-black px-4 py-2 w-full">
+        <i nz-icon
+           [nzType]="step.icon"
+           nzTheme="outline"></i>
+      </button>
+    </div>
+  </ng-container>
+
 </div>
 
 <router-outlet></router-outlet>

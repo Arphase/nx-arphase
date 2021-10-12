@@ -62,7 +62,7 @@ export class SocialEventFormComponent extends ApsFormComponent<SocialEvent> impl
     endTime: new FormControl(null, ApsValidators.required),
     eventPlace: new FormControl(null, ApsValidators.required),
     notes: new FormControl(null),
-    requiresAssembly: new FormControl(null, ApsValidators.required),
+    requiresAssembly: new FormControl(false),
     address: createAddressForm(),
   });
 

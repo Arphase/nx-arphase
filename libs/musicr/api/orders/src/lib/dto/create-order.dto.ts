@@ -15,6 +15,10 @@ import {
 } from 'class-validator';
 
 export class CreateCustomerDto {
+  @IsOptional()
+  @IsNumber()
+  id: number;
+
   @IsString()
   firstName: string;
 
@@ -31,36 +35,36 @@ export class CreateCustomerDto {
 
 export class CreateAddressDto {
   @IsNumberString()
-  @Trim()
+  @Trim('zipcode')
   zipcode: string;
 
   @IsString()
-  @Trim()
+  @Trim('country')
   country: string;
 
   @IsString()
-  @Trim()
+  @Trim('state')
   state: string;
 
   @IsString()
-  @Trim()
+  @Trim('city')
   city: string;
 
   @IsString()
-  @Trim()
+  @Trim('suburb')
   suburb: string;
 
   @IsString()
-  @Trim()
+  @Trim('street')
   street: string;
 
   @IsString()
-  @Trim()
+  @Trim('externalNumber')
   externalNumber: string;
 
   @IsOptional()
   @IsString()
-  @Trim()
+  @Trim('internalNumber')
   internalNumber: string;
 }
 

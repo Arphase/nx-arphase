@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Category, Product, Subcategory } from '@musicr/domain';
-import { BehaviorSubject, filter, forkJoin, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, filter, finalize, forkJoin, Observable, Subscription, switchMap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsCatalogService {
@@ -11,20 +11,28 @@ export class ProductsCatalogService {
   products$ = this.productsSubject.asObservable();
   titleSubject = new BehaviorSubject<string>(null);
   title$ = this.titleSubject.asObservable();
+  loadingSubject = new BehaviorSubject<boolean>(false);
+  loading$ = this.loadingSubject.asObservable();
+  routerEventSubscription: Subscription;
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.router.events
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
+
+  listenToRouterEvents(): void {
+    if (this.routerEventSubscription) {
+      this.routerEventSubscription.unsubscribe();
+    }
+    this.routerEventSubscription = this.route.params
       .pipe(
-        filter(event => event instanceof NavigationEnd),
-        switchMap(event => {
-          if (event instanceof NavigationEnd) {
-            const id = Number(event.url.substring(event.url.indexOf('category/') + 9));
-            const isSubCategory = event.url.includes('sub');
-            const title = this.getTitle(id, isSubCategory);
-            const products = this.getProducts(id, isSubCategory);
-            return forkJoin([title, products]);
-          }
-        })
+        filter(params => params.id),
+        switchMap(({ id }) => {
+          this.loadingSubject.next(true);
+          const url = this.router.url;
+          const isSubCategory = url.includes('sub');
+          const title = this.getTitle(id, isSubCategory);
+          const products = this.getProducts(id, isSubCategory);
+          return forkJoin([title, products]);
+        }),
+        finalize(() => this.loadingSubject.next(false))
       )
       .subscribe(response => {
         this.titleSubject.next(response[0].name);
