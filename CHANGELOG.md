@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.6.2](https://github.com/Arphase/nx-arphase/compare/v3.6.1...v3.6.2) (2021-10-12)
+
+
+### Bug Fixes
+
+* **valmira/reservation-wizard:** add elements for routerLink active to take inmediate effect ([3111732](https://github.com/Arphase/nx-arphase/commit/3111732b457d1aa03aecbbd2e3e738576a261cf8))
+
 ### [3.6.1](https://github.com/Arphase/nx-arphase/compare/v3.6.0...v3.6.1) (2021-10-12)
 
 
