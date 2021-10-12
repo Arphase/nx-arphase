@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Category, Product, Subcategory } from '@musicr/domain';
-import { BehaviorSubject, filter, finalize, forkJoin, Observable, Subscription, switchMap } from 'rxjs';
+import { BehaviorSubject, filter, forkJoin, Observable, Subscription, switchMap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsCatalogService {
@@ -31,12 +31,12 @@ export class ProductsCatalogService {
           const title = this.getTitle(id, isSubCategory);
           const products = this.getProducts(id, isSubCategory);
           return forkJoin([title, products]);
-        }),
-        finalize(() => this.loadingSubject.next(false))
+        })
       )
       .subscribe(response => {
         this.titleSubject.next(response[0].name);
         this.productsSubject.next(response[1].results);
+        this.loadingSubject.next(false);
       });
   }
 

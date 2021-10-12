@@ -1,10 +1,9 @@
 import { registerLocaleData } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import es from '@angular/common/locales/es';
-import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Router } from '@angular/router';
 import {
   ApsAdditionalEntityCollectionReducerMethodsFactory,
   ApsAdditionalPropertyPersistenceResultHandler,
@@ -15,7 +14,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { routerReducer, RouterReducerState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import * as Sentry from '@sentry/angular';
 import {
   entityConfig,
   FooterModule,
@@ -74,14 +72,6 @@ const VALMIRA_CONFIGURATION_VALUE: ValmiraConfiguration = {
     {
       provide: PersistenceResultHandler,
       useClass: ApsAdditionalPropertyPersistenceResultHandler,
-    },
-    { provide: ErrorHandler, useValue: Sentry.createErrorHandler({}) },
-    { provide: Sentry.TraceService, deps: [Router] },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: () => () => null,
-      deps: [Sentry.TraceService],
-      multi: true,
     },
   ],
   bootstrap: [AppComponent],
