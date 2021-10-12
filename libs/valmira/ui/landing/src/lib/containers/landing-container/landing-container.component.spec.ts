@@ -1,25 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { PlaceCollectionService } from '@valmira/ui/places/data';
 
 import { LandingContainerComponent } from './landing-container.component';
 
 describe('LandingContainerComponent', () => {
-  let component: LandingContainerComponent;
-  let fixture: ComponentFixture<LandingContainerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ LandingContainerComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<LandingContainerComponent>;
+  const createComponent = createComponentFactory({
+    component: LandingContainerComponent,
+    mocks: [PlaceCollectionService],
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LandingContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

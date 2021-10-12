@@ -7,7 +7,7 @@ describe('ProductsCatalogContainerComponent', () => {
   let spectator: Spectator<ProductsCatalogContainerComponent>;
   const createComponent = createComponentFactory({
     component: ProductsCatalogContainerComponent,
-    mocks: [ProductsCatalogService],
+    componentMocks: [ProductsCatalogService],
     shallow: true,
   });
 
