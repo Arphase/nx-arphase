@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ReservationResolverService } from '@valmira/ui/reservations/data';
 
 import { AdditionalServicesContainerComponent } from './containers/additional-services-container/additional-services-container.component';
 import { ConfirmationContainerComponent } from './containers/confirmation-container/confirmation-container.component';
@@ -12,7 +11,6 @@ export const routes: Routes = [
   {
     path: ':id',
     component: ReservationWizardContainerComponent,
-    resolve: { resolvedReservation: ReservationResolverService },
     children: [
       {
         path: 'additional-services',

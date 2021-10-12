@@ -269,13 +269,13 @@ export class ReservationsService {
     await transporter.sendMail(mailOptions);
   }
 
-  // @Cron(CronExpression.EVERY_30_MINUTES)
-  // async updateVehicleStatusFromRevisions() {
-  //   const query = this.reservationRepository.createQueryBuilder('reservation');
-  //   query.andWhere(`(reservation.paymentId IS NULL)`);
-  //   const reservations = await query.getMany();
-  //   const hourAgo = dayjs().subtract(1, 'hour');
-  //   const expiredReservations = reservations.filter(reservation => dayjs(reservation.createdAt).isBefore(hourAgo));
-  //   await this.reservationRepository.remove(expiredReservations);
-  // }
+  @Cron(CronExpression.EVERY_30_MINUTES)
+  async updateVehicleStatusFromRevisions() {
+    const query = this.reservationRepository.createQueryBuilder('reservation');
+    query.andWhere(`(reservation.paymentId IS NULL)`);
+    const reservations = await query.getMany();
+    const hourAgo = dayjs().subtract(15, 'minutes');
+    const expiredReservations = reservations.filter(reservation => dayjs(reservation.createdAt).isBefore(hourAgo));
+    await this.reservationRepository.remove(expiredReservations);
+  }
 }

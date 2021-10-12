@@ -55,10 +55,10 @@ export class PlaceDetailContainerComponent implements OnInit {
   submit(payload: { startDate: Date; endDate: Date }): void {
     this.item$
       .pipe(
-        take(1),
         switchMap(place => this.reservationCollectionService.add({ placeId: place.id, ...payload })),
         switchMap(() => this.reservationCollectionService.currentItem$),
-        filterNil()
+        filterNil(),
+        take(1)
       )
       .subscribe(({ id }) => this.router.navigateByUrl(`reservation/${id}`));
   }
