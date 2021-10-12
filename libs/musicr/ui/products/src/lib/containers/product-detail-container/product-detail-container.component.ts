@@ -16,6 +16,7 @@ import { ProductDetailService } from '../../services/product-detail.service';
   providers: [ProductDetailService],
 })
 export class ProductDetailContainerComponent implements OnInit {
+  loading$ = this.productDetailService.loading$;
   product$ = this.productDetailService.product$;
   priceOptions$ = this.productDetailService.priceOptions$;
 

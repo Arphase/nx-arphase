@@ -3,15 +3,15 @@ import { IsDateString, IsString } from 'class-validator';
 
 export class CreatePhysicalPersonDto {
   @IsString()
-  @Trim()
+  @Trim('name')
   name: string;
 
   @IsString()
-  @Trim()
+  @Trim('lastName')
   lastName: string;
 
   @IsString()
-  @Trim()
+  @Trim('secondLastName')
   secondLastName: string;
 
   @IsDateString()

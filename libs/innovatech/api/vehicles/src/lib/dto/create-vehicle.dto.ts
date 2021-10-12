@@ -4,16 +4,16 @@ import { IsNumber, IsOptional, IsString, Length } from 'class-validator';
 
 export class CreateVehicleDto {
   @IsString()
-  @Trim()
+  @Trim('brand')
   brand: string;
 
   @IsString()
-  @Trim()
+  @Trim('model')
   model: string;
 
   @IsOptional()
   @IsString()
-  @Trim()
+  @Trim('version')
   version: string;
 
   @IsOptional()
@@ -26,7 +26,7 @@ export class CreateVehicleDto {
 
   @IsOptional()
   @IsString()
-  @Trim()
+  @Trim('motorNumber')
   motorNumber: string;
 
   @IsOptional()

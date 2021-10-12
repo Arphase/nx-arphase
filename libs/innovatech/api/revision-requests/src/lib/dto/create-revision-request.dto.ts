@@ -10,11 +10,11 @@ export class CreateRevisionRequestDto {
   address: Address;
 
   @IsString()
-  @Trim()
+  @Trim('name')
   name: string;
 
   @IsString()
-  @Trim()
+  @Trim('phone')
   phone: string;
 
   @IsEmail()

@@ -1,15 +1,14 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Spectator, createComponentFactory } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+
+import { ProductsCatalogService } from '../../services/products-catalog.service';
 import { ProductsCatalogContainerComponent } from './products-catalog-container.component';
 
 describe('ProductsCatalogContainerComponent', () => {
   let spectator: Spectator<ProductsCatalogContainerComponent>;
   const createComponent = createComponentFactory({
     component: ProductsCatalogContainerComponent,
-    schemas: [NO_ERRORS_SCHEMA],
-    imports: [HttpClientTestingModule, RouterTestingModule],
+    mocks: [ProductsCatalogService],
+    shallow: true,
   });
 
   beforeEach(() => (spectator = createComponent()));

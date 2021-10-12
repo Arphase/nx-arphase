@@ -17,7 +17,7 @@ export class CartService {
   currentCustomerSubject = new BehaviorSubject<Customer>(null);
   currentCustomer$ = this.currentCustomerSubject.asObservable();
   orderSubject = new BehaviorSubject<Order>(null);
-  order$ = this.orderPreviewSubject.asObservable();
+  order$ = this.orderSubject.asObservable();
   listenToCartItemsSubscription: Subscription;
 
   constructor(private http: HttpClient) {}
@@ -79,10 +79,10 @@ export class CartService {
     this.personalDataSubject.next(customer);
     combineLatest([this.cartItems$, this.socialEvent$])
       .pipe(
-        take(1),
         switchMap(([orderProducts, socialEvent]) =>
-          this.http.post<Order>(`/mrlApi/orders`, { orderProducts, socialEvent, customer }).pipe(take(1))
-        )
+          this.http.post<Order>(`/mrlApi/orders`, { orderProducts, socialEvent, customer })
+        ),
+        take(1)
       )
       .subscribe(order => this.orderSubject.next(order));
   }

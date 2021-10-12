@@ -35,7 +35,7 @@ export class OrderListComponent extends ApsListComponent<Order> {
     },
     {
       label: 'Fecha evento',
-      prop: 'socialEvent.startDate',
+      prop: 'socialEvent.date',
       colSizes: {
         md: 4,
         lg: 4,

@@ -13,10 +13,12 @@
     </div>
     <div nz-col
          nzSpan="14">
-      <img class="h-4"
-           alt="Music Revolution logo"
-           src="assets/img/Logo_Mobile_1.svg"
-           loading="lazy" />
+      <a [routerLink]="['.']">
+        <img class="h-4"
+             alt="Music Revolution logo"
+             src="assets/img/Logo_Mobile_1.svg"
+             loading="lazy" />
+      </a>
     </div>
     <div nz-col
          nzSpan="5">
@@ -53,7 +55,7 @@
        class="p-4 md:flex hidden">
     <div nz-col
          nzSpan="5">
-      <a [routerLink]="['']">
+      <a [routerLink]="['.']">
         <img alt="Music Revolution logo"
              src="assets/img/Logo_Mobile_1.svg"
              loading="lazy" />

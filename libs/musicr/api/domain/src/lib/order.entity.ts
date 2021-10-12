@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -26,12 +27,10 @@ export class OrderEntity extends BaseEntity implements Order {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => CustomerEntity, {
-    cascade: true,
-    eager: true,
-    onUpdate: 'CASCADE',
-    onDelete: 'CASCADE',
-  })
+  @Column({ nullable: true })
+  customerId?: number;
+
+  @ManyToOne(() => CustomerEntity, customer => customer.orders, { cascade: true, eager: true })
   @JoinColumn({ name: 'customerId' })
   customer: Customer;
 
