@@ -55,23 +55,27 @@
         nz-row>
       <td nz-col
           nzXs="16"
-          nzMd="8"
+          nzMd="3"
+          nzLg="2">{{ item?.id | empty }}</td>
+      <td nz-col
+          nzXs="0"
+          nzMd="4"
           nzLg="4">{{ item?.place?.name | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="4"
-          nzLg="4">{{ item?.startDate | date: 'dd/MM/yy' | empty }}</td>
+          nzLg="3">{{ item?.startDate | date: 'dd/MM/yy' | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="4"
-          nzLg="4">{{ item?.endDate | date: 'dd/MM/yy' | empty }}</td>
+          nzLg="3">{{ item?.endDate | date: 'dd/MM/yy' | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="4">{{ item?.createdAt | date: 'dd/MM/yy' | empty }}</td>
+          nzLg="3">{{ item?.createdAt | date: 'dd/MM/yy' | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzMd="4"
-          nzLg="4">{{ item?.total | currency | empty }}</td>
+          nzMd="5"
+          nzLg="5">{{ item?.total | currency | empty }}</td>
       <td nz-col
           nzXs="4"
           nzMd="2"

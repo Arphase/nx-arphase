@@ -57,7 +57,7 @@ const VALMIRA_CONFIGURATION_VALUE: ValmiraConfiguration = {
       name: 'Valmira',
       maxAge: 25,
     }),
-    NzIconModule.forRoot(),
+    NzIconModule.forRoot([]),
     NgxStripeModule.forRoot(environment.stripeKey),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),

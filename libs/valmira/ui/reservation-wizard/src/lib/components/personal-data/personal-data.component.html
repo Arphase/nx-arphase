@@ -9,7 +9,8 @@
       <div nz-row
            nzGutter="12">
         <div nz-col
-             nzSpan="12">
+             nzMd="12"
+             nzXs="24">
           <input class="valmira-input"
                  placeholder="Nombre"
                  formControlName="firstName" />
@@ -17,7 +18,8 @@
                  [ngClass]="{ 'valmira-error': firstNameError }">Nombre*</label>
         </div>
         <div nz-col
-             nzSpan="12">
+             nzMd="12"
+             nzXs="24">
           <input class="valmira-input"
                  placeholder="Apellido"
                  formControlName="lastName" />
@@ -66,7 +68,7 @@
       <div nz-col
            nzSpan="24">
         <button nz-button
-                class="btn-form-big mt-24"
+                class="btn-form-big md:mt-24 mt-10"
                 type="submit"
                 nzType="primary"
                 [nzLoading]="loading"

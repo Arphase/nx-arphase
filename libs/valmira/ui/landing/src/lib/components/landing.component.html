@@ -1,0 +1,228 @@
+<div nz-row
+     class="md:mb-0 mb-12">
+  <h1 nz-col
+      nzSpan="22"
+      class="md:text-7xl text-2xl">Espacios <span class="italic">maravillosos</span>
+    <br> para recolectar historias.
+  </h1>
+</div>
+<div nz-row>
+  <div nz-col
+       nzSpan="24"
+       [nzXs]="{ order: 2 }"
+       [nzMd]="{ order: 1 }">
+    <div nz-row
+         class="flex md:justify-end justify-center">
+      <img nz-col
+           class="sun w-20 md:mb-16 mb-0"
+           src="assets/img/sun.svg"
+           loading="lazy">
+    </div>
+  </div>
+  <div nz-col
+       nzSpan="24"
+       class="mb-12"
+       [nzXs]="{ order: 1 }"
+       [nzMd]="{ order: 2 }">
+    <div nz-row
+         nzJustify="center">
+      <img nz-col
+           nzSpan="24"
+           src="assets/img/cabana001.svg"
+           loading="lazy">
+      <img nz-col
+           nzSpan="2"
+           [nzPull]="16"
+           class="pines"
+           src="assets/img/pines.svg"
+           loading="lazy">
+    </div>
+  </div>
+</div>
+<div nz-row
+     class="md:mb-32 mb-11"
+     nzJustify="end">
+  <img nz-col
+       nzSpan="2"
+       [nzPull]="6"
+       class="pine"
+       src="assets/img/pine.svg"
+       loading="lazy">
+</div>
+<div nz-row
+     class="md:mb-16 mb-7">
+  <h3 nz-col
+      nzSpan="24"
+      class="mb-9 md:text-4xl text-2xl">Somos <i>glampling</i> extraordinario <br> para cada ocasión y huéspedes.</h3>
+  <p nz-col
+     nzSpan="24">¿Con quién te hospedas? <br> Encuentra el alojamiento ideal para ti y tus acompañantes.
+  </p>
+</div>
+<div nz-row
+     nzGutter="16"
+     nzJustify="space-around"
+     class="mb-11">
+  <img nz-col
+       nzMd="12"
+       nzXs="24"
+       src="assets/img/pareja.svg">
+  <img nz-col
+       nzMd="12"
+       nzXs="24"
+       src="assets/img/familiar.svg">
+</div>
+
+<div nz-row
+     nzJustify="center"
+     class="md:mb-0 mb-11">
+  <img nz-col
+       nzSpan="3"
+       class="mobile-icon"
+       src="assets/img/hoja.svg"
+       loading="lazy">
+</div>
+<div nz-row
+     class="relative md:mb-48 mb-11">
+  <div nz-col
+       nzSpan="24">
+    <img src="assets/img/mountain001.svg"
+         class="w-full"
+         loading="lazy">
+    <h2 class="float">Salir para <i>regresar.</i></h2>
+  </div>
+  <div nz-col
+       [nzPull]="16"
+       nzSpan="22"
+       class="circle md:pt-9 pt-0">
+    <p class="md:text-base text-xs mb-6">
+      Aquello que nos enamoró <br>
+      también está a nuestro alrededor, <br>
+      posibilidades y en nuestro día a día. <br>
+      Pero necesitamos salir para regresar. `
+    </p>
+    <a class="md:text-base text-xs"
+       [routerLink]="['manifest']">CONOCE NUESTRO MANIFIESTO</a>
+  </div>
+</div>
+<div nz-row>
+  <div nz-col
+       nzSpan="24"
+       class="mobile-icon flex justify-center md:mb-0 mb-11">
+    <img class="w-16"
+         src="assets/img/pines.svg"
+         loading="lazy">
+  </div>
+</div>
+<div nz-row
+     nzJustify="space-around">
+  <h3 nz-col
+      nzSpan="24"
+      class="md:text-4xl text-2xl md:mb-0 mb-11">Así se vive Valmira:</h3>
+  <img nz-col
+       nzSpan="3"
+       nzPush="6"
+       class="pine"
+       src="assets/img/pines.svg"
+       loading="lazy">
+</div>
+<div nz-row
+     nzGutter="16">
+  <ng-container *ngFor="let place of places; index as index">
+    <figure *ngIf="index % 6 === 0"
+            nz-col
+            nzXs="24"
+            nzMd="14"
+            class="md:mb-0 mb-11 cursor-pointer"
+            [routerLink]="['place', place.id]">
+      <img class="mb-4"
+           [src]="place?.photos[0]?.path"
+           [alt]="place.name"
+           loading="lazy">
+      <figcaption>{{ place.name | uppercase }}, VALMIRA.</figcaption>
+    </figure>
+
+    <ng-container *ngIf="index % 6 === 1">
+      <figure nz-col
+              nzXs="24"
+              nzMd="10"
+              class="midrow self-end md:mb-0 mb-11 cursor-pointer"
+              [routerLink]="['place', place.id]">
+        <img class="mb-4"
+             [src]="place?.photos[0]?.path"
+             [alt]="place.name"
+             loading="lazy">
+        <figcaption>{{ place.name | uppercase }}, VALMIRA.</figcaption>
+      </figure>
+
+      <img nz-col
+           [nzMd]="{ span: 2, push: 2 }"
+           class="leaf"
+           src="assets/img/hoja.svg"
+           loading="lazy">
+    </ng-container>
+
+    <figure *ngIf="index % 6 === 2"
+            nz-col
+            nzXs="24"
+            [nzMd]="{ span: 11, offset: 5 }"
+            class="md:mt-40 mb-11 mt-0 cursor-pointer"
+            [routerLink]="['place', place.id]">
+      <img nz-col
+           class="mb-4"
+           [src]="place?.photos[0]?.path"
+           [alt]="place.name"
+           loading="lazy">
+      <figcaption>{{ place.name | uppercase }}, VALMIRA.</figcaption>
+    </figure>
+
+    <figure *ngIf="index % 6 === 3"
+            nz-col
+            nzXs="24"
+            nzMd="20"
+            class="md:mb-24 mb-11 cursor-pointer"
+            [routerLink]="['place', place.id]">
+      <img nz-col
+           class="mb-4"
+           [src]="place?.photos[0]?.path"
+           [alt]="place.name"
+           loading="lazy">
+      <figcaption>{{ place.name | uppercase }}, VALMIRA.</figcaption>
+    </figure>
+
+    <figure *ngIf="index % 6 === 4"
+            nz-col
+            nzXs="24"
+            nzMd="10"
+            class="md:mb-0 mb-11 cursor-pointer"
+            [routerLink]="['place', place.id]">
+      <img [src]="place?.photos[0]?.path"
+           [alt]="place.name"
+           class="mb-4"
+           loading="lazy">
+      <figcaption>{{ place.name | uppercase }}, VALMIRA.</figcaption>
+    </figure>
+
+    <ng-container *ngIf="index % 6 === 5">
+      <figure nz-col
+              nzXs="24"
+              nzMd="14"
+              class="midrow md:mb-0 mb-11 cursor-pointer"
+              [routerLink]="['place', place.id]">
+        <img [src]="place?.photos[0]?.path"
+             [alt]="place.name"
+             class="mb-4"
+             loading="lazy">
+        <figcaption>{{ place.name | uppercase }}, VALMIRA.</figcaption>
+      </figure>
+
+      <div nz-col
+           nzXs="24"
+           nzMd="10"
+           class="flex md:justify-end justify-center">
+        <img class="md:my-48 my-12 md:w-24 w-12"
+             src="assets/img/pine-2.svg"
+             loading="lazy">
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

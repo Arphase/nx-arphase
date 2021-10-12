@@ -19,11 +19,12 @@ export const routes: Routes = [
       {
         path: 'new',
         component: AdditionalProductFormContainerComponent,
+        resolve: { resolvedProduct: AdditionalProductResolverService },
       },
       {
         path: ':id',
         component: AdditionalProductFormContainerComponent,
-        resolve: { resolvedPromocode: AdditionalProductResolverService },
+        resolve: { resolvedProduct: AdditionalProductResolverService },
       },
     ],
   },

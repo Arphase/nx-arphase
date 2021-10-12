@@ -56,7 +56,7 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     NzModalModule,
     NzMessageModule,
     NgxMaskModule.forRoot(),
-    NzIconModule.forRoot(),
+    NzIconModule.forRoot([]),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       name: 'Innovatech',
