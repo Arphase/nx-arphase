@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.6.1](https://github.com/Arphase/nx-arphase/compare/v3.6.0...v3.6.1) (2021-10-12)
+
+
+### Features
+
+* **app:** protect api routes for musicr and valmira ([387ce07](https://github.com/Arphase/nx-arphase/commit/387ce07bdcbae7aac56d9a5ae7f60f2d46b69ce5))
+
+
+### Bug Fixes
+
+* **valmira/app:** avoid inifinite requests when creating new reservation ([bce8411](https://github.com/Arphase/nx-arphase/commit/bce84112ea1ce532c3b4a1516c760df55e6bc3fe))
+
 ## [3.6.0](https://github.com/Arphase/nx-arphase/compare/v3.5.4...v3.6.0) (2021-10-12)
 
 
