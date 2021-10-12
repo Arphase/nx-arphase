@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.6.0](https://github.com/Arphase/nx-arphase/compare/v3.5.4...v3.6.0) (2021-10-12)
+
+
+### Features
+
+* **musicr/about-us:** [#195](https://github.com/Arphase/nx-arphase/issues/195) add about us ([3c3a4a3](https://github.com/Arphase/nx-arphase/commit/3c3a4a3b8cfe0c28b91c59d345e837288e346d6f))
+* **musicr/about-us:** [#195](https://github.com/Arphase/nx-arphase/issues/195) add about us ([ae1a4f7](https://github.com/Arphase/nx-arphase/commit/ae1a4f76c87bc635621b960e20fae884c42f3975))
+* **musicr/about-us:** [#195](https://github.com/Arphase/nx-arphase/issues/195) add about us ([5090d87](https://github.com/Arphase/nx-arphase/commit/5090d878b32aba8bbb1c9236ead2f2769dafa52a))
+* **musicr/store:** lazy load images to improve performance ([dcbe24d](https://github.com/Arphase/nx-arphase/commit/dcbe24dbc3da96a774057855787d9b9aa8b81f41))
+* **musicr:** fix subscription issues and finish order workflow ([d9f56ee](https://github.com/Arphase/nx-arphase/commit/d9f56ee725c3af6369e94d40d0078af973a03a42))
+* **valmira/landing:** use places from api for landing page ([697bf04](https://github.com/Arphase/nx-arphase/commit/697bf043949db9e5aee7009520b792fe24655ead))
+
+
+### Bug Fixes
+
+* **musicr/store:** listen to cartItems change only when opening the cart component ([b5ee8fe](https://github.com/Arphase/nx-arphase/commit/b5ee8fe3d18f80aa3acfc55272ae244e3b2abe21))
+
 ### [3.5.4](https://github.com/Arphase/nx-arphase/compare/v3.5.3...v3.5.4) (2021-10-08)
 
 
