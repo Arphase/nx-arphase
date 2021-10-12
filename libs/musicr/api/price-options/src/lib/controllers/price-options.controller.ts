@@ -9,7 +9,6 @@ import { UpdatePriceOptionDto } from '../dto/update-price-option.dto';
 import { PriceOptionsService } from '../services/price-options.service';
 
 @Controller('price-options')
-@UseGuards(AuthGuard('jwt'))
 export class PriceOptionsController {
   constructor(private priceOptionsService: PriceOptionsService) {}
 
@@ -18,16 +17,19 @@ export class PriceOptionsController {
     return this.priceOptionsService.getPriceOptions(filterDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Post()
   createDdditionalOption(@Body() createDto: CreatePriceOptionDto): Promise<PriceOption> {
     return this.priceOptionsService.createPriceOption(createDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   updateAdditionalOption(@Body() updateDtp: UpdatePriceOptionDto): Promise<PriceOption> {
     return this.priceOptionsService.updatePriceOption(updateDtp);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   deleteAdditionalOption(@Param('id', ParseIntPipe) id: number): Promise<PriceOption> {
     return this.priceOptionsService.deletePriceOption(id);

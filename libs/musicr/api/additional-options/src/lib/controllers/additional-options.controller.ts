@@ -9,7 +9,6 @@ import { UpdateAdditionalOptionDto } from '../dto/update-additional-option.dto';
 import { AdditionalOptionsService } from '../services/additional-options.service';
 
 @Controller('additional-options')
-@UseGuards(AuthGuard('jwt'))
 export class AdditionalOptionsController {
   constructor(private additionalOptionsService: AdditionalOptionsService) {}
 
@@ -18,16 +17,19 @@ export class AdditionalOptionsController {
     return this.additionalOptionsService.getAdditionalOptions(filterDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Post()
   createDdditionalOption(@Body() createDto: CreateAdditionalOptionDto): Promise<AdditionalOption> {
     return this.additionalOptionsService.createAdditionalOption(createDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   updateAdditionalOption(@Body() updateDtp: UpdateAdditionalOptionDto): Promise<AdditionalOption> {
     return this.additionalOptionsService.updateAdditionalOption(updateDtp);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   deleteAdditionalOption(@Param('id', ParseIntPipe) id: number): Promise<AdditionalOption> {
     return this.additionalOptionsService.deleteAdditionalOption(id);

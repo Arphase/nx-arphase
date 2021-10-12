@@ -1,7 +1,8 @@
 import { ApsCollectionFilterDto } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Category } from '@musicr/domain';
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
 import { CreateCategoryDto } from '../dto/create-category.dto';
 import { UpdateCategoryDto } from '../dto/update-category.dto';
@@ -21,16 +22,19 @@ export class CategoriesController {
     return this.categoriesService.getCategory(id);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Post()
   async createCategory(@Body() createCategoryDto: CreateCategoryDto): Promise<Category> {
     return this.categoriesService.createCategory(createCategoryDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   async updateCategory(@Body() updateCategoryDto: UpdateCategoryDto): Promise<Category> {
     return this.categoriesService.updateCategory(updateCategoryDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   async deteteCategory(@Param('id', ParseIntPipe) id: number): Promise<Category> {
     return this.categoriesService.deleteCategory(id);
