@@ -28,6 +28,8 @@ export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; en
   @Input() loadingReserve: boolean;
   @Input() reservationPreview: Reservation;
   @Input() queryParams: Record<string, string>;
+  lat = 25.131905;
+  lng = -99.932679;
   form = new FormGroup(
     {
       startDate: new FormControl(null, ApsValidators.required),

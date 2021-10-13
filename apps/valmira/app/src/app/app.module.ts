@@ -1,3 +1,4 @@
+import { AgmCoreModule } from '@agm/core';
 import { registerLocaleData } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import es from '@angular/common/locales/es';
@@ -53,6 +54,9 @@ const VALMIRA_CONFIGURATION_VALUE: ValmiraConfiguration = {
     StoreDevtoolsModule.instrument({
       name: 'Valmira',
       maxAge: 25,
+    }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAEwt8M5rjJSszdxRxkrkJBA5i48-m5Mps',
     }),
     NgxStripeModule.forRoot(environment.stripeKey),
     EffectsModule.forRoot([]),

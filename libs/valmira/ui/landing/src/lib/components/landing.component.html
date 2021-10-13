@@ -58,75 +58,10 @@
      nzSpan="24">¿Con quién te hospedas? <br> Encuentra el alojamiento ideal para ti y tus acompañantes.
   </p>
 </div>
-<div nz-row
-     nzGutter="16"
-     nzJustify="space-around"
-     class="mb-11">
-  <img nz-col
-       nzMd="12"
-       nzXs="24"
-       src="assets/img/pareja.svg">
-  <img nz-col
-       nzMd="12"
-       nzXs="24"
-       src="assets/img/familiar.svg">
-</div>
 
 <div nz-row
-     nzJustify="center"
-     class="md:mb-0 mb-11">
-  <img nz-col
-       nzSpan="3"
-       class="mobile-icon"
-       src="assets/img/hoja.svg"
-       loading="lazy">
-</div>
-<div nz-row
-     class="relative md:mb-48 mb-11">
-  <div nz-col
-       nzSpan="24">
-    <img src="assets/img/mountain001.svg"
-         class="w-full"
-         loading="lazy">
-    <h2 class="float">Salir para <i>regresar.</i></h2>
-  </div>
-  <div nz-col
-       [nzPull]="16"
-       nzSpan="22"
-       class="circle md:pt-9 pt-0">
-    <p class="md:text-base text-xs mb-6">
-      Aquello que nos enamoró <br>
-      también está a nuestro alrededor, <br>
-      posibilidades y en nuestro día a día. <br>
-      Pero necesitamos salir para regresar. `
-    </p>
-    <a class="md:text-base text-xs"
-       [routerLink]="['manifest']">CONOCE NUESTRO MANIFIESTO</a>
-  </div>
-</div>
-<div nz-row>
-  <div nz-col
-       nzSpan="24"
-       class="mobile-icon flex justify-center md:mb-0 mb-11">
-    <img class="w-16"
-         src="assets/img/pines.svg"
-         loading="lazy">
-  </div>
-</div>
-<div nz-row
-     nzJustify="space-around">
-  <h3 nz-col
-      nzSpan="24"
-      class="md:text-4xl text-2xl md:mb-0 mb-11">Así se vive Valmira:</h3>
-  <img nz-col
-       nzSpan="3"
-       nzPush="6"
-       class="pine"
-       src="assets/img/pines.svg"
-       loading="lazy">
-</div>
-<div nz-row
-     nzGutter="16">
+     nzGutter="16"
+     class="mb-11">
   <ng-container *ngFor="let place of places; index as index">
     <figure *ngIf="index % 6 === 0"
             nz-col
@@ -226,3 +161,59 @@
     </ng-container>
   </ng-container>
 </div>
+
+<div nz-row
+     nzJustify="center"
+     class="md:mb-0 mb-11">
+  <img nz-col
+       nzSpan="3"
+       class="mobile-icon"
+       src="assets/img/hoja.svg"
+       loading="lazy">
+</div>
+<div nz-row
+     class="relative md:mb-48 mb-11 text-center">
+  <div nz-col
+       nzSpan="24">
+    <img src="assets/img/mountain001.svg"
+         class="w-full"
+         loading="lazy">
+    <h2 class="float">Salir para <i>regresar.</i></h2>
+  </div>
+  <div nz-col
+       [nzPull]="16"
+       nzSpan="22"
+       class="circle md:pt-9 pt-0">
+    <p class="md:text-base text-xs mb-6">
+      Aquello que nos enamoró <br>
+      también está a nuestro alrededor, <br>
+      posibilidades y en nuestro día a día. <br>
+      Pero necesitamos salir para regresar. `
+    </p>
+    <a class="md:text-base text-xs"
+       [routerLink]="['manifest']">CONOCE NUESTRO MANIFIESTO</a>
+  </div>
+</div>
+<div nz-row>
+  <div nz-col
+       nzSpan="24"
+       class="mobile-icon flex justify-center md:mb-0 mb-11">
+    <img class="w-16"
+         src="assets/img/pines.svg"
+         loading="lazy">
+  </div>
+</div>
+
+<!-- TODO: Check if this is still needed -->
+<!-- <div nz-row
+     nzJustify="space-around">
+  <h3 nz-col
+      nzSpan="24"
+      class="md:text-4xl text-2xl md:mb-0 mb-11">Así se vive Valmira:</h3>
+  <img nz-col
+       nzSpan="3"
+       nzPush="6"
+       class="pine"
+       src="assets/img/pines.svg"
+       loading="lazy">
+</div> -->
