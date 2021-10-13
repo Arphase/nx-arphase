@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Address } from '@arphase/common';
 import { createAddressForm } from '@arphase/ui/addresses';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
-import { SocialEvent, SocialEventPlaces } from '@musicr/domain';
+import { SocialEvent, socialEventLabels, SocialEventPlaces } from '@musicr/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 @Component({
@@ -15,31 +15,31 @@ import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 export class SocialEventFormComponent extends ApsFormComponent<SocialEvent> implements OnChanges {
   eventPlaceOptions: NzSelectOptionInterface[] = [
     {
-      label: 'Cochera',
+      label: socialEventLabels[SocialEventPlaces.garage],
       value: SocialEventPlaces[SocialEventPlaces.garage],
     },
     {
-      label: 'Interior',
+      label: socialEventLabels[SocialEventPlaces.inside],
       value: SocialEventPlaces[SocialEventPlaces.inside],
     },
     {
-      label: 'Jardín',
+      label: socialEventLabels[SocialEventPlaces.garden],
       value: SocialEventPlaces[SocialEventPlaces.garden],
     },
     {
-      label: 'Oficina',
+      label: socialEventLabels[SocialEventPlaces.office],
       value: SocialEventPlaces[SocialEventPlaces.office],
     },
     {
-      label: 'Patio',
+      label: socialEventLabels[SocialEventPlaces.backyard],
       value: SocialEventPlaces[SocialEventPlaces.backyard],
     },
     {
-      label: 'Salón',
+      label: socialEventLabels[SocialEventPlaces.eventHall],
       value: SocialEventPlaces[SocialEventPlaces.eventHall],
     },
     {
-      label: 'Terraza',
+      label: socialEventLabels[SocialEventPlaces.terrace],
       value: SocialEventPlaces[SocialEventPlaces.terrace],
     },
   ];

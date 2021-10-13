@@ -23,3 +23,13 @@ export enum SocialEventPlaces {
   inside = 6,
   eventHall = 7,
 }
+
+export const socialEventLabels: Record<SocialEventPlaces, string> = {
+  [SocialEventPlaces.backyard]: 'Patio',
+  [SocialEventPlaces.garage]: 'Cochera',
+  [SocialEventPlaces.garden]: 'Jardín',
+  [SocialEventPlaces.terrace]: 'Terraza',
+  [SocialEventPlaces.office]: 'Oficina',
+  [SocialEventPlaces.inside]: 'Interior',
+  [SocialEventPlaces.eventHall]: 'Salón',
+};
