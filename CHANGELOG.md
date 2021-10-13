@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.7.0](https://github.com/Arphase/nx-arphase/compare/v3.6.2...v3.7.0) (2021-10-13)
+
+
+### Features
+
+* **valmira/place-detail:** add google map with cabin location ([4a65b00](https://github.com/Arphase/nx-arphase/commit/4a65b0040125d3dd1ad75adef6554e7ef054e72b))
+* **valmira/place-search:** save dates search on query-params to populate form in search detail ([17717ac](https://github.com/Arphase/nx-arphase/commit/17717ac92d9ae25a06620f1e89739ea4aea0cd61))
+
+
+### Bug Fixes
+
+* **musicr/product-detail:** show productComponents and description ([3cef82b](https://github.com/Arphase/nx-arphase/commit/3cef82b8ba102e2cbcb59b226a3fb1fc4af8e255))
+
 ### [3.6.2](https://github.com/Arphase/nx-arphase/compare/v3.6.1...v3.6.2) (2021-10-12)
 
 
