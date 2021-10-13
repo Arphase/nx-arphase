@@ -81,24 +81,16 @@ export class UserEntity extends BaseEntity implements User {
   @Column({ nullable: true })
   companyId: number;
 
-  @OneToMany(() => GuaranteeEntity, guarantee => guarantee.user, {
-    cascade: true,
-  })
+  @OneToMany(() => GuaranteeEntity, guarantee => guarantee.user, { cascade: true })
   guarantees: Guarantee[];
 
-  @OneToMany(() => ResetPasswordEntity, resetPassword => resetPassword.user, {
-    cascade: true,
-  })
+  @OneToMany(() => ResetPasswordEntity, resetPassword => resetPassword.user, { cascade: true })
   resetPassword: ResetPassword[];
 
-  @OneToMany(() => VehicleEntity, vehicle => vehicle.user, {
-    cascade: true,
-  })
+  @OneToMany(() => VehicleEntity, vehicle => vehicle.user, { cascade: true })
   vehicles: Vehicle[];
 
-  @OneToMany(() => RevisionRequestEntity, revisionRequest => revisionRequest.user, {
-    cascade: true,
-  })
+  @OneToMany(() => RevisionRequestEntity, revisionRequest => revisionRequest.user, { cascade: true })
   revisionRequests: RevisionRequest[];
 
   async validatePassword(password: string): Promise<boolean> {

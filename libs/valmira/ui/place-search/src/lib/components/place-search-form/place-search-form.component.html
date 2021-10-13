@@ -10,6 +10,7 @@
       <nz-form-control apsAutoError>
         <nz-date-picker ngDefaultControl
                         class="h-10"
+                        [nzDisabledDate]="disableStartDate"
                         nzPlaceHolder="FECHA DE LLEGADA"
                         formControlName="startDate"
                         [nzShowToday]="false"></nz-date-picker>
@@ -21,8 +22,10 @@
        nzMd="4">
     <nz-form-item>
       <nz-form-control apsAutoError>
-        <nz-date-picker ngDefaultControl
+        <nz-date-picker #endDateCalendar
+                        ngDefaultControl
                         class="h-10"
+                        [nzDisabledDate]="disableEndDate"
                         nzPlaceHolder="FECHA DE SALIDA"
                         formControlName="endDate"
                         [nzShowToday]="false"></nz-date-picker>
@@ -66,16 +69,6 @@
     </button>
   </div>
 </form>
-
-<div nz-row>
-  <div nz-col
-       nzSpan="24">
-    <nz-alert *ngIf="showDatesError"
-              nzType="error"
-              nzMessage="La fecha inicio no puede ser mayor a la fecha fin"
-              nzShowIcon></nz-alert>
-  </div>
-</div>
 
 <div nz-row>
   <div nz-col

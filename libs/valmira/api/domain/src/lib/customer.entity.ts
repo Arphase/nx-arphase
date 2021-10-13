@@ -20,6 +20,9 @@ export class CustomerEntity extends BaseEntity implements Customer {
   @Column()
   phone: string;
 
-  @OneToMany(() => ReservationEntity, reservation => reservation.customer)
+  @OneToMany(() => ReservationEntity, reservation => reservation.customer, {
+    cascade: true,
+    onUpdate: 'CASCADE',
+  })
   reservations?: Reservation[];
 }

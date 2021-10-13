@@ -5,6 +5,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   AdditionalProductEntity,
+  CustomerEntity,
   PlaceEntity,
   PromocodeEntity,
   ReservationAdditionalProductEntity,
@@ -38,6 +39,7 @@ export class ReservationsService {
     @InjectRepository(AdditionalProductEntity) private additionalProductRepository: Repository<AdditionalProductEntity>,
     @InjectRepository(ReservationAdditionalProductEntity)
     private reservationAdditionalProductRepository: Repository<ReservationAdditionalProductEntity>,
+    @InjectRepository(CustomerEntity) private customerRepository: Repository<CustomerEntity>,
     @InjectStripe() private readonly stripeClient: Stripe,
     private placesService: PlacesService,
     private promocodeService: PromocodesService
@@ -170,6 +172,12 @@ export class ReservationsService {
       }
       await this.sendConfirmationEmail(reservation);
       updatedReservation.status = ReservationStatus.paid;
+    }
+
+    if (updateReservationDto.customer) {
+      const customer = this.customerRepository.create(updateReservationDto.customer);
+      await customer.save();
+      updatedReservation.customer = customer;
     }
 
     await updatedReservation.save();

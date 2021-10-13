@@ -77,7 +77,7 @@ export class ReservationEntity extends BaseEntity implements Reservation {
   @Column({ nullable: true })
   customerId?: number;
 
-  @ManyToOne(() => CustomerEntity, customer => customer.reservations, { cascade: true, eager: true })
+  @ManyToOne(() => CustomerEntity, customer => customer.reservations, { eager: true })
   @JoinColumn({ name: 'customerId' })
   customer: Customer;
 

@@ -44,7 +44,8 @@
          class="place my-12 md:my-32 flex"
          [ngClass]="{ 'justify-start': i%3 === 2, 'justify-center': i%3 === 1, 'justify-end': i%3 === 0 }">
       <div class="flex-col"
-           [routerLink]="['..', 'place', item.id]">
+           [routerLink]="['..', 'place', item.id]"
+           queryParamsHandling="merge">
         <div *ngIf="i%3 === 1">
           <div class="flex justify-start">
             <img class="logo mb-24 -ml-32"

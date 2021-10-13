@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from '@valmira/api/auth';
 import {
   AdditionalProductEntity,
+  CustomerEntity,
   PlaceEntity,
   PromocodeEntity,
   ReservationAdditionalProductEntity,
@@ -21,6 +22,7 @@ import { ReservationsService } from './services/reservations.service';
     PromocodesModule,
     TypeOrmModule.forFeature([
       AdditionalProductEntity,
+      CustomerEntity,
       PromocodeEntity,
       PlaceEntity,
       ReservationEntity,

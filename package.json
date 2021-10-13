@@ -93,6 +93,7 @@
     "class-transformer": "^0.3.1",
     "class-validator": "^0.13.1",
     "core-js": "^3.18.2",
+    "date-fns": "^2.25.0",
     "dayjs": "^1.10.7",
     "domino": "^2.1.6",
     "file-saver": "^2.0.5",

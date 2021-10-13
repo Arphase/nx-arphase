@@ -62,23 +62,15 @@ export class CompanyEntity extends BaseEntity implements Company {
   @Column()
   groupId: number;
 
-  @OneToMany(() => UserEntity, user => user.company, {
-    cascade: true,
-  })
+  @OneToMany(() => UserEntity, user => user.company, { cascade: true })
   users: User[];
 
-  @OneToMany(() => GuaranteeEntity, guarantee => guarantee.company, {
-    cascade: true,
-  })
+  @OneToMany(() => GuaranteeEntity, guarantee => guarantee.company, { cascade: true })
   guarantees: Guarantee[];
 
-  @OneToMany(() => VehicleEntity, vehicle => vehicle.company, {
-    cascade: true,
-  })
+  @OneToMany(() => VehicleEntity, vehicle => vehicle.company, { cascade: true })
   vehicles: Vehicle[];
 
-  @OneToMany(() => RevisionRequestEntity, revisionRequest => revisionRequest.company, {
-    cascade: true,
-  })
+  @OneToMany(() => RevisionRequestEntity, revisionRequest => revisionRequest.company, { cascade: true })
   revisionRequests: RevisionRequest[];
 }

@@ -37,9 +37,7 @@ export class GroupEntity extends BaseEntity implements Group {
   @Column()
   phone: string;
 
-  @OneToMany(() => CompanyEntity, company => company.group, {
-    cascade: true,
-  })
+  @OneToMany(() => CompanyEntity, company => company.group, { cascade: true })
   companies: Company[];
 
   @ManyToMany(() => ProductEntity)

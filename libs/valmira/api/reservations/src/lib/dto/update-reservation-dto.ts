@@ -29,11 +29,7 @@ export class UpdateReservationDto extends PartialType(CreateReservationDto) {
   additionalProducts: ReservationAdditionalProduct[];
 }
 
-export class UpdateCustomerDto extends PartialType(CreateCustomerDto) {
-  @IsOptional()
-  @IsNumber()
-  id: number;
-}
+export class UpdateCustomerDto extends PartialType(CreateCustomerDto) {}
 
 export class UpdateReservationAdditionalProductDto {
   @IsOptional()

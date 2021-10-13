@@ -4,7 +4,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlaceEntity, ReservationEntity } from '@valmira/api/domain';
 import { Place, PlaceCategories, PlaceCategorySummary } from '@valmira/domain';
-import { startOfDay } from 'date-fns';
+import { endOfDay, startOfDay } from 'date-fns';
 import { Repository, SelectQueryBuilder } from 'typeorm';
 
 import { CreatePlaceDto } from '../dto/create-place.dto';
@@ -50,18 +50,14 @@ export class PlacesService {
 
     if (startDate && endDate && dateType !== 'createdAt') {
       const reservationQuery = this.reservationRepository.createQueryBuilder('reservation');
-      filterCollectionDates(
-        'reservation',
-        reservationQuery,
-        { ...filterDto, dateType: 'startDate' },
-        { logicalOperator: 'or' }
-      );
-      filterCollectionDates(
-        'reservation',
-        reservationQuery,
-        { ...filterDto, dateType: 'endDate' },
-        { logicalOperator: 'or' }
-      );
+      reservationQuery.orWhere(`(reservation.startDate >= :startDate1 and reservation.startDate <= :endDate1)`, {
+        startDate1: startOfDay(new Date(startDate)),
+        endDate1: startOfDay(new Date(endDate)),
+      });
+      reservationQuery.orWhere(`(reservation.endDate >= :startDate and reservation.endDate <= :endDate)`, {
+        startDate: endOfDay(new Date(startDate)).toISOString(),
+        endDate: endOfDay(new Date(endDate)).toISOString(),
+      });
       const reservations = await reservationQuery.getMany();
       const excludedPlacesIds = reservations.map(reservation => reservation.placeId);
       if (excludedPlacesIds.length) {
