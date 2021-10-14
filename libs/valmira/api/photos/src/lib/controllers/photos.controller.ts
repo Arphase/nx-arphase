@@ -1,4 +1,14 @@
-import { Controller, Delete, Param, ParseIntPipe, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Param,
+  ParseIntPipe,
+  Post,
+  UploadedFile,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Photo } from '@valmira/domain';
 import { Express } from 'express';
@@ -7,6 +17,7 @@ import { Multer } from 'multer';
 import { PhotosService } from '../services/photos.service';
 
 @Controller('photos')
+@UseGuards(AuthGuard('jwt'))
 export class PhotosController {
   constructor(private photosService: PhotosService) {}
 

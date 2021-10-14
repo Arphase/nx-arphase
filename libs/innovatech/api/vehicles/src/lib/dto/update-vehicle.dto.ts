@@ -10,7 +10,7 @@ export class UpdateVehicleDto extends PartialType(CreateVehicleDto) {
   id: number;
 
   @IsOptional()
-  @Transform(({ obj, key }) => VehicleStatus[obj[key]])
+  @Transform((_, obj) => VehicleStatus[obj['status']])
   @IsEnum(VehicleStatus)
   status: VehicleStatus;
 }

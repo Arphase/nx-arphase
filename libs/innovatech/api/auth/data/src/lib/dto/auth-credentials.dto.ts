@@ -13,20 +13,20 @@ export class AuthCredentialsDto {
 
 export class SignUpCredentialsDto {
   @IsString()
-  @Trim()
+  @Trim('firstName')
   firstName: string;
 
   @IsOptional()
   @IsString()
-  @Trim()
+  @Trim('secondName')
   secondName?: string;
 
   @IsString()
-  @Trim()
+  @Trim('lastName')
   lastName: string;
 
   @IsString()
-  @Trim()
+  @Trim('secondLastName')
   secondLastName: string;
 
   @IsEmail()

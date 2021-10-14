@@ -37,7 +37,7 @@ jobs:
         run: mv ./apps/musicr/api/Procfile .
 
       - name: Build browser app
-        run: export NODE_ENV=production && npx nx build musicr-store --c=stage
+        run: export NODE_ENV=production && npx nx build musicr-store --prod
 
       - name: Build server app
         run: npx ng run musicr-store:server:production

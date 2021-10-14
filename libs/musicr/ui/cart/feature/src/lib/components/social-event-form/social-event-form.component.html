@@ -36,7 +36,7 @@
       <nz-form-item>
         <nz-form-label nzRequired>Lugar del evento</nz-form-label>
         <nz-form-control apsAutoError>
-          <nz-select placeholder="Seleccionar"
+          <nz-select [nzPlaceHolder]="'Seleccionar'"
                      formControlName="eventPlace"
                      [nzOptions]="eventPlaceOptions"></nz-select>
         </nz-form-control>
@@ -97,7 +97,8 @@
     </div>
   </div>
 
-  <aps-address-form [form]="addressForm"></aps-address-form>
+  <aps-address-form [form]="addressForm"
+                    [placeholders]="placeHolders"></aps-address-form>
 
   <div nz-row>
     <div nz-col
@@ -114,7 +115,9 @@
     <div nz-col
          nzSpan="24"
          class="mt-5">
-      <button type="submit"
+      <button nz-button
+              [nzLoading]="loading"
+              type="submit"
               class="btn-black">CONTIUNAR</button>
     </div>
   </div>

@@ -8,11 +8,11 @@ import { IsArray, IsEmail, IsEnum, IsOptional, IsString, ValidateNested } from '
 
 export class CreateGroupDto {
   @IsString()
-  @Trim()
+  @Trim('name')
   name: string;
 
   @IsString()
-  @Trim()
+  @Trim('contact')
   contact: string;
 
   @IsEmail()
@@ -20,7 +20,7 @@ export class CreateGroupDto {
   email: string;
 
   @IsString()
-  @Trim()
+  @Trim('phone')
   phone: string;
 
   @IsArray()
@@ -31,7 +31,7 @@ export class CreateGroupDto {
 
 export class CreateCompanyDto {
   @IsString()
-  @Trim()
+  @Trim('businessName')
   businessName: string;
 
   @IsString()
@@ -39,7 +39,7 @@ export class CreateCompanyDto {
   rfc: string;
 
   @IsString()
-  @Trim()
+  @Trim('contact')
   contact: string;
 
   @IsEmail()
@@ -47,7 +47,7 @@ export class CreateCompanyDto {
   email: string;
 
   @IsString()
-  @Trim()
+  @Trim('phone')
   phone: string;
 
   @ValidateNested()
@@ -62,20 +62,20 @@ export class CreateCompanyDto {
 
 export class CreateUserDto {
   @IsString()
-  @Trim()
+  @Trim('firstName')
   firstName: string;
 
   @IsOptional()
   @IsString()
-  @Trim()
+  @Trim('secondName')
   secondName: string;
 
   @IsString()
-  @Trim()
+  @Trim('lastName')
   lastName: string;
 
   @IsString()
-  @Trim()
+  @Trim('secondLastName')
   secondLastName: string;
 
   @IsEmail()
@@ -83,11 +83,11 @@ export class CreateUserDto {
   email: string;
 
   @IsString()
-  @Trim()
+  @Trim('phone')
   phone: string;
 
   @IsOptional()
-  @Transform(({ obj, key }) => UserRoles[obj[key]])
+  @Transform((_, obj) => UserRoles[obj['role']])
   @IsEnum(UserRoles)
-  role: UserRoles | string;
+  role: UserRoles;
 }

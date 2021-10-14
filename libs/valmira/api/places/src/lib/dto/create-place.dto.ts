@@ -27,7 +27,7 @@ export class CreatePlaceDto {
   @IsNumber()
   beds: number;
 
-  @Transform(({ obj, key }) => PlaceCategories[obj[key]])
+  @Transform((_, obj) => PlaceCategories[obj['category']])
   @IsEnum(PlaceCategories)
   category: PlaceCategories;
 

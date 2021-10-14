@@ -1,13 +1,5 @@
 import { Guarantee, PaymentOrder } from '@innovatech/common/domain';
-import {
-  BaseEntity,
-  Column,
-  CreateDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { BaseEntity, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { GuaranteeEntity } from './guarantee.entity';
 
@@ -22,9 +14,6 @@ export class PaymentOrderEntity extends BaseEntity implements PaymentOrder {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => GuaranteeEntity, guarantee => guarantee.paymentOrder, {
-    cascade: true,
-    eager: true,
-  })
+  @OneToMany(() => GuaranteeEntity, guarantee => guarantee.paymentOrder, { cascade: true, eager: true })
   guarantees: Guarantee[];
 }

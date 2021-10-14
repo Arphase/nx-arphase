@@ -1,10 +1,12 @@
 import { Trim } from '@arphase/api/core';
-import { Type } from 'class-transformer';
+import { SocialEventPlaces } from '@musicr/domain';
+import { Transform, Type } from 'class-transformer';
 import {
   IsArray,
   IsBoolean,
   IsDate,
   IsEmail,
+  IsEnum,
   IsNumber,
   IsNumberString,
   IsOptional,
@@ -13,6 +15,10 @@ import {
 } from 'class-validator';
 
 export class CreateCustomerDto {
+  @IsOptional()
+  @IsNumber()
+  id: number;
+
   @IsString()
   firstName: string;
 
@@ -29,36 +35,36 @@ export class CreateCustomerDto {
 
 export class CreateAddressDto {
   @IsNumberString()
-  @Trim()
+  @Trim('zipcode')
   zipcode: string;
 
   @IsString()
-  @Trim()
+  @Trim('country')
   country: string;
 
   @IsString()
-  @Trim()
+  @Trim('state')
   state: string;
 
   @IsString()
-  @Trim()
+  @Trim('city')
   city: string;
 
   @IsString()
-  @Trim()
+  @Trim('suburb')
   suburb: string;
 
   @IsString()
-  @Trim()
+  @Trim('street')
   street: string;
 
   @IsString()
-  @Trim()
+  @Trim('externalNumber')
   externalNumber: string;
 
   @IsOptional()
   @IsString()
-  @Trim()
+  @Trim('internalNumber')
   internalNumber: string;
 }
 
@@ -82,10 +88,12 @@ export class CreateSocialEventDto {
   @Type(() => CreateAddressDto)
   address: CreateAddressDto;
 
-  @IsString()
-  eventPlace: string;
+  @Transform((_, obj) => SocialEventPlaces[obj['eventPlace']])
+  @IsEnum(SocialEventPlaces)
+  eventPlace: SocialEventPlaces;
 
   @IsString()
+  @IsOptional()
   notes: string;
 
   @IsBoolean()

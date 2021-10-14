@@ -13,8 +13,12 @@
     </div>
     <div nz-col
          nzSpan="14">
-      <img alt="Music Revolution logo"
-           src="assets/img/Logo_Mobile_1.svg" />
+      <a [routerLink]="['.']">
+        <img class="h-4"
+             alt="Music Revolution logo"
+             src="assets/img/Logo_Mobile_1.svg"
+             loading="lazy" />
+      </a>
     </div>
     <div nz-col
          nzSpan="5">
@@ -51,9 +55,10 @@
        class="p-4 md:flex hidden">
     <div nz-col
          nzSpan="5">
-      <a href="home">
+      <a [routerLink]="['.']">
         <img alt="Music Revolution logo"
-             src="assets/img/Logo_Mobile_1.svg" />
+             src="assets/img/Logo_Mobile_1.svg"
+             loading="lazy" />
       </a>
     </div>
     <div nz-col
@@ -62,7 +67,10 @@
           nzMode="horizontal">
         <li *ngFor="let category of categories"
             nz-submenu
-            [nzTitle]="category.name">
+            [nzTitle]="title">
+          <ng-template #title>
+            <span class="font-bold">{{ category.name | uppercase }}</span>
+          </ng-template>
           <ul>
             <li *ngFor="let subcategory of category.subcategories"
                 nz-menu-item
@@ -113,7 +121,7 @@
       <li *ngFor="let category of categories"
           nz-submenu
           class="mobile-submenu"
-          [nzTitle]="category.name"
+          [nzTitle]="category.name | uppercase"
           (nzOpenChange)="openHandler(category.id)"
           [(nzOpen)]="openMap[category.id.toString()]">
         <ul>
@@ -134,17 +142,20 @@
       <div nz-col
            nzSpan="24">
         <a class="text-xs"
-           [routerLink]="['about-us']">SOBRE NOSOTROS</a>
+           [routerLink]="['about-us']"
+           (click)="closeMenu()">SOBRE NOSOTROS</a>
       </div>
       <div nz-col
            nzSpan="24">
         <a class="text-xs"
-           [routerLink]="['frequent-questions']">PREGUNTAS FRECUENTES</a>
+           [routerLink]="['frequent-questions']"
+           (click)="closeMenu()">PREGUNTAS FRECUENTES</a>
       </div>
       <div nz-col
            nzSpan="24">
         <a class="text-xs"
-           [routerLink]="['terms-and-conditions']">TÉRMINOS Y CONDICIONES</a>
+           [routerLink]="['terms-and-conditions']"
+           (click)="closeMenu()">TÉRMINOS Y CONDICIONES</a>
       </div>
     </div>
 
@@ -153,7 +164,8 @@
          class="icons mt-7">
       <div nz-col
            nzSpan="2">
-        <a href="http://www.facebook.com/MusicRevolution/">
+        <a href="http://www.facebook.com/MusicRevolution/"
+           target="_blank">
           <i nz-icon
              nzType="facebook"
              nzTheme="outline"></i>
@@ -161,7 +173,8 @@
       </div>
       <div nz-col
            nzSpan="2">
-        <a href="https://www.instagram.com/music.rev/">
+        <a href="https://www.instagram.com/music.rev/"
+           target="_blank">
           <i nz-icon
              nzType="instagram"
              nzTheme="outline"></i>
@@ -169,7 +182,8 @@
       </div>
       <div nz-col
            nzSpan="2">
-        <a href="https://wa.me/5218115337477?text=Hola%20quiero%20cotizar">
+        <a href="https://wa.me/5218115337477?text=Hola%20quiero%20cotizar"
+           target="_blank">
           <i nz-icon
              nzType="whats-app"
              nzTheme="outline"></i>
@@ -211,7 +225,8 @@
   <div>
     <img alt="Music Revolution logo"
          src="assets/img/Isotipo_2.svg"
-         class="mobile-menu-logo" />
+         class="mobile-menu-logo"
+         loading="lazy" />
   </div>
 </ng-template>
 

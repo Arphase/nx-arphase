@@ -58,23 +58,26 @@
     <tr *ngFor="let item of table.data"
         nz-row>
       <td nz-col
+          nzXs="8"
+          nzMd="2">{{ item?.id }}</td>
+      <td nz-col
           nzXs="0"
           nzMd="4">{{ item?.customer?.firstName }} {{ item?.customer?.lastName }}</td>
       <td nz-col
-          nzXs="16"
+          nzXs="8"
           nzMd="4">{{ item?.socialEvent?.name | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzMd="4">{{ item?.socialEvent?.startDate | date: 'dd/MM/yy' | empty }}</td>
+          nzMd="4">{{ item?.socialEvent?.date | date: 'dd/MM/yy' | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="4">{{ item?.createdAt | date: 'dd/MM/yy' | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzMd="4">{{ item?.total | currency }}</td>
+          nzMd="3">{{ item?.total | currency }}</td>
       <td nz-col
           nzXs="8"
-          nzMd="4"
+          nzMd="3"
           class="flex-end">
         <button nz-button
                 type="button"

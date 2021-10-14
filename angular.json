@@ -569,7 +569,12 @@
             "assets": [
               "apps/innovatech/app/src/favicon.ico",
               "apps/innovatech/app/src/assets",
-              "apps/innovatech/app/src/manifest.webmanifest"
+              "apps/innovatech/app/src/manifest.webmanifest",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "apps/innovatech/app/src/styles.less",
@@ -1365,7 +1370,15 @@
             "polyfills": "apps/musicr/admin/src/polyfills.ts",
             "tsConfig": "apps/musicr/admin/tsconfig.app.json",
             "inlineStyleLanguage": "less",
-            "assets": ["apps/musicr/admin/src/favicon.ico", "apps/musicr/admin/src/assets"],
+            "assets": [
+              "apps/musicr/admin/src/favicon.ico",
+              "apps/musicr/admin/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
             "styles": ["apps/musicr/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
@@ -1482,13 +1495,7 @@
             "production": {
               "optimization": true,
               "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/musicr/api/src/environments/environment.ts",
-                  "with": "apps/musicr/api/src/environments/environment.prod.ts"
-                }
-              ]
+              "inspect": false
             }
           }
         },
@@ -1596,6 +1603,28 @@
           "outputs": ["coverage/libs/musicr/api/contact"],
           "options": {
             "jestConfig": "libs/musicr/api/contact/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "musicr-api-customers": {
+      "root": "libs/musicr/api/customers",
+      "sourceRoot": "libs/musicr/api/customers/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/customers/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/customers"],
+          "options": {
+            "jestConfig": "libs/musicr/api/customers/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -1764,25 +1793,19 @@
             "polyfills": "apps/musicr/store/src/polyfills.ts",
             "tsConfig": "apps/musicr/store/tsconfig.app.json",
             "inlineStyleLanguage": "less",
-            "assets": ["apps/musicr/store/src/favicon.ico", "apps/musicr/store/src/assets"],
+            "assets": [
+              "apps/musicr/store/src/favicon.ico",
+              "apps/musicr/store/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
             "styles": ["apps/musicr/store/src/styles.less"]
           },
           "configurations": {
             "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            },
-            "stage": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/musicr/store/src/environments/environment.ts",
-                  "with": "apps/musicr/store/src/environments/environment.stage.ts"
-                }
-              ],
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -1840,14 +1863,11 @@
             "main": "apps/musicr/store/server.ts",
             "tsConfig": "apps/musicr/store/tsconfig.server.json",
             "externalDependencies": [
-              "@nestjs/common",
-              "@nestjs/core",
               "@nestjs/microservices",
               "@nestjs/microservices/microservices-module",
               "@nestjs/websockets",
               "@nestjs/websockets/socket-module",
               "cache-manager",
-              "class-transformer/storage",
               "aws-sdk",
               "pg",
               "pg-native",
@@ -1869,31 +1889,8 @@
             ]
           },
           "configurations": {
-            "stage": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "apps/musicr/store/src/environments/environment.ts",
-                  "with": "apps/musicr/store/src/environments/environment.stage.ts"
-                },
-                {
-                  "replace": "apps/musicr/api/src/environments/environment.ts",
-                  "with": "apps/musicr/api/src/environments/environment.prod.ts"
-                }
-              ]
-            },
             "production": {
               "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "apps/musicr/store/src/environments/environment.ts",
-                  "with": "apps/musicr/store/src/environments/environment.prod.ts"
-                },
-                {
-                  "replace": "apps/musicr/api/src/environments/environment.ts",
-                  "with": "apps/musicr/api/src/environments/environment.prod.ts"
-                }
-              ],
               "sourceMap": false,
               "optimization": false
             }
@@ -2507,7 +2504,15 @@
             "main": "apps/valmira/admin/src/main.ts",
             "polyfills": "apps/valmira/admin/src/polyfills.ts",
             "tsConfig": "apps/valmira/admin/tsconfig.app.json",
-            "assets": ["apps/valmira/admin/src/favicon.ico", "apps/valmira/admin/src/assets"],
+            "assets": [
+              "apps/valmira/admin/src/favicon.ico",
+              "apps/valmira/admin/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
             "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
@@ -2640,13 +2645,7 @@
             "production": {
               "optimization": true,
               "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/valmira/api/src/environments/environment.ts",
-                  "with": "apps/valmira/api/src/environments/environment.prod.ts"
-                }
-              ]
+              "inspect": false
             }
           }
         },
@@ -2857,24 +2856,18 @@
             "polyfills": "apps/valmira/app/src/polyfills.ts",
             "tsConfig": "apps/valmira/app/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/valmira/app/src/favicon.ico", "apps/valmira/app/src/assets"],
+            "assets": [
+              "apps/valmira/app/src/favicon.ico",
+              "apps/valmira/app/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
             "styles": ["apps/valmira/app/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
-            "stage": {
-              "sourceMap": {
-                "scripts": true,
-                "styles": true,
-                "vendor": true,
-                "hidden": false
-              },
-              "optimization": true,
-              "outputHashing": "all",
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
-            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -2951,14 +2944,11 @@
             "main": "apps/valmira/app/server.ts",
             "tsConfig": "apps/valmira/app/tsconfig.server.json",
             "externalDependencies": [
-              "@nestjs/common",
-              "@nestjs/core",
               "@nestjs/microservices",
               "@nestjs/microservices/microservices-module",
               "@nestjs/websockets",
               "@nestjs/websockets/socket-module",
               "cache-manager",
-              "class-transformer/storage",
               "aws-sdk",
               "pg",
               "pg-native",
@@ -2980,31 +2970,8 @@
             ]
           },
           "configurations": {
-            "stage": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "apps/valmira/app/src/environments/environment.ts",
-                  "with": "apps/valmira/app/src/environments/environment.stage.ts"
-                },
-                {
-                  "replace": "apps/valmira/api/src/environments/environment.ts",
-                  "with": "apps/valmira/api/src/environments/environment.prod.ts"
-                }
-              ]
-            },
             "production": {
               "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "apps/valmira/app/src/environments/environment.ts",
-                  "with": "apps/valmira/app/src/environments/environment.prod.ts"
-                },
-                {
-                  "replace": "apps/valmira/api/src/environments/environment.ts",
-                  "with": "apps/valmira/api/src/environments/environment.prod.ts"
-                }
-              ],
               "sourceMap": false,
               "optimization": false
             }

@@ -1,6 +1,7 @@
 import { ApsCollectionResponse } from '@arphase/common';
 import { Subcategory } from '@musicr/domain';
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
 import { CreateSubcategoryDto } from '../dto/create-subcategory.dto';
 import { GetSubcategoriesDto } from '../dto/get-subcategories.dto';
@@ -21,16 +22,19 @@ export class SubcategoriesController {
     return this.subcategoriesService.getSubCategory(id);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Post()
   async createSubcategory(@Body() createCategoryDto: CreateSubcategoryDto): Promise<Subcategory> {
     return this.subcategoriesService.createSubcategory(createCategoryDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   async updateSubcategory(@Body() updateSubcategoryDto: UpdateSubcategoryDto): Promise<Subcategory> {
     return this.subcategoriesService.updateSubcategory(updateSubcategoryDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   async deleteSubcategory(@Param('id', ParseIntPipe) id: number): Promise<Subcategory> {
     return this.subcategoriesService.deleteSubcategory(id);

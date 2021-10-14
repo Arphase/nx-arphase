@@ -17,7 +17,7 @@ export class UpdateRevisionRequestDto extends PartialType(CreateRevisionRequestD
   address: Address;
 
   @IsOptional()
-  @Transform(({ obj, key }) => RevisionRequestStatus[obj[key]])
+  @Transform((_, obj) => RevisionRequestStatus[obj['status']])
   @IsEnum(RevisionRequestStatus)
   status: RevisionRequestStatus;
 }

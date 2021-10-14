@@ -1,3 +1,4 @@
+import { CartService } from '@musicr/ui/cart/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { ConfirmationContainerComponent } from './confirmation-container.component';
@@ -6,6 +7,7 @@ describe('ConfirmationContainerComponent', () => {
   let spectator: Spectator<ConfirmationContainerComponent>;
   const createComponent = createComponentFactory({
     component: ConfirmationContainerComponent,
+    mocks: [CartService],
     shallow: true,
   });
 

@@ -12,11 +12,19 @@ import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 export class ReservationListComponent extends ApsListComponent<Reservation> {
   columns: ApsColumns = [
     {
+      label: 'Folio',
+      prop: 'reservation.id',
+      colSizes: {
+        xs: 16,
+        md: 3,
+        lg: 2,
+      },
+    },
+    {
       label: 'Alojamiento',
       prop: 'place.name',
       colSizes: {
-        xs: 16,
-        md: 8,
+        md: 4,
         lg: 4,
       },
     },
@@ -25,7 +33,7 @@ export class ReservationListComponent extends ApsListComponent<Reservation> {
       prop: 'reservation.startDate',
       colSizes: {
         md: 4,
-        lg: 4,
+        lg: 3,
       },
     },
     {
@@ -33,22 +41,22 @@ export class ReservationListComponent extends ApsListComponent<Reservation> {
       prop: 'reservation.endDate',
       colSizes: {
         md: 4,
-        lg: 4,
+        lg: 3,
       },
     },
     {
       label: 'Reserva',
       prop: 'reservation.createdAt',
       colSizes: {
-        lg: 4,
+        lg: 3,
       },
     },
     {
       label: 'Importe',
       prop: 'reservation.total',
       colSizes: {
-        md: 4,
-        lg: 4,
+        md: 5,
+        lg: 5,
       },
     },
     {

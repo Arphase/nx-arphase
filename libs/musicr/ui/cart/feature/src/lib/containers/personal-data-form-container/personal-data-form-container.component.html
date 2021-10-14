@@ -1,1 +1,5 @@
-<p>personal-data-form-container works!</p>
+<mrl-personal-data-form [item]="item$ | async"
+                        [loading]="loading$ | async"
+                        [currentCustomer]="currentCustomer$ | async"
+                        (emailChanges)="emailChanges($event)"
+                        (submitForm)="submit($event)"></mrl-personal-data-form>

@@ -100,7 +100,7 @@
                          [nzActive]="true">
         <div class="clearfix">
           <nz-upload nzListType="picture-card"
-                     nzAccept="image/png"
+                     [nzAccept]="allowedMimeType"
                      [(nzFileList)]="fileList"
                      [nzAction]="photosUrl"
                      [nzPreview]="handlePreview"
@@ -117,7 +117,8 @@
                     (nzOnCancel)="previewVisible = false">
             <ng-template #modalContent>
               <img [src]="previewImage"
-                   [ngStyle]="{ width: '100%' }" />
+                   [ngStyle]="{ width: '100%' }"
+                   loading="lazy" />
             </ng-template>
           </nz-modal>
         </div>

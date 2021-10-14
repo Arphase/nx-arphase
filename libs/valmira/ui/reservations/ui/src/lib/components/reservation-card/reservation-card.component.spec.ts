@@ -1,25 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { ReservationCardComponent } from './reservation-card.component';
 
 describe('ReservationCardComponent', () => {
-  let component: ReservationCardComponent;
-  let fixture: ComponentFixture<ReservationCardComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ReservationCardComponent ]
-    })
-    .compileComponents();
+  let spectator: Spectator<ReservationCardComponent>;
+  const createComponent = createComponentFactory({
+    component: ReservationCardComponent,
+    shallow: true,
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ReservationCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  beforeEach(() => (spectator = createComponent()));
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

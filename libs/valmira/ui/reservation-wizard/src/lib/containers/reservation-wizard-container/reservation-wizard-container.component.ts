@@ -32,9 +32,9 @@ export class ReservationWizardContainerComponent implements OnInit {
 
   constructor(
     private reservationCollectionService: ReservationCollectionService,
-    private route: ActivatedRoute,
     private store: Store,
-    private actions$: Actions
+    private actions$: Actions,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {

@@ -27,7 +27,7 @@ jobs:
       - uses: bahmutov/npm-install@v1
 
       - name: Build app
-        run: npx nx build valmira-app --c=prod
+        run: npx nx build valmira-admin --prod
 
       - name: Delete current app
         run: npx ts-node scripts/ui-delete-current

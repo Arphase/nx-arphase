@@ -1,5 +1,6 @@
 import { ApsCollectionResponse } from '@arphase/common';
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { AdditionalProduct } from '@valmira/domain';
 
 import { CreateAdditionalProductDto } from '../dto/create-additional-product.dto';
@@ -12,7 +13,9 @@ export class AdditionalProductsController {
   constructor(private additionalProductsService: AdditionalProductsService) {}
 
   @Get()
-  async getProducts(@Query() filterDto: GetAdditionalProductsDto): Promise<ApsCollectionResponse<AdditionalProduct>> {
+  async getAdditionalProducts(
+    @Query() filterDto: GetAdditionalProductsDto
+  ): Promise<ApsCollectionResponse<AdditionalProduct>> {
     return this.additionalProductsService.getAdditionalProducts(filterDto);
   }
 
@@ -21,6 +24,7 @@ export class AdditionalProductsController {
     return this.additionalProductsService.getAdditionalProduct(id);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Post()
   async createAdditionalProduct(
     @Body() createAdditionalProductDto: CreateAdditionalProductDto
@@ -28,6 +32,7 @@ export class AdditionalProductsController {
     return this.additionalProductsService.createAdditionalProduct(createAdditionalProductDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   async updateAdditionalProduct(
     @Body() updateAdditionalProductDto: UpdateAdditionalProductDto

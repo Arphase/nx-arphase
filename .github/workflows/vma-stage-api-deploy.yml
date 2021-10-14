@@ -1,4 +1,4 @@
-name: Valmimra Staging API Deploy
+name: Valmira Staging API Deploy
 
 env:
   NX_BRANCH: ${{ github.event.number }}
@@ -37,7 +37,7 @@ jobs:
         run: mv ./apps/valmira/api/Procfile .
 
       - name: Build browser app
-        run: export NODE_ENV=production && npx nx build valmira-app --c=stage
+        run: export NODE_ENV=production && npx nx build valmira-app --prod
 
       - name: Build server app
         run: npx ng run valmira-app:server:production

@@ -1,3 +1,4 @@
+import { AgmCoreModule } from '@agm/core';
 import { registerLocaleData } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import es from '@angular/common/locales/es';
@@ -23,14 +24,12 @@ import {
   ValmiraConfiguration,
 } from '@valmira/ui/core';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxStripeModule } from 'ngx-stripe';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { icons } from './icons';
 
 registerLocaleData(es);
 
@@ -56,7 +55,9 @@ const VALMIRA_CONFIGURATION_VALUE: ValmiraConfiguration = {
       name: 'Valmira',
       maxAge: 25,
     }),
-    NzIconModule.forRoot(icons),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAEwt8M5rjJSszdxRxkrkJBA5i48-m5Mps',
+    }),
     NgxStripeModule.forRoot(environment.stripeKey),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),

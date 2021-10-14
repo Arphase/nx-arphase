@@ -5,7 +5,8 @@
        class="flex justify-start items-center">
     <a [routerLink]="['.']">
       <img [src]="(isInManifest$ | async) ? 'assets/img/valmira.svg' : 'assets/img/valmira-green.svg'"
-           class="logo" /> </a>
+           class="logo"
+           loading="lazy" /> </a>
   </div>
 
   <div nz-col
@@ -49,11 +50,13 @@
            [nzMd]="{ offset: 1 }"
            nzSpan="14">
         <img src="assets/img/logo-white.svg"
-             class="menu-logo" />
+             class="menu-logo"
+             loading="lazy" />
       </div>
       <div nz-col
            nzSpan="3">
-        <a href="https://www.facebook.com/valmiraglamping/">
+        <a href="https://www.facebook.com/valmiraglamping/"
+           target="_blank">
           <p class="menu-text">FACEBOOK</p>
           <i nz-icon
              nzType="facebook"
@@ -64,7 +67,8 @@
 
       <div nz-col
            nzSpan="3">
-        <a href="https://www.instagram.com/valmiraglamping/">
+        <a href="https://www.instagram.com/valmiraglamping/"
+           target="_blank">
           <p class="menu-text">INSTAGRAM</p>
           <i nz-icon
              nzType="instagram"
@@ -74,7 +78,8 @@
       </div>
       <div nz-col
            nzSpan="3">
-        <a href="https://wa.me/5218115337477?text=Hola%20quiero%20cotizar">
+        <a href="https://wa.link/7dq5kf"
+           target="_blank">
           <p class="menu-text">WHATSAPP</p>
           <i nz-icon
              nzType="whats-app"
@@ -95,7 +100,8 @@
       <a [routerLink]="['.']"
          (click)="closeMenu()">
         <img src="assets/img/valmira.svg"
-             class="logo" /> </a>
+             class="logo"
+             loading="lazy" /> </a>
     </div>
     <div nz-col
          nzSpan="12"

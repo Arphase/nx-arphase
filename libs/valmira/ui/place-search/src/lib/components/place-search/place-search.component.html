@@ -6,7 +6,8 @@
   <div nz-col
        nzSpan="6">
     <img class="logo"
-         [src]="'assets/img/hoja.svg'">
+         src="assets/img/hoja.svg"
+         loading="lazy">
   </div>
 </div>
 <div class="my-8">
@@ -21,16 +22,17 @@
     <div *ngIf="i%3 === 1">
       <div class="flex justify-start">
         <img class="logo mb-24 -ml-32"
-             [src]="i%5 === 0 ? 'assets/img/pine-2.svg' : 'assets/img/sun.svg'">
+             [src]="i%5 === 0 ? 'assets/img/pine-2.svg' : 'assets/img/sun.svg'"
+             loading="lazy">
       </div>
     </div>
-    <nz-skeleton-element class="w-full"
-                         nzType="image"
+    <nz-skeleton-element nzType="image"
                          [nzActive]="true"></nz-skeleton-element>
     <div *ngIf="i%3 === 1">
       <div class="flex justify-end">
         <img class="logo -mr-32"
-             [src]="i%5 === 0 ? 'assets/img/pines.svg' : 'assets/img/pine.svg'">
+             [src]="i%5 === 0 ? 'assets/img/pines.svg' : 'assets/img/pine.svg'"
+             loading="lazy">
       </div>
     </div>
   </div>
@@ -42,11 +44,13 @@
          class="place my-12 md:my-32 flex"
          [ngClass]="{ 'justify-start': i%3 === 2, 'justify-center': i%3 === 1, 'justify-end': i%3 === 0 }">
       <div class="flex-col"
-           [routerLink]="['..', 'place', item.id]">
+           [routerLink]="['..', 'place', item.id]"
+           queryParamsHandling="merge">
         <div *ngIf="i%3 === 1">
           <div class="flex justify-start">
             <img class="logo mb-24 -ml-32"
-                 [src]="i%5 === 0 ? 'assets/img/pine-2.svg' : 'assets/img/sun.svg'">
+                 [src]="i%5 === 0 ? 'assets/img/pine-2.svg' : 'assets/img/sun.svg'"
+                 loading="lazy">
           </div>
         </div>
         <img [src]="item.photos[0].path"
@@ -55,7 +59,8 @@
         <div *ngIf="i%3 === 1">
           <div class="flex justify-end">
             <img class="logo -mr-32"
-                 [src]="i%5 === 0 ? 'assets/img/pines.svg' : 'assets/img/pine.svg'">
+                 [src]="i%5 === 0 ? 'assets/img/pines.svg' : 'assets/img/pine.svg'"
+                 loading="lazy">
           </div>
         </div>
       </div>

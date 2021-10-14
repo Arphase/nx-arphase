@@ -9,7 +9,7 @@ export class CreateProductDto {
   template: string;
 
   @IsString()
-  @Trim()
+  @Trim('name')
   name: string;
 
   @IsString()

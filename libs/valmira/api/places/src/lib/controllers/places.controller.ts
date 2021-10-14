@@ -1,5 +1,6 @@
 import { ApsCollectionResponse } from '@arphase/common';
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { Place, PlaceCategorySummary } from '@valmira/domain';
 
 import { CreatePlaceDto } from '../dto/create-place.dto';
@@ -31,11 +32,13 @@ export class PlacesController {
     return this.placesService.getPlacesCountByCategory(filterDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Post()
   async createPlace(@Body() createPlaceDto: CreatePlaceDto): Promise<Place> {
     return this.placesService.createPlace(createPlaceDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   async updatePlace(@Body() updatePlaceDto: UpdatePlaceDto): Promise<Place> {
     return this.placesService.updatePlace(updatePlaceDto);

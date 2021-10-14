@@ -2,6 +2,96 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.7.0](https://github.com/Arphase/nx-arphase/compare/v3.6.2...v3.7.0) (2021-10-13)
+
+
+### Features
+
+* **valmira/place-detail:** add google map with cabin location ([4a65b00](https://github.com/Arphase/nx-arphase/commit/4a65b0040125d3dd1ad75adef6554e7ef054e72b))
+* **valmira/place-search:** save dates search on query-params to populate form in search detail ([17717ac](https://github.com/Arphase/nx-arphase/commit/17717ac92d9ae25a06620f1e89739ea4aea0cd61))
+
+
+### Bug Fixes
+
+* **musicr/product-detail:** show productComponents and description ([3cef82b](https://github.com/Arphase/nx-arphase/commit/3cef82b8ba102e2cbcb59b226a3fb1fc4af8e255))
+
+### [3.6.2](https://github.com/Arphase/nx-arphase/compare/v3.6.1...v3.6.2) (2021-10-12)
+
+
+### Bug Fixes
+
+* **valmira/reservation-wizard:** add elements for routerLink active to take inmediate effect ([3111732](https://github.com/Arphase/nx-arphase/commit/3111732b457d1aa03aecbbd2e3e738576a261cf8))
+
+### [3.6.1](https://github.com/Arphase/nx-arphase/compare/v3.6.0...v3.6.1) (2021-10-12)
+
+
+### Features
+
+* **app:** protect api routes for musicr and valmira ([387ce07](https://github.com/Arphase/nx-arphase/commit/387ce07bdcbae7aac56d9a5ae7f60f2d46b69ce5))
+
+
+### Bug Fixes
+
+* **valmira/app:** avoid inifinite requests when creating new reservation ([bce8411](https://github.com/Arphase/nx-arphase/commit/bce84112ea1ce532c3b4a1516c760df55e6bc3fe))
+
+## [3.6.0](https://github.com/Arphase/nx-arphase/compare/v3.5.4...v3.6.0) (2021-10-12)
+
+
+### Features
+
+* **musicr/about-us:** [#195](https://github.com/Arphase/nx-arphase/issues/195) add about us ([3c3a4a3](https://github.com/Arphase/nx-arphase/commit/3c3a4a3b8cfe0c28b91c59d345e837288e346d6f))
+* **musicr/about-us:** [#195](https://github.com/Arphase/nx-arphase/issues/195) add about us ([ae1a4f7](https://github.com/Arphase/nx-arphase/commit/ae1a4f76c87bc635621b960e20fae884c42f3975))
+* **musicr/about-us:** [#195](https://github.com/Arphase/nx-arphase/issues/195) add about us ([5090d87](https://github.com/Arphase/nx-arphase/commit/5090d878b32aba8bbb1c9236ead2f2769dafa52a))
+* **musicr/store:** lazy load images to improve performance ([dcbe24d](https://github.com/Arphase/nx-arphase/commit/dcbe24dbc3da96a774057855787d9b9aa8b81f41))
+* **musicr:** fix subscription issues and finish order workflow ([d9f56ee](https://github.com/Arphase/nx-arphase/commit/d9f56ee725c3af6369e94d40d0078af973a03a42))
+* **valmira/landing:** use places from api for landing page ([697bf04](https://github.com/Arphase/nx-arphase/commit/697bf043949db9e5aee7009520b792fe24655ead))
+
+
+### Bug Fixes
+
+* **musicr/store:** listen to cartItems change only when opening the cart component ([b5ee8fe](https://github.com/Arphase/nx-arphase/commit/b5ee8fe3d18f80aa3acfc55272ae244e3b2abe21))
+
+### [3.5.4](https://github.com/Arphase/nx-arphase/compare/v3.5.3...v3.5.4) (2021-10-08)
+
+
+### Features
+
+* **musicr/api:** add sentry integration ([a9aad3e](https://github.com/Arphase/nx-arphase/commit/a9aad3edc5ae44d4a90cf1c7b676e8bd208c4ea2))
+
+
+### Bug Fixes
+
+* **valmira/promocodes:** apply date query correctly ([3ed68ef](https://github.com/Arphase/nx-arphase/commit/3ed68efe3f155d5c2a6aa7b7bce342232f716fc4))
+
+### [3.5.3](https://github.com/Arphase/nx-arphase/compare/v3.5.2...v3.5.3) (2021-10-08)
+
+
+### Features
+
+* **valmira/api:** add sentry integration ([3249ef0](https://github.com/Arphase/nx-arphase/commit/3249ef0bc369898e74df606361abb767d1d82e5b))
+
+### [3.5.2](https://github.com/Arphase/nx-arphase/compare/v3.5.1...v3.5.2) (2021-10-08)
+
+
+### Bug Fixes
+
+* **valmira/app:** scroll position to top on page change ([938ddae](https://github.com/Arphase/nx-arphase/commit/938ddaedf23e29c99d8c24bb50cf055372c78b30))
+
+### [3.5.1](https://github.com/Arphase/nx-arphase/compare/v3.5.0...v3.5.1) (2021-10-08)
+
+
+### Bug Fixes
+
+* **app:** downgrade class-transformer to compile SSR apps ([02bd4a4](https://github.com/Arphase/nx-arphase/commit/02bd4a40a5c469bbdebec98111faa55e80807e3a))
+
+## [3.5.0](https://github.com/Arphase/nx-arphase/compare/v3.4.2...v3.5.0) (2021-10-08)
+
+
+### Features
+
+* **musicr/cart:** personal data form ([d3ac8ec](https://github.com/Arphase/nx-arphase/commit/d3ac8ec1d6fd48c028d28ae16341c1d751599dcc))
+* **musicr/orders:** send email notification when creating new order ([39f356e](https://github.com/Arphase/nx-arphase/commit/39f356e6fc99922bbbdbc111e97b8fbe195315b9))
+
 ### [3.4.2](https://github.com/Arphase/nx-arphase/compare/v3.4.1...v3.4.2) (2021-10-07)
 
 

@@ -5,6 +5,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   AdditionalProductEntity,
+  CustomerEntity,
   PlaceEntity,
   PromocodeEntity,
   ReservationAdditionalProductEntity,
@@ -38,6 +39,7 @@ export class ReservationsService {
     @InjectRepository(AdditionalProductEntity) private additionalProductRepository: Repository<AdditionalProductEntity>,
     @InjectRepository(ReservationAdditionalProductEntity)
     private reservationAdditionalProductRepository: Repository<ReservationAdditionalProductEntity>,
+    @InjectRepository(CustomerEntity) private customerRepository: Repository<CustomerEntity>,
     @InjectStripe() private readonly stripeClient: Stripe,
     private placesService: PlacesService,
     private promocodeService: PromocodesService
@@ -172,6 +174,12 @@ export class ReservationsService {
       updatedReservation.status = ReservationStatus.paid;
     }
 
+    if (updateReservationDto.customer) {
+      const customer = this.customerRepository.create(updateReservationDto.customer);
+      await customer.save();
+      updatedReservation.customer = customer;
+    }
+
     await updatedReservation.save();
     await updatedReservation.reload();
     const { pricePerNight, nights, days } = getReservationDaysInfo(updatedReservation);
@@ -274,7 +282,7 @@ export class ReservationsService {
     const query = this.reservationRepository.createQueryBuilder('reservation');
     query.andWhere(`(reservation.paymentId IS NULL)`);
     const reservations = await query.getMany();
-    const hourAgo = dayjs().subtract(1, 'hour');
+    const hourAgo = dayjs().subtract(15, 'minutes');
     const expiredReservations = reservations.filter(reservation => dayjs(reservation.createdAt).isBefore(hourAgo));
     await this.reservationRepository.remove(expiredReservations);
   }

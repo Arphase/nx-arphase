@@ -25,6 +25,7 @@ import { filter } from 'rxjs/operators';
 export class ProductDetailComponent implements OnChanges {
   @Input() product: Product;
   @Input() priceOptions: NzSelectOptionInterface[] = [];
+  @Input() loading: boolean;
   total: number;
   form = new FormGroup({ priceOptionId: new FormControl(null, ApsValidators.required) });
   price: number;

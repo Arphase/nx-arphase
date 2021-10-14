@@ -3,13 +3,13 @@ import { IsDateString, IsString } from 'class-validator';
 
 export class CreateMoralPersonDto {
   @IsString()
-  @Trim()
+  @Trim('businessName')
   businessName: string;
 
   @IsDateString()
   constitutionDate: Date;
 
   @IsString()
-  @Trim()
+  @Trim('adviser')
   adviser: string;
 }

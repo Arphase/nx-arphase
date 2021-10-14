@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -13,12 +21,15 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./place-detail.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; endDate: Date }> {
+export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; endDate: Date }> implements OnChanges {
   @Input() place: Place;
   @Input() loading: boolean;
   @Input() occupedDates: string[] = [];
   @Input() loadingReserve: boolean;
   @Input() reservationPreview: Reservation;
+  @Input() queryParams: Record<string, string>;
+  lat = 25.131905;
+  lng = -99.932679;
   form = new FormGroup(
     {
       startDate: new FormControl(null, ApsValidators.required),
@@ -39,6 +50,15 @@ export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; en
       .subscribe(value => this.datesChange.emit(value));
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.queryParams && this.queryParams?.startDate && this.queryParams?.endDate) {
+      this.form.patchValue({
+        startDate: dayjs(this.queryParams.startDate, 'DD-MM-YYYY').toDate(),
+        endDate: dayjs(this.queryParams.endDate, 'DD-MM-YYYY').toDate(),
+      });
+    }
+  }
+
   disableStartDate = (startValue: Date): boolean => {
     const date = dayjs(startValue);
     if (startValue.getTime() < new Date().getTime()) {
@@ -55,6 +75,9 @@ export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; en
 
   disableEndDate = (endValue: Date): boolean => {
     const date = dayjs(endValue);
+    if (endValue.getTime() < new Date().getTime()) {
+      return true;
+    }
     if (this.occupedDates.find(occupeiedDate => date.isSame(occupeiedDate, 'day'))) {
       return true;
     }

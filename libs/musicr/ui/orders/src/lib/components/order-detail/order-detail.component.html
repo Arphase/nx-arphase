@@ -57,7 +57,7 @@
                nzMd="12"
                nzLg="8">
             <p><strong>Lugar del evento</strong></p>
-            <span>{{ socialEvent?.eventPlace }}</span>
+            <span>{{ socialEventLPlaceLabels[socialEventPlaces[socialEvent?.eventPlace]] }}</span>
           </div>
         </div>
         <div nz-row>
@@ -65,20 +65,11 @@
                nzXs="24"
                nzMd="12"
                nzLg="8">
-            <p><strong>Inicio</strong> </p>
+            <p><strong>Fecha</strong> </p>
             <ul>
-              <li>Fecha: {{ socialEvent?.startDate | date: 'fullDate' }}</li>
-              <li>Hora: {{ socialEvent?.startDate | date: 'shortTime' }}</li>
-            </ul>
-          </div>
-          <div nz-col
-               nzXs="24"
-               nzMd="12"
-               nzLg="8">
-            <p><strong>Fin</strong></p>
-            <ul>
-              <li>Fecha: {{ socialEvent?.endDate | date: 'fullDate' }}</li>
-              <li>Hora: {{ socialEvent?.endDate | date: 'shortTime' }}</li>
+              <li>Día: {{ socialEvent?.date | date: 'fullDate' : '' : 'es' }}</li>
+              <li>Hora Inicio: {{ socialEvent?.startTime | date: 'shortTime' }}</li>
+              <li>Hora Fin: {{ socialEvent?.endTime | date: 'shortTime' }}</li>
             </ul>
           </div>
           <div nz-col
@@ -270,7 +261,7 @@
       <div nz-col
            nzSpan="24"
            class="flex-end">
-        <h3 class="text-white"><strong>Total:</strong> {{ item?.total | currency }}</h3>
+        <h3 class="text-white"><strong>Total:</strong> {{ item?.total | currency }} MXN</h3>
       </div>
     </div>
   </nz-space>

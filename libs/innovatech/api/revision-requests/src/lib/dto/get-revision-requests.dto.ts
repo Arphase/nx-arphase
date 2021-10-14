@@ -5,7 +5,7 @@ import { IsEnum, IsOptional } from 'class-validator';
 
 export class GetRevisionRequestsDto extends CommonFilterDto {
   @IsOptional()
-  @Transform(({ obj, key }) => RevisionRequestStatus[obj[key]])
+  @Transform((_, obj) => RevisionRequestStatus[obj['status']])
   @IsEnum(RevisionRequestStatus)
   status: RevisionRequestStatus;
 }

@@ -24,7 +24,6 @@ import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import * as Sentry from '@sentry/angular';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NgxMaskModule } from 'ngx-mask';
@@ -32,7 +31,6 @@ import { NgxMaskModule } from 'ngx-mask';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { icons } from './icons';
 
 registerLocaleData(es);
 
@@ -57,7 +55,6 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     NzModalModule,
     NzMessageModule,
     NgxMaskModule.forRoot(),
-    NzIconModule.forRoot(icons),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       name: 'Innovatech',
@@ -69,17 +66,9 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
-    { provide: INNOVATECH_CONFIGURATION, useValue: INNOVATECH_CONFIGURATION_VALUE },
-    { provide: ErrorHandler, useValue: Sentry.createErrorHandler({}) },
-    { provide: Sentry.TraceService, deps: [Router] },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: () => () => null,
-      deps: [Sentry.TraceService],
-      multi: true,
-    },
-    { provide: NZ_I18N, useValue: es_ES },
     { provide: HTTP_INTERCEPTORS, useClass: HttpProxyService, multi: true },
+    { provide: INNOVATECH_CONFIGURATION, useValue: INNOVATECH_CONFIGURATION_VALUE },
+    { provide: NZ_I18N, useValue: es_ES },
     {
       provide: EntityCollectionReducerMethodsFactory,
       useClass: ApsAdditionalEntityCollectionReducerMethodsFactory,
@@ -87,6 +76,14 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     {
       provide: PersistenceResultHandler,
       useClass: ApsAdditionalPropertyPersistenceResultHandler,
+    },
+    { provide: ErrorHandler, useValue: Sentry.createErrorHandler({}) },
+    { provide: Sentry.TraceService, deps: [Router] },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => null,
+      deps: [Sentry.TraceService],
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

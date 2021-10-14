@@ -17,6 +17,14 @@ export class OrderListComponent extends ApsListComponent<Order> {
 
   columns: ApsColumns = [
     {
+      label: 'Folio',
+      prop: 'item.id',
+      colSizes: {
+        xs: 8,
+        md: 2,
+      },
+    },
+    {
       label: 'Cliente',
       prop: 'customer.firstName',
       colSizes: {
@@ -28,14 +36,14 @@ export class OrderListComponent extends ApsListComponent<Order> {
       label: 'Evento',
       prop: 'socialEvent.name',
       colSizes: {
-        xs: 24,
+        xs: 16,
         md: 4,
         lg: 4,
       },
     },
     {
       label: 'Fecha evento',
-      prop: 'socialEvent.startDate',
+      prop: 'socialEvent.date',
       colSizes: {
         md: 4,
         lg: 4,
@@ -53,8 +61,8 @@ export class OrderListComponent extends ApsListComponent<Order> {
       label: 'Total',
       prop: 'order.total',
       colSizes: {
-        md: 8,
-        lg: 8,
+        md: 6,
+        lg: 6,
       },
     },
   ];

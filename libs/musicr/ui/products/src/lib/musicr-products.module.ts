@@ -10,6 +10,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
@@ -19,19 +21,21 @@ import { MusicrProductsRoutingModule } from './musicr-products-routing.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
     ApsAutoErrorModule,
     ApsAutoSelectModule,
+    CommonModule,
+    FormsModule,
     MusicrProductsRoutingModule,
-    NzGridModule,
-    NzIconModule,
-    NzDividerModule,
-    NzSelectModule,
-    NzPageHeaderModule,
     NzButtonModule,
     NzCardModule,
+    NzCarouselModule,
+    NzDividerModule,
+    NzGridModule,
+    NzIconModule,
     NzInputNumberModule,
+    NzPageHeaderModule,
+    NzSelectModule,
+    NzSkeletonModule,
     ReactiveFormsModule,
   ],
   declarations: [

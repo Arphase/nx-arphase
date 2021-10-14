@@ -3,11 +3,11 @@ import { IsEmail, IsString } from 'class-validator';
 
 export class SignUpCredentialsDto {
   @IsString()
-  @Trim()
+  @Trim('firstName')
   firstName: string;
 
   @IsString()
-  @Trim()
+  @Trim('lastName')
   lastName: string;
 
   @IsEmail()

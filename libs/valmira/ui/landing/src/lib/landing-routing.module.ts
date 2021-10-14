@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LandingComponent } from './landing.component';
+import { LandingContainerComponent } from './containers/landing-container/landing-container.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: LandingComponent,
+    component: LandingContainerComponent,
   },
 ];
 
