@@ -4,9 +4,9 @@ env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
   HOST: ${{ secrets.MRL_PROD_DB_HOST }}
-  DATABASE: ${{ secrets.MRL_PROD_DB }}
-  USERNAME: ${{ secrets.MRL_PROD_DB_USERNAME }}
-  PASSWORD: ${{ secrets.MRL_PROD_DB_PASSWORD }}
+  DB: ${{ secrets.MRL_PROD_DB }}
+  DB_USERNAME: ${{ secrets.MRL_PROD_DB_USERNAME }}
+  DB_PASSWORD: ${{ secrets.MRL_PROD_DB_PASSWORD }}
 
 on:
   workflow_dispatch:
