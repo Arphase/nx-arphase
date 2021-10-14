@@ -3,6 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import {
   AdditionalProductEntity,
+  CustomerEntity,
   PlaceEntity,
   PromocodeEntity,
   ReservationAdditionalProductEntity,
@@ -27,6 +28,7 @@ describe('ReservationsService', () => {
         { provide: getRepositoryToken(PromocodeEntity), useValue: createMockRepository() },
         { provide: getRepositoryToken(AdditionalProductEntity), useValue: createMockRepository() },
         { provide: getRepositoryToken(ReservationAdditionalProductEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(CustomerEntity), useValue: createMockRepository() },
         { provide: PlacesService, useValue: {} },
         { provide: PromocodesService, useValue: {} },
       ],
