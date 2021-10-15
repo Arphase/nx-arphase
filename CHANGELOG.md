@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.7.1](https://github.com/Arphase/nx-arphase/compare/v3.7.0...v3.7.1) (2021-10-15)
+
+
+### Features
+
+* **valmira/api:** don't allow creating reservations according to occupuied dates ([e2074b9](https://github.com/Arphase/nx-arphase/commit/e2074b910345dbadab601ac482d75647a6aeccd6))
+
 ## [3.7.0](https://github.com/Arphase/nx-arphase/compare/v3.6.2...v3.7.0) (2021-10-13)
 
 

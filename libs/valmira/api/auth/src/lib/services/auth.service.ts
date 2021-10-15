@@ -134,7 +134,9 @@ export class AuthService {
             cid: 'logo',
           },
         ],
-        html: getResetPasswordEmailTemplate(`${process.env.MAIL_HOST_URL}/${tokenEntity.passwordToken}/${user.id}`),
+        html: getResetPasswordEmailTemplate(
+          `${process.env.MAIL_HOST_URL}/auth/set-password/${tokenEntity.passwordToken}/${user.id}`
+        ),
       };
       await transporter.sendMail(mailOptions);
       return { success: true };

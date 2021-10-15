@@ -4,14 +4,17 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { categoryLabels, Place, Reservation } from '@valmira/domain';
 import dayjs from 'dayjs';
+import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
 import { filter } from 'rxjs/operators';
 
 @UntilDestroy()
@@ -21,10 +24,15 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./place-detail.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; endDate: Date }> implements OnChanges {
+export class PlaceDetailComponent
+  extends ApsFormComponent<{ startDate: Date; endDate: Date }>
+  implements OnInit, OnChanges
+{
+  @ViewChild('endDateCalendar', { static: true }) endDateCalendar: NzDatePickerComponent;
   @Input() place: Place;
   @Input() loading: boolean;
-  @Input() occupedDates: string[] = [];
+  @Input() startDateOccupedDates: string[] = [];
+  @Input() endDateOccupiedDates: string[] = [];
   @Input() loadingReserve: boolean;
   @Input() reservationPreview: Reservation;
   @Input() queryParams: Record<string, string>;
@@ -50,6 +58,15 @@ export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; en
       .subscribe(value => this.datesChange.emit(value));
   }
 
+  ngOnInit() {
+    this.form
+      .get('startDate')
+      .valueChanges.pipe(untilDestroyed(this))
+      .subscribe(() => {
+        this.endDateCalendar.open();
+      });
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.queryParams && this.queryParams?.startDate && this.queryParams?.endDate) {
       this.form.patchValue({
@@ -64,7 +81,7 @@ export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; en
     if (startValue.getTime() < new Date().getTime()) {
       return true;
     }
-    if (this.occupedDates.find(occupeiedDate => date.isSame(occupeiedDate, 'day'))) {
+    if (this.startDateOccupedDates.find(occupeiedDate => date.isSame(occupeiedDate, 'day'))) {
       return true;
     }
     if (this.values?.endDate) {
@@ -78,12 +95,12 @@ export class PlaceDetailComponent extends ApsFormComponent<{ startDate: Date; en
     if (endValue.getTime() < new Date().getTime()) {
       return true;
     }
-    if (this.occupedDates.find(occupeiedDate => date.isSame(occupeiedDate, 'day'))) {
+    if (this.endDateOccupiedDates.find(occupeiedDate => date.isSame(occupeiedDate, 'day'))) {
       return true;
     }
     if (this.values?.startDate) {
       const startDate = this.values.startDate;
-      const nextOccupedDate = this.occupedDates.find(occupeiedDate =>
+      const nextOccupedDate = this.endDateOccupiedDates.find(occupeiedDate =>
         dayjs(occupeiedDate).subtract(1, 'day').isAfter(startDate, 'day')
       );
       return (

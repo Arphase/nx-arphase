@@ -41,11 +41,7 @@ export function filterCollectionDates(
   if (startDate && endDate && !ignoreDates) {
     const date = `${entityName}.${dateType || 'createdAt'}`;
     const expression = `(${date} >= :startDate and ${date} <= :endDate)`;
-    const params = {
-      startDate: startOfDay(new Date(startDate)).toISOString(),
-      endDate: endOfDay(new Date(endDate)).toISOString(),
-    };
-    console.log(dateType, params);
+    const params = { startDate: startOfDay(new Date(startDate)), endDate: endOfDay(new Date(endDate)) };
     logicalOperator === 'and' ? query.andWhere(expression, params) : query.orWhere(expression, params);
   }
 }

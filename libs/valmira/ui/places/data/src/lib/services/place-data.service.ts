@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApsDataService, buildQueryParams } from '@arphase/ui/core';
 import { HttpUrlGenerator, QueryParams } from '@ngrx/data';
@@ -13,8 +13,9 @@ export class PlaceDataService extends ApsDataService<Place> {
     this.entitiesUrl = `/vmaApi/places`;
   }
 
-  getOccupiedDates(id: number): Observable<Date[]> {
-    return this.http.get<Date[]>(`/vmaApi/places/${id}/occupied-dates`);
+  getOccupiedDates(id: number, dateType: string): Observable<Date[]> {
+    const params = new HttpParams({ fromObject: { dateType } });
+    return this.http.get<Date[]>(`/vmaApi/places/${id}/occupied-dates`, { params });
   }
 
   getCategorySummary(queryParams: QueryParams): Observable<PlaceCategorySummary> {

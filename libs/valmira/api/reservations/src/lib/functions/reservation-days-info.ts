@@ -16,19 +16,15 @@ export function getReservationDaysInfo(reservation: DeepPartial<Reservation>): {
   pricePerNight;
 } {
   const { startDate, endDate, place } = reservation;
-  const days = getDateRangeArray(
-    startDate as Date,
-    dayjs(endDate as Date)
-      .subtract(1, 'day')
-      .toDate()
-  );
+  const days = getDateRangeArray(startDate as Date, endDate as Date);
+  const nights = days.slice(0, days.length - 1);
   let weekDays = 0;
   let weekendDays = 0;
   const weekendDayNumber = [0, 5, 6];
-  days.forEach(day => (weekendDayNumber.includes(dayjs(day).get('d')) ? weekendDays++ : weekDays++));
+  nights.forEach(day => (weekendDayNumber.includes(dayjs(day).get('d')) ? weekendDays++ : weekDays++));
   return {
-    days: days.length + 1,
-    nights: days.length,
-    pricePerNight: (weekendDays * place.weekendPrice + weekDays * place.weeklyPrice) / days.length,
+    days: days.length,
+    nights: nights.length,
+    pricePerNight: (weekendDays * place.weekendPrice + weekDays * place.weeklyPrice) / nights.length,
   };
 }

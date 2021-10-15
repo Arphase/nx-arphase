@@ -1,14 +1,12 @@
+import dayjs from 'dayjs';
+
 export function getDateRangeArray(startDate: Date, endDate: Date): Date[] {
   const dates = [];
+  const endDateEndOfDay = dayjs(endDate).set('hour', 23).set('minute', 59).set('second', 59).toDate();
   let currentDate = startDate;
-  const addDays = function (days) {
-    const date = new Date(this.valueOf());
-    date.setDate(date.getDate() + days);
-    return date;
-  };
-  while (currentDate <= endDate) {
+  while (currentDate <= endDateEndOfDay) {
     dates.push(currentDate);
-    currentDate = addDays.call(currentDate, 1);
+    currentDate = dayjs(currentDate).add(1, 'day').toDate();
   }
   return dates;
 }

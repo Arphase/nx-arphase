@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { runParallax } from '@valmira/ui/core';
 
 @Component({
   selector: 'vma-manifest',
@@ -18,22 +19,7 @@ export class ManifestComponent implements OnInit, OnDestroy {
     Object.keys(theme).forEach(propertyName =>
       this.themeWrapper.style.setProperty(`--${propertyName}`, theme[propertyName])
     );
-    const scrolls = Array.from(document.getElementsByClassName('image-scroll') as HTMLCollectionOf<HTMLElement>);
-    window.addEventListener('scroll', () => {
-      const limit = Math.max(
-        document.body.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.clientHeight,
-        document.documentElement.scrollHeight,
-        document.documentElement.offsetHeight
-      );
-      const value = (window.scrollY / limit) * 650;
-      if (screen.width > 768) {
-        scrolls.forEach(scroll => {
-          scroll.style.transform = `matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, ${value}, 0, 1)`;
-        });
-      }
-    });
+    runParallax();
   }
   ngOnDestroy() {
     const textColor = this.greenColor;

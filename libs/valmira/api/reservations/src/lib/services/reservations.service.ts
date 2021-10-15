@@ -96,7 +96,7 @@ export class ReservationsService {
   }
 
   async createReservation(createReservationDto: CreateReservationDto): Promise<Reservation> {
-    const previewReservation = await this.previewReservation(createReservationDto);
+    const previewReservation = await this.previewReservation(createReservationDto, false);
     const reservation = this.reservationRepository.create(previewReservation);
     return this.reservationRepository.save(reservation);
   }
@@ -109,7 +109,8 @@ export class ReservationsService {
    * @returns reservation with all populated data from database relations
    */
   async previewReservation(
-    reservationPreviewDto: CreateReservationDto | UpdateReservationDto | ReservationPreviewDto | Reservation
+    reservationPreviewDto: CreateReservationDto | UpdateReservationDto | ReservationPreviewDto | Reservation,
+    isPreview = true
   ): Promise<Partial<Reservation>> {
     const { placeId, promocodeId, startDate, endDate, id } = reservationPreviewDto;
     let { additionalProducts } = reservationPreviewDto;
@@ -118,11 +119,8 @@ export class ReservationsService {
     if (!place) {
       throw new NotFoundException('Alojamiento no existe');
     }
-    if (!id) {
-      const occupiedDates = await this.placesService.getOccupiedDates(placeId, {
-        startDate: dayjs(startDate).add(1, 'day').toDate(),
-        endDate: dayjs(endDate).subtract(1, 'day').toDate(),
-      });
+    if (!id && !isPreview) {
+      const occupiedDates = await this.placesService.getOccupiedDates(placeId, { startDate, endDate });
       if (occupiedDates.length) {
         throw new ConflictException('Esta cabaña ya ha sido reservada para las fechas que seleccionó');
       }
@@ -159,7 +157,7 @@ export class ReservationsService {
 
   async updateReservation(updateReservationDto: UpdateReservationDto): Promise<Reservation> {
     const reservation = await this.getReservation(updateReservationDto.id);
-    const previewReservation = await this.previewReservation({ ...reservation, ...updateReservationDto });
+    const previewReservation = await this.previewReservation({ ...reservation, ...updateReservationDto }, false);
     const updatedReservation = await this.reservationRepository.preload(previewReservation);
 
     if (updateReservationDto?.paymentId) {
@@ -233,7 +231,7 @@ export class ReservationsService {
   async createPaymentIntent(payload: CreatePaymentIntentDto): Promise<{ key: string; reservation: Reservation }> {
     const { reservationId } = payload;
     const reservation = await this.getReservation(reservationId);
-    const previewReservation = await this.previewReservation(reservation);
+    const previewReservation = await this.previewReservation(reservation, false);
     if (reservation.paymentId || reservation.status === ReservationStatus.paid) {
       throw new ConflictException(`Esta reservación ya extá pagada`);
     }

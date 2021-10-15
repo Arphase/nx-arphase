@@ -120,29 +120,39 @@
            nzSpan="24">
         <nz-date-picker class="start-date"
                         ngDefaultControl
-                        [nzDateRender]="tplRender"
-                        [nzDisabledDate]="disableStartDate"
                         nzPlaceHolder="FECHA DE LLEGADA"
                         formControlName="startDate"
                         nzFormat="MMM d, y"
+                        [nzDateRender]="tplRenderStart"
+                        [nzDisabledDate]="disableStartDate"
                         [nzShowToday]="false"></nz-date-picker>
       </div>
       <div nz-col
            nzSpan="24">
         <nz-date-picker class="end-date"
+                        #endDateCalendar
                         ngDefaultControl
-                        [nzDateRender]="tplRender"
-                        [nzDisabledDate]="disableEndDate"
                         nzPlaceHolder="FECHA DE SALIDA"
                         formControlName="endDate"
                         nzFormat="MMM d, y"
+                        [nzDateRender]="tplRenderStartEnd"
+                        [nzDisabledDate]="disableEndDate"
+                        [nzDefaultPickerValue]="values.startDate"
                         [nzShowToday]="false"></nz-date-picker>
       </div>
 
-      <ng-template #tplRender
+      <ng-template #tplRenderStart
                    let-current>
         <div class="ant-picker-cell-inner"
-             [class.red-day]="current | redDay: occupedDates">
+             [class.red-day]="current | redDay: startDateOccupedDates">
+          {{ current.getDate() }}
+        </div>
+      </ng-template>
+
+      <ng-template #tplRenderStartEnd
+                   let-current>
+        <div class="ant-picker-cell-inner"
+             [class.red-day]="current | redDay: endDateOccupiedDates">
           {{ current.getDate() }}
         </div>
       </ng-template>

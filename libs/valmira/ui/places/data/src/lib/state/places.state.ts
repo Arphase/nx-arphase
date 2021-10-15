@@ -1,6 +1,7 @@
 import { PlaceCategorySummary } from '@valmira/domain';
 
 export interface PlacesState {
-  occupiedDates: Date[];
+  startDateOccupiedDates: Date[];
+  endDateOccupiedDates: Date[];
   summary: PlaceCategorySummary;
 }

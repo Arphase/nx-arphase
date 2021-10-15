@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Place } from '@valmira/domain';
+import { runParallax } from '@valmira/ui/core';
 
 @Component({
   selector: 'vma-landing',
@@ -7,6 +8,14 @@ import { Place } from '@valmira/domain';
   styleUrls: ['./landing.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LandingComponent {
+export class LandingComponent implements OnInit, OnDestroy {
   @Input() places: Place[] = [];
+
+  ngOnInit() {
+    runParallax();
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('scroll', () => null);
+  }
 }

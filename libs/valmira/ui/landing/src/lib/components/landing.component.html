@@ -28,8 +28,9 @@
          nzJustify="center">
       <img nz-col
            nzSpan="24"
-           src="assets/img/cabana001.svg"
-           loading="lazy">
+           src="assets/img/landing.jpg"
+           loading="lazy"
+           class="image-scroll">
       <img nz-col
            nzSpan="2"
            [nzPull]="16"
@@ -102,8 +103,7 @@
             [nzMd]="{ span: 11, offset: 5 }"
             class="md:mt-40 mb-11 mt-0 cursor-pointer"
             [routerLink]="['place', place.id]">
-      <img nz-col
-           class="mb-4"
+      <img class="mb-4"
            [src]="place?.photos[0]?.path"
            [alt]="place.name"
            loading="lazy">
@@ -116,8 +116,7 @@
             nzMd="20"
             class="md:mb-24 mb-11 cursor-pointer"
             [routerLink]="['place', place.id]">
-      <img nz-col
-           class="mb-4"
+      <img class="mb-4"
            [src]="place?.photos[0]?.path"
            [alt]="place.name"
            loading="lazy">

@@ -8,13 +8,25 @@ import * as PlacesActions from './places.actions';
 
 @Injectable()
 export class PlacesEfects {
-  getOccupiedDates$ = createEffect(() =>
+  getStartOccupiedDates$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(PlacesActions.getOccupiedDates),
+      ofType(PlacesActions.getStartOccupiedDates),
       mergeMap(({ id }) =>
-        this.placeDataService.getOccupiedDates(id).pipe(
-          map(dates => PlacesActions.getOccupiedDatesSuccess({ dates })),
-          catchError(() => of(PlacesActions.getOccupiedDatesFailed()))
+        this.placeDataService.getOccupiedDates(id, 'startDate').pipe(
+          map(dates => PlacesActions.getStartOccupiedDatesSuccess({ dates })),
+          catchError(() => of(PlacesActions.getStartOccupiedDatesFailed()))
+        )
+      )
+    )
+  );
+
+  getEndDateOccupiedDates$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PlacesActions.getEndDateOccupiedDates),
+      mergeMap(({ id }) =>
+        this.placeDataService.getOccupiedDates(id, 'endDate').pipe(
+          map(dates => PlacesActions.getEndDateOccupiedDatesSuccess({ dates })),
+          catchError(() => of(PlacesActions.getEndDateOccupiedDatesFailed()))
         )
       )
     )
