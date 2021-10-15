@@ -81,6 +81,11 @@ export class PlaceDetailComponent
     if (startValue.getTime() < new Date().getTime()) {
       return true;
     }
+    if (this.place?.releaseDate) {
+      if (startValue.getTime() <= dayjs(this.place.releaseDate).subtract(1, 'day').toDate().getTime()) {
+        return true;
+      }
+    }
     if (this.startDateOccupedDates.find(occupeiedDate => date.isSame(occupeiedDate, 'day'))) {
       return true;
     }
@@ -94,6 +99,11 @@ export class PlaceDetailComponent
     const date = dayjs(endValue);
     if (endValue.getTime() < new Date().getTime()) {
       return true;
+    }
+    if (this.place?.releaseDate) {
+      if (endValue.getTime() <= dayjs(this.place.releaseDate).subtract(1, 'day').toDate().getTime()) {
+        return true;
+      }
     }
     if (this.endDateOccupiedDates.find(occupeiedDate => date.isSame(occupeiedDate, 'day'))) {
       return true;
