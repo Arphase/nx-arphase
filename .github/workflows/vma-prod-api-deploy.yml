@@ -4,9 +4,9 @@ env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
   HOST: ${{ secrets.VMA_PROD_DB_HOST }}
-  DATABASE: ${{ secrets.VMA_PROD_DB }}
-  USERNAME: ${{ secrets.VMA_PROD_DB_USERNAME }}
-  PASSWORD: ${{ secrets.VMA_PROD_DB_PASSWORD }}
+  DB: ${{ secrets.VMA_PROD_DB }}
+  DB_USERNAME: ${{ secrets.VMA_PROD_DB_USERNAME }}
+  DB_PASSWORD: ${{ secrets.VMA_PROD_DB_PASSWORD }}
 
 on:
   workflow_dispatch:
