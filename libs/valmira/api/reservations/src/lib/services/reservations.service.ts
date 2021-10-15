@@ -253,7 +253,7 @@ export class ReservationsService {
       },
     });
 
-    const reservationUrl = `${process.env.MAIL_HOST_URL}/reservation-detail/${reservation?.id}?email=${reservation?.customer?.email}`;
+    const reservationUrl = `${process.env.APP_HOST_URL}/reservation-detail/${reservation?.id}?email=${reservation?.customer?.email}`;
     const mailOptions: Mail.Options = {
       from: `Valmira <${process.env.MAIL_ACCOUNT_SENDER}>`,
       to: reservation?.customer?.email,

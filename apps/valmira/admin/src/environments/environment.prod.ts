@@ -3,7 +3,7 @@ import { Environment } from './environment.model';
 
 export const environment: Environment = {
   production: true,
-  apiUrl: 'https://api.valmira.com',
+  apiUrl: 'https://valmira.mx/api',
   version: packageJson.version,
   environmentName: 'prod',
 };
