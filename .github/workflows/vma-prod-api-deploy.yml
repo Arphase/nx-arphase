@@ -38,7 +38,7 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID_EB }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY_EB }}
-          application_name: innovatech-api
+          application_name: valmira
           environment_name: VMA-PROD
           version_label: ${{ github.event.inputs.version }}
           region: ${{ secrets.AWS_REGION }}
