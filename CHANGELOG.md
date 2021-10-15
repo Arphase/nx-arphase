@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.7.2](https://github.com/Arphase/nx-arphase/compare/v3.7.1...v3.7.2) (2021-10-15)
+
+
+### Features
+
+* **app:** add Google analytics ([b44665d](https://github.com/Arphase/nx-arphase/commit/b44665dbf6231bc0b33789aa0eeee7a9a392ed30))
+* **valmira/app:** add meta description and keywords ([357ecb6](https://github.com/Arphase/nx-arphase/commit/357ecb66645c02096126836f51d7e5b57158c091))
+* **valmira/places:** add release date ([c02a6aa](https://github.com/Arphase/nx-arphase/commit/c02a6aa231ef166d00b71fae193acaf39aa3497d))
+
 ### [3.7.1](https://github.com/Arphase/nx-arphase/compare/v3.7.0...v3.7.1) (2021-10-15)
 
 
