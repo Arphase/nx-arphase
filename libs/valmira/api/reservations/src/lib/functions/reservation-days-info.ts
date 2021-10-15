@@ -16,12 +16,7 @@ export function getReservationDaysInfo(reservation: DeepPartial<Reservation>): {
   pricePerNight;
 } {
   const { startDate, endDate, place } = reservation;
-  const days = getDateRangeArray(
-    startDate as Date,
-    dayjs(endDate as Date)
-      .subtract(1, 'day')
-      .toDate()
-  );
+  const days = getDateRangeArray(startDate as Date, endDate as Date);
   let weekDays = 0;
   let weekendDays = 0;
   const weekendDayNumber = [0, 5, 6];

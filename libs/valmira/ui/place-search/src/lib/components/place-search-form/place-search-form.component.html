@@ -10,9 +10,9 @@
       <nz-form-control apsAutoError>
         <nz-date-picker ngDefaultControl
                         class="h-10"
-                        [nzDisabledDate]="disableStartDate"
                         nzPlaceHolder="FECHA DE LLEGADA"
                         formControlName="startDate"
+                        [nzDisabledDate]="disableStartDate"
                         [nzShowToday]="false"></nz-date-picker>
       </nz-form-control>
     </nz-form-item>
@@ -25,9 +25,10 @@
         <nz-date-picker #endDateCalendar
                         ngDefaultControl
                         class="h-10"
-                        [nzDisabledDate]="disableEndDate"
                         nzPlaceHolder="FECHA DE SALIDA"
                         formControlName="endDate"
+                        [nzDisabledDate]="disableEndDate"
+                        [nzDefaultPickerValue]="values.startDate"
                         [nzShowToday]="false"></nz-date-picker>
       </nz-form-control>
     </nz-form-item>

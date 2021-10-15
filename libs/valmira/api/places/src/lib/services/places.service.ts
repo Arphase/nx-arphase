@@ -1,4 +1,4 @@
-import { createCollectionResponse, filterCollectionDates, filterCollectionQuery } from '@arphase/api/core';
+import { createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -54,9 +54,9 @@ export class PlacesService {
         startDate1: startOfDay(new Date(startDate)),
         endDate1: startOfDay(new Date(endDate)),
       });
-      reservationQuery.orWhere(`(reservation.endDate >= :startDate and reservation.endDate <= :endDate)`, {
-        startDate: endOfDay(new Date(startDate)).toISOString(),
-        endDate: endOfDay(new Date(endDate)).toISOString(),
+      reservationQuery.orWhere(`(reservation.endDate >= :startDate2 and reservation.endDate2 <= :endDate)`, {
+        startDate2: endOfDay(new Date(startDate)),
+        endDate2: endOfDay(new Date(endDate)),
       });
       const reservations = await reservationQuery.getMany();
       const excludedPlacesIds = reservations.map(reservation => reservation.placeId);
@@ -75,18 +75,39 @@ export class PlacesService {
     return place;
   }
 
+  /**
+   * Gets occupied dates
+   * Check unit tests for query implementations
+   * TODO: Replace unit test function for real database integration tests
+   * @param id
+   * @param [filterDto]
+   * @returns occupied dates
+   */
   async getOccupiedDates(id: number, filterDto?: OccupiedDatesDto): Promise<Date[]> {
+    const { startDate, endDate, dateType } = filterDto;
     const query = this.reservationRepository.createQueryBuilder('reservation');
-    if (filterDto) {
-      filterCollectionDates('reservation', query, { ...filterDto, dateType: 'startDate' }, { logicalOperator: 'or' });
-      filterCollectionDates('reservation', query, { ...filterDto, dateType: 'endDate' }, { logicalOperator: 'or' });
+    if (startDate && endDate) {
+      query.andWhere(
+        `((reservation.startDate >= :startDate1 and reservation.startDate <= :endDate1) or
+        (reservation.endDate >= :startDate2 and reservation.endDate <= :endDate2) or
+        ((reservation.startDate)::date = (:startDate)::date and (reservation.endDate)::date = (:endDate)::date) or
+        (reservation.startDate <= :startDate and :endDate <= reservation.endDate))`,
+        {
+          startDate1: endOfDay(new Date(startDate)),
+          endDate1: startOfDay(new Date(endDate)),
+          startDate2: endOfDay(new Date(startDate)),
+          endDate2: startOfDay(new Date(endDate)),
+          startDate,
+          endDate,
+        }
+      );
     }
     query
       .andWhere(`(reservation.endDate >= :today)`, { today: startOfDay(new Date()).toISOString() })
       .andWhere('(reservation.placeId = :placeId)', { placeId: id })
       .orderBy('reservation.startDate', SortDirection.ascend);
     const reservations = await query.getMany();
-    return getOccupiedDates(reservations);
+    return getOccupiedDates(reservations, dateType);
   }
 
   async getPlacesCountByCategory(filterDto: GetPlacesDto): Promise<PlaceCategorySummary> {

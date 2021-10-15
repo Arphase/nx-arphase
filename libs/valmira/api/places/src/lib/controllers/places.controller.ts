@@ -5,6 +5,7 @@ import { Place, PlaceCategorySummary } from '@valmira/domain';
 
 import { CreatePlaceDto } from '../dto/create-place.dto';
 import { GetPlacesDto } from '../dto/get-places.dto';
+import { OccupiedDatesDto } from '../dto/occupied-dates.dto';
 import { UpdatePlaceDto } from '../dto/update-place.dto';
 import { PlacesService } from '../services/places.service';
 
@@ -23,8 +24,8 @@ export class PlacesController {
   }
 
   @Get(':id/occupied-dates')
-  async getDisabledDates(@Param('id', ParseIntPipe) id: number): Promise<Date[]> {
-    return this.placesService.getOccupiedDates(id);
+  async getDisabledDates(@Param('id', ParseIntPipe) id: number, @Query() filterDto: OccupiedDatesDto): Promise<Date[]> {
+    return this.placesService.getOccupiedDates(id, filterDto);
   }
 
   @Get('count/category')

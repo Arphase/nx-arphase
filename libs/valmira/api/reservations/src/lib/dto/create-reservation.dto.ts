@@ -1,6 +1,7 @@
 import { Customer, ReservationAdditionalProduct } from '@valmira/domain';
-import { Type } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import { IsArray, IsDate, IsEmail, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import dayjs from 'dayjs';
 
 export class CreateReservationDto {
   @IsOptional()
@@ -8,9 +9,11 @@ export class CreateReservationDto {
   id: number;
 
   @IsDate()
+  @Transform((_, obj) => dayjs(obj['startDate']).set('hour', 15).set('minute', 0).set('second', 0).toDate())
   startDate: Date;
 
   @IsDate()
+  @Transform((_, obj) => dayjs(obj['endDate']).set('hour', 11).set('minute', 0).set('second', 0).toDate())
   endDate: Date;
 
   @IsNumber()

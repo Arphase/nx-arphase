@@ -94,10 +94,7 @@ export class PlaceSearchFormComponent extends ApsFormComponent<FiltersForm, Filt
     this.form
       .get('startDate')
       .valueChanges.pipe(untilDestroyed(this))
-      .subscribe(value => {
-        this.form.get('endDate').patchValue(dayjs(value).add(1, 'day').toDate());
-        this.endDateCalendar.open();
-      });
+      .subscribe(() => this.endDateCalendar.open());
 
     this.form
       .get('endDate')

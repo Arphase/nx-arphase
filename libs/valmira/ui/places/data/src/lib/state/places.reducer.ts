@@ -4,15 +4,20 @@ import * as PlacesActions from './places.actions';
 import { PlacesState } from './places.state';
 
 export const initialState: PlacesState = {
-  occupiedDates: [],
+  startDateOccupiedDates: [],
+  endDateOccupiedDates: [],
   summary: [],
 };
 
 const placesReducer = createReducer(
   initialState,
-  on(PlacesActions.getOccupiedDatesSuccess, (state, action) => ({
+  on(PlacesActions.getStartOccupiedDatesSuccess, (state, action) => ({
     ...state,
-    occupiedDates: action.dates,
+    startDateOccupiedDates: action.dates,
+  })),
+  on(PlacesActions.getEndDateOccupiedDatesSuccess, (state, action) => ({
+    ...state,
+    endDateOccupiedDates: action.dates,
   })),
   on(PlacesActions.getCategorySummarySuccess, (state, action) => ({
     ...state,

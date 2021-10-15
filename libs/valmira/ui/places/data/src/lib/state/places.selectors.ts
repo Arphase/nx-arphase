@@ -6,6 +6,11 @@ const getPlacesFeatureState = createFeatureSelector<PlacesState>('places');
 
 export const getPlacesState = createSelector(getPlacesFeatureState, state => state);
 
-export const getPlacesOccupiedDates = createSelector(getPlacesFeatureState, state => state.occupiedDates);
+export const getPlacesStartDateOccupiedDates = createSelector(
+  getPlacesFeatureState,
+  state => state.startDateOccupiedDates
+);
+
+export const getPlacesEndDateOccupiedDates = createSelector(getPlacesFeatureState, state => state.endDateOccupiedDates);
 
 export const getPlacesCategorySummary = createSelector(getPlacesFeatureState, state => state.summary);

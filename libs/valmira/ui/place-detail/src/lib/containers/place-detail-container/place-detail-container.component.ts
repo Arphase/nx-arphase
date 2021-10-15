@@ -22,7 +22,8 @@ export class PlaceDetailContainerComponent implements OnInit {
   item$ = this.placeCollectionService.currentItem$;
   loading$ = this.placeCollectionService.loading$;
   loadingReserve$ = this.reservationCollectionService.loadingModify$;
-  occupedDates$ = this.store.pipe(select(fromPlaces.selectors.getPlacesOccupiedDates));
+  startDateOccupedDates$ = this.store.pipe(select(fromPlaces.selectors.getPlacesStartDateOccupiedDates));
+  endDateOccupiedDates$ = this.store.pipe(select(fromPlaces.selectors.getPlacesEndDateOccupiedDates));
   reservationPreview$ = this.store.pipe(select(getPlaceDetailReservationPreview));
   queryParams$ = this.store.pipe(select(selectQueryParams));
 
@@ -44,7 +45,8 @@ export class PlaceDetailContainerComponent implements OnInit {
       )
       .subscribe(id => {
         this.placeCollectionService.getByKey(id);
-        this.store.dispatch(fromPlaces.actions.getOccupiedDates({ id: Number(id) }));
+        this.store.dispatch(fromPlaces.actions.getStartOccupiedDates({ id: Number(id) }));
+        this.store.dispatch(fromPlaces.actions.getEndDateOccupiedDates({ id: Number(id) }));
       });
   }
 
