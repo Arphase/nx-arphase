@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.7.3](https://github.com/Arphase/nx-arphase/compare/v3.7.2...v3.7.3) (2021-10-15)
+
+
+### Bug Fixes
+
+* **valmira/manifest:** send span object correctly ([37d55d1](https://github.com/Arphase/nx-arphase/commit/37d55d1bffb5c06c4f313e7494b84cd8d9a4a5fa))
+
 ### [3.7.2](https://github.com/Arphase/nx-arphase/compare/v3.7.1...v3.7.2) (2021-10-15)
 
 
