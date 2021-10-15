@@ -53,6 +53,9 @@ export class PlaceEntity extends BaseEntity implements Place {
   @Column({ default: false })
   active: boolean;
 
+  @Column({ nullable: true })
+  releaseDate: Date;
+
   @Column({
     type: 'enum',
     enum: PlaceCategories,

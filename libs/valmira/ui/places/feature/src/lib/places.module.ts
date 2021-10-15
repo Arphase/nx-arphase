@@ -8,6 +8,7 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -45,6 +46,7 @@ import { PhotoDataService } from './services/photo-data.service';
     NzButtonModule,
     NzCardModule,
     NzCollapseModule,
+    NzDatePickerModule,
     NzDividerModule,
     NzDropDownModule,
     NzFormModule,

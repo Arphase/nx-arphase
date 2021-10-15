@@ -1,21 +1,23 @@
-<div nz-row
-     class="header-menu p-8">
-  <div nz-col
-       nzSpan="12"
-       class="flex justify-start items-center">
-    <a [routerLink]="['.']">
-      <img [src]="(isInManifest$ | async) ? 'assets/img/valmira.svg' : 'assets/img/valmira-green.svg'"
-           class="logo"
-           loading="lazy" /> </a>
-  </div>
+<div class="header-menu">
+  <div nz-row
+       class="max-1440 px-8 md:px-24 py-8">
+    <div nz-col
+         nzSpan="12"
+         class="flex justify-start items-center">
+      <a [routerLink]="['.']">
+        <img [src]="(isInManifest$ | async) ? 'assets/img/valmira.svg' : 'assets/img/valmira-green.svg'"
+             class="logo"
+             loading="lazy" /> </a>
+    </div>
 
-  <div nz-col
-       nzSpan="12"
-       class="flex justify-end items-center">
-    <a class="flex justify-end items-center menu-toggle"
-       (click)="openMenu()">
-      MENU
-    </a>
+    <div nz-col
+         nzSpan="12"
+         class="flex justify-end items-center">
+      <a class="flex justify-end items-center menu-toggle"
+         (click)="openMenu()">
+        MENU
+      </a>
+    </div>
   </div>
 </div>
 

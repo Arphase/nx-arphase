@@ -26,6 +26,7 @@ export function createPlaceForm(): FormGroup {
     rooms: new FormControl(null, ApsValidators.required),
     beds: new FormControl(null, ApsValidators.required),
     category: new FormControl(null, ApsValidators.required),
+    releaseDate: new FormControl(null, ApsValidators.required),
     services: new FormArray([]),
   });
 }

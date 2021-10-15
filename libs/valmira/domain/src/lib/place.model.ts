@@ -16,6 +16,7 @@ export interface Place {
   category: PlaceCategories | string;
   photos?: Photo[];
   reservations?: Reservation[];
+  releaseDate?: Date;
 }
 
 export enum PlaceCategories {
