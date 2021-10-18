@@ -1,4 +1,4 @@
-import { AdditionalOption, Photo } from '@musicr/domain';
+import { AdditionalOption, Photo, PriceOption } from '@musicr/domain';
 import { Type } from 'class-transformer';
 import { IsArray, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 
@@ -28,6 +28,11 @@ export class CreateProductDto {
   @ValidateNested()
   @Type(() => CreateProductPhotoDto)
   photos: Photo[];
+
+  @IsArray()
+  @ValidateNested()
+  @Type(() => CreatePriceOptionDto)
+  priceOptions: PriceOption[];
 
   @IsArray()
   @ValidateNested()

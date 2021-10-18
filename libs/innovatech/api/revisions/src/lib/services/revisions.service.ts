@@ -50,7 +50,8 @@ export class RevisionsService {
 
     if (text) {
       query.andWhere(
-        `(LOWER(vehicle.vin) like :text OR
+        `(CAST (revision.id AS varchar) like :text OR
+           LOWER(vehicle.vin) like :text OR
            LOWER(vehicle.brand) like :text OR
            LOWER(vehicle.model) like :text OR
            LOWER(vehicle.version) like :text)
@@ -84,6 +85,7 @@ export class RevisionsService {
 
     const revisionsData: string[][] = revisions.map(revision => {
       return [
+        revision.id,
         formatDate(revision.createdAt),
         formatDate(revision.updatedAt),
         revisionStatusLabels[revision.status],

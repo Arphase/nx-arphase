@@ -1,10 +1,10 @@
 import { createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
-import { ProductEntity } from '@musicr/api/domain';
-import { Product } from '@musicr/domain';
+import { PriceOptionEntity, ProductEntity } from '@musicr/api/domain';
+import { PriceOption, Product } from '@musicr/domain';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { uniqBy } from 'lodash';
+import { omit } from 'lodash';
 import { Repository } from 'typeorm';
 
 import { CreateProductDto } from '../dto/create-product.dto';
@@ -15,7 +15,9 @@ import { UpdateProductDto } from '../dto/update-product.dto';
 export class ProductsService {
   constructor(
     @InjectRepository(ProductEntity)
-    private productRepository: Repository<ProductEntity>
+    private productRepository: Repository<ProductEntity>,
+    @InjectRepository(PriceOptionEntity)
+    private priceOptionRepository: Repository<PriceOptionEntity>
   ) {}
 
   async getProducts(filterDto: GetProductsFilterDto): Promise<ApsCollectionResponse<Product>> {
@@ -52,8 +54,10 @@ export class ProductsService {
 
   async createProduct(product: CreateProductDto): Promise<Product> {
     try {
-      const newProduct = this.productRepository.create({ ...product });
-      return this.productRepository.save(newProduct);
+      const newProduct = this.productRepository.create(omit(product, 'priceOptions'));
+      await this.productRepository.save(newProduct);
+      await this.savePriceOptions(product.priceOptions, newProduct.id);
+      return newProduct;
     } catch (e) {
       if (e.code === '23503') {
         throw new NotFoundException(`La subcategoría con id ${product.subcategoryId} no existe`);
@@ -67,11 +71,12 @@ export class ProductsService {
   }
 
   async updateProduct(updateDto: UpdateProductDto): Promise<Product> {
-    const preloadedProduct = await this.productRepository.preload(updateDto);
-    await preloadedProduct.save();
-    preloadedProduct.reload();
-    preloadedProduct.photos = uniqBy(preloadedProduct.photos, 'id');
-    return preloadedProduct;
+    const product = await this.getProduct(updateDto.id);
+    const updatedProduct = await this.productRepository.preload({ ...product, ...omit(updateDto, 'priceOptions') });
+    await updatedProduct.save();
+    await updatedProduct.reload();
+    await this.savePriceOptions(updateDto.priceOptions, updatedProduct.id);
+    return updatedProduct;
   }
 
   async deleteProduct(id: number): Promise<Product> {
@@ -86,5 +91,14 @@ export class ProductsService {
         );
       }
     }
+  }
+
+  async savePriceOptions(priceOptions: PriceOption[], productId: number): Promise<void> {
+    await Promise.all(
+      priceOptions.map(async priceOption => {
+        const newPriceOption = this.priceOptionRepository.create({ ...priceOption, productId });
+        await newPriceOption.save();
+      })
+    );
   }
 }

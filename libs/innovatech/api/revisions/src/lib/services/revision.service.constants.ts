@@ -1,4 +1,5 @@
 export const revisionExcelColumns: string[] = [
+  'Folio',
   'Fecha de alta',
   'Fecha de actualización',
   'Estatus',

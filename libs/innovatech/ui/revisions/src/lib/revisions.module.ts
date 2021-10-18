@@ -11,6 +11,7 @@ import {
   ApsSearchbarModule,
 } from '@arphase/ui/core';
 import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
+import { IvtFolioModule } from '@innovatech/ui/core/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';
 import { UserCheckboxFilterModule } from '@innovatech/ui/users/ui';
@@ -84,6 +85,7 @@ import { RevisionDataService } from './services/revision-data.service';
     GroupCheckboxFilterModule,
     CompanyCheckboxFilterModule,
     UserCheckboxFilterModule,
+    IvtFolioModule,
   ],
   declarations: [
     RevisionFormComponent,

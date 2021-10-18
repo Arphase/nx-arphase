@@ -115,8 +115,12 @@
     <tr *ngFor="let item of table.data"
         nz-row>
       <td nz-col
-          nzXs="17"
-          nzMd="8"
+          nzXs="6"
+          nzMd="3"
+          nzLg="2">{{ item?.id | folio | empty }}</td>
+      <td nz-col
+          nzXs="10"
+          nzMd="6"
           nzLg="4">{{ item?.vehicle?.vin | empty }}</td>
       <td nz-col
           nzXs="0"
@@ -127,13 +131,10 @@
           nzLg="3">{{ item?.vehicle?.model | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="2">{{ item?.vehicle?.version | empty }}</td>
-      <td nz-col
-          nzXs="0"
           nzLg="2">{{ item?.vehicle?.year | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzMd="6"
+          nzMd="5"
           nzLg="4">{{ item?.createdAt | date: 'dd/MM/yy' }}</td>
       <td nz-col
           nzXs="0"
