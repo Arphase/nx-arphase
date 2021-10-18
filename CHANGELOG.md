@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.7.4](https://github.com/Arphase/nx-arphase/compare/v3.7.3...v3.7.4) (2021-10-18)
+
+
+### Features
+
+* **innovatech/revisions:** add id as folio to keep track of items ([e77a4fa](https://github.com/Arphase/nx-arphase/commit/e77a4fa54c03c739168fc4d41a1afe75eb3f866f))
+
+
+### Bug Fixes
+
+* **valmira/app:** fix menu for mobile ([2762d0c](https://github.com/Arphase/nx-arphase/commit/2762d0c7cfc06dba8f4925f4549d31b0dfcf9b93))
+
 ### [3.7.3](https://github.com/Arphase/nx-arphase/compare/v3.7.2...v3.7.3) (2021-10-15)
 
 
