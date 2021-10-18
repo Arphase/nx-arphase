@@ -62,7 +62,6 @@ export class ProductEntity extends BaseEntity implements Product {
   orderProducts: OrderProduct[];
 
   @OneToMany(() => PriceOptionEntity, priceOption => priceOption.product, {
-    cascade: true,
     eager: true,
   })
   priceOptions: PriceOption[];

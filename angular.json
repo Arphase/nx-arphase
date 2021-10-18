@@ -590,7 +590,7 @@
                 "inject": false
               }
             ],
-            "allowedCommonJsDependencies": ["file-saver"],
+            "allowedCommonJsDependencies": ["file-saver", "clone-deep"],
             "stylePreprocessorOptions": {
               "includePaths": ["libs/arphase/ui/core/src/styles"]
             },

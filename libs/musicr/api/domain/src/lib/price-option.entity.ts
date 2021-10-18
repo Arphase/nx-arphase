@@ -19,7 +19,7 @@ export class PriceOptionEntity extends BaseEntity implements PriceOption {
   @Column()
   productId: number;
 
-  @OneToMany(() => PhotoEntity, photo => photo.priceOption, { eager: true })
+  @OneToMany(() => PhotoEntity, photo => photo.priceOption, { eager: true, cascade: true })
   photos: Photo[];
 
   @ManyToOne(() => ProductEntity, product => product.priceOptions)

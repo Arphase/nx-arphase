@@ -3,11 +3,20 @@ import { RevisionStatus } from '@innovatech/common/domain';
 
 export const columns: ApsColumns = [
   {
+    label: 'Folio',
+    prop: 'revision.id',
+    colSizes: {
+      xs: 6,
+      md: 3,
+      lg: 2,
+    },
+  },
+  {
     label: 'VIN',
     prop: 'vehicle.vin',
     colSizes: {
-      xs: 16,
-      md: 8,
+      xs: 10,
+      md: 6,
       lg: 4,
     },
   },
@@ -27,13 +36,6 @@ export const columns: ApsColumns = [
     },
   },
   {
-    label: 'Versión',
-    prop: 'vehicle.version',
-    colSizes: {
-      lg: 2,
-    },
-  },
-  {
     label: 'Año',
     prop: 'vehicle.year',
     colSizes: {
@@ -44,7 +46,7 @@ export const columns: ApsColumns = [
     label: 'Fecha de alta',
     prop: 'revision.createdAt',
     colSizes: {
-      md: 6,
+      md: 5,
       lg: 4,
     },
   },

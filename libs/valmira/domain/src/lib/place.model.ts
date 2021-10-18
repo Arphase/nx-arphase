@@ -26,9 +26,9 @@ export enum PlaceCategories {
 }
 
 export const categoryLabels: Record<string, string> = {
-  [PlaceCategories[PlaceCategories.premium]]: 'Premium',
+  [PlaceCategories[PlaceCategories.premium]]: 'Familiar',
   [PlaceCategories[PlaceCategories.couple]]: 'Pareja',
-  [PlaceCategories[PlaceCategories.kids]]: 'Niños',
+  [PlaceCategories[PlaceCategories.kids]]: 'Amigos',
 };
 
 export interface PlaceCountByCategory {

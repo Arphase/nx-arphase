@@ -87,7 +87,7 @@
 
 <div nz-row
      nzAlign="middle"
-     [nzGutter]="[12, 12]">
+     nzGutter="12">
   <div nz-col>
     <aps-date-filter label="Fecha"
                      [dateTypeOptions]="dateTypeOptions"
@@ -134,8 +134,7 @@
     <tr nz-row>
       <th *ivtCreatePermission
           nz-col
-          nzXs="1"
-          nzMd="2"
+          nzSpan="1"
           [(nzChecked)]="checked"
           [nzIndeterminate]="indeterminate"
           (nzCheckedChange)="onAllChecked($event)"></th>
@@ -163,7 +162,7 @@
       <tr nz-row>
         <td *ivtCreatePermission
             nz-col
-            nzXs="2"
+            nzSpan="1"
             [nzDisabled]="item.amount"
             [nzChecked]="setOfCheckedId.has(item.id)"
             (nzCheckedChange)="onItemChecked(item.id, $event)"></td>
