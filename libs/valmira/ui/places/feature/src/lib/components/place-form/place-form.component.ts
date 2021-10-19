@@ -38,7 +38,7 @@ export function createPlaceForm(): FormGroup {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlaceFormComponent extends ApsFormComponent<Place> implements OnChanges {
-  allowedMimeType = ['image/jpeg', 'image/pjpeg', 'image/jpeg', 'image/pjpeg', 'image/png'];
+  allowedMimeType = ['image/jpeg', 'image/jpg'];
   fileList: NzUploadFile[] = [];
   previewImage: string | undefined = '';
   previewVisible = false;
