@@ -3,7 +3,7 @@ import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlaceEntity, ReservationEntity } from '@valmira/api/domain';
-import { Place, PlaceCategories, PlaceCategorySummary } from '@valmira/domain';
+import { Place } from '@valmira/domain';
 import { endOfDay, startOfDay } from 'date-fns';
 import { Repository, SelectQueryBuilder } from 'typeorm';
 
@@ -23,7 +23,10 @@ export class PlacesService {
   async getPlaces(filterDto: GetPlacesDto): Promise<ApsCollectionResponse<Place>> {
     const { pageIndex, pageSize, dateType } = filterDto;
     const query = await this.getPlacesQuery(filterDto);
-    query.leftJoinAndSelect('place.photos', 'photos').orderBy('place.createdAt', SortDirection.descend);
+    query
+      .leftJoinAndSelect('place.photos', 'photo')
+      .orderBy('place.createdAt', SortDirection.descend)
+      .addOrderBy('photo.id', SortDirection.ascend);
 
     filterCollectionQuery('place', query, filterDto, { ignoreDates: dateType !== 'createdAt' });
 
@@ -32,8 +35,8 @@ export class PlacesService {
     return createCollectionResponse<Place>(places, pageSize, pageIndex, total);
   }
 
-  async getPlacesQuery(filterDto: GetPlacesDto, ignoreCategory?: boolean): Promise<SelectQueryBuilder<PlaceEntity>> {
-    const { startDate, endDate, dateType, onlyActives, capacity, category } = filterDto;
+  async getPlacesQuery(filterDto: GetPlacesDto): Promise<SelectQueryBuilder<PlaceEntity>> {
+    const { startDate, endDate, dateType, onlyActives, capacity } = filterDto;
     const query = this.placeRepository.createQueryBuilder('place');
 
     if (onlyActives) {
@@ -42,10 +45,6 @@ export class PlacesService {
 
     if (capacity) {
       query.andWhere('(place.capacity >= :capacity)', { capacity });
-    }
-
-    if (category && !ignoreCategory) {
-      query.andWhere('(place.category = :category)', { category });
     }
 
     if (startDate && endDate && dateType !== 'createdAt') {
@@ -108,13 +107,6 @@ export class PlacesService {
       .orderBy('reservation.startDate', SortDirection.ascend);
     const reservations = await query.getMany();
     return getOccupiedDates(reservations, dateType);
-  }
-
-  async getPlacesCountByCategory(filterDto: GetPlacesDto): Promise<PlaceCategorySummary> {
-    const query = await this.getPlacesQuery(filterDto, true);
-    query.select('place.category', 'category').addSelect('COUNT(*)', 'amount').groupBy('place.category');
-    const result = await query.getRawMany();
-    return result.map(element => ({ ...element, category: PlaceCategories[element.category] }));
   }
 
   async createPlace(createPlaceDto: CreatePlaceDto): Promise<Place> {

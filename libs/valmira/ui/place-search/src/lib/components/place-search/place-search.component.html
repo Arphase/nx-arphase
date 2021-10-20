@@ -11,8 +11,7 @@
   </div>
 </div>
 <div class="my-8">
-  <vma-place-search-form [summary]="summary"
-                         (submitForm)="filterItems.emit($event)"></vma-place-search-form>
+  <vma-place-search-form (submitForm)="filterItems.emit($event)"></vma-place-search-form>
 </div>
 
 <ng-container *ngIf="loading; else listElement">
@@ -41,10 +40,9 @@
 <ng-template #listElement>
   <ng-container *ngIf="list.length; else emptyState">
     <div *ngFor="let item of list; let i = index"
-         class="place my-12 md:my-32 flex"
+         class="place my-12 md:my-32 flex cursor-pointer"
          [ngClass]="{ 'justify-start': i%3 === 2, 'justify-center': i%3 === 1, 'justify-end': i%3 === 0 }">
-      <div class="flex-col"
-           [routerLink]="['..', 'place', item.id]"
+      <div [routerLink]="['..', 'place', item.id]"
            queryParamsHandling="merge">
         <div *ngIf="i%3 === 1">
           <div class="flex justify-start">
@@ -53,9 +51,21 @@
                  loading="lazy">
           </div>
         </div>
-        <img [src]="item.photos[0].path"
-             class="image-scroll">
-        <h3 class="mt-3">{{ item.name }}</h3>
+        <img [src]="item.photos[0]?.path"
+             class="image-scroll"
+             [alt]="item?.name">
+        <div nz-row
+             class="py-3">
+          <div nz-col
+               nzSpan="12">
+            <span>{{ item.name | uppercase }}</span>
+          </div>
+          <div nz-col
+               nzSpan="12"
+               class="text-right">
+            <span class="bg-focus py-1 px-3">{{ item?.capacity }} HUÉSPEDES</span>
+          </div>
+        </div>
         <div *ngIf="i%3 === 1">
           <div class="flex justify-end">
             <img class="logo -mr-32"

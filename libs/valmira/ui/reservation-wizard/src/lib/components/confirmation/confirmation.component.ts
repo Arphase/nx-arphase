@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { categoryLabels, Customer, Place, Reservation } from '@valmira/domain';
+import { Customer, Place, Reservation } from '@valmira/domain';
 
 @Component({
   selector: 'vma-confirmation',
@@ -9,7 +9,6 @@ import { categoryLabels, Customer, Place, Reservation } from '@valmira/domain';
 })
 export class ConfirmationComponent {
   @Input() item: Reservation;
-  categoryLabels = categoryLabels;
 
   get customer(): Customer {
     return this.item?.customer;

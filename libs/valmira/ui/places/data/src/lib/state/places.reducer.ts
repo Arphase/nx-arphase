@@ -6,7 +6,6 @@ import { PlacesState } from './places.state';
 export const initialState: PlacesState = {
   startDateOccupiedDates: [],
   endDateOccupiedDates: [],
-  summary: [],
 };
 
 const placesReducer = createReducer(
@@ -18,10 +17,6 @@ const placesReducer = createReducer(
   on(PlacesActions.getEndDateOccupiedDatesSuccess, (state, action) => ({
     ...state,
     endDateOccupiedDates: action.dates,
-  })),
-  on(PlacesActions.getCategorySummarySuccess, (state, action) => ({
-    ...state,
-    summary: action.summary,
   }))
 );
 

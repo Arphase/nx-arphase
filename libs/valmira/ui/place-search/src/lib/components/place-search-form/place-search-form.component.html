@@ -70,29 +70,3 @@
     </button>
   </div>
 </form>
-
-<div nz-row>
-  <div nz-col
-       nzSpan="24"
-       class="flex md:justify-start justify-center">
-    <nz-radio-group [(ngModel)]="radioValue"
-                    (ngModelChange)="submit()">
-      <label *ngFor="let category of categoryOptions let i = index"
-             nz-radio-button
-             class="category md:px-4 px-2"
-             [nzValue]="category.value"
-             [ngClass]="{ 'selected': radioValue === category.value, 'not-selected': radioValue !== category.value }">
-        <div class="grid justify-items-stretch">
-          <img [src]="category.logo"
-               class="search-icon justify-self-center"
-               loading="lazy">
-          <p *ngIf="summary"
-             class="mt-1">{{ category.label }}
-            <ng-container *ngIf="category.value">({{ summary[category.value]?.amount || 0 }})</ng-container>
-            <ng-container *ngIf="!category.value">({{ summary | sumAllPlaces }})</ng-container>
-          </p>
-        </div>
-      </label>
-    </nz-radio-group>
-  </div>
-</div>

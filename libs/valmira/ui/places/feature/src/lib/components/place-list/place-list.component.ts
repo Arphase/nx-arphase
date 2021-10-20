@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsColumns, ApsListComponent } from '@arphase/ui/core';
-import { categoryLabels, Place } from '@valmira/domain';
+import { Place } from '@valmira/domain';
 
 @Component({
   selector: 'vma-place-list',
@@ -15,40 +15,27 @@ export class PlaceListComponent extends ApsListComponent<Place> {
       prop: 'place.name',
       colSizes: {
         xs: 24,
-        md: 8,
-        lg: 6,
+        md: 6,
       },
     },
     {
       label: 'Capacidad',
       prop: 'place.capacity',
-      colSizes: { lg: 4 },
+      colSizes: { md: 5 },
     },
     {
       label: 'Cuartos',
       prop: 'place.rooms',
       colSizes: {
         md: 5,
-        lg: 4,
       },
     },
     {
       label: 'Camas',
       prop: 'place.beds',
       colSizes: {
-        md: 4,
-        lg: 4,
-      },
-    },
-    {
-      label: 'Categoría',
-      prop: 'category.name',
-      colSizes: {
-        md: 7,
-        lg: 6,
+        md: 8,
       },
     },
   ];
-
-  categoryLabels = categoryLabels;
 }

@@ -12,5 +12,3 @@ export const getPlacesStartDateOccupiedDates = createSelector(
 );
 
 export const getPlacesEndDateOccupiedDates = createSelector(getPlacesFeatureState, state => state.endDateOccupiedDates);
-
-export const getPlacesCategorySummary = createSelector(getPlacesFeatureState, state => state.summary);

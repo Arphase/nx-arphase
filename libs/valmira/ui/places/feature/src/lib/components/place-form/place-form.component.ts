@@ -9,9 +9,8 @@ import {
 } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators, getBase64, setFormArrayValue } from '@arphase/ui/core';
-import { Place, PlaceCategories } from '@valmira/domain';
+import { Place } from '@valmira/domain';
 import { VALMIRA_CONFIGURATION, ValmiraConfiguration } from '@valmira/ui/core';
-import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 
 export function createPlaceForm(): FormGroup {
@@ -25,7 +24,6 @@ export function createPlaceForm(): FormGroup {
     weekendPrice: new FormControl(null, ApsValidators.required),
     rooms: new FormControl(null, ApsValidators.required),
     beds: new FormControl(null, ApsValidators.required),
-    category: new FormControl(null, ApsValidators.required),
     releaseDate: new FormControl(null, ApsValidators.required),
     services: new FormArray([]),
   });
@@ -38,25 +36,11 @@ export function createPlaceForm(): FormGroup {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlaceFormComponent extends ApsFormComponent<Place> implements OnChanges {
-  allowedMimeType = ['image/jpeg', 'image/pjpeg', 'image/jpeg', 'image/pjpeg', 'image/png'];
+  allowedMimeType = ['image/jpeg', 'image/jpg'];
   fileList: NzUploadFile[] = [];
   previewImage: string | undefined = '';
   previewVisible = false;
   photosUrl: string;
-  categoryOptions: NzSelectOptionInterface[] = [
-    {
-      label: 'Premium',
-      value: PlaceCategories[PlaceCategories.premium],
-    },
-    {
-      label: 'Parejas',
-      value: PlaceCategories[PlaceCategories.couple],
-    },
-    {
-      label: 'Niños',
-      value: PlaceCategories[PlaceCategories.kids],
-    },
-  ];
   @Output() removePhoto = new EventEmitter<number>();
 
   handlePreview = async (file: NzUploadFile) => {

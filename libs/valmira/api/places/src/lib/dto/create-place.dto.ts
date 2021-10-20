@@ -1,6 +1,6 @@
-import { Photo, PlaceCategories } from '@valmira/domain';
-import { Transform, Type } from 'class-transformer';
-import { IsArray, IsDate, IsEnum, IsNumber, IsString, ValidateNested } from 'class-validator';
+import { Photo } from '@valmira/domain';
+import { Type } from 'class-transformer';
+import { IsArray, IsDate, IsNumber, IsString, ValidateNested } from 'class-validator';
 
 export class CreatePlaceDto {
   @IsString()
@@ -29,10 +29,6 @@ export class CreatePlaceDto {
 
   @IsDate()
   releaseDate: Date;
-
-  @Transform((_, obj) => PlaceCategories[obj['category']])
-  @IsEnum(PlaceCategories)
-  category: PlaceCategories;
 
   @IsString({ each: true })
   services: string[];

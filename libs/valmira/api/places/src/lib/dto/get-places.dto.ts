@@ -1,7 +1,5 @@
 import { ApsCollectionFilterDto } from '@arphase/api/core';
-import { PlaceCategories } from '@valmira/domain';
-import { Transform } from 'class-transformer';
-import { IsBoolean, IsEnum, IsNumber, IsOptional } from 'class-validator';
+import { IsBoolean, IsNumber, IsOptional } from 'class-validator';
 
 export class GetPlacesDto extends ApsCollectionFilterDto {
   @IsOptional()
@@ -11,9 +9,4 @@ export class GetPlacesDto extends ApsCollectionFilterDto {
   @IsOptional()
   @IsNumber()
   capacity?: number;
-
-  @IsOptional()
-  @Transform((_, obj) => PlaceCategories[obj['category']])
-  @IsEnum(PlaceCategories)
-  category: PlaceCategories;
 }

@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.7.6](https://github.com/Arphase/nx-arphase/compare/v3.7.5...v3.7.6) (2021-10-20)
+
+
+### Features
+
+* **valmira/app:** remove places category ([0674bf2](https://github.com/Arphase/nx-arphase/commit/0674bf2352892f3780d37157d0662e18d96e08fc))
+
+### [3.7.5](https://github.com/Arphase/nx-arphase/compare/v3.7.4...v3.7.5) (2021-10-19)
+
+
+### Bug Fixes
+
+* **innovatech/api:** transform array query params ([65e4043](https://github.com/Arphase/nx-arphase/commit/65e4043d4b6f9790f377abcb353656c11a200b1a))
+
 ### [3.7.4](https://github.com/Arphase/nx-arphase/compare/v3.7.3...v3.7.4) (2021-10-18)
 
 

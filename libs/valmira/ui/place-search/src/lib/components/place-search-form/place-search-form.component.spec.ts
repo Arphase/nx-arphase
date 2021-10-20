@@ -1,8 +1,6 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
-import { MockPipe } from 'ng-mocks';
 
-import { SumAllPlacesPipe } from '../../pipes/sum-all-places.pipe';
 import { PlaceSearchFormComponent } from './place-search-form.component';
 
 describe('PlaceSearchFormComponent', () => {
@@ -10,7 +8,6 @@ describe('PlaceSearchFormComponent', () => {
   const createComponent = createComponentFactory({
     component: PlaceSearchFormComponent,
     imports: [RouterTestingModule],
-    declarations: [MockPipe(SumAllPlacesPipe)],
     shallow: true,
   });
 

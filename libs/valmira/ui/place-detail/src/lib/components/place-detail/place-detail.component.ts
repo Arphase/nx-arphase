@@ -12,7 +12,7 @@ import {
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { categoryLabels, Place, Reservation } from '@valmira/domain';
+import { Place, Reservation } from '@valmira/domain';
 import dayjs from 'dayjs';
 import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
 import { filter } from 'rxjs/operators';
@@ -45,7 +45,6 @@ export class PlaceDetailComponent
     },
     { validators: ApsValidators.dateLessThan('startDate', 'endDate') }
   );
-  categoryLabels = categoryLabels;
   @Output() datesChange = new EventEmitter<{ startDate: Date; endDate: Date }>();
 
   constructor() {

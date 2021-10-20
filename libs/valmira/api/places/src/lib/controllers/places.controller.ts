@@ -1,7 +1,7 @@
 import { ApsCollectionResponse } from '@arphase/common';
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { Place, PlaceCategorySummary } from '@valmira/domain';
+import { Place } from '@valmira/domain';
 
 import { CreatePlaceDto } from '../dto/create-place.dto';
 import { GetPlacesDto } from '../dto/get-places.dto';
@@ -26,11 +26,6 @@ export class PlacesController {
   @Get(':id/occupied-dates')
   async getDisabledDates(@Param('id', ParseIntPipe) id: number, @Query() filterDto: OccupiedDatesDto): Promise<Date[]> {
     return this.placesService.getOccupiedDates(id, filterDto);
-  }
-
-  @Get('count/category')
-  async getPlacesCountByCategory(@Query() filterDto: GetPlacesDto): Promise<PlaceCategorySummary> {
-    return this.placesService.getPlacesCountByCategory(filterDto);
   }
 
   @UseGuards(AuthGuard('jwt'))

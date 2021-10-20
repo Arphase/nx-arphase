@@ -1,4 +1,4 @@
-import { Photo, Place, PlaceCategories, Reservation } from '@valmira/domain';
+import { Photo, Place, Reservation } from '@valmira/domain';
 import {
   BaseEntity,
   Column,
@@ -55,16 +55,6 @@ export class PlaceEntity extends BaseEntity implements Place {
 
   @Column({ nullable: true })
   releaseDate: Date;
-
-  @Column({
-    type: 'enum',
-    enum: PlaceCategories,
-    transformer: {
-      to: value => value,
-      from: value => PlaceCategories[value],
-    },
-  })
-  category: PlaceCategories | string;
 
   @OneToMany(() => PhotoEntity, photo => photo.place, {
     cascade: true,

@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { PlaceCategories } from '@valmira/domain';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
@@ -16,7 +15,6 @@ interface FiltersForm {
 }
 
 interface FiltersPayload extends FiltersForm {
-  category: string;
   resetList: string;
   onlyActives: string;
 }
@@ -30,30 +28,6 @@ interface FiltersPayload extends FiltersForm {
 })
 export class PlaceSearchFormComponent extends ApsFormComponent<FiltersForm, FiltersPayload> implements OnInit {
   @ViewChild('endDateCalendar', { static: true }) endDateCalendar: NzDatePickerComponent;
-  @Input() summary: Record<PlaceCategories, { category: PlaceCategories; amount: number }>;
-  categoryOptions = [
-    {
-      value: 0,
-      logo: 'assets/img/logo-all.svg',
-      label: 'VER TODO',
-    },
-    {
-      value: PlaceCategories[PlaceCategories.premium],
-      logo: 'assets/img/logo-premium.svg',
-      label: 'PREMIUM',
-    },
-    {
-      value: PlaceCategories[PlaceCategories.couple],
-      logo: 'assets/img/logo-couple.svg',
-      label: 'PAREJAS',
-    },
-    {
-      value: PlaceCategories[PlaceCategories.kids],
-      logo: 'assets/img/logo-kids.svg',
-      label: 'NIÑOS',
-    },
-  ];
-  radioValue = this.categoryOptions[0].value;
 
   form = new FormGroup(
     {
@@ -115,7 +89,6 @@ export class PlaceSearchFormComponent extends ApsFormComponent<FiltersForm, Filt
     const { startDate, endDate } = values;
     return {
       ...values,
-      category: String(this.radioValue),
       startDate: startDate ? dayjs(startDate).utc().format() : null,
       endDate: endDate ? dayjs(endDate).utc().format() : null,
       resetList: String(true),
