@@ -62,13 +62,12 @@
                nzSpan="24"
                class="flex items-center mb-9">
             <h4 class="md:text-5xl text-2xl text-primary">{{ place?.name | uppercase }}</h4>
-            <span class="category ml-4 py-1 px-3">{{ categoryLabels[place?.category] | uppercase }}</span>
+            <span class="bg-focus ml-4 py-1 px-3">{{ place?.capacity }} HUÉSPEDES</span>
           </div>
         </div>
         <div nz-row>
           <div nz-col
                nzSpan="24">
-            <p class="mb-3">{{ place?.capacity }} HUÉSPEDES</p>
             <p>{{ item?.startDate | date: 'MMM d, y' }} — {{ item?.endDate | date: 'MMM d, y' }}</p>
           </div>
         </div>

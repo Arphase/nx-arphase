@@ -13,7 +13,8 @@ import { selectUrl } from '../router/router.selectors';
 })
 export class MenuComponent {
   menuItems = [
-    { name: 'Reserva', link: 'search' },
+    { name: 'Inicio', link: '.' },
+    { name: 'Nueva Reservación', link: 'search' },
     { name: 'Consulta tu Reservación', link: 'reservation-detail' },
     { name: 'Manifesto', link: 'manifest' },
     { name: 'Preguntas Frecuentes', link: 'frequent-questions' },

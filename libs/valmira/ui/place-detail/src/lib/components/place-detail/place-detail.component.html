@@ -41,9 +41,8 @@
     <div nz-row>
       <div nzSpan="24"
            class="md:block hidden">
-        <span class="category mr-4 py-2 px-4">{{ categoryLabels[place?.category] | uppercase }}</span>
+        <span class="bg-focus mr-4 py-2 px-4">{{ place?.capacity }} HUÉSPEDES</span>
         <span class="mr-4">{{ place?.area }} M <sup>2</sup></span>
-        <span class="mr-4">{{ place?.capacity }} HUÉSPEDES</span>
         <span>{{ place?.beds }} {{ place?.beds === 1 ? 'CAMA' : 'CAMAS'}}</span>
       </div>
       <div nz-col
@@ -54,19 +53,13 @@
                nzXs="12"
                nzMd="6"
                class="md:mb-0 mb-4 md:block flex justify-center items-center">
-            <span class="category mr-4 py-2 px-4">{{ categoryLabels[place?.category] | uppercase }}</span>
+            <span class="bg-focus mr-4 py-2 px-4">{{ place?.capacity }} HUÉSPEDES</span>
           </div>
           <div nz-col
                nzXs="12"
                nzMd="6"
                class="md:mb-0 mb-4 md:block flex justify-center items-center">
             <span class="mr-4">{{ place?.area }} M <sup>2</sup></span>
-          </div>
-          <div nz-col
-               nzXs="12"
-               nzMd="6"
-               class="md:mb-0 mb-4 md:block flex justify-center items-center">
-            <span class="mr-4">{{ place?.capacity }} HUÉSPEDES</span>
           </div>
           <div nz-col
                nzXs="12"

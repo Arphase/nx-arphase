@@ -32,17 +32,5 @@ export class PlacesEfects {
     )
   );
 
-  getCategorySummary$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(PlacesActions.getCategorySummary),
-      mergeMap(({ params }) =>
-        this.placeDataService.getCategorySummary(params).pipe(
-          map(summary => PlacesActions.getCategorySummarySuccess({ summary })),
-          catchError(() => of(PlacesActions.getCategorySummaryFailed()))
-        )
-      )
-    )
-  );
-
   constructor(private actions$: Actions, private placeDataService: PlaceDataService) {}
 }

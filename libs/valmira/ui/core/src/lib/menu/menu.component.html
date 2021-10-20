@@ -38,6 +38,7 @@
            class="pl-4 py-2">
         <a routerLinkActive="text-white"
            [routerLink]="[item.link]"
+           [routerLinkActiveOptions]="{ exact: true }"
            [ngClass]="{ hidden: item.hidden }"
            (click)="closeMenu()">{{ item.name }}</a>
       </div>

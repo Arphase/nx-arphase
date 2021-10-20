@@ -13,27 +13,7 @@ export interface Place {
   rooms: number;
   beds: number;
   active: boolean;
-  category: PlaceCategories | string;
   photos?: Photo[];
   reservations?: Reservation[];
   releaseDate?: Date;
 }
-
-export enum PlaceCategories {
-  premium = 1,
-  couple = 2,
-  kids = 3,
-}
-
-export const categoryLabels: Record<string, string> = {
-  [PlaceCategories[PlaceCategories.premium]]: 'Familiar',
-  [PlaceCategories[PlaceCategories.couple]]: 'Pareja',
-  [PlaceCategories[PlaceCategories.kids]]: 'Amigos',
-};
-
-export interface PlaceCountByCategory {
-  status: PlaceCategories;
-  amount: number;
-}
-
-export type PlaceCategorySummary = PlaceCountByCategory[];

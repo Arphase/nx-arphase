@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { categoryLabels, Place, Promocode, Reservation } from '@valmira/domain';
+import { Place, Promocode, Reservation } from '@valmira/domain';
 
 @Component({
   selector: 'vma-reservation-card',
@@ -9,8 +9,6 @@ import { categoryLabels, Place, Promocode, Reservation } from '@valmira/domain';
 })
 export class ReservationCardComponent {
   @Input() item: Reservation;
-
-  categoryLabels = categoryLabels;
 
   get place(): Place {
     return this.item?.place;
