@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.7.7](https://github.com/Arphase/nx-arphase/compare/v3.7.6...v3.7.7) (2021-10-21)
+
+
+### Bug Fixes
+
+* **innovatech/revisions:** allow viewing expired revisions, disable save button on revision form, and trim text api search ([12eac74](https://github.com/Arphase/nx-arphase/commit/12eac74128d13874f2b7e7d2ce8691bf0ee74107))
+
 ### [3.7.6](https://github.com/Arphase/nx-arphase/compare/v3.7.5...v3.7.6) (2021-10-20)
 
 

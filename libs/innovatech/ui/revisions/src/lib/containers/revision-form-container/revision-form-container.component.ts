@@ -18,6 +18,7 @@ import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { createRevisionForm } from '../../components/revision-form/revision-form.component';
+import { isRevisionEditable } from '../../pipes/editable-revision.pipe';
 import { RevisionCollectionService } from '../../services/revision-collection.service';
 
 @UntilDestroy()
@@ -36,10 +37,15 @@ export class RevisionFormContainerComponent extends ApsFormContainerComponent<Re
     this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.repairman]),
     this.permissionService.hasUpdatePermission([UserRoles.superAdmin]),
     this.route.url,
+    this.currentItem$,
   ]).pipe(
-    map(([create, update, url]) => {
+    map(([create, update, url, revision]) => {
       const createRoute = url.find(segment => segment.path === 'new');
-      return createRoute ? create : update;
+      if (isRevisionEditable(revision)) {
+        return createRoute ? create : update;
+      } else {
+        return false;
+      }
     })
   );
   vehicle$ = this.vehicleCollectionService.currentItem$;

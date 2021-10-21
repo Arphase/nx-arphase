@@ -4,5 +4,6 @@
                    [vehicle]="vehicle$ | async"
                    [currentVehicle]="currentVehicle$ | async"
                    [error]="error$ | async"
+                   [loading]="loading$ | async"
                    (verifyVin)="verifyVin($event)"
                    (submitForm)="submit($event)"></ivt-revision-form>
