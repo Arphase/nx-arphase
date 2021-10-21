@@ -41,11 +41,7 @@ export class RevisionFormContainerComponent extends ApsFormContainerComponent<Re
   ]).pipe(
     map(([create, update, url, revision]) => {
       const createRoute = url.find(segment => segment.path === 'new');
-      if (isRevisionEditable(revision)) {
-        return createRoute ? create : update;
-      } else {
-        return false;
-      }
+      return createRoute ? create : update && isRevisionEditable(revision);
     })
   );
   vehicle$ = this.vehicleCollectionService.currentItem$;
