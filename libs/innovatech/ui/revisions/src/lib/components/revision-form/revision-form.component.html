@@ -8,9 +8,8 @@
             nzSpan="24"
             nzSize="middle">
     <nz-page-header nzBackIcon
-                    [nzTitle]="item?.id ? 'Editar Revisión' : 'Nueva Revisión'"
-                    [routerLink]="['..']">
-    </nz-page-header>
+                    [nzTitle]="title"
+                    [routerLink]="['..']"></nz-page-header>
 
     <nz-collapse *nzSpaceItem>
       <nz-collapse-panel nzHeader="Vehículo"

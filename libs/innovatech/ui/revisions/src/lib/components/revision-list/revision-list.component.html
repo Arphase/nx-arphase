@@ -166,26 +166,28 @@
       </td>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul nz-menu>
-          <li *ivtNoUpdatePermission
-              nz-menu-item
+          <li nz-menu-item
               nz-tooltip
-              [routerLink]="[item.id]">
-            Ver detalle
-          </li>
-          <li *ivtUpdatePermission
-              nz-menu-item
-              nz-tooltip
-              [nzTooltipTitle]="!isEditable(item) ? 'La revisión no se puede editar porque ya pasaron más de tres meses' : ''"
-              [routerLink]="isEditable(item) ? [item.id] : null"
-              [nzDisabled]="!isEditable(item)">
-            Editar revisión
+              [routerLink]="[item.id]"
+              [nzTooltipTitle]="(item | editableRevision)  ? '' : 'La revisión no se puede editar porque ya pasaron más de tres meses'">
+            <ng-container *ivtNoUpdatePermission>
+              Ver revisión
+            </ng-container>
+            <ng-container *ivtUpdatePermission>
+              <ng-container *ngIf="(item | editableRevision); else viewRevision">
+                Editar revisión
+              </ng-container>
+              <ng-template #viewRevision>
+                Ver revisión
+              </ng-template>
+            </ng-container>
           </li>
           <li *ivtDeletePermission
               nz-menu-item
               nz-tooltip
-              [nzTooltipTitle]="!isEditable(item) ? 'La revisión no se puede eliminar porque ya pasaron más de tres meses' : ''"
-              [nzDisabled]="!isEditable(item)"
-              (click)="isEditable(item) && delete.emit(item)">
+              [nzTooltipTitle]="(item | editableRevision) ? '' : 'La revisión no se puede eliminar porque ya pasaron más de tres meses'"
+              [nzDisabled]="!(item | editableRevision)"
+              (click)="isRevisionEditable(item) && delete.emit(item)">
             Eliminar revisión
           </li>
         </ul>

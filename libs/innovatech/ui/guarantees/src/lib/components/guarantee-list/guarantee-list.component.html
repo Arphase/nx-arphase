@@ -87,7 +87,7 @@
 
 <div nz-row
      nzAlign="middle"
-     nzGutter="12">
+     [nzGutter]="[12, 12]">
   <div nz-col>
     <aps-date-filter label="Fecha"
                      [dateTypeOptions]="dateTypeOptions"
@@ -200,11 +200,13 @@
         <td nz-col
             nzXs="3"
             nzMd="1"
+            class="flex-end"
             [nzExpand]="expandSet.has(item.id)"
             (nzExpandChange)="onExpandChange(item.id, $event)"></td>
         <td nz-col
             nzXs="3"
-            nzMd="1">
+            nzMd="1"
+            class="flex-end">
           <button nz-button
                   nz-dropdown
                   [nzDropdownMenu]="menu"

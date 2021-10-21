@@ -1,6 +1,8 @@
 import { DEFAULT_PAGE_SIZE } from '@arphase/common';
 import { IsNumber, IsOptional, IsString } from 'class-validator';
 
+import { Trim } from '../decorators/trim.decorator';
+
 export class ApsCollectionFilterDto {
   @IsOptional()
   @IsNumber()
@@ -30,5 +32,6 @@ export class ApsCollectionFilterDto {
 
   @IsOptional()
   @IsString()
+  @Trim('text')
   text?: string;
 }

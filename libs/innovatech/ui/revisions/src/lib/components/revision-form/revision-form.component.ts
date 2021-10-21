@@ -10,11 +10,12 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui/core';
-import { Revision, RevisionReportItems, Vehicle } from '@innovatech/common/domain';
+import { Revision, RevisionReportItems, transformFolio, Vehicle } from '@innovatech/common/domain';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
 import { ApsFormComponent } from '@arphase/ui/core';
 
 import { iconMap, reportLabels, revisionReportSections, statusOptions } from './revision-form.constants';
+import { isRevisionEditable } from '../../pipes/editable-revision.pipe';
 
 export function createRevisionForm(): FormGroup {
   const report = {};
@@ -46,6 +47,7 @@ export class RevisionFormComponent extends ApsFormComponent<Revision> implements
   revisionReportSections = revisionReportSections;
   reportLabels = reportLabels;
   iconMap = iconMap;
+  title: string;
   form = createRevisionForm();
   @Output() verifyVin = new EventEmitter<string>();
 
@@ -60,6 +62,18 @@ export class RevisionFormComponent extends ApsFormComponent<Revision> implements
   ngOnChanges(changes: SimpleChanges) {
     if (changes.isEditable) {
       this.isEditable ? this.form.enable({ emitEvent: false }) : this.form.disable({ emitEvent: false });
+    }
+    if (changes.item) {
+      if (!this.item) {
+        this.title = 'Nueva revisión';
+      } else {
+        const folio = transformFolio(this.item.id);
+        if (isRevisionEditable(this.item)) {
+          this.title = `Editar revisión - ${folio}`;
+        } else {
+          this.title = `Detalle revisión - ${folio}`;
+        }
+      }
     }
   }
 

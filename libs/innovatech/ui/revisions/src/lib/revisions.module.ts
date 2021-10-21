@@ -45,6 +45,7 @@ import { RevisionFormContainerComponent } from './containers/revision-form-conta
 import { RevisionListContainerComponent } from './containers/revision-list-container/revision-list-container.component';
 import { RevisionsRoutingModule } from './revisions-routing.module';
 import { RevisionDataService } from './services/revision-data.service';
+import { EditableRevisionPipe } from './pipes/editable-revision.pipe';
 
 @NgModule({
   imports: [
@@ -92,6 +93,7 @@ import { RevisionDataService } from './services/revision-data.service';
     RevisionListComponent,
     RevisionListContainerComponent,
     RevisionFormContainerComponent,
+    EditableRevisionPipe,
   ],
 })
 export class RevisionsModule {
