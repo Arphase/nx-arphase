@@ -15,7 +15,7 @@ export class GuaranteeDataService extends ApsDataService<Guarantee> {
   }
 
   getGuaranteePdf(id: number): Observable<Blob> {
-    const params = new HttpParams({ fromObject: { utcOffset: new Date().getTimezoneOffset() } });
+    const params = new HttpParams({ fromObject: { utcOffset: -new Date().getTimezoneOffset() } });
     return this.http
       .get(`/ivtApi/guarantees/export/pdf/${id}`, { responseType: 'blob', params })
       .pipe(tap((file: Blob) => saveFile(file, `Garantía ${id}.pdf`)));
