@@ -3,8 +3,10 @@ import { IMAGE_ASSETS_PATH } from '@innovatech/api/core/util';
 import { Client, Guarantee, transformFolio } from '@innovatech/common/domain';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
+import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(LocalizedFormat);
+dayjs.extend(utc);
 
 function replace(source: string, replacements: Record<string, string>) {
   return source.replace(new RegExp('\\{([A-z]|.)*?}', 'g'), value => {
@@ -23,7 +25,6 @@ export const dummyGlossary: Record<string, string> = {
   'guarantee.client.email': '(Correo del cliente)',
   'guarantee.client.address': '(Dirección del cliente)',
   'guarantee.client.salesPlace': '(Punto de venta)',
-
   'guarantee.vehicle.brand': '(Marca del vehículo)',
   'guarantee.vehicle.model': '(Modelo del vehículo)',
   'guarantee.vehicle.version': '(Versión del vehículo)',
@@ -31,7 +32,6 @@ export const dummyGlossary: Record<string, string> = {
   'guarantee.vehicle.vin': '(Vin)',
   'guarantee.vehicle.horsePower': '(Caballos de fuerza)',
   'guarantee.vehicle.motorNumber': '(Número de motor)',
-
   'guarantee.id': '(Folio)',
   'guarantee.kilometrageStart': '(Kilometraje inicial)',
   'guarantee.kilometrageEnd': '(Kilometraje final)',
@@ -39,7 +39,7 @@ export const dummyGlossary: Record<string, string> = {
   'guarantee.endDate': '(Fecha final)',
 };
 
-function getRealGlossary(guarantee: Guarantee): Record<string, string> {
+function getRealGlossary(guarantee: Guarantee, utcOffset?: number): Record<string, string> {
   return {
     'guarantee.client.name': getClientName(guarantee.client),
     'guarantee.client.rfc': guarantee.client.rfc,
@@ -47,7 +47,6 @@ function getRealGlossary(guarantee: Guarantee): Record<string, string> {
     'guarantee.client.email': guarantee.client.email,
     'guarantee.client.address': formatAddress(guarantee.client.address),
     'guarantee.client.salesPlace': guarantee.client.salesPlace,
-
     'guarantee.vehicle.brand': guarantee.vehicle.brand,
     'guarantee.vehicle.model': guarantee.vehicle.model,
     'guarantee.vehicle.version': guarantee.vehicle.version,
@@ -55,12 +54,17 @@ function getRealGlossary(guarantee: Guarantee): Record<string, string> {
     'guarantee.vehicle.vin': guarantee.vehicle.vin,
     'guarantee.vehicle.horsePower': String(guarantee.vehicle.horsePower),
     'guarantee.vehicle.motorNumber': guarantee.vehicle.motorNumber,
-
     'guarantee.id': String(transformFolio(guarantee.id)),
     'guarantee.kilometrageStart': String(guarantee.kilometrageStart),
     'guarantee.kilometrageEnd': String(guarantee.kilometrageEnd),
-    'guarantee.startDate': dayjs(guarantee.startDate).locale('es').format('LL'),
-    'guarantee.endDate': dayjs(guarantee.endDate).locale('es').format('LL'),
+    'guarantee.startDate': dayjs(guarantee.startDate)
+      .utcOffset(utcOffset || 0)
+      .locale('es')
+      .format('LL'),
+    'guarantee.endDate': dayjs(guarantee.endDate)
+      .utcOffset(utcOffset || 0)
+      .locale('es')
+      .format('LL'),
   };
 }
 
@@ -71,12 +75,12 @@ function getClientName(client: Client): string {
     : moralInfo?.businessName;
 }
 
-export function getProductPdfTemplate(body: string, guarantee?: Guarantee): string {
+export function getProductPdfTemplate(body: string, guarantee?: Guarantee, utcOffset?: number): string {
   let template = body;
   if (!guarantee) {
     template = replace(template, dummyGlossary);
   } else {
-    const realGlossary = getRealGlossary(guarantee);
+    const realGlossary = getRealGlossary(guarantee, utcOffset);
     template = replace(template, realGlossary);
   }
   const logoImage = `${IMAGE_ASSETS_PATH}/logo.png`;

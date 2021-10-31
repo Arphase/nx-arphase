@@ -6,13 +6,15 @@ import { GuaranteeEntity } from '@innovatech/api/domain';
 import { Guarantee, transformFolio, User } from '@innovatech/common/domain';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
+import utc from 'dayjs/plugin/utc';
 import { SelectQueryBuilder } from 'typeorm';
 
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 
 dayjs.extend(LocalizedFormat);
+dayjs.extend(utc);
 
-export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
+export function getGuaranteePdfTemplate(guarantee: Guarantee, utcOffset?: number): string {
   return `
   <html>
     <head>
@@ -96,11 +98,16 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee): string {
         <p><span class="bold">MODELO:</span> ${guarantee.vehicle.model}</p>
         <p><span class="bold">MOTOR:</span> ${guarantee.vehicle.motorNumber}</p>
         <center><p>PERIODO DE VIGENCIA</p></center>
-        <p><span class="bold">FECHA INICIO GARANTIA:</span> ${dayjs(guarantee.startDate).locale('es').format('LL')}</p>
-        <p><span class="bold">FIN GARANTIA POR TIEMPO:</span> ${dayjs(guarantee.endDate).locale('es').format('LL')}</p>
-        <p><span class="bold">KILOMETRAJE INICIAL: </span> ${
-          guarantee.kilometrageStart
-        } <span class="bold"> - FIN GARANTIA POR KILOMETRAJE: </span> ${guarantee.kilometrageEnd} </p>
+        <p><span class="bold">FECHA INICIO GARANTIA:</span> ${dayjs(guarantee.startDate)
+          .utcOffset(utcOffset || 0)
+          .locale('es')
+          .format('LL')}</p>
+        <p><span class="bold">FIN GARANTIA POR TIEMPO:</span> ${dayjs(guarantee.endDate)
+          .utcOffset(utcOffset || 0)
+          .locale('es')
+          .format('LL')}</p>
+        <p><span class="bold">KILOMETRAJE INICIAL: </span> ${guarantee.kilometrageStart}
+        <span class="bold"> - FIN GARANTIA POR KILOMETRAJE: </span> ${guarantee.kilometrageEnd} </p>
         <p>Siempre que se hayan realizado en el VEHÍCULO en tiempo y forma los servicios y mantenimientos señalados en el certificado de garantía; el PERIODO DE VIGENCIA podrá comenzar a computarse hasta el dayjso en que expire la garantía del fabricante o alguna otra garantía de similar naturaleza, ya sea por sobrepasar el kilometraje o cumplirse el tiempo establecido en la misma.</p>
         <p>En caso de rescisión anticipada de esta garantía, Innovatech no estará obligada a la devolución del precio.</p>
         <p>COBERTURAS</p>

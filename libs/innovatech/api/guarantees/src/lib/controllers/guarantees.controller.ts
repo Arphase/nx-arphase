@@ -6,6 +6,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
+import { ExportPdfDto } from '../dto/export-pdf.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import { GuaranteesService } from '../services/guarantees.service';
@@ -51,8 +52,12 @@ export class GuaranteesController {
   }
 
   @Get('export/pdf/:id')
-  async getGuaranteePdf(@Param('id', ParseIntPipe) id: number, @Res() response: Response): Promise<void> {
-    return this.guaranteesService.generatePdf(id, response);
+  async getGuaranteePdf(
+    @Param('id', ParseIntPipe) id: number,
+    @Query() queryDto: ExportPdfDto,
+    @Res() response: Response
+  ): Promise<void> {
+    return this.guaranteesService.generatePdf(id, queryDto, response);
   }
 
   @Put(':id')

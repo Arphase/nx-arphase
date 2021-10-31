@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.7.8](https://github.com/Arphase/nx-arphase/compare/v3.7.7...v3.7.8) (2021-10-31)
+
+
+### Bug Fixes
+
+* **innovatech/guarantees:** add utc offset when export to pdf ([d169f2d](https://github.com/Arphase/nx-arphase/commit/d169f2d918f03e9b3fa615e62fb798bd2f77684c))
+* **innovatech/revisions:** allow creating new revisions ([efffc54](https://github.com/Arphase/nx-arphase/commit/efffc54be64f8a600f01785a12552512f80a0a3b))
+
 ### [3.7.7](https://github.com/Arphase/nx-arphase/compare/v3.7.6...v3.7.7) (2021-10-21)
 
 

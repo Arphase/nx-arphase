@@ -30,6 +30,7 @@ import { Connection, Repository } from 'typeorm';
 import * as XLSX from 'xlsx';
 
 import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
+import { ExportPdfDto } from '../dto/export-pdf.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
 import { guaranteeExcelColumns } from './guarantees.service.constants';
@@ -201,15 +202,16 @@ export class GuaranteesService {
     }
   }
 
-  async generatePdf(id: number, response: Response): Promise<void> {
+  async generatePdf(id: number, queryDto: ExportPdfDto, response: Response): Promise<void> {
+    const { utcOffset } = queryDto;
     let content, headerLogo;
     const guarantee = await this.getGuaranteeById(id, { withTemplateAndLogo: true });
     const product = guarantee.product;
     if (product) {
-      content = getProductPdfTemplate(product.template, guarantee);
+      content = getProductPdfTemplate(product.template, guarantee, utcOffset);
       headerLogo = product.logo;
     } else {
-      content = getGuaranteePdfTemplate(guarantee);
+      content = getGuaranteePdfTemplate(guarantee, utcOffset);
       headerLogo = await tobase64('apps/innovatech/api/src/assets/img/forte-shield.png');
       headerLogo = `data:image/png;base64,${headerLogo}`;
     }
