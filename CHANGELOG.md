@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.7.9](https://github.com/Arphase/nx-arphase/compare/v3.7.8...v3.7.9) (2021-11-29)
+
+
+### Features
+
+* **musicr/store:** move photos to S3 and fix iPad header styles ([2344a1d](https://github.com/Arphase/nx-arphase/commit/2344a1d5bb2a0b4b065ed5ef96120ed6e683f05d))
+
 ### [3.7.8](https://github.com/Arphase/nx-arphase/compare/v3.7.7...v3.7.8) (2021-10-31)
 
 
