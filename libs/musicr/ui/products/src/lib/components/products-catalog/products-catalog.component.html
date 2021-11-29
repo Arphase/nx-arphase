@@ -91,22 +91,20 @@
              nzMd="6"
              nzLg="6"
              [routerLink]="['../..', 'product', product.id]">
-
           <div nz-row
                class="mb-2">
             <div nz-col
                  nzSpan="24">
-              <img class="w-full"
+              <img class="w-full product-photo"
                    [src]="product.photos[0]?.url"
                    [alt]="product.name"
                    loading="lazy" />
             </div>
           </div>
-
           <div nz-row>
             <div nz-col
                  nzSpan="24"
-                 class="text-left">
+                 class="text-left mb-3">
               <h6 class="text-sm font-bold">{{ product?.name }}</h6>
               <span class="text-xs">{{ product.price | currency }}</span>
             </div>
