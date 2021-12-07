@@ -1,4 +1,6 @@
 <ivt-assign-products-modal [products]="products$ | async"
+                           [info]="info$ | async"
                            [groupProducts]="groupProducts$ | async"
                            [loading]="loading$ | async"
+                           (filterItems)="filterItems($event)"
                            (submitData)="submit($event)"></ivt-assign-products-modal>
