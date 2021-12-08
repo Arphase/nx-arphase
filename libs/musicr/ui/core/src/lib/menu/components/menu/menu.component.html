@@ -2,21 +2,23 @@
   <div nz-row
        nzJustify="space-around"
        nzAlign="middle"
-       class="p-4 md:hidden flex">
+       class="p-4 lg:hidden flex">
     <div nz-col
          nzSpan="5">
       <button nz-button
               nzType="text"
-              (click)="openMenu()"><i nz-icon
+              (click)="openMenu()">
+        <i nz-icon
            nzType="menu"
            nzTheme="outline"></i></button>
     </div>
     <div nz-col
-         nzSpan="14">
+         nzSpan="14"
+         class="flex justify-center">
       <a [routerLink]="['.']">
         <img class="h-4"
              alt="Music Revolution logo"
-             src="assets/img/Logo_Mobile_1.svg"
+             src="https://music-revolution-photos.s3.amazonaws.com/img/Logo_Mobile_1.svg"
              loading="lazy" />
       </a>
     </div>
@@ -52,12 +54,12 @@
   <div nz-row
        nzJustify="space-around"
        nzAlign="middle"
-       class="p-4 md:flex hidden">
+       class="p-4 lg:flex hidden">
     <div nz-col
          nzSpan="5">
       <a [routerLink]="['.']">
         <img alt="Music Revolution logo"
-             src="assets/img/Logo_Mobile_1.svg"
+             src="https://music-revolution-photos.s3.amazonaws.com/img/Logo_Mobile_1.svg"
              loading="lazy" />
       </a>
     </div>
@@ -224,7 +226,7 @@
 
   <div>
     <img alt="Music Revolution logo"
-         src="assets/img/Isotipo_2.svg"
+         src="https://music-revolution-photos.s3.amazonaws.com/img/Isotipo_2.svg"
          class="mobile-menu-logo"
          loading="lazy" />
   </div>

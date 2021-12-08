@@ -6,11 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.less'],
 })
 export class HomeComponent {
-  products = [
-    { img: 'assets/img/_0000_Proyector.jpg', name: 'Proyector', price: '6500' },
-    { img: 'assets/img/_0001_Bartender.jpg', name: 'Bartender', price: '2500' },
-  ];
-
   reviews = [
     {
       name: 'Sandra Leyva',

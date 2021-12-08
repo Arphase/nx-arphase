@@ -26,11 +26,9 @@ export class ProductService {
   async getProducts(filterDto: GetProductsDto, user: Partial<User>): Promise<ApsCollectionResponse<Product>> {
     const { text, pageSize, pageIndex, groupId, year, horsePower } = filterDto;
     const query = this.productRepository.createQueryBuilder('product').addSelect('product.logo').groupBy('product.id');
-
     if (text) {
       query.andWhere('(LOWER(product.name) LIKE :text)', { text: `%${text.toLowerCase()}%` });
     }
-
     filterCommonQuery('product', query, filterDto);
 
     if ((user && UserRoles[user.role] !== UserRoles.superAdmin) || groupId) {
@@ -42,6 +40,9 @@ export class ProductService {
         .createQueryBuilder('group')
         .leftJoinAndSelect('group.products', 'product')
         .andWhere('group.id = :id', { id: company?.groupId || groupId });
+      if (groupId) {
+        groupQuery.addSelect('product.logo');
+      }
       this.filterYearAndHp(groupQuery, year, horsePower);
       const group = await groupQuery.getOne();
       const products = group?.products || [];

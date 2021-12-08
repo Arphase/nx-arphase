@@ -1,7 +1,4 @@
-<nz-spin *ngIf="loading"></nz-spin>
-
-<nz-space *ngIf="!loading"
-          nzDirection="vertical"
+<nz-space nzDirection="vertical"
           nzSize="middle"
           class="w-100">
   <div *nzSpaceItem
@@ -32,19 +29,71 @@
          nzSpan="24"
          class="flex-center">
       <nz-transfer [nzDataSource]="transferData"
-                   [nzRender]="render"
-                   [nzListStyle]="{ 'width': '39vw', 'height.px': 400 }">
+                   [nzShowSelectAll]="false"
+                   [nzRenderList]="[render, render]"
+                   [nzListStyle]="{ 'width': '39vw', 'height.px': 800 }">
         <ng-template #render
-                     let-item>
-          <nz-space>
-            <img *nzSpaceItem
-                 [src]="item.description"
-                 alt="{{ item.title }} logo"
-                 class="logo"
-                 loading="lazy">
-            <span *nzSpaceItem
-                  class="h-100 flex-center">{{ item.title }}</span>
-          </nz-space>
+                     let-items
+                     let-direction="direction"
+                     let-stat="stat"
+                     let-onItemSelectAll="onItemSelectAll"
+                     let-onItemSelect="onItemSelect">
+          <nz-table #table
+                    nzSize="small"
+                    [nzData]="items?.length ? items : [{}]"
+                    [nzFrontPagination]="false"
+                    [nzTotal]="direction === 'left' ? total : 0"
+                    [nzPageIndex]="direction === 'left' ? pageIndex : 1"
+                    [nzLoading]="direction === 'left' ? loading : false"
+                    [nzShowSizeChanger]="true"
+                    [nzShowPagination]="direction === 'left'"
+                    (nzQueryParams)="filterItems.emit($event)">
+            <thead>
+              <tr nz-row>
+                <th nz-col
+                    nzXs="6"
+                    nzMd="3"
+                    [nzChecked]="stat.checkAll"
+                    [nzIndeterminate]="stat.checkHalf"
+                    (nzCheckedChange)="onItemSelectAll($event)"></th>
+                <th *ngFor="let column of columns"
+                    [nzSortFn]="column.sortFn || true"
+                    [nzColumnKey]="column.prop"
+                    nz-col
+                    [nzXs]="column.colSizes?.xs || 0"
+                    [nzMd]="column.colSizes?.md || 0">
+                  {{ column.label }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of table.data">
+                <tr *ngIf="item?.title"
+                    nz-row>
+                  <td nz-col
+                      nzSpan="3"
+                      class="flex-center"
+                      [nzChecked]="!!item.checked"
+                      (nzCheckedChange)="onItemSelect(item)"></td>
+                  <td nz-col
+                      nzXs="16"
+                      nzMd="11">
+                    <div class="flex-start h-100">
+                      {{ item.title | empty }}
+                    </div>
+                  </td>
+                  <td nz-col
+                      nzXs="0"
+                      nzMd="10">
+                    <img [src]="item.description"
+                         alt="{{ item.title }} logo"
+                         class="logo"
+                         loading="lazy">
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </nz-table>
         </ng-template>
       </nz-transfer>
     </div>

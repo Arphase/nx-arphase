@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild
 import { LoadingService } from '@arphase/ui/core';
 import { fromGroups, getGroupsProductsState } from '@innovatech/ui/groups/data';
 import { ProductCollectionService } from '@innovatech/ui/products/data';
+import { QueryParams } from '@ngrx/data';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -21,6 +22,7 @@ export class AssignProductsModalContainerComponent implements OnInit, OnDestroy 
   @Input() groupId: number;
   loading$ = this.loadingService.loadingGet$;
   products$ = this.productCollectionService.entities$;
+  info$ = this.productCollectionService.info$;
   groupProducts$ = this.store.pipe(select(getGroupsProductsState));
 
   constructor(
@@ -44,6 +46,14 @@ export class AssignProductsModalContainerComponent implements OnInit, OnDestroy 
   submitChild(): boolean {
     this.formComponent.submit();
     return false;
+  }
+
+  filterItems(payload: QueryParams): void {
+    const queryParams: QueryParams = {
+      ...payload,
+      resetList: String(true),
+    };
+    this.productCollectionService.getWithQuery(queryParams);
   }
 
   submit(productIds: number[]): void {
