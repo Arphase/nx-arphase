@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { Customer, Promocode, Reservation } from '@valmira/domain';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ReservationWizardService {
   constructor(private http: HttpClient) {}
 

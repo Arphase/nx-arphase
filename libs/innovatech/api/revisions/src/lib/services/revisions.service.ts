@@ -127,7 +127,7 @@ export class RevisionsService {
       return newRevision;
     } catch (err) {
       await queryRunner.rollbackTransaction();
-      throw new InternalServerErrorException({ ...err, message: err.detail });
+      throw new InternalServerErrorException({ ...err, message: err.message });
     } finally {
       await queryRunner.release();
     }
@@ -150,7 +150,7 @@ export class RevisionsService {
       return updatedRevision;
     } catch (err) {
       await queryRunner.rollbackTransaction();
-      throw new InternalServerErrorException({ ...err, message: err.detail });
+      throw new InternalServerErrorException({ ...err, message: err.message });
     } finally {
       await queryRunner.release();
     }
@@ -182,7 +182,7 @@ export class RevisionsService {
       return revision;
     } catch (err) {
       await queryRunner.rollbackTransaction();
-      throw new InternalServerErrorException({ ...err, message: err.detail });
+      throw new InternalServerErrorException({ ...err, message: err.message });
     } finally {
       await queryRunner.release();
     }

@@ -5,9 +5,7 @@ import { Observable } from 'rxjs';
 
 import { SearchReservationPayload } from '../models/search-reservation-payload.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ReservationDetailService {
   constructor(private http: HttpClient) {}
 

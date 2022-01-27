@@ -4,9 +4,7 @@ import { ApsDataService } from '@arphase/ui/core';
 import { Product } from '@musicr/domain';
 import { HttpUrlGenerator } from '@ngrx/data';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ProductDataService extends ApsDataService<Product> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('Product', http, httpUrlGenerator);
