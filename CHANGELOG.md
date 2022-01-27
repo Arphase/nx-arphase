@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.7.10](https://github.com/Arphase/nx-arphase/compare/v3.7.9...v3.7.10) (2022-01-27)
+
+
+### Features
+
+* **groups:** add pagination to product assign modal ([3f2dfac](https://github.com/Arphase/nx-arphase/commit/3f2dfac1c93557c68fd9ba33612f6a1666e9b590))
+
+
+### Bug Fixes
+
+* **innovatech/guarantees:** don't delete item when changing physical person to moral person ([7e888d5](https://github.com/Arphase/nx-arphase/commit/7e888d5a8da0d38fe9e1815c05c75d8ad82e1041))
+
 ### [3.7.9](https://github.com/Arphase/nx-arphase/compare/v3.7.8...v3.7.9) (2021-11-29)
 
 
