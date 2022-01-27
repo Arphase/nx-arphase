@@ -4,9 +4,7 @@ import { Product } from '@musicr/domain';
 
 import { ProductCollectionService } from '../services/product-collection.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ProductResolverService extends ApsEntityResolverService<Product> {
   constructor(protected productCollectionService: ProductCollectionService) {
     super(productCollectionService);

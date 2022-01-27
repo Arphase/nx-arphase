@@ -100,7 +100,7 @@ export class AuthService {
       return user;
     } catch (err) {
       await queryRunner.rollbackTransaction();
-      throw new InternalServerErrorException({ ...err, message: err.detail });
+      throw new InternalServerErrorException({ ...err, message: err.message });
     } finally {
       await queryRunner.release();
     }

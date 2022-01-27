@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 
 import { MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '../config';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class HttpProxyService implements HttpInterceptor {
   constructor(@Inject(MUSIC_REVOLUTION_CONFIGURATION) public config: MusicRevolutionConfiguration) {}
 

@@ -4,9 +4,7 @@ import { ApsDataService } from '@arphase/ui/core';
 import { Category } from '@musicr/domain';
 import { HttpUrlGenerator } from '@ngrx/data';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class CategoryFilterDataService extends ApsDataService<Category> {
   constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
     super('CategoryFilter', http, httpUrlGenerator);

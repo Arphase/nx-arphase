@@ -9,9 +9,7 @@ import { map, take } from 'rxjs/operators';
 import { SearchReservationPayload } from '../models/search-reservation-payload.model';
 import { getReservationDetail, getReservationDetailSuccess } from '../state/reservation-detail.actions';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ReservationDetailResolverService implements Resolve<Reservation> {
   constructor(private store: Store, private actions$: Actions) {}
 

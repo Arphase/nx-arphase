@@ -4,25 +4,16 @@ import { filterCommonQuery, getReadableStream, tobase64 } from '@innovatech/api/
 import { GuaranteeEntity, MoralPersonEntity, PhysicalPersonEntity, VehicleEntity } from '@innovatech/api/domain';
 import { generateProductPdf, getProductPdfTemplate } from '@innovatech/api/products/utils';
 import {
-  Client,
   Guarantee,
   guaranteeStatusLabels,
   GuaranteeSummary,
-  isVehicleElegible,
   PersonTypes,
   transformFolio,
   User,
   UserRoles,
-  Vehicle,
   VehicleStatus,
 } from '@innovatech/common/domain';
-import {
-  ConflictException,
-  ForbiddenException,
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import { omit } from 'lodash';
@@ -33,6 +24,8 @@ import { CreateGuaranteeDto } from '../dto/create-dtos/create-guarantee.dto';
 import { ExportPdfDto } from '../dto/export-pdf.dto';
 import { GetGuaranteesFilterDto } from '../dto/get-guarantees-filter.dto';
 import { UpdateGuaranteeDto } from '../dto/update-dtos/update-guarantee.dto';
+import { omitInfo } from '../functions/omit-info';
+import { validateVehicle } from '../functions/validate-vehicle';
 import { guaranteeExcelColumns } from './guarantees.service.constants';
 import { applyGuaranteeFilter, getGuaranteePdfTemplate } from './guarantees.service.functions';
 
@@ -40,8 +33,6 @@ import { applyGuaranteeFilter, getGuaranteePdfTemplate } from './guarantees.serv
 export class GuaranteesService {
   constructor(
     @InjectRepository(GuaranteeEntity) private guaranteeRepository: Repository<GuaranteeEntity>,
-    @InjectRepository(PhysicalPersonEntity) private physicalPersonRepository: Repository<PhysicalPersonEntity>,
-    @InjectRepository(MoralPersonEntity) private moralPersonRepository: Repository<MoralPersonEntity>,
     @InjectRepository(VehicleEntity) private vehicleRepository: Repository<VehicleEntity>,
     private readonly connection: Connection
   ) {}
@@ -60,13 +51,11 @@ export class GuaranteesService {
       query.addSelect('product.logo').addSelect('product.template');
     }
 
-    let found = await query.where('guarantee.id = :id', { id }).getOne();
+    const found = await query.where('guarantee.id = :id', { id }).getOne();
 
     if (!found) {
       throw new NotFoundException(`Guarantee with id "${id}" not found`);
     }
-
-    found = this.omitInfo(found) as GuaranteeEntity;
     return found;
   }
 
@@ -80,12 +69,7 @@ export class GuaranteesService {
 
     const guarantees = await query.getMany();
     const total = await query.getCount();
-    return createCollectionResponse(
-      guarantees.map(guarantee => this.omitInfo(guarantee) as Guarantee),
-      pageSize,
-      pageIndex,
-      total
-    );
+    return createCollectionResponse(guarantees, pageSize, pageIndex, total);
   }
 
   async getGuaranteesSummary(
@@ -178,14 +162,12 @@ export class GuaranteesService {
     await queryRunner.connect();
     await queryRunner.startTransaction();
     const vehicle = await this.vehicleRepository.findOne({ id: createGuaranteeDto.vehicleId });
-    this.validateVehicle(vehicle, user);
+    validateVehicle(vehicle, user);
     try {
       vehicle.status = VehicleStatus.hasActiveGuarantee;
       await queryRunner.manager.save(vehicle);
-
-      createGuaranteeDto = this.omitInfo(createGuaranteeDto) as CreateGuaranteeDto;
       const newGuarantee = this.guaranteeRepository.create({
-        ...createGuaranteeDto,
+        ...omitInfo(createGuaranteeDto),
         companyId:
           user && UserRoles[user.role] === UserRoles.superAdmin ? createGuaranteeDto.companyId : user.companyId,
         userId: user.id,
@@ -196,7 +178,7 @@ export class GuaranteesService {
       return newGuarantee;
     } catch (err) {
       await queryRunner.rollbackTransaction();
-      throw new InternalServerErrorException({ ...err, message: err.detail });
+      throw new InternalServerErrorException({ ...err, message: err.message });
     } finally {
       await queryRunner.release();
     }
@@ -223,28 +205,32 @@ export class GuaranteesService {
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
+      const { companyId, vehicleId } = updateGuaranteeDto;
+      const preloadedGuarantee = await this.guaranteeRepository.preload({
+        ...omitInfo(updateGuaranteeDto),
+        companyId: user && UserRoles[user.role] === UserRoles.superAdmin ? companyId : user.companyId,
+      });
+      if (vehicleId) {
+        const vehicle = await this.vehicleRepository.findOne({ id: vehicleId });
+        validateVehicle(vehicle, user);
+      }
       if (updateGuaranteeDto.client?.personType === PersonTypes.moral && updateGuaranteeDto.client?.physicalInfo?.id) {
-        await this.physicalPersonRepository.delete(updateGuaranteeDto.client.physicalInfo.id);
+        preloadedGuarantee.client.physicalInfo = null;
+        await queryRunner.manager.save(preloadedGuarantee);
+        await queryRunner.manager.delete(PhysicalPersonEntity, updateGuaranteeDto.client.physicalInfo.id);
       }
       if (updateGuaranteeDto.client?.personType === PersonTypes.physical && updateGuaranteeDto.client?.moralInfo?.id) {
-        await this.moralPersonRepository.delete(updateGuaranteeDto.client.moralInfo.id);
+        preloadedGuarantee.client.moralInfo = null;
+        await queryRunner.manager.save(preloadedGuarantee);
+        await queryRunner.manager.delete(MoralPersonEntity, updateGuaranteeDto.client.moralInfo.id);
       }
-      const preloadedGuarantee = await this.guaranteeRepository.preload({
-        ...this.omitInfo(updateGuaranteeDto),
-        companyId:
-          user && UserRoles[user.role] === UserRoles.superAdmin ? updateGuaranteeDto.companyId : user.companyId,
-      });
-      if (updateGuaranteeDto.vehicleId) {
-        const vehicle = await this.vehicleRepository.findOne({ id: updateGuaranteeDto.vehicleId });
-        this.validateVehicle(vehicle, user);
-      }
-      await preloadedGuarantee.save();
+      await queryRunner.manager.save(preloadedGuarantee);
       await queryRunner.commitTransaction();
       await preloadedGuarantee.reload();
       return preloadedGuarantee;
     } catch (err) {
       await queryRunner.rollbackTransaction();
-      throw new InternalServerErrorException({ ...err, message: err.detail });
+      throw new InternalServerErrorException({ ...err, message: err.message });
     } finally {
       await queryRunner.release();
     }
@@ -253,32 +239,5 @@ export class GuaranteesService {
   async deleteGuarantee(id: number): Promise<Guarantee> {
     const guarantee = await this.getGuaranteeById(id);
     return this.guaranteeRepository.remove(guarantee);
-  }
-
-  omitInfo(
-    guarantee: Guarantee | CreateGuaranteeDto | UpdateGuaranteeDto
-  ): Guarantee | CreateGuaranteeDto | UpdateGuaranteeDto {
-    const personType = guarantee.client?.personType;
-    if (personType === PersonTypes.physical) {
-      guarantee.client = omit(guarantee.client, 'moralInfo') as Client;
-    } else if (personType === PersonTypes.moral) {
-      guarantee.client = omit(guarantee.client, 'physicalInfo') as Client;
-    }
-    return guarantee;
-  }
-
-  validateVehicle(vehicle: Vehicle, user: Partial<User>): void {
-    if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-      if (vehicle?.companyId !== user.companyId) {
-        throw new ForbiddenException('No se puede actualizar una garantía con un vehículo de otra compañía');
-      }
-    }
-    if (!vehicle) {
-      throw new NotFoundException(`Vehicle with id ${vehicle.id} doesn't exist`);
-    }
-
-    if (!isVehicleElegible(vehicle)) {
-      throw new ConflictException(`Vehicle with id ${vehicle.id} isn't elegible for a guarantee`);
-    }
   }
 }

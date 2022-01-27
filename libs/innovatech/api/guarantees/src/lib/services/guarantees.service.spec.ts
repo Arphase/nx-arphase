@@ -1,5 +1,5 @@
 import { createMockRepository } from '@arphase/api/testing';
-import { GuaranteeEntity, MoralPersonEntity, PhysicalPersonEntity, VehicleEntity } from '@innovatech/api/domain';
+import { GuaranteeEntity, VehicleEntity } from '@innovatech/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
@@ -15,8 +15,6 @@ describe('GuaranteesService', () => {
         GuaranteesService,
         { provide: Connection, useValue: {} },
         { provide: getRepositoryToken(GuaranteeEntity), useValue: createMockRepository() },
-        { provide: getRepositoryToken(PhysicalPersonEntity), useValue: createMockRepository() },
-        { provide: getRepositoryToken(MoralPersonEntity), useValue: createMockRepository() },
         { provide: getRepositoryToken(VehicleEntity), useValue: createMockRepository() },
       ],
     }).compile();

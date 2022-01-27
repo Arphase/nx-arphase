@@ -3,9 +3,7 @@ import { ApsCollectionService } from '@arphase/ui/core';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { Promocode } from '@valmira/domain';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class PromocodeCollectionService extends ApsCollectionService<Promocode> {
   constructor(protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Promocode', serviceElementsFactory);
