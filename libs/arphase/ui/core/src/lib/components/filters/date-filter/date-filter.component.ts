@@ -12,7 +12,10 @@ import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { formatDate } from '@arphase/common';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
+
+dayjs.extend(utc);
 
 export interface Dates {
   startDate: string;
@@ -57,9 +60,11 @@ export class ApsDateFilterComponent implements OnChanges {
     );
 
     this.control.valueChanges.pipe(untilDestroyed(this)).subscribe(({ startDate, endDate, dateType }) => {
-      this.startDate = startDate ? dayjs(startDate).set('hours', 0).set('minutes', 0).set('seconds', 0).format() : '';
+      this.startDate = startDate
+        ? dayjs(startDate).set('hours', 0).set('minutes', 0).set('seconds', 0).utc().format()
+        : '';
       this.startDateLabel = formatDate(startDate);
-      this.endDate = endDate ? dayjs(endDate).set('hours', 23).set('minutes', 59).set('seconds', 59).format() : '';
+      this.endDate = endDate ? dayjs(endDate).set('hours', 0).set('minutes', 0).set('seconds', 0).utc().format() : '';
       this.endDateLabel = formatDate(endDate);
       this.dateType = dateType;
       this.setFilter();
