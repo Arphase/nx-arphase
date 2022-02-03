@@ -10,12 +10,10 @@ import {
 } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { formatDate } from '@arphase/common';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { endOfDay, startOfDay } from 'date-fns';
 import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
-import { tap } from 'rxjs/operators';
-
-dayjs.extend(utc);
 
 export interface Dates {
   startDate: string;
@@ -23,6 +21,7 @@ export interface Dates {
   dateType: string;
 }
 
+@UntilDestroy()
 @Component({
   selector: 'aps-date-filter',
   templateUrl: './date-filter.component.html',
@@ -58,18 +57,14 @@ export class ApsDateFilterComponent implements OnChanges {
       }
     );
 
-    this.control.valueChanges
-      .pipe(
-        tap(({ startDate, endDate, dateType }) => {
-          this.startDate = startDate ? dayjs(startDate).utc().format() : '';
-          this.startDateLabel = formatDate(startDate);
-          this.endDate = endDate ? dayjs(endDate).utc().format() : '';
-          this.endDateLabel = formatDate(endDate);
-          this.dateType = dateType;
-          this.setFilter();
-        })
-      )
-      .subscribe();
+    this.control.valueChanges.pipe(untilDestroyed(this)).subscribe(({ startDate, endDate, dateType }) => {
+      this.startDate = startDate ? dayjs(startOfDay(startDate)).format() : '';
+      this.startDateLabel = formatDate(startDate);
+      this.endDate = endDate ? dayjs(endOfDay(endDate)).format() : '';
+      this.endDateLabel = formatDate(endDate);
+      this.dateType = dateType;
+      this.setFilter();
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {

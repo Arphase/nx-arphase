@@ -1,5 +1,4 @@
 import { SortDirection } from '@arphase/common';
-import { endOfDay, startOfDay } from 'date-fns';
 import { BaseEntity, SelectQueryBuilder } from 'typeorm';
 
 import { ApsCollectionFilterDto } from '../dto/collection-filter.dto';
@@ -41,7 +40,7 @@ export function filterCollectionDates(
   if (startDate && endDate && !ignoreDates) {
     const date = `${entityName}.${dateType || 'createdAt'}`;
     const expression = `(${date} >= :startDate and ${date} <= :endDate)`;
-    const params = { startDate: startOfDay(new Date(startDate)), endDate: endOfDay(new Date(endDate)) };
+    const params = { startDate, endDate };
     logicalOperator === 'and' ? query.andWhere(expression, params) : query.orWhere(expression, params);
   }
 }

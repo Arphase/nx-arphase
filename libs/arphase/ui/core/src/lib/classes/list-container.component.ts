@@ -44,6 +44,7 @@ export class ApsListContainerComponent<T = any> {
       this.entityCollectionService?.entityActions$ &&
       this.entityCollectionService?.entities$
     ) {
+      this.entityCollectionService.clearCache();
       this.entityCollectionService.store
         .pipe(select(this.entityCollectionService.selectors.selectCollection), filterNil(), untilDestroyed(this))
         .subscribe((collection: ApsEntityCollection<T>) => (this.queryParams = collection.queryParams));

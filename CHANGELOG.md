@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.7.11](https://github.com/Arphase/nx-arphase/compare/v3.7.10...v3.7.11) (2022-02-02)
+
+
+### Bug Fixes
+
+* **arphase/core:** send correct date filter ([aceada3](https://github.com/Arphase/nx-arphase/commit/aceada3d3ecb5ec8b43d495a99d914e919a461fe))
+
 ### [3.7.10](https://github.com/Arphase/nx-arphase/compare/v3.7.9...v3.7.10) (2022-01-27)
 
 
