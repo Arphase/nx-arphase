@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Category, Product, Subcategory } from '@musicr/domain';
-import { BehaviorSubject, filter, forkJoin, Observable, Subscription, switchMap } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable, Subscription } from 'rxjs';
+import { filter, switchMap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsCatalogService {

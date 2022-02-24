@@ -2,7 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DeepPartial } from '@arphase/common';
 import { Customer, Order, OrderProduct, SocialEvent } from '@musicr/domain';
-import { BehaviorSubject, catchError, combineLatest, Observable, Subscription, switchMap, take } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
+import { catchError, switchMap, take } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {

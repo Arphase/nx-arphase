@@ -5,7 +5,8 @@ import { Store } from '@ngrx/store';
 import { StripeCardNumberElement } from '@stripe/stripe-js';
 import { ReservationCollectionService } from '@valmira/ui/reservations/data';
 import { StripeService } from 'ngx-stripe';
-import { BehaviorSubject, finalize, switchMap, take, withLatestFrom } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { finalize, switchMap, take, withLatestFrom } from 'rxjs/operators';
 
 import {
   createPaymentIntent,

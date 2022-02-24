@@ -1,7 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { debounceTime, filter } from 'rxjs';
+import { debounceTime, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'mrl-root',

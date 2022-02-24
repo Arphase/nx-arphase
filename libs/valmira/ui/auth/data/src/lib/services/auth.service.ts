@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { SignInPayload } from '@arphase/ui/auth';
 import { select, Store } from '@ngrx/store';
 import { ResetPassword, User } from '@valmira/domain';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { SetPasswordPayload } from '../models';
 import { getAuthUserStateState } from '../state/auth.selectors';

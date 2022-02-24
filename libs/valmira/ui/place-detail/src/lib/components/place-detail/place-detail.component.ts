@@ -10,6 +10,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MapMarker } from '@angular/google-maps';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Place, Reservation } from '@valmira/domain';
@@ -36,8 +37,15 @@ export class PlaceDetailComponent
   @Input() loadingReserve: boolean;
   @Input() reservationPreview: Reservation;
   @Input() queryParams: Record<string, string>;
-  lat = 25.131905;
-  lng = -99.932679;
+  mapOptions: google.maps.MapOptions = {
+    center: { lat: 25.131905, lng: -99.932679 },
+    zoom: 12,
+  };
+  marker: Partial<MapMarker> = {
+    position: this.mapOptions.center,
+    options: { animation: google.maps.Animation.BOUNCE },
+  };
+  mapsUrl = `https://goo.gl/maps/QRCadFBcK8ANGnCv9`;
   form = new FormGroup(
     {
       startDate: new FormControl(null, ApsValidators.required),

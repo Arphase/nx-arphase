@@ -4,7 +4,7 @@ import { User } from '@musicr/domain';
 import { fromAuth } from '@musicr/ui/auth/data';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { mapTo } from 'rxjs';
+import { mapTo } from 'rxjs/operators';
 
 @Component({
   selector: 'mrl-reset-password-form-container',

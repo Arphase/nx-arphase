@@ -4,7 +4,7 @@ import { fromAuth } from '@musicr/ui/auth/data';
 import { MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { take } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'mrl-spa',
