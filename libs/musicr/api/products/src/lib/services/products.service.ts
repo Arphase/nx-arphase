@@ -72,9 +72,8 @@ export class ProductsService {
 
   async updateProduct(updateDto: UpdateProductDto): Promise<Product> {
     await this.getProduct(updateDto.id);
-    const updatedProduct = this.productRepository.create({ ...omit(updateDto, 'priceOptions') });
-    await this.savePriceOptions(updateDto.priceOptions, updatedProduct.id);
-    return updatedProduct.save();
+    await this.savePriceOptions(updateDto.priceOptions, updateDto.id);
+    return this.productRepository.create({ ...omit(updateDto, 'priceOptions') }).save();
   }
 
   async deleteProduct(id: number): Promise<Product> {

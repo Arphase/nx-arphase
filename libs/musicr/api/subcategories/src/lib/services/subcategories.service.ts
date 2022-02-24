@@ -60,8 +60,8 @@ export class SubcategoriesService {
   }
 
   async updateSubcategory(updateSubcategoryDto: UpdateSubcategoryDto): Promise<Subcategory> {
-    const category = await this.getSubCategory(updateSubcategoryDto.id);
-    return this.subcategoryRepository.save({ ...category, ...updateSubcategoryDto });
+    await this.getSubCategory(updateSubcategoryDto.id);
+    return this.subcategoryRepository.create(updateSubcategoryDto).save();
   }
 
   async deleteSubcategory(id: number): Promise<Subcategory> {
