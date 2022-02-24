@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -10,10 +10,12 @@ import { finalize, take } from 'rxjs/operators';
   selector: 'mrl-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent extends ApsFormComponent {
   private loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
+  year = new Date().getFullYear();
 
   constructor(private fb: FormBuilder, private http: HttpClient, private messageService: NzMessageService) {
     super();

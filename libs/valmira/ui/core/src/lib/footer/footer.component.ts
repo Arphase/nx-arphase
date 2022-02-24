@@ -12,6 +12,7 @@ import { selectUrl } from '../router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
+  year = new Date().getFullYear();
   showReserveLink$ = this.store.pipe(
     select(selectUrl),
     filterNil(),
