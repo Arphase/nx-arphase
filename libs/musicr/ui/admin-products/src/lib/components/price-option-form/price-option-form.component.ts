@@ -48,8 +48,9 @@ export function createPriceOptionForm(item?: PriceOption): FormGroup {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PriceOptionFormComponent extends ApsFormComponent<PriceOption> implements OnChanges {
+  allowedMimeType = ['image/jpeg', 'image/jpg'];
   fileList: NzUploadFile[] = [];
-  previewImage: string | undefined = '';
+  previewImage = '';
   previewVisible = false;
   photosUrl: string;
   @Output() deleteItem = new EventEmitter<void>();

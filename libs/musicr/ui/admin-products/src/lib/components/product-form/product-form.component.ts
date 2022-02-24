@@ -42,7 +42,7 @@ export function createProductForm(): FormGroup {
 export class ProductFormComponent extends ApsFormComponent<Product> implements OnChanges {
   fileList: NzUploadFile[] = [];
   allowedMimeType = ['image/jpeg', 'image/jpg'];
-  previewImage: string | undefined = '';
+  previewImage = '';
   previewVisible = false;
   photosUrl: string;
   form = createProductForm();
