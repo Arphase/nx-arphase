@@ -33,7 +33,7 @@ export class OrdersService {
   ) {}
 
   async getOrders(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Order>> {
-    const { pageIndex, pageSize, dateType } = filterDto;
+    const { pageIndex, pageSize, dateType, text } = filterDto;
     const query = this.orderRepository
       .createQueryBuilder('order')
       .leftJoinAndSelect('order.customer', 'customer')
@@ -44,6 +44,17 @@ export class OrdersService {
 
     if (dateType === 'startDate') {
       filterCollectionDates('socialEvent', query, filterDto);
+    }
+
+    if (text) {
+      query.andWhere(
+        `(CAST (order.id AS varchar) like :text OR
+          LOWER(customer.firstName) like :text OR
+          LOWER(customer.lastName) like :text OR
+          LOWER(socialEvent.name) like :text OR
+          LOWER(CONCAT(customer.firstName, ' ', customer.lastName)) like :text)`,
+        { text: `%${text.toLowerCase()}%` }
+      );
     }
 
     const products = await query.getMany();
