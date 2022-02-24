@@ -5,6 +5,9 @@ import { Product } from './product.model';
 
 export interface OrderProduct {
   id?: number;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
   orderId: number;
   order: Order;
   productId: number;

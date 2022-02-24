@@ -54,7 +54,7 @@ export class PriceOptionsService {
       throw new NotFoundException(`Opción de precio con id ${id} no existe`);
     }
 
-    await this.priceOptionRepository.delete({ id });
+    await this.priceOptionRepository.softDelete({ id });
 
     return priceOption;
   }

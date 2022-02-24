@@ -2,6 +2,9 @@ import { Address } from '@arphase/common';
 
 export interface SocialEvent {
   id?: number;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
   name: string;
   eventType: string;
   date: Date;

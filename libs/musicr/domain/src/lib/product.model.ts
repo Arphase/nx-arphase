@@ -6,6 +6,9 @@ import { Subcategory } from './subcategory.model';
 
 export interface Product {
   id?: number;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
   name: string;
   price: number;
   disclaimer?: string;

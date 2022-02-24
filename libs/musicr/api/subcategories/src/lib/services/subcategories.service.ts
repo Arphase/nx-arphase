@@ -75,7 +75,7 @@ export class SubcategoriesService {
       throw new BadRequestException(`La subcategoría no puede ser eliminada porque tiene productos asignadas`);
     }
 
-    await this.subcategoryRepository.delete({ id });
+    await this.subcategoryRepository.softDelete({ id });
 
     return subcategory;
   }

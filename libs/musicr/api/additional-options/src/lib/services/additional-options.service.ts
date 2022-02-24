@@ -51,7 +51,7 @@ export class AdditionalOptionsService {
       throw new NotFoundException(`Opción adicional con id ${id} no existe`);
     }
 
-    await this.additionalOptionRepository.delete({ id });
+    await this.additionalOptionRepository.softDelete({ id });
 
     return additionalOption;
   }

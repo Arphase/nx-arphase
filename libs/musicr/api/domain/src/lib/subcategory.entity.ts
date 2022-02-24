@@ -1,5 +1,17 @@
 import { Category, Product, Subcategory } from '@musicr/domain';
-import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 import { CategoryEntity } from './category.entity';
 import { ProductEntity } from './product.entity';
@@ -9,6 +21,15 @@ import { ProductEntity } from './product.entity';
 export class SubcategoryEntity extends BaseEntity implements Subcategory {
   @PrimaryGeneratedColumn()
   id?: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 
   @Column()
   name: string;

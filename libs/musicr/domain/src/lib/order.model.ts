@@ -4,6 +4,9 @@ import { SocialEvent } from './social-event.model';
 
 export interface Order {
   id?: number;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
   customerId?: number;
   customer: Customer;
   socialEventId?: number;
