@@ -76,8 +76,8 @@
                nzXs="24"
                nzMd="12"
                nzLg="8">
-            <p><strong>¿Requiere ensamblaje?</strong></p>
-            <span>{{ socialEvent?.requiredAssembly ? 'Si' : 'No' }}</span>
+            <p><strong>¿Requiere maniobra?</strong></p>
+            <span>{{ socialEvent?.requiresAssembly ? 'Si' : 'No' }}</span>
           </div>
         </div>
 
@@ -222,7 +222,8 @@
                nzXs="0"
                nzLg="6">
             {{ product?.orderProductAdditionalOptions | additionalOptionsTotal | currency }}
-            <i nz-icon
+            <i *ngIf="product?.orderProductAdditionalOptions | additionalOptionsTotal"
+               nz-icon
                nz-popover
                nzPopoverTitle="Detalle"
                [nzPopoverContent]="additionalProducts"
