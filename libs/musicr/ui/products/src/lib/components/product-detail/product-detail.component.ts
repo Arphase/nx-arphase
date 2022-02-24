@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui/core';
-import { OrderProduct, Product } from '@musicr/domain';
+import { OrderProduct, Photo, Product } from '@musicr/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { filter } from 'rxjs/operators';
@@ -29,6 +29,7 @@ export class ProductDetailComponent implements OnChanges {
   total: number;
   form = new FormGroup({ priceOptionId: new FormControl(null, ApsValidators.required) });
   price: number;
+  displayedPhotos: Photo[] = [];
   @Output() addItemToCart = new EventEmitter<Partial<OrderProduct>>();
 
   constructor(private location: Location) {
@@ -38,15 +39,17 @@ export class ProductDetailComponent implements OnChanges {
         filter(() => !!this.product?.priceOptions?.length),
         untilDestroyed(this)
       )
-      .subscribe(
-        priceOptionId =>
-          (this.price = this.product.priceOptions.find(priceOption => priceOption.id === priceOptionId)?.price)
-      );
+      .subscribe(priceOptionId => {
+        const priceOption = this.product.priceOptions.find(priceOption => priceOption.id === priceOptionId);
+        this.price = priceOption?.price;
+        this.displayedPhotos = priceOption?.photos?.length ? priceOption.photos : this.product.photos;
+      });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.product && this.product?.id) {
       this.price = this.product.price;
+      this.displayedPhotos = this.product.photos;
     }
     if (changes.priceOptions && this.priceOptions?.length) {
       this.form.get('priceOptionId').patchValue(this.priceOptions[0].value);
