@@ -19,6 +19,7 @@ export class ProductDetailContainerComponent implements OnInit {
   loading$ = this.productDetailService.loading$;
   product$ = this.productDetailService.product$;
   priceOptions$ = this.productDetailService.priceOptions$;
+  additionalOptions$ = this.productDetailService.additionalOptions$;
 
   constructor(
     private productDetailService: ProductDetailService,

@@ -73,22 +73,39 @@
           </div>
         </ng-container>
 
-        <form *ngIf="priceOptions?.length"
-              [formGroup]="form"
-              nz-row
+
+        <form [formGroup]="form"
               class="mt-9">
-          <div nz-col
-               nzXs="24"
-               nzMd="12"
-               nzLg="6">
-            <nz-select class="w-full"
-                       formControlName="priceOptionId"
-                       [nzOptions]="priceOptions"></nz-select>
+          <div *ngIf="priceOptions?.length"
+               nz-row>
+            <div nz-col
+                 nzXs="24"
+                 nzLg="12">
+              <nz-select class="w-full"
+                         formControlName="priceOptionId"
+                         [nzOptions]="priceOptions"></nz-select>
+            </div>
+          </div>
+
+          <div *ngIf="additionalOptions?.length"
+               nz-row
+               class="mt-4">
+            <h3 class="mb-2">Productos adicionales</h3>
+            <form *ngFor="let control of additionalOptionsArray.controls"
+                  [formGroup]="control"
+                  nz-col
+                  nzSpan="24"
+                  class="my-2">
+              <label nz-checkbox
+                     formControlName="selected">
+                <span class="mr-2">{{ control.value.name }}</span>
+                <span class="font-bold">{{ control.value.price | currency }} MXN</span>
+              </label>
+            </form>
           </div>
         </form>
 
-        <h2 class="text-2xl font-extrabold mt-10 mb-12">
-          {{ price | currency }} MXN
+        <h2 class="text-2xl font-extrabold mt-10 mb-12">{{ (productPrice + additionalProductsPrice) | currency }} MXN
         </h2>
 
         <button type="button"

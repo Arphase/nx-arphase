@@ -12,20 +12,13 @@ export class ProductDetailService {
   priceOptions$ = this.product$.pipe(
     map(product => product?.priceOptions),
     filterNilArray(),
-    map(options =>
-      options.sort((a, b) => {
-        const aPrice = a.price;
-        const bPrice = b.price;
-        if (aPrice < bPrice) {
-          return -1;
-        }
-        if (aPrice > bPrice) {
-          return 1;
-        }
-        return 0;
-      })
-    ),
+    map(options => options.sort((a, b) => a.price - b.price)),
     mapToSelectOptions(priceOption => ({ label: `${priceOption.name}`, value: priceOption.id }))
+  );
+  additionalOptions$ = this.product$.pipe(
+    map(product => product?.additionalOptions),
+    filterNilArray(),
+    map(options => options.sort((a, b) => a.price - b.price))
   );
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
