@@ -3,10 +3,11 @@ import { DEFAULT_PAGE_SIZE } from '@arphase/common';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
-import { omit } from 'lodash';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(LocalizedFormat);
+
+const omit = (keys, obj): any => Object.fromEntries(Object.entries(obj).filter(([k]) => !keys.includes(k)));
 
 export function buildQueryParams(queryParams): HttpParams {
   let params: Record<string, string | string[]> = {

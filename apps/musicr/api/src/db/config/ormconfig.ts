@@ -3,7 +3,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { environment } from '../../environments/environment';
 import { ENTITIES } from './entities';
 
-const config: TypeOrmModuleOptions = {
+export const config: TypeOrmModuleOptions = {
   type: 'postgres',
   host: environment.databaseConfig.host,
   port: 5432,
@@ -25,5 +25,3 @@ const config: TypeOrmModuleOptions = {
   },
   logging: true,
 };
-
-export = config;

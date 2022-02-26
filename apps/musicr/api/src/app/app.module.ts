@@ -15,7 +15,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { AppServerModule } from '../../../store/src/app/app.server.module';
-import config from '../db/config/ormconfig';
+import { config } from '../db/config/ormconfig';
 
 @Module({
   imports: [
