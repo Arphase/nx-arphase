@@ -1,7 +1,7 @@
-import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { PlacesDataModule } from '@valmira/ui/places/data';
@@ -11,7 +11,6 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
-import { GoogleMapsModule } from '@angular/google-maps';
 
 import { PlaceDetailComponent } from './components/place-detail/place-detail.component';
 import { PlaceDetailContainerComponent } from './containers/place-detail-container/place-detail-container.component';
@@ -22,7 +21,6 @@ import { reducer } from './state/place-detail.reducer';
 
 @NgModule({
   imports: [
-    AgmCoreModule,
     CommonModule,
     EffectsModule.forFeature([PlaceDetailEffects]),
     GoogleMapsModule,

@@ -16,391 +16,57 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
         "cacheDirectory": ".cache/nx",
         "accessToken": "NjZhNGY2MzYtZjI3Ny00NDI0LWE5NzItY2EyZTdlOTIyZTYxfHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
-        "showUsageWarnings": true
+        "showUsageWarnings": true,
+        "parallel": 1
       }
     }
   },
-  "projects": {
-    "arphase-api-core": {
-      "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
-    },
-    "arphase-api-testing": {
-      "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
-    },
-    "arphase-common": {
-      "tags": ["domain:arphase", "type:util"]
-    },
-    "arphase-ui-addresses": {
-      "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
-    },
-    "arphase-ui-auth": {
-      "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
-    },
-    "arphase-ui-core": {
-      "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
-    },
-    "innovatech-api": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "executable:api"]
-    },
-    "innovatech-api-auth-data": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:data"]
-    },
-    "innovatech-api-auth-feature": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
-    },
-    "innovatech-api-companies": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
-    },
-    "innovatech-api-core-data": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:data"]
-    },
-    "innovatech-api-core-util": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
-    },
-    "innovatech-api-domain": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:domain-logic"]
-    },
-    "innovatech-api-groups": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
-    },
-    "innovatech-api-guarantees": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
-    },
-    "innovatech-api-localities": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
-    },
-    "innovatech-api-payment-orders": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
-    },
-    "innovatech-api-products-feature": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
-    },
-    "innovatech-api-products-utils": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
-    },
-    "innovatech-api-revision-requests": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
-    },
-    "innovatech-api-revisions": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
-    },
-    "innovatech-api-users": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
-    },
-    "innovatech-api-vehicles": {
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
-    },
-    "innovatech-app": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "executable:ui"]
-    },
-    "innovatech-domain": {
-      "tags": ["domain:innovatech", "type:domain-logic"]
-    },
-    "innovatech-ui-auth-data": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
-    },
-    "innovatech-ui-auth-feature": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
-    },
-    "innovatech-ui-companies-data": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
-    },
-    "innovatech-ui-companies-ui": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
-    },
-    "innovatech-ui-core-data": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
-    },
-    "innovatech-ui-core-ui": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
-    },
-    "innovatech-ui-core-util": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:util"]
-    },
-    "innovatech-ui-dashboard": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
-    },
-    "innovatech-ui-groups-data": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
-    },
-    "innovatech-ui-groups-feature": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
-    },
-    "innovatech-ui-groups-ui": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
-    },
-    "innovatech-ui-guarantees": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
-    },
-    "innovatech-ui-permissions-data": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
-    },
-    "innovatech-ui-products-data": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
-    },
-    "innovatech-ui-products-feature": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
-    },
-    "innovatech-ui-products-ui": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
-    },
-    "innovatech-ui-revision-requests": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
-    },
-    "innovatech-ui-revisions": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
-    },
-    "innovatech-ui-spa": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
-    },
-    "innovatech-ui-users-data": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
-    },
-    "innovatech-ui-users-feature": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
-    },
-    "innovatech-ui-users-ui": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
-    },
-    "innovatech-ui-vehicles-data": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
-    },
-    "innovatech-ui-vehicles-feature": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
-    },
-    "innovatech-ui-vehicles-ui": {
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
-    },
-    "innovatech-utils": {
-      "tags": ["domain:innovatech", "type:util"]
-    },
-    "musicr-admin": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
-    },
-    "musicr-admin-e2e": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
-      "implicitDependencies": ["musicr-admin"]
-    },
-    "musicr-api": {
-      "tags": ["domain:musicr", "domain:musicr:api", "executable:api"]
-    },
-    "musicr-api-additional-options": {
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
-    },
-    "musicr-api-auth": {
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
-    },
-    "musicr-api-categories": {
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
-    },
-    "musicr-api-contact": {
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
-    },
-    "musicr-api-customers": {
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
-    },
-    "musicr-api-domain": {
-      "tags": ["domain:musicr", "domain:musicr:api", "type:domain-logic"]
-    },
-    "musicr-api-orders": {
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
-    },
-    "musicr-api-photos": {
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
-    },
-    "musicr-api-price-options": {
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
-    },
-    "musicr-api-products": {
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
-    },
-    "musicr-api-subcategories": {
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
-    },
-    "musicr-domain": {
-      "tags": ["domain:musicr", "type:domain-logic"]
-    },
-    "musicr-store": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
-    },
-    "musicr-store-e2e": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
-      "implicitDependencies": ["musicr-store"]
-    },
-    "musicr-terms-and-conditions": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
-    },
-    "musicr-ui-about-us": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
-    },
-    "musicr-ui-admin-products": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
-    },
-    "musicr-ui-auth-data": {
-      "tags": ["domain:musicr", "domain:musicr:api", "type:data"]
-    },
-    "musicr-ui-auth-feature": {
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
-    },
-    "musicr-ui-cart-data": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
-    },
-    "musicr-ui-cart-feature": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
-    },
-    "musicr-ui-categories-data": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
-    },
-    "musicr-ui-categories-feature": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
-    },
-    "musicr-ui-categories-ui": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
-    },
-    "musicr-ui-core": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
-    },
-    "musicr-ui-frequent-questions": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
-    },
-    "musicr-ui-home": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
-    },
-    "musicr-ui-orders": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
-    },
-    "musicr-ui-products": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
-    },
-    "musicr-ui-spa": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
-    },
-    "musicr-ui-subcategories-data": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
-    },
-    "musicr-ui-subcategories-feature": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
-    },
-    "musicr-ui-subcategories-ui": {
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
-    },
-    "pam-vic": {
-      "tags": ["domain:pam-vic", "executable:ui"]
-    },
-    "pam-vic-e2e": {
-      "tags": [],
-      "implicitDependencies": ["pam-vic"]
-    },
-    "valmira-admin": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
-    },
-    "valmira-admin-e2e": {
-      "tags": [],
-      "implicitDependencies": ["valmira-admin"]
-    },
-    "valmira-api": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "executable:api"]
-    },
-    "valmira-api-additional-products": {
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
-    },
-    "valmira-api-auth": {
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
-    },
-    "valmira-api-customers": {
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
-    },
-    "valmira-api-domain": {
-      "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
-    },
-    "valmira-api-photos": {
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
-    },
-    "valmira-api-places": {
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
-    },
-    "valmira-api-promocodes": {
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
-    },
-    "valmira-api-reservations": {
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
-    },
-    "valmira-app": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
-    },
-    "valmira-app-e2e": {
-      "tags": [],
-      "implicitDependencies": ["valmira-app"]
-    },
-    "valmira-domain": {
-      "tags": ["domain:valmira", "type:domain-logic"]
-    },
-    "valmira-ui-additional-products-data": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
-    },
-    "valmira-ui-additional-products-feature": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-auth-data": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
-    },
-    "valmira-ui-auth-feature": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-core": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:util"]
-    },
-    "valmira-ui-frequent-questions": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-landing": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-manifest": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-place-detail": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-place-search": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-places-data": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
-    },
-    "valmira-ui-places-feature": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-promocodes-data": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
-    },
-    "valmira-ui-promocodes-feature": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-reservation-detail": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-reservation-wizard": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-reservations-data": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
-    },
-    "valmira-ui-reservations-feature": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-reservations-ui": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:ui"]
-    },
-    "valmira-ui-spa": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
-    },
-    "valmira-ui-terms-and-conditions": {
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
+  },
+  "defaultProject": "musicr-store",
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "less",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress",
+      "strict": false
+    },
+    "@nrwl/angular:library": {
+      "style": "less",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "strict": false
+    },
+    "@nrwl/angular:component": {
+      "style": "less",
+      "changeDetection": "OnPush"
+    },
+    "@schematics/angular:component": {
+      "style": "less",
+      "changeDetection": "OnPush"
+    },
+    "@nrwl/web:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/web:library": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
     }
   }
 }

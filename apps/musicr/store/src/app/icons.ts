@@ -1,0 +1,36 @@
+import { IconDefinition } from '@ant-design/icons-angular';
+import {
+  ArrowDownOutline,
+  ArrowLeftOutline,
+  CloseOutline,
+  CreditCardOutline,
+  FacebookOutline,
+  FormOutline,
+  InstagramOutline,
+  LikeOutline,
+  MenuOutline,
+  MinusOutline,
+  PlusOutline,
+  SearchOutline,
+  ShoppingOutline,
+  StarFill,
+  WhatsAppOutline,
+} from '@ant-design/icons-angular/icons';
+
+export const icons: IconDefinition[] = [
+  FacebookOutline,
+  InstagramOutline,
+  WhatsAppOutline,
+  ArrowDownOutline,
+  StarFill,
+  MenuOutline,
+  SearchOutline,
+  ShoppingOutline,
+  CloseOutline,
+  ArrowLeftOutline,
+  MinusOutline,
+  PlusOutline,
+  LikeOutline,
+  CreditCardOutline,
+  FormOutline,
+];
