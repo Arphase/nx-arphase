@@ -1388,8 +1388,8 @@
                   "with": "apps/musicr/admin/src/environments/environment.stage.ts"
                 }
               ],
-              "buildOptimizer": false,
-              "optimization": false,
+              "buildOptimizer": true,
+              "optimization": true,
               "vendorChunk": false,
               "extractLicenses": false,
               "sourceMap": true,
