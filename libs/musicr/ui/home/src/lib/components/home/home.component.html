@@ -3,11 +3,14 @@
     sea un éxito.</h2>
   <h6>Nos encargamos de la planeación y el entretenimiento, para que tú sólo te dediques a celebrar.</h6>
 
-  <div>
+  <div class="flex justify-center">
     <picture>
-      <img src="https://music-revolution-photos.s3.amazonaws.com/img/cover.jpg"
-           alt="Music Revolution Cover"
-           class="cover w-full"
+      <source media="(max-width: 640px)"
+              srcset="https://music-revolution-photos.s3.amazonaws.com/img/cover-mobile.jpg">
+      <source media="(min-width: 641px)"
+              srcset="https://music-revolution-photos.s3.amazonaws.com/img/cover.jpg">
+      <img alt="Music Revolution Cover"
+           class="cover w-full md:mt-24 mt-16"
            loading="lazy">
     </picture>
   </div>
