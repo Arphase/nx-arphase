@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.8.0](https://github.com/Arphase/nx-arphase/compare/v3.7.11...v3.8.0) (2022-02-28)
+
+
+### Features
+
+* **musicr/cart:** [#250](https://github.com/Arphase/nx-arphase/issues/250) reduce minute options for faster selection ([2837cdd](https://github.com/Arphase/nx-arphase/commit/2837cdd565089bf0ce7dc5b69cdd984c3b09fad9))
+* **musicr/home:** [#251](https://github.com/Arphase/nx-arphase/issues/251) add cover photo for mobile ([853206d](https://github.com/Arphase/nx-arphase/commit/853206d7f0410367f8c11e3acda166a220620005))
+* **musicr/products:** [#234](https://github.com/Arphase/nx-arphase/issues/234) show priceOption photos when select changes ([8da93b8](https://github.com/Arphase/nx-arphase/commit/8da93b8033fbdf35a9328552d190254f76709745))
+* **musicr/products:** [#243](https://github.com/Arphase/nx-arphase/issues/243) show additional options in product detail page ([42058e1](https://github.com/Arphase/nx-arphase/commit/42058e16eb4c483c2ad891b6e0b4415aa376f91a))
+* **musicr/store:** [#246](https://github.com/Arphase/nx-arphase/issues/246) optimize bundle removing lodash, supporting lazy loading, and add font.css ([07a2778](https://github.com/Arphase/nx-arphase/commit/07a27788c0b03c4f08f0e66856ef6da19b893058))
+* **musicr/store:** [#252](https://github.com/Arphase/nx-arphase/issues/252) change contact email ([fdf1cf6](https://github.com/Arphase/nx-arphase/commit/fdf1cf69ee8bca8046f228c4e309dcb2014e4251))
+* **musicr/store:** [#253](https://github.com/Arphase/nx-arphase/issues/253) obtain dynamic year for landing page ([4119138](https://github.com/Arphase/nx-arphase/commit/4119138033db3584ebb3863fa346fb5f0e7c086c))
+
+
+### Bug Fixes
+
+* **musicr/api:** [#236](https://github.com/Arphase/nx-arphase/issues/236) [#237](https://github.com/Arphase/nx-arphase/issues/237) enable softDelete in entities to delete products that exist in orders ([65093ba](https://github.com/Arphase/nx-arphase/commit/65093ba3d8e49d135d28c9f6c436fd971512edf9))
+* **musicr/home:** [#247](https://github.com/Arphase/nx-arphase/issues/247) adjust footer to fit in mobile ([ac9ee68](https://github.com/Arphase/nx-arphase/commit/ac9ee68cf614a58eb349a88c3d84156598354984))
+* **musicr/orders:** [#241](https://github.com/Arphase/nx-arphase/issues/241) search orders by text ([6af1434](https://github.com/Arphase/nx-arphase/commit/6af14343f1bcf178b565649db846d03970db89eb))
+* **musicr/orders:** [#249](https://github.com/Arphase/nx-arphase/issues/249) map requiresAssembly in the template ([3dccea7](https://github.com/Arphase/nx-arphase/commit/3dccea7e0adddd1fe16ecf5e61b99128eb46734d))
+* **musicr/products:** [#235](https://github.com/Arphase/nx-arphase/issues/235) allow admin to upload only jpg and jpeg images to product options ([3ce16e5](https://github.com/Arphase/nx-arphase/commit/3ce16e5a78d9264ab9fbbf642946c94dabd29fe9))
+* **musicr/products:** [#242](https://github.com/Arphase/nx-arphase/issues/242) filter products by text ([b3ffaa7](https://github.com/Arphase/nx-arphase/commit/b3ffaa7b883b83cc2593d8c825a6d5c9434b528a))
+* **musicr/products:** [#245](https://github.com/Arphase/nx-arphase/issues/245) save subcategoryId on update ([c9434d4](https://github.com/Arphase/nx-arphase/commit/c9434d494bfae4564f7b7a7147a8f7932d9b78b1))
+* **musicr/subcategories:** [#244](https://github.com/Arphase/nx-arphase/issues/244) save categoryId changes un update ([d0afd44](https://github.com/Arphase/nx-arphase/commit/d0afd447a7f6b2cf560be17211bd27dc9b2ab068))
+
 ### [3.7.11](https://github.com/Arphase/nx-arphase/compare/v3.7.10...v3.7.11) (2022-02-02)
 
 
