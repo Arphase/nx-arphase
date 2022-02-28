@@ -93,9 +93,7 @@ export class ProductsService {
       return product;
     } catch (e) {
       if (e.code === '23503') {
-        throw new ConflictException(
-          'No se puede eliminar el promocode porque existen reservaciones con este promocode'
-        );
+        throw new ConflictException('No se puede eliminar el producto porque existe en alguna orden');
       }
     }
   }

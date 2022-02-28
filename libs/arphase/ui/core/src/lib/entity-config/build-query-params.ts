@@ -7,8 +7,6 @@ import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 dayjs.extend(customParseFormat);
 dayjs.extend(LocalizedFormat);
 
-const omit = (keys, obj): any => Object.fromEntries(Object.entries(obj).filter(([k]) => !keys.includes(k)));
-
 export function buildQueryParams(queryParams): HttpParams {
   let params: Record<string, string | string[]> = {
     pageSize: String(DEFAULT_PAGE_SIZE),
@@ -20,7 +18,8 @@ export function buildQueryParams(queryParams): HttpParams {
   }
 
   if (queryParams.noDates) {
-    params = omit(params, ['startDate', 'endDate', 'noDates', 'dateType']);
+    const { startDate, endDate, noDates, dateType, ...filteredParams } = params;
+    params = filteredParams;
   }
 
   Object.keys(queryParams)
@@ -43,9 +42,11 @@ export function buildQueryParams(queryParams): HttpParams {
       params.sort = key;
       params.direction = value;
     } else {
-      params = omit(params, 'sort');
+      const { sort, ...filteredParams } = params;
+      params = filteredParams;
     }
   }
+  const { dates, noDates, filter, resetList, ...fromObject } = params;
 
-  return new HttpParams({ fromObject: omit(params, ['dates', 'noDates', 'filter', 'resetList']) });
+  return new HttpParams({ fromObject });
 }
