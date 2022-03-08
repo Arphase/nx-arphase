@@ -4,6 +4,7 @@ import { ConfigParams, CustomParams, Gtag } from './gtag-definitions';
 
 export interface GtagConfig {
   targetId: string; // gtag('config', 'targetId', configInfo )
+  production: boolean;
   configInfo?: ConfigParams;
   setParams?: CustomParams; // gtag('set', setParams)
   moreIds?: string[];
@@ -14,6 +15,9 @@ export const GtagConfigToken = new InjectionToken<GtagConfig>('wizdm.gtag.config
 /** Reproduces the standard code snippet we would paste in index.html
  * @see: https://developers.google.com/analytics/devguides/collection/gtagjs */
 export function gtagFactory(config: GtagConfig): Gtag {
+  if (!config.production) {
+    return null;
+  }
   if ((window as any).gtag) {
     return (window as any).gtag;
   }

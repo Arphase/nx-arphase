@@ -39,7 +39,7 @@ const MUSIC_REVOLUTION_CONFIGURATION_VALUE: MusicRevolutionConfiguration = {
     FooterModule,
     BrowserAnimationsModule,
     NzMessageModule,
-    GtagModule.init({ targetId: 'G-MML7RZ5PG4' }),
+    GtagModule.init({ targetId: 'G-MML7RZ5PG4', production: environment.production }),
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES },
