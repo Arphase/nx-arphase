@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'musicr-ui-cart-data',
-  preset: '../../../../../jest.preset.js',
+  displayName: 'arphase-ui-gtag',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -8,10 +8,11 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../../coverage/libs/musicr/ui/cart/data',
+  coverageDirectory: '../../../../coverage/libs/arphase/ui/gtag',
   transform: {
-    '^.+\\.(ts|js|html)$': 'jest-preset-angular',
+    '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },
+  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
   testRunner: 'jasmine2',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',

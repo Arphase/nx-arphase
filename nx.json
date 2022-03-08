@@ -16,12 +16,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "cacheDirectory": ".cache/nx",
         "accessToken": "NjZhNGY2MzYtZjI3Ny00NDI0LWE5NzItY2EyZTdlOTIyZTYxfHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
@@ -31,11 +26,25 @@
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular",
-    "analytics": false
+    "defaultCollection": "@nrwl/angular"
   },
   "defaultProject": "musicr-store",
   "generators": {
+    "@schematics/angular:component": {
+      "style": "less",
+      "changeDetection": "OnPush"
+    },
+    "@nrwl/web:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/web:library": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
     "@nrwl/angular:application": {
       "style": "less",
       "linter": "eslint",
@@ -52,21 +61,6 @@
     "@nrwl/angular:component": {
       "style": "less",
       "changeDetection": "OnPush"
-    },
-    "@schematics/angular:component": {
-      "style": "less",
-      "changeDetection": "OnPush"
-    },
-    "@nrwl/web:application": {
-      "style": "css",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/web:library": {
-      "style": "css",
-      "linter": "eslint",
-      "unitTestRunner": "jest"
     }
   }
 }

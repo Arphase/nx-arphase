@@ -136,12 +136,34 @@
       },
       "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
     },
+    "arphase-ui-gtag": {
+      "projectType": "library",
+      "root": "libs/arphase/ui/gtag",
+      "sourceRoot": "libs/arphase/ui/gtag/src",
+      "prefix": "ivt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/arphase/ui/gtag"],
+          "options": {
+            "jestConfig": "libs/arphase/ui/gtag/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/arphase/ui/gtag/src/**/*.ts", "libs/arphase/ui/gtag/src/**/*.html"]
+          }
+        }
+      },
+      "tags": []
+    },
     "innovatech-api": {
       "root": "apps/innovatech/api",
       "sourceRoot": "apps/innovatech/api/src",
       "projectType": "application",
       "prefix": "ivt",
-      "schematics": {},
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
@@ -701,9 +723,6 @@
       "root": "libs/innovatech/ui/auth/data",
       "sourceRoot": "libs/innovatech/ui/auth/data/src",
       "prefix": "ivt",
-      "@schematics/angular:application": {
-        "strict": false
-      },
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1376,7 +1395,6 @@
             "main": "apps/musicr/admin/src/main.ts",
             "polyfills": "apps/musicr/admin/src/polyfills.ts",
             "tsConfig": "apps/musicr/admin/tsconfig.app.json",
-            "inlineStyleLanguage": "less",
             "assets": ["apps/musicr/admin/src/favicon.ico", "apps/musicr/admin/src/assets"],
             "styles": ["apps/musicr/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
@@ -1807,7 +1825,6 @@
             "main": "apps/musicr/store/src/main.ts",
             "polyfills": "apps/musicr/store/src/polyfills.ts",
             "tsConfig": "apps/musicr/store/tsconfig.app.json",
-            "inlineStyleLanguage": "less",
             "assets": ["apps/musicr/store/src/favicon.ico", "apps/musicr/store/src/assets"],
             "styles": ["apps/musicr/store/src/styles.less"]
           },

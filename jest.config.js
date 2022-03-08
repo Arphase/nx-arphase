@@ -119,5 +119,6 @@ module.exports = {
     '<rootDir>/libs/musicr/api/contact',
     '<rootDir>/libs/arphase/ui/addresses',
     '<rootDir>/libs/musicr/api/customers',
+    '<rootDir>/libs/arphase/ui/gtag',
   ],
 };
