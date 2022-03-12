@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.8.2](https://github.com/Arphase/nx-arphase/compare/v3.8.1...v3.8.2) (2022-03-12)
+
+
+### Bug Fixes
+
+* **musicr/orders:** display order with deleted items ([65605cf](https://github.com/Arphase/nx-arphase/commit/65605cf2563fdc7df6c7291bcbe84c1112a8b92e))
+
 ### [3.8.1](https://github.com/Arphase/nx-arphase/compare/v3.8.0...v3.8.1) (2022-03-12)
 
 
