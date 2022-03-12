@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.8.1](https://github.com/Arphase/nx-arphase/compare/v3.8.0...v3.8.1) (2022-03-12)
+
+
+### Features
+
+* **musicr/admin:** get icons from Arphase CDN ([11ce743](https://github.com/Arphase/nx-arphase/commit/11ce743d53f16ea7489ebadd897623320fdc6a48))
+* **musicr/cart:** add Google Analytics events ([241cc67](https://github.com/Arphase/nx-arphase/commit/241cc676da01e377343a0e0c2e5d55af94cb6e90))
+* **musicr/store:** enable Google Analytics only in production ([02ab7ea](https://github.com/Arphase/nx-arphase/commit/02ab7eaee3ef77c3a4da1913a9354cffa656d3c2))
+
+
+### Bug Fixes
+
+* **musicr/products:** softDelete product ([bed0fe7](https://github.com/Arphase/nx-arphase/commit/bed0fe753086536929dd98ed3a6b579182c89fec))
+
 ## [3.8.0](https://github.com/Arphase/nx-arphase/compare/v3.7.11...v3.8.0) (2022-02-28)
 
 
