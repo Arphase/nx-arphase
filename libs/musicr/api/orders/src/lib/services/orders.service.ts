@@ -63,7 +63,7 @@ export class OrdersService {
   }
 
   async getOrder(id: number): Promise<Order> {
-    const order = await this.orderRepository.findOne({ id });
+    const order = await this.orderRepository.findOne({ id }, { withDeleted: true });
     if (!order) {
       throw new NotFoundException(`Order with id ${id} not found`);
     }

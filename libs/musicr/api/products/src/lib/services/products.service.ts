@@ -89,7 +89,7 @@ export class ProductsService {
   async deleteProduct(id: number): Promise<Product> {
     const product = await this.getProduct(id);
     try {
-      await this.productRepository.softDelete(product);
+      await this.productRepository.softRemove(product);
       return product;
     } catch (e) {
       if (e.code === '23503') {
