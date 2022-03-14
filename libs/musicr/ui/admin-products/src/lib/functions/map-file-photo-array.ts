@@ -4,11 +4,7 @@ import { NzUploadFile } from 'ng-zorro-antd/upload';
 export function mapPhotoFileArray(fileList: NzUploadFile[]): Photo[] {
   return fileList.map(file => {
     const mappedFile = file.response
-      ? {
-          id: file.response.id,
-          key: file.response.key,
-          url: file.response.url,
-        }
+      ? file.response
       : {
           id: file.uid,
           key: file.name,

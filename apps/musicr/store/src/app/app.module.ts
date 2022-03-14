@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadingInterceptorService } from '@arphase/ui/core';
+import { GtagModule } from '@arphase/ui/gtag';
 import {
   FooterModule,
   HttpProxyService,
@@ -38,6 +39,7 @@ const MUSIC_REVOLUTION_CONFIGURATION_VALUE: MusicRevolutionConfiguration = {
     FooterModule,
     BrowserAnimationsModule,
     NzMessageModule,
+    GtagModule.init({ targetId: 'G-MML7RZ5PG4', production: environment.production }),
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES },

@@ -1,12 +1,22 @@
 import { isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  PLATFORM_ID,
+  Renderer2,
+} from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { debounceTime, filter } from 'rxjs';
+import { NzIconService } from 'ng-zorro-antd/icon';
+import { debounceTime, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'mrl-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements AfterViewInit {
   constructor(
@@ -14,8 +24,11 @@ export class AppComponent implements AfterViewInit {
     @Inject(PLATFORM_ID) private platformId: Object,
     private renderer: Renderer2,
     private router: Router,
-    private cdr: ChangeDetectorRef
-  ) {}
+    private cdr: ChangeDetectorRef,
+    private nzIconService: NzIconService
+  ) {
+    this.nzIconService.changeAssetsSource('http://arphase-icons.s3-website-us-east-1.amazonaws.com');
+  }
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {

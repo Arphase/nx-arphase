@@ -7,9 +7,11 @@
             nz-col
             nzSpan="24"
             nzSize="middle">
-    <nz-page-header nzBackIcon
-                    [nzTitle]="item?.id ? 'Editar Categoría' : 'Nueva Categoría'"
-                    [routerLink]="['..']"></nz-page-header>
+    <nz-page-header nzBackIcon>
+      <nz-page-header-title [routerLink]="['..']">
+        {{ item?.id ? 'Editar Categoría' : 'Nueva Categoría' }}
+      </nz-page-header-title>
+    </nz-page-header>
     <div nz-row>
       <div nz-col
            nzSpan="24">

@@ -7,9 +7,8 @@
             nz-col
             nzSpan="24"
             nzSize="middle">
-    <nz-page-header nzBackIcon
-                    [nzTitle]="title"
-                    [routerLink]="['..']">
+    <nz-page-header nzBackIcon>
+      <nz-page-header-title [routerLink]="['..']">{{ title }}</nz-page-header-title>
     </nz-page-header>
 
     <nz-collapse *nzSpaceItem>

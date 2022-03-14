@@ -38,7 +38,7 @@ export function createPlaceForm(): FormGroup {
 export class PlaceFormComponent extends ApsFormComponent<Place> implements OnChanges {
   allowedMimeType = ['image/jpeg', 'image/jpg'];
   fileList: NzUploadFile[] = [];
-  previewImage: string | undefined = '';
+  previewImage = '';
   previewVisible = false;
   photosUrl: string;
   @Output() removePhoto = new EventEmitter<number>();

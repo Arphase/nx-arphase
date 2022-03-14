@@ -3,7 +3,6 @@ import { DEFAULT_PAGE_SIZE } from '@arphase/common';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
-import { omit } from 'lodash';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(LocalizedFormat);
@@ -19,7 +18,8 @@ export function buildQueryParams(queryParams): HttpParams {
   }
 
   if (queryParams.noDates) {
-    params = omit(params, ['startDate', 'endDate', 'noDates', 'dateType']);
+    const { startDate, endDate, noDates, dateType, ...filteredParams } = params;
+    params = filteredParams;
   }
 
   Object.keys(queryParams)
@@ -42,9 +42,11 @@ export function buildQueryParams(queryParams): HttpParams {
       params.sort = key;
       params.direction = value;
     } else {
-      params = omit(params, 'sort');
+      const { sort, ...filteredParams } = params;
+      params = filteredParams;
     }
   }
+  const { dates, noDates, filter, resetList, ...fromObject } = params;
 
-  return new HttpParams({ fromObject: omit(params, ['dates', 'noDates', 'filter', 'resetList']) });
+  return new HttpParams({ fromObject });
 }

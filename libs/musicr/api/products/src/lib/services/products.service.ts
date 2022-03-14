@@ -21,7 +21,7 @@ export class ProductsService {
   ) {}
 
   async getProducts(filterDto: GetProductsFilterDto): Promise<ApsCollectionResponse<Product>> {
-    const { pageIndex, pageSize, categoryId, subcategoryId } = filterDto;
+    const { pageIndex, pageSize, categoryId, subcategoryId, text } = filterDto;
     const query = this.productRepository
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.subcategory', 'subcategory')
@@ -37,6 +37,16 @@ export class ProductsService {
 
     if (subcategoryId) {
       query.andWhere(`(subcategory.id = :subcategoryId)`, { subcategoryId });
+    }
+
+    if (text) {
+      query.andWhere(
+        `(LOWER(product.name) like :text OR
+          LOWER(category.name) like :text OR
+          LOWER(subcategory.name) like :text
+      )`,
+        { text: `%${text.toLowerCase()}%` }
+      );
     }
 
     const products = await query.getMany();
@@ -71,24 +81,19 @@ export class ProductsService {
   }
 
   async updateProduct(updateDto: UpdateProductDto): Promise<Product> {
-    const product = await this.getProduct(updateDto.id);
-    const updatedProduct = await this.productRepository.preload({ ...product, ...omit(updateDto, 'priceOptions') });
-    await updatedProduct.save();
-    await updatedProduct.reload();
-    await this.savePriceOptions(updateDto.priceOptions, updatedProduct.id);
-    return updatedProduct;
+    await this.getProduct(updateDto.id);
+    await this.savePriceOptions(updateDto.priceOptions, updateDto.id);
+    return this.productRepository.create({ ...omit(updateDto, 'priceOptions') }).save();
   }
 
   async deleteProduct(id: number): Promise<Product> {
     const product = await this.getProduct(id);
     try {
-      await this.productRepository.remove(product);
+      await this.productRepository.softRemove(product);
       return product;
     } catch (e) {
       if (e.code === '23503') {
-        throw new ConflictException(
-          'No se puede eliminar el promocode porque existen reservaciones con este promocode'
-        );
+        throw new ConflictException('No se puede eliminar el producto porque existe en alguna orden');
       }
     }
   }

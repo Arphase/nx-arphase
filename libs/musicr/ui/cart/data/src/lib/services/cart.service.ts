@@ -1,8 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DeepPartial } from '@arphase/common';
+import { GtagService } from '@arphase/ui/gtag';
 import { Customer, Order, OrderProduct, SocialEvent } from '@musicr/domain';
-import { BehaviorSubject, catchError, combineLatest, Observable, Subscription, switchMap, take } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
+import { catchError, switchMap, take } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
@@ -20,9 +22,10 @@ export class CartService {
   order$ = this.orderSubject.asObservable();
   listenToCartItemsSubscription: Subscription;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private gtagService: GtagService) {}
 
   listenToCartItemsChange(): void {
+    this.gtagService.event('begin_checkout');
     if (this.listenToCartItemsSubscription) {
       this.listenToCartItemsSubscription.unsubscribe();
     }
@@ -58,6 +61,12 @@ export class CartService {
   }
 
   addItem(item: Partial<OrderProduct>): void {
+    this.gtagService.event('add_to_cart', {
+      productName: item.product.name,
+      amount: item.amount,
+      productId: item.product.id,
+      price: item.price,
+    });
     this.cartItems$.pipe(take(1)).subscribe(cartItems => {
       cartItems.push(item);
       this.cartItemsSubject.next(cartItems);
@@ -66,7 +75,13 @@ export class CartService {
 
   removeItem(index: number): void {
     this.cartItems$.pipe(take(1)).subscribe(cartItems => {
-      cartItems.splice(index, 1);
+      const [item] = cartItems.splice(index, 1);
+      this.gtagService.event('remove_from_cart', {
+        productName: item.product.name,
+        amount: item.amount,
+        productId: item.product.id,
+        price: item.price,
+      });
       this.cartItemsSubject.next(cartItems);
     });
   }
@@ -84,6 +99,14 @@ export class CartService {
         ),
         take(1)
       )
-      .subscribe(order => this.orderSubject.next(order));
+      .subscribe(order => {
+        this.gtagService.event('purchase', {
+          order: order.id,
+          customer: `${order.customer.firstName} ${order.customer.lastName}`,
+          socialEvent: order.socialEvent.name,
+          total: order.total,
+        });
+        this.orderSubject.next(order);
+      });
   }
 }

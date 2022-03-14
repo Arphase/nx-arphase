@@ -33,7 +33,7 @@ export class OrdersService {
   ) {}
 
   async getOrders(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Order>> {
-    const { pageIndex, pageSize, dateType } = filterDto;
+    const { pageIndex, pageSize, dateType, text } = filterDto;
     const query = this.orderRepository
       .createQueryBuilder('order')
       .leftJoinAndSelect('order.customer', 'customer')
@@ -46,13 +46,24 @@ export class OrdersService {
       filterCollectionDates('socialEvent', query, filterDto);
     }
 
+    if (text) {
+      query.andWhere(
+        `(CAST (order.id AS varchar) like :text OR
+          LOWER(customer.firstName) like :text OR
+          LOWER(customer.lastName) like :text OR
+          LOWER(socialEvent.name) like :text OR
+          LOWER(CONCAT(customer.firstName, ' ', customer.lastName)) like :text)`,
+        { text: `%${text.toLowerCase()}%` }
+      );
+    }
+
     const products = await query.getMany();
     const total = await query.getCount();
     return createCollectionResponse<Order>(products, pageSize, pageIndex, total);
   }
 
   async getOrder(id: number): Promise<Order> {
-    const order = await this.orderRepository.findOne({ id });
+    const order = await this.orderRepository.findOne({ id }, { withDeleted: true });
     if (!order) {
       throw new NotFoundException(`Order with id ${id} not found`);
     }

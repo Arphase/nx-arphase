@@ -7,9 +7,10 @@
             nz-col
             nzSpan="24"
             nzSize="middle">
-    <nz-page-header nzBackIcon
-                    [nzTitle]="item?.id ? 'Editar Grupo' : 'Nuevo Grupo'"
-                    [routerLink]="['..']">
+    <nz-page-header nzBackIcon>
+      <nz-page-header-title [routerLink]="['..']">
+        {{ item?.id ? 'Editar Grupo' : 'Nuevo Grupo' }}
+      </nz-page-header-title>
     </nz-page-header>
 
     <nz-collapse *nzSpaceItem>

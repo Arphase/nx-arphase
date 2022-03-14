@@ -3,7 +3,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Category } from '@musicr/domain';
 import { CartService } from '@musicr/ui/cart/data';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'mrl-menu-container',

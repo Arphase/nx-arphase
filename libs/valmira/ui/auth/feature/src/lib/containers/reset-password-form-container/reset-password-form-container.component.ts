@@ -4,7 +4,7 @@ import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { User } from '@valmira/domain';
 import { fromAuth } from '@valmira/ui/auth/data';
-import { mapTo } from 'rxjs';
+import { mapTo } from 'rxjs/operators';
 
 @Component({
   selector: 'vma-reset-password-form-container',

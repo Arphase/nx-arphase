@@ -12,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApsFormComponent } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Customer, Reservation } from '@valmira/domain';
-import { debounceTime } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @UntilDestroy()
 @Component({

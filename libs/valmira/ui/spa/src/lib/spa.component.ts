@@ -4,7 +4,7 @@ import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { fromAuth } from '@valmira/ui/auth/data';
 import { VALMIRA_CONFIGURATION, ValmiraConfiguration } from '@valmira/ui/core';
-import { take } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'vma-spa',

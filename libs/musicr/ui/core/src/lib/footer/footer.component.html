@@ -1,7 +1,7 @@
 <div class="footer p-7 pt-10">
-  <h1 class="mb-11">¿Hablamos?</h1>
+  <h1 class="md:text-7xl text-4xl md:mb-11 mb-2">¿Hablamos?</h1>
   <p>(81) 1533 7477</p>
-  <p>info@musicrevolution.mx</p>
+  <p>music.revolution.mty@gmail.com</p>
   <p>San Pedro Garza García, N.L., México</p>
   <img src="https://music-revolution-photos.s3.amazonaws.com/img/Isotipo_2.svg"
        alt="Music Revolution Logo"
@@ -58,7 +58,7 @@
         <button nz-button
                 nzType="text"
                 [nzLoading]="loading$ | async"
-                class="bg-transparent px-6 h-10 text-center mb-5"
+                class="border-white bg-transparent px-6 h-10 text-center md:mb-5 mb-0"
                 type="submit">
           Envíar
         </button>
@@ -99,7 +99,7 @@
              nzMd="4"
              nzLg="4">
           <a class="text-sm"
-             [routerLink]="['.']">MUSIC REVOLUTION® 2021</a>
+             [routerLink]="['.']">MUSIC REVOLUTION® {{ year }}</a>
         </div>
       </div>
     </div>

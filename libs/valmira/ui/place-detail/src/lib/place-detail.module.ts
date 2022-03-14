@@ -1,7 +1,7 @@
-import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { PlacesDataModule } from '@valmira/ui/places/data';
@@ -21,9 +21,9 @@ import { reducer } from './state/place-detail.reducer';
 
 @NgModule({
   imports: [
-    AgmCoreModule,
     CommonModule,
     EffectsModule.forFeature([PlaceDetailEffects]),
+    GoogleMapsModule,
     NzButtonModule,
     NzCarouselModule,
     NzDatePickerModule,

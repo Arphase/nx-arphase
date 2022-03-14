@@ -5,9 +5,10 @@
   <div nz-row>
     <div nz-col
          nzSpan="24">
-      <nz-page-header nzBackIcon
-                      [nzTitle]="item?.id ? 'Editar Producto' : 'Nuevo Producto'"
-                      [routerLink]="['..']">
+      <nz-page-header nzBackIcon>
+        <nz-page-header-title [routerLink]="['..']">
+          {{ item?.id ? 'Editar Producto' : 'Nuevo Producto' }}
+        </nz-page-header-title>
       </nz-page-header>
     </div>
   </div>

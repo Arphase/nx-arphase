@@ -1,6 +1,16 @@
 import { Address } from '@arphase/common';
 import { SocialEvent, SocialEventPlaces } from '@musicr/domain';
-import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 import { AddressEntity } from './address.entity';
 
@@ -8,6 +18,15 @@ import { AddressEntity } from './address.entity';
 export class SocialEventEntity extends BaseEntity implements SocialEvent {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 
   @Column()
   name: string;

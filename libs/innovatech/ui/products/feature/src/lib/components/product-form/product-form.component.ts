@@ -59,7 +59,7 @@ export class ProductFormComponent extends ApsFormComponent<Product, ProductForm>
     showDownloadIcon: false,
   };
   customRequest = (item: NzUploadXHRArgs): Subscription => {
-    return this.http.get('/ivtApi').subscribe((event: HttpResponse<any>) => {
+    return this.http.get('/ivtApi').subscribe((event: HttpResponse<unknown>) => {
       item.onSuccess(event.body, item.file, {}), event;
     });
   };

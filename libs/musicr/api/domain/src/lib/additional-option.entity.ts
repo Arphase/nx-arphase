@@ -1,5 +1,16 @@
 import { AdditionalOption, OrderProductAdditionalOption, Product } from '@musicr/domain';
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 import { OrderProductAdditionalOptionEntity } from './order-product-additional-option.entity';
 import { ProductEntity } from './product.entity';
@@ -8,6 +19,15 @@ import { ProductEntity } from './product.entity';
 export class AdditionalOptionEntity extends BaseEntity implements AdditionalOption {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 
   @Column()
   name: string;

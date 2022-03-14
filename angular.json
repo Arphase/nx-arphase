@@ -1,44 +1,5 @@
 {
   "version": 1,
-  "cli": {
-    "defaultCollection": "@nrwl/angular",
-    "analytics": false
-  },
-  "defaultProject": "musicr-store",
-  "schematics": {
-    "@nrwl/angular:application": {
-      "style": "less",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress",
-      "strict": false
-    },
-    "@nrwl/angular:library": {
-      "style": "less",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "strict": false
-    },
-    "@nrwl/angular:component": {
-      "style": "less",
-      "changeDetection": "OnPush"
-    },
-    "@schematics/angular:component": {
-      "style": "less",
-      "changeDetection": "OnPush"
-    },
-    "@nrwl/web:application": {
-      "style": "css",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/web:library": {
-      "style": "css",
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    }
-  },
   "projects": {
     "arphase-api-core": {
       "root": "libs/arphase/api/core",
@@ -59,7 +20,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
     },
     "arphase-api-testing": {
       "root": "libs/arphase/api/testing",
@@ -80,7 +42,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
     },
     "arphase-common": {
       "root": "libs/arphase/common",
@@ -101,7 +64,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:arphase", "type:util"]
     },
     "arphase-ui-addresses": {
       "projectType": "library",
@@ -123,7 +87,8 @@
             "lintFilePatterns": ["libs/arphase/ui/addresses/src/**/*.ts", "libs/arphase/ui/addresses/src/**/*.html"]
           }
         }
-      }
+      },
+      "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
     },
     "arphase-ui-auth": {
       "projectType": "library",
@@ -145,7 +110,8 @@
             "lintFilePatterns": ["libs/arphase/ui/auth/src/**/*.ts", "libs/arphase/ui/auth/src/**/*.html"]
           }
         }
-      }
+      },
+      "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
     },
     "arphase-ui-core": {
       "projectType": "library",
@@ -167,14 +133,37 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
+    },
+    "arphase-ui-gtag": {
+      "projectType": "library",
+      "root": "libs/arphase/ui/gtag",
+      "sourceRoot": "libs/arphase/ui/gtag/src",
+      "prefix": "ivt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/arphase/ui/gtag"],
+          "options": {
+            "jestConfig": "libs/arphase/ui/gtag/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/arphase/ui/gtag/src/**/*.ts", "libs/arphase/ui/gtag/src/**/*.html"]
+          }
+        }
+      },
+      "tags": []
     },
     "innovatech-api": {
       "root": "apps/innovatech/api",
       "sourceRoot": "apps/innovatech/api/src",
       "projectType": "application",
       "prefix": "ivt",
-      "schematics": {},
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
@@ -214,7 +203,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "executable:api"]
     },
     "innovatech-api-auth-data": {
       "root": "libs/innovatech/api/auth/data",
@@ -235,7 +225,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:data"]
     },
     "innovatech-api-auth-feature": {
       "root": "libs/innovatech/api/auth/feature",
@@ -256,7 +247,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-companies": {
       "root": "libs/innovatech/api/companies",
@@ -277,7 +269,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-core-data": {
       "root": "libs/innovatech/api/core/data",
@@ -298,7 +291,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:data"]
     },
     "innovatech-api-core-util": {
       "root": "libs/innovatech/api/core/util",
@@ -319,7 +313,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
     },
     "innovatech-api-domain": {
       "root": "libs/innovatech/api/domain",
@@ -340,7 +335,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:domain-logic"]
     },
     "innovatech-api-groups": {
       "root": "libs/innovatech/api/groups",
@@ -361,7 +357,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-guarantees": {
       "root": "libs/innovatech/api/guarantees",
@@ -382,7 +379,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-localities": {
       "root": "libs/innovatech/api/localities",
@@ -403,7 +401,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-payment-orders": {
       "root": "libs/innovatech/api/payment-orders",
@@ -424,7 +423,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-products-feature": {
       "root": "libs/innovatech/api/products/feature",
@@ -445,7 +445,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-products-utils": {
       "root": "libs/innovatech/api/products/utils",
@@ -466,7 +467,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
     },
     "innovatech-api-revision-requests": {
       "root": "libs/innovatech/api/revision-requests",
@@ -487,7 +489,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-revisions": {
       "root": "libs/innovatech/api/revisions",
@@ -508,7 +511,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-users": {
       "root": "libs/innovatech/api/users",
@@ -529,7 +533,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-api-vehicles": {
       "root": "libs/innovatech/api/vehicles",
@@ -550,7 +555,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
     },
     "innovatech-app": {
       "projectType": "application",
@@ -569,12 +575,7 @@
             "assets": [
               "apps/innovatech/app/src/favicon.ico",
               "apps/innovatech/app/src/assets",
-              "apps/innovatech/app/src/manifest.webmanifest",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/assets/"
-              }
+              "apps/innovatech/app/src/manifest.webmanifest"
             ],
             "styles": [
               "apps/innovatech/app/src/styles.less",
@@ -676,7 +677,8 @@
             "lintFilePatterns": ["apps/innovatech/app/**/*.ts"]
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "executable:ui"]
     },
     "innovatech-domain": {
       "projectType": "library",
@@ -713,16 +715,14 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "type:domain-logic"]
     },
     "innovatech-ui-auth-data": {
       "projectType": "library",
       "root": "libs/innovatech/ui/auth/data",
       "sourceRoot": "libs/innovatech/ui/auth/data/src",
       "prefix": "ivt",
-      "@schematics/angular:application": {
-        "strict": false
-      },
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -741,7 +741,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
     "innovatech-ui-auth-feature": {
       "projectType": "library",
@@ -766,7 +767,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
     "innovatech-ui-companies-data": {
       "projectType": "library",
@@ -791,7 +793,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
     "innovatech-ui-companies-ui": {
       "projectType": "library",
@@ -816,7 +819,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
     },
     "innovatech-ui-core-data": {
       "projectType": "library",
@@ -841,7 +845,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
     "innovatech-ui-core-ui": {
       "projectType": "library",
@@ -863,7 +868,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
     },
     "innovatech-ui-core-util": {
       "projectType": "library",
@@ -888,7 +894,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:util"]
     },
     "innovatech-ui-dashboard": {
       "projectType": "library",
@@ -909,7 +916,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
     "innovatech-ui-groups-data": {
       "projectType": "library",
@@ -934,7 +942,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
     "innovatech-ui-groups-feature": {
       "projectType": "library",
@@ -955,7 +964,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
     "innovatech-ui-groups-ui": {
       "projectType": "library",
@@ -980,7 +990,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
     },
     "innovatech-ui-guarantees": {
       "projectType": "library",
@@ -1001,7 +1012,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
     "innovatech-ui-permissions-data": {
       "projectType": "library",
@@ -1026,7 +1038,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
     "innovatech-ui-products-data": {
       "projectType": "library",
@@ -1051,7 +1064,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
     "innovatech-ui-products-feature": {
       "projectType": "library",
@@ -1072,7 +1086,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
     "innovatech-ui-products-ui": {
       "projectType": "library",
@@ -1097,7 +1112,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
     },
     "innovatech-ui-revision-requests": {
       "projectType": "library",
@@ -1122,7 +1138,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
     "innovatech-ui-revisions": {
       "projectType": "library",
@@ -1147,7 +1164,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
     "innovatech-ui-spa": {
       "projectType": "library",
@@ -1168,7 +1186,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
     "innovatech-ui-users-data": {
       "projectType": "library",
@@ -1193,7 +1212,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
     "innovatech-ui-users-feature": {
       "projectType": "library",
@@ -1218,7 +1238,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
     "innovatech-ui-users-ui": {
       "projectType": "library",
@@ -1240,7 +1261,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
     },
     "innovatech-ui-vehicles-data": {
       "projectType": "library",
@@ -1265,7 +1287,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
     },
     "innovatech-ui-vehicles-feature": {
       "projectType": "library",
@@ -1290,7 +1313,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
     },
     "innovatech-ui-vehicles-ui": {
       "projectType": "library",
@@ -1315,7 +1339,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
     },
     "innovatech-utils": {
       "projectType": "library",
@@ -1352,7 +1377,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:innovatech", "type:util"]
     },
     "musicr-admin": {
       "projectType": "application",
@@ -1369,16 +1395,7 @@
             "main": "apps/musicr/admin/src/main.ts",
             "polyfills": "apps/musicr/admin/src/polyfills.ts",
             "tsConfig": "apps/musicr/admin/tsconfig.app.json",
-            "inlineStyleLanguage": "less",
-            "assets": [
-              "apps/musicr/admin/src/favicon.ico",
-              "apps/musicr/admin/src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/assets/"
-              }
-            ],
+            "assets": ["apps/musicr/admin/src/favicon.ico", "apps/musicr/admin/src/assets"],
             "styles": ["apps/musicr/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
@@ -1389,9 +1406,9 @@
                   "with": "apps/musicr/admin/src/environments/environment.stage.ts"
                 }
               ],
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
+              "buildOptimizer": true,
+              "optimization": true,
+              "vendorChunk": false,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -1448,7 +1465,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
     },
     "musicr-admin-e2e": {
       "root": "apps/musicr/admin-e2e",
@@ -1474,7 +1492,9 @@
             "lintFilePatterns": ["apps/musicr/admin-e2e/**/*.{js,ts}"]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
+      "implicitDependencies": ["musicr-admin"]
     },
     "musicr-api": {
       "root": "apps/musicr/api",
@@ -1521,7 +1541,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:api", "executable:api"]
     },
     "musicr-api-additional-options": {
       "root": "libs/musicr/api/additional-options",
@@ -1542,7 +1563,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-api-auth": {
       "root": "libs/musicr/api/auth",
@@ -1563,7 +1585,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-api-categories": {
       "root": "libs/musicr/api/categories",
@@ -1584,7 +1607,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-api-contact": {
       "root": "libs/musicr/api/contact",
@@ -1606,7 +1630,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-api-customers": {
       "root": "libs/musicr/api/customers",
@@ -1628,7 +1653,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-api-domain": {
       "root": "libs/musicr/api/domain",
@@ -1649,7 +1675,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:api", "type:domain-logic"]
     },
     "musicr-api-orders": {
       "root": "libs/musicr/api/orders",
@@ -1670,7 +1697,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-api-photos": {
       "root": "libs/musicr/api/photos",
@@ -1691,7 +1719,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-api-price-options": {
       "root": "libs/musicr/api/price-options",
@@ -1712,7 +1741,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-api-products": {
       "root": "libs/musicr/api/products",
@@ -1733,7 +1763,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-api-subcategories": {
       "root": "libs/musicr/api/subcategories",
@@ -1754,7 +1785,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-domain": {
       "root": "libs/musicr/domain",
@@ -1775,7 +1807,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "type:domain-logic"]
     },
     "musicr-store": {
       "projectType": "application",
@@ -1792,16 +1825,7 @@
             "main": "apps/musicr/store/src/main.ts",
             "polyfills": "apps/musicr/store/src/polyfills.ts",
             "tsConfig": "apps/musicr/store/tsconfig.app.json",
-            "inlineStyleLanguage": "less",
-            "assets": [
-              "apps/musicr/store/src/favicon.ico",
-              "apps/musicr/store/src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/assets/"
-              }
-            ],
+            "assets": ["apps/musicr/store/src/favicon.ico", "apps/musicr/store/src/assets"],
             "styles": ["apps/musicr/store/src/styles.less"]
           },
           "configurations": {
@@ -1922,7 +1946,8 @@
             }
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
     },
     "musicr-store-e2e": {
       "root": "apps/musicr/store-e2e",
@@ -1948,7 +1973,9 @@
             "lintFilePatterns": ["apps/musicr/store-e2e/**/*.{js,ts}"]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
+      "implicitDependencies": ["musicr-store"]
     },
     "musicr-terms-and-conditions": {
       "projectType": "library",
@@ -1973,7 +2000,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-about-us": {
       "projectType": "library",
@@ -1995,7 +2023,8 @@
             "lintFilePatterns": ["libs/musicr/ui/about-us/src/**/*.ts", "libs/musicr/ui/about-us/src/**/*.html"]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-admin-products": {
       "projectType": "library",
@@ -2020,7 +2049,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-auth-data": {
       "projectType": "library",
@@ -2042,7 +2072,8 @@
             "lintFilePatterns": ["libs/musicr/ui/auth/data/src/**/*.ts", "libs/musicr/ui/auth/data/src/**/*.html"]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:api", "type:data"]
     },
     "musicr-ui-auth-feature": {
       "projectType": "library",
@@ -2064,7 +2095,8 @@
             "lintFilePatterns": ["libs/musicr/ui/auth/feature/src/**/*.ts", "libs/musicr/ui/auth/feature/src/**/*.html"]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
     "musicr-ui-cart-data": {
       "projectType": "library",
@@ -2086,7 +2118,8 @@
             "lintFilePatterns": ["libs/musicr/ui/cart/data/src/**/*.ts", "libs/musicr/ui/cart/data/src/**/*.html"]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
     },
     "musicr-ui-cart-feature": {
       "projectType": "library",
@@ -2108,7 +2141,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-categories-data": {
       "projectType": "library",
@@ -2133,7 +2167,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
     },
     "musicr-ui-categories-feature": {
       "projectType": "library",
@@ -2158,7 +2193,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-categories-ui": {
       "projectType": "library",
@@ -2183,7 +2219,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
     },
     "musicr-ui-core": {
       "projectType": "library",
@@ -2205,7 +2242,8 @@
             "lintFilePatterns": ["libs/musicr/ui/core/src/**/*.ts", "libs/musicr/ui/core/src/**/*.html"]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
     },
     "musicr-ui-frequent-questions": {
       "projectType": "library",
@@ -2230,7 +2268,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-home": {
       "projectType": "library",
@@ -2252,7 +2291,8 @@
             "lintFilePatterns": ["libs/musicr/ui/home/src/**/*.ts", "libs/musicr/ui/home/src/**/*.html"]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-orders": {
       "projectType": "library",
@@ -2274,7 +2314,8 @@
             "lintFilePatterns": ["libs/musicr/ui/orders/src/**/*.ts", "libs/musicr/ui/orders/src/**/*.html"]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-products": {
       "projectType": "library",
@@ -2296,7 +2337,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-spa": {
       "projectType": "library",
@@ -2318,7 +2360,8 @@
             "lintFilePatterns": ["libs/musicr/ui/spa/src/**/*.ts", "libs/musicr/ui/spa/src/**/*.html"]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-subcategories-data": {
       "projectType": "library",
@@ -2343,7 +2386,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
     },
     "musicr-ui-subcategories-feature": {
       "projectType": "library",
@@ -2368,7 +2412,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
     "musicr-ui-subcategories-ui": {
       "projectType": "library",
@@ -2393,7 +2438,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
     },
     "pam-vic": {
       "projectType": "application",
@@ -2462,7 +2508,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:pam-vic", "executable:ui"]
     },
     "pam-vic-e2e": {
       "root": "apps/pam-vic-e2e",
@@ -2487,7 +2534,9 @@
             "lintFilePatterns": ["apps/pam-vic-e2e/**/*.{js,ts}"]
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["pam-vic"]
     },
     "valmira-admin": {
       "projectType": "application",
@@ -2504,15 +2553,7 @@
             "main": "apps/valmira/admin/src/main.ts",
             "polyfills": "apps/valmira/admin/src/polyfills.ts",
             "tsConfig": "apps/valmira/admin/tsconfig.app.json",
-            "assets": [
-              "apps/valmira/admin/src/favicon.ico",
-              "apps/valmira/admin/src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/assets/"
-              }
-            ],
+            "assets": ["apps/valmira/admin/src/favicon.ico", "apps/valmira/admin/src/assets"],
             "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
@@ -2533,7 +2574,7 @@
               ],
               "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
+              "vendorChunk": false,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -2599,7 +2640,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
     },
     "valmira-admin-e2e": {
       "root": "apps/valmira/admin-e2e",
@@ -2625,7 +2667,9 @@
             "lintFilePatterns": ["apps/valmira/admin-e2e/**/*.{js,ts}"]
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["valmira-admin"]
     },
     "valmira-api": {
       "root": "apps/valmira/api",
@@ -2669,7 +2713,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "executable:api"]
     },
     "valmira-api-additional-products": {
       "root": "libs/valmira/api/additional-products",
@@ -2690,7 +2735,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
     "valmira-api-auth": {
       "root": "libs/valmira/api/auth",
@@ -2711,7 +2757,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
     "valmira-api-customers": {
       "root": "libs/valmira/api/customers",
@@ -2733,7 +2780,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
     "valmira-api-domain": {
       "root": "libs/valmira/api/domain",
@@ -2754,7 +2802,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
     },
     "valmira-api-photos": {
       "root": "libs/valmira/api/photos",
@@ -2775,7 +2824,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
     "valmira-api-places": {
       "root": "libs/valmira/api/places",
@@ -2796,7 +2846,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
     "valmira-api-promocodes": {
       "root": "libs/valmira/api/promocodes",
@@ -2817,7 +2868,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
     "valmira-api-reservations": {
       "root": "libs/valmira/api/reservations",
@@ -2838,7 +2890,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
     },
     "valmira-app": {
       "projectType": "application",
@@ -2856,15 +2909,7 @@
             "polyfills": "apps/valmira/app/src/polyfills.ts",
             "tsConfig": "apps/valmira/app/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/valmira/app/src/favicon.ico",
-              "apps/valmira/app/src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/assets/"
-              }
-            ],
+            "assets": ["apps/valmira/app/src/favicon.ico", "apps/valmira/app/src/assets"],
             "styles": ["apps/valmira/app/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
           },
           "configurations": {
@@ -3003,7 +3048,8 @@
             }
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
     },
     "valmira-app-e2e": {
       "root": "apps/valmira/app-e2e",
@@ -3029,7 +3075,9 @@
             "lintFilePatterns": ["apps/valmira/app-e2e/**/*.{js,ts}"]
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["valmira-app"]
     },
     "valmira-domain": {
       "root": "libs/valmira/domain",
@@ -3050,7 +3098,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "type:domain-logic"]
     },
     "valmira-ui-additional-products-data": {
       "projectType": "library",
@@ -3075,7 +3124,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
     },
     "valmira-ui-additional-products-feature": {
       "projectType": "library",
@@ -3100,7 +3150,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-auth-data": {
       "projectType": "library",
@@ -3122,7 +3173,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
     },
     "valmira-ui-auth-feature": {
       "projectType": "library",
@@ -3147,7 +3199,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-core": {
       "projectType": "library",
@@ -3169,7 +3222,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:util"]
     },
     "valmira-ui-frequent-questions": {
       "projectType": "library",
@@ -3194,7 +3248,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-landing": {
       "projectType": "library",
@@ -3216,7 +3271,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-manifest": {
       "projectType": "library",
@@ -3238,7 +3294,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-place-detail": {
       "projectType": "library",
@@ -3263,7 +3320,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-place-search": {
       "projectType": "library",
@@ -3288,7 +3346,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-places-data": {
       "projectType": "library",
@@ -3310,7 +3369,8 @@
             "lintFilePatterns": ["libs/valmira/ui/places/data/src/**/*.ts", "libs/valmira/ui/places/data/src/**/*.html"]
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
     },
     "valmira-ui-places-feature": {
       "projectType": "library",
@@ -3335,7 +3395,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-promocodes-data": {
       "projectType": "library",
@@ -3360,7 +3421,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
     },
     "valmira-ui-promocodes-feature": {
       "projectType": "library",
@@ -3385,7 +3447,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-reservation-detail": {
       "projectType": "library",
@@ -3410,7 +3473,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-reservation-wizard": {
       "projectType": "library",
@@ -3435,7 +3499,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-reservations-data": {
       "projectType": "library",
@@ -3460,7 +3525,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
     },
     "valmira-ui-reservations-feature": {
       "projectType": "library",
@@ -3485,7 +3551,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-reservations-ui": {
       "projectType": "library",
@@ -3510,7 +3577,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:ui"]
     },
     "valmira-ui-spa": {
       "projectType": "library",
@@ -3532,7 +3600,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     },
     "valmira-ui-terms-and-conditions": {
       "projectType": "library",
@@ -3557,7 +3626,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
     }
   }
 }

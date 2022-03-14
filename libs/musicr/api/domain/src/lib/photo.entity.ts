@@ -2,7 +2,6 @@ import { Photo, PriceOption, Product } from '@musicr/domain';
 import {
   Column,
   CreateDateColumn,
-  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -18,20 +17,17 @@ export class PhotoEntity implements Photo {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  url: string;
-
-  @Column()
-  key: string;
-
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @DeleteDateColumn()
-  deletedAt?: Date;
+  @Column()
+  url: string;
+
+  @Column()
+  key: string;
 
   @Column({ nullable: true })
   order?: number;

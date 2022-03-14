@@ -40,7 +40,7 @@ export class PhotosService {
       })
       .promise();
     if (result.$response.data) {
-      await this.photoRepository.softRemove(photo);
+      await this.photoRepository.delete(photo);
     }
     return photo;
   }

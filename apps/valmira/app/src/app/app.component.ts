@@ -9,7 +9,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { debounceTime, filter } from 'rxjs';
+import { debounceTime, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'vma-root',

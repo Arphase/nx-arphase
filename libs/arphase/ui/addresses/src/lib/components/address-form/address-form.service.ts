@@ -3,10 +3,29 @@ import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Locality } from '@arphase/common';
 import { ApsValidators, sortSelectOptions, sortStringOptions } from '@arphase/ui/core';
-import { uniq, uniqBy } from 'lodash';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+
+function uniq(array: any[]): any[] {
+  return [...new Set(array)];
+}
+
+const uniqBy = (arr, predicate) => {
+  const cb = typeof predicate === 'function' ? predicate : o => o[predicate];
+
+  return [
+    ...arr
+      .reduce((map, item) => {
+        const key = item === null || item === undefined ? item : cb(item);
+
+        map.has(key) || map.set(key, item);
+
+        return map;
+      }, new Map())
+      .values(),
+  ];
+};
 
 export interface MappedLocalities {
   showAddressSelects: boolean;

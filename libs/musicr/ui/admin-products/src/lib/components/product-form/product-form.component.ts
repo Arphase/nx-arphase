@@ -13,7 +13,7 @@ import { Product } from '@musicr/domain';
 import { MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
-import { distinctUntilChanged } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 import { mapPhotoFileArray } from '../../functions/map-file-photo-array';
 
@@ -42,7 +42,7 @@ export function createProductForm(): FormGroup {
 export class ProductFormComponent extends ApsFormComponent<Product> implements OnChanges {
   fileList: NzUploadFile[] = [];
   allowedMimeType = ['image/jpeg', 'image/jpg'];
-  previewImage: string | undefined = '';
+  previewImage = '';
   previewVisible = false;
   photosUrl: string;
   form = createProductForm();

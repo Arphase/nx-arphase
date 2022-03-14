@@ -1,4 +1,5 @@
 <mrl-product-detail [product]="product$ | async"
                     [priceOptions]="priceOptions$ | async"
                     [loading]="loading$ | async"
+                    [additionalOptions]="additionalOptions$ | async"
                     (addItemToCart)="addItem($event)"></mrl-product-detail>
