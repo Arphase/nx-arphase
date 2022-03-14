@@ -167,7 +167,7 @@
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-jsdoc": "36.1.1",
     "eslint-plugin-prefer-arrow": "1.2.3",
-    "jasmine-marbles": "0.9.1",
+    "jasmine-marbles": "0.8.4",
     "jest": "27.5.1",
     "jest-preset-angular": "10.1.0",
     "mime-types": "2.1.34",

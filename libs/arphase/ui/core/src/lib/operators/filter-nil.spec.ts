@@ -1,12 +1,8 @@
-import { addMatchers, cold, initTestScheduler } from 'jasmine-marbles';
+import { cold } from 'jasmine-marbles';
 
 import { filterNil } from './filter-nil';
 
 describe('FilterNil Operator', () => {
-  beforeEach(() => {
-    initTestScheduler();
-    addMatchers();
-  });
   it('should filter null and/or undefined values out of the stream', () => {
     const values = { a: null, b: 0, c: '', d: undefined, e: true };
 

@@ -59,8 +59,8 @@ export class PlaceDetailComponent
     super();
     this.form.valueChanges
       .pipe(
-        untilDestroyed(this),
-        filter(value => !!value.startDate && !!value.endDate)
+        filter(value => !!value.startDate && !!value.endDate),
+        untilDestroyed(this)
       )
       .subscribe(value => this.datesChange.emit(value));
   }
@@ -69,9 +69,7 @@ export class PlaceDetailComponent
     this.form
       .get('startDate')
       .valueChanges.pipe(untilDestroyed(this))
-      .subscribe(() => {
-        this.endDateCalendar.open();
-      });
+      .subscribe(() => this.endDateCalendar.open());
   }
 
   ngOnChanges(changes: SimpleChanges) {
