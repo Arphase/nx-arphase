@@ -27,7 +27,7 @@ export class AppComponent implements AfterViewInit {
     private cdr: ChangeDetectorRef,
     private nzIconService: NzIconService
   ) {
-    this.nzIconService.changeAssetsSource('http://arphase-icons.s3-website-us-east-1.amazonaws.com');
+    this.nzIconService.changeAssetsSource('https://arphase-icons.s3.amazonaws.com');
   }
 
   ngAfterViewInit() {
