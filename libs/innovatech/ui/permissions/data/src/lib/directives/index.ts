@@ -3,6 +3,7 @@ export * from './create-permission.directive';
 export * from './delete-permission.directive';
 export * from './no-create-permission.directive';
 export * from './no-delete-permission.directive';
+export * from './no-delete-permission.directive';
 export * from './no-read-permission.directive';
 export * from './no-update-permission.directive';
 export * from './read-permission.directive';

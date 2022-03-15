@@ -21,6 +21,7 @@ export class VehicleListComponent extends ApsListComponent<Vehicle> {
   iconMaps = iconMaps;
   statusLabels = vehicleStatusLabels;
   statusOptions = statusOptions;
+  userRoles = UserRoles;
   @Output() createGuarantee = new EventEmitter<Vehicle>();
   @Output() createRevision = new EventEmitter<Vehicle>();
   @Output() createRevisionRequest = new EventEmitter<Vehicle>();

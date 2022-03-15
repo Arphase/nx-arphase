@@ -6,6 +6,7 @@ import { CreatePermissionDirective } from './directives/create-permission.direct
 import { DeletePermissionDirective } from './directives/delete-permission.directive';
 import { NoCreatePermissionDirective } from './directives/no-create-permission.directive';
 import { NoDeletePermissionDirective } from './directives/no-delete-permission.directive';
+import { NoPermissionDirective } from './directives/no-permission.directive';
 import { NoReadPermissionDirective } from './directives/no-read-permission.directive';
 import { NoUpdatePermissionDirective } from './directives/no-update-permission.directive';
 import { ReadPermissionDirective } from './directives/read-permission.directive';
@@ -21,6 +22,7 @@ const directives = [
   NoDeletePermissionDirective,
   NoReadPermissionDirective,
   NoUpdatePermissionDirective,
+  NoPermissionDirective,
 ];
 
 @NgModule({
