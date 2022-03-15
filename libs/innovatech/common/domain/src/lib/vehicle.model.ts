@@ -34,12 +34,12 @@ export enum VehicleStatus {
 }
 
 export function isVehicleElegible(vehicle: Vehicle) {
-  return (
-    vehicle.status === VehicleStatus.elegible ||
-    vehicle.status === VehicleStatus.hasActiveGuarantee ||
-    vehicle.status === VehicleStatus[VehicleStatus.elegible] ||
-    vehicle.status === VehicleStatus[VehicleStatus.hasActiveGuarantee]
-  );
+  return [
+    VehicleStatus.elegible,
+    VehicleStatus.hasActiveGuarantee,
+    VehicleStatus[VehicleStatus.elegible],
+    VehicleStatus[VehicleStatus.hasActiveGuarantee],
+  ].includes(vehicle.status);
 }
 
 export const VEHICLE_VIN_LENGTH = 17;

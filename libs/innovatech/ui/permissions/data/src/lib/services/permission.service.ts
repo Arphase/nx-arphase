@@ -16,6 +16,13 @@ export class PermissionService {
 
   constructor(private store: Store) {}
 
+  hasPermission(roles: UserRoles[]): Observable<boolean> {
+    return this.userRole$.pipe(
+      filterNil(),
+      map(role => roles.includes(UserRoles[role]))
+    );
+  }
+
   hasReadPermission(roles: UserRoles[]): Observable<boolean> {
     return this.userRole$.pipe(
       filterNil(),

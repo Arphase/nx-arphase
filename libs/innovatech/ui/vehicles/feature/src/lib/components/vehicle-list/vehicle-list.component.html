@@ -168,13 +168,13 @@
               (click)="isElegible(item) && createGuarantee.emit(item)">
             Generar garantía
           </li>
-          <li nz-menu-item
-              *ngIf="!canCreateReviewRequest"
+          <li *ngIf="!canCreateReviewRequest"
+              nz-menu-item
               (click)="createRevision.emit(item)">
             Generar revisión
           </li>
-          <li nz-menu-item
-              *ngIf="canCreateReviewRequest"
+          <li *ngIf="canCreateReviewRequest"
+              nz-menu-item
               (click)="createRevisionRequest.emit(item)">
             Solicitar revisión
           </li>

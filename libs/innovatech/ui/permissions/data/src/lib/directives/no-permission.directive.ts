@@ -1,16 +1,24 @@
-import { Directive, Inject, Optional, TemplateRef, ViewContainerRef } from '@angular/core';
+import {
+  Directive,
+  Inject,
+  Input,
+  OnChanges,
+  Optional,
+  SimpleChanges,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
 import { UserRoles } from '@innovatech/common/domain';
 import { map, switchMap } from 'rxjs/operators';
 
 import { PermissionService, REQUIRED_ROLES } from '../services/permission.service';
 import { BasePermissionDirective } from './base-permission.directive';
 
-@Directive({
-  selector: '[ivtNoDeletePermission]',
-})
-export class NoDeletePermissionDirective extends BasePermissionDirective {
+@Directive({ selector: '[ivtNoPermission]' })
+export class NoPermissionDirective extends BasePermissionDirective implements OnChanges {
+  @Input() ivtNoPermission: UserRoles[] = [];
   hasPermission$ = this.requiredRoles$.pipe(
-    switchMap(requiredRoles => this.permissionService.hasDeletePermission(requiredRoles)),
+    switchMap(requiredRoles => this.permissionService.hasPermission(requiredRoles)),
     map(hasPermission => !hasPermission)
   );
 
@@ -21,5 +29,11 @@ export class NoDeletePermissionDirective extends BasePermissionDirective {
     @Optional() @Inject(REQUIRED_ROLES) protected requiredRoles: UserRoles[]
   ) {
     super(templateRef, viewContainer, permissionService, requiredRoles);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.ivtNoPermission && this.ivtNoPermission) {
+      this.requiredRolesSubject.next([...(this.requiredRoles ?? []), ...this.ivtNoPermission]);
+    }
   }
 }
