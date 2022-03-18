@@ -1,5 +1,6 @@
 <form nz-form
       nz-row
+      data-cy="form"
       nzLayout="vertical"
       [formGroup]="form"
       (ngSubmit)="submit()">
@@ -54,7 +55,8 @@
             <nz-form-item>
               <nz-form-label nzRequired>Fecha inicio</nz-form-label>
               <nz-form-control apsAutoError>
-                <nz-date-picker formControlName="startDate"></nz-date-picker>
+                <nz-date-picker formControlName="startDate"
+                                data-cy="start-date"></nz-date-picker>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -64,7 +66,8 @@
             <nz-form-item>
               <nz-form-label nzRequired>Fecha fin</nz-form-label>
               <nz-form-control apsAutoError>
-                <nz-date-picker formControlName="endDate"></nz-date-picker>
+                <nz-date-picker formControlName="endDate"
+                                data-cy="end-date"></nz-date-picker>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -77,7 +80,8 @@
               <nz-form-control apsAutoError>
                 <input nz-input
                        type="number"
-                       formControlName="kilometrageStart" />
+                       formControlName="kilometrageStart"
+                       data-cy="kilometrage-start" />
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -89,7 +93,8 @@
               <nz-form-control apsAutoError>
                 <input nz-input
                        type="number"
-                       formControlName="kilometrageEnd" />
+                       formControlName="kilometrageEnd"
+                       data-cy="kilometrage-end" />
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -102,7 +107,8 @@
               <nz-form-label nzRequired>Compañía</nz-form-label>
               <nz-form-control apsAutoError>
                 <nz-select ivtCompanySelect
-                           formControlName="companyId">
+                           formControlName="companyId"
+                           data-cy="company">
                 </nz-select>
               </nz-form-control>
             </nz-form-item>
@@ -117,8 +123,8 @@
                 <nz-select ivtProductSelect
                            formControlName="productId"
                            [year]="year$ | async"
-                           [horsePower]="horsePower$ | async">
-                </nz-select>
+                           [horsePower]="horsePower$ | async"
+                           data-cy="product"></nz-select>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -150,7 +156,8 @@
                   <nz-radio-group formControlName="personType">
                     <label *ngFor="let option of personTypeOptions"
                            nz-radio
-                           [nzValue]="option.value">{{ option.label }}</label>
+                           [nzValue]="option.value"
+                           [attr.data-cy]="'person-type-' + option.value">{{ option.label }}</label>
                   </nz-radio-group>
                 </nz-form-control>
               </nz-form-item>
@@ -162,7 +169,8 @@
                 <nz-form-label nzRequired>Punto de venta</nz-form-label>
                 <nz-form-control apsAutoError>
                   <input nz-input
-                         formControlName="salesPlace" />
+                         formControlName="salesPlace"
+                         data-cy="sales-place" />
                 </nz-form-control>
               </nz-form-item>
             </div>
@@ -179,7 +187,8 @@
                   <nz-form-label nzRequired>Nombre(s)</nz-form-label>
                   <nz-form-control apsAutoError>
                     <input nz-input
-                           formControlName="name" />
+                           formControlName="name"
+                           data-cy="name" />
                   </nz-form-control>
                 </nz-form-item>
               </div>
@@ -190,7 +199,8 @@
                   <nz-form-label nzRequired>Apellido Paterno</nz-form-label>
                   <nz-form-control apsAutoError>
                     <input nz-input
-                           formControlName="lastName" />
+                           formControlName="lastName"
+                           data-cy="last-name" />
                   </nz-form-control>
                 </nz-form-item>
               </div>
@@ -205,7 +215,8 @@
                   <nz-form-label nzRequired>Apellido Materno</nz-form-label>
                   <nz-form-control apsAutoError>
                     <input nz-input
-                           formControlName="secondLastName" />
+                           formControlName="secondLastName"
+                           data-cy="second-last-name" />
                   </nz-form-control>
                 </nz-form-item>
               </div>
@@ -215,7 +226,8 @@
                 <nz-form-item>
                   <nz-form-label nzRequired>Fecha de nacimiento</nz-form-label>
                   <nz-form-control apsAutoError>
-                    <nz-date-picker formControlName="birthDate"></nz-date-picker>
+                    <nz-date-picker formControlName="birthDate"
+                                    data-cy="birth-date"></nz-date-picker>
                   </nz-form-control>
                 </nz-form-item>
               </div>
@@ -233,7 +245,8 @@
                   <nz-form-label nzRequired>Razón social</nz-form-label>
                   <nz-form-control apsAutoError>
                     <input nz-input
-                           formControlName="businessName" />
+                           formControlName="businessName"
+                           data-cy="business-name" />
                   </nz-form-control>
                 </nz-form-item>
               </div>
@@ -243,7 +256,8 @@
                 <nz-form-item>
                   <nz-form-label nzRequired>Fecha de constitución</nz-form-label>
                   <nz-form-control apsAutoError>
-                    <nz-date-picker formControlName="constitutionDate"></nz-date-picker>
+                    <nz-date-picker formControlName="constitutionDate"
+                                    data-cy="constitution-date"></nz-date-picker>
                   </nz-form-control>
                 </nz-form-item>
               </div>
@@ -258,7 +272,8 @@
                   <nz-form-label nzRequired>Asesor</nz-form-label>
                   <nz-form-control apsAutoError>
                     <input nz-input
-                           formControlName="adviser" />
+                           formControlName="adviser"
+                           data-cy="adviser" />
                   </nz-form-control>
                 </nz-form-item>
               </div>
@@ -275,7 +290,8 @@
                 <nz-form-control apsAutoError>
                   <input nz-input
                          apsUppercase
-                         formControlName="rfc" />
+                         formControlName="rfc"
+                         data-cy="rfc" />
                 </nz-form-control>
               </nz-form-item>
             </div>
@@ -288,7 +304,8 @@
                   <input nz-input
                          type="tel"
                          mask="(00) 0000 0000"
-                         formControlName="phone" />
+                         formControlName="phone"
+                         data-cy="phone" />
                 </nz-form-control>
               </nz-form-item>
             </div>
@@ -300,7 +317,8 @@
                 <nz-form-control apsAutoError>
                   <input nz-input
                          type="email"
-                         formControlName="email" />
+                         formControlName="email"
+                         data-cy="email" />
                 </nz-form-control>
               </nz-form-item>
             </div>
@@ -311,7 +329,6 @@
     </nz-collapse>
 
     <ng-container *ngIf="isEditable">
-
       <div *nzSpaceItem
            nz-row>
         <div nz-col
@@ -329,7 +346,8 @@
                     type="submit"
                     nzType="primary"
                     [nzLoading]="loading"
-                    [disabled]="disableSubmit">
+                    [disabled]="disableSubmit"
+                    data-cy="save">
               Guardar
             </button>
           </nz-space>

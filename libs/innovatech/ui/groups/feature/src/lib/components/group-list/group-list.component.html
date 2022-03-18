@@ -13,9 +13,7 @@
       <button nz-button
               [routerLink]="['new']"
               type="button"
-              nzType="primary">
-        Nuevo grupo
-      </button>
+              nzType="primary">Nuevo grupo</button>
     </div>
   </div>
 
@@ -36,15 +34,15 @@
   </div>
 </div>
 
-<ng-container *ngIf="total">
-  <nz-divider></nz-divider>
-  <div nz-col
-       nzFlex="auto"
-       class="flex-end">
-    {{ pageStart }}-{{ pageEnd }} de {{ total }}
-  </div>
-  <nz-divider></nz-divider>
-</ng-container>
+<nz-divider></nz-divider>
+
+<div nz-col
+     nzFlex="auto"
+     class="flex-end">
+  {{ pageStart }}-{{ pageEnd }} de {{ total }}
+</div>
+
+<nz-divider></nz-divider>
 
 <nz-table #table
           nzSize="small"
@@ -72,7 +70,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of table.data"
-        nz-row>
+        nz-row
+        data-cy="group-row">
       <td nz-col
           nzXs="18"
           nzMd="6">{{ item.name | empty }}</td>
@@ -92,6 +91,7 @@
         <button nz-button
                 nzType="text"
                 nz-tooltip
+                data-cy="assign-products"
                 nzTooltipTitle="Asignar productos"
                 (click)="assignProducts.emit(item)">
           <i nz-icon

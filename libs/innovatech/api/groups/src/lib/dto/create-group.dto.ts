@@ -26,7 +26,7 @@ export class CreateGroupDto {
   @IsArray()
   @ValidateNested()
   @Type(() => CreateCompanyDto)
-  companies: Company[];
+  companies: Partial<Company>[];
 }
 
 export class CreateCompanyDto {

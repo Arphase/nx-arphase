@@ -29,8 +29,6 @@ export class GuaranteeListContainerComponent extends ApsListContainerComponent<G
   clearSelectedSubject = new BehaviorSubject<boolean>(false);
   clearSelected$ = this.clearSelectedSubject.asObservable();
   excelFileName = 'Garantias';
-  canCreateGuarantee$ = this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.agencyUser]);
-  showGroupFilters$ = this.permissionService.hasUpdatePermission([UserRoles.superAdmin, UserRoles.repairman]);
 
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,
@@ -38,8 +36,7 @@ export class GuaranteeListContainerComponent extends ApsListContainerComponent<G
     protected modal: NzModalService,
     protected messageService: NzMessageService,
     private paymentOrderCollectionService: PaymentOrderCollectionService,
-    private paymentOrderDataService: PaymentOrderDataService,
-    private permissionService: PermissionService
+    private paymentOrderDataService: PaymentOrderDataService
   ) {
     super(guaranteeCollectionService, guaranteeDataService, modal, messageService);
   }

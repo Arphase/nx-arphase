@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApsListContainerComponent } from '@arphase/ui/core';
-import { UserRoles, Vehicle, VehicleStatus, vehicleStatusLabels } from '@innovatech/common/domain';
-import { PermissionService } from '@innovatech/ui/permissions/data';
+import { Vehicle, VehicleStatus, vehicleStatusLabels } from '@innovatech/common/domain';
 import { VehicleCollectionService, VehicleDataService } from '@innovatech/ui/vehicles/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -15,16 +14,12 @@ import { take } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VehicleListContainerComponent extends ApsListContainerComponent<Vehicle> {
-  canCreateReviewRequest$ = this.permissionsService.hasUpdatePermission([UserRoles.agencyUser]);
-  showGroupFilters$ = this.permissionsService.hasUpdatePermission([UserRoles.superAdmin, UserRoles.repairman]);
-
   constructor(
     protected vehicleCollectionService: VehicleCollectionService,
     protected vehicleDataService: VehicleDataService,
     protected modal: NzModalService,
     protected messageService: NzMessageService,
-    private router: Router,
-    private permissionsService: PermissionService
+    private router: Router
   ) {
     super(vehicleCollectionService, vehicleDataService, modal, messageService);
   }

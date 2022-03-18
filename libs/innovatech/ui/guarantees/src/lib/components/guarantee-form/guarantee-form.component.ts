@@ -25,7 +25,7 @@ import { startWith } from 'rxjs/operators';
 export function createGuaranteeForm(): FormGroup {
   return new FormGroup({
     id: new FormControl(null),
-    productId: new FormControl(null),
+    productId: new FormControl(null, ApsValidators.required),
     startDate: new FormControl(null, ApsValidators.required),
     endDate: new FormControl(null, ApsValidators.required),
     companyId: new FormControl(null, ApsValidators.required),

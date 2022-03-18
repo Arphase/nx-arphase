@@ -78,7 +78,7 @@ export class GroupsService {
     await queryRunner.startTransaction();
 
     try {
-      const companies: Company[] = [...groupDto.companies];
+      const companies: Partial<Company>[] = [...groupDto.companies];
       const group = omit(groupDto, 'companies') as CreateGroupDto | UpdateGroupDto;
       const newGroup = this.groupRepository.create(group);
       await queryRunner.manager.save(newGroup);
@@ -106,7 +106,7 @@ export class GroupsService {
                   timestamp: new Date(),
                 });
                 await queryRunner.manager.save(resetPasswordEntity);
-                await this.authService.sendSetPasswordEmail(user, resetPasswordEntity);
+                await this.authService?.sendSetPasswordEmail(user, resetPasswordEntity);
               }
               return newUser;
             })

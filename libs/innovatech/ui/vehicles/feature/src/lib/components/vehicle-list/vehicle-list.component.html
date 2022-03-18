@@ -13,7 +13,8 @@
       <button nz-button
               [routerLink]="['new']"
               type="button"
-              nzType="primary">
+              nzType="primary"
+              data-cy="new-vehicle">
         Nuevo vehículo
       </button>
     </div>
@@ -52,7 +53,7 @@
                       [selectedOption]="queryParams?.status"
                       (filterItems)="updateStatusFilter($event)"></aps-radio-filter>
   </div>
-  <ng-container *ngIf="showGroupFilters">
+  <ng-container *ivtPermission="[userRoles.superAdmin, userRoles.repairman]">
     <div nz-col>
       <ivt-group-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-group-checkbox-filter>
     </div>
@@ -99,29 +100,36 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of table.data"
-        nz-row>
+        nz-row
+        data-cy="vehicle-row">
       <td nz-col
           nzXs="16"
           nzMd="8"
-          nzLg="4">{{ item?.vin | empty }}</td>
+          nzLg="4"
+          data-cy="vin">{{ item?.vin | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="5"
-          nzLg="4">{{ item?.company?.businessName | empty }}</td>
+          nzLg="4"
+          data-cy="business-name">{{ item?.company?.businessName | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="3">{{ item?.brand | empty }}</td>
+          nzLg="3"
+          data-cy="brand">{{ item?.brand | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="5"
-          nzLg="3">{{ item?.model | empty }}</td>
+          nzLg="3"
+          data-cy="model">{{ item?.model | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="2"
-          nzLg="2">{{ item?.year | empty }}</td>
+          nzLg="2"
+          data-cy="year">{{ item?.year | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="4">{{ item?.createdAt | date: 'dd/MM/yy' }}</td>
+          nzLg="4"
+          data-cy="created-at">{{ item?.createdAt | date: 'dd/MM/yy' }}</td>
       <td nz-col
           nzXs="5"
           nzMd="2">
@@ -130,7 +138,8 @@
                 [nzTooltipTitle]="statusLabels[item.status]"
                 [nzColor]="colorMaps[vehicleStatus[item.status]]">
           <i nz-icon
-             [nzType]="iconMaps[vehicleStatus[item.status]]"></i>
+             [nzType]="iconMaps[vehicleStatus[item.status]]"
+             data-cy="status"></i>
         </nz-tag>
       </td>
       <td nz-col
@@ -168,12 +177,12 @@
               (click)="isElegible(item) && createGuarantee.emit(item)">
             Generar garantía
           </li>
-          <li *ngIf="!canCreateReviewRequest"
+          <li *ivtNoPermission="[userRoles.agencyUser]"
               nz-menu-item
               (click)="createRevision.emit(item)">
             Generar revisión
           </li>
-          <li *ngIf="canCreateReviewRequest"
+          <li *ivtPermission="[userRoles.agencyUser]"
               nz-menu-item
               (click)="createRevisionRequest.emit(item)">
             Solicitar revisión

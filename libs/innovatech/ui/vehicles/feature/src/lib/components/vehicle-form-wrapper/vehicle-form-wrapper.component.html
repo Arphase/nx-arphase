@@ -24,7 +24,6 @@
                       (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
 
     <ng-container *ngIf="isEditable">
-
       <div *nzSpaceItem
            nz-row>
         <div nz-col
@@ -41,7 +40,8 @@
                     nz-button
                     type="submit"
                     nzType="primary"
-                    [nzLoading]="loading">
+                    [nzLoading]="loading"
+                    data-cy="save">
               Guardar
             </button>
           </nz-space>

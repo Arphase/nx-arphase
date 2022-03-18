@@ -23,7 +23,7 @@
        nzMd="0"
        nzFlex="auto">
     <div class="flex-end">
-      <button *ngIf="canCreateGuarantee"
+      <button *ivtPermission="[userRoles.superAdmin, userRoles.agencyUser]"
               nz-button
               [routerLink]="['new']"
               type="button"
@@ -52,12 +52,13 @@
             </button>
           </div>
         </ng-container>
-        <ng-container *ngIf="canCreateGuarantee">
+        <ng-container *ivtPermission="[userRoles.superAdmin, userRoles.agencyUser]">
           <button *nzSpaceItem
                   nz-button
                   [routerLink]="['new']"
                   type="button"
-                  nzType="primary">
+                  nzType="primary"
+                  data-cy="new-guarantee">
             Nueva garantía
           </button>
         </ng-container>
@@ -100,7 +101,7 @@
                       [selectedOption]="queryParams?.status"
                       (filterItems)="updateStatusFilter($event)"></aps-radio-filter>
   </div>
-  <ng-container *ngIf="showGroupFilters">
+  <ng-container *ivtPermission="[userRoles.superAdmin, userRoles.repairman]">
     <div nz-col>
       <ivt-group-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-group-checkbox-filter>
     </div>
@@ -159,7 +160,8 @@
   </thead>
   <tbody>
     <ng-container *ngFor="let item of table.data">
-      <tr nz-row>
+      <tr nz-row
+          data-cy="guarantee-row">
         <td *ivtCreatePermission
             nz-col
             nzSpan="1"
@@ -167,25 +169,31 @@
             [nzChecked]="setOfCheckedId.has(item.id)"
             (nzCheckedChange)="onItemChecked(item.id, $event)"></td>
         <td nz-col
-            nzFlex="auto">{{ item.id | folio }}</td>
+            nzFlex="auto"
+            data-cy="folio">{{ item.id | folio }}</td>
         <td nz-col
             nzXs="0"
             nzMd="6"
-            nzLg="4">{{ item.vehicle?.vin }}</td>
+            nzLg="4"
+            data-cy="vin">{{ item.vehicle?.vin }}</td>
         <td nz-col
             nzXs="0"
             nzMd="6"
-            nzLg="4">{{ item.company?.businessName }}</td>
+            nzLg="4"
+            data-cy="business-name">{{ item.company?.businessName }}</td>
         <td nz-col
             nzXs="0"
             nzMd="4"
-            nzLg="3">{{ item.invoiceNumber | empty }} </td>
+            nzLg="3"
+            data-cy="invoice-number">{{ item.invoiceNumber | empty }}</td>
         <td nz-col
             nzXs="0"
-            nzLg="3">{{ item.amount | currency | empty }}</td>
+            nzLg="3"
+            data-cy="amount">{{ item.amount | currency | empty }}</td>
         <td nz-col
             nzXs="0"
-            nzLg="2">{{ item.createdAt | date: 'dd/MM/yy' | empty }}</td>
+            nzLg="2"
+            data-cy="created-at">{{ item.createdAt | date: 'dd/MM/yy' | empty }}</td>
         <td nz-col
             nzXs="4"
             nzMd="2">
@@ -194,7 +202,8 @@
                   [nzTooltipTitle]="guaranteeStatusLabels[item.status]"
                   [nzColor]="colorMaps[guaranteeStatus[item.status]]">
             <i nz-icon
-               [nzType]="iconMaps[guaranteeStatus[item.status]]"></i>
+               [nzType]="iconMaps[guaranteeStatus[item.status]]"
+               data-cy="status"></i>
           </nz-tag>
         </td>
         <td nz-col
