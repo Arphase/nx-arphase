@@ -32,7 +32,7 @@
     "analyze-bundle:musicr": "npx webpack-bundle-analyzer ./dist/apps/musicr/browser/stats.json",
     "analyze-bundle:valmira": "npx webpack-bundle-analyzer ./dist/apps/valmira/admin/stats.json",
     "help": "nx help",
-    "innovatech:clean": "ts-node --project tsconfig.base.json -r tsconfig-paths/register apps/innovatech/api/src/db/scripts/clean.spec",
+    "innovatech:clean": "ts-node --project tsconfig.base.json -r tsconfig-paths/register apps/innovatech/api/src/db/scripts/clean.util",
     "innovatech:seed": "ts-node --project tsconfig.base.json -r tsconfig-paths/register apps/innovatech/api/src/db/scripts/seed/seed",
     "valmira:seed": "ts-node --project tsconfig.base.json -r tsconfig-paths/register apps/valmira/api/src/db/scripts/seed",
     "musicr:seed": "ts-node --project tsconfig.base.json -r tsconfig-paths/register apps/musicr/api/src/db/scripts/seed",

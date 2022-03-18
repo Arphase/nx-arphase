@@ -1,8 +1,7 @@
 import { ApsEmptyPipe } from '@arphase/ui/core';
 import { IvtFolioPipe } from '@innovatech/ui/core/ui';
+import { BasePermissionDirective, NoPermissionDirective } from '@innovatech/ui/permissions/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
-import { BasePermissionDirective } from 'libs/innovatech/ui/permissions/data/src/lib/directives/base-permission.directive';
-import { NoPermissionDirective } from 'libs/innovatech/ui/permissions/data/src/lib/directives/no-permission.directive';
 import { MockDirective, MockPipe } from 'ng-mocks';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 

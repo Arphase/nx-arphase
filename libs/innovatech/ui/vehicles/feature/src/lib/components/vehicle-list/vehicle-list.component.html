@@ -53,7 +53,7 @@
                       [selectedOption]="queryParams?.status"
                       (filterItems)="updateStatusFilter($event)"></aps-radio-filter>
   </div>
-  <ng-container *ivtPermissiom="[userRoles.superAdmin, userRoles.repairman]">
+  <ng-container *ivtPermission="[userRoles.superAdmin, userRoles.repairman]">
     <div nz-col>
       <ivt-group-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-group-checkbox-filter>
     </div>
