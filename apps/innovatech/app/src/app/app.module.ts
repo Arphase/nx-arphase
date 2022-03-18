@@ -23,7 +23,8 @@ import { routerReducer, RouterReducerState, StoreRouterConnectingModule } from '
 import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import * as Sentry from '@sentry/angular';
-import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
+import { es as esDate } from 'date-fns/locale';
+import { es_ES, NZ_DATE_LOCALE, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NgxMaskModule } from 'ngx-mask';
@@ -69,6 +70,7 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     { provide: HTTP_INTERCEPTORS, useClass: HttpProxyService, multi: true },
     { provide: INNOVATECH_CONFIGURATION, useValue: INNOVATECH_CONFIGURATION_VALUE },
     { provide: NZ_I18N, useValue: es_ES },
+    { provide: NZ_DATE_LOCALE, useValue: esDate },
     {
       provide: EntityCollectionReducerMethodsFactory,
       useClass: ApsAdditionalEntityCollectionReducerMethodsFactory,

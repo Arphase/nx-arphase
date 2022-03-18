@@ -1,4 +1,5 @@
 <form nz-form
+      data-cy="form"
       nzLayout="vertical"
       [formGroup]="form"
       (ngSubmit)="submit()">
@@ -23,7 +24,8 @@
           <nz-form-label nzRequired>Nombre del producto</nz-form-label>
           <nz-form-control apsAutoError>
             <input nz-input
-                   formControlName="name" />
+                   formControlName="name"
+                   data-cy="name" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -37,7 +39,8 @@
                    prefix="$"
                    mask="separator.2"
                    thousandSeparator=","
-                   formControlName="price" />
+                   formControlName="price"
+                   data-cy="price" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -52,6 +55,7 @@
                    formControlName="logo" />
             <nz-upload class="product-upload"
                        nzListType="picture"
+                       data-cy="logo"
                        [(nzFileList)]="fileList"
                        [nzShowButton]="!fileList.length"
                        [nzDisabled]="!!fileList.length"
@@ -92,7 +96,8 @@
               <nz-form-control apsAutoError>
                 <input nz-input
                        type="number"
-                       formControlName="minYear" />
+                       formControlName="minYear"
+                       data-cy="min-year" />
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -106,7 +111,8 @@
               <nz-form-control apsAutoError>
                 <input nz-input
                        type="number"
-                       formControlName="maxYear" />
+                       formControlName="maxYear"
+                       data-cy="max-year" />
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -143,7 +149,8 @@
               <nz-form-control apsAutoError>
                 <input nz-input
                        type="number"
-                       formControlName="minHp" />
+                       formControlName="minHp"
+                       data-cy="min-hp" />
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -157,7 +164,8 @@
               <nz-form-control apsAutoError>
                 <input nz-input
                        type="number"
-                       formControlName="maxHp" />
+                       formControlName="maxHp"
+                       data-cy="max-hp" />
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -190,8 +198,8 @@
           <nz-form-control>
             <nz-select formControlName="glossary"
                        [nzOptions]="glossaryOptions"
-                       [nzShowSearch]="true">
-            </nz-select>
+                       [nzShowSearch]="true"
+                       data-cy="glossary"></nz-select>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -207,7 +215,8 @@
           <nz-form-control apsAutoError>
             <quill-editor format="html"
                           formControlName="template"
-                          placeholder=""></quill-editor>
+                          placeholder=""
+                          data-cy="template"></quill-editor>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -232,6 +241,7 @@
                   nz-button
                   [nzLoading]="loading"
                   type="submit"
+                  data-cy="save"
                   nzType="primary">Guardar</button>
         </nz-space>
       </div>

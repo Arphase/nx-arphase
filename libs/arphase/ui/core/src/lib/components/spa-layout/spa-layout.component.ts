@@ -11,6 +11,7 @@ export interface MenuItem {
   enabled?: boolean;
   path?: string | string[];
   children?: ChildMenuItem[];
+  cy?: string;
 }
 export interface ChildMenuItem {
   label?: string;

@@ -9,13 +9,13 @@ import {
 } from '@angular/core';
 import { ApsCollectionResponseInfo } from '@arphase/common';
 import { ApsColumns } from '@arphase/ui/core';
-import { Product } from '@innovatech/common/domain';
+import { Product, transformFolio } from '@innovatech/common/domain';
 import { TransferDirection, TransferItem } from 'ng-zorro-antd/transfer';
 
 function mapTransferItems(products: Product[], direction: TransferDirection): TransferItem[] {
   return products.map(product => ({
     key: product.id,
-    title: product.name,
+    title: `${transformFolio(product.id)} - ${product.name}`,
     description: product.logo,
     direction,
   }));

@@ -32,6 +32,7 @@
               [nzTooltipTitle]="mobileQuery.matches ? '' : item.header"
               nzTooltipPlacement="right"
               [routerLink]="item.path"
+              [attr.data-cy]="item.cy"
               (click)="isCollapsed = mobileQuery.matches ? true : isCollapsed">
             <i nz-icon
                [nzType]="item.icon"></i>

@@ -14,14 +14,11 @@
   <div *nzSpaceItem
        nz-row>
     <div nz-col
-         nzSpan="12">
-      Todos los productos
+         nzSpan="12">Todos los productos
     </div>
     <div nz-col
          nzSpan="12"
-         class="flex-end">
-      Productos del grupo
-    </div>
+         class="flex-end">Productos del grupo</div>
   </div>
   <div *nzSpaceItem
        nz-row>
@@ -70,7 +67,8 @@
               <ng-container *ngFor="let item of table.data">
                 <tr *ngIf="item?.title"
                     nz-row>
-                  <td nz-col
+                  <td data-cy="product-checkbox"
+                      nz-col
                       nzSpan="3"
                       class="flex-center"
                       [nzChecked]="!!item.checked"

@@ -1,4 +1,7 @@
 {
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "projects": {
     "arphase-api-core": {
@@ -592,17 +595,17 @@
               }
             ],
             "allowedCommonJsDependencies": ["file-saver", "clone-deep"],
-            "stylePreprocessorOptions": {
-              "includePaths": ["libs/arphase/ui/core/src/styles"]
-            },
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
+            "stylePreprocessorOptions": { "includePaths": ["libs/arphase/ui/core/src/styles"] }
           },
           "configurations": {
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
             "stage": {
               "fileReplacements": [
                 {
@@ -610,12 +613,7 @@
                   "with": "apps/innovatech/app/src/environments/environment.stage.ts"
                 }
               ],
-              "sourceMap": {
-                "scripts": true,
-                "styles": true,
-                "vendor": true,
-                "hidden": false
-              },
+              "sourceMap": true,
               "optimization": true,
               "outputHashing": "all",
               "namedChunks": false,
@@ -643,7 +641,7 @@
               "ngswConfigPath": "apps/innovatech/app/ngsw-config.json"
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -651,6 +649,9 @@
             "browserTarget": "innovatech-app:build"
           },
           "configurations": {
+            "development": {
+              "browserTarget": "innovatech-app:build:development"
+            },
             "production": {
               "browserTarget": "innovatech-app:build:production"
             },
@@ -679,6 +680,34 @@
         }
       },
       "tags": ["domain:innovatech", "domain:innovatech:ui", "executable:ui"]
+    },
+    "innovatech-app-e2e": {
+      "root": "apps/innovatech/app-e2e",
+      "sourceRoot": "apps/innovatech/app-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/innovatech/app-e2e/cypress.json",
+            "tsConfig": "apps/innovatech/app-e2e/tsconfig.e2e.json",
+            "devServerTarget": "innovatech-app:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "innovatech-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/innovatech/app-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": ["domain:innovatech", "domain:innovatech:ui", "executable:ui"],
+      "implicitDependencies": ["innovatech-app"]
     },
     "innovatech-domain": {
       "projectType": "library",
@@ -1431,7 +1460,7 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",

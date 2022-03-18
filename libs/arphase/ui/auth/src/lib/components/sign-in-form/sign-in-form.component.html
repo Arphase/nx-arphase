@@ -41,7 +41,8 @@
               <nz-form-control apsAutoError>
                 <input nz-input
                        type="email"
-                       formControlName="email" />
+                       formControlName="email"
+                       data-cy="email" />
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -55,7 +56,8 @@
               <nz-form-control apsAutoError>
                 <input nz-input
                        type="password"
-                       formControlName="password" />
+                       formControlName="password"
+                       data-cy="password" />
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -76,7 +78,8 @@
                     type="submit"
                     nzType="primary"
                     [nzLoading]="loading"
-                    nzBlock>
+                    nzBlock
+                    data-cy="sign-in">
               Iniciar sesión
             </button>
           </div>
