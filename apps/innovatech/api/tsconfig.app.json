@@ -10,5 +10,5 @@
     "module": "commonjs"
   },
   "include": ["**/*.ts"],
-  "exclude": ["**/*.util.ts", "**/*.spec.ts", "**/*.test.ts", "src/db/migrations/**/*.{.ts,.js}"]
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"]
 }

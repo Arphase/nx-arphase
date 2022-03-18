@@ -120,5 +120,6 @@ module.exports = {
     '<rootDir>/libs/arphase/ui/addresses',
     '<rootDir>/libs/musicr/api/customers',
     '<rootDir>/libs/arphase/ui/gtag',
+    '<rootDir>/libs/innovatech/api/db',
   ],
 };

@@ -1,6 +1,6 @@
 import { ConnectionOptions, createConnection } from 'typeorm';
 
-import config from '../../config/ormconfig.migrations';
+import { config } from '../../config/ormconfig';
 import { insertUsers } from './1-users';
 import { insertGroups } from './2-groups';
 import { insertLocalities } from './3-localities';

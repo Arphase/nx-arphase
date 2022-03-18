@@ -71,6 +71,7 @@
       "@innovatech/ui/vehicles/data": ["libs/innovatech/ui/vehicles/data/src/index.ts"],
       "@innovatech/ui/vehicles/feature": ["libs/innovatech/ui/vehicles/feature/src/index.ts"],
       "@innovatech/ui/vehicles/ui": ["libs/innovatech/ui/vehicles/ui/src/index.ts"],
+      "@ivt/innovatech/api/db": ["libs/innovatech/api/db/src/index.ts"],
       "@musicr/api/additional-options": ["libs/musicr/api/additional-options/src/index.ts"],
       "@musicr/api/auth": ["libs/musicr/api/auth/src/index.ts"],
       "@musicr/api/categories": ["libs/musicr/api/categories/src/index.ts"],

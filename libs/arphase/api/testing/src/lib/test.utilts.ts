@@ -34,18 +34,27 @@ export async function getEntities(connection: Connection) {
  */
 export async function reloadFixtures(connection: Connection) {
   const entities = await getEntities(connection);
-  await cleanAll(entities, connection);
+  await deleteAll(entities, connection);
+  await loadAll(entities, connection);
+}
+
+/**
+ * Drops the database and reloads the entries
+ */
+export async function dropFixtures(connection: Connection) {
+  const entities = await getEntities(connection);
+  await dropAll(entities, connection);
   await loadAll(entities, connection);
 }
 
 /**
  * Cleans all the entities
  */
-export async function cleanAll(entities, connection: Connection) {
+export async function deleteAll(entities, connection: Connection) {
   try {
     for (const entity of entities) {
       const repository = await connection.getRepository(entity.name);
-      await repository.query(`DROP TABLE "${entity.tableName}" CASCADE;`);
+      await repository.query(`DELETE FROM "${entity.tableName}";`);
     }
   } catch (error) {
     throw new Error(`ERROR: Cleaning test db: ${error}`);
@@ -67,5 +76,16 @@ export async function loadAll(entities, connection: Connection) {
     }
   } catch (error) {
     throw new Error(`ERROR [TestUtils.loadAll()]: Loading fixtures on test db: ${error}`);
+  }
+}
+
+export async function dropAll(entities, connection: Connection) {
+  try {
+    for (const entity of entities) {
+      const repository = await connection.getRepository(entity.name);
+      await repository.query(`DROP TABLE "${entity.tableName}" CASCADE;`);
+    }
+  } catch (error) {
+    throw new Error(`ERROR: Cleaning test db: ${error}`);
   }
 }
