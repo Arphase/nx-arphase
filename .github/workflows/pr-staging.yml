@@ -8,6 +8,8 @@ env:
   DB_USERNAME: postgres
   DB_PASSWORD: postgres
   SYNCHRONIZE: true
+  JWT_SECRET: test
+  JWT_EXPIRATION: 360000
 
 on:
   pull_request:
