@@ -8,6 +8,7 @@ env:
   DB_USERNAME: postgres
   DB_PASSWORD: postgres
   SYNCHRONIZE: true
+  POSTGRES_MULTIPLE_DATABASES: ivt,mrl,vma
 
 on:
   pull_request:
@@ -24,8 +25,6 @@ jobs:
         image: postgres
         volumes:
           - ./docker-postgresql-multiple-databases:/docker-entrypoint-initdb.d
-        env:
-          - POSTGRES_MULTIPLE_DATABASES=ivt,mrl,vma
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
