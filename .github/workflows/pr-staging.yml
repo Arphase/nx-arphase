@@ -24,7 +24,7 @@ jobs:
       postgres:
         image: postgres
         volumes:
-          - ./docker-postgresql-multiple-databases:/docker-entrypoint-initdb.d
+          - docker-postgresql-multiple-databases:/docker-entrypoint-initdb.d
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
