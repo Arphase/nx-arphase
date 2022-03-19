@@ -3,7 +3,7 @@ name: Staging Pull Request CI
 env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
-    NODE_ENV: test
+  NODE_ENV: test
   IVT_DB: ivt
   DB_USERNAME: postgres
   DB_PASSWORD: postgres
