@@ -24,7 +24,7 @@ jobs:
         image: postgres
         volumes:
           - ./docker-postgresql-multiple-databases:/docker-entrypoint-initdb.d
-        environment:
+        env:
           - POSTGRES_MULTIPLE_DATABASES=ivt,mrl,vma
         options: >-
           --health-cmd pg_isready
