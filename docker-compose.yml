@@ -1,6 +1,6 @@
 myapp-postgresql:
-    image: postgres:9.6.2
-    volumes:
-        - ./docker-postgresql-multiple-databases:/docker-entrypoint-initdb.d
-    environment:
-        - POSTGRES_MULTIPLE_DATABASES=ivt,mrl,vma
+  build: .
+  environment:
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
+    - POSTGRES_MULTIPLE_DATABASES=ivt,mrl,vma
