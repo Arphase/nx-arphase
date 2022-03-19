@@ -41,7 +41,7 @@ jobs:
       - uses: bahmutov/npm-install@v1
 
       - name: Run Innovatech DB seed
-      - run: npm run innovatech:seed
+        run: npm run innovatech:seed
 
       - name: Run unit tests
         run: npx nx affected:test --base=remotes/origin/staging --ci --runInBand
