@@ -23,6 +23,7 @@ jobs:
     services:
       postgres:
         image: postgres
+        ports: ['5432:5432']
         volumes:
           - docker-postgresql-multiple-databases:/docker-entrypoint-initdb.d
         env:
