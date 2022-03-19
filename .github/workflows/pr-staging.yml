@@ -7,7 +7,6 @@ env:
   IVT_DB: ivt
   DB_USERNAME: postgres
   DB_PASSWORD: postgres
-  NODE_ENV: test
   SYNCHRONIZE: true
 
 on:
