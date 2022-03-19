@@ -1,7 +1,4 @@
 {
-  "cli": {
-    "analytics": false
-  },
   "version": 1,
   "projects": {
     "arphase-api-core": {
@@ -319,6 +316,29 @@
       },
       "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
     },
+    "innovatech-api-db": {
+      "root": "libs/innovatech/api/db",
+      "sourceRoot": "libs/innovatech/api/db/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/innovatech/api/db/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/innovatech/api/db"],
+          "options": {
+            "jestConfig": "libs/innovatech/api/db/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "innovatech-api-domain": {
       "root": "libs/innovatech/api/domain",
       "sourceRoot": "libs/innovatech/api/domain/src",
@@ -595,7 +615,9 @@
               }
             ],
             "allowedCommonJsDependencies": ["file-saver", "clone-deep"],
-            "stylePreprocessorOptions": { "includePaths": ["libs/arphase/ui/core/src/styles"] }
+            "stylePreprocessorOptions": {
+              "includePaths": ["libs/arphase/ui/core/src/styles"]
+            }
           },
           "configurations": {
             "development": {

@@ -22,11 +22,9 @@ async function bootstrap() {
   });
 
   app.enableCors();
-  const port = process.env.PORT || environment.server.port;
+  const port = process.env.PORT;
 
-  await app.listen(port, () => {
-    Logger.log('Listening at http://localhost:' + port);
-  });
+  await app.listen(port, () => Logger.log('Listening at http://localhost:' + port));
 }
 
 bootstrap();

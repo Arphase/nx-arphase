@@ -3,6 +3,13 @@ name: Staging Pull Request CI
 env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
+  NODE_ENV: test
+  IVT_DB: ivt
+  DB_USERNAME: postgres
+  DB_PASSWORD: postgres
+  SYNCHRONIZE: true
+  JWT_SECRET: test
+  JWT_EXPIRATION: 360000
 
 on:
   pull_request:
@@ -13,15 +20,29 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v1
+      - name: Setup Docker
+        uses: docker-practice/actions-setup-docker@v1
+
+      - name: Setup Postgres container
+        run: |
+          docker-compose build
+          docker-compose up -d
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
         with:
           node-version: 14
 
-      - uses: bahmutov/npm-install@v1
+      - name: Install npm dependencies
+        uses: bahmutov/npm-install@v1
 
-      - name: Run unit tests
+      - name: Innovatech DB seed
+        run: npm run innovatech:seed
+
+      - name: Unit tests
         run: npx nx affected:test --base=remotes/origin/staging --ci --runInBand
