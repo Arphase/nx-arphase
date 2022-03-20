@@ -1,15 +1,15 @@
 import { createCollectionResponse } from '@arphase/api/core';
+import { createNestApp, dropEntities } from '@arphase/api/testing';
 import { AuthModule } from '@innovatech/api/auth/feature';
-import { VehicleEntity } from '@innovatech/api/domain';
+import { InnovatechApiDbModule, insertGroup, insertUser } from '@innovatech/api/db';
+import { CompanyEntity, GroupEntity, UserEntity, VehicleEntity } from '@innovatech/api/domain';
 import { Vehicle } from '@innovatech/common/domain';
-import { InnovatechApiDbModule } from '@ivt/innovatech/api/db';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import * as bodyParser from 'body-parser';
 import { pick } from 'lodash';
 import supertest from 'supertest';
-import { Repository } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
 
 import { UpdateVehicleDto } from '../dto/update-vehicle.dto';
 import { VehiclesModule } from '../vehicles.module';
@@ -18,6 +18,18 @@ describe('VehiclesController', () => {
   let app: INestApplication;
   let repository: Repository<VehicleEntity>;
   let token: string;
+  let connection: Connection;
+
+  const mockedVehicleProperties: string[] = [
+    'brand',
+    'model',
+    'version',
+    'year',
+    'vin',
+    'motorNumber',
+    'horsePower',
+    'companyId',
+  ];
 
   const mockedVehicle: Partial<Vehicle> = {
     brand: 'Seat',
@@ -34,15 +46,12 @@ describe('VehiclesController', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [InnovatechApiDbModule, VehiclesModule, AuthModule],
     }).compile();
-
-    app = module.createNestApplication();
-    app.useGlobalPipes(
-      new ValidationPipe({ transform: true, whitelist: true, transformOptions: { enableImplicitConversion: true } })
-    );
-    app.use(bodyParser.json({ limit: '50mb' }));
-    app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-    await app.init();
+    app = await createNestApp(module);
     repository = module.get(getRepositoryToken(VehicleEntity));
+    connection = module.get(Connection);
+    await insertUser(connection);
+    await insertGroup(connection);
+
     const { body } = await supertest
       .agent(app.getHttpServer())
       .post('/auth/signIn')
@@ -56,7 +65,10 @@ describe('VehiclesController', () => {
 
   afterEach(async () => await repository.query(`DELETE FROM vehicles;`));
 
-  afterAll(async () => await app.close());
+  afterAll(async () => {
+    await dropEntities([CompanyEntity, GroupEntity, UserEntity, VehicleEntity], connection);
+    await app.close();
+  });
 
   it('should get the vehicle index', async () => {
     const newVehicle = await repository.create(mockedVehicle).save();
@@ -89,9 +101,7 @@ describe('VehiclesController', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    expect(pick(body, ['brand', 'model', 'version', 'year', 'vin', 'motorNumber', 'horsePower', 'companyId'])).toEqual(
-      pick(newVehicle, ['brand', 'model', 'version', 'year', 'vin', 'motorNumber', 'horsePower', 'companyId'])
-    );
+    expect(pick(body, mockedVehicleProperties)).toEqual(pick(newVehicle, mockedVehicleProperties));
   });
 
   it('should create a vehicle', async () => {
@@ -106,9 +116,7 @@ describe('VehiclesController', () => {
 
     const expected = await repository.findOne({ id: body.id });
 
-    expect(mockedVehicle).toEqual(
-      pick(expected, ['brand', 'model', 'version', 'year', 'vin', 'motorNumber', 'horsePower', 'companyId'])
-    );
+    expect(mockedVehicle).toEqual(pick(expected, mockedVehicleProperties));
   });
 
   it('should update a vehicle', async () => {
@@ -122,6 +130,7 @@ describe('VehiclesController', () => {
       vin: '37289472398473288',
       motorNumber: '37289472398473288',
       horsePower: 200,
+      companyId: 1,
     };
 
     await supertest
@@ -134,9 +143,7 @@ describe('VehiclesController', () => {
       .expect(200);
 
     const expected = await repository.findOne({ id: updatedVehicle.id });
-    expect(updatedVehicle).toEqual(
-      pick(expected, ['id', 'brand', 'model', 'version', 'year', 'vin', 'motorNumber', 'horsePower'])
-    );
+    expect(updatedVehicle).toEqual(pick(expected, ['id', ...mockedVehicleProperties]));
   });
 
   it('should delete a vehicle', async () => {

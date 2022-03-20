@@ -164,6 +164,7 @@
     "copy-webpack-plugin": "9.1.0",
     "cypress": "8.7.0",
     "cypress-file-upload": "^5.0.8",
+    "dotenv": "^16.0.0",
     "eslint": "~8.7.0",
     "eslint-config-prettier": "8.4.0",
     "eslint-plugin-cypress": "2.12.1",

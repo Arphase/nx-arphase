@@ -10,6 +10,7 @@ import { RevisionRequestsModule } from '@innovatech/api/revision-requests';
 import { RevisionsModule } from '@innovatech/api/revisions';
 import { UsersModule } from '@innovatech/api/users';
 import { VehiclesModule } from '@innovatech/api/vehicles';
+import { InnovatechApiDbModule } from '@innovatech/api/db';
 import { Module } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerModule } from '@nestjs/throttler';
@@ -18,6 +19,7 @@ import { AppController } from './app.controller';
 
 @Module({
   imports: [
+    InnovatechApiDbModule,
     ScheduleModule.forRoot(),
     ThrottlerModule.forRoot({
       ttl: 60,

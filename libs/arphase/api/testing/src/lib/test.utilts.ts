@@ -1,6 +1,20 @@
+import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { TestingModule } from '@nestjs/testing';
+import * as bodyParser from 'body-parser';
 import * as fs from 'fs';
 import * as Path from 'path';
 import { Connection } from 'typeorm';
+
+export async function createNestApp(module: TestingModule): Promise<INestApplication> {
+  let app = module.createNestApplication();
+  app.useGlobalPipes(
+    new ValidationPipe({ transform: true, whitelist: true, transformOptions: { enableImplicitConversion: true } })
+  );
+  app.use(bodyParser.json({ limit: '50mb' }));
+  app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+  await app.init();
+  return app;
+}
 
 /**
  * Shutdown the http server
@@ -87,5 +101,16 @@ export async function dropAll(entities, connection: Connection) {
     }
   } catch (error) {
     throw new Error(`ERROR: Cleaning test db: ${error}`);
+  }
+}
+
+export async function dropEntities(entities, connection: Connection): Promise<void> {
+  try {
+    for (const entityClass of entities) {
+      const entity = connection.getMetadata(entityClass);
+      await connection.query(`DROP TABLE "${entity.tableName}" CASCADE;`);
+    }
+  } catch (error) {
+    throw new Error(`ERROR: Droping test db: ${error}`);
   }
 }
