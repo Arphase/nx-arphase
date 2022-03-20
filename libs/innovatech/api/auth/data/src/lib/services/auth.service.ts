@@ -39,7 +39,6 @@ export class AuthService {
       salt,
       password: encryptecPassword,
     });
-
     try {
       return this.userRepository.save(newUser);
     } catch (error) {
@@ -97,15 +96,8 @@ export class AuthService {
 
   async validateUserPassword(authCredentialsDto: AuthCredentialsDto): Promise<User> {
     const { email, password } = authCredentialsDto;
-    const user = await this.userRepository.findOne({
-      where: [{ email }],
-    });
-
-    if (user && (await user.validatePassword(password))) {
-      return user;
-    } else {
-      return null;
-    }
+    const user = await this.userRepository.findOne({ where: [{ email }] });
+    return user && (await user.validatePassword(password)) ? user : null;
   }
 
   async createResetPasswordToken(userId: number): Promise<ResetPassword> {

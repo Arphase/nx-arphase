@@ -4,7 +4,9 @@ env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
   NODE_ENV: test
-  IVT_DB: ivt
+  IVT_DB: innovatech-test
+  MRL_DB: music-revolution-test
+  VMA_DB: valmira-test
   DB_USERNAME: postgres
   DB_PASSWORD: postgres
   SYNCHRONIZE: true
@@ -40,9 +42,6 @@ jobs:
 
       - name: Install npm dependencies
         uses: bahmutov/npm-install@v1
-
-      - name: Innovatech DB seed
-        run: npm run innovatech:seed
 
       - name: Unit tests
         run: npx nx affected:test --base=remotes/origin/staging --ci --runInBand

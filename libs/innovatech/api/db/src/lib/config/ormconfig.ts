@@ -1,7 +1,11 @@
-import { provideRoutes } from '@angular/router';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import dotenv from 'dotenv';
 
 import { ENTITIES } from './entities';
+
+if (process.env.NODE_ENV === 'test') {
+  dotenv.config({ path: '.env.test' });
+}
 
 export const config: TypeOrmModuleOptions = {
   type: 'postgres',

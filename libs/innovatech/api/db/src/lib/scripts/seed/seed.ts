@@ -1,8 +1,8 @@
 import { ConnectionOptions, createConnection } from 'typeorm';
 
 import { config } from '../../config/ormconfig';
-import { insertUsers } from './1-users';
-import { insertGroups } from './2-groups';
+import { insertUser } from './1-users';
+import { insertGroup } from './2-groups';
 import { insertLocalities } from './3-localities';
 
 export async function seed() {
@@ -13,8 +13,8 @@ export async function seed() {
   };
 
   const connection = await createConnection(opt as ConnectionOptions);
-  await insertUsers(connection);
-  await insertGroups(connection);
+  await insertUser(connection);
+  await insertGroup(connection);
   await insertLocalities();
 
   console.log('Seed finish!');

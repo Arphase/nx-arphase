@@ -117,10 +117,11 @@ Run `nx e2e` to execute the end-to-end tests via [Cypress](https://www.cypress.i
 
 ### Setup
 
-Each project has a different setup, you can read about them here:
+- Install Docker
+- Run `docker-compose build`
+- Run `docker-compose up -d`
 
-- [Innovatech](docs/innovatech/README.md)
-- [Music Revolution](docs/musicr/README.md)
+This will create development and test databases for all the different projects in this repo.
 
 ### Generate a library
 
