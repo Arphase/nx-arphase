@@ -36,7 +36,7 @@
     "innovatech:seed": "ts-node --project tsconfig.base.json -r tsconfig-paths/register libs/innovatech/api/db/src/lib/scripts/seed/seed",
     "valmira:seed": "ts-node --project tsconfig.base.json -r tsconfig-paths/register apps/valmira/api/src/db/scripts/seed",
     "musicr:seed": "ts-node --project tsconfig.base.json -r tsconfig-paths/register apps/musicr/api/src/db/scripts/seed",
-    "typeorm:innovatech": "ts-node  --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config apps/innovatech/api/src/db/config/ormconfig.migrations.ts",
+    "typeorm:innovatech": "ts-node  --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config libs/innovatech/api/db/src/lib/config/ormconfig.ts",
     "typeorm:innovatech:migrate": "npm run typeorm:innovatech migration:generate -- -n",
     "typeorm:innovatech:run": "npm run typeorm:innovatech migration:run",
     "typeorm:valmira": "ts-node  --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config apps/valmira/api/src/db/config/ormconfig.migrations.ts",
