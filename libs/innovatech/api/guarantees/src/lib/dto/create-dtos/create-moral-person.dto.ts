@@ -1,12 +1,12 @@
 import { Trim } from '@arphase/api/core';
-import { IsDateString, IsString } from 'class-validator';
+import { IsDate, IsDateString, IsString } from 'class-validator';
 
 export class CreateMoralPersonDto {
   @IsString()
   @Trim('businessName')
   businessName: string;
 
-  @IsDateString()
+  @IsDate()
   constitutionDate: Date;
 
   @IsString()

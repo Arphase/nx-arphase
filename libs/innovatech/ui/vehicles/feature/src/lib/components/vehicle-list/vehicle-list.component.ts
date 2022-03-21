@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { ApsListComponent } from '@arphase/ui/core';
 import { isVehicleElegible, UserRoles, Vehicle, VehicleStatus, vehicleStatusLabels } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
@@ -13,14 +13,13 @@ import { colorMaps, columns, iconMaps, statusOptions } from './vehicle-list.cons
   providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
 export class VehicleListComponent extends ApsListComponent<Vehicle> {
-  @Input() canCreateReviewRequest: boolean;
-  @Input() showGroupFilters: boolean;
   columns = columns;
   vehicleStatus = VehicleStatus;
   colorMaps = colorMaps;
   iconMaps = iconMaps;
   statusLabels = vehicleStatusLabels;
   statusOptions = statusOptions;
+  userRoles = UserRoles;
   @Output() createGuarantee = new EventEmitter<Vehicle>();
   @Output() createRevision = new EventEmitter<Vehicle>();
   @Output() createRevisionRequest = new EventEmitter<Vehicle>();

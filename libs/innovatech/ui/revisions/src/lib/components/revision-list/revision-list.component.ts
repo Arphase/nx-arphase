@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { ApsListComponent } from '@arphase/ui/core';
 import { Revision, RevisionStatus, revisionStatusLabels, UserRoles } from '@innovatech/common/domain';
-import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
-import { isRevisionEditable } from '../../pipes/editable-revision.pipe';
 
+import { isRevisionEditable } from '../../pipes/editable-revision.pipe';
 import { statusOptions } from '../revision-form/revision-form.constants';
 import { colorMaps, columns, iconMaps } from './revision-list.constants';
 
@@ -12,7 +11,6 @@ import { colorMaps, columns, iconMaps } from './revision-list.constants';
   templateUrl: './revision-list.component.html',
   styleUrls: ['./revision-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
 export class RevisionListComponent extends ApsListComponent<Revision> {
   @Input() canCreateRevision: boolean;
@@ -23,6 +21,8 @@ export class RevisionListComponent extends ApsListComponent<Revision> {
   iconMaps = iconMaps;
   statusOptions = statusOptions;
   isRevisionEditable = isRevisionEditable;
+  userRoles = UserRoles;
+  @Output() createGuarantee = new EventEmitter<number>();
 
   updateStatusFilter(status: RevisionStatus): void {
     this.filterItems.emit({ status });

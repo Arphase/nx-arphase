@@ -17,7 +17,7 @@
          nzType="export"></i>
     </button>
   </div>
-  <ng-container *ngIf="canCreateRevision">
+  <ng-container *ivtPermission="[userRoles.superAdmin, userRoles.repairman]">
     <div nz-col
          nzXs="0"
          nzMd="24"
@@ -26,7 +26,8 @@
         <button nz-button
                 [routerLink]="['new']"
                 type="button"
-                nzType="primary">
+                nzType="primary"
+                data-cy="new-revision">
           Nueva revisión
         </button>
       </div>
@@ -66,7 +67,7 @@
                       [selectedOption]="queryParams?.status"
                       (filterItems)="updateStatusFilter($event)"></aps-radio-filter>
   </div>
-  <ng-container *ngIf="canCreateRevision">
+  <ng-container *ivtPermission="[userRoles.superAdmin, userRoles.repairman]">
     <div nz-col>
       <ivt-group-checkbox-filter (filterItems)="filterItems.emit($event)"></ivt-group-checkbox-filter>
     </div>
@@ -113,32 +114,40 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of table.data"
-        nz-row>
+        nz-row
+        data-cy="revision-row">
       <td nz-col
           nzXs="6"
           nzMd="3"
-          nzLg="2">{{ item?.id | folio | empty }}</td>
+          nzLg="2"
+          data-cy="folio">{{ item?.id | folio | empty }}</td>
       <td nz-col
           nzXs="10"
           nzMd="6"
-          nzLg="4">{{ item?.vehicle?.vin | empty }}</td>
+          nzLg="4"
+          data-cy="vin">{{ item?.vehicle?.vin | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="6"
-          nzLg="3">{{ item?.vehicle?.brand | empty }}</td>
+          nzLg="3"
+          data-cy="brand">{{ item?.vehicle?.brand | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="3">{{ item?.vehicle?.model | empty }}</td>
+          nzLg="3"
+          data-cy="model">{{ item?.vehicle?.model | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="2">{{ item?.vehicle?.year | empty }}</td>
+          nzLg="2"
+          data-cy="year">{{ item?.vehicle?.year | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="5"
-          nzLg="4">{{ item?.createdAt | date: 'dd/MM/yy' }}</td>
+          nzLg="4"
+          data-cy="created-at">{{ item?.createdAt | date: 'dd/MM/yy' }}</td>
       <td nz-col
           nzXs="0"
-          nzLg="4">{{ item?.observations | empty }}</td>
+          nzLg="4"
+          data-cy="observations">{{ item?.observations | empty }}</td>
       <td nz-col
           nzXs="4"
           nzMd="2"
@@ -148,7 +157,8 @@
                 [nzTooltipTitle]="statusLabels[item.status] | empty"
                 [nzColor]="colorMaps[revisionStatus[item.status]]">
           <i nz-icon
-             [nzType]="iconMaps[revisionStatus[item.status]]"></i>
+             [nzType]="iconMaps[revisionStatus[item.status]]"
+             data-cy="status"></i>
         </nz-tag>
       </td>
       <td nz-col
@@ -170,26 +180,23 @@
               nz-tooltip
               [routerLink]="[item.id]"
               [nzTooltipTitle]="(item | editableRevision)  ? '' : 'La revisión no se puede editar porque ya pasaron más de tres meses'">
-            <ng-container *ivtNoUpdatePermission>
-              Ver revisión
-            </ng-container>
-            <ng-container *ivtUpdatePermission>
-              <ng-container *ngIf="(item | editableRevision); else viewRevision">
-                Editar revisión
-              </ng-container>
-              <ng-template #viewRevision>
-                Ver revisión
-              </ng-template>
+            <ng-container *ivtNoPermission="[userRoles.superAdmin]">Ver revisión</ng-container>
+            <ng-container *ivtPermission="[userRoles.superAdmin]">
+              <ng-container *ngIf="(item | editableRevision); else viewRevision">Editar revisión</ng-container>
+              <ng-template #viewRevision>Ver revisión</ng-template>
             </ng-container>
           </li>
-          <li *ivtDeletePermission
+          <ng-container *ivtPermission="[userRoles.superAdmin]">
+            <li *ngIf="item?.status === revisionStatus[revisionStatus.elegible]"
+                nz-menu-item
+                (click)="createGuarantee.emit(item?.vehicleId)">Generar garantía</li>
+          </ng-container>
+          <li *ivtPermission=[userRoles.superAdmin]
               nz-menu-item
               nz-tooltip
               [nzTooltipTitle]="(item | editableRevision) ? '' : 'La revisión no se puede eliminar porque ya pasaron más de tres meses'"
               [nzDisabled]="!(item | editableRevision)"
-              (click)="isRevisionEditable(item) && delete.emit(item)">
-            Eliminar revisión
-          </li>
+              (click)="isRevisionEditable(item) && delete.emit(item)">Eliminar revisión</li>
         </ul>
       </nz-dropdown-menu>
     </tr>

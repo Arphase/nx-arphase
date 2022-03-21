@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApsListContainerComponent } from '@arphase/ui/core';
 import { Revision, UserRoles } from '@innovatech/common/domain';
 import { PermissionService } from '@innovatech/ui/permissions/data';
@@ -16,7 +17,6 @@ import { RevisionDataService } from '../../services/revision-data.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RevisionListContainerComponent extends ApsListContainerComponent<Revision> {
-  canCreateRevision$ = this.permissionService.hasUpdatePermission([UserRoles.superAdmin, UserRoles.repairman]);
   excelFileName = 'Revisiones';
 
   constructor(
@@ -24,9 +24,13 @@ export class RevisionListContainerComponent extends ApsListContainerComponent<Re
     protected revisionDataService: RevisionDataService,
     protected modal: NzModalService,
     protected toastrService: NzMessageService,
-    private permissionService: PermissionService
+    private router: Router
   ) {
     super(revisionCollectionService, revisionDataService, modal, toastrService);
+  }
+
+  createGuarantee(vehicleId: number): void {
+    this.router.navigateByUrl(`/spa/guarantees/new?vehicleId=${vehicleId}`);
   }
 
   deleteItem(item: Revision): void {

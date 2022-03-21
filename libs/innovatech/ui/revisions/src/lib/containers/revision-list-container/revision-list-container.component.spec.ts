@@ -1,8 +1,7 @@
-import { PermissionService } from '@innovatech/ui/permissions/data';
+import { RouterTestingModule } from '@angular/router/testing';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { of } from 'rxjs';
 
 import { RevisionCollectionService } from '../../services/revision-collection.service';
 import { RevisionDataService } from '../../services/revision-data.service';
@@ -12,14 +11,9 @@ describe('RevisionListContainerComponent', () => {
   let spectator: Spectator<RevisionListContainerComponent>;
   const createComponent = createComponentFactory({
     component: RevisionListContainerComponent,
-    shallow: true,
-    providers: [
-      {
-        provide: PermissionService,
-        useValue: { hasUpdatePermission: () => of(true) },
-      },
-    ],
+    imports: [RouterTestingModule],
     mocks: [RevisionCollectionService, RevisionDataService, NzModalService, NzMessageService],
+    shallow: true,
   });
 
   beforeEach(() => (spectator = createComponent()));

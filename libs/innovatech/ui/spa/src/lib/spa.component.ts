@@ -26,12 +26,14 @@ export class SpaComponent implements OnInit {
       icon: 'pie-chart',
       header: 'Dashboard',
       path: ['dashboard'],
+      cy: 'dashboard',
       display$: this.permissionService.hasReadPermission([UserRoles.superAdmin, UserRoles.agencyUser]),
     },
     {
       icon: 'file-text',
       header: 'Garantías',
       path: ['guarantees'],
+      cy: 'guarantees',
       display$: this.permissionService.hasReadPermission([
         UserRoles.superAdmin,
         UserRoles.agencyUser,
@@ -42,24 +44,28 @@ export class SpaComponent implements OnInit {
       icon: 'usergroup-add',
       header: 'Grupos',
       path: ['groups'],
+      cy: 'groups',
       display$: this.permissionService.hasReadPermission([UserRoles.superAdmin]),
     },
     {
       icon: 'barcode',
       header: 'Productos',
       path: ['products'],
+      cy: 'products',
       display$: this.permissionService.hasReadPermission([UserRoles.superAdmin]),
     },
     {
       icon: 'user',
       header: 'Usuarios',
       path: ['users'],
+      cy: 'users',
       display$: this.permissionService.hasReadPermission([UserRoles.superAdmin]),
     },
     {
       icon: 'car',
       header: 'Vehículos',
       path: ['vehicles'],
+      cy: 'vehicles',
       display$: this.permissionService.hasReadPermission([
         UserRoles.superAdmin,
         UserRoles.agencyUser,
@@ -70,6 +76,7 @@ export class SpaComponent implements OnInit {
       icon: 'tool',
       header: 'Revisiones',
       path: ['revisions'],
+      cy: 'revisions',
       display$: this.permissionService.hasReadPermission([
         UserRoles.superAdmin,
         UserRoles.agencyUser,
@@ -80,6 +87,7 @@ export class SpaComponent implements OnInit {
       icon: 'container',
       header: 'Solicitudes',
       path: ['revision-requests'],
+      cy: 'revision-requests',
       display$: this.permissionService.hasReadPermission([
         UserRoles.superAdmin,
         UserRoles.agencyUser,

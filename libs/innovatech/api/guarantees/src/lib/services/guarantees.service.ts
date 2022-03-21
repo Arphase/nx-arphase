@@ -1,10 +1,17 @@
 import { createCollectionResponse } from '@arphase/api/core';
 import { ApsCollectionResponse, formatDate } from '@arphase/common';
 import { filterCommonQuery, getReadableStream, tobase64 } from '@innovatech/api/core/util';
-import { GuaranteeEntity, MoralPersonEntity, PhysicalPersonEntity, VehicleEntity } from '@innovatech/api/domain';
+import {
+  ClientEntity,
+  GuaranteeEntity,
+  MoralPersonEntity,
+  PhysicalPersonEntity,
+  VehicleEntity,
+} from '@innovatech/api/domain';
 import { generateProductPdf, getProductPdfTemplate } from '@innovatech/api/products/utils';
 import {
   Guarantee,
+  GuaranteeStatus,
   guaranteeStatusLabels,
   GuaranteeSummary,
   PersonTypes,
@@ -175,6 +182,7 @@ export class GuaranteesService {
       await queryRunner.manager.save(newGuarantee);
       await queryRunner.commitTransaction();
       await newGuarantee.reload();
+      await (newGuarantee.client as ClientEntity).reload();
       return newGuarantee;
     } catch (err) {
       await queryRunner.rollbackTransaction();
@@ -214,19 +222,24 @@ export class GuaranteesService {
         const vehicle = await this.vehicleRepository.findOne({ id: vehicleId });
         validateVehicle(vehicle, user);
       }
-      if (updateGuaranteeDto.client?.personType === PersonTypes.moral && updateGuaranteeDto.client?.physicalInfo?.id) {
+      if (updateGuaranteeDto.client?.personType === PersonTypes.moral && preloadedGuarantee.client?.physicalInfo?.id) {
+        await queryRunner.manager.delete(PhysicalPersonEntity, preloadedGuarantee.client.physicalInfo.id);
         preloadedGuarantee.client.physicalInfo = null;
-        await queryRunner.manager.save(preloadedGuarantee);
-        await queryRunner.manager.delete(PhysicalPersonEntity, updateGuaranteeDto.client.physicalInfo.id);
       }
-      if (updateGuaranteeDto.client?.personType === PersonTypes.physical && updateGuaranteeDto.client?.moralInfo?.id) {
+      if (updateGuaranteeDto.client?.personType === PersonTypes.physical && preloadedGuarantee.client?.moralInfo?.id) {
+        await queryRunner.manager.delete(MoralPersonEntity, preloadedGuarantee.client.moralInfo.id);
         preloadedGuarantee.client.moralInfo = null;
-        await queryRunner.manager.save(preloadedGuarantee);
-        await queryRunner.manager.delete(MoralPersonEntity, updateGuaranteeDto.client.moralInfo.id);
       }
-      await queryRunner.manager.save(preloadedGuarantee);
-      await queryRunner.commitTransaction();
-      await preloadedGuarantee.reload();
+      try {
+        preloadedGuarantee.status = GuaranteeStatus[preloadedGuarantee.status];
+        await queryRunner.manager.save(preloadedGuarantee);
+        await queryRunner.commitTransaction();
+        await preloadedGuarantee.reload();
+        await (preloadedGuarantee.client as ClientEntity).reload();
+      } catch (e) {
+        console.log(e);
+      }
+
       return preloadedGuarantee;
     } catch (err) {
       await queryRunner.rollbackTransaction();

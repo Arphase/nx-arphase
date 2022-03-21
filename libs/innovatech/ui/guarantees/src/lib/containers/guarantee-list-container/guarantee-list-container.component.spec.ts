@@ -1,5 +1,4 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { PermissionService } from '@innovatech/ui/permissions/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockStore } from '@ngrx/store/testing';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -25,7 +24,6 @@ describe('GuaranteeListContainerComponent', () => {
       PaymentOrderDataService,
       NzModalService,
       NzMessageService,
-      PermissionService,
     ],
   });
 

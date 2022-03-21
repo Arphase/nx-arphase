@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ThemeService } from '@arphase/ui/core';
+import { NzIconService } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,8 @@ import { ThemeService } from '@arphase/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  constructor(private themeService: ThemeService) {
+  constructor(private themeService: ThemeService, private nzIconService: NzIconService) {
     this.themeService.loadTheme();
+    this.nzIconService.changeAssetsSource('https://arphase-icons.s3.amazonaws.com');
   }
 }

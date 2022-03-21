@@ -22,11 +22,12 @@ async function bootstrap() {
   });
 
   app.enableCors();
-  const port = process.env.PORT || environment.server.port;
+  const port = process.env.PORT;
 
-  await app.listen(port, () => {
-    Logger.log('Listening at http://localhost:' + port);
-  });
+  await app.listen(port, () => Logger.log('Listening at http://localhost:' + port));
+
+  const used = process.memoryUsage().heapUsed / 1024 / 1024;
+  console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
 }
 
 bootstrap();

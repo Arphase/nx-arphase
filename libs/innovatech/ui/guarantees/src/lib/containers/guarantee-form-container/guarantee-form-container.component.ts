@@ -43,7 +43,6 @@ export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<G
       return createRoute ? create : update;
     })
   );
-  showCompanyInput$ = this.permissionService.hasCreatePermission([UserRoles.superAdmin]);
   productOptions$ = this.productCollectionService.options$;
   vehicle$ = this.vehicleCollectionService.currentItem$;
   currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));

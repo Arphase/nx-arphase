@@ -1,15 +1,16 @@
 <form nz-form
       nz-row
       nzLayout="vertical"
+      data-cy="form"
       [formGroup]="form"
       (ngSubmit)="submit()">
   <nz-space nzDirection="vertical"
             nz-col
             nzSpan="24"
             nzSize="middle">
-    <nz-page-header nzBackIcon
-                    [nzTitle]="title"
-                    [routerLink]="['..']"></nz-page-header>
+    <nz-page-header nzBackIcon>
+      <nz-page-header-title [routerLink]="['..']">{{ title }}</nz-page-header-title>
+    </nz-page-header>
 
     <nz-collapse *nzSpaceItem>
       <nz-collapse-panel nzHeader="Vehículo"
@@ -105,7 +106,8 @@
               <nz-form-label nzRequired>Estatus</nz-form-label>
               <nz-form-control apsAutoError>
                 <nz-select formControlName="status"
-                           [nzOptions]="statusOptions">
+                           [nzOptions]="statusOptions"
+                           data-cy="status">
                 </nz-select>
               </nz-form-control>
             </nz-form-item>
@@ -120,7 +122,8 @@
               <nz-form-control apsAutoError>
                 <input nz-input
                        type="number"
-                       formControlName="kilometrage" />
+                       formControlName="kilometrage"
+                       data-cy="kilometrage" />
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -133,7 +136,8 @@
               <nz-form-label nzRequired>Revisado por</nz-form-label>
               <nz-form-control apsAutoError>
                 <input nz-input
-                       formControlName="reviewdBy" />
+                       formControlName="reviewdBy"
+                       data-cy="reviewed-by" />
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -146,7 +150,8 @@
               <nz-form-label nzRequired>Observaciones</nz-form-label>
               <nz-form-control apsAutoError>
                 <textarea nz-input
-                          formControlName="observations"></textarea>
+                          formControlName="observations"
+                          data-cy="observations"></textarea>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -171,7 +176,8 @@
                     nz-button
                     type="submit"
                     nzType="primary"
-                    [nzLoading]="loading">
+                    [nzLoading]="loading"
+                    data-cy="save">
               Guardar
             </button>
           </nz-space>

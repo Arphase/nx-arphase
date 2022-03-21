@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.8.4](https://github.com/Arphase/nx-arphase/compare/v3.8.3...v3.8.4) (2022-03-21)
+
+
+### Features
+
+* **innovatech/revisions:** [#259](https://github.com/Arphase/nx-arphase/issues/259) add shortcut from revisions list to create new guarantee ([945e441](https://github.com/Arphase/nx-arphase/commit/945e441ca8085a645a7e6974d07f87f261334c21))
+
+
+### Bug Fixes
+
+* **innovatech/guarantees:** don't delete guarantee when physical info changes to moral info ([9291a05](https://github.com/Arphase/nx-arphase/commit/9291a054cccea6fba3d04bfb1f48c5d20f39807e))
+
+### [3.8.3](https://github.com/Arphase/nx-arphase/compare/v3.8.2...v3.8.3) (2022-03-14)
+
 ### [3.8.2](https://github.com/Arphase/nx-arphase/compare/v3.8.1...v3.8.2) (2022-03-12)
 
 

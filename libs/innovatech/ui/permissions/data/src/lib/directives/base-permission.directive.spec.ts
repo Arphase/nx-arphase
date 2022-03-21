@@ -14,7 +14,7 @@ describe('BasePermissionDirective', () => {
   });
 
   beforeEach(() => {
-    spectator = createDirective(`<div *ivtBasePermission></div>`);
+    spectator = createDirective(`<div *ivtPermission></div>`);
     spectator.directive.hasPermission$ = of(true);
   });
 
