@@ -25,6 +25,9 @@ async function bootstrap() {
   const port = process.env.PORT;
 
   await app.listen(port, () => Logger.log('Listening at http://localhost:' + port));
+
+  const used = process.memoryUsage().heapUsed / 1024 / 1024;
+  console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
 }
 
 bootstrap();

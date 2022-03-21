@@ -641,9 +641,7 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
-              "serviceWorker": true,
-              "ngswConfigPath": "apps/innovatech/app/ngsw-config.json"
+              "buildOptimizer": true
             },
             "production": {
               "fileReplacements": [
@@ -658,9 +656,7 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
-              "serviceWorker": true,
-              "ngswConfigPath": "apps/innovatech/app/ngsw-config.json"
+              "buildOptimizer": true
             }
           },
           "defaultConfiguration": "development"
