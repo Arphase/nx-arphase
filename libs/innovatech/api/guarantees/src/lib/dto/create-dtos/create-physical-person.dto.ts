@@ -1,5 +1,5 @@
 import { Trim } from '@arphase/api/core';
-import { IsDateString, IsString } from 'class-validator';
+import { IsDate, IsString } from 'class-validator';
 
 export class CreatePhysicalPersonDto {
   @IsString()
@@ -14,6 +14,6 @@ export class CreatePhysicalPersonDto {
   @Trim('secondLastName')
   secondLastName: string;
 
-  @IsDateString()
+  @IsDate()
   birthDate: Date;
 }

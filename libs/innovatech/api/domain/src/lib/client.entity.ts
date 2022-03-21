@@ -28,13 +28,13 @@ export class ClientEntity extends BaseEntity implements Client {
       from: value => PersonTypes[value],
     },
   })
-  personType: PersonTypes;
+  personType: PersonTypes | string;
 
   @OneToOne(() => PhysicalPersonEntity, {
     cascade: true,
     eager: true,
     onUpdate: 'CASCADE',
-    onDelete: 'CASCADE',
+    onDelete: 'SET NULL',
   })
   @JoinColumn({ name: 'physicalPersonId' })
   physicalInfo: PhysicalPerson;
@@ -43,7 +43,7 @@ export class ClientEntity extends BaseEntity implements Client {
     cascade: true,
     eager: true,
     onUpdate: 'CASCADE',
-    onDelete: 'CASCADE',
+    onDelete: 'SET NULL',
   })
   @JoinColumn({ name: 'moralPersonId' })
   moralInfo: MoralPerson;
