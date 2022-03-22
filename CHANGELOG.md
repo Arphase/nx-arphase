@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.8.5](https://github.com/Arphase/nx-arphase/compare/v3.8.4...v3.8.5) (2022-03-22)
+
+
+### Bug Fixes
+
+* **innovatech/vehicles:** display correct options for superAdmin user ([2e5697a](https://github.com/Arphase/nx-arphase/commit/2e5697a8068d45d6e0ca9efbed5f9dd55181dd54))
+
 ### [3.8.4](https://github.com/Arphase/nx-arphase/compare/v3.8.3...v3.8.4) (2022-03-21)
 
 
