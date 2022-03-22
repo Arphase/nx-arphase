@@ -5,10 +5,12 @@ import {
   ChangeDetectorRef,
   Component,
   Inject,
+  OnInit,
   PLATFORM_ID,
   Renderer2,
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { NzIconService } from 'ng-zorro-antd/icon';
 import { debounceTime, filter } from 'rxjs/operators';
 
 @Component({
@@ -17,14 +19,19 @@ import { debounceTime, filter } from 'rxjs/operators';
   styleUrls: ['./app.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
   constructor(
     // eslint-disable-next-line @typescript-eslint/ban-types
     @Inject(PLATFORM_ID) private platformId: Object,
     private renderer: Renderer2,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private nzIconService: NzIconService
   ) {}
+
+  ngOnInit() {
+    this.nzIconService.changeAssetsSource('https://arphase-icons.s3.amazonaws.com');
+  }
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {

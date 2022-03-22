@@ -1,15 +1,26 @@
 /// <reference types ="cypress"/>
 
 describe('Guarantees', () => {
+  before(() => {
+    cy.task('connectToDb');
+    cy.task('seed');
+    cy.task('seedLocalities');
+    cy.task('seedProduct');
+    cy.task('seedVehicle');
+    cy.task('seedAssignedProduct');
+  });
+
   beforeEach(() => {
+    cy.login();
     cy.visit('/');
   });
 
-  it('create a guarantee', () => {
-    cy.get('[data-cy="email"]').type('victor.martinez@mailinator.com');
-    cy.get('[data-cy="password"]').type('Innovatech123@');
-    cy.get('[data-cy="sign-in"]').click();
+  after(() => {
+    cy.task('clean');
+    cy.task('closeDbConnection');
+  });
 
+  it('should create an item', () => {
     // Navigate to form
     cy.get('[data-cy="guarantees"]').click();
     cy.get('[data-cy="new-guarantee"]').click();
@@ -28,7 +39,7 @@ describe('Guarantees', () => {
     });
     cy.get('[data-cy="form"]').selectDropdownOptionAndWait({
       inputName: 'product',
-      value: 'Product test',
+      value: 'Product',
     });
     cy.get('[data-cy="person-type-physical"]').click();
     cy.get('[data-cy="sales-place"]').type('Punto de venta prueba');
@@ -39,7 +50,7 @@ describe('Guarantees', () => {
     cy.get('[data-cy="rfc"]').type('MAVV951102311');
     cy.get('[data-cy="phone"]').type('8112341234');
     cy.get('[data-cy="email"]').type('victor@test.com');
-    cy.get('[data-cy="zipcode"]').type('64988');
+    cy.get('[data-cy="zipcode"]').type('64983');
     cy.get('[data-cy="suburb"]').type('Test');
     cy.get('[data-cy="street"]').type('Test');
     cy.get('[data-cy="external-number"]').type('10');

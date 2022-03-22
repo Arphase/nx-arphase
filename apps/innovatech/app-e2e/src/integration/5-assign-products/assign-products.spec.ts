@@ -1,15 +1,22 @@
 /// <reference types ="cypress"/>
 
 describe('Assign Products', () => {
+  before(() => {
+    cy.task('connectToDb');
+    cy.task('seed');
+    cy.task('seedProduct');
+  });
+
   beforeEach(() => {
+    cy.login();
     cy.visit('/');
   });
 
-  it('create a product', () => {
-    cy.get('[data-cy="email"]').type('victor.martinez@mailinator.com');
-    cy.get('[data-cy="password"]').type('Innovatech123@');
-    cy.get('[data-cy="sign-in"]').click();
-
+  after(() => {
+    cy.task('clean');
+    cy.task('closeDbConnection');
+  });
+  it('should assign a product', () => {
     // Navigate to modal
     cy.get('[data-cy="groups"]').click();
     cy.get('[data-cy="assign-products"]').first().click();

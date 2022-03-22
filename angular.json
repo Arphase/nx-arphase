@@ -23,6 +23,29 @@
       },
       "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
     },
+    "arphase-api-db": {
+      "root": "libs/arphase/api/db",
+      "sourceRoot": "libs/arphase/api/db/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/arphase/api/db/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/arphase/api/db"],
+          "options": {
+            "jestConfig": "libs/arphase/api/db/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "arphase-api-testing": {
       "root": "libs/arphase/api/testing",
       "sourceRoot": "libs/arphase/api/testing/src",
@@ -663,20 +686,15 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "innovatech-app:build"
-          },
           "configurations": {
-            "development": {
-              "browserTarget": "innovatech-app:build:development"
-            },
             "production": {
               "browserTarget": "innovatech-app:build:production"
             },
-            "ci": {
-              "progress": false
+            "development": {
+              "browserTarget": "innovatech-app:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -1893,7 +1911,8 @@
               ],
               "outputHashing": "all"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2558,33 +2577,6 @@
       },
       "tags": ["domain:pam-vic", "executable:ui"]
     },
-    "pam-vic-e2e": {
-      "root": "apps/pam-vic-e2e",
-      "sourceRoot": "apps/pam-vic-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/pam-vic-e2e/cypress.json",
-            "devServerTarget": "pam-vic:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "pam-vic:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/pam-vic-e2e/**/*.{js,ts}"]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": ["pam-vic"]
-    },
     "valmira-admin": {
       "projectType": "application",
       "root": "apps/valmira/admin",
@@ -2653,7 +2645,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2700,7 +2693,7 @@
           "options": {
             "cypressConfig": "apps/valmira/admin-e2e/cypress.json",
             "tsConfig": "apps/valmira/admin-e2e/tsconfig.e2e.json",
-            "devServerTarget": "valmira-admin:serve"
+            "devServerTarget": "valmira-admin:serve:development"
           },
           "configurations": {
             "production": {
@@ -2981,19 +2974,7 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
+              "buildOptimizer": true
             }
           }
         },
@@ -3108,7 +3089,7 @@
           "options": {
             "cypressConfig": "apps/valmira/app-e2e/cypress.json",
             "tsConfig": "apps/valmira/app-e2e/tsconfig.e2e.json",
-            "devServerTarget": "valmira-app:serve"
+            "devServerTarget": "valmira-app:serve:development"
           },
           "configurations": {
             "production": {
