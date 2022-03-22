@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { ApsListComponent } from '@arphase/ui/core';
 import { isVehicleElegible, UserRoles, Vehicle, VehicleStatus, vehicleStatusLabels } from '@innovatech/common/domain';
-import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 
 import { colorMaps, columns, iconMaps, statusOptions } from './vehicle-list.constants';
 
@@ -10,7 +9,6 @@ import { colorMaps, columns, iconMaps, statusOptions } from './vehicle-list.cons
   templateUrl: './vehicle-list.component.html',
   styleUrls: ['./vehicle-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
 export class VehicleListComponent extends ApsListComponent<Vehicle> {
   columns = columns;

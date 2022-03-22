@@ -1,6 +1,6 @@
 import { TransformEmail, Trim } from '@arphase/api/core';
 import { UserRoles } from '@innovatech/common/domain';
-import { IsEmail, IsEnum, IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class AuthCredentialsDto {
   @IsEmail()
@@ -38,4 +38,8 @@ export class SignUpCredentialsDto {
 
   @IsEnum(UserRoles)
   role: UserRoles;
+
+  @IsNumber()
+  @IsOptional()
+  companyId?: number;
 }

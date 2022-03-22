@@ -1,5 +1,5 @@
 import { createCollectionResponse } from '@arphase/api/core';
-import { createNestApp, dropEntities } from '@arphase/api/testing';
+import { createNestApp } from '@arphase/api/testing';
 import { DeepPartial } from '@arphase/common';
 import { AuthModule } from '@innovatech/api/auth/feature';
 import { InnovatechApiDbModule, insertGroup, insertUser } from '@innovatech/api/db';
@@ -16,6 +16,7 @@ import {
   VehicleEntity,
 } from '@innovatech/api/domain';
 import { Guarantee, GuaranteeStatus, PersonTypes, Product, Vehicle, VehicleStatus } from '@innovatech/common/domain';
+import { dropEntities } from '@arphase/api/db';
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';

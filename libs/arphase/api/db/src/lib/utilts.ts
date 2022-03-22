@@ -1,20 +1,6 @@
-import { INestApplication, ValidationPipe } from '@nestjs/common';
-import { TestingModule } from '@nestjs/testing';
-import * as bodyParser from 'body-parser';
 import * as fs from 'fs';
 import * as Path from 'path';
 import { Connection } from 'typeorm';
-
-export async function createNestApp(module: TestingModule): Promise<INestApplication> {
-  let app = module.createNestApplication();
-  app.useGlobalPipes(
-    new ValidationPipe({ transform: true, whitelist: true, transformOptions: { enableImplicitConversion: true } })
-  );
-  app.use(bodyParser.json({ limit: '50mb' }));
-  app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-  await app.init();
-  return app;
-}
 
 /**
  * Shutdown the http server
@@ -38,9 +24,7 @@ export async function closeDbConnection(connection: Connection) {
  * Returns the entites of the database
  */
 export async function getEntities(connection: Connection) {
-  const entities = [];
-  (await (await connection).entityMetadatas).forEach(x => entities.push({ name: x.name, tableName: x.tableName }));
-  return entities;
+  return connection.entityMetadatas.map(x => ({ name: x.name, tableName: x.tableName }));
 }
 
 /**
@@ -49,7 +33,6 @@ export async function getEntities(connection: Connection) {
 export async function reloadFixtures(connection: Connection) {
   const entities = await getEntities(connection);
   await deleteAll(entities, connection);
-  await loadAll(entities, connection);
 }
 
 /**
@@ -58,18 +41,37 @@ export async function reloadFixtures(connection: Connection) {
 export async function dropFixtures(connection: Connection) {
   const entities = await getEntities(connection);
   await dropAll(entities, connection);
-  await loadAll(entities, connection);
+}
+
+/**
+ * Drops the database and reloads the entries
+ */
+export async function cleanFixtures(connection: Connection) {
+  const entities = await getEntities(connection);
+  await cleanAll(entities, connection);
+}
+
+/**
+ * Deletes all the entities
+ */
+export async function deleteAll(entities, connection: Connection) {
+  try {
+    for (const entity of entities) {
+      const repository = connection.getRepository(entity.name);
+      await repository.query(`DELETE FROM "${entity?.tableName ? entity.tableName : entity}";`);
+    }
+  } catch (error) {
+    throw new Error(`ERROR: Cleaning test db: ${error}`);
+  }
 }
 
 /**
  * Cleans all the entities
  */
-export async function deleteAll(entities, connection: Connection) {
+export async function cleanAll(entities, connection: Connection) {
   try {
-    for (const entity of entities) {
-      const repository = await connection.getRepository(entity.name);
-      await repository.query(`DELETE FROM "${entity.tableName}";`);
-    }
+    const repository = connection.getRepository(entities[0].name);
+    await repository.query(`TRUNCATE TABLE ${entities.map(entity => `"${entity.tableName}"`).join(', ')};`);
   } catch (error) {
     throw new Error(`ERROR: Cleaning test db: ${error}`);
   }
@@ -81,7 +83,7 @@ export async function deleteAll(entities, connection: Connection) {
 export async function loadAll(entities, connection: Connection) {
   try {
     for (const entity of entities) {
-      const repository = await connection.getRepository(entity.name);
+      const repository = connection.getRepository(entity.name);
       const fixtureFile = Path.join(__dirname, `../test/fixtures/${entity.name}.json`);
       if (fs.existsSync(fixtureFile)) {
         const items = JSON.parse(fs.readFileSync(fixtureFile, 'utf8'));
@@ -96,7 +98,7 @@ export async function loadAll(entities, connection: Connection) {
 export async function dropAll(entities, connection: Connection) {
   try {
     for (const entity of entities) {
-      const repository = await connection.getRepository(entity.name);
+      const repository = connection.getRepository(entity.name);
       await repository.query(`DROP TABLE "${entity.tableName}" CASCADE;`);
     }
   } catch (error) {

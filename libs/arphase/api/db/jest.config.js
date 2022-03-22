@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'innovatech-api-revision-requests',
+  displayName: 'arphase-api-db',
   preset: '../../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../../coverage/libs/innovatech/api/revision-requests',
+  coverageDirectory: '../../../../coverage/libs/arphase/api/db',
 };
