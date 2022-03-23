@@ -1,8 +1,16 @@
 /// <reference types ="cypress"/>
 
-describe('Auth', () => {
-  beforeEach(() => {
-    cy.visit('/');
+describe('Auth', async () => {
+  before(() => {
+    cy.task('connectToDb');
+    cy.task('seed');
+  });
+
+  beforeEach(() => cy.visit('/'));
+
+  after(() => {
+    cy.task('clean');
+    cy.task('closeDbConnection');
   });
 
   it('should login', () => {

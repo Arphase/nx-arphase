@@ -3,7 +3,9 @@ import dotenv from 'dotenv';
 
 import { ENTITIES } from './entities';
 
-if (process.env.NODE_ENV === 'test') {
+const test = process.env.NODE_ENV === 'test' || process.env['NODE' + '_ENV'] === 'test';
+
+if (test) {
   dotenv.config({ path: '.env.test' });
 }
 
@@ -27,7 +29,7 @@ const config: TypeOrmModuleOptions = {
     // to be compiled into dist/ folder.
     migrationsDir: 'libs/innovatech/api/db/src/lib/migrations',
   },
-  logging: process.env.NODE_ENV !== 'test',
+  logging: !test,
 };
 
 export = config;

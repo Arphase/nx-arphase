@@ -3,15 +3,22 @@ import { RevisionStatus, revisionStatusLabels } from '@innovatech/common/domain'
 /// <reference types ="cypress"/>
 
 describe('Revisions', () => {
+  before(() => {
+    cy.task('connectToDb');
+    cy.task('seed');
+    cy.task('seedVehicle');
+  });
+
   beforeEach(() => {
+    cy.login();
     cy.visit('/');
   });
 
-  it('create a vehicle', () => {
-    cy.get('[data-cy="email"]').type('victor.martinez@mailinator.com');
-    cy.get('[data-cy="password"]').type('Innovatech123@');
-    cy.get('[data-cy="sign-in"]').click();
-
+  after(() => {
+    cy.task('clean');
+    cy.task('closeDbConnection');
+  });
+  it('should create an item', () => {
     // Navigate to form
     cy.get('[data-cy="revisions"]').click();
     cy.get('[data-cy="new-revision"]').click();
@@ -34,7 +41,7 @@ describe('Revisions', () => {
     revisionRow.get('[data-cy="vin"]').first().should('have.text', '37289472398473289');
     revisionRow.get('[data-cy="brand"]').first().should('have.text', 'Seat');
     revisionRow.get('[data-cy="model"]').first().should('have.text', 'Ibiza');
-    revisionRow.get('[data-cy="year"]').first().should('have.text', '2022');
+    revisionRow.get('[data-cy="year"]').first().should('have.text', '2020');
     revisionRow.get('[data-cy="observations"]').first().should('have.text', 'Test observations');
     revisionRow.get('[data-cy="status"]').first().should('have.class', 'anticon-check-circle');
   });

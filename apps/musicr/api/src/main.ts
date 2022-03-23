@@ -32,7 +32,7 @@ async function bootstrap() {
 
   app.enableCors();
 
-  const port = process.env.PORT || environment.server.port;
+  const port = process.env.MRL_PORT || 3333;
   await app.listen(port, () => {
     Logger.log('Listening at http://localhost:' + port + '/api');
   });

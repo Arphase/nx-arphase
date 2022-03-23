@@ -1,5 +1,6 @@
 import { createCollectionResponse } from '@arphase/api/core';
-import { createNestApp, dropEntities } from '@arphase/api/testing';
+import { createNestApp } from '@arphase/api/testing';
+import { dropEntities } from '@arphase/api/db';
 import { AuthModule } from '@innovatech/api/auth/feature';
 import { InnovatechApiDbModule, insertGroup, insertUser } from '@innovatech/api/db';
 import { CompanyEntity, GroupEntity, UserEntity, VehicleEntity } from '@innovatech/api/domain';
@@ -20,7 +21,7 @@ describe('VehiclesController', () => {
   let token: string;
   let connection: Connection;
 
-  const mockedVehicleProperties: string[] = [
+  const vehicleProperties: string[] = [
     'brand',
     'model',
     'version',
@@ -101,7 +102,7 @@ describe('VehiclesController', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    expect(pick(body, mockedVehicleProperties)).toEqual(pick(newVehicle, mockedVehicleProperties));
+    expect(pick(body, vehicleProperties)).toEqual(pick(newVehicle, vehicleProperties));
   });
 
   it('should create a vehicle', async () => {
@@ -116,7 +117,7 @@ describe('VehiclesController', () => {
 
     const expected = await repository.findOne({ id: body.id });
 
-    expect(mockedVehicle).toEqual(pick(expected, mockedVehicleProperties));
+    expect(mockedVehicle).toEqual(pick(expected, vehicleProperties));
   });
 
   it('should update a vehicle', async () => {
@@ -143,7 +144,7 @@ describe('VehiclesController', () => {
       .expect(200);
 
     const expected = await repository.findOne({ id: updatedVehicle.id });
-    expect(updatedVehicle).toEqual(pick(expected, ['id', ...mockedVehicleProperties]));
+    expect(updatedVehicle).toEqual(pick(expected, ['id', ...vehicleProperties]));
   });
 
   it('should delete a vehicle', async () => {

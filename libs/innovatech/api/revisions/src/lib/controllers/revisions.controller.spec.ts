@@ -1,5 +1,6 @@
 import { createCollectionResponse } from '@arphase/api/core';
-import { createNestApp, dropEntities } from '@arphase/api/testing';
+import { createNestApp } from '@arphase/api/testing';
+import { dropEntities } from '@arphase/api/db';
 import { DeepPartial } from '@arphase/common';
 import { AuthModule } from '@innovatech/api/auth/feature';
 import { InnovatechApiDbModule, insertGroup, insertUser } from '@innovatech/api/db';

@@ -21,6 +21,9 @@ export class CreateRevisionRequestDto {
   @TransformEmail()
   email: string;
 
+  @IsString()
+  additionalNotes: string;
+
   @IsNumber()
   vehicleId: number;
 }

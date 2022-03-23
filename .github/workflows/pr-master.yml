@@ -44,4 +44,4 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Unit tests
-        run: npx nx affected:test --base=remotes/origin/staging --ci --runInBand
+        run: npx nx affected:test --base=remotes/origin/master --ci --runInBand

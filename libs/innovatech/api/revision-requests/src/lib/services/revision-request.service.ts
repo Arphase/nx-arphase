@@ -53,12 +53,7 @@ export class RevisionRequestService {
   }
 
   async getRevisionRequest(id: number): Promise<RevisionRequest> {
-    const query = this.revisionRequestRepository.createQueryBuilder('revisionRequest');
-    const found = await query
-      .leftJoinAndSelect('revisionRequest.vehicle', 'vehicle')
-      .leftJoinAndSelect('revisionRequest.address', 'address')
-      .where('revisionRequest.id = :id', { id })
-      .getOne();
+    const found = this.revisionRequestRepository.findOne({ id }, { relations: ['vehicle', 'address'] });
     if (!found) {
       throw new NotFoundException(`Revision request with id "${id}" not found`);
     }

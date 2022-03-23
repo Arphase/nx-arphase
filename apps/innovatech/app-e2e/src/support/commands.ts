@@ -12,8 +12,6 @@
 declare namespace Cypress {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Chainable<Subject> {
-    login(email: string, password: string): void;
-
     /**
      * search for the input with the passed data-cy, selects the option and wait for a specified route if provided
      * @param inputName - data-cy to look for, the select input
@@ -25,6 +23,7 @@ declare namespace Cypress {
       value: string;
       endpoint?: string | string[];
     }): Cypress.Chainable<Subject>;
+    login(): Cypress.Chainable<Subject>;
   }
 }
 
@@ -43,11 +42,6 @@ declare namespace Cypress {
 //   });
 // }
 //
-// -- This is a parent command --
-Cypress.Commands.add('login', (email, password) => {
-  console.log('Custom command example: Login', email, password);
-});
-
 Cypress.Commands.add('selectDropdownOptionAndWait', { prevSubject: 'element' }, (prevSubject, { inputName, value }) => {
   return cy
     .get(`[data-cy=${inputName}]`)
@@ -57,6 +51,19 @@ Cypress.Commands.add('selectDropdownOptionAndWait', { prevSubject: 'element' }, 
     .contains(value)
     .click()
     .then(() => prevSubject);
+});
+
+Cypress.Commands.add('login', () => {
+  cy.request({
+    method: 'POST',
+    url: 'http://localhost:3333/auth/signIn',
+    body: {
+      email: 'victor.martinez@mailinator.com',
+      password: 'Innovatech123@',
+    },
+  }).then(({ body }) => {
+    Object.keys(body).forEach(key => window.localStorage.setItem(key, body[key]));
+  });
 });
 
 //
