@@ -9,7 +9,7 @@ if (test) {
   dotenv.config({ path: '.env.test' });
 }
 
-export const config: TypeOrmModuleOptions = {
+export default {
   type: 'postgres',
   host: process.env.HOST,
   port: 5432,
@@ -30,4 +30,4 @@ export const config: TypeOrmModuleOptions = {
     migrationsDir: 'libs/musicr/api/db/src/lib/migrations',
   },
   logging: !test,
-};
+} as TypeOrmModuleOptions;
