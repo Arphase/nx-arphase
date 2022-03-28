@@ -11,8 +11,8 @@ import { AuthService } from './services/auth.service';
 @Module({
   imports: [
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: Number(process.env.JWT_EXPIRATION) },
+      secret: process.env.JWT_SECRET ?? 'test',
+      signOptions: { expiresIn: Number(process.env.JWT_EXPIRATION) || 3000 },
     }),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     TypeOrmModule.forFeature([ResetPasswordEntity, UserEntity]),

@@ -1721,6 +1721,29 @@
       },
       "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
     },
+    "musicr-api-db": {
+      "root": "libs/musicr/api/db",
+      "sourceRoot": "libs/musicr/api/db/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/musicr/api/db/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/api/db"],
+          "options": {
+            "jestConfig": "libs/musicr/api/db/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "musicr-api-domain": {
       "root": "libs/musicr/api/domain",
       "sourceRoot": "libs/musicr/api/domain/src",
