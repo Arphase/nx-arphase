@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.8.6](https://github.com/Arphase/nx-arphase/compare/v3.8.5...v3.8.6) (2022-03-28)
+
+
+### Bug Fixes
+
+* **musicr/photos:** delete photos passing id instead of whole entity ([683da43](https://github.com/Arphase/nx-arphase/commit/683da4319e046c0abcd25fd589ac955a63848568))
+
 ### [3.8.5](https://github.com/Arphase/nx-arphase/compare/v3.8.4...v3.8.5) (2022-03-22)
 
 
