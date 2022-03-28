@@ -9,7 +9,7 @@ if (test) {
   dotenv.config({ path: '.env.test' });
 }
 
-const config: TypeOrmModuleOptions = {
+export const config: TypeOrmModuleOptions = {
   type: 'postgres',
   host: process.env.HOST,
   port: 5432,
@@ -31,5 +31,3 @@ const config: TypeOrmModuleOptions = {
   },
   logging: !test,
 };
-
-export = config;
