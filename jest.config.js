@@ -114,5 +114,6 @@ module.exports = {
     '<rootDir>/libs/valmira/ui/spa',
     '<rootDir>/libs/valmira/ui/terms-and-conditions',
     '<rootDir>/libs/arphase/api/db',
+    '<rootDir>/libs/musicr/api/db',
   ],
 };

@@ -1,5 +1,6 @@
 import { Photo, PriceOption, Product } from '@musicr/domain';
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
@@ -13,7 +14,7 @@ import { PriceOptionEntity } from './price-option.entity';
 import { ProductEntity } from './product.entity';
 
 @Entity('photos')
-export class PhotoEntity implements Photo {
+export class PhotoEntity extends BaseEntity implements Photo {
   @PrimaryGeneratedColumn()
   id: number;
 
