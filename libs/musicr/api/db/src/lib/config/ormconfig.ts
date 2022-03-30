@@ -18,9 +18,5 @@ export default {
   password: process.env.DB_PASSWORD,
   entities: ENTITIES,
   synchronize: process.env.SYNCHRONIZE === 'true',
-  cli: {
-    migrationsDir: 'libs/musicr/api/db/src/lib/migrations',
-  },
-  migrations: ['libs/musicr/api/db/src/lib/migrations/**/*.ts'],
   logging: !test,
 } as TypeOrmModuleOptions;
