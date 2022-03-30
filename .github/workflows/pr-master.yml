@@ -3,6 +3,9 @@ name: Staging Pull Request CI
 env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_BUCKET_NAME: arphase-photos-dev
   NODE_ENV: test
   IVT_DB: innovatech-test
   MRL_DB: music-revolution-test
@@ -12,7 +15,6 @@ env:
   SYNCHRONIZE: true
   JWT_SECRET: test
   JWT_EXPIRATION: 360000
-  AWS_BUCKET_NAME: arphase-photos-dev
 
 on:
   pull_request:
