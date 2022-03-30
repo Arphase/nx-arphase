@@ -12,6 +12,7 @@ env:
   SYNCHRONIZE: true
   JWT_SECRET: test
   JWT_EXPIRATION: 360000
+  AWS_BUCKET_NAME: arphase-photos-dev
 
 on:
   pull_request:
