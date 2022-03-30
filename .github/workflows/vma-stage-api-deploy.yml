@@ -43,7 +43,7 @@ jobs:
         run: npx ng run valmira-app:server:production
 
       - name: Create zip file
-        run: zip -r Archive.zip . -x .git/\* -x .cache/\* -x node_modules/\* -x .vscode/\*  -x .github/\* -x .tmp/\*
+        run: zip -r Archive.zip . -x .git/\* -x .cache/\* -x node_modules/\* -x .vscode/\*  -x .github/\* -x .tmp/\* -x apps/innovatech/\* -x apps/musicr/\* -x apps/pam-vic/\* -x apps/pam-vic-e2e/\* -x libs/innovatech/\* -x libs/musicr/\*
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v16
