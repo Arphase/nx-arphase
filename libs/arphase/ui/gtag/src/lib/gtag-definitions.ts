@@ -31,57 +31,30 @@ export interface ConfigParams extends CustomParams {
 }
 
 export interface EventParams extends CustomParams {
-  non_interaction?: true;
-  event_category?: string;
-  event_label?: string;
-  value?: number;
-}
-
-export interface Impression {
-  id: string;
-  name: string;
-  list_name?: string;
-  brand?: string;
-  category?: string;
-  variant?: string;
-  list_position?: number;
-  price?: number;
-}
-
-export interface Product {
-  id?: string;
-  name?: string;
-  brand?: string;
-  category?: string;
-  variant?: string;
-  price?: number;
-  quantity?: number;
-  coupon?: string;
-  list_position?: number;
-}
-
-export interface Promotion {
-  id?: string;
-  name?: string;
-  creative_name?: string;
-  creative_slot?: string;
-}
-
-export interface Action {
+  items?: Partial<Item>[];
   transaction_id?: string;
-  affiliation?: string;
   value?: number;
   currency?: string;
-  tax?: number;
-  shipping?: number;
-  items?: Product[];
-  checkout_step?: number;
-  checkout_option?: string;
 }
 
-export interface Content {
-  content_id?: string;
-  content_type?: string;
-  items?: Product[];
-  promotions?: Promotion[];
+export interface Item {
+  item_id: string;
+  item_name: string;
+  affiliation: string;
+  coupon: string;
+  currency: string;
+  discount: number;
+  index: number;
+  item_brand: string;
+  item_category: string;
+  item_category2: string;
+  item_category3: string;
+  item_category4: string;
+  item_category5: string;
+  item_list_id: string;
+  item_list_name: string;
+  item_variant: string;
+  location_id: string;
+  price: number;
+  quantity: number;
 }
