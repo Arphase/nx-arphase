@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.8.7](https://github.com/Arphase/nx-arphase/compare/v3.8.6...v3.8.7) (2022-04-01)
+
+
+### Features
+
+* **musicr/cart:** change google analytics properties ([6e698ac](https://github.com/Arphase/nx-arphase/commit/6e698ac3efd401abeb8b707327c8aab9914abf2f))
+
 ### [3.8.6](https://github.com/Arphase/nx-arphase/compare/v3.8.5...v3.8.6) (2022-03-28)
 
 

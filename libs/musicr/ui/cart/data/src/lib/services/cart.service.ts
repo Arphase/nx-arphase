@@ -62,10 +62,17 @@ export class CartService {
 
   addItem(item: Partial<OrderProduct>): void {
     this.gtagService.event('add_to_cart', {
-      productName: item.product.name,
-      amount: item.amount,
-      productId: item.product.id,
-      price: item.price,
+      items: [
+        {
+          currency: 'MXN',
+          item_id: String(item.product.id),
+          item_name: item.product.name,
+          item_category: item.product.subcategory.category.name,
+          item_category2: item.product.subcategory.name,
+          price: item.price,
+          quantity: item.amount,
+        },
+      ],
     });
     this.cartItems$.pipe(take(1)).subscribe(cartItems => {
       cartItems.push(item);
@@ -77,10 +84,17 @@ export class CartService {
     this.cartItems$.pipe(take(1)).subscribe(cartItems => {
       const [item] = cartItems.splice(index, 1);
       this.gtagService.event('remove_from_cart', {
-        productName: item.product.name,
-        amount: item.amount,
-        productId: item.product.id,
-        price: item.price,
+        items: [
+          {
+            currency: 'MXN',
+            item_id: String(item.product.id),
+            item_name: item.product.name,
+            item_category: item.product.subcategory.category.name,
+            item_category2: item.product.subcategory.name,
+            price: item.price,
+            quantity: item.amount,
+          },
+        ],
       });
       this.cartItemsSubject.next(cartItems);
     });
@@ -101,10 +115,18 @@ export class CartService {
       )
       .subscribe(order => {
         this.gtagService.event('purchase', {
-          order: order.id,
-          customer: `${order.customer.firstName} ${order.customer.lastName}`,
-          socialEvent: order.socialEvent.name,
-          total: order.total,
+          transaction_id: String(order.id),
+          value: order.total,
+          currency: 'MXN',
+          items: order.orderProducts.map(orderProduct => ({
+            currency: 'MXN',
+            item_id: String(orderProduct.product.id),
+            item_name: orderProduct.product.name,
+            item_category: orderProduct.product.subcategory.category.name,
+            item_category2: orderProduct.product.subcategory.name,
+            price: orderProduct.price,
+            quantity: orderProduct.amount,
+          })),
         });
         this.orderSubject.next(order);
       });
