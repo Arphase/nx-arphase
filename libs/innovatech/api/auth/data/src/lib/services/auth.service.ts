@@ -89,8 +89,6 @@ export class AuthService {
     } catch (err) {
       await queryRunner.rollbackTransaction();
       throw new InternalServerErrorException({ ...err, message: err.message });
-    } finally {
-      await queryRunner.release();
     }
   }
 
