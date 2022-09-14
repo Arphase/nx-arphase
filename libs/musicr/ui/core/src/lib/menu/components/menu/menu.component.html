@@ -129,9 +129,7 @@
         <ul>
           <li *ngFor="let subcategory of category.subcategories"
               nz-menu-item
-              (click)="goToCatalog(subcategory.id, true)">
-            {{ subcategory.name | uppercase }}
-          </li>
+              (click)="goToCatalog(subcategory.id, true)">{{ subcategory.name | uppercase }}</li>
           <li nz-menu-item
               (click)="goToCatalog(category.id, false)">VER TODOS</li>
         </ul>
@@ -182,7 +180,7 @@
              nzTheme="outline"></i>
         </a>
       </div>
-      <div nz-col
+      <!-- <div nz-col
            nzSpan="2">
         <a href="https://wa.me/5218115337477?text=Hola%20quiero%20cotizar"
            target="_blank">
@@ -190,7 +188,7 @@
              nzType="whats-app"
              nzTheme="outline"></i>
         </a>
-      </div>
+      </div> -->
     </div>
   </ng-container>
 </nz-drawer>
