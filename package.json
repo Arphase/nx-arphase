@@ -128,7 +128,7 @@
   "devDependencies": {
     "@angular-architects/ddd": "1.5.1",
     "@angular-devkit/architect": "0.1302.5",
-    "@angular-devkit/build-angular": "12.2.16",
+    "@angular-devkit/build-angular": "12.2.18",
     "@angular-devkit/core": "12.2.16",
     "@angular-devkit/schematics": "12.2.16",
     "@angular-eslint/eslint-plugin": "12.7.0",
