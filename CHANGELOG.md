@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.8.8](https://github.com/Arphase/nx-arphase/compare/v3.8.7...v3.8.8) (2022-09-14)
+
+
+### Bug Fixes
+
+* **auth:** remove queryRunner release method to save passwords ([648122d](https://github.com/Arphase/nx-arphase/commit/648122d232f3555ddb5953c9c321442cf72f9e70))
+* **musicr/store:** remove horizontal scroll ([1086a6e](https://github.com/Arphase/nx-arphase/commit/1086a6e3599ec1a17a533192053d26e60079be93))
+
 ### [3.8.7](https://github.com/Arphase/nx-arphase/compare/v3.8.6...v3.8.7) (2022-04-01)
 
 

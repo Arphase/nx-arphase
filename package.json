@@ -1,6 +1,6 @@
 {
   "name": "nx-arphase",
-  "version": "3.8.7",
+  "version": "3.8.8",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
@@ -109,7 +109,7 @@
     "ngx-quill": "14.3.0",
     "ngx-stripe": "12.7.2",
     "nodemailer": "6.7.2",
-    "passport": "0.5.2",
+    "passport": "0.6.0",
     "passport-jwt": "4.0.0",
     "pg": "8.7.3",
     "puppeteer": "^13.4.0",
@@ -128,7 +128,7 @@
   "devDependencies": {
     "@angular-architects/ddd": "1.5.1",
     "@angular-devkit/architect": "0.1302.5",
-    "@angular-devkit/build-angular": "12.2.16",
+    "@angular-devkit/build-angular": "12.2.18",
     "@angular-devkit/core": "12.2.16",
     "@angular-devkit/schematics": "12.2.16",
     "@angular-eslint/eslint-plugin": "12.7.0",
