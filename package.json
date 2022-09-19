@@ -1,6 +1,6 @@
 {
   "name": "nx-arphase",
-  "version": "3.8.8",
+  "version": "3.8.9",
   "license": "MIT",
   "scripts": {
     "ng": "nx",

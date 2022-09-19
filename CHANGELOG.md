@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.8.9](https://github.com/Arphase/nx-arphase/compare/v3.8.8...v3.8.9) (2022-09-19)
+
+
+### Features
+
+* **musicr/store:** add new Whatsapp link ([886c554](https://github.com/Arphase/nx-arphase/commit/886c55444ff84d495bec268b61aff37a7d8eb318))
+
 ### [3.8.8](https://github.com/Arphase/nx-arphase/compare/v3.8.7...v3.8.8) (2022-09-14)
 
 
