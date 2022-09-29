@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CartService } from '@musicr/ui/cart/data';
-import { of } from 'rxjs';
+import { combineLatest, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -16,13 +16,15 @@ export class CartComponent implements OnInit {
       name: 'Datos del evento',
       icon: 'form',
       path: ['social-event'],
-      disabled$: this.cartService.cartItems$.pipe(map(cartItems => !cartItems.length)),
+      disabled$: combineLatest([this.cartService.cartItems$, this.cartService.orderType$]).pipe(
+        map(([cartItems, orderType]) => !cartItems.length || !orderType)
+      ),
     },
     {
       name: 'Datos personales',
       icon: 'credit-card',
       path: ['personal-data'],
-      disabled$: this.cartService.socialEvent$.pipe(map(socialEvent => !socialEvent?.name)),
+      disabled$: this.cartService.socialEvent$.pipe(map(socialEvent => !socialEvent)),
     },
     {
       name: 'Confirmación',

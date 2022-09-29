@@ -1,6 +1,14 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Address } from '@arphase/common';
-import { Customer, Order, OrderProduct, SocialEvent, socialEventLabels, SocialEventPlaces } from '@musicr/domain';
+import {
+  Customer,
+  Order,
+  OrderProduct,
+  orderTypeLabels,
+  SocialEvent,
+  socialEventLabels,
+  SocialEventPlaces,
+} from '@musicr/domain';
 
 @Component({
   selector: 'mrl-order-detail',
@@ -10,6 +18,7 @@ import { Customer, Order, OrderProduct, SocialEvent, socialEventLabels, SocialEv
 })
 export class OrderDetailComponent {
   @Input() item: Order;
+  orderTypeLabels = orderTypeLabels;
   socialEventLPlaceLabels = socialEventLabels;
   socialEventPlaces = SocialEventPlaces;
 
@@ -21,11 +30,19 @@ export class OrderDetailComponent {
     return this.item?.socialEvent;
   }
 
-  get address(): Address {
+  get address(): Partial<Address> {
     return this.socialEvent?.address;
   }
 
   get products(): OrderProduct[] {
     return this.item?.orderProducts || [];
+  }
+
+  get requiresAssemblyLabel(): string {
+    const requiresAssemblyLabels: Record<string, string> = {
+      true: 'Si',
+      false: 'No',
+    };
+    return requiresAssemblyLabels[String(this.socialEvent?.requiresAssembly)];
   }
 }

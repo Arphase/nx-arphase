@@ -1,9 +1,4 @@
-import {
-  ApsCollectionFilterDto,
-  createCollectionResponse,
-  filterCollectionDates,
-  filterCollectionQuery,
-} from '@arphase/api/core';
+import { createCollectionResponse, filterCollectionDates, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse, DeepPartial, SortDirection } from '@arphase/common';
 import { AdditionalOptionEntity, OrderEntity, PriceOptionEntity, ProductEntity } from '@musicr/api/domain';
 import { Order } from '@musicr/domain';
@@ -15,7 +10,9 @@ import Mail from 'nodemailer/lib/mailer';
 import { Repository } from 'typeorm';
 
 import { CreateOrderPreviewDto } from '../dto/create-order-preview-dto';
+import { CreateOrderQuoteDto } from '../dto/create-order-quote.dto';
 import { CreateOrderDto } from '../dto/create-order.dto';
+import { FilterOrdersDto } from '../dto/filter-orders.dto';
 import { createOrderEmail } from '../functions/create-order-email';
 import {
   getAllItemIdsWithPrices,
@@ -32,8 +29,8 @@ export class OrdersService {
     @InjectRepository(AdditionalOptionEntity) private additionalOptionRepository: Repository<AdditionalOptionEntity>
   ) {}
 
-  async getOrders(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Order>> {
-    const { pageIndex, pageSize, dateType, text } = filterDto;
+  async getOrders(filterDto: FilterOrdersDto): Promise<ApsCollectionResponse<Order>> {
+    const { pageIndex, pageSize, dateType, text, orderType } = filterDto;
     const query = this.orderRepository
       .createQueryBuilder('order')
       .leftJoinAndSelect('order.customer', 'customer')
@@ -57,6 +54,10 @@ export class OrdersService {
       );
     }
 
+    if (orderType) {
+      query.andWhere('(order.orderType = :orderType)', { orderType });
+    }
+
     const products = await query.getMany();
     const total = await query.getCount();
     return createCollectionResponse<Order>(products, pageSize, pageIndex, total);
@@ -70,7 +71,7 @@ export class OrdersService {
     return order;
   }
 
-  async createOrder(createOrderDto: CreateOrderDto): Promise<Order> {
+  async createOrder(createOrderDto: CreateOrderDto | CreateOrderQuoteDto): Promise<Order> {
     const newOrder = this.orderRepository.create(await this.createOrderPreview(createOrderDto));
     await this.orderRepository.save(newOrder);
     await newOrder.reload();
@@ -96,7 +97,7 @@ export class OrdersService {
     return newOrder;
   }
 
-  async createOrderPreview(createOrderDto: CreateOrderPreviewDto): Promise<DeepPartial<Order>> {
+  async createOrderPreview(createOrderDto: CreateOrderPreviewDto | CreateOrderQuoteDto): Promise<DeepPartial<Order>> {
     const { productIds, priceOptionIds, additionalOptionIds } = getAllItemIdsWithPrices(createOrderDto);
     const products = await this.productRepository.findByIds(productIds);
     const priceOptions = await this.priceOptionRepository.findByIds(priceOptionIds);

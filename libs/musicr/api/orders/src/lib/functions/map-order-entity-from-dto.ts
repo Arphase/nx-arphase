@@ -3,17 +3,19 @@ import { Order, OrderProduct } from '@musicr/domain';
 import { uniq } from 'lodash';
 
 import { CreateOrderPreviewDto } from '../dto/create-order-preview-dto';
+import { CreateOrderQuoteDto } from '../dto/create-order-quote.dto';
 import { CreateOrderDto, CreateOrderProductDto } from '../dto/create-order.dto';
 
 export function mapOrderEntityFromDto(
-  createOrderDto: CreateOrderDto | CreateOrderPreviewDto,
+  createOrderDto: CreateOrderDto | CreateOrderPreviewDto | CreateOrderQuoteDto,
   dictonary: ItemsWithPriceDictionary
 ): DeepPartial<Order> {
-  const { customer, socialEvent, orderProducts } = createOrderDto;
+  const { customer, socialEvent, orderType, orderProducts } = createOrderDto;
   const orderProductsWithPrice = mapOrderProducts(orderProducts, dictonary);
   return {
     customer,
     socialEvent,
+    orderType,
     orderProducts: orderProductsWithPrice,
     total: getTotal(orderProductsWithPrice),
   };
@@ -54,7 +56,9 @@ export type ItemsWithPriceDictionary = {
   additionalOptions: Record<number, { id: number; price: number }>;
 };
 
-export function getAllItemIdsWithPrices(createOrderDto: CreateOrderDto | CreateOrderPreviewDto): ItemIdsWithPrice {
+export function getAllItemIdsWithPrices(
+  createOrderDto: CreateOrderDto | CreateOrderPreviewDto | CreateOrderQuoteDto
+): ItemIdsWithPrice {
   const { orderProducts } = createOrderDto;
   const productIds = [];
   const priceOptionIds = [];

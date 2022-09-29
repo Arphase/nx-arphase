@@ -1,10 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DeepPartial } from '@arphase/common';
+import { filterNil } from '@arphase/ui/core';
 import { GtagService } from '@arphase/ui/gtag';
-import { Customer, Order, OrderProduct, SocialEvent } from '@musicr/domain';
+import { Customer, Order, OrderProduct, OrderTypes, SocialEvent } from '@musicr/domain';
 import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
-import { catchError, switchMap, take } from 'rxjs/operators';
+import { catchError, map, switchMap, take } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
@@ -20,9 +22,13 @@ export class CartService {
   currentCustomer$ = this.currentCustomerSubject.asObservable();
   orderSubject = new BehaviorSubject<Order>(null);
   order$ = this.orderSubject.asObservable();
+  orderType$ = this.route.queryParams.pipe(
+    filterNil(),
+    map(({ orderType }) => orderType)
+  );
   listenToCartItemsSubscription: Subscription;
 
-  constructor(private http: HttpClient, private gtagService: GtagService) {}
+  constructor(private http: HttpClient, private gtagService: GtagService, private route: ActivatedRoute) {}
 
   listenToCartItemsChange(): void {
     this.gtagService.event('begin_checkout');
@@ -55,8 +61,10 @@ export class CartService {
 
   decreaseItemAmount(index: number): void {
     this.cartItems$.pipe(take(1)).subscribe(cartItems => {
-      cartItems[index].amount -= 1;
-      this.cartItemsSubject.next(cartItems);
+      if (cartItems[index].amount > 1) {
+        cartItems[index].amount -= 1;
+        this.cartItemsSubject.next(cartItems);
+      }
     });
   }
 
@@ -106,10 +114,15 @@ export class CartService {
 
   createOrder(customer: Customer): void {
     this.personalDataSubject.next(customer);
-    combineLatest([this.cartItems$, this.socialEvent$])
+    combineLatest([this.cartItems$, this.socialEvent$, this.orderType$])
       .pipe(
-        switchMap(([orderProducts, socialEvent]) =>
-          this.http.post<Order>(`/mrlApi/orders`, { orderProducts, socialEvent, customer })
+        switchMap(([orderProducts, socialEvent, orderType]) =>
+          this.http.post<Order>(orderType === OrderTypes.purchase ? `/mrlApi/orders` : `/mrlApi/orders/quote`, {
+            orderProducts,
+            socialEvent,
+            customer,
+            orderType,
+          })
         ),
         take(1)
       )

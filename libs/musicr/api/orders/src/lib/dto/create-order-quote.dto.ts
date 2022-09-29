@@ -1,9 +1,8 @@
 import { Trim } from '@arphase/api/core';
-import { OrderTypes, SocialEventPlaces } from '@musicr/domain';
-import { Transform, Type } from 'class-transformer';
+import { OrderTypes } from '@musicr/domain';
+import { Type } from 'class-transformer';
 import {
   IsArray,
-  IsBoolean,
   IsDate,
   IsEmail,
   IsEnum,
@@ -14,7 +13,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 
-export class CreateCustomerDto {
+class CreateCustomerDto {
   @IsOptional()
   @IsNumber()
   id: number;
@@ -33,48 +32,13 @@ export class CreateCustomerDto {
   phone: string;
 }
 
-export class CreateAddressDto {
+class CreateAddressDto {
   @IsNumberString()
   @Trim('zipcode')
   zipcode: string;
-
-  @IsString()
-  @Trim('country')
-  country: string;
-
-  @IsString()
-  @Trim('state')
-  state: string;
-
-  @IsString()
-  @Trim('city')
-  city: string;
-
-  @IsString()
-  @Trim('suburb')
-  suburb: string;
-
-  @IsString()
-  @Trim('street')
-  street: string;
-
-  @IsString()
-  @Trim('externalNumber')
-  externalNumber: string;
-
-  @IsOptional()
-  @IsString()
-  @Trim('internalNumber')
-  internalNumber: string;
 }
 
-export class CreateSocialEventDto {
-  @IsString()
-  name: string;
-
-  @IsString()
-  eventType: string;
-
+class CreateSocialEventDto {
   @IsDate()
   date: Date;
 
@@ -87,20 +51,9 @@ export class CreateSocialEventDto {
   @ValidateNested()
   @Type(() => CreateAddressDto)
   address: CreateAddressDto;
-
-  @Transform((_, obj) => SocialEventPlaces[obj['eventPlace']])
-  @IsEnum(SocialEventPlaces)
-  eventPlace: SocialEventPlaces;
-
-  @IsString()
-  @IsOptional()
-  notes: string;
-
-  @IsBoolean()
-  requiresAssembly: boolean;
 }
 
-export class CreateOrderProductDto {
+class CreateOrderProductDto {
   @IsNumber()
   productId: number;
 
@@ -118,12 +71,12 @@ export class CreateOrderProductDto {
   orderProductAdditionalOptions: CreateOrderProductAdditionalOptionDto[];
 }
 
-export class CreateOrderProductAdditionalOptionDto {
+class CreateOrderProductAdditionalOptionDto {
   @IsNumber()
   additionalOptionId: number;
 }
 
-export class CreateOrderDto {
+export class CreateOrderQuoteDto {
   @ValidateNested()
   @Type(() => CreateCustomerDto)
   customer: CreateCustomerDto;

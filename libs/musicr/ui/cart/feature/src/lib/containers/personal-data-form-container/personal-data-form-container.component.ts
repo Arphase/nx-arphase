@@ -31,7 +31,10 @@ export class PersonalDataFormContainerComponent {
   submit(personalData: Customer): void {
     this.cartService.order$
       .pipe(first(order => !!order?.id))
-      .subscribe(() => this.router.navigate(['..', 'confirmation'], { relativeTo: this.route }));
+      .subscribe(() =>
+        this.router.navigate(['..', 'confirmation'], { relativeTo: this.route, queryParamsHandling: 'merge' })
+      );
+
     this.cartService.createOrder(personalData);
   }
 }

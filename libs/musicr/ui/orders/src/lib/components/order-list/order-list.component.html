@@ -20,6 +20,12 @@
                      [currentDates]="queryParams?.dates"
                      (filterItems)="updateDateFilter($event)"></aps-date-filter>
   </div>
+  <div nz-col>
+    <aps-radio-filter label="Tipo de orden"
+                      [options]="orderTypeOptions"
+                      [selectedOption]="queryParams?.orderType"
+                      (filterItems)="updateOrderTypeFilter($event)"></aps-radio-filter>
+  </div>
   <div *ngIf="total"
        nz-col
        nzFlex="auto"
@@ -65,7 +71,7 @@
           nzMd="4">{{ item?.customer?.firstName }} {{ item?.customer?.lastName }}</td>
       <td nz-col
           nzXs="8"
-          nzMd="4">{{ item?.socialEvent?.name | empty }}</td>
+          nzMd="4">{{ orderTypeLabels[item.orderType] | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="4">{{ item?.socialEvent?.date | date: 'dd/MM/yy' | empty }}</td>

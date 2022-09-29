@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ApsDateFilterModule, ApsEmptyModule, ApsPhoneModule, ApsSearchbarModule } from '@arphase/ui/core';
+import {
+  ApsDateFilterModule,
+  ApsEmptyModule,
+  ApsPhoneModule,
+  ApsRadioFilterModule,
+  ApsSearchbarModule,
+} from '@arphase/ui/core';
 import { EntityDataService } from '@ngrx/data';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
@@ -26,6 +32,7 @@ import { OrderDataService } from './services/order-data.service';
     ApsDateFilterModule,
     ApsEmptyModule,
     ApsPhoneModule,
+    ApsRadioFilterModule,
     ApsSearchbarModule,
     CommonModule,
     NzButtonModule,

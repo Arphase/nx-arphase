@@ -4,44 +4,46 @@
       (ngSubmit)="submit()">
   <div nz-row
        nzGutter="12">
-    <div nz-col
-         nzXs="24"
-         nzMd="12">
-      <nz-form-item>
-        <nz-form-label nzRequired>Nombre del evento</nz-form-label>
-        <nz-form-control apsAutoError>
-          <input nz-input
-                 placeholder="Music Revolution Rave"
-                 autocomplete="off"
-                 formControlName="name" />
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-    <div nz-col
-         nzXs="24"
-         nzMd="12">
-      <nz-form-item>
-        <nz-form-label nzRequired>Tipo de evento</nz-form-label>
-        <nz-form-control apsAutoError>
-          <input nz-input
-                 placeholder="Fiesta de cumpleaños"
-                 autocomplete="off"
-                 formControlName="eventType" />
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-    <div nz-col
-         nzXs="24"
-         nzMd="12">
-      <nz-form-item>
-        <nz-form-label nzRequired>Lugar del evento</nz-form-label>
-        <nz-form-control apsAutoError>
-          <nz-select [nzPlaceHolder]="'Seleccionar'"
-                     formControlName="eventPlace"
-                     [nzOptions]="eventPlaceOptions"></nz-select>
-        </nz-form-control>
-      </nz-form-item>
-    </div>
+    <ng-container *ngIf="orderType === orderTypeEnum.purchase">
+      <div nz-col
+           nzXs="24"
+           nzMd="12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Nombre del evento</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   placeholder="Music Revolution Rave"
+                   autocomplete="off"
+                   formControlName="name" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col
+           nzXs="24"
+           nzMd="12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Tipo de evento</nz-form-label>
+          <nz-form-control apsAutoError>
+            <input nz-input
+                   placeholder="Fiesta de cumpleaños"
+                   autocomplete="off"
+                   formControlName="eventType" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col
+           nzXs="24"
+           nzMd="12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Lugar del evento</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-select [nzPlaceHolder]="'Seleccionar'"
+                       formControlName="eventPlace"
+                       [nzOptions]="eventPlaceOptions"></nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </ng-container>
     <div nz-col
          nzXs="24"
          nzMd="12">
@@ -54,6 +56,24 @@
         </nz-form-control>
       </nz-form-item>
     </div>
+    <form *ngIf="orderType === orderTypeEnum.quote"
+          nz-col
+          nzXs="24"
+          nzMd="12"
+          [formGroup]="addressForm">
+      <nz-form-item>
+        <nz-form-label nzRequired>Código postal</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 maxlength="5"
+                 mask="00000"
+                 autocomplete="off"
+                 formControlName="zipcode"
+                 [placeholder]="placeholders.zipcode"
+                 data-cy="zipcode" />
+        </nz-form-control>
+      </nz-form-item>
+    </form>
     <div nz-col
          nzXs="24"
          nzMd="12">
@@ -84,7 +104,8 @@
     </div>
   </div>
 
-  <div nz-row>
+  <div *ngIf="orderType === orderTypeEnum.purchase"
+       nz-row>
     <div nz-col
          nzSpan="24">
       <nz-form-item>
@@ -99,28 +120,28 @@
     </div>
   </div>
 
-  <aps-address-form [form]="addressForm"
-                    [placeholders]="placeHolders"></aps-address-form>
+  <ng-container *ngIf="orderType === orderTypeEnum.purchase">
+    <aps-address-form [form]="addressForm"
+                      [placeholders]="placeholders"></aps-address-form>
 
-  <div nz-row>
-    <div nz-col
-         nzSpan="24">
-      <label nz-checkbox
-             formControlName="requiresAssembly">
-        El montaje del equipo requerirá maniobra. (Escaleras, tramos largos y/o estrechos)
-      </label>
+    <div nz-row>
+      <div nz-col
+           nzSpan="24">
+        <label nz-checkbox
+               formControlName="requiresAssembly">
+          El montaje del equipo requerirá maniobra. (Escaleras, tramos largos y/o estrechos)
+        </label>
+      </div>
     </div>
-  </div>
+  </ng-container>
 
   <div nz-row
        class="w-full">
     <div nz-col
          nzSpan="24"
          class="mt-5">
-      <button nz-button
-              [nzLoading]="loading"
-              type="submit"
-              class="btn-black">CONTIUNAR</button>
+      <button type="submit"
+              class="btn-black w-full">CONTIUNAR</button>
     </div>
   </div>
 </form>

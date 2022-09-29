@@ -26,22 +26,22 @@ export class AddressEntity extends BaseEntity implements Address {
   @Column()
   zipcode: string;
 
-  @Column()
+  @Column({ nullable: true })
   country: string;
 
-  @Column()
+  @Column({ nullable: true })
   state: string;
 
-  @Column()
+  @Column({ nullable: true })
   city: string;
 
-  @Column()
+  @Column({ nullable: true })
   suburb: string;
 
-  @Column()
+  @Column({ nullable: true })
   street: string;
 
-  @Column()
+  @Column({ nullable: true })
   externalNumber: string;
 
   @Column({ nullable: true })

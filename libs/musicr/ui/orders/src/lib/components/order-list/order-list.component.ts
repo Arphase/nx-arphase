@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsColumns, ApsListComponent } from '@arphase/ui/core';
-import { Order } from '@musicr/domain';
+import { Order, orderTypeLabels, OrderTypes } from '@musicr/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 @Component({
@@ -10,6 +10,11 @@ import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderListComponent extends ApsListComponent<Order> {
+  orderTypeLabels = orderTypeLabels;
+  orderTypeOptions: NzSelectOptionInterface[] = [
+    { label: orderTypeLabels[OrderTypes.purchase], value: OrderTypes.purchase },
+    { label: orderTypeLabels[OrderTypes.quote], value: OrderTypes.quote },
+  ];
   dateTypeOptions: NzSelectOptionInterface[] = [
     { label: 'Pedido', value: 'createdAt' },
     { label: 'Evento', value: 'startDate' },
@@ -18,7 +23,7 @@ export class OrderListComponent extends ApsListComponent<Order> {
   columns: ApsColumns = [
     {
       label: 'Folio',
-      prop: 'item.id',
+      prop: 'order.id',
       colSizes: {
         xs: 8,
         md: 2,
@@ -33,8 +38,8 @@ export class OrderListComponent extends ApsListComponent<Order> {
       },
     },
     {
-      label: 'Evento',
-      prop: 'socialEvent.name',
+      label: 'Tipo de Orden',
+      prop: 'order.orderType',
       colSizes: {
         xs: 16,
         md: 4,
@@ -66,4 +71,8 @@ export class OrderListComponent extends ApsListComponent<Order> {
       },
     },
   ];
+
+  updateOrderTypeFilter(orderType: OrderTypes): void {
+    this.filterItems.emit({ orderType });
+  }
 }

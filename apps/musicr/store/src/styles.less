@@ -1,7 +1,8 @@
-@import '~ng-zorro-antd/ng-zorro-antd';
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import '~ng-zorro-antd/ng-zorro-antd';
+@import './styles/time-picker';
 
 @font-face {
   font-family: 'RightGrotesk';
@@ -115,12 +116,16 @@ body {
   padding: 0 !important;
 }
 
+.btn-default {
+  @apply bg-gray-200 text-black p-3 h-auto;
+}
+
 .btn-black {
-  @apply bg-black text-white w-full p-3 rounded h-auto;
+  @apply bg-black text-white p-3 rounded h-auto;
 }
 
 .btn-black:hover {
-  @apply bg-black text-white w-full p-3 rounded h-auto;
+  @apply bg-black text-white p-3 rounded h-auto;
 }
 
 .mobile-submenu {

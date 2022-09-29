@@ -68,13 +68,21 @@
     </div>
 
     <div nz-row
-         class="w-full">
+         nzGutter="16"
+         class="w-full mt-40">
       <div nz-col
-           nzSpan="24"
-           class="mt-40">
+           nzSpan="12">
         <button type="button"
-                class="btn-black"
-                [routerLink]="['..', 'social-event']">CONTIUNAR</button>
+                class="btn-default rounded w-full"
+                [routerLink]="['..', 'social-event']"
+                [queryParams]="{ orderType: 'quote' }">COTIZAR</button>
+      </div>
+      <div nz-col
+           nzSpan="12">
+        <button type="button"
+                class="btn-black w-full"
+                [routerLink]="['..', 'social-event']"
+                [queryParams]="{ orderType: 'purchase' }">CONTRATAR</button>
       </div>
     </div>
   </div>
@@ -84,7 +92,7 @@
   <div nz-row>
     <div nz-col
          nzSpan="24"
-         class="flex justify-center items-center py-12 bg-gray">
+         class="flex justify-center items-center py-12 bg-gray-200">
       <span class="text-2xl font-bold">¡Tu carrito está vacío!</span>
     </div>
   </div>

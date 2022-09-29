@@ -29,7 +29,7 @@ export class OrderListContainerComponent extends ApsListContainerComponent<Order
       .pipe(take(1))
       .subscribe(() =>
         this.modal.create({
-          nzTitle: 'Detalle de Orden',
+          nzTitle: `Detalle de Orden`,
           nzContent: OrderDetailContainerComponent,
           nzFooter: null,
           nzWidth: '80vw',

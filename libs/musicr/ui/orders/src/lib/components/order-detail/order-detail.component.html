@@ -6,6 +6,25 @@
             nzSpan="24"
             nzSize="middle">
     <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Orden"
+                         [nzActive]="true">
+        <div nz-row>
+          <div nz-col
+               nzXs="24"
+               nzMd="12">
+            <p><strong>Folio</strong> </p>
+            <span>{{ item?.id }}</span>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="12">
+            <p><strong>Tipo de Orden</strong></p>
+            <span>{{ orderTypeLabels[item?.orderType] }}</span>
+          </div>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+    <nz-collapse *nzSpaceItem>
       <nz-collapse-panel nzHeader="Cliente"
                          [nzActive]="true">
         <div nz-row>
@@ -43,21 +62,21 @@
                nzMd="12"
                nzLg="8">
             <p><strong>Nombre</strong> </p>
-            <span>{{ socialEvent?.name }}</span>
+            <span>{{ socialEvent?.name | empty }}</span>
           </div>
           <div nz-col
                nzXs="24"
                nzMd="12"
                nzLg="8">
             <p><strong>Tipo de evento</strong></p>
-            <span>{{ socialEvent?.eventType }}</span>
+            <span>{{ socialEvent?.eventType | empty }}</span>
           </div>
           <div nz-col
                nzXs="24"
                nzMd="12"
                nzLg="8">
             <p><strong>Lugar del evento</strong></p>
-            <span>{{ socialEventLPlaceLabels[socialEventPlaces[socialEvent?.eventPlace]] }}</span>
+            <span>{{ socialEventLPlaceLabels[socialEventPlaces[socialEvent?.eventPlace]] | empty }}</span>
           </div>
         </div>
         <div nz-row>
@@ -77,7 +96,7 @@
                nzMd="12"
                nzLg="8">
             <p><strong>¿Requiere maniobra?</strong></p>
-            <span>{{ socialEvent?.requiresAssembly ? 'Si' : 'No' }}</span>
+            <span>{{ requiresAssemblyLabel | empty }}</span>
           </div>
         </div>
 
@@ -86,9 +105,7 @@
                       nzOrientation="center"></nz-divider>
           <div nz-row>
             <div nz-col
-                 nzSpan="24">
-              {{ socialEvent?.notes }}
-            </div>
+                 nzSpan="24">{{ socialEvent?.notes | empty }}</div>
           </div>
         </ng-container>
 
@@ -107,42 +124,42 @@
                nzMd="12"
                nzLg="6">
             <p><strong>País</strong></p>
-            <span>{{ address?.country }}</span>
+            <span>{{ address?.country | empty }}</span>
           </div>
           <div nz-col
                nzXs="24"
                nzMd="12"
                nzLg="6">
             <p><strong>Estado</strong></p>
-            <span>{{ address?.state }}</span>
+            <span>{{ address?.state | empty }}</span>
           </div>
           <div nz-col
                nzXs="24"
                nzMd="12"
                nzLg="6">
             <p><strong>Ciudad</strong></p>
-            <span>{{ address?.city }}</span>
+            <span>{{ address?.city | empty }}</span>
           </div>
           <div nz-col
                nzXs="24"
                nzMd="12"
                nzLg="6">
             <p><strong>Colonia</strong></p>
-            <span>{{ address?.suburb }}</span>
+            <span>{{ address?.suburb | empty }}</span>
           </div>
           <div nz-col
                nzXs="24"
                nzMd="12"
                nzLg="6">
             <p><strong>Calle</strong></p>
-            <span>{{ address?.street }}</span>
+            <span>{{ address?.street | empty }}</span>
           </div>
           <div nz-col
                nzXs="24"
                nzMd="12"
                nzLg="6">
             <p><strong>Número exterior</strong></p>
-            <span>{{ address?.externalNumber }}</span>
+            <span>{{ address?.externalNumber | empty }}</span>
           </div>
           <div nz-col
                nzXs="24"

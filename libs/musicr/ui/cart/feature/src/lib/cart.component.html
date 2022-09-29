@@ -2,16 +2,13 @@
   <ng-container *ngFor="let step of steps">
     <button [hidden]="step.disabled$ | async"
             type="button"
-            class="border-0 bg-gray text-black px-4 py-2"
+            class="btn-default px-4 py-2"
             [routerLink]="step.path"
-            routerLinkActive="bg-black text-white">
-      {{ step.name | uppercase }}
-    </button>
+            routerLinkActive="!bg-black !text-white"
+            queryParamsHandling="merge">{{ step.name | uppercase }}</button>
     <button [hidden]="(step.disabled$ | async) === false"
             type="button"
-            class="border-0 bg-gray text-black px-4 py-2">
-      {{ step.name | uppercase }}
-    </button>
+            class="btn-default px-4 py-2">{{ step.name | uppercase }}</button>
   </ng-container>
 
 </div>
@@ -22,9 +19,10 @@
          nzSpan="6">
       <button [hidden]="step.disabled$ | async"
               type="button"
-              class="border-0 bg-gray text-black px-4 py-2 w-full"
+              class="btn-default px-4 py-2 w-full"
               [routerLink]="step.path"
-              routerLinkActive="bg-black text-white">
+              routerLinkActive="!bg-black !text-white"
+              queryParamsHandling="merge">
         <i nz-icon
            [nzType]="step.icon"
            nzTheme="outline"></i>
@@ -32,14 +30,13 @@
       <button [hidden]="(step.disabled$ | async) === false"
               type="button"
               nzType="default"
-              class="border-0 bg-gray text-black px-4 py-2 w-full">
+              class="btn-default px-4 py-2 w-full">
         <i nz-icon
            [nzType]="step.icon"
            nzTheme="outline"></i>
       </button>
     </div>
   </ng-container>
-
 </div>
 
 <router-outlet></router-outlet>

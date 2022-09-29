@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingService } from '@arphase/ui/core';
 import { SocialEvent } from '@musicr/domain';
 import { CartService } from '@musicr/ui/cart/data';
 import { first } from 'rxjs/operators';
@@ -13,19 +12,16 @@ import { first } from 'rxjs/operators';
 })
 export class SocialEventFormContainerComponent {
   socialEvent$ = this.cartService.socialEvent$;
-  loading$ = this.loadingService.loadingElse$;
+  orderType$ = this.cartService.orderType$;
 
-  constructor(
-    private cartService: CartService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private loadingService: LoadingService
-  ) {}
+  constructor(private cartService: CartService, private router: Router, private route: ActivatedRoute) {}
 
   submit(socialEvent: SocialEvent): void {
     this.socialEvent$
-      .pipe(first(socialEvent => !!socialEvent?.name))
-      .subscribe(() => this.router.navigate(['..', 'personal-data'], { relativeTo: this.route }));
+      .pipe(first(socialEvent => !!socialEvent))
+      .subscribe(() =>
+        this.router.navigate(['..', 'personal-data'], { relativeTo: this.route, queryParamsHandling: 'merge' })
+      );
 
     this.cartService.saveSocialEvent(socialEvent);
   }

@@ -1,14 +1,13 @@
 module.exports = {
   prefix: '',
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    content: ['./apps/musicr/store/src/**/*.html', './libs/musicr/ui/**/*.html']
-  },
-  darkMode: 'class',
+  content: ['./apps/musicr/store/src/**/*.html', './libs/musicr/ui/**/*.html'],
   theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {},
+    extend: {
+      colors: {
+        gray: {
+          200: '#f0f0f0'
+        }
+      }
+    },
   },
 };

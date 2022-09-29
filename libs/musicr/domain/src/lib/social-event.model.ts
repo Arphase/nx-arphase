@@ -5,16 +5,16 @@ export interface SocialEvent {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
-  name: string;
-  eventType: string;
+  name?: string;
+  eventType?: string;
   date: Date;
   startTime: Date;
   endTime: Date;
   addressId?: number;
-  address: Address;
-  eventPlace: SocialEventPlaces | string;
+  address: Partial<Address>;
+  eventPlace?: SocialEventPlaces | string;
   notes?: string;
-  requiresAssembly: boolean;
+  requiresAssembly?: boolean;
 }
 
 export enum SocialEventPlaces {

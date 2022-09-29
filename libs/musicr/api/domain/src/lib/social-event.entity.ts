@@ -28,10 +28,10 @@ export class SocialEventEntity extends BaseEntity implements SocialEvent {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  @Column()
+  @Column({ nullable: true })
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   eventType: string;
 
   @Column()
@@ -55,6 +55,7 @@ export class SocialEventEntity extends BaseEntity implements SocialEvent {
   @Column({
     type: 'enum',
     enum: SocialEventPlaces,
+    nullable: true,
     transformer: {
       to: value => value,
       from: value => SocialEventPlaces[value],
@@ -65,6 +66,6 @@ export class SocialEventEntity extends BaseEntity implements SocialEvent {
   @Column({ nullable: true })
   notes: string;
 
-  @Column()
+  @Column({ nullable: true })
   requiresAssembly: boolean;
 }

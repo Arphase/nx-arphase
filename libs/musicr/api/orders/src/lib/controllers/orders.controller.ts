@@ -1,21 +1,25 @@
-import { ApsCollectionFilterDto } from '@arphase/api/core';
 import { ApsCollectionResponse, DeepPartial } from '@arphase/common';
 import { Order } from '@musicr/domain';
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
 import { CreateOrderPreviewDto } from '../dto/create-order-preview-dto';
+import { CreateOrderQuoteDto } from '../dto/create-order-quote.dto';
 import { CreateOrderDto } from '../dto/create-order.dto';
+import { FilterOrdersDto } from '../dto/filter-orders.dto';
 import { OrdersService } from '../services/orders.service';
 
 @Controller('orders')
 export class OrdersController {
   constructor(private ordersService: OrdersService) {}
 
+  @UseGuards(AuthGuard('jwt'))
   @Get()
-  async getOrders(@Query() filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Order>> {
+  async getOrders(@Query() filterDto: FilterOrdersDto): Promise<ApsCollectionResponse<Order>> {
     return this.ordersService.getOrders(filterDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get(':id')
   async getOrder(@Param('id', ParseIntPipe) id: number): Promise<Order> {
     return this.ordersService.getOrder(id);
@@ -23,6 +27,11 @@ export class OrdersController {
 
   @Post()
   async createOrder(@Body() createOrderDto: CreateOrderDto): Promise<Order> {
+    return this.ordersService.createOrder(createOrderDto);
+  }
+
+  @Post('quote')
+  async createOrderQuote(@Body() createOrderDto: CreateOrderQuoteDto): Promise<Order> {
     return this.ordersService.createOrder(createOrderDto);
   }
 
