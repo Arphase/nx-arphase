@@ -23,6 +23,10 @@ export const routes: Routes = [
     loadChildren: () => import('@musicr/ui/about-us').then(m => m.AboutUsModule),
   },
   {
+    path: 'contact-success',
+    loadChildren: () => import('@musicr/ui/contact-success').then(m => m.ContactSuccessModule),
+  },
+  {
     path: 'cart',
     outlet: 'cart',
     loadChildren: () => import('@musicr/ui/cart/feature').then(m => m.CartModule),

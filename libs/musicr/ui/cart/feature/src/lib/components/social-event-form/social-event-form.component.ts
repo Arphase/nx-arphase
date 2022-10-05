@@ -46,31 +46,31 @@ export class SocialEventFormComponent extends ApsFormComponent<SocialEvent> impl
   eventPlaceOptions: NzSelectOptionInterface[] = [
     {
       label: socialEventLabels[SocialEventPlaces.garage],
-      value: SocialEventPlaces[SocialEventPlaces.garage],
+      value: SocialEventPlaces.garage,
     },
     {
       label: socialEventLabels[SocialEventPlaces.inside],
-      value: SocialEventPlaces[SocialEventPlaces.inside],
+      value: SocialEventPlaces.inside,
     },
     {
       label: socialEventLabels[SocialEventPlaces.garden],
-      value: SocialEventPlaces[SocialEventPlaces.garden],
+      value: SocialEventPlaces.garden,
     },
     {
       label: socialEventLabels[SocialEventPlaces.office],
-      value: SocialEventPlaces[SocialEventPlaces.office],
+      value: SocialEventPlaces.office,
     },
     {
       label: socialEventLabels[SocialEventPlaces.backyard],
-      value: SocialEventPlaces[SocialEventPlaces.backyard],
+      value: SocialEventPlaces.backyard,
     },
     {
       label: socialEventLabels[SocialEventPlaces.eventHall],
-      value: SocialEventPlaces[SocialEventPlaces.eventHall],
+      value: SocialEventPlaces.eventHall,
     },
     {
       label: socialEventLabels[SocialEventPlaces.terrace],
-      value: SocialEventPlaces[SocialEventPlaces.terrace],
+      value: SocialEventPlaces.terrace,
     },
   ];
   placeholders: Address = {

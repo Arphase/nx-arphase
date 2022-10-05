@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NzIconService } from 'ng-zorro-antd/icon';
-import { debounceTime, filter } from 'rxjs/operators';
+import { debounceTime, filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'mrl-root',
@@ -19,8 +19,11 @@ import { debounceTime, filter } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements AfterViewInit {
+  showComponents$ = this.router.events.pipe(
+    filter(event => event instanceof NavigationEnd),
+    map((event: NavigationEnd) => !event.url.includes('/contact-success'))
+  );
   constructor(
-    // eslint-disable-next-line @typescript-eslint/ban-types
     @Inject(PLATFORM_ID) private platformId: Object,
     private renderer: Renderer2,
     private router: Router,

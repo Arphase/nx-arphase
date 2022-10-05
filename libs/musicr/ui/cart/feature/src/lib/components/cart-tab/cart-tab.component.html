@@ -8,7 +8,7 @@
          [nzMd]="{ span: 4, order: 1 }">
       <img [src]="item.product?.photos[0]?.url"
            [alt]="item.product.name"
-           class="img"
+           class="img rounded"
            loading="lazy" />
     </div>
     <div nz-col
@@ -92,7 +92,7 @@
   <div nz-row>
     <div nz-col
          nzSpan="24"
-         class="flex justify-center items-center py-12 bg-gray-200">
+         class="text-center py-12 bg-gray-200">
       <span class="text-2xl font-bold">¡Tu carrito está vacío!</span>
     </div>
   </div>

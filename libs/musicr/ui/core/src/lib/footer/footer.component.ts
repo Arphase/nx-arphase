@@ -28,6 +28,7 @@ export class FooterComponent extends ApsFormComponent {
   }
 
   submit(): void {
+    console.log(`${window.location.origin}/contact-success`);
     if (!this.form.valid) {
       this.messageService.error('Los campos en la forma están incompletos.');
     } else {
@@ -38,11 +39,7 @@ export class FooterComponent extends ApsFormComponent {
           take(1),
           finalize(() => this.loadingSubject.next(false))
         )
-        .subscribe(() => {
-          this.messageService.success(
-            'Se ha enviado un correo a Music Revolution, cuanto antes nos pondremos en contacto con usted.'
-          );
-        });
+        .subscribe(() => window.open(`${window.location.origin}/contact-success`, '_blank'));
     }
   }
 }

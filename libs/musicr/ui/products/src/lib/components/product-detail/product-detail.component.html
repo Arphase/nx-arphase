@@ -13,7 +13,7 @@
         <nz-carousel nzEffect="scrollx">
           <div *ngFor="let photo of displayedPhotos"
                nz-carousel-content>
-            <img class="carousel-img"
+            <img class="carousel-img rounded"
                  [src]="photo.url"
                  [alt]="product?.name"
                  loading="lazy" />

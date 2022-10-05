@@ -9,5 +9,6 @@ import { CartService } from '@musicr/ui/cart/data';
 })
 export class ConfirmationContainerComponent {
   order$ = this.cartService.order$;
+
   constructor(private cartService: CartService) {}
 }

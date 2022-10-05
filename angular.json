@@ -1,7 +1,4 @@
 {
-  "cli": {
-    "analytics": false
-  },
   "version": 1,
   "projects": {
     "arphase-api-core": {
@@ -2313,6 +2310,32 @@
         }
       },
       "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+    },
+    "musicr-ui-contact-success": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/contact-success",
+      "sourceRoot": "libs/musicr/ui/contact-success/src",
+      "prefix": "ivt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/contact-success"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/contact-success/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/musicr/ui/contact-success/src/**/*.ts",
+              "libs/musicr/ui/contact-success/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
     },
     "musicr-ui-core": {
       "projectType": "library",

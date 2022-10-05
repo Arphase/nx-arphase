@@ -12,19 +12,19 @@ export interface SocialEvent {
   endTime: Date;
   addressId?: number;
   address: Partial<Address>;
-  eventPlace?: SocialEventPlaces | string;
+  eventPlace?: SocialEventPlaces;
   notes?: string;
   requiresAssembly?: boolean;
 }
 
 export enum SocialEventPlaces {
-  backyard = 1,
-  garage = 2,
-  garden = 3,
-  terrace = 4,
-  office = 5,
-  inside = 6,
-  eventHall = 7,
+  backyard = 'backyard',
+  garage = 'garage',
+  garden = 'garden',
+  terrace = 'terrace',
+  office = 'office',
+  inside = 'inside',
+  eventHall = 'eventHall',
 }
 
 export const socialEventLabels: Record<SocialEventPlaces, string> = {

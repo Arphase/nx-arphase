@@ -56,12 +56,8 @@ export class SocialEventEntity extends BaseEntity implements SocialEvent {
     type: 'enum',
     enum: SocialEventPlaces,
     nullable: true,
-    transformer: {
-      to: value => value,
-      from: value => SocialEventPlaces[value],
-    },
   })
-  eventPlace: SocialEventPlaces | string;
+  eventPlace: SocialEventPlaces;
 
   @Column({ nullable: true })
   notes: string;

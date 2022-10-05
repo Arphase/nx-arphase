@@ -58,7 +58,7 @@
         <button nz-button
                 nzType="text"
                 [nzLoading]="loading$ | async"
-                class="border-white bg-transparent px-6 h-10 text-center md:mb-5 mb-0"
+                class=" bg-transparent py-2 px-6 h-10 text-center md:mb-5 mb-0"
                 type="submit">
           Envíar
         </button>
@@ -105,13 +105,15 @@
     </div>
     <div nz-col
          [nzXs]="{ span: 24, order: 1 }"
-         [nzMd]="{ span: 1, order: 2 }"
+         [nzMd]="{ span: 24, order: 2 }"
          class="icons">
       <div nz-row
            nzJustify="center"
            [nzGutter]="24">
         <div nz-col
-             nzSpan="4">
+             nzXs="4"
+             nzMd="2"
+             nzLg="1">
           <a href="https://www.facebook.com/MusicRevolution/"
              target="_blank">
             <i nz-icon
@@ -120,7 +122,9 @@
           </a>
         </div>
         <div nz-col
-             nzSpan="4">
+             nzXs="4"
+             nzMd="2"
+             nzLg="1">
           <a href="https://www.instagram.com/music.rev/"
              target="_blank">
             <i nz-icon
@@ -129,7 +133,9 @@
           </a>
         </div>
         <div nz-col
-             nzSpan="4">
+             nzXs="4"
+             nzMd="2"
+             nzLg="1">
           <a href="https://wa.link/shhx13"
              target="_blank">
             <i nz-icon

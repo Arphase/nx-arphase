@@ -1,6 +1,6 @@
 import { Trim } from '@arphase/api/core';
 import { OrderTypes, SocialEventPlaces } from '@musicr/domain';
-import { Transform, Type } from 'class-transformer';
+import { Type } from 'class-transformer';
 import {
   IsArray,
   IsBoolean,
@@ -88,7 +88,6 @@ export class CreateSocialEventDto {
   @Type(() => CreateAddressDto)
   address: CreateAddressDto;
 
-  @Transform((_, obj) => SocialEventPlaces[obj['eventPlace']])
   @IsEnum(SocialEventPlaces)
   eventPlace: SocialEventPlaces;
 

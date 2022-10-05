@@ -33,10 +33,17 @@
       <div nz-col
            nzSpan="24"
            class="flex justify-center">
-        <p class="text-base">
+        <p *ngIf="order?.orderType === orderTypes.purchase"
+           class="text-base">
           Tu pedido ha sido recibido por nuestro equipo. <br class="md:block hidden">
           Pronto te enviaremos un correo electrónico <br class="md:block hidden">
           confirmando disponibilidad y métodos de pago.
+        </p>
+        <p *ngIf="order?.orderType === orderTypes.quote"
+           class="text-base">
+          Tu cotización ha sido recibido por nuestro equipo. <br class="md:block hidden">
+          Pronto te enviaremos un correo electrónico <br class="md:block hidden">
+          para dar seguimiento a tu cotización.
         </p>
       </div>
     </div>
