@@ -4,16 +4,19 @@ import { AdditionalOptionEntity, OrderEntity, PriceOptionEntity, ProductEntity }
 import { Order } from '@musicr/domain';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Response } from 'express';
 import { keyBy } from 'lodash';
 import { createTransport } from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import { Repository } from 'typeorm';
+import { ExportPdfDto } from '../dto/export-pdf.dto';
 
 import { CreateOrderPreviewDto } from '../dto/create-order-preview-dto';
 import { CreateOrderQuoteDto } from '../dto/create-order-quote.dto';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { FilterOrdersDto } from '../dto/filter-orders.dto';
 import { createOrderEmail } from '../functions/create-order-email';
+import { generateOrderPdf } from '../functions/generate-order-pdf';
 import {
   getAllItemIdsWithPrices,
   ItemsWithPriceDictionary,
@@ -119,5 +122,10 @@ export class OrdersService {
     };
 
     return mapOrderEntityFromDto(createOrderDto, dictionary);
+  }
+
+  async generatePdf(id: number, queryDto: ExportPdfDto, response: Response): Promise<void> {
+    const order = await this.getOrder(id);
+    await generateOrderPdf(order, queryDto, response);
   }
 }

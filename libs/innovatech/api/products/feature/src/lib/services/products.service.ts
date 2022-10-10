@@ -1,6 +1,6 @@
-import { createCollectionResponse } from '@arphase/api/core';
+import { createCollectionResponse, tobase64 } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
-import { filterCommonQuery, tobase64 } from '@innovatech/api/core/util';
+import { filterCommonQuery } from '@innovatech/api/core/util';
 import { CompanyEntity, GroupEntity, ProductEntity } from '@innovatech/api/domain';
 import { generateProductPdf, getProductPdfTemplate } from '@innovatech/api/products/utils';
 import { Company, Product, User, UserRoles } from '@innovatech/common/domain';

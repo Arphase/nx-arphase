@@ -1,7 +1,8 @@
 import 'dayjs/locale/es';
 
+import { IMAGE_ASSETS_PATH } from '@arphase/api/core';
 import { formatAddress, SortDirection } from '@arphase/common';
-import { filterCommonQuery, IMAGE_ASSETS_PATH } from '@innovatech/api/core/util';
+import { filterCommonQuery } from '@innovatech/api/core/util';
 import { GuaranteeEntity } from '@innovatech/api/domain';
 import { Guarantee, transformFolio, User } from '@innovatech/common/domain';
 import dayjs from 'dayjs';

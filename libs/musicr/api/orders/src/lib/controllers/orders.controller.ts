@@ -1,11 +1,13 @@
 import { ApsCollectionResponse, DeepPartial } from '@arphase/common';
 import { Order } from '@musicr/domain';
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { Response } from 'express';
 
 import { CreateOrderPreviewDto } from '../dto/create-order-preview-dto';
 import { CreateOrderQuoteDto } from '../dto/create-order-quote.dto';
 import { CreateOrderDto } from '../dto/create-order.dto';
+import { ExportPdfDto } from '../dto/export-pdf.dto';
 import { FilterOrdersDto } from '../dto/filter-orders.dto';
 import { OrdersService } from '../services/orders.service';
 
@@ -38,5 +40,15 @@ export class OrdersController {
   @Post('preview')
   async createOrderPreview(@Body() createOrderDto: CreateOrderPreviewDto): Promise<DeepPartial<Order>> {
     return this.ordersService.createOrderPreview(createOrderDto);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('export/pdf/:id')
+  async getOrderPdf(
+    @Param('id', ParseIntPipe) id: number,
+    @Query() queryDto: ExportPdfDto,
+    @Res() response: Response
+  ): Promise<void> {
+    return this.ordersService.generatePdf(id, queryDto, response);
   }
 }

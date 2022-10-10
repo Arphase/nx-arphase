@@ -89,6 +89,16 @@
                 type="button"
                 nzType="text"
                 nz-tooltip
+                nzTooltipTitle="Descargar PDF"
+                (click)="downloadPdf.emit(item?.id)">
+          <i nz-icon
+             nzType="download"
+             nzTheme="outline"></i>
+        </button>
+        <button nz-button
+                type="button"
+                nzType="text"
+                nz-tooltip
                 nzTooltipTitle="Ver detalle"
                 (click)="showDetail.emit(item?.id)">
           <i nz-icon

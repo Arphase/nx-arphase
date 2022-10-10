@@ -1,5 +1,5 @@
+import { IMAGE_ASSETS_PATH } from '@arphase/api/core';
 import { formatAddress, formatPhone } from '@arphase/common';
-import { IMAGE_ASSETS_PATH } from '@innovatech/api/core/util';
 import { Client, Guarantee, transformFolio } from '@innovatech/common/domain';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
@@ -9,13 +9,9 @@ dayjs.extend(LocalizedFormat);
 dayjs.extend(utc);
 
 function replace(source: string, replacements: Record<string, string>) {
-  return source.replace(new RegExp('\\{([A-z]|.)*?}', 'g'), value => {
-    if (value.substring(1, value.length - 1) in replacements) {
-      return replacements[value.substring(1, value.length - 1)];
-    } else {
-      return value;
-    }
-  });
+  return source.replace(new RegExp('\\{([A-z]|.)*?}', 'g'), value =>
+    value.substring(1, value.length - 1) in replacements ? replacements[value.substring(1, value.length - 1)] : value
+  );
 }
 
 export const dummyGlossary: Record<string, string> = {

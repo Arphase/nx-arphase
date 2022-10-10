@@ -10,7 +10,7 @@ export interface Address {
   internalNumber?: string;
 }
 
-export function formatAddress(address: Address): string {
+export function formatAddress(address: Partial<Address>): string {
   const { street, externalNumber, suburb, city, state, zipcode } = address;
-  return `${street} ${externalNumber}, ${suburb}. ${city}, ${state}. ${zipcode}`;
+  return street ? `${street} ${externalNumber}, ${suburb}. ${city}, ${state}. ${zipcode}` : `CP. ${zipcode}`;
 }

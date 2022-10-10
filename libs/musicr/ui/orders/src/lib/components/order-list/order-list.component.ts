@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { ApsColumns, ApsListComponent } from '@arphase/ui/core';
 import { Order, orderTypeLabels, OrderTypes } from '@musicr/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
@@ -71,6 +71,8 @@ export class OrderListComponent extends ApsListComponent<Order> {
       },
     },
   ];
+
+  @Output() downloadPdf = new EventEmitter<number>();
 
   updateOrderTypeFilter(orderType: OrderTypes): void {
     this.filterItems.emit({ orderType });
