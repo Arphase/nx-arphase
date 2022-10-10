@@ -37,7 +37,7 @@ export class SubcategoriesService {
   }
 
   async getSubCategory(id: number): Promise<Subcategory> {
-    const subcategory = await this.subcategoryRepository.findOne({ id });
+    const subcategory = await this.subcategoryRepository.findOneBy({ id });
     if (!subcategory) {
       throw new NotFoundException(`Subategory with id ${id} not found`);
     }
@@ -45,7 +45,7 @@ export class SubcategoriesService {
   }
 
   async createSubcategory(subcategory: CreateSubcategoryDto): Promise<Subcategory> {
-    const found = await this.subcategoryRepository.findOne(subcategory);
+    const found = await this.subcategoryRepository.findOneBy({ name: subcategory.name });
     if (found) {
       return found;
     }
@@ -65,7 +65,7 @@ export class SubcategoriesService {
   }
 
   async deleteSubcategory(id: number): Promise<Subcategory> {
-    const subcategory = await this.subcategoryRepository.findOne({ id });
+    const subcategory = await this.subcategoryRepository.findOneBy({ id });
 
     if (!subcategory) {
       throw new NotFoundException(`Categoría con id ${id} no existe`);

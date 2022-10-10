@@ -32,7 +32,7 @@ export class CategoriesService {
   }
 
   async getCategory(id: number): Promise<Category> {
-    const category = await this.categoryRepository.findOne({ id });
+    const category = await this.categoryRepository.findOneBy({ id });
     if (!category) {
       throw new NotFoundException(`Category with id ${id} not found`);
     }
@@ -40,7 +40,7 @@ export class CategoriesService {
   }
 
   async createCategory(category: CreateCategoryDto): Promise<Category> {
-    const found = await this.categoryRepository.findOne(category);
+    const found = await this.categoryRepository.findOneBy({ name: category.name });
     if (found) {
       return found;
     }
@@ -54,7 +54,7 @@ export class CategoriesService {
   }
 
   async deleteCategory(id: number): Promise<Category> {
-    const category = await this.categoryRepository.findOne({ id });
+    const category = await this.categoryRepository.findOneBy({ id });
 
     if (!category) {
       throw new NotFoundException(`Categoría con id ${id} no existe`);

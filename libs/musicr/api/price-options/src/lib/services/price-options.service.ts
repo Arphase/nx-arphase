@@ -48,7 +48,7 @@ export class PriceOptionsService {
   }
 
   async deletePriceOption(id: number): Promise<PriceOption> {
-    const priceOption = await this.priceOptionRepository.findOne({ id });
+    const priceOption = await this.priceOptionRepository.findOneBy({ id });
 
     if (!priceOption) {
       throw new NotFoundException(`Opción de precio con id ${id} no existe`);

@@ -11,7 +11,7 @@ export class CustomersService {
   constructor(@InjectRepository(CustomerEntity) private customerRepository: Repository<CustomerEntity>) {}
 
   async getCustomerByEmail({ email }: SearchCustomersByEmailDto): Promise<Customer> {
-    const customer = this.customerRepository.findOne({ email });
+    const customer = this.customerRepository.findOneBy({ email });
     if (!customer) {
       throw new NotFoundException(`El cliente con correo ${email} no existe`);
     }

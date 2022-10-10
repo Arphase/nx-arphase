@@ -1,3 +1,4 @@
+import { AngularUniversalModule, loadEsmModule } from '@arphase/api/core';
 import { AdditionalOptionsModule } from '@musicr/api/additional-options';
 import { AuthModule } from '@musicr/api/auth';
 import { CategoriesModule } from '@musicr/api/categories';
@@ -10,17 +11,22 @@ import { PriceOptionsModule } from '@musicr/api/price-options';
 import { ProductsModule } from '@musicr/api/products';
 import { SubcategoriesModule } from '@musicr/api/subcategories';
 import { Module } from '@nestjs/common';
-import { AngularUniversalModule } from '@nestjs/ng-universal';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { join } from 'path';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { AppServerModule } from '../../../store/src/app/app.server.module';
 
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 @Module({
   imports: [
-    AngularUniversalModule.forRoot({
-      bootstrap: AppServerModule,
-      viewsPath: join(process.cwd(), 'dist/apps/musicr/browser'),
+    AngularUniversalModule.forRoot(async () => {
+      const angularModule = await loadEsmModule<{ default: typeof import('../../../store/src/app/app.server.module') }>(
+        join(process.cwd(), 'dist/apps/musicr/browser')
+      );
+
+      return {
+        bootstrap: angularModule.default.AppServerModule,
+        ngExpressEngine: (angularModule.default as any).ngExpressEngine,
+        viewsPath: join(process.cwd(), 'dist/apps/musicr/browser'),
+      };
     }),
     MusicrApiDbModule,
     ThrottlerModule.forRoot({

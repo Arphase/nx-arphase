@@ -45,7 +45,7 @@ export class AdditionalOptionsService {
   }
 
   async deleteAdditionalOption(id: number): Promise<AdditionalOption> {
-    const additionalOption = await this.additionalOptionRepository.findOne({ id });
+    const additionalOption = await this.additionalOptionRepository.findOneBy({ id });
 
     if (!additionalOption) {
       throw new NotFoundException(`Opción adicional con id ${id} no existe`);

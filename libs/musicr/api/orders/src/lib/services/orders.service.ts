@@ -9,11 +9,11 @@ import { keyBy } from 'lodash';
 import { createTransport } from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import { Repository } from 'typeorm';
-import { ExportPdfDto } from '../dto/export-pdf.dto';
 
 import { CreateOrderPreviewDto } from '../dto/create-order-preview-dto';
 import { CreateOrderQuoteDto } from '../dto/create-order-quote.dto';
 import { CreateOrderDto } from '../dto/create-order.dto';
+import { ExportPdfDto } from '../dto/export-pdf.dto';
 import { FilterOrdersDto } from '../dto/filter-orders.dto';
 import { createOrderEmail } from '../functions/create-order-email';
 import { generateOrderPdf } from '../functions/generate-order-pdf';
@@ -67,7 +67,7 @@ export class OrdersService {
   }
 
   async getOrder(id: number): Promise<Order> {
-    const order = await this.orderRepository.findOne({ id }, { withDeleted: true });
+    const order = await this.orderRepository.findOne({ where: { id }, withDeleted: true });
     if (!order) {
       throw new NotFoundException(`Order with id ${id} not found`);
     }

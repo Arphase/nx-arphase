@@ -61,7 +61,7 @@ describe('PhotosController', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    const expected = await repository.findOne({ id });
+    const expected = await repository.findOneBy({ id });
     expect(expected).toBeFalsy();
   });
 });

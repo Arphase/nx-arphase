@@ -66,7 +66,7 @@ export class AuthService {
 
   async validateUserPassword(authCredentialsDto: SignInCredentialsDto): Promise<User> {
     const { email, password } = authCredentialsDto;
-    const user = await this.userRepository.findOne({ where: [{ email }] });
+    const user = await this.userRepository.findOneBy([{ email }]);
 
     if (user && (await user.validatePassword(password))) {
       return user;
@@ -77,12 +77,12 @@ export class AuthService {
 
   async setPassword(resetPassword: ResetPasswordDto): Promise<User> {
     const { userId, password, passwordToken } = resetPassword;
-    const resetPasswordEntity = await this.resetPasswordRepository.findOne({ passwordToken });
+    const resetPasswordEntity = await this.resetPasswordRepository.findOneBy({ passwordToken });
     if (!resetPasswordEntity) {
       throw new NotFoundException(`Password token not found`);
     }
 
-    const user = await this.userRepository.findOne({ id: userId });
+    const user = await this.userRepository.findOneBy({ id: userId });
     if (!user) {
       throw new NotFoundException(`User not found`);
     }
@@ -105,7 +105,7 @@ export class AuthService {
   }
 
   async sendResetPasswordEmail(email: string): Promise<Record<string, boolean>> {
-    const user = await this.userRepository.findOne({ email });
+    const user = await this.userRepository.findOneBy({ email });
     if (!user) {
       throw new NotFoundException(`User not found`);
     }
@@ -142,7 +142,7 @@ export class AuthService {
   }
 
   async createResetPasswordToken(userId: number): Promise<ResetPassword> {
-    const resetPassword = await this.resetPasswordRepository.findOne({ userId });
+    const resetPassword = await this.resetPasswordRepository.findOneBy({ userId });
     const resetPasswordEntity = this.resetPasswordRepository.create({
       ...resetPassword,
       userId,
@@ -153,7 +153,7 @@ export class AuthService {
   }
 
   async validateToken(passwordToken: string): Promise<ResetPassword> {
-    const resetToken = await this.resetPasswordRepository.findOne({ passwordToken });
+    const resetToken = await this.resetPasswordRepository.findOneBy({ passwordToken });
     if (!resetToken) {
       throw new NotFoundException('Token not found');
     } else {
