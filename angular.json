@@ -1980,7 +1980,7 @@
       "projectType": "application",
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "@nrwl/node:webpack",
           "outputs": [
             "{options.outputPath}"
           ],
@@ -1990,8 +1990,7 @@
             "tsConfig": "apps/musicr/api/tsconfig.app.json",
             "assets": [
               "apps/musicr/api/src/assets"
-            ],
-            "maxWorkers": 1
+            ]
           },
           "configurations": {
             "production": {
@@ -2002,7 +2001,7 @@
           }
         },
         "serve": {
-          "builder": "@nrwl/node:execute",
+          "builder": "@nrwl/node:node",
           "options": {
             "buildTarget": "musicr-api:build",
             "inspect": true,
