@@ -250,7 +250,7 @@
       "prefix": "ivt",
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "@nrwl/node:webpack",
           "options": {
             "outputPath": "dist/apps/innovatech/api",
             "main": "apps/innovatech/api/src/main.ts",
@@ -269,7 +269,7 @@
           }
         },
         "serve": {
-          "builder": "@nrwl/node:execute",
+          "builder": "@nrwl/node:node",
           "options": {
             "buildTarget": "innovatech-api:build",
             "inspect": true,
@@ -1857,6 +1857,12 @@
             "styles": [
               "apps/musicr/admin/src/styles.less",
               "libs/arphase/ui/core/src/styles/themes/base.less"
+            ],
+            "allowedCommonJsDependencies": [
+              "dayjs",
+              "dayjs/plugin/customParseFormat",
+              "dayjs/plugin/localizedFormat",
+              "file-saver"
             ]
           },
           "configurations": {
@@ -2450,6 +2456,12 @@
             ],
             "styles": [
               "apps/musicr/store/src/styles.less"
+            ],
+            "allowedCommonJsDependencies": [
+              "dayjs",
+              "dayjs/plugin/customParseFormat",
+              "dayjs/plugin/localizedFormat",
+              "file-saver"
             ]
           },
           "configurations": {
@@ -3525,7 +3537,7 @@
           }
         },
         "serve": {
-          "builder": "@nrwl/node:execute",
+          "builder": "@nrwl/node:node",
           "options": {
             "buildTarget": "valmira-api:build"
           }

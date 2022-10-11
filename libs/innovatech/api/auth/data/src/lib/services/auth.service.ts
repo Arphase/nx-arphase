@@ -65,12 +65,12 @@ export class AuthService {
 
   async setPassword(resetPassword: ResetPasswordDto): Promise<User> {
     const { userId, password, passwordToken } = resetPassword;
-    const resetPasswordEntity = await this.resetPasswordRepository.findOne({ passwordToken });
+    const resetPasswordEntity = await this.resetPasswordRepository.findOneBy({ passwordToken });
     if (!resetPasswordEntity) {
       throw new NotFoundException(`Password token not found`);
     }
 
-    const userFromDb = await this.userRepository.findOne({ id: userId });
+    const userFromDb = await this.userRepository.findOneBy({ id: userId });
     if (!userFromDb) {
       throw new NotFoundException(`User not found`);
     }
@@ -94,12 +94,12 @@ export class AuthService {
 
   async validateUserPassword(authCredentialsDto: AuthCredentialsDto): Promise<User> {
     const { email, password } = authCredentialsDto;
-    const user = await this.userRepository.findOne({ where: [{ email }] });
+    const user = await this.userRepository.findOneBy({ email });
     return user && (await user.validatePassword(password)) ? user : null;
   }
 
   async createResetPasswordToken(userId: number): Promise<ResetPassword> {
-    const resetPassword = await this.resetPasswordRepository.findOne({ userId });
+    const resetPassword = await this.resetPasswordRepository.findOneBy({ userId });
     const resetPasswordEntity = this.resetPasswordRepository.create({
       ...resetPassword,
       userId,
@@ -147,7 +147,7 @@ export class AuthService {
   }
 
   async validateToken(passwordToken: string): Promise<ResetPassword> {
-    const resetToken = await this.resetPasswordRepository.findOne({ passwordToken });
+    const resetToken = await this.resetPasswordRepository.findOneBy({ passwordToken });
     if (!resetToken) {
       throw new NotFoundException('Token not found');
     } else {
@@ -156,7 +156,7 @@ export class AuthService {
   }
 
   async sendResetPasswordEmail(email: string): Promise<Record<string, boolean>> {
-    const userFromDb = await this.userRepository.findOne({ email });
+    const userFromDb = await this.userRepository.findOneBy({ email });
     if (!userFromDb) {
       throw new NotFoundException(`User not found`);
     }

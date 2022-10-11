@@ -127,7 +127,7 @@ export class GroupsService {
 
   async assignProducts(assignProductsDto: AssignProductsDto): Promise<Product[]> {
     const { groupId, productIds } = assignProductsDto;
-    const group = await this.groupRepository.findOne({ id: groupId });
+    const group = await this.groupRepository.findOneBy({ id: groupId });
     if (!group) {
       throw new NotFoundException(`Group with id "${groupId} not found`);
     }

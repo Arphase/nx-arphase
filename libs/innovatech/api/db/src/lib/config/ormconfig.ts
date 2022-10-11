@@ -24,11 +24,6 @@ const config: TypeOrmModuleOptions = {
   // __dirname is either dist or src folder, meaning either
   // the compiled js in prod or the ts in dev.
   migrations: ['libs/innovatech/api/db/src/lib/migrations/**/*.js'],
-  cli: {
-    // Location of migration should be inside src folder
-    // to be compiled into dist/ folder.
-    migrationsDir: 'libs/innovatech/api/db/src/lib/migrations',
-  },
   logging: !test,
 };
 

@@ -168,7 +168,7 @@ export class GuaranteesService {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
-    const vehicle = await this.vehicleRepository.findOne({ id: createGuaranteeDto.vehicleId });
+    const vehicle = await this.vehicleRepository.findOneBy({ id: createGuaranteeDto.vehicleId });
     validateVehicle(vehicle, user);
     try {
       vehicle.status = VehicleStatus.hasActiveGuarantee;
@@ -219,7 +219,7 @@ export class GuaranteesService {
         companyId: user && UserRoles[user.role] === UserRoles.superAdmin ? companyId : user.companyId,
       });
       if (vehicleId) {
-        const vehicle = await this.vehicleRepository.findOne({ id: vehicleId });
+        const vehicle = await this.vehicleRepository.findOneBy({ id: vehicleId });
         validateVehicle(vehicle, user);
       }
       if (updateGuaranteeDto.client?.personType === PersonTypes.moral && preloadedGuarantee.client?.physicalInfo?.id) {

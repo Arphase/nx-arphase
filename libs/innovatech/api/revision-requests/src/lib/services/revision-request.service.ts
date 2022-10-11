@@ -53,7 +53,7 @@ export class RevisionRequestService {
   }
 
   async getRevisionRequest(id: number): Promise<RevisionRequest> {
-    const found = this.revisionRequestRepository.findOne({ id }, { relations: ['vehicle', 'address'] });
+    const found = this.revisionRequestRepository.findOne({ where: { id }, relations: ['vehicle', 'address'] });
     if (!found) {
       throw new NotFoundException(`Revision request with id "${id}" not found`);
     }

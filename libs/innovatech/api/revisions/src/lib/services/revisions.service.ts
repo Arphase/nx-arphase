@@ -195,7 +195,7 @@ export class RevisionsService {
       [RevisionStatus.notElegible]: VehicleStatus.notElegible,
     };
 
-    const vehicle = await this.vehicleRepository.findOne({ id: vehicleId });
+    const vehicle = await this.vehicleRepository.findOneBy({ id: vehicleId });
 
     if (vehicle && vehicle.status !== VehicleStatus.hasActiveGuarantee) {
       vehicle.status = statusMap[status];

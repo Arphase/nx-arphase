@@ -34,7 +34,7 @@ export class ProductService {
     if ((user && UserRoles[user.role] !== UserRoles.superAdmin) || groupId) {
       let company: Company;
       if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
-        company = await this.companyRepository.findOne({ id: user.companyId });
+        company = await this.companyRepository.findOneBy({ id: user.companyId });
       }
       const groupQuery = this.groupRepository
         .createQueryBuilder('group')
