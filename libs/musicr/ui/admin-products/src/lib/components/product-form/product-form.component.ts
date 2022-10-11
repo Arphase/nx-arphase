@@ -7,7 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators, filterNil, getBase64, setFormArrayValue } from '@arphase/ui/core';
 import { Product } from '@musicr/domain';
 import { MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
@@ -17,18 +17,18 @@ import { distinctUntilChanged } from 'rxjs/operators';
 
 import { mapPhotoFileArray } from '../../functions/map-file-photo-array';
 
-export function createProductForm(): FormGroup {
-  return new FormGroup({
-    id: new FormControl(null),
-    name: new FormControl(null, ApsValidators.required),
-    price: new FormControl(null, ApsValidators.required),
-    description: new FormControl(null),
-    disclaimer: new FormControl(null),
-    categoryId: new FormControl(null, ApsValidators.required),
-    subcategoryId: new FormControl(null, ApsValidators.required),
-    productComponents: new FormArray([]),
-    additionalOptions: new FormArray([]),
-    priceOptions: new FormArray([]),
+export function createProductForm(): UntypedFormGroup {
+  return new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    name: new UntypedFormControl(null, ApsValidators.required),
+    price: new UntypedFormControl(null, ApsValidators.required),
+    description: new UntypedFormControl(null),
+    disclaimer: new UntypedFormControl(null),
+    categoryId: new UntypedFormControl(null, ApsValidators.required),
+    subcategoryId: new UntypedFormControl(null, ApsValidators.required),
+    productComponents: new UntypedFormArray([]),
+    additionalOptions: new UntypedFormArray([]),
+    priceOptions: new UntypedFormArray([]),
   });
 }
 
@@ -62,16 +62,16 @@ export class ProductFormComponent extends ApsFormComponent<Product> implements O
     return true;
   };
 
-  get productComponentsFormArray(): FormArray {
-    return this.form?.get('productComponents') as FormArray;
+  get productComponentsFormArray(): UntypedFormArray {
+    return this.form?.get('productComponents') as UntypedFormArray;
   }
 
-  get additionalOptionsFormArray(): FormArray {
-    return this.form?.get('additionalOptions') as FormArray;
+  get additionalOptionsFormArray(): UntypedFormArray {
+    return this.form?.get('additionalOptions') as UntypedFormArray;
   }
 
-  get priceOptionsFormArray(): FormArray {
-    return this.form?.get('priceOptions') as FormArray;
+  get priceOptionsFormArray(): UntypedFormArray {
+    return this.form?.get('priceOptions') as UntypedFormArray;
   }
 
   constructor(@Inject(MUSIC_REVOLUTION_CONFIGURATION) private config: MusicRevolutionConfiguration) {
@@ -103,7 +103,7 @@ export class ProductFormComponent extends ApsFormComponent<Product> implements O
   }
 
   addComponent(): void {
-    this.productComponentsFormArray.push(new FormControl('', ApsValidators.required));
+    this.productComponentsFormArray.push(new UntypedFormControl('', ApsValidators.required));
   }
 
   removeComponent(index: number): void {

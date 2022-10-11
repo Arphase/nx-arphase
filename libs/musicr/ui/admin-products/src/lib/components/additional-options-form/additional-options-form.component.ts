@@ -7,15 +7,15 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators, setFormArrayValue } from '@arphase/ui/core';
 import { AdditionalOption } from '@musicr/domain';
 
-export function createAdditionalOptionForm(additionalOption?: AdditionalOption): FormGroup {
-  const form = new FormGroup({
-    id: new FormControl(null),
-    name: new FormControl(null, ApsValidators.required),
-    price: new FormControl(null, ApsValidators.required),
+export function createAdditionalOptionForm(additionalOption?: AdditionalOption): UntypedFormGroup {
+  const form = new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    name: new UntypedFormControl(null, ApsValidators.required),
+    price: new UntypedFormControl(null, ApsValidators.required),
   });
   if (additionalOption) {
     form.patchValue(additionalOption);
@@ -33,8 +33,8 @@ export class AdditionalOptionsFormComponent extends ApsFormComponent<AdditionalO
   @Input() deletedItemIndex: number;
   @Output() deleteItem = new EventEmitter<{ item: AdditionalOption; index: number }>();
 
-  get formArray(): FormArray {
-    return this.form as AbstractControl as FormArray;
+  get formArray(): UntypedFormArray {
+    return this.form as AbstractControl as UntypedFormArray;
   }
 
   /**
@@ -57,7 +57,7 @@ export class AdditionalOptionsFormComponent extends ApsFormComponent<AdditionalO
   }
 
   removeAdditionalOption(index: number): void {
-    const additionalOptionControl = (this.formArray.at(index) as FormGroup).getRawValue() as AdditionalOption;
+    const additionalOptionControl = (this.formArray.at(index) as UntypedFormGroup).getRawValue() as AdditionalOption;
     additionalOptionControl.id
       ? this.deleteItem.emit({ item: additionalOptionControl, index })
       : this.formArray.removeAt(index);

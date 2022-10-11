@@ -7,7 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
@@ -25,7 +25,7 @@ export class ApsRadioFilterComponent implements OnChanges {
   @Output() filterCleared = new EventEmitter<void>();
   @Output() filterChanged = new EventEmitter<string>();
   @Output() filterItems = new EventEmitter<string>();
-  control = new FormControl();
+  control = new UntypedFormControl();
   mappedTitle: string;
   active: boolean;
 

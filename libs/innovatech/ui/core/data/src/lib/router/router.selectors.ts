@@ -5,7 +5,7 @@ export interface State {
   router: fromRouter.RouterReducerState;
 }
 
-export const selectRouter = createFeatureSelector<State, fromRouter.RouterReducerState>('router');
+export const selectRouter = createFeatureSelector< fromRouter.RouterReducerState>('router');
 
 export const {
   selectCurrentRoute, // select the current route

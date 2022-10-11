@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 import { collectFormErrors, updateFormControlsValueAndValidity } from '../functions';
 
@@ -9,7 +9,7 @@ import { collectFormErrors, updateFormControlsValueAndValidity } from '../functi
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApsFormComponent<T = any, F = any> {
-  @Input() form: FormGroup;
+  @Input() form: UntypedFormGroup;
   @Input() item: T;
   @Input() loading: boolean;
   @Input() isEditable = true;

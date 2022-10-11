@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { AdditionalProduct } from '@valmira/domain';
 
-export function createAdditionalProductForm(): FormGroup {
-  return new FormGroup({
-    id: new FormControl(null),
-    name: new FormControl(null, ApsValidators.required),
-    description: new FormControl(null, ApsValidators.required),
-    price: new FormControl(null, ApsValidators.required),
+export function createAdditionalProductForm(): UntypedFormGroup {
+  return new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    name: new UntypedFormControl(null, ApsValidators.required),
+    description: new UntypedFormControl(null, ApsValidators.required),
+    price: new UntypedFormControl(null, ApsValidators.required),
   });
 }
 

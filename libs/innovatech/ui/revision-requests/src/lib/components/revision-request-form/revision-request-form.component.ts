@@ -8,19 +8,19 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { createAddressForm } from '@arphase/ui/addresses';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { RevisionRequest, Vehicle } from '@innovatech/common/domain';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
 
-export function createRevisionRequestForm(): FormGroup {
-  return new FormGroup({
-    id: new FormControl(null),
-    name: new FormControl(null, ApsValidators.required),
-    email: new FormControl(null, ApsValidators.email),
-    phone: new FormControl(null, ApsValidators.phone),
-    additionalNotes: new FormControl(null),
+export function createRevisionRequestForm(): UntypedFormGroup {
+  return new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    name: new UntypedFormControl(null, ApsValidators.required),
+    email: new UntypedFormControl(null, ApsValidators.email),
+    phone: new UntypedFormControl(null, ApsValidators.phone),
+    additionalNotes: new UntypedFormControl(null),
     vehicle: createVehicleForm(),
     address: createAddressForm(),
   });
@@ -62,11 +62,11 @@ export class RevisionRequestFormComponent
     }
   }
 
-  get vehicleForm(): FormGroup {
-    return this.form.get('vehicle') as FormGroup;
+  get vehicleForm(): UntypedFormGroup {
+    return this.form.get('vehicle') as UntypedFormGroup;
   }
 
-  get addressForm(): FormGroup {
-    return this.form.get('address') as FormGroup;
+  get addressForm(): UntypedFormGroup {
+    return this.form.get('address') as UntypedFormGroup;
   }
 }

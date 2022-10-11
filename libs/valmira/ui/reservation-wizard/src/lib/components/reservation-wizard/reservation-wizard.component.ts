@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ApsFormComponent } from '@arphase/ui/core';
 import { Promocode, Reservation } from '@valmira/domain';
 
@@ -16,8 +16,8 @@ export class ReservationWizardComponent extends ApsFormComponent implements OnCh
   @Input() disablePaymentMethod: boolean;
   @Input() disableConfirmation: boolean;
 
-  form = new FormGroup({
-    promocode: new FormControl(null, Validators.required),
+  form = new UntypedFormGroup({
+    promocode: new UntypedFormControl(null, Validators.required),
   });
 
   get promocode(): Promocode {

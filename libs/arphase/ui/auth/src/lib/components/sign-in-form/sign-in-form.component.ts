@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 
 import { SignInPayload } from '../../models/sign-in-payload';
@@ -12,7 +12,7 @@ import { SignInPayload } from '../../models/sign-in-payload';
 })
 export class SignInFormComponent extends ApsFormComponent<SignInPayload> {
   @Input() title: string;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     super();
     this.form = this.fb.group({
       email: [null, [ApsValidators.required, ApsValidators.email]],

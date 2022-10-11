@@ -7,25 +7,25 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators, getBase64, setFormArrayValue } from '@arphase/ui/core';
 import { Place } from '@valmira/domain';
 import { VALMIRA_CONFIGURATION, ValmiraConfiguration } from '@valmira/ui/core';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 
-export function createPlaceForm(): FormGroup {
-  return new FormGroup({
-    id: new FormControl(null),
-    name: new FormControl(null, ApsValidators.required),
-    description: new FormControl(null, ApsValidators.required),
-    capacity: new FormControl(null, ApsValidators.required),
-    area: new FormControl(null, ApsValidators.required),
-    weeklyPrice: new FormControl(null, ApsValidators.required),
-    weekendPrice: new FormControl(null, ApsValidators.required),
-    rooms: new FormControl(null, ApsValidators.required),
-    beds: new FormControl(null, ApsValidators.required),
-    releaseDate: new FormControl(null, ApsValidators.required),
-    services: new FormArray([]),
+export function createPlaceForm(): UntypedFormGroup {
+  return new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    name: new UntypedFormControl(null, ApsValidators.required),
+    description: new UntypedFormControl(null, ApsValidators.required),
+    capacity: new UntypedFormControl(null, ApsValidators.required),
+    area: new UntypedFormControl(null, ApsValidators.required),
+    weeklyPrice: new UntypedFormControl(null, ApsValidators.required),
+    weekendPrice: new UntypedFormControl(null, ApsValidators.required),
+    rooms: new UntypedFormControl(null, ApsValidators.required),
+    beds: new UntypedFormControl(null, ApsValidators.required),
+    releaseDate: new UntypedFormControl(null, ApsValidators.required),
+    services: new UntypedFormArray([]),
   });
 }
 
@@ -56,8 +56,8 @@ export class PlaceFormComponent extends ApsFormComponent<Place> implements OnCha
     return true;
   };
 
-  get servicesFormArray(): FormArray {
-    return this.form.get('services') as FormArray;
+  get servicesFormArray(): UntypedFormArray {
+    return this.form.get('services') as UntypedFormArray;
   }
 
   constructor(@Inject(VALMIRA_CONFIGURATION) private config: ValmiraConfiguration) {
@@ -79,7 +79,7 @@ export class PlaceFormComponent extends ApsFormComponent<Place> implements OnCha
   }
 
   addService(): void {
-    this.servicesFormArray.push(new FormControl('', ApsValidators.required));
+    this.servicesFormArray.push(new UntypedFormControl('', ApsValidators.required));
   }
 
   removeService(index: number): void {

@@ -9,7 +9,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MapMarker } from '@angular/google-maps';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -46,10 +46,10 @@ export class PlaceDetailComponent
     options: { animation: google.maps.Animation.BOUNCE },
   };
   mapsUrl = `https://goo.gl/maps/QRCadFBcK8ANGnCv9`;
-  form = new FormGroup(
+  form = new UntypedFormGroup(
     {
-      startDate: new FormControl(null, ApsValidators.required),
-      endDate: new FormControl(null, ApsValidators.required),
+      startDate: new UntypedFormControl(null, ApsValidators.required),
+      endDate: new UntypedFormControl(null, ApsValidators.required),
     },
     { validators: ApsValidators.dateLessThan('startDate', 'endDate') }
   );

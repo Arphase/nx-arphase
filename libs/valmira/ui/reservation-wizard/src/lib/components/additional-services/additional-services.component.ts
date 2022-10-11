@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ApsFormComponent } from '@arphase/ui/core';
 import { AdditionalProduct, Reservation, ReservationAdditionalProduct } from '@valmira/domain';
 import { keyBy } from 'lodash';
@@ -7,15 +7,15 @@ import { keyBy } from 'lodash';
 export function createAdditionalProductForm(
   item: AdditionalProduct,
   currentReservationProducts: Record<number, ReservationAdditionalProduct>
-): FormGroup {
+): UntypedFormGroup {
   const reservationItem = currentReservationProducts[item.id];
-  return new FormGroup({
-    id: new FormControl(reservationItem?.id || null),
-    active: new FormControl(!!reservationItem || false),
-    amount: new FormControl(reservationItem?.amount || 1),
-    additionalProductId: new FormControl(item.id),
-    name: new FormControl(item.name),
-    price: new FormControl(item.price),
+  return new UntypedFormGroup({
+    id: new UntypedFormControl(reservationItem?.id || null),
+    active: new UntypedFormControl(!!reservationItem || false),
+    amount: new UntypedFormControl(reservationItem?.amount || 1),
+    additionalProductId: new UntypedFormControl(item.id),
+    name: new UntypedFormControl(item.name),
+    price: new UntypedFormControl(item.price),
   });
 }
 
@@ -27,13 +27,13 @@ export function createAdditionalProductForm(
 })
 export class AdditionalServicesComponent extends ApsFormComponent<Reservation> implements OnChanges {
   @Input() items: AdditionalProduct[];
-  form = new FormGroup({
-    id: new FormControl(null),
-    additionalProducts: new FormArray([]),
+  form = new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    additionalProducts: new UntypedFormArray([]),
   });
 
-  get additionalProductsFormArray(): FormArray {
-    return this.form.get('additionalProducts') as FormArray;
+  get additionalProductsFormArray(): UntypedFormArray {
+    return this.form.get('additionalProducts') as UntypedFormArray;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -50,14 +50,14 @@ export class AdditionalServicesComponent extends ApsFormComponent<Reservation> i
     }
   }
 
-  subtract(form: FormGroup): void {
+  subtract(form: UntypedFormGroup): void {
     const amountControl = form.get('amount');
     if (Number(amountControl.value) > 0) {
       amountControl.patchValue(Number(amountControl.value) - 1);
     }
   }
 
-  add(form: FormGroup): void {
+  add(form: UntypedFormGroup): void {
     const amountControl = form.get('amount');
     amountControl.patchValue((Number(amountControl.value) || 0) + 1);
   }

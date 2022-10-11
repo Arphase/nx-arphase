@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators, filterNil, getBase64, sortSelectOptions } from '@arphase/ui/core';
 import { glossary, Product } from '@innovatech/common/domain';
 import { ProductDataService } from '@innovatech/ui/products/data';
@@ -12,28 +12,28 @@ import { finalize, take } from 'rxjs/operators';
 
 import { ProductForm } from '../../models/product-form.model';
 
-export function createProductForm(): FormGroup {
-  return new FormGroup({
-    id: new FormControl(null),
-    name: new FormControl(null, ApsValidators.required),
-    price: new FormControl(null, ApsValidators.required),
-    logo: new FormControl(null, ApsValidators.required),
-    yearValidations: new FormGroup(
+export function createProductForm(): UntypedFormGroup {
+  return new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    name: new UntypedFormControl(null, ApsValidators.required),
+    price: new UntypedFormControl(null, ApsValidators.required),
+    logo: new UntypedFormControl(null, ApsValidators.required),
+    yearValidations: new UntypedFormGroup(
       {
-        minYear: new FormControl(null, ApsValidators.required),
-        maxYear: new FormControl(null, ApsValidators.required),
+        minYear: new UntypedFormControl(null, ApsValidators.required),
+        maxYear: new UntypedFormControl(null, ApsValidators.required),
       },
       { validators: ApsValidators.minMax('minYear', 'maxYear') }
     ),
-    hpValidations: new FormGroup(
+    hpValidations: new UntypedFormGroup(
       {
-        minHp: new FormControl(null, ApsValidators.required),
-        maxHp: new FormControl(null, ApsValidators.required),
+        minHp: new UntypedFormControl(null, ApsValidators.required),
+        maxHp: new UntypedFormControl(null, ApsValidators.required),
       },
       { validators: ApsValidators.minMax('minHp', 'maxHp') }
     ),
-    template: new FormControl('', ApsValidators.required),
-    glossary: new FormControl(null),
+    template: new UntypedFormControl('', ApsValidators.required),
+    glossary: new UntypedFormControl(null),
   });
 }
 
@@ -71,12 +71,12 @@ export class ProductFormComponent extends ApsFormComponent<Product, ProductForm>
     });
   };
 
-  get yearValidationsForm(): FormGroup {
-    return this.form.get('yearValidations') as FormGroup;
+  get yearValidationsForm(): UntypedFormGroup {
+    return this.form.get('yearValidations') as UntypedFormGroup;
   }
 
-  get hpValidationsForm(): FormGroup {
-    return this.form.get('hpValidations') as FormGroup;
+  get hpValidationsForm(): UntypedFormGroup {
+    return this.form.get('hpValidations') as UntypedFormGroup;
   }
 
   get yearValidationsFormError(): boolean {

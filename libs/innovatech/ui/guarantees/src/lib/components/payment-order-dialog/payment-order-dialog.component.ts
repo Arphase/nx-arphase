@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { ApsColumns, ApsValidators } from '@arphase/ui/core';
 import { Guarantee, PaymentOrder } from '@innovatech/common/domain';
 import { ApsFormComponent } from '@arphase/ui/core';
@@ -43,7 +43,7 @@ export class PaymentOrderDialogComponent extends ApsFormComponent<PaymentOrder> 
     },
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     super();
     this.form = this.fb.group({
       id: null,
@@ -51,8 +51,8 @@ export class PaymentOrderDialogComponent extends ApsFormComponent<PaymentOrder> 
     });
   }
 
-  get guaranteesFormArray(): FormArray {
-    return this.form.get('guarantees') as FormArray;
+  get guaranteesFormArray(): UntypedFormArray {
+    return this.form.get('guarantees') as UntypedFormArray;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -66,7 +66,7 @@ export class PaymentOrderDialogComponent extends ApsFormComponent<PaymentOrder> 
     }
   }
 
-  createGuaranteeForm(guarantee: Partial<Guarantee>): FormGroup {
+  createGuaranteeForm(guarantee: Partial<Guarantee>): UntypedFormGroup {
     const formControl = this.fb.group({
       id: guarantee.id,
       invoiceDate: [null, ApsValidators.required],

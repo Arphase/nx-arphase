@@ -1,18 +1,18 @@
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { createAddressForm } from '@arphase/ui/addresses';
 import { ApsValidators, setFormArrayValue } from '@arphase/ui/core';
 import { Company, Group, User } from '@innovatech/common/domain';
 import { generateId, RfcValidatorTypes } from '@innovatech/common/utils';
 import { IvtValidators } from '@innovatech/ui/core/util';
 
-export function createGroupForm(group?: Group): FormGroup {
-  const form = new FormGroup({
-    id: new FormControl(null),
-    name: new FormControl(null, ApsValidators.required),
-    contact: new FormControl(null, ApsValidators.required),
-    email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
-    phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
-    companies: new FormArray([]),
+export function createGroupForm(group?: Group): UntypedFormGroup {
+  const form = new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    name: new UntypedFormControl(null, ApsValidators.required),
+    contact: new UntypedFormControl(null, ApsValidators.required),
+    email: new UntypedFormControl(null, [ApsValidators.required, ApsValidators.email]),
+    phone: new UntypedFormControl(null, [ApsValidators.required, ApsValidators.phone]),
+    companies: new UntypedFormArray([]),
   });
 
   if (group) {
@@ -22,22 +22,22 @@ export function createGroupForm(group?: Group): FormGroup {
   return form;
 }
 
-export function patchGroupForm(form: FormGroup, group: Group): void {
+export function patchGroupForm(form: UntypedFormGroup, group: Group): void {
   form.patchValue(group);
-  setFormArrayValue(form.get('companies') as FormArray, group.companies, company => createCompanyForm(company));
+  setFormArrayValue(form.get('companies') as UntypedFormArray, group.companies, company => createCompanyForm(company));
 }
 
-export function createCompanyForm(company?: Company): FormGroup {
-  const form = new FormGroup({
-    id: new FormControl(null),
-    tempId: new FormControl(generateId()),
-    businessName: new FormControl(null, ApsValidators.required),
-    email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
-    phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
+export function createCompanyForm(company?: Company): UntypedFormGroup {
+  const form = new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    tempId: new UntypedFormControl(generateId()),
+    businessName: new UntypedFormControl(null, ApsValidators.required),
+    email: new UntypedFormControl(null, [ApsValidators.required, ApsValidators.email]),
+    phone: new UntypedFormControl(null, [ApsValidators.required, ApsValidators.phone]),
     address: createAddressForm(),
-    users: new FormArray([]),
-    rfc: new FormControl(null, [ApsValidators.required, IvtValidators.rfc(RfcValidatorTypes.moral)]),
-    contact: new FormControl(null, ApsValidators.required),
+    users: new UntypedFormArray([]),
+    rfc: new UntypedFormControl(null, [ApsValidators.required, IvtValidators.rfc(RfcValidatorTypes.moral)]),
+    contact: new UntypedFormControl(null, ApsValidators.required),
   });
 
   if (company) {
@@ -47,20 +47,20 @@ export function createCompanyForm(company?: Company): FormGroup {
   return form;
 }
 
-export function patchCompanyForm(form: FormGroup, company: Company): void {
+export function patchCompanyForm(form: UntypedFormGroup, company: Company): void {
   form.patchValue(company);
-  setFormArrayValue(form.get('users') as FormArray, company.users || [], user => createUserForm(user));
+  setFormArrayValue(form.get('users') as UntypedFormArray, company.users || [], user => createUserForm(user));
 }
 
-export function createUserForm(user?: User): FormGroup {
-  const form = new FormGroup({
-    id: new FormControl(null),
-    tempId: new FormControl(generateId()),
-    firstName: new FormControl(null, ApsValidators.required),
-    lastName: new FormControl(null, ApsValidators.required),
-    secondLastName: new FormControl(null, ApsValidators.required),
-    email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
-    phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
+export function createUserForm(user?: User): UntypedFormGroup {
+  const form = new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    tempId: new UntypedFormControl(generateId()),
+    firstName: new UntypedFormControl(null, ApsValidators.required),
+    lastName: new UntypedFormControl(null, ApsValidators.required),
+    secondLastName: new UntypedFormControl(null, ApsValidators.required),
+    email: new UntypedFormControl(null, [ApsValidators.required, ApsValidators.email]),
+    phone: new UntypedFormControl(null, [ApsValidators.required, ApsValidators.phone]),
   });
 
   if (user) {

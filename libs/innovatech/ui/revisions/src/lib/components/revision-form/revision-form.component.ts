@@ -8,7 +8,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui/core';
 import { Revision, RevisionReportItems, transformFolio, Vehicle } from '@innovatech/common/domain';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
@@ -17,18 +17,18 @@ import { ApsFormComponent } from '@arphase/ui/core';
 import { iconMap, reportLabels, revisionReportSections, statusOptions } from './revision-form.constants';
 import { isRevisionEditable } from '../../pipes/editable-revision.pipe';
 
-export function createRevisionForm(): FormGroup {
+export function createRevisionForm(): UntypedFormGroup {
   const report = {};
   Object.keys(RevisionReportItems)
     .filter(key => /^\d+$/.test(key))
-    .forEach(key => (report[key] = new FormControl('')));
-  return new FormGroup({
-    id: new FormControl(null),
-    report: new FormGroup(report),
-    observations: new FormControl(null, ApsValidators.required),
-    status: new FormControl(null, ApsValidators.required),
-    kilometrage: new FormControl(null, ApsValidators.required),
-    reviewdBy: new FormControl(null, ApsValidators.required),
+    .forEach(key => (report[key] = new UntypedFormControl('')));
+  return new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    report: new UntypedFormGroup(report),
+    observations: new UntypedFormControl(null, ApsValidators.required),
+    status: new UntypedFormControl(null, ApsValidators.required),
+    kilometrage: new UntypedFormControl(null, ApsValidators.required),
+    reviewdBy: new UntypedFormControl(null, ApsValidators.required),
     vehicle: createVehicleForm(),
   });
 }
@@ -51,12 +51,12 @@ export class RevisionFormComponent extends ApsFormComponent<Revision> implements
   form = createRevisionForm();
   @Output() verifyVin = new EventEmitter<string>();
 
-  get vehicleForm(): FormGroup {
-    return this.form.get('vehicle') as FormGroup;
+  get vehicleForm(): UntypedFormGroup {
+    return this.form.get('vehicle') as UntypedFormGroup;
   }
 
-  get reportForm(): FormGroup {
-    return this.form.get('report') as FormGroup;
+  get reportForm(): UntypedFormGroup {
+    return this.form.get('report') as UntypedFormGroup;
   }
 
   ngOnChanges(changes: SimpleChanges) {

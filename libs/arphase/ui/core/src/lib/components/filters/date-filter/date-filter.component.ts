@@ -8,7 +8,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { formatDate } from '@arphase/common';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { endOfDay, startOfDay } from 'date-fns';
@@ -39,11 +39,11 @@ export class ApsDateFilterComponent implements OnChanges {
   endDateLabel = '';
   dateType = '';
   showError = false;
-  control: FormGroup;
+  control: UntypedFormGroup;
   mappedTitle: string;
   @Output() filterItems = new EventEmitter<Dates>();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.control = this.fb.group(
       { dateType: null, startDate: null, endDate: null },
       {

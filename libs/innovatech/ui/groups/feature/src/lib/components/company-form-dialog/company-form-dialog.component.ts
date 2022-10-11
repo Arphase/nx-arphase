@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 import { ApsFormComponent, updateFormControlsValueAndValidity } from '@arphase/ui/core';
 import { Company } from '@innovatech/common/domain';
 
@@ -15,12 +15,12 @@ export class CompanyFormDialogComponent extends ApsFormComponent<Company> implem
   @Input() company: Company;
   form = createCompanyForm();
 
-  get addressForm(): FormGroup {
-    return this.form.get('address') as FormGroup;
+  get addressForm(): UntypedFormGroup {
+    return this.form.get('address') as UntypedFormGroup;
   }
 
-  get usersFormArray(): FormArray {
-    return this.form.get('users') as FormArray;
+  get usersFormArray(): UntypedFormArray {
+    return this.form.get('users') as UntypedFormArray;
   }
 
   ngOnInit() {

@@ -7,7 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ApsValidators } from '@arphase/ui/core';
 import { Vehicle, VEHICLE_VIN_LENGTH } from '@innovatech/common/domain';
 import { ApsFormComponent } from '@arphase/ui/core';
@@ -19,20 +19,20 @@ import { filter } from 'rxjs/operators';
 export function createVehicleForm(vehicle?: Vehicle) {
   const todayYear = new Date().getFullYear();
 
-  const form = new FormGroup({
-    id: new FormControl(null),
-    brand: new FormControl(null, ApsValidators.required),
-    model: new FormControl(null, ApsValidators.required),
-    version: new FormControl(null),
-    year: new FormControl(null, [ApsValidators.min(todayYear - 20), ApsValidators.max(todayYear + 1)]),
-    vin: new FormControl(null, [
+  const form = new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    brand: new UntypedFormControl(null, ApsValidators.required),
+    model: new UntypedFormControl(null, ApsValidators.required),
+    version: new UntypedFormControl(null),
+    year: new UntypedFormControl(null, [ApsValidators.min(todayYear - 20), ApsValidators.max(todayYear + 1)]),
+    vin: new UntypedFormControl(null, [
       ApsValidators.required,
       ApsValidators.minLength(VEHICLE_VIN_LENGTH),
       ApsValidators.maxLength(VEHICLE_VIN_LENGTH),
     ]),
-    motorNumber: new FormControl(null),
-    horsePower: new FormControl(null, [ApsValidators.min(1), ApsValidators.max(500)]),
-    companyId: new FormControl(null, ApsValidators.required),
+    motorNumber: new UntypedFormControl(null),
+    horsePower: new UntypedFormControl(null, [ApsValidators.min(1), ApsValidators.max(500)]),
+    companyId: new UntypedFormControl(null, ApsValidators.required),
   });
 
   if (vehicle) {

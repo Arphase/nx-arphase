@@ -7,7 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
+import { AbstractControl, UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 import { ApsFormComponent, setFormArrayValue } from '@arphase/ui/core';
 import { PriceOption } from '@musicr/domain';
 
@@ -24,8 +24,8 @@ export class PriceOptionsFormComponent extends ApsFormComponent<PriceOption[]> i
   @Output() removePhoto = new EventEmitter<number>();
   @Output() deleteItem = new EventEmitter<{ item: PriceOption; index: number }>();
 
-  get formArray(): FormArray {
-    return this.form as AbstractControl as FormArray;
+  get formArray(): UntypedFormArray {
+    return this.form as AbstractControl as UntypedFormArray;
   }
 
   /**
@@ -48,7 +48,7 @@ export class PriceOptionsFormComponent extends ApsFormComponent<PriceOption[]> i
   }
 
   removePriceOption(index: number): void {
-    const priceOptionControl = (this.formArray.at(index) as FormGroup).getRawValue() as PriceOption;
+    const priceOptionControl = (this.formArray.at(index) as UntypedFormGroup).getRawValue() as PriceOption;
     priceOptionControl.id ? this.deleteItem.emit({ item: priceOptionControl, index }) : this.formArray.removeAt(index);
   }
 }

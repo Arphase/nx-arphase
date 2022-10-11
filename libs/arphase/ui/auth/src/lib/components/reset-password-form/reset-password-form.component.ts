@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 
 @Component({
@@ -11,7 +11,7 @@ import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 export class ResetPasswordFormComponent extends ApsFormComponent<{ email: string }> {
   @Input() emailSent: boolean;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     super();
     this.form = this.fb.group({
       email: [null, [ApsValidators.required, ApsValidators.email]],

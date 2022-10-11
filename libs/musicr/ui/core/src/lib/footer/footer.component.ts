@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { BehaviorSubject } from 'rxjs';
@@ -17,7 +17,7 @@ export class FooterComponent extends ApsFormComponent {
   loading$ = this.loadingSubject.asObservable();
   year = new Date().getFullYear();
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private messageService: NzMessageService) {
+  constructor(private fb: UntypedFormBuilder, private http: HttpClient, private messageService: NzMessageService) {
     super();
     this.form = this.fb.group({
       name: [null, ApsValidators.required],

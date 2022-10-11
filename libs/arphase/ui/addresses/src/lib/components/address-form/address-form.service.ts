@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Locality } from '@arphase/common';
 import { ApsValidators, sortSelectOptions, sortStringOptions } from '@arphase/ui/core';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
@@ -78,16 +78,16 @@ export class ApsAddressFormService {
   }
 }
 
-export function createAddressForm(): FormGroup {
-  return new FormGroup({
-    id: new FormControl(null),
-    zipcode: new FormControl('', [ApsValidators.required, ApsValidators.minLength(5), ApsValidators.maxLength(5)]),
-    country: new FormControl('', ApsValidators.required),
-    state: new FormControl('', ApsValidators.required),
-    city: new FormControl('', ApsValidators.required),
-    suburb: new FormControl('', ApsValidators.required),
-    street: new FormControl('', ApsValidators.required),
-    externalNumber: new FormControl('', ApsValidators.required),
-    internalNumber: new FormControl(),
+export function createAddressForm(): UntypedFormGroup {
+  return new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    zipcode: new UntypedFormControl('', [ApsValidators.required, ApsValidators.minLength(5), ApsValidators.maxLength(5)]),
+    country: new UntypedFormControl('', ApsValidators.required),
+    state: new UntypedFormControl('', ApsValidators.required),
+    city: new UntypedFormControl('', ApsValidators.required),
+    suburb: new UntypedFormControl('', ApsValidators.required),
+    street: new UntypedFormControl('', ApsValidators.required),
+    externalNumber: new UntypedFormControl('', ApsValidators.required),
+    internalNumber: new UntypedFormControl(),
   });
 }

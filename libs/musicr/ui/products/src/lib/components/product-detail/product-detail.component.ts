@@ -8,7 +8,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DeepPartial } from '@arphase/common';
 import { ApsValidators } from '@arphase/ui/core';
 import { AdditionalOption, OrderProduct, Photo, Product } from '@musicr/domain';
@@ -31,17 +31,17 @@ export class ProductDetailComponent implements OnChanges {
   @Input() additionalOptions: AdditionalOption[] = [];
   @Input() loading: boolean;
   total: number;
-  form = new FormGroup({
-    priceOptionId: new FormControl(null, ApsValidators.required),
-    additionalOptions: new FormArray([]),
+  form = new UntypedFormGroup({
+    priceOptionId: new UntypedFormControl(null, ApsValidators.required),
+    additionalOptions: new UntypedFormArray([]),
   });
   productPrice = 0;
   additionalProductsPrice = 0;
   displayedPhotos: Photo[] = [];
   @Output() addItemToCart = new EventEmitter<DeepPartial<OrderProduct>>();
 
-  get additionalOptionsArray(): FormArray {
-    return this.form.get('additionalOptions') as FormArray;
+  get additionalOptionsArray(): UntypedFormArray {
+    return this.form.get('additionalOptions') as UntypedFormArray;
   }
 
   constructor(private location: Location) {
@@ -70,11 +70,11 @@ export class ProductDetailComponent implements OnChanges {
       this.additionalOptionsArray.clear();
       this.additionalOptions.forEach(additionalOption =>
         this.additionalOptionsArray.push(
-          new FormGroup({
-            selected: new FormControl(false),
-            id: new FormControl(additionalOption.id),
-            name: new FormControl(additionalOption.name),
-            price: new FormControl(additionalOption.price),
+          new UntypedFormGroup({
+            selected: new UntypedFormControl(false),
+            id: new UntypedFormControl(additionalOption.id),
+            name: new UntypedFormControl(additionalOption.name),
+            price: new UntypedFormControl(additionalOption.price),
           })
         )
       );

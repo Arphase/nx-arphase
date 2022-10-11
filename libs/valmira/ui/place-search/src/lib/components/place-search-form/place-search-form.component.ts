@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -29,11 +29,11 @@ interface FiltersPayload extends FiltersForm {
 export class PlaceSearchFormComponent extends ApsFormComponent<FiltersForm, FiltersPayload> implements OnInit {
   @ViewChild('endDateCalendar', { static: true }) endDateCalendar: NzDatePickerComponent;
 
-  form = new FormGroup(
+  form = new UntypedFormGroup(
     {
-      startDate: new FormControl(null),
-      endDate: new FormControl(null),
-      capacity: new FormControl(null),
+      startDate: new UntypedFormControl(null),
+      endDate: new UntypedFormControl(null),
+      capacity: new UntypedFormControl(null),
     },
     { validators: ApsValidators.dateLessThan('startDate', 'endDate') }
   );

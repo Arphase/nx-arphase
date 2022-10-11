@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl } from '@angular/forms';
 import { specialCharactersForPassword } from '@arphase/common';
 import { ApsFormComponent, ApsValidators, MessageStatus } from '@arphase/ui/core';
 
@@ -14,12 +14,12 @@ export class SetPasswordFormComponent extends ApsFormComponent<{ password: strin
   messageStatus = MessageStatus;
   specialCharacters = specialCharactersForPassword.join(' ');
 
-  get passwordControl(): FormControl {
-    return this.form.get('password') as FormControl;
+  get passwordControl(): UntypedFormControl {
+    return this.form.get('password') as UntypedFormControl;
   }
 
-  get passwordConfirmControl(): FormControl {
-    return this.form.get('passwordConfirm') as FormControl;
+  get passwordConfirmControl(): UntypedFormControl {
+    return this.form.get('passwordConfirm') as UntypedFormControl;
   }
 
   get minLengthStatus(): MessageStatus {
@@ -40,7 +40,7 @@ export class SetPasswordFormComponent extends ApsFormComponent<{ password: strin
   get matchPasswordsError(): boolean {
     return this.form.hasError('matchPasswords') && this.passwordControl.dirty && this.passwordConfirmControl.dirty;
   }
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     super();
     this.form = this.fb.group(
       {

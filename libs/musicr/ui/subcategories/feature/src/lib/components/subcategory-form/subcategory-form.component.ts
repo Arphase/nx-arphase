@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { Subcategory } from '@musicr/domain';
 
-export function createSubcategoryForm(): FormGroup {
-  return new FormGroup({
-    id: new FormControl(null),
-    name: new FormControl(null, ApsValidators.required),
-    description: new FormControl(null, ApsValidators.required),
-    categoryId: new FormControl(null, ApsValidators.required),
+export function createSubcategoryForm(): UntypedFormGroup {
+  return new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    name: new UntypedFormControl(null, ApsValidators.required),
+    description: new UntypedFormControl(null, ApsValidators.required),
+    categoryId: new UntypedFormControl(null, ApsValidators.required),
   });
 }
 

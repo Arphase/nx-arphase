@@ -8,7 +8,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ApsFormComponent } from '@arphase/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Customer, Reservation } from '@valmira/domain';
@@ -23,21 +23,21 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class PersonalDataComponent extends ApsFormComponent<Reservation> implements OnInit, OnChanges {
   @Input() customer: Customer;
-  form = new FormGroup({
-    id: new FormControl(null),
-    additionalComments: new FormControl(null),
-    customer: new FormGroup({
-      id: new FormControl(null),
-      firstName: new FormControl(null, Validators.required),
-      lastName: new FormControl(null, Validators.required),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      phone: new FormControl(null, Validators.required),
+  form = new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    additionalComments: new UntypedFormControl(null),
+    customer: new UntypedFormGroup({
+      id: new UntypedFormControl(null),
+      firstName: new UntypedFormControl(null, Validators.required),
+      lastName: new UntypedFormControl(null, Validators.required),
+      email: new UntypedFormControl(null, [Validators.required, Validators.email]),
+      phone: new UntypedFormControl(null, Validators.required),
     }),
   });
   @Output() emailChanges = new EventEmitter<string>();
 
-  get customerForm(): FormGroup {
-    return this.form.get('customer') as FormGroup;
+  get customerForm(): UntypedFormGroup {
+    return this.form.get('customer') as UntypedFormGroup;
   }
 
   get firstNameError(): boolean {

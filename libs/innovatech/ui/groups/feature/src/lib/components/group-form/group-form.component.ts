@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
-import { FormArray } from '@angular/forms';
+import { UntypedFormArray } from '@angular/forms';
 import { Group } from '@innovatech/common/domain';
 import { ApsFormComponent } from '@arphase/ui/core';
 
@@ -12,8 +12,8 @@ import { patchGroupForm } from '../../functions/group-form.functions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupFormComponent extends ApsFormComponent<Group> implements OnChanges {
-  get companiesFormArray(): FormArray {
-    return this.form.get('companies') as FormArray;
+  get companiesFormArray(): UntypedFormArray {
+    return this.form.get('companies') as UntypedFormArray;
   }
 
   ngOnChanges(changes: SimpleChanges) {

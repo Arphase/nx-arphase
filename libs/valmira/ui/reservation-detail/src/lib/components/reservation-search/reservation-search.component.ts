@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ApsFormComponent } from '@arphase/ui/core';
 
 import { SearchReservationPayload } from '../../models/search-reservation-payload.model';
@@ -11,9 +11,9 @@ import { SearchReservationPayload } from '../../models/search-reservation-payloa
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReservationSearchComponent extends ApsFormComponent<SearchReservationPayload> {
-  form = new FormGroup({
-    id: new FormControl(null, Validators.required),
-    email: new FormControl(null, Validators.required),
+  form = new UntypedFormGroup({
+    id: new UntypedFormControl(null, Validators.required),
+    email: new UntypedFormControl(null, Validators.required),
   });
 
   get idError(): boolean {

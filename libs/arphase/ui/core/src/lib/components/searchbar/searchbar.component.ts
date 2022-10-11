@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { debounceTime } from 'rxjs/operators';
 
@@ -13,7 +13,7 @@ import { debounceTime } from 'rxjs/operators';
 export class ApsSearchbarComponent implements OnInit {
   @Input() showIcon = true;
   @Output() valueChange = new EventEmitter<string>();
-  control = new FormControl('');
+  control = new UntypedFormControl('');
 
   ngOnInit() {
     this.control.valueChanges

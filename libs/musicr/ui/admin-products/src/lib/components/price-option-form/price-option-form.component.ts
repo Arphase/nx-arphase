@@ -7,7 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators, getBase64, setFormArrayValue } from '@arphase/ui/core';
 import { Photo, PriceOption } from '@musicr/domain';
 import { MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
@@ -15,11 +15,11 @@ import { NzUploadFile } from 'ng-zorro-antd/upload';
 
 import { mapPhotoFileArray } from '../../functions/map-file-photo-array';
 
-export function createPhotoFormGroup(item?: Photo): FormGroup {
-  const form = new FormGroup({
-    id: new FormControl(null),
-    key: new FormControl(null),
-    url: new FormControl(null),
+export function createPhotoFormGroup(item?: Photo): UntypedFormGroup {
+  const form = new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    key: new UntypedFormControl(null),
+    url: new UntypedFormControl(null),
   });
   if (item) {
     form.patchValue(item);
@@ -27,16 +27,16 @@ export function createPhotoFormGroup(item?: Photo): FormGroup {
   return form;
 }
 
-export function createPriceOptionForm(item?: PriceOption): FormGroup {
-  const form = new FormGroup({
-    id: new FormControl(null),
-    name: new FormControl(null, ApsValidators.required),
-    price: new FormControl(null, ApsValidators.required),
-    photos: new FormArray([]),
+export function createPriceOptionForm(item?: PriceOption): UntypedFormGroup {
+  const form = new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    name: new UntypedFormControl(null, ApsValidators.required),
+    price: new UntypedFormControl(null, ApsValidators.required),
+    photos: new UntypedFormArray([]),
   });
   if (item) {
     form.patchValue(item);
-    setFormArrayValue(form.get('photos') as FormArray, item.photos, item => createPhotoFormGroup(item));
+    setFormArrayValue(form.get('photos') as UntypedFormArray, item.photos, item => createPhotoFormGroup(item));
   }
   return form;
 }
@@ -69,8 +69,8 @@ export class PriceOptionFormComponent extends ApsFormComponent<PriceOption> impl
     return true;
   };
 
-  get photosFormArray(): FormArray {
-    return this.form?.get('photos') as FormArray;
+  get photosFormArray(): UntypedFormArray {
+    return this.form?.get('photos') as UntypedFormArray;
   }
 
   constructor(@Inject(MUSIC_REVOLUTION_CONFIGURATION) private config: MusicRevolutionConfiguration) {

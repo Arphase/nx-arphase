@@ -8,7 +8,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { createAddressForm } from '@arphase/ui/addresses';
 import { ApsFormComponent, ApsValidators, filterNil } from '@arphase/ui/core';
 import { Guarantee, isVehicleElegible, PersonTypes, UserRoles, Vehicle } from '@innovatech/common/domain';
@@ -22,34 +22,34 @@ import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
-export function createGuaranteeForm(): FormGroup {
-  return new FormGroup({
-    id: new FormControl(null),
-    productId: new FormControl(null, ApsValidators.required),
-    startDate: new FormControl(null, ApsValidators.required),
-    endDate: new FormControl(null, ApsValidators.required),
-    companyId: new FormControl(null, ApsValidators.required),
-    kilometrageStart: new FormControl(null, ApsValidators.requiredNumber),
-    kilometrageEnd: new FormControl(null, ApsValidators.requiredNumber),
-    client: new FormGroup({
-      id: new FormControl(null),
-      personType: new FormControl(null, ApsValidators.required),
-      rfc: new FormControl(null, [ApsValidators.required, IvtValidators.rfc(RfcValidatorTypes.any)]),
-      phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
-      email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
-      salesPlace: new FormControl(null, ApsValidators.required),
-      physicalInfo: new FormGroup({
-        id: new FormControl(null),
-        name: new FormControl(null, ApsValidators.required),
-        lastName: new FormControl(null, ApsValidators.required),
-        secondLastName: new FormControl(null, ApsValidators.required),
-        birthDate: new FormControl(null, ApsValidators.required),
+export function createGuaranteeForm(): UntypedFormGroup {
+  return new UntypedFormGroup({
+    id: new UntypedFormControl(null),
+    productId: new UntypedFormControl(null, ApsValidators.required),
+    startDate: new UntypedFormControl(null, ApsValidators.required),
+    endDate: new UntypedFormControl(null, ApsValidators.required),
+    companyId: new UntypedFormControl(null, ApsValidators.required),
+    kilometrageStart: new UntypedFormControl(null, ApsValidators.requiredNumber),
+    kilometrageEnd: new UntypedFormControl(null, ApsValidators.requiredNumber),
+    client: new UntypedFormGroup({
+      id: new UntypedFormControl(null),
+      personType: new UntypedFormControl(null, ApsValidators.required),
+      rfc: new UntypedFormControl(null, [ApsValidators.required, IvtValidators.rfc(RfcValidatorTypes.any)]),
+      phone: new UntypedFormControl(null, [ApsValidators.required, ApsValidators.phone]),
+      email: new UntypedFormControl(null, [ApsValidators.required, ApsValidators.email]),
+      salesPlace: new UntypedFormControl(null, ApsValidators.required),
+      physicalInfo: new UntypedFormGroup({
+        id: new UntypedFormControl(null),
+        name: new UntypedFormControl(null, ApsValidators.required),
+        lastName: new UntypedFormControl(null, ApsValidators.required),
+        secondLastName: new UntypedFormControl(null, ApsValidators.required),
+        birthDate: new UntypedFormControl(null, ApsValidators.required),
       }),
-      moralInfo: new FormGroup({
-        id: new FormControl(null),
-        businessName: new FormControl(null, ApsValidators.required),
-        constitutionDate: new FormControl(null, ApsValidators.required),
-        adviser: new FormControl(null, ApsValidators.required),
+      moralInfo: new UntypedFormGroup({
+        id: new UntypedFormControl(null),
+        businessName: new UntypedFormControl(null, ApsValidators.required),
+        constitutionDate: new UntypedFormControl(null, ApsValidators.required),
+        adviser: new UntypedFormControl(null, ApsValidators.required),
       }),
       address: createAddressForm(),
     }),
@@ -82,12 +82,12 @@ export class GuaranteeFormComponent extends ApsFormComponent<Guarantee> implemen
   @Output() verifyVin = new EventEmitter<string>();
   @Output() getCompanies = new EventEmitter<QueryParams>();
 
-  get client(): FormGroup {
-    return this.form.get('client') as FormGroup;
+  get client(): UntypedFormGroup {
+    return this.form.get('client') as UntypedFormGroup;
   }
 
-  get vehicleForm(): FormGroup {
-    return this.form.get('vehicle') as FormGroup;
+  get vehicleForm(): UntypedFormGroup {
+    return this.form.get('vehicle') as UntypedFormGroup;
   }
 
   get year$(): Observable<string> {
@@ -98,16 +98,16 @@ export class GuaranteeFormComponent extends ApsFormComponent<Guarantee> implemen
     return this.vehicleForm.get('horsePower').valueChanges.pipe(startWith(this.vehicleForm.get('horsePower').value));
   }
 
-  get addressForm(): FormGroup {
-    return this.client.get('address') as FormGroup;
+  get addressForm(): UntypedFormGroup {
+    return this.client.get('address') as UntypedFormGroup;
   }
 
-  get physicalInfoForm(): FormGroup {
-    return this.client.get('physicalInfo') as FormGroup;
+  get physicalInfoForm(): UntypedFormGroup {
+    return this.client.get('physicalInfo') as UntypedFormGroup;
   }
 
-  get moralInfoForm(): FormGroup {
-    return this.client.get('moralInfo') as FormGroup;
+  get moralInfoForm(): UntypedFormGroup {
+    return this.client.get('moralInfo') as UntypedFormGroup;
   }
 
   get isElegible(): boolean {

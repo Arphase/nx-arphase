@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { Promocode } from '@valmira/domain';
 
-export function createPromocodeForm(): FormGroup {
-  return new FormGroup(
+export function createPromocodeForm(): UntypedFormGroup {
+  return new UntypedFormGroup(
     {
-      id: new FormControl(null),
-      name: new FormControl(null, ApsValidators.required),
-      startDate: new FormControl(null, ApsValidators.required),
-      endDate: new FormControl(null, ApsValidators.required),
-      amount: new FormControl(null, ApsValidators.required),
+      id: new UntypedFormControl(null),
+      name: new UntypedFormControl(null, ApsValidators.required),
+      startDate: new UntypedFormControl(null, ApsValidators.required),
+      endDate: new UntypedFormControl(null, ApsValidators.required),
+      amount: new UntypedFormControl(null, ApsValidators.required),
     },
     { validators: ApsValidators.dateLessThan('startDate', 'endDate') }
   );
