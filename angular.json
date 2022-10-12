@@ -2534,6 +2534,7 @@
               "@nestjs/websockets",
               "@nestjs/websockets/socket-module",
               "cache-manager",
+              "cache-manager/package.json",
               "aws-sdk",
               "pg",
               "pg-native",

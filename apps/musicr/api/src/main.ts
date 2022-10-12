@@ -33,7 +33,7 @@ async function bootstrap() {
   app.enableCors();
 
   const port = process.env.PORT ?? process.env.MRL_PORT ?? 3333;
-  await app.listen(port, () => Logger.log(`Listening at http://localhost:${port} /api`));
+  await app.listen(port, () => Logger.log(`Listening at http://localhost:${port}/api`));
 }
 
 // Webpack will replace 'require' with '__webpack_require__'

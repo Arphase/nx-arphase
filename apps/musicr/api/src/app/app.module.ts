@@ -16,7 +16,7 @@ import { join } from 'path';
 
 @Module({
   imports: [
-    ...(process.env.NODE_ENV === 'production'
+    ...(process.env['NODE' + '_ENV'] === 'production'
       ? [
           AngularUniversalModule.forRoot(async () => {
             const angularModule = await loadEsmModule<{
@@ -27,7 +27,7 @@ import { join } from 'path';
               bootstrap: angularModule.default.AppServerModule,
               ngExpressEngine: (angularModule.default as any).ngExpressEngine,
               viewsPath: join(process.cwd(), 'dist/apps/musicr/browser'),
-            } as any;
+            };
           }),
         ]
       : []),

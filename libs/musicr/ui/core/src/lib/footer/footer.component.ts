@@ -28,7 +28,6 @@ export class FooterComponent extends ApsFormComponent {
   }
 
   submit(): void {
-    console.log(`${window.location.origin}/contact-success`);
     if (!this.form.valid) {
       this.messageService.error('Los campos en la forma están incompletos.');
     } else {
