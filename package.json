@@ -41,7 +41,7 @@
     "typeorm:valmira": "ts-node --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config apps/valmira/api/src/db/config/ormconfig.migrations.ts",
     "typeorm:valmira:migrate": "npm run typeorm:valmira migration:generate -- -n",
     "typeorm:valmira:run": "npm run typeorm:valmira migration:run",
-    "typeorm:musicr": "ts-node --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config libs/musicr/api/db/src/lib/config/ormconfig.migrations.ts",
+    "typeorm:musicr": "ts-node --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d libs/musicr/api/db/src/lib/config/ormconfig.ts",
     "typeorm:musicr:migrate": "npm run typeorm:musicr migration:generate -- -n",
     "typeorm:musicr:run": "npm run typeorm:musicr migration:run",
     "build:api:valmira:prod": "ts-node ./apps/valmira/app/src/environments/set-environment.ts && cp -a ./apps/valmira/api/src/assets ./dist/apps/valmira/server",

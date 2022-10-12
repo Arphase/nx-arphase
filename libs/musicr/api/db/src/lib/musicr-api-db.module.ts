@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import config from './config/ormconfig';
+import { typeormConfig } from './config/ormconfig';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config)],
+  imports: [TypeOrmModule.forRoot(typeormConfig)],
   exports: [TypeOrmModule],
 })
 export class MusicrApiDbModule {}

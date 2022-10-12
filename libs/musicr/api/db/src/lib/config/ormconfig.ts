@@ -1,5 +1,6 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import dotenv from 'dotenv';
+import { DataSource } from 'typeorm';
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
 import { ENTITIES } from './entities';
 
@@ -9,7 +10,7 @@ if (test) {
   dotenv.config({ path: '.env.test' });
 }
 
-export default {
+export const typeormConfig: PostgresConnectionOptions = {
   type: 'postgres',
   host: process.env.HOST,
   port: 5432,
@@ -19,4 +20,7 @@ export default {
   entities: ENTITIES,
   synchronize: process.env.SYNCHRONIZE === 'true',
   logging: !test,
-} as TypeOrmModuleOptions;
+  migrations: ['libs/musicr/api/db/src/lib/migrations/**/*.js'],
+};
+
+export const dataSource = new DataSource(typeormConfig);
