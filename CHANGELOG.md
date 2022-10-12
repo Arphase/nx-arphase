@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/Arphase/nx-arphase/compare/v3.8.9...v4.0.0) (2022-10-12)
+
+
+### Features
+
+* **musicr:** [#283](https://github.com/Arphase/nx-arphase/issues/283) support 'quote' and 'purchase' order types ([fd3741b](https://github.com/Arphase/nx-arphase/commit/fd3741b1ab41cc4ee98ecacd0e142880e0dd1a2e))
+* **musicr/store:** [#284](https://github.com/Arphase/nx-arphase/issues/284) open contact-success page when submiting a message from footer form ([8d6dfb7](https://github.com/Arphase/nx-arphase/commit/8d6dfb7bbc0ec955741a1e9d153c32e64678cd87))
+* **orders:** [#285](https://github.com/Arphase/nx-arphase/issues/285) generate pdf from order ([c9ca52d](https://github.com/Arphase/nx-arphase/commit/c9ca52d6bcde77ff9fba698694fbab249e313d40))
+
 ### [3.8.9](https://github.com/Arphase/nx-arphase/compare/v3.8.8...v3.8.9) (2022-09-19)
 
 
