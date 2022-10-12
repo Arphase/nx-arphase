@@ -29,6 +29,8 @@ jobs:
           node-version: 16
 
       - uses: bahmutov/npm-install@v1
+        with:
+          install-command: npm install --force
 
       - name: Run migrations
         run: npm run typeorm:musicr:run
