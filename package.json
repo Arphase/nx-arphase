@@ -48,7 +48,7 @@
     "build:api:musicr:prod": "ts-node --project ./apps/musicr/store/tsconfig.build.json ./apps/musicr/store/src/environments/set-environment.ts && cp -a ./apps/musicr/api/src/assets ./dist/apps/musicr/server",
     "api:innovatech:prod": "chmod +rwx dist && node dist/apps/innovatech/api/main.js",
     "api:valmira:prod": "npm run build:api:valmira:prod && chmod +rwx dist && node dist/apps/valmira/server/main.js",
-    "api:musicr:prod": "npm run build:api:musicr:prod && chmod +rwx dist && node dist/apps/musicr/server/main.js",
+    "api:musicr:prod": "node node_modules/puppeteer/install.js && npm run build:api:musicr:prod && chmod +rwx dist && node dist/apps/musicr/server/main.js",
     "e2e:watch": "dotenv -e .env.test -- npx nx serve innovatech-api & npx wait-on http://localhost:3333 && dotenv -e .env.test -- npx nx affected:e2e --base=remotes/origin/staging"
   },
   "private": true,
