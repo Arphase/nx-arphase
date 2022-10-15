@@ -1,5 +1,6 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import dotenv from 'dotenv';
+import { DataSource } from 'typeorm';
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
 import { ENTITIES } from './entities';
 
@@ -9,7 +10,7 @@ if (test) {
   dotenv.config({ path: '.env.test' });
 }
 
-const config: TypeOrmModuleOptions = {
+export const typeormConfig: PostgresConnectionOptions = {
   type: 'postgres',
   host: process.env.HOST,
   port: 5432,
@@ -27,4 +28,4 @@ const config: TypeOrmModuleOptions = {
   logging: !test,
 };
 
-export = config;
+export const dataSource = new DataSource(typeormConfig);
