@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/Arphase/nx-arphase/compare/v4.0.6...v4.1.0) (2022-10-15)
+
+
+### Bug Fixes
+
+* **musicr/store:** make categories api call from app component ([6214f33](https://github.com/Arphase/nx-arphase/commit/6214f33248757470df535070fa4d702e1b7b0ba3))
+
 ### [4.0.6](https://github.com/Arphase/nx-arphase/compare/v4.0.5...v4.0.6) (2022-10-13)
 
 ### [4.0.5](https://github.com/Arphase/nx-arphase/compare/v4.0.4...v4.0.5) (2022-10-13)
