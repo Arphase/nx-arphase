@@ -48,7 +48,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID_EB }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY_EB }}
           application_name: innovatech-api
-          environment_name: IVT-PROD
+          environment_name: IVT-NEW-PROD
           version_label: ${{ github.event.inputs.version }}
           region: ${{ secrets.AWS_REGION }}
           deployment_package: Archive.zip
