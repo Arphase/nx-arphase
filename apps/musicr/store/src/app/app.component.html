@@ -1,3 +1,4 @@
-<mrl-menu-container *ngIf="showComponents$ | async"></mrl-menu-container>
+<mrl-menu-container *ngIf="showComponents$ | async"
+                    [categories]="categories$ | async"></mrl-menu-container>
 <router-outlet></router-outlet>
 <mrl-footer *ngIf="showComponents$ | async"></mrl-footer>

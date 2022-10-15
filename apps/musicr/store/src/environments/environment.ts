@@ -6,5 +6,4 @@ export const environment: Environment = {
   apiUrl: 'http://localhost:3334/api',
   innovatechUrl: 'https://api.innovatechcorp.com',
   version: packageJson.version,
-  environmentName: 'dev',
 };

@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzIconService } from 'ng-zorro-antd/icon';
@@ -8,7 +9,7 @@ describe('AppComponent', () => {
   let spectator: Spectator<AppComponent>;
   const createComponent = createComponentFactory({
     component: AppComponent,
-    imports: [RouterTestingModule],
+    imports: [HttpClientTestingModule, RouterTestingModule],
     mocks: [NzIconService],
     detectChanges: false,
     shallow: true,

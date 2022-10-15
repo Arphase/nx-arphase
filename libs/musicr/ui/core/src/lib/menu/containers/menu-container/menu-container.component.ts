@@ -1,9 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApsCollectionResponse } from '@arphase/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Category } from '@musicr/domain';
 import { CartService } from '@musicr/ui/cart/data';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -13,11 +10,8 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuContainerComponent {
-  categories$ = this.getCategories().pipe(map(response => response.results));
+  @Input() categories: Category[] = [];
   items$ = this.cartService.cartItems$.pipe(map(items => items?.length || 0));
-  constructor(private http: HttpClient, private cartService: CartService) {}
 
-  getCategories(): Observable<ApsCollectionResponse<Category>> {
-    return this.http.get<ApsCollectionResponse<Category>>(`/mrlApi/categories`);
-  }
+  constructor(private cartService: CartService) {}
 }

@@ -5,8 +5,6 @@ const targetPath = './dist/apps/musicr/browser/assets/js/env.js';
 const envConfigFile = `(function(window) {
   window.env = window.env || {};
   // Environment variables
-  window['env']['production'] = ${process.env.ENVIRONMENT_NAME === 'production'};
-  window['env']['environmentName'] = '${process.env.ENVIRONMENT_NAME}';
   window['env']['innovatechUrl'] = '${process.env.INNOVATECH_URL}';
 })(this);`;
 

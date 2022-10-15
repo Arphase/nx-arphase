@@ -1,4 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -9,8 +10,11 @@ import {
   Renderer2,
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { ApsCollectionResponse } from '@arphase/common';
+import { Category } from '@musicr/domain';
 import { NzIconService } from 'ng-zorro-antd/icon';
-import { debounceTime, filter, map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { debounceTime, filter, map, take } from 'rxjs/operators';
 
 @Component({
   selector: 'mrl-root',
@@ -19,6 +23,9 @@ import { debounceTime, filter, map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements AfterViewInit {
+  categoriesSubject = new BehaviorSubject<Category[]>([]);
+  categories$ = this.categoriesSubject.asObservable();
+
   showComponents$ = this.router.events.pipe(
     filter(event => event instanceof NavigationEnd),
     map((event: NavigationEnd) => !event.url.includes('/contact-success'))
@@ -28,13 +35,19 @@ export class AppComponent implements AfterViewInit {
     private renderer: Renderer2,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private nzIconService: NzIconService
+    private nzIconService: NzIconService,
+    private http: HttpClient
   ) {
     this.nzIconService.changeAssetsSource('https://arphase-icons.s3.amazonaws.com');
   }
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
+      this.http
+        .get<ApsCollectionResponse<Category>>(`/mrlApi/categories`)
+        .pipe(take(1))
+        .subscribe(({ results }) => this.categoriesSubject.next(results));
+
       const loader = this.renderer.selectRootElement('#loader');
       if (loader.style.display != 'none') loader.style.display = 'none';
 
