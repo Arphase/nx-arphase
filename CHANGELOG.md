@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.1.1](https://github.com/Arphase/nx-arphase/compare/v4.1.0...v4.1.1) (2022-10-17)
+
+
+### Bug Fixes
+
+* **app:** remove code that breaks puppeteer in production ([980c849](https://github.com/Arphase/nx-arphase/commit/980c849b61584ad0f8a95c7b216de2cfe3b44287))
+
 ## [4.1.0](https://github.com/Arphase/nx-arphase/compare/v4.0.6...v4.1.0) (2022-10-15)
 
 
