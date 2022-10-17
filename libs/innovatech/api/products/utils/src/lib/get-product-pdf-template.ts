@@ -1,4 +1,3 @@
-import { IMAGE_ASSETS_PATH } from '@arphase/api/core';
 import { formatAddress, formatPhone } from '@arphase/common';
 import { Client, Guarantee, transformFolio } from '@innovatech/common/domain';
 import dayjs from 'dayjs';
@@ -79,12 +78,15 @@ export function getProductPdfTemplate(body: string, guarantee?: Guarantee, utcOf
     const realGlossary = getRealGlossary(guarantee, utcOffset);
     template = replace(template, realGlossary);
   }
-  const logoImage = `${IMAGE_ASSETS_PATH}/logo.png`;
+
   return `
   <html>
     <head>
         <meta charset=UTF-8>
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.bubble.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.core.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css" rel="stylesheet" />
         <style>
             html {
               font-family: 'Open Sans' !important;
@@ -92,18 +94,13 @@ export function getProductPdfTemplate(body: string, guarantee?: Guarantee, utcOf
               line-height: 1.1;
               background-color: transparent;
             }
-            .logo {
-              max-width: 50%;
-              height: auto;
-              display: block;
-              margin-left: auto;
-              margin-right: auto;
+            .ql-editor {
+              height: unset !important;
             }
         </style>
     <head>
     <body>
-    <div><img class="logo" src="${logoImage}"></div>
-        ${template}
+      <div class="ql-editor">${template}</div>
     </body>
     </html>
   `;

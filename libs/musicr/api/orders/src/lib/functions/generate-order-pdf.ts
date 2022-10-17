@@ -179,12 +179,6 @@ export async function generateOrderPdf(order: Order, queryDto: ExportPdfDto, res
   const page = await browser.newPage();
   await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
 
-  await page.addStyleTag({
-    content: `
-        body { margin-top: 1cm; }
-        @page:first { margin-top: 0; }
-    `,
-  });
   const buffer = await page.pdf({
     format: 'a4',
     margin: {

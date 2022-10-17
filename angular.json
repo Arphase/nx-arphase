@@ -841,6 +841,7 @@
               }
             ],
             "allowedCommonJsDependencies": [
+              "dayjs",
               "file-saver",
               "clone-deep"
             ],
