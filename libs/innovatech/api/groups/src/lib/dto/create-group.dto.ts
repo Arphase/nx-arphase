@@ -3,7 +3,7 @@ import { Address } from '@arphase/common';
 import { CreateAddressDto, IsRfc } from '@innovatech/api/core/util';
 import { Company, User, UserRoles } from '@innovatech/common/domain';
 import { RfcValidatorTypes } from '@innovatech/common/utils';
-import { Transform, Type } from 'class-transformer';
+import { Type } from 'class-transformer';
 import { IsArray, IsEmail, IsEnum, IsOptional, IsString, ValidateNested } from 'class-validator';
 
 export class CreateGroupDto {
@@ -87,7 +87,6 @@ export class CreateUserDto {
   phone: string;
 
   @IsOptional()
-  @Transform((_, obj) => UserRoles[obj['role']])
   @IsEnum(UserRoles)
   role: UserRoles;
 }

@@ -19,35 +19,35 @@ export class PermissionService {
   hasPermission(roles: UserRoles[]): Observable<boolean> {
     return this.userRole$.pipe(
       filterNil(),
-      map(role => roles.includes(UserRoles[role]))
+      map(role => roles.includes(role))
     );
   }
 
   hasReadPermission(roles: UserRoles[]): Observable<boolean> {
     return this.userRole$.pipe(
       filterNil(),
-      map(role => roles.includes(UserRoles[role]))
+      map(role => roles.includes(role))
     );
   }
 
   hasCreatePermission(roles: UserRoles[]): Observable<boolean> {
     return this.userRole$.pipe(
       filterNil(),
-      map(role => roles.includes(UserRoles[role]))
+      map(role => roles.includes(role))
     );
   }
 
   hasUpdatePermission(roles: UserRoles[]): Observable<boolean> {
     return this.userRole$.pipe(
       filterNil(),
-      map(role => roles.includes(UserRoles[role]))
+      map(role => roles.includes(role))
     );
   }
 
   hasDeletePermission(roles: UserRoles[]): Observable<boolean> {
     return this.userRole$.pipe(
       filterNil(),
-      map(role => roles.includes(UserRoles[role]))
+      map(role => roles.includes(role))
     );
   }
 }

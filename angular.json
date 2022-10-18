@@ -841,9 +841,11 @@
               }
             ],
             "allowedCommonJsDependencies": [
+              "clone-deep",
               "dayjs",
               "file-saver",
-              "clone-deep"
+              "lodash",
+              "quill"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

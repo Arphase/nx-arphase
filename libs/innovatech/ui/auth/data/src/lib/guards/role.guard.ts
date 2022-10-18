@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, UrlTree } from '@angular/router';
-import { UserRoles } from '@innovatech/common/domain';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -16,7 +15,7 @@ export class RoleGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
     return this.store.pipe(
       select(getAuthUserRoleState),
-      map(userRole => ((route?.data?.roles || []).some(role => role === UserRoles[userRole]) ? true : this.spaUrlTree))
+      map(userRole => ((route?.data?.roles || []).some(role => role === userRole) ? true : this.spaUrlTree))
     );
   }
 }

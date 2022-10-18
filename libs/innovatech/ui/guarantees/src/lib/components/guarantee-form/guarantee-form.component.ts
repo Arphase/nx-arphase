@@ -75,8 +75,8 @@ export class GuaranteeFormComponent extends ApsFormComponent<Guarantee> implemen
   showMoralForm = false;
   personTypes = PersonTypes;
   personTypeOptions: NzSelectOptionInterface[] = [
-    { label: 'Física', value: PersonTypes[PersonTypes.physical] },
-    { label: 'Moral', value: PersonTypes[PersonTypes.moral] },
+    { label: 'Física', value: PersonTypes.physical },
+    { label: 'Moral', value: PersonTypes.moral },
   ];
   companyId$: Observable<number>;
   @Output() verifyVin = new EventEmitter<string>();
@@ -158,8 +158,8 @@ export class GuaranteeFormComponent extends ApsFormComponent<Guarantee> implemen
   }
 
   personTypeChange(value: string): void {
-    this.showPhysicalForm = value === PersonTypes[PersonTypes.physical];
-    this.showMoralForm = value === PersonTypes[PersonTypes.moral];
+    this.showPhysicalForm = value === PersonTypes.physical;
+    this.showMoralForm = value === PersonTypes.moral;
 
     if (this.isEditable) {
       if (this.showPhysicalForm) {

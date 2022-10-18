@@ -1,6 +1,6 @@
 import { Client, GuaranteeStatus } from '@innovatech/common/domain';
 import { PartialType } from '@nestjs/mapped-types';
-import { Transform, Type } from 'class-transformer';
+import { Type } from 'class-transformer';
 import { IsEnum, IsNumber, IsOptional, ValidateNested } from 'class-validator';
 
 import { CreateGuaranteeDto } from '../create-dtos/create-guarantee.dto';
@@ -16,7 +16,6 @@ export class UpdateGuaranteeDto extends PartialType(CreateGuaranteeDto) {
   client: Client;
 
   @IsOptional()
-  @Transform((_, obj) => GuaranteeStatus[obj['status']])
   @IsEnum(GuaranteeStatus)
   status: GuaranteeStatus;
 }

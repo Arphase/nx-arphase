@@ -76,11 +76,7 @@ export class RevisionRequestService {
     updateRevisionRequestDto: UpdateRevisionRequestDto,
     user: Partial<User>
   ): Promise<RevisionRequest> {
-    if (
-      user &&
-      ![UserRoles.superAdmin, UserRoles.repairman].includes(UserRoles[user.role]) &&
-      updateRevisionRequestDto.status
-    ) {
+    if (user && ![UserRoles.superAdmin, UserRoles.repairman].includes(user.role) && updateRevisionRequestDto.status) {
       throw new UnauthorizedException('Usuario no autorizado para actualizar solicitudes de revisión');
     }
     const preloadedRevisionRequest = await this.revisionRequestRepository.preload(updateRevisionRequestDto);

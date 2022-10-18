@@ -3,23 +3,22 @@ import { Address } from '@arphase/common';
 import { CreateAddressDto, IsRfc } from '@innovatech/api/core/util';
 import { MoralPerson, PersonTypes, PhysicalPerson } from '@innovatech/common/domain';
 import { RfcValidatorTypes } from '@innovatech/common/utils';
-import { Transform, Type } from 'class-transformer';
+import { Type } from 'class-transformer';
 import { IsEmail, IsEnum, IsOptional, IsString, ValidateIf, ValidateNested } from 'class-validator';
 
 import { CreateMoralPersonDto } from './create-moral-person.dto';
 import { CreatePhysicalPersonDto } from './create-physical-person.dto';
 
 export class CreateClientDto {
-  @Transform((_, obj) => PersonTypes[obj['personType']])
   @IsEnum(PersonTypes)
   personType: PersonTypes;
 
-  @ValidateIf(client => client.personType === PersonTypes[PersonTypes.physical])
+  @ValidateIf(client => client.personType === PersonTypes.physical)
   @ValidateNested()
   @Type(() => CreatePhysicalPersonDto)
   physicalInfo: PhysicalPerson;
 
-  @ValidateIf(client => client.personType === PersonTypes[PersonTypes.moral])
+  @ValidateIf(client => client.personType === PersonTypes.moral)
   @ValidateNested()
   @Type(() => CreateMoralPersonDto)
   moralInfo: MoralPerson;

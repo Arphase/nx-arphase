@@ -4,7 +4,7 @@ export interface Revision {
   id?: number;
   report: RevisionReport;
   observations?: string;
-  status: RevisionStatus | string;
+  status: RevisionStatus;
   createdAt: Date;
   updatedAt: Date;
   vehicleId: number;
@@ -14,9 +14,9 @@ export interface Revision {
 }
 
 export enum RevisionStatus {
-  elegible = 1,
-  needsRepairs = 2,
-  notElegible = 3,
+  elegible = 'elegible',
+  needsRepairs = 'needsRepairs',
+  notElegible = 'notElegible',
 }
 
 export enum RevisionReportStatus {
@@ -55,8 +55,8 @@ export enum RevisionReportItems {
 
 export type RevisionReport = Record<RevisionReportItems, RevisionReportStatus>;
 
-export const revisionStatusLabels: Record<string, string> = {
-  [RevisionStatus[RevisionStatus.elegible]]: 'En buenas condiciones',
-  [RevisionStatus[RevisionStatus.needsRepairs]]: 'Necesita reparaciones',
-  [RevisionStatus[RevisionStatus.notElegible]]: 'No garantizable',
+export const revisionStatusLabels: Record<RevisionStatus, string> = {
+  [RevisionStatus.elegible]: 'En buenas condiciones',
+  [RevisionStatus.needsRepairs]: 'Necesita reparaciones',
+  [RevisionStatus.notElegible]: 'No garantizable',
 };

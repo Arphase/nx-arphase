@@ -31,9 +31,9 @@ export class ProductService {
     }
     filterCommonQuery('product', query, filterDto);
 
-    if ((user && UserRoles[user.role] !== UserRoles.superAdmin) || groupId) {
+    if ((user && user.role !== UserRoles.superAdmin) || groupId) {
       let company: Company;
-      if (user && UserRoles[user.role] !== UserRoles.superAdmin) {
+      if (user && user.role !== UserRoles.superAdmin) {
         company = await this.companyRepository.findOneBy({ id: user.companyId });
       }
       const groupQuery = this.groupRepository

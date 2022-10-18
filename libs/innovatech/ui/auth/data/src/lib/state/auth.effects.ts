@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserRoles } from '@innovatech/common/domain';
 import { Actions, createEffect, ofType, ROOT_EFFECTS_INIT } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
@@ -20,7 +21,7 @@ export class AuthEffects {
           lastName: localStorage.getItem('lastName'),
           secondLastName: localStorage.getItem('secondLastName'),
           email: localStorage.getItem('email'),
-          role: localStorage.getItem('role'),
+          role: localStorage.getItem('role') as UserRoles,
           token: localStorage.getItem('token'),
           companyId: Number(localStorage.getItem('companyId')),
         };

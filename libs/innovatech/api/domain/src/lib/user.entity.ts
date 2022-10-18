@@ -66,13 +66,9 @@ export class UserEntity extends BaseEntity implements User {
   @Column({
     type: 'enum',
     enum: UserRoles,
-    transformer: {
-      to: value => value,
-      from: value => UserRoles[value],
-    },
     default: UserRoles.agencyUser,
   })
-  role: UserRoles | string;
+  role: UserRoles;
 
   @ManyToOne(() => CompanyEntity, company => company.users)
   @JoinColumn({ name: 'companyId' })

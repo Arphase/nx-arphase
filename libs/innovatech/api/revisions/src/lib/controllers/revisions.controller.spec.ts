@@ -1,6 +1,6 @@
 import { createCollectionResponse } from '@arphase/api/core';
-import { createNestApp } from '@arphase/api/testing';
 import { dropEntities } from '@arphase/api/db';
+import { createNestApp } from '@arphase/api/testing';
 import { DeepPartial } from '@arphase/common';
 import { AuthModule } from '@innovatech/api/auth/feature';
 import { InnovatechApiDbModule, insertGroup, insertUser } from '@innovatech/api/db';
@@ -106,7 +106,7 @@ describe('RevisionsController', () => {
       .expect(200);
 
     expect(pick(body, revisionProperties)).toEqual(
-      pick({ ...newRevision, status: RevisionStatus[RevisionStatus.elegible] }, revisionProperties)
+      pick({ ...newRevision, status: RevisionStatus.elegible }, revisionProperties)
     );
   });
 
@@ -115,16 +115,14 @@ describe('RevisionsController', () => {
       .agent(app.getHttpServer())
       .post('/revisions')
       .auth(token, { type: 'bearer' })
-      .send({ ...mockedRevision, status: RevisionStatus[RevisionStatus.elegible] })
+      .send({ ...mockedRevision, status: RevisionStatus.elegible })
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(201);
 
     const expected = await repository.findOne({ id: body.id });
 
-    expect({ ...mockedRevision, status: RevisionStatus[RevisionStatus.elegible] }).toEqual(
-      pick(expected, revisionProperties)
-    );
+    expect({ ...mockedRevision, status: RevisionStatus.elegible }).toEqual(pick(expected, revisionProperties));
   });
 
   it('should update a revision', async () => {
@@ -133,7 +131,7 @@ describe('RevisionsController', () => {
       id: newRevision.id,
       vehicleId: 1,
       observations: 'It does not work!',
-      status: RevisionStatus[RevisionStatus.notElegible],
+      status: RevisionStatus.notElegible,
       kilometrage: 2000,
       reviewdBy: 'Andrés',
     };

@@ -1,4 +1,5 @@
 import { createCollectionResponse } from '@arphase/api/core';
+import { dropEntities } from '@arphase/api/db';
 import { createNestApp } from '@arphase/api/testing';
 import { DeepPartial } from '@arphase/common';
 import { AuthModule } from '@innovatech/api/auth/feature';
@@ -16,7 +17,6 @@ import {
   VehicleEntity,
 } from '@innovatech/api/domain';
 import { Guarantee, GuaranteeStatus, PersonTypes, Product, Vehicle, VehicleStatus } from '@innovatech/common/domain';
-import { dropEntities } from '@arphase/api/db';
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
@@ -198,10 +198,10 @@ describe('GuaranteesController', () => {
     const { physicalInfo, address } = client;
 
     expect(pick(body, guaranteeProperties)).toEqual(
-      pick({ ...newGuarantee, status: GuaranteeStatus[GuaranteeStatus.outstanding] }, guaranteeProperties)
+      pick({ ...newGuarantee, status: GuaranteeStatus.outstanding }, guaranteeProperties)
     );
     expect(pick(body.client, clientProperties)).toEqual(
-      pick({ ...newGuarantee.client, personType: PersonTypes[PersonTypes.physical] }, clientProperties)
+      pick({ ...newGuarantee.client, personType: PersonTypes.physical }, clientProperties)
     );
     expect(pick(physicalInfo, phyisicalInfoProperties)).toEqual(
       pick(newGuarantee.client.physicalInfo, phyisicalInfoProperties)
@@ -216,7 +216,7 @@ describe('GuaranteesController', () => {
       .auth(token, { type: 'bearer' })
       .send({
         ...mockedGuarantee,
-        client: { ...mockedGuarantee.client, personType: PersonTypes[PersonTypes.physical] },
+        client: { ...mockedGuarantee.client, personType: PersonTypes.physical },
       } as Guarantee)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
@@ -228,10 +228,10 @@ describe('GuaranteesController', () => {
     const { physicalInfo, address } = client;
 
     expect(pick(body, guaranteeProperties)).toEqual(
-      pick({ ...expected, status: GuaranteeStatus[GuaranteeStatus.outstanding] }, guaranteeProperties)
+      pick({ ...expected, status: GuaranteeStatus.outstanding }, guaranteeProperties)
     );
     expect(pick(client, clientProperties)).toEqual(
-      pick({ ...expected.client, personType: PersonTypes[PersonTypes.physical] }, clientProperties)
+      pick({ ...expected.client, personType: PersonTypes.physical }, clientProperties)
     );
     expect(pick(physicalInfo, phyisicalInfoProperties)).toEqual(
       pick(expected.client.physicalInfo, phyisicalInfoProperties)
@@ -283,7 +283,7 @@ describe('GuaranteesController', () => {
       .auth(token, { type: 'bearer' })
       .send({
         ...updatedGuarantee,
-        client: { ...updatedGuarantee.client, personType: PersonTypes[PersonTypes.moral] },
+        client: { ...updatedGuarantee.client, personType: PersonTypes.moral },
       } as Guarantee)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
@@ -295,9 +295,9 @@ describe('GuaranteesController', () => {
     const expected = await repository.findOne({ id: updatedGuarantee.id }, { relations: ['client'] });
 
     expect(pick(updatedGuarantee, guaranteeProperties)).toEqual(
-      pick({ ...expected, status: GuaranteeStatus[GuaranteeStatus.outstanding] }, guaranteeProperties)
+      pick({ ...expected, status: GuaranteeStatus.outstanding }, guaranteeProperties)
     );
-    expect(pick({ ...client, personType: PersonTypes[PersonTypes.moral] }, clientProperties)).toEqual(
+    expect(pick({ ...client, personType: PersonTypes.moral }, clientProperties)).toEqual(
       pick(expected.client, clientProperties)
     );
     expect(pick(moralInfo, moralInfoProperties)).toEqual(pick(expected.client.moralInfo, moralInfoProperties));

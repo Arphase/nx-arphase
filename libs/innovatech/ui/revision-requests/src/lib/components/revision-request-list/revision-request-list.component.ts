@@ -17,7 +17,6 @@ export class RevisionRequestListComponent extends ApsListComponent<RevisionReque
   iconMaps = iconMaps;
   colorMaps = colorMaps;
   columns = columns;
-  revisionRequestStatus = RevisionRequestStatus;
   statusOptions = statusOptions;
 
   onChangeStatus(id: number, status: RevisionRequestStatus): void {

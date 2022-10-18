@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApsListContainerComponent } from '@arphase/ui/core';
-import { Revision, UserRoles } from '@innovatech/common/domain';
-import { PermissionService } from '@innovatech/ui/permissions/data';
+import { Revision } from '@innovatech/common/domain';
 import dayjs from 'dayjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';

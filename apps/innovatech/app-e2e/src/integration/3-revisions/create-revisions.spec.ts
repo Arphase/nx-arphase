@@ -29,7 +29,7 @@ describe('Revisions', () => {
     // Fill revision form
     cy.get('[data-cy="form"]').selectDropdownOptionAndWait({
       inputName: 'status',
-      value: revisionStatusLabels[RevisionStatus[RevisionStatus.elegible]],
+      value: revisionStatusLabels[RevisionStatus.elegible],
     });
     cy.get('[data-cy="kilometrage"]').type('10000');
     cy.get('[data-cy="reviewed-by"]').type('Víctor Martínez');

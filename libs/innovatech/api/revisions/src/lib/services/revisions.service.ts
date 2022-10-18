@@ -172,11 +172,7 @@ export class RevisionsService {
         order: { createdAt: SortDirection.descend },
       } as FindOneOptions);
       if (mostRecentRevision) {
-        await this.updateVehicleStatus(
-          RevisionStatus[mostRecentRevision.status],
-          mostRecentRevision.vehicleId,
-          queryRunner
-        );
+        await this.updateVehicleStatus(mostRecentRevision.status, mostRecentRevision.vehicleId, queryRunner);
       }
       await queryRunner.commitTransaction();
       return revision;

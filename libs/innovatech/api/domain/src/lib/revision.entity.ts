@@ -29,12 +29,8 @@ export class RevisionEntity extends BaseEntity implements Revision {
   @Column({
     type: 'enum',
     enum: RevisionStatus,
-    transformer: {
-      to: value => value,
-      from: value => RevisionStatus[value],
-    },
   })
-  status: RevisionStatus | string;
+  status: RevisionStatus;
 
   @ManyToOne(() => VehicleEntity, vehicle => vehicle.revisions, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'vehicleId' })

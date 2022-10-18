@@ -11,7 +11,6 @@ import {
 import { generateProductPdf, getProductPdfTemplate } from '@innovatech/api/products/utils';
 import {
   Guarantee,
-  GuaranteeStatus,
   guaranteeStatusLabels,
   GuaranteeSummary,
   PersonTypes,
@@ -91,7 +90,7 @@ export class GuaranteesService {
       .leftJoin('guarantee.user', 'user')
       .groupBy('guarantee.status');
 
-    if (UserRoles[user.role] !== UserRoles.superAdmin) {
+    if (user.role !== UserRoles.superAdmin) {
       query.andWhere('(guarantee.companyId = :id)', { id: user.companyId });
     }
 
@@ -119,7 +118,7 @@ export class GuaranteesService {
         formatDate(guarantee.endDate),
         guarantee.amount,
         formatDate(guarantee.invoiceDate),
-        personTypeLabels[PersonTypes[guarantee.client?.personType]],
+        personTypeLabels[guarantee.client?.personType],
         guarantee.client?.physicalInfo?.name,
         guarantee.client?.physicalInfo?.lastName,
         guarantee.client?.physicalInfo?.secondLastName,
@@ -175,8 +174,7 @@ export class GuaranteesService {
       await queryRunner.manager.save(vehicle);
       const newGuarantee = this.guaranteeRepository.create({
         ...omitInfo(createGuaranteeDto),
-        companyId:
-          user && UserRoles[user.role] === UserRoles.superAdmin ? createGuaranteeDto.companyId : user.companyId,
+        companyId: user && user.role === UserRoles.superAdmin ? createGuaranteeDto.companyId : user.companyId,
         userId: user.id,
       });
       await queryRunner.manager.save(newGuarantee);
@@ -216,7 +214,7 @@ export class GuaranteesService {
       const { companyId, vehicleId } = updateGuaranteeDto;
       const preloadedGuarantee = await this.guaranteeRepository.preload({
         ...omitInfo(updateGuaranteeDto),
-        companyId: user && UserRoles[user.role] === UserRoles.superAdmin ? companyId : user.companyId,
+        companyId: user && user.role === UserRoles.superAdmin ? companyId : user.companyId,
       });
       if (vehicleId) {
         const vehicle = await this.vehicleRepository.findOneBy({ id: vehicleId });
@@ -231,7 +229,6 @@ export class GuaranteesService {
         preloadedGuarantee.client.moralInfo = null;
       }
       try {
-        preloadedGuarantee.status = GuaranteeStatus[preloadedGuarantee.status];
         await queryRunner.manager.save(preloadedGuarantee);
         await queryRunner.commitTransaction();
         await preloadedGuarantee.reload();

@@ -80,23 +80,23 @@ export const iconMaps: Record<VehicleStatus, string> = {
 
 export const statusOptions: NzSelectOptionInterface[] = [
   {
-    label: vehicleStatusLabels[VehicleStatus[VehicleStatus.elegible]],
-    value: VehicleStatus[VehicleStatus.elegible],
+    label: vehicleStatusLabels[VehicleStatus.elegible],
+    value: VehicleStatus.elegible,
   },
   {
-    label: vehicleStatusLabels[VehicleStatus[VehicleStatus.hasActiveGuarantee]],
-    value: VehicleStatus[VehicleStatus.hasActiveGuarantee],
+    label: vehicleStatusLabels[VehicleStatus.hasActiveGuarantee],
+    value: VehicleStatus.hasActiveGuarantee,
   },
   {
-    label: vehicleStatusLabels[VehicleStatus[VehicleStatus.needsRevision]],
-    value: VehicleStatus[VehicleStatus.needsRevision],
+    label: vehicleStatusLabels[VehicleStatus.needsRevision],
+    value: VehicleStatus.needsRevision,
   },
   {
-    label: vehicleStatusLabels[VehicleStatus[VehicleStatus.notElegible]],
-    value: VehicleStatus[VehicleStatus.notElegible],
+    label: vehicleStatusLabels[VehicleStatus.notElegible],
+    value: VehicleStatus.notElegible,
   },
   {
-    label: vehicleStatusLabels[VehicleStatus[VehicleStatus.soldWidhoutGuarantee]],
-    value: VehicleStatus[VehicleStatus.soldWidhoutGuarantee],
+    label: vehicleStatusLabels[VehicleStatus.soldWidhoutGuarantee],
+    value: VehicleStatus.soldWidhoutGuarantee,
   },
 ];

@@ -55,13 +55,9 @@ export class VehicleEntity extends BaseEntity implements Vehicle {
   @Column({
     type: 'enum',
     enum: VehicleStatus,
-    transformer: {
-      to: value => value,
-      from: value => VehicleStatus[value],
-    },
     default: VehicleStatus.needsRevision,
   })
-  status: VehicleStatus | string;
+  status: VehicleStatus;
 
   @ManyToOne(() => CompanyEntity, company => company.vehicles)
   @JoinColumn({ name: 'companyId' })

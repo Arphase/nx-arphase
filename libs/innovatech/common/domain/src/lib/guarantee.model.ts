@@ -14,7 +14,7 @@ export interface Guarantee {
   vehicleId: number;
   createdAt: Date;
   updatedAt: Date;
-  status: GuaranteeStatus | string;
+  status: GuaranteeStatus;
   startDate: Date;
   endDate: Date;
   invoiceDate: Date;
@@ -34,10 +34,10 @@ export interface Guarantee {
 }
 
 export enum GuaranteeStatus {
-  outstanding = 1,
-  paid = 2,
-  cancelled = 3,
-  expired = 4,
+  outstanding = 'outstanding',
+  paid = 'paid',
+  cancelled = 'cancelled',
+  expired = 'expired',
 }
 
 export function transformFolio(value: number): unknown {
@@ -45,11 +45,11 @@ export function transformFolio(value: number): unknown {
   return `${new Array(zeros).join('0')}${value}`;
 }
 
-export const guaranteeStatusLabels: Record<string, string> = {
-  [GuaranteeStatus[GuaranteeStatus.cancelled]]: 'Cancelada',
-  [GuaranteeStatus[GuaranteeStatus.expired]]: 'Caducada',
-  [GuaranteeStatus[GuaranteeStatus.outstanding]]: 'Pendiente de pago',
-  [GuaranteeStatus[GuaranteeStatus.paid]]: 'Pagada',
+export const guaranteeStatusLabels: Record<GuaranteeStatus, string> = {
+  [GuaranteeStatus.cancelled]: 'Cancelada',
+  [GuaranteeStatus.expired]: 'Caducada',
+  [GuaranteeStatus.outstanding]: 'Pendiente de pago',
+  [GuaranteeStatus.paid]: 'Pagada',
 };
 
 export const guaranteeDateTypeOptions: NzSelectOptionInterface[] = [

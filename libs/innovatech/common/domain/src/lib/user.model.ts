@@ -14,7 +14,7 @@ export interface User {
   password?: string;
   salt?: string;
   token?: string;
-  role: UserRoles | string;
+  role: UserRoles;
   company?: Company;
   companyId?: number;
   createdAt?: Date;
@@ -25,12 +25,12 @@ export interface User {
 }
 
 export enum UserRoles {
-  superAdmin = 1,
-  admin = 2,
-  agencyUser = 3,
-  repairman = 4,
+  superAdmin = 'superAdmin',
+  admin = 'admin',
+  agencyUser = 'agencyUser',
+  repairman = 'repairman',
 }
 
-export function hasAccessToAllData(role: UserRoles | string): boolean {
-  return [UserRoles.superAdmin, UserRoles.repairman].includes(UserRoles[role as keyof typeof UserRoles]);
+export function hasAccessToAllData(role: UserRoles): boolean {
+  return [UserRoles.superAdmin, UserRoles.repairman].includes(role);
 }

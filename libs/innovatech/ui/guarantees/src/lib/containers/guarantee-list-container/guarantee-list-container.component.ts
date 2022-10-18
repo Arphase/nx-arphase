@@ -1,13 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsListContainerComponent } from '@arphase/ui/core';
-import {
-  Guarantee,
-  GuaranteeStatus,
-  guaranteeStatusLabels,
-  transformFolio,
-  UserRoles,
-} from '@innovatech/common/domain';
-import { PermissionService } from '@innovatech/ui/permissions/data';
+import { Guarantee, GuaranteeStatus, guaranteeStatusLabels, transformFolio } from '@innovatech/common/domain';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
@@ -87,7 +80,7 @@ export class GuaranteeListContainerComponent extends ApsListContainerComponent<G
       .subscribe(() =>
         this.messageService.success(
           `La garantía con folio ${transformFolio(guarantee.id)} ahora está ${guaranteeStatusLabels[
-            GuaranteeStatus[GuaranteeStatus[guarantee.status]]
+            GuaranteeStatus[guarantee.status]
           ].toLowerCase()}`
         )
       );

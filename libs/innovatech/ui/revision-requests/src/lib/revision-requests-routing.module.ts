@@ -22,9 +22,7 @@ export const routes: Routes = [
         path: 'new',
         component: RevisionRequestFormContainerComponent,
         canActivate: [RoleGuard],
-        data: {
-          roles: [UserRoles.agencyUser],
-        },
+        data: { roles: [UserRoles.agencyUser] },
         canDeactivate: [ApsDirtyFormGuard],
         resolve: { resolvedVehicle: RevisionRequestResolverService },
       },

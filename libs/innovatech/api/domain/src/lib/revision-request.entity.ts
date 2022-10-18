@@ -55,13 +55,9 @@ export class RevisionRequestEntity extends BaseEntity implements RevisionRequest
   @Column({
     type: 'enum',
     enum: RevisionRequestStatus,
-    transformer: {
-      to: value => value,
-      from: value => RevisionRequestStatus[value],
-    },
     default: RevisionRequestStatus.new,
   })
-  status: RevisionRequestStatus | string;
+  status: RevisionRequestStatus;
 
   @ManyToOne(() => CompanyEntity, company => company.revisionRequests)
   @JoinColumn({ name: 'companyId' })

@@ -2,7 +2,7 @@ import { PersonTypes } from '@innovatech/common/domain';
 import { isRfc, rfcValidations, RfcValidatorTypes } from '@innovatech/common/utils';
 import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator';
 
-export function validatePersonTypeRfc(type: RfcValidatorTypes | string, rfc: string): boolean {
+export function validatePersonTypeRfc(type: RfcValidatorTypes, rfc: string): boolean {
   return type === RfcValidatorTypes.any ? isRfc(rfc) : rfcValidations[PersonTypes[type]](rfc);
 }
 

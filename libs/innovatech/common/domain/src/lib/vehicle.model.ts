@@ -13,7 +13,7 @@ export interface Vehicle {
   vin: string;
   motorNumber?: string;
   horsePower: number;
-  status: VehicleStatus | string;
+  status: VehicleStatus;
   companyId?: number;
   company?: Company;
   userId?: number;
@@ -26,28 +26,28 @@ export interface Vehicle {
 }
 
 export enum VehicleStatus {
-  elegible = 1,
-  needsRevision = 2,
-  hasActiveGuarantee = 3,
-  notElegible = 4,
-  soldWidhoutGuarantee = 5,
+  elegible = 'elegible',
+  needsRevision = 'needsRevision',
+  hasActiveGuarantee = 'hasActiveGuarantee',
+  notElegible = 'notElegible',
+  soldWidhoutGuarantee = 'soldWidhoutGuarantee',
 }
 
 export function isVehicleElegible(vehicle: Vehicle) {
   return [
     VehicleStatus.elegible,
     VehicleStatus.hasActiveGuarantee,
-    VehicleStatus[VehicleStatus.elegible],
-    VehicleStatus[VehicleStatus.hasActiveGuarantee],
+    VehicleStatus.elegible,
+    VehicleStatus.hasActiveGuarantee,
   ].includes(vehicle.status);
 }
 
 export const VEHICLE_VIN_LENGTH = 17;
 
-export const vehicleStatusLabels: Record<string, string> = {
-  [VehicleStatus[VehicleStatus.notElegible]]: 'No garantizable',
-  [VehicleStatus[VehicleStatus.hasActiveGuarantee]]: 'Garantía vigente',
-  [VehicleStatus[VehicleStatus.needsRevision]]: 'Necesita revisión',
-  [VehicleStatus[VehicleStatus.elegible]]: 'Garantizable',
-  [VehicleStatus[VehicleStatus.soldWidhoutGuarantee]]: 'Vendido sin garantía',
+export const vehicleStatusLabels: Record<VehicleStatus, string> = {
+  [VehicleStatus.notElegible]: 'No garantizable',
+  [VehicleStatus.hasActiveGuarantee]: 'Garantía vigente',
+  [VehicleStatus.needsRevision]: 'Necesita revisión',
+  [VehicleStatus.elegible]: 'Garantizable',
+  [VehicleStatus.soldWidhoutGuarantee]: 'Vendido sin garantía',
 };

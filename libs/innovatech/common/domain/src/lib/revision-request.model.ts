@@ -12,7 +12,7 @@ export interface RevisionRequest {
   email: string;
   createdAt: Date;
   updatedAt: Date;
-  status: RevisionRequestStatus | string;
+  status: RevisionRequestStatus;
   additionalNotes: string;
   userId: number;
   user: User;
@@ -24,7 +24,7 @@ export interface RevisionRequest {
 }
 
 export enum RevisionRequestStatus {
-  new = 1,
-  inProgress = 2,
-  completed = 3,
+  new = 'new',
+  inProgress = 'inProgress',
+  completed = 'completed',
 }

@@ -53,19 +53,19 @@ export const columns: ApsColumns = [
 
 export const statusOptions: NzSelectOptionInterface[] = [
   {
-    label: guaranteeStatusLabels[GuaranteeStatus[GuaranteeStatus.paid]],
+    label: guaranteeStatusLabels[GuaranteeStatus.paid],
     value: GuaranteeStatus[GuaranteeStatus.paid],
   },
   {
-    label: guaranteeStatusLabels[GuaranteeStatus[GuaranteeStatus.outstanding]],
+    label: guaranteeStatusLabels[GuaranteeStatus.outstanding],
     value: GuaranteeStatus[GuaranteeStatus.outstanding],
   },
   {
-    label: guaranteeStatusLabels[GuaranteeStatus[GuaranteeStatus.cancelled]],
+    label: guaranteeStatusLabels[GuaranteeStatus.cancelled],
     value: GuaranteeStatus[GuaranteeStatus.cancelled],
   },
   {
-    label: guaranteeStatusLabels[GuaranteeStatus[GuaranteeStatus.expired]],
+    label: guaranteeStatusLabels[GuaranteeStatus.expired],
     value: GuaranteeStatus[GuaranteeStatus.expired],
   },
 ];
@@ -76,6 +76,7 @@ export const colorMaps: Record<GuaranteeStatus, string> = {
   [GuaranteeStatus.cancelled]: 'error',
   [GuaranteeStatus.expired]: 'processing',
 };
+
 export const iconMaps: Record<GuaranteeStatus, string> = {
   [GuaranteeStatus.paid]: 'check-circle',
   [GuaranteeStatus.outstanding]: 'exclamation-circle',

@@ -23,12 +23,8 @@ export class ClientEntity extends BaseEntity implements Client {
   @Column({
     type: 'enum',
     enum: PersonTypes,
-    transformer: {
-      to: value => value,
-      from: value => PersonTypes[value],
-    },
   })
-  personType: PersonTypes | string;
+  personType: PersonTypes;
 
   @OneToOne(() => PhysicalPersonEntity, {
     cascade: true,

@@ -6,12 +6,12 @@ export interface User {
   password: string;
   firstName: string;
   lastName: string;
-  role: UserRoles | string;
+  role: UserRoles;
   resetPassword?: ResetPassword;
   token?: string;
 }
 
 export enum UserRoles {
-  superAdmin = 1,
-  admin = 2,
+  superAdmin = 'superAdmin',
+  admin = 'admin',
 }

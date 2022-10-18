@@ -124,10 +124,10 @@
           nzMd="2">
         <nz-tag nz-tooltip
                 nzTooltipPlacement="top"
-                [nzTooltipTitle]="statusLabels[revisionRequestStatus[item.status]] | empty"
-                [nzColor]="colorMaps[revisionRequestStatus[item.status]]">
+                [nzTooltipTitle]="statusLabels[item.status] | empty"
+                [nzColor]="colorMaps[item.status]">
           <i nz-icon
-             [nzType]="iconMaps[revisionRequestStatus[item.status]]"></i>
+             [nzType]="iconMaps[item.status]"></i>
         </nz-tag>
       </td>
       <td nz-col
@@ -162,7 +162,7 @@
               <li *ngFor="let option of statusOptions"
                   nz-menu-item
                   (click)="onChangeStatus(item.id, option.value)">
-                <nz-tag [nzColor]="colorMaps[revisionRequestStatus[option.value]]">
+                <nz-tag [nzColor]="colorMaps[option.value]">
                   {{ option.label }}</nz-tag>
               </li>
             </ul>

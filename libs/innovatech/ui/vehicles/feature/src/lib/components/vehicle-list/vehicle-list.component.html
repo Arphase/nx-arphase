@@ -136,9 +136,9 @@
         <nz-tag nz-tooltip
                 nzTooltipPlacement="top"
                 [nzTooltipTitle]="statusLabels[item.status]"
-                [nzColor]="colorMaps[vehicleStatus[item.status]]">
+                [nzColor]="colorMaps[item.status]">
           <i nz-icon
-             [nzType]="iconMaps[vehicleStatus[item.status]]"
+             [nzType]="iconMaps[item.status]"
              data-cy="status"></i>
         </nz-tag>
       </td>
@@ -164,7 +164,7 @@
               <li *ngFor="let option of statusOptions"
                   nz-menu-item
                   (click)="onChangeStatus(item.id, option.value, item.vin)">
-                <nz-tag [nzColor]="colorMaps[vehicleStatus[option.value]]">
+                <nz-tag [nzColor]="colorMaps[option.value]">
                   {{ option.label }}
                 </nz-tag>
               </li>
@@ -196,7 +196,7 @@
               Ver vehículo
             </ng-container>
           </li>
-          <ng-container *ngIf="item?.status !== vehicleStatus[vehicleStatus.hasActiveGuarantee]">
+          <ng-container *ngIf="item?.status !== vehicleStatus.hasActiveGuarantee">
             <li *ivtPermission="[userRoles.superAdmin]"
                 nz-menu-item
                 class="text-danger"

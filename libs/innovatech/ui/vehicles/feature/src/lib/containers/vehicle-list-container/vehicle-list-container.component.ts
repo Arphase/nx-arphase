@@ -50,7 +50,7 @@ export class VehicleListContainerComponent extends ApsListContainerComponent<Veh
       .subscribe(() =>
         this.messageService.success(
           `El vehículo con VIN ${vehicle.vin} ahora está en estatus: ${vehicleStatusLabels[
-            VehicleStatus[VehicleStatus[vehicle.status]]
+            VehicleStatus[vehicle.status]
           ].toLowerCase()}`
         )
       );

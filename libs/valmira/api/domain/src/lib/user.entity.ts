@@ -21,13 +21,9 @@ export class UserEntity extends BaseEntity implements User {
   @Column({
     type: 'enum',
     enum: UserRoles,
-    transformer: {
-      to: value => value,
-      from: value => UserRoles[value],
-    },
     default: UserRoles.superAdmin,
   })
-  role: UserRoles | string;
+  role: UserRoles;
 
   @Column()
   password: string;

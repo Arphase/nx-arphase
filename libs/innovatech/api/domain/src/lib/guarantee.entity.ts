@@ -49,13 +49,9 @@ export class GuaranteeEntity extends BaseEntity implements Guarantee {
   @Column({
     type: 'enum',
     enum: GuaranteeStatus,
-    transformer: {
-      to: value => value,
-      from: value => GuaranteeStatus[value],
-    },
     default: GuaranteeStatus.outstanding,
   })
-  status: GuaranteeStatus | string;
+  status: GuaranteeStatus;
 
   @Column()
   startDate: Date;

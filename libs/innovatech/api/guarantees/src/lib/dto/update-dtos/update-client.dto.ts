@@ -14,13 +14,13 @@ export class UpdateClientDto extends PartialType(CreateClientDto) {
   id: number;
 
   @IsOptional()
-  @ValidateIf(client => client.personType === PersonTypes[PersonTypes.physical])
+  @ValidateIf(client => client.personType === PersonTypes.physical)
   @ValidateNested()
   @Type(() => UpdatePhysicalPersonDto)
   physicalInfo: PhysicalPerson;
 
   @IsOptional()
-  @ValidateIf(client => client.personType === PersonTypes[PersonTypes.moral])
+  @ValidateIf(client => client.personType === PersonTypes.moral)
   @ValidateNested()
   @Type(() => UpdateMoralPersonDto)
   moralInfo: MoralPerson;

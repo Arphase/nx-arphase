@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsListContainerComponent } from '@arphase/ui/core';
-import { RevisionRequest, RevisionRequestStatus } from '@innovatech/common/domain';
+import { RevisionRequest } from '@innovatech/common/domain';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { take } from 'rxjs/operators';
 
@@ -29,9 +29,7 @@ export class RevisionRequestListContainerComponent extends ApsListContainerCompo
       .pipe(take(1))
       .subscribe(() =>
         this.messageService.success(
-          `La solicitud de revisión ahora está ${statusLabels[
-            RevisionRequestStatus[revisionRequest.status]
-          ].toLowerCase()}`
+          `La solicitud de revisión ahora está ${statusLabels[revisionRequest.status].toLowerCase()}`
         )
       );
   }

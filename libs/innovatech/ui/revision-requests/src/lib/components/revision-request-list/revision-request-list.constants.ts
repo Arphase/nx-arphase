@@ -23,15 +23,15 @@ export const colorMaps: Record<RevisionRequestStatus, string> = {
 export const statusOptions: NzSelectOptionInterface[] = [
   {
     label: 'Completada',
-    value: RevisionRequestStatus[RevisionRequestStatus.completed],
+    value: RevisionRequestStatus.completed,
   },
   {
     label: 'En proceso',
-    value: RevisionRequestStatus[RevisionRequestStatus.inProgress],
+    value: RevisionRequestStatus.inProgress,
   },
   {
     label: 'Nueva',
-    value: RevisionRequestStatus[RevisionRequestStatus.new],
+    value: RevisionRequestStatus.new,
   },
 ];
 
