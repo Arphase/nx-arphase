@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.1.2](https://github.com/Arphase/nx-arphase/compare/v4.1.1...v4.1.2) (2022-10-19)
+
+
+### Bug Fixes
+
+* **innovatech/api:** remove build optimizations to avoid errors ([7b75cab](https://github.com/Arphase/nx-arphase/commit/7b75caba6bb1e20279569dcbd42c48b94fca641b))
+
 ### [4.1.1](https://github.com/Arphase/nx-arphase/compare/v4.1.0...v4.1.1) (2022-10-17)
 
 
