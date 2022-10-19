@@ -15,12 +15,6 @@ import { GroupsService } from '../services/groups.service';
 export class GroupsController {
   constructor(private groupsService: GroupsService) {}
 
-  @Post()
-  @Roles(UserRoles.superAdmin)
-  createGroup(@Body() createGroupDto: CreateGroupDto): Promise<Group> {
-    return this.groupsService.createGroup(createGroupDto);
-  }
-
   @Get()
   @Roles(UserRoles.superAdmin, UserRoles.repairman)
   async getGroups(@Query() filterDto: CommonFilterDto): Promise<ApsCollectionResponse<Group>> {
@@ -31,6 +25,12 @@ export class GroupsController {
   @Roles(UserRoles.superAdmin)
   async getGroupById(@Param('id', ParseIntPipe) id: number): Promise<Group> {
     return this.groupsService.getGroupById(id);
+  }
+
+  @Post()
+  @Roles(UserRoles.superAdmin)
+  createGroup(@Body() createGroupDto: CreateGroupDto): Promise<Group> {
+    return this.groupsService.createGroup(createGroupDto);
   }
 
   @Put(':id')

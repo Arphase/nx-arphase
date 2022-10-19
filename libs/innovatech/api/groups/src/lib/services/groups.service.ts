@@ -26,22 +26,6 @@ export class GroupsService {
     private authService: AuthService
   ) {}
 
-  async getGroupById(id: number): Promise<Group> {
-    const query = this.groupRepository.createQueryBuilder('group');
-    query
-      .leftJoinAndSelect('group.companies', 'company')
-      .leftJoinAndSelect('company.address', 'address')
-      .leftJoinAndSelect('company.users', 'user');
-
-    const found = await query.where('group.id = :id', { id }).getOne();
-
-    if (!found) {
-      throw new NotFoundException(`Group with id "${id}" not found`);
-    }
-
-    return found;
-  }
-
   async getGroups(filterDto: Partial<CommonFilterDto>): Promise<ApsCollectionResponse<Group>> {
     const { pageSize, pageIndex, text } = filterDto;
     const query = this.groupRepository.createQueryBuilder('group');
@@ -62,6 +46,22 @@ export class GroupsService {
     const total = await query.getCount();
 
     return createCollectionResponse(groups, pageSize, pageIndex, total);
+  }
+
+  async getGroupById(id: number): Promise<Group> {
+    const query = this.groupRepository.createQueryBuilder('group');
+    query
+      .leftJoinAndSelect('group.companies', 'company')
+      .leftJoinAndSelect('company.address', 'address')
+      .leftJoinAndSelect('company.users', 'user');
+
+    const found = await query.where('group.id = :id', { id }).getOne();
+
+    if (!found) {
+      throw new NotFoundException(`Group with id "${id}" not found`);
+    }
+
+    return found;
   }
 
   async createGroup(createGroupDto: CreateGroupDto): Promise<Group> {
