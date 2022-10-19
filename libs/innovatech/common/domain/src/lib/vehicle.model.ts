@@ -30,7 +30,7 @@ export enum VehicleStatus {
   needsRevision = 'needsRevision',
   hasActiveGuarantee = 'hasActiveGuarantee',
   notElegible = 'notElegible',
-  soldWidhoutGuarantee = 'soldWidhoutGuarantee',
+  soldWithoutGuarantee = 'soldWithoutGuarantee',
 }
 
 export function isVehicleElegible(vehicle: Vehicle) {
@@ -44,10 +44,10 @@ export function isVehicleElegible(vehicle: Vehicle) {
 
 export const VEHICLE_VIN_LENGTH = 17;
 
-export const vehicleStatusLabels: Record<VehicleStatus, string> = {
+export const vehicleStatusLabels: Record<string, string> = {
   [VehicleStatus.notElegible]: 'No garantizable',
   [VehicleStatus.hasActiveGuarantee]: 'Garantía vigente',
   [VehicleStatus.needsRevision]: 'Necesita revisión',
   [VehicleStatus.elegible]: 'Garantizable',
-  [VehicleStatus.soldWidhoutGuarantee]: 'Vendido sin garantía',
+  [VehicleStatus.soldWithoutGuarantee]: 'Vendido sin garantía',
 };

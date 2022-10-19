@@ -67,7 +67,7 @@ export const colorMaps: Record<VehicleStatus, string> = {
   [VehicleStatus.needsRevision]: 'warning',
   [VehicleStatus.notElegible]: 'error',
   [VehicleStatus.hasActiveGuarantee]: 'processing',
-  [VehicleStatus.soldWidhoutGuarantee]: 'default',
+  [VehicleStatus.soldWithoutGuarantee]: 'default',
 };
 
 export const iconMaps: Record<VehicleStatus, string> = {
@@ -75,7 +75,7 @@ export const iconMaps: Record<VehicleStatus, string> = {
   [VehicleStatus.needsRevision]: 'exclamation-circle',
   [VehicleStatus.notElegible]: 'close-circle',
   [VehicleStatus.hasActiveGuarantee]: 'sync',
-  [VehicleStatus.soldWidhoutGuarantee]: 'fall',
+  [VehicleStatus.soldWithoutGuarantee]: 'fall',
 };
 
 export const statusOptions: NzSelectOptionInterface[] = [
@@ -96,7 +96,7 @@ export const statusOptions: NzSelectOptionInterface[] = [
     value: VehicleStatus.notElegible,
   },
   {
-    label: vehicleStatusLabels[VehicleStatus.soldWidhoutGuarantee],
-    value: VehicleStatus.soldWidhoutGuarantee,
+    label: vehicleStatusLabels[VehicleStatus.soldWithoutGuarantee],
+    value: VehicleStatus.soldWithoutGuarantee,
   },
 ];
