@@ -10,7 +10,7 @@
     "start:api": "nx serve innovatech-api",
     "build": "nx build",
     "build:stats": "nx build --prod --stats-json",
-    "test": "nx test",
+    "test": "dotenv -e .env.test",
     "lint": "nx workspace-lint && ng lint",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",

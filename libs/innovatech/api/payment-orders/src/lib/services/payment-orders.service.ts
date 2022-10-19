@@ -8,7 +8,7 @@ import { Response } from 'express';
 import fs from 'fs';
 import { omit } from 'lodash';
 import puppeteer from 'puppeteer';
-import { Connection, getManager, Repository } from 'typeorm';
+import { Connection, In, Repository } from 'typeorm';
 import { promisify } from 'util';
 
 import { CreatePaymentOrderDto } from '../dto/create-payment-order.dto';
@@ -37,31 +37,42 @@ export class PaymentOrdersService {
   }
 
   async createPaymentOrder(paymentOrder: CreatePaymentOrderDto): Promise<PaymentOrder> {
-    const newPaymentOrder = await this.paymentOrderRepository.create(
+    const newPaymentOrder = this.paymentOrderRepository.create(
       omit(paymentOrder, 'guarantees') as CreatePaymentOrderDto
     );
     const ids = paymentOrder.guarantees.map(guarantee => guarantee.id);
-    const guarantees = await this.guaranteeRepository.findByIds(ids);
+    const guarantees = await this.guaranteeRepository.findBy({ id: In(ids) });
     guarantees.forEach(guarantee => {
       if (guarantee.paymentOrderId) {
         throw new ConflictException(`Guarantee with id "${guarantee.id}" has already a payment order`);
       }
     });
-    let updatedGuarantees = await this.guaranteeRepository.create(paymentOrder.guarantees);
-    await getManager().transaction(async transactionalEntityManager => {
-      await transactionalEntityManager.save(newPaymentOrder);
+
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
+      let updatedGuarantees = this.guaranteeRepository.create(paymentOrder.guarantees);
+      await queryRunner.manager.save(newPaymentOrder);
       updatedGuarantees = updatedGuarantees.map(guarantee => {
         guarantee.paymentOrderId = newPaymentOrder.id;
         return guarantee;
       });
-      await transactionalEntityManager.save(updatedGuarantees);
-    });
+      await queryRunner.manager.save(updatedGuarantees);
+      await queryRunner.commitTransaction();
+    } catch (error) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
+    await newPaymentOrder.reload();
     return newPaymentOrder;
   }
 
   async updatePaymentOrder(paymentOrder: UpdatePaymentOrderDto): Promise<PaymentOrder> {
     const updatedPaymentOrder = this.paymentOrderRepository.create(paymentOrder);
-    const updatedGuarantees = await this.guaranteeRepository.create(paymentOrder.guarantees);
+    const updatedGuarantees = this.guaranteeRepository.create(paymentOrder.guarantees);
 
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
