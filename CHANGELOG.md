@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.1.3](https://github.com/Arphase/nx-arphase/compare/v4.1.2...v4.1.3) (2022-10-19)
+
+
+### Bug Fixes
+
+* **innovatech/payment-orders:** remove deprectated getManager function for transactions ([b62f871](https://github.com/Arphase/nx-arphase/commit/b62f87126b878b3ba2a29e2ae467f3ccd465c24d))
+
 ### [4.1.2](https://github.com/Arphase/nx-arphase/compare/v4.1.1...v4.1.2) (2022-10-19)
 
 
