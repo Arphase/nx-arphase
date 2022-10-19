@@ -1,7 +1,6 @@
 import { Reservation } from '@valmira/domain';
-import { DeepPartial } from 'typeorm';
 
-export function getReservationTotal(reservation: DeepPartial<Reservation>): {
+export function getReservationTotal(reservation: Reservation): {
   placeTotal: number;
   productTotal: number;
   total: number;

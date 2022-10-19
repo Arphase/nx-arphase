@@ -222,7 +222,7 @@ describe('GuaranteesController', () => {
       .expect('Content-Type', /json/)
       .expect(201);
 
-    const expected = await repository.findOne({ id: body.id }, { relations: ['client'] });
+    const expected = await repository.findOne({ where: { id: body.id }, relations: ['client'] });
 
     const { client } = body as Guarantee;
     const { physicalInfo, address } = client;
@@ -292,7 +292,7 @@ describe('GuaranteesController', () => {
     const { client } = updatedGuarantee;
     const { moralInfo, address } = client;
 
-    const expected = await repository.findOne({ id: updatedGuarantee.id }, { relations: ['client'] });
+    const expected = await repository.findOne({ where: { id: updatedGuarantee.id }, relations: ['client'] });
 
     expect(pick(updatedGuarantee, guaranteeProperties)).toEqual(
       pick({ ...expected, status: GuaranteeStatus.outstanding }, guaranteeProperties)

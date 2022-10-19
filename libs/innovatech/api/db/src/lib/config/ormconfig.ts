@@ -1,14 +1,11 @@
 import dotenv from 'dotenv';
+import path from 'path';
 import { DataSource } from 'typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
 import { ENTITIES } from './entities';
 
 const test = process.env.NODE_ENV === 'test' || process.env['NODE' + '_ENV'] === 'test';
-
-if (test) {
-  dotenv.config({ path: '.env.test' });
-}
 
 export const typeormConfig: PostgresConnectionOptions = {
   type: 'postgres',

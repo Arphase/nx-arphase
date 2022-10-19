@@ -67,7 +67,7 @@ export class PlacesService {
   }
 
   async getPlace(id: number): Promise<PlaceEntity> {
-    const place = await this.placeRepository.findOne({ id });
+    const place = await this.placeRepository.findOneBy({ id });
     if (!place) {
       throw new NotFoundException(`Place with id ${id} not found`);
     }

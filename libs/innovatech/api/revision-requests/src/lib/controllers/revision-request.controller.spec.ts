@@ -1,6 +1,6 @@
 import { createCollectionResponse } from '@arphase/api/core';
-import { createNestApp } from '@arphase/api/testing';
 import { dropEntities } from '@arphase/api/db';
+import { createNestApp } from '@arphase/api/testing';
 import { DeepPartial } from '@arphase/common';
 import { AuthModule } from '@innovatech/api/auth/feature';
 import { InnovatechApiDbModule, insertGroup, insertUser } from '@innovatech/api/db';
@@ -158,7 +158,7 @@ describe('RevisionsController', () => {
       .expect('Content-Type', /json/)
       .expect(201);
 
-    const expected = await repository.findOne({ id: body.id }, { relations: ['address', 'vehicle'] });
+    const expected = await repository.findOne({ where: { id: body.id }, relations: ['address', 'vehicle'] });
 
     expect(omit(mockedRevisionRequest, ['address', 'companyId', 'vehicleId'])).toEqual(
       pick(expected, revisionRequestProperties)
@@ -197,7 +197,10 @@ describe('RevisionsController', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    const expected = await repository.findOne({ id: updatedRevisionRequest.id }, { relations: ['address', 'vehicle'] });
+    const expected = await repository.findOne({
+      where: { id: updatedRevisionRequest.id },
+      relations: ['address', 'vehicle'],
+    });
     expect(omit(updatedRevisionRequest, 'address')).toEqual(pick(expected, ['id', ...revisionRequestProperties]));
     expect(updatedRevisionRequest.address).toEqual(pick(expected.address, ['id', ...addressProperties]));
     expect(mockedVehicle).toEqual(pick(expected.vehicle, vehicleProperties));

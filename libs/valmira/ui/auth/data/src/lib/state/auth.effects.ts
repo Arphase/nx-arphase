@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType, ROOT_EFFECTS_INIT } from '@ngrx/effects';
+import { UserRoles } from '@valmira/domain';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 
@@ -18,7 +19,7 @@ export class AuthEffects {
           firstName: localStorage.getItem('firstName'),
           lastName: localStorage.getItem('lastName'),
           email: localStorage.getItem('email'),
-          role: localStorage.getItem('role'),
+          role: localStorage.getItem('role') as UserRoles,
           token: localStorage.getItem('token'),
         };
         return AuthActions.loadUserFromStorage({ user });

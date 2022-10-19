@@ -1,6 +1,6 @@
 import { createCollectionResponse } from '@arphase/api/core';
-import { createNestApp } from '@arphase/api/testing';
 import { dropEntities } from '@arphase/api/db';
+import { createNestApp } from '@arphase/api/testing';
 import { AuthModule } from '@innovatech/api/auth/feature';
 import { InnovatechApiDbModule, insertGroup, insertUser } from '@innovatech/api/db';
 import { CompanyEntity, GroupEntity, UserEntity, VehicleEntity } from '@innovatech/api/domain';
@@ -115,7 +115,7 @@ describe('VehiclesController', () => {
       .expect('Content-Type', /json/)
       .expect(201);
 
-    const expected = await repository.findOne({ id: body.id });
+    const expected = await repository.findOneBy({ id: body.id });
 
     expect(mockedVehicle).toEqual(pick(expected, vehicleProperties));
   });
@@ -143,7 +143,7 @@ describe('VehiclesController', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    const expected = await repository.findOne({ id: updatedVehicle.id });
+    const expected = await repository.findOneBy({ id: updatedVehicle.id });
     expect(updatedVehicle).toEqual(pick(expected, ['id', ...vehicleProperties]));
   });
 
@@ -158,7 +158,7 @@ describe('VehiclesController', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    const expected = await repository.findOne({ id });
+    const expected = await repository.findOneBy({ id });
     expect(expected).toBeFalsy();
   });
 });

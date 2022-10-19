@@ -1,6 +1,6 @@
 import { createCollectionResponse } from '@arphase/api/core';
-import { createNestApp } from '@arphase/api/testing';
 import { dropEntities } from '@arphase/api/db';
+import { createNestApp } from '@arphase/api/testing';
 import { AuthModule } from '@innovatech/api/auth/feature';
 import { InnovatechApiDbModule, insertGroup, insertUser } from '@innovatech/api/db';
 import { CompanyEntity, GroupEntity, ProductEntity, RevisionEntity, UserEntity } from '@innovatech/api/domain';
@@ -105,7 +105,7 @@ describe('ProductsController', () => {
       .expect('Content-Type', /json/)
       .expect(201);
 
-    const expected = await repository.findOne({ id: body.id });
+    const expected = await repository.findOneBy({ id: body.id });
 
     expect(omit(mockedProduct, ['template', 'logo'])).toEqual(pick(expected, productProperties));
   });
@@ -133,7 +133,7 @@ describe('ProductsController', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    const expected = await repository.findOne({ id: updatedProduct.id });
+    const expected = await repository.findOneBy({ id: updatedProduct.id });
 
     expect(omit(updatedProduct, ['template', 'logo'])).toEqual(pick(expected, ['id', ...productProperties]));
   });

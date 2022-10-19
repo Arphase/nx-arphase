@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import { getManager } from 'typeorm';
+import { DataSource } from 'typeorm';
 
-export async function insertLocalities({ light } = { light: false }): Promise<void> {
-  const entityManager = getManager();
+export async function insertLocalities(connection: DataSource, { light } = { light: false }): Promise<void> {
+  const entityManager = connection;
 
   const filePath = path.join(__dirname, light ? 'sepomex-catalog-light.sql' : 'sepomex-catalog.sql');
 

@@ -120,7 +120,7 @@ describe('RevisionsController', () => {
       .expect('Content-Type', /json/)
       .expect(201);
 
-    const expected = await repository.findOne({ id: body.id });
+    const expected = await repository.findOneBy({ id: body.id });
 
     expect({ ...mockedRevision, status: RevisionStatus.elegible }).toEqual(pick(expected, revisionProperties));
   });
@@ -145,7 +145,7 @@ describe('RevisionsController', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    const expected = await repository.findOne({ id: updatedRevision.id });
+    const expected = await repository.findOneBy({ id: updatedRevision.id });
     expect(updatedRevision).toEqual(
       pick(expected, ['id', ...revisionProperties.filter(property => property !== 'report')])
     );
@@ -162,7 +162,7 @@ describe('RevisionsController', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    const expected = await repository.findOne({ id });
+    const expected = await repository.findOneBy({ id });
     expect(expected).toBeFalsy();
   });
 });

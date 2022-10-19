@@ -2,19 +2,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "types": [
-      "jest",
-      "node"
-    ],
+    "module": "commonjs",
+    "types": ["jest", "node"]
   },
-  "files": [
-    "src/test-setup.ts"
-  ],
-  "include": [
-    "**/*.spec.ts",
-    "**/*.d.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "files": ["src/test-setup.ts"],
+  "include": ["**/*.spec.ts", "**/*.d.ts"],
+  "exclude": ["node_modules"]
 }

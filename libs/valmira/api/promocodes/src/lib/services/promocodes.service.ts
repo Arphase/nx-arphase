@@ -30,7 +30,7 @@ export class PromocodesService {
   }
 
   async getPromocode(id: number): Promise<PromocodeEntity> {
-    const promocode = await this.promocodeRepository.findOne({ id });
+    const promocode = await this.promocodeRepository.findOneBy({ id });
     if (!promocode) {
       throw new NotFoundException(`Promocode with id ${id} not found`);
     }

@@ -1,8 +1,8 @@
-import { ApsCollectionService } from '@arphase/ui/core';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
+import { ApsCollectionService } from '../services/collection.service';
 import { ApsDataService } from '../services/data.service';
 import { ApsListContainerComponent } from './list-container.component';
 

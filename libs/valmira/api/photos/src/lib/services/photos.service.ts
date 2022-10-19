@@ -25,7 +25,7 @@ export class PhotosService {
   }
 
   async deletePhoto(id: number): Promise<Photo> {
-    const photo = await this.photoRepository.findOne({ id });
+    const photo = await this.photoRepository.findOneBy({ id });
     if (!photo) {
       throw new NotFoundException(`Photo with id ${id} not found`);
     }

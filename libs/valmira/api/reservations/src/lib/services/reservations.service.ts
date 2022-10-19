@@ -60,7 +60,7 @@ export class ReservationsService {
   }
 
   async getReservation(id: number): Promise<Reservation> {
-    const reservation = await this.reservationRepository.findOne({ id });
+    const reservation = await this.reservationRepository.findOneBy({ id });
     if (!reservation) {
       throw new NotFoundException(`Reservation with id ${id} not found`);
     }
@@ -82,7 +82,7 @@ export class ReservationsService {
 
   async getReservationDetail(filterDto: GetReservationDetailDto): Promise<ReservationEntity> {
     const { id, email } = filterDto;
-    const reservation = await this.reservationRepository.findOne({ id, customer: { email } });
+    const reservation = await this.reservationRepository.findOneBy({ id, customer: { email } });
     if (!reservation) {
       throw new NotFoundException(`Reservation with id ${id} not found`);
     }
@@ -115,7 +115,7 @@ export class ReservationsService {
     const { placeId, promocodeId, startDate, endDate, id } = reservationPreviewDto;
     let { additionalProducts } = reservationPreviewDto;
     let promocode: Promocode;
-    const place = await this.placeRepository.findOne(placeId);
+    const place = await this.placeRepository.findOneBy({ id: placeId });
     if (!place) {
       throw new NotFoundException('Alojamiento no existe');
     }
@@ -126,7 +126,7 @@ export class ReservationsService {
       }
     }
     if (promocodeId) {
-      promocode = await this.promocodeRepository.findOne(promocodeId);
+      promocode = await this.promocodeRepository.findOneBy({ id: promocodeId });
       if (!promocode) {
         throw new NotFoundException('Código de descuento no existe');
       }
@@ -151,7 +151,7 @@ export class ReservationsService {
         promocode,
         nights,
         additionalProducts,
-      }),
+      } as Reservation),
     };
   }
 
