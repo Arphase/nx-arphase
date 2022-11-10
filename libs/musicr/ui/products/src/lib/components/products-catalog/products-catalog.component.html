@@ -82,9 +82,9 @@
         </div>
       </div>
     </div>
-    <div class="space">
+    <div class="space pb-5">
       <div nz-row
-           [nzGutter]="16">
+           nzGutter="16">
         <div *ngFor="let product of products"
              nz-col
              nzXs="12"
@@ -109,6 +109,19 @@
               <span class="text-xs">{{ product.price | currency }}</span>
             </div>
           </div>
+        </div>
+      </div>
+      <div *ngIf="!info?.last"
+           nz-row>
+        <div nz-col
+             nzSpan="24"
+             class="flex justify-center items-center">
+          <button class="mt-5"
+                  nz-button
+                  nzType="primary"
+                  [nzLoading]="loadingMore"
+                  type="button"
+                  (click)="onLoadMore()">Cargar más</button>
         </div>
       </div>
     </div>

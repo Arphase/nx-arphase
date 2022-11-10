@@ -81,7 +81,11 @@ export class ProductFormComponent extends ApsFormComponent<Product> implements O
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.item && this.item) {
-      this.form.patchValue({ ...this.item, categoryId: this.item.subcategory.categoryId });
+      this.form.patchValue({
+        ...this.item,
+        categoryId: this.item.subcategory.categoryId,
+        subcategoryId: this.item.subcategory.id,
+      });
       this.fileList = this.item.photos.map(photo => ({
         uid: String(photo.id),
         name: photo.key,

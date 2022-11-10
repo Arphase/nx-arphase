@@ -1,10 +1,8 @@
-import { ConnectionOptions, createConnection } from 'typeorm';
-
-import config from '../config/ormconfig';
+import { dataSource } from '../config/ormconfig';
 import { insertUser } from './1-users';
 
 async function run() {
-  const connection = await createConnection(config as ConnectionOptions);
+  const connection = await dataSource.initialize();
   await insertUser(connection);
 }
 

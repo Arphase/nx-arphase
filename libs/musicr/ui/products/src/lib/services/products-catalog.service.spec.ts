@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SpectatorService, createServiceFactory } from '@ngneat/spectator';
+import { GtagService } from '@arphase/ui/gtag';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
 import { ProductsCatalogService } from './products-catalog.service';
 
@@ -9,6 +10,7 @@ describe('ProductsCatalogService', () => {
   const createService = createServiceFactory({
     service: ProductsCatalogService,
     imports: [HttpClientTestingModule, RouterTestingModule],
+    mocks: [GtagService],
   });
 
   beforeEach(() => (spectator = createService()));

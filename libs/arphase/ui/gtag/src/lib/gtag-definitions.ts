@@ -38,6 +38,7 @@ export interface EventParams extends CustomParams {
 }
 
 export interface Item {
+  id: string;
   item_id: string;
   item_name: string;
   affiliation: string;
@@ -57,4 +58,5 @@ export interface Item {
   location_id: string;
   price: number;
   quantity: number;
+  google_business_vertical: string;
 }

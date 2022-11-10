@@ -37,7 +37,7 @@
     "typeorm:innovatech": "ts-node --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d libs/innovatech/api/db/src/lib/config/ormconfig.ts",
     "typeorm:innovatech:migrate": "npm run typeorm:innovatech migration:generate --",
     "typeorm:innovatech:run": "npm run typeorm:innovatech migration:run",
-    "typeorm:musicr": "ts-node --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d libs/musicr/api/db/src/lib/config/ormconfig.ts",
+    "typeorm:musicr": "dotenv -e .env -- ts-node --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d libs/musicr/api/db/src/lib/config/ormconfig.ts",
     "typeorm:musicr:migrate": "npm run typeorm:musicr migration:generate --",
     "typeorm:musicr:run": "npm run typeorm:musicr migration:run",
     "typeorm:valmira": "ts-node --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config apps/valmira/api/src/db/config/ormconfig.migrations.ts",

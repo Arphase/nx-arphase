@@ -1,3 +1,6 @@
 <mrl-products-catalog [products]="products$ | async"
+                      [info]="info$ | async"
                       [title]="title$ | async"
-                      [loading]="loading$ | async"></mrl-products-catalog>
+                      [loading]="loading$ | async"
+                      [loadingMore]="loadingMore$ | async"
+                      (loadMore)="loadMore($event)"></mrl-products-catalog>

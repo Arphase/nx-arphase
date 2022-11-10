@@ -7,13 +7,11 @@ import { GtagService } from './gtag.service';
   selector: '[gtag]',
 })
 export class GtagDirective implements OnChanges {
-  constructor(private gtag: GtagService, @Optional() private router: Router) {}
-
   @Input('gtag') title: string;
-
   @Input() path: string;
-
   @Input() location: string;
+
+  constructor(private gtag: GtagService, @Optional() private router: Router) {}
 
   ngOnChanges() {
     this.gtag.pageView(this.title, this.path, this.location || (this.router && this.router.url));

@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { QueryParams } from '@ngrx/data';
 
 import { ProductsCatalogService } from '../../services/products-catalog.service';
 
@@ -9,14 +10,16 @@ import { ProductsCatalogService } from '../../services/products-catalog.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ProductsCatalogService],
 })
-export class ProductsCatalogContainerComponent implements OnInit {
+export class ProductsCatalogContainerComponent {
   products$ = this.productsCatalogService.products$;
+  info$ = this.productsCatalogService.productsInfo$;
   title$ = this.productsCatalogService.title$;
   loading$ = this.productsCatalogService.loading$;
+  loadingMore$ = this.productsCatalogService.loadingMore$;
 
   constructor(protected productsCatalogService: ProductsCatalogService) {}
 
-  ngOnInit(): void {
-    this.productsCatalogService.listenToRouterEvents();
+  loadMore(queryParams: QueryParams): void {
+    this.productsCatalogService.loadMore(queryParams);
   }
 }
