@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.1.4](https://github.com/Arphase/nx-arphase/compare/v4.1.3...v4.1.4) (2022-11-10)
+
+
+### Features
+
+* **musicr/products:** add load more fbutton when browsing products ([67b122b](https://github.com/Arphase/nx-arphase/commit/67b122ba8bb6dd1a5aee9db3b5238349614d1fc3))
+
 ### [4.1.3](https://github.com/Arphase/nx-arphase/compare/v4.1.2...v4.1.3) (2022-10-19)
 
 
