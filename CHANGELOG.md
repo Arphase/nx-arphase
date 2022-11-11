@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.1.5](https://github.com/Arphase/nx-arphase/compare/v4.1.4...v4.1.5) (2022-11-11)
+
+
+### Features
+
+* **musicr/store:** add gtag id for google ads ([f084ec1](https://github.com/Arphase/nx-arphase/commit/f084ec10eec0f4927a5305b237bc2a284db0c1de))
+
 ### [4.1.4](https://github.com/Arphase/nx-arphase/compare/v4.1.3...v4.1.4) (2022-11-10)
 
 
