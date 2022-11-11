@@ -65,6 +65,8 @@ export class ProductsCatalogService {
         this.productsSubject.next(results);
         this.productsInfoSubject.next(info);
         this.gtagService.event('page_view', {
+          send_to: 'AW-697727149',
+          value: 1,
           items: [
             {
               id: name,
