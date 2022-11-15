@@ -4,7 +4,7 @@ import { PriceOptionEntity, ProductEntity } from '@musicr/api/domain';
 import { PriceOption, Product } from '@musicr/domain';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { omit } from 'lodash';
+import { omit, orderBy } from 'lodash';
 import { Repository } from 'typeorm';
 
 import { CreateProductDto } from '../dto/create-product.dto';
@@ -20,6 +20,12 @@ export class ProductsService {
     private priceOptionRepository: Repository<PriceOptionEntity>
   ) {}
 
+  /**
+   * Here we sorted the photo ids manually because of a bug
+   * with orderBy relations and pagination.
+   * @param filterDto
+   * @returns products
+   */
   async getProducts(filterDto: GetProductsFilterDto): Promise<ApsCollectionResponse<Product>> {
     const { pageIndex, pageSize, categoryId, subcategoryId, text } = filterDto;
     const query = this.productRepository
@@ -50,8 +56,12 @@ export class ProductsService {
     }
 
     const products = await query.getMany();
+    const sortedProducts = products.map(product => ({
+      ...product,
+      photos: orderBy(product.photos, ['id'], ['desc']),
+    }));
     const total = await query.getCount();
-    return createCollectionResponse<Product>(products, pageSize, pageIndex, total);
+    return createCollectionResponse<Product>(sortedProducts, pageSize, pageIndex, total);
   }
 
   async getProduct(id: number): Promise<ProductEntity> {
