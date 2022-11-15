@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.1.6](https://github.com/Arphase/nx-arphase/compare/v4.1.5...v4.1.6) (2022-11-15)
+
+
+### Features
+
+* **musicr/products:** sort photo ids in get photos method ([5a029ea](https://github.com/Arphase/nx-arphase/commit/5a029eaef7b5bb58822ee4cf1dc0eec419b0cb9f))
+
 ### [4.1.5](https://github.com/Arphase/nx-arphase/compare/v4.1.4...v4.1.5) (2022-11-11)
 
 
