@@ -5,7 +5,6 @@ export interface SocialEvent {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
-  name?: string;
   eventType?: string;
   date: Date;
   startTime: Date;

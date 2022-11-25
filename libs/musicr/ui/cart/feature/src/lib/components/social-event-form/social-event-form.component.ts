@@ -8,7 +8,6 @@ import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export function createSocialEventForm(orderType: OrderTypes): UntypedFormGroup {
   const controls = {
-    name: new UntypedFormControl(null, ApsValidators.required),
     eventType: new UntypedFormControl(null, ApsValidators.required),
     date: new UntypedFormControl(null, ApsValidators.required),
     startTime: new UntypedFormControl(null, ApsValidators.required),

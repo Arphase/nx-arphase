@@ -70,9 +70,6 @@ export class CreateAddressDto {
 
 export class CreateSocialEventDto {
   @IsString()
-  name: string;
-
-  @IsString()
   eventType: string;
 
   @IsDate()

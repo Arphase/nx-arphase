@@ -29,9 +29,6 @@ export class SocialEventEntity extends BaseEntity implements SocialEvent {
   deletedAt: Date;
 
   @Column({ nullable: true })
-  name: string;
-
-  @Column({ nullable: true })
   eventType: string;
 
   @Column()
