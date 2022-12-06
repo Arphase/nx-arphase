@@ -6,7 +6,16 @@
     <aps-searchbar (valueChange)="updateSearchBarFilter($event)"></aps-searchbar>
   </div>
   <div nz-col
-       nzFlex="auto"></div>
+       nzXs="0"
+       nzMd="24"
+       nzFlex="auto">
+    <div class="flex-end">
+      <button nz-button
+              [routerLink]="['new']"
+              type="button"
+              nzType="primary">Nueva orden</button>
+    </div>
+  </div>
 </div>
 
 <nz-divider></nz-divider>

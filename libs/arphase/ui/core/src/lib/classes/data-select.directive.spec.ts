@@ -1,0 +1,34 @@
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { of } from 'rxjs';
+
+import { ApsDataService } from '../services';
+import { DataSelectDirective } from './data-select.directive';
+
+describe('DataSelectDirective', () => {
+  @Component({ selector: 'mrl-test' })
+  class HostComponent {
+    form = new FormGroup({ test: new FormControl('') });
+  }
+
+  let spectator: SpectatorDirective<DataSelectDirective>;
+
+  const createDirective = createDirectiveFactory({
+    directive: DataSelectDirective,
+    host: HostComponent,
+    imports: [NzSelectModule, ReactiveFormsModule],
+    providers: [{ provide: ApsDataService, useValue: { getWithQuery: () => of() } }],
+  });
+
+  beforeEach(() => {
+    spectator = createDirective(
+      `<form [formGroup]="form"><nz-select formControlName="test" apsDataSelect></nz-select></form>`
+    );
+  });
+
+  it('should create', () => {
+    expect(spectator.directive).toBeTruthy();
+  });
+});

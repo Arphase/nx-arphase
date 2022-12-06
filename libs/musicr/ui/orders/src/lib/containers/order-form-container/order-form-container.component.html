@@ -1,0 +1,8 @@
+<mrl-order-form [form]="form"
+                [item]="currentItem$ | async"
+                [productsData]="productsData$ | async"
+                [loading]="loading$ | async"
+                [currentCustomer]="currentCustomer$ | async"
+                (getProductData)="getProductData($event)"
+                (emailChanges)="emailChanges($event)"
+                (submitForm)="submit($event)"></mrl-order-form>

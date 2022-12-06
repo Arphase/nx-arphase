@@ -7,8 +7,8 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ApsFormComponent, ApsValidators, ControlsOf } from '@arphase/ui/core';
 import { Customer } from '@musicr/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { debounceTime } from 'rxjs/operators';
@@ -20,14 +20,14 @@ import { debounceTime } from 'rxjs/operators';
   styleUrls: ['./personal-data-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PersonalDataFormComponent extends ApsFormComponent<Customer> implements OnChanges {
+export class PersonalDataFormComponent extends ApsFormComponent<Partial<Customer>> implements OnChanges {
   @Input() currentCustomer: Customer;
-  form = new UntypedFormGroup({
-    id: new UntypedFormControl({}),
-    firstName: new UntypedFormControl(null, ApsValidators.required),
-    lastName: new UntypedFormControl(null, ApsValidators.required),
-    email: new UntypedFormControl(null, [ApsValidators.required, ApsValidators.email]),
-    phone: new UntypedFormControl(null, ApsValidators.required),
+  form = new FormGroup<ControlsOf<Partial<Customer>>>({
+    id: new FormControl(null),
+    firstName: new FormControl(null, ApsValidators.required),
+    lastName: new FormControl(null, ApsValidators.required),
+    email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
+    phone: new FormControl(null, ApsValidators.required),
   });
   @Output() emailChanges = new EventEmitter<string>();
 
@@ -45,7 +45,7 @@ export class PersonalDataFormComponent extends ApsFormComponent<Customer> implem
     }
 
     if (changes.currentCustomer) {
-      this.form.get('id').patchValue(this.currentCustomer?.id || null);
+      this.form.get('id').patchValue(this.currentCustomer?.id ?? null);
     }
   }
 }

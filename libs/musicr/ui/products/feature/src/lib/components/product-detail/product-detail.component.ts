@@ -8,7 +8,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { DeepPartial } from '@arphase/common';
 import { ApsValidators } from '@arphase/ui/core';
 import { AdditionalOption, OrderProduct, Photo, Product } from '@musicr/domain';
@@ -31,17 +31,17 @@ export class ProductDetailComponent implements OnChanges {
   @Input() additionalOptions: AdditionalOption[] = [];
   @Input() loading: boolean;
   total: number;
-  form = new UntypedFormGroup({
-    priceOptionId: new UntypedFormControl(null, ApsValidators.required),
-    additionalOptions: new UntypedFormArray([]),
+  form = new FormGroup({
+    priceOptionId: new FormControl<number>(null, ApsValidators.required),
+    additionalOptions: new FormArray([]),
   });
   productPrice = 0;
   additionalProductsPrice = 0;
   displayedPhotos: Photo[] = [];
   @Output() addItemToCart = new EventEmitter<DeepPartial<OrderProduct>>();
 
-  get additionalOptionsArray(): UntypedFormArray {
-    return this.form.get('additionalOptions') as UntypedFormArray;
+  get additionalOptionsArray(): FormArray {
+    return this.form.get('additionalOptions') as FormArray;
   }
 
   constructor(private location: Location) {
@@ -70,18 +70,18 @@ export class ProductDetailComponent implements OnChanges {
       this.additionalOptionsArray.clear();
       this.additionalOptions.forEach(additionalOption =>
         this.additionalOptionsArray.push(
-          new UntypedFormGroup({
-            selected: new UntypedFormControl(false),
-            id: new UntypedFormControl(additionalOption.id),
-            name: new UntypedFormControl(additionalOption.name),
-            price: new UntypedFormControl(additionalOption.price),
+          new FormGroup({
+            selected: new FormControl<boolean>(false),
+            id: new FormControl<number>(additionalOption.id),
+            name: new FormControl<string>(additionalOption.name),
+            price: new FormControl<number>(additionalOption.price),
           })
         )
       );
       this.additionalOptionsArray.valueChanges
         .pipe(untilDestroyed(this))
         .subscribe((additionalOptionsValue: AdditionalOptionFormValue[]) => {
-          const priceArray = additionalOptionsValue.filter(option => option.selected).map(option => option.price);
+          const priceArray = additionalOptionsValue.filter(({ selected }) => selected).map(({ price }) => price);
           this.additionalProductsPrice = priceArray.length ? priceArray.reduce((a, b) => a + b) : 0;
         });
     }
@@ -99,10 +99,7 @@ export class ProductDetailComponent implements OnChanges {
       price: this.productPrice + this.additionalProductsPrice,
       orderProductAdditionalOptions: (this.additionalOptionsArray.value as AdditionalOptionFormValue[])
         .filter(option => option.selected)
-        .map(option => ({
-          additionalOptionId: option.id,
-          price: option.price,
-        })),
+        .map(({ id, price }) => ({ additionalOptionId: id, price })),
     };
     this.priceOptions.length
       ? this.addItemToCart.emit({ ...item, priceOptionId: this.form.get('priceOptionId').value })

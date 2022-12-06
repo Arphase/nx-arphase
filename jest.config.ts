@@ -77,7 +77,7 @@ module.exports = {
     '<rootDir>/libs/musicr/ui/frequent-questions',
     '<rootDir>/libs/musicr/ui/home',
     '<rootDir>/libs/musicr/ui/orders',
-    '<rootDir>/libs/musicr/ui/products',
+    '<rootDir>/libs/musicr/ui/products/feature',
     '<rootDir>/libs/musicr/ui/spa',
     '<rootDir>/libs/musicr/ui/subcategories/data',
     '<rootDir>/libs/musicr/ui/subcategories/feature',
@@ -116,5 +116,7 @@ module.exports = {
     '<rootDir>/libs/arphase/api/db',
     '<rootDir>/libs/musicr/api/db',
     '<rootDir>/libs/musicr/ui/contact-success',
+    '<rootDir>/libs/musicr/ui/products/data',
+    '<rootDir>/libs/musicr/ui/products/ui',
   ],
 };

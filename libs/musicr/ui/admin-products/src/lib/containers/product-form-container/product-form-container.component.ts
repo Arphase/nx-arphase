@@ -2,13 +2,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApsFormContainerComponent } from '@arphase/ui/core';
 import { Product } from '@musicr/domain';
+import { ProductCollectionService, PhotoCollectionService } from '@musicr/ui/products/data';
 import { SubcategoryFilterCollectionService } from '@musicr/ui/subcategories/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { BehaviorSubject } from 'rxjs';
 
 import { createProductForm } from '../../components/product-form/product-form.component';
-import { PhotoCollectionService } from '../../services/photo-collection.service';
-import { ProductCollectionService } from '../../services/product-collection.service';
 
 @Component({
   selector: 'mrl-product-form-container',

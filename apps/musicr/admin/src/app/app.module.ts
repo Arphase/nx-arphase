@@ -35,6 +35,7 @@ registerLocaleData(es);
 const MUSIC_REVOLUTION_CONFIGURATION_VALUE: MusicRevolutionConfiguration = {
   apiUrl: environment.apiUrl,
   version: environment.version,
+  innovatechUrl: environment.innovatechUrl,
 };
 
 export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducerState }> = {

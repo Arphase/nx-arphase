@@ -2444,28 +2444,77 @@
       },
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
     },
-    "musicr-ui-products": {
+    "musicr-ui-products-data": {
       "projectType": "library",
-      "root": "libs/musicr/ui/products",
-      "sourceRoot": "libs/musicr/ui/products/src",
+      "root": "libs/musicr/ui/products/data",
+      "sourceRoot": "libs/musicr/ui/products/data/src",
+      "prefix": "ivt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/products/data"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/products/data/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/products/data/**/*.ts", "libs/musicr/ui/products/data/**/*.html"]
+          }
+        }
+      },
+      "tags": []
+    },
+    "musicr-ui-products-feature": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/products/feature",
+      "sourceRoot": "libs/musicr/ui/products/feature/src",
       "prefix": "mrl",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/products/src/**/*.ts", "libs/musicr/ui/products/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/musicr/ui/products/feature/src/**/*.ts",
+              "libs/musicr/ui/products/feature/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/products"],
+          "outputs": ["coverage/libs/musicr/ui/products/feature"],
           "options": {
-            "jestConfig": "libs/musicr/ui/products/jest.config.ts",
+            "jestConfig": "libs/musicr/ui/products/feature/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
       "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
+    "musicr-ui-products-ui": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/products/ui",
+      "sourceRoot": "libs/musicr/ui/products/ui/src",
+      "prefix": "ivt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/musicr/ui/products/ui"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/products/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/products/ui/**/*.ts", "libs/musicr/ui/products/ui/**/*.html"]
+          }
+        }
+      },
+      "tags": []
     },
     "musicr-ui-spa": {
       "projectType": "library",

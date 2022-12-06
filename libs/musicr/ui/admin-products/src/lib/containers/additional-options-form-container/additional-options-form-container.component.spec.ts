@@ -1,7 +1,7 @@
+import { AdditionalOptionCollectionService } from '@musicr/ui/products/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
-import { AdditionalOptionCollectionService } from '../../services/additional-option-collection.service';
 import { AdditionalOptionsFormContainerComponent } from './additional-options-form-container.component';
 
 describe('AdditionalOptionsFormContainerComponent', () => {

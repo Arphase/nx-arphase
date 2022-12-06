@@ -8,7 +8,7 @@ export const routes: Routes = [
   },
   {
     path: 'products-catalog',
-    loadChildren: () => import('@musicr/ui/products').then(m => m.MusicrProductsModule),
+    loadChildren: () => import('@musicr/ui/products/feature').then(m => m.MusicrProductsModule),
   },
   {
     path: 'terms-and-conditions',

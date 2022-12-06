@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsListContainerComponent } from '@arphase/ui/core';
 import { Product } from '@musicr/domain';
+import { ProductCollectionService, ProductDataService } from '@musicr/ui/products/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
-
-import { ProductCollectionService } from '../../services/product-collection.service';
-import { ProductDataService } from '../../services/product-data.service';
 
 @Component({
   selector: 'mrl-product-list-container',

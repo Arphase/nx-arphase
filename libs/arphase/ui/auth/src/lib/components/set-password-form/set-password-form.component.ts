@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl } from '@angular/forms';
+import { FormControl, UntypedFormBuilder } from '@angular/forms';
 import { specialCharactersForPassword } from '@arphase/common';
 import { ApsFormComponent, ApsValidators, MessageStatus } from '@arphase/ui/core';
 
@@ -9,17 +9,17 @@ import { ApsFormComponent, ApsValidators, MessageStatus } from '@arphase/ui/core
   styleUrls: ['./set-password-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SetPasswordFormComponent extends ApsFormComponent<{ password: string }> {
+export class SetPasswordFormComponent extends ApsFormComponent<{ password: string; passwordConfirm: string }> {
   @Input() title: string;
   messageStatus = MessageStatus;
   specialCharacters = specialCharactersForPassword.join(' ');
 
-  get passwordControl(): UntypedFormControl {
-    return this.form.get('password') as UntypedFormControl;
+  get passwordControl(): FormControl {
+    return this.form.get('password') as FormControl;
   }
 
-  get passwordConfirmControl(): UntypedFormControl {
-    return this.form.get('passwordConfirm') as UntypedFormControl;
+  get passwordConfirmControl(): FormControl {
+    return this.form.get('passwordConfirm') as FormControl;
   }
 
   get minLengthStatus(): MessageStatus {

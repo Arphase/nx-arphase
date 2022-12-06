@@ -1,0 +1,315 @@
+<form nz-form
+      nz-row
+      nzLayout="vertical"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+  <nz-space nzDirection="vertical"
+            nz-col
+            nzSpan="24"
+            nzSize="middle">
+    <nz-page-header nzBackIcon>
+      <nz-page-header-title [routerLink]="['..']">
+        {{ item?.id ? 'Editar Orden' : 'Nueva Orden' }}
+      </nz-page-header-title>
+    </nz-page-header>
+
+    <div nz-row>
+      <div nz-col
+           nzXs="24"
+           nzMd="12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Tipo de Orden</nz-form-label>
+          <nz-form-control apsAutoError>
+            <nz-select formControlName="orderType"
+                       data-cy="order-type"
+                       [nzOptions]="orderTypeOptions"></nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <nz-list *nzSpaceItem
+             nzBordered
+             nzHeader="Productos"
+             class="mb-3">
+      <nz-list-item *ngFor="let orderProductForm of orderProductsFormArray?.controls; let index = index;">
+        <form [formGroup]="orderProductForm"
+              class="w-100">
+          <div nz-row
+               nzGutter="12">
+            <div nz-col
+                 nzXs="24"
+                 nzMd="11">
+              <nz-form-item>
+                <nz-form-label nzRequired>Producto</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <nz-select mrlProductSelect
+                             formControlName="productId"
+                             data-cy="product"
+                             (valueChanges)="getProductData.emit($event)"></nz-select>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="10"
+                 nzMd="3">
+              <nz-form-item>
+                <nz-form-control apsAutoError>
+                  <nz-form-label nzRequired>Cantidad</nz-form-label>
+                  <input nz-input
+                         type="number"
+                         formControlName="amount"
+                         data-cy="amount" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="14"
+                 nzMd="4">
+              <nz-form-item>
+                <nz-form-control apsAutoError>
+                  <nz-form-label nzRequired>Opción de Precio</nz-form-label>
+                  <nz-select [nzOptions]="productsData[orderProductForm.value.productId]?.selectablePriceOptions || []"
+                             [nzDisabled]="!productsData[orderProductForm.value.productId]?.selectablePriceOptions?.length"
+                             formControlName="priceOptionId"
+                             data-cy="price-option"></nz-select>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="12"
+                 nzMd="4"
+                 class="mb-3">
+              <p>Precio</p>
+              <span> {{ orderProductForm.value.price | currency }} </span>
+            </div>
+            <div nz-col
+                 nzXs="6"
+                 nzMd="2"
+                 class="flex-center">
+              <button nz-button
+                      nzType="text"
+                      nz-tooltip
+                      nzTooltipTitle="Eliminar producto"
+                      type="button"
+                      (click)="removeProduct(index)">
+                <i nz-icon
+                   nzType="delete"></i>
+              </button>
+            </div>
+          </div>
+          <form *ngFor="let additionalOptionForm of orderProductForm.get('orderProductAdditionalOptions').controls"
+                nz-row
+                nzGutter="12"
+                class="mb-3"
+                [formGroup]="additionalOptionForm">
+            <div nz-col
+                 nzSpan="24">
+              <label nz-checkbox
+                     formControlName="selected">
+                {{ additionalOptionForm.value.additionalOption.name }} -
+                {{ additionalOptionForm.value.additionalOption.price | currency }}
+              </label>
+            </div>
+          </form>
+        </form>
+      </nz-list-item>
+    </nz-list>
+
+    <div *nzSpaceItem
+         nz-row
+         nzGutter="12">
+      <div nz-col
+           nzSpan="24">
+        <button nz-button
+                nzType="primary"
+                type="button"
+                [disabled]="orderProductsFormArray?.invalid"
+                (click)="addProduct()">Agregar producto</button>
+      </div>
+    </div>
+
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Datos del evento"
+                         [nzActive]="true">
+        <form nz-form
+              nzLayout="vertical"
+              [formGroup]="socialEventForm">
+          <div nz-row
+               nzGutter="12">
+            <div nz-col
+                 nzXs="24"
+                 nzMd="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Tipo de evento</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         autocomplete="off"
+                         formControlName="eventType" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="24"
+                 nzMd="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Lugar del evento</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <nz-select formControlName="eventPlace"
+                             [nzOptions]="eventPlaceOptions"></nz-select>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+            <div nz-col
+                 nzXs="24"
+                 nzMd="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Fecha del evento</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <nz-date-picker ngDefaultControl
+                                  formControlName="date"></nz-date-picker>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+            <div nz-col
+                 nzXs="24"
+                 nzMd="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Hora inicio</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <nz-time-picker nzFormat="HH:mm"
+                                  nzMinuteStep="15"
+                                  ngDefaultControl
+                                  formControlName="startTime"></nz-time-picker>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="24"
+                 nzMd="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Hora fin</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <nz-time-picker nzFormat="HH:mm"
+                                  nzMinuteStep="15"
+                                  ngDefaultControl
+                                  formControlName="endTime"></nz-time-picker>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+          <div nz-row>
+            <div nz-col
+                 nzSpan="24">
+              <nz-form-item>
+                <nz-form-label>Comentarios adicionales</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <textarea nz-input
+                            autocomplete="off"
+                            formControlName="notes"></textarea>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+          <aps-address-form [form]="addressForm"></aps-address-form>
+
+          <div nz-row>
+            <div nz-col
+                 nzSpan="24">
+              <label nz-checkbox
+                     formControlName="requiresAssembly">
+                El montaje del equipo requerirá maniobra. (Escaleras, tramos largos y/o estrechos)
+              </label>
+            </div>
+          </div>
+        </form>
+      </nz-collapse-panel>
+    </nz-collapse>
+
+    <nz-collapse *nzSpaceItem>
+      <nz-collapse-panel nzHeader="Datos personales"
+                         [nzActive]="true">
+        <form nz-form
+              nzLayout="vertical"
+              [formGroup]="customerForm">
+          <div nz-row
+               nzGutter="12">
+            <div nz-col
+                 nzXs="24"
+                 nzMd="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Nombre</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         formControlName="firstName" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="24"
+                 nzMd="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Apellido</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         formControlName="lastName" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="24"
+                 nzMd="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Email</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         formControlName="email" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col
+                 nzXs="24"
+                 nzMd="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Teléfono</nz-form-label>
+                <nz-form-control apsAutoError>
+                  <input nz-input
+                         type="tel"
+                         mask="(00) 0000 0000"
+                         formControlName="phone" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+        </form>
+      </nz-collapse-panel>
+    </nz-collapse>
+
+    <div *nzSpaceItem
+         nz-row>
+      <div nz-col
+           nzSpan="24"
+           class="flex-end">
+        <nz-space>
+          <button *nzSpaceItem
+                  nz-button
+                  type="button"
+                  [routerLink]="['..']">
+            Cancelar
+          </button>
+          <button *nzSpaceItem
+                  nz-button
+                  type="submit"
+                  nzType="primary"
+                  [nzLoading]="loading">
+            Guardar
+          </button>
+        </nz-space>
+      </div>
+    </div>
+  </nz-space>
+</form>

@@ -1,30 +1,29 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Address } from '@arphase/common';
 import { createAddressForm } from '@arphase/ui/addresses';
-import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
-import { OrderTypes, SocialEvent, socialEventLabels, SocialEventPlaces } from '@musicr/domain';
-import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
+import { ApsFormComponent, ApsValidators, ControlsOf } from '@arphase/ui/core';
+import { eventPlaceOptions, OrderTypes, SocialEvent } from '@musicr/domain';
 
-export function createSocialEventForm(orderType: OrderTypes): UntypedFormGroup {
+export function createSocialEventForm(orderType: OrderTypes): FormGroup {
   const controls = {
-    eventType: new UntypedFormControl(null, ApsValidators.required),
-    date: new UntypedFormControl(null, ApsValidators.required),
-    startTime: new UntypedFormControl(null, ApsValidators.required),
-    endTime: new UntypedFormControl(null, ApsValidators.required),
-    eventPlace: new UntypedFormControl(null, ApsValidators.required),
-    notes: new UntypedFormControl(null),
-    requiresAssembly: new UntypedFormControl(false),
+    eventType: new FormControl(null, ApsValidators.required),
+    date: new FormControl(null, ApsValidators.required),
+    startTime: new FormControl(null, ApsValidators.required),
+    endTime: new FormControl(null, ApsValidators.required),
+    eventPlace: new FormControl(null, ApsValidators.required),
+    notes: new FormControl(null),
+    requiresAssembly: new FormControl(false),
     address: createAddressForm(),
   };
   return orderType === OrderTypes.purchase
-    ? new UntypedFormGroup(controls)
-    : new UntypedFormGroup({
+    ? new FormGroup(controls)
+    : new FormGroup({
         date: controls.date,
         startTime: controls.startTime,
         endTime: controls.endTime,
-        address: new UntypedFormGroup({
-          zipcode: new UntypedFormControl('', [
+        address: new FormGroup({
+          zipcode: new FormControl('', [
             ApsValidators.required,
             ApsValidators.minLength(5),
             ApsValidators.maxLength(5),
@@ -42,36 +41,7 @@ export function createSocialEventForm(orderType: OrderTypes): UntypedFormGroup {
 export class SocialEventFormComponent extends ApsFormComponent<SocialEvent> implements OnChanges {
   @Input() orderType: OrderTypes;
   orderTypeEnum = OrderTypes;
-  eventPlaceOptions: NzSelectOptionInterface[] = [
-    {
-      label: socialEventLabels[SocialEventPlaces.garage],
-      value: SocialEventPlaces.garage,
-    },
-    {
-      label: socialEventLabels[SocialEventPlaces.inside],
-      value: SocialEventPlaces.inside,
-    },
-    {
-      label: socialEventLabels[SocialEventPlaces.garden],
-      value: SocialEventPlaces.garden,
-    },
-    {
-      label: socialEventLabels[SocialEventPlaces.office],
-      value: SocialEventPlaces.office,
-    },
-    {
-      label: socialEventLabels[SocialEventPlaces.backyard],
-      value: SocialEventPlaces.backyard,
-    },
-    {
-      label: socialEventLabels[SocialEventPlaces.eventHall],
-      value: SocialEventPlaces.eventHall,
-    },
-    {
-      label: socialEventLabels[SocialEventPlaces.terrace],
-      value: SocialEventPlaces.terrace,
-    },
-  ];
+  eventPlaceOptions = eventPlaceOptions;
   placeholders: Address = {
     zipcode: '66230',
     country: 'México',
@@ -83,8 +53,8 @@ export class SocialEventFormComponent extends ApsFormComponent<SocialEvent> impl
     internalNumber: 'A',
   };
 
-  get addressForm(): UntypedFormGroup {
-    return this.form.get('address') as UntypedFormGroup;
+  get addressForm(): FormGroup<ControlsOf<Address>> {
+    return this.form.get('address') as FormGroup<ControlsOf<Address>>;
   }
 
   ngOnChanges(changes: SimpleChanges) {

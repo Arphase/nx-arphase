@@ -8,8 +8,10 @@ import { filter, switchMap, take } from 'rxjs/operators';
 import { ApsCollectionService } from '../services';
 
 @UntilDestroy()
-@Directive()
-export abstract class ApsCollectionSelectDirective<T = any> implements AfterContentInit {
+@Directive({
+  selector: '[apsCollectionSelect]',
+})
+export class ApsCollectionSelectDirective<T = any> implements AfterContentInit {
   sortValue: any[];
 
   constructor(

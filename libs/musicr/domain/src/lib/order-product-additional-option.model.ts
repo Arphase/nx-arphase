@@ -11,4 +11,5 @@ export interface OrderProductAdditionalOption {
   additionalOptionId: number;
   additionalOption: AdditionalOption;
   price: number;
+  selected?: boolean;
 }

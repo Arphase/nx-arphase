@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApsEntityResolverService } from '@arphase/ui/core';
 import { Product } from '@musicr/domain';
-
-import { ProductCollectionService } from '../services/product-collection.service';
+import { ProductCollectionService } from '@musicr/ui/products/data';
 
 @Injectable({ providedIn: 'root' })
 export class ProductResolverService extends ApsEntityResolverService<Product> {

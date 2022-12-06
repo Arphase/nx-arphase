@@ -1,7 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { collectFormErrors, updateFormControlsValueAndValidity } from '../functions';
+
+export type ControlsOf<T extends Record<string, any>> = {
+  [K in keyof T]: T[K] extends Record<any, any> ? FormGroup<ControlsOf<T[K]>> : FormControl<T[K]>;
+};
 
 @Component({
   selector: 'aps-form',
@@ -9,7 +13,7 @@ import { collectFormErrors, updateFormControlsValueAndValidity } from '../functi
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApsFormComponent<T = any, F = any> {
-  @Input() form: UntypedFormGroup;
+  @Input() form: FormGroup<ControlsOf<T>>;
   @Input() item: T;
   @Input() loading: boolean;
   @Input() isEditable = true;
@@ -20,7 +24,7 @@ export class ApsFormComponent<T = any, F = any> {
   }
 
   transformFromForm(values: F): T {
-    return values as any;
+    return values as unknown as T;
   }
 
   submit(): void {
@@ -34,7 +38,6 @@ export class ApsFormComponent<T = any, F = any> {
       // eslint-disable-next-line no-restricted-syntax
       console.info('Tried to submit form with errors:', {
         form: this.form.errors,
-
         controls: collectFormErrors(this.form),
       });
     }

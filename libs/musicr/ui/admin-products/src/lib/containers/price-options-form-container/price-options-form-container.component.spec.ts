@@ -1,9 +1,8 @@
 import { RouterTestingModule } from '@angular/router/testing';
+import { PhotoCollectionService, PriceOptionCollectionService } from '@musicr/ui/products/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
-import { PhotoCollectionService } from '../../services/photo-collection.service';
-import { PriceOptionCollectionService } from '../../services/price-option-collection.service';
 import { PriceOptionsFormContainerComponent } from './price-options-form-container.component';
 
 describe('PriceOptionsFormContainerComponent', () => {

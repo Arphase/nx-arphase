@@ -13,7 +13,7 @@ export class ProductDetailService {
     map(product => product?.priceOptions),
     filterNilArray(),
     map(options => options.sort((a, b) => a.price - b.price)),
-    mapToSelectOptions(priceOption => ({ label: `${priceOption.name}`, value: priceOption.id }))
+    mapToSelectOptions(priceOption => ({ label: priceOption.name, value: priceOption.id }))
   );
   additionalOptions$ = this.product$.pipe(
     map(product => product?.additionalOptions),

@@ -25,3 +25,8 @@ export const orderTypeLabels: Record<OrderTypes, string> = {
   [OrderTypes.purchase]: 'Compra',
   [OrderTypes.quote]: 'Cotización',
 };
+
+export const orderTypeOptions: { label: string; value: string }[] = [
+  { label: orderTypeLabels[OrderTypes.purchase], value: OrderTypes.purchase },
+  { label: orderTypeLabels[OrderTypes.quote], value: OrderTypes.quote },
+];

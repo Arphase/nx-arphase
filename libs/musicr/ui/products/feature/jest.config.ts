@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'musicr-ui-products',
-  preset: '../../../../jest.preset.js',
+  displayName: 'musicr-ui-products-feature',
+  preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../coverage/libs/musicr/ui/products',
+  coverageDirectory: '../../../../../coverage/libs/musicr/ui/products',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

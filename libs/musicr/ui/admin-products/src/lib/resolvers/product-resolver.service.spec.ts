@@ -1,6 +1,6 @@
+import { ProductCollectionService } from '@musicr/ui/products/data';
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 
-import { ProductCollectionService } from '../services/product-collection.service';
 import { ProductResolverService } from './product-resolver.service';
 
 describe('ProductResolverService', () => {

@@ -1,13 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsFormContainerComponent, filterNil } from '@arphase/ui/core';
 import { PriceOption } from '@musicr/domain';
+import { PhotoCollectionService, PriceOptionCollectionService } from '@musicr/ui/products/data';
 import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
-
-import { PhotoCollectionService } from '../../services/photo-collection.service';
-import { PriceOptionCollectionService } from '../../services/price-option-collection.service';
 
 @Component({
   selector: 'mrl-price-options-form-container',

@@ -1,9 +1,8 @@
+import { ProductCollectionService, ProductDataService } from '@musicr/ui/products/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
-import { ProductCollectionService } from '../../services/product-collection.service';
-import { ProductDataService } from '../../services/product-data.service';
 import { ProductListContainerComponent } from './product-list-container.component';
 
 describe('ProductListContainerComponent', () => {

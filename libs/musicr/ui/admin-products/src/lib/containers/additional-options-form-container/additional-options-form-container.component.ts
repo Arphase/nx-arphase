@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsFormContainerComponent, filterNil } from '@arphase/ui/core';
 import { AdditionalOption } from '@musicr/domain';
+import { AdditionalOptionCollectionService } from '@musicr/ui/products/data';
 import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
-
-import { AdditionalOptionCollectionService } from '../../services/additional-option-collection.service';
 
 @Component({
   selector: 'mrl-additional-options-form-container',
