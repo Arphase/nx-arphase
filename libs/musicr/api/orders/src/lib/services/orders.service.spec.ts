@@ -1,5 +1,12 @@
 import { createMockRepository } from '@arphase/api/testing';
-import { AdditionalOptionEntity, OrderEntity, PriceOptionEntity, ProductEntity } from '@musicr/api/domain';
+import {
+  AdditionalOptionEntity,
+  OrderEntity,
+  OrderProductAdditionalOptionEntity,
+  OrderProductEntity,
+  PriceOptionEntity,
+  ProductEntity,
+} from '@musicr/api/domain';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 
@@ -16,6 +23,8 @@ describe('OrdersService', () => {
         { provide: getRepositoryToken(ProductEntity), useValue: createMockRepository() },
         { provide: getRepositoryToken(PriceOptionEntity), useValue: createMockRepository() },
         { provide: getRepositoryToken(AdditionalOptionEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(OrderProductEntity), useValue: createMockRepository() },
+        { provide: getRepositoryToken(OrderProductAdditionalOptionEntity), useValue: createMockRepository() },
       ],
     }).compile();
 

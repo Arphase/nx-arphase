@@ -122,11 +122,9 @@ export class DataSelectDirective<T = any> implements AfterContentInit {
         map(items => items.results),
         mapToSelectOptions(options => ({ label: options[this.labelField], value: options[this.valueField] }))
       );
-      moreEtities$.pipe(withLatestFrom(this.entities$), take(1)).subscribe(([more, entities]) => {
-        console.log('entities', entities);
-        console.log('more', more);
-        this.entitiesSubject.next([...entities, ...more]);
-      });
+      moreEtities$
+        .pipe(withLatestFrom(this.entities$), take(1))
+        .subscribe(([more, entities]) => this.entitiesSubject.next([...entities, ...more]));
     }
   }
 }

@@ -95,14 +95,12 @@
           nzMd="3"
           class="flex-end">
         <button nz-button
-                type="button"
                 nzType="text"
                 nz-tooltip
-                nzTooltipTitle="Descargar PDF"
-                (click)="downloadPdf.emit(item?.id)">
+                nzTooltipTitle="Editar orden"
+                [routerLink]="[item.id]">
           <i nz-icon
-             nzType="download"
-             nzTheme="outline"></i>
+             nzType="edit"></i>
         </button>
         <button nz-button
                 type="button"
@@ -112,6 +110,16 @@
                 (click)="showDetail.emit(item?.id)">
           <i nz-icon
              nzType="eye"
+             nzTheme="outline"></i>
+        </button>
+        <button nz-button
+                type="button"
+                nzType="text"
+                nz-tooltip
+                nzTooltipTitle="Descargar PDF"
+                (click)="downloadPdf.emit(item?.id)">
+          <i nz-icon
+             nzType="download"
              nzTheme="outline"></i>
         </button>
       </td>

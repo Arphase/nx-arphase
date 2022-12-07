@@ -1,36 +1,11 @@
 import { Trim } from '@arphase/api/core';
-import { OrderTypes } from '@musicr/domain';
+import { Address } from '@arphase/common';
+import { SocialEvent } from '@musicr/domain';
+import { PartialType } from '@nestjs/mapped-types';
 import { Type } from 'class-transformer';
-import {
-  IsArray,
-  IsDate,
-  IsEmail,
-  IsEnum,
-  IsNumber,
-  IsNumberString,
-  IsOptional,
-  IsString,
-  ValidateNested,
-} from 'class-validator';
+import { IsNumberString, ValidateNested } from 'class-validator';
 
-class CreateCustomerDto {
-  @IsOptional()
-  @IsNumber()
-  id: number;
-
-  @IsString()
-  firstName: string;
-
-  @IsString()
-  lastName: string;
-
-  @IsString()
-  @IsEmail()
-  email: string;
-
-  @IsString()
-  phone: string;
-}
+import { CreateOrderDto, CreateSocialEventDto } from './create-order.dto';
 
 class CreateAddressDto {
   @IsNumberString()
@@ -38,58 +13,14 @@ class CreateAddressDto {
   zipcode: string;
 }
 
-class CreateSocialEventDto {
-  @IsDate()
-  date: Date;
-
-  @IsDate()
-  startTime: Date;
-
-  @IsDate()
-  endTime: Date;
-
+class CreateSocialEventQuoteDto extends PartialType(CreateSocialEventDto) {
   @ValidateNested()
   @Type(() => CreateAddressDto)
-  address: CreateAddressDto;
+  address: Address;
 }
 
-class CreateOrderProductDto {
-  @IsNumber()
-  productId: number;
-
-  @IsNumber()
-  amount: number;
-
-  @IsOptional()
-  @IsNumber()
-  priceOptionId: number;
-
-  @IsOptional()
-  @IsArray()
+export class CreateOrderQuoteDto extends PartialType(CreateOrderDto) {
   @ValidateNested()
-  @Type(() => CreateOrderProductAdditionalOptionDto)
-  orderProductAdditionalOptions: CreateOrderProductAdditionalOptionDto[];
-}
-
-class CreateOrderProductAdditionalOptionDto {
-  @IsNumber()
-  additionalOptionId: number;
-}
-
-export class CreateOrderQuoteDto {
-  @ValidateNested()
-  @Type(() => CreateCustomerDto)
-  customer: CreateCustomerDto;
-
-  @ValidateNested()
-  @Type(() => CreateSocialEventDto)
-  socialEvent: CreateSocialEventDto;
-
-  @IsArray()
-  @ValidateNested()
-  @Type(() => CreateOrderProductDto)
-  orderProducts: CreateOrderProductDto[];
-
-  @IsEnum(OrderTypes)
-  orderType: OrderTypes;
+  @Type(() => CreateSocialEventQuoteDto)
+  socialEvent: SocialEvent;
 }

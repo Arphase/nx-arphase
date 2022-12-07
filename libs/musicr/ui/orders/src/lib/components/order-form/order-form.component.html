@@ -45,8 +45,7 @@
                 <nz-form-control apsAutoError>
                   <nz-select mrlProductSelect
                              formControlName="productId"
-                             data-cy="product"
-                             (valueChanges)="getProductData.emit($event)"></nz-select>
+                             data-cy="product"></nz-select>
                 </nz-form-control>
               </nz-form-item>
             </div>
@@ -298,16 +297,14 @@
           <button *nzSpaceItem
                   nz-button
                   type="button"
-                  [routerLink]="['..']">
-            Cancelar
-          </button>
+                  [routerLink]="['..']">Cancelar</button>
           <button *nzSpaceItem
                   nz-button
                   type="submit"
                   nzType="primary"
-                  [nzLoading]="loading">
-            Guardar
-          </button>
+                  [disabled]="form.invalid || !orderProductsFormArray.controls.length"
+                  [nzLoading]="loading">Guardar</button>
+
         </nz-space>
       </div>
     </div>

@@ -1,5 +1,13 @@
-import { Trim } from '@arphase/api/core';
-import { OrderTypes, SocialEventPlaces } from '@musicr/domain';
+import { CreateAddressDto } from '@arphase/api/core';
+import { Address } from '@arphase/common';
+import {
+  Customer,
+  OrderProduct,
+  OrderProductAdditionalOption,
+  OrderTypes,
+  SocialEvent,
+  SocialEventPlaces,
+} from '@musicr/domain';
 import { Type } from 'class-transformer';
 import {
   IsArray,
@@ -8,7 +16,6 @@ import {
   IsEmail,
   IsEnum,
   IsNumber,
-  IsNumberString,
   IsOptional,
   IsString,
   ValidateNested,
@@ -33,41 +40,6 @@ export class CreateCustomerDto {
   phone: string;
 }
 
-export class CreateAddressDto {
-  @IsNumberString()
-  @Trim('zipcode')
-  zipcode: string;
-
-  @IsString()
-  @Trim('country')
-  country: string;
-
-  @IsString()
-  @Trim('state')
-  state: string;
-
-  @IsString()
-  @Trim('city')
-  city: string;
-
-  @IsString()
-  @Trim('suburb')
-  suburb: string;
-
-  @IsString()
-  @Trim('street')
-  street: string;
-
-  @IsString()
-  @Trim('externalNumber')
-  externalNumber: string;
-
-  @IsOptional()
-  @IsString()
-  @Trim('internalNumber')
-  internalNumber: string;
-}
-
 export class CreateSocialEventDto {
   @IsString()
   eventType: string;
@@ -83,7 +55,7 @@ export class CreateSocialEventDto {
 
   @ValidateNested()
   @Type(() => CreateAddressDto)
-  address: CreateAddressDto;
+  address: Address;
 
   @IsEnum(SocialEventPlaces)
   eventPlace: SocialEventPlaces;
@@ -111,7 +83,7 @@ export class CreateOrderProductDto {
   @IsArray()
   @ValidateNested()
   @Type(() => CreateOrderProductAdditionalOptionDto)
-  orderProductAdditionalOptions: CreateOrderProductAdditionalOptionDto[];
+  orderProductAdditionalOptions: OrderProductAdditionalOption[];
 }
 
 export class CreateOrderProductAdditionalOptionDto {
@@ -120,18 +92,22 @@ export class CreateOrderProductAdditionalOptionDto {
 }
 
 export class CreateOrderDto {
+  @IsOptional()
+  @IsNumber()
+  id: number;
+
   @ValidateNested()
   @Type(() => CreateCustomerDto)
-  customer: CreateCustomerDto;
+  customer: Customer;
 
   @ValidateNested()
   @Type(() => CreateSocialEventDto)
-  socialEvent: CreateSocialEventDto;
+  socialEvent: SocialEvent;
 
   @IsArray()
   @ValidateNested()
   @Type(() => CreateOrderProductDto)
-  orderProducts: CreateOrderProductDto[];
+  orderProducts: OrderProduct[];
 
   @IsEnum(OrderTypes)
   orderType: OrderTypes;

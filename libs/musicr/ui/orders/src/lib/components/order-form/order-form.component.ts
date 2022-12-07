@@ -21,7 +21,8 @@ import {
   SocialEvent,
 } from '@musicr/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { combineLatest, debounceTime, startWith } from 'rxjs';
+import { combineLatest, debounceTime, startWith, Subject } from 'rxjs';
+import { v4 } from 'uuid';
 
 import { createOrderProductForm } from './order-form.constants';
 
@@ -37,6 +38,7 @@ export class OrderFormComponent extends ApsFormComponent<Order> implements OnIni
   @Input() currentCustomer: Customer;
   eventPlaceOptions = eventPlaceOptions;
   orderTypeOptions = orderTypeOptions;
+  productsDataChangesSubject = new Subject<string>();
   @Output() getProductData = new EventEmitter<number>();
   @Output() emailChanges = new EventEmitter<string>();
 
@@ -45,7 +47,9 @@ export class OrderFormComponent extends ApsFormComponent<Order> implements OnIni
   }
 
   ngOnInit(): void {
-    this.addProduct();
+    if (!this.orderProductsFormArray.controls.length) {
+      this.addProduct();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -58,6 +62,23 @@ export class OrderFormComponent extends ApsFormComponent<Order> implements OnIni
         .get('email')
         .valueChanges.pipe(debounceTime(1000), untilDestroyed(this))
         .subscribe(value => this.emailChanges.emit(value));
+    }
+
+    if (changes.item && this.item?.id) {
+      this.form.patchValue(this.item);
+      this.item.orderProducts.forEach(orderProduct =>
+        this.addProduct({
+          ...orderProduct,
+          orderProductAdditionalOptions: orderProduct.orderProductAdditionalOptions.map(additionalOption => ({
+            ...additionalOption,
+            selected: true,
+          })),
+        })
+      );
+    }
+
+    if (changes.productsData && this.productsData) {
+      this.productsDataChangesSubject.next(v4());
     }
   }
 
@@ -77,13 +98,16 @@ export class OrderFormComponent extends ApsFormComponent<Order> implements OnIni
     return this.form.get('customer') as FormGroup<ControlsOf<Customer>>;
   }
 
-  addProduct(): void {
-    const form = createOrderProductForm() as FormGroup<ControlsOf<OrderProduct>>;
+  addProduct(orderProduct?: OrderProduct): void {
+    const form = createOrderProductForm(orderProduct) as FormGroup<ControlsOf<OrderProduct>>;
 
     form
       .get('productId')
       .valueChanges.pipe(untilDestroyed(this))
-      .subscribe(() => form.patchValue({ amount: 0, priceOptionId: null }));
+      .subscribe(value => {
+        this.getProductData.emit(value);
+        form.patchValue({ amount: 0, priceOptionId: null });
+      });
 
     combineLatest([
       form.get('amount').valueChanges.pipe(startWith(form.get('amount').value)),
@@ -91,6 +115,7 @@ export class OrderFormComponent extends ApsFormComponent<Order> implements OnIni
       form
         .get('orderProductAdditionalOptions')
         .valueChanges.pipe(startWith(form.get('orderProductAdditionalOptions').value)),
+      this.productsDataChangesSubject,
     ])
       .pipe(untilDestroyed(this))
       .subscribe(([amount, priceOptionId, orderProductAdditionalOptions]) => {
@@ -105,7 +130,13 @@ export class OrderFormComponent extends ApsFormComponent<Order> implements OnIni
         const totalPrice = (productPrice + additionalProductsPrice) * amount;
         form.get('price').patchValue(totalPrice);
       });
+
     this.orderProductsFormArray.push(form);
+
+    if (orderProduct) {
+      const { productId } = orderProduct;
+      this.getProductData.emit(productId);
+    }
   }
 
   removeProduct(index: number): void {

@@ -1,6 +1,6 @@
 import { ApsCollectionResponse, DeepPartial } from '@arphase/common';
 import { Order } from '@musicr/domain';
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 
@@ -9,6 +9,7 @@ import { CreateOrderQuoteDto } from '../dto/create-order-quote.dto';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { ExportPdfDto } from '../dto/export-pdf.dto';
 import { FilterOrdersDto } from '../dto/filter-orders.dto';
+import { UpdateOrderDto } from '../dto/update-order.dto';
 import { OrdersService } from '../services/orders.service';
 
 @Controller('orders')
@@ -30,6 +31,12 @@ export class OrdersController {
   @Post()
   async createOrder(@Body() createOrderDto: CreateOrderDto): Promise<Order> {
     return this.ordersService.createOrder(createOrderDto);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Put(':id')
+  async updateOrder(@Body() updateOrderDto: UpdateOrderDto): Promise<Order> {
+    return this.ordersService.updateOrder(updateOrderDto);
   }
 
   @Post('quote')

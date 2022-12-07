@@ -1,6 +1,13 @@
 import { createCollectionResponse, filterCollectionDates, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse, DeepPartial, SortDirection } from '@arphase/common';
-import { AdditionalOptionEntity, OrderEntity, PriceOptionEntity, ProductEntity } from '@musicr/api/domain';
+import {
+  AdditionalOptionEntity,
+  OrderEntity,
+  OrderProductAdditionalOptionEntity,
+  OrderProductEntity,
+  PriceOptionEntity,
+  ProductEntity,
+} from '@musicr/api/domain';
 import { Order } from '@musicr/domain';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -8,13 +15,14 @@ import { Response } from 'express';
 import { keyBy } from 'lodash';
 import { createTransport } from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 
 import { CreateOrderPreviewDto } from '../dto/create-order-preview-dto';
 import { CreateOrderQuoteDto } from '../dto/create-order-quote.dto';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { ExportPdfDto } from '../dto/export-pdf.dto';
 import { FilterOrdersDto } from '../dto/filter-orders.dto';
+import { UpdateOrderDto } from '../dto/update-order.dto';
 import { createOrderEmail } from '../functions/create-order-email';
 import { generateOrderPdf } from '../functions/generate-order-pdf';
 import {
@@ -29,7 +37,11 @@ export class OrdersService {
     @InjectRepository(OrderEntity) private orderRepository: Repository<OrderEntity>,
     @InjectRepository(ProductEntity) private productRepository: Repository<ProductEntity>,
     @InjectRepository(PriceOptionEntity) private priceOptionRepository: Repository<PriceOptionEntity>,
-    @InjectRepository(AdditionalOptionEntity) private additionalOptionRepository: Repository<AdditionalOptionEntity>
+    @InjectRepository(AdditionalOptionEntity) private additionalOptionRepository: Repository<AdditionalOptionEntity>,
+    @InjectRepository(OrderProductEntity)
+    private orderProductRepository: Repository<OrderProductEntity>,
+    @InjectRepository(OrderProductAdditionalOptionEntity)
+    private orderProductAdditionalOptionRepository: Repository<OrderProductAdditionalOptionEntity>
   ) {}
 
   async getOrders(filterDto: FilterOrdersDto): Promise<ApsCollectionResponse<Order>> {
@@ -100,11 +112,49 @@ export class OrdersService {
     return newOrder;
   }
 
-  async createOrderPreview(createOrderDto: CreateOrderPreviewDto | CreateOrderQuoteDto): Promise<DeepPartial<Order>> {
+  /**
+   * Updates order
+   * We need to make sure all not send orderProducts and orderProductAdditionalOptions are deleted
+   * to avoid not null constrain in database
+   */
+  async updateOrder(updateOrderDto: UpdateOrderDto): Promise<Order> {
+    const orderPreview = await this.createOrderPreview(updateOrderDto);
+    const existingOrderProducts = await this.orderProductRepository.findBy({ orderId: orderPreview.id });
+    await Promise.all(
+      orderPreview.orderProducts.map(async orderProduct => {
+        const existingAdditionalOptions = await this.orderProductAdditionalOptionRepository.findBy({
+          orderProductId: orderProduct.id,
+        });
+        await Promise.all(
+          existingAdditionalOptions.map(async existingAdditionalOption => {
+            if (!orderProduct.orderProductAdditionalOptions.find(({ id }) => existingAdditionalOption.id === id)) {
+              await this.orderProductAdditionalOptionRepository.delete({ id: existingAdditionalOption.id });
+            }
+          })
+        );
+      })
+    );
+    await Promise.all(
+      existingOrderProducts.map(async existingOrderProduct => {
+        if (!orderPreview.orderProducts.find(({ id }) => existingOrderProduct.id === id)) {
+          await this.orderProductRepository.delete({ id: existingOrderProduct.id });
+        }
+      })
+    );
+
+    const updatedOrder = this.orderRepository.create(orderPreview);
+    await this.orderRepository.save(updatedOrder);
+    await updatedOrder.reload();
+    return updatedOrder;
+  }
+
+  async createOrderPreview(
+    createOrderDto: CreateOrderPreviewDto | CreateOrderQuoteDto | UpdateOrderDto
+  ): Promise<DeepPartial<Order>> {
     const { productIds, priceOptionIds, additionalOptionIds } = getAllItemIdsWithPrices(createOrderDto);
-    const products = await this.productRepository.findByIds(productIds);
-    const priceOptions = await this.priceOptionRepository.findByIds(priceOptionIds);
-    const additionalOptions = await this.additionalOptionRepository.findByIds(additionalOptionIds);
+    const products = await this.productRepository.findBy({ id: In(productIds) });
+    const priceOptions = await this.priceOptionRepository.findBy({ id: In(priceOptionIds) });
+    const additionalOptions = await this.additionalOptionRepository.findBy({ id: In(additionalOptionIds) });
 
     const dictionary: ItemsWithPriceDictionary = {
       products: keyBy(

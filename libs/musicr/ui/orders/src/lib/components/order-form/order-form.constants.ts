@@ -1,8 +1,8 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { DeepPartial } from '@arphase/common';
 import { createAddressForm } from '@arphase/ui/addresses';
-import { ApsValidators } from '@arphase/ui/core';
-import { OrderProductAdditionalOption, Product } from '@musicr/domain';
+import { ApsValidators, setFormArrayValue } from '@arphase/ui/core';
+import { OrderProduct, OrderProductAdditionalOption, Product } from '@musicr/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export interface OrderFormProduct extends Product {
@@ -35,20 +35,29 @@ export function createOrderForm(): FormGroup {
   });
 }
 
-export function createOrderProductForm(): FormGroup {
-  return new FormGroup({
+export function createOrderProductForm(orderProduct?: OrderProduct): FormGroup {
+  const form = new FormGroup({
     id: new FormControl(null),
     price: new FormControl(0),
     productId: new FormControl(null, ApsValidators.required),
-    amount: new FormControl(null, ApsValidators.required),
+    amount: new FormControl(null, [ApsValidators.required, ApsValidators.min(1)]),
     priceOptionId: new FormControl(null),
     orderProductAdditionalOptions: new FormArray([]),
   });
+  if (orderProduct) {
+    form.patchValue(orderProduct);
+    setFormArrayValue(
+      form.get('orderProductAdditionalOptions') as FormArray,
+      orderProduct.orderProductAdditionalOptions,
+      additionalOption => createAdditionalOptionForm(additionalOption)
+    );
+  }
+  return form;
 }
 
 export function createAdditionalOptionForm(option: DeepPartial<OrderProductAdditionalOption>): FormGroup {
   const form = new FormGroup({
-    selected: new FormControl(false),
+    selected: new FormControl(option.selected ?? false),
     id: new FormControl(option.id),
     additionalOptionId: new FormControl(option.additionalOptionId),
     additionalOption: new FormGroup({

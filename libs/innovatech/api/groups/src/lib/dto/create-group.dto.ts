@@ -1,6 +1,6 @@
-import { TransformEmail, Trim } from '@arphase/api/core';
+import { CreateAddressDto, TransformEmail, Trim } from '@arphase/api/core';
 import { Address } from '@arphase/common';
-import { CreateAddressDto, IsRfc } from '@innovatech/api/core/util';
+import { IsRfc } from '@innovatech/api/core/util';
 import { Company, User, UserRoles } from '@innovatech/common/domain';
 import { RfcValidatorTypes } from '@innovatech/common/utils';
 import { Type } from 'class-transformer';

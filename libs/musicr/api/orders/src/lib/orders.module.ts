@@ -1,5 +1,12 @@
 import { AuthModule } from '@musicr/api/auth';
-import { AdditionalOptionEntity, OrderEntity, PriceOptionEntity, ProductEntity } from '@musicr/api/domain';
+import {
+  AdditionalOptionEntity,
+  OrderEntity,
+  OrderProductAdditionalOptionEntity,
+  OrderProductEntity,
+  PriceOptionEntity,
+  ProductEntity,
+} from '@musicr/api/domain';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -9,7 +16,14 @@ import { OrdersService } from './services/orders.service';
 @Module({
   imports: [
     AuthModule,
-    TypeOrmModule.forFeature([AdditionalOptionEntity, OrderEntity, PriceOptionEntity, ProductEntity]),
+    TypeOrmModule.forFeature([
+      AdditionalOptionEntity,
+      OrderEntity,
+      OrderProductEntity,
+      OrderProductAdditionalOptionEntity,
+      PriceOptionEntity,
+      ProductEntity,
+    ]),
   ],
   controllers: [OrdersController],
   providers: [OrdersService],

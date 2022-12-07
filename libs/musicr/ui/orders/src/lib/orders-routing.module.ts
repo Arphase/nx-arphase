@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApsFeatureLayoutComponent } from '@arphase/ui/core';
+import { ApsDirtyFormGuard, ApsFeatureLayoutComponent } from '@arphase/ui/core';
 
 import { OrderFormContainerComponent } from './containers/order-form-container/order-form-container.component';
 import { OrderListContainerComponent } from './containers/order-list-container/order-list-container.component';
+import { OrderResolverService } from './resolvers/order-resolver.service';
 
 export const routes: Routes = [
   {
@@ -18,10 +19,14 @@ export const routes: Routes = [
       {
         path: 'new',
         component: OrderFormContainerComponent,
+        canDeactivate: [ApsDirtyFormGuard],
+        resolve: { resolvedOrder: OrderResolverService },
       },
       {
         path: ':id',
         component: OrderFormContainerComponent,
+        canDeactivate: [ApsDirtyFormGuard],
+        resolve: { resolvedOrder: OrderResolverService },
       },
     ],
   },

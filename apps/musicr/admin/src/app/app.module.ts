@@ -24,6 +24,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import * as Sentry from '@sentry/angular';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { environment } from '../environments/environment';
@@ -50,6 +51,7 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    NzModalModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       name: 'Music Revolution',

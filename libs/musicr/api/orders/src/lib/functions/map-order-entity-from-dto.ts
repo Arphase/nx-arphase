@@ -4,15 +4,17 @@ import { uniq } from 'lodash';
 
 import { CreateOrderPreviewDto } from '../dto/create-order-preview-dto';
 import { CreateOrderQuoteDto } from '../dto/create-order-quote.dto';
-import { CreateOrderDto, CreateOrderProductDto } from '../dto/create-order.dto';
+import { CreateOrderDto } from '../dto/create-order.dto';
+import { UpdateOrderDto } from '../dto/update-order.dto';
 
 export function mapOrderEntityFromDto(
-  createOrderDto: CreateOrderDto | CreateOrderPreviewDto | CreateOrderQuoteDto,
+  orderDto: CreateOrderDto | CreateOrderPreviewDto | CreateOrderQuoteDto | UpdateOrderDto,
   dictonary: ItemsWithPriceDictionary
 ): DeepPartial<Order> {
-  const { customer, socialEvent, orderType, orderProducts } = createOrderDto;
-  const orderProductsWithPrice = mapOrderProducts(orderProducts, dictonary);
+  const { id, customer, socialEvent, orderType, orderProducts } = orderDto;
+  const orderProductsWithPrice = mapOrderProducts(orderDto, orderProducts, dictonary);
   return {
+    id,
     customer,
     socialEvent,
     orderType,
@@ -22,10 +24,13 @@ export function mapOrderEntityFromDto(
 }
 
 export function mapOrderProducts(
-  createorderProductsDto: CreateOrderProductDto[],
+  order: CreateOrderDto | CreateOrderPreviewDto | CreateOrderQuoteDto | UpdateOrderDto,
+  createorderProductsDto: OrderProduct[],
   dictionary: ItemsWithPriceDictionary
 ): DeepPartial<OrderProduct>[] {
   return createorderProductsDto.map(orderProduct => ({
+    id: orderProduct.id,
+    orderId: order.id,
     amount: orderProduct.amount,
     productId: orderProduct.productId,
     priceOptionId: orderProduct.priceOptionId,
@@ -33,6 +38,8 @@ export function mapOrderProducts(
       ? dictionary.priceOptions[orderProduct.priceOptionId].price
       : dictionary.products[orderProduct.productId].price,
     orderProductAdditionalOptions: (orderProduct.orderProductAdditionalOptions || []).map(additionalOption => ({
+      id: additionalOption.id,
+      orderProductId: orderProduct.id,
       additionalOptionId: additionalOption.additionalOptionId,
       price: dictionary.additionalOptions[additionalOption.additionalOptionId].price,
     })),
