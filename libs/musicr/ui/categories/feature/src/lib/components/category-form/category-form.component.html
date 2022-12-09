@@ -1,3 +1,5 @@
+{{ previewVisible }}
+
 <form nz-form
       nz-row
       nzLayout="vertical"
@@ -35,6 +37,35 @@
                       formControlName="description"></textarea>
           </nz-form-control>
         </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row>
+      <div nz-col
+           nzSpan="24">
+        <nz-upload nzListType="picture-card"
+                   [nzAccept]="allowedMimeType"
+                   [(nzFileList)]="fileList"
+                   [nzAction]="photosUrl"
+                   [nzPreview]="handlePreview"
+                   [nzRemove]="onRemovePhoto"
+                   [nzLimit]="1">
+          <div>
+            <i nz-icon
+               nzType="plus"></i>
+            <div style="margin-top: 8px">Subir</div>
+          </div>
+        </nz-upload>
+        <nz-modal [nzVisible]="previewVisible"
+                  [nzContent]="modalContent"
+                  [nzFooter]="null"
+                  (nzOnCancel)="previewVisible = false">
+          <ng-template #modalContent>
+            <img [src]="previewImage"
+                 [ngStyle]="{ width: '100%' }"
+                 loading="lazy" />
+          </ng-template>
+        </nz-modal>
       </div>
     </div>
 

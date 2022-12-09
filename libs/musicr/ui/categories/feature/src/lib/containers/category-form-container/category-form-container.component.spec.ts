@@ -1,5 +1,6 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { CategoryCollectionService } from '@musicr/ui/categories/data';
+import { PhotoCollectionService } from '@musicr/ui/products/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
@@ -11,7 +12,7 @@ describe('CategoryFormContainerComponent', () => {
     component: CategoryFormContainerComponent,
     imports: [RouterTestingModule],
     shallow: true,
-    mocks: [CategoryCollectionService, NzMessageService],
+    mocks: [CategoryCollectionService, PhotoCollectionService, NzMessageService],
   });
 
   beforeEach(() => (spectator = createComponent()));

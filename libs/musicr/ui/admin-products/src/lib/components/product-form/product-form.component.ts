@@ -42,14 +42,14 @@ export function createProductForm(): UntypedFormGroup {
 export class ProductFormComponent extends ApsFormComponent<Product> implements OnChanges {
   fileList: NzUploadFile[] = [];
   allowedMimeType = ['image/jpeg', 'image/jpg'];
-  previewImage = '';
-  previewVisible = false;
-  photosUrl: string;
+  previewImage: string;
+  previewVisible: boolean;
+  photosUrl = `${this.config.apiUrl}/photos`;
   form = createProductForm();
   @Output() categoryChanges = new EventEmitter<number>();
   @Output() removePhoto = new EventEmitter<number>();
 
-  handlePreview = async (file: NzUploadFile) => {
+  handlePreview = async (file: NzUploadFile): Promise<void> => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
@@ -57,7 +57,7 @@ export class ProductFormComponent extends ApsFormComponent<Product> implements O
     this.previewVisible = true;
   };
 
-  onRemovePhoto = async (file: NzUploadFile) => {
+  onRemovePhoto = async (file: NzUploadFile): Promise<boolean> => {
     this.removePhoto.emit(Number(file.uid) || file.response.id);
     return true;
   };
@@ -76,7 +76,6 @@ export class ProductFormComponent extends ApsFormComponent<Product> implements O
 
   constructor(@Inject(MUSIC_REVOLUTION_CONFIGURATION) private config: MusicRevolutionConfiguration) {
     super();
-    this.photosUrl = `${this.config.apiUrl}/photos`;
   }
 
   ngOnChanges(changes: SimpleChanges) {

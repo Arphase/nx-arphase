@@ -1,3 +1,4 @@
+import { Photo } from './photo.model';
 import { Subcategory } from './subcategory.model';
 
 export interface Category {
@@ -8,4 +9,6 @@ export interface Category {
   name: string;
   description: string;
   subcategories?: Subcategory[];
+  photoId?: number;
+  photo?: Photo;
 }

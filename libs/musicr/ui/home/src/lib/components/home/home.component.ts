@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CoreService } from '@musicr/ui/core';
 
 @Component({
   selector: 'mrl-home',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.less'],
 })
 export class HomeComponent {
+  categories$ = this.coreService.categories$;
   reviews = [
     {
       name: 'Sandra Leyva',
@@ -43,4 +45,6 @@ export class HomeComponent {
       Prácticamente ellos se encargaron de todo. Super confiables, claro que volveremos a contratarlos.`,
     },
   ];
+
+  constructor(private coreService: CoreService) {}
 }

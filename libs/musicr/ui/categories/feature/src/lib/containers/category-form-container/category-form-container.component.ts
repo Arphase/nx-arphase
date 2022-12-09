@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ApsFormContainerComponent } from '@arphase/ui/core';
 import { Category } from '@musicr/domain';
 import { CategoryCollectionService } from '@musicr/ui/categories/data';
+import { PhotoCollectionService } from '@musicr/ui/products/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { createCategoryForm } from '../../components/category-form/category-form.component';
@@ -21,8 +22,13 @@ export class CategoryFormContainerComponent extends ApsFormContainerComponent<Ca
   constructor(
     protected categoryCollectionService: CategoryCollectionService,
     protected router: Router,
-    protected messageService: NzMessageService
+    protected messageService: NzMessageService,
+    private photoCollectionService: PhotoCollectionService
   ) {
     super(categoryCollectionService, router, messageService);
+  }
+
+  removePhoto(id: number): void {
+    this.photoCollectionService.delete(id);
   }
 }

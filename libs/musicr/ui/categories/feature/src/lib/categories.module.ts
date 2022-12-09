@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAutoErrorModule, ApsEmptyModule, ApsFeatureLayoutModule, ApsSearchbarModule } from '@arphase/ui/core';
 import { CategoriesDataModule } from '@musicr/ui/categories/data';
+import { ProductsDataModule } from '@musicr/ui/products/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -15,9 +16,9 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
-import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 
 import { CategoriesRoutingModule } from './categories-routing.module';
 import { CategoryFormComponent } from './components/category-form/category-form.component';
@@ -27,28 +28,30 @@ import { CategoryListContainerComponent } from './containers/category-list-conta
 
 @NgModule({
   imports: [
-    CommonModule,
-    CategoriesRoutingModule,
-    CategoriesDataModule,
-    ReactiveFormsModule,
-    NzGridModule,
-    NzCardModule,
-    NzDividerModule,
-    NzTableModule,
-    NzFormModule,
-    NzInputModule,
-    NzDatePickerModule,
-    NzSpaceModule,
-    NzPageHeaderModule,
-    NzButtonModule,
-    NzIconModule,
-    NzMessageModule,
-    NzAlertModule,
-    NzModalModule,
-    ApsSearchbarModule,
     ApsAutoErrorModule,
     ApsEmptyModule,
     ApsFeatureLayoutModule,
+    ApsSearchbarModule,
+    CategoriesDataModule,
+    CategoriesRoutingModule,
+    CommonModule,
+    NzAlertModule,
+    NzButtonModule,
+    NzCardModule,
+    NzDatePickerModule,
+    NzDividerModule,
+    NzFormModule,
+    NzGridModule,
+    NzIconModule,
+    NzInputModule,
+    NzMessageModule,
+    NzModalModule,
+    NzPageHeaderModule,
+    NzSpaceModule,
+    NzTableModule,
+    NzUploadModule,
+    ProductsDataModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     CategoryListContainerComponent,

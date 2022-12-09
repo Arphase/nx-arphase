@@ -1,3 +1,4 @@
 <mrl-category-form [form]="form"
                    [item]="currentItem$ | async"
+                   (removePhoto)="removePhoto($event)"
                    (submitForm)="submit($event)"></mrl-category-form>

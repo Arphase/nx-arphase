@@ -98,30 +98,28 @@
     <nz-collapse *nzSpaceItem>
       <nz-collapse-panel nzHeader="Galería"
                          [nzActive]="true">
-        <div class="clearfix">
-          <nz-upload nzListType="picture-card"
-                     [nzAccept]="allowedMimeType"
-                     [(nzFileList)]="fileList"
-                     [nzAction]="photosUrl"
-                     [nzPreview]="handlePreview"
-                     [nzRemove]="onRemovePhoto">
-            <div>
-              <i nz-icon
-                 nzType="plus"></i>
-              <div style="margin-top: 8px">Subir</div>
-            </div>
-          </nz-upload>
-          <nz-modal [nzVisible]="previewVisible"
-                    [nzContent]="modalContent"
-                    [nzFooter]="null"
-                    (nzOnCancel)="previewVisible = false">
-            <ng-template #modalContent>
-              <img [src]="previewImage"
-                   [ngStyle]="{ width: '100%' }"
-                   loading="lazy" />
-            </ng-template>
-          </nz-modal>
-        </div>
+        <nz-upload nzListType="picture-card"
+                   [nzAccept]="allowedMimeType"
+                   [(nzFileList)]="fileList"
+                   [nzAction]="photosUrl"
+                   [nzPreview]="handlePreview"
+                   [nzRemove]="onRemovePhoto">
+          <div>
+            <i nz-icon
+               nzType="plus"></i>
+            <div style="margin-top: 8px">Subir</div>
+          </div>
+        </nz-upload>
+        <nz-modal [nzVisible]="previewVisible"
+                  [nzContent]="modalContent"
+                  [nzFooter]="null"
+                  (nzOnCancel)="previewVisible = false">
+          <ng-template #modalContent>
+            <img [src]="previewImage"
+                 [ngStyle]="{ width: '100%' }"
+                 loading="lazy" />
+          </ng-template>
+        </nz-modal>
       </nz-collapse-panel>
     </nz-collapse>
 

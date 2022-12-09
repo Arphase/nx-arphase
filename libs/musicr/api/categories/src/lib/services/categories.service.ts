@@ -18,6 +18,7 @@ export class CategoriesService {
     const query = this.categoryRepository
       .createQueryBuilder('category')
       .leftJoinAndSelect('category.subcategories', 'subcategories')
+      .leftJoinAndSelect('category.photo', 'photo')
       .orderBy('category.name', SortDirection.ascend);
 
     if (text) {
