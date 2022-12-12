@@ -20,7 +20,7 @@ import { PriceOptionEntity } from './price-option.entity';
 import { SubcategoryEntity } from './subcategory.entity';
 
 @Entity('products')
-@Index(['name', 'subcategoryId'], { unique: true })
+@Index(['name', 'subcategoryId', 'position'], { unique: true })
 export class ProductEntity extends BaseEntity implements Product {
   @PrimaryGeneratedColumn()
   id: number;
@@ -48,6 +48,9 @@ export class ProductEntity extends BaseEntity implements Product {
 
   @Column('text', { array: true, nullable: true })
   productComponents: string[];
+
+  @Column({ nullable: true })
+  position: number;
 
   @Column({ nullable: true })
   subcategoryId?: number;

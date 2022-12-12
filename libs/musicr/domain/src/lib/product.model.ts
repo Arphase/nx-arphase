@@ -14,6 +14,7 @@ export interface Product {
   disclaimer?: string;
   description?: string;
   productComponents?: string[];
+  position?: number;
   photos?: Photo[];
   subcategoryId?: number;
   subcategory?: Subcategory;

@@ -1,9 +1,10 @@
-import { createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
+import { ApsGetItemQueryDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { SubcategoryEntity } from '@musicr/api/domain';
 import { Subcategory } from '@musicr/domain';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { orderBy } from 'lodash';
 import { Repository } from 'typeorm';
 
 import { CreateSubcategoryDto } from '../dto/create-subcategory.dto';
@@ -36,12 +37,19 @@ export class SubcategoriesService {
     return createCollectionResponse<Subcategory>(subcategories, pageSize, pageIndex, total);
   }
 
-  async getSubCategory(id: number): Promise<Subcategory> {
-    const subcategory = await this.subcategoryRepository.findOneBy({ id });
+  async getSubCategory(id: number, queryDto: ApsGetItemQueryDto): Promise<Subcategory> {
+    const subcategory = await this.subcategoryRepository.findOne({
+      where: { id },
+      relations: queryDto.relations ?? ['products'],
+    });
     if (!subcategory) {
       throw new NotFoundException(`Subategory with id ${id} not found`);
     }
-    return subcategory;
+    const sortedSubcategory: Subcategory = {
+      ...subcategory,
+      products: orderBy(subcategory.products, ['position'], ['asc']),
+    };
+    return sortedSubcategory;
   }
 
   async createSubcategory(subcategory: CreateSubcategoryDto): Promise<Subcategory> {
@@ -60,7 +68,7 @@ export class SubcategoriesService {
   }
 
   async updateSubcategory(updateSubcategoryDto: UpdateSubcategoryDto): Promise<Subcategory> {
-    await this.getSubCategory(updateSubcategoryDto.id);
+    await this.getSubCategory(updateSubcategoryDto.id, { relations: [] });
     return this.subcategoryRepository.create(updateSubcategoryDto).save();
   }
 

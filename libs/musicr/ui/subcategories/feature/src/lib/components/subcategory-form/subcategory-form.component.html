@@ -53,6 +53,23 @@
       </div>
     </div>
 
+    <ng-container *ngIf="products.length">
+      <div *nzSpaceItem
+           nz-row>
+        <div nz-col
+             nzSpan="24">
+          <nz-list cdkDropList
+                   nzBordered
+                   nzHeader="Arrastra los productos para ser ordenadas en la página"
+                   (cdkDropListDropped)="productMoved($event)">
+            <nz-list-item *ngFor="let product of products"
+                          class="cursor-pointer"
+                          cdkDrag>{{ product.name }}</nz-list-item>
+          </nz-list>
+        </div>
+      </div>
+    </ng-container>
+
     <div *nzSpaceItem
          nz-row>
       <div nz-col
@@ -62,16 +79,12 @@
           <button *nzSpaceItem
                   nz-button
                   type="button"
-                  [routerLink]="['..']">
-            Cancelar
-          </button>
+                  [routerLink]="['..']">Cancelar</button>
           <button *nzSpaceItem
                   nz-button
                   type="submit"
                   nzType="primary"
-                  [nzLoading]="loading">
-            Guardar
-          </button>
+                  [nzLoading]="loading">Guardar</button>
         </nz-space>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { ApsCollectionFilterDto } from '@arphase/api/core';
+import { ApsCollectionFilterDto, ApsGetItemQueryDto } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Category } from '@musicr/domain';
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
@@ -18,8 +18,11 @@ export class CategoriesController {
   }
 
   @Get(':id')
-  async getCategory(@Param('id', ParseIntPipe) id: number): Promise<Category> {
-    return this.categoriesService.getCategory(id);
+  async getCategory(
+    @Param('id', ParseIntPipe) id: number,
+    @Query() itemQueryDto: ApsGetItemQueryDto
+  ): Promise<Category> {
+    return this.categoriesService.getCategory(id, itemQueryDto);
   }
 
   @UseGuards(AuthGuard('jwt'))

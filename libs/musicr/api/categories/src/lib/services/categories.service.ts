@@ -1,4 +1,9 @@
-import { ApsCollectionFilterDto, createCollectionResponse, filterCollectionQuery } from '@arphase/api/core';
+import {
+  ApsCollectionFilterDto,
+  ApsGetItemQueryDto,
+  createCollectionResponse,
+  filterCollectionQuery,
+} from '@arphase/api/core';
 import { ApsCollectionResponse, SortDirection } from '@arphase/common';
 import { CategoryEntity } from '@musicr/api/domain';
 import { Category } from '@musicr/domain';
@@ -37,8 +42,11 @@ export class CategoriesService {
     return createCollectionResponse<Category>(sortedCategories, pageSize, pageIndex, total);
   }
 
-  async getCategory(id: number): Promise<Category> {
-    const category = await this.categoryRepository.findOne({ where: { id }, relations: ['subcategories'] });
+  async getCategory(id: number, filterDto: ApsGetItemQueryDto): Promise<Category> {
+    const category = await this.categoryRepository.findOne({
+      where: { id },
+      relations: filterDto.relations ?? ['subcategories'],
+    });
     if (!category) {
       throw new NotFoundException(`Category with id ${id} not found`);
     }
@@ -59,7 +67,7 @@ export class CategoriesService {
   }
 
   async updateCategory(updateCategoryDto: UpdateCategoryDto): Promise<Category> {
-    const category = await this.getCategory(updateCategoryDto.id);
+    const category = await this.getCategory(updateCategoryDto.id, { relations: [] });
     return this.categoryRepository.save({ ...category, ...updateCategoryDto });
   }
 

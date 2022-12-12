@@ -1,5 +1,3 @@
-{{ previewVisible }}
-
 <form nz-form
       nz-row
       nzLayout="vertical"
@@ -77,6 +75,7 @@
                    nzHeader="Arrastra las subcategorías para ser ordenadas en el menú"
                    (cdkDropListDropped)="subcategoryMoved($event)">
             <nz-list-item *ngFor="let subcategory of subcategories"
+                          class="cursor-pointer"
                           cdkDrag>{{ subcategory.name }}</nz-list-item>
           </nz-list>
         </div>
@@ -92,16 +91,12 @@
           <button *nzSpaceItem
                   nz-button
                   type="button"
-                  [routerLink]="['..']">
-            Cancelar
-          </button>
+                  [routerLink]="['..']">Cancelar</button>
           <button *nzSpaceItem
                   nz-button
                   type="submit"
                   nzType="primary"
-                  [nzLoading]="loading">
-            Guardar
-          </button>
+                  [nzLoading]="loading">Guardar</button>
         </nz-space>
       </div>
     </div>

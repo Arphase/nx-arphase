@@ -1,3 +1,4 @@
+import { ApsGetItemQueryDto } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { Subcategory } from '@musicr/domain';
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
@@ -18,8 +19,11 @@ export class SubcategoriesController {
   }
 
   @Get(':id')
-  async getSubCategory(@Param('id', ParseIntPipe) id: number): Promise<Subcategory> {
-    return this.subcategoriesService.getSubCategory(id);
+  async getSubCategory(
+    @Param('id', ParseIntPipe) id: number,
+    @Query() queryDto: ApsGetItemQueryDto
+  ): Promise<Subcategory> {
+    return this.subcategoriesService.getSubCategory(id, queryDto);
   }
 
   @UseGuards(AuthGuard('jwt'))
