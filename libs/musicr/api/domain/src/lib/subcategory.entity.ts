@@ -17,7 +17,7 @@ import { CategoryEntity } from './category.entity';
 import { ProductEntity } from './product.entity';
 
 @Entity('subcategories')
-@Index(['name', 'categoryId'], { unique: true })
+@Index(['name', 'categoryId', 'position'], { unique: true })
 export class SubcategoryEntity extends BaseEntity implements Subcategory {
   @PrimaryGeneratedColumn()
   id?: number;
@@ -36,6 +36,9 @@ export class SubcategoryEntity extends BaseEntity implements Subcategory {
 
   @Column()
   description: string;
+
+  @Column({ nullable: true })
+  position: number;
 
   @Column()
   categoryId?: number;

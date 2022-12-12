@@ -8,6 +8,7 @@ export interface Subcategory {
   deletedAt: Date;
   name: string;
   description: string;
+  position?: number;
   categoryId?: number;
   category?: Category;
   products?: Product[];

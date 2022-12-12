@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +14,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzListModule } from 'ng-zorro-antd/list';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
@@ -35,6 +37,7 @@ import { CategoryListContainerComponent } from './containers/category-list-conta
     CategoriesDataModule,
     CategoriesRoutingModule,
     CommonModule,
+    DragDropModule,
     NzAlertModule,
     NzButtonModule,
     NzCardModule,
@@ -44,6 +47,7 @@ import { CategoryListContainerComponent } from './containers/category-list-conta
     NzGridModule,
     NzIconModule,
     NzInputModule,
+    NzListModule,
     NzMessageModule,
     NzModalModule,
     NzPageHeaderModule,

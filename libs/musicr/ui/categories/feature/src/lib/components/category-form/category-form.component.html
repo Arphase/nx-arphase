@@ -40,34 +40,48 @@
       </div>
     </div>
 
-    <div nz-row>
+    <div *nzSpaceItem
+         nz-row>
       <div nz-col
            nzSpan="24">
-        <nz-upload nzListType="picture-card"
-                   [nzAccept]="allowedMimeType"
-                   [(nzFileList)]="fileList"
-                   [nzAction]="photosUrl"
-                   [nzPreview]="handlePreview"
-                   [nzRemove]="onRemovePhoto"
-                   [nzLimit]="1">
-          <div>
-            <i nz-icon
-               nzType="plus"></i>
-            <div style="margin-top: 8px">Subir</div>
-          </div>
-        </nz-upload>
-        <nz-modal [nzVisible]="previewVisible"
-                  [nzContent]="modalContent"
-                  [nzFooter]="null"
-                  (nzOnCancel)="previewVisible = false">
-          <ng-template #modalContent>
-            <img [src]="previewImage"
-                 [ngStyle]="{ width: '100%' }"
-                 loading="lazy" />
-          </ng-template>
-        </nz-modal>
+        <nz-list nzBordered
+                 nzHeader="Foto que aparecerá en home relacionada a esta categoría">
+          <nz-list-item>
+            <nz-upload nzListType="picture-card"
+                       [nzAccept]="allowedMimeType"
+                       [(nzFileList)]="fileList"
+                       [nzAction]="photosUrl"
+                       [nzPreview]="handlePreview"
+                       [nzRemove]="onRemovePhoto"
+                       [nzLimit]="1"
+                       [nzDisabled]="fileList.length">
+              <div>
+                <i nz-icon
+                   nzType="plus"></i>
+                <div style="margin-top: 8px">Subir</div>
+              </div>
+            </nz-upload>
+          </nz-list-item>
+        </nz-list>
+
       </div>
     </div>
+
+    <ng-container *ngIf="subcategories.length">
+      <div *nzSpaceItem
+           nz-row>
+        <div nz-col
+             nzSpan="24">
+          <nz-list cdkDropList
+                   nzBordered
+                   nzHeader="Arrastra las subcategorías para ser ordenadas en el menú"
+                   (cdkDropListDropped)="subcategoryMoved($event)">
+            <nz-list-item *ngFor="let subcategory of subcategories"
+                          cdkDrag>{{ subcategory.name }}</nz-list-item>
+          </nz-list>
+        </div>
+      </div>
+    </ng-container>
 
     <div *nzSpaceItem
          nz-row>
@@ -93,3 +107,14 @@
     </div>
   </nz-space>
 </form>
+
+<nz-modal [nzVisible]="previewVisible"
+          [nzContent]="modalContent"
+          [nzFooter]="null"
+          (nzOnCancel)="previewVisible = false">
+  <ng-template #modalContent>
+    <img class="w-100"
+         [src]="previewImage"
+         loading="lazy" />
+  </ng-template>
+</nz-modal>

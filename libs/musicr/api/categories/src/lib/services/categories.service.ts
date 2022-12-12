@@ -4,6 +4,7 @@ import { CategoryEntity } from '@musicr/api/domain';
 import { Category } from '@musicr/domain';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { orderBy } from 'lodash';
 import { Repository } from 'typeorm';
 
 import { CreateCategoryDto } from '../dto/create-category.dto';
@@ -28,16 +29,24 @@ export class CategoriesService {
     filterCollectionQuery('category', query, filterDto);
 
     const categories = await query.getMany();
+    const sortedCategories = categories.map(category => ({
+      ...category,
+      subcategories: orderBy(category.subcategories, ['position'], ['asc']),
+    }));
     const total = await query.getCount();
-    return createCollectionResponse<Category>(categories, pageSize, pageIndex, total);
+    return createCollectionResponse<Category>(sortedCategories, pageSize, pageIndex, total);
   }
 
   async getCategory(id: number): Promise<Category> {
-    const category = await this.categoryRepository.findOneBy({ id });
+    const category = await this.categoryRepository.findOne({ where: { id }, relations: ['subcategories'] });
     if (!category) {
       throw new NotFoundException(`Category with id ${id} not found`);
     }
-    return category;
+    const sortedCategory: Category = {
+      ...category,
+      subcategories: orderBy(category.subcategories, ['position'], ['asc']),
+    };
+    return sortedCategory;
   }
 
   async createCategory(category: CreateCategoryDto): Promise<Category> {

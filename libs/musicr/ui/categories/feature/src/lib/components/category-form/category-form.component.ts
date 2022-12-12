@@ -1,3 +1,4 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,8 +9,9 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { DeepPartial, moveItemInArray } from '@arphase/common';
 import { ApsFormComponent, ApsValidators, getBase64 } from '@arphase/ui/core';
-import { Category } from '@musicr/domain';
+import { Category, Subcategory } from '@musicr/domain';
 import { MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
@@ -28,11 +30,12 @@ export function createCategoryForm(): UntypedFormGroup {
   styleUrls: ['./category-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CategoryFormComponent extends ApsFormComponent<Category> implements OnChanges {
+export class CategoryFormComponent extends ApsFormComponent<DeepPartial<Category>> implements OnChanges {
   fileList: NzUploadFile[] = [];
+  subcategories: DeepPartial<Subcategory>[] = [];
   allowedMimeType = ['image/jpeg', 'image/jpg'];
-  previewImage: string;
   photosUrl = `${this.config.apiUrl}/photos`;
+  previewImage: string;
   previewVisible: boolean;
   @Output() removePhoto = new EventEmitter<number>();
 
@@ -58,6 +61,7 @@ export class CategoryFormComponent extends ApsFormComponent<Category> implements
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.item && this.item) {
+      this.subcategories = this.item.subcategories;
       this.form.patchValue(this.item);
       if (this.item.photo) {
         const { id, key, url } = this.item.photo;
@@ -73,7 +77,11 @@ export class CategoryFormComponent extends ApsFormComponent<Category> implements
     }
   }
 
-  transformFromForm(values: Category): Category {
+  subcategoryMoved(event: CdkDragDrop<Subcategory[]>): void {
+    this.subcategories = moveItemInArray(this.subcategories, event.previousIndex, event.currentIndex);
+  }
+
+  transformFromForm(values: DeepPartial<Category>): DeepPartial<Category> {
     const file = this.fileList[0];
     const photo = file.response
       ? file.response
@@ -85,6 +93,7 @@ export class CategoryFormComponent extends ApsFormComponent<Category> implements
     return {
       ...values,
       photo,
+      subcategories: this.subcategories.map(({ id }, index) => ({ id, position: index })),
     };
   }
 
