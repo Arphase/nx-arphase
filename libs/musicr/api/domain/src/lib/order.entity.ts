@@ -1,4 +1,4 @@
-import { Customer, Order, OrderProduct, OrderTypes, SocialEvent } from '@musicr/domain';
+import { Customer, Order, OrderProduct, OrderStatus, OrderTypes, SocialEvent } from '@musicr/domain';
 import {
   BaseEntity,
   Column,
@@ -62,4 +62,11 @@ export class OrderEntity extends BaseEntity implements Order {
     default: OrderTypes.purchase,
   })
   orderType: OrderTypes;
+
+  @Column({
+    type: 'enum',
+    enum: OrderStatus,
+    default: OrderStatus.quoted,
+  })
+  status: OrderStatus;
 }

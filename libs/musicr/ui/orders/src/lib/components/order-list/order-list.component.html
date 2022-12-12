@@ -35,6 +35,12 @@
                       [selectedOption]="queryParams?.orderType"
                       (filterItems)="updateOrderTypeFilter($event)"></aps-radio-filter>
   </div>
+  <div nz-col>
+    <aps-radio-filter label="Estatus"
+                      [options]="orderStatusOptions"
+                      [selectedOption]="queryParams?.status"
+                      (filterItems)="updateOrderStatusFilter($event)"></aps-radio-filter>
+  </div>
   <div *ngIf="total"
        nz-col
        nzFlex="auto"
@@ -73,56 +79,65 @@
     <tr *ngFor="let item of table.data"
         nz-row>
       <td nz-col
-          nzXs="8"
+          nzXs="5"
           nzMd="2">{{ item?.id }}</td>
       <td nz-col
-          nzXs="0"
+          nzXs="12"
           nzMd="4">{{ item?.customer?.firstName }} {{ item?.customer?.lastName }}</td>
       <td nz-col
-          nzXs="8"
+          nzXs="0"
           nzMd="4">{{ orderTypeLabels[item.orderType] | empty }}</td>
       <td nz-col
           nzXs="0"
           nzMd="4">{{ item?.socialEvent?.date | date: 'dd/MM/yy' | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzMd="4">{{ item?.createdAt | date: 'dd/MM/yy' | empty }}</td>
+          nzMd="4"> {{ item?.total | currency }}</td>
       <td nz-col
-          nzXs="0"
-          nzMd="3">{{ item?.total | currency }}</td>
+          nzXs="3"
+          nzMd="3">
+        <nz-tag nz-tooltip
+                nzTooltipPlacement="top"
+                [nzTooltipTitle]="orderStatusLabels[item.status]"
+                [nzColor]="colorMaps[item.status]">
+          <i nz-icon
+             [nzType]="iconMaps[item.status]"
+             data-cy="status"></i>
+        </nz-tag>
+      </td>
       <td nz-col
-          nzXs="8"
+          nzXs="4"
           nzMd="3"
           class="flex-end">
         <button nz-button
+                nz-dropdown
+                [nzDropdownMenu]="menu"
                 nzType="text"
-                nz-tooltip
-                nzTooltipTitle="Editar orden"
-                [routerLink]="[item.id]">
+                nzTrigger="click"
+                nzSize="small">
           <i nz-icon
-             nzType="edit"></i>
-        </button>
-        <button nz-button
-                type="button"
-                nzType="text"
-                nz-tooltip
-                nzTooltipTitle="Ver detalle"
-                (click)="showDetail.emit(item?.id)">
-          <i nz-icon
-             nzType="eye"
-             nzTheme="outline"></i>
-        </button>
-        <button nz-button
-                type="button"
-                nzType="text"
-                nz-tooltip
-                nzTooltipTitle="Descargar PDF"
-                (click)="downloadPdf.emit(item?.id)">
-          <i nz-icon
-             nzType="download"
-             nzTheme="outline"></i>
-        </button>
+             nzType="more"></i></button>
       </td>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item
+              [routerLink]="[item.id]">Editar Orden</li>
+          <li nz-submenu
+              nzTitle="Cambiar estatus">
+            <ul>
+              <li *ngFor="let option of orderStatusOptions"
+                  nz-menu-item
+                  (click)="onChangeStatus(item.id, option.value)">
+                <nz-tag [nzColor]="colorMaps[option.value]">{{ option.label }}</nz-tag>
+              </li>
+            </ul>
+          </li>
+          <li nz-menu-item
+              (click)="showDetail.emit(item.id)">Ver detalle</li>
+          <li nz-menu-item
+              (click)="downloadPdf.emit(item.id)">Descargar PDF</li>
+        </ul>
+      </nz-dropdown-menu>
     </tr>
   </tbody>
 </nz-table>

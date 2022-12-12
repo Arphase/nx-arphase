@@ -1,6 +1,14 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Address } from '@arphase/common';
-import { Customer, Order, OrderProduct, orderTypeLabels, SocialEvent, socialEventLabels } from '@musicr/domain';
+import {
+  Customer,
+  Order,
+  OrderProduct,
+  orderStatusLabels,
+  orderTypeLabels,
+  SocialEvent,
+  socialEventLabels,
+} from '@musicr/domain';
 
 @Component({
   selector: 'mrl-order-detail',
@@ -12,6 +20,7 @@ export class OrderDetailComponent {
   @Input() item: Order;
   orderTypeLabels = orderTypeLabels;
   socialEventLPlaceLabels = socialEventLabels;
+  orderStatusLabels = orderStatusLabels;
 
   get customer(): Customer {
     return this.item?.customer;

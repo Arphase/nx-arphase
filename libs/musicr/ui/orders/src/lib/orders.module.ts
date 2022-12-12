@@ -16,17 +16,20 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzListModule } from 'ng-zorro-antd/list';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NgxMaskModule } from 'ngx-mask';
@@ -56,17 +59,20 @@ import { OrderDataService } from './services/order-data.service';
     NzCollapseModule,
     NzDatePickerModule,
     NzDividerModule,
+    NzDropDownModule,
     NzFormModule,
     NzGridModule,
     NzIconModule,
     NzInputModule,
     NzListModule,
     NzModalModule,
+    NzMenuModule,
     NzPageHeaderModule,
     NzPopoverModule,
     NzSelectModule,
     NzSpaceModule,
     NzTableModule,
+    NzTagModule,
     NzTimePickerModule,
     NzToolTipModule,
     OrdersRoutingModule,

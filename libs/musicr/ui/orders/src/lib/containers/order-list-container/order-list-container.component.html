@@ -2,6 +2,7 @@
                 [loading]="loading$ | async"
                 [info]="info$ | async"
                 [queryParams]="queryParams"
+                (edit)="updateItem($event)"
                 (showDetail)="onShowDetail($event)"
                 (filterItems)="filterItems($event)"
                 (downloadPdf)="downloadPdf($event)"></mrl-order-list>

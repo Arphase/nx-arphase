@@ -11,15 +11,21 @@
         <div nz-row>
           <div nz-col
                nzXs="24"
-               nzMd="12">
+               nzMd="8">
             <p><strong>Folio</strong> </p>
             <span>{{ item?.id }}</span>
           </div>
           <div nz-col
                nzXs="24"
-               nzMd="12">
+               nzMd="8">
             <p><strong>Tipo de Orden</strong></p>
             <span>{{ orderTypeLabels[item?.orderType] }}</span>
+          </div>
+          <div nz-col
+               nzXs="24"
+               nzMd="8">
+            <p><strong>Estatus</strong></p>
+            <span>{{ orderStatusLabels[item?.status] }}</span>
           </div>
         </div>
       </nz-collapse-panel>
@@ -59,15 +65,13 @@
         <div nz-row>
           <div nz-col
                nzXs="24"
-               nzMd="12"
-               nzLg="8">
+               nzMd="12">
             <p><strong>Tipo de evento</strong></p>
             <span>{{ socialEvent?.eventType | empty }}</span>
           </div>
           <div nz-col
                nzXs="24"
-               nzMd="12"
-               nzLg="8">
+               nzMd="12">
             <p><strong>Lugar del evento</strong></p>
             <span>{{ socialEventLPlaceLabels[socialEvent?.eventPlace] | empty }}</span>
           </div>
@@ -75,8 +79,7 @@
         <div nz-row>
           <div nz-col
                nzXs="24"
-               nzMd="12"
-               nzLg="8">
+               nzMd="12">
             <p><strong>Fecha</strong> </p>
             <ul>
               <li>Día: {{ socialEvent?.date | date: 'fullDate' : '' : 'es' }}</li>
@@ -86,8 +89,7 @@
           </div>
           <div nz-col
                nzXs="24"
-               nzMd="12"
-               nzLg="8">
+               nzMd="12">
             <p><strong>¿Requiere maniobra?</strong></p>
             <span>{{ requiresAssemblyLabel | empty }}</span>
           </div>

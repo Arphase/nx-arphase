@@ -45,7 +45,7 @@ export class OrdersService {
   ) {}
 
   async getOrders(filterDto: FilterOrdersDto): Promise<ApsCollectionResponse<Order>> {
-    const { pageIndex, pageSize, dateType, text, orderType } = filterDto;
+    const { pageIndex, pageSize, dateType, text, orderType, status } = filterDto;
     const query = this.orderRepository
       .createQueryBuilder('order')
       .leftJoinAndSelect('order.customer', 'customer')
@@ -71,6 +71,10 @@ export class OrdersService {
 
     if (orderType) {
       query.andWhere('(order.orderType = :orderType)', { orderType });
+    }
+
+    if (status) {
+      query.andWhere('(order.status = :status)', { status });
     }
 
     const products = await query.getMany();
@@ -118,31 +122,36 @@ export class OrdersService {
    * to avoid not null constrain in database
    */
   async updateOrder(updateOrderDto: UpdateOrderDto): Promise<Order> {
-    const orderPreview = await this.createOrderPreview(updateOrderDto);
-    const existingOrderProducts = await this.orderProductRepository.findBy({ orderId: orderPreview.id });
-    await Promise.all(
-      orderPreview.orderProducts.map(async orderProduct => {
-        const existingAdditionalOptions = await this.orderProductAdditionalOptionRepository.findBy({
-          orderProductId: orderProduct.id,
-        });
-        await Promise.all(
-          existingAdditionalOptions.map(async existingAdditionalOption => {
-            if (!orderProduct.orderProductAdditionalOptions.find(({ id }) => existingAdditionalOption.id === id)) {
-              await this.orderProductAdditionalOptionRepository.delete({ id: existingAdditionalOption.id });
-            }
-          })
-        );
-      })
-    );
-    await Promise.all(
-      existingOrderProducts.map(async existingOrderProduct => {
-        if (!orderPreview.orderProducts.find(({ id }) => existingOrderProduct.id === id)) {
-          await this.orderProductRepository.delete({ id: existingOrderProduct.id });
-        }
-      })
-    );
+    let order: DeepPartial<Order>;
+    if (updateOrderDto.status) {
+      order = updateOrderDto;
+    } else {
+      order = await this.createOrderPreview(updateOrderDto);
+      const existingOrderProducts = await this.orderProductRepository.findBy({ orderId: order.id });
+      await Promise.all(
+        order.orderProducts.map(async orderProduct => {
+          const existingAdditionalOptions = await this.orderProductAdditionalOptionRepository.findBy({
+            orderProductId: orderProduct.id,
+          });
+          await Promise.all(
+            existingAdditionalOptions.map(async existingAdditionalOption => {
+              if (!orderProduct.orderProductAdditionalOptions.find(({ id }) => existingAdditionalOption.id === id)) {
+                await this.orderProductAdditionalOptionRepository.delete({ id: existingAdditionalOption.id });
+              }
+            })
+          );
+        })
+      );
+      await Promise.all(
+        existingOrderProducts.map(async existingOrderProduct => {
+          if (!order.orderProducts.find(({ id }) => existingOrderProduct.id === id)) {
+            await this.orderProductRepository.delete({ id: existingOrderProduct.id });
+          }
+        })
+      );
+    }
 
-    const updatedOrder = this.orderRepository.create(orderPreview);
+    const updatedOrder = this.orderRepository.create(order);
     await this.orderRepository.save(updatedOrder);
     await updatedOrder.reload();
     return updatedOrder;

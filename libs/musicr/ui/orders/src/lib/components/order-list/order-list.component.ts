@@ -1,7 +1,16 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
-import { ApsColumns, ApsListComponent } from '@arphase/ui/core';
-import { Order, orderTypeLabels, OrderTypes } from '@musicr/domain';
-import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
+import { ApsListComponent } from '@arphase/ui/core';
+import {
+  Order,
+  OrderStatus,
+  orderStatusLabels,
+  orderStatusOptions,
+  orderTypeLabels,
+  orderTypeOptions,
+  OrderTypes,
+} from '@musicr/domain';
+
+import { colorMaps, columns, dateTypeOptions, iconMaps } from './order-list.constants';
 
 @Component({
   selector: 'mrl-order-list',
@@ -11,70 +20,25 @@ import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 })
 export class OrderListComponent extends ApsListComponent<Order> {
   orderTypeLabels = orderTypeLabels;
-  orderTypeOptions: NzSelectOptionInterface[] = [
-    { label: orderTypeLabels[OrderTypes.purchase], value: OrderTypes.purchase },
-    { label: orderTypeLabels[OrderTypes.quote], value: OrderTypes.quote },
-  ];
-  dateTypeOptions: NzSelectOptionInterface[] = [
-    { label: 'Pedido', value: 'createdAt' },
-    { label: 'Evento', value: 'startDate' },
-  ];
-
-  columns: ApsColumns = [
-    {
-      label: 'Folio',
-      prop: 'order.id',
-      colSizes: {
-        xs: 8,
-        md: 2,
-      },
-    },
-    {
-      label: 'Cliente',
-      prop: 'customer.firstName',
-      colSizes: {
-        md: 4,
-        lg: 4,
-      },
-    },
-    {
-      label: 'Tipo de Orden',
-      prop: 'order.orderType',
-      colSizes: {
-        xs: 16,
-        md: 4,
-        lg: 4,
-      },
-    },
-    {
-      label: 'Fecha evento',
-      prop: 'socialEvent.date',
-      colSizes: {
-        md: 4,
-        lg: 4,
-      },
-    },
-    {
-      label: 'Fecha pedido',
-      prop: 'order.createdAt',
-      colSizes: {
-        md: 4,
-        lg: 4,
-      },
-    },
-    {
-      label: 'Total',
-      prop: 'order.total',
-      colSizes: {
-        md: 6,
-        lg: 6,
-      },
-    },
-  ];
+  orderTypeOptions = orderTypeOptions;
+  orderStatusLabels = orderStatusLabels;
+  orderStatusOptions = orderStatusOptions;
+  columns = columns;
+  dateTypeOptions = dateTypeOptions;
+  colorMaps = colorMaps;
+  iconMaps = iconMaps;
 
   @Output() downloadPdf = new EventEmitter<number>();
 
   updateOrderTypeFilter(orderType: OrderTypes): void {
     this.filterItems.emit({ orderType });
+  }
+
+  updateOrderStatusFilter(status: OrderStatus): void {
+    this.filterItems.emit({ status });
+  }
+
+  onChangeStatus(id: number, status: OrderStatus): void {
+    this.edit.emit({ id, status });
   }
 }

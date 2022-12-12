@@ -86,18 +86,10 @@ export class GuaranteeListComponent extends ApsListComponent<Guarantee> implemen
   }
 
   updateCheckedSet(id: number, checked: boolean): void {
-    if (checked) {
-      this.setOfCheckedId.add(id);
-    } else {
-      this.setOfCheckedId.delete(id);
-    }
+    checked ? this.setOfCheckedId.add(id) : this.setOfCheckedId.delete(id);
   }
 
-  onExpandChange(id: number, checked: boolean): void {
-    if (checked) {
-      this.expandSet.add(id);
-    } else {
-      this.expandSet.delete(id);
-    }
+  onExpandChange(id: number, expanded: boolean): void {
+    expanded ? this.expandSet.add(id) : this.expandSet.delete(id);
   }
 }

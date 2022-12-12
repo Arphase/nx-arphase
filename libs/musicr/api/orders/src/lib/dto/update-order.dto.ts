@@ -1,9 +1,9 @@
 import { UpdateAddressDto } from '@arphase/api/core';
 import { Address } from '@arphase/common';
-import { OrderProduct, OrderProductAdditionalOption, SocialEvent } from '@musicr/domain';
+import { OrderProduct, OrderProductAdditionalOption, OrderStatus, SocialEvent } from '@musicr/domain';
 import { PartialType } from '@nestjs/mapped-types';
 import { Type } from 'class-transformer';
-import { IsArray, IsNumber, IsOptional, ValidateNested } from 'class-validator';
+import { IsArray, IsEnum, IsNumber, IsOptional, ValidateNested } from 'class-validator';
 
 import {
   CreateOrderDto,
@@ -43,12 +43,17 @@ export class UpdateOrderDto extends PartialType(CreateOrderDto) {
   @IsNumber()
   id: number;
 
+  @IsOptional()
   @ValidateNested()
   @Type(() => UpdateSocialEventDto)
   socialEvent: SocialEvent;
 
+  @IsOptional()
   @IsArray()
   @ValidateNested()
   @Type(() => UpdateOrderProductDto)
   orderProducts: OrderProduct[];
+
+  @IsEnum(OrderStatus)
+  status: OrderStatus;
 }
