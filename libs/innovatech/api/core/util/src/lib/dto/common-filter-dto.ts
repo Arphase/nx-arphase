@@ -7,7 +7,7 @@ export class CommonFilterDto extends ApsCollectionFilterDto {
   groupId: number;
 
   @IsOptional()
-  @Transform((_, obj) =>
+  @Transform(({ obj }) =>
     String(obj['groupIds'])
       .split(',')
       .map(id => Number(id))
@@ -16,7 +16,7 @@ export class CommonFilterDto extends ApsCollectionFilterDto {
   groupIds: number[];
 
   @IsOptional()
-  @Transform((_, obj) =>
+  @Transform(({ obj }) =>
     String(obj['companyIds'])
       .split(',')
       .map(id => Number(id))
@@ -25,7 +25,7 @@ export class CommonFilterDto extends ApsCollectionFilterDto {
   companyIds: number[];
 
   @IsOptional()
-  @Transform((_, obj) =>
+  @Transform(({ obj }) =>
     String(obj['userIds'])
       .split(',')
       .map(id => Number(id))

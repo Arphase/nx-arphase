@@ -5,15 +5,10 @@
     "outDir": "../../dist/out-tsc",
     "declaration": true,
     "rootDir": "./src",
-    "types": [
-      "node"
-    ]
+    "types": ["node"],
+    "target": "ES2022",
+    "useDefineForClassFields": false
   },
-  "exclude": [
-    "**/*.spec.ts",
-    "**/*.test.ts"
-  ],
-  "include": [
-    "**/*.ts"
-  ]
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"],
+  "include": ["**/*.ts"]
 }

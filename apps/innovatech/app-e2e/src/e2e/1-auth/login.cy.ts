@@ -18,5 +18,6 @@ describe('Auth', async () => {
     cy.get('[data-cy="password"]').type('Innovatech123@');
     cy.get('[data-cy="sign-in"]').click();
     cy.url().should('eq', 'http://localhost:4200/spa/dashboard');
+    cy.wait(1000);
   });
 });

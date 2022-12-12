@@ -3,7 +3,7 @@ import { IsArray, IsOptional } from 'class-validator';
 
 export class ApsGetItemQueryDto {
   @IsOptional()
-  @Transform((_, obj) =>
+  @Transform(({ obj }) =>
     String(obj['relations'])
       .split(',')
       .map(relation => relation)

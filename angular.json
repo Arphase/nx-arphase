@@ -9,19 +9,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/arphase/api/core/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/arphase/api/core/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/api/core"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/arphase/api/core"
+          ],
           "options": {
             "jestConfig": "libs/arphase/api/core/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
+      "tags": [
+        "domain:arphase",
+        "domain:arphase:api",
+        "type:util"
+      ]
     },
     "arphase-api-db": {
       "root": "libs/arphase/api/db",
@@ -30,14 +38,20 @@
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/arphase/api/db/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/arphase/api/db/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/api/db"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/arphase/api/db"
+          ],
           "options": {
             "jestConfig": "libs/arphase/api/db/jest.config.ts",
             "passWithNoTests": true
@@ -54,19 +68,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/arphase/api/testing/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/arphase/api/testing/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/api/testing"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/arphase/api/testing"
+          ],
           "options": {
             "jestConfig": "libs/arphase/api/testing/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
+      "tags": [
+        "domain:arphase",
+        "domain:arphase:api",
+        "type:util"
+      ]
     },
     "arphase-common": {
       "root": "libs/arphase/common",
@@ -76,19 +98,26 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/arphase/common/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/arphase/common/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/common"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/arphase/common"
+          ],
           "options": {
             "jestConfig": "libs/arphase/common/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:arphase", "type:util"]
+      "tags": [
+        "domain:arphase",
+        "type:util"
+      ]
     },
     "arphase-ui-addresses": {
       "projectType": "library",
@@ -98,7 +127,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/ui/addresses"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/arphase/ui/addresses"
+          ],
           "options": {
             "jestConfig": "libs/arphase/ui/addresses/jest.config.ts",
             "passWithNoTests": true
@@ -107,11 +138,18 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/arphase/ui/addresses/src/**/*.ts", "libs/arphase/ui/addresses/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/arphase/ui/addresses/src/**/*.ts",
+              "libs/arphase/ui/addresses/src/**/*.html"
+            ]
           }
         }
       },
-      "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
+      "tags": [
+        "domain:arphase",
+        "domain:arphase:ui",
+        "type:ui"
+      ]
     },
     "arphase-ui-auth": {
       "projectType": "library",
@@ -121,7 +159,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/ui/auth"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/arphase/ui/auth"
+          ],
           "options": {
             "jestConfig": "libs/arphase/ui/auth/jest.config.ts",
             "passWithNoTests": true
@@ -130,11 +170,18 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/arphase/ui/auth/src/**/*.ts", "libs/arphase/ui/auth/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/arphase/ui/auth/src/**/*.ts",
+              "libs/arphase/ui/auth/src/**/*.html"
+            ]
           }
         }
       },
-      "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
+      "tags": [
+        "domain:arphase",
+        "domain:arphase:ui",
+        "type:ui"
+      ]
     },
     "arphase-ui-core": {
       "projectType": "library",
@@ -145,19 +192,28 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/arphase/ui/core/src/**/*.ts", "libs/arphase/ui/core/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/arphase/ui/core/src/**/*.ts",
+              "libs/arphase/ui/core/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/ui/core"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/arphase/ui/core"
+          ],
           "options": {
             "jestConfig": "libs/arphase/ui/core/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
+      "tags": [
+        "domain:arphase",
+        "domain:arphase:ui",
+        "type:ui"
+      ]
     },
     "arphase-ui-gtag": {
       "projectType": "library",
@@ -167,7 +223,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/arphase/ui/gtag"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/arphase/ui/gtag"
+          ],
           "options": {
             "jestConfig": "libs/arphase/ui/gtag/jest.config.ts",
             "passWithNoTests": true
@@ -176,7 +234,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/arphase/ui/gtag/src/**/*.ts", "libs/arphase/ui/gtag/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/arphase/ui/gtag/src/**/*.ts",
+              "libs/arphase/ui/gtag/src/**/*.html"
+            ]
           }
         }
       },
@@ -194,7 +255,9 @@
             "outputPath": "dist/apps/innovatech/api",
             "main": "apps/innovatech/api/src/main.ts",
             "tsConfig": "apps/innovatech/api/tsconfig.app.json",
-            "assets": ["apps/innovatech/api/src/assets"],
+            "assets": [
+              "apps/innovatech/api/src/assets"
+            ],
             "maxWorkers": 1
           },
           "configurations": {
@@ -216,7 +279,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/innovatech/api/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/innovatech/api/**/*.ts"
+            ]
           }
         },
         "test": {
@@ -227,7 +292,11 @@
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "executable:api"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "executable:api"
+      ]
     },
     "innovatech-api-auth-data": {
       "root": "libs/innovatech/api/auth/data",
@@ -237,19 +306,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/auth/data/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/auth/data/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/auth/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/auth/data"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/auth/data/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:data"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:data"
+      ]
     },
     "innovatech-api-auth-feature": {
       "root": "libs/innovatech/api/auth/feature",
@@ -259,19 +336,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/auth/feature/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/auth/feature/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/auth/feature"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/auth/feature"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/auth/feature/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:feature"
+      ]
     },
     "innovatech-api-companies": {
       "root": "libs/innovatech/api/companies",
@@ -281,19 +366,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/companies/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/companies/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/companies"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/companies"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/companies/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:feature"
+      ]
     },
     "innovatech-api-core-data": {
       "root": "libs/innovatech/api/core/data",
@@ -303,19 +396,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/core/data/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/core/data/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/core/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/core/data"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/core/data/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:data"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:data"
+      ]
     },
     "innovatech-api-core-util": {
       "root": "libs/innovatech/api/core/util",
@@ -325,19 +426,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/core/util/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/core/util/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/core/util"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/core/util"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/core/util/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:util"
+      ]
     },
     "innovatech-api-db": {
       "root": "libs/innovatech/api/db",
@@ -346,14 +455,20 @@
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/db/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/db/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/db"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/db"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/db/jest.config.ts",
             "passWithNoTests": true
@@ -370,19 +485,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/domain/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/domain/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/domain"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/domain"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/domain/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:domain-logic"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:domain-logic"
+      ]
     },
     "innovatech-api-groups": {
       "root": "libs/innovatech/api/groups",
@@ -392,19 +515,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/groups/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/groups/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/groups"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/groups"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/groups/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:feature"
+      ]
     },
     "innovatech-api-guarantees": {
       "root": "libs/innovatech/api/guarantees",
@@ -414,19 +545,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/guarantees/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/guarantees/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/guarantees"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/guarantees"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/guarantees/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:feature"
+      ]
     },
     "innovatech-api-localities": {
       "root": "libs/innovatech/api/localities",
@@ -436,19 +575,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/localities/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/localities/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/localities"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/localities"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/localities/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:feature"
+      ]
     },
     "innovatech-api-payment-orders": {
       "root": "libs/innovatech/api/payment-orders",
@@ -458,19 +605,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/payment-orders/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/payment-orders/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/payment-orders"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/payment-orders"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/payment-orders/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:feature"
+      ]
     },
     "innovatech-api-products-feature": {
       "root": "libs/innovatech/api/products/feature",
@@ -480,19 +635,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/products/feature/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/products/feature/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/products/feature"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/products/feature"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/products/feature/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:feature"
+      ]
     },
     "innovatech-api-products-utils": {
       "root": "libs/innovatech/api/products/utils",
@@ -502,19 +665,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/products/utils/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/products/utils/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/products/utils"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/products/utils"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/products/utils/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:util"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:util"
+      ]
     },
     "innovatech-api-revision-requests": {
       "root": "libs/innovatech/api/revision-requests",
@@ -524,19 +695,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/revision-requests/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/revision-requests/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/revision-requests"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/revision-requests"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/revision-requests/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:feature"
+      ]
     },
     "innovatech-api-revisions": {
       "root": "libs/innovatech/api/revisions",
@@ -546,19 +725,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/revisions/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/revisions/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/revisions"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/revisions"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/revisions/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:feature"
+      ]
     },
     "innovatech-api-users": {
       "root": "libs/innovatech/api/users",
@@ -568,19 +755,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/users/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/users/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/users"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/users"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/users/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:feature"
+      ]
     },
     "innovatech-api-vehicles": {
       "root": "libs/innovatech/api/vehicles",
@@ -590,19 +785,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/api/vehicles/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/api/vehicles/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/api/vehicles"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/api/vehicles"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/api/vehicles/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:api", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:api",
+        "type:feature"
+      ]
     },
     "innovatech-app": {
       "projectType": "application",
@@ -637,9 +840,17 @@
                 "inject": false
               }
             ],
-            "allowedCommonJsDependencies": ["clone-deep", "dayjs", "file-saver", "lodash", "quill"],
+            "allowedCommonJsDependencies": [
+              "clone-deep",
+              "dayjs",
+              "file-saver",
+              "lodash",
+              "quill"
+            ],
             "stylePreprocessorOptions": {
-              "includePaths": ["libs/arphase/ui/core/src/styles"]
+              "includePaths": [
+                "libs/arphase/ui/core/src/styles"
+              ]
             }
           },
           "configurations": {
@@ -711,11 +922,17 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/innovatech/app/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/innovatech/app/**/*.ts"
+            ]
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "executable:ui"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "executable:ui"
+      ]
     },
     "innovatech-app-e2e": {
       "root": "apps/innovatech/app-e2e",
@@ -738,12 +955,20 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/innovatech/app-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/innovatech/app-e2e/**/*.{js,ts}"
+            ]
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "executable:ui"],
-      "implicitDependencies": ["innovatech-app"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "executable:ui"
+      ],
+      "implicitDependencies": [
+        "innovatech-app"
+      ]
     },
     "innovatech-domain": {
       "projectType": "library",
@@ -756,11 +981,6 @@
           "options": {
             "tsConfig": "libs/innovatech/common/domain/tsconfig.lib.json",
             "project": "libs/innovatech/common/domain/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/innovatech/common/domain/tsconfig.lib.prod.json"
-            }
           }
         },
         "lint": {
@@ -774,14 +994,19 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/common/domain"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/common/domain"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/common/domain/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "type:domain-logic"]
+      "tags": [
+        "domain:innovatech",
+        "type:domain-logic"
+      ]
     },
     "innovatech-ui-auth-data": {
       "projectType": "library",
@@ -800,14 +1025,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/auth/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/auth/data"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/auth/data/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:data"
+      ]
     },
     "innovatech-ui-auth-feature": {
       "projectType": "library",
@@ -826,14 +1057,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/auth/feature"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/auth/feature"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/auth/feature/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:feature"
+      ]
     },
     "innovatech-ui-companies-data": {
       "projectType": "library",
@@ -852,14 +1089,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/companies/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/companies/data"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/companies/data/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:data"
+      ]
     },
     "innovatech-ui-companies-ui": {
       "projectType": "library",
@@ -878,14 +1121,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/companies/ui"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/companies/ui"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/companies/ui/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:ui"
+      ]
     },
     "innovatech-ui-core-data": {
       "projectType": "library",
@@ -904,14 +1153,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/core/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/core/data"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/core/data/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:data"
+      ]
     },
     "innovatech-ui-core-ui": {
       "projectType": "library",
@@ -922,19 +1177,28 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/ui/core/ui/src/**/*.ts", "libs/innovatech/ui/core/ui/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/innovatech/ui/core/ui/src/**/*.ts",
+              "libs/innovatech/ui/core/ui/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/core/ui"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/core/ui"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/core/ui/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:ui"
+      ]
     },
     "innovatech-ui-core-util": {
       "projectType": "library",
@@ -953,14 +1217,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/core/util"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/core/util"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/core/util/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:util"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:util"
+      ]
     },
     "innovatech-ui-dashboard": {
       "projectType": "library",
@@ -971,7 +1241,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/ui/dashboard/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/ui/dashboard/**/*.ts"
+            ]
           }
         },
         "test": {
@@ -982,7 +1254,11 @@
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:feature"
+      ]
     },
     "innovatech-ui-groups-data": {
       "projectType": "library",
@@ -1001,14 +1277,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/groups/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/groups/data"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/groups/data/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:data"
+      ]
     },
     "innovatech-ui-groups-feature": {
       "projectType": "library",
@@ -1019,7 +1301,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/ui/groups/feature/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/ui/groups/feature/**/*.ts"
+            ]
           }
         },
         "test": {
@@ -1030,7 +1314,11 @@
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:feature"
+      ]
     },
     "innovatech-ui-groups-ui": {
       "projectType": "library",
@@ -1049,14 +1337,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/groups/ui"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/groups/ui"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/groups/ui/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:ui"
+      ]
     },
     "innovatech-ui-guarantees": {
       "projectType": "library",
@@ -1067,7 +1361,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/ui/guarantees/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/ui/guarantees/**/*.ts"
+            ]
           }
         },
         "test": {
@@ -1078,7 +1374,11 @@
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:feature"
+      ]
     },
     "innovatech-ui-permissions-data": {
       "projectType": "library",
@@ -1097,14 +1397,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/permissions/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/permissions/data"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/permissions/data/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:data"
+      ]
     },
     "innovatech-ui-products-data": {
       "projectType": "library",
@@ -1123,14 +1429,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/products/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/products/data"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/products/data/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:data"
+      ]
     },
     "innovatech-ui-products-feature": {
       "projectType": "library",
@@ -1141,7 +1453,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/ui/products/feature/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/ui/products/feature/**/*.ts"
+            ]
           }
         },
         "test": {
@@ -1152,7 +1466,11 @@
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:feature"
+      ]
     },
     "innovatech-ui-products-ui": {
       "projectType": "library",
@@ -1171,14 +1489,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/products/ui"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/products/ui"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/products/ui/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:ui"
+      ]
     },
     "innovatech-ui-revision-requests": {
       "projectType": "library",
@@ -1197,14 +1521,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/revision-requests"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/revision-requests"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/revision-requests/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:feature"
+      ]
     },
     "innovatech-ui-revisions": {
       "projectType": "library",
@@ -1223,14 +1553,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/revisions"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/revisions"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/revisions/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:feature"
+      ]
     },
     "innovatech-ui-spa": {
       "projectType": "library",
@@ -1241,7 +1577,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/ui/spa/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/innovatech/ui/spa/**/*.ts"
+            ]
           }
         },
         "test": {
@@ -1252,7 +1590,11 @@
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:feature"
+      ]
     },
     "innovatech-ui-users-data": {
       "projectType": "library",
@@ -1271,14 +1613,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/users/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/users/data"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/users/data/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:data"
+      ]
     },
     "innovatech-ui-users-feature": {
       "projectType": "library",
@@ -1297,14 +1645,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/users"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/users"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/users/feature/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:feature"
+      ]
     },
     "innovatech-ui-users-ui": {
       "projectType": "library",
@@ -1315,19 +1669,28 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/innovatech/ui/users/ui/src/**/*.ts", "libs/innovatech/ui/users/ui/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/innovatech/ui/users/ui/src/**/*.ts",
+              "libs/innovatech/ui/users/ui/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/users/ui"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/users/ui"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/users/ui/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:ui"
+      ]
     },
     "innovatech-ui-vehicles-data": {
       "projectType": "library",
@@ -1346,14 +1709,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/vehicles/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/vehicles/data"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/vehicles/data/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:data"
+      ]
     },
     "innovatech-ui-vehicles-feature": {
       "projectType": "library",
@@ -1372,14 +1741,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/vehicles/feature"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/vehicles/feature"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/vehicles/feature/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:feature"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:feature"
+      ]
     },
     "innovatech-ui-vehicles-ui": {
       "projectType": "library",
@@ -1398,14 +1773,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/ui/vehicles/ui"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/ui/vehicles/ui"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/ui/vehicles/ui/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+      "tags": [
+        "domain:innovatech",
+        "domain:innovatech:ui",
+        "type:ui"
+      ]
     },
     "innovatech-utils": {
       "projectType": "library",
@@ -1418,11 +1799,6 @@
           "options": {
             "tsConfig": "libs/innovatech/common/utils/tsconfig.lib.json",
             "project": "libs/innovatech/common/utils/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/innovatech/common/utils/tsconfig.lib.prod.json"
-            }
           }
         },
         "lint": {
@@ -1436,14 +1812,19 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/innovatech/common/utils"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/innovatech/common/utils"
+          ],
           "options": {
             "jestConfig": "libs/innovatech/common/utils/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:innovatech", "type:util"]
+      "tags": [
+        "domain:innovatech",
+        "type:util"
+      ]
     },
     "musicr-admin": {
       "projectType": "application",
@@ -1453,15 +1834,23 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/musicr/admin",
             "index": "apps/musicr/admin/src/index.html",
             "main": "apps/musicr/admin/src/main.ts",
             "polyfills": "apps/musicr/admin/src/polyfills.ts",
             "tsConfig": "apps/musicr/admin/tsconfig.app.json",
-            "assets": ["apps/musicr/admin/src/favicon.ico", "apps/musicr/admin/src/assets"],
-            "styles": ["apps/musicr/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"],
+            "assets": [
+              "apps/musicr/admin/src/favicon.ico",
+              "apps/musicr/admin/src/assets"
+            ],
+            "styles": [
+              "apps/musicr/admin/src/styles.less",
+              "libs/arphase/ui/core/src/styles/themes/base.less"
+            ],
             "allowedCommonJsDependencies": [
               "dayjs",
               "dayjs/plugin/customParseFormat",
@@ -1525,19 +1914,28 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/musicr/admin/src/**/*.ts", "apps/musicr/admin/src/**/*.html"]
+            "lintFilePatterns": [
+              "apps/musicr/admin/src/**/*.ts",
+              "apps/musicr/admin/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/musicr/admin"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/musicr/admin"
+          ],
           "options": {
             "jestConfig": "apps/musicr/admin/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "executable:ui"
+      ]
     },
     "musicr-admin-e2e": {
       "root": "apps/musicr/admin-e2e",
@@ -1560,12 +1958,20 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/musicr/admin-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/musicr/admin-e2e/**/*.{js,ts}"
+            ]
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
-      "implicitDependencies": ["musicr-admin"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "executable:ui"
+      ],
+      "implicitDependencies": [
+        "musicr-admin"
+      ]
     },
     "musicr-api": {
       "root": "apps/musicr/api",
@@ -1574,12 +1980,16 @@
       "architect": {
         "build": {
           "builder": "@nrwl/node:webpack",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/musicr/api",
             "main": "apps/musicr/api/src/main.ts",
             "tsConfig": "apps/musicr/api/tsconfig.app.json",
-            "assets": ["apps/musicr/api/src/assets"]
+            "assets": [
+              "apps/musicr/api/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -1600,19 +2010,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/musicr/api/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/musicr/api/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/musicr/api"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/musicr/api"
+          ],
           "options": {
             "jestConfig": "apps/musicr/api/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:api", "executable:api"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:api",
+        "executable:api"
+      ]
     },
     "musicr-api-additional-options": {
       "root": "libs/musicr/api/additional-options",
@@ -1622,19 +2040,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/additional-options/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/musicr/api/additional-options/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/additional-options"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/api/additional-options"
+          ],
           "options": {
             "jestConfig": "libs/musicr/api/additional-options/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:api",
+        "type:feature"
+      ]
     },
     "musicr-api-auth": {
       "root": "libs/musicr/api/auth",
@@ -1644,19 +2070,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/auth/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/musicr/api/auth/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/auth"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/api/auth"
+          ],
           "options": {
             "jestConfig": "libs/musicr/api/auth/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:api",
+        "type:feature"
+      ]
     },
     "musicr-api-categories": {
       "root": "libs/musicr/api/categories",
@@ -1666,19 +2100,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/categories/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/musicr/api/categories/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/categories"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/api/categories"
+          ],
           "options": {
             "jestConfig": "libs/musicr/api/categories/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:api",
+        "type:feature"
+      ]
     },
     "musicr-api-contact": {
       "root": "libs/musicr/api/contact",
@@ -1687,21 +2129,31 @@
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/contact/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/musicr/api/contact/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/contact"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/api/contact"
+          ],
           "options": {
             "jestConfig": "libs/musicr/api/contact/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:api",
+        "type:feature"
+      ]
     },
     "musicr-api-customers": {
       "root": "libs/musicr/api/customers",
@@ -1710,21 +2162,31 @@
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/customers/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/musicr/api/customers/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/customers"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/api/customers"
+          ],
           "options": {
             "jestConfig": "libs/musicr/api/customers/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:api",
+        "type:feature"
+      ]
     },
     "musicr-api-db": {
       "root": "libs/musicr/api/db",
@@ -1733,14 +2195,20 @@
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/db/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/musicr/api/db/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/db"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/api/db"
+          ],
           "options": {
             "jestConfig": "libs/musicr/api/db/jest.config.ts",
             "passWithNoTests": true
@@ -1757,19 +2225,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/domain/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/musicr/api/domain/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/domain"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/api/domain"
+          ],
           "options": {
             "jestConfig": "libs/musicr/api/domain/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:api", "type:domain-logic"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:api",
+        "type:domain-logic"
+      ]
     },
     "musicr-api-orders": {
       "root": "libs/musicr/api/orders",
@@ -1779,19 +2255,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/orders/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/musicr/api/orders/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/orders"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/api/orders"
+          ],
           "options": {
             "jestConfig": "libs/musicr/api/orders/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:api",
+        "type:feature"
+      ]
     },
     "musicr-api-photos": {
       "root": "libs/musicr/api/photos",
@@ -1801,19 +2285,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/photos/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/musicr/api/photos/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/photos"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/api/photos"
+          ],
           "options": {
             "jestConfig": "libs/musicr/api/photos/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:api",
+        "type:feature"
+      ]
     },
     "musicr-api-price-options": {
       "root": "libs/musicr/api/price-options",
@@ -1823,19 +2315,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/price-options/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/musicr/api/price-options/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/price-options"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/api/price-options"
+          ],
           "options": {
             "jestConfig": "libs/musicr/api/price-options/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:api",
+        "type:feature"
+      ]
     },
     "musicr-api-products": {
       "root": "libs/musicr/api/products",
@@ -1845,19 +2345,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/products/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/musicr/api/products/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/products"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/api/products"
+          ],
           "options": {
             "jestConfig": "libs/musicr/api/products/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:api",
+        "type:feature"
+      ]
     },
     "musicr-api-subcategories": {
       "root": "libs/musicr/api/subcategories",
@@ -1867,19 +2375,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/api/subcategories/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/musicr/api/subcategories/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/api/subcategories"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/api/subcategories"
+          ],
           "options": {
             "jestConfig": "libs/musicr/api/subcategories/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:api",
+        "type:feature"
+      ]
     },
     "musicr-domain": {
       "root": "libs/musicr/domain",
@@ -1889,19 +2405,26 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/domain/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/musicr/domain/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/domain"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/domain"
+          ],
           "options": {
             "jestConfig": "libs/musicr/domain/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "type:domain-logic"]
+      "tags": [
+        "domain:musicr",
+        "type:domain-logic"
+      ]
     },
     "musicr-store": {
       "projectType": "application",
@@ -1911,15 +2434,22 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/musicr/browser",
             "index": "apps/musicr/store/src/index.html",
             "main": "apps/musicr/store/src/main.ts",
             "polyfills": "apps/musicr/store/src/polyfills.ts",
             "tsConfig": "apps/musicr/store/tsconfig.app.json",
-            "assets": ["apps/musicr/store/src/favicon.ico", "apps/musicr/store/src/assets"],
-            "styles": ["apps/musicr/store/src/styles.less"],
+            "assets": [
+              "apps/musicr/store/src/favicon.ico",
+              "apps/musicr/store/src/assets"
+            ],
+            "styles": [
+              "apps/musicr/store/src/styles.less"
+            ],
             "allowedCommonJsDependencies": [
               "dayjs",
               "dayjs/plugin/customParseFormat",
@@ -1969,12 +2499,17 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/musicr/store/src/**/*.ts", "apps/musicr/store/src/**/*.html"]
+            "lintFilePatterns": [
+              "apps/musicr/store/src/**/*.ts",
+              "apps/musicr/store/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/musicr/store"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/musicr/store"
+          ],
           "options": {
             "jestConfig": "apps/musicr/store/jest.config.ts",
             "passWithNoTests": true
@@ -2019,6 +2554,11 @@
               "sourceMap": false,
               "optimization": false
             }
+          },
+          "production": {
+            "outputHashing": "media",
+            "sourceMap": false,
+            "optimization": false
           }
         },
         "serve-ssr": {
@@ -2039,16 +2579,24 @@
           "options": {
             "browserTarget": "musicr-store:build:production",
             "serverTarget": "musicr-store:server:production",
-            "routes": ["/"]
+            "routes": [
+              "/"
+            ]
           },
           "configurations": {
             "production": {
-              "routes": ["/"]
+              "routes": [
+                "/"
+              ]
             }
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "executable:ui"
+      ]
     },
     "musicr-store-e2e": {
       "root": "apps/musicr/store-e2e",
@@ -2071,12 +2619,20 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/musicr/store-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/musicr/store-e2e/**/*.{js,ts}"
+            ]
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
-      "implicitDependencies": ["musicr-store"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "executable:ui"
+      ],
+      "implicitDependencies": [
+        "musicr-store"
+      ]
     },
     "musicr-terms-and-conditions": {
       "projectType": "library",
@@ -2086,7 +2642,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/terms-and-conditions"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/terms-and-conditions"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/terms-and-conditions/jest.config.ts",
             "passWithNoTests": true
@@ -2102,7 +2660,11 @@
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:feature"
+      ]
     },
     "musicr-ui-about-us": {
       "projectType": "library",
@@ -2112,7 +2674,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/about-us"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/about-us"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/about-us/jest.config.ts",
             "passWithNoTests": true
@@ -2121,11 +2685,18 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/about-us/src/**/*.ts", "libs/musicr/ui/about-us/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/musicr/ui/about-us/src/**/*.ts",
+              "libs/musicr/ui/about-us/src/**/*.html"
+            ]
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:feature"
+      ]
     },
     "musicr-ui-admin-products": {
       "projectType": "library",
@@ -2135,7 +2706,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/admin-products"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/admin-products"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/admin-products/jest.config.ts",
             "passWithNoTests": true
@@ -2151,7 +2724,11 @@
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:feature"
+      ]
     },
     "musicr-ui-auth-data": {
       "projectType": "library",
@@ -2161,7 +2738,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/auth/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/auth/data"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/auth/data/jest.config.ts",
             "passWithNoTests": true
@@ -2170,11 +2749,18 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/auth/data/src/**/*.ts", "libs/musicr/ui/auth/data/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/musicr/ui/auth/data/src/**/*.ts",
+              "libs/musicr/ui/auth/data/src/**/*.html"
+            ]
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:api", "type:data"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:api",
+        "type:data"
+      ]
     },
     "musicr-ui-auth-feature": {
       "projectType": "library",
@@ -2184,7 +2770,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/auth/feature"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/auth/feature"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/auth/feature/jest.config.ts",
             "passWithNoTests": true
@@ -2193,11 +2781,18 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/auth/feature/src/**/*.ts", "libs/musicr/ui/auth/feature/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/musicr/ui/auth/feature/src/**/*.ts",
+              "libs/musicr/ui/auth/feature/src/**/*.html"
+            ]
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:api",
+        "type:feature"
+      ]
     },
     "musicr-ui-cart-data": {
       "projectType": "library",
@@ -2207,7 +2802,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/cart/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/cart/data"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/cart/data/jest.config.ts",
             "passWithNoTests": true
@@ -2216,11 +2813,18 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/cart/data/src/**/*.ts", "libs/musicr/ui/cart/data/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/musicr/ui/cart/data/src/**/*.ts",
+              "libs/musicr/ui/cart/data/src/**/*.html"
+            ]
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:data"
+      ]
     },
     "musicr-ui-cart-feature": {
       "projectType": "library",
@@ -2231,19 +2835,28 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/cart/feature/src/**/*.ts", "libs/musicr/ui/cart/feature/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/musicr/ui/cart/feature/src/**/*.ts",
+              "libs/musicr/ui/cart/feature/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/cart/feature"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/cart/feature"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/cart/feature/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:feature"
+      ]
     },
     "musicr-ui-categories-data": {
       "projectType": "library",
@@ -2253,7 +2866,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/categories/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/categories/data"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/categories/data/jest.config.ts",
             "passWithNoTests": true
@@ -2269,7 +2884,11 @@
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:data"
+      ]
     },
     "musicr-ui-categories-feature": {
       "projectType": "library",
@@ -2279,7 +2898,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/categories/feature"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/categories/feature"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/categories/feature/jest.config.ts",
             "passWithNoTests": true
@@ -2295,7 +2916,11 @@
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:feature"
+      ]
     },
     "musicr-ui-categories-ui": {
       "projectType": "library",
@@ -2305,7 +2930,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/categories/ui"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/categories/ui"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/categories/ui/jest.config.ts",
             "passWithNoTests": true
@@ -2321,7 +2948,11 @@
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:ui"
+      ]
     },
     "musicr-ui-contact-success": {
       "projectType": "library",
@@ -2331,7 +2962,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/contact-success"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/contact-success"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/contact-success/jest.config.ts",
             "passWithNoTests": true
@@ -2357,7 +2990,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/core"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/core"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/core/jest.config.ts",
             "passWithNoTests": true
@@ -2366,11 +3001,18 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/core/src/**/*.ts", "libs/musicr/ui/core/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/musicr/ui/core/src/**/*.ts",
+              "libs/musicr/ui/core/src/**/*.html"
+            ]
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:ui"
+      ]
     },
     "musicr-ui-frequent-questions": {
       "projectType": "library",
@@ -2380,7 +3022,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/frequent-questions"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/frequent-questions"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/frequent-questions/jest.config.ts",
             "passWithNoTests": true
@@ -2396,7 +3040,11 @@
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:feature"
+      ]
     },
     "musicr-ui-home": {
       "projectType": "library",
@@ -2406,7 +3054,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/home"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/home"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/home/jest.config.ts",
             "passWithNoTests": true
@@ -2415,11 +3065,18 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/home/src/**/*.ts", "libs/musicr/ui/home/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/musicr/ui/home/src/**/*.ts",
+              "libs/musicr/ui/home/src/**/*.html"
+            ]
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:feature"
+      ]
     },
     "musicr-ui-orders": {
       "projectType": "library",
@@ -2429,7 +3086,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/orders"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/orders"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/orders/jest.config.ts",
             "passWithNoTests": true
@@ -2438,11 +3097,18 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/orders/src/**/*.ts", "libs/musicr/ui/orders/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/musicr/ui/orders/src/**/*.ts",
+              "libs/musicr/ui/orders/src/**/*.html"
+            ]
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:feature"
+      ]
     },
     "musicr-ui-products-data": {
       "projectType": "library",
@@ -2452,7 +3118,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/products/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/products/data"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/products/data/jest.config.ts",
             "passWithNoTests": true
@@ -2461,7 +3129,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/products/data/**/*.ts", "libs/musicr/ui/products/data/**/*.html"]
+            "lintFilePatterns": [
+              "libs/musicr/ui/products/data/**/*.ts",
+              "libs/musicr/ui/products/data/**/*.html"
+            ]
           }
         }
       },
@@ -2484,14 +3155,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/products/feature"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/products/feature"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/products/feature/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:feature"
+      ]
     },
     "musicr-ui-products-ui": {
       "projectType": "library",
@@ -2501,7 +3178,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/products/ui"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/products/ui"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/products/ui/jest.config.ts",
             "passWithNoTests": true
@@ -2510,7 +3189,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/products/ui/**/*.ts", "libs/musicr/ui/products/ui/**/*.html"]
+            "lintFilePatterns": [
+              "libs/musicr/ui/products/ui/**/*.ts",
+              "libs/musicr/ui/products/ui/**/*.html"
+            ]
           }
         }
       },
@@ -2524,7 +3206,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/spa"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/spa"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/spa/jest.config.ts",
             "passWithNoTests": true
@@ -2533,11 +3217,18 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/musicr/ui/spa/src/**/*.ts", "libs/musicr/ui/spa/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/musicr/ui/spa/src/**/*.ts",
+              "libs/musicr/ui/spa/src/**/*.html"
+            ]
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:feature"
+      ]
     },
     "musicr-ui-subcategories-data": {
       "projectType": "library",
@@ -2547,7 +3238,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/subcategories/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/subcategories/data"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/subcategories/data/jest.config.ts",
             "passWithNoTests": true
@@ -2563,7 +3256,11 @@
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:data"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:data"
+      ]
     },
     "musicr-ui-subcategories-feature": {
       "projectType": "library",
@@ -2573,7 +3270,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/subcategories/feature"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/subcategories/feature"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/subcategories/feature/jest.config.ts",
             "passWithNoTests": true
@@ -2589,7 +3288,11 @@
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:feature"
+      ]
     },
     "musicr-ui-subcategories-ui": {
       "projectType": "library",
@@ -2599,7 +3302,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/musicr/ui/subcategories/ui"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/musicr/ui/subcategories/ui"
+          ],
           "options": {
             "jestConfig": "libs/musicr/ui/subcategories/ui/jest.config.ts",
             "passWithNoTests": true
@@ -2615,7 +3320,11 @@
           }
         }
       },
-      "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+      "tags": [
+        "domain:musicr",
+        "domain:musicr:ui",
+        "type:ui"
+      ]
     },
     "pam-vic": {
       "projectType": "application",
@@ -2624,15 +3333,22 @@
       "architect": {
         "build": {
           "builder": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/pam-vic",
             "index": "apps/pam-vic/src/index.html",
             "main": "apps/pam-vic/src/main.ts",
             "polyfills": "apps/pam-vic/src/polyfills.ts",
             "tsConfig": "apps/pam-vic/tsconfig.app.json",
-            "assets": ["apps/pam-vic/src/favicon.ico", "apps/pam-vic/src/assets"],
-            "styles": ["apps/pam-vic/src/styles.css"]
+            "assets": [
+              "apps/pam-vic/src/favicon.ico",
+              "apps/pam-vic/src/assets"
+            ],
+            "styles": [
+              "apps/pam-vic/src/styles.css"
+            ]
           },
           "configurations": {
             "production": {
@@ -2673,19 +3389,26 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/pam-vic/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/pam-vic/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/pam-vic"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/pam-vic"
+          ],
           "options": {
             "jestConfig": "apps/pam-vic/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:pam-vic", "executable:ui"]
+      "tags": [
+        "domain:pam-vic",
+        "executable:ui"
+      ]
     },
     "valmira-admin": {
       "projectType": "application",
@@ -2695,15 +3418,23 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/valmira/admin",
             "index": "apps/valmira/admin/src/index.html",
             "main": "apps/valmira/admin/src/main.ts",
             "polyfills": "apps/valmira/admin/src/polyfills.ts",
             "tsConfig": "apps/valmira/admin/tsconfig.app.json",
-            "assets": ["apps/valmira/admin/src/favicon.ico", "apps/valmira/admin/src/assets"],
-            "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
+            "assets": [
+              "apps/valmira/admin/src/favicon.ico",
+              "apps/valmira/admin/src/assets"
+            ],
+            "styles": [
+              "apps/valmira/admin/src/styles.less",
+              "libs/arphase/ui/core/src/styles/themes/base.less"
+            ]
           },
           "configurations": {
             "development": {
@@ -2779,19 +3510,28 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/valmira/admin/src/**/*.ts", "apps/valmira/admin/src/**/*.html"]
+            "lintFilePatterns": [
+              "apps/valmira/admin/src/**/*.ts",
+              "apps/valmira/admin/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/valmira/admin"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/valmira/admin"
+          ],
           "options": {
             "jestConfig": "apps/valmira/admin/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "executable:ui"
+      ]
     },
     "valmira-admin-e2e": {
       "root": "apps/valmira/admin-e2e",
@@ -2814,12 +3554,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/valmira/admin-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/valmira/admin-e2e/**/*.{js,ts}"
+            ]
           }
         }
       },
       "tags": [],
-      "implicitDependencies": ["valmira-admin"]
+      "implicitDependencies": [
+        "valmira-admin"
+      ]
     },
     "valmira-api": {
       "root": "apps/valmira/api",
@@ -2828,12 +3572,16 @@
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/valmira/api",
             "main": "apps/valmira/api/src/main.ts",
             "tsConfig": "apps/valmira/api/tsconfig.app.json",
-            "assets": ["apps/valmira/api/src/assets"]
+            "assets": [
+              "apps/valmira/api/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -2852,19 +3600,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/valmira/api/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/valmira/api/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/valmira/api"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/valmira/api"
+          ],
           "options": {
             "jestConfig": "apps/valmira/api/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "executable:api"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "executable:api"
+      ]
     },
     "valmira-api-additional-products": {
       "root": "libs/valmira/api/additional-products",
@@ -2874,19 +3630,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/api/additional-products/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/valmira/api/additional-products/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/api/additional-products"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/api/additional-products"
+          ],
           "options": {
             "jestConfig": "libs/valmira/api/additional-products/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:api",
+        "type:feature"
+      ]
     },
     "valmira-api-auth": {
       "root": "libs/valmira/api/auth",
@@ -2896,19 +3660,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/api/auth/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/valmira/api/auth/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/api/auth"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/api/auth"
+          ],
           "options": {
             "jestConfig": "libs/valmira/api/auth/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:api",
+        "type:feature"
+      ]
     },
     "valmira-api-customers": {
       "root": "libs/valmira/api/customers",
@@ -2917,21 +3689,31 @@
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/valmira/api/customers/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/valmira/api/customers/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/api/customers"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/api/customers"
+          ],
           "options": {
             "jestConfig": "libs/valmira/api/customers/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:api",
+        "type:feature"
+      ]
     },
     "valmira-api-domain": {
       "root": "libs/valmira/api/domain",
@@ -2941,19 +3723,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/api/domain/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/valmira/api/domain/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/api/domain"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/api/domain"
+          ],
           "options": {
             "jestConfig": "libs/valmira/api/domain/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:api",
+        "type:domain-logic"
+      ]
     },
     "valmira-api-photos": {
       "root": "libs/valmira/api/photos",
@@ -2963,19 +3753,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/api/photos/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/valmira/api/photos/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/api/photos"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/api/photos"
+          ],
           "options": {
             "jestConfig": "libs/valmira/api/photos/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:api",
+        "type:feature"
+      ]
     },
     "valmira-api-places": {
       "root": "libs/valmira/api/places",
@@ -2985,19 +3783,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/api/places/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/valmira/api/places/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/api/places"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/api/places"
+          ],
           "options": {
             "jestConfig": "libs/valmira/api/places/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:api",
+        "type:feature"
+      ]
     },
     "valmira-api-promocodes": {
       "root": "libs/valmira/api/promocodes",
@@ -3007,19 +3813,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/api/promocodes/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/valmira/api/promocodes/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/api/promocodes"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/api/promocodes"
+          ],
           "options": {
             "jestConfig": "libs/valmira/api/promocodes/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:api",
+        "type:feature"
+      ]
     },
     "valmira-api-reservations": {
       "root": "libs/valmira/api/reservations",
@@ -3029,19 +3843,27 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/api/reservations/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/valmira/api/reservations/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/api/reservations"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/api/reservations"
+          ],
           "options": {
             "jestConfig": "libs/valmira/api/reservations/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:api",
+        "type:feature"
+      ]
     },
     "valmira-app": {
       "projectType": "application",
@@ -3051,7 +3873,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/valmira/browser",
             "index": "apps/valmira/app/src/index.html",
@@ -3059,8 +3883,14 @@
             "polyfills": "apps/valmira/app/src/polyfills.ts",
             "tsConfig": "apps/valmira/app/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/valmira/app/src/favicon.ico", "apps/valmira/app/src/assets"],
-            "styles": ["apps/valmira/app/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"]
+            "assets": [
+              "apps/valmira/app/src/favicon.ico",
+              "apps/valmira/app/src/assets"
+            ],
+            "styles": [
+              "apps/valmira/app/src/styles.less",
+              "libs/arphase/ui/core/src/styles/themes/base.less"
+            ]
           },
           "configurations": {
             "development": {
@@ -3109,12 +3939,17 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/valmira/app/src/**/*.ts", "apps/valmira/app/src/**/*.html"]
+            "lintFilePatterns": [
+              "apps/valmira/app/src/**/*.ts",
+              "apps/valmira/app/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/valmira/app"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/valmira/app"
+          ],
           "options": {
             "jestConfig": "apps/valmira/app/jest.config.ts",
             "passWithNoTests": true
@@ -3158,6 +3993,11 @@
               "sourceMap": false,
               "optimization": false
             }
+          },
+          "production": {
+            "outputHashing": "media",
+            "sourceMap": false,
+            "optimization": false
           }
         },
         "serve-ssr": {
@@ -3178,16 +4018,24 @@
           "options": {
             "browserTarget": "valmira-app:build:production",
             "serverTarget": "valmira-app:server:production",
-            "routes": ["/"]
+            "routes": [
+              "/"
+            ]
           },
           "configurations": {
             "production": {
-              "routes": ["/"]
+              "routes": [
+                "/"
+              ]
             }
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "executable:ui"
+      ]
     },
     "valmira-app-e2e": {
       "root": "apps/valmira/app-e2e",
@@ -3210,12 +4058,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/valmira/app-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/valmira/app-e2e/**/*.{js,ts}"
+            ]
           }
         }
       },
       "tags": [],
-      "implicitDependencies": ["valmira-app"]
+      "implicitDependencies": [
+        "valmira-app"
+      ]
     },
     "valmira-domain": {
       "root": "libs/valmira/domain",
@@ -3225,19 +4077,26 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/domain/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/valmira/domain/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/domain"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/domain"
+          ],
           "options": {
             "jestConfig": "libs/valmira/domain/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "type:domain-logic"]
+      "tags": [
+        "domain:valmira",
+        "type:domain-logic"
+      ]
     },
     "valmira-ui-additional-products-data": {
       "projectType": "library",
@@ -3247,7 +4106,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/additional-products/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/additional-products/data"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/additional-products/data/jest.config.ts",
             "passWithNoTests": true
@@ -3263,7 +4124,11 @@
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:data"
+      ]
     },
     "valmira-ui-additional-products-feature": {
       "projectType": "library",
@@ -3282,14 +4147,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/additional-products/feature"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/additional-products/feature"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/additional-products/feature/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:feature"
+      ]
     },
     "valmira-ui-auth-data": {
       "projectType": "library",
@@ -3300,19 +4171,28 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/ui/auth/data/src/**/*.ts", "libs/valmira/ui/auth/data/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/valmira/ui/auth/data/src/**/*.ts",
+              "libs/valmira/ui/auth/data/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/auth/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/auth/data"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/auth/data/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:data"
+      ]
     },
     "valmira-ui-auth-feature": {
       "projectType": "library",
@@ -3331,14 +4211,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/auth/feature"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/auth/feature"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/auth/feature/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:feature"
+      ]
     },
     "valmira-ui-core": {
       "projectType": "library",
@@ -3349,19 +4235,28 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/ui/core/src/**/*.ts", "libs/valmira/ui/core/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/valmira/ui/core/src/**/*.ts",
+              "libs/valmira/ui/core/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/core"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/core"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/core/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:util"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:util"
+      ]
     },
     "valmira-ui-frequent-questions": {
       "projectType": "library",
@@ -3380,14 +4275,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/frequent-questions"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/frequent-questions"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/frequent-questions/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:feature"
+      ]
     },
     "valmira-ui-landing": {
       "projectType": "library",
@@ -3398,19 +4299,28 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/ui/landing/src/**/*.ts", "libs/valmira/ui/landing/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/valmira/ui/landing/src/**/*.ts",
+              "libs/valmira/ui/landing/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/landing"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/landing"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/landing/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:feature"
+      ]
     },
     "valmira-ui-manifest": {
       "projectType": "library",
@@ -3421,19 +4331,28 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/ui/manifest/src/**/*.ts", "libs/valmira/ui/manifest/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/valmira/ui/manifest/src/**/*.ts",
+              "libs/valmira/ui/manifest/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/manifest"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/manifest"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/manifest/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:feature"
+      ]
     },
     "valmira-ui-place-detail": {
       "projectType": "library",
@@ -3443,7 +4362,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/place-detail"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/place-detail"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/place-detail/jest.config.ts",
             "passWithNoTests": true
@@ -3459,7 +4380,11 @@
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:feature"
+      ]
     },
     "valmira-ui-place-search": {
       "projectType": "library",
@@ -3469,7 +4394,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/place-search"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/place-search"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/place-search/jest.config.ts",
             "passWithNoTests": true
@@ -3485,7 +4412,11 @@
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:feature"
+      ]
     },
     "valmira-ui-places-data": {
       "projectType": "library",
@@ -3495,7 +4426,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/places/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/places/data"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/places/data/jest.config.ts",
             "passWithNoTests": true
@@ -3504,11 +4437,18 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/ui/places/data/src/**/*.ts", "libs/valmira/ui/places/data/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/valmira/ui/places/data/src/**/*.ts",
+              "libs/valmira/ui/places/data/src/**/*.html"
+            ]
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:data"
+      ]
     },
     "valmira-ui-places-feature": {
       "projectType": "library",
@@ -3527,14 +4467,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/places/feature"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/places/feature"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/places/feature/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:feature"
+      ]
     },
     "valmira-ui-promocodes-data": {
       "projectType": "library",
@@ -3544,7 +4490,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/promocodes/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/promocodes/data"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/promocodes/data/jest.config.ts",
             "passWithNoTests": true
@@ -3560,7 +4508,11 @@
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:data"
+      ]
     },
     "valmira-ui-promocodes-feature": {
       "projectType": "library",
@@ -3579,14 +4531,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/promocodes/feature"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/promocodes/feature"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/promocodes/feature/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:feature"
+      ]
     },
     "valmira-ui-reservation-detail": {
       "projectType": "library",
@@ -3596,7 +4554,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/reservation-detail"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/reservation-detail"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/reservation-detail/jest.config.ts",
             "passWithNoTests": true
@@ -3612,7 +4572,11 @@
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:feature"
+      ]
     },
     "valmira-ui-reservation-wizard": {
       "projectType": "library",
@@ -3622,7 +4586,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/reservation-wizard"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/reservation-wizard"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/reservation-wizard/jest.config.ts",
             "passWithNoTests": true
@@ -3638,7 +4604,11 @@
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:feature"
+      ]
     },
     "valmira-ui-reservations-data": {
       "projectType": "library",
@@ -3648,7 +4618,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/reservations/data"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/reservations/data"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/reservations/data/jest.config.ts",
             "passWithNoTests": true
@@ -3664,7 +4636,11 @@
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:data"
+      ]
     },
     "valmira-ui-reservations-feature": {
       "projectType": "library",
@@ -3683,14 +4659,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/reservations/feature"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/reservations/feature"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/reservations/feature/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:feature"
+      ]
     },
     "valmira-ui-reservations-ui": {
       "projectType": "library",
@@ -3700,7 +4682,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/reservations/ui"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/reservations/ui"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/reservations/ui/jest.config.ts",
             "passWithNoTests": true
@@ -3716,7 +4700,11 @@
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:ui"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:ui"
+      ]
     },
     "valmira-ui-spa": {
       "projectType": "library",
@@ -3727,19 +4715,28 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/valmira/ui/spa/src/**/*.ts", "libs/valmira/ui/spa/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/valmira/ui/spa/src/**/*.ts",
+              "libs/valmira/ui/spa/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/spa"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/spa"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/spa/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:feature"
+      ]
     },
     "valmira-ui-terms-and-conditions": {
       "projectType": "library",
@@ -3758,14 +4755,20 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/valmira/ui/terms-and-conditions"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/valmira/ui/terms-and-conditions"
+          ],
           "options": {
             "jestConfig": "libs/valmira/ui/terms-and-conditions/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+      "tags": [
+        "domain:valmira",
+        "domain:valmira:ui",
+        "type:feature"
+      ]
     }
   }
 }
