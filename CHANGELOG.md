@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/Arphase/nx-arphase/compare/v4.1.6...v4.2.0) (2022-12-12)
+
+
+### Features
+
+* **musicr/app:** [#292](https://github.com/Arphase/nx-arphase/issues/292) add photo to category and display categories in home ([73db163](https://github.com/Arphase/nx-arphase/commit/73db1635b884d9e4dbf67c7acbdb9cd8a5d09fbc))
+* **musicr/orders:** [#238](https://github.com/Arphase/nx-arphase/issues/238) add status to order model ([938dfb0](https://github.com/Arphase/nx-arphase/commit/938dfb06f8e22375e2fe4cdaf34af31c83bbb5be))
+* **musicr/orders:** [#289](https://github.com/Arphase/nx-arphase/issues/289) remove social event name property ([920b4cb](https://github.com/Arphase/nx-arphase/commit/920b4cb42f0e9d9893efd1e87c3c58378c8a3c2f))
+* **musicr/orders:** [#290](https://github.com/Arphase/nx-arphase/issues/290) create orders from admin portal ([5380085](https://github.com/Arphase/nx-arphase/commit/5380085ef5363d4e4c5e87c7c0cea60d225fe31a))
+* **musicr/orders:** [#291](https://github.com/Arphase/nx-arphase/issues/291) update orders from admin portal ([4cdd2f1](https://github.com/Arphase/nx-arphase/commit/4cdd2f114312f5f6d61cde7a627ba98441326694))
+* **musicr/products:** [#240](https://github.com/Arphase/nx-arphase/issues/240) add position property on products and order them on the page ([95975fa](https://github.com/Arphase/nx-arphase/commit/95975fa9197a879ad994484542750d089cc3d65e))
+* **musicr/subcategories:** [#239](https://github.com/Arphase/nx-arphase/issues/239) add position property to subcategories for manual sort on menu ([1a5274a](https://github.com/Arphase/nx-arphase/commit/1a5274ae5059934badd3c0e3f02f37ee22e9e752))
+
 ### [4.1.6](https://github.com/Arphase/nx-arphase/compare/v4.1.5...v4.1.6) (2022-11-15)
 
 
