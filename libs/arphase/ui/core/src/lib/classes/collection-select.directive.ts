@@ -12,7 +12,7 @@ import { ApsCollectionService } from '../services';
   selector: '[apsCollectionSelect]',
 })
 export class ApsCollectionSelectDirective<T> implements AfterContentInit {
-  sortValue: unknown;
+  sortValue: { key: string; value: string }[];
 
   constructor(
     protected host: NzSelectComponent,
@@ -52,7 +52,7 @@ export class ApsCollectionSelectDirective<T> implements AfterContentInit {
     this.collectionService.queryParams$.pipe(take(1)).subscribe(queryParams =>
       this.collectionService.getWithQuery({
         ...queryParams,
-        sort: this.sortValue as string[],
+        sort: this.sortValue as unknown as string[],
         text,
         resetList: String(true),
         pageIndex: String(0),
@@ -67,7 +67,7 @@ export class ApsCollectionSelectDirective<T> implements AfterContentInit {
         if (info && !info.last && !loading) {
           this.collectionService.getWithQuery({
             ...queryParams,
-            sort: this.sortValue as string[],
+            sort: this.sortValue as unknown as string[],
             pageIndex: String(info.pageIndex + 1),
             resetList: String(false),
           });

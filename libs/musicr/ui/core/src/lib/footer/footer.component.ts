@@ -1,10 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { UntypedFormBuilder } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
+
+interface ContactPayload {
+  name: string;
+  phone: string;
+  email: string;
+  message: string;
+}
 
 @Component({
   selector: 'mrl-footer',
@@ -12,19 +19,19 @@ import { finalize, take } from 'rxjs/operators';
   styleUrls: ['./footer.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent extends ApsFormComponent {
+export class FooterComponent extends ApsFormComponent<ContactPayload> {
   private loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
   year = new Date().getFullYear();
+  form = new FormGroup({
+    name: new FormControl(null, ApsValidators.required),
+    phone: new FormControl(null, ApsValidators.required),
+    email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
+    message: new FormControl(null, ApsValidators.required),
+  });
 
-  constructor(private fb: UntypedFormBuilder, private http: HttpClient, private messageService: NzMessageService) {
+  constructor(private http: HttpClient, private messageService: NzMessageService) {
     super();
-    this.form = this.fb.group({
-      name: [null, ApsValidators.required],
-      phone: [null, ApsValidators.required],
-      email: [null, [ApsValidators.required, ApsValidators.email]],
-      message: [null, ApsValidators.required],
-    });
   }
 
   submit(): void {

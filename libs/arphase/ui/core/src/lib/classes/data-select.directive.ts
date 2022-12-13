@@ -26,7 +26,7 @@ export class DataSelectDirective<T> implements AfterContentInit {
   @Input() queryParams: QueryParams;
   @Input() labelField: string;
   @Input() valueField: string;
-  sortValue: [];
+  sortValue: { key: string; value: string }[];
   entitiesSubject = new BehaviorSubject<NzSelectOptionInterface[]>([]);
   entities$ = this.entitiesSubject.asObservable();
   infoSubject = new BehaviorSubject<ApsCollectionResponseInfo>(null);
@@ -87,7 +87,7 @@ export class DataSelectDirective<T> implements AfterContentInit {
     this.host.nzLoading = true;
     this.loading = true;
     this.cdr.detectChanges();
-    return this.dataService.getWithQuery({ ...queryParams, sort: this.sortValue }).pipe(
+    return this.dataService.getWithQuery({ ...queryParams, sort: this.sortValue as unknown as string[] }).pipe(
       finalize(() => {
         this.loading = false;
         this.host.nzLoading = false;
