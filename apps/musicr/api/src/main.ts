@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import * as Sentry from '@sentry/node';
 import { config } from 'aws-sdk';
 import * as bodyParser from 'body-parser';
-import * as compression from 'compression';
+import compression from 'compression';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
