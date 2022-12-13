@@ -52,7 +52,7 @@
                        [nzPreview]="handlePreview"
                        [nzRemove]="onRemovePhoto"
                        [nzLimit]="1"
-                       [nzDisabled]="fileList.length">
+                       [nzDisabled]="!!fileList.length">
               <div>
                 <i nz-icon
                    nzType="plus"></i>
