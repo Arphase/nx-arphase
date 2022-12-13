@@ -9,11 +9,11 @@ export class CreateReservationDto {
   id: number;
 
   @IsDate()
-  @Transform(({ obj }) => dayjs(obj['startDate']).set('hour', 15).set('minute', 0).set('second', 0).toDate())
+  @Transform((_, obj) => dayjs(obj['startDate']).set('hour', 15).set('minute', 0).set('second', 0).toDate())
   startDate: Date;
 
   @IsDate()
-  @Transform(({ obj }) => dayjs(obj['endDate']).set('hour', 11).set('minute', 0).set('second', 0).toDate())
+  @Transform((_, obj) => dayjs(obj['endDate']).set('hour', 11).set('minute', 0).set('second', 0).toDate())
   endDate: Date;
 
   @IsNumber()

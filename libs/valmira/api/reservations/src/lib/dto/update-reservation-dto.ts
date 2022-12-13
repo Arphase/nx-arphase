@@ -10,7 +10,7 @@ export class UpdateReservationDto extends PartialType(CreateReservationDto) {
   id: number;
 
   @IsOptional()
-  @Transform(({ obj }) => ReservationStatus[obj['status']])
+  @Transform(((_, obj) => ReservationStatus[obj['status']])
   @IsEnum(ReservationStatus)
   status: ReservationStatus;
 
