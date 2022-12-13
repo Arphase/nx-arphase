@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.3](https://github.com/Arphase/nx-arphase/compare/v4.2.2...v4.2.3) (2022-12-13)
+
+
+### Features
+
+* **musicr/store:** increase lighthouse score ([098e9f2](https://github.com/Arphase/nx-arphase/commit/098e9f2f7d54ed6f7cc94ea26e70c3975a8e73b6))
+
 ### [4.2.2](https://github.com/Arphase/nx-arphase/compare/v4.2.1...v4.2.2) (2022-12-13)
 
 ### [4.2.1](https://github.com/Arphase/nx-arphase/compare/v4.2.0...v4.2.1) (2022-12-13)
