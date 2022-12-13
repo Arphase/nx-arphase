@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.4](https://github.com/Arphase/nx-arphase/compare/v4.2.3...v4.2.4) (2022-12-13)
+
+
+### Bug Fixes
+
+* **musicr/api:** use compression correctly ([edebd43](https://github.com/Arphase/nx-arphase/commit/edebd435747c3b5b4c3f214b5125c5fb3eac8031))
+
 ### [4.2.3](https://github.com/Arphase/nx-arphase/compare/v4.2.2...v4.2.3) (2022-12-13)
 
 
