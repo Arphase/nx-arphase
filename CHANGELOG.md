@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.1](https://github.com/Arphase/nx-arphase/compare/v4.2.0...v4.2.1) (2022-12-13)
+
+
+### Bug Fixes
+
+* **musicr/categories:** allow user to upload photos ([48407e8](https://github.com/Arphase/nx-arphase/commit/48407e8ef19a2678493658cbb075ac2c9a031147))
+
 ## [4.2.0](https://github.com/Arphase/nx-arphase/compare/v4.1.6...v4.2.0) (2022-12-12)
 
 
