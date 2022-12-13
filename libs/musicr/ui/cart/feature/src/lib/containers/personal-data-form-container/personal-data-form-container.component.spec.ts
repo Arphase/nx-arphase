@@ -1,5 +1,4 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { LoadingService } from '@arphase/ui/core';
 import { CartService } from '@musicr/ui/cart/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
@@ -10,7 +9,7 @@ describe('PersonalDataFormContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: PersonalDataFormContainerComponent,
     imports: [RouterTestingModule],
-    mocks: [LoadingService, CartService],
+    mocks: [CartService],
     shallow: true,
   });
 

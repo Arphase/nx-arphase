@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } f
 import { FormControl, FormGroup } from '@angular/forms';
 import { Address } from '@arphase/common';
 import { createAddressForm } from '@arphase/ui/addresses';
-import { ApsFormComponent, ApsValidators, ControlsOf } from '@arphase/ui/core';
+import { ApsFormComponent, ApsValidators, ControlsOf } from '@arphase/ui/forms';
 import { eventPlaceOptions, OrderTypes, SocialEvent } from '@musicr/domain';
 
 export function createSocialEventForm(orderType: OrderTypes): FormGroup {

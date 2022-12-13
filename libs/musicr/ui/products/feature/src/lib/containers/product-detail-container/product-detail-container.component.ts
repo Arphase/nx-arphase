@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { filterNil } from '@arphase/ui/core';
 import { OrderProduct } from '@musicr/domain';
 import { CartService } from '@musicr/ui/cart/data';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { filter } from 'rxjs';
 
 import { ProductDetailService } from '../../services/product-detail.service';
 
@@ -29,7 +29,10 @@ export class ProductDetailContainerComponent implements OnInit {
 
   ngOnInit() {
     this.route.params
-      .pipe(untilDestroyed(this), filterNil())
+      .pipe(
+        filter(params => !!params),
+        untilDestroyed(this)
+      )
       .subscribe(({ id }) => this.productDetailService.getProduct(id));
   }
 

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ApsDataService } from '@arphase/ui/data';
 import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { of } from 'rxjs';
 
-import { ApsDataService } from '../services';
 import { DataSelectDirective } from './data-select.directive';
 
 describe('DataSelectDirective', () => {

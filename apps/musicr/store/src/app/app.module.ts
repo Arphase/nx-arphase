@@ -1,27 +1,13 @@
-import { registerLocaleData } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import es from '@angular/common/locales/es';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoadingInterceptorService } from '@arphase/ui/core';
 import { GtagModule } from '@arphase/ui/gtag';
-import {
-  FooterModule,
-  HttpProxyService,
-  MenuModule,
-  MUSIC_REVOLUTION_CONFIGURATION,
-  MusicRevolutionConfiguration,
-} from '@musicr/ui/core';
-import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
-import { NzMessageModule } from 'ng-zorro-antd/message';
-import { NgxMaskModule } from 'ngx-mask';
+import { HttpProxyService, MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-registerLocaleData(es);
 
 const MUSIC_REVOLUTION_CONFIGURATION_VALUE: MusicRevolutionConfiguration = {
   apiUrl: environment.apiUrl,
@@ -34,18 +20,12 @@ const MUSIC_REVOLUTION_CONFIGURATION_VALUE: MusicRevolutionConfiguration = {
     HttpClientModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
-    NgxMaskModule.forRoot(),
-    MenuModule,
-    FooterModule,
     BrowserAnimationsModule,
-    NzMessageModule,
     GtagModule.init({ targetId: 'G-MML7RZ5PG4', production: environment.production, moreIds: ['AW-697727149'] }),
   ],
   providers: [
-    { provide: NZ_I18N, useValue: es_ES },
     { provide: MUSIC_REVOLUTION_CONFIGURATION, useValue: MUSIC_REVOLUTION_CONFIGURATION_VALUE },
     { provide: HTTP_INTERCEPTORS, useClass: HttpProxyService, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi: true },
   ],
   bootstrap: [AppComponent],
 })

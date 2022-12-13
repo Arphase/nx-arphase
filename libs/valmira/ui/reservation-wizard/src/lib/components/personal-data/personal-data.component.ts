@@ -9,7 +9,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { ApsFormComponent } from '@arphase/ui/core';
+import { ApsFormComponent } from '@arphase/ui/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Customer, Reservation } from '@valmira/domain';
 import { debounceTime } from 'rxjs/operators';

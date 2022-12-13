@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { filterNil } from '@arphase/ui/core';
+import { filterNil } from '@arphase/ui/utils';
 import { GuaranteeStatus } from '@innovatech/common/domain';
 import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { ApsFormComponent } from '@arphase/ui/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DeepPartial } from '@arphase/common';
+import { ApsFormComponent, ControlsOf } from '@arphase/ui/forms';
 import { Promocode, Reservation } from '@valmira/domain';
 
 @Component({
@@ -9,24 +10,25 @@ import { Promocode, Reservation } from '@valmira/domain';
   styleUrls: ['./reservation-wizard.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ReservationWizardComponent extends ApsFormComponent implements OnChanges {
-  @Input() item: Reservation;
+export class ReservationWizardComponent extends ApsFormComponent<DeepPartial<Reservation>> implements OnChanges {
   @Input() promocodeNotFound: boolean;
   @Input() isInConfirmation: boolean;
   @Input() disablePaymentMethod: boolean;
   @Input() disableConfirmation: boolean;
 
-  form = new UntypedFormGroup({
-    promocode: new UntypedFormControl(null, Validators.required),
-  });
+  form = new FormGroup({
+    promocode: new FormGroup({
+      name: new FormControl<string>(null, Validators.required),
+    }),
+  }) as FormGroup<ControlsOf<DeepPartial<Reservation>>>;
 
-  get promocode(): Promocode {
+  get promocode(): DeepPartial<Promocode> {
     return this.item?.promocode;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.item && this.promocode?.id) {
-      this.form.get('promocode').patchValue(this.promocode.name);
+    if (changes.item && this.item?.promocode?.id) {
+      this.form.get('promocode.name').patchValue(this.promocode.name);
     }
   }
 }

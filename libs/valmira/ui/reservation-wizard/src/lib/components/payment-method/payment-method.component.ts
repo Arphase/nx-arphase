@@ -8,7 +8,6 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { ApsFormComponent, ThemeService } from '@arphase/ui/core';
 import { StripeCardElementOptions, StripeCardNumberElement, StripeElementsOptions } from '@stripe/stripe-js';
 import { StripeCardNumberComponent } from 'ngx-stripe';
 
@@ -18,7 +17,7 @@ import { StripeCardNumberComponent } from 'ngx-stripe';
   styleUrls: ['./payment-method.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PaymentMethodComponent extends ApsFormComponent {
+export class PaymentMethodComponent {
   @ViewChild(StripeCardNumberComponent) card: StripeCardNumberComponent;
   @Input() errorMessage: string;
   cardOptions: StripeCardElementOptions = {
@@ -53,8 +52,7 @@ export class PaymentMethodComponent extends ApsFormComponent {
 
   @Output() payReservation = new EventEmitter<StripeCardNumberElement>();
 
-  constructor(private cdr: ChangeDetectorRef, private media: MediaMatcher, private themeService: ThemeService) {
-    super();
+  constructor(private cdr: ChangeDetectorRef, private media: MediaMatcher) {
     this.mobileQuery = this.media.matchMedia('(max-width: 769px)');
     this._mobileQueryListener = () => this.cdr.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

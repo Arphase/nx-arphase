@@ -8,9 +8,8 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DeepPartial } from '@arphase/common';
-import { ApsValidators } from '@arphase/ui/core';
 import { AdditionalOption, OrderProduct, Photo, Product } from '@musicr/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
@@ -32,7 +31,7 @@ export class ProductDetailComponent implements OnChanges {
   @Input() loading: boolean;
   total: number;
   form = new FormGroup({
-    priceOptionId: new FormControl<number>(null, ApsValidators.required),
+    priceOptionId: new FormControl<number>(null, Validators.required),
     additionalOptions: new FormArray([]),
   });
   productPrice = 0;

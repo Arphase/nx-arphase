@@ -23,14 +23,16 @@
          [nzXs]="{ span: 8, order: 4, offset: 8 }"
          [nzMd]="{ span: 4, order: 3, offset: 0 }">
       <button nz-button
+              class="h-3 py-0"
               nzType="text"
               (click)="decreaseItemAmount.emit(i)">
         <i nz-icon
            nzType="minus"
            nzTheme="outline"></i>
       </button>
-      <span class="mt-2">{{ item.amount }}</span>
+      <span class="mt-1">{{ item.amount }}</span>
       <button nz-button
+              class="h-3 py-0"
               nzType="text"
               (click)="increaseItemAmount.emit(i)">
         <i nz-icon
@@ -42,7 +44,7 @@
          class="total flex pt-3"
          [nzXs]="{ span: 8, order: 5 }"
          [nzMd]="{ span: 4, order: 4 }">
-      <span class="mt-2"> {{ item.price * item.amount | currency }}MXN </span>
+      <span class="mt-1"> {{ item.price * item.amount | currency }}MXN </span>
     </div>
     <div nz-col
          class="pt-3"
@@ -50,6 +52,7 @@
          [nzXs]="{ order: 3 }"
          [nzMd]="{ order: 5 }">
       <button nz-button
+              class="h-3 py-0"
               nzType="text"
               (click)="removeItem.emit(i)">
         <i nz-icon

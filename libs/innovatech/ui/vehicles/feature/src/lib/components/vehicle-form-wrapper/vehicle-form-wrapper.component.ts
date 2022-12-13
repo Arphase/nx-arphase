@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { UserRoles, Vehicle } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
-import { ApsFormComponent } from '@arphase/ui/core';
+import { ApsFormComponent } from '@arphase/ui/forms';
 import { QueryParams } from '@ngrx/data';
 
 @Component({

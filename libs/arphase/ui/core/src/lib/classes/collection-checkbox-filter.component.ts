@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ApsCollectionService } from '@arphase/ui/data';
 import { QueryParams } from '@ngrx/data';
-
-import { ApsCollectionService } from '../services';
 
 @Component({
   template: '',

@@ -8,9 +8,9 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { ApsValidators } from '@arphase/ui/core';
+import { ApsValidators } from '@arphase/ui/forms';
 import { Vehicle, VEHICLE_VIN_LENGTH } from '@innovatech/common/domain';
-import { ApsFormComponent } from '@arphase/ui/core';
+import { ApsFormComponent } from '@arphase/ui/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { QueryParams } from '@ngrx/data';
 import { omit } from 'lodash';

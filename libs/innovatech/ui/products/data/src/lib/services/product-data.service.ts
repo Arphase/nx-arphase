@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApsDataService, saveFile } from '@arphase/ui/core';
+import { ApsDataService } from '@arphase/ui/data';
+import { saveFile } from '@arphase/ui/utils';
 import { Product } from '@innovatech/common/domain';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Observable } from 'rxjs';

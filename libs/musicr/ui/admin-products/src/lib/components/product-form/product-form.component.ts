@@ -8,7 +8,9 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { ApsFormComponent, ApsValidators, filterNil, getBase64, setFormArrayValue } from '@arphase/ui/core';
+import { filterNil } from '@arphase/ui/utils';
+import { ApsFormComponent, ApsValidators, setFormArrayValue } from '@arphase/ui/forms';
+import { getBase64 } from '@arphase/ui/utils';
 import { Product } from '@musicr/domain';
 import { MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';

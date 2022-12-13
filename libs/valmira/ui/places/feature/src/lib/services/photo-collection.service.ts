@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApsCollectionService } from '@arphase/ui/core';
+import { ApsCollectionService } from '@arphase/ui/data';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { Photo } from '@valmira/domain';
 

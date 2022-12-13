@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
-import { ControlsOf, mapToSelectOptionsSync, setFormArrayValue } from '@arphase/ui/core';
+import { ControlsOf, setFormArrayValue } from '@arphase/ui/forms';
+import { mapToSelectOptionsSync } from '@arphase/ui/utils';
 import { Customer, Order, OrderProduct, OrderProductAdditionalOption, Product } from '@musicr/domain';
 import { ProductDataService } from '@musicr/ui/products/data';
 import { BehaviorSubject, take } from 'rxjs';

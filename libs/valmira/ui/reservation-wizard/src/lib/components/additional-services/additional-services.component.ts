@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { ApsFormComponent } from '@arphase/ui/core';
+import { ApsFormComponent } from '@arphase/ui/forms';
 import { AdditionalProduct, Reservation, ReservationAdditionalProduct } from '@valmira/domain';
 import { keyBy } from 'lodash';
 

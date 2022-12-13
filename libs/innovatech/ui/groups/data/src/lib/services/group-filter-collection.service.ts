@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  ApsCollectionService,
-  filterNilArray,
-  mapToSelectOptions,
-  sortSelectOptionsAlphabetical,
-} from '@arphase/ui/core';
+import { ApsCollectionService } from '@arphase/ui/data';
+import { filterNilArray, mapToSelectOptions, sortSelectOptionsAlphabetical } from '@arphase/ui/utils';
 import { Group } from '@innovatech/common/domain';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 

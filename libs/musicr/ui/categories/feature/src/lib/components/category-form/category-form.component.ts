@@ -10,7 +10,8 @@ import {
 } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DeepPartial, moveItemInArray } from '@arphase/common';
-import { ApsFormComponent, ApsValidators, getBase64 } from '@arphase/ui/core';
+import { ApsFormComponent, ApsValidators } from '@arphase/ui/forms';
+import { getBase64 } from '@arphase/ui/utils';
 import { Category, Subcategory } from '@musicr/domain';
 import { MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
 import { NzMessageService } from 'ng-zorro-antd/message';

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import {
   ApsAdditionalEntityCollectionReducerMethodsFactory,
   ApsAdditionalPropertyPersistenceResultHandler,
-} from '@arphase/ui/core';
+} from '@arphase/ui/data';
 import { AuthEffects, AuthState, fromAuth, TokenInterceptorService } from '@musicr/ui/auth/data';
 import {
   entityConfig,

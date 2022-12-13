@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
-import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
+import { ApsFormComponent, ApsValidators } from '@arphase/ui/forms';
 
 import { SignInPayload } from '../../models/sign-in-payload';
 

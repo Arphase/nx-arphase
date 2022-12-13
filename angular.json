@@ -156,6 +156,54 @@
       },
       "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
     },
+    "arphase-ui-data": {
+      "projectType": "library",
+      "root": "libs/arphase/ui/data",
+      "sourceRoot": "libs/arphase/ui/data/src",
+      "prefix": "ivt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+          "options": {
+            "jestConfig": "libs/arphase/ui/data/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/arphase/ui/data/**/*.ts", "libs/arphase/ui/data/**/*.html"]
+          }
+        }
+      },
+      "tags": ["domain:arphase", "domain:arphase:ui", "type:data"]
+    },
+    "arphase-ui-forms": {
+      "projectType": "library",
+      "root": "libs/arphase/ui/forms",
+      "sourceRoot": "libs/arphase/ui/forms/src",
+      "prefix": "ivt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+          "options": {
+            "jestConfig": "libs/arphase/ui/forms/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/arphase/ui/forms/**/*.ts", "libs/arphase/ui/forms/**/*.html"]
+          }
+        }
+      },
+      "tags": ["domain:arphase", "domain:arphase:ui", "type:ui"]
+    },
     "arphase-ui-gtag": {
       "projectType": "library",
       "root": "libs/arphase/ui/gtag",
@@ -174,6 +222,30 @@
           "options": {
             "jestConfig": "libs/arphase/ui/gtag/jest.config.ts",
             "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["domain:arphase", "domain:arphase:ui", "type:util"]
+    },
+    "arphase-ui-utils": {
+      "projectType": "library",
+      "root": "libs/arphase/ui/utils",
+      "sourceRoot": "libs/arphase/ui/utils/src",
+      "prefix": "ivt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+          "options": {
+            "jestConfig": "libs/arphase/ui/utils/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/arphase/ui/utils/**/*.ts", "libs/arphase/ui/utils/**/*.html"]
           }
         }
       },
@@ -2440,6 +2512,30 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/musicr/ui/spa/src/**/*.ts", "libs/musicr/ui/spa/src/**/*.html"]
+          }
+        }
+      },
+      "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+    },
+    "musicr-ui-store-wrapper": {
+      "projectType": "library",
+      "root": "libs/musicr/ui/store-wrapper",
+      "sourceRoot": "libs/musicr/ui/store-wrapper/src",
+      "prefix": "ivt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+          "options": {
+            "jestConfig": "libs/musicr/ui/store-wrapper/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/musicr/ui/store-wrapper/**/*.ts", "libs/musicr/ui/store-wrapper/**/*.html"]
           }
         }
       },

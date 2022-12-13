@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { filterNilArray, mapToSelectOptions } from '@arphase/ui/core';
 import { Product } from '@musicr/domain';
 import { BehaviorSubject } from 'rxjs';
-import { finalize, map, take } from 'rxjs/operators';
+import { filter, finalize, map, take } from 'rxjs/operators';
 
 @Injectable()
 export class ProductDetailService {
@@ -11,13 +10,14 @@ export class ProductDetailService {
   product$ = this.productSubject.asObservable();
   priceOptions$ = this.product$.pipe(
     map(product => product?.priceOptions),
-    filterNilArray(),
-    map(options => options.sort((a, b) => a.price - b.price)),
-    mapToSelectOptions(priceOption => ({ label: priceOption.name, value: priceOption.id }))
+    filter(value => !!value),
+    map(options =>
+      options.sort((a, b) => a.price - b.price).map(priceOption => ({ label: priceOption.name, value: priceOption.id }))
+    )
   );
   additionalOptions$ = this.product$.pipe(
     map(product => product?.additionalOptions),
-    filterNilArray(),
+    filter(value => !!value),
     map(options => options.sort((a, b) => a.price - b.price))
   );
   loadingSubject = new BehaviorSubject<boolean>(false);

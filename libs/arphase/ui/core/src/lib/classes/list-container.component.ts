@@ -1,5 +1,7 @@
 import { Component, Optional } from '@angular/core';
 import { ApsCollectionResponseInfo } from '@arphase/common';
+import { ApsCollectionService, ApsDataService, ApsEntityCollection, buildQueryParams } from '@arphase/ui/data';
+import { filterNil } from '@arphase/ui/utils';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { EntityOp, ofEntityOp, QueryParams } from '@ngrx/data';
 import { select } from '@ngrx/store';
@@ -7,12 +9,6 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
-
-import { buildQueryParams } from '../entity-config/build-query-params';
-import { ApsEntityCollection } from '../entity-config/entity-collection-reducer-methods';
-import { filterNil } from '../operators/filter-nil';
-import { ApsCollectionService } from '../services/collection.service';
-import { ApsDataService } from '../services/data.service';
 
 @UntilDestroy()
 @Component({

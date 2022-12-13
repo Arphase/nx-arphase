@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
-import { filterExisting, findFormArrayIndex } from '@arphase/ui/core';
+import { findFormArrayIndex } from '@arphase/ui/forms';
+import { filterExisting } from '@arphase/ui/utils';
 import { Company } from '@innovatech/common/domain';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { take } from 'rxjs/operators';

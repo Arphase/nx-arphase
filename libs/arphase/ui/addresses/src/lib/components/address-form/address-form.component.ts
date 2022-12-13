@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Address } from '@arphase/common';
-import { ApsFormComponent } from '@arphase/ui/core';
+import { ApsFormComponent } from '@arphase/ui/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { filter, startWith, switchMap } from 'rxjs/operators';

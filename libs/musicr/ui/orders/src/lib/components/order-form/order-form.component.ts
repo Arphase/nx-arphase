@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { Address } from '@arphase/common';
-import { ApsFormComponent, ControlsOf } from '@arphase/ui/core';
+import { ApsFormComponent, ControlsOf } from '@arphase/ui/forms';
 import {
   Customer,
   eventPlaceOptions,

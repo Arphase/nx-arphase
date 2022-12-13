@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
+import { ApsFormComponent, ApsValidators } from '@arphase/ui/forms';
 import { Promocode } from '@valmira/domain';
 
 export function createPromocodeForm(): UntypedFormGroup {

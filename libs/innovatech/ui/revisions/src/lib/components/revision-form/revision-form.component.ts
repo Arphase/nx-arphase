@@ -9,10 +9,10 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { ApsValidators } from '@arphase/ui/core';
+import { ApsValidators } from '@arphase/ui/forms';
 import { Revision, RevisionReportItems, transformFolio, Vehicle } from '@innovatech/common/domain';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
-import { ApsFormComponent } from '@arphase/ui/core';
+import { ApsFormComponent } from '@arphase/ui/forms';
 
 import { iconMap, reportLabels, revisionReportSections, statusOptions } from './revision-form.constants';
 import { isRevisionEditable } from '../../pipes/editable-revision.pipe';

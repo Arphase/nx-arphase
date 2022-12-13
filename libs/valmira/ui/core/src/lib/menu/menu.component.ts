@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { filterNil } from '@arphase/ui/core';
+import { filterNil } from '@arphase/ui/utils';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 

@@ -8,7 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ApsFormComponent, ApsValidators, ControlsOf } from '@arphase/ui/core';
+import { ApsFormComponent, ApsValidators, ControlsOf } from '@arphase/ui/forms';
 import { Customer } from '@musicr/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { debounceTime } from 'rxjs/operators';

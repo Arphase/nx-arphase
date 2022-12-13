@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { filterNil } from '@arphase/ui/core';
 import { CartService } from '@musicr/ui/cart/data';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'mrl-cart-tab-container',
@@ -12,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class CartTabContainerComponent {
   cartItems$ = this.cartService.cartItems$;
   total$ = this.cartService.orderPreview$.pipe(
-    filterNil(),
+    filter(order => !!order),
     map(order => order.total)
   );
 

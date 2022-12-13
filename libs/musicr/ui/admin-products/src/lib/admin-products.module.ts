@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApsAutoErrorModule, ApsEmptyModule, ApsFeatureLayoutModule, ApsSearchbarModule } from '@arphase/ui/core';
+import { ApsEmptyModule, ApsFeatureLayoutModule, ApsSearchbarModule } from '@arphase/ui/core';
+import { ApsAutoErrorModule } from '@arphase/ui/forms';
 import { CategoriesDataModule } from '@musicr/ui/categories/data';
 import { CategorySelectModule } from '@musicr/ui/categories/ui';
 import { ProductsDataModule } from '@musicr/ui/products/data';

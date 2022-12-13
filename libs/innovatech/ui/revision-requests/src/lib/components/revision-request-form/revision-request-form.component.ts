@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { createAddressForm } from '@arphase/ui/addresses';
-import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
+import { ApsFormComponent, ApsValidators } from '@arphase/ui/forms';
 import { RevisionRequest, Vehicle } from '@innovatech/common/domain';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
 

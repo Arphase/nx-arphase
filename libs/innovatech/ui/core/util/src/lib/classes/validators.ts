@@ -1,6 +1,5 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-import { specialCharactersForPassword } from '@arphase/common';
-import { ApsValidationErrors } from '@arphase/ui/core';
+import { ApsValidationErrors } from '@arphase/ui/forms';
 import { rfcValidations, RfcValidatorTypes } from '@innovatech/common/utils';
 
 export class IvtValidators {

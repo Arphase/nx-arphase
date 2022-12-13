@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApsFormContainerComponent, filterNil } from '@arphase/ui/core';
+import { filterNil } from '@arphase/ui/utils';
+import { ApsFormContainerComponent } from '@arphase/ui/forms';
 import { PriceOption } from '@musicr/domain';
 import { PhotoCollectionService, PriceOptionCollectionService } from '@musicr/ui/products/data';
 import { EntityOp, ofEntityOp } from '@ngrx/data';

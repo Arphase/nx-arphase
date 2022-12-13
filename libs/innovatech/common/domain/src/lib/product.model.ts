@@ -1,5 +1,3 @@
-import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
-
 import { Guarantee } from './guarantee.model';
 
 export interface Product {
@@ -17,7 +15,7 @@ export interface Product {
   updatedAt?: Date;
 }
 
-export const glossary: NzSelectOptionInterface[] = [
+export const glossary: { label: string; value: string }[] = [
   { label: 'Nombre del cliente - {guarantee.client.name}', value: '{guarantee.client.name}' },
   { label: 'RFC del cliente - {guarantee.client.rfc}', value: '{guarantee.client.rfc}' },
   { label: 'Telefono del cliente - {guarantee.client.phone}', value: '{guarantee.client.phone}' },

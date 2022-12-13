@@ -1,6 +1,6 @@
 import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { createAddressForm } from '@arphase/ui/addresses';
-import { ApsValidators, setFormArrayValue } from '@arphase/ui/core';
+import { ApsValidators, setFormArrayValue } from '@arphase/ui/forms';
 import { Company, Group, User } from '@innovatech/common/domain';
 import { generateId, RfcValidatorTypes } from '@innovatech/common/utils';
 import { IvtValidators } from '@innovatech/ui/core/util';

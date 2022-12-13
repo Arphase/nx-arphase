@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingService } from '@arphase/ui/core';
 import { Customer } from '@musicr/domain';
 import { CartService } from '@musicr/ui/cart/data';
 import { first } from 'rxjs/operators';
@@ -14,15 +13,10 @@ import { first } from 'rxjs/operators';
 export class PersonalDataFormContainerComponent {
   item$ = this.cartService.personalData$;
   currentCustomer$ = this.cartService.currentCustomer$;
-  loading$ = this.loadingService.loadingElse$;
+  loading$ = this.cartService.loading$;
   order$ = this.cartService.order$;
 
-  constructor(
-    private cartService: CartService,
-    private loadingService: LoadingService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private cartService: CartService, private router: Router, private route: ActivatedRoute) {}
 
   emailChanges(email: string): void {
     this.cartService.getCustomerByEmail(email);

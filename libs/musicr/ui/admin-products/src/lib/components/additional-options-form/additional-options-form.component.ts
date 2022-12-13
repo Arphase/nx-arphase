@@ -8,7 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { AbstractControl, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { ApsFormComponent, ApsValidators, setFormArrayValue } from '@arphase/ui/core';
+import { ApsFormComponent, ApsValidators, setFormArrayValue } from '@arphase/ui/forms';
 import { AdditionalOption } from '@musicr/domain';
 
 export function createAdditionalOptionForm(additionalOption?: AdditionalOption): UntypedFormGroup {

@@ -1,13 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  ApsAutoErrorModule,
-  ApsDateFilterModule,
-  ApsEmptyModule,
-  ApsFeatureLayoutModule,
-  ApsSearchbarModule,
-} from '@arphase/ui/core';
+import { ApsDateFilterModule, ApsEmptyModule, ApsFeatureLayoutModule, ApsSearchbarModule } from '@arphase/ui/core';
+import { ApsAutoErrorModule } from '@arphase/ui/forms';
 import { PromocodesDataModule } from '@valmira/ui/promocodes/data';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';

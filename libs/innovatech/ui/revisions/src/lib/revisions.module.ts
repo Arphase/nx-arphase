@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-  ApsAutoErrorModule,
   ApsCheckboxFilterModule,
   ApsDateFilterModule,
   ApsEmptyModule,
@@ -10,6 +9,7 @@ import {
   ApsRadioFilterModule,
   ApsSearchbarModule,
 } from '@arphase/ui/core';
+import { ApsAutoErrorModule } from '@arphase/ui/forms';
 import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
 import { IvtFolioModule } from '@innovatech/ui/core/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
@@ -43,9 +43,9 @@ import { RevisionFormComponent } from './components/revision-form/revision-form.
 import { RevisionListComponent } from './components/revision-list/revision-list.component';
 import { RevisionFormContainerComponent } from './containers/revision-form-container/revision-form-container.component';
 import { RevisionListContainerComponent } from './containers/revision-list-container/revision-list-container.component';
+import { EditableRevisionPipe } from './pipes/editable-revision.pipe';
 import { RevisionsRoutingModule } from './revisions-routing.module';
 import { RevisionDataService } from './services/revision-data.service';
-import { EditableRevisionPipe } from './pipes/editable-revision.pipe';
 
 @NgModule({
   imports: [

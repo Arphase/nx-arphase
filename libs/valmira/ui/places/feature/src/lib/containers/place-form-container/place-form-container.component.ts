@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApsFormContainerComponent } from '@arphase/ui/core';
+import { ApsFormContainerComponent } from '@arphase/ui/forms';
 import { Place } from '@valmira/domain';
 import { PlaceCollectionService } from '@valmira/ui/places/data';
 import { NzMessageService } from 'ng-zorro-antd/message';

@@ -8,7 +8,8 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { ApsFormComponent, ApsValidators, getBase64, setFormArrayValue } from '@arphase/ui/core';
+import { ApsFormComponent, ApsValidators, setFormArrayValue } from '@arphase/ui/forms';
+import { getBase64 } from '@arphase/ui/utils';
 import { Photo, PriceOption } from '@musicr/domain';
 import { MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
 import { NzUploadFile } from 'ng-zorro-antd/upload';

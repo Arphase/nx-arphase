@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApsAddressFormModule } from '@arphase/ui/addresses';
 import {
-  ApsAutoErrorModule,
   ApsCheckboxFilterModule,
   ApsDateFilterModule,
   ApsEmptyModule,
@@ -12,6 +11,7 @@ import {
   ApsRadioFilterModule,
   ApsSearchbarModule,
 } from '@arphase/ui/core';
+import { ApsAutoErrorModule } from '@arphase/ui/forms';
 import { CompanyCheckboxFilterModule } from '@innovatech/ui/companies/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';
 import { PermissionsModule } from '@innovatech/ui/permissions/data';

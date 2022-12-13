@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApsDataService } from '@arphase/ui/core';
+import { ApsDataService } from '@arphase/ui/data';
 import { HttpUrlGenerator } from '@ngrx/data';
 import { Place } from '@valmira/domain';
 import { Observable } from 'rxjs';

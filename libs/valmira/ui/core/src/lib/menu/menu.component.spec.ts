@@ -3,7 +3,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 
 import { MenuComponent } from './menu.component';
 
-describe('ApsFormContainerComponent', () => {
+describe('MenuComponent', () => {
   let spectator: Spectator<MenuComponent>;
   const createComponent = createComponentFactory({
     component: MenuComponent,

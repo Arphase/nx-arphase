@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnChanges, SimpleChanges } from '@angular/core';
 import { UntypedFormArray } from '@angular/forms';
 import { Group } from '@innovatech/common/domain';
-import { ApsFormComponent } from '@arphase/ui/core';
+import { ApsFormComponent } from '@arphase/ui/forms';
 
 import { patchGroupForm } from '../../functions/group-form.functions';
 

@@ -1,11 +1,10 @@
 import { AfterContentInit, ChangeDetectorRef, Directive, HostListener, SimpleChange } from '@angular/core';
 import { NgControl } from '@angular/forms';
+import { ApsCollectionService } from '@arphase/ui/data';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzSelectComponent } from 'ng-zorro-antd/select';
 import { combineLatest } from 'rxjs';
 import { filter, switchMap, take } from 'rxjs/operators';
-
-import { ApsCollectionService } from '../services';
 
 @UntilDestroy()
 @Directive({

@@ -1,7 +1,7 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { DeepPartial } from '@arphase/common';
 import { createAddressForm } from '@arphase/ui/addresses';
-import { ApsValidators, setFormArrayValue } from '@arphase/ui/core';
+import { ApsValidators, setFormArrayValue } from '@arphase/ui/forms';
 import { OrderProduct, OrderProductAdditionalOption, Product } from '@musicr/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 

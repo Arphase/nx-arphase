@@ -2,11 +2,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DeepPartial } from '@arphase/common';
-import { filterNil } from '@arphase/ui/core';
 import { GtagService } from '@arphase/ui/gtag';
 import { Customer, Order, OrderProduct, OrderTypes, SocialEvent } from '@musicr/domain';
 import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
-import { catchError, map, switchMap, take } from 'rxjs/operators';
+import { catchError, filter, finalize, map, switchMap, take } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
@@ -22,8 +21,10 @@ export class CartService {
   currentCustomer$ = this.currentCustomerSubject.asObservable();
   orderSubject = new BehaviorSubject<Order>(null);
   order$ = this.orderSubject.asObservable();
+  loadingSubject = new BehaviorSubject<boolean>(false);
+  loading$ = this.loadingSubject.asObservable();
   orderType$ = this.route.queryParams.pipe(
-    filterNil(),
+    filter(queryParams => !!queryParams),
     map(({ orderType }) => orderType)
   );
   listenToCartItemsSubscription: Subscription;
@@ -113,6 +114,7 @@ export class CartService {
   }
 
   createOrder(customer: Customer): void {
+    this.loadingSubject.next(true);
     this.personalDataSubject.next(customer);
     combineLatest([this.cartItems$, this.socialEvent$, this.orderType$])
       .pipe(
@@ -124,7 +126,8 @@ export class CartService {
             orderType,
           })
         ),
-        take(1)
+        take(1),
+        finalize(() => this.loadingSubject.next(false))
       )
       .subscribe(order => {
         this.gtagService.event('purchase', {

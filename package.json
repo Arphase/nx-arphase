@@ -175,6 +175,7 @@
     "nx": "15.3.2",
     "postcss": "8.4.20",
     "prettier": "2.8.1",
+    "source-map-explorer": "^2.5.3",
     "supertest": "6.3.3",
     "ts-jest": "29.0.3",
     "tslib": "2.4.1"

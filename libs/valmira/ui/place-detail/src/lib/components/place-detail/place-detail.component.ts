@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MapMarker } from '@angular/google-maps';
-import { ApsFormComponent, ApsValidators } from '@arphase/ui/core';
+import { ApsFormComponent, ApsValidators } from '@arphase/ui/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Place, Reservation } from '@valmira/domain';
 import dayjs from 'dayjs';

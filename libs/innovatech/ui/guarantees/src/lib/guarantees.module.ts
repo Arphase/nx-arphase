@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApsAddressFormModule } from '@arphase/ui/addresses';
 import {
-  ApsAutoErrorModule,
   ApsCheckboxFilterModule,
   ApsDataService,
   ApsDateFilterModule,
@@ -13,6 +12,7 @@ import {
   ApsSearchbarModule,
   ApsUppercaseModule,
 } from '@arphase/ui/core';
+import { ApsAutoErrorModule } from '@arphase/ui/forms';
 import { CompanyCheckboxFilterModule, CompanySelectModule } from '@innovatech/ui/companies/ui';
 import { IvtFolioModule } from '@innovatech/ui/core/ui';
 import { GroupCheckboxFilterModule } from '@innovatech/ui/groups/ui';

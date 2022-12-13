@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { ApsCollectionService } from '@arphase/ui/data';
 import { Observable, of } from 'rxjs';
-
-import { ApsCollectionService } from '../services/collection.service';
 
 @Injectable({ providedIn: 'root' })
 export class ApsEntityResolverService<T> implements Resolve<T> {

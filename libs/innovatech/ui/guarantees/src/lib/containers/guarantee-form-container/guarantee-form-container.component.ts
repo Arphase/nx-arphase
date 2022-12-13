@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApsFormContainerComponent, filterNil } from '@arphase/ui/core';
+import { filterNil } from '@arphase/ui/utils';
+import { ApsFormContainerComponent } from '@arphase/ui/forms';
 import { Guarantee, UserRoles } from '@innovatech/common/domain';
 import { selectQueryParam } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';

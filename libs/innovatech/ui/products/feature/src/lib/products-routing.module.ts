@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApsDirtyFormGuard, ApsFeatureLayoutComponent } from '@arphase/ui/core';
+import { ApsFeatureLayoutComponent } from '@arphase/ui/core';
+import { ApsDirtyFormGuard } from '@arphase/ui/forms';
 
 import { ProductFormContainerComponent } from './containers/product-form-container/product-form-container.component';
 import { ProductListContainerComponent } from './containers/product-list-container/product-list-container.component';

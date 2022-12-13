@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApsAutocompleteModule, ApsAutoErrorModule, ApsAutoSelectModule } from '@arphase/ui/core';
+import { ApsAutocompleteModule, ApsAutoErrorModule, ApsAutoSelectModule } from '@arphase/ui/forms';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';

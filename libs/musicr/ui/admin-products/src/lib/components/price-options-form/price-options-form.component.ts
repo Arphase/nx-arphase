@@ -8,7 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { AbstractControl, UntypedFormArray, UntypedFormGroup } from '@angular/forms';
-import { ApsFormComponent, setFormArrayValue } from '@arphase/ui/core';
+import { ApsFormComponent, setFormArrayValue } from '@arphase/ui/forms';
 import { PriceOption } from '@musicr/domain';
 
 import { createPriceOptionForm } from '../price-option-form/price-option-form.component';

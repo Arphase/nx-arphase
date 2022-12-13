@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ApsCollectionService } from '@arphase/ui/data';
 import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { of } from 'rxjs';
 
-import { ApsCollectionService } from '../services/collection.service';
 import { ApsCollectionSelectDirective } from './collection-select.directive';
 
 describe('ApsCollectionSelectDirective', () => {

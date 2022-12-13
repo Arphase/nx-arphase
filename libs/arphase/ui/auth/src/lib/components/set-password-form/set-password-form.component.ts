@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl, UntypedFormBuilder } from '@angular/forms';
 import { specialCharactersForPassword } from '@arphase/common';
-import { ApsFormComponent, ApsValidators, MessageStatus } from '@arphase/ui/core';
+import { MessageStatus } from '@arphase/ui/core';
+import { ApsFormComponent, ApsValidators } from '@arphase/ui/forms';
 
 @Component({
   selector: 'aps-set-password-form',

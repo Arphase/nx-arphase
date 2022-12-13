@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
-import { ApsFormComponent, updateFormControlsValueAndValidity } from '@arphase/ui/core';
+import { ApsFormComponent, updateFormControlsValueAndValidity } from '@arphase/ui/forms';
 import { Company } from '@innovatech/common/domain';
 
 import { createCompanyForm, createUserForm, patchCompanyForm } from '../../functions/group-form.functions';

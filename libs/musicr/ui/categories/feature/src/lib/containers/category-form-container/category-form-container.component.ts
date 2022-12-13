@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApsFormContainerComponent } from '@arphase/ui/core';
+import { ApsFormContainerComponent } from '@arphase/ui/forms';
 import { Category } from '@musicr/domain';
 import { CategoryCollectionService } from '@musicr/ui/categories/data';
 import { PhotoCollectionService } from '@musicr/ui/products/data';

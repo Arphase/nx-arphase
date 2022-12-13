@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { UntypedFormArray } from '@angular/forms';
 import { Company, Group } from '@innovatech/common/domain';
-import { ApsFormComponent } from '@arphase/ui/core';
+import { ApsFormComponent } from '@arphase/ui/forms';
 import { startWith } from 'rxjs/operators';
 
 import { GroupFormService } from '../../services/group-form.service';

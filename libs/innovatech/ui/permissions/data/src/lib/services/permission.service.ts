@@ -1,5 +1,5 @@
 import { Injectable, InjectionToken } from '@angular/core';
-import { filterNil } from '@arphase/ui/core';
+import { filterNil } from '@arphase/ui/utils';
 import { UserRoles } from '@innovatech/common/domain';
 import { getAuthUserRoleState } from '@innovatech/ui/auth/data';
 import { select, Store } from '@ngrx/store';

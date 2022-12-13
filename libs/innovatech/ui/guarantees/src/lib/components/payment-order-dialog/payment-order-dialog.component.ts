@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { ApsColumns, ApsValidators } from '@arphase/ui/core';
+import { ApsColumns } from '@arphase/ui/core';
+import { ApsFormComponent, ApsValidators } from '@arphase/ui/forms';
 import { Guarantee, PaymentOrder } from '@innovatech/common/domain';
-import { ApsFormComponent } from '@arphase/ui/core';
 
 @Component({
   selector: 'ivt-payment-order-dialog',

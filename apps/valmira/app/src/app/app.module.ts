@@ -4,11 +4,11 @@ import es from '@angular/common/locales/es';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoadingInterceptorService } from '@arphase/ui/core';
 import {
   ApsAdditionalEntityCollectionReducerMethodsFactory,
   ApsAdditionalPropertyPersistenceResultHandler,
-  LoadingInterceptorService,
-} from '@arphase/ui/core';
+} from '@arphase/ui/data';
 import { EntityCollectionReducerMethodsFactory, EntityDataModule, PersistenceResultHandler } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
 import { routerReducer, RouterReducerState, StoreRouterConnectingModule } from '@ngrx/router-store';
