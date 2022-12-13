@@ -38,7 +38,7 @@ export class AssignProductsModalContainerComponent implements OnInit, OnDestroy 
     this.productCollectionService.getWithQuery({});
     this.store.dispatch(fromGroups.actions.getGroupProducts({ groupId: this.groupId }));
     this.actions$.pipe(ofType(fromGroups.actions.assignGroupProductsSuccess), take(1)).subscribe(() => {
-      this.messageService.success('Los productos del grupo se han actualizado con éxito');
+      this.messageService.success('Los productos del grupo se han actualizado');
       this.modalRef.close();
     });
   }

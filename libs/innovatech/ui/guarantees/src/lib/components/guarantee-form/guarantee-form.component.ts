@@ -8,10 +8,20 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Address, DeepPartial } from '@arphase/common';
 import { createAddressForm } from '@arphase/ui/addresses';
-import { ApsFormComponent, ApsValidators, filterNil } from '@arphase/ui/core';
-import { Guarantee, isVehicleElegible, PersonTypes, UserRoles, Vehicle } from '@innovatech/common/domain';
+import { ApsFormComponent, ApsValidators, ControlsOf, filterNil } from '@arphase/ui/core';
+import {
+  Client,
+  Guarantee,
+  isVehicleElegible,
+  MoralPerson,
+  PersonTypes,
+  PhysicalPerson,
+  UserRoles,
+  Vehicle,
+} from '@innovatech/common/domain';
 import { RfcValidatorTypes } from '@innovatech/common/utils';
 import { IvtValidators } from '@innovatech/ui/core/util';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
@@ -22,34 +32,34 @@ import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
-export function createGuaranteeForm(): UntypedFormGroup {
-  return new UntypedFormGroup({
-    id: new UntypedFormControl(null),
-    productId: new UntypedFormControl(null, ApsValidators.required),
-    startDate: new UntypedFormControl(null, ApsValidators.required),
-    endDate: new UntypedFormControl(null, ApsValidators.required),
-    companyId: new UntypedFormControl(null, ApsValidators.required),
-    kilometrageStart: new UntypedFormControl(null, ApsValidators.requiredNumber),
-    kilometrageEnd: new UntypedFormControl(null, ApsValidators.requiredNumber),
-    client: new UntypedFormGroup({
-      id: new UntypedFormControl(null),
-      personType: new UntypedFormControl(null, ApsValidators.required),
-      rfc: new UntypedFormControl(null, [ApsValidators.required, IvtValidators.rfc(RfcValidatorTypes.any)]),
-      phone: new UntypedFormControl(null, [ApsValidators.required, ApsValidators.phone]),
-      email: new UntypedFormControl(null, [ApsValidators.required, ApsValidators.email]),
-      salesPlace: new UntypedFormControl(null, ApsValidators.required),
-      physicalInfo: new UntypedFormGroup({
-        id: new UntypedFormControl(null),
-        name: new UntypedFormControl(null, ApsValidators.required),
-        lastName: new UntypedFormControl(null, ApsValidators.required),
-        secondLastName: new UntypedFormControl(null, ApsValidators.required),
-        birthDate: new UntypedFormControl(null, ApsValidators.required),
+export function createGuaranteeForm(): FormGroup {
+  return new FormGroup({
+    id: new FormControl(null),
+    productId: new FormControl(null, ApsValidators.required),
+    startDate: new FormControl(null, ApsValidators.required),
+    endDate: new FormControl(null, ApsValidators.required),
+    companyId: new FormControl(null, ApsValidators.required),
+    kilometrageStart: new FormControl(null, ApsValidators.requiredNumber),
+    kilometrageEnd: new FormControl(null, ApsValidators.requiredNumber),
+    client: new FormGroup({
+      id: new FormControl(null),
+      personType: new FormControl(null, ApsValidators.required),
+      rfc: new FormControl(null, [ApsValidators.required, IvtValidators.rfc(RfcValidatorTypes.any)]),
+      phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
+      email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
+      salesPlace: new FormControl(null, ApsValidators.required),
+      physicalInfo: new FormGroup({
+        id: new FormControl(null),
+        name: new FormControl(null, ApsValidators.required),
+        lastName: new FormControl(null, ApsValidators.required),
+        secondLastName: new FormControl(null, ApsValidators.required),
+        birthDate: new FormControl(null, ApsValidators.required),
       }),
-      moralInfo: new UntypedFormGroup({
-        id: new UntypedFormControl(null),
-        businessName: new UntypedFormControl(null, ApsValidators.required),
-        constitutionDate: new UntypedFormControl(null, ApsValidators.required),
-        adviser: new UntypedFormControl(null, ApsValidators.required),
+      moralInfo: new FormGroup({
+        id: new FormControl(null),
+        businessName: new FormControl(null, ApsValidators.required),
+        constitutionDate: new FormControl(null, ApsValidators.required),
+        adviser: new FormControl(null, ApsValidators.required),
       }),
       address: createAddressForm(),
     }),
@@ -65,7 +75,10 @@ export function createGuaranteeForm(): UntypedFormGroup {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
-export class GuaranteeFormComponent extends ApsFormComponent<Guarantee> implements OnChanges, AfterViewInit {
+export class GuaranteeFormComponent
+  extends ApsFormComponent<DeepPartial<Guarantee>>
+  implements OnChanges, AfterViewInit
+{
   @Input() productOptions: NzSelectOptionInterface[] = [];
   @Input() vehicle: Vehicle;
   @Input() currentVehicle: Vehicle;
@@ -82,32 +95,32 @@ export class GuaranteeFormComponent extends ApsFormComponent<Guarantee> implemen
   @Output() verifyVin = new EventEmitter<string>();
   @Output() getCompanies = new EventEmitter<QueryParams>();
 
-  get client(): UntypedFormGroup {
-    return this.form.get('client') as UntypedFormGroup;
+  get client(): FormGroup<ControlsOf<Client>> {
+    return this.form.get('client') as FormGroup;
   }
 
-  get vehicleForm(): UntypedFormGroup {
-    return this.form.get('vehicle') as UntypedFormGroup;
+  get vehicleForm(): FormGroup<ControlsOf<Vehicle>> {
+    return this.form.get('vehicle') as FormGroup;
   }
 
-  get year$(): Observable<string> {
+  get year$(): Observable<number> {
     return this.vehicleForm.get('year').valueChanges.pipe(startWith(this.vehicleForm.get('year').value));
   }
 
-  get horsePower$(): Observable<string> {
+  get horsePower$(): Observable<number> {
     return this.vehicleForm.get('horsePower').valueChanges.pipe(startWith(this.vehicleForm.get('horsePower').value));
   }
 
-  get addressForm(): UntypedFormGroup {
-    return this.client.get('address') as UntypedFormGroup;
+  get addressForm(): FormGroup<ControlsOf<Address>> {
+    return this.client.get('address') as FormGroup;
   }
 
-  get physicalInfoForm(): UntypedFormGroup {
-    return this.client.get('physicalInfo') as UntypedFormGroup;
+  get physicalInfoForm(): FormGroup<ControlsOf<PhysicalPerson>> {
+    return this.client.get('physicalInfo') as FormGroup;
   }
 
-  get moralInfoForm(): UntypedFormGroup {
-    return this.client.get('moralInfo') as UntypedFormGroup;
+  get moralInfoForm(): FormGroup<ControlsOf<MoralPerson>> {
+    return this.client.get('moralInfo') as FormGroup;
   }
 
   get isElegible(): boolean {
@@ -120,7 +133,7 @@ export class GuaranteeFormComponent extends ApsFormComponent<Guarantee> implemen
 
   get showProductError(): boolean {
     return (
-      !this.productOptions.length && this.vehicleForm.get('horsePower').value && this.vehicleForm.get('year').value
+      !this.productOptions.length && !!this.vehicleForm.get('horsePower').value && !!this.vehicleForm.get('year').value
     );
   }
 
@@ -150,8 +163,8 @@ export class GuaranteeFormComponent extends ApsFormComponent<Guarantee> implemen
         ...this.item,
         client: {
           ...this.item.client,
-          moralInfo: this.item.client.moralInfo || {},
-          physicalInfo: this.item.client.physicalInfo || {},
+          moralInfo: this.item.client.moralInfo ?? {},
+          physicalInfo: this.item.client.physicalInfo ?? {},
         },
       });
     }

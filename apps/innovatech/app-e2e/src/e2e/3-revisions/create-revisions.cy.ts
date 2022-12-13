@@ -37,12 +37,12 @@ describe('Revisions', () => {
 
     cy.get('[data-cy="save"]').click();
 
-    const revisionRow = cy.get('[data-cy="revision-row"]').first();
-    revisionRow.get('[data-cy="vin"]').first().should('have.text', '37289472398473289');
-    revisionRow.get('[data-cy="brand"]').first().should('have.text', 'Seat');
-    revisionRow.get('[data-cy="model"]').first().should('have.text', 'Ibiza');
-    revisionRow.get('[data-cy="year"]').first().should('have.text', '2020');
-    revisionRow.get('[data-cy="observations"]').first().should('have.text', 'Test observations');
-    revisionRow.get('[data-cy="status"]').first().should('have.class', 'anticon-check-circle');
+    cy.get('[data-cy="revision-row"]').first().as('revisionRow');
+    cy.get('@revisionRow').get('[data-cy="vin"]').first().should('have.text', '37289472398473289');
+    cy.get('@revisionRow').get('[data-cy="brand"]').first().should('have.text', 'Seat');
+    cy.get('@revisionRow').get('[data-cy="model"]').first().should('have.text', 'Ibiza');
+    cy.get('@revisionRow').get('[data-cy="year"]').first().should('have.text', '2020');
+    cy.get('@revisionRow').get('[data-cy="observations"]').first().should('have.text', 'Test observations');
+    cy.get('@revisionRow').get('[data-cy="status"]').first().should('have.class', 'anticon-check-circle');
   });
 });

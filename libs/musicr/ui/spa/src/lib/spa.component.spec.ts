@@ -9,8 +9,7 @@ import { SpaComponent } from './spa.component';
 
 describe('SpaComponent', () => {
   let spectator: Spectator<SpaComponent>;
-  // eslint-disable-next-line prefer-const
-  let actions$ = new Observable<Action>();
+  const actions$ = new Observable<Action>();
 
   const createComponent = createComponentFactory({
     component: SpaComponent,

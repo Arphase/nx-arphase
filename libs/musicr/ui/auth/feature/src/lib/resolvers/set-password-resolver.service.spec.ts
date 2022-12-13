@@ -9,8 +9,7 @@ import { SetPasswordResolverService } from './set-password-resolver.service';
 
 describe('SetPasswordResolverService', () => {
   let spectator: SpectatorService<SetPasswordResolverService>;
-  // eslint-disable-next-line prefer-const
-  let actions$ = new Observable<Action>();
+  const actions$ = new Observable<Action>();
 
   const createService = createServiceFactory({
     service: SetPasswordResolverService,

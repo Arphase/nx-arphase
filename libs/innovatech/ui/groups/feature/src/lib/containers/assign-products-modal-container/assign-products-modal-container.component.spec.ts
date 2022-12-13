@@ -10,8 +10,9 @@ import { Observable } from 'rxjs';
 import { AssignProductsModalContainerComponent } from './assign-products-modal-container.component';
 
 describe('AssignProductsModalContainerComponent', () => {
-  let actions$ = new Observable<Action>();
   let spectator: Spectator<AssignProductsModalContainerComponent>;
+  const actions$ = new Observable<Action>();
+
   const createComponent = createComponentFactory({
     component: AssignProductsModalContainerComponent,
     shallow: true,

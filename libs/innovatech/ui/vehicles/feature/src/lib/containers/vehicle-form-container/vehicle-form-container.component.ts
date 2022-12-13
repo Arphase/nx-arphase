@@ -26,8 +26,8 @@ import { map } from 'rxjs/operators';
 export class VehicleFormContainerComponent extends ApsFormContainerComponent<Vehicle> implements OnDestroy {
   form = createVehicleForm();
   successUrl = '/spa/vehicles';
-  createSuccessMessage = 'El vehículo se ha creado con éxito';
-  updateSuccessMessage = 'El vehículo se ha actualizado con éxito';
+  createSuccessMessage = 'El vehículo se ha creado';
+  updateSuccessMessage = 'El vehículo se ha actualizado';
   companyId$ = this.store.pipe(select(getAuthUserCompanyIdState));
   showCompanyInput$ = this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.repairman]);
   isEditable$ = combineLatest([

@@ -7,7 +7,7 @@ import { ApsDataService } from '../services/data.service';
 import { ApsListContainerComponent } from './list-container.component';
 
 describe('ApsListContainerComponent', () => {
-  let spectator: Spectator<ApsListContainerComponent>;
+  let spectator: Spectator<ApsListContainerComponent<unknown>>;
   const createComponent = createComponentFactory({
     component: ApsListContainerComponent,
     shallow: true,

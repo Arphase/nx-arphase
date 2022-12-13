@@ -8,15 +8,15 @@ import { CrudEvents } from '../models/crud-events.model';
   template: '',
   selector: 'aps-list',
 })
-export class ApsListComponent<T = any> implements CrudEvents<T> {
+export class ApsListComponent<T> implements CrudEvents<T> {
   @Input() list: T[] = [];
   @Input() loading: boolean;
   @Input() loadingExcel: boolean;
   @Input() info: ApsCollectionResponseInfo;
   @Input() queryParams: QueryParams = {
     resetList: String(true),
-    pageIndex: 1 as any,
-    pageSize: 1 as any,
+    pageIndex: String(1),
+    pageSize: String(1),
   };
   @Output() create = new EventEmitter<void>();
   @Output() showDetail = new EventEmitter<T>();
@@ -27,19 +27,19 @@ export class ApsListComponent<T = any> implements CrudEvents<T> {
   @Output() exportExcel = new EventEmitter<void>();
 
   get total(): number {
-    return this?.info?.total || 0;
+    return this.info?.total || 0;
   }
 
   get pageIndex(): number {
-    return this?.info?.pageIndex || 1;
+    return this.info?.pageIndex || 1;
   }
 
   get pageStart(): number {
-    return this?.info?.pageStart;
+    return this.info?.pageStart;
   }
 
   get pageEnd(): number {
-    return this?.info?.pageEnd;
+    return this.info?.pageEnd;
   }
 
   updateSearchBarFilter(text: string): void {

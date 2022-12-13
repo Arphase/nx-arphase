@@ -1,6 +1,6 @@
+import { ThemeService } from '@arphase/ui/core';
 import { INNOVATECH_CONFIGURATION } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
-import { ThemeService } from '@arphase/ui/core';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
@@ -10,8 +10,9 @@ import { Observable, of } from 'rxjs';
 import { SpaComponent } from './spa.component';
 
 describe('SpaComponent', () => {
-  let actions$ = new Observable<Action>();
   let spectator: Spectator<SpaComponent>;
+  const actions$ = new Observable<Action>();
+
   const createComponent = createComponentFactory({
     component: SpaComponent,
     providers: [

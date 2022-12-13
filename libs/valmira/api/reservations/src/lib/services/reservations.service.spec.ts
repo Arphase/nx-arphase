@@ -20,7 +20,7 @@ describe('ReservationsService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [StripeModule.forRoot({ apiKey: 'test', apiVersion: '2020-08-27' })],
+      imports: [StripeModule.forRoot({ apiKey: 'test', apiVersion: '2022-11-15' })],
       providers: [
         ReservationsService,
         { provide: getRepositoryToken(ReservationEntity), useValue: createMockRepository() },

@@ -8,8 +8,7 @@ import { ReservationDetailResolverService } from './reservation-detail-resolver.
 
 describe('ReservationDetailResolverService', () => {
   let spectator: SpectatorService<ReservationDetailResolverService>;
-  // eslint-disable-next-line prefer-const
-  let actions$ = new Observable<Action>();
+  const actions$ = new Observable<Action>();
 
   const createService = createServiceFactory({
     service: ReservationDetailResolverService,

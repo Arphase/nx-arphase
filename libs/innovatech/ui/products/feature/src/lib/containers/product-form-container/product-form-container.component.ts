@@ -16,7 +16,7 @@ import { createProductForm } from '../../components/product-form/product-form.co
 export class ProductFormContainerComponent extends ApsFormContainerComponent<Product> {
   form = createProductForm();
   successUrl = '/spa/products';
-  createSuccessMessage = 'El producto se ha creado con éxito';
+  createSuccessMessage = 'El producto se ha creado';
 
   constructor(
     protected productCollectionService: ProductCollectionService,

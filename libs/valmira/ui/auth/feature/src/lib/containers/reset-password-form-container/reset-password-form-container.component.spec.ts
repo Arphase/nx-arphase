@@ -9,8 +9,7 @@ import { ResetPasswordFormContainerComponent } from './reset-password-form-conta
 
 describe('ResetPasswordFormContainerComponent', () => {
   let spectator: Spectator<ResetPasswordFormContainerComponent>;
-  // eslint-disable-next-line prefer-const
-  let actions$ = new Observable<Action>();
+  const actions$ = new Observable<Action>();
 
   const createComponent = createComponentFactory({
     component: ResetPasswordFormContainerComponent,

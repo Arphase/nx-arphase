@@ -1,5 +1,6 @@
-import { Trim } from '@arphase/api/core';
 import { IsNumberString, IsOptional, IsString } from 'class-validator';
+
+import { Trim } from '../decorators/trim.decorator';
 
 export class CreateAddressDto {
   @IsNumberString()

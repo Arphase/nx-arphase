@@ -1,33 +1,3 @@
-const google = {
-  maps: {
-    Animation: { BOUNCE: '' },
-    OverlayView: function () {},
-    Marker: function () {},
-    InfoWindow: function () {},
-    LatLng: function (lat: any, lng: any) {
-      return [lat, lng];
-    },
-    Map: function (obj: any) {},
-    MapTypeId: { ROADMAP: true },
-    places: {
-      AutocompleteService: function () {},
-      PlacesService: function (obj: any) {
-        return {
-          PlacesServiceStatus: {
-            OK: true,
-          },
-          textSearch: function (query: any) {
-            return [];
-          },
-          nearbySearch: function (query: any) {
-            return [];
-          },
-        };
-      },
-    },
-  },
-};
-
 module.exports = {
   displayName: 'valmira-ui-place-detail',
   preset: '../../../../jest.preset.js',
@@ -37,9 +7,36 @@ module.exports = {
       tsconfig: '<rootDir>/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
-    google: google,
+    google: {
+      maps: {
+        Animation: { BOUNCE: '' },
+        OverlayView: function () {},
+        Marker: function () {},
+        InfoWindow: function () {},
+        LatLng: function (lat: any, lng: any) {
+          return [lat, lng];
+        },
+        Map: function (obj: any) {},
+        MapTypeId: { ROADMAP: true },
+        places: {
+          AutocompleteService: function () {},
+          PlacesService: function (obj: any) {
+            return {
+              PlacesServiceStatus: {
+                OK: true,
+              },
+              textSearch: function (query: any) {
+                return [];
+              },
+              nearbySearch: function (query: any) {
+                return [];
+              },
+            };
+          },
+        },
+      },
+    },
   },
-  coverageDirectory: '../../../../coverage/libs/valmira/ui/place-detail',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

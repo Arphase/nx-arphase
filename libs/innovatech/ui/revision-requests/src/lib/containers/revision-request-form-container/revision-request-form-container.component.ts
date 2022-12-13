@@ -36,8 +36,8 @@ export class RevisionRequestFormContainerComponent
   currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
   isEditable$ = this.permissionService.hasUpdatePermission([UserRoles.agencyUser]);
   error$ = this.store.pipe(select(getVehiclesErrorMessageState));
-  createSuccessMessage = 'La solicitud para la revisión de tu vehículo se ha creado con éxito';
-  updateSuccessMessage = 'La solicitud para la revisión de tu vehículo se ha actualizado con éxito';
+  createSuccessMessage = 'La solicitud para la revisión de tu vehículo se ha creado';
+  updateSuccessMessage = 'La solicitud para la revisión de tu vehículo se ha actualizado';
   successUrl = '/spa/revision-requests';
 
   constructor(

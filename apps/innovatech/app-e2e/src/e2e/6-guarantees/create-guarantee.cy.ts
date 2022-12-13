@@ -58,12 +58,12 @@ describe('Guarantees', () => {
 
     cy.get('[data-cy="save"]').click();
 
-    const guaranteeRow = cy.get('[data-cy="guarantee-row"]').first();
-    guaranteeRow.get('[data-cy="folio"]').first().should('have.text', '0001');
-    guaranteeRow.get('[data-cy="vin"]').first().should('have.text', '37289472398473289');
-    guaranteeRow.get('[data-cy="business-name"]').first().should('have.text', 'test');
-    guaranteeRow.get('[data-cy="invoice-number"]').first().should('have.text', 'N/A');
-    guaranteeRow.get('[data-cy="amount"]').first().should('have.text', 'N/A');
-    guaranteeRow.get('[data-cy="status"]').first().should('have.class', 'anticon-exclamation-circle');
+    cy.get('[data-cy="guarantee-row"]').first().as('guaranteeRow');
+    cy.get('@guaranteeRow').get('[data-cy="folio"]').first().should('have.text', '0001');
+    cy.get('@guaranteeRow').get('[data-cy="vin"]').first().should('have.text', '37289472398473289');
+    cy.get('@guaranteeRow').get('[data-cy="business-name"]').first().should('have.text', 'test');
+    cy.get('@guaranteeRow').get('[data-cy="invoice-number"]').first().should('have.text', 'N/A');
+    cy.get('@guaranteeRow').get('[data-cy="amount"]').first().should('have.text', 'N/A');
+    cy.get('@guaranteeRow').get('[data-cy="status"]').first().should('have.class', 'anticon-exclamation-circle');
   });
 });

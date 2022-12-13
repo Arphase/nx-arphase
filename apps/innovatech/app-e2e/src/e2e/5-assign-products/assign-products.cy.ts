@@ -20,7 +20,7 @@ describe('Assign Products', () => {
     // Navigate to modal
     cy.get('[data-cy="groups"]').click();
     cy.get('[data-cy="assign-products"]').first().click();
-    cy.wait(2000);
+    cy.get('[data-cy="product-checkbox"]').should('exist');
 
     // Transfer product
     cy.get('[data-cy="product-checkbox"]').first().click();

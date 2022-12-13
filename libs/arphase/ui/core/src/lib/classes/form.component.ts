@@ -3,7 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 import { collectFormErrors, updateFormControlsValueAndValidity } from '../functions';
 
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 export type ControlsOf<T extends Record<string, any>> = {
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   [K in keyof T]: T[K] extends Record<any, any> ? FormGroup<ControlsOf<T[K]>> : FormControl<T[K]>;
 };
 
@@ -12,7 +14,7 @@ export type ControlsOf<T extends Record<string, any>> = {
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ApsFormComponent<T = any, F = any> {
+export class ApsFormComponent<T, F = unknown> {
   @Input() form: FormGroup<ControlsOf<T>>;
   @Input() item: T;
   @Input() loading: boolean;
@@ -29,7 +31,7 @@ export class ApsFormComponent<T = any, F = any> {
 
   submit(): void {
     if (this.form.valid || this.form.disabled) {
-      const transformedForm = this.transformFromForm(this.values as any);
+      const transformedForm = this.transformFromForm(this.values as unknown as F);
       this.submitForm.emit(transformedForm);
     } else {
       this.form.markAllAsTouched();

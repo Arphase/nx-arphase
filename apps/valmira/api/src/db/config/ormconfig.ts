@@ -1,29 +1,19 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
-import { environment } from '../../environments/environment';
 import { ENTITIES } from './entities';
 
-const config: TypeOrmModuleOptions = {
+export const typeormConfig: PostgresConnectionOptions = {
   type: 'postgres',
-  host: environment.databaseConfig.host,
+  host: process.env.HOST,
   port: 5432,
-  database: environment.databaseConfig.database,
-  username: environment.databaseConfig.username,
-  password: environment.databaseConfig.password,
+  database: process.env.DB || process.env.VMA_DB,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
   entities: ENTITIES,
-
-  // We are using migrations, synchronize should be set to false.
-  synchronize: environment.databaseConfig.synchronize,
-  // Allow both start:prod and start:dev to use migrations
-  // __dirname is either dist or src folder, meaning either
-  // the compiled js in prod or the ts in dev.
-  migrations: ['apps/valmira/api/src/db/migrations/**/*.js'],
-  cli: {
-    // Location of migration should be inside src folder
-    // to be compiled into dist/ folder.
-    migrationsDir: 'apps/valmira/api/src/db/migrations',
-  },
+  synchronize: process.env.SYNCHRONIZE === 'true',
   logging: true,
+  migrations: ['apps/valmira/api/src/db/migrations/**/*.js'],
 };
 
-export = config;
+export const dataSource = new DataSource(typeormConfig);

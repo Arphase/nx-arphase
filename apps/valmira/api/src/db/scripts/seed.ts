@@ -1,17 +1,10 @@
 import { AuthService, SignUpCredentialsDto } from '@valmira/api/auth';
 import { ResetPasswordEntity, UserEntity } from '@valmira/api/domain';
-import { ConnectionOptions, createConnection } from 'typeorm';
 
-import config from '../config/ormconfig';
+import { dataSource } from '../config/ormconfig';
 
 async function run() {
-  const opt = {
-    ...config,
-    synchonize: false,
-    logging: false,
-  };
-
-  const connection = await createConnection(opt as ConnectionOptions);
+  const connection = await dataSource.initialize();
   const authService = new AuthService(
     connection.getRepository(UserEntity),
     connection.getRepository(ResetPasswordEntity),

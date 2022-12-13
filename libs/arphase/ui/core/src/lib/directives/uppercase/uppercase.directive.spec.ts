@@ -6,16 +6,16 @@ import { ApsUppercaseDirective } from './uppercase.directive';
 
 describe('ApsUppercaseDirective', () => {
   @Component({
-    selector: 'test',
+    selector: 'aps-test',
   })
-  class TestHostcomponent {
+  class TestHostComponent {
     form = new FormGroup({ test: new FormControl() });
   }
 
   let spectator: SpectatorDirective<ApsUppercaseDirective>;
   const createDirective = createDirectiveFactory({
     directive: ApsUppercaseDirective,
-    host: TestHostcomponent,
+    host: TestHostComponent,
     imports: [ReactiveFormsModule],
   });
 

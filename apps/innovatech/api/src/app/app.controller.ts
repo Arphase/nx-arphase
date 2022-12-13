@@ -3,7 +3,7 @@ import { Controller, Get } from '@nestjs/common';
 @Controller()
 export class AppController {
   @Get('')
-  async test(): Promise<{}> {
-    return {};
+  async home(): Promise<string> {
+    return 'Welcome to Innovatech API!';
   }
 }

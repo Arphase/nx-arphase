@@ -4,16 +4,16 @@ import { Router } from '@angular/router';
 import { GtagService } from './gtag.service';
 
 @Directive({
-  selector: '[gtag]',
+  selector: '[apsGtag]',
 })
 export class GtagDirective implements OnChanges {
-  @Input('gtag') title: string;
+  @Input() gtag: string;
   @Input() path: string;
   @Input() location: string;
 
-  constructor(private gtag: GtagService, @Optional() private router: Router) {}
+  constructor(private gtagService: GtagService, @Optional() private router: Router) {}
 
   ngOnChanges() {
-    this.gtag.pageView(this.title, this.path, this.location || (this.router && this.router.url));
+    this.gtagService.pageView(this.gtag, this.path, this.location || (this.router && this.router.url));
   }
 }

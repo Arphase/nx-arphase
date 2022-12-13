@@ -107,7 +107,7 @@ describe('GuaranteesController', () => {
   ];
 
   beforeAll(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testingModule: TestingModule = await Test.createTestingModule({
       imports: [
         InnovatechApiDbModule,
         GuaranteesModule,
@@ -115,12 +115,12 @@ describe('GuaranteesController', () => {
         TypeOrmModule.forFeature([ProductEntity, PhysicalPersonEntity]),
       ],
     }).compile();
-    app = await createNestApp(module);
-    repository = module.get(getRepositoryToken(GuaranteeEntity));
-    vehicleRepository = module.get(getRepositoryToken(VehicleEntity));
-    productRepository = module.get(getRepositoryToken(ProductEntity));
-    physicalPersonRepository = module.get(getRepositoryToken(PhysicalPersonEntity));
-    connection = module.get(Connection);
+    app = await createNestApp(testingModule);
+    repository = testingModule.get(getRepositoryToken(GuaranteeEntity));
+    vehicleRepository = testingModule.get(getRepositoryToken(VehicleEntity));
+    productRepository = testingModule.get(getRepositoryToken(ProductEntity));
+    physicalPersonRepository = testingModule.get(getRepositoryToken(PhysicalPersonEntity));
+    connection = testingModule.get(Connection);
     await insertUser(connection);
     await insertGroup(connection);
     await vehicleRepository.create(mockedVehicle).save();
@@ -308,7 +308,7 @@ describe('GuaranteesController', () => {
     expect(phyisicalPersons.length).toEqual(0);
   });
 
-  it('should delete a revision', async () => {
+  it('should delete an item', async () => {
     const { id } = await repository.create(mockedGuarantee).save();
 
     await supertest

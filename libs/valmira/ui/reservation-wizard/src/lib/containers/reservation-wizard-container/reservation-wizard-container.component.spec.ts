@@ -10,8 +10,7 @@ import { ReservationWizardContainerComponent } from './reservation-wizard-contai
 
 describe('ReservationWizardContainerComponent', () => {
   let spectator: Spectator<ReservationWizardContainerComponent>;
-  // eslint-disable-next-line prefer-const
-  let actions$ = new Observable<Action>();
+  const actions$ = new Observable<Action>();
 
   const createComponent = createComponentFactory({
     component: ReservationWizardContainerComponent,

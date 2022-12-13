@@ -12,7 +12,7 @@ export default defineConfig({
   projectId: 'beh4qc',
   e2e: {
     ...nxE2EPreset(__dirname),
-    setupNodeEvents(on, config) {
+    setupNodeEvents(on) {
       on('task', {
         async connectToDb() {
           connection = await dataSource.initialize();

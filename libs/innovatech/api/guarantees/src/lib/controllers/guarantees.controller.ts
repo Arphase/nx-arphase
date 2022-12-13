@@ -26,7 +26,7 @@ export class GuaranteesController {
 
   @Get(':id')
   async getGuarantee(@Param('id', ParseIntPipe) id: number): Promise<Guarantee> {
-    return this.guaranteesService.getGuaranteeById(id);
+    return this.guaranteesService.getGuarantee(id);
   }
 
   @Get('report/summary')

@@ -8,7 +8,7 @@ import { ApsAutocompleteDirective } from './autocomplete.directive';
 
 describe('ApsAutocompleteDirective', () => {
   @Component({
-    selector: 'test',
+    selector: 'aps-test',
   })
   class HostComponent {
     form = new FormGroup({ test: new FormControl('') });

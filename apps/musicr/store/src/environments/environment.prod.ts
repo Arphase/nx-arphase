@@ -5,5 +5,5 @@ export const environment: Environment = {
   apiUrl: '/api',
   version: packageJson.version,
   production: true,
-  innovatechUrl: (window as any).env?.innovatechUrl,
+  innovatechUrl: window['env']?.innovatechUrl,
 };

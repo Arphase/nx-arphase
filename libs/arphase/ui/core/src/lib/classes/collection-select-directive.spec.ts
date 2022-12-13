@@ -8,12 +8,12 @@ import { ApsCollectionService } from '../services/collection.service';
 import { ApsCollectionSelectDirective } from './collection-select.directive';
 
 describe('ApsCollectionSelectDirective', () => {
-  @Component({ selector: 'mrl-test' })
+  @Component({ selector: 'aps-test' })
   class HostComponent {
     form = new FormGroup({ test: new FormControl('') });
   }
 
-  let spectator: SpectatorDirective<ApsCollectionSelectDirective>;
+  let spectator: SpectatorDirective<ApsCollectionSelectDirective<unknown>>;
 
   const createDirective = createDirectiveFactory({
     directive: ApsCollectionSelectDirective,

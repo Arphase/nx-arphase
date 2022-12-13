@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { ApsCollectionService } from '../services/collection.service';
 
 @Injectable({ providedIn: 'root' })
-export class ApsEntityResolverService<T = any> implements Resolve<T> {
+export class ApsEntityResolverService<T> implements Resolve<T> {
   constructor(protected collectionService: ApsCollectionService<T>) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<T> {

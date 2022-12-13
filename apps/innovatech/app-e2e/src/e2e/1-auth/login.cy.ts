@@ -16,8 +16,9 @@ describe('Auth', async () => {
   it('should login', () => {
     cy.get('[data-cy="email"]').type('victor.martinez@mailinator.com');
     cy.get('[data-cy="password"]').type('Innovatech123@');
+    cy.intercept('http://localhost:3333/users*').as('users');
     cy.get('[data-cy="sign-in"]').click();
-    cy.url().should('eq', 'http://localhost:4200/spa/dashboard');
-    cy.wait(1000);
+    cy.location('pathname', { timeout: 10000 }).should('include', '/dashboard');
+    cy.wait('@users');
   });
 });

@@ -7,7 +7,7 @@ export interface Gtag {
 }
 
 export interface CustomParams {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 //@see: https://developers.google.com/gtagjs/reference/parameter#control_parameters

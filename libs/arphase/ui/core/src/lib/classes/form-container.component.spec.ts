@@ -4,7 +4,7 @@ import { ApsCollectionService } from '../services';
 import { ApsFormContainerComponent } from './form-container.component';
 
 describe('ApsFormContainerComponent', () => {
-  let spectator: Spectator<ApsFormContainerComponent>;
+  let spectator: Spectator<ApsFormContainerComponent<unknown>>;
   const createComponent = createComponentFactory({
     component: ApsFormContainerComponent,
     shallow: true,

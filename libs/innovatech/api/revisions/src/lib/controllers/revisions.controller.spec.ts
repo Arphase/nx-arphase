@@ -74,7 +74,7 @@ describe('RevisionsController', () => {
     await app.close();
   });
 
-  it('should get the revision index', async () => {
+  it('should get the index', async () => {
     const newRevision = await repository.create(mockedRevision).save();
 
     const { body } = await supertest
@@ -93,7 +93,7 @@ describe('RevisionsController', () => {
     expect(body.info).toEqual(info);
   });
 
-  it('should get a revision', async () => {
+  it('should get an item', async () => {
     const newRevision = await repository.create(mockedRevision).save();
 
     const { body } = await supertest
@@ -110,7 +110,7 @@ describe('RevisionsController', () => {
     );
   });
 
-  it('should create a revision', async () => {
+  it('should create an item', async () => {
     const { body } = await supertest
       .agent(app.getHttpServer())
       .post('/revisions')
@@ -125,7 +125,7 @@ describe('RevisionsController', () => {
     expect({ ...mockedRevision, status: RevisionStatus.elegible }).toEqual(pick(expected, revisionProperties));
   });
 
-  it('should update a revision', async () => {
+  it('should update an item', async () => {
     const newRevision = await repository.create(mockedRevision).save();
     const updatedRevision: Partial<Revision> = {
       id: newRevision.id,
@@ -151,7 +151,7 @@ describe('RevisionsController', () => {
     );
   });
 
-  it('should delete a revision', async () => {
+  it('should delete an item', async () => {
     const { id } = await repository.create(mockedRevision).save();
 
     await supertest

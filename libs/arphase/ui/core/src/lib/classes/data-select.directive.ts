@@ -22,11 +22,11 @@ import { ApsDataService } from '../services';
 @Directive({
   selector: '[apsDataSelect]',
 })
-export class DataSelectDirective<T = any> implements AfterContentInit {
+export class DataSelectDirective<T> implements AfterContentInit {
   @Input() queryParams: QueryParams;
   @Input() labelField: string;
   @Input() valueField: string;
-  sortValue: any[];
+  sortValue: [];
   entitiesSubject = new BehaviorSubject<NzSelectOptionInterface[]>([]);
   entities$ = this.entitiesSubject.asObservable();
   infoSubject = new BehaviorSubject<ApsCollectionResponseInfo>(null);
@@ -66,7 +66,7 @@ export class DataSelectDirective<T = any> implements AfterContentInit {
           this.getData({
             ...this.queryParams,
             text,
-            resetList: true as any,
+            resetList: String(true),
             pageIndex: String(1),
           })
         ),

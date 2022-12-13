@@ -3,7 +3,7 @@ import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { ApsListComponent } from './list.component';
 
 describe('ApsListComponent', () => {
-  let spectator: Spectator<ApsListComponent>;
+  let spectator: Spectator<ApsListComponent<unknown>>;
   const createComponent = createComponentFactory({
     component: ApsListComponent,
     shallow: true,

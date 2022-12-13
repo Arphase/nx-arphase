@@ -37,7 +37,7 @@ export class PhotosService {
       })
       .promise();
     if (result.$response.data) {
-      await this.photoRepository.delete(photo);
+      await this.photoRepository.delete({ id });
     }
     return photo;
   }

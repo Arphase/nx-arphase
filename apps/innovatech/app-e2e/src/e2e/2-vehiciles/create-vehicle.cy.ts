@@ -30,12 +30,12 @@ describe('Vehicles', () => {
 
     cy.get('[data-cy="save"]').click();
 
-    const vehicleRow = cy.get('[data-cy="vehicle-row"]').first();
-    vehicleRow.get('[data-cy="vin"]').first().should('have.text', '37289472398473289');
-    vehicleRow.get('[data-cy="business-name"]').first().should('have.text', 'test');
-    vehicleRow.get('[data-cy="brand"]').first().should('have.text', 'Seat');
-    vehicleRow.get('[data-cy="model"]').first().should('have.text', 'Ibiza');
-    vehicleRow.get('[data-cy="year"]').first().should('have.text', '2022');
-    vehicleRow.get('[data-cy="status"]').first().should('have.class', 'anticon-exclamation-circle');
+    cy.get('[data-cy="vehicle-row"]').first().as('vehicleRow');
+    cy.get('@vehicleRow').get('[data-cy="vin"]').first().should('have.text', '37289472398473289');
+    cy.get('@vehicleRow').get('[data-cy="business-name"]').first().should('have.text', 'test');
+    cy.get('@vehicleRow').get('[data-cy="brand"]').first().should('have.text', 'Seat');
+    cy.get('@vehicleRow').get('[data-cy="model"]').first().should('have.text', 'Ibiza');
+    cy.get('@vehicleRow').get('[data-cy="year"]').first().should('have.text', '2022');
+    cy.get('@vehicleRow').get('[data-cy="status"]').first().should('have.class', 'anticon-exclamation-circle');
   });
 });

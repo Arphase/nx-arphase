@@ -32,10 +32,8 @@ async function bootstrap() {
 
   app.enableCors();
 
-  const port = process.env.PORT ?? process.env.VMA_PORT;
-  await app.listen(port, () => {
-    Logger.log('Listening at http://localhost:' + port + '/api');
-  });
+  const port = process.env.PORT ?? process.env.VMA_PORT ?? 3333;
+  await app.listen(port, () => Logger.log(`Listening at http://localhost:${port}/api`));
 }
 
 // Webpack will replace 'require' with '__webpack_require__'
@@ -44,6 +42,6 @@ async function bootstrap() {
 declare const __non_webpack_require__: NodeRequire;
 const mainModule = __non_webpack_require__.main;
 const moduleFilename = (mainModule && mainModule.filename) || '';
-if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
+if (moduleFilename === __filename || moduleFilename.includes('node')) {
   bootstrap().catch(err => console.error(err));
 }

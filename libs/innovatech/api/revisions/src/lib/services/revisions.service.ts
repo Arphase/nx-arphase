@@ -168,7 +168,7 @@ export class RevisionsService {
     try {
       await queryRunner.manager.remove(revision);
       const mostRecentRevision = await this.revisionRepository.findOne({
-        vehicleId: revision.vehicleId,
+        where: { vehicleId: revision.vehicleId },
         order: { createdAt: SortDirection.descend },
       } as FindOneOptions);
       if (mostRecentRevision) {

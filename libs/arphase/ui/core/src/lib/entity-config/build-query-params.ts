@@ -8,18 +8,13 @@ dayjs.extend(customParseFormat);
 dayjs.extend(LocalizedFormat);
 
 export function buildQueryParams(queryParams): HttpParams {
-  let params: Record<string, string | string[]> = {
+  const params: Record<string, string | string[]> = {
     pageSize: String(DEFAULT_PAGE_SIZE),
     pageIndex: '1',
   };
 
   if (queryParams == null) {
     return new HttpParams({ fromObject: params });
-  }
-
-  if (queryParams.noDates) {
-    const { startDate, endDate, noDates, dateType, ...filteredParams } = params;
-    params = filteredParams;
   }
 
   Object.keys(queryParams)
@@ -42,11 +37,13 @@ export function buildQueryParams(queryParams): HttpParams {
       params.sort = key;
       params.direction = value;
     } else {
-      const { sort, ...filteredParams } = params;
-      params = filteredParams;
+      delete params.sort;
     }
   }
-  const { dates, noDates, filter, resetList, ...fromObject } = params;
 
-  return new HttpParams({ fromObject });
+  delete params.dates;
+  delete params.filter;
+  delete params.resetList;
+
+  return new HttpParams({ fromObject: params });
 }

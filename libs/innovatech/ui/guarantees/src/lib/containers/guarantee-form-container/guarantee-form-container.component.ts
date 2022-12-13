@@ -31,8 +31,8 @@ import { GuaranteeCollectionService } from '../../services/guarantee-collection.
 export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<Guarantee> implements OnInit, OnDestroy {
   form = createGuaranteeForm();
   successUrl = '/spa/guarantees';
-  createSuccessMessage = 'La garantía se ha creado con éxito';
-  updateSuccessMessage = 'La garantía se ha actualizado con éxito';
+  createSuccessMessage = 'La garantía se ha creado';
+  updateSuccessMessage = 'La garantía se ha actualizado';
   isEditable$ = combineLatest([
     this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.agencyUser]),
     this.permissionService.hasUpdatePermission([UserRoles.superAdmin]),

@@ -8,8 +8,9 @@ import { Observable } from 'rxjs';
 import { SetPasswordResolverService } from './set-password-resolver.service';
 
 describe('SetPasswordResolverService', () => {
-  let actions$ = new Observable<Action>();
   let spectator: SpectatorService<SetPasswordResolverService>;
+  const actions$ = new Observable<Action>();
+
   const createService = createServiceFactory({
     service: SetPasswordResolverService,
     imports: [RouterTestingModule],

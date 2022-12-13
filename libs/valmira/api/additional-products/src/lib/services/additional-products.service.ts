@@ -32,7 +32,7 @@ export class AdditionalProductsService {
   }
 
   async getAdditionalProduct(id: number): Promise<AdditionalProduct> {
-    const additionalProduct = await this.additionalProductRepository.findOne({ id });
+    const additionalProduct = await this.additionalProductRepository.findOneBy({ id });
     if (!additionalProduct) {
       throw new NotFoundException(`Additional product with id ${id} not found`);
     }

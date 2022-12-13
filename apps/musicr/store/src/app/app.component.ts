@@ -26,7 +26,7 @@ export class AppComponent implements AfterViewInit {
     map((event: NavigationEnd) => !event.url.includes('/contact-success'))
   );
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(PLATFORM_ID) private platformId: object,
     private renderer: Renderer2,
     private router: Router,
     private cdr: ChangeDetectorRef,

@@ -11,12 +11,12 @@ import { ApsCollectionService } from '../services';
 @Directive({
   selector: '[apsCollectionSelect]',
 })
-export class ApsCollectionSelectDirective<T = any> implements AfterContentInit {
-  sortValue: any[];
+export class ApsCollectionSelectDirective<T> implements AfterContentInit {
+  sortValue: unknown;
 
   constructor(
     protected host: NzSelectComponent,
-    protected collectionService: ApsCollectionService<any>,
+    protected collectionService: ApsCollectionService<T>,
     protected ngControl: NgControl,
     protected cdr: ChangeDetectorRef
   ) {}
@@ -52,7 +52,7 @@ export class ApsCollectionSelectDirective<T = any> implements AfterContentInit {
     this.collectionService.queryParams$.pipe(take(1)).subscribe(queryParams =>
       this.collectionService.getWithQuery({
         ...queryParams,
-        sort: this.sortValue,
+        sort: this.sortValue as string[],
         text,
         resetList: String(true),
         pageIndex: String(0),
@@ -62,17 +62,16 @@ export class ApsCollectionSelectDirective<T = any> implements AfterContentInit {
 
   @HostListener('nzScrollToBottom') nzScrollToBottom(): void {
     combineLatest([this.collectionService.info$, this.collectionService.loading$, this.collectionService.queryParams$])
-      .pipe(
-        filter(([info, loading]) => info && !info.last && !loading),
-        take(1)
-      )
-      .subscribe(([info, _, queryParams]) =>
-        this.collectionService.getWithQuery({
-          ...queryParams,
-          sort: this.sortValue,
-          pageIndex: String(info.pageIndex + 1),
-          resetList: String(false),
-        })
-      );
+      .pipe(take(1))
+      .subscribe(([info, loading, queryParams]) => {
+        if (info && !info.last && !loading) {
+          this.collectionService.getWithQuery({
+            ...queryParams,
+            sort: this.sortValue as string[],
+            pageIndex: String(info.pageIndex + 1),
+            resetList: String(false),
+          });
+        }
+      });
   }
 }

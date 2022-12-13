@@ -19,7 +19,7 @@ import { ApsDataService } from '../services/data.service';
   selector: 'aps-list-container',
   template: '',
 })
-export class ApsListContainerComponent<T = any> {
+export class ApsListContainerComponent<T> {
   list$: Observable<T[]>;
   loading$: Observable<boolean>;
   info$: Observable<ApsCollectionResponseInfo>;

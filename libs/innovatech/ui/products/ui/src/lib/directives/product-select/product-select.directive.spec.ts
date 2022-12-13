@@ -9,7 +9,7 @@ import { ProductSelectDirective } from './product-select.directive';
 
 describe('ProductSelectDirective', () => {
   @Component({
-    selector: 'test',
+    selector: 'ivt-test',
   })
   class HostComponent {
     form = new FormGroup({ test: new FormControl('') });

@@ -1,4 +1,10 @@
-import { AbstractControl, UntypedFormArray, UntypedFormControl, UntypedFormGroup, ValidationErrors } from '@angular/forms';
+import {
+  AbstractControl,
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
+  ValidationErrors,
+} from '@angular/forms';
 
 type ControlFactory<T> = (values: T) => AbstractControl;
 const toFormControl = <T>(values: T) => new UntypedFormControl(values);
@@ -38,7 +44,7 @@ export function collectFormErrors(form: UntypedFormGroup | UntypedFormArray): Va
       }
 
       return acc;
-    }, {} as Record<string, any>);
+    }, {} as Record<string, unknown>);
 
     return hasError ? result : null;
   }

@@ -16,8 +16,8 @@ import { GroupFormService } from '../../services/group-form.service';
 })
 export class GroupFormContainerComponent extends ApsFormContainerComponent<Group> {
   successUrl = '/spa/groups';
-  createSuccessMessage = 'El grupo se ha creado con éxito';
-  updateSuccessMessage = 'El grupo se ha actualizado con éxito';
+  createSuccessMessage = 'El grupo se ha creado';
+  updateSuccessMessage = 'El grupo se ha actualizado';
   form = this.groupFormService.form;
 
   constructor(

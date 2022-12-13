@@ -30,8 +30,8 @@ import { RevisionCollectionService } from '../../services/revision-collection.se
 })
 export class RevisionFormContainerComponent extends ApsFormContainerComponent<Revision> implements OnInit, OnDestroy {
   form = createRevisionForm();
-  createSuccessMessage = 'La revisión se ha creado con éxito';
-  updateSuccessMessage = 'La revisión se ha actualizado con éxito';
+  createSuccessMessage = 'La revisión se ha creado';
+  updateSuccessMessage = 'La revisión se ha actualizado';
   successUrl = '/spa/revisions';
   isEditable$ = combineLatest([
     this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.repairman]),

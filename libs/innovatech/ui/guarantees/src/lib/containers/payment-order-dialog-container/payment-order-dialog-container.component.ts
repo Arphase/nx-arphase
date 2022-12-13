@@ -18,8 +18,8 @@ import { PaymentOrderDataService } from '../../services/payment-order-data.servi
 })
 export class PaymentOrderDialogContainerComponent extends ApsFormContainerComponent<PaymentOrder> {
   @Input() data: number[];
-  createSuccessMessage = 'Tu orden de compra se ha generado con éxito';
-  updateSuccessMessage = 'Tu orden de compra se ha actualizado con éxito';
+  createSuccessMessage = 'Tu orden de compra se ha generado';
+  updateSuccessMessage = 'Tu orden de compra se ha actualizado';
   loading$ = this.paymentOrderCollectionService.loading$;
   loadingDownloadSubject = new BehaviorSubject<boolean>(false);
   loadingDownload$ = this.loadingDownloadSubject.asObservable();

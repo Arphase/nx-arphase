@@ -10,8 +10,7 @@ import { ReservationSearchContainerComponent } from './reservation-search-contai
 
 describe('ReservationSearchContainerComponent', () => {
   let spectator: Spectator<ReservationSearchContainerComponent>;
-  // eslint-disable-next-line prefer-const
-  let actions$ = new Observable<Action>();
+  const actions$ = new Observable<Action>();
 
   const createComponent = createComponentFactory({
     component: ReservationSearchContainerComponent,

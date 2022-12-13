@@ -35,9 +35,9 @@ describe('Products', () => {
     });
     cy.get('[data-cy="save"]').click();
 
-    const productRow = cy.get('[data-cy="product-row"]').first();
-    productRow.get('[data-cy="folio"]').first().should('have.text', '0001');
-    productRow.get('[data-cy="name"]').first().should('have.text', 'Product test');
-    productRow.get('[data-cy="price"]').first().should('have.text', '$2,500.00');
+    cy.get('[data-cy="product-row"]').first().as('productRow');
+    cy.get('@productRow').get('[data-cy="folio"]').first().should('have.text', '0001');
+    cy.get('@productRow').get('[data-cy="name"]').first().should('have.text', 'Product test');
+    cy.get('@productRow').get('[data-cy="price"]').first().should('have.text', '$2,500.00');
   });
 });

@@ -4,7 +4,7 @@ import { ApsCollectionService } from '../services/collection.service';
 import { ApsEntityResolverService } from './entity-resolver.service';
 
 describe('ApsEntityResolverService', () => {
-  let spectator: SpectatorService<ApsEntityResolverService>;
+  let spectator: SpectatorService<ApsEntityResolverService<unknown>>;
   const createService = createServiceFactory({
     service: ApsEntityResolverService,
     mocks: [ApsCollectionService],

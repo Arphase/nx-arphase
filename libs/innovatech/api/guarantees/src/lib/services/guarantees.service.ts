@@ -43,7 +43,20 @@ export class GuaranteesService {
     private readonly connection: Connection
   ) {}
 
-  async getGuaranteeById(id: number, options?: { withTemplateAndLogo: boolean }): Promise<GuaranteeEntity> {
+  async getGuarantees(
+    filterDto: Partial<GetGuaranteesFilterDto>,
+    user: Partial<User>
+  ): Promise<ApsCollectionResponse<Guarantee>> {
+    const { pageSize, pageIndex } = filterDto;
+    const query = this.guaranteeRepository.createQueryBuilder('guarantee');
+    applyGuaranteeFilter(query, filterDto, user);
+
+    const guarantees = await query.getMany();
+    const total = await query.getCount();
+    return createCollectionResponse(guarantees, pageSize, pageIndex, total);
+  }
+
+  async getGuarantee(id: number, options?: { withTemplateAndLogo: boolean }): Promise<GuaranteeEntity> {
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
     query
       .leftJoinAndSelect('guarantee.client', 'client')
@@ -63,19 +76,6 @@ export class GuaranteesService {
       throw new NotFoundException(`Guarantee with id "${id}" not found`);
     }
     return found;
-  }
-
-  async getGuarantees(
-    filterDto: Partial<GetGuaranteesFilterDto>,
-    user: Partial<User>
-  ): Promise<ApsCollectionResponse<Guarantee>> {
-    const { pageSize, pageIndex } = filterDto;
-    const query = this.guaranteeRepository.createQueryBuilder('guarantee');
-    applyGuaranteeFilter(query, filterDto, user);
-
-    const guarantees = await query.getMany();
-    const total = await query.getCount();
-    return createCollectionResponse(guarantees, pageSize, pageIndex, total);
   }
 
   async getGuaranteesSummary(
@@ -193,7 +193,7 @@ export class GuaranteesService {
   async generatePdf(id: number, queryDto: ExportPdfDto, response: Response): Promise<void> {
     const { utcOffset } = queryDto;
     let content, headerLogo;
-    const guarantee = await this.getGuaranteeById(id, { withTemplateAndLogo: true });
+    const guarantee = await this.getGuarantee(id, { withTemplateAndLogo: true });
     const product = guarantee.product;
     if (product) {
       content = getProductPdfTemplate(product.template, guarantee, utcOffset);
@@ -212,6 +212,7 @@ export class GuaranteesService {
     await queryRunner.startTransaction();
     try {
       const { companyId, vehicleId } = updateGuaranteeDto;
+      const guaranteeFromDb = await this.getGuarantee(updateGuaranteeDto.id);
       const preloadedGuarantee = await this.guaranteeRepository.preload({
         ...omitInfo(updateGuaranteeDto),
         companyId: user && user.role === UserRoles.superAdmin ? companyId : user.companyId,
@@ -220,22 +221,18 @@ export class GuaranteesService {
         const vehicle = await this.vehicleRepository.findOneBy({ id: vehicleId });
         validateVehicle(vehicle, user);
       }
-      if (updateGuaranteeDto.client?.personType === PersonTypes.moral && preloadedGuarantee.client?.physicalInfo?.id) {
-        await queryRunner.manager.delete(PhysicalPersonEntity, preloadedGuarantee.client.physicalInfo.id);
+      if (updateGuaranteeDto.client?.personType === PersonTypes.moral && guaranteeFromDb.client?.physicalInfo?.id) {
+        await queryRunner.manager.delete(PhysicalPersonEntity, guaranteeFromDb.client.physicalInfo.id);
         preloadedGuarantee.client.physicalInfo = null;
       }
-      if (updateGuaranteeDto.client?.personType === PersonTypes.physical && preloadedGuarantee.client?.moralInfo?.id) {
-        await queryRunner.manager.delete(MoralPersonEntity, preloadedGuarantee.client.moralInfo.id);
+      if (updateGuaranteeDto.client?.personType === PersonTypes.physical && guaranteeFromDb.client?.moralInfo?.id) {
+        await queryRunner.manager.delete(MoralPersonEntity, guaranteeFromDb.client.moralInfo.id);
         preloadedGuarantee.client.moralInfo = null;
       }
-      try {
-        await queryRunner.manager.save(preloadedGuarantee);
-        await queryRunner.commitTransaction();
-        await preloadedGuarantee.reload();
-        await (preloadedGuarantee.client as ClientEntity).reload();
-      } catch (e) {
-        console.log(e);
-      }
+      await queryRunner.manager.save(preloadedGuarantee);
+      await queryRunner.commitTransaction();
+      await preloadedGuarantee.reload();
+      await (preloadedGuarantee.client as ClientEntity).reload();
 
       return preloadedGuarantee;
     } catch (err) {
@@ -247,7 +244,7 @@ export class GuaranteesService {
   }
 
   async deleteGuarantee(id: number): Promise<Guarantee> {
-    const guarantee = await this.getGuaranteeById(id);
+    const guarantee = await this.getGuarantee(id);
     return this.guaranteeRepository.remove(guarantee);
   }
 }

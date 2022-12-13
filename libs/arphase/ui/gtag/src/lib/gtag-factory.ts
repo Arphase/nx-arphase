@@ -20,8 +20,8 @@ export function gtagFactory(config: GtagConfig): Gtag {
   if (!production) {
     return null;
   }
-  if ((window as any).gtag) {
-    return (window as any).gtag;
+  if (window['gtag']) {
+    return window['gtag'];
   }
 
   const script = document.createElement('script');
@@ -32,10 +32,10 @@ export function gtagFactory(config: GtagConfig): Gtag {
 
   document.head.appendChild(script);
 
-  (window as any).dataLayer = (window as any).dataLayer || [];
+  window['dataLayer'] = window['dataLayer'] || [];
 
-  function gtag(...args) {
-    (window as any).dataLayer.push(arguments);
+  function gtag(...args: (string | Date | CustomParams)[]) {
+    window['dataLayer'].push(args);
   }
 
   gtag('js', new Date());
@@ -50,5 +50,5 @@ export function gtagFactory(config: GtagConfig): Gtag {
     moreIds.forEach(id => gtag('config', id));
   }
 
-  return ((window as any).gtag = gtag);
+  return (window['gtag'] = gtag);
 }

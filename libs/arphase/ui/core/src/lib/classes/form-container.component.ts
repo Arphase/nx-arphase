@@ -17,8 +17,8 @@ import { ApsFormComponent } from './form.component';
   selector: 'aps-form-container',
   template: '',
 })
-export class ApsFormContainerComponent<T = any> implements ComponentCanDeactivate {
-  @ViewChild('form', { static: false }) formComponent: ApsFormComponent<T>;
+export class ApsFormContainerComponent<T> implements ComponentCanDeactivate {
+  @ViewChild('form', { static: false }) formComponent: ApsFormComponent<T, T>;
   @Input() item: T;
   @Input() form: UntypedFormGroup | UntypedFormArray;
   loading$ = this.entityCollectionService.loadingModify$ || of();

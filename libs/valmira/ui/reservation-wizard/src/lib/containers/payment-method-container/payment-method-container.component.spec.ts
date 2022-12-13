@@ -10,9 +10,9 @@ import { Observable } from 'rxjs';
 import { PaymentMethodContainerComponent } from './payment-method-container.component';
 
 describe('PaymentMethodContainerComponent', () => {
-  // eslint-disable-next-line prefer-const
-  let actions$ = new Observable<Actions>();
   let spectator: Spectator<PaymentMethodContainerComponent>;
+  const actions$ = new Observable<Actions>();
+
   const createComponent = createComponentFactory({
     component: PaymentMethodContainerComponent,
     imports: [RouterTestingModule],

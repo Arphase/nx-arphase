@@ -7,7 +7,7 @@ import { ApsAutoSelectDirective } from './auto-select.directive';
 
 describe('ApsAutoSelectDirective', () => {
   @Component({
-    selector: 'test',
+    selector: 'aps-test',
   })
   class HostComponent {
     form = new FormGroup({ test: new FormControl('') });

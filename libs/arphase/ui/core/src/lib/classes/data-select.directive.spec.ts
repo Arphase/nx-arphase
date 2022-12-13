@@ -8,12 +8,12 @@ import { ApsDataService } from '../services';
 import { DataSelectDirective } from './data-select.directive';
 
 describe('DataSelectDirective', () => {
-  @Component({ selector: 'mrl-test' })
+  @Component({ selector: 'aps-test' })
   class HostComponent {
     form = new FormGroup({ test: new FormControl('') });
   }
 
-  let spectator: SpectatorDirective<DataSelectDirective>;
+  let spectator: SpectatorDirective<DataSelectDirective<unknown>>;
 
   const createDirective = createDirectiveFactory({
     directive: DataSelectDirective,
