@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.5](https://github.com/Arphase/nx-arphase/compare/v4.2.4...v4.2.5) (2022-12-30)
+
+
+### Bug Fixes
+
+* **vehicles:** [#295](https://github.com/Arphase/nx-arphase/issues/295) enable empty fields on vehicle form ([a87a478](https://github.com/Arphase/nx-arphase/commit/a87a478cfb95f795fd4534b78cddbefee219896f))
+
 ### [4.2.4](https://github.com/Arphase/nx-arphase/compare/v4.2.3...v4.2.4) (2022-12-13)
 
 
