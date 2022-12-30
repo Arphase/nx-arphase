@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApsAddressFormModule } from '@arphase/ui/addresses';
 import {
   ApsCheckboxFilterModule,
-  ApsDataService,
   ApsDateFilterModule,
   ApsEmptyModule,
   ApsFeatureLayoutModule,
@@ -12,6 +11,7 @@ import {
   ApsSearchbarModule,
   ApsUppercaseModule,
 } from '@arphase/ui/core';
+import { ApsDataService } from '@arphase/ui/data';
 import { ApsAutoErrorModule } from '@arphase/ui/forms';
 import { CompanyCheckboxFilterModule, CompanySelectModule } from '@innovatech/ui/companies/ui';
 import { IvtFolioModule } from '@innovatech/ui/core/ui';
@@ -46,7 +46,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 
 import { GuaranteeFormComponent } from './components/guarantee-form/guarantee-form.component';
 import { GuaranteeListComponent } from './components/guarantee-list/guarantee-list.component';
@@ -74,7 +74,7 @@ import { PaymentOrderDataService } from './services/payment-order-data.service';
     UserCheckboxFilterModule,
     CompanySelectModule,
     ProductSelectModule,
-    NgxMaskModule,
+    NgxMaskDirective,
     ApsSearchbarModule,
     ApsDateFilterModule,
     ApsCheckboxFilterModule,

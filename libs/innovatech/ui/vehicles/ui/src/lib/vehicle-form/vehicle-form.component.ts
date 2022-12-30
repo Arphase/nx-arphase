@@ -7,40 +7,12 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { ApsValidators } from '@arphase/ui/forms';
-import { Vehicle, VEHICLE_VIN_LENGTH } from '@innovatech/common/domain';
-import { ApsFormComponent } from '@arphase/ui/forms';
+import { ApsFormComponent, enableControl } from '@arphase/ui/forms';
+import { Vehicle, VEHICLE_VIN_LENGTH, VehicleKeys } from '@innovatech/common/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { QueryParams } from '@ngrx/data';
 import { omit } from 'lodash';
 import { filter } from 'rxjs/operators';
-
-export function createVehicleForm(vehicle?: Vehicle) {
-  const todayYear = new Date().getFullYear();
-
-  const form = new UntypedFormGroup({
-    id: new UntypedFormControl(null),
-    brand: new UntypedFormControl(null, ApsValidators.required),
-    model: new UntypedFormControl(null, ApsValidators.required),
-    version: new UntypedFormControl(null),
-    year: new UntypedFormControl(null, [ApsValidators.min(todayYear - 20), ApsValidators.max(todayYear + 1)]),
-    vin: new UntypedFormControl(null, [
-      ApsValidators.required,
-      ApsValidators.minLength(VEHICLE_VIN_LENGTH),
-      ApsValidators.maxLength(VEHICLE_VIN_LENGTH),
-    ]),
-    motorNumber: new UntypedFormControl(null),
-    horsePower: new UntypedFormControl(null, [ApsValidators.min(1), ApsValidators.max(500)]),
-    companyId: new UntypedFormControl(null, ApsValidators.required),
-  });
-
-  if (vehicle) {
-    form.patchValue(vehicle);
-  }
-
-  return form;
-}
 
 @UntilDestroy()
 @Component({
@@ -49,54 +21,65 @@ export function createVehicleForm(vehicle?: Vehicle) {
   styleUrls: ['./vehicle-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VehicleFormComponent extends ApsFormComponent<Vehicle> implements OnChanges {
+export class VehicleFormComponent extends ApsFormComponent<Partial<Vehicle>> implements OnChanges {
   @Input() companyId: number;
   @Input() showCompanyInput: boolean;
   @Input() vehicle: Vehicle;
-  form = createVehicleForm();
   @Output() verifyVin = new EventEmitter<string>();
   @Output() getCompanies = new EventEmitter<QueryParams>();
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.companyId) {
-      this.form.get('companyId').patchValue(this.companyId || '');
+      this.form.get('companyId').patchValue(this.companyId);
     }
 
     if (changes.form && this.form) {
-      this.form
-        .get('vin')
-        .valueChanges.pipe(
-          filter((vin: string) => vin.length === VEHICLE_VIN_LENGTH),
-          untilDestroyed(this)
-        )
-        .subscribe(vin => this.verifyVin.emit(vin));
+      this.addVinListener();
     }
 
     if (changes.showCompanyInput) {
-      this.showCompanyInput
-        ? this.form.get('companyId').enable({ emitEvent: false })
-        : this.form.get('companyId').disable({ emitEvent: false });
+      enableControl(this.form.get('companyId'), this.showCompanyInput, { emitEvent: false });
     }
 
-    if (changes.item && this.item) {
-      this.form.patchValue(this.item, { emitEvent: false });
-      this.form.disable({ emitEvent: false });
-      this.form.get('vin').enable({ emitEvent: false });
+    if (changes.item && this.item?.id) {
+      this.patchForm();
     }
 
     if (changes.vehicle && this.isEditable) {
-      if (this.vehicle) {
-        this.form.patchValue(omit(this.vehicle, 'vin'));
-        this.form.disable({ emitEvent: false });
-        this.form.get('vin').enable({ emitEvent: false });
-      } else {
-        this.form.enable({ emitEvent: false });
-        this.form.get('id').patchValue(null);
-      }
+      this.handleVehicleChange();
     }
 
     if (changes.isEditable) {
-      this.isEditable ? this.form.enable({ emitEvent: false }) : this.form.disable({ emitEvent: false });
+      enableControl(this.form, this.isEditable, { emitEvent: false });
+    }
+  }
+
+  addVinListener(): void {
+    this.form
+      .get('vin')
+      .valueChanges.pipe(
+        filter((vin: string) => vin.length === VEHICLE_VIN_LENGTH),
+        untilDestroyed(this)
+      )
+      .subscribe(vin => this.verifyVin.emit(vin));
+  }
+
+  patchForm(): void {
+    this.form.patchValue(this.item, { emitEvent: false });
+    this.form.disable({ emitEvent: false });
+    const enableIfEmpptyFields: VehicleKeys[] = ['version', 'year', 'motorNumber', 'horsePower'];
+    enableIfEmpptyFields.filter(key => !this.item[key]).forEach(key => this.form.get(key).enable({ emitEvent: false }));
+    this.form.get('vin').enable({ emitEvent: false });
+  }
+
+  handleVehicleChange(): void {
+    if (this.vehicle) {
+      this.form.patchValue(omit(this.vehicle, 'vin'));
+      this.form.disable({ emitEvent: false });
+      this.form.get('vin').enable({ emitEvent: false });
+    } else {
+      this.form.enable({ emitEvent: false });
+      this.form.get('id').patchValue(null);
     }
   }
 }

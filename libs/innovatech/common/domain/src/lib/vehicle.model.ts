@@ -25,6 +25,8 @@ export interface Vehicle {
   revisionRequests?: RevisionRequest[];
 }
 
+export type VehicleKeys = keyof Vehicle;
+
 export enum VehicleStatus {
   elegible = 'elegible',
   needsRevision = 'needsRevision',

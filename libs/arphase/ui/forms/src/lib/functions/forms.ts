@@ -1,6 +1,7 @@
 import { AbstractControl, FormArray, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 
 type ControlFactory<T> = (values: T) => AbstractControl;
+
 const toFormControl = <T>(values: T) => new FormControl(values);
 
 export function setFormArrayValue<T>(
@@ -72,4 +73,20 @@ function traverseFormGroup(formGroup: FormGroup | FormArray, fn: (control: Abstr
       }
     }
   });
+}
+
+export function enableControl(
+  control: AbstractControl,
+  shouldEnable: boolean,
+  options?: { emitEvent?: boolean; onlySelf?: boolean }
+) {
+  shouldEnable ? control.enable(options) : control.disable(options);
+}
+
+export function disableControl(
+  control: AbstractControl,
+  shouldEnable: boolean,
+  options?: { emitEvent?: boolean; onlySelf?: boolean }
+) {
+  enableControl(control, !shouldEnable, options);
 }
