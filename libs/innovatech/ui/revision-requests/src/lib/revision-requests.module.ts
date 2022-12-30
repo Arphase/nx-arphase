@@ -34,7 +34,7 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 
 import { RevisionRequestFormComponent } from './components/revision-request-form/revision-request-form.component';
 import { RevisionRequestListComponent } from './components/revision-request-list/revision-request-list.component';
@@ -63,7 +63,7 @@ import { RevisionRequestDataService } from './services/revision-request-data.ser
     ApsAutoErrorModule,
     NzFormModule,
     NzInputModule,
-    NgxMaskModule,
+    NgxMaskDirective,
     NzTableModule,
     ApsEmptyModule,
     NzTagModule,

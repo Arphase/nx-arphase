@@ -23,7 +23,7 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 
 import { AdminProductsroutingModule } from './admin-products-routing.module';
 import { AdditionalOptionsFormComponent } from './components/additional-options-form/additional-options-form.component';
@@ -46,7 +46,7 @@ import { ProductListContainerComponent } from './containers/product-list-contain
     CategoriesDataModule,
     CategorySelectModule,
     CommonModule,
-    NgxMaskModule,
+    NgxMaskDirective,
     NzButtonModule,
     NzCollapseModule,
     NzDividerModule,

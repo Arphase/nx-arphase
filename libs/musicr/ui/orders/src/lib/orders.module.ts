@@ -32,7 +32,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 
 import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
@@ -53,7 +53,7 @@ import { OrderDataService } from './services/order-data.service';
     ApsRadioFilterModule,
     ApsSearchbarModule,
     CommonModule,
-    NgxMaskModule,
+    NgxMaskDirective,
     NzButtonModule,
     NzCheckboxModule,
     NzCollapseModule,

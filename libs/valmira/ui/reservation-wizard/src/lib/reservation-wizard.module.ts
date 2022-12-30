@@ -14,7 +14,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 import { NgxStripeModule } from 'ngx-stripe';
 
 import { AdditionalServicesComponent } from './components/additional-services/additional-services.component';
@@ -47,7 +47,7 @@ import { reducer } from './state/reservation-wizard.reducer';
     ReservationWizardRoutingModule,
     NzSpaceModule,
     NzCheckboxModule,
-    NgxMaskModule,
+    NgxMaskDirective,
     NgxStripeModule,
     NzIconModule,
     ReservationCardModule,

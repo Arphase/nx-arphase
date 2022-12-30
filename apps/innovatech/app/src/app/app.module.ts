@@ -27,7 +27,7 @@ import { es as esDate } from 'date-fns/locale';
 import { es_ES, NZ_DATE_LOCALE, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NgxMaskModule } from 'ngx-mask';
+import { provideEnvironmentNgxMask } from 'ngx-mask';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -55,7 +55,6 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     HttpClientModule,
     NzModalModule,
     NzMessageModule,
-    NgxMaskModule.forRoot(),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       name: 'Innovatech',
@@ -87,6 +86,7 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
       deps: [Sentry.TraceService],
       multi: true,
     },
+    provideEnvironmentNgxMask(),
   ],
   bootstrap: [AppComponent],
 })

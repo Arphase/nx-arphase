@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NzMessageModule } from 'ng-zorro-antd/message';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 
 import { FooterModule } from './footer/footer.module';
 import { MenuModule } from './menu/menu.module';
@@ -13,7 +13,7 @@ import { StoreWrapperComponent } from './store-wrapper.component';
     CommonModule,
     FooterModule,
     MenuModule,
-    NgxMaskModule.forRoot(),
+    NgxMaskDirective.forRoot(),
     NzMessageModule,
     StoreWrapperRoutingModule,
   ],

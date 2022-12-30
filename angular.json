@@ -694,7 +694,7 @@
                 "inject": false
               }
             ],
-            "allowedCommonJsDependencies": ["clone-deep", "dayjs", "file-saver", "lodash", "quill"],
+            "allowedCommonJsDependencies": ["clone-deep", "dayjs", "file-saver", "lodash", "quill", "rfdc"],
             "stylePreprocessorOptions": {
               "includePaths": ["libs/arphase/ui/core/src/styles"]
             }

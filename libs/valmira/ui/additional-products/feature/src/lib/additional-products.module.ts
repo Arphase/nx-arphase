@@ -17,7 +17,7 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTableModule } from 'ng-zorro-antd/table';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 
 import { AdditionalProductsRoutingModule } from './additional-products-routing.module';
 import { AdditionalProductFormComponent } from './components/additional-product-form/additional-product-form.component';
@@ -35,7 +35,7 @@ import { AdditionalProductListContainerComponent } from './containers/additional
     ApsSearchbarModule,
     CommonModule,
     FormsModule,
-    NgxMaskModule,
+    NgxMaskDirective,
     NzButtonModule,
     NzCardModule,
     NzDividerModule,

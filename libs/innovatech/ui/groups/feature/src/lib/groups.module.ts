@@ -32,7 +32,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 
 import { AssignProductsModalComponent } from './components/assign-products-modal/assign-products-modal.component';
 import { CompanyFormDialogComponent } from './components/company-form-dialog/company-form-dialog.component';
@@ -62,7 +62,7 @@ import { GroupsRoutingModule } from './groups-routing.module';
     ApsFeatureLayoutModule,
     NzCardModule,
     NzButtonModule,
-    NgxMaskModule,
+    NgxMaskDirective,
     NzGridModule,
     NzMessageModule,
     NzCollapseModule,

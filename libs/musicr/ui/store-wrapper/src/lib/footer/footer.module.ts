@@ -6,7 +6,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 
 import { FooterComponent } from './footer.component';
 
@@ -20,7 +20,7 @@ import { FooterComponent } from './footer.component';
     NzIconModule,
     NzButtonModule,
     RouterModule,
-    NgxMaskModule,
+    NgxMaskDirective,
   ],
   exports: [FooterComponent],
 })

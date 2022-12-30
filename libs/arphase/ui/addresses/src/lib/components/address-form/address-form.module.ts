@@ -7,7 +7,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 
 import { ApsAddressFormComponent } from './address-form.component';
 
@@ -16,7 +16,7 @@ import { ApsAddressFormComponent } from './address-form.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    NgxMaskModule,
+    NgxMaskDirective,
     NzGridModule,
     NzFormModule,
     NzInputModule,

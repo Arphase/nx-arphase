@@ -19,7 +19,7 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTableModule } from 'ng-zorro-antd/table';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 
 import { PromocodeFormComponent } from './components/promocode-form/promocode-form.component';
 import { PromocodeListComponent } from './components/promocode-list/promocode-list.component';
@@ -36,7 +36,7 @@ import { PromocodesRoutingModule } from './promocodes-routing.module';
     ApsSearchbarModule,
     CommonModule,
     FormsModule,
-    NgxMaskModule,
+    NgxMaskDirective,
     NzAlertModule,
     NzButtonModule,
     NzCardModule,

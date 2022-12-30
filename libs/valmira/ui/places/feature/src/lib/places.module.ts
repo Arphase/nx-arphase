@@ -25,7 +25,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 
 import { PlaceFormComponent } from './components/place-form/place-form.component';
 import { PlaceListComponent } from './components/place-list/place-list.component';
@@ -41,7 +41,7 @@ import { PhotoDataService } from './services/photo-data.service';
     ApsSearchbarModule,
     CommonModule,
     FormsModule,
-    NgxMaskModule,
+    NgxMaskDirective,
     NzAlertModule,
     NzButtonModule,
     NzCardModule,

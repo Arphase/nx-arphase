@@ -14,7 +14,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 
 import { CartRoutingModule } from './cart-routing.module';
 import { CartComponent } from './cart.component';
@@ -33,7 +33,7 @@ import { SocialEventFormContainerComponent } from './containers/social-event-for
     ApsAutoErrorModule,
     CartRoutingModule,
     CommonModule,
-    NgxMaskModule,
+    NgxMaskDirective,
     NzButtonModule,
     NzCheckboxModule,
     NzDatePickerModule,

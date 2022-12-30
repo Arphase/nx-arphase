@@ -20,7 +20,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 import { QuillModule } from 'ngx-quill';
 
 import { ProductFormComponent } from './components/product-form/product-form.component';
@@ -38,7 +38,7 @@ import { ProductsRoutingModule } from './products-routing.module';
     IvtFolioModule,
     ApsEmptyModule,
     NzIconModule,
-    NgxMaskModule,
+    NgxMaskDirective,
     NzGridModule,
     NzMessageModule,
     NzFormModule,
