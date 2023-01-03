@@ -35,7 +35,7 @@ export function gtagFactory(config: GtagConfig): Gtag {
   window['dataLayer'] = window['dataLayer'] || [];
 
   function gtag(...args: (string | Date | CustomParams)[]) {
-    window['dataLayer'].push(args);
+    window['dataLayer'].push(arguments);
   }
 
   gtag('js', new Date());
