@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filterNil } from '@arphase/ui/utils';
 import { ApsFormContainerComponent } from '@arphase/ui/forms';
+import { filterNil } from '@arphase/ui/utils';
 import { Guarantee, UserRoles } from '@innovatech/common/domain';
 import { selectQueryParam } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
@@ -19,7 +19,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { createGuaranteeForm } from '../../components/guarantee-form/guarantee-form.component';
+import { createGuaranteeForm } from '../../components/guarantee-form/guarantee-form.constants';
 import { GuaranteeCollectionService } from '../../services/guarantee-collection.service';
 
 @UntilDestroy()
@@ -38,12 +38,7 @@ export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<G
     this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.agencyUser]),
     this.permissionService.hasUpdatePermission([UserRoles.superAdmin]),
     this.route.url,
-  ]).pipe(
-    map(([create, update, url]) => {
-      const createRoute = url.find(segment => segment.path === 'new');
-      return createRoute ? create : update;
-    })
-  );
+  ]).pipe(map(([create, update, url]) => (url.find(segment => segment.path === 'new') ? create : update)));
   productOptions$ = this.productCollectionService.options$;
   vehicle$ = this.vehicleCollectionService.currentItem$;
   currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
