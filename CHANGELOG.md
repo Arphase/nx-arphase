@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/Arphase/nx-arphase/compare/v4.2.5...v5.0.0) (2023-01-21)
+
+
+### Bug Fixes
+
+* **innovatech/guarantees:** allow agencyUser generate guarantees disabling the companyId field ([a090092](https://github.com/Arphase/nx-arphase/commit/a090092bd70431e0d604d5a35774e9fa35a49166))
+* **innovatech/guarantees:** downgrade ant design to enable date picker fields ([19a6fdf](https://github.com/Arphase/nx-arphase/commit/19a6fdfd8cd6dcd98b67587abbabc324e3fc6dee))
+* **musicr/store:** send google analytics data ([cf29a59](https://github.com/Arphase/nx-arphase/commit/cf29a595f08bf9181121ebf254e9ff156ab378c8))
+
 ### [4.2.5](https://github.com/Arphase/nx-arphase/compare/v4.2.4...v4.2.5) (2022-12-30)
 
 
