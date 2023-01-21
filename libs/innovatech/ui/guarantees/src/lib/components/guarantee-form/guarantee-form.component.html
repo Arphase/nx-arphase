@@ -99,7 +99,7 @@
             </nz-form-item>
           </div>
 
-          <div *ivtCreatePermission
+          <div *ngIf="showCompanyInput"
                nz-col
                nzXs="24"
                nzLg="12">
@@ -108,8 +108,7 @@
               <nz-form-control apsAutoError>
                 <nz-select ivtCompanySelect
                            formControlName="companyId"
-                           data-cy="company">
-                </nz-select>
+                           data-cy="company"></nz-select>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -338,18 +337,14 @@
             <button *nzSpaceItem
                     nz-button
                     type="button"
-                    [routerLink]="['..']">
-              Cancelar
-            </button>
+                    [routerLink]="['..']">Cancelar</button>
             <button *nzSpaceItem
                     nz-button
                     type="submit"
                     nzType="primary"
                     [nzLoading]="loading"
                     [disabled]="disableSubmit"
-                    data-cy="save">
-              Guardar
-            </button>
+                    data-cy="save">Guardar</button>
           </nz-space>
         </div>
       </div>

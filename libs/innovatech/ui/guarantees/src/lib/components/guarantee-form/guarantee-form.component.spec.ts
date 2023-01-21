@@ -1,6 +1,8 @@
+import { SimpleChange } from '@angular/core';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { GuaranteeFormComponent } from './guarantee-form.component';
+import { createGuaranteeForm } from './guarantee-form.constants';
 
 describe('GuaranteeFormComponent', () => {
   let spectator: Spectator<GuaranteeFormComponent>;
@@ -9,8 +11,12 @@ describe('GuaranteeFormComponent', () => {
     shallow: true,
   });
 
-  beforeEach(() => (spectator = createComponent()));
-  it('should create', () => {
-    expect(spectator.component).toBeTruthy();
+  beforeEach(() => (spectator = createComponent({ props: { form: createGuaranteeForm() } })));
+  it('should should disable the companyId control is showCompanyInput property is false', () => {
+    spectator.component.showCompanyInput = false;
+
+    spectator.component.ngOnChanges({ showCompanyInput: new SimpleChange(false, false, false) });
+
+    expect(spectator.component.form.get('companyId').disabled).toBeTruthy();
   });
 });

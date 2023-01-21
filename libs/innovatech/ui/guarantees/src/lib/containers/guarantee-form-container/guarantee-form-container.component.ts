@@ -34,6 +34,7 @@ export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<G
   successUrl = '/spa/guarantees';
   createSuccessMessage = 'La garantía se ha creado';
   updateSuccessMessage = 'La garantía se ha actualizado';
+  showCompanyInput$ = this.permissionService.hasCreatePermission([UserRoles.superAdmin]);
   isEditable$ = combineLatest([
     this.permissionService.hasCreatePermission([UserRoles.superAdmin, UserRoles.agencyUser]),
     this.permissionService.hasUpdatePermission([UserRoles.superAdmin]),
