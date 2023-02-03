@@ -8,6 +8,7 @@ export interface Category {
   deletedAt: Date;
   name: string;
   description: string;
+  position?: number;
   subcategories?: Subcategory[];
   photoId?: number;
   photo?: Photo;

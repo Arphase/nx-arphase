@@ -10,14 +10,18 @@ import { Category } from '@musicr/domain';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { orderBy } from 'lodash';
-import { Repository } from 'typeorm';
+import { DataSource, In, Repository } from 'typeorm';
 
 import { CreateCategoryDto } from '../dto/create-category.dto';
+import { OrderCategoriesDto } from '../dto/order-categories.dto';
 import { UpdateCategoryDto } from '../dto/update-category.dto';
 
 @Injectable()
 export class CategoriesService {
-  constructor(@InjectRepository(CategoryEntity) private categoryRepository: Repository<CategoryEntity>) {}
+  constructor(
+    @InjectRepository(CategoryEntity) private categoryRepository: Repository<CategoryEntity>,
+    private dataSource: DataSource
+  ) {}
 
   async getCategories(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Category>> {
     const { pageIndex, pageSize, text } = filterDto;
@@ -69,6 +73,28 @@ export class CategoriesService {
   async updateCategory(updateCategoryDto: UpdateCategoryDto): Promise<Category> {
     const category = await this.getCategory(updateCategoryDto.id, { relations: [] });
     return this.categoryRepository.save({ ...category, ...updateCategoryDto });
+  }
+
+  async orderCategories(orderCategoriesDto: OrderCategoriesDto): Promise<Category[]> {
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
+      await Promise.all(
+        orderCategoriesDto.categories.map(async category => {
+          const categoryEntity = this.categoryRepository.create(category);
+          await queryRunner.manager.save(categoryEntity);
+        })
+      );
+      await queryRunner.commitTransaction();
+    } catch (e) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
+
+    return this.categoryRepository.findBy({ id: In(orderCategoriesDto.categories.map(({ id }) => id)) });
   }
 
   async deleteCategory(id: number): Promise<Category> {

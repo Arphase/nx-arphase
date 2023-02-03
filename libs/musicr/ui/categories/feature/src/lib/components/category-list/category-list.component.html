@@ -13,9 +13,7 @@
       <button nz-button
               [routerLink]="['new']"
               type="button"
-              nzType="primary">
-        Nueva categoría
-      </button>
+              nzType="primary">Nueva categoría</button>
     </div>
   </div>
 
@@ -41,6 +39,26 @@
 <div nz-row
      nzAlign="middle"
      [nzGutter]="[12, 12]">
+  <div *ngIf="!sortMode"
+       nz-col>
+    <button nz-button
+            type="button"
+            (click)="sortMode = true">Ordenar categorías</button>
+  </div>
+  <ng-container *ngIf="sortMode">
+    <div nz-col>
+      <button nzType="primary"
+              nz-button
+              type="button"
+              (click)="onSaveCategoriesOrder()">Guardar cambios</button>
+    </div>
+    <div nz-col>
+      <button nz-button
+              type="button"
+              (click)="sortMode = false">Cancelar</button>
+    </div>
+  </ng-container>
+
   <div *ngIf="total"
        nz-col
        nzFlex="auto"
@@ -52,6 +70,7 @@
 <nz-divider></nz-divider>
 
 <nz-table #table
+          [hidden]="sortMode"
           nzSize="small"
           [nzData]="list"
           [nzFrontPagination]="false"
@@ -70,22 +89,24 @@
           [nzSm]="column.colSizes?.sm || 0"
           [nzMd]="column.colSizes?.md || 0"
           [nzLg]="column.colSizes?.lg"
-          [nzXl]="column.colSizes?.xl">
-        {{ column.label }}
-      </th>
+          [nzXl]="column.colSizes?.xl">{{ column.label }}</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of table.data"
         nz-row>
       <td nz-col
-          nzXs="16"
-          nzMd="9"
+          nzXs="4"
+          nzMd="2"
+          nzLg="2">{{ ((item?.position ?? 0) + 1) | empty }}</td>
+      <td nz-col
+          nzXs="12"
+          nzMd="7"
           nzLg="9">{{ item?.name | empty }}</td>
       <td nz-col
           nzXs="0"
-          nzMd="13"
-          nzLg="12">{{ item?.description | empty }}</td>
+          nzMd="12"
+          nzLg="10">{{ item?.description | empty }}</td>
       <td nz-col
           nzXs="8"
           nzMd="2"
@@ -115,3 +136,19 @@
     </tr>
   </tbody>
 </nz-table>
+
+<ng-container *ngIf="sortMode">
+  <div nz-row>
+    <div nz-col
+         nzSpan="24">
+      <nz-list cdkDropList
+               nzBordered
+               nzHeader="Arrastra las categorías para ser ordenadas en la página"
+               (cdkDropListDropped)="categoryMoved($event)">
+        <nz-list-item *ngFor="let item of categories"
+                      class="cursor-pointer"
+                      cdkDrag>{{ item.name }}</nz-list-item>
+      </nz-list>
+    </div>
+  </div>
+</ng-container>

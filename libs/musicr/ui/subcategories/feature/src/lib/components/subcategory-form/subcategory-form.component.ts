@@ -30,7 +30,7 @@ export class SubcategoryFormComponent extends ApsFormComponent<DeepPartial<Subca
     }
   }
 
-  productMoved(event: CdkDragDrop<Subcategory[]>): void {
+  productMoved(event: CdkDragDrop<Product[]>): void {
     this.products = moveItemInArray(this.products, event.previousIndex, event.currentIndex);
   }
 

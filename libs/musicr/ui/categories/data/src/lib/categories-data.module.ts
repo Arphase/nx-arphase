@@ -2,12 +2,14 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ApsDataService } from '@arphase/ui/data';
 import { EntityDataService } from '@ngrx/data';
+import { EffectsModule } from '@ngrx/effects';
 
 import { CategoryFilterDataService } from './services';
 import { CategoryDataService } from './services/category-data.service';
+import { CategoriesEfects } from './state/categories.effects';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, EffectsModule.forFeature([CategoriesEfects])],
 })
 export class CategoriesDataModule {
   constructor(

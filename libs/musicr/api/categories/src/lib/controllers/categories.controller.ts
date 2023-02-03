@@ -5,6 +5,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, U
 import { AuthGuard } from '@nestjs/passport';
 
 import { CreateCategoryDto } from '../dto/create-category.dto';
+import { OrderCategoriesDto } from '../dto/order-categories.dto';
 import { UpdateCategoryDto } from '../dto/update-category.dto';
 import { CategoriesService } from '../services/categories.service';
 
@@ -29,6 +30,12 @@ export class CategoriesController {
   @Post()
   async createCategory(@Body() createCategoryDto: CreateCategoryDto): Promise<Category> {
     return this.categoriesService.createCategory(createCategoryDto);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Put('/order')
+  async orderCategories(@Body() orderCategoriesDto: OrderCategoriesDto): Promise<Category[]> {
+    return this.categoriesService.orderCategories(orderCategoriesDto);
   }
 
   @UseGuards(AuthGuard('jwt'))
