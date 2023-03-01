@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.1](https://github.com/Arphase/nx-arphase/compare/v5.0.0...v5.0.1) (2023-03-01)
+
+
+### Features
+
+* **musicr/categories:** [#296](https://github.com/Arphase/nx-arphase/issues/296) add position property to categories to order main menu ([d0f25eb](https://github.com/Arphase/nx-arphase/commit/d0f25ebdb3defc5fcf2466e6a19092c21bca797d))
+* **musicr/store:** change contact email ([1fd2a3d](https://github.com/Arphase/nx-arphase/commit/1fd2a3d0306e1fc26188a9c05619ba94d7459b07))
+
 ## [5.0.0](https://github.com/Arphase/nx-arphase/compare/v4.2.5...v5.0.0) (2023-01-21)
 
 
