@@ -10,7 +10,6 @@ interface FrequentQuestion {
   styleUrls: ['./frequent-questions.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class FrequentQuestionsComponent {
   pageTilte = 'frequentquestions';
   FrequentQuestions: FrequentQuestion[] = [
@@ -23,9 +22,9 @@ export class FrequentQuestionsComponent {
     {
       question: '¿Qué tarifas se pueden cobrar adicionalmente?',
       answer: [
-        'La gran mayoría de las veces no se agrega una tarifa adicional a la que ves anunciada en los servicios. Sin embargo, existen dos tarifas que pueden sumarse al total: tarifa de traslado (flete) y tarifa por maniobra.',
-        'La tarifa de traslado (flete) se añade a eventos cuyo total sea inferior a $1,000 pesos, o bien cuando los eventos se llevan a cabo en direcciones que no pertenezcan al área metropolitana de Monterrey (Santiago, Allende, Montemorelos, Cadereyta, Zuazua, García, etc). La tarifa de traslado varía de acuerdo a la dirección del evento.',
-        'La tarifa por maniobra es un monto que se cobra si el lugar donde se hará la instalación no es de fácil acceso: cuando el montaje implica subir o bajar muchas escaleras, cargar con el equipo por una distancia considerable, a travesar un lugar peligroso, etc. Se calcula de acuerdo a la complejidad del montaje y de los servicios contratados.',
+        'Existen dos tarifas que pueden sumarse al total: tarifa de traslado (flete) y tarifa por maniobra.',
+        'La tarifa de traslado (flete) la cual se calcula de acuerdo a la dirección del evento, así como a la cantidad y tipo de servicios contratados.',
+        'La tarifa por maniobra es un monto que se cobra si el lugar donde se hará la instalación no es de fácil acceso: cuando el montaje implica subir o bajar escaleras, cargar con el equipo por una distancia considerable, pasar un pasillo muy angosto, atravesar un lugar peligroso, etc. Se calcula de acuerdo a la complejidad del montaje y de acuerdo a los servicios contratados.',
       ],
     },
     {
