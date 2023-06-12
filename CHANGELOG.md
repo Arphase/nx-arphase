@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.4](https://github.com/Arphase/nx-arphase/compare/v5.0.3...v5.0.4) (2023-06-12)
+
+
+### Bug Fixes
+
+* **core/api:** don't require id when updating address ([9e300d5](https://github.com/Arphase/nx-arphase/commit/9e300d5a4ef282fcb974b07c3cc2039c185a388d))
+
 ### [5.0.3](https://github.com/Arphase/nx-arphase/compare/v5.0.2...v5.0.3) (2023-05-31)
 
 ### [5.0.2](https://github.com/Arphase/nx-arphase/compare/v5.0.1...v5.0.2) (2023-03-01)
