@@ -1,7 +1,7 @@
 import { RouterTestingModule } from '@angular/router/testing';
+import { CompanyCollectionService } from '@innovatech/ui/companies/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import { ProductCollectionService } from '@innovatech/ui/products/data';
-import { VehicleCollectionService } from '@innovatech/ui/vehicles/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockStore } from '@ngrx/store/testing';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -23,7 +23,7 @@ describe('GuaranteeFormContainerComponent', () => {
         useValue: { hasCreatePermission: () => of(true), hasUpdatePermission: () => of(true) },
       },
     ],
-    mocks: [GuaranteeCollectionService, ProductCollectionService, VehicleCollectionService, NzMessageService],
+    mocks: [GuaranteeCollectionService, ProductCollectionService, CompanyCollectionService, NzMessageService],
   });
 
   beforeEach(() => (spectator = createComponent()));

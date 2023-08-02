@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApsListContainerComponent } from '@arphase/ui/core';
-import { Revision } from '@innovatech/common/domain';
+import { Revision, Vehicle } from '@innovatech/common/domain';
 import dayjs from 'dayjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -28,8 +28,8 @@ export class RevisionListContainerComponent extends ApsListContainerComponent<Re
     super(revisionCollectionService, revisionDataService, modal, toastrService);
   }
 
-  createGuarantee(vehicleId: number): void {
-    this.router.navigateByUrl(`/spa/guarantees/new?vehicleId=${vehicleId}`);
+  createGuarantee(vehicle: Vehicle): void {
+    this.router.navigateByUrl(`/spa/guarantees/new?vehicleVin=${vehicle.vin}`);
   }
 
   deleteItem(item: Revision): void {

@@ -1,6 +1,5 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { PermissionService } from '@innovatech/ui/permissions/data';
-import { VehicleCollectionService } from '@innovatech/ui/vehicles/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockStore } from '@ngrx/store/testing';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -22,7 +21,7 @@ describe('RevisionFormContainerComponent', () => {
       },
     ],
     shallow: true,
-    mocks: [RevisionCollectionService, VehicleCollectionService, NzMessageService],
+    mocks: [RevisionCollectionService, NzMessageService],
   });
 
   beforeEach(() => (spectator = createComponent()));

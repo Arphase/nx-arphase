@@ -24,7 +24,6 @@ import { filter } from 'rxjs/operators';
 export class VehicleFormComponent extends ApsFormComponent<Partial<Vehicle>> implements OnChanges {
   @Input() companyId: number;
   @Input() showCompanyInput: boolean;
-  @Input() vehicle: Vehicle;
   @Output() verifyVin = new EventEmitter<string>();
   @Output() getCompanies = new EventEmitter<QueryParams>();
 
@@ -41,12 +40,8 @@ export class VehicleFormComponent extends ApsFormComponent<Partial<Vehicle>> imp
       enableControl(this.form.get('companyId'), this.showCompanyInput, { emitEvent: false });
     }
 
-    if (changes.item && this.item?.id) {
+    if (changes.item) {
       this.patchForm();
-    }
-
-    if (changes.vehicle && this.isEditable) {
-      this.handleVehicleChange();
     }
 
     if (changes.isEditable) {
@@ -65,17 +60,15 @@ export class VehicleFormComponent extends ApsFormComponent<Partial<Vehicle>> imp
   }
 
   patchForm(): void {
-    this.form.patchValue(this.item, { emitEvent: false });
-    this.form.disable({ emitEvent: false });
-    const enableIfEmpptyFields: VehicleKeys[] = ['version', 'year', 'motorNumber', 'horsePower'];
-    enableIfEmpptyFields.filter(key => !this.item[key]).forEach(key => this.form.get(key).enable({ emitEvent: false }));
-    this.form.get('vin').enable({ emitEvent: false });
-  }
-
-  handleVehicleChange(): void {
-    if (this.vehicle) {
-      this.form.patchValue(omit(this.vehicle, 'vin'));
+    if (this.item?.id) {
+      this.form.patchValue(this.item, { emitEvent: false });
       this.form.disable({ emitEvent: false });
+      if (this.isEditable) {
+        const enableIfEmpptyFields: VehicleKeys[] = ['version', 'year', 'motorNumber', 'horsePower'];
+        enableIfEmpptyFields
+          .filter(key => !this.item[key])
+          .forEach(key => this.form.get(key).enable({ emitEvent: false }));
+      }
       this.form.get('vin').enable({ emitEvent: false });
     } else {
       this.form.enable({ emitEvent: false });

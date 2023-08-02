@@ -189,7 +189,7 @@
           <ng-container *ivtPermission="[userRoles.superAdmin]">
             <li *ngIf="item?.status === revisionStatus[revisionStatus.elegible]"
                 nz-menu-item
-                (click)="createGuarantee.emit(item?.vehicleId)">Generar garantía</li>
+                (click)="createGuarantee.emit(item?.vehicle)">Generar garantía</li>
           </ng-container>
           <li *ivtPermission=[userRoles.superAdmin]
               nz-menu-item

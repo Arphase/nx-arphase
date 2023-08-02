@@ -32,15 +32,15 @@ export class VehicleListContainerComponent extends ApsListContainerComponent<Veh
   }
 
   createGuarantee(item: Vehicle): void {
-    this.router.navigateByUrl(`/spa/guarantees/new?vehicleId=${item.id}`);
+    this.router.navigateByUrl(`/spa/guarantees/new?vehicleVin=${item.vin}`);
   }
 
   createRevision(item: Vehicle): void {
-    this.router.navigateByUrl(`/spa/revisions/new?vehicleId=${item.id}`);
+    this.router.navigateByUrl(`/spa/revisions/new?vehicleVin=${item.vin}`);
   }
 
   createRevisionRequest(item: Vehicle): void {
-    this.router.navigateByUrl(`/spa/revision-requests/new?vehicleId=${item.id}`);
+    this.router.navigateByUrl(`/spa/revision-requests/new?vehicleVin=${item.vin}`);
   }
 
   changeStatus(vehicle: Partial<Vehicle>): void {

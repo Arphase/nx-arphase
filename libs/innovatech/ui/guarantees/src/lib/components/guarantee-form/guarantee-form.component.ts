@@ -45,9 +45,9 @@ export class GuaranteeFormComponent
 {
   @Input() productOptions: NzSelectOptionInterface[] = [];
   @Input() vehicle: Vehicle;
-  @Input() currentVehicle: Vehicle;
   @Input() error: string;
   @Input() showCompanyInput: boolean;
+  @Input() groupId: number;
   showPhysicalForm = true;
   showMoralForm = false;
   personTypes = PersonTypes;
@@ -85,7 +85,7 @@ export class GuaranteeFormComponent
   }
 
   get isElegible(): boolean {
-    return !this.currentVehicle || isVehicleElegible(this.currentVehicle);
+    return !this.vehicle || isVehicleElegible(this.vehicle);
   }
 
   get disableSubmit(): boolean {

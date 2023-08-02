@@ -38,7 +38,6 @@
         <ivt-vehicle-form [form]="vehicleForm"
                           [companyId]="companyId$ | async"
                           [item]="vehicle"
-                          [vehicle]="currentVehicle"
                           [isEditable]="isEditable"
                           (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
       </nz-collapse-panel>
@@ -123,6 +122,7 @@
                            formControlName="productId"
                            [year]="year$ | async"
                            [horsePower]="horsePower$ | async"
+                           [groupId]="groupId"
                            data-cy="product"></nz-select>
               </nz-form-control>
             </nz-form-item>

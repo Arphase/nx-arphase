@@ -124,6 +124,18 @@
        nzXs="12"
        nzMd="6"
        nzLg="4">
+    <span nz-typography><strong>Usuario: </strong></span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
+    <span>{{ item?.user?.firstName }} {{ item?.user?.lastName }}</span>
+  </div>
+  <div nz-col
+       nzXs="12"
+       nzMd="6"
+       nzLg="4">
     <span nz-typography><strong>Producto: </strong></span>
   </div>
   <div nz-col
@@ -136,12 +148,12 @@
        nzXs="12"
        nzMd="6"
        nzLg="4">
-    <span nz-typography><strong>Usuario: </strong></span>
+    <span nz-typography><strong>Precio Producto: </strong></span>
   </div>
   <div nz-col
        nzXs="12"
        nzMd="6"
        nzLg="4">
-    <span>{{ item?.user?.firstName }} {{ item?.user?.lastName }}</span>
+    <span>{{ item?.product?.price | currency }} </span>
   </div>
 </div>

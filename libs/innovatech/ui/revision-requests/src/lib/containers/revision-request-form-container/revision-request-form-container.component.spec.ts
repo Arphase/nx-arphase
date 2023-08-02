@@ -15,7 +15,7 @@ describe('RevisionRequestFormContainerComponent', () => {
     imports: [RouterTestingModule],
     providers: [provideMockStore()],
     shallow: true,
-    mocks: [RevisionRequestCollectionService, VehicleCollectionService, NzMessageService, PermissionService],
+    mocks: [RevisionRequestCollectionService, NzMessageService, PermissionService],
   });
 
   beforeEach(() => (spectator = createComponent()));

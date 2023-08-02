@@ -4,8 +4,8 @@
                     [isEditable]="isEditable$ | async"
                     [productOptions]="productOptions$ | async"
                     [vehicle]="vehicle$ | async"
-                    [currentVehicle]="currentVehicle$ | async"
                     [error]="error$ | async"
                     [showCompanyInput]="showCompanyInput$ | async"
+                    [groupId]="groupId$ | async"
                     (verifyVin)="verifyVin($event)"
                     (submitForm)="submit($event)"></ivt-guarantee-form>

@@ -15,6 +15,7 @@ export class ProductSelectDirective
 {
   @Input() year: string;
   @Input() horsePower: string;
+  @Input() groupId: number;
   sortValue = [{ key: 'product.name', value: 'ascend' }];
 
   constructor(
@@ -27,7 +28,7 @@ export class ProductSelectDirective
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.year || changes.horsePower) {
+    if (changes.year || changes.horsePower || changes.groupId) {
       this.getProductsWithRestrictions();
     }
   }
@@ -42,10 +43,10 @@ export class ProductSelectDirective
       this.productCollectionService.queryParams$.pipe(take(1)).subscribe(queryParams =>
         this.productCollectionService.getWithQuery({
           ...queryParams,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          sort: this.sortValue as any,
+          sort: this.sortValue as unknown as string[],
           year: this.year,
           horsePower: this.horsePower,
+          groupId: String(this.groupId),
           resetList: String(true),
         })
       );

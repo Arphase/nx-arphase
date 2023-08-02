@@ -45,8 +45,7 @@ export class RevisionFormContainerComponent extends ApsFormContainerComponent<Re
       return createRoute ? create : update && isRevisionEditable(revision);
     })
   );
-  vehicle$ = this.vehicleCollectionService.currentItem$;
-  currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
+  vehicle$ = this.store.pipe(select(getVehiclesVehicleState));
   error$ = this.store.pipe(select(getVehiclesErrorMessageState));
 
   constructor(
@@ -54,7 +53,6 @@ export class RevisionFormContainerComponent extends ApsFormContainerComponent<Re
     protected router: Router,
     protected messageService: NzMessageService,
     private store: Store,
-    private vehicleCollectionService: VehicleCollectionService,
     private permissionService: PermissionService,
     private route: ActivatedRoute
   ) {
@@ -63,8 +61,8 @@ export class RevisionFormContainerComponent extends ApsFormContainerComponent<Re
 
   ngOnInit() {
     this.store
-      .pipe(select(selectQueryParam('vehicleId')), untilDestroyed(this), filterNil())
-      .subscribe(id => this.vehicleCollectionService.getByKey(Number(id)));
+      .pipe(select(selectQueryParam('vehicleVin')), untilDestroyed(this), filterNil())
+      .subscribe(vin => this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin })));
   }
 
   verifyVin(vin: string): void {
@@ -76,7 +74,6 @@ export class RevisionFormContainerComponent extends ApsFormContainerComponent<Re
   }
 
   ngOnDestroy() {
-    this.vehicleCollectionService.removeOneFromCache(null);
     this.store.dispatch(fromVehicles.actions.clearVehiclesState());
   }
 }

@@ -3,15 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApsFormContainerComponent } from '@arphase/ui/forms';
 import { filterNil } from '@arphase/ui/utils';
 import { Guarantee, UserRoles } from '@innovatech/common/domain';
+import { CompanyCollectionService } from '@innovatech/ui/companies/data';
 import { selectQueryParam } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import { ProductCollectionService } from '@innovatech/ui/products/data';
-import {
-  fromVehicles,
-  getVehiclesErrorMessageState,
-  getVehiclesVehicleState,
-  VehicleCollectionService,
-} from '@innovatech/ui/vehicles/data';
+import { fromVehicles, getVehiclesErrorMessageState, getVehiclesVehicleState } from '@innovatech/ui/vehicles/data';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash';
@@ -41,9 +37,12 @@ export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<G
     this.route.url,
   ]).pipe(map(([create, update, url]) => (url.find(segment => segment.path === 'new') ? create : update)));
   productOptions$ = this.productCollectionService.options$;
-  vehicle$ = this.vehicleCollectionService.currentItem$;
-  currentVehicle$ = this.store.pipe(select(getVehiclesVehicleState));
+  vehicle$ = this.store.pipe(select(getVehiclesVehicleState));
   error$ = this.store.pipe(select(getVehiclesErrorMessageState));
+  groupId$ = this.companyCollectionService.currentItem$.pipe(
+    filterNil(),
+    map(({ groupId }) => groupId)
+  );
 
   constructor(
     protected guaranteeCollectionService: GuaranteeCollectionService,
@@ -52,8 +51,8 @@ export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<G
     private productCollectionService: ProductCollectionService,
     private permissionService: PermissionService,
     private store: Store,
-    private vehicleCollectionService: VehicleCollectionService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private companyCollectionService: CompanyCollectionService
   ) {
     super(guaranteeCollectionService, router, messageService);
     this.productCollectionService.clearCache();
@@ -61,8 +60,12 @@ export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<G
 
   ngOnInit() {
     this.store
-      .pipe(select(selectQueryParam('vehicleId')), untilDestroyed(this), filterNil())
-      .subscribe(id => this.vehicleCollectionService.getByKey(Number(id)));
+      .pipe(select(selectQueryParam('vehicleVin')), untilDestroyed(this))
+      .subscribe(vin => this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin })));
+
+    this.vehicle$
+      .pipe(untilDestroyed(this), filterNil())
+      .subscribe(vehicle => this.companyCollectionService.getByKey(vehicle.companyId));
   }
 
   verifyVin(vin: string): void {
@@ -74,7 +77,6 @@ export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<G
   }
 
   ngOnDestroy() {
-    this.vehicleCollectionService.removeOneFromCache(null);
     this.store.dispatch(fromVehicles.actions.clearVehiclesState());
     this.productCollectionService.clearCache();
   }

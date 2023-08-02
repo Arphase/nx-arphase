@@ -180,6 +180,7 @@
     "source-map-explorer": "^2.5.3",
     "supertest": "6.3.3",
     "ts-jest": "29.0.3",
-    "tslib": "2.4.1"
+    "tslib": "2.4.1",
+    "wait-on": "^7.0.1"
   }
 }

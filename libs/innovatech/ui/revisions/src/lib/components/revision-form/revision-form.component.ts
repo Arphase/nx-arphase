@@ -41,7 +41,6 @@ export function createRevisionForm(): UntypedFormGroup {
 })
 export class RevisionFormComponent extends ApsFormComponent<Revision> implements OnChanges, AfterViewInit {
   @Input() vehicle: Vehicle;
-  @Input() currentVehicle: Vehicle;
   @Input() error: string;
   statusOptions = statusOptions;
   revisionReportSections = revisionReportSections;

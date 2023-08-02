@@ -37,7 +37,6 @@ export class RevisionRequestFormComponent
   implements OnChanges, AfterViewInit
 {
   @Input() vehicle: Vehicle;
-  @Input() currentVehicle: Vehicle;
   @Input() error: string;
   form = createRevisionRequestForm();
   @Output() verifyVin = new EventEmitter<string>();

@@ -31,11 +31,11 @@ export class ProductService {
     }
     filterCommonQuery('product', query, filterDto);
 
-    if ((user && user.role !== UserRoles.superAdmin) || groupId) {
-      let company: Company;
-      if (user && user.role !== UserRoles.superAdmin) {
-        company = await this.companyRepository.findOneBy({ id: user.companyId });
-      }
+    let company: Company;
+    if (user && user.role !== UserRoles.superAdmin) {
+      company = await this.companyRepository.findOneBy({ id: user.companyId });
+    }
+    if (groupId || company) {
       const groupQuery = this.groupRepository
         .createQueryBuilder('group')
         .leftJoinAndSelect('group.products', 'product')
