@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.6](https://github.com/Arphase/nx-arphase/compare/v5.0.5...v5.0.6) (2023-08-02)
+
+
+### Features
+
+* **innovatech/guarantees:** [#298](https://github.com/Arphase/nx-arphase/issues/298) add product price when exporting to Excel ([f02b518](https://github.com/Arphase/nx-arphase/commit/f02b51890382d98e86fb558f7ae77b1653b38bdc))
+
 ### [5.0.5](https://github.com/Arphase/nx-arphase/compare/v5.0.4...v5.0.5) (2023-08-02)
 
 
