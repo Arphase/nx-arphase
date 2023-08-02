@@ -29,6 +29,7 @@ export const guaranteeExcelColumns: string[] = [
   'Número Interno',
   'Punto de Venta',
   'Producto',
+  'Precio producto',
   'Marca',
   'Modelo',
   'Versión',

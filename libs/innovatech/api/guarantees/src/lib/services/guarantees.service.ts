@@ -1,5 +1,5 @@
 import { createCollectionResponse, getReadableStream, tobase64 } from '@arphase/api/core';
-import { ApsCollectionResponse, formatDate } from '@arphase/common';
+import { ApsCollectionResponse, formatCurrency, formatDate } from '@arphase/common';
 import { filterCommonQuery } from '@innovatech/api/core/util';
 import {
   ClientEntity,
@@ -139,6 +139,7 @@ export class GuaranteesService {
         guarantee.client?.address?.internalNumber,
         guarantee.client?.salesPlace,
         guarantee?.product?.name,
+        formatCurrency(guarantee?.product?.price),
         guarantee.vehicle?.brand,
         guarantee.vehicle?.model,
         guarantee.vehicle?.version,
