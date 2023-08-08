@@ -106,6 +106,7 @@
               <nz-form-label nzRequired>Compañía</nz-form-label>
               <nz-form-control apsAutoError>
                 <nz-select ivtCompanySelect
+                           [getByKey]="true"
                            formControlName="companyId"
                            data-cy="company"></nz-select>
               </nz-form-control>

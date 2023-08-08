@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
@@ -27,7 +26,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { QueryParams } from '@ngrx/data';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
-import { startWith } from 'rxjs/operators';
+import { debounceTime, startWith } from 'rxjs/operators';
 
 import { personTypeOptions } from './guarantee-form.constants';
 
@@ -39,10 +38,7 @@ import { personTypeOptions } from './guarantee-form.constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
-export class GuaranteeFormComponent
-  extends ApsFormComponent<DeepPartial<Guarantee>>
-  implements OnChanges, AfterViewInit
-{
+export class GuaranteeFormComponent extends ApsFormComponent<DeepPartial<Guarantee>> implements OnChanges {
   @Input() productOptions: NzSelectOptionInterface[] = [];
   @Input() vehicle: Vehicle;
   @Input() error: string;
@@ -65,11 +61,11 @@ export class GuaranteeFormComponent
   }
 
   get year$(): Observable<number> {
-    return this.vehicleForm.get('year').valueChanges.pipe(startWith(this.vehicleForm.get('year').value));
+    return this.vehicleForm.get('year').valueChanges.pipe(startWith(this.values.vehicle.year));
   }
 
   get horsePower$(): Observable<number> {
-    return this.vehicleForm.get('horsePower').valueChanges.pipe(startWith(this.vehicleForm.get('horsePower').value));
+    return this.vehicleForm.get('horsePower').valueChanges.pipe(startWith(this.values.vehicle.horsePower));
   }
 
   get addressForm(): FormGroup<ControlsOf<Address>> {
@@ -114,10 +110,8 @@ export class GuaranteeFormComponent
     if (changes.showCompanyInput) {
       enableControl(this.form.get('companyId'), this.showCompanyInput, { emitEvent: false });
     }
-  }
 
-  ngAfterViewInit() {
-    if (this.item) {
+    if (changes.item && this.item) {
       this.form.patchValue({
         ...this.item,
         client: {
@@ -126,6 +120,10 @@ export class GuaranteeFormComponent
           physicalInfo: this.item.client.physicalInfo ?? {},
         },
       });
+    }
+
+    if (changes.vehicle && this.vehicle?.companyId && !this.values.companyId) {
+      this.form.get('companyId').patchValue(this.vehicle.companyId);
     }
   }
 

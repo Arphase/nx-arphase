@@ -39,17 +39,15 @@ export class ProductSelectDirective
   }
 
   getProductsWithRestrictions(): void {
-    if (this.year && this.horsePower) {
-      this.productCollectionService.queryParams$.pipe(take(1)).subscribe(queryParams =>
-        this.productCollectionService.getWithQuery({
-          ...queryParams,
-          sort: this.sortValue as unknown as string[],
-          year: this.year,
-          horsePower: this.horsePower,
-          groupId: String(this.groupId),
-          resetList: String(true),
-        })
-      );
-    }
+    this.productCollectionService.queryParams$.pipe(take(1)).subscribe(queryParams =>
+      this.productCollectionService.getWithQuery({
+        ...queryParams,
+        sort: this.sortValue as unknown as string[],
+        year: this.year ?? undefined,
+        horsePower: this.horsePower ?? undefined,
+        groupId: this.groupId ? String(this.groupId) : undefined,
+        resetList: String(true),
+      })
+    );
   }
 }

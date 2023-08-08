@@ -1,16 +1,18 @@
-import { AfterContentInit, ChangeDetectorRef, Directive, HostListener, SimpleChange } from '@angular/core';
+import { AfterContentInit, ChangeDetectorRef, Directive, HostListener, Input, SimpleChange } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { ApsCollectionService } from '@arphase/ui/data';
+import { filterNil } from '@arphase/ui/utils';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzSelectComponent } from 'ng-zorro-antd/select';
 import { combineLatest } from 'rxjs';
-import { filter, switchMap, take } from 'rxjs/operators';
+import { distinctUntilChanged, filter, switchMap, take } from 'rxjs/operators';
 
 @UntilDestroy()
 @Directive({
   selector: '[apsCollectionSelect]',
 })
 export class ApsCollectionSelectDirective<T> implements AfterContentInit {
+  @Input() getByKey: boolean;
   sortValue: { key: string; value: string }[];
 
   constructor(
@@ -33,6 +35,18 @@ export class ApsCollectionSelectDirective<T> implements AfterContentInit {
         this.cdr.detectChanges();
       }
     });
+
+    if (this.ngControl?.control) {
+      this.ngControl.control.valueChanges
+        .pipe(
+          filterNil(),
+          distinctUntilChanged(),
+          filter(() => this.getByKey),
+          untilDestroyed(this)
+        )
+        .subscribe(value => this.collectionService.getByKey(value));
+    }
+
     if (value) {
       this.collectionService.entityMap$
         .pipe(

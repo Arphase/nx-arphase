@@ -5,18 +5,18 @@ import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { of } from 'rxjs';
 
-import { DataSelectDirective } from './data-select.directive';
+import { ApsDataSelectDirective } from './data-select.directive';
 
-describe('DataSelectDirective', () => {
+describe('ApsDataSelectDirective', () => {
   @Component({ selector: 'aps-test' })
   class HostComponent {
     form = new FormGroup({ test: new FormControl('') });
   }
 
-  let spectator: SpectatorDirective<DataSelectDirective<unknown>>;
+  let spectator: SpectatorDirective<ApsDataSelectDirective<unknown>>;
 
   const createDirective = createDirectiveFactory({
-    directive: DataSelectDirective,
+    directive: ApsDataSelectDirective,
     host: HostComponent,
     imports: [NzSelectModule, ReactiveFormsModule],
     providers: [{ provide: ApsDataService, useValue: { getWithQuery: () => of() } }],

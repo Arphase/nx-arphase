@@ -21,7 +21,7 @@ import { BehaviorSubject, debounceTime, finalize, map, Observable, switchMap, ta
 @Directive({
   selector: '[apsDataSelect]',
 })
-export class DataSelectDirective<T> implements AfterContentInit {
+export class ApsDataSelectDirective<T> implements AfterContentInit {
   @Input() queryParams: QueryParams;
   @Input() labelField: string;
   @Input() valueField: string;

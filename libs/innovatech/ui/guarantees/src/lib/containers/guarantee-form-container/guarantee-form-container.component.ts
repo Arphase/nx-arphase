@@ -60,11 +60,11 @@ export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<G
 
   ngOnInit() {
     this.store
-      .pipe(select(selectQueryParam('vehicleVin')), untilDestroyed(this))
+      .pipe(select(selectQueryParam('vehicleVin')), filterNil(), untilDestroyed(this))
       .subscribe(vin => this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin })));
 
     this.vehicle$
-      .pipe(untilDestroyed(this), filterNil())
+      .pipe(filterNil(), untilDestroyed(this))
       .subscribe(vehicle => this.companyCollectionService.getByKey(vehicle.companyId));
   }
 

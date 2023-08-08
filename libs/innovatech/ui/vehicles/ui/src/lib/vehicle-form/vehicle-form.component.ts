@@ -11,7 +11,6 @@ import { ApsFormComponent, enableControl } from '@arphase/ui/forms';
 import { Vehicle, VEHICLE_VIN_LENGTH, VehicleKeys } from '@innovatech/common/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { QueryParams } from '@ngrx/data';
-import { omit } from 'lodash';
 import { filter } from 'rxjs/operators';
 
 @UntilDestroy()
