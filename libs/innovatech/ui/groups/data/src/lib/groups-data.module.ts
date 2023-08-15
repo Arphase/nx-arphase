@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ApsDataService } from '@arphase/ui/data';
 import { EntityDataService } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { GroupDataService, GroupFilterDataService } from './services';
+import { GroupDataService } from './services';
 import { GroupsEffects } from './state';
 import { reducer } from './state/groups.reducer';
 
@@ -13,15 +12,7 @@ import { reducer } from './state/groups.reducer';
   imports: [CommonModule, StoreModule.forFeature('groups', reducer), EffectsModule.forFeature([GroupsEffects])],
 })
 export class GroupsDataModule {
-  constructor(
-    entityDataService: EntityDataService,
-    groupDataService: GroupDataService,
-    groupFilterDataService: GroupFilterDataService
-  ) {
-    const services: Record<string, ApsDataService<unknown>> = {
-      Group: groupDataService,
-      GroupFilter: groupFilterDataService,
-    };
-    entityDataService.registerServices(services);
+  constructor(entityDataService: EntityDataService, groupDataService: GroupDataService) {
+    entityDataService.registerService('Group', groupDataService);
   }
 }

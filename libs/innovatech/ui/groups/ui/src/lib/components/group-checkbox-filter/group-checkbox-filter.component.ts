@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsCollectionCheckboxFilterComponent } from '@arphase/ui/core';
 import { Group } from '@innovatech/common/domain';
-import { GroupFilterCollectionService } from '@innovatech/ui/groups/data';
+import { GroupCollectionService } from '@innovatech/ui/groups/data';
 
 @Component({
   selector: 'ivt-group-checkbox-filter',
@@ -13,7 +13,7 @@ export class GroupCheckboxFilterComponent extends ApsCollectionCheckboxFilterCom
   sortValue = [{ key: 'group.name', value: 'ascend' }];
   filterPropertyName = 'groupIds';
 
-  constructor(protected groupFilterCollectionService: GroupFilterCollectionService) {
-    super(groupFilterCollectionService);
+  constructor(protected groupCollectionService: GroupCollectionService) {
+    super(groupCollectionService);
   }
 }

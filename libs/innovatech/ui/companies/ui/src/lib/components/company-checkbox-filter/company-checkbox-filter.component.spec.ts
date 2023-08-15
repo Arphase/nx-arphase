@@ -1,4 +1,4 @@
-import { CompanyFilterCollectionService } from '@innovatech/ui/companies/data';
+import { CompanyCollectionService } from '@innovatech/ui/companies/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { CompanyCheckboxFilterComponent } from './company-checkbox-filter.component';
@@ -7,7 +7,7 @@ describe('CompanyCheckboxFilterComponent', () => {
   let spectator: Spectator<CompanyCheckboxFilterComponent>;
   const createComponent = createComponentFactory({
     component: CompanyCheckboxFilterComponent,
-    providers: [{ provide: CompanyFilterCollectionService, useValue: { getWithQuery: jest.fn() } }],
+    providers: [{ provide: CompanyCollectionService, useValue: { getWithQuery: jest.fn() } }],
     shallow: true,
   });
 

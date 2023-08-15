@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { CategoryFilterCollectionService } from '@musicr/ui/categories/data';
+import { CategoryCollectionService } from '@musicr/ui/categories/data';
 import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { of } from 'rxjs';
@@ -19,7 +19,7 @@ describe('CategorySelectDirective', () => {
     directive: CategorySelectDirective,
     host: HostComponent,
     imports: [NzSelectModule, ReactiveFormsModule],
-    providers: [{ provide: CategoryFilterCollectionService, useValue: { options$: of([]) } }],
+    providers: [{ provide: CategoryCollectionService, useValue: { options$: of([]) } }],
   });
 
   beforeEach(() => {

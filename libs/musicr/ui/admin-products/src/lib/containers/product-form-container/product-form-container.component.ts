@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApsFormContainerComponent } from '@arphase/ui/forms';
 import { Product } from '@musicr/domain';
-import { ProductCollectionService, PhotoCollectionService } from '@musicr/ui/products/data';
-import { SubcategoryFilterCollectionService } from '@musicr/ui/subcategories/data';
+import { PhotoCollectionService, ProductCollectionService } from '@musicr/ui/products/data';
+import { SubcategoryCollectionService } from '@musicr/ui/subcategories/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { BehaviorSubject } from 'rxjs';
 
@@ -28,14 +28,14 @@ export class ProductFormContainerComponent extends ApsFormContainerComponent<Pro
     protected productCollectionService: ProductCollectionService,
     protected router: Router,
     protected messageService: NzMessageService,
-    private subcategoryFilterCollectionService: SubcategoryFilterCollectionService,
+    private subcategoryCollectionService: SubcategoryCollectionService,
     private photoCollectionService: PhotoCollectionService
   ) {
     super(productCollectionService, router, messageService);
   }
 
   onCategoryChanges(categoryId: number): void {
-    this.subcategoryFilterCollectionService.getWithQuery({ resetList: String(true), categoryId: String(categoryId) });
+    this.subcategoryCollectionService.getWithQuery({ resetList: String(true), categoryId: String(categoryId) });
   }
 
   removePhoto(id: number): void {

@@ -56,6 +56,7 @@ export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<G
   ) {
     super(guaranteeCollectionService, router, messageService);
     this.productCollectionService.clearCache();
+    this.companyCollectionService.clearCache();
   }
 
   ngOnInit() {

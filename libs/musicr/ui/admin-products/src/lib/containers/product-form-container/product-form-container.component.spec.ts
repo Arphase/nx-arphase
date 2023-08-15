@@ -1,6 +1,6 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { PhotoCollectionService, ProductCollectionService } from '@musicr/ui/products/data';
-import { SubcategoryFilterCollectionService } from '@musicr/ui/subcategories/data';
+import { SubcategoryCollectionService } from '@musicr/ui/subcategories/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -16,7 +16,7 @@ describe('ProductFormContainerComponent', () => {
     mocks: [
       ProductCollectionService,
       NzMessageService,
-      SubcategoryFilterCollectionService,
+      SubcategoryCollectionService,
       NzModalService,
       PhotoCollectionService,
     ],

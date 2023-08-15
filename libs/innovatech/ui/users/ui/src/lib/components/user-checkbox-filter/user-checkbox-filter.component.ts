@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApsCollectionCheckboxFilterComponent } from '@arphase/ui/core';
 import { User } from '@innovatech/common/domain';
-import { UserFilterCollectionService } from '@innovatech/ui/users/data';
+import { UserCollectionService } from '@innovatech/ui/users/data';
 
 @Component({
   selector: 'ivt-user-checkbox-filter',
@@ -12,7 +12,7 @@ import { UserFilterCollectionService } from '@innovatech/ui/users/data';
 export class UserCheckboxFilterComponent extends ApsCollectionCheckboxFilterComponent<User> {
   sortValue = [{ key: 'user.firstName', value: 'ascend' }];
   filterPropertyName = 'userIds';
-  constructor(protected userFilterCollectionService: UserFilterCollectionService) {
-    super(userFilterCollectionService);
+  constructor(protected userCollectionService: UserCollectionService) {
+    super(userCollectionService);
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { CompanyFilterCollectionService } from '@innovatech/ui/companies/data';
+import { CompanyCollectionService } from '@innovatech/ui/companies/data';
 import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { of } from 'rxjs';
@@ -21,7 +21,7 @@ describe('CompanySelectDirective', () => {
     directive: CompanySelectDirective,
     host: HostComponent,
     imports: [NzSelectModule, ReactiveFormsModule],
-    providers: [{ provide: CompanyFilterCollectionService, useValue: { options$: of([]) } }],
+    providers: [{ provide: CompanyCollectionService, useValue: { options$: of([]) } }],
   });
 
   beforeEach(() => {

@@ -141,6 +141,7 @@ export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectio
       ...collection,
       ...super.removeAll(collection, action),
       queryParams: null,
+      info: null,
     };
   }
 }
