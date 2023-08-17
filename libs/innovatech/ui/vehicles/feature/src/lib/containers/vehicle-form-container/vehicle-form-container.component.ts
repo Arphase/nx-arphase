@@ -43,10 +43,12 @@ export class VehicleFormContainerComponent extends ApsFormContainerComponent<Veh
   invalidVin$ = combineLatest([
     this.store.pipe(select(getVehiclesVehicleState)),
     this.store.pipe(select(getVehiclesErrorState)),
+    this.vehicleCollectionService.currentItem$,
   ]).pipe(
-    map(([vehicle, error]) => {
-      return !!vehicle || error?.statusCode === HttpStatusCodes.Forbidden;
-    })
+    map(
+      ([vehicle, error, editingVehicle]) =>
+        (!!vehicle && vehicle.vin !== editingVehicle.vin) || error?.statusCode === HttpStatusCodes.Forbidden
+    )
   );
 
   constructor(

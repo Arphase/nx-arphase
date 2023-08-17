@@ -26,7 +26,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { QueryParams } from '@ngrx/data';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
-import { debounceTime, startWith } from 'rxjs/operators';
+import { startWith } from 'rxjs/operators';
 
 import { personTypeOptions } from './guarantee-form.constants';
 

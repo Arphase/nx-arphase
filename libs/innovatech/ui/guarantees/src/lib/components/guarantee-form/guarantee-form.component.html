@@ -38,7 +38,8 @@
         <ivt-vehicle-form [form]="vehicleForm"
                           [companyId]="companyId$ | async"
                           [item]="vehicle"
-                          [isEditable]="isEditable"
+                          [isEditable]="false"
+                          [enableVin]="isEditable"
                           (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
       </nz-collapse-panel>
     </nz-collapse>
