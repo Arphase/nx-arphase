@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.7](https://github.com/Arphase/nx-arphase/compare/v5.0.6...v5.0.7) (2023-08-23)
+
+
+### Bug Fixes
+
+* **innovatech/app:** return json format in all api requests to avoid errors uploading images ([02cc666](https://github.com/Arphase/nx-arphase/commit/02cc66698bfa556f31ca5242a7a2b652db49a0dc))
+* **innovatech/guarantees:** allow editing guarantees and disable vehicle form in guarantee form ([366cab8](https://github.com/Arphase/nx-arphase/commit/366cab8f412df2e1bf7327467bfd820e9dcffe8c))
+* **innovatech/guarantees:** get filtered products even without HP and year ([54d0bee](https://github.com/Arphase/nx-arphase/commit/54d0beea1642343a0997bfe33a82f970c7deefd0))
+
 ### [5.0.6](https://github.com/Arphase/nx-arphase/compare/v5.0.5...v5.0.6) (2023-08-02)
 
 
