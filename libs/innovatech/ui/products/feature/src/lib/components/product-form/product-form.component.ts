@@ -59,18 +59,6 @@ export class ProductFormComponent extends ApsFormComponent<Product, ProductForm>
     showRemoveIcon: true,
     showDownloadIcon: false,
   };
-  customRequest = (item: NzUploadXHRArgs): Subscription => {
-    return this.http.get('/ivtApi').subscribe((event: HttpResponse<unknown>) => {
-      item.onSuccess(event.body, item.file, {}), event;
-    });
-  };
-  preview = (file: NzUploadFile): void => {
-    this.modalService.create({
-      nzBodyStyle: { display: 'flex', justifyContent: 'center', alignItems: 'center' },
-      nzContent: `<img width="400" height="400" src="${file.thumbUrl}">`,
-      nzFooter: null,
-    });
-  };
 
   get yearValidationsForm(): UntypedFormGroup {
     return this.form.get('yearValidations') as UntypedFormGroup;
@@ -128,6 +116,21 @@ export class ProductFormComponent extends ApsFormComponent<Product, ProductForm>
         },
       ];
     }
+  }
+
+  customRequest(item: NzUploadXHRArgs): Subscription {
+    return this.http
+      .get('/ivtApi')
+      .pipe(take(1))
+      .subscribe((event: HttpResponse<unknown>) => item.onSuccess(event.body, item.file, {}));
+  }
+
+  preview(file: NzUploadFile): void {
+    this.modalService.create({
+      nzBodyStyle: { display: 'flex', justifyContent: 'center', alignItems: 'center' },
+      nzContent: `<img width="400" height="400" src="${file.thumbUrl}">`,
+      nzFooter: null,
+    });
   }
 
   async saveFile(event: NzUploadChangeParam): Promise<void> {
