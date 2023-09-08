@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/Arphase/nx-arphase/compare/v5.0.7...v5.1.0) (2023-09-08)
+
+
+### Features
+
+* **innovatech/guarantees:** [#299](https://github.com/Arphase/nx-arphase/issues/299) make RFC an optional value for guarantee model ([d78a599](https://github.com/Arphase/nx-arphase/commit/d78a59913357acbd84486596eb26f765e3c275b2))
+
 ### [5.0.7](https://github.com/Arphase/nx-arphase/compare/v5.0.6...v5.0.7) (2023-08-23)
 
 
