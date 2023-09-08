@@ -7,6 +7,7 @@ env:
   DATABASE: ${{ secrets.IVT_PROD_DB }}
   USERNAME: ${{ secrets.IVT_PROD_DB_USERNAME }}
   PASSWORD: ${{ secrets.IVT_PROD_DB_PASSWORD }}
+  NODE_ENV: migrations
 
 on:
   workflow_dispatch:

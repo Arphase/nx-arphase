@@ -20,7 +20,7 @@ export function createGuaranteeForm(): FormGroup {
     client: new FormGroup<ControlsOf<DeepPartial<Client>>>({
       id: new FormControl(null),
       personType: new FormControl(null, ApsValidators.required),
-      rfc: new FormControl(null, [ApsValidators.required, IvtValidators.rfc(RfcValidatorTypes.any)]),
+      rfc: new FormControl(null, [IvtValidators.rfc(RfcValidatorTypes.any)]),
       phone: new FormControl(null, [ApsValidators.required, ApsValidators.phone]),
       email: new FormControl(null, [ApsValidators.required, ApsValidators.email]),
       salesPlace: new FormControl(null, ApsValidators.required),

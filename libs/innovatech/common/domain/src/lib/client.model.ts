@@ -8,7 +8,7 @@ export interface Client {
   personType: PersonTypes;
   physicalInfo?: PhysicalPerson;
   moralInfo?: MoralPerson;
-  rfc: string;
+  rfc?: string;
   phone: string;
   email: string;
   addressId?: number;

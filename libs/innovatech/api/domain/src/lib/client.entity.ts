@@ -44,7 +44,7 @@ export class ClientEntity extends BaseEntity implements Client {
   @JoinColumn({ name: 'moralPersonId' })
   moralInfo: MoralPerson;
 
-  @Column()
+  @Column({ nullable: true })
   rfc: string;
 
   @Column()

@@ -58,7 +58,7 @@ export class VehicleFormComponent extends ApsFormComponent<Partial<Vehicle>> imp
       .get('vin')
       .valueChanges.pipe(
         startWith(this.values.vin),
-        filter((vin: string) => vin.length === VEHICLE_VIN_LENGTH),
+        filter((vin: string) => vin?.length === VEHICLE_VIN_LENGTH),
         untilDestroyed(this)
       )
       .subscribe(vin => this.verifyVin.emit(vin));

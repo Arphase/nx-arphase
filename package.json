@@ -34,7 +34,7 @@
     "innovatech:seed": "dotenv -e .env -- ts-node --project tsconfig.base.json -r tsconfig-paths/register libs/innovatech/api/db/src/lib/scripts/seed/seed",
     "valmira:seed": "ts-node --project tsconfig.base.json -r tsconfig-paths/register apps/valmira/api/src/db/scripts/seed",
     "musicr:seed": "dotenv -e .env -- ts-node --project tsconfig.base.json -r tsconfig-paths/register libs/musicr/api/db/src/lib/scripts/seed",
-    "typeorm:innovatech": "ts-node --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d libs/innovatech/api/db/src/lib/config/ormconfig.ts",
+    "typeorm:innovatech": "dotenv -e .env -- ts-node --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d libs/innovatech/api/db/src/lib/config/ormconfig.ts",
     "typeorm:innovatech:migrate": "npm run typeorm:innovatech migration:generate --",
     "typeorm:innovatech:run": "npm run typeorm:innovatech migration:run",
     "typeorm:musicr": "dotenv -e .env -- ts-node --project tsconfig.base.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d libs/musicr/api/db/src/lib/config/ormconfig.ts",
@@ -48,7 +48,7 @@
     "api:innovatech:prod": "chmod +rwx dist && node dist/apps/innovatech/api/main.js",
     "api:valmira:prod": "npm run build:api:valmira:prod && chmod +rwx dist && node dist/apps/valmira/server/main.js",
     "api:musicr:prod": "npm run build:api:musicr:prod && chmod +rwx dist && node dist/apps/musicr/server/main.js",
-    "e2e:watch": "dotenv -e .env.test -- npx nx serve innovatech-api & npx wait-on http://localhost:3333 && dotenv -e .env.test -- npx nx affected:e2e --watch"
+    "innovatech:e2e:watch": "dotenv -e .env.test -- npx nx serve innovatech-api & npx wait-on http://localhost:3333 && dotenv -e .env.test -- npx nx e2e innovatech-app-e2e --watch"
   },
   "private": true,
   "dependencies": {

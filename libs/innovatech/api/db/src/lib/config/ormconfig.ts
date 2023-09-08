@@ -1,5 +1,3 @@
-import dotenv from 'dotenv';
-import path from 'path';
 import { DataSource } from 'typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
@@ -17,7 +15,7 @@ export const typeormConfig: PostgresConnectionOptions = {
   entities: ENTITIES,
   synchronize: process.env.SYNCHRONIZE === 'true',
   logging: !test,
-  migrations: ['libs/innovatech/api/db/src/lib/migrations/**/*.js'],
+  migrations: [`libs/innovatech/api/db/src/lib/migrations/**/*.${process.env.NODE_ENV === 'migrations' ? 'ts' : 'js'}`],
 };
 
 export const dataSource = new DataSource(typeormConfig);

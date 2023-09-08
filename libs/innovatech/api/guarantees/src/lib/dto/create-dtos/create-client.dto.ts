@@ -23,6 +23,7 @@ export class CreateClientDto {
   @Type(() => CreateMoralPersonDto)
   moralInfo: MoralPerson;
 
+  @IsOptional()
   @IsString()
   @IsRfc(RfcValidatorTypes.any, { message: 'RFC tiene formato incorrecto' })
   rfc: string;
