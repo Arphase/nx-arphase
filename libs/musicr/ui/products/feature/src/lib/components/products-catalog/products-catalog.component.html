@@ -111,19 +111,6 @@
           </div>
         </div>
       </div>
-      <div *ngIf="!info?.last"
-           nz-row>
-        <div nz-col
-             nzSpan="24"
-             class="flex justify-center items-center">
-          <button class="mt-5"
-                  nz-button
-                  nzType="primary"
-                  [nzLoading]="loadingMore"
-                  type="button"
-                  (click)="onLoadMore()">Cargar más</button>
-        </div>
-      </div>
     </div>
   </ng-template>
   <div *ngIf="!loading && !products?.length"

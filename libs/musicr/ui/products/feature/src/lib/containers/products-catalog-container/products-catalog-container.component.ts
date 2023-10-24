@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { QueryParams } from '@ngrx/data';
 
 import { ProductsCatalogService } from '../../services/products-catalog.service';
 
@@ -15,11 +14,6 @@ export class ProductsCatalogContainerComponent {
   info$ = this.productsCatalogService.productsInfo$;
   title$ = this.productsCatalogService.title$;
   loading$ = this.productsCatalogService.loading$;
-  loadingMore$ = this.productsCatalogService.loadingMore$;
 
   constructor(protected productsCatalogService: ProductsCatalogService) {}
-
-  loadMore(queryParams: QueryParams): void {
-    this.productsCatalogService.loadMore(queryParams);
-  }
 }

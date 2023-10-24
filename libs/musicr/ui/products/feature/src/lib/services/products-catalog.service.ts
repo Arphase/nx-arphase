@@ -7,7 +7,7 @@ import { Category, Product, Subcategory } from '@musicr/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { QueryParams } from '@ngrx/data';
 import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
-import { catchError, filter, finalize, switchMap, take } from 'rxjs/operators';
+import { catchError, filter, switchMap } from 'rxjs/operators';
 
 @UntilDestroy()
 @Injectable()
@@ -20,8 +20,6 @@ export class ProductsCatalogService {
   title$ = this.titleSubject.asObservable();
   loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
-  loadingMoreSubject = new BehaviorSubject<boolean>(false);
-  loadingMore$ = this.loadingMoreSubject.asObservable();
 
   get isSubCategory(): boolean {
     return this.router.url.includes('sub');
@@ -78,25 +76,11 @@ export class ProductsCatalogService {
       });
   }
 
-  loadMore(queryParams: QueryParams): void {
-    this.loadingMoreSubject.next(true);
-    this.getProducts(this.currentId, queryParams)
-      .pipe(
-        take(1),
-        finalize(() => this.loadingMoreSubject.next(false))
-      )
-      .subscribe(({ results, info }) => {
-        this.loadingMoreSubject.next(false);
-        this.productsSubject.next([...this.productsSubject.value, ...results]);
-        this.productsInfoSubject.next(info);
-      });
-  }
-
   getProducts(id: number, queryParams?: QueryParams): Observable<ApsCollectionResponse<Product>> {
     const sortingParams = { sort: 'product.position', direction: SortDirection.descend };
     const params = this.isSubCategory ? { subcategoryId: id } : { categoryId: id };
     return this.http.get<ApsCollectionResponse<Product>>(`/mrlApi/products`, {
-      params: { ...(queryParams ?? {}), ...params, ...sortingParams },
+      params: { ...(queryParams ?? {}), ...params, ...sortingParams, pageSize: 1000 },
     });
   }
 
