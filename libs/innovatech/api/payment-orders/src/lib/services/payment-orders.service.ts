@@ -256,6 +256,7 @@ export class PaymentOrdersService {
     await promisify(fs.writeFile)(OUT_FILE, content);
     const browser = await puppeteer.launch({
       headless: 'new',
+      pipe: true,
       args: ['--no-sandbox', '--disable-features=site-per-process'],
     });
     const page = await browser.newPage();
