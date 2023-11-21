@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.1.1](https://github.com/Arphase/nx-arphase/compare/v5.1.0...v5.1.1) (2023-11-21)
+
+
+### Bug Fixes
+
+* **innovatech/api:** add missing chromium dependencies ([c683049](https://github.com/Arphase/nx-arphase/commit/c6830497d0a92fb6adf565ed332c476c2c123607))
+
 ## [5.1.0](https://github.com/Arphase/nx-arphase/compare/v5.0.7...v5.1.0) (2023-09-08)
 
 
