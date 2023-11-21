@@ -256,6 +256,7 @@ export class PaymentOrdersService {
     await promisify(fs.writeFile)(OUT_FILE, content);
     const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
     const page = await browser.newPage();
+    page.setDefaultNavigationTimeout(0);
     await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
     const buffer = await page.pdf({
       format: 'a4',
