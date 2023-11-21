@@ -12,7 +12,7 @@ export async function generateProductPdf(content: string, headerLogo: string, re
   const browser = await puppeteer.launch({
     headless: 'new',
     pipe: true,
-    args: ['--no-sandbox', '--disable-features=site-per-process'],
+    args: ['--no-sandbox'],
   });
   const page = await browser.newPage();
   await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
