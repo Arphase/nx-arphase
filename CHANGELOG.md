@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.1.5](https://github.com/Arphase/nx-arphase/compare/v5.1.4...v5.1.5) (2023-11-21)
+
+
+### Bug Fixes
+
+* **innovatech/api:** change puppeteer browser args  property ([a603e1e](https://github.com/Arphase/nx-arphase/commit/a603e1e53ec3fa42d53fe13bb83b0b3999222031))
+
 ### [5.1.4](https://github.com/Arphase/nx-arphase/compare/v5.1.3...v5.1.4) (2023-11-21)
 
 
