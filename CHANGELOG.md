@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.1.6](https://github.com/Arphase/nx-arphase/compare/v5.1.5...v5.1.6) (2023-11-21)
+
+
+### Bug Fixes
+
+* **innovatech/api:** add pipe property on puppeteer browser settings ([141a594](https://github.com/Arphase/nx-arphase/commit/141a59401d87577784ed9b9089277a33ee41f262))
+
 ### [5.1.5](https://github.com/Arphase/nx-arphase/compare/v5.1.4...v5.1.5) (2023-11-21)
 
 
