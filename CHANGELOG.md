@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.1.10](https://github.com/Arphase/nx-arphase/compare/v5.1.9...v5.1.10) (2023-11-21)
+
+
+### Bug Fixes
+
+* **innovatech/api:** Ignore http errors when launching puppeteer browser ([4cac9dd](https://github.com/Arphase/nx-arphase/commit/4cac9dd50728e83e8ed0d8683affea7965e809f3))
+
 ### [5.1.9](https://github.com/Arphase/nx-arphase/compare/v5.1.8...v5.1.9) (2023-11-21)
 
 
