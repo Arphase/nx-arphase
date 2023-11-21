@@ -5,7 +5,7 @@ import { PaymentOrder, transformFolio } from '@innovatech/common/domain';
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
-import fs from 'fs';
+import { unlink, writeFile } from 'fs';
 import { omit } from 'lodash';
 import puppeteer from 'puppeteer';
 import { Connection, In, Repository } from 'typeorm';
@@ -253,14 +253,14 @@ export class PaymentOrdersService {
       </html>
   `;
 
-    await promisify(fs.writeFile)(OUT_FILE, content);
+    await promisify(writeFile)(`${process.cwd()}/${OUT_FILE}`, content);
     const browser = await puppeteer.launch({
       headless: 'new',
       pipe: true,
       args: ['--no-sandbox', '--disable-features=site-per-process'],
     });
     const page = await browser.newPage();
-    await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0', timeout: 0 });
+    await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
     const buffer = await page.pdf({
       format: 'a4',
       printBackground: true,
@@ -298,7 +298,7 @@ export class PaymentOrdersService {
           src="data:image/jpg;base64,${footerImg}"/>
       `,
     });
-    promisify(fs.unlink)(OUT_FILE);
+    await promisify(unlink)(OUT_FILE);
     await browser.close();
     const stream = getReadableStream(buffer);
     stream.pipe(response);

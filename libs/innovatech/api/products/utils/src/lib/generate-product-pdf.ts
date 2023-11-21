@@ -1,6 +1,6 @@
 import { getReadableStream, OUT_FILE, tobase64 } from '@arphase/api/core';
 import { Response } from 'express';
-import fs from 'fs';
+import { unlink, writeFile } from 'fs';
 import puppeteer from 'puppeteer';
 import { promisify } from 'util';
 
@@ -8,14 +8,14 @@ export async function generateProductPdf(content: string, headerLogo: string, re
   const headerImg = await tobase64(`apps/innovatech/api/src/assets/img/logo.png`);
   const footerImg = await tobase64('apps/innovatech/api/src/assets/img/pdf-footer.jpg');
 
-  await promisify(fs.writeFile)(OUT_FILE, content);
+  await promisify(writeFile)(`${process.cwd()}/${OUT_FILE}`, content);
   const browser = await puppeteer.launch({
     headless: 'new',
     pipe: true,
     args: ['--no-sandbox', '--disable-features=site-per-process'],
   });
   const page = await browser.newPage();
-  await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0', timeout: 0 });
+  await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
 
   const buffer = await page.pdf({
     format: 'a4',
@@ -57,7 +57,7 @@ export async function generateProductPdf(content: string, headerLogo: string, re
     <img class="footer" src="data:image/jpg;base64,${footerImg}"/>
     `,
   });
-  promisify(fs.unlink)(OUT_FILE);
+  await promisify(unlink)(OUT_FILE);
   await browser.close();
   const stream = getReadableStream(buffer);
   stream.pipe(response);
