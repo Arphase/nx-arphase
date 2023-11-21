@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.1.4](https://github.com/Arphase/nx-arphase/compare/v5.1.3...v5.1.4) (2023-11-21)
+
+
+### Bug Fixes
+
+* **innovatech/api:** change puppeteer waitUntil property ([6d860e6](https://github.com/Arphase/nx-arphase/commit/6d860e6a4071c71a177c03f86e1042965e648480))
+
 ### [5.1.3](https://github.com/Arphase/nx-arphase/compare/v5.1.2...v5.1.3) (2023-11-21)
 
 
