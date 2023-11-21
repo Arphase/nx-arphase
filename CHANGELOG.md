@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.1.3](https://github.com/Arphase/nx-arphase/compare/v5.1.2...v5.1.3) (2023-11-21)
+
+
+### Bug Fixes
+
+* **innovatech/api:** remove time limit on puppeteer config ([c028008](https://github.com/Arphase/nx-arphase/commit/c0280082cc8d6bf7216dce36c096eff6f8c9a0b6))
+
 ### [5.1.2](https://github.com/Arphase/nx-arphase/compare/v5.1.1...v5.1.2) (2023-11-21)
 
 
