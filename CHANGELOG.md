@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.1.2](https://github.com/Arphase/nx-arphase/compare/v5.1.1...v5.1.2) (2023-11-21)
+
+
+### Features
+
+* **innovatech/api:** update puppeteer version ([7243e8c](https://github.com/Arphase/nx-arphase/commit/7243e8cc00ede677243f9f35feb93188efd3a3af))
+
 ### [5.1.1](https://github.com/Arphase/nx-arphase/compare/v5.1.0...v5.1.1) (2023-11-21)
 
 
