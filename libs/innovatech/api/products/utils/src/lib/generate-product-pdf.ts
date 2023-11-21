@@ -9,7 +9,10 @@ export async function generateProductPdf(content: string, headerLogo: string, re
   const footerImg = await tobase64('apps/innovatech/api/src/assets/img/pdf-footer.jpg');
 
   await promisify(fs.writeFile)(OUT_FILE, content);
-  const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-features=site-per-process'],
+  });
   const page = await browser.newPage();
   await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'load', timeout: 0 });
 

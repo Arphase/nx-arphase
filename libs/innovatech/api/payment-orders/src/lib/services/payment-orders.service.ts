@@ -254,7 +254,10 @@ export class PaymentOrdersService {
   `;
 
     await promisify(fs.writeFile)(OUT_FILE, content);
-    const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
+    const browser = await puppeteer.launch({
+      headless: 'new',
+      args: ['--no-sandbox', '--disable-features=site-per-process'],
+    });
     const page = await browser.newPage();
     await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'load', timeout: 0 });
     const buffer = await page.pdf({
