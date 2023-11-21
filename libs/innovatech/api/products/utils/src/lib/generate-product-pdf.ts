@@ -15,7 +15,7 @@ export async function generateProductPdf(content: string, headerLogo: string, re
     args: ['--no-sandbox', '--disable-features=site-per-process'],
   });
   const page = await browser.newPage();
-  await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'load', timeout: 0 });
+  await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0', timeout: 0 });
 
   const buffer = await page.pdf({
     format: 'a4',
