@@ -257,7 +257,15 @@ export class PaymentOrdersService {
     const browser = await puppeteer.launch({
       headless: 'new',
       ignoreHTTPSErrors: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--ignore-certificate-errors'],
+      args: [
+        '--unlimited-storage',
+        '--full-memory-crash-report',
+        '--disable-gpu',
+        '--ignore-certificate-errors',
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+      ],
     });
     const page = await browser.newPage();
     await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
