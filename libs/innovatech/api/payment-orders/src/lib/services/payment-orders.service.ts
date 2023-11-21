@@ -256,8 +256,8 @@ export class PaymentOrdersService {
     await promisify(writeFile)(`${process.cwd()}/${OUT_FILE}`, content);
     const browser = await puppeteer.launch({
       headless: 'new',
-      pipe: true,
-      args: ['--no-sandbox'],
+      ignoreHTTPSErrors: true,
+      args: ['--no-sandbox', `--ignore-certificate-errors`],
     });
     const page = await browser.newPage();
     await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
