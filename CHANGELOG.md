@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.1.9](https://github.com/Arphase/nx-arphase/compare/v5.1.8...v5.1.9) (2023-11-21)
+
+
+### Bug Fixes
+
+* **innovatech/api:** remove site-per-process flag ([1ff2518](https://github.com/Arphase/nx-arphase/commit/1ff2518d8250962c29c86cdbb58abc14bd3c74e6))
+
 ### [5.1.8](https://github.com/Arphase/nx-arphase/compare/v5.1.7...v5.1.8) (2023-11-21)
 
 
