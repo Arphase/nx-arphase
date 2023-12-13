@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/Arphase/nx-arphase/compare/v5.1.13...v6.0.0) (2023-12-13)
+
 ### [5.1.13](https://github.com/Arphase/nx-arphase/compare/v5.1.12...v5.1.13) (2023-11-21)
 
 
