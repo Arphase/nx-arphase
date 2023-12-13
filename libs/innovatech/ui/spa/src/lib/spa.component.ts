@@ -23,13 +23,6 @@ export class SpaComponent implements OnInit {
   };
   menuItems: MenuItem[] = [
     {
-      icon: 'pie-chart',
-      header: 'Dashboard',
-      path: ['dashboard'],
-      cy: 'dashboard',
-      display$: this.permissionService.hasReadPermission([UserRoles.superAdmin, UserRoles.agencyUser]),
-    },
-    {
       icon: 'file-text',
       header: 'Garantías',
       path: ['guarantees'],

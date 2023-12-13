@@ -11,10 +11,6 @@ const routes: Routes = [
     component: SpaComponent,
     children: [
       {
-        path: 'dashboard',
-        loadChildren: () => import('@innovatech/ui/dashboard').then(m => m.DashboardModule),
-      },
-      {
         path: 'guarantees',
         loadChildren: () => import('@innovatech/ui/guarantees').then(m => m.GuaranteesModule),
       },
@@ -50,7 +46,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'guarantees',
         pathMatch: 'full',
       },
     ],

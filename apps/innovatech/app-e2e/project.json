@@ -7,7 +7,7 @@
   "implicitDependencies": ["innovatech-app"],
   "targets": {
     "e2e": {
-      "builder": "@nx/cypress:cypress",
+      "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/innovatech/app-e2e/cypress.config.ts",
         "devServerTarget": "innovatech-app:serve:development",
@@ -20,7 +20,7 @@
       }
     },
     "lint": {
-      "builder": "@nx/eslint:eslint",
+      "executor": "@nx/eslint:eslint",
       "options": {
         "lintFilePatterns": ["apps/innovatech/app-e2e/**/*.{js,ts}"]
       }

@@ -83,6 +83,7 @@
     "@ngrx/router-store": "17.0.1",
     "@ngrx/store": "17.0.1",
     "@ngrx/store-devtools": "17.0.1",
+    "@nguniversal/express-engine": "^16.2.0",
     "@sentry/angular": "7.61.1",
     "@sentry/minimal": "6.19.7",
     "@sentry/node": "7.61.1",

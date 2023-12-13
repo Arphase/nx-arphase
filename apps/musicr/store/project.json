@@ -123,12 +123,12 @@
     "serve-ssr": {
       "executor": "@angular-devkit/build-angular:ssr-dev-server",
       "options": {
-        "browserTarget": "musicr-store:build",
+        "buildTarget": "musicr-store:build",
         "serverTarget": "musicr-store:server"
       },
       "configurations": {
         "production": {
-          "browserTarget": "musicr-store:build:production",
+          "buildTarget": "musicr-store:build:production",
           "serverTarget": "musicr-store:server:production"
         }
       }
@@ -136,7 +136,7 @@
     "prerender": {
       "executor": "@angular-devkit/build-angular:prerender",
       "options": {
-        "browserTarget": "musicr-store:build:production",
+        "buildTarget": "musicr-store:build:production",
         "serverTarget": "musicr-store:server:production",
         "routes": ["/"]
       },

@@ -1,11 +1,11 @@
-import * as fromRouter from '@ngrx/router-store';
+import { getRouterSelectors, RouterReducerState } from '@ngrx/router-store';
 import { createFeatureSelector } from '@ngrx/store';
 
 export interface State {
-  router: fromRouter.RouterReducerState;
+  router: RouterReducerState;
 }
 
-export const selectRouter = createFeatureSelector< fromRouter.RouterReducerState>('router');
+export const selectRouter = createFeatureSelector<RouterReducerState>('router');
 
 export const {
   selectCurrentRoute, // select the current route
@@ -15,4 +15,4 @@ export const {
   selectRouteParam, // factory function to select a route param
   selectRouteData, // select the current route data
   selectUrl, // select the current url
-} = fromRouter.getSelectors(selectRouter);
+} = getRouterSelectors(selectRouter);

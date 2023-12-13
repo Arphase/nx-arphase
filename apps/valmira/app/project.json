@@ -123,12 +123,12 @@
     "serve-ssr": {
       "executor": "@angular-devkit/build-angular:ssr-dev-server",
       "options": {
-        "browserTarget": "valmira-app:build",
+        "buildTarget": "valmira-app:build",
         "serverTarget": "valmira-app:server"
       },
       "configurations": {
         "production": {
-          "browserTarget": "valmira-app:build:production",
+          "buildTarget": "valmira-app:build:production",
           "serverTarget": "valmira-app:server:production"
         }
       }
@@ -136,7 +136,7 @@
     "prerender": {
       "executor": "@angular-devkit/build-angular:prerender",
       "options": {
-        "browserTarget": "valmira-app:build:production",
+        "buildTarget": "valmira-app:build:production",
         "serverTarget": "valmira-app:server:production",
         "routes": ["/"]
       },

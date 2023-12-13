@@ -6,7 +6,7 @@
     "declaration": true,
     "rootDir": "./src",
     "types": ["node"],
-    "target": "ES2022",
+    "target": "es2022",
     "useDefineForClassFields": false
   },
   "exclude": ["**/*.spec.ts", "**/*.test.ts"],

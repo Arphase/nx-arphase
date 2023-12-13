@@ -7,7 +7,8 @@
   "tags": ["domain:innovatech", "domain:innovatech:ui", "executable:ui"],
   "targets": {
     "build": {
-      "builder": "@angular-devkit/build-angular:browser",
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/innovatech/app",
         "index": "apps/innovatech/app/src/index.html",
@@ -81,31 +82,31 @@
       "defaultConfiguration": "development"
     },
     "serve": {
-      "builder": "@angular-devkit/build-angular:dev-server",
+      "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "innovatech-app:build:production"
+          "buildTarget": "innovatech-app:build:production"
         },
         "development": {
-          "browserTarget": "innovatech-app:build:development"
+          "buildTarget": "innovatech-app:build:development"
         }
       },
       "defaultConfiguration": "development"
     },
     "extract-i18n": {
-      "builder": "@angular-devkit/build-angular:extract-i18n",
+      "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "innovatech-app:build"
+        "buildTarget": "innovatech-app:build"
       }
     },
     "test": {
-      "builder": "@nx/jest:jest",
+      "executor": "@nx/jest:jest",
       "options": {
         "jestConfig": "apps/innovatech/app/jest.config.ts"
       }
     },
     "lint": {
-      "builder": "@nx/eslint:eslint",
+      "executor": "@nx/eslint:eslint",
       "options": {
         "lintFilePatterns": ["apps/innovatech/app/**/*.ts"]
       }

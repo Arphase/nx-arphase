@@ -1,18 +1,20 @@
 {
   "name": "innovatech-api",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/innovatech/api/src",
   "projectType": "application",
-  "prefix": "ivt",
   "targets": {
     "build": {
-      "builder": "@nx/node:webpack",
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
       "options": {
+        "webpackConfig": "apps/innovatech/api/webpack.config.js",
         "outputPath": "dist/apps/innovatech/api",
         "main": "apps/innovatech/api/src/main.ts",
         "tsConfig": "apps/innovatech/api/tsconfig.app.json",
         "assets": ["apps/innovatech/api/src/assets"],
-        "maxWorkers": 1
+        "compiler": "tsc",
+        "target": "node"
       },
       "configurations": {
         "production": {
@@ -23,7 +25,7 @@
       }
     },
     "serve": {
-      "builder": "@nx/node:node",
+      "executor": "@nx/js:node",
       "options": {
         "buildTarget": "innovatech-api:build",
         "inspect": true,
@@ -31,16 +33,13 @@
       }
     },
     "lint": {
-      "builder": "@nx/eslint:eslint",
-      "options": {
-        "lintFilePatterns": ["apps/innovatech/api/**/*.ts"]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
-      "builder": "@nx/jest:jest",
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/innovatech/api"],
       "options": {
-        "jestConfig": "apps/innovatech/api/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "apps/innovatech/api/jest.config.ts"
       }
     }
   },
