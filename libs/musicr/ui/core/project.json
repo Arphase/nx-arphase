@@ -1,0 +1,21 @@
+{
+  "name": "musicr-ui-core",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/musicr/ui/core/src",
+  "prefix": "mrl",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/musicr/ui/core"],
+      "options": {
+        "jestConfig": "libs/musicr/ui/core/jest.config.ts",
+        "passWithNoTests": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+}

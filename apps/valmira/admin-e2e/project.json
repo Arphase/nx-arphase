@@ -1,0 +1,26 @@
+{
+  "name": "valmira-admin-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/valmira/admin-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/valmira/admin-e2e/cypress.json",
+        "tsConfig": "apps/valmira/admin-e2e/tsconfig.e2e.json",
+        "devServerTarget": "valmira-admin:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "valmira-admin:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"],
+  "implicitDependencies": ["valmira-admin"]
+}

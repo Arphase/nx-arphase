@@ -1,0 +1,21 @@
+{
+  "name": "musicr-ui-categories-ui",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/musicr/ui/categories/ui/src",
+  "prefix": "mrl",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/musicr/ui/categories/ui"],
+      "options": {
+        "jestConfig": "libs/musicr/ui/categories/ui/jest.config.ts",
+        "passWithNoTests": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": ["domain:musicr", "domain:musicr:ui", "type:ui"]
+}

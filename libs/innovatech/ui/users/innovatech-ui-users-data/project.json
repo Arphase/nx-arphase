@@ -1,0 +1,28 @@
+{
+  "name": "innovatech-ui-users-data",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/innovatech/ui/users/data/src",
+  "prefix": "ivt",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/innovatech/ui/users/innovatech-ui-users-data",
+          "libs/innovatech/ui/users/data/src/**/*.ts",
+          "libs/innovatech/ui/users/data/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/innovatech/ui/users/data"],
+      "options": {
+        "jestConfig": "libs/innovatech/ui/users/data/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:innovatech", "domain:innovatech:ui", "type:data"]
+}

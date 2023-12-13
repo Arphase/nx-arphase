@@ -1,0 +1,151 @@
+{
+  "name": "musicr-store",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/musicr/store/src",
+  "prefix": "mrl",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/musicr/browser",
+        "index": "apps/musicr/store/src/index.html",
+        "main": "apps/musicr/store/src/main.ts",
+        "polyfills": "apps/musicr/store/src/polyfills.ts",
+        "tsConfig": "apps/musicr/store/tsconfig.app.json",
+        "assets": ["apps/musicr/store/src/favicon.ico", "apps/musicr/store/src/assets"],
+        "styles": ["apps/musicr/store/src/styles.less"],
+        "allowedCommonJsDependencies": [
+          "dayjs",
+          "dayjs/plugin/customParseFormat",
+          "dayjs/plugin/localizedFormat",
+          "file-saver"
+        ]
+      },
+      "configurations": {
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/musicr/store/src/environments/environment.ts",
+              "with": "apps/musicr/store/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "musicr-store:build:production"
+        },
+        "development": {
+          "buildTarget": "musicr-store:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "musicr-store:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/musicr/store"],
+      "options": {
+        "jestConfig": "apps/musicr/store/jest.config.ts",
+        "passWithNoTests": false
+      }
+    },
+    "server": {
+      "executor": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/apps/musicr/server",
+        "main": "apps/musicr/store/server.ts",
+        "tsConfig": "apps/musicr/store/tsconfig.server.json",
+        "externalDependencies": [
+          "@nestjs/microservices",
+          "@nestjs/microservices/microservices-module",
+          "@nestjs/websockets",
+          "@nestjs/websockets/socket-module",
+          "cache-manager",
+          "cache-manager/package.json",
+          "aws-sdk",
+          "pg",
+          "pg-native",
+          "react-native-sqlite-storage",
+          "mssql",
+          "sql.js",
+          "ioredis",
+          "redis",
+          "typeorm-aurora-data-api-driver",
+          "pg-query-strea",
+          "oracledb",
+          "mysql2",
+          "mysql",
+          "hdb-pool",
+          "@sap/hana-client",
+          "mongodb",
+          "react-native-sqlite-storage",
+          "typeorm"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "media",
+          "sourceMap": false,
+          "optimization": false,
+          "buildOptimizer": false
+        }
+      },
+      "production": {
+        "outputHashing": "media",
+        "sourceMap": false,
+        "optimization": false
+      }
+    },
+    "serve-ssr": {
+      "executor": "@angular-devkit/build-angular:ssr-dev-server",
+      "options": {
+        "browserTarget": "musicr-store:build",
+        "serverTarget": "musicr-store:server"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "musicr-store:build:production",
+          "serverTarget": "musicr-store:server:production"
+        }
+      }
+    },
+    "prerender": {
+      "executor": "@angular-devkit/build-angular:prerender",
+      "options": {
+        "browserTarget": "musicr-store:build:production",
+        "serverTarget": "musicr-store:server:production",
+        "routes": ["/"]
+      },
+      "configurations": {
+        "production": {
+          "routes": ["/"]
+        }
+      }
+    }
+  },
+  "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
+}

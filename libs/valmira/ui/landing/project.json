@@ -1,0 +1,21 @@
+{
+  "name": "valmira-ui-landing",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/valmira/ui/landing/src",
+  "prefix": "vma",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/valmira/ui/landing"],
+      "options": {
+        "jestConfig": "libs/valmira/ui/landing/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+}

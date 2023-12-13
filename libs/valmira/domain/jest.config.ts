@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   displayName: 'valmira-domain',
   preset: '../../../jest.preset.js',
   globals: {

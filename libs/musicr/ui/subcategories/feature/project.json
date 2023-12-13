@@ -1,0 +1,21 @@
+{
+  "name": "musicr-ui-subcategories-feature",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/musicr/ui/subcategories/feature/src",
+  "prefix": "mrl",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/musicr/ui/subcategories/feature"],
+      "options": {
+        "jestConfig": "libs/musicr/ui/subcategories/feature/jest.config.ts",
+        "passWithNoTests": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "innovatech-app-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/innovatech/app-e2e/src",
+  "projectType": "application",
+  "tags": ["domain:innovatech", "domain:innovatech:ui", "executable:ui"],
+  "implicitDependencies": ["innovatech-app"],
+  "targets": {
+    "e2e": {
+      "builder": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/innovatech/app-e2e/cypress.config.ts",
+        "devServerTarget": "innovatech-app:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "innovatech-app:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "builder": "@nx/eslint:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/innovatech/app-e2e/**/*.{js,ts}"]
+      }
+    }
+  }
+}

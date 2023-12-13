@@ -1,0 +1,21 @@
+{
+  "name": "musicr-api-customers",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/musicr/api/customers/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/musicr/api/customers"],
+      "options": {
+        "jestConfig": "libs/musicr/api/customers/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+}

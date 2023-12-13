@@ -1,0 +1,19 @@
+{
+  "name": "valmira-domain",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/valmira/domain/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/valmira/domain"],
+      "options": {
+        "jestConfig": "libs/valmira/domain/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["domain:valmira", "type:domain-logic"]
+}

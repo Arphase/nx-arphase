@@ -1,0 +1,20 @@
+{
+  "name": "valmira-api-photos",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/valmira/api/photos/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/valmira/api/photos"],
+      "options": {
+        "jestConfig": "libs/valmira/api/photos/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "valmira-ui-core",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/valmira/ui/core/src",
+  "prefix": "vma",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/valmira/ui/core"],
+      "options": {
+        "jestConfig": "libs/valmira/ui/core/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:ui", "type:util"]
+}

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   displayName: 'musicr-api-price-options',
   preset: '../../../../jest.preset.js',
   globals: {

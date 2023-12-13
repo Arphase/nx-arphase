@@ -56,7 +56,7 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     StoreDevtoolsModule.instrument({
       name: 'Music Revolution',
       maxAge: 25,
-    }),
+    connectInZone: true}),
     EffectsModule.forRoot([AuthEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     EntityDataModule.forRoot(entityConfig),

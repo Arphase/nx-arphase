@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   displayName: 'innovatech-utils',
   preset: '../../../../jest.preset.js',
   globals: {

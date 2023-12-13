@@ -1,0 +1,48 @@
+{
+  "name": "innovatech-api",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/innovatech/api/src",
+  "projectType": "application",
+  "prefix": "ivt",
+  "targets": {
+    "build": {
+      "builder": "@nx/node:webpack",
+      "options": {
+        "outputPath": "dist/apps/innovatech/api",
+        "main": "apps/innovatech/api/src/main.ts",
+        "tsConfig": "apps/innovatech/api/tsconfig.app.json",
+        "assets": ["apps/innovatech/api/src/assets"],
+        "maxWorkers": 1
+      },
+      "configurations": {
+        "production": {
+          "optimization": false,
+          "extractLicenses": true,
+          "inspect": false
+        }
+      }
+    },
+    "serve": {
+      "builder": "@nx/node:node",
+      "options": {
+        "buildTarget": "innovatech-api:build",
+        "inspect": true,
+        "port": 7777
+      }
+    },
+    "lint": {
+      "builder": "@nx/eslint:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/innovatech/api/**/*.ts"]
+      }
+    },
+    "test": {
+      "builder": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "apps/innovatech/api/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["domain:innovatech", "domain:innovatech:api", "executable:api"]
+}

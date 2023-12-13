@@ -1,0 +1,46 @@
+{
+  "name": "musicr-api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/musicr/api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/musicr/api",
+        "main": "apps/musicr/api/src/main.ts",
+        "tsConfig": "apps/musicr/api/tsconfig.app.json",
+        "assets": ["apps/musicr/api/src/assets"],
+        "compiler": "tsc",
+        "target": "node"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "musicr-api:build",
+        "inspect": true,
+        "port": 7777
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/musicr/api"],
+      "options": {
+        "jestConfig": "apps/musicr/api/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["domain:musicr", "domain:musicr:api", "executable:api"]
+}

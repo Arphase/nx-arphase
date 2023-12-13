@@ -1,0 +1,21 @@
+{
+  "name": "musicr-ui-orders",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/musicr/ui/orders/src",
+  "prefix": "ivt",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/musicr/ui/orders"],
+      "options": {
+        "jestConfig": "libs/musicr/ui/orders/jest.config.ts",
+        "passWithNoTests": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": ["domain:musicr", "domain:musicr:ui", "type:feature"]
+}

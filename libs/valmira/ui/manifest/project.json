@@ -1,0 +1,21 @@
+{
+  "name": "valmira-ui-manifest",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/valmira/ui/manifest/src",
+  "prefix": "vma",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/valmira/ui/manifest"],
+      "options": {
+        "jestConfig": "libs/valmira/ui/manifest/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+}

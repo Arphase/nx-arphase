@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   prefix: '',
   content: ['./apps/musicr/store/src/**/*.html', './libs/musicr/ui/**/*.html'],
   theme: {

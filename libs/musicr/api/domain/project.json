@@ -1,0 +1,19 @@
+{
+  "name": "musicr-api-domain",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/musicr/api/domain/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/musicr/api/domain"],
+      "options": {
+        "jestConfig": "libs/musicr/api/domain/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["domain:musicr", "domain:musicr:api", "type:domain-logic"]
+}

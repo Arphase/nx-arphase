@@ -1,0 +1,21 @@
+{
+  "name": "innovatech-ui-groups-ui",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/innovatech/ui/groups/ui/src",
+  "prefix": "ivt",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/innovatech/ui/groups/ui"],
+      "options": {
+        "jestConfig": "libs/innovatech/ui/groups/ui/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+}

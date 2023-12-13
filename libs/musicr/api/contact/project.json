@@ -1,0 +1,21 @@
+{
+  "name": "musicr-api-contact",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/musicr/api/contact/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/musicr/api/contact"],
+      "options": {
+        "jestConfig": "libs/musicr/api/contact/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+}

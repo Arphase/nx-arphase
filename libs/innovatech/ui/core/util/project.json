@@ -1,0 +1,20 @@
+{
+  "name": "innovatech-ui-core-util",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/innovatech/ui/core/util/src",
+  "prefix": "ivt",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/innovatech/ui/core/util"],
+      "options": {
+        "jestConfig": "libs/innovatech/ui/core/util/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["domain:innovatech", "domain:innovatech:ui", "type:util"]
+}

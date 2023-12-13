@@ -1,0 +1,20 @@
+{
+  "name": "arphase-api-db",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/arphase/api/db/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/arphase/api/db"],
+      "options": {
+        "jestConfig": "libs/arphase/api/db/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
+}

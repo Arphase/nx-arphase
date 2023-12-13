@@ -2,7 +2,7 @@ import { dropFixtures } from '@arphase/api/db';
 import { dataSource, insertGroup, insertLocalities, insertUser } from '@innovatech/api/db';
 import { GroupEntity, ProductEntity, VehicleEntity } from '@innovatech/api/domain';
 import { Product, Vehicle, VehicleStatus } from '@innovatech/common/domain';
-import { nxE2EPreset } from '@nrwl/cypress/plugins/cypress-preset';
+import { nxE2EPreset } from '@nx/cypress/plugins/cypress-preset';
 import { defineConfig } from 'cypress';
 import { DataSource } from 'typeorm';
 

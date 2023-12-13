@@ -59,7 +59,7 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     StoreDevtoolsModule.instrument({
       name: 'Innovatech',
       maxAge: 25,
-    }),
+    connectInZone: true}),
     EffectsModule.forRoot([AuthEffects]),
     EntityDataModule.forRoot(entityConfig),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),

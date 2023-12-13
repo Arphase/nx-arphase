@@ -1,0 +1,20 @@
+{
+  "name": "arphase-api-testing",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/arphase/api/testing/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/arphase/api/testing"],
+      "options": {
+        "jestConfig": "libs/arphase/api/testing/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["domain:arphase", "domain:arphase:api", "type:util"]
+}

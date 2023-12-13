@@ -1,0 +1,20 @@
+{
+  "name": "valmira-api-promocodes",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/valmira/api/promocodes/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/valmira/api/promocodes"],
+      "options": {
+        "jestConfig": "libs/valmira/api/promocodes/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+}

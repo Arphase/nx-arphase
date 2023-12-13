@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Address } from '@arphase/common';
 import { ApsFormComponent } from '@arphase/ui/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -26,7 +27,8 @@ export class ApsAddressFormComponent extends ApsFormComponent<Address> implement
     externalNumber: '',
     internalNumber: '',
   };
-  form = createAddressForm();
+
+  override form = createAddressForm();
   showAddressSelects: boolean;
   countryOptions: NzSelectOptionInterface[] = [];
   stateOptions: NzSelectOptionInterface[] = [];
@@ -38,7 +40,7 @@ export class ApsAddressFormComponent extends ApsFormComponent<Address> implement
   }
 
   ngOnInit(): void {
-    const zipCodeControl = this.form.get('zipcode');
+    const zipCodeControl = this.form.get('zipcode') as FormControl;
 
     zipCodeControl.valueChanges
       .pipe(

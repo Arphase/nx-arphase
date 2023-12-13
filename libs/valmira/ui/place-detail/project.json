@@ -1,0 +1,21 @@
+{
+  "name": "valmira-ui-place-detail",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/valmira/ui/place-detail/src",
+  "prefix": "vma",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/valmira/ui/place-detail"],
+      "options": {
+        "jestConfig": "libs/valmira/ui/place-detail/jest.config.ts",
+        "passWithNoTests": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+}

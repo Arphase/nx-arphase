@@ -1,0 +1,20 @@
+{
+  "name": "valmira-api-additional-products",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/valmira/api/additional-products/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/valmira/api/additional-products"],
+      "options": {
+        "jestConfig": "libs/valmira/api/additional-products/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:api", "type:feature"]
+}

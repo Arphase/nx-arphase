@@ -1,0 +1,151 @@
+{
+  "name": "valmira-app",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/valmira/app/src",
+  "prefix": "vma",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/valmira/browser",
+        "index": "apps/valmira/app/src/index.html",
+        "main": "apps/valmira/app/src/main.ts",
+        "polyfills": "apps/valmira/app/src/polyfills.ts",
+        "tsConfig": "apps/valmira/app/tsconfig.app.json",
+        "aot": true,
+        "assets": ["apps/valmira/app/src/favicon.ico", "apps/valmira/app/src/assets"],
+        "styles": ["apps/valmira/app/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"],
+        "allowedCommonJsDependencies": ["dayjs", "file-saver", "lodash"]
+      },
+      "configurations": {
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/valmira/app/src/environments/environment.ts",
+              "with": "apps/valmira/app/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true
+        }
+      }
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "valmira-app:build:production"
+        },
+        "development": {
+          "buildTarget": "valmira-app:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "valmira-app:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/valmira/app"],
+      "options": {
+        "jestConfig": "apps/valmira/app/jest.config.ts",
+        "passWithNoTests": false
+      }
+    },
+    "server": {
+      "executor": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/apps/valmira/server",
+        "main": "apps/valmira/app/server.ts",
+        "tsConfig": "apps/valmira/app/tsconfig.server.json",
+        "externalDependencies": [
+          "@nestjs/microservices",
+          "@nestjs/microservices/microservices-module",
+          "@nestjs/websockets",
+          "@nestjs/websockets/socket-module",
+          "cache-manager",
+          "aws-sdk",
+          "pg",
+          "pg-native",
+          "react-native-sqlite-storage",
+          "mssql",
+          "sql.js",
+          "ioredis",
+          "redis",
+          "typeorm-aurora-data-api-driver",
+          "pg-query-strea",
+          "oracledb",
+          "mysql2",
+          "mysql",
+          "hdb-pool",
+          "@sap/hana-client",
+          "mongodb",
+          "react-native-sqlite-storage",
+          "typeorm"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "media",
+          "sourceMap": false,
+          "optimization": false,
+          "buildOptimizer": false
+        }
+      },
+      "production": {
+        "outputHashing": "media",
+        "sourceMap": false,
+        "optimization": false
+      }
+    },
+    "serve-ssr": {
+      "executor": "@angular-devkit/build-angular:ssr-dev-server",
+      "options": {
+        "browserTarget": "valmira-app:build",
+        "serverTarget": "valmira-app:server"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "valmira-app:build:production",
+          "serverTarget": "valmira-app:server:production"
+        }
+      }
+    },
+    "prerender": {
+      "executor": "@angular-devkit/build-angular:prerender",
+      "options": {
+        "browserTarget": "valmira-app:build:production",
+        "serverTarget": "valmira-app:server:production",
+        "routes": ["/"]
+      },
+      "configurations": {
+        "production": {
+          "routes": ["/"]
+        }
+      }
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
+}

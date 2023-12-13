@@ -1,0 +1,19 @@
+{
+  "name": "valmira-api-domain",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/valmira/api/domain/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/valmira/api/domain"],
+      "options": {
+        "jestConfig": "libs/valmira/api/domain/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:api", "type:domain-logic"]
+}

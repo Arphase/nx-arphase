@@ -1,0 +1,21 @@
+{
+  "name": "valmira-ui-reservations-ui",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/valmira/ui/reservations/ui/src",
+  "prefix": "vma",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/valmira/ui/reservations/ui"],
+      "options": {
+        "jestConfig": "libs/valmira/ui/reservations/ui/jest.config.ts",
+        "passWithNoTests": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:ui", "type:ui"]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "valmira-ui-promocodes-data",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/valmira/ui/promocodes/data/src",
+  "prefix": "vma",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/valmira/ui/promocodes/data"],
+      "options": {
+        "jestConfig": "libs/valmira/ui/promocodes/data/jest.config.ts",
+        "passWithNoTests": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "musicr-api-auth",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/musicr/api/auth/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/musicr/api/auth"],
+      "options": {
+        "jestConfig": "libs/musicr/api/auth/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:musicr", "domain:musicr:api", "type:feature"]
+}

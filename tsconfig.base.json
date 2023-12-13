@@ -17,7 +17,6 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "strictPropertyInitialization": false,
-    "noImplicitUseStrict": true,
     "paths": {
       "@arphase/api/core": ["libs/arphase/api/core/src/index.ts"],
       "@arphase/api/db": ["libs/arphase/api/db/src/index.ts"],
@@ -29,6 +28,7 @@
       "@arphase/ui/data": ["libs/arphase/ui/data/src/index.ts"],
       "@arphase/ui/forms": ["libs/arphase/ui/forms/src/index.ts"],
       "@arphase/ui/gtag": ["libs/arphase/ui/gtag/src/index.ts"],
+      "@arphase/ui/utils": ["libs/arphase/ui/utils/src/index.ts"],
       "@innovatech/api/auth/data": ["libs/innovatech/api/auth/data/src/index.ts"],
       "@innovatech/api/auth/feature": ["libs/innovatech/api/auth/feature/src/index.ts"],
       "@innovatech/api/companies": ["libs/innovatech/api/companies/src/index.ts"],
@@ -75,7 +75,6 @@
       "@innovatech/ui/vehicles/data": ["libs/innovatech/ui/vehicles/data/src/index.ts"],
       "@innovatech/ui/vehicles/feature": ["libs/innovatech/ui/vehicles/feature/src/index.ts"],
       "@innovatech/ui/vehicles/ui": ["libs/innovatech/ui/vehicles/ui/src/index.ts"],
-      "@arphase/ui/utils": ["libs/arphase/ui/utils/src/index.ts"],
       "@musicr/api/additional-options": ["libs/musicr/api/additional-options/src/index.ts"],
       "@musicr/api/auth": ["libs/musicr/api/auth/src/index.ts"],
       "@musicr/api/categories": ["libs/musicr/api/categories/src/index.ts"],

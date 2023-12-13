@@ -1,22 +1,12 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "**/*"
-  ],
-  "plugins": [
-    "@nrwl/nx",
-    "@angular-eslint"
-  ],
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx", "@angular-eslint"],
   "overrides": [
     {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
-      ],
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
-        "@nrwl/nx/enforce-module-boundaries": [
+        "@nx/enforce-module-boundaries": [
           "error",
           {
             "enforceBuildableLibDependency": true,
@@ -24,132 +14,67 @@
             "depConstraints": [
               {
                 "sourceTag": "type:app",
-                "onlyDependOnLibsWithTags": [
-                  "type:api",
-                  "type:feature",
-                  "type:ui",
-                  "type:domain-logic",
-                  "type:util"
-                ]
+                "onlyDependOnLibsWithTags": ["type:api", "type:feature", "type:ui", "type:domain-logic", "type:util"]
               },
               {
                 "sourceTag": "type:api",
-                "onlyDependOnLibsWithTags": [
-                  "type:ui",
-                  "type:domain-logic",
-                  "type:util"
-                ]
+                "onlyDependOnLibsWithTags": ["type:ui", "type:domain-logic", "type:util"]
               },
               {
                 "sourceTag": "type:feature",
-                "onlyDependOnLibsWithTags": [
-                  "type:data",
-                  "type:feature",
-                  "type:ui",
-                  "type:domain-logic",
-                  "type:util"
-                ]
+                "onlyDependOnLibsWithTags": ["type:data", "type:feature", "type:ui", "type:domain-logic", "type:util"]
               },
               {
                 "sourceTag": "type:ui",
-                "onlyDependOnLibsWithTags": [
-                  "type:domain-logic",
-                  "type:data",
-                  "type:util",
-                  "type:ui"
-                ]
+                "onlyDependOnLibsWithTags": ["type:domain-logic", "type:data", "type:util", "type:ui"]
               },
               {
                 "sourceTag": "type:domain-logic",
-                "onlyDependOnLibsWithTags": [
-                  "type:util",
-                  "type:domain-logic"
-                ]
+                "onlyDependOnLibsWithTags": ["type:util", "type:domain-logic"]
               },
               {
                 "sourceTag": "domain:shared",
-                "onlyDependOnLibsWithTags": [
-                  "domain:shared"
-                ]
+                "onlyDependOnLibsWithTags": ["domain:shared"]
               },
               {
                 "sourceTag": "domain:arphase",
-                "onlyDependOnLibsWithTags": [
-                  "domain:arphase",
-                  "domain:shared"
-                ]
+                "onlyDependOnLibsWithTags": ["domain:arphase", "domain:shared"]
               },
               {
                 "sourceTag": "domain:innovatech",
-                "onlyDependOnLibsWithTags": [
-                  "domain:innovatech",
-                  "domain:arphase",
-                  "domain:shared"
-                ]
+                "onlyDependOnLibsWithTags": ["domain:innovatech", "domain:arphase", "domain:shared"]
               },
               {
                 "sourceTag": "domain:innovatech:ui",
-                "onlyDependOnLibsWithTags": [
-                  "domain:arphase",
-                  "domain:innovatech",
-                  "domain:innovatech:ui"
-                ]
+                "onlyDependOnLibsWithTags": ["domain:arphase", "domain:innovatech", "domain:innovatech:ui"]
               },
               {
                 "sourceTag": "domain:innovatech:api",
-                "onlyDependOnLibsWithTags": [
-                  "domain:arphase",
-                  "domain:innovatech",
-                  "domain:innovatech:api"
-                ]
+                "onlyDependOnLibsWithTags": ["domain:arphase", "domain:innovatech", "domain:innovatech:api"]
               },
               {
                 "sourceTag": "domain:musicr",
-                "onlyDependOnLibsWithTags": [
-                  "domain:musicr",
-                  "domain:shared",
-                  "domain:arphase"
-                ]
+                "onlyDependOnLibsWithTags": ["domain:musicr", "domain:shared", "domain:arphase"]
               },
               {
                 "sourceTag": "domain:musicr:ui",
-                "onlyDependOnLibsWithTags": [
-                  "domain:arphase",
-                  "domain:musicr",
-                  "domain:musicr:ui"
-                ]
+                "onlyDependOnLibsWithTags": ["domain:arphase", "domain:musicr", "domain:musicr:ui"]
               },
               {
                 "sourceTag": "domain:musicr:api",
-                "onlyDependOnLibsWithTags": [
-                  "domain:arphase",
-                  "domain:musicr",
-                  "domain:musicr:api"
-                ]
+                "onlyDependOnLibsWithTags": ["domain:arphase", "domain:musicr", "domain:musicr:api"]
               },
               {
                 "sourceTag": "domain:valmira",
-                "onlyDependOnLibsWithTags": [
-                  "domain:valmira",
-                  "domain:shared",
-                  "domain:arphase"
-                ]
+                "onlyDependOnLibsWithTags": ["domain:valmira", "domain:shared", "domain:arphase"]
               },
               {
                 "sourceTag": "domain:valmira:ui",
-                "onlyDependOnLibsWithTags": [
-                  "domain:arphase",
-                  "domain:valmira",
-                  "domain:valmira:ui"
-                ]
+                "onlyDependOnLibsWithTags": ["domain:arphase", "domain:valmira", "domain:valmira:ui"]
               },
               {
                 "sourceTag": "domain:valmira:api",
-                "onlyDependOnLibsWithTags": [
-                  "domain:arphase",
-                  "domain:valmira",
-                  "domain:valmira:api"
-                ]
+                "onlyDependOnLibsWithTags": ["domain:arphase", "domain:valmira", "domain:valmira:api"]
               }
             ]
           }
@@ -157,26 +82,16 @@
       }
     },
     {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "extends": [
-        "plugin:@nrwl/nx/typescript"
-      ],
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript"],
       "parserOptions": {
         "project": "./tsconfig.*?.json"
       },
       "rules": {}
     },
     {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "extends": [
-        "plugin:@nrwl/nx/javascript"
-      ],
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
       "rules": {}
     }
   ]

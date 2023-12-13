@@ -1,0 +1,21 @@
+{
+  "name": "valmira-ui-auth-feature",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/valmira/ui/auth/feature/src",
+  "prefix": "vma",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/valmira/ui/auth/feature"],
+      "options": {
+        "jestConfig": "libs/valmira/ui/auth/feature/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:ui", "type:feature"]
+}

@@ -1,0 +1,87 @@
+{
+  "name": "musicr-admin",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/musicr/admin/src",
+  "prefix": "mrl",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/musicr/admin",
+        "index": "apps/musicr/admin/src/index.html",
+        "main": "apps/musicr/admin/src/main.ts",
+        "polyfills": "apps/musicr/admin/src/polyfills.ts",
+        "tsConfig": "apps/musicr/admin/tsconfig.app.json",
+        "assets": ["apps/musicr/admin/src/favicon.ico", "apps/musicr/admin/src/assets"],
+        "styles": ["apps/musicr/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"],
+        "allowedCommonJsDependencies": ["dayjs", "file-saver"]
+      },
+      "configurations": {
+        "stage": {
+          "fileReplacements": [
+            {
+              "replace": "apps/musicr/admin/src/environments/environment.ts",
+              "with": "apps/musicr/admin/src/environments/environment.stage.ts"
+            }
+          ],
+          "buildOptimizer": true,
+          "optimization": true,
+          "vendorChunk": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/musicr/admin/src/environments/environment.ts",
+              "with": "apps/musicr/admin/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "musicr-admin:build:production"
+        },
+        "development": {
+          "buildTarget": "musicr-admin:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "musicr-admin:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/musicr/admin"],
+      "options": {
+        "jestConfig": "apps/musicr/admin/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
+}

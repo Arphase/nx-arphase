@@ -1,0 +1,21 @@
+{
+  "name": "innovatech-ui-products-ui",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/innovatech/ui/products/ui/src",
+  "prefix": "ivt",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/innovatech/ui/products/ui"],
+      "options": {
+        "jestConfig": "libs/innovatech/ui/products/ui/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+}

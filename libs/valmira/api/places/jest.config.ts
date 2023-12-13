@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   displayName: 'valmira-api-places',
   preset: '../../../../jest.preset.js',
   globals: {

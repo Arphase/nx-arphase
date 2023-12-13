@@ -14,6 +14,6 @@ global['Event']['prototype'] = win.Event.prototype;
 global['document'] = win.document;
 global['HTMLAnchorElement'] = HTMLAnchorElement;
 
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import '../api/src/main';
 export * from './src/main.server';

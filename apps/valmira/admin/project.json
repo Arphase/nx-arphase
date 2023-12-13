@@ -1,0 +1,105 @@
+{
+  "name": "valmira-admin",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/valmira/admin/src",
+  "prefix": "vma",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/valmira/admin",
+        "index": "apps/valmira/admin/src/index.html",
+        "main": "apps/valmira/admin/src/main.ts",
+        "polyfills": "apps/valmira/admin/src/polyfills.ts",
+        "tsConfig": "apps/valmira/admin/tsconfig.app.json",
+        "assets": ["apps/valmira/admin/src/favicon.ico", "apps/valmira/admin/src/assets"],
+        "styles": ["apps/valmira/admin/src/styles.less", "libs/arphase/ui/core/src/styles/themes/base.less"],
+        "allowedCommonJsDependencies": ["dayjs", "file-saver"]
+      },
+      "configurations": {
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "stage": {
+          "fileReplacements": [
+            {
+              "replace": "apps/valmira/admin/src/environments/environment.ts",
+              "with": "apps/valmira/admin/src/environments/environment.stage.ts"
+            }
+          ],
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/valmira/admin/src/environments/environment.ts",
+              "with": "apps/valmira/admin/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ]
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "valmira-admin:build:production"
+        },
+        "development": {
+          "buildTarget": "valmira-admin:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "valmira-admin:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/valmira/admin"],
+      "options": {
+        "jestConfig": "apps/valmira/admin/jest.config.ts",
+        "passWithNoTests": false
+      }
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
+}

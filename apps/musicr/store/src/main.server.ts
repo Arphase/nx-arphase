@@ -6,6 +6,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-export { ngExpressEngine } from '@nguniversal/express-engine';
+export { ngExpressEngine } from '@angular/ssr';
 export { AppServerModule } from './app/app.server.module';
 export { renderModuleFactory } from '@angular/platform-server';

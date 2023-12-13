@@ -1,0 +1,67 @@
+{
+  "name": "pam-vic",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/pam-vic/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/web:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/pam-vic",
+        "index": "apps/pam-vic/src/index.html",
+        "main": "apps/pam-vic/src/main.ts",
+        "polyfills": "apps/pam-vic/src/polyfills.ts",
+        "tsConfig": "apps/pam-vic/tsconfig.app.json",
+        "assets": ["apps/pam-vic/src/favicon.ico", "apps/pam-vic/src/assets"],
+        "styles": ["apps/pam-vic/src/styles.css"]
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/pam-vic/src/environments/environment.ts",
+              "with": "apps/pam-vic/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/web:dev-server",
+      "options": {
+        "buildTarget": "pam-vic:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "pam-vic:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/pam-vic"],
+      "options": {
+        "jestConfig": "apps/pam-vic/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["domain:pam-vic", "executable:ui"]
+}

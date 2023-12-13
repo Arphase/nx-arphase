@@ -1,0 +1,21 @@
+{
+  "name": "valmira-ui-additional-products-data",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/valmira/ui/additional-products/data/src",
+  "prefix": "ivt",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/valmira/ui/additional-products/data"],
+      "options": {
+        "jestConfig": "libs/valmira/ui/additional-products/data/jest.config.ts",
+        "passWithNoTests": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": ["domain:valmira", "domain:valmira:ui", "type:data"]
+}

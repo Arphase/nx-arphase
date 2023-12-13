@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   projects: [
     '<rootDir>/apps/innovatech/app',
     '<rootDir>/apps/musicr/admin',

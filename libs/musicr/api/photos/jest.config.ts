@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   displayName: 'musicr-api-photos',
   preset: '../../../../jest.preset.js',
   globals: {

@@ -89,7 +89,7 @@ Run `nx serve --project=<app-name>` for a dev server. Navigate to http://localho
 
 ### Generate a library
 
-Run `nx generate @nrwl/angular:lib my-lib --directory=<project-name>` to generate a library.
+Run `nx generate @nx/angular:lib my-lib --directory=<project-name>` to generate a library.
 
 Libraries are sharable across libraries and applications. They can be imported from the path declared in the file `tsconfig.base.json`.
 
@@ -125,7 +125,7 @@ This will create development and test databases for all the different projects i
 
 ### Generate a library
 
-Run `nx generate @nrwl/nest:library my-lib --directory=<directory-name>` to generate a library.
+Run `nx generate @nx/nest:library my-lib --directory=<directory-name>` to generate a library.
 
 Libraries are sharable across libraries and applications. They can be imported from the path declared in the file `tsconfig.base.json`.
 
