@@ -73,7 +73,7 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
 ## Frontend
 
-Here is everything you need to know to for getting started with the frontend project of Innovatech
+Here is everything you need to know to for getting started with the frontend projects
 
 ### Setup
 
@@ -85,7 +85,7 @@ Steps to run the frontend project:
 
 ### Development server
 
-Run `nx serve --project=<app-name>` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Run `nx serve <app-name>` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
 ### Generate a library
 

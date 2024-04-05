@@ -21,7 +21,8 @@
           "dayjs/plugin/customParseFormat",
           "dayjs/plugin/localizedFormat",
           "file-saver"
-        ]
+        ],
+        "scripts": ["node_modules/zone.js/fesm2015/zone.min.js"]
       },
       "configurations": {
         "development": {

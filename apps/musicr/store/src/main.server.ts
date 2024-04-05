@@ -1,11 +1,2 @@
-import { enableProdMode } from '@angular/core';
-
-import { environment } from './environments/environment';
-
-if (environment.production) {
-  enableProdMode();
-}
-
-export { ngExpressEngine } from '@angular/ssr';
-export { AppServerModule } from './app/app.server.module';
-export { renderModuleFactory } from '@angular/platform-server';
+import 'zone.js';
+export { AppServerModule as default } from './app/app.server.module';

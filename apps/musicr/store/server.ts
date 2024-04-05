@@ -1,4 +1,3 @@
-import 'zone.js/dist/zone-node';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const domino = require('domino');
 const win = domino.createWindow('');

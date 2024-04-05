@@ -1,4 +1,3 @@
-import { AngularUniversalModule, loadEsmModule } from '@arphase/api/core';
 import { AdditionalOptionsModule } from '@musicr/api/additional-options';
 import { AuthModule } from '@musicr/api/auth';
 import { CategoriesModule } from '@musicr/api/categories';
@@ -10,32 +9,25 @@ import { PhotosModule } from '@musicr/api/photos';
 import { PriceOptionsModule } from '@musicr/api/price-options';
 import { ProductsModule } from '@musicr/api/products';
 import { SubcategoriesModule } from '@musicr/api/subcategories';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { AppServerModule } from '@musicr/store/app.server.module';
 import { Module } from '@nestjs/common';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { AngularUniversalModule } from '@qupaya/nestjs-ng-universal';
 import { join } from 'path';
 
 @Module({
   imports: [
     ...(process.env['NODE' + '_ENV'] === 'production'
       ? [
-          AngularUniversalModule.forRoot(async () => {
-            const angularModule = await loadEsmModule<{
-              default: typeof import('../../../store/src/app/app.server.module');
-            }>(join(process.cwd(), 'dist/apps/musicr/server/main.js'));
-
-            return {
-              bootstrap: angularModule.default.AppServerModule,
-              ngExpressEngine: (angularModule.default as any).ngExpressEngine,
-              viewsPath: join(process.cwd(), 'dist/apps/musicr/browser'),
-            };
+          AngularUniversalModule.forRoot({
+            bootstrap: AppServerModule,
+            viewsPath: join(process.cwd(), 'dist/apps/musicr/browser'),
           }),
         ]
       : []),
     MusicrApiDbModule,
-    ThrottlerModule.forRoot({
-      ttl: 60,
-      limit: 10,
-    }),
+    ThrottlerModule.forRoot(),
     AdditionalOptionsModule,
     AuthModule,
     CategoriesModule,

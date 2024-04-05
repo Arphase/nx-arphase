@@ -88,6 +88,7 @@
       "@musicr/api/products": ["libs/musicr/api/products/src/index.ts"],
       "@musicr/api/subcategories": ["libs/musicr/api/subcategories/src/index.ts"],
       "@musicr/domain": ["libs/musicr/domain/src/index.ts"],
+      "@musicr/store/*": ["apps/musicr/store/src/app/*"],
       "@musicr/ui/about-us": ["libs/musicr/ui/about-us/src/index.ts"],
       "@musicr/ui/admin-products": ["libs/musicr/ui/admin-products/src/index.ts"],
       "@musicr/ui/auth": ["libs/musicr/ui/auth/src/index.ts"],
