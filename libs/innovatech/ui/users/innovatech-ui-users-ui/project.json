@@ -4,15 +4,12 @@
   "projectType": "library",
   "sourceRoot": "libs/innovatech/ui/users/ui/src",
   "prefix": "ivt",
+  "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "libs/innovatech/ui/users/innovatech-ui-users-ui",
-          "libs/innovatech/ui/users/ui/src/**/*.ts",
-          "libs/innovatech/ui/users/ui/src/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/innovatech/ui/users/ui/src/**/*.ts", "libs/innovatech/ui/users/ui/src/**/*.html"]
       }
     },
     "test": {
@@ -23,6 +20,5 @@
         "passWithNoTests": false
       }
     }
-  },
-  "tags": ["domain:innovatech", "domain:innovatech:ui", "type:ui"]
+  }
 }

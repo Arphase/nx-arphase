@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 
@@ -9,7 +10,7 @@ import { StoreWrapperRoutingModule } from './store-wrapper-routing.module';
 import { StoreWrapperComponent } from './store-wrapper.component';
 
 @NgModule({
-  imports: [CommonModule, FooterModule, MenuModule, NzMessageModule, StoreWrapperRoutingModule],
+  imports: [CommonModule, FooterModule, MenuModule, NzMessageModule, StoreWrapperRoutingModule, NzIconModule],
   providers: [provideEnvironmentNgxMask()],
   declarations: [StoreWrapperComponent],
   exports: [StoreWrapperComponent],

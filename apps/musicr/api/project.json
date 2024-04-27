@@ -8,6 +8,7 @@
       "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "webpackConfig": "apps/musicr/api/webpack.config.js",
         "outputPath": "dist/apps/musicr/api",
         "main": "apps/musicr/api/src/main.ts",
         "tsConfig": "apps/musicr/api/tsconfig.app.json",

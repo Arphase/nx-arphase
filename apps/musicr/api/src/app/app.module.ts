@@ -9,23 +9,21 @@ import { PhotosModule } from '@musicr/api/photos';
 import { PriceOptionsModule } from '@musicr/api/price-options';
 import { ProductsModule } from '@musicr/api/products';
 import { SubcategoriesModule } from '@musicr/api/subcategories';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { AppServerModule } from '@musicr/store/app.server.module';
 import { Module } from '@nestjs/common';
 import { ThrottlerModule } from '@nestjs/throttler';
-import { AngularUniversalModule } from '@qupaya/nestjs-ng-universal';
-import { join } from 'path';
+
+const isProduction = process.env['NODE' + '_ENV'] === 'production';
+let UniversalModule;
+(async () => {
+  if (isProduction) {
+    // import module for side effects
+    UniversalModule = (await import('./angular-universal.module')).UniversalModule;
+  }
+})();
 
 @Module({
   imports: [
-    ...(process.env['NODE' + '_ENV'] === 'production'
-      ? [
-          AngularUniversalModule.forRoot({
-            bootstrap: AppServerModule,
-            viewsPath: join(process.cwd(), 'dist/apps/musicr/browser'),
-          }),
-        ]
-      : []),
+    ...(isProduction ? [UniversalModule] : []),
     MusicrApiDbModule,
     ThrottlerModule.forRoot(),
     AdditionalOptionsModule,
