@@ -36,7 +36,7 @@ export class GroupFormService {
       .create({
         nzTitle: 'Editar compañía',
         nzContent: CompanyFormDialogComponent,
-        nzComponentParams: { company },
+        nzData: { company },
         nzStyle: { width: '80%' },
         nzOnOk: component => component.submit(),
       })

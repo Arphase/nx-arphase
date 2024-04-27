@@ -9,7 +9,7 @@ Sentry.init({
   dsn: 'https://510baf63117e46869364ef3a7e2b6df4@o509882.ingest.sentry.io/5604936',
   environment: environment.environmentName,
   autoSessionTracking: true,
-  integrations: [new Sentry.Integrations.TryCatch({ XMLHttpRequest: false })],
+  integrations: [Sentry.browserTracingIntegration(), Sentry.replayIntegration()],
 });
 
 if (environment.production) {

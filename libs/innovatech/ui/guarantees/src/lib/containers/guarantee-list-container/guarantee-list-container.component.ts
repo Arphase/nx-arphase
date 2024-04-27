@@ -29,7 +29,7 @@ export class GuaranteeListContainerComponent extends ApsListContainerComponent<G
     protected modal: NzModalService,
     protected messageService: NzMessageService,
     private paymentOrderCollectionService: PaymentOrderCollectionService,
-    private paymentOrderDataService: PaymentOrderDataService
+    private paymentOrderDataService: PaymentOrderDataService,
   ) {
     super(guaranteeCollectionService, guaranteeDataService, modal, messageService);
   }
@@ -40,7 +40,7 @@ export class GuaranteeListContainerComponent extends ApsListContainerComponent<G
       .create({
         nzTitle: 'Generar Orden de Pago',
         nzContent: PaymentOrderDialogContainerComponent,
-        nzComponentParams: { data: guaranteeIds },
+        nzData: { data: guaranteeIds },
         nzStyle: { minWidth: '80%' },
         nzOnOk: component => component.submitChild(),
       })
@@ -58,7 +58,7 @@ export class GuaranteeListContainerComponent extends ApsListContainerComponent<G
           nzContent: PaymentOrderDialogContainerComponent,
           nzStyle: { minWidth: '80%' },
           nzOnOk: component => component.submitChild(),
-        })
+        }),
       );
   }
 
@@ -68,7 +68,7 @@ export class GuaranteeListContainerComponent extends ApsListContainerComponent<G
       .getGuaranteePdf(id)
       .pipe(
         take(1),
-        finalize(() => this.loadingSubject.next(false))
+        finalize(() => this.loadingSubject.next(false)),
       )
       .subscribe();
   }
@@ -81,8 +81,8 @@ export class GuaranteeListContainerComponent extends ApsListContainerComponent<G
         this.messageService.success(
           `La garantía con folio ${transformFolio(guarantee.id)} ahora está ${guaranteeStatusLabels[
             GuaranteeStatus[guarantee.status]
-          ].toLowerCase()}`
-        )
+          ].toLowerCase()}`,
+        ),
       );
   }
 
@@ -92,7 +92,7 @@ export class GuaranteeListContainerComponent extends ApsListContainerComponent<G
       .getPaymentOrderPdf(id)
       .pipe(
         take(1),
-        finalize(() => this.loadingSubject.next(false))
+        finalize(() => this.loadingSubject.next(false)),
       )
       .subscribe();
   }

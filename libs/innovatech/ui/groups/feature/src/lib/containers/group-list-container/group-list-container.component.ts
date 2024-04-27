@@ -16,7 +16,7 @@ export class GroupListContainerComponent extends ApsListContainerComponent<Group
   constructor(
     protected groupCollectionService: GroupCollectionService,
     protected groupDataService: GroupDataService,
-    private modalService: NzModalService
+    private modalService: NzModalService,
   ) {
     super(groupCollectionService, groupDataService);
   }
@@ -25,7 +25,7 @@ export class GroupListContainerComponent extends ApsListContainerComponent<Group
     this.modalService.create({
       nzTitle: `Asignar productos - ${group.name}`,
       nzContent: AssignProductsModalContainerComponent,
-      nzComponentParams: { groupId: group.id },
+      nzData: { groupId: group.id },
       nzStyle: { minWidth: '85vw' },
       nzOnOk: component => component.submitChild(),
     });

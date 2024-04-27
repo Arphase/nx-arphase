@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { filterNil } from '@arphase/ui/utils';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ApsFormContainerComponent } from '@arphase/ui/forms';
+import { filterNil } from '@arphase/ui/utils';
 import { PaymentOrder } from '@innovatech/common/domain';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzModalRef } from 'ng-zorro-antd/modal';
+import { NZ_MODAL_DATA, NzModalRef } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
@@ -18,7 +18,6 @@ import { PaymentOrderDataService } from '../../services/payment-order-data.servi
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentOrderDialogContainerComponent extends ApsFormContainerComponent<PaymentOrder> {
-  @Input() data: number[];
   createSuccessMessage = 'Tu orden de compra se ha generado';
   updateSuccessMessage = 'Tu orden de compra se ha actualizado';
   loading$ = this.paymentOrderCollectionService.loading$;
@@ -26,11 +25,12 @@ export class PaymentOrderDialogContainerComponent extends ApsFormContainerCompon
   loadingDownload$ = this.loadingDownloadSubject.asObservable();
 
   constructor(
+    @Inject(NZ_MODAL_DATA) public modalData: { data: number[] },
     protected paymentOrderCollectionService: PaymentOrderCollectionService,
     protected messageService: NzMessageService,
     protected modalRef: NzModalRef,
     private guaranteeCollectiionService: GuaranteeCollectionService,
-    private paymentOrderDataService: PaymentOrderDataService
+    private paymentOrderDataService: PaymentOrderDataService,
   ) {
     super(paymentOrderCollectionService, null, messageService, modalRef);
   }
@@ -43,7 +43,7 @@ export class PaymentOrderDialogContainerComponent extends ApsFormContainerCompon
           ...guarantee,
           paymentOrderId: currentPaymentOrder.id,
           paymentOrder: currentPaymentOrder,
-        }))
+        })),
       );
     });
     paymentOrder.id
@@ -57,7 +57,7 @@ export class PaymentOrderDialogContainerComponent extends ApsFormContainerCompon
       .getPaymentOrderPdf(id)
       .pipe(
         take(1),
-        finalize(() => this.loadingDownloadSubject.next(false))
+        finalize(() => this.loadingDownloadSubject.next(false)),
       )
       .subscribe();
   }

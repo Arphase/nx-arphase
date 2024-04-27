@@ -19,7 +19,7 @@ export class PaymentOrdersService {
   constructor(
     @InjectRepository(PaymentOrderEntity) private paymentOrderRepository: Repository<PaymentOrderEntity>,
     @InjectRepository(GuaranteeEntity) private guaranteeRepository: Repository<GuaranteeEntity>,
-    private connection: Connection
+    private connection: Connection,
   ) {}
 
   async getPaymentOrder(id: number): Promise<PaymentOrder> {
@@ -38,7 +38,7 @@ export class PaymentOrdersService {
 
   async createPaymentOrder(paymentOrder: CreatePaymentOrderDto): Promise<PaymentOrder> {
     const newPaymentOrder = this.paymentOrderRepository.create(
-      omit(paymentOrder, 'guarantees') as CreatePaymentOrderDto
+      omit(paymentOrder, 'guarantees') as CreatePaymentOrderDto,
     );
     const ids = paymentOrder.guarantees.map(guarantee => guarantee.id);
     const guarantees = await this.guaranteeRepository.findBy({ id: In(ids) });
@@ -255,7 +255,6 @@ export class PaymentOrdersService {
 
     await promisify(writeFile)(`${process.cwd()}/${OUT_FILE}`, content);
     const browser = await puppeteer.launch({
-      headless: 'new',
       ignoreHTTPSErrors: true,
       args: [
         '--unlimited-storage',

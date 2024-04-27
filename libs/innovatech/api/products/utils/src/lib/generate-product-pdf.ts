@@ -10,7 +10,6 @@ export async function generateProductPdf(content: string, headerLogo: string, re
 
   await promisify(writeFile)(`${process.cwd()}/${OUT_FILE}`, content);
   const browser = await puppeteer.launch({
-    headless: 'new',
     ignoreHTTPSErrors: true,
     args: [
       '--unlimited-storage',

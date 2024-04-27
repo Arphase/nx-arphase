@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 import { ApsFormComponent, updateFormControlsValueAndValidity } from '@arphase/ui/forms';
 import { Company } from '@innovatech/common/domain';
+import { NZ_MODAL_DATA } from 'ng-zorro-antd/modal';
 
 import { createCompanyForm, createUserForm, patchCompanyForm } from '../../functions/group-form.functions';
 
@@ -12,7 +13,6 @@ import { createCompanyForm, createUserForm, patchCompanyForm } from '../../funct
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompanyFormDialogComponent extends ApsFormComponent<Company> implements OnInit {
-  @Input() company: Company;
   form = createCompanyForm();
 
   get addressForm(): UntypedFormGroup {
@@ -23,9 +23,13 @@ export class CompanyFormDialogComponent extends ApsFormComponent<Company> implem
     return this.form.get('users') as UntypedFormArray;
   }
 
+  constructor(@Inject(NZ_MODAL_DATA) private modalData: { company: Company }) {
+    super();
+  }
+
   ngOnInit() {
-    if (this.company) {
-      patchCompanyForm(this.form, this.company);
+    if (this.modalData.company) {
+      patchCompanyForm(this.form, this.modalData.company);
     }
   }
 

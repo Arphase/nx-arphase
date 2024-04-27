@@ -1,6 +1,5 @@
 <ivt-payment-order-dialog #form
                           [loading]="loading$ | async"
-                          [selectedIds]="data"
+                          [selectedIds]="modalData.data"
                           [item]="currentItem$ | async"
-                          (submitForm)="generatePaymentOrder($event)">
-</ivt-payment-order-dialog>
+                          (submitForm)="generatePaymentOrder($event)" />

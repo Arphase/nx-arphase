@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { LoadingService } from '@arphase/ui/core';
 import { fromGroups, getGroupsProductsState } from '@innovatech/ui/groups/data';
 import { ProductCollectionService } from '@innovatech/ui/products/data';
@@ -6,7 +6,7 @@ import { QueryParams } from '@ngrx/data';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzModalRef } from 'ng-zorro-antd/modal';
+import { NZ_MODAL_DATA, NzModalRef } from 'ng-zorro-antd/modal';
 import { take } from 'rxjs/operators';
 
 import { AssignProductsModalComponent } from '../../components/assign-products-modal/assign-products-modal.component';
@@ -19,24 +19,24 @@ import { AssignProductsModalComponent } from '../../components/assign-products-m
 })
 export class AssignProductsModalContainerComponent implements OnInit, OnDestroy {
   @ViewChild(AssignProductsModalComponent, { static: true }) formComponent: AssignProductsModalComponent;
-  @Input() groupId: number;
   loading$ = this.loadingService.loadingGet$;
   products$ = this.productCollectionService.entities$;
   info$ = this.productCollectionService.info$;
   groupProducts$ = this.store.pipe(select(getGroupsProductsState));
 
   constructor(
+    @Inject(NZ_MODAL_DATA) private modalData: { groupId: number },
     private productCollectionService: ProductCollectionService,
     private store: Store,
     private actions$: Actions,
     private modalRef: NzModalRef,
     private messageService: NzMessageService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
   ) {}
 
   ngOnInit(): void {
     this.productCollectionService.getWithQuery({});
-    this.store.dispatch(fromGroups.actions.getGroupProducts({ groupId: this.groupId }));
+    this.store.dispatch(fromGroups.actions.getGroupProducts({ groupId: this.modalData.groupId }));
     this.actions$.pipe(ofType(fromGroups.actions.assignGroupProductsSuccess), take(1)).subscribe(() => {
       this.messageService.success('Los productos del grupo se han actualizado');
       this.modalRef.close();
@@ -57,7 +57,7 @@ export class AssignProductsModalContainerComponent implements OnInit, OnDestroy 
   }
 
   submit(productIds: number[]): void {
-    const payload = { groupId: this.groupId, productIds };
+    const payload = { groupId: this.modalData.groupId, productIds };
     this.store.dispatch(fromGroups.actions.assignGroupProducts({ payload }));
   }
 

@@ -21,10 +21,7 @@ import { AppController } from './app.controller';
   imports: [
     InnovatechApiDbModule,
     ScheduleModule.forRoot(),
-    ThrottlerModule.forRoot({
-      ttl: 60,
-      limit: 10,
-    }),
+    ThrottlerModule.forRoot(),
     AuthModule,
     AuthDataModule,
     CompaniesModule,
