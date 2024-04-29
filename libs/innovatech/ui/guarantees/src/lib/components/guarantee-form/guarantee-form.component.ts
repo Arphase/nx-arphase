@@ -38,7 +38,10 @@ import { personTypeOptions } from './guarantee-form.constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
 })
-export class GuaranteeFormComponent extends ApsFormComponent<DeepPartial<Guarantee>> implements OnChanges {
+export class GuaranteeFormComponent
+  extends ApsFormComponent<DeepPartial<Guarantee>, DeepPartial<Guarantee>>
+  implements OnChanges
+{
   @Input() productOptions: NzSelectOptionInterface[] = [];
   @Input() vehicle: Vehicle;
   @Input() error: string;

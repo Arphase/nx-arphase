@@ -7,9 +7,9 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { UserRoles, Vehicle } from '@innovatech/common/domain';
-import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 import { ApsFormComponent } from '@arphase/ui/forms';
+import { Product, UserRoles, Vehicle } from '@innovatech/common/domain';
+import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 import { QueryParams } from '@ngrx/data';
 
 @Component({
@@ -23,8 +23,11 @@ export class VehicleFormWrapperComponent extends ApsFormComponent<Vehicle> imple
   @Input() showCompanyInput: boolean;
   @Input() invalidVin: boolean;
   @Input() isEditable: boolean;
+  @Input() products: Product[] = [];
+  @Input() companyId: number;
   @Output() verifyVin = new EventEmitter<string>();
   @Output() getCompanies = new EventEmitter<QueryParams>();
+  @Output() getVehicleProducts = new EventEmitter<Partial<Vehicle>>();
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.item && this.item) {

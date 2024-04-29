@@ -8,10 +8,11 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ApsFormComponent, enableControl } from '@arphase/ui/forms';
-import { Vehicle, VEHICLE_VIN_LENGTH, VehicleKeys } from '@innovatech/common/domain';
+import { Vehicle, VEHICLE_VIN_LENGTH } from '@innovatech/common/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { QueryParams } from '@ngrx/data';
-import { filter, startWith } from 'rxjs/operators';
+import { combineLatest } from 'rxjs';
+import { debounceTime, filter, startWith } from 'rxjs/operators';
 
 @UntilDestroy()
 @Component({
@@ -20,20 +21,22 @@ import { filter, startWith } from 'rxjs/operators';
   styleUrls: ['./vehicle-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VehicleFormComponent extends ApsFormComponent<Partial<Vehicle>> implements OnChanges {
+export class VehicleFormComponent extends ApsFormComponent<Partial<Vehicle>, Partial<Vehicle>> implements OnChanges {
   @Input() companyId: number;
   @Input() showCompanyInput: boolean;
   @Input() enableVin: boolean;
   @Output() verifyVin = new EventEmitter<string>();
   @Output() getCompanies = new EventEmitter<QueryParams>();
+  @Output() getVehicleProducts = new EventEmitter<Partial<Vehicle>>();
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.companyId) {
-      this.form.get('companyId').patchValue(this.companyId);
-    }
-
     if (changes.form && this.form) {
       this.addVinListener();
+      this.addGetProductsListener();
+    }
+
+    if (changes.companyId && this.companyId) {
+      this.form.get('companyId').patchValue(this.companyId);
     }
 
     if (changes.showCompanyInput) {
@@ -59,9 +62,23 @@ export class VehicleFormComponent extends ApsFormComponent<Partial<Vehicle>> imp
       .valueChanges.pipe(
         startWith(this.values.vin),
         filter((vin: string) => vin?.length === VEHICLE_VIN_LENGTH),
-        untilDestroyed(this)
+        untilDestroyed(this),
       )
       .subscribe(vin => this.verifyVin.emit(vin));
+  }
+
+  addGetProductsListener(): void {
+    combineLatest([
+      this.form.get('companyId').valueChanges,
+      this.form.get('year').valueChanges.pipe(debounceTime(500)),
+      this.form.get('horsePower').valueChanges.pipe(debounceTime(500)),
+    ])
+      .pipe(
+        startWith([this.values.companyId, this.values.year, this.values.horsePower]),
+        filter(([companyId, year, horsePower]) => Boolean(companyId) && Boolean(year) && Boolean(horsePower)),
+        untilDestroyed(this),
+      )
+      .subscribe(([companyId, year, horsePower]) => this.getVehicleProducts.emit({ companyId, year, horsePower }));
   }
 
   patchForm(): void {

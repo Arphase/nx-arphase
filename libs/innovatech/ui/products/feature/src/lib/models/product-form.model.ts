@@ -12,4 +12,5 @@ export interface ProductForm {
     maxHp: number;
   };
   template: string;
+  glossary: string;
 }

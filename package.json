@@ -102,7 +102,7 @@
     "lodash": "4.17.21",
     "nestjs-stripe": "^1.0.0",
     "ng-zorro-antd": "17.3.0",
-    "ngx-mask": "17.0.7",
+    "ngx-mask": "17.0.4",
     "ngx-quill": "25.1.2",
     "ngx-stripe": "^17.1.1",
     "nodemailer": "6.9.13",

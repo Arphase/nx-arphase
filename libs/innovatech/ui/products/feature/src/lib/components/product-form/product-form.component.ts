@@ -1,7 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { ApsFormComponent, ApsValidators } from '@arphase/ui/forms';
+import { FormControl, FormGroup, UntypedFormGroup } from '@angular/forms';
+import { ApsFormComponent, ApsValidators, ControlsOf } from '@arphase/ui/forms';
 import { filterNil, getBase64, sortSelectOptions } from '@arphase/ui/utils';
 import { glossary, Product } from '@innovatech/common/domain';
 import { ProductDataService } from '@innovatech/ui/products/data';
@@ -13,28 +13,28 @@ import { finalize, take } from 'rxjs/operators';
 
 import { ProductForm } from '../../models/product-form.model';
 
-export function createProductForm(): UntypedFormGroup {
+export function createProductForm(): FormGroup<ControlsOf<ProductForm>> {
   return new UntypedFormGroup({
-    id: new UntypedFormControl(null),
-    name: new UntypedFormControl(null, ApsValidators.required),
-    price: new UntypedFormControl(null, ApsValidators.required),
-    logo: new UntypedFormControl(null, ApsValidators.required),
-    yearValidations: new UntypedFormGroup(
+    id: new FormControl<number>(null),
+    name: new FormControl<string>(null, ApsValidators.required),
+    price: new FormControl<number>(null, ApsValidators.required),
+    logo: new FormControl<string>(null, ApsValidators.required),
+    yearValidations: new FormGroup(
       {
-        minYear: new UntypedFormControl(null, ApsValidators.required),
-        maxYear: new UntypedFormControl(null, ApsValidators.required),
+        minYear: new FormControl<number>(null, ApsValidators.required),
+        maxYear: new FormControl<number>(null, ApsValidators.required),
       },
-      { validators: ApsValidators.minMax('minYear', 'maxYear') }
+      { validators: ApsValidators.minMax('minYear', 'maxYear') },
     ),
-    hpValidations: new UntypedFormGroup(
+    hpValidations: new FormGroup(
       {
-        minHp: new UntypedFormControl(null, ApsValidators.required),
-        maxHp: new UntypedFormControl(null, ApsValidators.required),
+        minHp: new FormControl<number>(null, ApsValidators.required),
+        maxHp: new FormControl<number>(null, ApsValidators.required),
       },
-      { validators: ApsValidators.minMax('minHp', 'maxHp') }
+      { validators: ApsValidators.minMax('minHp', 'maxHp') },
     ),
-    template: new UntypedFormControl('', ApsValidators.required),
-    glossary: new UntypedFormControl(null),
+    template: new FormControl<string>('', ApsValidators.required),
+    glossary: new FormControl<string>(null),
   });
 }
 
@@ -87,7 +87,7 @@ export class ProductFormComponent extends ApsFormComponent<Product, ProductForm>
   constructor(
     private productDataService: ProductDataService,
     private http: HttpClient,
-    private modalService: NzModalService
+    private modalService: NzModalService,
   ) {
     super();
   }
@@ -139,7 +139,7 @@ export class ProductFormComponent extends ApsFormComponent<Product, ProductForm>
       this.form.get('logo').patchValue('');
       return;
     }
-    this.form.get('logo').patchValue(await getBase64(file.originFileObj));
+    this.form.get('logo').patchValue((await getBase64(file.originFileObj)) as string);
   }
 
   downloadTemplatePreview(): void {
@@ -151,7 +151,7 @@ export class ProductFormComponent extends ApsFormComponent<Product, ProductForm>
       .getTemplatePreview(text, logo)
       .pipe(
         take(1),
-        finalize(() => this.loadingSubject.next(false))
+        finalize(() => this.loadingSubject.next(false)),
       )
       .subscribe();
   }

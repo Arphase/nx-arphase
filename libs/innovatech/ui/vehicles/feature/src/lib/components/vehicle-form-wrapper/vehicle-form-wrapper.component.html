@@ -13,36 +13,71 @@
       </nz-page-header-title>
     </nz-page-header>
 
-    <nz-alert *ngIf="invalidVin"
-              nzType="error"
+    @if (invalidVin) {
+    <nz-alert nzType="error"
               nzMessage="Un vehículo con este VIN ya está dado de alta en la plataforma. Intente con otro VIN."
-              nzShowIcon></nz-alert>
+              nzShowIcon />
+    }
+
 
     <ivt-vehicle-form [form]="form"
                       [showCompanyInput]="showCompanyInput"
+                      [companyId]="companyId"
                       (getCompanies)="getCompanies.emit($event)"
-                      (verifyVin)="verifyVin.emit($event)"></ivt-vehicle-form>
+                      (verifyVin)="verifyVin.emit($event)"
+                      (getVehicleProducts)="getVehicleProducts.emit($event)" />
 
-    <ng-container *ngIf="isEditable">
-      <div *nzSpaceItem
-           nz-row>
-        <div nz-col
-             nzSpan="24"
-             class="flex-end">
-          <nz-space>
-            <button *nzSpaceItem
-                    nz-button
-                    type="button"
-                    [routerLink]="['..']">Cancelar</button>
-            <button *nzSpaceItem
-                    nz-button
-                    type="submit"
-                    nzType="primary"
-                    [nzLoading]="loading"
-                    data-cy="save">Guardar</button>
-          </nz-space>
+    @if (products.length) {
+    <div nz-row>
+      <div nz-col
+           nzSpan="24">
+        <h3>Productos elegibles para este vehículo:</h3>
+        @for (product of products; track product.id) {
+        <div nz-row
+             class="mb-2">
+          <div nz-col
+               nzSpan="4">
+            <img [src]="product.logo"
+                 alt="{{ product.name }} logo"
+                 class="logo"
+                 loading="lazy">
+          </div>
+          <div nz-col
+               nzSpan="8"
+               class="flex-start">
+            {{ product.name }}
+          </div>
+          <div nz-col
+               nzSpan="8"
+               class="flex-end">
+            {{ product.price | currency }}
+          </div>
         </div>
+        }
       </div>
-    </ng-container>
+    </div>
+    }
+
+    @if (isEditable) {
+    <div *nzSpaceItem
+         nz-row>
+      <div nz-col
+           nzSpan="24"
+           class="flex-end">
+        <nz-space>
+          <button *nzSpaceItem
+                  nz-button
+                  type="button"
+                  [routerLink]="['..']">Cancelar</button>
+          <button *nzSpaceItem
+                  nz-button
+                  type="submit"
+                  nzType="primary"
+                  [nzLoading]="loading"
+                  data-cy="save">Guardar</button>
+        </nz-space>
+      </div>
+    </div>
+    }
   </nz-space>
 </form>

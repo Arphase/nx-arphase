@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { FormControl, UntypedFormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormBuilder } from '@angular/forms';
 import { specialCharactersForPassword } from '@arphase/common';
 import { MessageStatus } from '@arphase/ui/core';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/forms';
@@ -12,6 +12,18 @@ import { ApsFormComponent, ApsValidators } from '@arphase/ui/forms';
 })
 export class SetPasswordFormComponent extends ApsFormComponent<{ password: string; passwordConfirm: string }> {
   @Input() title: string;
+  form = new FormGroup(
+    {
+      password: new FormControl<string>(null, [
+        ApsValidators.required,
+        ApsValidators.minLength(8),
+        ApsValidators.uppercase,
+        ApsValidators.specialCharacter,
+      ]),
+      passwordConfirm: new FormControl<string>(null, ApsValidators.required),
+    },
+    { validators: ApsValidators.matchPasswords('password', 'passwordConfirm') },
+  );
   messageStatus = MessageStatus;
   specialCharacters = specialCharactersForPassword.join(' ');
 
@@ -26,7 +38,7 @@ export class SetPasswordFormComponent extends ApsFormComponent<{ password: strin
   get minLengthStatus(): MessageStatus {
     return this.getErrorStatus(
       this.passwordControl.dirty,
-      this.passwordControl.hasError('minLength') || this.passwordControl.hasError('required')
+      this.passwordControl.hasError('minLength') || this.passwordControl.hasError('required'),
     );
   }
 
@@ -43,16 +55,6 @@ export class SetPasswordFormComponent extends ApsFormComponent<{ password: strin
   }
   constructor(private fb: UntypedFormBuilder) {
     super();
-    this.form = this.fb.group(
-      {
-        password: [
-          null,
-          [ApsValidators.required, ApsValidators.minLength(8), ApsValidators.uppercase, ApsValidators.specialCharacter],
-        ],
-        passwordConfirm: [null, ApsValidators.required],
-      },
-      { validators: ApsValidators.matchPasswords('password', 'passwordConfirm') }
-    );
   }
 
   getErrorStatus(dirty: boolean, hasError: boolean): MessageStatus {

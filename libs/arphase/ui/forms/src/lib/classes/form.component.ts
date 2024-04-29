@@ -15,7 +15,7 @@ export type ControlsOf<T extends Record<string, any>> = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApsFormComponent<T, F = unknown> {
-  @Input() form: FormGroup<ControlsOf<T>>;
+  @Input() form: FormGroup<ControlsOf<T>> | FormGroup<ControlsOf<F>>;
   @Input() item: T;
   @Input() loading: boolean;
   @Input() isEditable = true;

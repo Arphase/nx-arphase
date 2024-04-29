@@ -10,7 +10,7 @@ import { Guarantee, PaymentOrder } from '@innovatech/common/domain';
   styleUrls: ['./payment-order-dialog.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PaymentOrderDialogComponent extends ApsFormComponent<PaymentOrder> implements OnChanges {
+export class PaymentOrderDialogComponent extends ApsFormComponent<PaymentOrder, PaymentOrder> implements OnChanges {
   @Input() selectedIds: number[];
   columns: ApsColumns = [
     {
