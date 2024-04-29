@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.1.0](https://github.com/Arphase/nx-arphase/compare/v6.0.0...v6.1.0) (2024-04-29)
+
+
+### Features
+
+* **innovatech/app:** add available products for vehicle on vehicle form ([4997d96](https://github.com/Arphase/nx-arphase/commit/4997d968b094813932343295071533e522fd71af))
+* **musicr/store:** add fixed Whatsapp button ([d5b103d](https://github.com/Arphase/nx-arphase/commit/d5b103dfa659edff73b07865e1ceeb22b4de3b02))
+
 ## [6.0.0](https://github.com/Arphase/nx-arphase/compare/v5.1.13...v6.0.0) (2023-12-13)
 
 ### [5.1.13](https://github.com/Arphase/nx-arphase/compare/v5.1.12...v5.1.13) (2023-11-21)
