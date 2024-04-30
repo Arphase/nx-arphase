@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.1.1](https://github.com/Arphase/nx-arphase/compare/v6.1.0...v6.1.1) (2024-04-30)
+
+
+### Bug Fixes
+
+* **innovatech/app:** update quill to correct version ([751e87d](https://github.com/Arphase/nx-arphase/commit/751e87dded4bf71459ad7f8899bd3106b1866e19))
+
 ## [6.1.0](https://github.com/Arphase/nx-arphase/compare/v6.0.0...v6.1.0) (2024-04-29)
 
 
