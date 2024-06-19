@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.1.2](https://github.com/Arphase/nx-arphase/compare/v6.1.1...v6.1.2) (2024-06-19)
+
+
+### Bug Fixes
+
+* **app:** ensure puppeteer closes the browser even when requests failed ([5bea7bf](https://github.com/Arphase/nx-arphase/commit/5bea7bffeee09045dc52b24f2c50e065ab3ffb4f))
+
 ### [6.1.1](https://github.com/Arphase/nx-arphase/compare/v6.1.0...v6.1.1) (2024-04-30)
 
 
