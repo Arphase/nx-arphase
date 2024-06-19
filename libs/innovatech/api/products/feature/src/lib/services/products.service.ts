@@ -1,4 +1,4 @@
-import { createCollectionResponse, tobase64 } from '@arphase/api/core';
+import { createCollectionResponse, toBase64 } from '@arphase/api/core';
 import { ApsCollectionResponse } from '@arphase/common';
 import { filterCommonQuery } from '@innovatech/api/core/util';
 import { CompanyEntity, GroupEntity, ProductEntity } from '@innovatech/api/domain';
@@ -20,7 +20,7 @@ export class ProductService {
   constructor(
     @InjectRepository(ProductEntity) private productRepository: Repository<ProductEntity>,
     @InjectRepository(CompanyEntity) private companyRepository: Repository<CompanyEntity>,
-    @InjectRepository(GroupEntity) private groupRepository: Repository<GroupEntity>
+    @InjectRepository(GroupEntity) private groupRepository: Repository<GroupEntity>,
   ) {}
 
   async getProducts(filterDto: GetProductsDto, user: Partial<User>): Promise<ApsCollectionResponse<Product>> {
@@ -96,7 +96,7 @@ export class ProductService {
     if (generateProductPdfDto.logo) {
       headerLogo = generateProductPdfDto.logo;
     } else {
-      headerLogo = await tobase64('apps/innovatech/api/src/assets/img/forte-shield.png');
+      headerLogo = await toBase64('apps/innovatech/api/src/assets/img/forte-shield.png');
       headerLogo = `data:image/png;base64,${headerLogo}`;
     }
     const content = getProductPdfTemplate(template);

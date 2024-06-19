@@ -1,6 +1,6 @@
 import 'dayjs/locale/es';
 
-import { getReadableStream, OUT_FILE, tobase64 } from '@arphase/api/core';
+import { getReadableStream, OUT_FILE, toBase64 } from '@arphase/api/core';
 import { formatAddress, formatCurrency, formatPhone } from '@arphase/common';
 import { Order, OrderProduct } from '@musicr/domain';
 import dayjs from 'dayjs';
@@ -12,16 +12,17 @@ import puppeteer from 'puppeteer';
 import { promisify } from 'util';
 
 import { ExportPdfDto } from '../dto/export-pdf.dto';
+import { InternalServerErrorException } from '@nestjs/common';
 
 dayjs.extend(LocalizedFormat);
 dayjs.extend(utc);
 
 export async function generateOrderPdf(order: Order, queryDto: ExportPdfDto, response: Response): Promise<void> {
   const { utcOffset } = queryDto;
-  const headerImg = await tobase64(`apps/musicr/api/src/assets/img/logo.png`);
-  const footerImg = await tobase64('apps/musicr/api/src/assets/img/url.png');
-  const fontFamilyFile = await tobase64('apps/musicr/api/src/assets/fonts/RightGrotesk-Medium.otf');
-  const fontFamilyBoldFile = await tobase64('apps/musicr/api/src/assets/fonts/RightGrotesk-Bold.otf');
+  const headerImg = await toBase64(`apps/musicr/api/src/assets/img/logo.png`);
+  const footerImg = await toBase64('apps/musicr/api/src/assets/img/url.png');
+  const fontFamilyFile = await toBase64('apps/musicr/api/src/assets/fonts/RightGrotesk-Medium.otf');
+  const fontFamilyBoldFile = await toBase64('apps/musicr/api/src/assets/fonts/RightGrotesk-Bold.otf');
 
   const { customer, socialEvent, total, orderProducts } = order;
   const { firstName, lastName, phone, email } = customer;
@@ -49,7 +50,7 @@ export async function generateOrderPdf(order: Order, queryDto: ExportPdfDto, res
         <td>${additionalOption.additionalOption.name}</td>
         <td class="text-end">${formatCurrency(additionalOption.price)}</td>
       </tr>
-`)
+`),
     );
   });
 
@@ -174,22 +175,23 @@ export async function generateOrderPdf(order: Order, queryDto: ExportPdfDto, res
   </html>
   `;
 
-  await promisify(fs.writeFile)(OUT_FILE, content);
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
-  const page = await browser.newPage();
-  await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
+  try {
+    await promisify(fs.writeFile)(OUT_FILE, content);
+    const page = await browser.newPage();
+    await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
 
-  const buffer = await page.pdf({
-    format: 'a4',
-    margin: {
-      left: '0.5in',
-      top: '0.5in',
-      right: '0.5in',
-      bottom: '0.5in',
-    },
-    displayHeaderFooter: true,
-    headerTemplate: `<span></span>`,
-    footerTemplate: `
+    const buffer = await page.pdf({
+      format: 'a4',
+      margin: {
+        left: '0.5in',
+        top: '0.5in',
+        right: '0.5in',
+        bottom: '0.5in',
+      },
+      displayHeaderFooter: true,
+      headerTemplate: `<span></span>`,
+      footerTemplate: `
     <div id="footer-template"
          style="font-size: 12px !important; display: flex; justify-content: center; align-items: center; width: 100%;">
       <a style="display: flex; justify-content: center; align-items: center; width: 100%;" href="https://musicrevolution.mx">
@@ -197,9 +199,13 @@ export async function generateOrderPdf(order: Order, queryDto: ExportPdfDto, res
       </a>
     </div>
     `,
-  });
-  promisify(fs.unlink)(OUT_FILE);
-  await browser.close();
-  const stream = getReadableStream(buffer);
-  stream.pipe(response);
+    });
+    promisify(fs.unlink)(OUT_FILE);
+    const stream = getReadableStream(buffer);
+    stream.pipe(response);
+  } catch (e) {
+    throw new InternalServerErrorException();
+  } finally {
+    await browser.close();
+  }
 }

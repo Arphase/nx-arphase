@@ -1,8 +1,8 @@
-import { getReadableStream, OUT_FILE, tobase64 } from '@arphase/api/core';
+import { getReadableStream, OUT_FILE, toBase64 } from '@arphase/api/core';
 import { formatDate } from '@arphase/common';
 import { GuaranteeEntity, PaymentOrderEntity } from '@innovatech/api/domain';
 import { PaymentOrder, transformFolio } from '@innovatech/common/domain';
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
 import { unlink, writeFile } from 'fs';
@@ -121,8 +121,8 @@ export class PaymentOrdersService {
     });
     const guaranteesRows = guaranteesRowsArray.join(' ');
 
-    const headerImg = await tobase64('apps/innovatech/api/src/assets/img/logo_innovatech_garantias.jpg');
-    const footerImg = await tobase64('apps/innovatech/api/src/assets/img/pdf-footer.jpg');
+    const headerImg = await toBase64('apps/innovatech/api/src/assets/img/logo_innovatech_garantias.jpg');
+    const footerImg = await toBase64('apps/innovatech/api/src/assets/img/pdf-footer.jpg');
 
     const content = `
       <html>
@@ -252,8 +252,6 @@ export class PaymentOrdersService {
       </body>
       </html>
   `;
-
-    await promisify(writeFile)(`${process.cwd()}/${OUT_FILE}`, content);
     const browser = await puppeteer.launch({
       ignoreHTTPSErrors: true,
       args: [
@@ -266,19 +264,21 @@ export class PaymentOrdersService {
         '--disable-dev-shm-usage',
       ],
     });
-    const page = await browser.newPage();
-    await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
-    const buffer = await page.pdf({
-      format: 'a4',
-      printBackground: true,
-      margin: {
-        left: '1in',
-        top: '1in',
-        right: '1in',
-        bottom: '1in',
-      },
-      displayHeaderFooter: true,
-      headerTemplate: `
+    try {
+      await promisify(writeFile)(`${process.cwd()}/${OUT_FILE}`, content);
+      const page = await browser.newPage();
+      await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
+      const buffer = await page.pdf({
+        format: 'a4',
+        printBackground: true,
+        margin: {
+          left: '1in',
+          top: '1in',
+          right: '1in',
+          bottom: '1in',
+        },
+        displayHeaderFooter: true,
+        headerTemplate: `
       <style>
       .logo {
         width: auto;
@@ -293,7 +293,7 @@ export class PaymentOrdersService {
         <img class="logo"
         src="data:image/jpg;base64,${headerImg}"/>
       `,
-      footerTemplate: `
+        footerTemplate: `
       <style>
       .footer {
         width: 100%;
@@ -304,10 +304,14 @@ export class PaymentOrdersService {
       <img class="footer"
           src="data:image/jpg;base64,${footerImg}"/>
       `,
-    });
-    await promisify(unlink)(OUT_FILE);
-    await browser.close();
-    const stream = getReadableStream(buffer);
-    stream.pipe(response);
+      });
+      await promisify(unlink)(OUT_FILE);
+      const stream = getReadableStream(buffer);
+      stream.pipe(response);
+    } catch (e) {
+      throw new InternalServerErrorException();
+    } finally {
+      await browser.close();
+    }
   }
 }

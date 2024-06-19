@@ -1,4 +1,4 @@
-import { createCollectionResponse, getReadableStream, tobase64 } from '@arphase/api/core';
+import { createCollectionResponse, getReadableStream, toBase64 } from '@arphase/api/core';
 import { ApsCollectionResponse, formatCurrency, formatDate } from '@arphase/common';
 import { filterCommonQuery } from '@innovatech/api/core/util';
 import {
@@ -40,12 +40,12 @@ export class GuaranteesService {
   constructor(
     @InjectRepository(GuaranteeEntity) private guaranteeRepository: Repository<GuaranteeEntity>,
     @InjectRepository(VehicleEntity) private vehicleRepository: Repository<VehicleEntity>,
-    private readonly connection: Connection
+    private readonly connection: Connection,
   ) {}
 
   async getGuarantees(
     filterDto: Partial<GetGuaranteesFilterDto>,
-    user: Partial<User>
+    user: Partial<User>,
   ): Promise<ApsCollectionResponse<Guarantee>> {
     const { pageSize, pageIndex } = filterDto;
     const query = this.guaranteeRepository.createQueryBuilder('guarantee');
@@ -80,7 +80,7 @@ export class GuaranteesService {
 
   async getGuaranteesSummary(
     filterDto: Partial<GetGuaranteesFilterDto>,
-    user: Partial<User>
+    user: Partial<User>,
   ): Promise<GuaranteeSummary> {
     const query = this.guaranteeRepository
       .createQueryBuilder('guarantee')
@@ -201,7 +201,7 @@ export class GuaranteesService {
       headerLogo = product.logo;
     } else {
       content = getGuaranteePdfTemplate(guarantee, utcOffset);
-      headerLogo = await tobase64('apps/innovatech/api/src/assets/img/forte-shield.png');
+      headerLogo = await toBase64('apps/innovatech/api/src/assets/img/forte-shield.png');
       headerLogo = `data:image/png;base64,${headerLogo}`;
     }
     await generateProductPdf(content, headerLogo, response);

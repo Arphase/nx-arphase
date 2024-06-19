@@ -1,14 +1,13 @@
-import { getReadableStream, OUT_FILE, tobase64 } from '@arphase/api/core';
+import { getReadableStream, OUT_FILE, toBase64 } from '@arphase/api/core';
+import { InternalServerErrorException } from '@nestjs/common';
 import { Response } from 'express';
 import { unlink, writeFile } from 'fs';
 import puppeteer from 'puppeteer';
 import { promisify } from 'util';
 
 export async function generateProductPdf(content: string, headerLogo: string, response: Response): Promise<void> {
-  const headerImg = await tobase64(`apps/innovatech/api/src/assets/img/logo.png`);
-  const footerImg = await tobase64('apps/innovatech/api/src/assets/img/pdf-footer.jpg');
-
-  await promisify(writeFile)(`${process.cwd()}/${OUT_FILE}`, content);
+  const headerImg = await toBase64(`apps/innovatech/api/src/assets/img/logo.png`);
+  const footerImg = await toBase64('apps/innovatech/api/src/assets/img/pdf-footer.jpg');
   const browser = await puppeteer.launch({
     ignoreHTTPSErrors: true,
     args: [
@@ -21,20 +20,23 @@ export async function generateProductPdf(content: string, headerLogo: string, re
       '--disable-dev-shm-usage',
     ],
   });
-  const page = await browser.newPage();
-  await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
+  try {
+    await promisify(writeFile)(`${process.cwd()}/${OUT_FILE}`, content);
 
-  const buffer = await page.pdf({
-    format: 'a4',
-    margin: {
-      left: '1in',
-      top: '1in',
-      right: '1in',
-      bottom: '2in',
-    },
-    displayHeaderFooter: true,
-    pageRanges: '1-',
-    headerTemplate: `
+    const page = await browser.newPage();
+    await page.goto(`file://${process.cwd()}/${OUT_FILE}`, { waitUntil: 'networkidle0' });
+
+    const buffer = await page.pdf({
+      format: 'a4',
+      margin: {
+        left: '1in',
+        top: '1in',
+        right: '1in',
+        bottom: '2in',
+      },
+      displayHeaderFooter: true,
+      pageRanges: '1-',
+      headerTemplate: `
     <style>
       .innovatech-logo {
         max-width: 15%;
@@ -53,7 +55,7 @@ export async function generateProductPdf(content: string, headerLogo: string, re
     </style>
     <img class="innovatech-logo" src="data:image/png;base64,${headerImg}"/>
     <img class="shield" src="${headerLogo}"/>`,
-    footerTemplate: `
+      footerTemplate: `
     <style>
       .footer {
         width: 100%;
@@ -63,9 +65,13 @@ export async function generateProductPdf(content: string, headerLogo: string, re
     </style>
     <img class="footer" src="data:image/jpg;base64,${footerImg}"/>
     `,
-  });
-  await promisify(unlink)(OUT_FILE);
-  await browser.close();
-  const stream = getReadableStream(buffer);
-  stream.pipe(response);
+    });
+    await promisify(unlink)(OUT_FILE);
+    const stream = getReadableStream(buffer);
+    stream.pipe(response);
+  } catch (e) {
+    throw new InternalServerErrorException();
+  } finally {
+    await browser.close();
+  }
 }

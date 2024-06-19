@@ -10,6 +10,6 @@ export function getReadableStream(buffer: Buffer): Readable {
   return stream;
 }
 
-export async function tobase64(imgPath: string): Promise<string> {
+export async function toBase64(imgPath: string): Promise<string> {
   return await promises.readFile(imgPath, { encoding: 'base64' });
 }
