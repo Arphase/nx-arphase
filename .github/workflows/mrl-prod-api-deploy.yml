@@ -54,7 +54,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID_EB }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY_EB }}
           application_name: music-revolution
-          environment_name: MRL-NEW-PROD
+          environment_name: ${{ secrets.MRL_PROD_ENVIRONMENT_NAME }}
           version_label: ${{ github.event.inputs.version }}
           region: ${{ secrets.AWS_REGION }}
           deployment_package: Archive.zip
