@@ -10,14 +10,32 @@
                              [nzActive]="true"></nz-skeleton-element>
       </div>
       <ng-template #photos>
-        <nz-carousel nzEffect="scrollx">
-          <div *ngFor="let photo of displayedPhotos"
-               nz-carousel-content>
+        <nz-carousel nzEffect="fade">
+          @for (photo of displayedPhotos; track photo.url) {
+          <div nz-carousel-content
+               class="carousel-content">
+            <button nz-button
+                    nzType="text"
+                    class="carousel-button carousel-button__previous"
+                    (click)="previous()">
+              <i nz-icon
+                 nzType="arrow-left"
+                 nzTheme="outline"></i>
+            </button>
             <img class="carousel-img rounded"
                  [src]="photo.url"
                  [alt]="product?.name"
                  loading="lazy" />
+            <button nz-button
+                    nzType="text"
+                    class="carousel-button carousel-button__next"
+                    (click)="next()">
+              <i nz-icon
+                 nzType="arrow-right"
+                 nzTheme="outline"></i>
+            </button>
           </div>
+          }
         </nz-carousel>
       </ng-template>
 

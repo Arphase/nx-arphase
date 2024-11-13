@@ -7,11 +7,13 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DeepPartial } from '@arphase/common';
 import { AdditionalOption, OrderProduct, Photo, Product } from '@musicr/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { filter } from 'rxjs/operators';
 
@@ -25,6 +27,7 @@ export type AdditionalOptionFormValue = AdditionalOption & { selected: boolean }
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailComponent implements OnChanges {
+  @ViewChild(NzCarouselComponent) photoCarousel: NzCarouselComponent;
   @Input() product: Product;
   @Input() priceOptions: NzSelectOptionInterface[] = [];
   @Input() additionalOptions: AdditionalOption[] = [];
@@ -48,7 +51,7 @@ export class ProductDetailComponent implements OnChanges {
       .get('priceOptionId')
       .valueChanges.pipe(
         filter(() => !!this.product?.priceOptions?.length),
-        untilDestroyed(this)
+        untilDestroyed(this),
       )
       .subscribe(priceOptionId => {
         const priceOption = this.product.priceOptions.find(priceOption => priceOption.id === priceOptionId);
@@ -74,8 +77,8 @@ export class ProductDetailComponent implements OnChanges {
             id: new FormControl<number>(additionalOption.id),
             name: new FormControl<string>(additionalOption.name),
             price: new FormControl<number>(additionalOption.price),
-          })
-        )
+          }),
+        ),
       );
       this.additionalOptionsArray.valueChanges
         .pipe(untilDestroyed(this))
@@ -103,5 +106,13 @@ export class ProductDetailComponent implements OnChanges {
     this.priceOptions.length
       ? this.addItemToCart.emit({ ...item, priceOptionId: this.form.get('priceOptionId').value })
       : this.addItemToCart.emit(item);
+  }
+
+  previous(): void {
+    this.photoCarousel.pre();
+  }
+
+  next(): void {
+    this.photoCarousel.next();
   }
 }

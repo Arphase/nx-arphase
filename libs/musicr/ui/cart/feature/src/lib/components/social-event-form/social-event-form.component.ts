@@ -52,6 +52,7 @@ export class SocialEventFormComponent extends ApsFormComponent<SocialEvent> impl
     externalNumber: '1000',
     internalNumber: 'A',
   };
+  form = createSocialEventForm(OrderTypes.purchase) as FormGroup<ControlsOf<SocialEvent>>;
 
   get addressForm(): FormGroup<ControlsOf<Address>> {
     return this.form.get('address') as FormGroup<ControlsOf<Address>>;
@@ -59,7 +60,7 @@ export class SocialEventFormComponent extends ApsFormComponent<SocialEvent> impl
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.orderType || changes.item) {
-      this.form = createSocialEventForm(this.orderType);
+      this.form = createSocialEventForm(this.orderType) as FormGroup<ControlsOf<SocialEvent>>;
       if (this.item) {
         this.form.patchValue(this.item);
       }

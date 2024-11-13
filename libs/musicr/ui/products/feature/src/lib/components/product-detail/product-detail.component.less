@@ -13,7 +13,7 @@
   }
 }
 
-[nz-carousel-content] {
+.carousel-content {
   width: 100%;
   overflow: hidden;
   max-height: 64vh;
@@ -22,10 +22,25 @@
     max-height: 50vh;
     line-height: 50vh;
   }
-}
-.carousel-img {
-  width: 100%;
-  height: 100%;
+
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    background-color: #f0f0f0;
+
+    &__previous {
+      left: 0px;
+    }
+    &__next {
+      right: 0px;
+    }
+  }
+
+  .carousel-img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .img-icon {
