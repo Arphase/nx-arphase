@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.1.3](https://github.com/Arphase/nx-arphase/compare/v6.1.2...v6.1.3) (2024-11-13)
+
+
+### Features
+
+* **musicr/store:** add arrow on product photo carousel and office address on page footer ([81a20e0](https://github.com/Arphase/nx-arphase/commit/81a20e0cbc9a3aa760a4410fc53e51b9eba6cfe4))
+
 ### [6.1.2](https://github.com/Arphase/nx-arphase/compare/v6.1.1...v6.1.2) (2024-06-19)
 
 
