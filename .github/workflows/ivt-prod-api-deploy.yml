@@ -30,6 +30,8 @@ jobs:
           node-version: 20
 
       - uses: bahmutov/npm-install@v1
+        with:
+          install-command: npm install
 
       - name: Run migrations
         run: npm run typeorm:innovatech:run
@@ -49,7 +51,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID_EB }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY_EB }}
           application_name: innovatech-api
-          environment_name: IVT-NEW-PROD
+          environment_name: ${{ secrets.IVT_PROD_ENVIRONMENT_NAME }}
           version_label: ${{ github.event.inputs.version }}
           region: ${{ secrets.AWS_REGION }}
           deployment_package: Archive.zip

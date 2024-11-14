@@ -12,18 +12,8 @@ import { SubcategoriesModule } from '@musicr/api/subcategories';
 import { Module } from '@nestjs/common';
 import { ThrottlerModule } from '@nestjs/throttler';
 
-const isProduction = process.env['NODE' + '_ENV'] === 'production';
-let UniversalModule;
-(async () => {
-  if (isProduction) {
-    // import module for side effects
-    UniversalModule = (await import('./angular-universal.module')).UniversalModule;
-  }
-})();
-
 @Module({
   imports: [
-    ...(isProduction ? [UniversalModule] : []),
     MusicrApiDbModule,
     ThrottlerModule.forRoot(),
     AdditionalOptionsModule,

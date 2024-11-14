@@ -7,7 +7,7 @@ env:
   DB: ${{ secrets.MRL_PROD_DB }}
   DB_USERNAME: ${{ secrets.MRL_PROD_DB_USERNAME }}
   DB_PASSWORD: ${{ secrets.MRL_PROD_DB_PASSWORD }}
-  RUN_MIGRATIONS: ${{ secrets.RUN_MIGRATIONS }}
+  NODE_ENV: migrations
 
 on:
   workflow_dispatch:
@@ -32,18 +32,15 @@ jobs:
       - uses: bahmutov/npm-install@v1
         with:
           install-command: npm install
-      # Todo: Fix Later
-      # - name: Run migrations
-      #   run: npm run typeorm:musicr:run
+
+      - name: Run migrations
+        run: npm run typeorm:musicr:run
 
       - name: Move Procfile
         run: mv ./apps/musicr/api/Procfile .
 
-      - name: Build browser app
-        run: export NODE_ENV=production && npx nx build musicr-store --prod
-
-      - name: Build server app
-        run: npx ng run musicr-store:server:production
+      - name: Build app
+        run: npx nx build musicr-api --prod
 
       - name: Create zip file
         run: zip -r Archive.zip . -x .git/\* -x .cache/\* -x node_modules/\* -x .vscode/\*  -x .github/\* -x .tmp/\* -x apps/innovatech/\* -x apps/valmira/\* -x apps/pam-vic/\* -x apps/pam-vic-e2e/\* -x libs/innovatech/\* -x libs/valmira/\*

@@ -2,7 +2,6 @@ import { registerLocaleData } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import es from '@angular/common/locales/es';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GtagModule } from '@arphase/ui/gtag';
 import { HttpProxyService, MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
@@ -23,7 +22,6 @@ const MUSIC_REVOLUTION_CONFIGURATION_VALUE: MusicRevolutionConfiguration = {
   declarations: [AppComponent],
   imports: [
     HttpClientModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     GtagModule.init({ targetId: 'G-MML7RZ5PG4', production: environment.production, moreIds: ['AW-697727149'] }),

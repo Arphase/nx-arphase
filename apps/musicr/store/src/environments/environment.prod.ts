@@ -2,8 +2,8 @@ import packageJson from '../../../../../package.json';
 import { Environment } from './environment.model';
 
 export const environment: Environment = {
-  apiUrl: '/api',
-  version: packageJson.version,
   production: true,
-  innovatechUrl: window['env']?.innovatechUrl,
+  apiUrl: 'https://api.musicrevolution.mx',
+  innovatechUrl: 'https://api.innovatechcorp.com',
+  version: packageJson.version,
 };

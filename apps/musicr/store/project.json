@@ -9,7 +9,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/musicr/browser",
+        "outputPath": "dist/apps/musicr/store",
         "index": "apps/musicr/store/src/index.html",
         "main": "apps/musicr/store/src/main.ts",
         "polyfills": "apps/musicr/store/src/polyfills.ts",
