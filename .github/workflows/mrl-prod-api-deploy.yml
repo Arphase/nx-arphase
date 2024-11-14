@@ -32,9 +32,9 @@ jobs:
       - uses: bahmutov/npm-install@v1
         with:
           install-command: npm install
-
-      - name: Run migrations
-        run: npm run typeorm:musicr:run
+      # Todo: Revert
+      # - name: Run migrations
+      #   run: npm run typeorm:musicr:run
 
       - name: Move Procfile
         run: mv ./apps/musicr/api/Procfile .
