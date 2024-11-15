@@ -7,7 +7,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: ${{ secrets.AWS_REGION }}
   AWS_BUCKET_NAME: ${{ secrets.MRL_PROD_STORE_AWS_BUCKET_NAME }}
-  DIST_APP_DIR: ${{ secrets.MRL_DIST_APP_DIR }}
+  DIST_APP_DIR: ${{ secrets.MRL_DIST_STORE_APP_DIR }}
 
 on: workflow_dispatch
 
