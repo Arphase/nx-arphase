@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { ControlsOf, setFormArrayValue } from '@arphase/ui/forms';
 import { mapToSelectOptionsSync } from '@arphase/ui/utils';
-import { Customer, Order, OrderProduct, OrderProductAdditionalOption, Product } from '@musicr/domain';
+import { Customer, OrderProduct, OrderProductAdditionalOption, Product } from '@musicr/domain';
 import { ProductDataService } from '@musicr/ui/products/data';
 import { BehaviorSubject, take } from 'rxjs';
 
@@ -15,7 +15,7 @@ import {
 
 @Injectable()
 export class OrderFormService {
-  form: FormGroup<ControlsOf<Order>> = createOrderForm();
+  form = createOrderForm();
   productsDataSubject = new BehaviorSubject<Record<number, OrderFormProduct>>({});
   productsData$ = this.productsDataSubject.asObservable();
   currentCustomerSubject = new BehaviorSubject<Customer>(null);
@@ -25,7 +25,10 @@ export class OrderFormService {
     return this.form.get('orderProducts') as FormArray<FormGroup<ControlsOf<OrderProduct>>>;
   }
 
-  constructor(private http: HttpClient, private productDataService: ProductDataService) {}
+  constructor(
+    private http: HttpClient,
+    private productDataService: ProductDataService,
+  ) {}
 
   getProductData(productId: number): void {
     if (!this.productsDataSubject.value[productId]) {

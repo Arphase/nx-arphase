@@ -7,8 +7,15 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { ApsFormComponent, ApsValidators, setFormArrayValue } from '@arphase/ui/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
+} from '@angular/forms';
+import { ApsFormComponent, ApsValidators, ControlsOf, setFormArrayValue } from '@arphase/ui/forms';
 import { getBase64 } from '@arphase/ui/utils';
 import { Photo, PriceOption } from '@musicr/domain';
 import { MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
@@ -16,11 +23,11 @@ import { NzUploadFile } from 'ng-zorro-antd/upload';
 
 import { mapPhotoFileArray } from '../../functions/map-file-photo-array';
 
-export function createPhotoFormGroup(item?: Photo): UntypedFormGroup {
-  const form = new UntypedFormGroup({
-    id: new UntypedFormControl(null),
-    key: new UntypedFormControl(null),
-    url: new UntypedFormControl(null),
+export function createPhotoFormGroup(item?: Photo): FormGroup<ControlsOf<Photo>> {
+  const form = new FormGroup({
+    id: new FormControl<number>(null),
+    key: new FormControl<string>(null),
+    url: new FormControl<string>(null),
   });
   if (item) {
     form.patchValue(item);
@@ -28,12 +35,12 @@ export function createPhotoFormGroup(item?: Photo): UntypedFormGroup {
   return form;
 }
 
-export function createPriceOptionForm(item?: PriceOption): UntypedFormGroup {
+export function createPriceOptionForm(item?: PriceOption): FormGroup<ControlsOf<Partial<PriceOption>>> {
   const form = new UntypedFormGroup({
-    id: new UntypedFormControl(null),
-    name: new UntypedFormControl(null, ApsValidators.required),
-    price: new UntypedFormControl(null, ApsValidators.required),
-    photos: new UntypedFormArray([]),
+    id: new FormControl<number>(null),
+    name: new FormControl<string>(null, ApsValidators.required),
+    price: new FormControl<number>(null, ApsValidators.required),
+    photos: new FormArray([]),
   });
   if (item) {
     form.patchValue(item);
@@ -48,7 +55,8 @@ export function createPriceOptionForm(item?: PriceOption): UntypedFormGroup {
   styleUrls: ['./price-option-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PriceOptionFormComponent extends ApsFormComponent<PriceOption> implements OnChanges {
+export class PriceOptionFormComponent extends ApsFormComponent<Partial<PriceOption>> implements OnChanges {
+  form = createPriceOptionForm();
   allowedMimeType = ['image/jpeg', 'image/jpg'];
   fileList: NzUploadFile[] = [];
   previewImage = '';

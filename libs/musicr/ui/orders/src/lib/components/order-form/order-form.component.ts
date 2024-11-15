@@ -24,7 +24,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { combineLatest, debounceTime, startWith, Subject } from 'rxjs';
 import { v4 } from 'uuid';
 
-import { createOrderProductForm } from './order-form.constants';
+import { createOrderForm, createOrderProductForm } from './order-form.constants';
 
 @UntilDestroy()
 @Component({
@@ -33,11 +33,12 @@ import { createOrderProductForm } from './order-form.constants';
   styleUrls: ['./order-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OrderFormComponent extends ApsFormComponent<Order> implements OnInit, OnChanges {
+export class OrderFormComponent extends ApsFormComponent<Partial<Order>> implements OnInit, OnChanges {
   @Input() productsData: Record<number, Product> = {};
   @Input() currentCustomer: Customer;
   eventPlaceOptions = eventPlaceOptions;
   orderTypeOptions = orderTypeOptions;
+  form = createOrderForm();
   productsDataChangesSubject = new Subject<string>();
   @Output() getProductData = new EventEmitter<number>();
   @Output() emailChanges = new EventEmitter<string>();
@@ -73,7 +74,7 @@ export class OrderFormComponent extends ApsFormComponent<Order> implements OnIni
             ...additionalOption,
             selected: true,
           })),
-        })
+        }),
       );
     }
 
@@ -149,7 +150,7 @@ export class OrderFormComponent extends ApsFormComponent<Order> implements OnIni
       orderProducts: values.orderProducts.map(orderProduct => ({
         ...orderProduct,
         orderProductAdditionalOptions: orderProduct.orderProductAdditionalOptions.filter(
-          additionalOption => additionalOption.selected
+          additionalOption => additionalOption.selected,
         ),
       })),
     };

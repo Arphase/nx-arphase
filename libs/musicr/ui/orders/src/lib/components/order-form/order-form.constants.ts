@@ -1,16 +1,16 @@
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, UntypedFormGroup } from '@angular/forms';
 import { DeepPartial } from '@arphase/common';
 import { createAddressForm } from '@arphase/ui/addresses';
-import { ApsValidators, setFormArrayValue } from '@arphase/ui/forms';
-import { OrderProduct, OrderProductAdditionalOption, Product } from '@musicr/domain';
+import { ApsValidators, ControlsOf, setFormArrayValue } from '@arphase/ui/forms';
+import { Order, OrderProduct, OrderProductAdditionalOption, Product } from '@musicr/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export interface OrderFormProduct extends Product {
   selectablePriceOptions: NzSelectOptionInterface[];
 }
 
-export function createOrderForm(): FormGroup {
-  return new FormGroup({
+export function createOrderForm(): FormGroup<ControlsOf<Partial<Order>>> {
+  return new UntypedFormGroup({
     id: new FormControl(null),
     orderType: new FormControl(null, ApsValidators.required),
     orderProducts: new FormArray([]),
@@ -49,7 +49,7 @@ export function createOrderProductForm(orderProduct?: OrderProduct): FormGroup {
     setFormArrayValue(
       form.get('orderProductAdditionalOptions') as FormArray,
       orderProduct.orderProductAdditionalOptions,
-      additionalOption => createAdditionalOptionForm(additionalOption)
+      additionalOption => createAdditionalOptionForm(additionalOption),
     );
   }
   return form;
