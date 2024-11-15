@@ -68,22 +68,27 @@
          nzSpan="12">
       <ul nz-menu
           nzMode="horizontal">
-        <li *ngFor="let category of categories"
-            nz-submenu
+        @for (category of categories; track category.id) {
+        <li nz-submenu
+            nzPlacement="bottomCenter"
             [nzTitle]="title">
           <ng-template #title>
             <span class="font-bold">{{ category.name | uppercase }}</span>
           </ng-template>
           <ul>
-            <li *ngFor="let subcategory of category.subcategories"
+            @for (subcategory of category.subcategories; track subcategory.id) {
+            <li class="text-left"
                 nz-menu-item
                 (click)="goToCatalog(subcategory.id, true)">
               {{ subcategory.name | uppercase }}
             </li>
-            <li nz-menu-item
+            }
+            <li class="text-left"
+                nz-menu-item
                 (click)="goToCatalog(category.id, false)">VER TODOS</li>
           </ul>
         </li>
+        }
       </ul>
     </div>
     <div nz-col
@@ -121,20 +126,25 @@
     <ul nz-menu
         nzMode="inline"
         nzTheme="dark">
-      <li *ngFor="let category of categories"
-          nz-submenu
-          class="mobile-submenu"
+      @for (category of categories; track category.id) {
+      <li nz-submenu
+          class="mobile-submenu text-left"
           [nzTitle]="category.name | uppercase"
           (nzOpenChange)="openHandler(category.id)"
           [(nzOpen)]="openMap[category.id.toString()]">
         <ul>
-          <li *ngFor="let subcategory of category.subcategories"
-              nz-menu-item
-              (click)="goToCatalog(subcategory.id, true)">{{ subcategory.name | uppercase }}</li>
+          @for (subcategory of category.subcategories; track subcategory.id) {
           <li nz-menu-item
+              class="text-left"
+              (click)="goToCatalog(subcategory.id, true)">{{ subcategory.name | uppercase }}</li>
+          }
+
+          <li nz-menu-item
+              class="text-left"
               (click)="goToCatalog(category.id, false)">VER TODOS</li>
         </ul>
       </li>
+      }
     </ul>
     <div nz-row
          nzJustify="center"
