@@ -1,124 +1,138 @@
 <div class="center">
-  <ng-container *ngIf="loading; else productsTemplate">
+  @if (loading()) {
+  <div nz-row
+       class="px-8 py-16"
+       [nzGutter]="[16, 16]">
+    @for (product of mockArray; track product.id) {
+    <div nz-col
+         nzXs="12"
+         nzMd="6"
+         nzLg="6">
+      <div nz-row>
+        <div nz-col
+             nzSpan="24"
+             class="products()-catalog-skeleton mb-3">
+          <nz-skeleton-element nzType="image"
+                               [nzActive]="true" />
+        </div>
+        <div nz-col
+             nzSpan="24">
+          <nz-skeleton-element nzType="input"
+                               class="w-full"
+                               [nzActive]="true" />
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  } @else {
+  <div class="scroll-spacing">
+    <div class="m-scroll-left rotate-9 scroll-over">
+      <div class="m-scroll-left__title">
+        <div class="t-10">
+          <p>{{ title() }}&nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }}&nbsp;
+            &nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>{{ title() }}&nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }}&nbsp;
+            &nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>{{ title() }}&nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }}&nbsp;
+            &nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>{{ title() }}&nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }}&nbsp;
+            &nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>{{ title() }}&nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }}&nbsp;
+            &nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-scroll-right rotate-15 scroll-over-2">
+      <div class="m-scroll-right__title">
+        <div>
+          <p>{{ title() }}&nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }}&nbsp;
+            &nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>{{ title() }}&nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }}&nbsp;
+            &nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>{{ title() }}&nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }}&nbsp;
+            &nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>{{ title() }}&nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }}&nbsp;
+            &nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>{{ title() }}&nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }} &nbsp; &nbsp; {{ title() }}&nbsp;
+            &nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="space pb-5">
     <div nz-row
-         [nzGutter]="[16, 16]"
-         class="px-8 py-16">
-      <div *ngFor="let product of mockArray"
-           nz-col
+         nzGutter="16">
+      @for (product of products(); track product.id) {
+      <div nz-col
            nzXs="12"
            nzMd="6"
-           nzLg="6">
+           nzLg="6"
+           [routerLink]="['../..', 'product', product.id]">
+        <div nz-row
+             class="mb-2">
+          <div nz-col
+               nzSpan="24">
+            <img class="w-full product-photo rounded cursor-pointer loading"
+                 loading="lazy"
+                 nz-tooltip
+                 nzTooltipTitle="Más información..."
+                 [src]="product.photos[0]?.url"
+                 [alt]="product.name" />
+          </div>
+        </div>
         <div nz-row>
           <div nz-col
                nzSpan="24"
-               class="products-catalog-skeleton mb-3">
-            <nz-skeleton-element nzType="image"
-                                 [nzActive]="true"></nz-skeleton-element>
-          </div>
-          <div nz-col
-               nzSpan="24">
-            <nz-skeleton-element nzType="input"
-                                 [nzActive]="true"
-                                 class="w-full"></nz-skeleton-element>
+               class="text-left mb-3">
+            <h6 class="text-sm font-bold">{{ product.name }}</h6>
+            <span class="text-xs">{{ product.price | currency }}</span>
           </div>
         </div>
       </div>
+      }
     </div>
-  </ng-container>
-  <ng-template #productsTemplate>
-    <div class="scroll-spacing">
-      <div class="m-scroll-left rotate-9 scroll-over">
-        <div class="m-scroll-left__title">
-          <div class="t-10">
-            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="m-scroll-right rotate-15 scroll-over-2">
-        <div class="m-scroll-right__title">
-          <div>
-            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>{{ title }}&nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }} &nbsp; &nbsp; {{ title }}&nbsp; &nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="space pb-5">
-      <div nz-row
-           nzGutter="16">
-        <div *ngFor="let product of products"
-             nz-col
-             nzXs="12"
-             nzMd="6"
-             nzLg="6"
-             [routerLink]="['../..', 'product', product.id]">
-          <div nz-row
-               class="mb-2">
-            <div nz-col
-                 nzSpan="24">
-              <img class="w-full product-photo rounded"
-                   [src]="product.photos[0]?.url"
-                   [alt]="product.name"
-                   loading="lazy" />
-            </div>
-          </div>
-          <div nz-row>
-            <div nz-col
-                 nzSpan="24"
-                 class="text-left mb-3">
-              <h6 class="text-sm font-bold">{{ product?.name }}</h6>
-              <span class="text-xs">{{ product.price | currency }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ng-template>
-  <div *ngIf="!loading && !products?.length"
-       nz-row>
+  </div>
+  }
+  @if (!loading() && !products()?.length) {
+  <div nz-row>
     <div nz-col
          nzSpan="24"
          class="flex justify-center items-center py-12 bg-gray-200">
       <span class="text-2xl font-bold">No se encontraron resultados</span>
     </div>
   </div>
+  }
 </div>

@@ -14,9 +14,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
-import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
 import { ProductDetailContainerComponent } from './containers/product-detail-container/product-detail-container.component';
-import { ProductsCatalogContainerComponent } from './containers/products-catalog-container/products-catalog-container.component';
 import { MusicrProductsRoutingModule } from './musicr-products-routing.module';
 
 @NgModule({
@@ -37,11 +35,6 @@ import { MusicrProductsRoutingModule } from './musicr-products-routing.module';
     NzSkeletonModule,
     ReactiveFormsModule,
   ],
-  declarations: [
-    ProductsCatalogComponent,
-    ProductsCatalogContainerComponent,
-    ProductDetailContainerComponent,
-    ProductDetailComponent,
-  ],
+  declarations: [ProductDetailContainerComponent, ProductDetailComponent],
 })
 export class MusicrProductsModule {}
