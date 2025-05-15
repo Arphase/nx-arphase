@@ -6,10 +6,11 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
-  selector: 'mrl-subcategory-list-container',
-  templateUrl: './subcategory-list-container.component.html',
-  styleUrls: ['./subcategory-list-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-subcategory-list-container',
+    templateUrl: './subcategory-list-container.component.html',
+    styleUrls: ['./subcategory-list-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SubcategoryListContainerComponent extends ApsListContainerComponent<Subcategory> {
   constructor(

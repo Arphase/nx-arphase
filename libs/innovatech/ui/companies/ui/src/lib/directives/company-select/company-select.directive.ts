@@ -6,7 +6,8 @@ import { CompanyCollectionService } from '@innovatech/ui/companies/data';
 import { NzSelectComponent } from 'ng-zorro-antd/select';
 
 @Directive({
-  selector: '[ivtCompanySelect]',
+    selector: '[ivtCompanySelect]',
+    standalone: false
 })
 export class CompanySelectDirective extends ApsCollectionSelectDirective<Company> {
   sortValue = [{ key: 'company.businessName', value: 'ascend' }];

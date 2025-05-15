@@ -7,10 +7,11 @@ import { VALMIRA_CONFIGURATION, ValmiraConfiguration } from '@valmira/ui/core';
 import { take } from 'rxjs/operators';
 
 @Component({
-  selector: 'vma-spa',
-  templateUrl: './spa.component.html',
-  styleUrls: ['./spa.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-spa',
+    templateUrl: './spa.component.html',
+    styleUrls: ['./spa.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SpaComponent implements OnInit {
   options: SpaLayoutOptions = {

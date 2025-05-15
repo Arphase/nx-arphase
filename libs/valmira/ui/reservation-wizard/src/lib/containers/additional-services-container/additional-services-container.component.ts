@@ -7,10 +7,11 @@ import { ReservationCollectionService } from '@valmira/ui/reservations/data';
 import { take } from 'rxjs/operators';
 
 @Component({
-  selector: 'vma-additional-services-container',
-  templateUrl: './additional-services-container.component.html',
-  styleUrls: ['./additional-services-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-additional-services-container',
+    templateUrl: './additional-services-container.component.html',
+    styleUrls: ['./additional-services-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AdditionalServicesContainerComponent implements OnInit {
   items$ = this.additionalProductCollectionService.entities$;

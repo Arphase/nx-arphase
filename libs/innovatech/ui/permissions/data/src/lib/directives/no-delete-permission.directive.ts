@@ -6,7 +6,8 @@ import { PermissionService, REQUIRED_ROLES } from '../services/permission.servic
 import { BasePermissionDirective } from './base-permission.directive';
 
 @Directive({
-  selector: '[ivtNoDeletePermission]',
+    selector: '[ivtNoDeletePermission]',
+    standalone: false
 })
 export class NoDeletePermissionDirective extends BasePermissionDirective {
   hasPermission$ = this.requiredRoles$.pipe(

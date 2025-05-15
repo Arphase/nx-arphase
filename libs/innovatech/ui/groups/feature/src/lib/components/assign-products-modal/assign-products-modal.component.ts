@@ -22,10 +22,11 @@ function mapTransferItems(products: Product[], direction: TransferDirection): Tr
 }
 
 @Component({
-  selector: 'ivt-assign-products-modal',
-  templateUrl: './assign-products-modal.component.html',
-  styleUrls: ['./assign-products-modal.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ivt-assign-products-modal',
+    templateUrl: './assign-products-modal.component.html',
+    styleUrls: ['./assign-products-modal.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AssignProductsModalComponent implements OnChanges {
   @Input() products: Product[];

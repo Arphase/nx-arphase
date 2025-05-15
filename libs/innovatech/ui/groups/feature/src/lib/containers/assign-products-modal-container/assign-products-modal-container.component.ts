@@ -12,10 +12,11 @@ import { take } from 'rxjs/operators';
 import { AssignProductsModalComponent } from '../../components/assign-products-modal/assign-products-modal.component';
 
 @Component({
-  selector: 'ivt-assign-products-modal-container',
-  templateUrl: './assign-products-modal-container.component.html',
-  styleUrls: ['./assign-products-modal-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ivt-assign-products-modal-container',
+    templateUrl: './assign-products-modal-container.component.html',
+    styleUrls: ['./assign-products-modal-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AssignProductsModalContainerComponent implements OnInit, OnDestroy {
   @ViewChild(AssignProductsModalComponent, { static: true }) formComponent: AssignProductsModalComponent;

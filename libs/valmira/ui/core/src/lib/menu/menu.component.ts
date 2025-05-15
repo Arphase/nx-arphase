@@ -6,10 +6,11 @@ import { map } from 'rxjs/operators';
 import { selectUrl } from '../router/router.selectors';
 
 @Component({
-  selector: 'vma-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-menu',
+    templateUrl: './menu.component.html',
+    styleUrls: ['./menu.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MenuComponent {
   menuItems = [

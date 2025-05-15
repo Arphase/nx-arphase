@@ -5,8 +5,9 @@ import { QueryParams } from '@ngrx/data';
 import { CrudEvents } from '../models/crud-events.model';
 
 @Component({
-  template: '',
-  selector: 'aps-list',
+    template: '',
+    selector: 'aps-list',
+    standalone: false
 })
 export class ApsListComponent<T> implements CrudEvents<T> {
   @Input() list: T[] = [];

@@ -6,7 +6,10 @@ export function isRevisionEditable(revision: Revision): boolean {
   return dayjs(revision.createdAt).isAfter(dayjs().subtract(3, 'months'));
 }
 
-@Pipe({ name: 'editableRevision' })
+@Pipe({
+    name: 'editableRevision',
+    standalone: false
+})
 export class EditableRevisionPipe implements PipeTransform {
   transform(revision: Revision): boolean {
     return isRevisionEditable(revision);

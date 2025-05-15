@@ -21,7 +21,8 @@
             "prefix": "aps",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@angular-eslint/prefer-standalone": "off"
       }
     },
     {

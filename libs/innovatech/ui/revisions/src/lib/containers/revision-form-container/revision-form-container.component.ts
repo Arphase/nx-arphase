@@ -24,10 +24,11 @@ import { RevisionCollectionService } from '../../services/revision-collection.se
 
 @UntilDestroy()
 @Component({
-  selector: 'ivt-revision-form-container',
-  templateUrl: './revision-form-container.component.html',
-  styleUrls: ['./revision-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ivt-revision-form-container',
+    templateUrl: './revision-form-container.component.html',
+    styleUrls: ['./revision-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class RevisionFormContainerComponent extends ApsFormContainerComponent<Revision> implements OnInit, OnDestroy {
   form = createRevisionForm();

@@ -17,7 +17,10 @@ import { switchMap } from 'rxjs/operators';
 import { PermissionService, REQUIRED_ROLES } from '../services/permission.service';
 
 @UntilDestroy()
-@Directive({ selector: '[ivtPermission]' })
+@Directive({
+    selector: '[ivtPermission]',
+    standalone: false
+})
 export class BasePermissionDirective implements OnInit, OnChanges {
   @Input() ivtPermission: UserRoles[] = [];
   requiredRolesSubject = new BehaviorSubject<UserRoles[]>(this.requiredRoles ?? []);

@@ -5,7 +5,8 @@ import { filter } from 'rxjs/operators';
 
 @UntilDestroy()
 @Directive({
-  selector: '[apsUppercase]',
+    selector: '[apsUppercase]',
+    standalone: false
 })
 export class ApsUppercaseDirective implements AfterViewInit {
   constructor(@Host() private ngControl: NgControl) {}

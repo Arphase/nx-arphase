@@ -1,19 +1,11 @@
 {
-  "extends": [
-    "../../../../../.eslintrc.json"
-  ],
-  "ignorePatterns": [
-    "!**/*"
-  ],
+  "extends": ["../../../../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
-        "project": [
-          "libs/innovatech/ui/products/feature/tsconfig.*?.json"
-        ],
+        "project": ["libs/innovatech/ui/products/feature/tsconfig.*?.json"],
         "createDefaultProgram": true
       },
       "rules": {
@@ -43,7 +35,8 @@
         ],
         "id-blacklist": "off",
         "id-match": "off",
-        "no-underscore-dangle": "off"
+        "no-underscore-dangle": "off",
+        "@angular-eslint/prefer-standalone": "off"
       }
     }
   ]

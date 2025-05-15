@@ -32,11 +32,12 @@ import { personTypeOptions } from './guarantee-form.constants';
 
 @UntilDestroy()
 @Component({
-  selector: 'ivt-guarantee-form',
-  templateUrl: './guarantee-form.component.html',
-  styleUrls: ['./guarantee-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
+    selector: 'ivt-guarantee-form',
+    templateUrl: './guarantee-form.component.html',
+    styleUrls: ['./guarantee-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
+    standalone: false
 })
 export class GuaranteeFormComponent
   extends ApsFormComponent<DeepPartial<Guarantee>, DeepPartial<Guarantee>>

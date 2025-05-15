@@ -5,10 +5,11 @@ import { CartService } from '@musicr/ui/cart/data';
 import { first } from 'rxjs/operators';
 
 @Component({
-  selector: 'mrl-social-event-form-container',
-  templateUrl: './social-event-form-container.component.html',
-  styleUrls: ['./social-event-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-social-event-form-container',
+    templateUrl: './social-event-form-container.component.html',
+    styleUrls: ['./social-event-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SocialEventFormContainerComponent {
   socialEvent$ = this.cartService.socialEvent$;

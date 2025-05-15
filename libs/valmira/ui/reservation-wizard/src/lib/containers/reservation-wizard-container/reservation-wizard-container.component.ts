@@ -13,10 +13,11 @@ import { getReservationWizardPromocode } from '../../state/reservation-wizard.se
 
 @UntilDestroy()
 @Component({
-  selector: 'vma-reservation-wizard-container',
-  templateUrl: './reservation-wizard-container.component.html',
-  styleUrls: ['./reservation-wizard-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-reservation-wizard-container',
+    templateUrl: './reservation-wizard-container.component.html',
+    styleUrls: ['./reservation-wizard-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ReservationWizardContainerComponent implements OnInit {
   item$ = this.reservationCollectionService.currentItem$;

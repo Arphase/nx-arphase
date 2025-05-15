@@ -50,10 +50,11 @@ export function createPriceOptionForm(item?: PriceOption): FormGroup<ControlsOf<
 }
 
 @Component({
-  selector: 'mrl-price-option-form',
-  templateUrl: './price-option-form.component.html',
-  styleUrls: ['./price-option-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-price-option-form',
+    templateUrl: './price-option-form.component.html',
+    styleUrls: ['./price-option-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PriceOptionFormComponent extends ApsFormComponent<Partial<PriceOption>> implements OnChanges {
   form = createPriceOptionForm();

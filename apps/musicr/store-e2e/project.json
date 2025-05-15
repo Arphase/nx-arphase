@@ -3,12 +3,13 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/musicr/store-e2e/src",
   "projectType": "application",
+  "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
+  "implicitDependencies": ["musicr-store"],
   "targets": {
     "e2e": {
       "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/musicr/store-e2e/cypress.json",
-        "tsConfig": "apps/musicr/store-e2e/tsconfig.e2e.json",
         "devServerTarget": "musicr-store:serve:development"
       },
       "configurations": {
@@ -20,7 +21,5 @@
     "lint": {
       "executor": "@nx/eslint:lint"
     }
-  },
-  "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
-  "implicitDependencies": ["musicr-store"]
+  }
 }

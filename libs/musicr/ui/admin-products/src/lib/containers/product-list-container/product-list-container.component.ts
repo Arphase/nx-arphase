@@ -6,10 +6,11 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
-  selector: 'mrl-product-list-container',
-  templateUrl: './product-list-container.component.html',
-  styleUrls: ['./product-list-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-product-list-container',
+    templateUrl: './product-list-container.component.html',
+    styleUrls: ['./product-list-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ProductListContainerComponent extends ApsListContainerComponent<Product> {
   constructor(

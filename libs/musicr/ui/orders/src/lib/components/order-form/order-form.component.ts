@@ -28,10 +28,11 @@ import { createOrderForm, createOrderProductForm } from './order-form.constants'
 
 @UntilDestroy()
 @Component({
-  selector: 'mrl-order-form',
-  templateUrl: './order-form.component.html',
-  styleUrls: ['./order-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-order-form',
+    templateUrl: './order-form.component.html',
+    styleUrls: ['./order-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class OrderFormComponent extends ApsFormComponent<Partial<Order>> implements OnInit, OnChanges {
   @Input() productsData: Record<number, Product> = {};

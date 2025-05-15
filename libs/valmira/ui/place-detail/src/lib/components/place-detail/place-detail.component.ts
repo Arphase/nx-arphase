@@ -20,10 +20,11 @@ import { filter } from 'rxjs/operators';
 
 @UntilDestroy()
 @Component({
-  selector: 'vma-place-detail',
-  templateUrl: './place-detail.component.html',
-  styleUrls: ['./place-detail.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-place-detail',
+    templateUrl: './place-detail.component.html',
+    styleUrls: ['./place-detail.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PlaceDetailComponent
   extends ApsFormComponent<{ startDate: Date; endDate: Date }>

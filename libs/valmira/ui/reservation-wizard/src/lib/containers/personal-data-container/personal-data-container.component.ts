@@ -10,10 +10,11 @@ import { getCustomerByEmail } from '../../state/reservation-wizard.actions';
 import { getReservationWizardCustomer } from '../../state/reservation-wizard.selectors';
 
 @Component({
-  selector: 'vma-personal-data-container',
-  templateUrl: './personal-data-container.component.html',
-  styleUrls: ['./personal-data-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-personal-data-container',
+    templateUrl: './personal-data-container.component.html',
+    styleUrls: ['./personal-data-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PersonalDataContainerComponent {
   item$ = this.reservationCollectionService.currentItem$;

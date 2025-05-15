@@ -20,11 +20,12 @@ import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 import { colorMaps, columns, iconMaps, statusOptions } from './guarantee-list.constants';
 
 @Component({
-  selector: 'ivt-guarantee-list',
-  templateUrl: './guarantee-list.component.html',
-  styleUrls: ['./guarantee-list.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
+    selector: 'ivt-guarantee-list',
+    templateUrl: './guarantee-list.component.html',
+    styleUrls: ['./guarantee-list.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
+    standalone: false
 })
 export class GuaranteeListComponent extends ApsListComponent<Guarantee> implements OnChanges {
   @Input() clearSelected: boolean;

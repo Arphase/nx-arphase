@@ -9,10 +9,11 @@ import { createPlaceForm } from '../../components/place-form/place-form.componen
 import { PhotoCollectionService } from '../../services/photo-collection.service';
 
 @Component({
-  selector: 'vma-place-form-container',
-  templateUrl: './place-form-container.component.html',
-  styleUrls: ['./place-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-place-form-container',
+    templateUrl: './place-form-container.component.html',
+    styleUrls: ['./place-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PlaceFormContainerComponent extends ApsFormContainerComponent<Place> {
   form = createPlaceForm();

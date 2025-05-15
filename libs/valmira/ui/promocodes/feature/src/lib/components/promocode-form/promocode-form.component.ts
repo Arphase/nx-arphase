@@ -17,10 +17,11 @@ export function createPromocodeForm(): UntypedFormGroup {
 }
 
 @Component({
-  selector: 'vma-promocode-form',
-  templateUrl: './promocode-form.component.html',
-  styleUrls: ['./promocode-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-promocode-form',
+    templateUrl: './promocode-form.component.html',
+    styleUrls: ['./promocode-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PromocodeFormComponent extends ApsFormComponent<Promocode> implements OnChanges {
   get showDatesError(): boolean {

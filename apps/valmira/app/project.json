@@ -4,6 +4,7 @@
   "projectType": "application",
   "sourceRoot": "apps/valmira/app/src",
   "prefix": "vma",
+  "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -55,7 +56,8 @@
           "buildTarget": "valmira-app:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "continuous": true
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -131,7 +133,8 @@
           "buildTarget": "valmira-app:build:production",
           "serverTarget": "valmira-app:server:production"
         }
-      }
+      },
+      "continuous": true
     },
     "prerender": {
       "executor": "@angular-devkit/build-angular:prerender",
@@ -146,6 +149,5 @@
         }
       }
     }
-  },
-  "tags": ["domain:valmira", "domain:valmira:ui", "executable:ui"]
+  }
 }

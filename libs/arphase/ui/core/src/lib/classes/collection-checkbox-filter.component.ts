@@ -3,8 +3,9 @@ import { ApsCollectionService } from '@arphase/ui/data';
 import { QueryParams } from '@ngrx/data';
 
 @Component({
-  template: '',
-  selector: 'aps-collection-checkbox-filter',
+    template: '',
+    selector: 'aps-collection-checkbox-filter',
+    standalone: false
 })
 export abstract class ApsCollectionCheckboxFilterComponent<T> implements OnInit {
   options$ = this.collectionService.options$;

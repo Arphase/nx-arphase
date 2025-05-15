@@ -5,10 +5,11 @@ import { ApsFormComponent } from '@arphase/ui/forms';
 import { SearchReservationPayload } from '../../models/search-reservation-payload.model';
 
 @Component({
-  selector: 'vma-reservation-search',
-  templateUrl: './reservation-search.component.html',
-  styleUrls: ['./reservation-search.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-reservation-search',
+    templateUrl: './reservation-search.component.html',
+    styleUrls: ['./reservation-search.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ReservationSearchComponent extends ApsFormComponent<SearchReservationPayload> {
   form = new UntypedFormGroup({

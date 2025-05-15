@@ -4,10 +4,11 @@ import { Promocode } from '@valmira/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 @Component({
-  selector: 'vma-promocode-list',
-  templateUrl: './promocode-list.component.html',
-  styleUrls: ['./promocode-list.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-promocode-list',
+    templateUrl: './promocode-list.component.html',
+    styleUrls: ['./promocode-list.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PromocodeListComponent extends ApsListComponent<Promocode> {
   columns: ApsColumns = [

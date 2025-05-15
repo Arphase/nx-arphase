@@ -5,10 +5,11 @@ interface FrequentQuestion {
   answer: string[];
 }
 @Component({
-  selector: 'mrl-frequent-questions',
-  templateUrl: './frequent-questions.component.html',
-  styleUrls: ['./frequent-questions.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-frequent-questions',
+    templateUrl: './frequent-questions.component.html',
+    styleUrls: ['./frequent-questions.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FrequentQuestionsComponent {
   pageTilte = 'frequentquestions';

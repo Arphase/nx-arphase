@@ -6,10 +6,11 @@ import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
 @Component({
-  selector: 'mrl-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-footer',
+    templateUrl: './footer.component.html',
+    styleUrls: ['./footer.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FooterComponent {
   private loadingSubject = new BehaviorSubject<boolean>(false);

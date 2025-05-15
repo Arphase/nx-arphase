@@ -8,10 +8,11 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { createPromocodeForm } from '../../components/promocode-form/promocode-form.component';
 
 @Component({
-  selector: 'vma-promocode-form-container',
-  templateUrl: './promocode-form-container.component.html',
-  styleUrls: ['./promocode-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-promocode-form-container',
+    templateUrl: './promocode-form-container.component.html',
+    styleUrls: ['./promocode-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PromocodeFormContainerComponent extends ApsFormContainerComponent<Promocode> {
   form = createPromocodeForm();

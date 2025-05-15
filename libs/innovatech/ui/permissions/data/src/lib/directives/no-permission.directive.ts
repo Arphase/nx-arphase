@@ -14,7 +14,10 @@ import { map, switchMap } from 'rxjs/operators';
 import { PermissionService, REQUIRED_ROLES } from '../services/permission.service';
 import { BasePermissionDirective } from './base-permission.directive';
 
-@Directive({ selector: '[ivtNoPermission]' })
+@Directive({
+    selector: '[ivtNoPermission]',
+    standalone: false
+})
 export class NoPermissionDirective extends BasePermissionDirective implements OnChanges {
   @Input() ivtNoPermission: UserRoles[] = [];
   hasPermission$ = this.requiredRoles$.pipe(

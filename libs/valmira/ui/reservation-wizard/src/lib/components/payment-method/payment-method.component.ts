@@ -12,10 +12,11 @@ import { StripeCardElementOptions, StripeCardNumberElement, StripeElementsOption
 import { StripeCardNumberComponent } from 'ngx-stripe';
 
 @Component({
-  selector: 'vma-payment-method',
-  templateUrl: './payment-method.component.html',
-  styleUrls: ['./payment-method.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-payment-method',
+    templateUrl: './payment-method.component.html',
+    styleUrls: ['./payment-method.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PaymentMethodComponent {
   @ViewChild(StripeCardNumberComponent) card: StripeCardNumberComponent;

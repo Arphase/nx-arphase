@@ -7,11 +7,12 @@ import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { columns } from './user-list.constants';
 
 @Component({
-  selector: 'ivt-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
+    selector: 'ivt-user-list',
+    templateUrl: './user-list.component.html',
+    styleUrls: ['./user-list.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
+    standalone: false
 })
 export class UserListComponent extends ApsListComponent<Product> {
   @Input() groupOptions: NzSelectOptionInterface[] = [];

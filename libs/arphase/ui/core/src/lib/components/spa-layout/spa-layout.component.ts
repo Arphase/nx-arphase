@@ -26,10 +26,11 @@ export interface SpaLayoutOptions {
 }
 
 @Component({
-  selector: 'aps-spa-layout',
-  templateUrl: './spa-layout.component.html',
-  styleUrls: ['./spa-layout.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'aps-spa-layout',
+    templateUrl: './spa-layout.component.html',
+    styleUrls: ['./spa-layout.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SpaLayoutComponent {
   @Input() menuItems: MenuItem[] = [];

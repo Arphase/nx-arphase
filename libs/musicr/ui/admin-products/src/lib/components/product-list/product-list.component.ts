@@ -3,10 +3,11 @@ import { ApsColumns, ApsListComponent } from '@arphase/ui/core';
 import { Product } from '@musicr/domain';
 
 @Component({
-  selector: 'mrl-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-product-list',
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ProductListComponent extends ApsListComponent<Product> {
   columns: ApsColumns = [

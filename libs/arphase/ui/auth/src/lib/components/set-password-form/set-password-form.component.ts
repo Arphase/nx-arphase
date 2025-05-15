@@ -5,10 +5,11 @@ import { MessageStatus } from '@arphase/ui/core';
 import { ApsFormComponent, ApsValidators } from '@arphase/ui/forms';
 
 @Component({
-  selector: 'aps-set-password-form',
-  templateUrl: './set-password-form.component.html',
-  styleUrls: ['./set-password-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'aps-set-password-form',
+    templateUrl: './set-password-form.component.html',
+    styleUrls: ['./set-password-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SetPasswordFormComponent extends ApsFormComponent<{ password: string; passwordConfirm: string }> {
   @Input() title: string;

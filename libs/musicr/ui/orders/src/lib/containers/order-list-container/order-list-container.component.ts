@@ -9,10 +9,11 @@ import { OrderDataService } from '../../services/order-data.service';
 import { OrderDetailContainerComponent } from '../order-detail-container/order-detail-container.component';
 
 @Component({
-  selector: 'mrl-order-list-container',
-  templateUrl: './order-list-container.component.html',
-  styleUrls: ['./order-list-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-order-list-container',
+    templateUrl: './order-list-container.component.html',
+    styleUrls: ['./order-list-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class OrderListContainerComponent extends ApsListContainerComponent<Order> {
   constructor(

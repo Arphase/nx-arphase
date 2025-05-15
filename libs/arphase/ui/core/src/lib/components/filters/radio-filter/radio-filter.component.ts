@@ -13,10 +13,11 @@ import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 @UntilDestroy()
 @Component({
-  selector: 'aps-radio-filter',
-  templateUrl: './radio-filter.component.html',
-  styleUrls: ['./radio-filter.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'aps-radio-filter',
+    templateUrl: './radio-filter.component.html',
+    styleUrls: ['./radio-filter.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ApsRadioFilterComponent implements OnChanges {
   @Input() options: NzSelectOptionInterface[] = [];

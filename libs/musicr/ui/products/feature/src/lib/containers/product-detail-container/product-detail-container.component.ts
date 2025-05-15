@@ -9,11 +9,12 @@ import { ProductDetailService } from '../../services/product-detail.service';
 
 @UntilDestroy()
 @Component({
-  selector: 'mrl-product-detail-container',
-  templateUrl: './product-detail-container.component.html',
-  styleUrls: ['./product-detail-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ProductDetailService],
+    selector: 'mrl-product-detail-container',
+    templateUrl: './product-detail-container.component.html',
+    styleUrls: ['./product-detail-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [ProductDetailService],
+    standalone: false
 })
 export class ProductDetailContainerComponent implements OnInit {
   loading$ = this.productDetailService.loading$;

@@ -6,7 +6,8 @@ import { NzFormControlComponent } from 'ng-zorro-antd/form';
 
 @UntilDestroy()
 @Directive({
-  selector: '[apsAutocomplete]',
+    selector: '[apsAutocomplete]',
+    standalone: false
 })
 export class ApsAutocompleteDirective implements AfterContentInit {
   @ContentChild(NgControl, { static: true }) ngControl: FormControlName | FormControlDirective;

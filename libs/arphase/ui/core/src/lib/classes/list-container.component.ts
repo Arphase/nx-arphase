@@ -12,8 +12,9 @@ import { filter, map, take } from 'rxjs/operators';
 
 @UntilDestroy()
 @Component({
-  selector: 'aps-list-container',
-  template: '',
+    selector: 'aps-list-container',
+    template: '',
+    standalone: false
 })
 export class ApsListContainerComponent<T> {
   list$: Observable<T[]>;

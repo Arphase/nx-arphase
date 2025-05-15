@@ -4,10 +4,11 @@ import { combineLatest, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'mrl-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-cart',
+    templateUrl: './cart.component.html',
+    styleUrls: ['./cart.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class CartComponent implements OnInit {
   steps = [

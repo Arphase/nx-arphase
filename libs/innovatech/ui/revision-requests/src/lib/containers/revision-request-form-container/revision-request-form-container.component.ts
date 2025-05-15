@@ -22,10 +22,11 @@ import { RevisionRequestCollectionService } from '../../services/revision-reques
 
 @UntilDestroy()
 @Component({
-  selector: 'ivt-revision-request-form-container',
-  templateUrl: './revision-request-form-container.component.html',
-  styleUrls: ['./revision-request-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ivt-revision-request-form-container',
+    templateUrl: './revision-request-form-container.component.html',
+    styleUrls: ['./revision-request-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class RevisionRequestFormContainerComponent
   extends ApsFormContainerComponent<RevisionRequest>

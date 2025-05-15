@@ -3,10 +3,11 @@ import { Router } from '@angular/router';
 import { Category } from '@musicr/domain';
 
 @Component({
-  selector: 'mrl-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-menu',
+    templateUrl: './menu.component.html',
+    styleUrls: ['./menu.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MenuComponent implements OnInit, OnChanges {
   @Input() categories: Category[];

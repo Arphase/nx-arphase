@@ -19,7 +19,8 @@ import { BehaviorSubject, debounceTime, finalize, map, Observable, switchMap, ta
 
 @UntilDestroy()
 @Directive({
-  selector: '[apsDataSelect]',
+    selector: '[apsDataSelect]',
+    standalone: false
 })
 export class ApsDataSelectDirective<T> implements AfterContentInit {
   @Input() queryParams: QueryParams;

@@ -9,10 +9,11 @@ import { SearchReservationPayload } from '../../models/search-reservation-payloa
 import { getReservationDetail, getReservationDetailSuccess } from '../../state/reservation-detail.actions';
 
 @Component({
-  selector: 'vma-reservation-search-container',
-  templateUrl: './reservation-search-container.component.html',
-  styleUrls: ['./reservation-search-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-reservation-search-container',
+    templateUrl: './reservation-search-container.component.html',
+    styleUrls: ['./reservation-search-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ReservationSearchContainerComponent {
   loading$ = this.loadingService.loading$;

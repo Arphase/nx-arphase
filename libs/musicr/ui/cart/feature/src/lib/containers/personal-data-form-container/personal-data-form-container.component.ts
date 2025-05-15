@@ -5,10 +5,11 @@ import { CartService } from '@musicr/ui/cart/data';
 import { first } from 'rxjs/operators';
 
 @Component({
-  selector: 'mrl-personal-data-form-container',
-  templateUrl: './personal-data-form-container.component.html',
-  styleUrls: ['./personal-data-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-personal-data-form-container',
+    templateUrl: './personal-data-form-container.component.html',
+    styleUrls: ['./personal-data-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PersonalDataFormContainerComponent {
   item$ = this.cartService.personalData$;

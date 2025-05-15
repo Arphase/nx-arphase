@@ -8,10 +8,11 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { createAdditionalProductForm } from '../../components/additional-product-form/additional-product-form.component';
 
 @Component({
-  selector: 'vma-additional-product-form-container',
-  templateUrl: './additional-product-form-container.component.html',
-  styleUrls: ['./additional-product-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-additional-product-form-container',
+    templateUrl: './additional-product-form-container.component.html',
+    styleUrls: ['./additional-product-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AdditionalProductFormContainerComponent extends ApsFormContainerComponent<AdditionalProduct> {
   form = createAdditionalProductForm();

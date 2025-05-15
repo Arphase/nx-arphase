@@ -4,6 +4,7 @@
   "projectType": "application",
   "sourceRoot": "apps/musicr/store/src",
   "prefix": "mrl",
+  "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -55,7 +56,8 @@
           "buildTarget": "musicr-store:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "continuous": true
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -132,7 +134,8 @@
           "buildTarget": "musicr-store:build:production",
           "serverTarget": "musicr-store:server:production"
         }
-      }
+      },
+      "continuous": true
     },
     "prerender": {
       "executor": "@angular-devkit/build-angular:prerender",
@@ -147,6 +150,5 @@
         }
       }
     }
-  },
-  "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
+  }
 }

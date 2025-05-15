@@ -6,10 +6,11 @@ import { map } from 'rxjs/operators';
 import { selectUrl } from '../router';
 
 @Component({
-  selector: 'vma-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-footer',
+    templateUrl: './footer.component.html',
+    styleUrls: ['./footer.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FooterComponent {
   year = new Date().getFullYear();

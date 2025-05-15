@@ -9,10 +9,11 @@ import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 @Component({
-  selector: 'mrl-price-options-form-container',
-  templateUrl: './price-options-form-container.component.html',
-  styleUrls: ['./price-options-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-price-options-form-container',
+    templateUrl: './price-options-form-container.component.html',
+    styleUrls: ['./price-options-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PriceOptionsFormContainerComponent extends ApsFormContainerComponent<PriceOption> {
   deletetedItemIndexSubject = new BehaviorSubject<number>(null);

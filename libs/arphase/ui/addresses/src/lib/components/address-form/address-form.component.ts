@@ -10,11 +10,12 @@ import { ApsAddressFormService, createAddressForm } from './address-form.service
 
 @UntilDestroy()
 @Component({
-  selector: 'aps-address-form',
-  templateUrl: './address-form.component.html',
-  styleUrls: ['./address-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ApsAddressFormService],
+    selector: 'aps-address-form',
+    templateUrl: './address-form.component.html',
+    styleUrls: ['./address-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [ApsAddressFormService],
+    standalone: false
 })
 export class ApsAddressFormComponent extends ApsFormComponent<Address> implements OnInit {
   @Input() placeholders: Address = {

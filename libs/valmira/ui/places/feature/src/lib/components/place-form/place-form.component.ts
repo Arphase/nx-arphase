@@ -31,10 +31,11 @@ export function createPlaceForm(): UntypedFormGroup {
 }
 
 @Component({
-  selector: 'vma-place-form',
-  templateUrl: './place-form.component.html',
-  styleUrls: ['./place-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-place-form',
+    templateUrl: './place-form.component.html',
+    styleUrls: ['./place-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PlaceFormComponent extends ApsFormComponent<Place> implements OnChanges {
   allowedMimeType = ['image/jpeg', 'image/jpg'];

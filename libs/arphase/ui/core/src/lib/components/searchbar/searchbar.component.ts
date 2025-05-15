@@ -5,10 +5,11 @@ import { debounceTime } from 'rxjs/operators';
 
 @UntilDestroy()
 @Component({
-  selector: 'aps-searchbar',
-  templateUrl: './searchbar.component.html',
-  styleUrls: ['./searchbar.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'aps-searchbar',
+    templateUrl: './searchbar.component.html',
+    styleUrls: ['./searchbar.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ApsSearchbarComponent implements OnInit {
   @Input() showIcon = true;

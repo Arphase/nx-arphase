@@ -13,10 +13,11 @@ import {
 import { colorMaps, columns, dateTypeOptions, iconMaps } from './order-list.constants';
 
 @Component({
-  selector: 'mrl-order-list',
-  templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-order-list',
+    templateUrl: './order-list.component.html',
+    styleUrls: ['./order-list.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class OrderListComponent extends ApsListComponent<Order> {
   orderTypeLabels = orderTypeLabels;

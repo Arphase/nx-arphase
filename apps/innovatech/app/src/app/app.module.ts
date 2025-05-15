@@ -1,7 +1,7 @@
 import { registerLocaleData } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import es from '@angular/common/locales/es';
-import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, inject, provideAppInitializer } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -80,12 +80,10 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     },
     { provide: ErrorHandler, useValue: Sentry.createErrorHandler({}) },
     { provide: Sentry.TraceService, deps: [Router] },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: () => () => null,
-      deps: [Sentry.TraceService],
-      multi: true,
-    },
+    provideAppInitializer(() => {
+        const initializerFn = (() => () => null)(inject(Sentry.TraceService));
+        return initializerFn();
+      }),
     provideEnvironmentNgxMask(),
   ],
   bootstrap: [AppComponent],

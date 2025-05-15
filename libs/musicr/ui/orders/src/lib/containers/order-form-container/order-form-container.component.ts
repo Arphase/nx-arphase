@@ -8,11 +8,12 @@ import { OrderCollectionService } from '../../services/order-collection.service'
 import { OrderFormService } from '../../services/order-form.service';
 
 @Component({
-  selector: 'mrl-order-form-container',
-  templateUrl: './order-form-container.component.html',
-  styleUrls: ['./order-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [OrderFormService],
+    selector: 'mrl-order-form-container',
+    templateUrl: './order-form-container.component.html',
+    styleUrls: ['./order-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [OrderFormService],
+    standalone: false
 })
 export class OrderFormContainerComponent extends ApsFormContainerComponent<Order> {
   form = this.orderFormService.form;

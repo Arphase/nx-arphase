@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { CoreService } from '@musicr/ui/core';
 
 @Component({
-  selector: 'mrl-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less'],
+    selector: 'mrl-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.less'],
+    standalone: false
 })
 export class HomeComponent {
   categories$ = this.coreService.categories$;

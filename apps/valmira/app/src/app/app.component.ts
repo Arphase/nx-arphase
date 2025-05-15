@@ -14,10 +14,11 @@ import { NzIconService } from 'ng-zorro-antd/icon';
 import { debounceTime, filter } from 'rxjs/operators';
 
 @Component({
-  selector: 'vma-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AppComponent implements OnInit, AfterViewInit {
   constructor(

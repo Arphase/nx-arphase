@@ -20,10 +20,11 @@ export function createAdditionalProductForm(
 }
 
 @Component({
-  selector: 'vma-additional-services',
-  templateUrl: './additional-services.component.html',
-  styleUrls: ['./additional-services.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-additional-services',
+    templateUrl: './additional-services.component.html',
+    styleUrls: ['./additional-services.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AdditionalServicesComponent extends ApsFormComponent<Reservation> implements OnChanges {
   @Input() items: AdditionalProduct[];

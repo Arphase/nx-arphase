@@ -10,9 +10,10 @@ export type ControlsOf<T extends Record<string, any>> = {
 };
 
 @Component({
-  selector: 'aps-form',
-  template: '',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'aps-form',
+    template: '',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ApsFormComponent<T, F = unknown> {
   @Input() form: FormGroup<ControlsOf<T>> | FormGroup<ControlsOf<F>>;

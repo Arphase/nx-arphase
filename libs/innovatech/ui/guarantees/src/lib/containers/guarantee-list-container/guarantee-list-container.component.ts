@@ -13,10 +13,11 @@ import { PaymentOrderDataService } from '../../services/payment-order-data.servi
 import { PaymentOrderDialogContainerComponent } from '../payment-order-dialog-container/payment-order-dialog-container.component';
 
 @Component({
-  selector: 'ivt-guarantee-list-container',
-  templateUrl: './guarantee-list-container.component.html',
-  styleUrls: ['./guarantee-list-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ivt-guarantee-list-container',
+    templateUrl: './guarantee-list-container.component.html',
+    styleUrls: ['./guarantee-list-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class GuaranteeListContainerComponent extends ApsListContainerComponent<Guarantee> {
   clearSelectedSubject = new BehaviorSubject<boolean>(false);

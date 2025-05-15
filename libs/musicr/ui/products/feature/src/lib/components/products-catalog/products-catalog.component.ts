@@ -6,12 +6,11 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 @Component({
-  selector: 'mrl-products-catalog',
-  templateUrl: './products-catalog.component.html',
-  styleUrls: ['./products-catalog.component.less'],
-  imports: [NzGridModule, NzSkeletonModule, CurrencyPipe, RouterLink, NzToolTipModule],
-  standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-products-catalog',
+    templateUrl: './products-catalog.component.html',
+    styleUrls: ['./products-catalog.component.less'],
+    imports: [NzGridModule, NzSkeletonModule, CurrencyPipe, RouterLink, NzToolTipModule],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsCatalogComponent {
   products = input<Product[]>();

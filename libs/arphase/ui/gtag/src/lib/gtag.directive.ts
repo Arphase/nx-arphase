@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { GtagService } from './gtag.service';
 
 @Directive({
-  selector: '[apsGtag]',
+    selector: '[apsGtag]',
+    standalone: false
 })
 export class GtagDirective implements OnChanges {
   @Input() gtag: string;

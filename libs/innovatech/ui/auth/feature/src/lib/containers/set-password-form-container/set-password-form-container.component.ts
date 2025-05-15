@@ -5,10 +5,11 @@ import { fromAuth, SetPasswordPayload } from '@innovatech/ui/auth/data';
 import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'ivt-set-password-form-container',
-  templateUrl: './set-password-form-container.component.html',
-  styleUrls: ['./set-password-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ivt-set-password-form-container',
+    templateUrl: './set-password-form-container.component.html',
+    styleUrls: ['./set-password-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SetPasswordFormContainerComponent {
   loading$ = this.loadingService.loading$;

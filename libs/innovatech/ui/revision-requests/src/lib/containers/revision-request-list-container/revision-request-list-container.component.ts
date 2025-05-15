@@ -9,10 +9,11 @@ import { RevisionRequestCollectionService } from '../../services/revision-reques
 import { RevisionRequestDataService } from '../../services/revision-request-data.service';
 
 @Component({
-  selector: 'ivt-revision-request-list-container',
-  templateUrl: './revision-request-list-container.component.html',
-  styleUrls: ['./revision-request-list-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ivt-revision-request-list-container',
+    templateUrl: './revision-request-list-container.component.html',
+    styleUrls: ['./revision-request-list-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class RevisionRequestListContainerComponent extends ApsListContainerComponent<RevisionRequest> {
   constructor(

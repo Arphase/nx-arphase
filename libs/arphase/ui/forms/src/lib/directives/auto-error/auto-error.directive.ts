@@ -6,7 +6,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Directive({
-  selector: '[apsAutoError]',
+    selector: '[apsAutoError]',
+    standalone: false
 })
 export class ApsAutoErrorDirective implements AfterContentInit {
   @ContentChild(NgControl, { static: true }) ngControl: FormControlName | FormControlDirective;

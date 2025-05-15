@@ -14,10 +14,11 @@ import { NzIconService } from 'ng-zorro-antd/icon';
 import { debounceTime, filter } from 'rxjs/operators';
 
 @Component({
-  selector: 'mrl-store-wrapper',
-  templateUrl: './store-wrapper.component.html',
-  styleUrls: ['./store-wrapper.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-store-wrapper',
+    templateUrl: './store-wrapper.component.html',
+    styleUrls: ['./store-wrapper.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class StoreWrapperComponent implements AfterViewInit {
   categories$ = this.coreService.categories$;

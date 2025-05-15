@@ -19,11 +19,12 @@ export interface CheckboxOption {
 }
 
 @Component({
-  selector: 'aps-checkbox-filter',
-  templateUrl: './checkbox-filter.component.html',
-  styleUrls: ['./checkbox-filter.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+    selector: 'aps-checkbox-filter',
+    templateUrl: './checkbox-filter.component.html',
+    styleUrls: ['./checkbox-filter.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class ApsCheckboxFilterComponent {
   @ViewChild(CdkVirtualScrollViewport) viewport: CdkVirtualScrollViewport;

@@ -10,10 +10,11 @@ import { BehaviorSubject } from 'rxjs';
 import { createProductForm } from '../../components/product-form/product-form.component';
 
 @Component({
-  selector: 'mrl-product-form-container',
-  templateUrl: './product-form-container.component.html',
-  styleUrls: ['./product-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-product-form-container',
+    templateUrl: './product-form-container.component.html',
+    styleUrls: ['./product-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ProductFormContainerComponent extends ApsFormContainerComponent<Product> {
   form = createProductForm();

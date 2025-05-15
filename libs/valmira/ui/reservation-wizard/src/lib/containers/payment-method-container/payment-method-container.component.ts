@@ -15,10 +15,11 @@ import {
 } from '../../state/reservation-wizard.actions';
 
 @Component({
-  selector: 'vma-payment-method-container',
-  templateUrl: './payment-method-container.component.html',
-  styleUrls: ['./payment-method-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-payment-method-container',
+    templateUrl: './payment-method-container.component.html',
+    styleUrls: ['./payment-method-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PaymentMethodContainerComponent {
   loadingSubject = new BehaviorSubject<boolean>(false);

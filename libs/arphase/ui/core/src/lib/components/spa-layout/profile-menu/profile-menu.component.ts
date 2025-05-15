@@ -10,11 +10,12 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'aps-profile-menu',
-  templateUrl: './profile-menu.component.html',
-  styleUrls: ['./profile-menu.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+    selector: 'aps-profile-menu',
+    templateUrl: './profile-menu.component.html',
+    styleUrls: ['./profile-menu.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class ProfileMenuComponent implements OnChanges {
   @Input() name: string;

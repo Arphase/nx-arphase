@@ -7,7 +7,8 @@ import { NzSelectComponent } from 'ng-zorro-antd/select';
 import { take } from 'rxjs/operators';
 
 @Directive({
-  selector: '[ivtProductSelect]',
+    selector: '[ivtProductSelect]',
+    standalone: false
 })
 export class ProductSelectDirective
   extends ApsCollectionSelectDirective<Product>

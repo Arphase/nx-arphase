@@ -6,7 +6,8 @@ import { PermissionService, REQUIRED_ROLES } from '../services/permission.servic
 import { BasePermissionDirective } from './base-permission.directive';
 
 @Directive({
-  selector: '[ivtUpdatePermission]',
+    selector: '[ivtUpdatePermission]',
+    standalone: false
 })
 export class UpdatePermissionDirective extends BasePermissionDirective {
   hasPermission$ = this.requiredRoles$.pipe(

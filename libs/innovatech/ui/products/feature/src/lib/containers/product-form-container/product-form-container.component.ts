@@ -8,10 +8,11 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { createProductForm } from '../../components/product-form/product-form.component';
 
 @Component({
-  selector: 'ivt-product-form-container',
-  templateUrl: './product-form-container.component.html',
-  styleUrls: ['./product-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ivt-product-form-container',
+    templateUrl: './product-form-container.component.html',
+    styleUrls: ['./product-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ProductFormContainerComponent extends ApsFormContainerComponent<Product> {
   form = createProductForm();

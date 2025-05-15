@@ -9,10 +9,11 @@ import { take } from 'rxjs/operators';
 import { ReservationDetailContainerComponent } from '../reservation-detail-container/reservation-detail-container.component';
 
 @Component({
-  selector: 'vma-reservation-list-container',
-  templateUrl: './reservation-list-container.component.html',
-  styleUrls: ['./reservation-list-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-reservation-list-container',
+    templateUrl: './reservation-list-container.component.html',
+    styleUrls: ['./reservation-list-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ReservationListContainerComponent extends ApsListContainerComponent<Reservation> {
   constructor(

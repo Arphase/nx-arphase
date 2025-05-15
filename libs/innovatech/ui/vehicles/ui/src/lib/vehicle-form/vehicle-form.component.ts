@@ -16,10 +16,11 @@ import { debounceTime, filter, startWith } from 'rxjs/operators';
 
 @UntilDestroy()
 @Component({
-  selector: 'ivt-vehicle-form',
-  templateUrl: './vehicle-form.component.html',
-  styleUrls: ['./vehicle-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ivt-vehicle-form',
+    templateUrl: './vehicle-form.component.html',
+    styleUrls: ['./vehicle-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class VehicleFormComponent extends ApsFormComponent<Partial<Vehicle>, Partial<Vehicle>> implements OnChanges {
   @Input() companyId: number;

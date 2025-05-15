@@ -5,10 +5,11 @@ import { ApsFormComponent, ApsValidators } from '@arphase/ui/forms';
 import { SignInPayload } from '../../models/sign-in-payload';
 
 @Component({
-  selector: 'aps-sign-in-form',
-  templateUrl: './sign-in-form.component.html',
-  styleUrls: ['./sign-in-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'aps-sign-in-form',
+    templateUrl: './sign-in-form.component.html',
+    styleUrls: ['./sign-in-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SignInFormComponent extends ApsFormComponent<SignInPayload> {
   @Input() title: string;

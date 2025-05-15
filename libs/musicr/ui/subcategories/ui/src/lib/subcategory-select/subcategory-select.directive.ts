@@ -6,7 +6,8 @@ import { SubcategoryCollectionService } from '@musicr/ui/subcategories/data';
 import { NzSelectComponent } from 'ng-zorro-antd/select';
 
 @Directive({
-  selector: '[mrlSubcategorySelect]',
+    selector: '[mrlSubcategorySelect]',
+    standalone: false
 })
 export class SubcategorySelectDirective extends ApsCollectionSelectDirective<Subcategory> {
   sortValue = [{ key: 'subcategory.name', value: 'ascend' }];

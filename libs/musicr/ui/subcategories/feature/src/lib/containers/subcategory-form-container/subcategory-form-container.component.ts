@@ -8,10 +8,11 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { createSubcategoryForm } from '../../components/subcategory-form/subcategory-form.component';
 
 @Component({
-  selector: 'mrl-subcategory-form-container',
-  templateUrl: './subcategory-form-container.component.html',
-  styleUrls: ['./subcategory-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-subcategory-form-container',
+    templateUrl: './subcategory-form-container.component.html',
+    styleUrls: ['./subcategory-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SubcategoryFormContainerComponent extends ApsFormContainerComponent<Subcategory> {
   form = createSubcategoryForm();

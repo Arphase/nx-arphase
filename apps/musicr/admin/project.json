@@ -4,6 +4,7 @@
   "projectType": "application",
   "sourceRoot": "apps/musicr/admin/src",
   "prefix": "mrl",
+  "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -63,7 +64,8 @@
           "buildTarget": "musicr-admin:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "continuous": true
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -82,6 +84,5 @@
         "passWithNoTests": false
       }
     }
-  },
-  "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"]
+  }
 }

@@ -23,11 +23,12 @@ export interface Dates {
 
 @UntilDestroy()
 @Component({
-  selector: 'aps-date-filter',
-  templateUrl: './date-filter.component.html',
-  styleUrls: ['./date-filter.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+    selector: 'aps-date-filter',
+    templateUrl: './date-filter.component.html',
+    styleUrls: ['./date-filter.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class ApsDateFilterComponent implements OnChanges {
   @Input() dateTypeOptions: NzSelectOptionInterface[] = [];

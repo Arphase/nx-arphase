@@ -20,10 +20,11 @@ import { GuaranteeCollectionService } from '../../services/guarantee-collection.
 
 @UntilDestroy()
 @Component({
-  selector: 'ivt-guarantee-form-container',
-  templateUrl: './guarantee-form-container.component.html',
-  styleUrls: ['./guarantee-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ivt-guarantee-form-container',
+    templateUrl: './guarantee-form-container.component.html',
+    styleUrls: ['./guarantee-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<Guarantee> implements OnInit, OnDestroy {
   form = createGuaranteeForm();

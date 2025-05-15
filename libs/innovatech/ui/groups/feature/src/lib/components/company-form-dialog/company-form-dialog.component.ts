@@ -7,10 +7,11 @@ import { NZ_MODAL_DATA } from 'ng-zorro-antd/modal';
 import { createCompanyForm, createUserForm, patchCompanyForm } from '../../functions/group-form.functions';
 
 @Component({
-  selector: 'ivt-company-form-dialog',
-  templateUrl: './company-form-dialog.component.html',
-  styleUrls: ['./company-form-dialog.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ivt-company-form-dialog',
+    templateUrl: './company-form-dialog.component.html',
+    styleUrls: ['./company-form-dialog.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class CompanyFormDialogComponent extends ApsFormComponent<Company> implements OnInit {
   form = createCompanyForm();

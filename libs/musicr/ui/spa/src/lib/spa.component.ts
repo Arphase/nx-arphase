@@ -7,10 +7,11 @@ import { select, Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 
 @Component({
-  selector: 'mrl-spa',
-  templateUrl: './spa.component.html',
-  styleUrls: ['./spa.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-spa',
+    templateUrl: './spa.component.html',
+    styleUrls: ['./spa.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SpaComponent implements OnInit {
   options: SpaLayoutOptions = {

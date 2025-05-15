@@ -14,10 +14,11 @@ import { PriceOption } from '@musicr/domain';
 import { createPriceOptionForm } from '../price-option-form/price-option-form.component';
 
 @Component({
-  selector: 'mrl-price-options-form',
-  templateUrl: './price-options-form.component.html',
-  styleUrls: ['./price-options-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-price-options-form',
+    templateUrl: './price-options-form.component.html',
+    styleUrls: ['./price-options-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PriceOptionsFormComponent extends ApsFormComponent<PriceOption[]> implements OnChanges {
   @Input() deletedItemIndex: number;

@@ -14,8 +14,9 @@ import { ApsFormComponent } from './form.component';
 
 @UntilDestroy()
 @Component({
-  selector: 'aps-form-container',
-  template: '',
+    selector: 'aps-form-container',
+    template: '',
+    standalone: false
 })
 export class ApsFormContainerComponent<T> implements ComponentCanDeactivate {
   @ViewChild('form', { static: false }) formComponent: ApsFormComponent<T, T>;

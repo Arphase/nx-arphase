@@ -13,10 +13,11 @@ import { getPlaceDetailReservationPreview } from '../../state/place-detail.selec
 
 @UntilDestroy()
 @Component({
-  selector: 'vma-place-detail-container',
-  templateUrl: './place-detail-container.component.html',
-  styleUrls: ['./place-detail-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-place-detail-container',
+    templateUrl: './place-detail-container.component.html',
+    styleUrls: ['./place-detail-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PlaceDetailContainerComponent implements OnInit {
   item$ = this.placeCollectionService.currentItem$;

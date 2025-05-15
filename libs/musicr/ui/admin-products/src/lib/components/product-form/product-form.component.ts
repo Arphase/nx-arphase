@@ -36,10 +36,11 @@ export function createProductForm(): UntypedFormGroup {
 
 @UntilDestroy()
 @Component({
-  selector: 'mrl-product-form',
-  templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-product-form',
+    templateUrl: './product-form.component.html',
+    styleUrls: ['./product-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ProductFormComponent extends ApsFormComponent<Product> implements OnChanges {
   fileList: NzUploadFile[] = [];

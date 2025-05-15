@@ -6,7 +6,8 @@ import { ProductDataService } from '@musicr/ui/products/data';
 import { NzSelectComponent } from 'ng-zorro-antd/select';
 
 @Directive({
-  selector: '[mrlProductSelect]',
+    selector: '[mrlProductSelect]',
+    standalone: false
 })
 export class ProductSelectDirective extends ApsDataSelectDirective<Product> {
   labelField = 'name';

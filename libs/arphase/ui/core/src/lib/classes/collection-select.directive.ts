@@ -9,7 +9,8 @@ import { distinctUntilChanged, filter, switchMap, take } from 'rxjs/operators';
 
 @UntilDestroy()
 @Directive({
-  selector: '[apsCollectionSelect]',
+    selector: '[apsCollectionSelect]',
+    standalone: false
 })
 export class ApsCollectionSelectDirective<T> implements AfterContentInit {
   @Input() getByKey: boolean;

@@ -15,10 +15,11 @@ import { debounceTime } from 'rxjs/operators';
 
 @UntilDestroy()
 @Component({
-  selector: 'mrl-personal-data-form',
-  templateUrl: './personal-data-form.component.html',
-  styleUrls: ['./personal-data-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-personal-data-form',
+    templateUrl: './personal-data-form.component.html',
+    styleUrls: ['./personal-data-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PersonalDataFormComponent extends ApsFormComponent<Partial<Customer>> implements OnChanges {
   @Input() currentCustomer: Customer;

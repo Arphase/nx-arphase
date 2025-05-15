@@ -9,10 +9,11 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { createCategoryForm } from '../../components/category-form/category-form.component';
 
 @Component({
-  selector: 'mrl-category-form-container',
-  templateUrl: './category-form-container.component.html',
-  styleUrls: ['./category-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-category-form-container',
+    templateUrl: './category-form-container.component.html',
+    styleUrls: ['./category-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class CategoryFormContainerComponent extends ApsFormContainerComponent<Category> {
   form = createCategoryForm();

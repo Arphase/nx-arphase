@@ -8,10 +8,11 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { take } from 'rxjs/operators';
 
 @Component({
-  selector: 'ivt-vehicle-list-container',
-  templateUrl: './vehicle-list-container.component.html',
-  styleUrls: ['./vehicle-list-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ivt-vehicle-list-container',
+    templateUrl: './vehicle-list-container.component.html',
+    styleUrls: ['./vehicle-list-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class VehicleListContainerComponent extends ApsListContainerComponent<Vehicle> {
   constructor(

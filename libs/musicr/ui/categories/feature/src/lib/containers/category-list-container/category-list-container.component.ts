@@ -11,10 +11,11 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 
 @UntilDestroy()
 @Component({
-  selector: 'mrl-category-list-container',
-  templateUrl: './category-list-container.component.html',
-  styleUrls: ['./category-list-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-category-list-container',
+    templateUrl: './category-list-container.component.html',
+    styleUrls: ['./category-list-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class CategoryListContainerComponent extends ApsListContainerComponent<Category> implements OnInit {
   constructor(

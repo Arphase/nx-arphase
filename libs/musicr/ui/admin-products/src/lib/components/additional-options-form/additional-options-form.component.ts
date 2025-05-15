@@ -24,10 +24,11 @@ export function createAdditionalOptionForm(additionalOption?: AdditionalOption):
 }
 
 @Component({
-  selector: 'mrl-additional-options-form',
-  templateUrl: './additional-options-form.component.html',
-  styleUrls: ['./additional-options-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-additional-options-form',
+    templateUrl: './additional-options-form.component.html',
+    styleUrls: ['./additional-options-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AdditionalOptionsFormComponent extends ApsFormComponent<AdditionalOption[]> implements OnChanges {
   @Input() deletedItemIndex: number;

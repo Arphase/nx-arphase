@@ -3,10 +3,11 @@ import { ApsColumns, ApsListComponent } from '@arphase/ui/core';
 import { Subcategory } from '@musicr/domain';
 
 @Component({
-  selector: 'mrl-subcategory-list',
-  templateUrl: './subcategory-list.component.html',
-  styleUrls: ['./subcategory-list.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-subcategory-list',
+    templateUrl: './subcategory-list.component.html',
+    styleUrls: ['./subcategory-list.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SubcategoryListComponent extends ApsListComponent<Subcategory> {
   columns: ApsColumns = [

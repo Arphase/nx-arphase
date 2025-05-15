@@ -21,10 +21,11 @@ interface FiltersPayload extends FiltersForm {
 
 @UntilDestroy()
 @Component({
-  selector: 'vma-place-search-form',
-  templateUrl: './place-search-form.component.html',
-  styleUrls: ['./place-search-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vma-place-search-form',
+    templateUrl: './place-search-form.component.html',
+    styleUrls: ['./place-search-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PlaceSearchFormComponent extends ApsFormComponent<FiltersForm, FiltersPayload> implements OnInit {
   @ViewChild('endDateCalendar', { static: true }) endDateCalendar: NzDatePickerComponent;

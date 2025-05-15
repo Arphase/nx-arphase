@@ -10,10 +10,11 @@ import { RevisionCollectionService } from '../../services/revision-collection.se
 import { RevisionDataService } from '../../services/revision-data.service';
 
 @Component({
-  selector: 'ivt-revision-list-container',
-  templateUrl: './revision-list-container.component.html',
-  styleUrls: ['./revision-list-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ivt-revision-list-container',
+    templateUrl: './revision-list-container.component.html',
+    styleUrls: ['./revision-list-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class RevisionListContainerComponent extends ApsListContainerComponent<Revision> {
   excelFileName = 'Revisiones';

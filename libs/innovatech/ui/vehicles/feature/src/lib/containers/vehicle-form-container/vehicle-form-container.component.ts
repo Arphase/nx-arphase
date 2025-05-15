@@ -22,10 +22,11 @@ import { combineLatest, firstValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'ivt-vehicle-form-container',
-  templateUrl: './vehicle-form-container.component.html',
-  styleUrls: ['./vehicle-form-container.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ivt-vehicle-form-container',
+    templateUrl: './vehicle-form-container.component.html',
+    styleUrls: ['./vehicle-form-container.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class VehicleFormContainerComponent extends ApsFormContainerComponent<Vehicle> implements OnDestroy {
   form = createVehicleForm();

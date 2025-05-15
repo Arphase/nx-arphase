@@ -3,12 +3,13 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/musicr/admin-e2e/src",
   "projectType": "application",
+  "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
+  "implicitDependencies": ["musicr-admin"],
   "targets": {
     "e2e": {
       "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/musicr/admin-e2e/cypress.json",
-        "tsConfig": "apps/musicr/admin-e2e/tsconfig.e2e.json",
         "devServerTarget": "musicr-admin:serve:development"
       },
       "configurations": {
@@ -20,7 +21,5 @@
     "lint": {
       "executor": "@nx/eslint:lint"
     }
-  },
-  "tags": ["domain:musicr", "domain:musicr:ui", "executable:ui"],
-  "implicitDependencies": ["musicr-admin"]
+  }
 }

@@ -3,7 +3,8 @@ import { NgControl } from '@angular/forms';
 import { NzSelectComponent } from 'ng-zorro-antd/select';
 
 @Directive({
-  selector: '[apsAutoSelect]',
+    selector: '[apsAutoSelect]',
+    standalone: false
 })
 export class ApsAutoSelectDirective implements AfterContentInit {
   // eslint-disable-next-line @angular-eslint/no-input-rename

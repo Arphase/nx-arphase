@@ -26,10 +26,11 @@ export function createCategoryForm(): UntypedFormGroup {
 }
 
 @Component({
-  selector: 'mrl-category-form',
-  templateUrl: './category-form.component.html',
-  styleUrls: ['./category-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-category-form',
+    templateUrl: './category-form.component.html',
+    styleUrls: ['./category-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class CategoryFormComponent extends ApsFormComponent<DeepPartial<Category>> implements OnChanges {
   fileList: NzUploadFile[] = [];

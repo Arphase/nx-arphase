@@ -21,10 +21,11 @@ export type AdditionalOptionFormValue = AdditionalOption & { selected: boolean }
 
 @UntilDestroy()
 @Component({
-  selector: 'mrl-product-detail',
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mrl-product-detail',
+    templateUrl: './product-detail.component.html',
+    styleUrls: ['./product-detail.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ProductDetailComponent implements OnChanges {
   @ViewChild(NzCarouselComponent) photoCarousel: NzCarouselComponent;

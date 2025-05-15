@@ -40,11 +40,12 @@ export function createProductForm(): FormGroup<ControlsOf<ProductForm>> {
 
 @UntilDestroy()
 @Component({
-  selector: 'ivt-product-form',
-  templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+    selector: 'ivt-product-form',
+    templateUrl: './product-form.component.html',
+    styleUrls: ['./product-form.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class ProductFormComponent extends ApsFormComponent<Product, ProductForm> implements OnInit, OnChanges {
   form = createProductForm();
