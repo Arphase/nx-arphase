@@ -1,5 +1,5 @@
 import { SubcategoryCollectionService } from '@musicr/ui/subcategories/data';
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 
 import { SubcategoryResolverService } from './subcategory-resolver.service';
 

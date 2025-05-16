@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
+import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator/jest';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { NzFormModule } from 'ng-zorro-antd/form';
 
@@ -9,6 +9,7 @@ import { ApsAutocompleteDirective } from './autocomplete.directive';
 describe('ApsAutocompleteDirective', () => {
   @Component({
     selector: 'aps-test',
+    standalone: false,
   })
   class HostComponent {
     form = new FormGroup({ test: new FormControl('') });
@@ -32,7 +33,7 @@ describe('ApsAutocompleteDirective', () => {
                  [nzAutocomplete]="auto" />
           <nz-autocomplete #auto></nz-autocomplete>
         </nz-form-control>
-      </form>`
+      </form>`,
     );
   });
 

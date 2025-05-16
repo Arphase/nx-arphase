@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ApsCollectionService } from '@arphase/ui/data';
-import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
+import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator/jest';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { of } from 'rxjs';
 
 import { ApsCollectionSelectDirective } from './collection-select.directive';
 
 describe('ApsCollectionSelectDirective', () => {
-  @Component({ selector: 'aps-test' })
+  @Component({ selector: 'aps-test', standalone: false })
   class HostComponent {
     form = new FormGroup({ test: new FormControl('') });
   }
@@ -25,8 +25,8 @@ describe('ApsCollectionSelectDirective', () => {
   beforeEach(
     () =>
       (spectator = createDirective(
-        `<form [formGroup]="form"><nz-select formControlName="test" apsCollectionSelect></nz-select></form>`
-      ))
+        `<form [formGroup]="form"><nz-select formControlName="test" apsCollectionSelect></nz-select></form>`,
+      )),
   );
 
   it('should create', () => {

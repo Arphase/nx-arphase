@@ -1,4 +1,4 @@
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { VALMIRA_CONFIGURATION } from '@valmira/ui/core';
 
 import { PlaceFormComponent } from './place-form.component';

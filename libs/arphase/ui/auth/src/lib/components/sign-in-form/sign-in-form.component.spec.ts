@@ -1,5 +1,5 @@
 import { ReactiveFormsModule } from '@angular/forms';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { SignInFormComponent } from './sign-in-form.component';
 

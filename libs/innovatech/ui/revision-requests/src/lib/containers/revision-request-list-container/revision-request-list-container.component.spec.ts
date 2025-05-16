@@ -1,4 +1,4 @@
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { RevisionRequestCollectionService } from '../../services/revision-request-collection.service';

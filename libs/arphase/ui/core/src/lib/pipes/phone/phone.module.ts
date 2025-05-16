@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { ApsPhonePipe } from './phone.pipe';
 
 @NgModule({
-  declarations: [ApsPhonePipe],
-  imports: [CommonModule],
+  declarations: [],
+  imports: [CommonModule, ApsPhonePipe],
   exports: [ApsPhonePipe],
 })
 export class ApsPhoneModule {}

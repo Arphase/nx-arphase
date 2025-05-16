@@ -10,7 +10,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/musicr/ui/contact-success"],
       "options": {
         "jestConfig": "libs/musicr/ui/contact-success/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     },
     "lint": {

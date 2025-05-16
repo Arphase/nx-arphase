@@ -1,4 +1,4 @@
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 
 import { OrderCollectionService } from '../services/order-collection.service';
 import { OrderResolverService } from './order-resolver.service';

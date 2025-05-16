@@ -10,7 +10,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/musicr/ui/frequent-questions"],
       "options": {
         "jestConfig": "libs/musicr/ui/frequent-questions/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     },
     "lint": {

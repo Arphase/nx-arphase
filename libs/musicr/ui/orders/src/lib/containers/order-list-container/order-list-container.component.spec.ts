@@ -1,4 +1,4 @@
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { OrderCollectionService } from '../../services/order-collection.service';

@@ -1,6 +1,6 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { CoreService } from '@musicr/ui/core';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { NzIconService } from 'ng-zorro-antd/icon';
 
 import { StoreWrapperComponent } from './store-wrapper.component';

@@ -1,5 +1,5 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 
 import { AuthService } from '../services/auth.service';
 import { AuthGuard } from './auth.guard';

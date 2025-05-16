@@ -1,4 +1,4 @@
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { ProductsCatalogService } from '../../services/products-catalog.service';
 import { ProductsCatalogContainerComponent } from './products-catalog-container.component';

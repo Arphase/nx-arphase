@@ -1,5 +1,5 @@
 import { filterCollectionQuery } from '@arphase/api/core';
-import { hasAccessToAllData, User } from '@innovatech/common/domain';
+import { hasAccessToAllData, User, UserRoles } from '@innovatech/common/domain';
 import { BaseEntity, SelectQueryBuilder } from 'typeorm';
 
 import { CommonFilterDto } from '../dto';
@@ -9,11 +9,11 @@ export function filterCommonQuery(
   query: SelectQueryBuilder<BaseEntity>,
   filterDto: Partial<CommonFilterDto>,
   user?: Partial<User>,
-  options?: Partial<{ companyidEntityName: string }>
+  options?: Partial<{ companyidEntityName: string }>,
 ): void {
   const { groupIds, companyIds, userIds } = filterDto;
 
-  if (user && !hasAccessToAllData(user.role)) {
+  if (user && !hasAccessToAllData(user.role as UserRoles)) {
     query.andWhere(`(${options?.companyidEntityName || entityName}.companyId = :id)`, { id: user.companyId });
   }
 

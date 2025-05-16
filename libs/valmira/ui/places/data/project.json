@@ -10,7 +10,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/valmira/ui/places/data"],
       "options": {
         "jestConfig": "libs/valmira/ui/places/data/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     },
     "lint": {

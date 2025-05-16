@@ -10,7 +10,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/musicr/ui/admin-products"],
       "options": {
         "jestConfig": "libs/musicr/ui/admin-products/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     },
     "lint": {

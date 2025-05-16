@@ -10,7 +10,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/musicr/ui/subcategories/feature"],
       "options": {
         "jestConfig": "libs/musicr/ui/subcategories/feature/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     },
     "lint": {

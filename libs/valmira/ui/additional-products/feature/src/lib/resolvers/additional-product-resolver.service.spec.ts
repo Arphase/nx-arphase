@@ -1,4 +1,4 @@
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 import { AdditionalProductCollectionService } from '@valmira/ui/additional-products/data';
 
 import { AdditionalProductResolverService } from './additional-product-resolver.service';

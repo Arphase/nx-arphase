@@ -1,4 +1,4 @@
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { of } from 'rxjs';
 

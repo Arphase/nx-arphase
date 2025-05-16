@@ -1,4 +1,4 @@
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { PlaceCollectionService } from '@valmira/ui/places/data';
 
 import { LandingContainerComponent } from './landing-container.component';

@@ -1,5 +1,5 @@
 import { PhotoCollectionService } from './photo-collection.service';
-import { SpectatorService, createServiceFactory } from '@ngneat/spectator';
+import { SpectatorService, createServiceFactory } from '@ngneat/spectator/jest';
 import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { of } from 'rxjs';
 

@@ -1,17 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { filterNil } from '@arphase/ui/utils';
 import { ApsFormContainerComponent } from '@arphase/ui/forms';
+import { filterNil } from '@arphase/ui/utils';
 import { RevisionRequest, UserRoles } from '@innovatech/common/domain';
 import { getAuthUserCompanyIdState } from '@innovatech/ui/auth/data';
 import { selectQueryParam } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
-import {
-  fromVehicles,
-  getVehiclesErrorMessageState,
-  getVehiclesVehicleState,
-  VehicleCollectionService,
-} from '@innovatech/ui/vehicles/data';
+import { fromVehicles, getVehiclesErrorMessageState, getVehiclesVehicleState } from '@innovatech/ui/vehicles/data';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash';
@@ -22,11 +17,11 @@ import { RevisionRequestCollectionService } from '../../services/revision-reques
 
 @UntilDestroy()
 @Component({
-    selector: 'ivt-revision-request-form-container',
-    templateUrl: './revision-request-form-container.component.html',
-    styleUrls: ['./revision-request-form-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-revision-request-form-container',
+  templateUrl: './revision-request-form-container.component.html',
+  styleUrls: ['./revision-request-form-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RevisionRequestFormContainerComponent
   extends ApsFormContainerComponent<RevisionRequest>
@@ -46,7 +41,7 @@ export class RevisionRequestFormContainerComponent
     protected router: Router,
     protected messageService: NzMessageService,
     private store: Store,
-    private permissionService: PermissionService
+    private permissionService: PermissionService,
   ) {
     super(revisionRequestCollectionService, router, messageService);
   }
@@ -54,7 +49,7 @@ export class RevisionRequestFormContainerComponent
   ngOnInit() {
     this.store
       .pipe(select(selectQueryParam('vehicleVin')), untilDestroyed(this), filterNil())
-      .subscribe(vin => this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin })));
+      .subscribe(vin => this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin: String(vin) })));
   }
 
   verifyVin(vin: string): void {

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ProductDataService } from '@musicr/ui/products/data';
-import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
+import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator/jest';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { of } from 'rxjs';
 
 import { ProductSelectDirective } from './product-select.directive';
 
 describe('ProductSelectDirective', () => {
-  @Component({ selector: 'mrl-test' })
+  @Component({ selector: 'mrl-test', standalone: false })
   class HostComponent {
     form = new FormGroup({ test: new FormControl('') });
   }
@@ -24,7 +24,7 @@ describe('ProductSelectDirective', () => {
 
   beforeEach(() => {
     spectator = createDirective(
-      `<form [formGroup]="form"><nz-select formControlName="test" mrlProductSelect></nz-select></form>`
+      `<form [formGroup]="form"><nz-select formControlName="test" mrlProductSelect></nz-select></form>`,
     );
   });
 

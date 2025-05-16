@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SubcategoryCollectionService } from '@musicr/ui/subcategories/data';
-import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
+import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator/jest';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { of } from 'rxjs';
 
 import { SubcategorySelectDirective } from './subcategory-select.directive';
 
 describe('SubcategorySelectDirective', () => {
-  @Component({ selector: 'mrl-test' })
+  @Component({ selector: 'mrl-test', standalone: false })
   class HostComponent {
     form = new FormGroup({ test: new FormControl('') });
   }
@@ -24,7 +24,7 @@ describe('SubcategorySelectDirective', () => {
 
   beforeEach(() => {
     spectator = createDirective(
-      `<form [formGroup]="form"><nz-select formControlName="test" mrlSubcategorySelect></nz-select></form>`
+      `<form [formGroup]="form"><nz-select formControlName="test" mrlSubcategorySelect></nz-select></form>`,
     );
   });
 

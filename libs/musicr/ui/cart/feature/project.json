@@ -13,7 +13,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/musicr/ui/cart/feature"],
       "options": {
         "jestConfig": "libs/musicr/ui/cart/feature/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     }
   },

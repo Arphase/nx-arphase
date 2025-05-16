@@ -1,5 +1,5 @@
 import { CompanyCollectionService } from '@innovatech/ui/companies/data';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { CompanyCheckboxFilterComponent } from './company-checkbox-filter.component';
 

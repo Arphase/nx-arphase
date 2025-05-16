@@ -1,4 +1,4 @@
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 
 import { LoadingInterceptorService } from './loading-interceptor.service';
 import { LoadingService } from './loading.service';

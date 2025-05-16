@@ -1,5 +1,5 @@
 import { GroupCollectionService } from '@innovatech/ui/groups/data';
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 
 import { GroupResolverService } from './group-resolver.service';
 

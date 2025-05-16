@@ -1,5 +1,5 @@
 import { PersonalDataFormComponent } from './personal-data-form.component';
-import { Spectator, createComponentFactory } from '@ngneat/spectator';
+import { Spectator, createComponentFactory } from '@ngneat/spectator/jest';
 
 describe('PersonalDataFormComponent', () => {
   let spectator: Spectator<PersonalDataFormComponent>;

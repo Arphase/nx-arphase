@@ -1,4 +1,4 @@
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 import { PromocodeCollectionService } from '@valmira/ui/promocodes/data';
 
 import { PromocodeResolverService } from './promocode-resolver.service';

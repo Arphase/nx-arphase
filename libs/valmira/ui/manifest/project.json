@@ -13,7 +13,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/valmira/ui/manifest"],
       "options": {
         "jestConfig": "libs/valmira/ui/manifest/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     }
   },

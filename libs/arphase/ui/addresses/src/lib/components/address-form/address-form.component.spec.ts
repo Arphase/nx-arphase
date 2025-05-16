@@ -1,4 +1,4 @@
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { ApsAddressFormComponent } from './address-form.component';
 import { ApsAddressFormService } from './address-form.service';

@@ -1,6 +1,6 @@
 import { ReactiveFormsModule } from '@angular/forms';
 import { IvtFolioPipe } from '@innovatech/ui/core/ui';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { MockPipe } from 'ng-mocks';
 
 import { PaymentOrderDialogComponent } from './payment-order-dialog.component';

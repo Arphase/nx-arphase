@@ -173,7 +173,7 @@
     "jest-jasmine2": "29.7.0",
     "jest-preset-angular": "14.4.2",
     "jsonc-eslint-parser": "^2.4.0",
-    "ng-mocks": "14.12.1",
+    "ng-mocks": "14.13.4",
     "ng-packagr": "19.2.2",
     "nx": "21.0.3",
     "postcss": "8.4.38",

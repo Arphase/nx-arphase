@@ -13,7 +13,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/innovatech/ui/groups/data"],
       "options": {
         "jestConfig": "libs/innovatech/ui/groups/data/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     }
   },

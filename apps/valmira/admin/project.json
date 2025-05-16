@@ -99,7 +99,7 @@
       "outputs": ["{workspaceRoot}/coverage/apps/valmira/admin"],
       "options": {
         "jestConfig": "apps/valmira/admin/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     }
   }

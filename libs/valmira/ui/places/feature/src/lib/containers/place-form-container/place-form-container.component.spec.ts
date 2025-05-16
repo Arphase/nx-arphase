@@ -1,5 +1,5 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { PlaceCollectionService } from '@valmira/ui/places/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 

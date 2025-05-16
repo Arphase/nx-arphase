@@ -1,4 +1,4 @@
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { GroupFormService } from './group-form.service';

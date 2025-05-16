@@ -1,4 +1,4 @@
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 
 import { MUSIC_REVOLUTION_CONFIGURATION } from '../config';
 import { HttpProxyService } from './http-proxy.service';

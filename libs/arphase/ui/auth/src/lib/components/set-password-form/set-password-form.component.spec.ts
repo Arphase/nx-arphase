@@ -1,6 +1,6 @@
 import { SetPasswordFormComponent } from './set-password-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Spectator, createComponentFactory } from '@ngneat/spectator';
+import { Spectator, createComponentFactory } from '@ngneat/spectator/jest';
 
 describe('SetPasswordFormComponent', () => {
   let spectator: Spectator<SetPasswordFormComponent>;

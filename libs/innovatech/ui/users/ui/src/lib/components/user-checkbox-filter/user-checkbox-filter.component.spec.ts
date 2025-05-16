@@ -1,5 +1,5 @@
 import { UserCollectionService } from '@innovatech/ui/users/data';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { UserCheckboxFilterComponent } from './user-checkbox-filter.component';
 

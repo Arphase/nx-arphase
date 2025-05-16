@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
+import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator/jest';
 
 import { ApsUppercaseDirective } from './uppercase.directive';
 
 describe('ApsUppercaseDirective', () => {
   @Component({
     selector: 'aps-test',
+    standalone: false,
   })
   class TestHostComponent {
     form = new FormGroup({ test: new FormControl() });

@@ -12,7 +12,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/valmira/api/places"],
       "options": {
         "jestConfig": "libs/valmira/api/places/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     }
   },

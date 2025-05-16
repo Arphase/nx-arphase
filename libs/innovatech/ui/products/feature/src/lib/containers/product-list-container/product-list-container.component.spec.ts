@@ -1,5 +1,5 @@
 import { ProductCollectionService, ProductDataService } from '@innovatech/ui/products/data';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { ProductListContainerComponent } from './product-list-container.component';
 

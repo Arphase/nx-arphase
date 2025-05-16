@@ -1,5 +1,5 @@
 import { SimpleChange } from '@angular/core';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { GuaranteeFormComponent } from './guarantee-form.component';
 import { createGuaranteeForm } from './guarantee-form.constants';

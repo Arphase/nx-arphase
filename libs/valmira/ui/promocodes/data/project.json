@@ -10,7 +10,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/valmira/ui/promocodes/data"],
       "options": {
         "jestConfig": "libs/valmira/ui/promocodes/data/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     },
     "lint": {

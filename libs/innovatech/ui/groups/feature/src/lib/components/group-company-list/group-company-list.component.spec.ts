@@ -1,5 +1,5 @@
 import { ApsEmptyPipe } from '@arphase/ui/core';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { MockPipe } from 'ng-mocks';
 
 import { GroupCompanyListComponent } from './group-company-list.component';

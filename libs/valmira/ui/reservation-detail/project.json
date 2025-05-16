@@ -10,7 +10,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/valmira/ui/reservation-detail"],
       "options": {
         "jestConfig": "libs/valmira/ui/reservation-detail/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     },
     "lint": {

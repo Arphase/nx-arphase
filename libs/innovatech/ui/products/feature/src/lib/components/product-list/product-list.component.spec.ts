@@ -1,6 +1,6 @@
 import { ApsEmptyPipe } from '@arphase/ui/core';
 import { IvtFolioPipe } from '@innovatech/ui/core/ui';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { MockPipe } from 'ng-mocks';
 
 import { ProductListComponent } from './product-list.component';

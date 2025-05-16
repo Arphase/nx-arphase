@@ -1,5 +1,5 @@
 import { UserCollectionService, UserDataService } from '@innovatech/ui/users/data';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { UserListContainerComponent } from './user-list-container.component';
 

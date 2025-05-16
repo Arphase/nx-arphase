@@ -1,4 +1,4 @@
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { ReservationCollectionService } from '@valmira/ui/reservations/data';
 
 import { ReservationDetailContainerComponent } from './reservation-detail-container.component';

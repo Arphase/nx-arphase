@@ -1,6 +1,6 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoadingService } from '@arphase/ui/core';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { provideMockStore } from '@ngrx/store/testing';
 
 import { SetPasswordFormContainerComponent } from './set-password-form-container.component';

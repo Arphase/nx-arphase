@@ -1,5 +1,5 @@
 import { CoreService } from '@musicr/ui/core';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { HomeComponent } from './home.component';
 

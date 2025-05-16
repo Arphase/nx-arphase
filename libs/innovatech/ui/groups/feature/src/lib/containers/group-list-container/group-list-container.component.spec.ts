@@ -1,5 +1,5 @@
 import { GroupCollectionService, GroupDataService } from '@innovatech/ui/groups/data';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { GroupListContainerComponent } from './group-list-container.component';

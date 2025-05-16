@@ -1,5 +1,5 @@
 import { MUSIC_REVOLUTION_CONFIGURATION } from '@musicr/ui/core';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { ProductFormComponent } from './product-form.component';
 

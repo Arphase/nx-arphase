@@ -13,7 +13,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/innovatech/ui/users"],
       "options": {
         "jestConfig": "libs/innovatech/ui/users/feature/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     }
   },

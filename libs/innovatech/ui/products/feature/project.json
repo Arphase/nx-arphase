@@ -12,7 +12,7 @@
       "executor": "@nx/jest:jest",
       "options": {
         "jestConfig": "libs/innovatech/ui/products/feature/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     }
   },

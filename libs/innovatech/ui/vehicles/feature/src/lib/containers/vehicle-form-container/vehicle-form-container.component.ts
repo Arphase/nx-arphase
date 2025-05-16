@@ -9,12 +9,7 @@ import { fromAuth } from '@innovatech/ui/auth/data';
 import { CompanyCollectionService } from '@innovatech/ui/companies/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
 import { ProductCollectionService } from '@innovatech/ui/products/data';
-import {
-  fromVehicles,
-  getVehiclesErrorState,
-  getVehiclesVehicleState,
-  VehicleCollectionService,
-} from '@innovatech/ui/vehicles/data';
+import { fromVehicles, VehicleCollectionService } from '@innovatech/ui/vehicles/data';
 import { createVehicleForm } from '@innovatech/ui/vehicles/ui';
 import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -22,11 +17,11 @@ import { combineLatest, firstValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-    selector: 'ivt-vehicle-form-container',
-    templateUrl: './vehicle-form-container.component.html',
-    styleUrls: ['./vehicle-form-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-vehicle-form-container',
+  templateUrl: './vehicle-form-container.component.html',
+  styleUrls: ['./vehicle-form-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class VehicleFormContainerComponent extends ApsFormContainerComponent<Vehicle> implements OnDestroy {
   form = createVehicleForm();
@@ -45,8 +40,8 @@ export class VehicleFormContainerComponent extends ApsFormContainerComponent<Veh
   );
   invalidVin = toSignal(
     combineLatest([
-      this.store.pipe(select(getVehiclesVehicleState)),
-      this.store.pipe(select(getVehiclesErrorState)),
+      this.store.pipe(select(fromVehicles.selectors.getVehiclesVehicleState)),
+      this.store.pipe(select(fromVehicles.selectors.getVehiclesErrorState)),
       this.vehicleCollectionService.currentItem$,
     ]).pipe(
       map(

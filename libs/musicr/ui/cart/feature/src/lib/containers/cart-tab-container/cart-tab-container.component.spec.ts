@@ -1,5 +1,5 @@
 import { CartService } from '@musicr/ui/cart/data';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { of } from 'rxjs';
 
 import { CartTabContainerComponent } from './cart-tab-container.component';

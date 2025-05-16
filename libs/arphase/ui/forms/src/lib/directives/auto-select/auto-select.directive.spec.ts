@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
+import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator/jest';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 
 import { ApsAutoSelectDirective } from './auto-select.directive';
@@ -8,6 +8,7 @@ import { ApsAutoSelectDirective } from './auto-select.directive';
 describe('ApsAutoSelectDirective', () => {
   @Component({
     selector: 'aps-test',
+    standalone: false,
   })
   class HostComponent {
     form = new FormGroup({ test: new FormControl('') });
@@ -22,7 +23,7 @@ describe('ApsAutoSelectDirective', () => {
 
   beforeEach(() => {
     spectator = createDirective(
-      `<form [formGroup]="form"><nz-select formControlName="test" apsAutoSelect></nz-select></form>`
+      `<form [formGroup]="form"><nz-select formControlName="test" apsAutoSelect></nz-select></form>`,
     );
   });
 

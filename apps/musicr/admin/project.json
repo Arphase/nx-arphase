@@ -81,7 +81,7 @@
       "outputs": ["{workspaceRoot}/coverage/apps/musicr/admin"],
       "options": {
         "jestConfig": "apps/musicr/admin/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     }
   }

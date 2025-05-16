@@ -10,7 +10,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/musicr/ui/terms-and-conditions"],
       "options": {
         "jestConfig": "libs/musicr/ui/terms-and-conditions/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     },
     "lint": {

@@ -1,16 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filterNil } from '@arphase/ui/utils';
 import { ApsFormContainerComponent } from '@arphase/ui/forms';
+import { filterNil } from '@arphase/ui/utils';
 import { Revision, UserRoles } from '@innovatech/common/domain';
 import { selectQueryParam } from '@innovatech/ui/core/data';
 import { PermissionService } from '@innovatech/ui/permissions/data';
-import {
-  fromVehicles,
-  getVehiclesErrorMessageState,
-  getVehiclesVehicleState,
-  VehicleCollectionService,
-} from '@innovatech/ui/vehicles/data';
+import { fromVehicles, getVehiclesErrorMessageState, getVehiclesVehicleState } from '@innovatech/ui/vehicles/data';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { select, Store } from '@ngrx/store';
 import { omit } from 'lodash';
@@ -24,11 +19,11 @@ import { RevisionCollectionService } from '../../services/revision-collection.se
 
 @UntilDestroy()
 @Component({
-    selector: 'ivt-revision-form-container',
-    templateUrl: './revision-form-container.component.html',
-    styleUrls: ['./revision-form-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-revision-form-container',
+  templateUrl: './revision-form-container.component.html',
+  styleUrls: ['./revision-form-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RevisionFormContainerComponent extends ApsFormContainerComponent<Revision> implements OnInit, OnDestroy {
   form = createRevisionForm();
@@ -44,7 +39,7 @@ export class RevisionFormContainerComponent extends ApsFormContainerComponent<Re
     map(([create, update, url, revision]) => {
       const createRoute = url.find(segment => segment.path === 'new');
       return createRoute ? create : update && isRevisionEditable(revision);
-    })
+    }),
   );
   vehicle$ = this.store.pipe(select(getVehiclesVehicleState));
   error$ = this.store.pipe(select(getVehiclesErrorMessageState));
@@ -55,7 +50,7 @@ export class RevisionFormContainerComponent extends ApsFormContainerComponent<Re
     protected messageService: NzMessageService,
     private store: Store,
     private permissionService: PermissionService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
     super(revisionCollectionService, router, messageService);
   }
@@ -63,7 +58,7 @@ export class RevisionFormContainerComponent extends ApsFormContainerComponent<Re
   ngOnInit() {
     this.store
       .pipe(select(selectQueryParam('vehicleVin')), untilDestroyed(this), filterNil())
-      .subscribe(vin => this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin })));
+      .subscribe(vin => this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin: String(vin) })));
   }
 
   verifyVin(vin: string): void {

@@ -1,6 +1,6 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { CartService } from '@musicr/ui/cart/data';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { SocialEventFormContainerComponent } from './social-event-form-container.component';
 

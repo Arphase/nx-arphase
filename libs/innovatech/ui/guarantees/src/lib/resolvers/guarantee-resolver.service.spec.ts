@@ -1,4 +1,4 @@
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 import { GuaranteeCollectionService } from '../services/guarantee-collection.service';
 
 import { GuaranteeResolverService } from './guarantee-resolver.service';

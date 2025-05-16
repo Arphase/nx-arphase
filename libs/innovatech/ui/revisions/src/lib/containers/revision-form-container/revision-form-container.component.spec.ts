@@ -1,6 +1,6 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { PermissionService } from '@innovatech/ui/permissions/data';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { provideMockStore } from '@ngrx/store/testing';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { of } from 'rxjs';

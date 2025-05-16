@@ -12,20 +12,22 @@ export function createPromocodeForm(): UntypedFormGroup {
       endDate: new UntypedFormControl(null, ApsValidators.required),
       amount: new UntypedFormControl(null, ApsValidators.required),
     },
-    { validators: ApsValidators.dateLessThan('startDate', 'endDate') }
+    { validators: ApsValidators.dateLessThan('startDate', 'endDate') },
   );
 }
 
 @Component({
-    selector: 'vma-promocode-form',
-    templateUrl: './promocode-form.component.html',
-    styleUrls: ['./promocode-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-promocode-form',
+  templateUrl: './promocode-form.component.html',
+  styleUrls: ['./promocode-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PromocodeFormComponent extends ApsFormComponent<Promocode> implements OnChanges {
+  form = createPromocodeForm();
+
   get showDatesError(): boolean {
-    return !!this.form?.errors && this.form?.get('startDate')?.touched && this.form?.get('endDate')?.touched;
+    return !!this.form?.errors && this.form.get('startDate')?.touched && this.form.get('endDate')?.touched;
   }
 
   ngOnChanges(changes: SimpleChanges) {

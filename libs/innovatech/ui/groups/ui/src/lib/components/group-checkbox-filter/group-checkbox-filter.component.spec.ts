@@ -1,5 +1,5 @@
 import { GroupCollectionService } from '@innovatech/ui/groups/data';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { GroupCheckboxFilterComponent } from './group-checkbox-filter.component';
 

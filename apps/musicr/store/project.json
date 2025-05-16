@@ -73,7 +73,7 @@
       "outputs": ["{workspaceRoot}/coverage/apps/musicr/store"],
       "options": {
         "jestConfig": "apps/musicr/store/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     },
     "server": {

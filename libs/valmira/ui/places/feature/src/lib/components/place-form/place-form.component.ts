@@ -31,13 +31,14 @@ export function createPlaceForm(): UntypedFormGroup {
 }
 
 @Component({
-    selector: 'vma-place-form',
-    templateUrl: './place-form.component.html',
-    styleUrls: ['./place-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-place-form',
+  templateUrl: './place-form.component.html',
+  styleUrls: ['./place-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PlaceFormComponent extends ApsFormComponent<Place> implements OnChanges {
+  form = createPlaceForm();
   allowedMimeType = ['image/jpeg', 'image/jpg'];
   fileList: NzUploadFile[] = [];
   previewImage = '';

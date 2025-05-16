@@ -24,7 +24,7 @@ export class CompaniesService {
     const companies = await query.getMany();
     const total = await query.getCount();
 
-    return createCollectionResponse(companies, pageSize, pageIndex, total);
+    return createCollectionResponse(companies, Number(pageSize), Number(pageIndex), total);
   }
 
   async getCompany(id: number): Promise<Company> {

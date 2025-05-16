@@ -20,11 +20,11 @@ import { GuaranteeCollectionService } from '../../services/guarantee-collection.
 
 @UntilDestroy()
 @Component({
-    selector: 'ivt-guarantee-form-container',
-    templateUrl: './guarantee-form-container.component.html',
-    styleUrls: ['./guarantee-form-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-guarantee-form-container',
+  templateUrl: './guarantee-form-container.component.html',
+  styleUrls: ['./guarantee-form-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<Guarantee> implements OnInit, OnDestroy {
   form = createGuaranteeForm();
@@ -42,7 +42,7 @@ export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<G
   error$ = this.store.pipe(select(getVehiclesErrorMessageState));
   groupId$ = this.companyCollectionService.currentItem$.pipe(
     filterNil(),
-    map(({ groupId }) => groupId)
+    map(({ groupId }) => groupId),
   );
 
   constructor(
@@ -53,7 +53,7 @@ export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<G
     private permissionService: PermissionService,
     private store: Store,
     private route: ActivatedRoute,
-    private companyCollectionService: CompanyCollectionService
+    private companyCollectionService: CompanyCollectionService,
   ) {
     super(guaranteeCollectionService, router, messageService);
     this.productCollectionService.clearCache();
@@ -63,7 +63,7 @@ export class GuaranteeFormContainerComponent extends ApsFormContainerComponent<G
   ngOnInit() {
     this.store
       .pipe(select(selectQueryParam('vehicleVin')), filterNil(), untilDestroyed(this))
-      .subscribe(vin => this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin })));
+      .subscribe(vin => this.store.dispatch(fromVehicles.actions.getVehicleByVin({ vin: String(vin) })));
 
     this.vehicle$
       .pipe(filterNil(), untilDestroyed(this))

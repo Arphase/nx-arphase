@@ -1,5 +1,5 @@
 import { LoadingService } from '@arphase/ui/core';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { provideMockStore } from '@ngrx/store/testing';
 
 import { SignInFormContainerComponent } from './sign-in-form-container.component';

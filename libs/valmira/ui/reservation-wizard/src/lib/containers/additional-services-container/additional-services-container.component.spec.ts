@@ -1,5 +1,5 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { AdditionalProductCollectionService } from '@valmira/ui/additional-products/data';
 import { ReservationCollectionService } from '@valmira/ui/reservations/data';
 

@@ -1,6 +1,6 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { GroupCollectionService } from '@innovatech/ui/groups/data';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { createGroupForm } from '../../functions/group-form.functions';

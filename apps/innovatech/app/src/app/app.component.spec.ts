@@ -1,5 +1,5 @@
 import { ThemeService } from '@arphase/ui/core';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { NzIconService } from 'ng-zorro-antd/icon';
 
 import { AppComponent } from './app.component';

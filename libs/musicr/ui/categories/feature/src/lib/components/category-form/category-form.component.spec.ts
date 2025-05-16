@@ -1,5 +1,5 @@
 import { MUSIC_REVOLUTION_CONFIGURATION } from '@musicr/ui/core';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { CategoryFormComponent } from './category-form.component';

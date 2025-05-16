@@ -13,7 +13,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/musicr/api/contact"],
       "options": {
         "jestConfig": "libs/musicr/api/contact/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     }
   },

@@ -1,5 +1,5 @@
 import { ApsCollectionService } from '@arphase/ui/data';
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 
 import { ApsEntityResolverService } from './entity-resolver.service';
 

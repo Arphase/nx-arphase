@@ -1,4 +1,4 @@
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 import { RevisionRequestCollectionService } from '../services/revision-request-collection.service';
 
 import { RevisionRequestResolverService } from './revision-request-resolver.service';

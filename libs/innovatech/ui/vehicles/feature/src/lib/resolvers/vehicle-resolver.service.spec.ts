@@ -1,5 +1,5 @@
 import { VehicleCollectionService } from '@innovatech/ui/vehicles/data';
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
 
 import { VehicleResolverService } from './vehicle-resolver.service';
 

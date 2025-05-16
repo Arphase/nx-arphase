@@ -1,5 +1,5 @@
 import { ReactiveFormsModule } from '@angular/forms';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { ResetPasswordFormComponent } from './reset-password-form.component';
 

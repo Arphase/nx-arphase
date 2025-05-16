@@ -5,6 +5,7 @@
   },
   "files": [],
   "include": [],
+  "types": ["jest"],
   "references": [
     {
       "path": "./tsconfig.lib.json"

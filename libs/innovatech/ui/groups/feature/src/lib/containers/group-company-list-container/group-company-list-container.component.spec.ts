@@ -1,4 +1,4 @@
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { createGroupForm } from '../../functions/group-form.functions';
 import { GroupFormService } from '../../services/group-form.service';

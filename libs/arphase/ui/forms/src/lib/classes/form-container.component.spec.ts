@@ -1,5 +1,5 @@
 import { ApsCollectionService } from '@arphase/ui/data';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { ApsFormContainerComponent } from './form-container.component';
 

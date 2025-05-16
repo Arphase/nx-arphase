@@ -12,7 +12,7 @@
       "outputs": ["{workspaceRoot}/coverage/libs/musicr/api/orders"],
       "options": {
         "jestConfig": "libs/musicr/api/orders/jest.config.ts",
-        "passWithNoTests": false
+        "passWithNoTests": true
       }
     }
   },

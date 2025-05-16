@@ -1,6 +1,6 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { SubcategoryCollectionService } from '@musicr/ui/subcategories/data';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { SubcategoryFormContainerComponent } from './subcategory-form-container.component';

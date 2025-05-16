@@ -1,6 +1,6 @@
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzModalRef } from 'ng-zorro-antd/modal';
+import { NZ_MODAL_DATA, NzModalRef } from 'ng-zorro-antd/modal';
 
 import { GuaranteeCollectionService } from '../../services/guarantee-collection.service';
 import { PaymentOrderCollectionService } from '../../services/payment-order-collection.service';
@@ -12,6 +12,7 @@ describe('PaymentOrderDialogContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: PaymentOrderDialogContainerComponent,
     shallow: true,
+    providers: [{ provide: NZ_MODAL_DATA, useValue: { data: [] } }],
     mocks: [
       PaymentOrderCollectionService,
       GuaranteeCollectionService,
