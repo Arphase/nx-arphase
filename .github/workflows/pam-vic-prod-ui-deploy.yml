@@ -30,7 +30,7 @@ jobs:
         run: export NODE_ENV=production && npx nx build pam-vic --prod
 
       - name: Delete current app
-        run: npx ts-node scripts/ui-delete-current
+        run: npx tsx scripts/ui-delete-current
 
       - name: Deploy app
-        run: npx ts-node scripts/ui-deploy
+        run: npx tsx scripts/ui-deploy
