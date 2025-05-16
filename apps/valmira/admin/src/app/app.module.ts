@@ -1,7 +1,7 @@
 import { registerLocaleData } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import es from '@angular/common/locales/es';
-import { ErrorHandler, NgModule, inject, provideAppInitializer } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
@@ -48,7 +48,8 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     StoreDevtoolsModule.instrument({
       name: 'Valmira',
       maxAge: 25,
-    connectInZone: true}),
+      connectInZone: true,
+    }),
     EffectsModule.forRoot([AuthEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     EntityDataModule.forRoot(entityConfig),
@@ -69,10 +70,6 @@ export const reducers: ActionReducerMap<{ auth: AuthState; router: RouterReducer
     },
     { provide: ErrorHandler, useValue: Sentry.createErrorHandler({}) },
     { provide: Sentry.TraceService, deps: [Router] },
-    provideAppInitializer(() => {
-        const initializerFn = (() => () => null)(inject(Sentry.TraceService));
-        return initializerFn();
-      }),
     provideEnvironmentNgxMask(),
   ],
   bootstrap: [AppComponent],

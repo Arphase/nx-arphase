@@ -11,7 +11,16 @@ let connection: DataSource;
 export default defineConfig({
   projectId: 'beh4qc',
   e2e: {
-    ...nxE2EPreset(__dirname),
+    ...nxE2EPreset(__filename, {
+      cypressDir: 'src',
+      webServerCommands: {
+        default: 'npx nx run innovatech-app:serve',
+        production: 'npx nx run innovatech-app:serve-static',
+      },
+      ciWebServerCommand: 'npx nx run innovatech-app:serve-static',
+      ciBaseUrl: 'http://localhost:4200',
+    }),
+    baseUrl: 'http://localhost:4200',
     setupNodeEvents(on) {
       on('task', {
         async connectToDb() {
