@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.2.1](https://github.com/Arphase/nx-arphase/compare/v6.2.0...v6.2.1) (2025-05-20)
+
+
+### Bug Fixes
+
+* **musicr/api:** add home route to avoid beanstalk errors ([3e52405](https://github.com/Arphase/nx-arphase/commit/3e52405c299a6f2ef8033a36e76a77d7374a343c))
+
 ## [6.2.0](https://github.com/Arphase/nx-arphase/compare/v6.1.4...v6.2.0) (2025-05-20)
 
 
