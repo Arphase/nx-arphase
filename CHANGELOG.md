@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.2.0](https://github.com/Arphase/nx-arphase/compare/v6.1.4...v6.2.0) (2025-05-20)
+
+
+### Features
+
+* **musicr/products:** [#302](https://github.com/Arphase/nx-arphase/issues/302) add capability to sort by price and popularity ([299590d](https://github.com/Arphase/nx-arphase/commit/299590d3a2610cf77afd1b78a6234657ff078535))
+* **musicr/store:** [#300](https://github.com/Arphase/nx-arphase/issues/300) add hover to products ([756533f](https://github.com/Arphase/nx-arphase/commit/756533f3db8080a542bedfb8a1dbb227ae81c5d7))
+* **musicr/store:** [#301](https://github.com/Arphase/nx-arphase/issues/301) modify meta titles on each page ([d63a1d6](https://github.com/Arphase/nx-arphase/commit/d63a1d610142b3e46d6f49dae7eb1c61a04673fc))
+
+
+### Bug Fixes
+
+* **musicr/store:** align menus and whatsapp button correctly ([45ded16](https://github.com/Arphase/nx-arphase/commit/45ded163c3943b4dbaabcf1b20aa39127bf8f5b4))
+
 ### [6.1.4](https://github.com/Arphase/nx-arphase/compare/v6.1.3...v6.1.4) (2024-11-14)
 
 ### [6.1.3](https://github.com/Arphase/nx-arphase/compare/v6.1.2...v6.1.3) (2024-11-13)
