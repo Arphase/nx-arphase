@@ -36,7 +36,7 @@ async function run() {
 
           const command = new PutObjectCommand({
             Bucket,
-            Key: `${subdir}/${filename}`,
+            Key: isSubdir ? `${subdir}/${filename}` : filename,
             Body: fileContent,
             ContentType: mimeType,
           });
