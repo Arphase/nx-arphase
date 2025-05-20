@@ -11,6 +11,7 @@ import { ProductsModule } from '@musicr/api/products';
 import { SubcategoriesModule } from '@musicr/api/subcategories';
 import { Module } from '@nestjs/common';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -27,5 +28,6 @@ import { ThrottlerModule } from '@nestjs/throttler';
     ProductsModule,
     SubcategoriesModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}
