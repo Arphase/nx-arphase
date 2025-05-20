@@ -25,7 +25,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NgxMaskDirective } from 'ngx-mask';
 
-import { AdminProductsroutingModule } from './admin-products-routing.module';
+import { AdminProductsRoutingModule } from './admin-products-routing.module';
 import { AdditionalOptionsFormComponent } from './components/additional-options-form/additional-options-form.component';
 import { PriceOptionFormComponent } from './components/price-option-form/price-option-form.component';
 import { PriceOptionsFormComponent } from './components/price-options-form/price-options-form.component';
@@ -38,7 +38,7 @@ import { ProductListContainerComponent } from './containers/product-list-contain
 
 @NgModule({
   imports: [
-    AdminProductsroutingModule,
+    AdminProductsRoutingModule,
     ApsAutoErrorModule,
     ApsEmptyModule,
     ApsFeatureLayoutModule,

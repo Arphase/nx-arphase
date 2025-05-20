@@ -12,7 +12,13 @@ describe('ProductsCatalogContainerComponent', () => {
     componentProviders: [
       {
         provide: ProductsCatalogService,
-        useValue: { products: signal(null), productsInfo: signal(null), title: signal(null), loading: signal(null) },
+        useValue: {
+          products: signal(null),
+          productsInfo: signal(null),
+          title: signal(null),
+          loading: signal(null),
+          loadingSort: signal(null),
+        },
       },
     ],
     componentMocks: [TitleCasePipe],

@@ -7,10 +7,9 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { filterNil } from '@arphase/ui/utils';
-import { ApsFormComponent, ApsValidators, setFormArrayValue } from '@arphase/ui/forms';
-import { getBase64 } from '@arphase/ui/utils';
+import { FormControl, FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { ApsFormComponent, ApsValidators, ControlsOf, setFormArrayValue } from '@arphase/ui/forms';
+import { filterNil, getBase64 } from '@arphase/ui/utils';
 import { Product } from '@musicr/domain';
 import { MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -19,15 +18,16 @@ import { distinctUntilChanged } from 'rxjs/operators';
 
 import { mapPhotoFileArray } from '../../functions/map-file-photo-array';
 
-export function createProductForm(): UntypedFormGroup {
+export function createProductForm(): FormGroup<ControlsOf<Partial<Product & { categoryId: number }>>> {
   return new UntypedFormGroup({
-    id: new UntypedFormControl(null),
-    name: new UntypedFormControl(null, ApsValidators.required),
-    price: new UntypedFormControl(null, ApsValidators.required),
-    description: new UntypedFormControl(null),
-    disclaimer: new UntypedFormControl(null),
-    categoryId: new UntypedFormControl(null, ApsValidators.required),
-    subcategoryId: new UntypedFormControl(null, ApsValidators.required),
+    id: new FormControl<number>(null),
+    name: new FormControl<string>(null, ApsValidators.required),
+    price: new FormControl<number>(null, ApsValidators.required),
+    description: new FormControl<string>(null),
+    disclaimer: new FormControl<string>(null),
+    categoryId: new FormControl<number>(null, ApsValidators.required),
+    subcategoryId: new FormControl<number>(null, ApsValidators.required),
+    popularity: new FormControl<number>(0),
     productComponents: new UntypedFormArray([]),
     additionalOptions: new UntypedFormArray([]),
     priceOptions: new UntypedFormArray([]),
@@ -36,11 +36,11 @@ export function createProductForm(): UntypedFormGroup {
 
 @UntilDestroy()
 @Component({
-    selector: 'mrl-product-form',
-    templateUrl: './product-form.component.html',
-    styleUrls: ['./product-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-product-form',
+  templateUrl: './product-form.component.html',
+  styleUrls: ['./product-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ProductFormComponent extends ApsFormComponent<Product> implements OnChanges {
   fileList: NzUploadFile[] = [];
@@ -87,6 +87,7 @@ export class ProductFormComponent extends ApsFormComponent<Product> implements O
         ...this.item,
         categoryId: this.item.subcategory.categoryId,
         subcategoryId: this.item.subcategory.id,
+        popularity: this.item.popularity ?? 0,
       });
       this.fileList = this.item.photos.map(photo => ({
         uid: String(photo.id),

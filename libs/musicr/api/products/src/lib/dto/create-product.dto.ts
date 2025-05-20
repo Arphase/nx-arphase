@@ -17,6 +17,10 @@ export class CreateProductDto {
   @IsString()
   description?: string;
 
+  @IsOptional()
+  @IsNumber()
+  popularity: number;
+
   @IsNumber()
   subcategoryId: number;
 

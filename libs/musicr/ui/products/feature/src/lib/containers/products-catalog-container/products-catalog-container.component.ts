@@ -22,6 +22,7 @@ export class ProductsCatalogContainerComponent {
   products = this.productsCatalogService.products;
   pageTitle = this.productsCatalogService.title;
   loading = this.productsCatalogService.loading;
+  loadingSort = this.productsCatalogService.loadingSort;
 
   constructor() {
     effect(() => {
@@ -29,5 +30,9 @@ export class ProductsCatalogContainerComponent {
         this.title.setTitle(`Music Revolution - ${this.titleCasePipe.transform(this.pageTitle())}`);
       }
     });
+  }
+
+  sort(sortOption: string): void {
+    this.productsCatalogService.sort(sortOption);
   }
 }

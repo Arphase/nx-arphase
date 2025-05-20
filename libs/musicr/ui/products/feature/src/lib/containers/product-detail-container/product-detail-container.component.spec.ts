@@ -29,6 +29,7 @@ describe('ProductDetailContainerComponent', () => {
   });
 
   beforeEach(() => (spectator = createComponent()));
+
   it('should create', () => {
     expect(spectator.component).toBeTruthy();
   });

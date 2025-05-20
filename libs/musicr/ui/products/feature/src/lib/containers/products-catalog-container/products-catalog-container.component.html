@@ -1,3 +1,5 @@
 <mrl-products-catalog [products]="products()"
                       [title]="pageTitle()"
-                      [loading]="loading()" />
+                      [loading]="loading()"
+                      [loadingSort]="loadingSort()"
+                      (sort)="sort($event)" />

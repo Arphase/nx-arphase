@@ -15,6 +15,7 @@ export interface Product {
   description?: string;
   productComponents?: string[];
   position?: number;
+  popularity?: number;
   photos?: Photo[];
   subcategoryId?: number;
   subcategory?: Subcategory;

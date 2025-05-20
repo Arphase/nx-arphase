@@ -92,7 +92,21 @@
       </div>
     </div>
   </div>
+
   <div class="space pb-5">
+    <div nz-row
+         class="mb-5">
+      <div nz-col
+           nzSpan="24"
+           class="flex items-end justify-end">
+        <nz-select class="text-left w-48"
+                   nzPlaceHolder="Ordenar:"
+                   [nzLoading]="loadingSort()"
+                   [(ngModel)]="sortingOption"
+                   (ngModelChange)="sort.emit($event)"
+                   [nzOptions]="sortOptions" />
+      </div>
+    </div>
     <div nz-row
          nzGutter="16">
       @for (product of products(); track product.id) {
