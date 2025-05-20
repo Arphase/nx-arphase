@@ -1,63 +1,59 @@
-import { config, S3 } from 'aws-sdk';
+import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import fs from 'fs';
 import mime from 'mime-types';
 import path from 'path';
 
-function unixifyPath(filepath: string) {
+function unifyPath(filepath: string) {
   return process.platform === 'win32' ? filepath.replace(/\\/g, '/') : filepath;
 }
 
 async function run() {
-  config.update({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    region: process.env.AWS_REGION,
+  const client = new S3Client({
+    region: String(process.env.AWS_REGION),
+    credentials: {
+      accessKeyId: String(process.env.AWS_ACCESS_KEY_ID),
+      secretAccessKey: String(process.env.AWS_SECRET_ACCESS_KEY),
+    },
   });
 
-  const s3 = new S3();
   const Bucket = String(process.env.AWS_BUCKET_NAME);
 
   const distFolderPath = path.join(__dirname, String(process.env.DIST_APP_DIR));
 
-  function walk(rootdir: string, callback: any, subdir: string) {
+  function walk(rootDir: string, callback: any, subdir: string) {
     const isSubdir = subdir ? true : false;
-    const abspath = subdir ? path.join(rootdir, subdir) : rootdir;
-
-    fs.readdirSync(abspath).forEach(filename => {
-      const filepath = path.join(abspath, filename);
+    const absPath = subdir ? path.join(rootDir, subdir) : rootDir;
+    fs.readdirSync(absPath).forEach(filename => {
+      const filepath = path.join(absPath, filename);
       if (fs.statSync(filepath).isDirectory()) {
-        walk(rootdir, callback, unixifyPath(path.join(subdir || '', filename || '')));
+        walk(rootDir, callback, unifyPath(path.join(subdir || '', filename || '')));
       } else {
-        fs.readFile(filepath, (error, fileContent) => {
+        fs.readFile(filepath, async (error, fileContent) => {
           if (error) {
             throw error;
           }
           const mimeType = String(mime.lookup(filepath));
 
-          const s3Obj = {
+          const command = new PutObjectCommand({
             Bucket: isSubdir ? `${Bucket}/${subdir}` : Bucket,
             Key: filename,
             Body: fileContent,
             ContentType: mimeType,
-          };
-
-          s3.putObject(s3Obj, (err, data) => {
-            err
-              ? console.log(`File '${filepath}' wasn't uploaded'`)
-              : console.log(`Successfully uploaded '${filepath}' with MIME type '${mimeType}'`);
           });
+
+          try {
+            await client.send(command);
+            console.log(`Successfully uploaded '${filepath}' with MIME type '${mimeType}'`);
+          } catch (err) {
+            console.log(`File '${filepath}' wasn't uploaded'`);
+            throw err;
+          }
         });
       }
     });
   }
 
-  walk(
-    distFolderPath,
-    (filepath: string, rootdir: string, subdir: string, filename: string) => {
-      console.log('Filepath', filepath);
-    },
-    ''
-  );
+  walk(distFolderPath, (filepath: string) => console.log('Filepath', filepath), '');
 }
 
 run();

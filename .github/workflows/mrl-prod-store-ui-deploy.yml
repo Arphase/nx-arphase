@@ -7,6 +7,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: ${{ secrets.AWS_REGION }}
   AWS_BUCKET_NAME: ${{ secrets.MRL_PROD_STORE_AWS_BUCKET_NAME }}
+  AWS_DISTRIBUTION_ID: ${{ secrets.MRL_PROD_AWS_DISTRIBUTION_ID }}
   DIST_APP_DIR: ${{ secrets.MRL_DIST_STORE_APP_DIR }}
 
 on: workflow_dispatch
@@ -34,3 +35,6 @@ jobs:
 
       - name: Deploy app
         run: npx tsx scripts/ui-deploy
+
+      - name: Run invalidation
+        run: npx tsx scripts/ui-run-invalidation

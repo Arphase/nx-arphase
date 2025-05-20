@@ -1,26 +1,34 @@
-import { config, S3 } from 'aws-sdk';
+import { DeleteObjectCommand, ListObjectsCommand, S3Client } from '@aws-sdk/client-s3';
 
 async function run() {
-  config.update({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    region: process.env.AWS_REGION,
+  const client = new S3Client({
+    region: String(process.env.AWS_REGION),
+    credentials: {
+      accessKeyId: String(process.env.AWS_ACCESS_KEY_ID),
+      secretAccessKey: String(process.env.AWS_SECRET_ACCESS_KEY),
+    },
   });
 
-  const s3 = new S3();
   const Bucket = String(process.env.AWS_BUCKET_NAME);
 
-  s3.listObjects({ Bucket }, (err, data) => {
-    if (err) {
-      console.log('error listing bucket objects ' + err);
-      return;
-    }
-    (data?.Contents || []).forEach(item => {
-      s3.deleteObject({ Bucket, Key: String(item?.Key) }, (err, data) =>
-        err ? console.log(`${item?.Key} wasn't deleted`) : console.log(`${item?.Key} deleted`)
-      );
+  const listObjectsCommand = new ListObjectsCommand({ Bucket });
+
+  try {
+    const data = await client.send(listObjectsCommand);
+    (data?.Contents || []).forEach(async item => {
+      try {
+        const deleteObjectCommand = new DeleteObjectCommand({ Bucket, Key: String(item?.Key) });
+        await client.send(deleteObjectCommand);
+        console.log(`${item?.Key} deleted`);
+      } catch (err) {
+        console.log(`${item?.Key} wasn't deleted`);
+        throw err;
+      }
     });
-  });
+  } catch (err) {
+    console.log('error listing bucket objects ' + err);
+    throw err;
+  }
 }
 
 run();
