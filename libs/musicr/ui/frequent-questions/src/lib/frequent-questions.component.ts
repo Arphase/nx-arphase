@@ -1,18 +1,20 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 interface FrequentQuestion {
   question: string;
   answer: string[];
 }
 @Component({
-    selector: 'mrl-frequent-questions',
-    templateUrl: './frequent-questions.component.html',
-    styleUrls: ['./frequent-questions.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-frequent-questions',
+  templateUrl: './frequent-questions.component.html',
+  styleUrls: ['./frequent-questions.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class FrequentQuestionsComponent {
-  pageTilte = 'frequentquestions';
+  private readonly title = inject(Title);
+
   FrequentQuestions: FrequentQuestion[] = [
     {
       question: '¿Qué pasa después de que hago un pedido?',
@@ -81,4 +83,8 @@ export class FrequentQuestionsComponent {
       ],
     },
   ];
+
+  constructor() {
+    this.title.setTitle('Music Revolution - Preguntas Frecuentes');
+  }
 }

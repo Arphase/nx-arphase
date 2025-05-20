@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { CoreService } from '@musicr/ui/core';
 
 @Component({
-    selector: 'mrl-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.less'],
-    standalone: false
+  selector: 'mrl-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.less'],
+  standalone: false,
 })
 export class HomeComponent {
+  private readonly title = inject(Title);
+  private readonly coreService = inject(CoreService);
   categories$ = this.coreService.categories$;
   reviews = [
     {
@@ -47,5 +50,7 @@ export class HomeComponent {
     },
   ];
 
-  constructor(private coreService: CoreService) {}
+  constructor() {
+    this.title.setTitle('Music Revolution');
+  }
 }

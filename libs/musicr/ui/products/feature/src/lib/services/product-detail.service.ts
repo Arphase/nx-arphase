@@ -1,38 +1,25 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import { Product } from '@musicr/domain';
-import { BehaviorSubject } from 'rxjs';
-import { filter, finalize, map, take } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class ProductDetailService {
-  productSubject = new BehaviorSubject<Product>(null);
-  product$ = this.productSubject.asObservable();
-  priceOptions$ = this.product$.pipe(
-    map(product => product?.priceOptions),
-    filter(value => !!value),
-    map(options =>
-      options.sort((a, b) => a.price - b.price).map(priceOption => ({ label: priceOption.name, value: priceOption.id }))
-    )
+  loading = signal<boolean>(false);
+  product = signal<Product>(null);
+  priceOptions = computed(() =>
+    (this.product()?.priceOptions ?? [])
+      .sort((a, b) => a.price - b.price)
+      .map(priceOption => ({ label: priceOption.name, value: priceOption.id })),
   );
-  additionalOptions$ = this.product$.pipe(
-    map(product => product?.additionalOptions),
-    filter(value => !!value),
-    map(options => options.sort((a, b) => a.price - b.price))
-  );
-  loadingSubject = new BehaviorSubject<boolean>(false);
-  loading$ = this.loadingSubject.asObservable();
+  additionalOptions = computed(() => (this.product()?.additionalOptions ?? []).sort((a, b) => a.price - b.price));
 
   constructor(private http: HttpClient) {}
 
-  getProduct(id: number): void {
-    this.loadingSubject.next(true);
-    this.http
-      .get<Product>(`/mrlApi/products/${id}`)
-      .pipe(
-        take(1),
-        finalize(() => this.loadingSubject.next(false))
-      )
-      .subscribe(product => this.productSubject.next(product));
+  async getProduct(id: number): Promise<void> {
+    this.loading.set(true);
+    const product = await firstValueFrom(this.http.get<Product>(`/mrlApi/products/${id}`));
+    this.product.set(product);
+    this.loading.set(false);
   }
 }

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductDetailContainerComponent } from './containers/product-detail-container/product-detail-container.component';
 
 const routes: Routes = [
   {
@@ -19,7 +18,10 @@ const routes: Routes = [
   },
   {
     path: 'product/:id',
-    component: ProductDetailContainerComponent,
+    loadComponent: () =>
+      import('./containers/product-detail-container/product-detail-container.component').then(
+        m => m.ProductDetailContainerComponent,
+      ),
   },
 ];
 @NgModule({

@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { CurrencyPipe, Location } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,23 +9,42 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DeepPartial } from '@arphase/common';
 import { AdditionalOption, OrderProduct, Photo, Product } from '@musicr/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
-import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCarouselComponent, NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzSelectModule, NzSelectOptionInterface } from 'ng-zorro-antd/select';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { filter } from 'rxjs/operators';
 
 export type AdditionalOptionFormValue = AdditionalOption & { selected: boolean };
 
 @UntilDestroy()
 @Component({
-    selector: 'mrl-product-detail',
-    templateUrl: './product-detail.component.html',
-    styleUrls: ['./product-detail.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-product-detail',
+  templateUrl: './product-detail.component.html',
+  styleUrls: ['./product-detail.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    CurrencyPipe,
+    FormsModule,
+    NzButtonModule,
+    NzCarouselModule,
+    NzCheckboxModule,
+    NzGridModule,
+    NzIconModule,
+    NzPageHeaderModule,
+    NzSelectModule,
+    NzSkeletonModule,
+    ReactiveFormsModule,
+  ],
+  standalone: true,
 })
 export class ProductDetailComponent implements OnChanges {
   @ViewChild(NzCarouselComponent) photoCarousel: NzCarouselComponent;

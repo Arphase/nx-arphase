@@ -1,25 +1,21 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApsCollectionResponse, ApsCollectionResponseInfo, SortDirection } from '@arphase/common';
 import { GtagService } from '@arphase/ui/gtag';
 import { Category, Product, Subcategory } from '@musicr/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { QueryParams } from '@ngrx/data';
-import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
+import { forkJoin, Observable, of } from 'rxjs';
 import { catchError, filter, switchMap } from 'rxjs/operators';
 
 @UntilDestroy()
 @Injectable()
 export class ProductsCatalogService {
-  productsSubject = new BehaviorSubject<Product[]>([]);
-  products$ = this.productsSubject.asObservable();
-  productsInfoSubject = new BehaviorSubject<ApsCollectionResponseInfo>(null);
-  productsInfo$ = this.productsInfoSubject.asObservable();
-  titleSubject = new BehaviorSubject<string>(null);
-  title$ = this.titleSubject.asObservable();
-  loadingSubject = new BehaviorSubject<boolean>(false);
-  loading$ = this.loadingSubject.asObservable();
+  products = signal<Product[]>([]);
+  productsInfo = signal<ApsCollectionResponseInfo>(null);
+  title = signal<string>('');
+  loading = signal<boolean>(false);
 
   get isSubCategory(): boolean {
     return this.router.url.includes('sub');
@@ -33,7 +29,7 @@ export class ProductsCatalogService {
     private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private gtagService: GtagService
+    private gtagService: GtagService,
   ) {
     this.listenToRouterEvents();
   }
@@ -43,25 +39,25 @@ export class ProductsCatalogService {
       .pipe(
         filter(params => params.id),
         switchMap(({ id }) => {
-          this.productsInfoSubject.next(null);
-          this.loadingSubject.next(true);
+          this.productsInfo.set(null);
+          this.loading.set(true);
           const category = this.getCategory(id);
           const productsResponse = this.getProducts(id);
           return forkJoin([category, productsResponse]);
         }),
         untilDestroyed(this),
         catchError(() => {
-          this.loadingSubject.next(false);
+          this.loading.set(false);
           return forkJoin([of({}), of({ results: [], info: null })]);
-        })
+        }),
       )
       .subscribe(([currentCategory, { results, info }]) => {
-        this.loadingSubject.next(false);
+        this.loading.set(false);
         const { category, name } = currentCategory as Subcategory;
         const location_id = category ? category.name : name;
-        this.titleSubject.next(name);
-        this.productsSubject.next(results);
-        this.productsInfoSubject.next(info);
+        this.title.set(name);
+        this.products.set(results);
+        this.productsInfo.set(info);
         this.gtagService.event('page_view', {
           send_to: 'AW-697727149',
           value: 1,

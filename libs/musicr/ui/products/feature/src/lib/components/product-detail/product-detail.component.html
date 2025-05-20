@@ -4,40 +4,40 @@
     <div nz-col
          nzXs="24"
          nzLg="12">
+      @if (loading) {
       <div class="product-detail-skeleton">
-        <nz-skeleton-element *ngIf="loading; else photos"
-                             nzType="image"
-                             [nzActive]="true"></nz-skeleton-element>
+        <nz-skeleton-element nzType="image"
+                             [nzActive]="true" />
       </div>
-      <ng-template #photos>
-        <nz-carousel nzEffect="fade">
-          @for (photo of displayedPhotos; track photo.url) {
-          <div nz-carousel-content
-               class="carousel-content">
-            <button nz-button
-                    nzType="text"
-                    class="carousel-button carousel-button__previous"
-                    (click)="previous()">
-              <i nz-icon
-                 nzType="arrow-left"
-                 nzTheme="outline"></i>
-            </button>
-            <img class="carousel-img rounded"
-                 [src]="photo.url"
-                 [alt]="product?.name"
-                 loading="lazy" />
-            <button nz-button
-                    nzType="text"
-                    class="carousel-button carousel-button__next"
-                    (click)="next()">
-              <i nz-icon
-                 nzType="arrow-right"
-                 nzTheme="outline"></i>
-            </button>
-          </div>
-          }
-        </nz-carousel>
-      </ng-template>
+      } @else {
+      <nz-carousel nzEffect="fade">
+        @for (photo of displayedPhotos; track photo.url) {
+        <div nz-carousel-content
+             class="carousel-content">
+          <button nz-button
+                  nzType="text"
+                  class="carousel-button carousel-button__previous"
+                  (click)="previous()">
+            <i nz-icon
+               nzType="arrow-left"
+               nzTheme="outline"></i>
+          </button>
+          <img class="carousel-img rounded"
+               [src]="photo.url"
+               [alt]="product?.name"
+               loading="lazy" />
+          <button nz-button
+                  nzType="text"
+                  class="carousel-button carousel-button__next"
+                  (click)="next()">
+            <i nz-icon
+               nzType="arrow-right"
+               nzTheme="outline"></i>
+          </button>
+        </div>
+        }
+      </nz-carousel>
+      }
 
       <button nz-button
               class="img-icon"
@@ -52,84 +52,89 @@
          nz-col
          nzXs="24"
          nzLg="12">
-      <nz-page-header class="site-page-header"
-                      (nzBack)="onBack()"
-                      nzBackIcon></nz-page-header>
-      <nz-skeleton *ngIf="loading; else productTemplate"
-                   [nzActive]="true"
-                   class="w-full"></nz-skeleton>
-      <ng-template #productTemplate>
-        <h1 class="md:mt-12 mt-4 md:text-5xl text-2xl">{{ product?.name }}</h1>
-        <div *ngIf="product?.disclaimer"
-             nz-row
-             class="disclaimer">
+      <nz-page-header nzBackIcon
+                      class="site-page-header"
+                      (nzBack)="onBack()" />
+      @if (loading) {
+      <nz-skeleton [nzActive]="true"
+                   class="w-full" />
+      } @else {
+      <h1 class="md:mt-12 mt-4 md:text-5xl text-2xl">{{ product?.name }}</h1>
+      @if (product?.disclaimer) {
+      <div nz-row
+           class="disclaimer">
+        <div nz-col
+             nzSpan="24"
+             class="flex items-center">
+          <i nz-icon
+             nzType="check-circle"
+             nzTheme="outline"
+             class="mr-2 mt-1"></i>
+          <span>{{ product?.disclaimer }}</span>
+        </div>
+      </div>
+      }
+
+      @if (product?.description) {
+      <div nz-row>
+        <div nz-col
+             nzSpan="24"
+             class="flex items-center mb-5">
+          <span>{{ product?.description }}</span>
+        </div>
+      </div>
+      }
+
+      @if (product?.productComponents?.length) {
+      <h2 class="text-2xl font-bold border-b pb-4 border-black mb-2">Incluye</h2>
+      @for (productComponent of product?.productComponents; track productComponent) {
+      <div class="border-b w-full py-1">
+        <span class="text-base"> {{ productComponent }} </span>
+      </div>
+      }
+      }
+
+      <form [formGroup]="form"
+            class="mt-9">
+        @if (priceOptions?.length) {
+        <div nz-row>
           <div nz-col
-               nzSpan="24"
-               class="flex items-center">
-            <i nz-icon
-               nzType="check-circle"
-               nzTheme="outline"
-               class="mr-2 mt-1"></i>
-            <span>{{ product?.disclaimer }}</span>
+               nzXs="24"
+               nzLg="12">
+            <nz-select class="w-full"
+                       formControlName="priceOptionId"
+                       [nzOptions]="priceOptions"></nz-select>
           </div>
         </div>
+        }
 
-        <div *ngIf="product?.description"
-             nz-row>
-          <div nz-col
-               nzSpan="24"
-               class="flex items-center mb-5">
-            <span>{{ product?.description }}</span>
-          </div>
+        @if (additionalOptions?.length) {
+        <div nz-row
+             class="mt-4">
+          <h3 class="mb-2">Productos adicionales</h3>
+          @for (control of additionalOptionsArray.controls; track control.value.name) {
+          <form [formGroup]="control"
+                nz-col
+                nzSpan="24"
+                class="my-2">
+            <label nz-checkbox
+                   formControlName="selected">
+              <span class="mr-2">{{ control.value.name }}</span>
+              <span class="font-bold">{{ control.value.price | currency }} MXN</span>
+            </label>
+          </form>
+          }
         </div>
+        }
+      </form>
 
-        <ng-container *ngIf="product?.productComponents?.length">
-          <h2 class="text-2xl font-bold border-b pb-4 border-black mb-2">Incluye</h2>
-          <div *ngFor="let productComponent of product?.productComponents"
-               class="border-b w-full py-1">
-            <span class="text-base"> {{ productComponent }} </span>
-          </div>
-        </ng-container>
+      <h2 class="text-2xl font-extrabold mt-10 mb-12">{{ (productPrice + additionalProductsPrice) | currency }} MXN
+      </h2>
 
-
-        <form [formGroup]="form"
-              class="mt-9">
-          <div *ngIf="priceOptions?.length"
-               nz-row>
-            <div nz-col
-                 nzXs="24"
-                 nzLg="12">
-              <nz-select class="w-full"
-                         formControlName="priceOptionId"
-                         [nzOptions]="priceOptions"></nz-select>
-            </div>
-          </div>
-
-          <div *ngIf="additionalOptions?.length"
-               nz-row
-               class="mt-4">
-            <h3 class="mb-2">Productos adicionales</h3>
-            <form *ngFor="let control of additionalOptionsArray.controls"
-                  [formGroup]="control"
-                  nz-col
-                  nzSpan="24"
-                  class="my-2">
-              <label nz-checkbox
-                     formControlName="selected">
-                <span class="mr-2">{{ control.value.name }}</span>
-                <span class="font-bold">{{ control.value.price | currency }} MXN</span>
-              </label>
-            </form>
-          </div>
-        </form>
-
-        <h2 class="text-2xl font-extrabold mt-10 mb-12">{{ (productPrice + additionalProductsPrice) | currency }} MXN
-        </h2>
-
-        <button type="button"
-                class="btn-black w-full"
-                (click)="addItem()">Agregar al carrito</button>
-      </ng-template>
+      <button type="button"
+              class="btn-black w-full"
+              (click)="addItem()">Agregar al carrito</button>
+      }
     </div>
   </div>
 </div>
