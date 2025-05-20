@@ -10,7 +10,7 @@ async function run() {
   });
 
   const params = {
-    DistributionId: String(process.env.MUSICR_DISTRIBUTION_ID),
+    DistributionId: String(process.env.AWS_DISTRIBUTION_ID),
     InvalidationBatch: {
       CallerReference: String(Date.now()),
       Paths: {
