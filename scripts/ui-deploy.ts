@@ -35,8 +35,8 @@ async function run() {
           const mimeType = String(mime.lookup(filepath));
 
           const command = new PutObjectCommand({
-            Bucket: isSubdir ? `${Bucket}/${subdir}` : Bucket,
-            Key: filename,
+            Bucket,
+            Key: `${subdir}/${filename}`,
             Body: fileContent,
             ContentType: mimeType,
           });
