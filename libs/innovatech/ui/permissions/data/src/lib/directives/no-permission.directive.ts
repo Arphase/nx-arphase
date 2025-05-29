@@ -15,21 +15,21 @@ import { PermissionService, REQUIRED_ROLES } from '../services/permission.servic
 import { BasePermissionDirective } from './base-permission.directive';
 
 @Directive({
-    selector: '[ivtNoPermission]',
-    standalone: false
+  selector: '[ivtNoPermission]',
+  standalone: false,
 })
 export class NoPermissionDirective extends BasePermissionDirective implements OnChanges {
   @Input() ivtNoPermission: UserRoles[] = [];
   hasPermission$ = this.requiredRoles$.pipe(
     switchMap(requiredRoles => this.permissionService.hasPermission(requiredRoles)),
-    map(hasPermission => !hasPermission)
+    map(hasPermission => !hasPermission),
   );
 
   constructor(
     protected templateRef: TemplateRef<null>,
     protected viewContainer: ViewContainerRef,
     protected permissionService: PermissionService,
-    @Optional() @Inject(REQUIRED_ROLES) protected requiredRoles: UserRoles[]
+    @Optional() @Inject(REQUIRED_ROLES) protected requiredRoles: UserRoles[],
   ) {
     super(templateRef, viewContainer, permissionService, requiredRoles);
   }

@@ -6,7 +6,10 @@ import { AdditionalProduct } from '@valmira/domain';
 
 @Injectable({ providedIn: 'root' })
 export class AdditionalProductDataService extends ApsDataService<AdditionalProduct> {
-  constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
+  constructor(
+    protected http: HttpClient,
+    protected httpUrlGenerator: HttpUrlGenerator,
+  ) {
     super('AdditionalProduct', http, httpUrlGenerator);
     this.entityUrl = `/vmaApi/additional-products/`;
     this.entitiesUrl = `/vmaApi/additional-products`;

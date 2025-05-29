@@ -7,5 +7,5 @@ export interface MusicRevolutionConfiguration {
 }
 
 export const MUSIC_REVOLUTION_CONFIGURATION = new InjectionToken<MusicRevolutionConfiguration>(
-  'Music Revolution configuration'
+  'Music Revolution configuration',
 );

@@ -16,11 +16,11 @@ import { debounceTime } from 'rxjs/operators';
 
 @UntilDestroy()
 @Component({
-    selector: 'vma-personal-data',
-    templateUrl: './personal-data.component.html',
-    styleUrls: ['./personal-data.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-personal-data',
+  templateUrl: './personal-data.component.html',
+  styleUrls: ['./personal-data.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PersonalDataComponent extends ApsFormComponent<Reservation> implements OnInit, OnChanges {
   @Input() customer: Customer;

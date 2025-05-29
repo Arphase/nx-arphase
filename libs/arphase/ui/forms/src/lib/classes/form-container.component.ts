@@ -14,9 +14,9 @@ import { ApsFormComponent } from './form.component';
 
 @UntilDestroy()
 @Component({
-    selector: 'aps-form-container',
-    template: '',
-    standalone: false
+  selector: 'aps-form-container',
+  template: '',
+  standalone: false,
 })
 export class ApsFormContainerComponent<T> implements ComponentCanDeactivate {
   @ViewChild('form', { static: false }) formComponent: ApsFormComponent<T, T>;
@@ -26,7 +26,7 @@ export class ApsFormContainerComponent<T> implements ComponentCanDeactivate {
   currentItem$ = this.entityCollectionService.currentItem$ || of();
   showSuccess$ = (this.entityCollectionService.entityActions$ || of()).pipe(
     ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS, EntityOp.SAVE_UPDATE_ONE_SUCCESS),
-    mapTo(true)
+    mapTo(true),
   );
   successUrl: string;
   createSuccessMessage: string;
@@ -36,14 +36,14 @@ export class ApsFormContainerComponent<T> implements ComponentCanDeactivate {
     @Optional() protected entityCollectionService: ApsCollectionService<T>,
     @Optional() protected router?: Router,
     @Optional() protected messageService?: NzMessageService,
-    @Optional() protected modalRef?: NzModalRef
+    @Optional() protected modalRef?: NzModalRef,
   ) {
     if (this.entityCollectionService.entityActions$) {
       this.entityCollectionService.entityActions$
         .pipe(
           ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS, EntityOp.SAVE_UPDATE_ONE_SUCCESS),
           filter(() => !!this.successUrl && !!this.router),
-          untilDestroyed(this)
+          untilDestroyed(this),
         )
         .subscribe(() => this.router.navigateByUrl(this.successUrl));
 
@@ -51,7 +51,7 @@ export class ApsFormContainerComponent<T> implements ComponentCanDeactivate {
         .pipe(
           ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS, EntityOp.SAVE_UPDATE_ONE_SUCCESS),
           filter(() => !!this.modalRef),
-          untilDestroyed(this)
+          untilDestroyed(this),
         )
         .subscribe(() => this.modalRef.close());
 
@@ -59,7 +59,7 @@ export class ApsFormContainerComponent<T> implements ComponentCanDeactivate {
         .pipe(
           ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS),
           filter(() => !!this.createSuccessMessage && !!this.messageService),
-          untilDestroyed(this)
+          untilDestroyed(this),
         )
         .subscribe(() => this.messageService.success(this.createSuccessMessage));
 
@@ -67,7 +67,7 @@ export class ApsFormContainerComponent<T> implements ComponentCanDeactivate {
         .pipe(
           ofEntityOp(EntityOp.SAVE_UPDATE_ONE_SUCCESS),
           filter(() => !!this.updateSuccessMessage && !!this.messageService),
-          untilDestroyed(this)
+          untilDestroyed(this),
         )
         .subscribe(() => this.messageService.success(this.updateSuccessMessage));
     }
@@ -76,7 +76,7 @@ export class ApsFormContainerComponent<T> implements ComponentCanDeactivate {
       this.entityCollectionService.loadingModify$
         .pipe(
           filter(() => !!this.modalRef),
-          untilDestroyed(this)
+          untilDestroyed(this),
         )
         .subscribe(loading => this.modalRef.updateConfig({ nzOkLoading: loading }));
     }

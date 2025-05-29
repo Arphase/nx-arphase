@@ -20,7 +20,7 @@ import { UpdateCategoryDto } from '../dto/update-category.dto';
 export class CategoriesService {
   constructor(
     @InjectRepository(CategoryEntity) private categoryRepository: Repository<CategoryEntity>,
-    private dataSource: DataSource
+    private dataSource: DataSource,
   ) {}
 
   async getCategories(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Category>> {
@@ -85,7 +85,7 @@ export class CategoriesService {
         orderCategoriesDto.categories.map(async category => {
           const categoryEntity = this.categoryRepository.create(category);
           await queryRunner.manager.save(categoryEntity);
-        })
+        }),
       );
       await queryRunner.commitTransaction();
     } catch (e) {

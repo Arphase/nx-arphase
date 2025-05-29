@@ -14,11 +14,11 @@ import { NzIconService } from 'ng-zorro-antd/icon';
 import { debounceTime, filter } from 'rxjs/operators';
 
 @Component({
-    selector: 'mrl-store-wrapper',
-    templateUrl: './store-wrapper.component.html',
-    styleUrls: ['./store-wrapper.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-store-wrapper',
+  templateUrl: './store-wrapper.component.html',
+  styleUrls: ['./store-wrapper.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class StoreWrapperComponent implements AfterViewInit {
   categories$ = this.coreService.categories$;
@@ -28,7 +28,7 @@ export class StoreWrapperComponent implements AfterViewInit {
     private router: Router,
     private cdr: ChangeDetectorRef,
     private nzIconService: NzIconService,
-    private coreService: CoreService
+    private coreService: CoreService,
   ) {
     this.nzIconService.changeAssetsSource('https://arphase-icons.s3.amazonaws.com');
   }
@@ -43,7 +43,7 @@ export class StoreWrapperComponent implements AfterViewInit {
       this.router.events
         .pipe(
           filter(event => event instanceof NavigationEnd),
-          debounceTime(500)
+          debounceTime(500),
         )
         .subscribe(() => {
           window.scrollTo(0, 0);

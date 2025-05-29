@@ -6,11 +6,11 @@ import { Group } from '@innovatech/common/domain';
 import { patchGroupForm } from '../../functions/group-form.functions';
 
 @Component({
-    selector: 'ivt-group-form',
-    templateUrl: './group-form.component.html',
-    styleUrls: ['./group-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-group-form',
+  templateUrl: './group-form.component.html',
+  styleUrls: ['./group-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class GroupFormComponent extends ApsFormComponent<Group, Group> implements OnChanges {
   get companiesFormArray(): UntypedFormArray {

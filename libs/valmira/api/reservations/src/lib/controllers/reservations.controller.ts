@@ -46,7 +46,7 @@ export class ReservationsController {
 
   @Post('payment/intent')
   async createPaymentIntent(
-    @Body() createPaymentIntentDto: CreatePaymentIntentDto
+    @Body() createPaymentIntentDto: CreatePaymentIntentDto,
   ): Promise<{ key: string; reservation: Reservation }> {
     return this.reservationsService.createPaymentIntent(createPaymentIntentDto);
   }

@@ -7,17 +7,21 @@ import { Store } from '@ngrx/store';
 import { mapTo } from 'rxjs/operators';
 
 @Component({
-    selector: 'mrl-reset-password-form-container',
-    templateUrl: './reset-password-form-container.component.html',
-    styleUrls: ['./reset-password-form-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-reset-password-form-container',
+  templateUrl: './reset-password-form-container.component.html',
+  styleUrls: ['./reset-password-form-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ResetPasswordFormContainerComponent {
   emailSent$ = this.actions$.pipe(ofType(fromAuth.actions.sendPasswordEmailSuccess), mapTo(true));
   loading$ = this.loadingService.loading$;
 
-  constructor(private store: Store, private actions$: Actions, private loadingService: LoadingService) {}
+  constructor(
+    private store: Store,
+    private actions$: Actions,
+    private loadingService: LoadingService,
+  ) {}
 
   submit(payload: Partial<User>): void {
     this.store.dispatch(fromAuth.actions.sendPasswordEmail({ payload }));

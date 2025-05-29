@@ -14,12 +14,12 @@ import { UpdateRevisionRequestDto } from '../dto/update-revision-request.dto';
 @Injectable()
 export class RevisionRequestService {
   constructor(
-    @InjectRepository(RevisionRequestEntity) private revisionRequestRepository: Repository<RevisionRequestEntity>
+    @InjectRepository(RevisionRequestEntity) private revisionRequestRepository: Repository<RevisionRequestEntity>,
   ) {}
 
   async getRevisionRequests(
     filterDto: GetRevisionRequestsDto,
-    user: Partial<User>
+    user: Partial<User>,
   ): Promise<ApsCollectionResponse<RevisionRequest>> {
     const { pageSize, pageIndex, text, status } = filterDto;
     const query = this.revisionRequestRepository
@@ -40,7 +40,7 @@ export class RevisionRequestService {
            LOWER(revisionRequest.phone) like :text OR
            LOWER(revisionRequest.email) like :text)
           `,
-        { text: `%${text.toLowerCase()}%` }
+        { text: `%${text.toLowerCase()}%` },
       );
     }
 
@@ -62,7 +62,7 @@ export class RevisionRequestService {
 
   async createRevisionRequest(
     createRevisionRequestDto: CreateRevisionRequestDto,
-    user: Partial<User>
+    user: Partial<User>,
   ): Promise<RevisionRequest> {
     const newRevisionRequest = await this.revisionRequestRepository.create({
       ...createRevisionRequestDto,
@@ -74,7 +74,7 @@ export class RevisionRequestService {
 
   async updateRevisionRequest(
     updateRevisionRequestDto: UpdateRevisionRequestDto,
-    user: Partial<User>
+    user: Partial<User>,
   ): Promise<RevisionRequest> {
     if (user && ![UserRoles.superAdmin, UserRoles.repairman].includes(user.role) && updateRevisionRequestDto.status) {
       throw new UnauthorizedException('Usuario no autorizado para actualizar solicitudes de revisión');

@@ -7,7 +7,10 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PlaceDataService extends ApsDataService<Place> {
-  constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
+  constructor(
+    protected http: HttpClient,
+    protected httpUrlGenerator: HttpUrlGenerator,
+  ) {
     super('Place', http, httpUrlGenerator);
     this.entityUrl = `/vmaApi/places/`;
     this.entitiesUrl = `/vmaApi/places`;

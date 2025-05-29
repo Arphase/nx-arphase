@@ -3,7 +3,7 @@ import { ApsCollectionResponseInfo } from '@arphase/common';
 import { ApsCollectionService, ApsDataService, ApsEntityCollection, buildQueryParams } from '@arphase/ui/data';
 import { filterNil } from '@arphase/ui/utils';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { EntityOp, ofEntityOp, QueryParams } from '@ngrx/data';
+import { ApsQueryParams, EntityOp, ofEntityOp } from '@ngrx/data';
 import { select } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -12,15 +12,15 @@ import { filter, map, take } from 'rxjs/operators';
 
 @UntilDestroy()
 @Component({
-    selector: 'aps-list-container',
-    template: '',
-    standalone: false
+  selector: 'aps-list-container',
+  template: '',
+  standalone: false,
 })
 export class ApsListContainerComponent<T> {
   list$: Observable<T[]>;
   loading$: Observable<boolean>;
   info$: Observable<ApsCollectionResponseInfo>;
-  queryParams: QueryParams;
+  queryParams: ApsQueryParams;
   excelFileName: string;
   excelUrl: string;
   deleteConfirmMessage: string;
@@ -34,7 +34,7 @@ export class ApsListContainerComponent<T> {
     @Optional() protected entityCollectionService?: ApsCollectionService<T>,
     @Optional() protected entityDataService?: ApsDataService<T>,
     @Optional() protected modal?: NzModalService,
-    @Optional() protected messageService?: NzMessageService
+    @Optional() protected messageService?: NzMessageService,
   ) {
     if (
       this.entityCollectionService?.store &&
@@ -49,17 +49,17 @@ export class ApsListContainerComponent<T> {
         .pipe(
           ofEntityOp(EntityOp.SAVE_DELETE_ONE_SUCCESS),
           filter(() => !!this.deleteSuccessMessage && !!this.messageService),
-          untilDestroyed(this)
+          untilDestroyed(this),
         )
         .subscribe(() => this.messageService.success(this.deleteSuccessMessage));
       this.list$ = this.entityCollectionService.entities$;
       this.loading$ = combineLatest([this.entityCollectionService?.loading$, this.ivtLoading$]).pipe(
-        map(([loading1, loading2]) => loading1 || loading2)
+        map(([loading1, loading2]) => loading1 || loading2),
       );
       this.info$ = this.entityCollectionService.store.pipe(
         select(this.entityCollectionService.selectors.selectCollection),
         filterNil(),
-        map((collection: ApsEntityCollection<T>) => collection.info)
+        map((collection: ApsEntityCollection<T>) => collection.info),
       );
     }
 
@@ -69,8 +69,8 @@ export class ApsListContainerComponent<T> {
     }
   }
 
-  filterItems(payload?: QueryParams): void {
-    const queryParams: QueryParams = {
+  filterItems(payload?: ApsQueryParams): void {
+    const queryParams: ApsQueryParams = {
       ...this.queryParams,
       ...payload,
       resetList: String(true),
@@ -78,7 +78,7 @@ export class ApsListContainerComponent<T> {
     this.entityCollectionService.getWithQuery(queryParams);
   }
 
-  exportExcel(queryParams?: QueryParams): void {
+  exportExcel(queryParams?: ApsQueryParams): void {
     const payload = {
       params: buildQueryParams({ ...queryParams, ...this.queryParams }),
       url: this.excelUrl,
@@ -93,7 +93,7 @@ export class ApsListContainerComponent<T> {
       .update(item)
       .pipe(
         take(1),
-        filter(() => !!this.updateSuccessMessage)
+        filter(() => !!this.updateSuccessMessage),
       )
       .subscribe(() => this.messageService.success(this.updateSuccessMessage));
   }

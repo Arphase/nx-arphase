@@ -22,5 +22,4 @@ import { FrequentQuestionsComponent } from './frequent-questions.component';
   declarations: [FrequentQuestionsComponent],
 })
 export class FrequentQuestionsModule {}
-export class NzCollapseCustomComponent{}
-
+export class NzCollapseCustomComponent {}

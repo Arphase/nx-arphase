@@ -17,7 +17,7 @@ const reservationWizardReducer = createReducer(
   on(ReservationWizardActions.getPromocodeByNameSuccess, (state, action) => ({
     ...state,
     promocode: action.promocode,
-  }))
+  })),
 );
 
 export function reducer(state: ReservationWizardState, action: Action) {

@@ -21,7 +21,7 @@ export class SubcategoriesController {
   @Get(':id')
   async getSubCategory(
     @Param('id', ParseIntPipe) id: number,
-    @Query() queryDto: ApsGetItemQueryDto
+    @Query() queryDto: ApsGetItemQueryDto,
   ): Promise<Subcategory> {
     return this.subcategoriesService.getSubCategory(id, queryDto);
   }

@@ -8,11 +8,11 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { take } from 'rxjs/operators';
 
 @Component({
-    selector: 'ivt-vehicle-list-container',
-    templateUrl: './vehicle-list-container.component.html',
-    styleUrls: ['./vehicle-list-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-vehicle-list-container',
+  templateUrl: './vehicle-list-container.component.html',
+  styleUrls: ['./vehicle-list-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class VehicleListContainerComponent extends ApsListContainerComponent<Vehicle> {
   constructor(
@@ -20,7 +20,7 @@ export class VehicleListContainerComponent extends ApsListContainerComponent<Veh
     protected vehicleDataService: VehicleDataService,
     protected modal: NzModalService,
     protected messageService: NzMessageService,
-    private router: Router
+    private router: Router,
   ) {
     super(vehicleCollectionService, vehicleDataService, modal, messageService);
   }
@@ -52,8 +52,8 @@ export class VehicleListContainerComponent extends ApsListContainerComponent<Veh
         this.messageService.success(
           `El vehículo con VIN ${vehicle.vin} ahora está en estatus: ${vehicleStatusLabels[
             VehicleStatus[vehicle.status]
-          ].toLowerCase()}`
-        )
+          ].toLowerCase()}`,
+        ),
       );
   }
 }

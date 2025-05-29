@@ -34,11 +34,11 @@ export function createRevisionForm(): UntypedFormGroup {
 }
 
 @Component({
-    selector: 'ivt-revision-form',
-    templateUrl: './revision-form.component.html',
-    styleUrls: ['./revision-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-revision-form',
+  templateUrl: './revision-form.component.html',
+  styleUrls: ['./revision-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RevisionFormComponent extends ApsFormComponent<Revision> implements OnChanges, AfterViewInit {
   @Input() vehicle: Vehicle;

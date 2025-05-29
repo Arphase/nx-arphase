@@ -15,10 +15,10 @@ export class ReservationWizardEffects {
       mergeMap(({ email }) =>
         this.reservationWizardService.getCustomerByEmail(email).pipe(
           map(customer => ReservationWizardActions.getCustomerByEmailSuccess({ customer })),
-          catchError(() => of(ReservationWizardActions.getCustomerByEmailFailed()))
-        )
-      )
-    )
+          catchError(() => of(ReservationWizardActions.getCustomerByEmailFailed())),
+        ),
+      ),
+    ),
   );
 
   getPromocodeByName$ = createEffect(() =>
@@ -27,10 +27,10 @@ export class ReservationWizardEffects {
       mergeMap(({ name }) =>
         this.reservationWizardService.getPromocodeByName(name).pipe(
           map(promocode => ReservationWizardActions.getPromocodeByNameSuccess({ promocode })),
-          catchError(() => of(ReservationWizardActions.getPromocodeByNameFailed()))
-        )
-      )
-    )
+          catchError(() => of(ReservationWizardActions.getPromocodeByNameFailed())),
+        ),
+      ),
+    ),
   );
 
   getPromocodeByNameSuccess$ = createEffect(() =>
@@ -38,9 +38,9 @@ export class ReservationWizardEffects {
       ofType(ReservationWizardActions.getPromocodeByNameSuccess),
       withLatestFrom(this.reservationCollectionService.currentItem$),
       map(([{ promocode }, reservation]) =>
-        ReservationWizardActions.updateReservation({ reservation: { id: reservation.id, promocodeId: promocode.id } })
-      )
-    )
+        ReservationWizardActions.updateReservation({ reservation: { id: reservation.id, promocodeId: promocode.id } }),
+      ),
+    ),
   );
 
   updateReservation$ = createEffect(() =>
@@ -49,19 +49,19 @@ export class ReservationWizardEffects {
       mergeMap(({ reservation }) =>
         this.reservationWizardService.updateReservation(reservation).pipe(
           map(response => ReservationWizardActions.updateReservationSuccess({ reservation: response })),
-          catchError(() => of(ReservationWizardActions.updateReservationFailed()))
-        )
-      )
-    )
+          catchError(() => of(ReservationWizardActions.updateReservationFailed())),
+        ),
+      ),
+    ),
   );
 
   updateReservationSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(ReservationWizardActions.updateReservationSuccess),
-        map(({ reservation }) => this.reservationCollectionService.updateOneInCache(reservation))
+        map(({ reservation }) => this.reservationCollectionService.updateOneInCache(reservation)),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   createPaymentIntent$ = createEffect(() =>
@@ -70,15 +70,15 @@ export class ReservationWizardEffects {
       mergeMap(({ reservationId }) =>
         this.reservationWizardService.createPaymentIntent(reservationId).pipe(
           map(({ key, reservation }) => ReservationWizardActions.createPaymentIntentSuccess({ key, reservation })),
-          catchError(() => of(ReservationWizardActions.createPaymentIntentFailed()))
-        )
-      )
-    )
+          catchError(() => of(ReservationWizardActions.createPaymentIntentFailed())),
+        ),
+      ),
+    ),
   );
 
   constructor(
     private actions$: Actions,
     private reservationWizardService: ReservationWizardService,
-    private reservationCollectionService: ReservationCollectionService
+    private reservationCollectionService: ReservationCollectionService,
   ) {}
 }

@@ -17,7 +17,7 @@ export class ProductsDataModule {
     additionalOptionDataService: AdditionalOptionDataService,
     photoDataService: PhotoDataService,
     priceOptionDataService: PriceOptionDataService,
-    productDataService: ProductDataService
+    productDataService: ProductDataService,
   ) {
     const services: Record<string, ApsDataService<unknown>> = {
       AdditionalOption: additionalOptionDataService,

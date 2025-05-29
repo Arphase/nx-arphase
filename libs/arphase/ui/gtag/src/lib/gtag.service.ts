@@ -6,7 +6,10 @@ export const GTAG = new InjectionToken<Gtag>('wizdm.gtag.instance');
 
 @Injectable()
 export class GtagService {
-  constructor(@Inject(GTAG) private gtag: Gtag, private zone: NgZone) {}
+  constructor(
+    @Inject(GTAG) private gtag: Gtag,
+    private zone: NgZone,
+  ) {}
 
   /** @see: https://developers.google.com/analytics/devguides/collection/gtagjs/setting-values */
   public set(params: CustomParams): void {
@@ -37,7 +40,7 @@ export class GtagService {
             // Rejects the promise on errors
             reject(e);
           }
-        })
+        }),
     );
   }
 

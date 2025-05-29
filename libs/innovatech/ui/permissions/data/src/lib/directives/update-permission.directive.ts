@@ -6,18 +6,18 @@ import { PermissionService, REQUIRED_ROLES } from '../services/permission.servic
 import { BasePermissionDirective } from './base-permission.directive';
 
 @Directive({
-    selector: '[ivtUpdatePermission]',
-    standalone: false
+  selector: '[ivtUpdatePermission]',
+  standalone: false,
 })
 export class UpdatePermissionDirective extends BasePermissionDirective {
   hasPermission$ = this.requiredRoles$.pipe(
-    switchMap(requiredRoles => this.permissionService.hasDeletePermission(requiredRoles))
+    switchMap(requiredRoles => this.permissionService.hasDeletePermission(requiredRoles)),
   );
   constructor(
     protected templateRef: TemplateRef<null>,
     protected viewContainer: ViewContainerRef,
     protected permissionService: PermissionService,
-    @Optional() @Inject(REQUIRED_ROLES) protected requiredRoles: UserRoles[]
+    @Optional() @Inject(REQUIRED_ROLES) protected requiredRoles: UserRoles[],
   ) {
     super(templateRef, viewContainer, permissionService, requiredRoles);
   }

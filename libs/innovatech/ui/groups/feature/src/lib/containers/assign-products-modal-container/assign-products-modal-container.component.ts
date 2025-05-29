@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ApsQueryParams } from '@arphase/common';
 import { LoadingService } from '@arphase/ui/core';
 import { fromGroups, getGroupsProductsState } from '@innovatech/ui/groups/data';
 import { ProductCollectionService } from '@innovatech/ui/products/data';
-import { QueryParams } from '@ngrx/data';
 import { Actions, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -12,11 +12,11 @@ import { take } from 'rxjs/operators';
 import { AssignProductsModalComponent } from '../../components/assign-products-modal/assign-products-modal.component';
 
 @Component({
-    selector: 'ivt-assign-products-modal-container',
-    templateUrl: './assign-products-modal-container.component.html',
-    styleUrls: ['./assign-products-modal-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-assign-products-modal-container',
+  templateUrl: './assign-products-modal-container.component.html',
+  styleUrls: ['./assign-products-modal-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AssignProductsModalContainerComponent implements OnInit, OnDestroy {
   @ViewChild(AssignProductsModalComponent, { static: true }) formComponent: AssignProductsModalComponent;
@@ -49,8 +49,8 @@ export class AssignProductsModalContainerComponent implements OnInit, OnDestroy 
     return false;
   }
 
-  filterItems(payload: QueryParams): void {
-    const queryParams: QueryParams = {
+  filterItems(payload: ApsQueryParams): void {
+    const queryParams: ApsQueryParams = {
       ...payload,
       resetList: String(true),
     };

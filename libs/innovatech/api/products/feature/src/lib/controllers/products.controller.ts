@@ -19,7 +19,7 @@ export class ProductController {
   @Get()
   async getProducts(
     @Query() filterDto: GetProductsDto,
-    @GetUser() user: Partial<User>
+    @GetUser() user: Partial<User>,
   ): Promise<ApsCollectionResponse<Product>> {
     return this.productService.getProducts(filterDto, user);
   }
@@ -42,7 +42,7 @@ export class ProductController {
   @Post('preview/pdf')
   async getGuaranteePdf(
     @Body() generateProductPdfDto: GenerateProductPdfDto,
-    @Res() response: Response
+    @Res() response: Response,
   ): Promise<void> {
     return this.productService.generateProductPdf(generateProductPdfDto, response);
   }

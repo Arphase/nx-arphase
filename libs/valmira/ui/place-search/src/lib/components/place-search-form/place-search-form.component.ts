@@ -21,11 +21,11 @@ interface FiltersPayload extends FiltersForm {
 
 @UntilDestroy()
 @Component({
-    selector: 'vma-place-search-form',
-    templateUrl: './place-search-form.component.html',
-    styleUrls: ['./place-search-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-place-search-form',
+  templateUrl: './place-search-form.component.html',
+  styleUrls: ['./place-search-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PlaceSearchFormComponent extends ApsFormComponent<FiltersForm, FiltersPayload> implements OnInit {
   @ViewChild('endDateCalendar', { static: true }) endDateCalendar: NzDatePickerComponent;
@@ -36,10 +36,13 @@ export class PlaceSearchFormComponent extends ApsFormComponent<FiltersForm, Filt
       endDate: new UntypedFormControl(null),
       capacity: new UntypedFormControl(null),
     },
-    { validators: ApsValidators.dateLessThan('startDate', 'endDate') }
+    { validators: ApsValidators.dateLessThan('startDate', 'endDate') },
   );
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {
     super();
   }
 

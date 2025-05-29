@@ -5,14 +5,14 @@ export const getGroupProducts = createAction('[Groups] Get group products', prop
 
 export const getGroupProductsSuccess = createAction(
   '[Groups] Get group products success',
-  props<{ payload: Product[] }>()
+  props<{ payload: Product[] }>(),
 );
 
 export const getGroupProductsFailed = createAction('[Groups] Get group products failed');
 
 export const assignGroupProducts = createAction(
   '[Groups] Assign group products',
-  props<{ payload: { groupId: number; productIds: number[] } }>()
+  props<{ payload: { groupId: number; productIds: number[] } }>(),
 );
 
 export const assignGroupProductsSuccess = createAction('[Groups] Assign group products success');

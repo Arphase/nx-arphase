@@ -5,11 +5,11 @@ import { ApsColumns, ApsListComponent } from '@arphase/ui/core';
 import { Category } from '@musicr/domain';
 
 @Component({
-    selector: 'mrl-category-list',
-    templateUrl: './category-list.component.html',
-    styleUrls: ['./category-list.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-category-list',
+  templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class CategoryListComponent extends ApsListComponent<Category> implements OnChanges {
   categories: DeepPartial<Category[]> = [];

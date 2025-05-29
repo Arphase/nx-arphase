@@ -3,11 +3,11 @@ import { ApsColumns, ApsListComponent } from '@arphase/ui/core';
 import { Place } from '@valmira/domain';
 
 @Component({
-    selector: 'vma-place-list',
-    templateUrl: './place-list.component.html',
-    styleUrls: ['./place-list.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-place-list',
+  templateUrl: './place-list.component.html',
+  styleUrls: ['./place-list.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PlaceListComponent extends ApsListComponent<Place> {
   columns: ApsColumns = [

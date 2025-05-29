@@ -53,7 +53,8 @@ const VALMIRA_CONFIGURATION_VALUE: ValmiraConfiguration = {
     StoreDevtoolsModule.instrument({
       name: 'Valmira',
       maxAge: 25,
-    connectInZone: true}),
+      connectInZone: true,
+    }),
     NgxStripeModule.forRoot(environment.stripeKey),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),

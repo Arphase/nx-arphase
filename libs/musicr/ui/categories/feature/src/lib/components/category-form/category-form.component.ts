@@ -26,11 +26,11 @@ export function createCategoryForm(): UntypedFormGroup {
 }
 
 @Component({
-    selector: 'mrl-category-form',
-    templateUrl: './category-form.component.html',
-    styleUrls: ['./category-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-category-form',
+  templateUrl: './category-form.component.html',
+  styleUrls: ['./category-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class CategoryFormComponent extends ApsFormComponent<DeepPartial<Category>> implements OnChanges {
   fileList: NzUploadFile[] = [];
@@ -56,7 +56,7 @@ export class CategoryFormComponent extends ApsFormComponent<DeepPartial<Category
 
   constructor(
     @Inject(MUSIC_REVOLUTION_CONFIGURATION) private config: MusicRevolutionConfiguration,
-    private messageService: NzMessageService
+    private messageService: NzMessageService,
   ) {
     super();
   }

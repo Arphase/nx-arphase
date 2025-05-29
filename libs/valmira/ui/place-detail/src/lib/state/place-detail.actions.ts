@@ -3,12 +3,12 @@ import { Reservation } from '@valmira/domain';
 
 export const getReservationPreview = createAction(
   '[Place detail] Get reservation preview',
-  props<{ reservation: Partial<Reservation> }>()
+  props<{ reservation: Partial<Reservation> }>(),
 );
 
 export const getReservationPreviewSuccess = createAction(
   '[Place detail] Get reservation preview success',
-  props<{ reservation: Reservation }>()
+  props<{ reservation: Reservation }>(),
 );
 
 export const getReservationPreviewFailed = createAction('[Place detail] Get reservation preview failed');

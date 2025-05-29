@@ -22,4 +22,4 @@ import { FrequentQuestionsRoutingModule } from './frequent-questions.routing.mod
   declarations: [FrequentQuestionsComponent],
 })
 export class FrequentQuestionsModule {}
-export class NzCollapseCustomComponent{}
+export class NzCollapseCustomComponent {}

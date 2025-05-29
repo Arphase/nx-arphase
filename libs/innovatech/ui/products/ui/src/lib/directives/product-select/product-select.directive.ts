@@ -7,8 +7,8 @@ import { NzSelectComponent } from 'ng-zorro-antd/select';
 import { take } from 'rxjs/operators';
 
 @Directive({
-    selector: '[ivtProductSelect]',
-    standalone: false
+  selector: '[ivtProductSelect]',
+  standalone: false,
 })
 export class ProductSelectDirective
   extends ApsCollectionSelectDirective<Product>
@@ -23,7 +23,7 @@ export class ProductSelectDirective
     protected host: NzSelectComponent,
     protected productCollectionService: ProductCollectionService,
     protected ngControl: NgControl,
-    protected cdr: ChangeDetectorRef
+    protected cdr: ChangeDetectorRef,
   ) {
     super(host, productCollectionService, ngControl, cdr);
   }
@@ -48,7 +48,7 @@ export class ProductSelectDirective
         horsePower: this.horsePower ?? undefined,
         groupId: this.groupId ? String(this.groupId) : undefined,
         resetList: String(true),
-      })
+      }),
     );
   }
 }

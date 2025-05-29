@@ -9,21 +9,20 @@ import {
   SimpleChange,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { ApsCollectionResponse, ApsCollectionResponseInfo } from '@arphase/common';
+import { ApsCollectionResponse, ApsCollectionResponseInfo, ApsQueryParams } from '@arphase/common';
 import { ApsDataService } from '@arphase/ui/data';
-import { mapToSelectOptions, filterNil } from '@arphase/ui/utils';
+import { filterNil, mapToSelectOptions } from '@arphase/ui/utils';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { QueryParams } from '@ngrx/data';
 import { NzSelectComponent, NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { BehaviorSubject, debounceTime, finalize, map, Observable, switchMap, take, tap, withLatestFrom } from 'rxjs';
 
 @UntilDestroy()
 @Directive({
-    selector: '[apsDataSelect]',
-    standalone: false
+  selector: '[apsDataSelect]',
+  standalone: false,
 })
 export class ApsDataSelectDirective<T> implements AfterContentInit {
-  @Input() queryParams: QueryParams;
+  @Input() queryParams: ApsQueryParams;
   @Input() labelField: string;
   @Input() valueField: string;
   sortValue: { key: string; value: string }[];
@@ -39,7 +38,7 @@ export class ApsDataSelectDirective<T> implements AfterContentInit {
     protected host: NzSelectComponent,
     protected dataService: ApsDataService<T>,
     protected ngControl: NgControl,
-    protected cdr: ChangeDetectorRef
+    protected cdr: ChangeDetectorRef,
   ) {}
 
   ngAfterContentInit(): void {
@@ -51,7 +50,7 @@ export class ApsDataSelectDirective<T> implements AfterContentInit {
       .pipe(
         take(1),
         map(items => items.results),
-        mapToSelectOptions(options => ({ label: options[this.labelField], value: options[this.valueField] }))
+        mapToSelectOptions(options => ({ label: options[this.labelField], value: options[this.valueField] })),
       )
       .subscribe(options => this.entitiesSubject.next(options));
 
@@ -68,11 +67,11 @@ export class ApsDataSelectDirective<T> implements AfterContentInit {
             text,
             resetList: String(true),
             pageIndex: String(1),
-          })
+          }),
         ),
         tap(({ info }) => this.infoSubject.next(info)),
         map(({ results }) => results),
-        mapToSelectOptions(options => ({ label: options[this.labelField], value: options[this.valueField] }))
+        mapToSelectOptions(options => ({ label: options[this.labelField], value: options[this.valueField] })),
       )
       .subscribe(options => this.entitiesSubject.next(options));
 
@@ -83,7 +82,7 @@ export class ApsDataSelectDirective<T> implements AfterContentInit {
     }
   }
 
-  getData(queryParams: QueryParams): Observable<ApsCollectionResponse<T>> {
+  getData(queryParams: ApsQueryParams): Observable<ApsCollectionResponse<T>> {
     this.host.nzLoading = true;
     this.loading = true;
     this.cdr.detectChanges();
@@ -92,7 +91,7 @@ export class ApsDataSelectDirective<T> implements AfterContentInit {
         this.loading = false;
         this.host.nzLoading = false;
         this.cdr.detectChanges();
-      })
+      }),
     ) as unknown as Observable<ApsCollectionResponse<T>>;
   }
 
@@ -120,7 +119,7 @@ export class ApsDataSelectDirective<T> implements AfterContentInit {
         resetList: String(false),
       }).pipe(
         map(items => items.results),
-        mapToSelectOptions(options => ({ label: options[this.labelField], value: options[this.valueField] }))
+        mapToSelectOptions(options => ({ label: options[this.labelField], value: options[this.valueField] })),
       );
       moreEtities$
         .pipe(withLatestFrom(this.entities$), take(1))

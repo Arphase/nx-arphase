@@ -23,7 +23,7 @@ export class GroupsService {
     @InjectRepository(ResetPasswordEntity) private resetPasswordRepository: Repository<ResetPasswordEntity>,
     @InjectRepository(ProductEntity) private productRepository: Repository<ProductEntity>,
     private connection: Connection,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   async getGroups(filterDto: Partial<CommonFilterDto>): Promise<ApsCollectionResponse<Group>> {
@@ -36,7 +36,7 @@ export class GroupsService {
          LOWER(group.contact) like :text  OR
          LOWER(group.email) like :text OR
          LOWER(group.phone) like :text)`,
-        { text: `%${text.toLowerCase()}%` }
+        { text: `%${text.toLowerCase()}%` },
       );
     }
 
@@ -109,10 +109,10 @@ export class GroupsService {
                 await this.authService?.sendSetPasswordEmail(user, resetPasswordEntity);
               }
               return newUser;
-            })
+            }),
           );
           return newCompany;
-        })
+        }),
       );
 
       await queryRunner.commitTransaction();

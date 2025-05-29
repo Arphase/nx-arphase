@@ -33,11 +33,11 @@ export function createSocialEventForm(orderType: OrderTypes): FormGroup {
 }
 
 @Component({
-    selector: 'mrl-social-event-form',
-    templateUrl: './social-event-form.component.html',
-    styleUrls: ['./social-event-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-social-event-form',
+  templateUrl: './social-event-form.component.html',
+  styleUrls: ['./social-event-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SocialEventFormComponent extends ApsFormComponent<SocialEvent> implements OnChanges {
   @Input() orderType: OrderTypes;

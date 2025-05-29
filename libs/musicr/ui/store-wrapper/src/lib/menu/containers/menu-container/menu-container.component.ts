@@ -4,11 +4,11 @@ import { CartService } from '@musicr/ui/cart/data';
 import { map } from 'rxjs/operators';
 
 @Component({
-    selector: 'mrl-menu-container',
-    templateUrl: './menu-container.component.html',
-    styleUrls: ['./menu-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-menu-container',
+  templateUrl: './menu-container.component.html',
+  styleUrls: ['./menu-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class MenuContainerComponent {
   @Input() categories: Category[] = [];

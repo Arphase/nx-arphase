@@ -6,12 +6,12 @@ import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 import { colorMaps, columns, iconMaps, statusLabels, statusOptions } from './revision-request-list.constants';
 
 @Component({
-    selector: 'ivt-revision-request-list',
-    templateUrl: './revision-request-list.component.html',
-    styleUrls: ['./revision-request-list.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin, UserRoles.repairman] }],
-    standalone: false
+  selector: 'ivt-revision-request-list',
+  templateUrl: './revision-request-list.component.html',
+  styleUrls: ['./revision-request-list.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin, UserRoles.repairman] }],
+  standalone: false,
 })
 export class RevisionRequestListComponent extends ApsListComponent<RevisionRequest> {
   statusLabels = statusLabels;

@@ -27,7 +27,7 @@ export class AuthService {
     @InjectRepository(UserEntity) private userRepository: Repository<UserEntity>,
     @InjectRepository(ResetPasswordEntity) private resetPasswordRepository: Repository<ResetPasswordEntity>,
     private jwtService: JwtService,
-    private readonly connection: Connection
+    private readonly connection: Connection,
   ) {}
 
   async signUp(signUpCredentialsDto: SignUpCredentialsDto): Promise<User> {
@@ -111,7 +111,7 @@ export class AuthService {
 
   async sendSetPasswordEmail(
     user: Partial<User>,
-    resetPasswordEntity: ResetPassword
+    resetPasswordEntity: ResetPassword,
   ): Promise<Record<string, boolean>> {
     if (resetPasswordEntity && resetPasswordEntity.passwordToken) {
       const transporter = createTransport({
@@ -136,7 +136,7 @@ export class AuthService {
           },
         ],
         html: getNewUserEmailTemplate(
-          `${process.env.MAIL_HOST_URL}/${resetPasswordEntity.passwordToken}/${resetPasswordEntity.userId}`
+          `${process.env.MAIL_HOST_URL}/${resetPasswordEntity.passwordToken}/${resetPasswordEntity.userId}`,
         ),
       };
       await transporter.sendMail(mailOptions);
@@ -185,7 +185,7 @@ export class AuthService {
           },
         ],
         html: getResetPasswordEmailTemplate(
-          `${process.env.MAIL_HOST_URL}/${tokenEntity.passwordToken}/${userFromDb.id}`
+          `${process.env.MAIL_HOST_URL}/${tokenEntity.passwordToken}/${userFromDb.id}`,
         ),
       };
       await transporter.sendMail(mailOptions);

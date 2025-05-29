@@ -123,7 +123,7 @@ export class GuaranteesModule {
   constructor(
     entityDataService: EntityDataService,
     guaranteeDataService: GuaranteeDataService,
-    paymentOrderDataService: PaymentOrderDataService
+    paymentOrderDataService: PaymentOrderDataService,
   ) {
     const services: Record<string, ApsDataService<unknown>> = {
       Guarantee: guaranteeDataService,

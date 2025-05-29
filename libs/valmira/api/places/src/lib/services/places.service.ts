@@ -17,7 +17,7 @@ import { getOccupiedDates } from '../functions/occupied-dates';
 export class PlacesService {
   constructor(
     @InjectRepository(PlaceEntity) private placeRepository: Repository<PlaceEntity>,
-    @InjectRepository(ReservationEntity) private reservationRepository: Repository<ReservationEntity>
+    @InjectRepository(ReservationEntity) private reservationRepository: Repository<ReservationEntity>,
   ) {}
 
   async getPlaces(filterDto: GetPlacesDto): Promise<ApsCollectionResponse<Place>> {
@@ -98,7 +98,7 @@ export class PlacesService {
           endDate2: startOfDay(new Date(endDate)),
           startDate,
           endDate,
-        }
+        },
       );
     }
     query

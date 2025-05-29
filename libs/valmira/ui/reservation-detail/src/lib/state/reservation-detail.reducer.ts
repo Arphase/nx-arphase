@@ -12,7 +12,7 @@ const reservationDetailReducer = createReducer(
   on(ReservationDetailActions.getReservationDetailSuccess, (state, action) => ({
     ...state,
     reservation: action.reservation,
-  }))
+  })),
 );
 
 export function reducer(state: ReservationDetailState, action: Action) {

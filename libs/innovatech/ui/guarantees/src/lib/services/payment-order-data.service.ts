@@ -9,7 +9,10 @@ import { tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class PaymentOrderDataService extends ApsDataService<PaymentOrder> {
-  constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
+  constructor(
+    protected http: HttpClient,
+    protected httpUrlGenerator: HttpUrlGenerator,
+  ) {
     super('PaymentOrder', http, httpUrlGenerator);
     this.entityUrl = `/ivtApi/payment-orders/`;
     this.entitiesUrl = `/ivtApi/payment-orders`;
@@ -24,7 +27,7 @@ export class PaymentOrderDataService extends ApsDataService<PaymentOrder> {
         tap(file => {
           const blob = new Blob([file], { type: 'application/octet-stream' });
           saveAs(blob, `Orden de pago ${id}.pdf`);
-        })
+        }),
       );
   }
 }

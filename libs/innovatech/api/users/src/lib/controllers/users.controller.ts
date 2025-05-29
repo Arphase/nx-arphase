@@ -15,7 +15,7 @@ export class UsersController {
   @Get()
   async getUsers(
     @Query() filterDto: CommonFilterDto,
-    @GetUser() user: Partial<User>
+    @GetUser() user: Partial<User>,
   ): Promise<ApsCollectionResponse<User>> {
     return this.usersService.getUsers(filterDto, user);
   }

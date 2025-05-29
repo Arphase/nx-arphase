@@ -23,12 +23,12 @@ export interface Dates {
 
 @UntilDestroy()
 @Component({
-    selector: 'aps-date-filter',
-    templateUrl: './date-filter.component.html',
-    styleUrls: ['./date-filter.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None,
-    standalone: false
+  selector: 'aps-date-filter',
+  templateUrl: './date-filter.component.html',
+  styleUrls: ['./date-filter.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  standalone: false,
 })
 export class ApsDateFilterComponent implements OnChanges {
   @Input() dateTypeOptions: NzSelectOptionInterface[] = [];
@@ -55,7 +55,7 @@ export class ApsDateFilterComponent implements OnChanges {
           const selectedDateType = mustSelectDateType ? !!dateType : true;
           return selectedBothDates && selectedDateType ? null : { error: true };
         },
-      }
+      },
     );
 
     this.control.valueChanges.pipe(untilDestroyed(this)).subscribe(({ startDate, endDate, dateType }) => {

@@ -15,11 +15,11 @@ export function createSubcategoryForm(): UntypedFormGroup {
 }
 
 @Component({
-    selector: 'mrl-subcategory-form',
-    templateUrl: './subcategory-form.component.html',
-    styleUrls: ['./subcategory-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-subcategory-form',
+  templateUrl: './subcategory-form.component.html',
+  styleUrls: ['./subcategory-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SubcategoryFormComponent extends ApsFormComponent<DeepPartial<Subcategory>> implements OnChanges {
   products: DeepPartial<Product>[] = [];

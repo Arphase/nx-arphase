@@ -7,8 +7,8 @@ export function isRevisionEditable(revision: Revision): boolean {
 }
 
 @Pipe({
-    name: 'editableRevision',
-    standalone: false
+  name: 'editableRevision',
+  standalone: false,
 })
 export class EditableRevisionPipe implements PipeTransform {
   transform(revision: Revision): boolean {

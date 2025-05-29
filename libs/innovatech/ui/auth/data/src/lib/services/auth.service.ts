@@ -11,7 +11,10 @@ import { getAuthUserStateState } from '../state/auth.selectors';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private store: Store, private http: HttpClient) {}
+  constructor(
+    private store: Store,
+    private http: HttpClient,
+  ) {}
 
   signIn(payload: SignInPayload): Observable<User> {
     return this.http.post<User>(`/ivtApi/auth/signIn`, payload);
@@ -20,14 +23,14 @@ export class AuthService {
   isAuthenticated(): Observable<boolean> {
     return this.store.pipe(
       select(getAuthUserStateState),
-      map(user => !!user?.token)
+      map(user => !!user?.token),
     );
   }
 
   getToken(): Observable<string> {
     return this.store.pipe(
       select(getAuthUserStateState),
-      map(user => user?.token)
+      map(user => user?.token),
     );
   }
 

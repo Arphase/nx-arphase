@@ -5,11 +5,11 @@ import { ApsFormComponent, ControlsOf } from '@arphase/ui/forms';
 import { Promocode, Reservation } from '@valmira/domain';
 
 @Component({
-    selector: 'vma-reservation-wizard',
-    templateUrl: './reservation-wizard.component.html',
-    styleUrls: ['./reservation-wizard.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-reservation-wizard',
+  templateUrl: './reservation-wizard.component.html',
+  styleUrls: ['./reservation-wizard.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ReservationWizardComponent extends ApsFormComponent<DeepPartial<Reservation>> implements OnChanges {
   @Input() promocodeNotFound: boolean;

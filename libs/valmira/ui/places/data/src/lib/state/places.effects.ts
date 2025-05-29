@@ -14,10 +14,10 @@ export class PlacesEfects {
       mergeMap(({ id }) =>
         this.placeDataService.getOccupiedDates(id, 'startDate').pipe(
           map(dates => PlacesActions.getStartOccupiedDatesSuccess({ dates })),
-          catchError(() => of(PlacesActions.getStartOccupiedDatesFailed()))
-        )
-      )
-    )
+          catchError(() => of(PlacesActions.getStartOccupiedDatesFailed())),
+        ),
+      ),
+    ),
   );
 
   getEndDateOccupiedDates$ = createEffect(() =>
@@ -26,11 +26,14 @@ export class PlacesEfects {
       mergeMap(({ id }) =>
         this.placeDataService.getOccupiedDates(id, 'endDate').pipe(
           map(dates => PlacesActions.getEndDateOccupiedDatesSuccess({ dates })),
-          catchError(() => of(PlacesActions.getEndDateOccupiedDatesFailed()))
-        )
-      )
-    )
+          catchError(() => of(PlacesActions.getEndDateOccupiedDatesFailed())),
+        ),
+      ),
+    ),
   );
 
-  constructor(private actions$: Actions, private placeDataService: PlaceDataService) {}
+  constructor(
+    private actions$: Actions,
+    private placeDataService: PlaceDataService,
+  ) {}
 }

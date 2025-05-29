@@ -42,7 +42,7 @@ export class ReservationsService {
     @InjectRepository(CustomerEntity) private customerRepository: Repository<CustomerEntity>,
     @InjectStripe() private readonly stripeClient: Stripe,
     private placesService: PlacesService,
-    private promocodeService: PromocodesService
+    private promocodeService: PromocodesService,
   ) {}
 
   async getReservations(filterDto: ApsCollectionFilterDto): Promise<ApsCollectionResponse<Reservation>> {
@@ -110,7 +110,7 @@ export class ReservationsService {
    */
   async previewReservation(
     reservationPreviewDto: CreateReservationDto | UpdateReservationDto | ReservationPreviewDto | Reservation,
-    isPreview = true
+    isPreview = true,
   ): Promise<Partial<Reservation>> {
     const { placeId, promocodeId, startDate, endDate, id } = reservationPreviewDto;
     let { additionalProducts } = reservationPreviewDto;
@@ -190,10 +190,10 @@ export class ReservationsService {
   }
 
   async getAdditionalProductsWithPrice(
-    additionalProducts: ReservationAdditionalProduct[]
+    additionalProducts: ReservationAdditionalProduct[],
   ): Promise<ReservationAdditionalProduct[]> {
     const additionalProductEntities = await this.additionalProductRepository.findByIds(
-      additionalProducts.map(product => product.additionalProductId)
+      additionalProducts.map(product => product.additionalProductId),
     );
     if (additionalProducts.length !== additionalProductEntities.length) {
       throw new NotFoundException('No se encontraron todos los productos adicionales');
@@ -211,7 +211,7 @@ export class ReservationsService {
       .filter(product => !product.destroy)
       .map(product => {
         const additionalProduct = additionalProductEntities.find(
-          additionalProduct => additionalProduct.id === product.additionalProductId
+          additionalProduct => additionalProduct.id === product.additionalProductId,
         );
         return {
           ...product,

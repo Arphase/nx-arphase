@@ -36,7 +36,7 @@ export class AdditionalProductEntity extends BaseEntity implements AdditionalPro
 
   @OneToMany(
     () => ReservationAdditionalProductEntity,
-    reservationAdditionalProduct => reservationAdditionalProduct.additionalProduct
+    reservationAdditionalProduct => reservationAdditionalProduct.additionalProduct,
   )
   reservationAdditionalProducts?: ReservationAdditionalProduct[];
 }

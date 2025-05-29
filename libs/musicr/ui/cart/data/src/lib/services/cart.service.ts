@@ -25,11 +25,15 @@ export class CartService {
   loading$ = this.loadingSubject.asObservable();
   orderType$ = this.route.queryParams.pipe(
     filter(queryParams => !!queryParams),
-    map(({ orderType }) => orderType)
+    map(({ orderType }) => orderType),
   );
   listenToCartItemsSubscription: Subscription;
 
-  constructor(private http: HttpClient, private gtagService: GtagService, private route: ActivatedRoute) {}
+  constructor(
+    private http: HttpClient,
+    private gtagService: GtagService,
+    private route: ActivatedRoute,
+  ) {}
 
   listenToCartItemsChange(): void {
     this.gtagService.event('begin_checkout');
@@ -124,10 +128,10 @@ export class CartService {
             socialEvent,
             customer,
             orderType,
-          })
+          }),
         ),
         take(1),
-        finalize(() => this.loadingSubject.next(false))
+        finalize(() => this.loadingSubject.next(false)),
       )
       .subscribe(order => {
         this.gtagService.event('purchase', {

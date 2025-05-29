@@ -9,18 +9,18 @@ import { take } from 'rxjs/operators';
 import { ReservationDetailContainerComponent } from '../reservation-detail-container/reservation-detail-container.component';
 
 @Component({
-    selector: 'vma-reservation-list-container',
-    templateUrl: './reservation-list-container.component.html',
-    styleUrls: ['./reservation-list-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-reservation-list-container',
+  templateUrl: './reservation-list-container.component.html',
+  styleUrls: ['./reservation-list-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ReservationListContainerComponent extends ApsListContainerComponent<Reservation> {
   constructor(
     protected reservationCollectionService: ReservationCollectionService,
     protected reservationDataService: ReservationDataService,
     protected modal: NzModalService,
-    protected messageService: NzMessageService
+    protected messageService: NzMessageService,
   ) {
     super(reservationCollectionService, reservationDataService, modal, messageService);
   }
@@ -40,7 +40,7 @@ export class ReservationListContainerComponent extends ApsListContainerComponent
           nzContent: ReservationDetailContainerComponent,
           nzFooter: null,
           nzWidth: '80vw',
-        })
+        }),
       );
   }
 }

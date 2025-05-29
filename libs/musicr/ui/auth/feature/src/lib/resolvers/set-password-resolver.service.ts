@@ -8,7 +8,11 @@ import { take } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class SetPasswordResolverService implements Resolve<Action> {
-  constructor(private store: Store, private actions$: Actions, private router: Router) {}
+  constructor(
+    private store: Store,
+    private actions$: Actions,
+    private router: Router,
+  ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Action> {
     const passwordToken = route.paramMap.get('passwordToken');

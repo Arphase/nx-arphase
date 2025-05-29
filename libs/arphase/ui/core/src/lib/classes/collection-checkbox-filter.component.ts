@@ -1,11 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ApsQueryParams } from '@arphase/common';
 import { ApsCollectionService } from '@arphase/ui/data';
-import { QueryParams } from '@ngrx/data';
 
 @Component({
-    template: '',
-    selector: 'aps-collection-checkbox-filter',
-    standalone: false
+  template: '',
+  selector: 'aps-collection-checkbox-filter',
+  standalone: false,
 })
 export abstract class ApsCollectionCheckboxFilterComponent<T> implements OnInit {
   options$ = this.collectionService.options$;
@@ -16,7 +16,7 @@ export abstract class ApsCollectionCheckboxFilterComponent<T> implements OnInit 
   queryParams$ = this.collectionService.queryParams$;
   sortValue: unknown;
   filterPropertyName: string;
-  @Output() filterItems = new EventEmitter<QueryParams>();
+  @Output() filterItems = new EventEmitter<ApsQueryParams>();
 
   constructor(protected collectionService: ApsCollectionService<T>) {}
 
@@ -28,7 +28,7 @@ export abstract class ApsCollectionCheckboxFilterComponent<T> implements OnInit 
     this.filterItems.emit({ [this.filterPropertyName]: ids.toString() });
   }
 
-  filterOptions(queryParams: QueryParams): void {
+  filterOptions(queryParams: ApsQueryParams): void {
     this.collectionService.getWithQuery({ ...queryParams, sort: this.sortValue as string[] });
   }
 }

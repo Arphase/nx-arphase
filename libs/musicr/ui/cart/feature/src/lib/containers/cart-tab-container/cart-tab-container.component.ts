@@ -3,17 +3,17 @@ import { CartService } from '@musicr/ui/cart/data';
 import { filter, map } from 'rxjs/operators';
 
 @Component({
-    selector: 'mrl-cart-tab-container',
-    templateUrl: './cart-tab-container.component.html',
-    styleUrls: ['./cart-tab-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-cart-tab-container',
+  templateUrl: './cart-tab-container.component.html',
+  styleUrls: ['./cart-tab-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class CartTabContainerComponent {
   cartItems$ = this.cartService.cartItems$;
   total$ = this.cartService.orderPreview$.pipe(
     filter(order => !!order),
-    map(order => order.total)
+    map(order => order.total),
   );
 
   constructor(private cartService: CartService) {}

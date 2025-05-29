@@ -8,7 +8,7 @@ export const getDashboardState = createSelector(getDashboardFeatureState, state 
 
 export const getDashboardGuaranteeSummaryState = createSelector(
   getDashboardFeatureState,
-  state => state.guaranteeSummary
+  state => state.guaranteeSummary,
 );
 
 export const getDashboardQueryParamsState = createSelector(getDashboardFeatureState, state => state.queryParams);

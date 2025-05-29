@@ -51,13 +51,13 @@ export class ApsAddressFormService {
       this.mapOptions(localities, info => ({
         label: info.state,
         value: info.state,
-      }))
+      })),
     );
     const cityOptions = sortSelectOptions(
       this.mapOptions(localities, info => ({
         label: info.city,
         value: info.city,
-      }))
+      })),
     );
     const suburbOptions = sortStringOptions(this.mapStringOptions(localities, info => info.suburb));
 

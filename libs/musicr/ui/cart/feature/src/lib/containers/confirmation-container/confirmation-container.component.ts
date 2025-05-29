@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CartService } from '@musicr/ui/cart/data';
 
 @Component({
-    selector: 'mrl-confirmation-container',
-    templateUrl: './confirmation-container.component.html',
-    styleUrls: ['./confirmation-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-confirmation-container',
+  templateUrl: './confirmation-container.component.html',
+  styleUrls: ['./confirmation-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ConfirmationContainerComponent {
   order$ = this.cartService.order$;

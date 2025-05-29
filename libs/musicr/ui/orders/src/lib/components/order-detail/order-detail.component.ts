@@ -11,11 +11,11 @@ import {
 } from '@musicr/domain';
 
 @Component({
-    selector: 'mrl-order-detail',
-    templateUrl: './order-detail.component.html',
-    styleUrls: ['./order-detail.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-order-detail',
+  templateUrl: './order-detail.component.html',
+  styleUrls: ['./order-detail.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OrderDetailComponent {
   @Input() item: Order;

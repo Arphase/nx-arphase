@@ -54,7 +54,7 @@ export class OrdersController {
   async getOrderPdf(
     @Param('id', ParseIntPipe) id: number,
     @Query() queryDto: ExportPdfDto,
-    @Res() response: Response
+    @Res() response: Response,
   ): Promise<void> {
     return this.ordersService.generatePdf(id, queryDto, response);
   }

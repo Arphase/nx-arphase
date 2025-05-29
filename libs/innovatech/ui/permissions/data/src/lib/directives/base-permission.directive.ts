@@ -18,15 +18,15 @@ import { PermissionService, REQUIRED_ROLES } from '../services/permission.servic
 
 @UntilDestroy()
 @Directive({
-    selector: '[ivtPermission]',
-    standalone: false
+  selector: '[ivtPermission]',
+  standalone: false,
 })
 export class BasePermissionDirective implements OnInit, OnChanges {
   @Input() ivtPermission: UserRoles[] = [];
   requiredRolesSubject = new BehaviorSubject<UserRoles[]>(this.requiredRoles ?? []);
   requiredRoles$ = this.requiredRolesSubject.asObservable();
   hasPermission$ = this.requiredRoles$.pipe(
-    switchMap(requiredRoles => this.permissionService.hasPermission(requiredRoles))
+    switchMap(requiredRoles => this.permissionService.hasPermission(requiredRoles)),
   );
 
   private hasView = false;
@@ -35,7 +35,7 @@ export class BasePermissionDirective implements OnInit, OnChanges {
     protected templateRef: TemplateRef<unknown>,
     protected viewContainer: ViewContainerRef,
     protected permissionService: PermissionService,
-    @Optional() @Inject(REQUIRED_ROLES) protected requiredRoles: UserRoles[]
+    @Optional() @Inject(REQUIRED_ROLES) protected requiredRoles: UserRoles[],
   ) {}
 
   ngOnInit() {

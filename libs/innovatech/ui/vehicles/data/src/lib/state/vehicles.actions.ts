@@ -6,12 +6,12 @@ export const getVehicleByVin = createAction('[Vehicles] Get vehicle by vin', pro
 
 export const getVehicleByVinSuccess = createAction(
   '[Vehicles] Get vehicle by vin success',
-  props<{ payload: Vehicle | null }>()
+  props<{ payload: Vehicle | null }>(),
 );
 
 export const getVehicleByVinFailed = createAction(
   '[Vehicles] Get vehicle by vin failed',
-  props<{ payload: ApsHttpErrorResponse }>()
+  props<{ payload: ApsHttpErrorResponse }>(),
 );
 
 export const clearVehiclesState = createAction('[Vehicles] Clear vehicles state');

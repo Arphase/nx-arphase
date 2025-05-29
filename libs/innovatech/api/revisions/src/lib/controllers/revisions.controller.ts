@@ -17,7 +17,7 @@ export class RevisionsController {
   @Get()
   async getRevisions(
     @Query() filterDto: GetRevisionsDto,
-    @GetUser() user: Partial<User>
+    @GetUser() user: Partial<User>,
   ): Promise<ApsCollectionResponse<Revision>> {
     return this.revisionsService.getRevisions(filterDto, user);
   }
@@ -31,7 +31,7 @@ export class RevisionsController {
   async getRevisionsExcel(
     @Query() filterDto: GetRevisionsDto,
     @GetUser() user: Partial<User>,
-    @Res() response: Response
+    @Res() response: Response,
   ): Promise<void> {
     return this.revisionsService.getRevisionsExcel(filterDto, user, response);
   }

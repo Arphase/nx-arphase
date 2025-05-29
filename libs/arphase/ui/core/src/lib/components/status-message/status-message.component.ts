@@ -8,11 +8,11 @@ export enum MessageStatus {
 }
 
 @Component({
-    selector: 'aps-status-message',
-    templateUrl: './status-message.component.html',
-    styleUrls: ['./status-message.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'aps-status-message',
+  templateUrl: './status-message.component.html',
+  styleUrls: ['./status-message.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ApsStatusMessageComponent {
   @Input() status = MessageStatus.warning;

@@ -12,7 +12,7 @@ export class UserCollectionService extends ApsCollectionService<User> {
       label: `${user.firstName} ${user.lastName}`,
       value: user.id,
     })),
-    sortSelectOptionsAlphabetical()
+    sortSelectOptionsAlphabetical(),
   );
   constructor(protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('User', serviceElementsFactory);

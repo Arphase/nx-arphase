@@ -7,11 +7,11 @@ import { select, Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 
 @Component({
-    selector: 'mrl-spa',
-    templateUrl: './spa.component.html',
-    styleUrls: ['./spa.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-spa',
+  templateUrl: './spa.component.html',
+  styleUrls: ['./spa.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SpaComponent implements OnInit {
   options: SpaLayoutOptions = {
@@ -49,7 +49,7 @@ export class SpaComponent implements OnInit {
   constructor(
     private store: Store,
     private actions$: Actions,
-    @Inject(MUSIC_REVOLUTION_CONFIGURATION) private config: MusicRevolutionConfiguration
+    @Inject(MUSIC_REVOLUTION_CONFIGURATION) private config: MusicRevolutionConfiguration,
   ) {}
 
   ngOnInit() {

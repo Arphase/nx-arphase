@@ -9,11 +9,11 @@ import { select, Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 
 @Component({
-    selector: 'ivt-spa',
-    templateUrl: './spa.component.html',
-    styleUrls: ['./spa.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-spa',
+  templateUrl: './spa.component.html',
+  styleUrls: ['./spa.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SpaComponent implements OnInit {
   options: SpaLayoutOptions = {
@@ -97,7 +97,7 @@ export class SpaComponent implements OnInit {
     private store: Store,
     private permissionService: PermissionService,
     @Inject(INNOVATECH_CONFIGURATION) private config: InnovatechConfiguration,
-    private actions$: Actions
+    private actions$: Actions,
   ) {}
 
   ngOnInit() {

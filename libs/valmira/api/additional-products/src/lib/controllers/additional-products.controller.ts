@@ -14,7 +14,7 @@ export class AdditionalProductsController {
 
   @Get()
   async getAdditionalProducts(
-    @Query() filterDto: GetAdditionalProductsDto
+    @Query() filterDto: GetAdditionalProductsDto,
   ): Promise<ApsCollectionResponse<AdditionalProduct>> {
     return this.additionalProductsService.getAdditionalProducts(filterDto);
   }
@@ -27,7 +27,7 @@ export class AdditionalProductsController {
   @UseGuards(AuthGuard('jwt'))
   @Post()
   async createAdditionalProduct(
-    @Body() createAdditionalProductDto: CreateAdditionalProductDto
+    @Body() createAdditionalProductDto: CreateAdditionalProductDto,
   ): Promise<AdditionalProduct> {
     return this.additionalProductsService.createAdditionalProduct(createAdditionalProductDto);
   }
@@ -35,7 +35,7 @@ export class AdditionalProductsController {
   @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   async updateAdditionalProduct(
-    @Body() updateAdditionalProductDto: UpdateAdditionalProductDto
+    @Body() updateAdditionalProductDto: UpdateAdditionalProductDto,
   ): Promise<AdditionalProduct> {
     return this.additionalProductsService.updateAdditionalProduct(updateAdditionalProductDto);
   }

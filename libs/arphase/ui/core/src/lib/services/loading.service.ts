@@ -41,15 +41,15 @@ export class LoadingService {
 
   loading$ = this.loadingSubject.pipe(
     delay(0),
-    map(isLoading => isLoading || this.activeProcesses !== 0)
+    map(isLoading => isLoading || this.activeProcesses !== 0),
   );
   loadingGet$ = this.loadingSubject.pipe(
     delay(0),
-    map(() => this.activeGetProcesses !== 0)
+    map(() => this.activeGetProcesses !== 0),
   );
   loadingElse$ = this.loadingSubject.pipe(
     delay(0),
-    map(() => this.activeElseProcesses !== 0)
+    map(() => this.activeElseProcesses !== 0),
   );
 
   show(method?: string): void {

@@ -9,8 +9,8 @@ import { distinctUntilChanged, filter, switchMap, take } from 'rxjs/operators';
 
 @UntilDestroy()
 @Directive({
-    selector: '[apsCollectionSelect]',
-    standalone: false
+  selector: '[apsCollectionSelect]',
+  standalone: false,
 })
 export class ApsCollectionSelectDirective<T> implements AfterContentInit {
   @Input() getByKey: boolean;
@@ -20,7 +20,7 @@ export class ApsCollectionSelectDirective<T> implements AfterContentInit {
     protected host: NzSelectComponent,
     protected collectionService: ApsCollectionService<T>,
     protected ngControl: NgControl,
-    protected cdr: ChangeDetectorRef
+    protected cdr: ChangeDetectorRef,
   ) {}
 
   ngAfterContentInit() {
@@ -43,7 +43,7 @@ export class ApsCollectionSelectDirective<T> implements AfterContentInit {
           filterNil(),
           distinctUntilChanged(),
           filter(() => this.getByKey),
-          untilDestroyed(this)
+          untilDestroyed(this),
         )
         .subscribe(value => this.collectionService.getByKey(value));
     }
@@ -53,7 +53,7 @@ export class ApsCollectionSelectDirective<T> implements AfterContentInit {
         .pipe(
           take(1),
           filter(entityMap => !entityMap[value]),
-          switchMap(() => this.collectionService.getByKey(value))
+          switchMap(() => this.collectionService.getByKey(value)),
         )
         .subscribe(() => {
           this.ngControl?.control.updateValueAndValidity();
@@ -70,7 +70,7 @@ export class ApsCollectionSelectDirective<T> implements AfterContentInit {
         text,
         resetList: String(true),
         pageIndex: String(0),
-      })
+      }),
     );
   }
 

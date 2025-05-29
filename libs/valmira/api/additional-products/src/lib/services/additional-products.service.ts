@@ -13,7 +13,7 @@ import { UpdateAdditionalProductDto } from '../dto/update-additional-product.dto
 @Injectable()
 export class AdditionalProductsService {
   constructor(
-    @InjectRepository(AdditionalProductEntity) private additionalProductRepository: Repository<AdditionalProductEntity>
+    @InjectRepository(AdditionalProductEntity) private additionalProductRepository: Repository<AdditionalProductEntity>,
   ) {}
 
   async getAdditionalProducts(filterDto: GetAdditionalProductsDto): Promise<ApsCollectionResponse<AdditionalProduct>> {

@@ -14,11 +14,11 @@ import { NzIconService } from 'ng-zorro-antd/icon';
 import { debounceTime, filter } from 'rxjs/operators';
 
 @Component({
-    selector: 'vma-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AppComponent implements OnInit, AfterViewInit {
   constructor(
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private nzIconService: NzIconService
+    private nzIconService: NzIconService,
   ) {}
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.router.events
         .pipe(
           filter(event => event instanceof NavigationEnd),
-          debounceTime(500)
+          debounceTime(500),
         )
         .subscribe(() => {
           window.scrollTo(0, 0);

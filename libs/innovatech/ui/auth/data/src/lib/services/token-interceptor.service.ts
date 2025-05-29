@@ -16,7 +16,7 @@ export class TokenInterceptorService implements HttpInterceptor {
     private loadingService: LoadingService,
     private authService: AuthService,
     private messageService: NzMessageService,
-    private store: Store
+    private store: Store,
   ) {}
   intercept(request: HttpRequest<null>, next: HttpHandler): Observable<HttpEvent<null>> {
     return this.authService.getToken().pipe(
@@ -33,9 +33,9 @@ export class TokenInterceptorService implements HttpInterceptor {
             }
             return throwError(error);
           }),
-          finalize(() => this.loadingService.hide(request.method))
+          finalize(() => this.loadingService.hide(request.method)),
         );
-      })
+      }),
     );
   }
 

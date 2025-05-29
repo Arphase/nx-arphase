@@ -1,15 +1,15 @@
 import { ApsCollectionResponseInfo } from '@arphase/common';
 import {
+  ApsQueryParams,
   EntityAction,
   EntityActionPayload,
   EntityCollection,
   EntityCollectionReducerMethods,
   EntityDefinition,
-  QueryParams,
 } from '@ngrx/data';
 
 export interface ApsEntityCollection<T> extends EntityCollection {
-  queryParams: QueryParams;
+  queryParams: ApsQueryParams;
   currentItem: T;
   loadingModify: boolean;
   info: ApsCollectionResponseInfo;
@@ -20,12 +20,15 @@ export interface ApsEntityAction extends EntityAction {
 }
 
 export interface ApsActionPayload extends EntityActionPayload {
-  queryParams: QueryParams;
+  queryParams: ApsQueryParams;
   info: ApsCollectionResponseInfo;
 }
 
 export class AdditionalEntityCollectionReducerMethods<T> extends EntityCollectionReducerMethods<T> {
-  constructor(public entityName: string, public definition: EntityDefinition<T>) {
+  constructor(
+    public entityName: string,
+    public definition: EntityDefinition<T>,
+  ) {
     super(entityName, definition);
   }
 

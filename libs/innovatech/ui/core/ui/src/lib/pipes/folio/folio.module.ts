@@ -7,6 +7,6 @@ import { IvtFolioPipe } from './folio.pipe';
   declarations: [IvtFolioPipe],
   imports: [CommonModule],
   exports: [IvtFolioPipe],
-  providers: [IvtFolioPipe]
+  providers: [IvtFolioPipe],
 })
 export class IvtFolioModule {}

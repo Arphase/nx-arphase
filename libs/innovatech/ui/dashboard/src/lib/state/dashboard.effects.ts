@@ -17,11 +17,15 @@ export class DashboardEffects {
       mergeMap(([{ payload }, queryParams]) =>
         this.dashboardService.getGuaranteeSummary({ ...queryParams, ...payload }).pipe(
           map(payload => DashboardActions.getGuaranteeSummarySuccess({ payload })),
-          catchError(() => of(DashboardActions.getGuaranteeSummaryFailed()))
-        )
-      )
-    )
+          catchError(() => of(DashboardActions.getGuaranteeSummaryFailed())),
+        ),
+      ),
+    ),
   );
 
-  constructor(private actions$: Actions, private dashboardService: DashboardService, private store: Store) {}
+  constructor(
+    private actions$: Actions,
+    private dashboardService: DashboardService,
+    private store: Store,
+  ) {}
 }

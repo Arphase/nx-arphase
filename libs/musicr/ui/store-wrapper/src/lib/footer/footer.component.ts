@@ -6,11 +6,11 @@ import { BehaviorSubject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
 
 @Component({
-    selector: 'mrl-footer',
-    templateUrl: './footer.component.html',
-    styleUrls: ['./footer.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class FooterComponent {
   private loadingSubject = new BehaviorSubject<boolean>(false);
@@ -23,7 +23,10 @@ export class FooterComponent {
     message: new FormControl<string>(null, Validators.required),
   });
 
-  constructor(private http: HttpClient, private messageService: NzMessageService) {}
+  constructor(
+    private http: HttpClient,
+    private messageService: NzMessageService,
+  ) {}
 
   submit(): void {
     if (!this.form.valid) {
@@ -34,7 +37,7 @@ export class FooterComponent {
         .post(`/mrlApi/contact`, this.form.getRawValue())
         .pipe(
           take(1),
-          finalize(() => this.loadingSubject.next(false))
+          finalize(() => this.loadingSubject.next(false)),
         )
         .subscribe(() => window.open(`${window.location.origin}/contact-success`, '_blank'));
     }

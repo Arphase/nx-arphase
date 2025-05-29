@@ -9,17 +9,17 @@ import { RevisionRequestCollectionService } from '../../services/revision-reques
 import { RevisionRequestDataService } from '../../services/revision-request-data.service';
 
 @Component({
-    selector: 'ivt-revision-request-list-container',
-    templateUrl: './revision-request-list-container.component.html',
-    styleUrls: ['./revision-request-list-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-revision-request-list-container',
+  templateUrl: './revision-request-list-container.component.html',
+  styleUrls: ['./revision-request-list-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RevisionRequestListContainerComponent extends ApsListContainerComponent<RevisionRequest> {
   constructor(
     protected revisionRequestCollecitonService: RevisionRequestCollectionService,
     protected revisionRequestDataService: RevisionRequestDataService,
-    protected messageService: NzMessageService
+    protected messageService: NzMessageService,
   ) {
     super(revisionRequestCollecitonService, revisionRequestDataService, null, messageService);
   }
@@ -30,8 +30,8 @@ export class RevisionRequestListContainerComponent extends ApsListContainerCompo
       .pipe(take(1))
       .subscribe(() =>
         this.messageService.success(
-          `La solicitud de revisión ahora está ${statusLabels[revisionRequest.status].toLowerCase()}`
-        )
+          `La solicitud de revisión ahora está ${statusLabels[revisionRequest.status].toLowerCase()}`,
+        ),
       );
   }
 }

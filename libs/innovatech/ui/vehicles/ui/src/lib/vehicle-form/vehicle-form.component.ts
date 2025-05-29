@@ -7,27 +7,27 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { ApsQueryParams } from '@arphase/common';
 import { ApsFormComponent, enableControl } from '@arphase/ui/forms';
 import { Vehicle, VEHICLE_VIN_LENGTH } from '@innovatech/common/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { QueryParams } from '@ngrx/data';
 import { combineLatest } from 'rxjs';
 import { debounceTime, filter, startWith } from 'rxjs/operators';
 
 @UntilDestroy()
 @Component({
-    selector: 'ivt-vehicle-form',
-    templateUrl: './vehicle-form.component.html',
-    styleUrls: ['./vehicle-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-vehicle-form',
+  templateUrl: './vehicle-form.component.html',
+  styleUrls: ['./vehicle-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class VehicleFormComponent extends ApsFormComponent<Partial<Vehicle>, Partial<Vehicle>> implements OnChanges {
   @Input() companyId: number;
   @Input() showCompanyInput: boolean;
   @Input() enableVin: boolean;
   @Output() verifyVin = new EventEmitter<string>();
-  @Output() getCompanies = new EventEmitter<QueryParams>();
+  @Output() getCompanies = new EventEmitter<ApsQueryParams>();
   @Output() getVehicleProducts = new EventEmitter<Partial<Vehicle>>();
 
   ngOnChanges(changes: SimpleChanges) {

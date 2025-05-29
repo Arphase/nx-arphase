@@ -14,11 +14,14 @@ export class PlaceDetailEffects {
       mergeMap(({ reservation }) =>
         this.placeDetailService.getReservationPreview(reservation).pipe(
           map(response => PlaceDetailActions.getReservationPreviewSuccess({ reservation: response })),
-          catchError(() => of(PlaceDetailActions.getReservationPreviewFailed()))
-        )
-      )
-    )
+          catchError(() => of(PlaceDetailActions.getReservationPreviewFailed())),
+        ),
+      ),
+    ),
   );
 
-  constructor(private actions$: Actions, private placeDetailService: PlaceDetailService) {}
+  constructor(
+    private actions$: Actions,
+    private placeDetailService: PlaceDetailService,
+  ) {}
 }

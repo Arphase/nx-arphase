@@ -38,7 +38,7 @@ export class VehiclesService {
            LOWER(vehicle.model) like :text OR
            LOWER(vehicle.version) like :text)
           `,
-        { text: `%${text.toLowerCase()}%` }
+        { text: `%${text.toLowerCase()}%` },
       );
     }
 
@@ -86,7 +86,7 @@ export class VehiclesService {
 
     if (vehicle) {
       throw new NotFoundException(
-        `Vehículo con vin ${createVehicleDto.vin} ya se encuentra dado de alta en el sistema`
+        `Vehículo con vin ${createVehicleDto.vin} ya se encuentra dado de alta en el sistema`,
       );
     }
 
@@ -111,7 +111,7 @@ export class VehiclesService {
     if (vehicle?.guarantees?.length) {
       const folios = vehicle.guarantees.map(guarantee => transformFolio(guarantee.id)).toString();
       throw new BadRequestException(
-        `El vehículo no puede ser eliminado porque tiene garantías con los siguientes folios: ${folios}`
+        `El vehículo no puede ser eliminado porque tiene garantías con los siguientes folios: ${folios}`,
       );
     }
 
@@ -136,7 +136,7 @@ export class VehiclesService {
               AND revisions."createdAt" > CURRENT_DATE - INTERVAL '3 months'
               AND revisions.status = :revisionStatus )
               AND vehicles.status != :vehicleStatus )`,
-        { vehicleStatus: VehicleStatus.notElegible, revisionStatus: RevisionStatus.elegible }
+        { vehicleStatus: VehicleStatus.notElegible, revisionStatus: RevisionStatus.elegible },
       )
       .execute();
   }

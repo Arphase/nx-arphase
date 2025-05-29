@@ -17,7 +17,7 @@ export class VehiclesController {
   @Get()
   async getVehicles(
     @Query() filterDto: GetVehiclesDto,
-    @GetUser() user: Partial<User>
+    @GetUser() user: Partial<User>,
   ): Promise<ApsCollectionResponse<Vehicle>> {
     return this.vehiclesService.getVehicles(filterDto, user);
   }

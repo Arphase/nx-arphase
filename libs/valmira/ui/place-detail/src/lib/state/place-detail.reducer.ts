@@ -12,7 +12,7 @@ const placeDetailReducer = createReducer(
   on(PlaceDetailActions.getReservationPreviewSuccess, (state, action) => ({
     ...state,
     reservationPreview: action.reservation,
-  }))
+  })),
 );
 
 export function reducer(state: PlaceDetailState, action: Action) {

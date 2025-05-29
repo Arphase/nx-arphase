@@ -20,11 +20,11 @@ import { filter } from 'rxjs/operators';
 
 @UntilDestroy()
 @Component({
-    selector: 'vma-place-detail',
-    templateUrl: './place-detail.component.html',
-    styleUrls: ['./place-detail.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-place-detail',
+  templateUrl: './place-detail.component.html',
+  styleUrls: ['./place-detail.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PlaceDetailComponent
   extends ApsFormComponent<{ startDate: Date; endDate: Date }>
@@ -52,7 +52,7 @@ export class PlaceDetailComponent
       startDate: new UntypedFormControl(null, ApsValidators.required),
       endDate: new UntypedFormControl(null, ApsValidators.required),
     },
-    { validators: ApsValidators.dateLessThan('startDate', 'endDate') }
+    { validators: ApsValidators.dateLessThan('startDate', 'endDate') },
   );
   @Output() datesChange = new EventEmitter<{ startDate: Date; endDate: Date }>();
 
@@ -61,7 +61,7 @@ export class PlaceDetailComponent
     this.form.valueChanges
       .pipe(
         filter(value => !!value.startDate && !!value.endDate),
-        untilDestroyed(this)
+        untilDestroyed(this),
       )
       .subscribe(value => this.datesChange.emit(value));
   }
@@ -117,7 +117,7 @@ export class PlaceDetailComponent
     if (this.values?.startDate) {
       const startDate = this.values.startDate;
       const nextOccupedDate = this.endDateOccupiedDates.find(occupeiedDate =>
-        dayjs(occupeiedDate).subtract(1, 'day').isAfter(startDate, 'day')
+        dayjs(occupeiedDate).subtract(1, 'day').isAfter(startDate, 'day'),
       );
       return (
         endValue.getTime() <= startDate.getTime() ||

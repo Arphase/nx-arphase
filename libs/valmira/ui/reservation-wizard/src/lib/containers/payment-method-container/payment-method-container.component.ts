@@ -15,11 +15,11 @@ import {
 } from '../../state/reservation-wizard.actions';
 
 @Component({
-    selector: 'vma-payment-method-container',
-    templateUrl: './payment-method-container.component.html',
-    styleUrls: ['./payment-method-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-payment-method-container',
+  templateUrl: './payment-method-container.component.html',
+  styleUrls: ['./payment-method-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PaymentMethodContainerComponent {
   loadingSubject = new BehaviorSubject<boolean>(false);
@@ -34,7 +34,7 @@ export class PaymentMethodContainerComponent {
     private route: ActivatedRoute,
     private router: Router,
     private store: Store,
-    private stripeService: StripeService
+    private stripeService: StripeService,
   ) {}
 
   payReservation(element: StripeCardNumberElement): void {
@@ -49,10 +49,10 @@ export class PaymentMethodContainerComponent {
               card: element,
               billing_details: { name: `Valmira reservación - ${reservation?.place?.name}` },
             },
-          })
+          }),
         ),
         finalize(() => this.loadingSubject.next(false)),
-        withLatestFrom(this.reservationCollectionService.currentItem$)
+        withLatestFrom(this.reservationCollectionService.currentItem$),
       )
       .subscribe(([result, reservation]) => {
         if (result.error) {

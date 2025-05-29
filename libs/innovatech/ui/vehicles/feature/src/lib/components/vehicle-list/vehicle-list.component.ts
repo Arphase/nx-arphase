@@ -5,11 +5,11 @@ import { isVehicleElegible, UserRoles, Vehicle, VehicleStatus, vehicleStatusLabe
 import { colorMaps, columns, iconMaps, statusOptions } from './vehicle-list.constants';
 
 @Component({
-    selector: 'ivt-vehicle-list',
-    templateUrl: './vehicle-list.component.html',
-    styleUrls: ['./vehicle-list.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-vehicle-list',
+  templateUrl: './vehicle-list.component.html',
+  styleUrls: ['./vehicle-list.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class VehicleListComponent extends ApsListComponent<Vehicle> {
   columns = columns;

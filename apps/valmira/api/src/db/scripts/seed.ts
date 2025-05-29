@@ -9,7 +9,7 @@ async function run() {
     connection.getRepository(UserEntity),
     connection.getRepository(ResetPasswordEntity),
     null,
-    null
+    null,
   );
 
   const users: SignUpCredentialsDto[] = [

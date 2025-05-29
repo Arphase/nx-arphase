@@ -158,7 +158,7 @@ describe('GuaranteesController', () => {
         MoralPersonEntity,
         GuaranteeEntity,
       ],
-      connection
+      connection,
     );
     await app.close();
   });
@@ -198,13 +198,13 @@ describe('GuaranteesController', () => {
     const { physicalInfo, address } = client;
 
     expect(pick(body, guaranteeProperties)).toEqual(
-      pick({ ...newGuarantee, status: GuaranteeStatus.outstanding }, guaranteeProperties)
+      pick({ ...newGuarantee, status: GuaranteeStatus.outstanding }, guaranteeProperties),
     );
     expect(pick(body.client, clientProperties)).toEqual(
-      pick({ ...newGuarantee.client, personType: PersonTypes.physical }, clientProperties)
+      pick({ ...newGuarantee.client, personType: PersonTypes.physical }, clientProperties),
     );
     expect(pick(physicalInfo, phyisicalInfoProperties)).toEqual(
-      pick(newGuarantee.client.physicalInfo, phyisicalInfoProperties)
+      pick(newGuarantee.client.physicalInfo, phyisicalInfoProperties),
     );
     expect(pick(address, addressProperties)).toEqual(pick(newGuarantee.client.address, addressProperties));
   });
@@ -228,13 +228,13 @@ describe('GuaranteesController', () => {
     const { physicalInfo, address } = client;
 
     expect(pick(body, guaranteeProperties)).toEqual(
-      pick({ ...expected, status: GuaranteeStatus.outstanding }, guaranteeProperties)
+      pick({ ...expected, status: GuaranteeStatus.outstanding }, guaranteeProperties),
     );
     expect(pick(client, clientProperties)).toEqual(
-      pick({ ...expected.client, personType: PersonTypes.physical }, clientProperties)
+      pick({ ...expected.client, personType: PersonTypes.physical }, clientProperties),
     );
     expect(pick(physicalInfo, phyisicalInfoProperties)).toEqual(
-      pick(expected.client.physicalInfo, phyisicalInfoProperties)
+      pick(expected.client.physicalInfo, phyisicalInfoProperties),
     );
     expect(pick(address, addressProperties)).toEqual(pick(expected.client.address, addressProperties));
   });
@@ -295,10 +295,10 @@ describe('GuaranteesController', () => {
     const expected = await repository.findOne({ where: { id: updatedGuarantee.id }, relations: ['client'] });
 
     expect(pick(updatedGuarantee, guaranteeProperties)).toEqual(
-      pick({ ...expected, status: GuaranteeStatus.outstanding }, guaranteeProperties)
+      pick({ ...expected, status: GuaranteeStatus.outstanding }, guaranteeProperties),
     );
     expect(pick({ ...client, personType: PersonTypes.moral }, clientProperties)).toEqual(
-      pick(expected.client, clientProperties)
+      pick(expected.client, clientProperties),
     );
     expect(pick(moralInfo, moralInfoProperties)).toEqual(pick(expected.client.moralInfo, moralInfoProperties));
     expect(pick(address, addressProperties)).toEqual(pick(expected.client.address, addressProperties));

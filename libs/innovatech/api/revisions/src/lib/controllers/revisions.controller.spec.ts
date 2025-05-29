@@ -106,7 +106,7 @@ describe('RevisionsController', () => {
       .expect(200);
 
     expect(pick(body, revisionProperties)).toEqual(
-      pick({ ...newRevision, status: RevisionStatus.elegible }, revisionProperties)
+      pick({ ...newRevision, status: RevisionStatus.elegible }, revisionProperties),
     );
   });
 
@@ -147,7 +147,7 @@ describe('RevisionsController', () => {
 
     const expected = await repository.findOneBy({ id: updatedRevision.id });
     expect(updatedRevision).toEqual(
-      pick(expected, ['id', ...revisionProperties.filter(property => property !== 'report')])
+      pick(expected, ['id', ...revisionProperties.filter(property => property !== 'report')]),
     );
   });
 

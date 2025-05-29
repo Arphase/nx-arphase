@@ -13,7 +13,7 @@ import { UpdateAdditionalOptionDto } from '../dto/update-additional-option.dto';
 @Injectable()
 export class AdditionalOptionsService {
   constructor(
-    @InjectRepository(AdditionalOptionEntity) private additionalOptionRepository: Repository<AdditionalOptionEntity>
+    @InjectRepository(AdditionalOptionEntity) private additionalOptionRepository: Repository<AdditionalOptionEntity>,
   ) {}
 
   async getAdditionalOptions(filterDto: GetAdditionalOptionsDto): Promise<ApsCollectionResponse<AdditionalOption>> {

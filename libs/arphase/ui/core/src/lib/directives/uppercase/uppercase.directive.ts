@@ -5,8 +5,8 @@ import { filter } from 'rxjs/operators';
 
 @UntilDestroy()
 @Directive({
-    selector: '[apsUppercase]',
-    standalone: false
+  selector: '[apsUppercase]',
+  standalone: false,
 })
 export class ApsUppercaseDirective implements AfterViewInit {
   constructor(@Host() private ngControl: NgControl) {}
@@ -16,7 +16,7 @@ export class ApsUppercaseDirective implements AfterViewInit {
       this.ngControl.valueChanges
         .pipe(
           filter(value => typeof value === 'string'),
-          untilDestroyed(this)
+          untilDestroyed(this),
         )
         .subscribe(value => this.ngControl.control.patchValue(value.toUpperCase(), { emitEvent: false }));
     }

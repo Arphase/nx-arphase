@@ -8,7 +8,7 @@ export const getPlacesState = createSelector(getPlacesFeatureState, state => sta
 
 export const getPlacesStartDateOccupiedDates = createSelector(
   getPlacesFeatureState,
-  state => state.startDateOccupiedDates
+  state => state.startDateOccupiedDates,
 );
 
 export const getPlacesEndDateOccupiedDates = createSelector(getPlacesFeatureState, state => state.endDateOccupiedDates);

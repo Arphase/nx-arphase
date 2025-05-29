@@ -14,10 +14,10 @@ export class GroupsEffects {
       mergeMap(({ groupId }) =>
         this.groupDataService.getGroupProducts(groupId).pipe(
           map(payload => GroupsActions.getGroupProductsSuccess({ payload })),
-          catchError(() => of(GroupsActions.getGroupProductsFailed()))
-        )
-      )
-    )
+          catchError(() => of(GroupsActions.getGroupProductsFailed())),
+        ),
+      ),
+    ),
   );
 
   assignGroupProducts$ = createEffect(() =>
@@ -26,11 +26,14 @@ export class GroupsEffects {
       mergeMap(({ payload }) =>
         this.groupDataService.assignGroupProducts(payload).pipe(
           map(() => GroupsActions.assignGroupProductsSuccess()),
-          catchError(() => of(GroupsActions.assignGroupProductsFailed()))
-        )
-      )
-    )
+          catchError(() => of(GroupsActions.assignGroupProductsFailed())),
+        ),
+      ),
+    ),
   );
 
-  constructor(private actions$: Actions, private groupDataService: GroupDataService) {}
+  constructor(
+    private actions$: Actions,
+    private groupDataService: GroupDataService,
+  ) {}
 }

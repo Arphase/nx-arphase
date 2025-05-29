@@ -12,11 +12,11 @@ import { PaymentOrderCollectionService } from '../../services/payment-order-coll
 import { PaymentOrderDataService } from '../../services/payment-order-data.service';
 
 @Component({
-    selector: 'ivt-payment-order-dialog-container',
-    templateUrl: './payment-order-dialog-container.component.html',
-    styleUrls: ['./payment-order-dialog-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-payment-order-dialog-container',
+  templateUrl: './payment-order-dialog-container.component.html',
+  styleUrls: ['./payment-order-dialog-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PaymentOrderDialogContainerComponent extends ApsFormContainerComponent<PaymentOrder> {
   createSuccessMessage = 'Tu orden de compra se ha generado';

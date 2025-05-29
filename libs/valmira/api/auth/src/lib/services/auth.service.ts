@@ -27,7 +27,7 @@ export class AuthService {
     @InjectRepository(UserEntity) private userRepository: Repository<UserEntity>,
     @InjectRepository(ResetPasswordEntity) private resetPasswordRepository: Repository<ResetPasswordEntity>,
     private jwtService: JwtService,
-    private readonly connection: Connection
+    private readonly connection: Connection,
   ) {}
 
   async signUp(signUpCredentialsDto: SignUpCredentialsDto): Promise<User> {
@@ -133,7 +133,7 @@ export class AuthService {
           },
         ],
         html: getResetPasswordEmailTemplate(
-          `${process.env.ADMIN_HOST_URL}/auth/set-password/${tokenEntity.passwordToken}/${user.id}`
+          `${process.env.ADMIN_HOST_URL}/auth/set-password/${tokenEntity.passwordToken}/${user.id}`,
         ),
       };
       await transporter.sendMail(mailOptions);

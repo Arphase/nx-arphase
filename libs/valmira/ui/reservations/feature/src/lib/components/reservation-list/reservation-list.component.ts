@@ -4,11 +4,11 @@ import { Reservation, ReservationStatus } from '@valmira/domain';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 @Component({
-    selector: 'vma-reservation-list',
-    templateUrl: './reservation-list.component.html',
-    styleUrls: ['./reservation-list.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-reservation-list',
+  templateUrl: './reservation-list.component.html',
+  styleUrls: ['./reservation-list.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ReservationListComponent extends ApsListComponent<Reservation> {
   columns: ApsColumns = [

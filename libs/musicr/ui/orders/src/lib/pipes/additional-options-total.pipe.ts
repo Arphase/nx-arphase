@@ -2,8 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { OrderProductAdditionalOption } from '@musicr/domain';
 
 @Pipe({
-    name: 'additionalOptionsTotal',
-    standalone: false
+  name: 'additionalOptionsTotal',
+  standalone: false,
 })
 export class AdditionalOptionsTotalPipe implements PipeTransform {
   transform(orderProductsAdditionalOptions: OrderProductAdditionalOption[]): unknown {

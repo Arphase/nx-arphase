@@ -7,7 +7,7 @@ export class ApsGetItemQueryDto {
     String(obj['relations'])
       .split(',')
       .map(relation => relation)
-      .filter(relation => !!relation)
+      .filter(relation => !!relation),
   )
   @IsArray()
   relations?: string[];

@@ -78,7 +78,7 @@ export class PromocodesService {
     } catch (e) {
       if (e.code === '23503') {
         throw new ConflictException(
-          'No se puede eliminar el promocode porque existen reservaciones con este promocode'
+          'No se puede eliminar el promocode porque existen reservaciones con este promocode',
         );
       }
     }

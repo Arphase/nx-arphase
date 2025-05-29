@@ -7,7 +7,10 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class VehicleDataService extends ApsDataService<Vehicle> {
-  constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
+  constructor(
+    protected http: HttpClient,
+    protected httpUrlGenerator: HttpUrlGenerator,
+  ) {
     super('Vehicle', http, httpUrlGenerator);
     this.entityUrl = `/ivtApi/vehicles/`;
     this.entitiesUrl = `/ivtApi/vehicles`;

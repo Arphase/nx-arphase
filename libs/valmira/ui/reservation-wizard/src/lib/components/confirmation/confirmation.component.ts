@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Customer, Place, Reservation } from '@valmira/domain';
 
 @Component({
-    selector: 'vma-confirmation',
-    templateUrl: './confirmation.component.html',
-    styleUrls: ['./confirmation.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-confirmation',
+  templateUrl: './confirmation.component.html',
+  styleUrls: ['./confirmation.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ConfirmationComponent {
   @Input() item: Reservation;

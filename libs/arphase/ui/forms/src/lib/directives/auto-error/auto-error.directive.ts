@@ -6,12 +6,15 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Directive({
-    selector: '[apsAutoError]',
-    standalone: false
+  selector: '[apsAutoError]',
+  standalone: false,
 })
 export class ApsAutoErrorDirective implements AfterContentInit {
   @ContentChild(NgControl, { static: true }) ngControl: FormControlName | FormControlDirective;
-  constructor(private cdr: ChangeDetectorRef, @Optional() @Self() private nzFormControl: NzFormControlComponent) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    @Optional() @Self() private nzFormControl: NzFormControlComponent,
+  ) {}
 
   ngAfterContentInit(): void {
     if (this.nzFormControl && this.ngControl) {

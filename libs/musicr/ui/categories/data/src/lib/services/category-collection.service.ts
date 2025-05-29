@@ -11,7 +11,7 @@ export class CategoryCollectionService extends ApsCollectionService<Category> {
     mapToSelectOptions(category => ({
       label: `${category.name}`,
       value: category.id,
-    }))
+    })),
   );
   constructor(protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Category', serviceElementsFactory);

@@ -8,5 +8,5 @@ export const getReservationDetailState = createSelector(getReservationDetailFeat
 
 export const getReservationDetailReservationState = createSelector(
   getReservationDetailFeatureState,
-  state => state.reservation
+  state => state.reservation,
 );

@@ -13,11 +13,11 @@ import { getReservationWizardPromocode } from '../../state/reservation-wizard.se
 
 @UntilDestroy()
 @Component({
-    selector: 'vma-reservation-wizard-container',
-    templateUrl: './reservation-wizard-container.component.html',
-    styleUrls: ['./reservation-wizard-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-reservation-wizard-container',
+  templateUrl: './reservation-wizard-container.component.html',
+  styleUrls: ['./reservation-wizard-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ReservationWizardContainerComponent implements OnInit {
   item$ = this.reservationCollectionService.currentItem$;
@@ -26,7 +26,7 @@ export class ReservationWizardContainerComponent implements OnInit {
   isInConfirmation$ = this.store.pipe(
     select(selectUrl),
     filterNil(),
-    map(url => url.includes('confirmation'))
+    map(url => url.includes('confirmation')),
   );
   disablePaymentMethod$ = this.item$.pipe(map(item => !item?.customer?.id));
   disableConfirmation$ = this.item$.pipe(map(item => !item?.paymentId));
@@ -35,7 +35,7 @@ export class ReservationWizardContainerComponent implements OnInit {
     private reservationCollectionService: ReservationCollectionService,
     private store: Store,
     private actions$: Actions,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
@@ -44,7 +44,7 @@ export class ReservationWizardContainerComponent implements OnInit {
       .pipe(
         untilDestroyed(this),
         filter(params => !!params.get('id')),
-        map(params => params.get('id'))
+        map(params => params.get('id')),
       )
       .subscribe(id => this.reservationCollectionService.getByKey(id));
   }

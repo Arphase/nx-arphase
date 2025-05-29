@@ -8,7 +8,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { QueryParams } from '@ngrx/data';
+import { ApsQueryParams } from '@arphase/common';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 
 export interface CheckboxOption {
@@ -19,12 +19,12 @@ export interface CheckboxOption {
 }
 
 @Component({
-    selector: 'aps-checkbox-filter',
-    templateUrl: './checkbox-filter.component.html',
-    styleUrls: ['./checkbox-filter.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None,
-    standalone: false
+  selector: 'aps-checkbox-filter',
+  templateUrl: './checkbox-filter.component.html',
+  styleUrls: ['./checkbox-filter.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  standalone: false,
 })
 export class ApsCheckboxFilterComponent {
   @ViewChild(CdkVirtualScrollViewport) viewport: CdkVirtualScrollViewport;
@@ -40,7 +40,7 @@ export class ApsCheckboxFilterComponent {
   selected = false;
   setOfCheckedId = new Set<number>();
   setOfCheckedLabel = new Set<string>();
-  @Output() filterOptions = new EventEmitter<QueryParams>();
+  @Output() filterOptions = new EventEmitter<ApsQueryParams>();
   @Output() filterItems = new EventEmitter<number[]>();
 
   get checkedIdsArray(): number[] {

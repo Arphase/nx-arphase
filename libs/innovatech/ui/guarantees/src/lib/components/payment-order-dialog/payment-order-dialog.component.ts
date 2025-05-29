@@ -5,11 +5,11 @@ import { ApsFormComponent, ApsValidators } from '@arphase/ui/forms';
 import { Guarantee, PaymentOrder } from '@innovatech/common/domain';
 
 @Component({
-    selector: 'ivt-payment-order-dialog',
-    templateUrl: './payment-order-dialog.component.html',
-    styleUrls: ['./payment-order-dialog.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-payment-order-dialog',
+  templateUrl: './payment-order-dialog.component.html',
+  styleUrls: ['./payment-order-dialog.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PaymentOrderDialogComponent extends ApsFormComponent<PaymentOrder, PaymentOrder> implements OnChanges {
   @Input() selectedIds: number[];

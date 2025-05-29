@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, Optional } from '@angular/core';
 import { saveFile } from '@arphase/ui/utils';
-import { DefaultDataService, HttpUrlGenerator, QueryParams } from '@ngrx/data';
+import { ApsQueryParams, DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
 import dayjs from 'dayjs';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
@@ -16,12 +16,12 @@ export class ApsDataService<T> extends DefaultDataService<T> {
   constructor(
     @Optional() public entityName: string,
     protected http: HttpClient,
-    protected httpUrlGenerator: HttpUrlGenerator
+    protected httpUrlGenerator: HttpUrlGenerator,
   ) {
     super(entityName, http, httpUrlGenerator);
   }
 
-  getWithQuery(queryParams: QueryParams): Observable<T[]> {
+  getWithQuery(queryParams: ApsQueryParams): Observable<T[]> {
     return super.getWithQuery(buildQueryParams(queryParams).toString());
   }
 
@@ -35,7 +35,7 @@ export class ApsDataService<T> extends DefaultDataService<T> {
       })
       .pipe(
         tap((file: Blob) => saveFile(file, `${fileName}${dayjs(new Date()).format('DD-MM-YYYY')}.xlsx`)),
-        finalize(() => this.loadingExcelSubject.next(false))
+        finalize(() => this.loadingExcelSubject.next(false)),
       );
   }
 

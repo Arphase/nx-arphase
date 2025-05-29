@@ -19,7 +19,7 @@ export class GuaranteesController {
   @Get()
   async getGuarantees(
     @Query() filterDto: GetGuaranteesFilterDto,
-    @GetUser() user: Partial<User>
+    @GetUser() user: Partial<User>,
   ): Promise<ApsCollectionResponse<Guarantee>> {
     return this.guaranteesService.getGuarantees(filterDto, user);
   }
@@ -32,7 +32,7 @@ export class GuaranteesController {
   @Get('report/summary')
   async getGuaranteesSummary(
     @Query() filterDto: GetGuaranteesFilterDto,
-    @GetUser() user: Partial<User>
+    @GetUser() user: Partial<User>,
   ): Promise<GuaranteeSummary> {
     return this.guaranteesService.getGuaranteesSummary(filterDto, user);
   }
@@ -41,7 +41,7 @@ export class GuaranteesController {
   async getGuaranteesExcel(
     @Query() filterDto: GetGuaranteesFilterDto,
     @GetUser() user: Partial<User>,
-    @Res() response: Response
+    @Res() response: Response,
   ): Promise<void> {
     return this.guaranteesService.getGuaranteesExcel(filterDto, user, response);
   }
@@ -55,7 +55,7 @@ export class GuaranteesController {
   async getGuaranteePdf(
     @Param('id', ParseIntPipe) id: number,
     @Query() queryDto: ExportPdfDto,
-    @Res() response: Response
+    @Res() response: Response,
   ): Promise<void> {
     return this.guaranteesService.generatePdf(id, queryDto, response);
   }

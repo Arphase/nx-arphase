@@ -1,11 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApsCollectionResponse, ApsCollectionResponseInfo } from '@arphase/common';
+import { ApsCollectionResponse, ApsCollectionResponseInfo, ApsQueryParams } from '@arphase/common';
 import { GtagService } from '@arphase/ui/gtag';
 import { Category, Product, Subcategory } from '@musicr/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { QueryParams } from '@ngrx/data';
 import { firstValueFrom, forkJoin, Observable, of } from 'rxjs';
 import { catchError, filter, switchMap } from 'rxjs/operators';
 
@@ -71,7 +70,7 @@ export class ProductsCatalogService {
       });
   }
 
-  getProducts(id: number, queryParams?: QueryParams): Observable<ApsCollectionResponse<Product>> {
+  getProducts(id: number, queryParams?: ApsQueryParams): Observable<ApsCollectionResponse<Product>> {
     const sortingParams = { sort: 'product.position', direction: 'descend' };
     const params = this.isSubCategory ? { subcategoryId: id } : { categoryId: id };
     return this.http.get<ApsCollectionResponse<Product>>(`/mrlApi/products`, {

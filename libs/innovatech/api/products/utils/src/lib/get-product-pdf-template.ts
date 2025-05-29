@@ -9,7 +9,7 @@ dayjs.extend(utc);
 
 function replace(source: string, replacements: Record<string, string>) {
   return source.replace(new RegExp('\\{([A-z]|.)*?}', 'g'), value =>
-    value.substring(1, value.length - 1) in replacements ? replacements[value.substring(1, value.length - 1)] : value
+    value.substring(1, value.length - 1) in replacements ? replacements[value.substring(1, value.length - 1)] : value,
   );
 }
 

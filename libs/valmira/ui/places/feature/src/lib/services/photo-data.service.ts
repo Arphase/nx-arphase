@@ -6,7 +6,10 @@ import { Photo } from '@valmira/domain';
 
 @Injectable({ providedIn: 'root' })
 export class PhotoDataService extends ApsDataService<Photo> {
-  constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
+  constructor(
+    protected http: HttpClient,
+    protected httpUrlGenerator: HttpUrlGenerator,
+  ) {
     super('Photo', http, httpUrlGenerator);
     this.entityUrl = `/vmaApi/photos/`;
     this.entitiesUrl = `/vmaApi/photos`;

@@ -15,7 +15,7 @@ export class CompaniesController {
   @Get()
   async getCompanies(
     @Query() filterDto: CommonFilterDto,
-    @GetUser() user: Partial<User>
+    @GetUser() user: Partial<User>,
   ): Promise<ApsCollectionResponse<Company>> {
     return this.companiesService.getCompanies(filterDto, user);
   }

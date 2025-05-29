@@ -10,12 +10,12 @@ import { ApsAddressFormService, createAddressForm } from './address-form.service
 
 @UntilDestroy()
 @Component({
-    selector: 'aps-address-form',
-    templateUrl: './address-form.component.html',
-    styleUrls: ['./address-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [ApsAddressFormService],
-    standalone: false
+  selector: 'aps-address-form',
+  templateUrl: './address-form.component.html',
+  styleUrls: ['./address-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [ApsAddressFormService],
+  standalone: false,
 })
 export class ApsAddressFormComponent extends ApsFormComponent<Address> implements OnInit {
   @Input() placeholders: Address = {
@@ -36,7 +36,10 @@ export class ApsAddressFormComponent extends ApsFormComponent<Address> implement
   cityOptions: NzSelectOptionInterface[] = [];
   suburbOptions: string[] = [];
 
-  constructor(private addressFormService: ApsAddressFormService, private cdr: ChangeDetectorRef) {
+  constructor(
+    private addressFormService: ApsAddressFormService,
+    private cdr: ChangeDetectorRef,
+  ) {
     super();
   }
 
@@ -48,7 +51,7 @@ export class ApsAddressFormComponent extends ApsFormComponent<Address> implement
         startWith(zipCodeControl.value),
         filter(value => value && String(value).length === 5),
         untilDestroyed(this),
-        switchMap(zipcode => this.addressFormService.getLocalities(zipcode))
+        switchMap(zipcode => this.addressFormService.getLocalities(zipcode)),
       )
       .subscribe(zipCodeResponse => {
         const { showAddressSelects, countryOptions, stateOptions, cityOptions, suburbOptions } =

@@ -13,7 +13,7 @@ const vehiclesReducer = createReducer(
     ...state,
     products: action.payload,
   })),
-  on(GroupsActions.clearGroupsStore, (state, action) => initialState)
+  on(GroupsActions.clearGroupsStore, (state, action) => initialState),
 );
 
 export function reducer(state: GroupsState, action: Action) {

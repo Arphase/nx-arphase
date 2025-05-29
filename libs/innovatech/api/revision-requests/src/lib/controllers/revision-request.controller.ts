@@ -17,7 +17,7 @@ export class RevisionRequestController {
   @Get()
   async getRevisionRequests(
     @Query() filterDto: GetRevisionRequestsDto,
-    @GetUser() user: Partial<User>
+    @GetUser() user: Partial<User>,
   ): Promise<ApsCollectionResponse<RevisionRequest>> {
     return this.revisionRequestsService.getRevisionRequests(filterDto, user);
   }
@@ -31,7 +31,7 @@ export class RevisionRequestController {
   @Roles(UserRoles.agencyUser)
   async createRevisionRequest(
     @Body() createRevisionRequestDto: CreateRevisionRequestDto,
-    @GetUser() user: Partial<User>
+    @GetUser() user: Partial<User>,
   ): Promise<RevisionRequest> {
     return this.revisionRequestsService.createRevisionRequest(createRevisionRequestDto, user);
   }
@@ -39,7 +39,7 @@ export class RevisionRequestController {
   @Put(':id')
   async updateRevisionRequest(
     @Body() updateRevisionRequestDto: UpdateRevisionRequestDto,
-    @GetUser() user: Partial<User>
+    @GetUser() user: Partial<User>,
   ): Promise<RevisionRequest> {
     return this.revisionRequestsService.updateRevisionRequest(updateRevisionRequestDto, user);
   }

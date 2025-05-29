@@ -2,8 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import dayjs from 'dayjs';
 
 @Pipe({
-    name: 'redDay',
-    standalone: false
+  name: 'redDay',
+  standalone: false,
 })
 export class RedDayPipe implements PipeTransform {
   transform(value: Date, occupiedDates: string[]): unknown {

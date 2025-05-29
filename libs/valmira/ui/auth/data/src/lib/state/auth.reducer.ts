@@ -11,7 +11,7 @@ export const initialState: AuthState = {
     email: null,
     role: null,
     token: null,
-    password: null
+    password: null,
   },
 };
 
@@ -24,7 +24,7 @@ const authReducer = createReducer(
   on(AuthActions.logout, state => ({
     ...state,
     user: null,
-  }))
+  })),
 );
 
 export function reducer(state: AuthState, action: Action) {

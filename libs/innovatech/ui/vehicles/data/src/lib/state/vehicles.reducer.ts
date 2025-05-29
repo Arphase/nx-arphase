@@ -20,7 +20,7 @@ const vehiclesReducer = createReducer(
     vehicle: null,
     error: action.payload,
   })),
-  on(VehiclesActions.clearVehiclesState, (state, action) => initialState)
+  on(VehiclesActions.clearVehiclesState, (state, action) => initialState),
 );
 
 export function reducer(state: VehiclesState, action: Action) {

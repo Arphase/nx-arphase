@@ -10,11 +10,11 @@ import { RevisionCollectionService } from '../../services/revision-collection.se
 import { RevisionDataService } from '../../services/revision-data.service';
 
 @Component({
-    selector: 'ivt-revision-list-container',
-    templateUrl: './revision-list-container.component.html',
-    styleUrls: ['./revision-list-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-revision-list-container',
+  templateUrl: './revision-list-container.component.html',
+  styleUrls: ['./revision-list-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class RevisionListContainerComponent extends ApsListContainerComponent<Revision> {
   excelFileName = 'Revisiones';
@@ -24,7 +24,7 @@ export class RevisionListContainerComponent extends ApsListContainerComponent<Re
     protected revisionDataService: RevisionDataService,
     protected modal: NzModalService,
     protected toastrService: NzMessageService,
-    private router: Router
+    private router: Router,
   ) {
     super(revisionCollectionService, revisionDataService, modal, toastrService);
   }

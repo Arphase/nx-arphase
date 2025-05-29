@@ -11,20 +11,23 @@ export class ApsCollectionService<T> extends EntityCollectionServiceBase<T> {
   options$: Observable<NzSelectOptionInterface[]>;
   currentItem$ = this.selectors$.collection$.pipe(map((collection: ApsEntityCollection<T>) => collection.currentItem));
   loadingModify$ = this.selectors$.collection$.pipe(
-    map((collection: ApsEntityCollection<T>) => collection.loadingModify)
+    map((collection: ApsEntityCollection<T>) => collection.loadingModify),
   );
   info$ = this.selectors$.collection$.pipe(map((collection: ApsEntityCollection<T>) => collection.info));
   pageIndex$ = this.info$.pipe(
     filter(info => !!info),
-    map(({ pageIndex }) => pageIndex)
+    map(({ pageIndex }) => pageIndex),
   );
   last$ = this.info$.pipe(
     filter(info => !!info),
-    map(({ last }) => last)
+    map(({ last }) => last),
   );
   queryParams$ = this.selectors$.collection$.pipe(map((collection: ApsEntityCollection<T>) => collection.queryParams));
 
-  constructor(public entityName: string, protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {
+  constructor(
+    public entityName: string,
+    protected serviceElementsFactory: EntityCollectionServiceElementsFactory,
+  ) {
     super(entityName, serviceElementsFactory);
   }
 }

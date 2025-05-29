@@ -6,20 +6,20 @@ import { PermissionService, REQUIRED_ROLES } from '../services/permission.servic
 import { BasePermissionDirective } from './base-permission.directive';
 
 @Directive({
-    selector: '[ivtNoReadPermission]',
-    standalone: false
+  selector: '[ivtNoReadPermission]',
+  standalone: false,
 })
 export class NoReadPermissionDirective extends BasePermissionDirective {
   hasPermission$ = this.requiredRoles$.pipe(
     switchMap(requiredRoles => this.permissionService.hasReadPermission(requiredRoles)),
-    map(hasPermission => !hasPermission)
+    map(hasPermission => !hasPermission),
   );
 
   constructor(
     protected templateRef: TemplateRef<null>,
     protected viewContainer: ViewContainerRef,
     protected permissionService: PermissionService,
-    @Optional() @Inject(REQUIRED_ROLES) protected requiredRoles: UserRoles[]
+    @Optional() @Inject(REQUIRED_ROLES) protected requiredRoles: UserRoles[],
   ) {
     super(templateRef, viewContainer, permissionService, requiredRoles);
   }

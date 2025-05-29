@@ -8,12 +8,12 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { GroupFormService } from '../../services/group-form.service';
 
 @Component({
-    selector: 'ivt-group-form-container',
-    templateUrl: './group-form-container.component.html',
-    styleUrls: ['./group-form-container.component.less'],
-    providers: [GroupFormService],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-group-form-container',
+  templateUrl: './group-form-container.component.html',
+  styleUrls: ['./group-form-container.component.less'],
+  providers: [GroupFormService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class GroupFormContainerComponent extends ApsFormContainerComponent<Group> {
   successUrl = '/spa/groups';
@@ -25,7 +25,7 @@ export class GroupFormContainerComponent extends ApsFormContainerComponent<Group
     protected groupCollectionService: GroupCollectionService,
     protected router: Router,
     protected messageService: NzMessageService,
-    private groupFormService: GroupFormService
+    private groupFormService: GroupFormService,
   ) {
     super(groupCollectionService, router, messageService);
   }

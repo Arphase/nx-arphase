@@ -21,7 +21,7 @@ export class CategoriesController {
   @Get(':id')
   async getCategory(
     @Param('id', ParseIntPipe) id: number,
-    @Query() itemQueryDto: ApsGetItemQueryDto
+    @Query() itemQueryDto: ApsGetItemQueryDto,
   ): Promise<Category> {
     return this.categoriesService.getCategory(id, itemQueryDto);
   }

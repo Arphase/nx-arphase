@@ -13,7 +13,7 @@ export function filterCollectionQuery(
   entityName: string,
   query: SelectQueryBuilder<BaseEntity>,
   filterDto: Partial<ApsCollectionFilterDto>,
-  options: filterCollectionQueryOptions = { ignoreSort: false, ignoreDates: false, logicalOperator: 'and' }
+  options: filterCollectionQueryOptions = { ignoreSort: false, ignoreDates: false, logicalOperator: 'and' },
 ): void {
   const { sort, direction, pageIndex, pageSize } = filterDto;
   const { ignoreSort } = options;
@@ -33,7 +33,7 @@ export function filterCollectionDates(
   entityName: string,
   query: SelectQueryBuilder<BaseEntity>,
   filterDto: Partial<ApsCollectionFilterDto>,
-  options: filterCollectionQueryOptions = { ignoreDates: false, logicalOperator: 'and' }
+  options: filterCollectionQueryOptions = { ignoreDates: false, logicalOperator: 'and' },
 ): void {
   const { startDate, endDate, dateType } = filterDto;
   const { ignoreDates, logicalOperator } = options;

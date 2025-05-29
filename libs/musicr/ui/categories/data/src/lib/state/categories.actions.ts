@@ -4,7 +4,7 @@ import { createAction, props } from '@ngrx/store';
 
 export const saveCategoriesOrder = createAction(
   '[Categories] Save categories order',
-  props<{ categories: DeepPartial<Category>[] }>()
+  props<{ categories: DeepPartial<Category>[] }>(),
 );
 
 export const saveCategoriesOrderSuccess = createAction('[Categories] Save categories order success');

@@ -72,7 +72,7 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee, utcOffset?: number
         <div class="row">
             <div class="col">
               <p>Su número de Certificado de Garantía es: <span class="bold folio">${transformFolio(
-                guarantee.id
+                guarantee.id,
               )}</span></p>
             </div>
             <div class="col">
@@ -89,8 +89,8 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee, utcOffset?: number
         <p class="bold">DATOS DEL VEHÍCULO:</p>
         <p><span class="bold">MARCA:</span> ${guarantee.vehicle.brand}
         <span class="bold"> - NUMERO DE SERIE:</span> ${guarantee.vehicle.vin} <span class="bold"> - HP:</span> ${
-    guarantee.vehicle.horsePower
-  } </p>
+          guarantee.vehicle.horsePower
+        } </p>
         <p><span class="bold">MODELO:</span> ${guarantee.vehicle.model}</p>
         <p><span class="bold">MOTOR:</span> ${guarantee.vehicle.motorNumber}</p>
         <center><p>PERIODO DE VIGENCIA</p></center>
@@ -232,7 +232,7 @@ export function getGuaranteePdfTemplate(guarantee: Guarantee, utcOffset?: number
 export function applyGuaranteeFilter(
   query: SelectQueryBuilder<GuaranteeEntity>,
   filterDto: Partial<GetGuaranteesFilterDto>,
-  user: Partial<User>
+  user: Partial<User>,
 ): SelectQueryBuilder<GuaranteeEntity> {
   const { text, status } = filterDto;
 
@@ -269,7 +269,7 @@ export function applyGuaranteeFilter(
          LOWER(physicalPerson.secondLastName) like :text OR
          LOWER(moralPerson.businessName) like :text OR
          LOWER(CONCAT(physicalPerson.name, ' ', physicalPerson.lastName, ' ', physicalPerson.secondLastName)) like :text)`,
-      { text: `%${text.toLowerCase()}%` }
+      { text: `%${text.toLowerCase()}%` },
     );
   }
 

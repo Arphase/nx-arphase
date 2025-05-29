@@ -6,7 +6,7 @@ import { keyBy } from 'lodash';
 
 export function createAdditionalProductForm(
   item: AdditionalProduct,
-  currentReservationProducts: Record<number, ReservationAdditionalProduct>
+  currentReservationProducts: Record<number, ReservationAdditionalProduct>,
 ): UntypedFormGroup {
   const reservationItem = currentReservationProducts[item.id];
   return new UntypedFormGroup({
@@ -20,11 +20,11 @@ export function createAdditionalProductForm(
 }
 
 @Component({
-    selector: 'vma-additional-services',
-    templateUrl: './additional-services.component.html',
-    styleUrls: ['./additional-services.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-additional-services',
+  templateUrl: './additional-services.component.html',
+  styleUrls: ['./additional-services.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AdditionalServicesComponent extends ApsFormComponent<Reservation> implements OnChanges {
   @Input() items: AdditionalProduct[];
@@ -43,10 +43,10 @@ export class AdditionalServicesComponent extends ApsFormComponent<Reservation> i
       this.form.get('id').patchValue(this.item.id);
       const currentReservationProducts: Record<number, ReservationAdditionalProduct> = keyBy(
         this.item.additionalProducts,
-        'additionalProductId'
+        'additionalProductId',
       );
       this.items.forEach(item =>
-        this.additionalProductsFormArray.push(createAdditionalProductForm(item, currentReservationProducts))
+        this.additionalProductsFormArray.push(createAdditionalProductForm(item, currentReservationProducts)),
       );
     }
   }

@@ -8,12 +8,15 @@ import { AuthService } from '../services/auth.service';
 export class AuthGuard implements CanActivate {
   loginUrlTree = this.router.parseUrl('/auth');
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+  ) {}
 
   canActivate() {
     return this.authService.isAuthenticated().pipe(
       take(1),
-      map(isAuthenticated => (isAuthenticated ? true : this.loginUrlTree))
+      map(isAuthenticated => (isAuthenticated ? true : this.loginUrlTree)),
     );
   }
 }

@@ -13,11 +13,11 @@ import { getPlaceDetailReservationPreview } from '../../state/place-detail.selec
 
 @UntilDestroy()
 @Component({
-    selector: 'vma-place-detail-container',
-    templateUrl: './place-detail-container.component.html',
-    styleUrls: ['./place-detail-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-place-detail-container',
+  templateUrl: './place-detail-container.component.html',
+  styleUrls: ['./place-detail-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PlaceDetailContainerComponent implements OnInit {
   item$ = this.placeCollectionService.currentItem$;
@@ -33,7 +33,7 @@ export class PlaceDetailContainerComponent implements OnInit {
     private placeCollectionService: PlaceCollectionService,
     private route: ActivatedRoute,
     private router: Router,
-    private store: Store
+    private store: Store,
   ) {}
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class PlaceDetailContainerComponent implements OnInit {
       .pipe(
         untilDestroyed(this),
         filter(params => !!params.get('id')),
-        map(params => params.get('id'))
+        map(params => params.get('id')),
       )
       .subscribe(id => {
         this.placeCollectionService.getByKey(id);
@@ -55,7 +55,7 @@ export class PlaceDetailContainerComponent implements OnInit {
     this.item$
       .pipe(
         filter(place => !!place?.id),
-        take(1)
+        take(1),
       )
       .subscribe(({ id }) => this.store.dispatch(getReservationPreview({ reservation: { ...payload, placeId: id } })));
   }
@@ -66,7 +66,7 @@ export class PlaceDetailContainerComponent implements OnInit {
         switchMap(place => this.reservationCollectionService.add({ placeId: place.id, ...payload })),
         switchMap(() => this.reservationCollectionService.currentItem$),
         filterNil(),
-        take(1)
+        take(1),
       )
       .subscribe(({ id }) => this.router.navigateByUrl(`reservation/${id}`));
   }

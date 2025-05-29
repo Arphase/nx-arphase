@@ -14,11 +14,14 @@ export class VehiclesEffects {
       mergeMap(({ vin }) =>
         this.vehicleDataService.getVehicleByVin(vin).pipe(
           map(payload => VehiclesActions.getVehicleByVinSuccess({ payload })),
-          catchError(error => of(VehiclesActions.getVehicleByVinFailed({ payload: error.error })))
-        )
-      )
-    )
+          catchError(error => of(VehiclesActions.getVehicleByVinFailed({ payload: error.error }))),
+        ),
+      ),
+    ),
   );
 
-  constructor(private actions$: Actions, private vehicleDataService: VehicleDataService) {}
+  constructor(
+    private actions$: Actions,
+    private vehicleDataService: VehicleDataService,
+  ) {}
 }

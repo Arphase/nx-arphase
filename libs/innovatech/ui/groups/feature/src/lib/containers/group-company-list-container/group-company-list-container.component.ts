@@ -7,11 +7,11 @@ import { startWith } from 'rxjs/operators';
 import { GroupFormService } from '../../services/group-form.service';
 
 @Component({
-    selector: 'ivt-group-company-list-container',
-    templateUrl: './group-company-list-container.component.html',
-    styleUrls: ['./group-company-list-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-group-company-list-container',
+  templateUrl: './group-company-list-container.component.html',
+  styleUrls: ['./group-company-list-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class GroupCompanyListContainerComponent extends ApsFormComponent<Group> {
   companies$ = this.companiesForm.valueChanges.pipe(startWith(this.companiesForm.getRawValue()));

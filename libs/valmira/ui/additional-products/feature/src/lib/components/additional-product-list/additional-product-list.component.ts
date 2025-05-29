@@ -3,11 +3,11 @@ import { ApsColumns, ApsListComponent } from '@arphase/ui/core';
 import { AdditionalProduct } from '@valmira/domain';
 
 @Component({
-    selector: 'vma-additional-product-list',
-    templateUrl: './additional-product-list.component.html',
-    styleUrls: ['./additional-product-list.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-additional-product-list',
+  templateUrl: './additional-product-list.component.html',
+  styleUrls: ['./additional-product-list.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AdditionalProductListComponent extends ApsListComponent<AdditionalProduct> {
   columns: ApsColumns = [

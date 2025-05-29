@@ -5,10 +5,10 @@ export class AddStatusToOrder1670610792923 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      `CREATE TYPE "public"."orders_status_enum" AS ENUM('quoted', 'notSpecified', 'done', 'inProcess')`
+      `CREATE TYPE "public"."orders_status_enum" AS ENUM('quoted', 'notSpecified', 'done', 'inProcess')`,
     );
     await queryRunner.query(
-      `ALTER TABLE "orders" ADD "status" "public"."orders_status_enum" NOT NULL DEFAULT 'quoted'`
+      `ALTER TABLE "orders" ADD "status" "public"."orders_status_enum" NOT NULL DEFAULT 'quoted'`,
     );
   }
 

@@ -13,11 +13,11 @@ export function createAdditionalProductForm(): UntypedFormGroup {
 }
 
 @Component({
-    selector: 'vma-additional-product-form',
-    templateUrl: './additional-product-form.component.html',
-    styleUrls: ['./additional-product-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-additional-product-form',
+  templateUrl: './additional-product-form.component.html',
+  styleUrls: ['./additional-product-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AdditionalProductFormComponent extends ApsFormComponent<AdditionalProduct> implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {

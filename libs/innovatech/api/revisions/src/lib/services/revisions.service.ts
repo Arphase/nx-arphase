@@ -28,7 +28,7 @@ export class RevisionsService {
   constructor(
     @InjectRepository(RevisionEntity) private revisionRepository: Repository<RevisionEntity>,
     @InjectRepository(VehicleEntity) private vehicleRepository: Repository<VehicleEntity>,
-    private connection: Connection
+    private connection: Connection,
   ) {}
 
   async getRevisions(getRevisionsDto: GetRevisionsDto, user: Partial<User>): Promise<ApsCollectionResponse<Revision>> {
@@ -56,7 +56,7 @@ export class RevisionsService {
            LOWER(vehicle.model) like :text OR
            LOWER(vehicle.version) like :text)
           `,
-        { text: `%${text.toLowerCase()}%` }
+        { text: `%${text.toLowerCase()}%` },
       );
     }
 

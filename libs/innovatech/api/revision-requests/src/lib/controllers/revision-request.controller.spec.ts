@@ -161,7 +161,7 @@ describe('RevisionsController', () => {
     const expected = await repository.findOne({ where: { id: body.id }, relations: ['address', 'vehicle'] });
 
     expect(omit(mockedRevisionRequest, ['address', 'companyId', 'vehicleId'])).toEqual(
-      pick(expected, revisionRequestProperties)
+      pick(expected, revisionRequestProperties),
     );
     expect(mockedRevisionRequest.address).toEqual(pick(expected.address, addressProperties));
     expect(mockedVehicle).toEqual(pick(expected.vehicle, vehicleProperties));

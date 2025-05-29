@@ -8,12 +8,15 @@ import { AuthService } from '../services/auth.service';
 export class SpaGuard implements CanActivate {
   spaUrlTruee = this.router.parseUrl('/spa');
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+  ) {}
 
   canActivate() {
     return this.authService.isAuthenticated().pipe(
       take(1),
-      map(isAuthenticated => (isAuthenticated ? this.spaUrlTruee : true))
+      map(isAuthenticated => (isAuthenticated ? this.spaUrlTruee : true)),
     );
   }
 }

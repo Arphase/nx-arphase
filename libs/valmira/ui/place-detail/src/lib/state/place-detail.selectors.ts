@@ -8,5 +8,5 @@ export const getPlaceDetailState = createSelector(getPlaceDetailFeatureState, st
 
 export const getPlaceDetailReservationPreview = createSelector(
   getPlaceDetailFeatureState,
-  state => state.reservationPreview
+  state => state.reservationPreview,
 );

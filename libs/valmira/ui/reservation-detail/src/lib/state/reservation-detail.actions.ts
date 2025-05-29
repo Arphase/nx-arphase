@@ -5,12 +5,12 @@ import { SearchReservationPayload } from '../models/search-reservation-payload.m
 
 export const getReservationDetail = createAction(
   '[Reservation detail] Get reservation detail',
-  props<{ payload: SearchReservationPayload }>()
+  props<{ payload: SearchReservationPayload }>(),
 );
 
 export const getReservationDetailSuccess = createAction(
   '[Reservation detail] Get reservation detail success',
-  props<{ reservation: Reservation }>()
+  props<{ reservation: Reservation }>(),
 );
 
 export const getReservationDetailFailed = createAction('[Reservation detail] Get reservation detail failed');

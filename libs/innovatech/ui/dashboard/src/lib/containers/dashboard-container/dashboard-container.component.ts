@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApsQueryParams } from '@arphase/common';
 import { filterNil } from '@arphase/ui/utils';
 import { GuaranteeStatus } from '@innovatech/common/domain';
-import { QueryParams } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
 import { keyBy } from 'lodash';
 import { map, take } from 'rxjs/operators';
@@ -38,12 +38,12 @@ export class DashboardContainerComponent implements OnInit {
           value: Number(formattedSummary[GuaranteeStatus.expired]?.amount) || 0,
         },
       ];
-    })
+    }),
   );
   isEmpty$ = this.store.pipe(
     select(getDashboardGuaranteeSummaryState),
     filterNil(),
-    map(summary => !summary.length || !summary.some(value => Number(value.amount)))
+    map(summary => !summary.length || !summary.some(value => Number(value.amount))),
   );
   queryParams$ = this.store.pipe(select(getDashboardQueryParamsState));
 
@@ -53,7 +53,7 @@ export class DashboardContainerComponent implements OnInit {
     this.queryParams$.pipe(take(1)).subscribe(queryParams => this.store.dispatch(getGuaranteeSummary(queryParams)));
   }
 
-  filterItems(payload: QueryParams): void {
+  filterItems(payload: ApsQueryParams): void {
     this.store.dispatch(getGuaranteeSummary({ payload }));
   }
 }

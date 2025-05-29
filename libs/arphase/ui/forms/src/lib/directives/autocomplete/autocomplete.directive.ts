@@ -6,15 +6,18 @@ import { NzFormControlComponent } from 'ng-zorro-antd/form';
 
 @UntilDestroy()
 @Directive({
-    selector: '[apsAutocomplete]',
-    standalone: false
+  selector: '[apsAutocomplete]',
+  standalone: false,
 })
 export class ApsAutocompleteDirective implements AfterContentInit {
   @ContentChild(NgControl, { static: true }) ngControl: FormControlName | FormControlDirective;
   @ContentChild(NzAutocompleteComponent, { static: true }) autocomplete: NzAutocompleteComponent;
   @Input() options: string[] = [];
 
-  constructor(private cdr: ChangeDetectorRef, @Optional() @Self() private nzFormControl: NzFormControlComponent) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    @Optional() @Self() private nzFormControl: NzFormControlComponent,
+  ) {}
 
   ngAfterContentInit(): void {
     if (this.autocomplete && this.ngControl) {

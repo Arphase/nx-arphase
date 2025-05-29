@@ -64,7 +64,7 @@ export class OrderProductEntity extends BaseEntity implements OrderProduct {
     {
       cascade: true,
       eager: true,
-    }
+    },
   )
   orderProductAdditionalOptions: OrderProductAdditionalOption[];
 }

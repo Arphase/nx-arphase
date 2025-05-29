@@ -9,17 +9,17 @@ import { OrderDataService } from '../../services/order-data.service';
 import { OrderDetailContainerComponent } from '../order-detail-container/order-detail-container.component';
 
 @Component({
-    selector: 'mrl-order-list-container',
-    templateUrl: './order-list-container.component.html',
-    styleUrls: ['./order-list-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-order-list-container',
+  templateUrl: './order-list-container.component.html',
+  styleUrls: ['./order-list-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OrderListContainerComponent extends ApsListContainerComponent<Order> {
   constructor(
     protected orderCollectionService: OrderCollectionService,
     protected orderDataService: OrderDataService,
-    protected modal: NzModalService
+    protected modal: NzModalService,
   ) {
     super(orderCollectionService, orderDataService, modal);
   }
@@ -30,7 +30,7 @@ export class OrderListContainerComponent extends ApsListContainerComponent<Order
       .gerOrderPdf(id)
       .pipe(
         take(1),
-        finalize(() => this.loadingSubject.next(false))
+        finalize(() => this.loadingSubject.next(false)),
       )
       .subscribe();
   }
@@ -45,7 +45,7 @@ export class OrderListContainerComponent extends ApsListContainerComponent<Order
           nzContent: OrderDetailContainerComponent,
           nzFooter: null,
           nzWidth: '80vw',
-        })
+        }),
       );
   }
 }

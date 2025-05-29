@@ -9,7 +9,10 @@ import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class GroupDataService extends ApsDataService<Group> {
-  constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
+  constructor(
+    protected http: HttpClient,
+    protected httpUrlGenerator: HttpUrlGenerator,
+  ) {
     super('Group', http, httpUrlGenerator);
     this.entityUrl = `/ivtApi/groups/`;
     this.entitiesUrl = `/ivtApi/groups`;

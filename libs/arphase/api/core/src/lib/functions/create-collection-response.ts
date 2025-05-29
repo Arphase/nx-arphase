@@ -4,7 +4,7 @@ export function createCollectionResponse<T>(
   collection: T[],
   pageSize: number,
   pageIndex: number,
-  total: number
+  total: number,
 ): ApsCollectionResponse<T> {
   return {
     info: {

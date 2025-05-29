@@ -7,11 +7,11 @@ import { VALMIRA_CONFIGURATION, ValmiraConfiguration } from '@valmira/ui/core';
 import { take } from 'rxjs/operators';
 
 @Component({
-    selector: 'vma-spa',
-    templateUrl: './spa.component.html',
-    styleUrls: ['./spa.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-spa',
+  templateUrl: './spa.component.html',
+  styleUrls: ['./spa.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SpaComponent implements OnInit {
   options: SpaLayoutOptions = {
@@ -49,7 +49,7 @@ export class SpaComponent implements OnInit {
   constructor(
     private store: Store,
     private actions$: Actions,
-    @Inject(VALMIRA_CONFIGURATION) private config: ValmiraConfiguration
+    @Inject(VALMIRA_CONFIGURATION) private config: ValmiraConfiguration,
   ) {}
 
   ngOnInit() {

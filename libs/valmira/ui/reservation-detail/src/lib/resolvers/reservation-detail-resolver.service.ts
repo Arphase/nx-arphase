@@ -11,7 +11,10 @@ import { getReservationDetail, getReservationDetailSuccess } from '../state/rese
 
 @Injectable({ providedIn: 'root' })
 export class ReservationDetailResolverService implements Resolve<Reservation> {
-  constructor(private store: Store, private actions$: Actions) {}
+  constructor(
+    private store: Store,
+    private actions$: Actions,
+  ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Reservation> {
     const id = Number(route.paramMap.get('id'));
@@ -23,7 +26,7 @@ export class ReservationDetailResolverService implements Resolve<Reservation> {
     return this.actions$.pipe(
       ofType(getReservationDetailSuccess),
       take(1),
-      map(({ reservation }) => reservation)
+      map(({ reservation }) => reservation),
     );
   }
 }

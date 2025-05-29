@@ -15,7 +15,7 @@ export function getReservationTotal(reservation: Reservation): {
   if (additionalProducts) {
     productTotal = additionalProducts.reduce(
       (sum, { amount, additionalProduct }) => sum + Number(amount) * Number(additionalProduct.price),
-      0
+      0,
     );
   }
   total += productTotal;

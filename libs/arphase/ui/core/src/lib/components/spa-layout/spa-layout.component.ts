@@ -26,11 +26,11 @@ export interface SpaLayoutOptions {
 }
 
 @Component({
-    selector: 'aps-spa-layout',
-    templateUrl: './spa-layout.component.html',
-    styleUrls: ['./spa-layout.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'aps-spa-layout',
+  templateUrl: './spa-layout.component.html',
+  styleUrls: ['./spa-layout.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SpaLayoutComponent {
   @Input() menuItems: MenuItem[] = [];
@@ -50,7 +50,11 @@ export class SpaLayoutComponent {
   private _mobileQueryListener: () => void;
   @Output() logout = new EventEmitter<void>();
 
-  constructor(private cdr: ChangeDetectorRef, private media: MediaMatcher, private themeService: ThemeService) {
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private media: MediaMatcher,
+    private themeService: ThemeService,
+  ) {
     this.mobileQuery = this.media.matchMedia('(max-width: 769px)');
     this._mobileQueryListener = () => this.cdr.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

@@ -7,11 +7,11 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { AssignProductsModalContainerComponent } from '../assign-products-modal-container/assign-products-modal-container.component';
 
 @Component({
-    selector: 'ivt-group-list-container',
-    templateUrl: './group-list-container.component.html',
-    styleUrls: ['./group-list-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-group-list-container',
+  templateUrl: './group-list-container.component.html',
+  styleUrls: ['./group-list-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class GroupListContainerComponent extends ApsListContainerComponent<Group> {
   constructor(

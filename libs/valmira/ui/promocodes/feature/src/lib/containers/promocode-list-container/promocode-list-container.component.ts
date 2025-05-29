@@ -6,18 +6,18 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
-    selector: 'vma-promocode-list-container',
-    templateUrl: './promocode-list-container.component.html',
-    styleUrls: ['./promocode-list-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-promocode-list-container',
+  templateUrl: './promocode-list-container.component.html',
+  styleUrls: ['./promocode-list-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PromocodeListContainerComponent extends ApsListContainerComponent<Promocode> {
   constructor(
     protected promocodeCollectionService: PromocodeCollectionService,
     protected promocodeDataService: PromocodeDataService,
     protected modal: NzModalService,
-    protected messageService: NzMessageService
+    protected messageService: NzMessageService,
   ) {
     super(promocodeCollectionService, promocodeDataService, modal, messageService);
   }

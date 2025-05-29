@@ -9,7 +9,10 @@ import { tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class OrderDataService extends ApsDataService<Order> {
-  constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
+  constructor(
+    protected http: HttpClient,
+    protected httpUrlGenerator: HttpUrlGenerator,
+  ) {
     super('Order', http, httpUrlGenerator);
     this.entityUrl = `/mrlApi/orders/`;
     this.entitiesUrl = `/mrlApi/orders`;

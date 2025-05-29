@@ -6,7 +6,7 @@ export function runParallax(multiplier = 650): void {
       document.body.offsetHeight,
       document.documentElement.clientHeight,
       document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
+      document.documentElement.offsetHeight,
     );
     const value = (window.scrollY / limit) * multiplier;
     if (screen.width > 768) {

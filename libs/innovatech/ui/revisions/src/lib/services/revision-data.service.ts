@@ -6,7 +6,10 @@ import { HttpUrlGenerator } from '@ngrx/data';
 
 @Injectable({ providedIn: 'root' })
 export class RevisionDataService extends ApsDataService<Revision> {
-  constructor(protected http: HttpClient, protected httpUrlGenerator: HttpUrlGenerator) {
+  constructor(
+    protected http: HttpClient,
+    protected httpUrlGenerator: HttpUrlGenerator,
+  ) {
     super('Revision', http, httpUrlGenerator);
     this.entityUrl = `/ivtApi/revisions/`;
     this.entitiesUrl = `/ivtApi/revisions`;

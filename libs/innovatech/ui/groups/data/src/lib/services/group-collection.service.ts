@@ -12,7 +12,7 @@ export class GroupCollectionService extends ApsCollectionService<Group> {
       label: `${group.name}`,
       value: group.id,
     })),
-    sortSelectOptionsAlphabetical()
+    sortSelectOptionsAlphabetical(),
   );
   constructor(protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Group', serviceElementsFactory);

@@ -12,13 +12,13 @@ export async function insertUser(
     email: 'victor.martinez@mailinator.com',
     password: 'Innovatech123@',
     role: UserRoles.superAdmin,
-  }
+  },
 ): Promise<void> {
   const authService = new AuthService(
     connection.getRepository(UserEntity),
     connection.getRepository(ResetPasswordEntity),
     null,
-    null
+    null,
   );
   await authService.signUp(user);
 }

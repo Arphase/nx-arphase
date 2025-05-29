@@ -14,11 +14,14 @@ export class ReservationDetailEffects {
       mergeMap(({ payload }) =>
         this.reservationDetailService.getReservationDetail(payload).pipe(
           map(reservation => ReservationDetailActions.getReservationDetailSuccess({ reservation })),
-          catchError(() => of(ReservationDetailActions.getReservationDetailFailed()))
-        )
-      )
-    )
+          catchError(() => of(ReservationDetailActions.getReservationDetailFailed())),
+        ),
+      ),
+    ),
   );
 
-  constructor(private actions$: Actions, private reservationDetailService: ReservationDetailService) {}
+  constructor(
+    private actions$: Actions,
+    private reservationDetailService: ReservationDetailService,
+  ) {}
 }

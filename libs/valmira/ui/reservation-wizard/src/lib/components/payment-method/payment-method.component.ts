@@ -12,11 +12,11 @@ import { StripeCardElementOptions, StripeCardNumberElement, StripeElementsOption
 import { StripeCardNumberComponent } from 'ngx-stripe';
 
 @Component({
-    selector: 'vma-payment-method',
-    templateUrl: './payment-method.component.html',
-    styleUrls: ['./payment-method.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'vma-payment-method',
+  templateUrl: './payment-method.component.html',
+  styleUrls: ['./payment-method.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class PaymentMethodComponent {
   @ViewChild(StripeCardNumberComponent) card: StripeCardNumberComponent;
@@ -53,7 +53,10 @@ export class PaymentMethodComponent {
 
   @Output() payReservation = new EventEmitter<StripeCardNumberElement>();
 
-  constructor(private cdr: ChangeDetectorRef, private media: MediaMatcher) {
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private media: MediaMatcher,
+  ) {
     this.mobileQuery = this.media.matchMedia('(max-width: 769px)');
     this._mobileQueryListener = () => this.cdr.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

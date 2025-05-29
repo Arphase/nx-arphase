@@ -4,11 +4,11 @@ import { combineLatest, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-    selector: 'mrl-cart',
-    templateUrl: './cart.component.html',
-    styleUrls: ['./cart.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-cart',
+  templateUrl: './cart.component.html',
+  styleUrls: ['./cart.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class CartComponent implements OnInit {
   steps = [
@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
       icon: 'form',
       path: ['social-event'],
       disabled$: combineLatest([this.cartService.cartItems$, this.cartService.orderType$]).pipe(
-        map(([cartItems, orderType]) => !cartItems.length || !orderType)
+        map(([cartItems, orderType]) => !cartItems.length || !orderType),
       ),
     },
     {

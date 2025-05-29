@@ -29,7 +29,7 @@ export async function insertGroup(
         users: [],
       },
     ],
-  }
+  },
 ): Promise<void> {
   const groupService = new GroupsService(
     connection.getRepository(GroupEntity),
@@ -38,7 +38,7 @@ export async function insertGroup(
     connection.getRepository(ResetPasswordEntity),
     connection.getRepository(ProductEntity),
     connection,
-    null
+    null,
   );
   await groupService.createGroup(group);
 }

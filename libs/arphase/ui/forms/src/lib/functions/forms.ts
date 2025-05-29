@@ -7,7 +7,7 @@ const toFormControl = <T>(values: T) => new FormControl(values);
 export function setFormArrayValue<T>(
   formArray: FormArray,
   values: T[],
-  toSubControl: ControlFactory<T> = toFormControl
+  toSubControl: ControlFactory<T> = toFormControl,
 ): FormArray {
   formArray.clear();
   values.map(toSubControl).forEach(control => formArray.push(control));
@@ -28,18 +28,21 @@ export function collectFormErrors(form: FormGroup | FormArray): ValidationErrors
   function _collectFormErrors(_form: FormGroup | FormArray): ValidationErrors {
     let hasError = false;
 
-    const result = Object.keys(_form.controls).reduce((acc, key) => {
-      const control = _form.get(key);
-      const errors = hasControls(control) ? _collectFormErrors(control) : control.errors;
+    const result = Object.keys(_form.controls).reduce(
+      (acc, key) => {
+        const control = _form.get(key);
+        const errors = hasControls(control) ? _collectFormErrors(control) : control.errors;
 
-      if (errors) {
-        acc[key] = errors;
+        if (errors) {
+          acc[key] = errors;
 
-        hasError = true;
-      }
+          hasError = true;
+        }
 
-      return acc;
-    }, {} as Record<string, unknown>);
+        return acc;
+      },
+      {} as Record<string, unknown>,
+    );
 
     return hasError ? result : null;
   }
@@ -78,7 +81,7 @@ function traverseFormGroup(formGroup: FormGroup | FormArray, fn: (control: Abstr
 export function enableControl(
   control: AbstractControl,
   shouldEnable: boolean,
-  options?: { emitEvent?: boolean; onlySelf?: boolean }
+  options?: { emitEvent?: boolean; onlySelf?: boolean },
 ) {
   shouldEnable ? control.enable(options) : control.disable(options);
 }
@@ -86,7 +89,7 @@ export function enableControl(
 export function disableControl(
   control: AbstractControl,
   shouldEnable: boolean,
-  options?: { emitEvent?: boolean; onlySelf?: boolean }
+  options?: { emitEvent?: boolean; onlySelf?: boolean },
 ) {
   enableControl(control, !shouldEnable, options);
 }

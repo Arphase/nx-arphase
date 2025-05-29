@@ -20,7 +20,7 @@ const dashboardReducer = createReducer(
   on(DashboardActions.getGuaranteeSummarySuccess, (state, action) => ({
     ...state,
     guaranteeSummary: action.payload,
-  }))
+  })),
 );
 
 export function reducer(state: DashboardState, action: Action) {

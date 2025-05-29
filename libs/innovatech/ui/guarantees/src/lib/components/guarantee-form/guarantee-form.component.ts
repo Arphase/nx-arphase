@@ -8,7 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Address, DeepPartial } from '@arphase/common';
+import { Address, ApsQueryParams, DeepPartial } from '@arphase/common';
 import { ApsFormComponent, ControlsOf, enableControl } from '@arphase/ui/forms';
 import { filterNil } from '@arphase/ui/utils';
 import {
@@ -23,7 +23,6 @@ import {
 } from '@innovatech/common/domain';
 import { REQUIRED_ROLES } from '@innovatech/ui/permissions/data';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { QueryParams } from '@ngrx/data';
 import { NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
 import { startWith } from 'rxjs/operators';
@@ -32,12 +31,12 @@ import { personTypeOptions } from './guarantee-form.constants';
 
 @UntilDestroy()
 @Component({
-    selector: 'ivt-guarantee-form',
-    templateUrl: './guarantee-form.component.html',
-    styleUrls: ['./guarantee-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
-    standalone: false
+  selector: 'ivt-guarantee-form',
+  templateUrl: './guarantee-form.component.html',
+  styleUrls: ['./guarantee-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: REQUIRED_ROLES, useValue: [UserRoles.superAdmin] }],
+  standalone: false,
 })
 export class GuaranteeFormComponent
   extends ApsFormComponent<DeepPartial<Guarantee>, DeepPartial<Guarantee>>
@@ -54,7 +53,7 @@ export class GuaranteeFormComponent
   personTypeOptions = personTypeOptions;
   companyId$: Observable<number>;
   @Output() verifyVin = new EventEmitter<string>();
-  @Output() getCompanies = new EventEmitter<QueryParams>();
+  @Output() getCompanies = new EventEmitter<ApsQueryParams>();
 
   get client(): FormGroup<ControlsOf<Client>> {
     return this.form.get('client') as FormGroup<ControlsOf<Client>>;

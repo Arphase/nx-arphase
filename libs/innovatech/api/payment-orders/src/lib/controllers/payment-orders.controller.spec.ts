@@ -160,7 +160,7 @@ describe('PaymentOrders Controller', () => {
         GuaranteeEntity,
         PaymentOrderEntity,
       ],
-      ivtDataSource
+      ivtDataSource,
     );
     await app.close();
   });
@@ -181,7 +181,7 @@ describe('PaymentOrders Controller', () => {
     const guarantee = guarantees[0];
 
     expect(pick({ ...guarantee, invoiceDate: dayjs(guarantee.invoiceDate).toString() }, guaranteeProperties)).toEqual(
-      pick({ ...expectedGuarantee, invoiceDate: dayjs(expectedGuarantee.invoiceDate).toString() }, guaranteeProperties)
+      pick({ ...expectedGuarantee, invoiceDate: dayjs(expectedGuarantee.invoiceDate).toString() }, guaranteeProperties),
     );
   });
 });

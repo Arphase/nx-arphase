@@ -5,11 +5,11 @@ import { Group } from '@innovatech/common/domain';
 import { columns } from './group-list.constants';
 
 @Component({
-    selector: 'ivt-group-list',
-    templateUrl: './group-list.component.html',
-    styleUrls: ['./group-list.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ivt-group-list',
+  templateUrl: './group-list.component.html',
+  styleUrls: ['./group-list.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class GroupListComponent extends ApsListComponent<Group> {
   columns = columns;

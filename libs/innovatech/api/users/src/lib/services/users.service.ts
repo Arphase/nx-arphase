@@ -28,7 +28,7 @@ export class UsersService {
         LOWER(user.lastName) like :text OR
         LOWER(user.secondLastName) like :text OR
         LOWER(CONCAT(user.firstName, ' ', user.lastName, ' ', user.secondLastName)) like :text)`,
-        { text: `%${text.toLowerCase()}%` }
+        { text: `%${text.toLowerCase()}%` },
       );
     }
 

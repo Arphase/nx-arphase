@@ -8,7 +8,7 @@ import { EntityCollectionServiceElementsFactory } from '@ngrx/data';
 @Injectable({ providedIn: 'root' })
 export class ProductCollectionService extends ApsCollectionService<Product> {
   options$ = this.entities$.pipe(
-    mapToSelectOptions(({ name, price, id }) => ({ label: `${name} - ${formatCurrency(price)}`, value: id }))
+    mapToSelectOptions(({ name, price, id }) => ({ label: `${name} - ${formatCurrency(price)}`, value: id })),
   );
   constructor(protected serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Product', serviceElementsFactory);

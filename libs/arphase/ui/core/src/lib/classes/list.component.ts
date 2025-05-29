@@ -1,20 +1,19 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ApsCollectionResponseInfo } from '@arphase/common';
-import { QueryParams } from '@ngrx/data';
+import { ApsCollectionResponseInfo, ApsQueryParams } from '@arphase/common';
 
 import { CrudEvents } from '../models/crud-events.model';
 
 @Component({
-    template: '',
-    selector: 'aps-list',
-    standalone: false
+  template: '',
+  selector: 'aps-list',
+  standalone: false,
 })
 export class ApsListComponent<T> implements CrudEvents<T> {
   @Input() list: T[] = [];
   @Input() loading: boolean;
   @Input() loadingExcel: boolean;
   @Input() info: ApsCollectionResponseInfo;
-  @Input() queryParams: QueryParams = {
+  @Input() queryParams: ApsQueryParams = {
     resetList: String(true),
     pageIndex: String(1),
     pageSize: String(1),

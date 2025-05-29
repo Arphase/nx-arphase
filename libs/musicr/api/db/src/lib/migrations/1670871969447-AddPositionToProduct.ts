@@ -7,7 +7,7 @@ export class AddPositionToProduct1670871969447 implements MigrationInterface {
     await queryRunner.query(`DROP INDEX "public"."IDX_55b5ea36a0ed3bd94e0d723da1"`);
     await queryRunner.query(`ALTER TABLE "products" ADD "position" integer`);
     await queryRunner.query(
-      `CREATE UNIQUE INDEX "IDX_610626a8a244da3101f32830c5" ON "products" ("name", "subcategoryId", "position") `
+      `CREATE UNIQUE INDEX "IDX_610626a8a244da3101f32830c5" ON "products" ("name", "subcategoryId", "position") `,
     );
   }
 
@@ -15,7 +15,7 @@ export class AddPositionToProduct1670871969447 implements MigrationInterface {
     await queryRunner.query(`DROP INDEX "public"."IDX_610626a8a244da3101f32830c5"`);
     await queryRunner.query(`ALTER TABLE "products" DROP COLUMN "position"`);
     await queryRunner.query(
-      `CREATE UNIQUE INDEX "IDX_55b5ea36a0ed3bd94e0d723da1" ON "products" ("name", "subcategoryId") `
+      `CREATE UNIQUE INDEX "IDX_55b5ea36a0ed3bd94e0d723da1" ON "products" ("name", "subcategoryId") `,
     );
   }
 }

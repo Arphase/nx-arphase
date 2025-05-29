@@ -8,12 +8,7 @@ import { TermsAndConditionsRoutingModule } from './terms-and-conditions-routing.
 import { TermsAndConditionsComponent } from './terms-and-conditions.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TermsAndConditionsRoutingModule,
-    NzGridModule,
-    NzDividerModule,
-  ],
+  imports: [CommonModule, TermsAndConditionsRoutingModule, NzGridModule, NzDividerModule],
   declarations: [TermsAndConditionsComponent],
 })
 export class TermsAndConditionsModule {}

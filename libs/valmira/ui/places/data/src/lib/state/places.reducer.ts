@@ -17,7 +17,7 @@ const placesReducer = createReducer(
   on(PlacesActions.getEndDateOccupiedDatesSuccess, (state, action) => ({
     ...state,
     endDateOccupiedDates: action.dates,
-  }))
+  })),
 );
 
 export function reducer(state: PlacesState, action: Action) {

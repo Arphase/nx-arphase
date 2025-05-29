@@ -9,13 +9,13 @@ export async function insertUser(
     lastName: 'Martínez',
     email: 'victor.martinez@mailinator.com',
     password: 'MusicRevolution123@',
-  }
+  },
 ): Promise<void> {
   const authService = new AuthService(
     connection.getRepository(UserEntity),
     connection.getRepository(ResetPasswordEntity),
     null,
-    null
+    null,
   );
   await authService.signUp(user);
 }
