@@ -5,14 +5,19 @@
          nz-row
          nzGutter="12">
       <div nz-col
-           nzXs="10"
-           nzMd="11">
+           nzXs="7"
+           nzMd="8">
         Nombre
       </div>
       <div nz-col
-           nzXs="10"
-           nzMd="11">
+           nzXs="7"
+           nzMd="8">
         Precio
+      </div>
+      <div nz-col
+           nzXs="7"
+           nzMd="8">
+        Incluir en promoción
       </div>
     </div>
     <mrl-price-option-form *ngFor="let priceOptionForm of formArray?.controls; let index = index;"

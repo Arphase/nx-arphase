@@ -20,7 +20,10 @@ export const typeormConfig: PostgresConnectionOptions = {
   entities: ENTITIES,
   synchronize: process.env.SYNCHRONIZE === 'true',
   logging: !test,
-  migrations: [`libs/musicr/api/db/src/lib/migrations/**/*.${process.env.NODE_ENV === 'migrations' ? 'ts' : 'js'}`],
+  migrations:
+    process.env.NODE_ENV === 'migrations'
+      ? [`libs/musicr/api/db/src/lib/migrations/**/*.ts`]
+      : [`libs/musicr/api/db/src/lib/migrations/**/*.js`],
 };
 
 export const dataSource = new DataSource(typeormConfig);

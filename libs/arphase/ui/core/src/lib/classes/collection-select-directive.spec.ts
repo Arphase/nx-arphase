@@ -4,11 +4,11 @@ import { ApsCollectionService } from '@arphase/ui/data';
 import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator/jest';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { of } from 'rxjs';
-
+import { v4 } from 'uuid';
 import { ApsCollectionSelectDirective } from './collection-select.directive';
 
 describe('ApsCollectionSelectDirective', () => {
-  @Component({ selector: 'aps-test', standalone: false })
+  @Component({ selector: 'aps-test', host: { hostId: v4() }, standalone: false })
   class HostComponent {
     form = new FormGroup({ test: new FormControl('') });
   }

@@ -17,7 +17,7 @@ export class ProductsService {
     @InjectRepository(ProductEntity)
     private productRepository: Repository<ProductEntity>,
     @InjectRepository(PriceOptionEntity)
-    private priceOptionRepository: Repository<PriceOptionEntity>
+    private priceOptionRepository: Repository<PriceOptionEntity>,
   ) {}
 
   /**
@@ -51,7 +51,7 @@ export class ProductsService {
           LOWER(category.name) like :text OR
           LOWER(subcategory.name) like :text
       )`,
-        { text: `%${text.toLowerCase()}%` }
+        { text: `%${text.toLowerCase()}%` },
       );
     }
 
@@ -84,7 +84,7 @@ export class ProductsService {
       }
       if (e.code === '23505') {
         throw new ConflictException(
-          `Un producto con el nombre ${product.name} y la subcategoría con id ${product.subcategoryId} ya existe`
+          `Un producto con el nombre ${product.name} y la subcategoría con id ${product.subcategoryId} ya existe`,
         );
       }
     }
@@ -113,7 +113,7 @@ export class ProductsService {
       priceOptions.map(async priceOption => {
         const newPriceOption = this.priceOptionRepository.create({ ...priceOption, productId });
         await newPriceOption.save();
-      })
+      }),
     );
   }
 }

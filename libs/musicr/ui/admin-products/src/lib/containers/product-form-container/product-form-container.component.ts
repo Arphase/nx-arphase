@@ -7,14 +7,16 @@ import { SubcategoryCollectionService } from '@musicr/ui/subcategories/data';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { BehaviorSubject } from 'rxjs';
 
-import { createProductForm } from '../../components/product-form/product-form.component';
+import { CommonModule } from '@angular/common';
+import { createProductForm, ProductFormComponent } from '../../components/product-form/product-form.component';
 
 @Component({
-    selector: 'mrl-product-form-container',
-    templateUrl: './product-form-container.component.html',
-    styleUrls: ['./product-form-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-product-form-container',
+  templateUrl: './product-form-container.component.html',
+  styleUrls: ['./product-form-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ProductFormComponent, CommonModule],
+  standalone: true,
 })
 export class ProductFormContainerComponent extends ApsFormContainerComponent<Product> {
   form = createProductForm();
@@ -30,7 +32,7 @@ export class ProductFormContainerComponent extends ApsFormContainerComponent<Pro
     protected router: Router,
     protected messageService: NzMessageService,
     private subcategoryCollectionService: SubcategoryCollectionService,
-    private photoCollectionService: PhotoCollectionService
+    private photoCollectionService: PhotoCollectionService,
   ) {
     super(productCollectionService, router, messageService);
   }

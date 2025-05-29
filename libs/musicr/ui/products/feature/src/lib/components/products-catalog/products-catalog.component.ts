@@ -1,8 +1,9 @@
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { Product } from '@musicr/domain';
+import { MapperPipe, MapperPipeFunction } from '@arphase/ui/core';
+import { getProductCurrentPrice, Product } from '@musicr/domain';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSelectModule, NzSelectOptionInterface } from 'ng-zorro-antd/select';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
@@ -11,7 +12,17 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
   selector: 'mrl-products-catalog',
   templateUrl: './products-catalog.component.html',
   styleUrls: ['./products-catalog.component.less'],
-  imports: [NzGridModule, NzSkeletonModule, CurrencyPipe, RouterLink, NzToolTipModule, NzSelectModule, FormsModule],
+  imports: [
+    CurrencyPipe,
+    FormsModule,
+    MapperPipe,
+    NgClass,
+    NzGridModule,
+    NzSelectModule,
+    NzSkeletonModule,
+    NzToolTipModule,
+    RouterLink,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsCatalogComponent {
@@ -23,6 +34,7 @@ export class ProductsCatalogComponent {
   mockArray = new Array(8).fill(null).map((_, index) => ({
     id: index,
   }));
+  priceMapper: MapperPipeFunction<Product, number> = (product: Product) => getProductCurrentPrice(product);
   sortingOption: NzSelectOptionInterface;
   sortOptions: NzSelectOptionInterface[] = [
     { label: 'Precio, menor a mayor', value: `product.price | ascend` },

@@ -57,6 +57,9 @@ export class OrderFormService {
     this.orderProductsFormArray.controls
       .filter(control => control.value.productId === product.id)
       .forEach(control => {
+        if (control.value.id) {
+          return;
+        }
         const additionalOptionsControl = control.get('orderProductAdditionalOptions') as FormArray<
           FormGroup<ControlsOf<OrderProductAdditionalOption>>
         >;
@@ -68,6 +71,7 @@ export class OrderFormService {
             id: selectedAdditionalOptions.find(({ additionalOptionId }) => additionalOptionId === id)?.id,
             selected: !!selectedAdditionalOptions.find(({ additionalOptionId }) => additionalOptionId === id),
             additionalOptionId: id,
+            price: price,
             additionalOption: { name, price },
           });
         });

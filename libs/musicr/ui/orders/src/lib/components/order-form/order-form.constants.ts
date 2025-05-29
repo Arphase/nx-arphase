@@ -14,6 +14,7 @@ export function createOrderForm(): FormGroup<ControlsOf<Partial<Order>>> {
     id: new FormControl(null),
     orderType: new FormControl(null, ApsValidators.required),
     orderProducts: new FormArray([]),
+    total: new FormControl<number>(0),
     socialEvent: new FormGroup({
       id: new FormControl(null),
       eventType: new FormControl(null, ApsValidators.required),
@@ -59,6 +60,7 @@ export function createAdditionalOptionForm(option: DeepPartial<OrderProductAddit
   const form = new FormGroup({
     selected: new FormControl(option.selected ?? false),
     id: new FormControl(option.id),
+    price: new FormControl<number>(option.price),
     additionalOptionId: new FormControl(option.additionalOptionId),
     additionalOption: new FormGroup({
       name: new FormControl(option.additionalOption.name),

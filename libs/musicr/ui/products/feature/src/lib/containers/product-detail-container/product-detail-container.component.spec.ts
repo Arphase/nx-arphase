@@ -2,8 +2,10 @@ import { CartService } from '@musicr/ui/cart/data';
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { TitleCasePipe } from '@angular/common';
-import { signal } from '@angular/core';
+import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { MockComponent } from 'ng-mocks';
+import { ProductDetailComponent } from '../../components/product-detail/product-detail.component';
 import { ProductDetailService } from '../../services/product-detail.service';
 import { ProductDetailContainerComponent } from './product-detail-container.component';
 
@@ -23,9 +25,16 @@ describe('ProductDetailContainerComponent', () => {
         },
       },
     ],
+    overrideComponents: [
+      [
+        ProductDetailContainerComponent,
+        { remove: { imports: [ProductDetailComponent] }, add: { imports: [MockComponent(ProductDetailComponent)] } },
+      ],
+    ],
     mocks: [CartService],
     componentMocks: [TitleCasePipe],
     shallow: true,
+    schemas: [NO_ERRORS_SCHEMA],
   });
 
   beforeEach(() => (spectator = createComponent()));

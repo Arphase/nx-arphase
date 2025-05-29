@@ -19,7 +19,7 @@ export class AdditionalOptionsController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post()
-  createDdditionalOption(@Body() createDto: CreateAdditionalOptionDto): Promise<AdditionalOption> {
+  createAdditionalOption(@Body() createDto: CreateAdditionalOptionDto): Promise<AdditionalOption> {
     return this.additionalOptionsService.createAdditionalOption(createDto);
   }
 

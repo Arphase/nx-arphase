@@ -41,7 +41,7 @@ export class OrdersService {
     @InjectRepository(OrderProductEntity)
     private orderProductRepository: Repository<OrderProductEntity>,
     @InjectRepository(OrderProductAdditionalOptionEntity)
-    private orderProductAdditionalOptionRepository: Repository<OrderProductAdditionalOptionEntity>
+    private orderProductAdditionalOptionRepository: Repository<OrderProductAdditionalOptionEntity>,
   ) {}
 
   async getOrders(filterDto: FilterOrdersDto): Promise<ApsCollectionResponse<Order>> {
@@ -65,7 +65,7 @@ export class OrdersService {
           LOWER(customer.lastName) like :text OR
           LOWER(socialEvent.name) like :text OR
           LOWER(CONCAT(customer.firstName, ' ', customer.lastName)) like :text)`,
-        { text: `%${text.toLowerCase()}%` }
+        { text: `%${text.toLowerCase()}%` },
       );
     }
 
@@ -138,16 +138,16 @@ export class OrdersService {
               if (!orderProduct.orderProductAdditionalOptions.find(({ id }) => existingAdditionalOption.id === id)) {
                 await this.orderProductAdditionalOptionRepository.delete({ id: existingAdditionalOption.id });
               }
-            })
+            }),
           );
-        })
+        }),
       );
       await Promise.all(
         existingOrderProducts.map(async existingOrderProduct => {
           if (!order.orderProducts.find(({ id }) => existingOrderProduct.id === id)) {
             await this.orderProductRepository.delete({ id: existingOrderProduct.id });
           }
-        })
+        }),
       );
     }
 
@@ -158,7 +158,7 @@ export class OrdersService {
   }
 
   async createOrderPreview(
-    createOrderDto: CreateOrderPreviewDto | CreateOrderQuoteDto | UpdateOrderDto
+    createOrderDto: CreateOrderPreviewDto | CreateOrderQuoteDto | UpdateOrderDto,
   ): Promise<DeepPartial<Order>> {
     const { productIds, priceOptionIds, additionalOptionIds } = getAllItemIdsWithPrices(createOrderDto);
     const products = await this.productRepository.findBy({ id: In(productIds) });
@@ -166,18 +166,9 @@ export class OrdersService {
     const additionalOptions = await this.additionalOptionRepository.findBy({ id: In(additionalOptionIds) });
 
     const dictionary: ItemsWithPriceDictionary = {
-      products: keyBy(
-        products.map(({ id, price }) => ({ id, price })),
-        'id'
-      ),
-      priceOptions: keyBy(
-        priceOptions.map(({ id, price }) => ({ id, price })),
-        'id'
-      ),
-      additionalOptions: keyBy(
-        additionalOptions.map(({ id, price }) => ({ id, price })),
-        'id'
-      ),
+      products: keyBy(products, 'id'),
+      priceOptions: keyBy(priceOptions, 'id'),
+      additionalOptions: keyBy(additionalOptions, 'id'),
     };
 
     return mapOrderEntityFromDto(createOrderDto, dictionary);

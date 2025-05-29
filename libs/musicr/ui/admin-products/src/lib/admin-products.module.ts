@@ -26,14 +26,7 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NgxMaskDirective } from 'ngx-mask';
 
 import { AdminProductsRoutingModule } from './admin-products-routing.module';
-import { AdditionalOptionsFormComponent } from './components/additional-options-form/additional-options-form.component';
-import { PriceOptionFormComponent } from './components/price-option-form/price-option-form.component';
-import { PriceOptionsFormComponent } from './components/price-options-form/price-options-form.component';
-import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import { AdditionalOptionsFormContainerComponent } from './containers/additional-options-form-container/additional-options-form-container.component';
-import { PriceOptionsFormContainerComponent } from './containers/price-options-form-container/price-options-form-container.component';
-import { ProductFormContainerComponent } from './containers/product-form-container/product-form-container.component';
 import { ProductListContainerComponent } from './containers/product-list-container/product-list-container.component';
 
 @NgModule({
@@ -67,16 +60,6 @@ import { ProductListContainerComponent } from './containers/product-list-contain
     SubcategoriesDataModule,
     SubcategorySelectModule,
   ],
-  declarations: [
-    ProductListContainerComponent,
-    ProductFormContainerComponent,
-    ProductFormComponent,
-    ProductListComponent,
-    AdditionalOptionsFormContainerComponent,
-    AdditionalOptionsFormComponent,
-    PriceOptionsFormComponent,
-    PriceOptionsFormContainerComponent,
-    PriceOptionFormComponent,
-  ],
+  declarations: [ProductListContainerComponent, ProductListComponent],
 })
 export class AdminProductsModule {}

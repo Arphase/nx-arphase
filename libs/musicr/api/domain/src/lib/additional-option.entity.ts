@@ -35,6 +35,9 @@ export class AdditionalOptionEntity extends BaseEntity implements AdditionalOpti
   @Column()
   price: number;
 
+  @Column({ nullable: true })
+  includedInPromotion: boolean;
+
   @Column()
   productId: number;
 
@@ -44,7 +47,7 @@ export class AdditionalOptionEntity extends BaseEntity implements AdditionalOpti
 
   @OneToMany(
     () => OrderProductAdditionalOptionEntity,
-    orderProductAdditionalOptionEntity => orderProductAdditionalOptionEntity.additionalOption
+    orderProductAdditionalOptionEntity => orderProductAdditionalOptionEntity.additionalOption,
   )
   orderProductAdditionalOptions: OrderProductAdditionalOption[];
 }

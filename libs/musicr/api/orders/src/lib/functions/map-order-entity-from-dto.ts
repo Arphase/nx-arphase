@@ -1,5 +1,14 @@
 import { DeepPartial } from '@arphase/common';
-import { Order, OrderProduct } from '@musicr/domain';
+import {
+  AdditionalOption,
+  getAdditionalOptionCurrentPrice,
+  getPriceOptionCurrentPrice,
+  getProductCurrentPrice,
+  Order,
+  OrderProduct,
+  PriceOption,
+  Product,
+} from '@musicr/domain';
 import { uniq } from 'lodash';
 
 import { CreateOrderPreviewDto } from '../dto/create-order-preview-dto';
@@ -9,10 +18,10 @@ import { UpdateOrderDto } from '../dto/update-order.dto';
 
 export function mapOrderEntityFromDto(
   orderDto: CreateOrderDto | CreateOrderPreviewDto | CreateOrderQuoteDto | UpdateOrderDto,
-  dictonary: ItemsWithPriceDictionary
+  dictionary: ItemsWithPriceDictionary,
 ): DeepPartial<Order> {
   const { id, customer, socialEvent, orderType, orderProducts } = orderDto;
-  const orderProductsWithPrice = mapOrderProducts(orderDto, orderProducts, dictonary);
+  const orderProductsWithPrice = mapOrderProducts(orderDto, orderProducts, dictionary);
   return {
     id,
     customer,
@@ -25,23 +34,26 @@ export function mapOrderEntityFromDto(
 
 export function mapOrderProducts(
   order: CreateOrderDto | CreateOrderPreviewDto | CreateOrderQuoteDto | UpdateOrderDto,
-  createorderProductsDto: OrderProduct[],
-  dictionary: ItemsWithPriceDictionary
+  createOrderProductsDto: OrderProduct[],
+  dictionary: ItemsWithPriceDictionary,
 ): DeepPartial<OrderProduct>[] {
-  return createorderProductsDto.map(orderProduct => ({
-    id: orderProduct.id,
+  return createOrderProductsDto.map(({ id, amount, productId, priceOptionId, orderProductAdditionalOptions }) => ({
+    id: id,
     orderId: order.id,
-    amount: orderProduct.amount,
-    productId: orderProduct.productId,
-    priceOptionId: orderProduct.priceOptionId,
-    price: orderProduct.priceOptionId
-      ? dictionary.priceOptions[orderProduct.priceOptionId].price
-      : dictionary.products[orderProduct.productId].price,
-    orderProductAdditionalOptions: (orderProduct.orderProductAdditionalOptions || []).map(additionalOption => ({
+    amount: amount,
+    productId: productId,
+    priceOptionId: priceOptionId,
+    price: priceOptionId
+      ? getPriceOptionCurrentPrice(dictionary.products[productId], dictionary.priceOptions[priceOptionId])
+      : getProductCurrentPrice(dictionary.products[productId]),
+    orderProductAdditionalOptions: (orderProductAdditionalOptions || []).map(additionalOption => ({
       id: additionalOption.id,
-      orderProductId: orderProduct.id,
+      orderProductId: id,
       additionalOptionId: additionalOption.additionalOptionId,
-      price: dictionary.additionalOptions[additionalOption.additionalOptionId].price,
+      price: getAdditionalOptionCurrentPrice(
+        dictionary.products[productId],
+        dictionary.additionalOptions[additionalOption.additionalOptionId],
+      ),
     })),
   }));
 }
@@ -58,13 +70,13 @@ export function getTotal(orderProducts: DeepPartial<OrderProduct>[]): number {
 export type ItemIdsWithPrice = { productIds: number[]; priceOptionIds: number[]; additionalOptionIds: number[] };
 
 export type ItemsWithPriceDictionary = {
-  products: Record<number, { id: number; price: number }>;
-  priceOptions: Record<number, { id: number; price: number }>;
-  additionalOptions: Record<number, { id: number; price: number }>;
+  products: Record<number, Product>;
+  priceOptions: Record<number, PriceOption>;
+  additionalOptions: Record<number, AdditionalOption>;
 };
 
 export function getAllItemIdsWithPrices(
-  createOrderDto: CreateOrderDto | CreateOrderPreviewDto | CreateOrderQuoteDto
+  createOrderDto: CreateOrderDto | CreateOrderPreviewDto | CreateOrderQuoteDto,
 ): ItemIdsWithPrice {
   const { orderProducts } = createOrderDto;
   const productIds = [];
@@ -75,7 +87,7 @@ export function getAllItemIdsWithPrices(
     productIds.push(orderProduct.productId);
     priceOptionIds.push(orderProduct.priceOptionId);
     (orderProduct.orderProductAdditionalOptions || []).forEach(orderProductAdditionalOption =>
-      additionalOptionIds.push(orderProductAdditionalOption.additionalOptionId)
+      additionalOptionIds.push(orderProductAdditionalOption.additionalOptionId),
     );
   });
 

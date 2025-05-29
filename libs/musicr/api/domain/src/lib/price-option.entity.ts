@@ -36,6 +36,9 @@ export class PriceOptionEntity extends BaseEntity implements PriceOption {
   @Column()
   price: number;
 
+  @Column({ nullable: true })
+  includedInPromotion: boolean;
+
   @Column()
   productId: number;
 

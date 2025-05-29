@@ -24,7 +24,7 @@
           </button>
           <img class="carousel-img rounded"
                [src]="photo.url"
-               [alt]="product?.name"
+               [alt]="product()?.name"
                loading="lazy" />
           <button nz-button
                   nzType="text"
@@ -59,8 +59,8 @@
       <nz-skeleton [nzActive]="true"
                    class="w-full" />
       } @else {
-      <h1 class="md:mt-12 mt-4 md:text-5xl text-2xl">{{ product?.name }}</h1>
-      @if (product?.disclaimer) {
+      <h1 class="md:mt-12 mt-4 md:text-5xl text-2xl">{{ product()?.name }}</h1>
+      @if (product()?.disclaimer) {
       <div nz-row
            class="disclaimer">
         <div nz-col
@@ -70,24 +70,24 @@
              nzType="check-circle"
              nzTheme="outline"
              class="mr-2 mt-1"></i>
-          <span>{{ product?.disclaimer }}</span>
+          <span>{{ product()?.disclaimer }}</span>
         </div>
       </div>
       }
 
-      @if (product?.description) {
+      @if (product()?.description) {
       <div nz-row>
         <div nz-col
              nzSpan="24"
              class="flex items-center mb-5">
-          <span>{{ product?.description }}</span>
+          <span>{{ product()?.description }}</span>
         </div>
       </div>
       }
 
-      @if (product?.productComponents?.length) {
+      @if (product()?.productComponents?.length) {
       <h2 class="text-2xl font-bold border-b pb-4 border-black mb-2">Incluye</h2>
-      @for (productComponent of product?.productComponents; track productComponent) {
+      @for (productComponent of product()?.productComponents; track productComponent) {
       <div class="border-b w-full py-1">
         <span class="text-base"> {{ productComponent }} </span>
       </div>
@@ -120,7 +120,15 @@
             <label nz-checkbox
                    formControlName="selected">
               <span class="mr-2">{{ control.value.name }}</span>
-              <span class="font-bold">{{ control.value.price | currency }} MXN</span>
+              <span class="text-xs"
+                    [ngClass]="{'line-through mr-2': control.value.includedInPromotion}">
+                {{ control.value.price | currency }} MXN
+              </span>
+              @if (control.value.includedInPromotion) {
+              <span class="text-sm font-bold">
+                {{ control.value | mapper: additionalOptionPriceMapper | currency }} MXN
+              </span>
+              }
             </label>
           </form>
           }
@@ -128,7 +136,14 @@
         }
       </form>
 
-      <h2 class="text-2xl font-extrabold mt-10 mb-12">{{ (productPrice + additionalProductsPrice) | currency }} MXN
+      <h2 class="font-extrabold mt-10 mb-12">
+        <span class="text-2xl font-bold"
+              [ngClass]="{'line-through mr-2': hasPriceDifferences()}">{{ totalPrice() | currency }} MXN</span>
+        @if (hasPriceDifferences()) {
+        <span class="text-3xl font-extrabold">
+          {{ totalPriceWithDiscounts() | currency }} MXN
+        </span>
+        }
       </h2>
 
       <button type="button"

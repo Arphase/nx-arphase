@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, input, Input, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { collectFormErrors, updateFormControlsValueAndValidity } from '../functions';
@@ -10,13 +10,14 @@ export type ControlsOf<T extends Record<string, any>> = {
 };
 
 @Component({
-    selector: 'aps-form',
-    template: '',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'aps-form',
+  template: '',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ApsFormComponent<T, F = unknown> {
   @Input() form: FormGroup<ControlsOf<T>> | FormGroup<ControlsOf<F>>;
+  formSignal = input<FormGroup<ControlsOf<T>> | FormGroup<ControlsOf<F>>>();
   @Input() item: T;
   @Input() loading: boolean;
   @Input() isEditable = true;
@@ -26,6 +27,12 @@ export class ApsFormComponent<T, F = unknown> {
     return this.form?.getRawValue() as T;
   }
 
+  /**
+   * Transform the values of the form to what you want
+   * to sen to the parent component.
+   * @param values
+   * @returns from form
+   */
   transformFromForm(values: F): T {
     return values as unknown as T;
   }

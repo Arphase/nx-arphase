@@ -1,27 +1,30 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { filterNil } from '@arphase/ui/utils';
 import { ApsFormContainerComponent } from '@arphase/ui/forms';
+import { filterNil } from '@arphase/ui/utils';
 import { AdditionalOption } from '@musicr/domain';
 import { AdditionalOptionCollectionService } from '@musicr/ui/products/data';
 import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { AdditionalOptionsFormComponent } from '../../components/additional-options-form/additional-options-form.component';
 
 @Component({
-    selector: 'mrl-additional-options-form-container',
-    templateUrl: './additional-options-form-container.component.html',
-    styleUrls: ['./additional-options-form-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-additional-options-form-container',
+  templateUrl: './additional-options-form-container.component.html',
+  styleUrls: ['./additional-options-form-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [AdditionalOptionsFormComponent, CommonModule],
 })
 export class AdditionalOptionsFormContainerComponent extends ApsFormContainerComponent<AdditionalOption> {
-  deletetedItemIndexSubject = new BehaviorSubject<number>(null);
-  deletedItemIndex$ = this.deletetedItemIndexSubject.asObservable();
+  deletedItemIndexSubject = new BehaviorSubject<number>(null);
+  deletedItemIndex$ = this.deletedItemIndexSubject.asObservable();
 
   constructor(
     protected additionalOptionCollectionService: AdditionalOptionCollectionService,
-    private modal: NzModalService
+    private modal: NzModalService,
   ) {
     super(additionalOptionCollectionService);
   }
@@ -32,7 +35,7 @@ export class AdditionalOptionsFormContainerComponent extends ApsFormContainerCom
 
     this.additionalOptionCollectionService.entityActions$
       .pipe(ofEntityOp(EntityOp.SAVE_DELETE_ONE_SUCCESS), take(1))
-      .subscribe(() => this.deletetedItemIndexSubject.next(index));
+      .subscribe(() => this.deletedItemIndexSubject.next(index));
 
     this.modal
       .confirm({ nzContent: `¿Desea eliminar la opción adicional ${name}?`, nzOnOk: () => true })

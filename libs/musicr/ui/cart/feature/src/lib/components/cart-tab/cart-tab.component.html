@@ -30,7 +30,7 @@
            nzType="minus"
            nzTheme="outline"></i>
       </button>
-      <span class="mt-1">{{ item.amount }}</span>
+      <span>{{ item.amount }}</span>
       <button nz-button
               class="h-3 py-0"
               nzType="text"
@@ -44,7 +44,7 @@
          class="total flex pt-3"
          [nzXs]="{ span: 8, order: 5 }"
          [nzMd]="{ span: 4, order: 4 }">
-      <span class="mt-1"> {{ item.price * item.amount | currency }}MXN </span>
+      <span> {{ item.price * item.amount | currency }}MXN </span>
     </div>
     <div nz-col
          class="pt-3"

@@ -56,6 +56,12 @@ export class ProductEntity extends BaseEntity implements Product {
   popularity?: number;
 
   @Column({ nullable: true })
+  hasActivePromotion?: boolean;
+
+  @Column({ nullable: true })
+  promotionDiscount?: number;
+
+  @Column({ nullable: true })
   subcategoryId?: number;
 
   @ManyToOne(() => SubcategoryEntity, subcategory => subcategory.products, { eager: true })

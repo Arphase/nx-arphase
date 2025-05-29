@@ -1,28 +1,31 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { filterNil } from '@arphase/ui/utils';
 import { ApsFormContainerComponent } from '@arphase/ui/forms';
+import { filterNil } from '@arphase/ui/utils';
 import { PriceOption } from '@musicr/domain';
 import { PhotoCollectionService, PriceOptionCollectionService } from '@musicr/ui/products/data';
 import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { PriceOptionsFormComponent } from '../../components/price-options-form/price-options-form.component';
 
 @Component({
-    selector: 'mrl-price-options-form-container',
-    templateUrl: './price-options-form-container.component.html',
-    styleUrls: ['./price-options-form-container.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-price-options-form-container',
+  templateUrl: './price-options-form-container.component.html',
+  styleUrls: ['./price-options-form-container.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [PriceOptionsFormComponent, CommonModule],
 })
 export class PriceOptionsFormContainerComponent extends ApsFormContainerComponent<PriceOption> {
-  deletetedItemIndexSubject = new BehaviorSubject<number>(null);
-  deletedItemIndex$ = this.deletetedItemIndexSubject.asObservable();
+  deletedItemIndexSubject = new BehaviorSubject<number>(null);
+  deletedItemIndex$ = this.deletedItemIndexSubject.asObservable();
 
   constructor(
     protected priceOptionCollectionService: PriceOptionCollectionService,
     private photoCollectionService: PhotoCollectionService,
-    private modal: NzModalService
+    private modal: NzModalService,
   ) {
     super(priceOptionCollectionService);
   }
@@ -37,7 +40,7 @@ export class PriceOptionsFormContainerComponent extends ApsFormContainerComponen
 
     this.priceOptionCollectionService.entityActions$
       .pipe(ofEntityOp(EntityOp.SAVE_DELETE_ONE_SUCCESS), take(1))
-      .subscribe(() => this.deletetedItemIndexSubject.next(index));
+      .subscribe(() => this.deletedItemIndexSubject.next(index));
 
     this.modal
       .confirm({ nzContent: `¿Desea eliminar la opción de precio ${name}?`, nzOnOk: () => true })

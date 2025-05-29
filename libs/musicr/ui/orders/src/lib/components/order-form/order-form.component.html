@@ -26,6 +26,14 @@
           </nz-form-control>
         </nz-form-item>
       </div>
+
+
+      <div nz-col
+           class="price-container"
+           nzXs="24"
+           nzMd="12">
+        <h2>Precio del evento: {{ values.total | currency }} MXN</h2>
+      </div>
     </div>
 
     <nz-list *nzSpaceItem
@@ -44,6 +52,7 @@
                 <nz-form-label nzRequired>Producto</nz-form-label>
                 <nz-form-control apsAutoError>
                   <nz-select mrlProductSelect
+                             [getByKey]="true"
                              formControlName="productId"
                              data-cy="product"></nz-select>
                 </nz-form-control>
@@ -69,7 +78,6 @@
                 <nz-form-control apsAutoError>
                   <nz-form-label nzRequired>Opción de Precio</nz-form-label>
                   <nz-select [nzOptions]="productsData[orderProductForm.value.productId]?.selectablePriceOptions || []"
-                             [nzDisabled]="!productsData[orderProductForm.value.productId]?.selectablePriceOptions?.length"
                              formControlName="priceOptionId"
                              data-cy="price-option"></nz-select>
                 </nz-form-control>
@@ -107,7 +115,7 @@
               <label nz-checkbox
                      formControlName="selected">
                 {{ additionalOptionForm.value.additionalOption.name }} -
-                {{ additionalOptionForm.value.additionalOption.price | currency }}
+                {{ additionalOptionForm.value.price | currency }}
               </label>
             </div>
           </form>

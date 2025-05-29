@@ -11,16 +11,26 @@ import {
   FormArray,
   FormControl,
   FormGroup,
+  ReactiveFormsModule,
   UntypedFormArray,
-  UntypedFormControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import { ApsFormComponent, ApsValidators, ControlsOf, setFormArrayValue } from '@arphase/ui/forms';
+import { ApsAutoErrorModule, ApsFormComponent, ApsValidators, ControlsOf, setFormArrayValue } from '@arphase/ui/forms';
 import { getBase64 } from '@arphase/ui/utils';
 import { Photo, PriceOption } from '@musicr/domain';
 import { MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
-import { NzUploadFile } from 'ng-zorro-antd/upload';
+import { NzUploadFile, NzUploadModule } from 'ng-zorro-antd/upload';
 
+import { CommonModule } from '@angular/common';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NgxMaskDirective } from 'ngx-mask';
 import { mapPhotoFileArray } from '../../functions/map-file-photo-array';
 
 export function createPhotoFormGroup(item?: Photo): FormGroup<ControlsOf<Photo>> {
@@ -40,6 +50,7 @@ export function createPriceOptionForm(item?: PriceOption): FormGroup<ControlsOf<
     id: new FormControl<number>(null),
     name: new FormControl<string>(null, ApsValidators.required),
     price: new FormControl<number>(null, ApsValidators.required),
+    includedInPromotion: new FormControl<boolean>(null),
     photos: new FormArray([]),
   });
   if (item) {
@@ -50,11 +61,26 @@ export function createPriceOptionForm(item?: PriceOption): FormGroup<ControlsOf<
 }
 
 @Component({
-    selector: 'mrl-price-option-form',
-    templateUrl: './price-option-form.component.html',
-    styleUrls: ['./price-option-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-price-option-form',
+  templateUrl: './price-option-form.component.html',
+  styleUrls: ['./price-option-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    ApsAutoErrorModule,
+    CommonModule,
+    NgxMaskDirective,
+    NzButtonModule,
+    NzCollapseModule,
+    NzFormModule,
+    NzGridModule,
+    NzIconModule,
+    NzInputModule,
+    NzModalModule,
+    NzSwitchModule,
+    NzUploadModule,
+    ReactiveFormsModule,
+  ],
 })
 export class PriceOptionFormComponent extends ApsFormComponent<Partial<PriceOption>> implements OnChanges {
   form = createPriceOptionForm();

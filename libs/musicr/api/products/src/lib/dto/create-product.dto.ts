@@ -1,6 +1,6 @@
 import { AdditionalOption, Photo, PriceOption } from '@musicr/domain';
 import { Type } from 'class-transformer';
-import { IsArray, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsArray, IsBoolean, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 
 export class CreateProductDto {
   @IsString()
@@ -20,6 +20,14 @@ export class CreateProductDto {
   @IsOptional()
   @IsNumber()
   popularity: number;
+
+  @IsOptional()
+  @IsBoolean()
+  hasActivePromotion: boolean;
+
+  @IsOptional()
+  @IsNumber()
+  promotionDiscount: number;
 
   @IsNumber()
   subcategoryId: number;
@@ -63,6 +71,10 @@ export class CreatePriceOptionDto {
   price: string;
 
   @IsOptional()
+  @IsBoolean()
+  includedInPromotion: boolean;
+
+  @IsOptional()
   @IsArray()
   @ValidateNested()
   @Type(() => CreateProductPhotoDto)
@@ -75,4 +87,8 @@ export class CreateAdditionalOptionDto {
 
   @IsString()
   price: string;
+
+  @IsOptional()
+  @IsBoolean()
+  includedInPromotion: boolean;
 }

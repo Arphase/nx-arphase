@@ -132,7 +132,13 @@
                nzSpan="24"
                class="text-left mb-3">
             <h6 class="text-sm font-bold">{{ product.name }}</h6>
-            <span class="text-xs">{{ product.price | currency }}</span>
+            <span class="text-xs"
+                  [ngClass]="{'line-through mr-3': product.hasActivePromotion}">
+              {{ product.price | currency }} MXN
+            </span>
+            @if (product.hasActivePromotion) {
+            <span class="text-sm font-bold">{{ product | mapper: priceMapper | currency }} MXN</span>
+            }
           </div>
         </div>
       </div>

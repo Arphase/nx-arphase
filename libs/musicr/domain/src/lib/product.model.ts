@@ -16,10 +16,24 @@ export interface Product {
   productComponents?: string[];
   position?: number;
   popularity?: number;
-  photos?: Photo[];
+  hasActivePromotion?: boolean;
+  promotionDiscount?: number;
   subcategoryId?: number;
   subcategory?: Subcategory;
+  photos?: Photo[];
   additionalOptions?: AdditionalOption[];
   orderProducts?: OrderProduct[];
   priceOptions?: PriceOption[];
+}
+
+export function getProductCurrentPrice(product: Product) {
+  if (!product) {
+    return 0;
+  }
+  const { hasActivePromotion, promotionDiscount, price } = product;
+  if (hasActivePromotion && promotionDiscount) {
+    return Math.ceil(price * ((100 - promotionDiscount) / 100));
+  } else {
+    return price;
+  }
 }

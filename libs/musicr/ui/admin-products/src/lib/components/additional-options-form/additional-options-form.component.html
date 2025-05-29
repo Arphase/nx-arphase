@@ -5,14 +5,19 @@
          nz-row
          nzGutter="12">
       <div nz-col
-           nzXs="10"
-           nzMd="11">
+           nzXs="7"
+           nzMd="7">
         Nombre
       </div>
       <div nz-col
-           nzXs="10"
-           nzMd="11">
+           nzXs="7"
+           nzMd="7">
         Precio
+      </div>
+      <div nz-col
+           nzXs="7"
+           nzMd="7">
+        Incluír en promoción
       </div>
     </div>
     <div *ngFor="let additionalOptionForm of formArray?.controls; let index = index;"
@@ -20,8 +25,8 @@
          nzGutter="12"
          [formGroup]="additionalOptionForm">
       <div nz-col
-           nzXs="10"
-           nzMd="11">
+           nzXs="7"
+           nzMd="7">
         <nz-form-item>
           <nz-form-control apsAutoError>
             <input nz-input
@@ -30,8 +35,8 @@
         </nz-form-item>
       </div>
       <div nz-col
-           nzXs="10"
-           nzMd="11">
+           nzXs="7"
+           nzMd="7">
         <nz-form-item>
           <nz-form-control apsAutoError>
             <input nz-input
@@ -43,8 +48,17 @@
         </nz-form-item>
       </div>
       <div nz-col
+           nzXs="7"
+           nzMd="7">
+        <nz-form-item>
+          <nz-form-control apsAutoError>
+            <nz-switch formControlName="includedInPromotion"></nz-switch>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col
            nzXs="4"
-           nzMd="2">
+           nzMd="3">
         <button nz-button
                 nzType="text"
                 nz-tooltip

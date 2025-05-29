@@ -72,12 +72,32 @@
            nzXs="24"
            nzLg="12">
         <nz-form-item>
-          <nz-form-label nzRequired>Popularidad</nz-form-label>
+          <nz-form-label>Popularidad</nz-form-label>
           <nz-form-control apsAutoError>
             <input nz-input
                    mask="separator.2"
                    thousandSeparator=","
                    formControlName="popularity" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col
+           nzXs="24"
+           nzLg="12">
+        <nz-form-item>
+          <nz-form-label>Promoción</nz-form-label>
+          <nz-form-control apsAutoError>
+            <div class="flex">
+              <nz-switch class="mr-3"
+                         formControlName="hasActivePromotion"></nz-switch>
+              @if (showPromotionField) {
+              <input nz-input
+                     suffix="%"
+                     mask="00"
+                     formControlName="promotionDiscount" />
+              }
+            </div>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -186,11 +206,11 @@
 
     <mrl-price-options-form-container *nzSpaceItem
                                       [form]="priceOptionsFormArray"
-                                      [item]="item?.priceOptions"></mrl-price-options-form-container>
+                                      [item]="item?.priceOptions" />
 
     <mrl-additional-options-form-container *nzSpaceItem
                                            [form]="additionalOptionsFormArray"
-                                           [item]="item?.additionalOptions"></mrl-additional-options-form-container>
+                                           [item]="item?.additionalOptions" />
 
     <div *nzSpaceItem
          nz-row>

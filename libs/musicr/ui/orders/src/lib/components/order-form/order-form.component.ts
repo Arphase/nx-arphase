@@ -12,8 +12,12 @@ import { FormArray, FormGroup } from '@angular/forms';
 import { Address } from '@arphase/common';
 import { ApsFormComponent, ControlsOf } from '@arphase/ui/forms';
 import {
+  AdditionalOption,
   Customer,
   eventPlaceOptions,
+  getAdditionalOptionCurrentPrice,
+  getPriceOptionCurrentPrice,
+  getProductCurrentPrice,
   Order,
   OrderProduct,
   orderTypeOptions,
@@ -28,11 +32,11 @@ import { createOrderForm, createOrderProductForm } from './order-form.constants'
 
 @UntilDestroy()
 @Component({
-    selector: 'mrl-order-form',
-    templateUrl: './order-form.component.html',
-    styleUrls: ['./order-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-order-form',
+  templateUrl: './order-form.component.html',
+  styleUrls: ['./order-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OrderFormComponent extends ApsFormComponent<Partial<Order>> implements OnInit, OnChanges {
   @Input() productsData: Record<number, Product> = {};
@@ -103,15 +107,22 @@ export class OrderFormComponent extends ApsFormComponent<Partial<Order>> impleme
   addProduct(orderProduct?: OrderProduct): void {
     const form = createOrderProductForm(orderProduct) as FormGroup<ControlsOf<OrderProduct>>;
 
-    form
-      .get('productId')
-      .valueChanges.pipe(untilDestroyed(this))
-      .subscribe(value => {
-        this.getProductData.emit(value);
-        form.patchValue({ amount: 0, priceOptionId: null });
+    if (orderProduct?.id) {
+      form.disable({ emitEvent: false });
+    }
+
+    combineLatest([
+      form.get('id').valueChanges.pipe(startWith(form.get('id').value)),
+      form.get('productId').valueChanges.pipe(startWith(form.get('productId').value)),
+    ])
+      .pipe(untilDestroyed(this))
+      .subscribe(([id, productId]) => {
+        if (productId) this.getProductData.emit(productId);
+        if (!id) form.patchValue({ amount: 0, priceOptionId: null });
       });
 
     combineLatest([
+      form.get('id').valueChanges.pipe(startWith(form.get('id').value)),
       form.get('amount').valueChanges.pipe(startWith(form.get('amount').value)),
       form.get('priceOptionId').valueChanges.pipe(startWith(form.get('priceOptionId').value)),
       form
@@ -120,14 +131,30 @@ export class OrderFormComponent extends ApsFormComponent<Partial<Order>> impleme
       this.productsDataChangesSubject,
     ])
       .pipe(untilDestroyed(this))
-      .subscribe(([amount, priceOptionId, orderProductAdditionalOptions]) => {
+      .subscribe(([id, amount, priceOptionId, orderProductAdditionalOptions]) => {
+        const existingProduct = this.item.orderProducts.find(orderProduct => orderProduct.id === id);
         const productId = form.get('productId').value;
-        const productPrice = priceOptionId
-          ? this.productsData[productId]?.priceOptions.find(priceOption => priceOption.id === priceOptionId)?.price
-          : this.productsData[productId]?.price;
+        let productPrice;
+        if (existingProduct) {
+          productPrice = existingProduct.price;
+        } else {
+          productPrice = priceOptionId
+            ? getPriceOptionCurrentPrice(
+                this.productsData[productId],
+                this.productsData[productId]?.priceOptions.find(priceOption => priceOption.id === priceOptionId),
+              )
+            : getProductCurrentPrice(this.productsData[productId]);
+        }
         const priceArray = orderProductAdditionalOptions
           .filter(({ selected }) => selected)
-          .map(({ additionalOption }) => additionalOption.price);
+          .map(additionalOption =>
+            existingProduct
+              ? additionalOption.price
+              : getAdditionalOptionCurrentPrice(
+                  this.productsData[productId],
+                  additionalOption.additionalOption as AdditionalOption,
+                ),
+          );
         const additionalProductsPrice = priceArray.length ? priceArray.reduce((a, b) => a + b) : 0;
         const totalPrice = (productPrice + additionalProductsPrice) * amount;
         form.get('price').patchValue(totalPrice);

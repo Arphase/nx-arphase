@@ -1,5 +1,6 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
+import { Product } from '@musicr/domain';
 import { ProductDetailComponent } from './product-detail.component';
 
 describe('ProductDetailComponent', () => {
@@ -9,7 +10,14 @@ describe('ProductDetailComponent', () => {
     shallow: true,
   });
 
-  beforeEach(() => (spectator = createComponent()));
+  beforeEach(
+    () =>
+      (spectator = createComponent({
+        props: {
+          product: {} as Product,
+        },
+      })),
+  );
   it('should create', () => {
     expect(spectator.component).toBeTruthy();
   });

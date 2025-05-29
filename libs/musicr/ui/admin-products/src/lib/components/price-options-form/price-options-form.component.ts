@@ -11,14 +11,19 @@ import { AbstractControl, UntypedFormArray, UntypedFormGroup } from '@angular/fo
 import { ApsFormComponent, setFormArrayValue } from '@arphase/ui/forms';
 import { PriceOption } from '@musicr/domain';
 
-import { createPriceOptionForm } from '../price-option-form/price-option-form.component';
+import { CommonModule } from '@angular/common';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { createPriceOptionForm, PriceOptionFormComponent } from '../price-option-form/price-option-form.component';
 
 @Component({
-    selector: 'mrl-price-options-form',
-    templateUrl: './price-options-form.component.html',
-    styleUrls: ['./price-options-form.component.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mrl-price-options-form',
+  templateUrl: './price-options-form.component.html',
+  styleUrls: ['./price-options-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [PriceOptionFormComponent, NzCollapseModule, NzGridModule, NzButtonModule, CommonModule],
 })
 export class PriceOptionsFormComponent extends ApsFormComponent<PriceOption[]> implements OnChanges {
   @Input() deletedItemIndex: number;

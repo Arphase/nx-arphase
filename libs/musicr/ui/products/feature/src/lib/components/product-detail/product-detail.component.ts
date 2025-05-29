@@ -1,17 +1,28 @@
-import { CurrencyPipe, Location } from '@angular/common';
+import { CurrencyPipe, Location, NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   EventEmitter,
+  input,
   Input,
   OnChanges,
   Output,
+  signal,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DeepPartial } from '@arphase/common';
-import { AdditionalOption, OrderProduct, Photo, Product } from '@musicr/domain';
+import { MapperPipe, MapperPipeFunction } from '@arphase/ui/core';
+import {
+  AdditionalOption,
+  getAdditionalOptionCurrentPrice,
+  getPriceOptionCurrentPrice,
+  OrderProduct,
+  Photo,
+  Product,
+} from '@musicr/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCarouselComponent, NzCarouselModule } from 'ng-zorro-antd/carousel';
@@ -34,6 +45,8 @@ export type AdditionalOptionFormValue = AdditionalOption & { selected: boolean }
   imports: [
     CurrencyPipe,
     FormsModule,
+    MapperPipe,
+    NgClass,
     NzButtonModule,
     NzCarouselModule,
     NzCheckboxModule,
@@ -48,7 +61,7 @@ export type AdditionalOptionFormValue = AdditionalOption & { selected: boolean }
 })
 export class ProductDetailComponent implements OnChanges {
   @ViewChild(NzCarouselComponent) photoCarousel: NzCarouselComponent;
-  @Input() product: Product;
+  product = input<Product>();
   @Input() priceOptions: NzSelectOptionInterface[] = [];
   @Input() additionalOptions: AdditionalOption[] = [];
   @Input() loading: boolean;
@@ -57,9 +70,22 @@ export class ProductDetailComponent implements OnChanges {
     priceOptionId: new FormControl<number>(null, Validators.required),
     additionalOptions: new FormArray([]),
   });
-  productPrice = 0;
-  additionalProductsPrice = 0;
+  productPrice = signal<number>(0);
+  additionalProductsPrice = signal<number>(0);
+  productPriceWithDiscount = signal<number>(0);
+  additionalProductsPriceWithDiscount = signal<number>(0);
+  totalPrice = computed(() => this.productPrice() + this.additionalProductsPrice());
+  totalPriceWithDiscounts = computed(
+    () => this.productPriceWithDiscount() + this.additionalProductsPriceWithDiscount(),
+  );
+  hasPriceDifferences = computed(
+    () => this.product().hasActivePromotion && this.totalPrice() !== this.totalPriceWithDiscounts(),
+  );
+  currentPrice = computed(() => (this.hasPriceDifferences() ? this.totalPriceWithDiscounts() : this.totalPrice()));
   displayedPhotos: Photo[] = [];
+  additionalOptionPriceMapper: MapperPipeFunction<AdditionalOption, number> = additionalOption =>
+    getAdditionalOptionCurrentPrice(this.product(), additionalOption);
+
   @Output() addItemToCart = new EventEmitter<DeepPartial<OrderProduct>>();
 
   get additionalOptionsArray(): FormArray {
@@ -70,20 +96,21 @@ export class ProductDetailComponent implements OnChanges {
     this.form
       .get('priceOptionId')
       .valueChanges.pipe(
-        filter(() => !!this.product?.priceOptions?.length),
+        filter(() => !!this.product()?.priceOptions?.length),
         untilDestroyed(this),
       )
       .subscribe(priceOptionId => {
-        const priceOption = this.product.priceOptions.find(priceOption => priceOption.id === priceOptionId);
-        this.productPrice = priceOption?.price;
-        this.displayedPhotos = priceOption?.photos?.length ? priceOption.photos : this.product.photos;
+        const priceOption = this.product().priceOptions.find(priceOption => priceOption.id === priceOptionId);
+        this.productPrice.set(priceOption?.price);
+        this.productPriceWithDiscount.set(getPriceOptionCurrentPrice(this.product(), priceOption));
+        this.displayedPhotos = priceOption?.photos?.length ? priceOption.photos : this.product().photos;
       });
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.product && this.product?.id) {
-      this.productPrice = this.product.price;
-      this.displayedPhotos = this.product.photos;
+    if (changes.product && this.product()?.id) {
+      this.productPrice.set(this.product().price);
+      this.displayedPhotos = this.product().photos;
     }
     if (changes.priceOptions && this.priceOptions?.length) {
       this.form.get('priceOptionId').patchValue(this.priceOptions[0].value);
@@ -97,14 +124,22 @@ export class ProductDetailComponent implements OnChanges {
             id: new FormControl<number>(additionalOption.id),
             name: new FormControl<string>(additionalOption.name),
             price: new FormControl<number>(additionalOption.price),
+            includedInPromotion: new FormControl<boolean>(additionalOption.includedInPromotion),
           }),
         ),
       );
       this.additionalOptionsArray.valueChanges
         .pipe(untilDestroyed(this))
         .subscribe((additionalOptionsValue: AdditionalOptionFormValue[]) => {
+          const getTotalPrice = amountArray => (amountArray.length ? amountArray.reduce((a, b) => a + b) : 0);
+
           const priceArray = additionalOptionsValue.filter(({ selected }) => selected).map(({ price }) => price);
-          this.additionalProductsPrice = priceArray.length ? priceArray.reduce((a, b) => a + b) : 0;
+          this.additionalProductsPrice.set(getTotalPrice(priceArray));
+
+          const priceWithDiscountArray = additionalOptionsValue
+            .filter(({ selected }) => selected)
+            .map(option => getAdditionalOptionCurrentPrice(this.product(), option));
+          this.additionalProductsPriceWithDiscount.set(getTotalPrice(priceWithDiscountArray));
         });
     }
   }
@@ -115,10 +150,10 @@ export class ProductDetailComponent implements OnChanges {
 
   addItem(): void {
     const item: DeepPartial<OrderProduct> = {
-      product: this.product,
+      product: this.product(),
       amount: 1,
-      productId: this.product.id,
-      price: this.productPrice + this.additionalProductsPrice,
+      productId: this.product().id,
+      price: this.currentPrice(),
       orderProductAdditionalOptions: (this.additionalOptionsArray.value as AdditionalOptionFormValue[])
         .filter(option => option.selected)
         .map(({ id, price }) => ({ additionalOptionId: id, price })),

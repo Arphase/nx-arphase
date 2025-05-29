@@ -4,10 +4,10 @@ import { EntityDataService } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
 
 import { CategoryDataService } from './services/category-data.service';
-import { CategoriesEfects } from './state/categories.effects';
+import { CategoriesEffects } from './state/categories.effects';
 
 @NgModule({
-  imports: [CommonModule, EffectsModule.forFeature([CategoriesEfects])],
+  imports: [CommonModule, EffectsModule.forFeature([CategoriesEffects])],
 })
 export class CategoriesDataModule {
   constructor(entityDataService: EntityDataService, categoryDataService: CategoryDataService) {
