@@ -1,11 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, Optional } from '@angular/core';
 import { saveFile } from '@arphase/ui/utils';
-import { ApsQueryParams, DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
+import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
 import dayjs from 'dayjs';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 
+import { ApsQueryParams } from '@arphase/common';
 import { buildQueryParams } from '../entity-config/build-query-params';
 
 @Injectable()

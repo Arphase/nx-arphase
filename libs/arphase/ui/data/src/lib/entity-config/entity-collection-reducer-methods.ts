@@ -1,6 +1,5 @@
-import { ApsCollectionResponseInfo } from '@arphase/common';
+import { ApsCollectionResponseInfo, ApsQueryParams } from '@arphase/common';
 import {
-  ApsQueryParams,
   EntityAction,
   EntityActionPayload,
   EntityCollection,

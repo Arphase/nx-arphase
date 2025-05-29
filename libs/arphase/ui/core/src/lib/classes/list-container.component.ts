@@ -1,9 +1,9 @@
 import { Component, Optional } from '@angular/core';
-import { ApsCollectionResponseInfo } from '@arphase/common';
+import { ApsCollectionResponseInfo, ApsQueryParams } from '@arphase/common';
 import { ApsCollectionService, ApsDataService, ApsEntityCollection, buildQueryParams } from '@arphase/ui/data';
 import { filterNil } from '@arphase/ui/utils';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { ApsQueryParams, EntityOp, ofEntityOp } from '@ngrx/data';
+import { EntityOp, ofEntityOp } from '@ngrx/data';
 import { select } from '@ngrx/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
