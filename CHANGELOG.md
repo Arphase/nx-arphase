@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.4.0](https://github.com/Arphase/nx-arphase/compare/v6.3.0...v6.4.0) (2025-06-03)
+
+
+### Features
+
+* **musicr:** [#303](https://github.com/Arphase/nx-arphase/issues/303) implement product filtering by event type and price range ([d79b289](https://github.com/Arphase/nx-arphase/commit/d79b289f34f80916e1fad2ec27a31699b0224145))
+
 ## [6.3.0](https://github.com/Arphase/nx-arphase/compare/v6.2.1...v6.3.0) (2025-05-29)
 
 
