@@ -1,0 +1,76 @@
+<button nz-button
+        nz-dropdown
+        nzTrigger="click"
+        [ngStyle]="buttonStyles()"
+        [nzType]="showActiveStatus ? 'primary' : 'default'"
+        [nzDropdownMenu]="menu"
+        [nzClickHide]="false">
+  {{ mappedTitle }}
+  @if (showActiveStatus) {
+  <i nz-icon
+     nzType="close"
+     class="delete-icon right"
+     (click)="deleteFilters(); $event.stopPropagation()"></i>
+  } @else {
+  <i nz-icon
+     nzType="down"
+     class="right"></i>
+  }
+</button>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <form nz-menu
+        nz-form
+        nz-row
+        nzGutter="12"
+        nzLayout="vertical"
+        class="menu"
+        [ngStyle]="dropdownStyles()"
+        [formGroup]="control"
+        (click)="$event.stopPropagation()">
+    <div nz-col
+         nzSpan="12">
+      <nz-form-item>
+        <nz-form-label>Min</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 prefix="$"
+                 mask="separator.2"
+                 thousandSeparator=","
+                 formControlName="min" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col
+         nzSpan="12">
+      <nz-form-item>
+        <nz-form-label>Max</nz-form-label>
+        <nz-form-control apsAutoError>
+          <input nz-input
+                 prefix="$"
+                 mask="separator.2"
+                 thousandSeparator=","
+                 formControlName="max" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="button-column"
+         nz-col
+         nzSpan="24">
+      <button nz-button
+              nzType="primary"
+              [ngStyle]="buttonStyles()"
+              (click)="setFilter()">Buscar</button>
+    </div>
+    @if (showError) {
+    <div nz-col
+         nzSpan="24">
+      <nz-tag nzColor="error">
+        <i nz-icon
+           nzType="close-circle"></i>
+        <span>Rango de precio inválido</span>
+      </nz-tag>
+    </div>
+    }
+  </form>
+</nz-dropdown-menu>

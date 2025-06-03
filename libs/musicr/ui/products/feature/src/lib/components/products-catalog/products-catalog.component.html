@@ -97,14 +97,61 @@
     <div nz-row
          class="mb-5">
       <div nz-col
-           nzSpan="24"
-           class="flex items-end justify-end">
-        <nz-select class="text-left w-48"
-                   nzPlaceHolder="Ordenar:"
+           nzXs="0"
+           nzLg="24"
+           class="lg:flex items-end justify-end">
+        <aps-range-filter label="Precio"
+                          [buttonStyles]="buttonStyles"
+                          [dropdownStyles]="dropdownStyles"
+                          (filterItems)="filterPrice($event)" />
+
+        <aps-checkbox-filter label="Tipo de evento"
+                             [showSearchbar]="false"
+                             [buttonStyles]="buttonStyles"
+                             [dropdownStyles]="dropdownStyles"
+                             [options]="eventTypeOptions"
+                             (filterItems)="filterEventType($event)" />
+
+        <nz-select class="text-left w-52"
+                   nzPlaceHolder="Ordenar"
                    [nzLoading]="loadingSort()"
                    [(ngModel)]="sortingOption"
-                   (ngModelChange)="sort.emit($event)"
-                   [nzOptions]="sortOptions" />
+                   [nzOptions]="sortOptions"
+                   (ngModelChange)="sort.emit($event)" />
+      </div>
+      <div nz-col
+           nzXs="12"
+           nzLg="0">
+        <div nz-row>
+          <div nz-col
+               nzSpan="24"
+               class="flex items-center justify-start mb-3">
+            <aps-range-filter label="Precio"
+                              [buttonStyles]="buttonStyles"
+                              [dropdownStyles]="dropdownStyles"
+                              (filterItems)="filterPrice($event)" />
+          </div>
+          <div nz-col
+               nzSpan="24"
+               class="flex items-center justify-start mb-3">
+            <aps-checkbox-filter label="Tipo de evento"
+                                 [showSearchbar]="false"
+                                 [buttonStyles]="buttonStyles"
+                                 [dropdownStyles]="dropdownStyles"
+                                 [options]="eventTypeOptions"
+                                 (filterItems)="filterEventType($event)" />
+          </div>
+          <div nz-col
+               nzSpan="24"
+               class="flex items-center justify-start">
+            <nz-select class="text-left w-52"
+                       nzPlaceHolder="Ordenar"
+                       [nzLoading]="loadingSort()"
+                       [(ngModel)]="sortingOption"
+                       [nzOptions]="sortOptions"
+                       (ngModelChange)="sort.emit($event)" />
+          </div>
+        </div>
       </div>
     </div>
     <div nz-row

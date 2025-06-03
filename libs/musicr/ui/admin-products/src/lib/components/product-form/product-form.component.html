@@ -51,7 +51,7 @@
           <nz-form-label nzRequired>Categoría</nz-form-label>
           <nz-form-control apsAutoError>
             <nz-select mrlCategorySelect
-                       formControlName="categoryId"></nz-select>
+                       formControlName="categoryId" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -63,7 +63,7 @@
           <nz-form-label nzRequired>Subcategoría</nz-form-label>
           <nz-form-control apsAutoError>
             <nz-select mrlSubcategorySelect
-                       formControlName="subcategoryId"></nz-select>
+                       formControlName="subcategoryId" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -98,6 +98,23 @@
                      formControlName="promotionDiscount" />
               }
             </div>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+
+      <div nz-col
+           nzXs="24"
+           nzLg="12">
+        <nz-form-item>
+          <nz-form-label>Tipos de Evento</nz-form-label>
+          <nz-form-control>
+            <nz-select apsMultiSelectFormArray
+                       nzMode="multiple"
+                       formArrayName="eventTypes"
+                       [ngModel]="eventTypesArray"
+                       [ngModelOptions]="{ standalone: true }"
+                       [nzOptions]="eventTypeOptions" />
           </nz-form-control>
         </nz-form-item>
       </div>

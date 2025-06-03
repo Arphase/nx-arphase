@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApsCollectionResponse, ApsCollectionResponseInfo, ApsQueryParams } from '@arphase/common';
+import { ApsCollectionResponse, ApsQueryParams } from '@arphase/common';
 import { GtagService } from '@arphase/ui/gtag';
 import { Category, Product, Subcategory } from '@musicr/domain';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -12,7 +12,6 @@ import { catchError, filter, switchMap } from 'rxjs/operators';
 @Injectable()
 export class ProductsCatalogService {
   products = signal<Product[]>([]);
-  productsInfo = signal<ApsCollectionResponseInfo>(null);
   title = signal<string>('');
   loading = signal<boolean>(false);
   loadingSort = signal<boolean>(false);
@@ -37,7 +36,6 @@ export class ProductsCatalogService {
         filter(params => params.id),
         switchMap(({ id }) => {
           this.currentCategoryId.set(id);
-          this.productsInfo.set(null);
           this.loading.set(true);
           const category = this.getCategory(id);
           const productsResponse = this.getProducts(id);
@@ -49,13 +47,12 @@ export class ProductsCatalogService {
           return forkJoin([of({}), of({ results: [], info: null })]);
         }),
       )
-      .subscribe(([currentCategory, { results, info }]) => {
+      .subscribe(([currentCategory, { results }]) => {
         this.loading.set(false);
         const { category, name } = currentCategory as Subcategory;
         const location_id = category ? category.name : name;
         this.title.set(name);
         this.products.set(results);
-        this.productsInfo.set(info);
         this.gtagService.event('page_view', {
           send_to: 'AW-697727149',
           value: 1,
@@ -71,7 +68,7 @@ export class ProductsCatalogService {
   }
 
   getProducts(id: number, queryParams?: ApsQueryParams): Observable<ApsCollectionResponse<Product>> {
-    const sortingParams = { sort: 'product.position', direction: 'descend' };
+    const sortingParams = { sort: 'product.popularity', direction: 'ascend' };
     const params = this.isSubCategory ? { subcategoryId: id } : { categoryId: id };
     return this.http.get<ApsCollectionResponse<Product>>(`/mrlApi/products`, {
       params: { ...params, ...sortingParams, ...(queryParams ?? {}), pageSize: 1000 },
@@ -89,9 +86,15 @@ export class ProductsCatalogService {
     this.loadingSort.set(true);
     const [sort, direction] = String(sortOption).split('|');
     const sortingParams = { sort: sort.trim(), direction: direction.trim() };
-    const { results, info } = await firstValueFrom(this.getProducts(this.currentCategoryId(), sortingParams));
+    const { results } = await firstValueFrom(this.getProducts(this.currentCategoryId(), sortingParams));
     this.products.set(results);
-    this.productsInfo.set(info);
+    this.loadingSort.set(false);
+  }
+
+  async filter(queryParams: ApsQueryParams): Promise<void> {
+    this.loadingSort.set(true);
+    const { results } = await firstValueFrom(this.getProducts(this.currentCategoryId(), queryParams));
+    this.products.set(results);
     this.loadingSort.set(false);
   }
 }

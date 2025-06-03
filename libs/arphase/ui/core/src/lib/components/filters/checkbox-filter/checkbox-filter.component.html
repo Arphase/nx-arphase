@@ -1,6 +1,7 @@
 <button nz-dropdown
         nz-button
         nzTrigger="click"
+        [ngStyle]="buttonStyles()"
         [disabled]="disabled"
         [nzType]="selected ? 'primary' : 'default'"
         [nzDropdownMenu]="menu"
@@ -17,10 +18,13 @@
      (click)="deleteFilters(); $event.stopPropagation()"></i>
 </button>
 <nz-dropdown-menu #menu="nzDropdownMenu">
-  <div nz-menu>
+  <div [ngStyle]="dropdownStyles()"
+       nz-menu>
     <div nz-menu-item>
+      @if (showSearchbar()) {
       <aps-searchbar [showIcon]="false"
-                     (valueChange)="filterOptionsText($event)"></aps-searchbar>
+                     (valueChange)="filterOptionsText($event)" />
+      }
     </div>
     <nz-empty *ngIf="!options?.length"></nz-empty>
     <nz-checkbox-wrapper>

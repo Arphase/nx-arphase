@@ -1,4 +1,4 @@
-import { AdditionalOption, Photo, PriceOption } from '@musicr/domain';
+import { AdditionalOption, EventType, Photo, PriceOption } from '@musicr/domain';
 import { Type } from 'class-transformer';
 import { IsArray, IsBoolean, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 
@@ -28,6 +28,9 @@ export class CreateProductDto {
   @IsOptional()
   @IsNumber()
   promotionDiscount: number;
+
+  @IsArray()
+  eventTypes: EventType[];
 
   @IsNumber()
   subcategoryId: number;

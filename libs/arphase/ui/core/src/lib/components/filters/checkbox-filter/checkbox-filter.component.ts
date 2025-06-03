@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  input,
   Input,
   Output,
   ViewChild,
@@ -36,12 +37,15 @@ export class ApsCheckboxFilterComponent {
   @Input() loading: boolean;
   @Input() last: boolean;
   @Input() pageIndex: string;
+  buttonStyles = input<Record<string, string>>({});
+  dropdownStyles = input<Record<string, string>>({});
+  showSearchbar = input<boolean>(true);
   mappedTitle: string;
   selected = false;
   setOfCheckedId = new Set<number>();
   setOfCheckedLabel = new Set<string>();
   @Output() filterOptions = new EventEmitter<ApsQueryParams>();
-  @Output() filterItems = new EventEmitter<number[]>();
+  @Output() filterItems = new EventEmitter<string | number[]>();
 
   get checkedIdsArray(): number[] {
     return Array.from(this.setOfCheckedId);

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/cor
 
 import { TitleCasePipe } from '@angular/common';
 import { Title } from '@angular/platform-browser';
+import { ApsQueryParams } from '@arphase/common';
 import { ProductsCatalogComponent } from '../../components/products-catalog/products-catalog.component';
 import { ProductsCatalogService } from '../../services/products-catalog.service';
 
@@ -34,5 +35,9 @@ export class ProductsCatalogContainerComponent {
 
   sort(sortOption: string): void {
     this.productsCatalogService.sort(sortOption);
+  }
+
+  filter(queryParams: ApsQueryParams): void {
+    this.productsCatalogService.filter(queryParams);
   }
 }

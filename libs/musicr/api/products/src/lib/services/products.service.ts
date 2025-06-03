@@ -27,7 +27,7 @@ export class ProductsService {
    * @returns products
    */
   async getProducts(filterDto: GetProductsFilterDto): Promise<ApsCollectionResponse<Product>> {
-    const { pageIndex, pageSize, categoryId, subcategoryId, text } = filterDto;
+    const { pageIndex, pageSize, categoryId, subcategoryId, text, eventTypes, minPrice, maxPrice } = filterDto;
     const query = this.productRepository
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.subcategory', 'subcategory')
@@ -43,6 +43,18 @@ export class ProductsService {
 
     if (subcategoryId) {
       query.andWhere(`(subcategory.id = :subcategoryId)`, { subcategoryId });
+    }
+
+    if (eventTypes) {
+      query.andWhere(`(product.eventTypes && :eventTypes)`, { eventTypes });
+    }
+
+    if (minPrice) {
+      query.andWhere(`(product.price > :minPrice)`, { minPrice });
+    }
+
+    if (maxPrice) {
+      query.andWhere(`(product.price < :maxPrice)`, { maxPrice });
     }
 
     if (text) {

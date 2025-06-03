@@ -1,5 +1,7 @@
 import { ApsCollectionFilterDto } from '@arphase/api/core';
-import { IsNumber, IsOptional } from 'class-validator';
+import { EventType } from '@musicr/domain';
+import { Transform } from 'class-transformer';
+import { IsArray, IsNumber, IsOptional } from 'class-validator';
 
 export class GetProductsFilterDto extends ApsCollectionFilterDto {
   @IsNumber()
@@ -9,4 +11,21 @@ export class GetProductsFilterDto extends ApsCollectionFilterDto {
   @IsNumber()
   @IsOptional()
   subcategoryId?: number;
+
+  @IsArray()
+  @Transform((_, obj) =>
+    String(obj['eventTypes'])
+      .split(',')
+      .filter(eventType => !!eventType),
+  )
+  @IsOptional()
+  eventTypes?: EventType[];
+
+  @IsNumber()
+  @IsOptional()
+  minPrice?: number;
+
+  @IsNumber()
+  @IsOptional()
+  maxPrice?: number;
 }

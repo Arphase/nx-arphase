@@ -1,0 +1,98 @@
+.mobile-submenu {
+  .ant-menu-submenu-title {
+    padding: 0 !important;
+  }
+  .ant-menu-item {
+    padding: 0 !important;
+  }
+}
+
+.ant-collapse-header {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.ant-collapse-content-box {
+  padding-left: 0 !important;
+}
+
+.ant-collapse-arrow {
+  right: 0 !important;
+}
+
+.ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
+  color: @white-color;
+}
+
+.ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner:hover {
+  color: @primary-color;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  color: @white-color;
+}
+
+.ant-btn-primary {
+  background-color: @primary-color !important;
+}
+
+.ant-affix {
+  width: 100vw !important;
+  background-color: @white-color !important;
+  z-index: 20;
+}
+
+.menu {
+  .ant-drawer-header,
+  .ant-drawer-body {
+    @media only screen and (max-width: 1024px) {
+      background-color: @primary-color !important;
+      border-bottom: none !important;
+    }
+  }
+}
+
+.ant-menu {
+  @media only screen and (max-width: 1024px) {
+    background-color: @primary-color !important;
+  }
+}
+
+.ant-menu-submenu {
+  @media only screen and (max-width: 1024px) {
+    font-size: 24px;
+    border-bottom: 1px solid rgb(255, 255, 2255, 0.5) !important;
+  }
+}
+
+.ant-menu-submenu-title:hover,
+.ant-menu-item:hover,
+.ant-menu-submenu:hover,
+.ant-menu-item-active,
+.ant-menu-submenu-active,
+.ant-menu-item-open,
+.ant-menu-submenu-open,
+.ant-menu-item-selected,
+.ant-menu-submenu-selected {
+  color: @primary-color !important;
+  background-color: #e0e0e0 !important;
+
+  @media only screen and (max-width: 768px) {
+    color: @white-color !important;
+    background-color: @primary-color !important;
+  }
+}
+
+.ant-menu-submenu:hover::after,
+.ant-menu-submenu-selected::after,
+.ant-menu-submenu-open::after {
+  border-bottom: 2px solid @primary-color !important;
+}
+
+.ant-menu-horizontal {
+  border-bottom: none !important;
+}
+
+.ant-page-header {
+  padding: 0 !important;
+}

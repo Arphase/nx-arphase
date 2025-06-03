@@ -8,6 +8,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NgxMaskDirective } from 'ngx-mask';
 
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { FooterComponent } from './footer.component';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FooterComponent } from './footer.component';
     NzFormModule,
     NzGridModule,
     NzIconModule,
+    NzInputModule,
     NzButtonModule,
     RouterModule,
     NgxMaskDirective,

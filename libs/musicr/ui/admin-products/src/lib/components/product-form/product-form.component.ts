@@ -8,8 +8,10 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import {
+  FormArray,
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   UntypedFormArray,
   UntypedFormControl,
@@ -18,13 +20,14 @@ import {
 import {
   ApsAutoErrorModule,
   ApsFormComponent,
+  ApsMultiSelectFormArrayDirective,
   ApsValidators,
   ControlsOf,
   enableControl,
   setFormArrayValue,
 } from '@arphase/ui/forms';
-import { filterNil, getBase64 } from '@arphase/ui/utils';
-import { Product } from '@musicr/domain';
+import { filterNil, getBase64, sortSelectOptions } from '@arphase/ui/utils';
+import { EventType, eventTypeOptions, Product } from '@musicr/domain';
 import { MUSIC_REVOLUTION_CONFIGURATION, MusicRevolutionConfiguration } from '@musicr/ui/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NzUploadFile, NzUploadModule } from 'ng-zorro-antd/upload';
@@ -62,6 +65,7 @@ export function createProductForm(): FormGroup<ControlsOf<Partial<Product & { ca
     popularity: new FormControl<number>(0),
     hasActivePromotion: new FormControl<boolean>(false),
     promotionDiscount: new FormControl<number>(0, [ApsValidators.min(0), ApsValidators.max(100)]),
+    eventTypes: new FormArray<FormControl<EventType>>([]),
     productComponents: new UntypedFormArray([]),
     additionalOptions: new UntypedFormArray([]),
     priceOptions: new UntypedFormArray([]),
@@ -78,8 +82,10 @@ export function createProductForm(): FormGroup<ControlsOf<Partial<Product & { ca
   imports: [
     AdditionalOptionsFormContainerComponent,
     ApsAutoErrorModule,
+    ApsMultiSelectFormArrayDirective,
     CategorySelectModule,
     CommonModule,
+    FormsModule,
     NgxMaskDirective,
     NzButtonModule,
     NzCheckboxModule,
@@ -106,6 +112,8 @@ export class ProductFormComponent extends ApsFormComponent<Product> implements O
   previewVisible: boolean;
   photosUrl = `${this.config.apiUrl}/photos`;
   form = createProductForm();
+  eventTypesArray = [];
+  eventTypeOptions = sortSelectOptions(eventTypeOptions);
   @Output() categoryChanges = new EventEmitter<number>();
   @Output() removePhoto = new EventEmitter<number>();
 
@@ -153,6 +161,7 @@ export class ProductFormComponent extends ApsFormComponent<Product> implements O
       url: photo.url,
       status: 'done',
     }));
+    this.eventTypesArray = this.item.eventTypes ?? [];
     setFormArrayValue(this.productComponentsFormArray, this.item.productComponents);
     this.priceOptionsFormArray.controls.forEach(control =>
       enableControl(control.get('includedInPromotion'), this.item.hasActivePromotion),

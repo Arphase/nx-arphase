@@ -1,4 +1,4 @@
-import { AdditionalOption, OrderProduct, Photo, PriceOption, Product, Subcategory } from '@musicr/domain';
+import { AdditionalOption, EventType, OrderProduct, Photo, PriceOption, Product, Subcategory } from '@musicr/domain';
 import {
   BaseEntity,
   Column,
@@ -60,6 +60,15 @@ export class ProductEntity extends BaseEntity implements Product {
 
   @Column({ nullable: true })
   promotionDiscount?: number;
+
+  @Column({
+    type: 'enum',
+    enum: EventType,
+    array: true,
+    default: [],
+    nullable: true,
+  })
+  eventTypes?: EventType[];
 
   @Column({ nullable: true })
   subcategoryId?: number;
